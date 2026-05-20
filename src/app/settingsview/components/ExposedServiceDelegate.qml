@@ -157,7 +157,6 @@ ItemDelegate {
                 toolTipText: JamiStrings.settings
 
                 onClicked: {
-                    console.warn("THIS IS THE SERVICE TYPE", modelData.type)
                     viewCoordinator.presentDialog(appWindow, "settingsview/components/ExposedServiceDialog.qml", {
                                                       "serviceType": modelData.type || "custom",
                                                       "editingId": modelData.id,

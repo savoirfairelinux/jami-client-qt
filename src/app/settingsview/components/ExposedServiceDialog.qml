@@ -389,7 +389,7 @@ BaseModalDialog {
         options: FolderDialog.ShowDirsOnly
 
         onAccepted: {
-            root.serviceDirectory = UtilsAdapter.getAbsPath(folder.toString())
+            root.serviceDirectory = UtilsAdapter.getAbsPath(decodeURIComponent(folder.toString()))
             root.serviceName = UtilsAdapter.dirName(root.serviceDirectory);
         }
     }
