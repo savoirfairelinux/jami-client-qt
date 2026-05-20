@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c373fde6_3a4b7e5c",
+        "filename": "src/app/conversationsadapter.cpp",
+        "patchSetId": 27
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-20T13:56:16Z",
+      "side": 1,
+      "message": "Line 51: 🟡 Suggestions - The fallback timeout clears the filter but leaves `selectFirst_` set to true. If the delayed search completion arrives later, or a later unrelated search emits `onSearchResultEnded()`, the adapter can still auto-select the first result even though this URI-initiated search already timed out. Clear the pending selection when the fallback fires.\\n\\n```suggestion\\nconnect(\u0026searchFallbackTimer_, \u0026QTimer::timeout, this, [this]() {\\n    selectFirst_ \u003d false;\\n    setFilter({});\\n});\\n```",
+      "revId": "63a130407819ffa5693fb57fa4894503e04423cd",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3578f42a_c4ef8a72",
+        "filename": "src/libclient/interaction.cpp",
+        "patchSetId": 27
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-20T13:56:16Z",
+      "side": 1,
+      "message": "Line 127: 🟡 Suggestions - `bodyOverwrite` from plugin data is applied unconditionally to the visible message body. That means any plugin-provided payload can replace user-visible conversation content without preserving a clear trust boundary here. If only specific plugin keys or trusted plugin sources should be allowed to alter message rendering, validate that before overwriting `body`, or keep the overwrite as a separate display field consumed by UI code that can label it appropriately.",
+      "revId": "63a130407819ffa5693fb57fa4894503e04423cd",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
