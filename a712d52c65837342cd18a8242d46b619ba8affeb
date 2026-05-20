@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "990f19ee_860d90e5",
+        "filename": "src/app/CallPipWindow.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-20T15:56:10Z",
+      "side": 1,
+      "message": "[🟡 Suggestions] Line 107: Changing `width` and `height` does not keep the PiP window area in sync on Wayland/other constrained window managers when the compositor refuses or clamps one of the requested dimensions. `_lastInvAspect` is updated before the geometry is actually applied, so a refused resize makes future `onVideoInvAspectRatioChanged` calls treat the aspect ratio as already handled and the window can remain at the wrong shape. Update the cached aspect only after the effective geometry is within tolerance, or leave it unchanged when the requested size was not applied. Suggested fix:\n```suggestion\n        if (newWidth !\u003d\u003d width)\n            width \u003d newWidth;\n        if (newHeight !\u003d\u003d height)\n            height \u003d newHeight;\n\n        if (Math.abs(newWidth - width) \u003c\u003d 1 \u0026\u0026 Math.abs(newHeight - height) \u003c\u003d 1) {\n            _lastInvAspect \u003d r;\n            _lastInvAspectInit \u003d true;\n        }\n```",
+      "revId": "a712d52c65837342cd18a8242d46b619ba8affeb",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0198cb25_2ed00ff6",
+        "filename": "src/app/CallPipWindow.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-20T15:56:10Z",
+      "side": 1,
+      "message": "[🟡 Suggestions] Line 249: `onWidthChanged` always treats width changes as authoritative, including programmatic changes caused by `_applyVideoAspectFromHeight()`. This can turn a height-edge resize into two competing adjustments and may save an intermediate geometry depending on signal ordering. Add an explicit adjustment guard so programmatic width/height updates do not re-enter the opposite resize path. Suggested fix:\n```suggestion\n    property bool _adjustingAspect: false\n\n    function _setAspectGeometry(newWidth, newHeight) {\n        _adjustingAspect \u003d true;\n        if (newWidth !\u003d\u003d width)\n            width \u003d newWidth;\n        if (newHeight !\u003d\u003d height)\n            height \u003d newHeight;\n        _adjustingAspect \u003d false;\n    }\n\n    onWidthChanged: {\n        if (!_adjustingAspect)\n            _applyVideoAspect();\n        saveGeometry();\n    }\n    onHeightChanged: {\n        if (!_adjustingAspect)\n            _applyVideoAspectFromHeight();\n        saveGeometry();\n    }\n```",
+      "revId": "a712d52c65837342cd18a8242d46b619ba8affeb",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
