@@ -19,6 +19,7 @@
 #include "callmanager.h"
 #include "presencemanager.h"
 #include "configurationmanager.h"
+#include "networkservicemanager.h"
 #ifdef ENABLE_VIDEO
 #include "videomanager.h"
 #endif // ENABLE_VIDEO
@@ -75,6 +76,7 @@ InstanceManagerInterface::InstanceManagerInterface(bool muteDaemon)
     registerSignalHandlers(VideoManager::instance().videoHandlers);
 #endif
     registerSignalHandlers(ConfigurationManager::instance().conversationsHandlers);
+    registerSignalHandlers(NetworkServiceManager::instance().serviceHandlers);
 
     if (!libjami::start())
         printf("Error initializing daemon\n");

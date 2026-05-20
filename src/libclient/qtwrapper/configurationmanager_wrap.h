@@ -55,7 +55,6 @@ public:
         using libjami::AudioSignal;
         using libjami::DataTransferSignal;
         using libjami::ConversationSignal;
-        using libjami::ServiceSignal;
 
         setObjectName("ConfigurationManagerInterface");
         confHandlers = {
@@ -209,27 +208,6 @@ public:
                                                  status,
                                                  QString(query.c_str()),
                                                  convertVecMap(results));
-                }),
-            exportable_callback<ServiceSignal::PeerServicesReceived>([this](uint32_t requestId,
-                                                                            const std::string& accountId,
-                                                                            const std::string& peerId,
-                                                                            int status,
-                                                                            const std::string& servicesJson) {
-                Q_EMIT this->peerServicesReceived(requestId,
-                                                  QString(accountId.c_str()),
-                                                  QString(peerId.c_str()),
-                                                  status,
-                                                  QString(servicesJson.c_str()));
-            }),
-            exportable_callback<ServiceSignal::TunnelOpened>(
-                [this](const std::string& accountId, const std::string& tunnelId, uint16_t localPort) {
-                    Q_EMIT this->serviceTunnelOpened(QString(accountId.c_str()), QString(tunnelId.c_str()), localPort);
-                }),
-            exportable_callback<ServiceSignal::TunnelClosed>(
-                [this](const std::string& accountId, const std::string& tunnelId, const std::string& reason) {
-                    Q_EMIT this->serviceTunnelClosed(QString(accountId.c_str()),
-                                                     QString(tunnelId.c_str()),
-                                                     QString(reason.c_str()));
                 }),
         };
 
@@ -548,56 +526,6 @@ public Q_SLOTS: // METHODS
             temp.push_back(convertMap(x));
         }
         return temp;
-    }
-
-    VectorMapStringString getExposedServices(const QString& accountId)
-    {
-        return convertVecMap(libjami::getExposedServices(accountId.toStdString()));
-    }
-
-    QString addExposedService(const QString& accountId, MapStringString service)
-    {
-        return QString::fromStdString(libjami::addExposedService(accountId.toStdString(), convertMap(service)));
-    }
-
-    bool updateExposedService(const QString& accountId, MapStringString service)
-    {
-        return libjami::updateExposedService(accountId.toStdString(), convertMap(service));
-    }
-
-    bool removeExposedService(const QString& accountId, const QString& serviceId)
-    {
-        return libjami::removeExposedService(accountId.toStdString(), serviceId.toStdString());
-    }
-
-    uint32_t queryPeerServices(const QString& accountId, const QString& peerUri)
-    {
-        return libjami::queryPeerServices(accountId.toStdString(), peerUri.toStdString());
-    }
-
-    QString openServiceTunnel(const QString& accountId,
-                              const QString& peerUri,
-                              const QString& peerDevice,
-                              const QString& serviceId,
-                              const QString& serviceName,
-                              uint16_t localPort)
-    {
-        return QString::fromStdString(libjami::openServiceTunnel(accountId.toStdString(),
-                                                                 peerUri.toStdString(),
-                                                                 peerDevice.toStdString(),
-                                                                 serviceId.toStdString(),
-                                                                 serviceName.toStdString(),
-                                                                 localPort));
-    }
-
-    bool closeServiceTunnel(const QString& accountId, const QString& tunnelId)
-    {
-        return libjami::closeServiceTunnel(accountId.toStdString(), tunnelId.toStdString());
-    }
-
-    VectorMapStringString getActiveTunnels(const QString& accountId)
-    {
-        return convertVecMap(libjami::getActiveTunnels(accountId.toStdString()));
     }
 
     int getAudioInputDeviceIndex(const QString& devname)
@@ -1309,11 +1237,6 @@ Q_SIGNALS: // SIGNALS
     void conversationPreferencesUpdated(const QString& accountId,
                                         const QString& conversationId,
                                         const MapStringString& message);
-    // exposed services / tunnels
-    void peerServicesReceived(
-        uint32_t requestId, const QString& accountId, const QString& peerId, int status, const QString& servicesJson);
-    void serviceTunnelOpened(const QString& accountId, const QString& tunnelId, quint16 localPort);
-    void serviceTunnelClosed(const QString& accountId, const QString& tunnelId, const QString& reason);
 };
 
 namespace org {

@@ -241,6 +241,7 @@ set(LIBCLIENT_SOURCES
   dbus/configurationmanager.cpp
   dbus/callmanager.cpp
   dbus/instancemanager.cpp
+  dbus/networkservicemanager.cpp
   dbus/videomanager.cpp
   dbus/presencemanager.cpp
   dbus/pluginmanager.cpp
@@ -396,6 +397,14 @@ ${dbus_xml_introspecs_path}")
     CLASSNAME InstanceManagerInterface
     INCLUDE ${dbus_metatype_path})
 
+  set(networkservicemanager_xml
+    ${dbus_xml_introspecs_path}/cx.ring.Ring.NetworkServiceManager.xml)
+  set_source_files_properties(
+    ${networkservicemanager_xml}
+    PROPERTIES
+    CLASSNAME NetworkServiceManagerInterface
+    INCLUDE ${dbus_metatype_path})
+
   qt_add_dbus_interface(
     LIBCLIENT_SOURCES
     ${presencemanager_xml}
@@ -425,6 +434,11 @@ ${dbus_xml_introspecs_path}")
     LIBCLIENT_SOURCES
     ${instance_xml}
     instance_dbus_interface)
+
+  qt_add_dbus_interface(
+    LIBCLIENT_SOURCES
+    ${networkservicemanager_xml}
+    networkservicemanager_dbus_interface)
 endif()
 
 # Manually wrap libjamiclient's private headers and interfaces.
@@ -436,6 +450,7 @@ if(ENABLE_LIBWRAP)
     qtwrapper/callmanager_wrap.h
     qtwrapper/configurationmanager_wrap.h
     qtwrapper/instancemanager_wrap.h
+    qtwrapper/networkservicemanager_wrap.h
     qtwrapper/presencemanager_wrap.h
     qtwrapper/videomanager_wrap.h
     qtwrapper/pluginmanager_wrap.h)

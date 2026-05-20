@@ -19,7 +19,7 @@
 
 #include "lrcinstance.h"
 
-#include "dbus/configurationmanager.h"
+#include "dbus/networkservicemanager.h"
 
 #include <QDir>
 #include <QFile>
@@ -251,7 +251,7 @@ existingServiceMap(const QString& accountId, const QString& serviceId)
 {
     if (serviceId.isEmpty())
         return {};
-    const auto records = ConfigurationManager::instance().getExposedServices(accountId);
+    const auto records = NetworkServiceManager::instance().getExposedServices(accountId);
     for (const auto& record : records) {
         if (record.value(ID_KEY) == serviceId)
             return mapToVariant(record);
@@ -280,10 +280,10 @@ ExposedServicesAdapter::create(QQmlEngine*, QJSEngine*)
 ExposedServicesAdapter::ExposedServicesAdapter(LRCInstance* instance, QObject* parent)
     : QmlAdapterBase(instance, parent)
 {
-    auto& cm = ConfigurationManager::instance();
+    auto& nsm = NetworkServiceManager::instance();
 
-    connect(&cm,
-            &ConfigurationManagerInterface::peerServicesReceived,
+    connect(&nsm,
+            &NetworkServiceManagerInterface::peerServicesReceived,
             this,
             [this](quint32 requestId,
                    const QString& accountId,
@@ -302,15 +302,15 @@ ExposedServicesAdapter::ExposedServicesAdapter(LRCInstance* instance, QObject* p
                 Q_EMIT peerServicesReceived(requestId, accountId, peerId, status, services);
             });
 
-    connect(&cm,
-            &ConfigurationManagerInterface::serviceTunnelOpened,
+    connect(&nsm,
+            &NetworkServiceManagerInterface::serviceTunnelOpened,
             this,
             [this](const QString& accountId, const QString& tunnelId, quint16 localPort) {
                 Q_EMIT tunnelOpened(accountId, tunnelId, localPort);
             });
 
-    connect(&cm,
-            &ConfigurationManagerInterface::serviceTunnelClosed,
+    connect(&nsm,
+            &NetworkServiceManagerInterface::serviceTunnelClosed,
             this,
             [this](const QString& accountId, const QString& tunnelId, const QString& reason) {
                 Q_EMIT tunnelClosed(accountId, tunnelId, reason);
@@ -351,7 +351,7 @@ ExposedServicesAdapter::getExposedServices(const QString& accountId)
     if (id.isEmpty())
         return out;
     syncEmbeddedServers(id);
-    const auto records = ConfigurationManager::instance().getExposedServices(id);
+    const auto records = NetworkServiceManager::instance().getExposedServices(id);
     out.reserve(records.size());
     for (const auto& m : records)
         out.append(mapToVariant(m));
@@ -370,7 +370,7 @@ ExposedServicesAdapter::addExposedService(const QString& accountId, const QVaria
     if (!prepareServiceForStorage(id, serviceForStorage, replacementServer))
         return {};
 
-    const auto serviceId = ConfigurationManager::instance().addExposedService(id, variantToMap(serviceForStorage));
+    const auto serviceId = NetworkServiceManager::instance().addExposedService(id, variantToMap(serviceForStorage));
     if (serviceId.isEmpty())
         return {};
 
@@ -397,7 +397,7 @@ ExposedServicesAdapter::updateExposedService(const QString& accountId, const QVa
     if (!prepareServiceForStorage(id, serviceForStorage, replacementServer))
         return false;
 
-    const auto updated = ConfigurationManager::instance().updateExposedService(id, variantToMap(serviceForStorage));
+    const auto updated = NetworkServiceManager::instance().updateExposedService(id, variantToMap(serviceForStorage));
     if (!updated)
         return false;
 
@@ -419,7 +419,7 @@ ExposedServicesAdapter::removeExposedService(const QString& accountId, const QSt
     const auto id = resolveAccountId(accountId);
     if (id.isEmpty() || serviceId.isEmpty())
         return false;
-    const auto removed = ConfigurationManager::instance().removeExposedService(id, serviceId);
+    const auto removed = NetworkServiceManager::instance().removeExposedService(id, serviceId);
     if (removed) {
         stopEmbeddedServer(id, serviceId);
         Q_EMIT refreshExposedServices();
@@ -553,7 +553,7 @@ ExposedServicesAdapter::syncEmbeddedServers(const QString& accountId)
     if (accountId.isEmpty())
         return;
 
-    auto& configurationManager = ConfigurationManager::instance();
+    auto& configurationManager = NetworkServiceManager::instance();
     const auto records = configurationManager.getExposedServices(accountId);
     QSet<QString> desiredServerKeys;
 
@@ -639,7 +639,7 @@ ExposedServicesAdapter::queryPeerServices(const QString& accountId, const QStrin
     const auto id = resolveAccountId(accountId);
     if (id.isEmpty() || peerUri.isEmpty())
         return 0;
-    return ConfigurationManager::instance().queryPeerServices(id, peerUri);
+    return NetworkServiceManager::instance().queryPeerServices(id, peerUri);
 }
 
 QString
@@ -653,7 +653,8 @@ ExposedServicesAdapter::openServiceTunnel(const QString& accountId,
     const auto id = resolveAccountId(accountId);
     if (id.isEmpty())
         return {};
-    return ConfigurationManager::instance().openServiceTunnel(id, peerUri, peerDevice, serviceId, serviceName, localPort);
+    return NetworkServiceManager::instance()
+        .openServiceTunnel(id, peerUri, peerDevice, serviceId, serviceName, localPort);
 }
 
 bool
@@ -662,7 +663,7 @@ ExposedServicesAdapter::closeServiceTunnel(const QString& accountId, const QStri
     const auto id = resolveAccountId(accountId);
     if (id.isEmpty() || tunnelId.isEmpty())
         return false;
-    return ConfigurationManager::instance().closeServiceTunnel(id, tunnelId);
+    return NetworkServiceManager::instance().closeServiceTunnel(id, tunnelId);
 }
 
 QVariantList
@@ -672,7 +673,7 @@ ExposedServicesAdapter::getActiveTunnels(const QString& accountId) const
     const auto id = resolveAccountId(accountId);
     if (id.isEmpty())
         return out;
-    const auto records = ConfigurationManager::instance().getActiveTunnels(id);
+    const auto records = NetworkServiceManager::instance().getActiveTunnels(id);
     out.reserve(records.size());
     for (const auto& m : records)
         out.append(mapToVariant(m));
