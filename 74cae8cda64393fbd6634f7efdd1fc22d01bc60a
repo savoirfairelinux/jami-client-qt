@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f670803f_7b706699",
+        "filename": "src/app/conversationsadapter.cpp",
+        "patchSetId": 26
+      },
+      "lineNbr": 445,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-20T13:27:54Z",
+      "side": 1,
+      "message": "[Major] Line 445: 🟡 Suggestion: The one-second fallback clears an active search before slow daemon/network results can arrive, and `selectFirst_.exchange(false)` prevents `onSearchResultEnded` from selecting the eventual result. This makes global search unreliable under normal latency/offline-transition conditions. Prefer tying the timeout to an explicit failure/no-result path, or use a longer cancellable timer that only resets UI state after the search source confirms no pending search. For example:\n```suggestion\n// Start a cancellable fallback timer and stop it from onSearchResultEnded().\n// Do not exchange selectFirst_ here; leave result selection to the search completion path.\nsearchFallbackTimer_.start();\n```",
+      "revId": "74cae8cda64393fbd6634f7efdd1fc22d01bc60a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c0bd2fa9_9c59ed0a",
+        "filename": "src/libclient/interaction.cpp",
+        "patchSetId": 26
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-20T13:27:54Z",
+      "side": 1,
+      "message": "[Critical] Line 134: 🔴 Critical Issues: Edition body overrides are matched by edition vector index (`bodyOverwrite_e0`, `bodyOverwrite_e1`, ...). If the daemon changes edition ordering, inserts missing editions, or returns a subset, plugin data can be applied to the wrong historical message body. Key the plugin data by the stable edition id instead of positional index, or preserve an explicit daemon-provided mapping. Example:\n```suggestion\nconst auto pdKey \u003d QString(\"bodyOverwrite_%1\").arg(edition.value(\"id\"));\nconst auto pdIt \u003d msg.pluginData.find(pdKey);\n```",
+      "revId": "74cae8cda64393fbd6634f7efdd1fc22d01bc60a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "10ab2af3_650cf85f",
+        "filename": "src/libclient/messagelistmodel.cpp",
+        "patchSetId": 26
+      },
+      "lineNbr": 528,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-20T13:27:54Z",
+      "side": 1,
+      "message": "[Major] Line 528: 🟡 Suggestion: `OriginalBody` only returns the current commit body. For edited messages, the edit UI now bypasses the displayed plugin-overwritten body, but it may still edit the latest raw body without considering the same action/body handling used by `Role::Body`. If the commit is an interaction action, this can populate the composer with an empty or incorrect string. Mirror the existing `Body` role fallback logic while intentionally skipping plugin display overrides. Example:\n```suggestion\ncase Role::OriginalBody: {\n    if (item.second.commit.contains(\"body\"))\n        return QVariant(item.second.commit.value(\"body\"));\n    return QVariant(item.second.body);\n}\n```",
+      "revId": "74cae8cda64393fbd6634f7efdd1fc22d01bc60a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
