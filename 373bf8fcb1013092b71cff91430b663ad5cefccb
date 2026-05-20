@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "61d5b174_f15e4db4",
+        "filename": "CMakeLists.txt",
+        "patchSetId": 3
+      },
+      "lineNbr": 633,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-20T13:57:12Z",
+      "side": 1,
+      "message": "Line 633: The checked-in `Assets.car` is a generated binary, but the build does not regenerate it from the committed `AppIcon.icon` sources. This makes the resource non-reproducible and easy to ship stale if `icon.json` or `jami.png` changes. Please either add a CMake custom command on Apple platforms to run `xcrun actool` and package the generated `Assets.car`, or document/enforce a regeneration step in packaging so source and binary cannot diverge.",
+      "revId": "373bf8fcb1013092b71cff91430b663ad5cefccb",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4dd72cee_00ee9192",
+        "filename": "resources/images/AppIcon.icon/icon.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-20T13:57:12Z",
+      "side": 1,
+      "message": "Line 41: The JSON file has no trailing newline. Please add one to keep repository formatting consistent and avoid unnecessary diff noise in future edits.",
+      "revId": "373bf8fcb1013092b71cff91430b663ad5cefccb",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
