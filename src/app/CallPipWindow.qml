@@ -57,6 +57,14 @@ Window {
         id: dragHandle
         anchors.fill: parent
         z: -1
+
+        // On Windows (frameless), use startSystemMove() for dragging instead of
+        // QWindowKit's setTitleBar, to avoid HTCAPTION blocking hover events.
+        DragHandler {
+            enabled: root.useFrameless && !JamiQmlUtils.isMacOS26OrLater
+            target: null
+            onActiveChanged: if (active) root.startSystemMove()
+        }
     }
 
     MouseArea {
@@ -157,8 +165,8 @@ Window {
         } else if (useFrameless) {
             windowAgent.setup(root);
             Qt.callLater(function () {
-                // Entire video area serves as the drag handle for moving the window.
-                windowAgent.setTitleBar(dragHandle);
+                // No title bar registered - dragging is handled by DragHandler
+                // via startSystemMove() to keep the full window as HTCLIENT.
                 windowAgent.setHitTestVisible(content.muteAudioButton, true);
                 windowAgent.setHitTestVisible(content.muteCameraButton, true);
                 windowAgent.setHitTestVisible(content.endCallButton, true);
