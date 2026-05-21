@@ -24,9 +24,11 @@
 #include "messageparser.h"
 #include "appsettingsmanager.h"
 
+#include <memory>
 #include <QObject>
 #include <QString>
 #include <QTimer>
+#include <QTemporaryDir>
 
 #include <QSortFilterProxyModel>
 #include <QQmlEngine>   // QML registration
@@ -132,6 +134,7 @@ public:
     Q_INVOKABLE void acceptFile(const QString& arg);
     Q_INVOKABLE void cancelFile(const QString& arg);
     Q_INVOKABLE void openUrl(const QString& url);
+    Q_INVOKABLE void openInTempDir(const QString& url, const QString& displayName);
     Q_INVOKABLE void openDirectory(const QString& arg);
     Q_INVOKABLE void removeFile(const QString& interactionId, const QString& path);
     Q_INVOKABLE void joinCall(const QString& uri,
@@ -193,6 +196,7 @@ private:
     QLocale curLocale_;
     QString dateFormatCurrentYear_;
     QString dateFormatOtherYears_;
+    std::unique_ptr<QTemporaryDir> tempDir_;
 
     void updateDateFormats();
 };

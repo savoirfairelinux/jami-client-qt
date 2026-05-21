@@ -38,6 +38,7 @@
 #include <QUrl>
 #include <QtMath>
 #include <QRegularExpression>
+#include <QTemporaryDir>
 
 MessagesAdapter::MessagesAdapter(AppSettingsManager* settingsManager,
                                  PreviewEngine* previewEngine,
@@ -50,6 +51,7 @@ MessagesAdapter::MessagesAdapter(AppSettingsManager* settingsManager,
     , mediaInteractions_(std::make_unique<MessageListModel>(nullptr))
     , timestampTimer_(new QTimer(this))
     , curLocale_(QLocale(settingsManager_->getLanguage()))
+    , tempDir_(std::make_unique<QTemporaryDir>())
 {
     setObjectName(typeid(*this).name());
     updateDateFormats();
@@ -86,6 +88,9 @@ MessagesAdapter::MessagesAdapter(AppSettingsManager* settingsManager,
     connect(lrcInstance_, &LRCInstance::currentAccountIdChanged, this, &MessagesAdapter::connectConversationModel);
 
     connectConversationModel();
+
+    // tempDir_ uses the default autoRemove=true, so the directory and all
+    // symlinks inside are deleted when MessagesAdapter is destroyed (i.e. when Jami exits).
 }
 
 bool
@@ -265,6 +270,29 @@ MessagesAdapter::openUrl(const QString& url)
 {
     if (!QDesktopServices::openUrl(url)) {
         qDebug() << "Couldn't open url: " << url;
+    }
+}
+
+void
+MessagesAdapter::openInTempDir(const QString& url, const QString& displayName)
+{
+    if (tempDir_->isValid()) {
+        const QString filePath = QUrl(url).toLocalFile();
+#ifdef Q_OS_UNIX
+        const QString linkPath = tempDir_->path() + "/" + displayName;
+#endif
+#ifdef Q_OS_WIN
+        const QString linkPath = tempDir_->path() + "\\" + displayName + ".lnk";
+#endif
+
+        // Create a link to the actual file in the temp path
+        if (QFile::link(filePath, linkPath)) {
+            openUrl(linkPath);
+        } else {
+            qWarning() << "Failed to create symlink from" << filePath << "to" << linkPath;
+        }
+    } else {
+        qWarning() << "Temporary directory is not valid!";
     }
 }
 
