@@ -147,16 +147,6 @@ BaseContextMenu {
             }
         },
         GeneralMenuItem {
-            id: openLocation
-
-            canTrigger: type === Interaction.Type.DATA_TRANSFER
-            iconSource: JamiResources.round_folder_24dp_svg
-            itemName: JamiStrings.openLocation
-            onClicked: {
-                MessagesAdapter.openDirectory(root.location);
-            }
-        },
-        GeneralMenuItem {
             id: removeLocally
 
             canTrigger: type === Interaction.Type.DATA_TRANSFER && TransferStatus === Interaction.TransferStatus.TRANSFER_FINISHED

@@ -555,7 +555,7 @@ Control {
 
                         onClicked: function (mouse) {
                             if (root.hoveredLink) {
-                                MessagesAdapter.openUrl(root.hoveredLink);
+                                MessagesAdapter.openInTempDir(root.hoveredLink, root.transferName)
                             }
                         }
 
