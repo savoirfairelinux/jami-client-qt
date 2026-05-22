@@ -237,6 +237,7 @@ SettingsPageBase {
                         Layout.alignment: Qt.AlignLeft
                         implicitHeight: JamiTheme.newMaterialButtonHeight
                         filledButton: true
+                        iconSource: JamiResources.api_24dp_svg
                         color: JamiTheme.buttonTintedBlue
                         text: JamiStrings.apiOpenAppAccess
                         onClicked: root.openAppAccessPage()

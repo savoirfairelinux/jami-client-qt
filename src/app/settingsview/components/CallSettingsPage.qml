@@ -152,6 +152,7 @@ SettingsPageBase {
                 textField: UtilsAdapter.toFileInfoName(CurrentAccount.ringtonePath_Ringtone)
 
                 titleField: JamiStrings.selectCustomRingtone
+                source: JamiResources.music_note_24dp_svg
                 itemWidth: root.itemWidth
 
                 onSettingMaterialButtonClicked: {
@@ -265,6 +266,7 @@ SettingsPageBase {
                     Layout.alignment: Qt.AlignCenter
 
                     filledButton: true
+                    iconSource: JamiResources.add_moderator_24dp_svg
                     text: JamiStrings.addModerator
                     toolTipText: JamiStrings.addDefaultModerator
 

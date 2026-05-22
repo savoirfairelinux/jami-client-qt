@@ -115,8 +115,9 @@ SettingsPageBase {
                 Layout.alignment: Qt.AlignRight
 
                 implicitWidth: itemWidth
-                // height: spellCheckLangComboBoxSetting.comboBox.height
+
                 outlinedButton: true
+                iconSource: JamiResources.dictionary_24dp_svg
                 text: JamiStrings.dictionaryManager
 
                 onClicked: {
@@ -302,7 +303,9 @@ SettingsPageBase {
 
                     Layout.alignment: Qt.AlignRight
                     implicitWidth: itemWidth
+
                     outlinedButton: true
+                    iconSource: JamiResources.round_folder_24dp_svg
                     toolTipText: downloadPath
                     text: downloadPathBestName
 
