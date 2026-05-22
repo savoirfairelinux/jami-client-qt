@@ -167,7 +167,7 @@ ItemDelegate {
                                                       "serviceDirectory": modelData.directory || "",
                                                       "serviceScheme": modelData.type === "embedded" ? "http" : modelData.scheme,
                                                       "servicePolicy": modelData.policy || "contacts",
-                                                      "serviceAllowed": modelData.allowedContact || "",
+                                                      "serviceAllowed": modelData.allowedContacts || "",
                                                       "serviceEnabled": modelData.enabled === "true"
                                                   });
                 }

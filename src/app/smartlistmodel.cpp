@@ -116,6 +116,7 @@ SmartListModel::data(const QModelIndex& index, int role) const
         auto& item = lrcInstance_->getConversationFromConvUid(itemConvUid, itemAccountId);
         return dataForItem(item, role);
     } break;
+    case Type::ONE_TO_ONE:
     case Type::ADDCONVMEMBER:
     case Type::CONVERSATION: {
         auto& item = conversations_.at(index.row());
@@ -154,7 +155,8 @@ SmartListModel::updateModels()
 {
     if (listModelType_ == Type::CONFERENCE) {
         setConferenceableFilter();
-    } else if (listModelType_ == Type::CONVERSATION || listModelType_ == Type::ADDCONVMEMBER) {
+    } else if (listModelType_ == Type::CONVERSATION || listModelType_ == Type::ADDCONVMEMBER
+               || listModelType_ == Type::ONE_TO_ONE) {
         fillConversationsList();
     }
 }
