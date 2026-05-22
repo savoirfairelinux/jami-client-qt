@@ -263,7 +263,7 @@ ConversationsAdapter::onNewTrustRequest(const QString& accountId, const QString&
                                                              const QString& address,
                                                              const QString& registeredName,
                                                              const QString& requestedName) {
-                                  if (address == peerUri) {
+                                  if (requestedName == peerUri) {
                                       if (status == NameDirectory::LookupStatus::SUCCESS)
                                           cb(registeredName);
                                       else {
