@@ -19,9 +19,10 @@ import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
 import QtMultimedia
-import net.jami.Models 1.1
+
 import net.jami.Adapters 1.1
 import net.jami.Enums 1.1
+import net.jami.Models 1.1
 import net.jami.Constants 1.1
 import net.jami.Helpers 1.1
 import "../../commoncomponents"
@@ -37,8 +38,7 @@ SettingsPageBase {
     title: JamiStrings.callSettingsTitle
 
     function updateAndShowModeratorsSlot() {
-        moderatorListWidget.model.reset();
-        moderatorListWidget.visible = moderatorListWidget.model.rowCount() > 0;
+        ModeratorListModel.reset();
     }
 
     Connections {
