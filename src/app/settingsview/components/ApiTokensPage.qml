@@ -125,6 +125,7 @@ SettingsPageBase {
 
                     implicitHeight: JamiTheme.newMaterialButtonHeight
                     filledButton: true
+                    iconSource: JamiResources.token_24dp_svg
                     text: JamiStrings.apiCreateToken
                     enabled: (tokenLabelInput.modifiedTextFieldContent || "").trim().length > 0
 

@@ -234,6 +234,7 @@ SettingsPageBase {
                     implicitWidth: itemWidth
 
                     outlinedButton: true
+                    iconSource: JamiResources.round_folder_24dp_svg
                     text: recordPathBestName
                     toolTipText: recordPath
 
@@ -267,6 +268,7 @@ SettingsPageBase {
                     implicitWidth: itemWidth
 
                     outlinedButton: true
+                    iconSource: JamiResources.round_folder_24dp_svg
                     text: recordPathBestName
                     toolTipText: recordPath
 
