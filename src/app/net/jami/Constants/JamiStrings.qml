@@ -69,6 +69,7 @@ Item {
     property string addToConversation: qsTr("Add to conversation")
     property string transferThisCall: qsTr("Transfer this call")
     property string transferTo: qsTr("Transfer to")
+    property string selectContacts: qsTr("Select contacts")
 
     // Device import/linking
     property string scanToImportAccount: qsTr("To continue the import account operation, scan the following QR code on the source device.")
@@ -240,8 +241,7 @@ Item {
     property string exposedServiceTypeCustom: qsTr("Custom")
     property string exposedServiceTypeEmbeddedWebServer: qsTr("Web server (embedded)")
     property string exposedServiceDirectoryLabel: qsTr("Directory")
-    property string exposedServiceDirectoryPlaceholder: qsTr("Folder to serve")
-    property string exposedServiceChooseDirectory: qsTr("Choose")
+    property string exposedServiceChooseDirectory: qsTr("Choose directory")
     property string exposedServiceHostLabel: qsTr("Local host")
     property string exposedServicePortLabel: qsTr("Local port")
     property string exposedServiceSchemeLabel: qsTr("URI scheme")

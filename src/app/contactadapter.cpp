@@ -72,6 +72,12 @@ ContactAdapter::getContactSelectableModel(int type)
         selectableProxyModel_->setPredicate(
             [](const QModelIndex& index, const QRegularExpression&) { return index.data(Role::Presence).toInt(); });
         break;
+    case SmartListModel::Type::ONE_TO_ONE:
+        selectableProxyModel_->setPredicate([](const QModelIndex& index, const QRegularExpression&) {
+            auto mode = index.data(Role::Mode).toInt();
+            return mode == (int) conversation::Mode::ONE_TO_ONE || mode == (int) conversation::Mode::NON_SWARM;
+        });
+        break;
     case SmartListModel::Type::TRANSFER:
         selectableProxyModel_->setPredicate([this](const QModelIndex& index, const QRegularExpression& regexp) {
             // Exclude current sip callee and filtered contact.
@@ -120,6 +126,19 @@ ContactAdapter::setSearchFilter(const QString& filter)
                            || index.data(Role::RegisteredName).toString().contains(filter, Qt::CaseInsensitive)
                            || index.data(Role::Uris).toString().contains(filter, Qt::CaseInsensitive));
             });
+    } else if (listModeltype_ == SmartListModel::Type::ONE_TO_ONE) {
+        selectableProxyModel_->setPredicate([filter](const QModelIndex& index, const QRegularExpression&) {
+            auto mode = index.data(Role::Mode).toInt();
+            bool isOneToOne = mode == (int) conversation::Mode::ONE_TO_ONE
+                              || mode == (int) conversation::Mode::NON_SWARM;
+            if (!isOneToOne)
+                return false;
+            if (filter.isEmpty())
+                return true;
+            return index.data(Role::Title).toString().contains(filter, Qt::CaseInsensitive)
+                   || index.data(Role::RegisteredName).toString().contains(filter, Qt::CaseInsensitive)
+                   || index.data(Role::URI).toString().contains(filter, Qt::CaseInsensitive);
+        });
     }
     selectableProxyModel_->setFilterRegularExpression(
         QRegularExpression(filter, QRegularExpression::CaseInsensitiveOption));

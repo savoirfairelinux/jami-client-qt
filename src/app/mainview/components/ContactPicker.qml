@@ -27,6 +27,8 @@ BaseModalDialog {
 
     property int type: ContactList.CONFERENCE
 
+    signal contactSelected(string uri)
+
     titleText: {
         switch (type) {
         case ContactList.CONFERENCE:
@@ -35,6 +37,8 @@ BaseModalDialog {
             return JamiStrings.addToConversation;
         case ContactList.TRANSFER:
             return JamiStrings.transferThisCall;
+        case ContactList.ONE_TO_ONE:
+            return JamiStrings.selectContacts;
         default:
             return JamiStrings.addDefaultModerator;
         }
@@ -74,6 +78,12 @@ BaseModalDialog {
                 id: contactPickerItemDelegate
 
                 showPresenceIndicator: type !== ContactList.TRANSFER
+                invokeAdapterOnClick: type !== ContactList.ONE_TO_ONE
+
+                onContactClicked: function(uri) {
+                    if (type === ContactList.ONE_TO_ONE)
+                        contactPickerPopup.contactSelected(uri)
+                }
             }
         }
     }

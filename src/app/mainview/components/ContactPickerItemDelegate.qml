@@ -29,8 +29,9 @@ ItemDelegate {
     height: JamiTheme.smartListItemHeight
 
     property bool showPresenceIndicator: false
+    property bool invokeAdapterOnClick: true
 
-    signal contactClicked
+    signal contactClicked(string uri)
 
     RowLayout {
         id: rowLayout
@@ -215,8 +216,9 @@ ItemDelegate {
 
         onReleased: {
             itemSmartListBackground.color = JamiTheme.normalButtonColor;
-            ContactAdapter.contactSelected(index);
-            root.contactClicked();
+            if (root.invokeAdapterOnClick)
+                ContactAdapter.contactSelected(index);
+            root.contactClicked(URI);
             // TODO remove from there
             if (contactPickerPopup)
                 contactPickerPopup.close();

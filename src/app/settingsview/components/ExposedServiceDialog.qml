@@ -19,10 +19,11 @@ import QtQuick.Controls
 import QtQuick.Layouts
 import QtQuick.Effects
 import Qt.labs.platform
+import QtQuick.Controls.impl
 
 import net.jami.Constants 1.1
 import net.jami.Adapters 1.1
-
+import net.jami.Models 1.1
 import "../../commoncomponents"
 
 BaseModalDialog {
@@ -41,10 +42,16 @@ BaseModalDialog {
     property string servicePolicy: "contacts"
     property string serviceAllowed: ""
     property bool serviceEnabled: true
+    property list<string> selectedContacts: []
+
     Component.onCompleted: {
         // Parse the passed serviceScheme into schemeSelection and customScheme
         if (serviceScheme) {
             setServiceScheme(serviceScheme);
+        }
+        // Populate selectedContacts from the comma-separated serviceAllowed string
+        if (serviceAllowed.length > 0) {
+            selectedContacts = serviceAllowed.split(",").filter(function(s) { return s.length > 0; });
         }
     }
     function isEmbeddedService() {
@@ -86,6 +93,10 @@ BaseModalDialog {
         return servicePort.length > 0 && hasValidCustomScheme();
     }
 
+    function convertSelectedContactsToAllowed() {
+        return root.selectedContacts.join(",");
+    }
+
     button1.text: JamiStrings.optionDelete
     button1.iconSource: JamiResources.delete_24dp_svg
     button1.color: JamiTheme.buttonTintedRed
@@ -107,6 +118,8 @@ BaseModalDialog {
     button2.enabled: root.canSave()
     button2.onClicked: {
         var embedded = root.isEmbeddedService();
+
+
         var service = {
             "type": root.serviceType,
             "name": root.serviceName.trim(),
@@ -116,7 +129,7 @@ BaseModalDialog {
             "scheme": embedded ? "http" : root.effectiveScheme(),
             "directory": embedded ? root.serviceDirectory : "",
             "policy": root.servicePolicy,
-            "allowedContacts": root.serviceAllowed,
+            "allowedContacts": root.convertSelectedContactsToAllowed(),
             "enabled": "true"
         };
         var saved = false;
@@ -176,34 +189,18 @@ BaseModalDialog {
             onModifiedTextFieldContentChanged: root.serviceDescription = modifiedTextFieldContent
         }
 
-        RowLayout {
+        NewMaterialButton {
             Layout.fillWidth: true
 
-            spacing: 10
+            implicitHeight: JamiTheme.newMaterialButtonHeight
+
+            outlinedButton: true
+            iconSource: JamiResources.round_folder_24dp_svg
+            text: root.serviceDirectory === "" ? JamiStrings.exposedServiceChooseDirectory : root.serviceDirectory
 
             visible: root.isEmbeddedService()
 
-            NewMaterialTextField {
-                id: directoryField
-
-                Layout.fillWidth: true
-
-                leadingIconSource: JamiResources.round_folder_24dp_svg
-                readOnly: true
-                placeholderText: JamiStrings.exposedServiceDirectoryPlaceholder
-
-                textFieldContent: root.serviceDirectory
-            }
-
-            NewMaterialButton {
-                implicitHeight: JamiTheme.newMaterialButtonHeight
-
-                outlinedButton: true
-
-                text: JamiStrings.exposedServiceChooseDirectory
-
-                onClicked: directoryDialog.open()
-            }
+            onClicked: directoryDialog.open()
         }
 
         RowLayout {
@@ -369,15 +366,54 @@ BaseModalDialog {
             }
         }
 
-        NewMaterialTextField {
-            id: allowedField
+        Flow {
             Layout.fillWidth: true
 
-            visible: root.servicePolicy === "specific"
-            placeholderText: JamiStrings.exposedServiceAllowedLabel
-            textFieldContent: root.serviceAllowed
+            spacing: 4
 
-            onModifiedTextFieldContentChanged: root.serviceAllowed = modifiedTextFieldContent
+            visible: policyBox.currentValue === "specific"
+
+            Repeater {
+                model: root.selectedContacts
+
+                delegate: JamiChip {
+                    filledChip: true
+
+                    text: UtilsAdapter.getBestNameForUri(CurrentAccount.id, modelData)
+                    iconSource: JamiResources.close_black_24dp_svg
+                    iconButtonToolTipText: JamiStrings.removeContact
+
+                    onIconClicked: {
+                        const idx = root.selectedContacts.indexOf(modelData)
+                        if (idx !== -1)
+                            root.selectedContacts.splice(idx, 1)
+                    }
+                }
+            }
+
+            JamiChip {
+                outlinedChip: true
+
+                text: JamiStrings.addAContact
+                iconSource: JamiResources.add_24dp_svg
+
+                // We need to treat this particular chip as a button
+                // otehrwise the button of the chip would need to be
+                // clicked to trigger the popup
+                MouseArea {
+                    anchors.fill: parent
+                    onClicked: {
+                        var dlg = viewCoordinator.presentDialog(appWindow, "../../mainview/components/ContactPicker.qml", {
+                                                                    "type": ContactList.ONE_TO_ONE
+                                                                })
+                        dlg.contactSelected.connect(function(uri) {
+                            if (root.selectedContacts.indexOf(uri) === -1)
+                                root.selectedContacts.push(uri)
+                        })
+                    }
+                }
+
+            }
         }
     }
 
