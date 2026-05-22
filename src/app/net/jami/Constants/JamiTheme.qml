@@ -859,6 +859,11 @@ Item {
     property real exposedServiceDelegateTitlePixelSize: calcSize(15)
     property real exposedServiceDelegateDescriptionPixelSize: calcSize(13)
 
+    // JamiChip
+    property real jamiChipVerticalPadding: 4
+    property real jamiChipHoveredScaleValue: 1.02
+    property real jamiChipIconButtonHoveredScaleValue: 1.1
+
     // Fonts
     property string ubuntuFontFamily: "Ubuntu"
     property string ubuntuMonoFontFamily: "Ubuntu Mono"
