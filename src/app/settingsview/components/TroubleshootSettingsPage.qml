@@ -102,6 +102,7 @@ SettingsPageBase {
                     Layout.alignment: Qt.AlignRight
 
                     filledButton: true
+                    iconSource: JamiResources.receipt_24dp_svg
                     text: JamiStrings.troubleshootButton
                     toolTipText: JamiStrings.troubleshootButton
 

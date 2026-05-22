@@ -152,6 +152,7 @@ SettingsPageBase {
                     textField: AccountSettingsManager.accountSettingsPropertyMap.backgroundUri === "" ? JamiStrings.defaultImage : UtilsAdapter.getAbsPath(AccountSettingsManager.accountSettingsPropertyMap.backgroundUri)
 
                     titleField: JamiStrings.backgroundImage
+                    source: JamiResources.wallpaper_24dp_svg
                     itemWidth: root.itemWidth
 
                     onSettingMaterialButtonClicked: {
