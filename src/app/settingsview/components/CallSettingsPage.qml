@@ -284,32 +284,29 @@ SettingsPageBase {
                 }
             }
 
-            JamiListView {
-                id: moderatorListWidget
-
+            Flow {
+                id: moderatorFlowWidget
                 Layout.fillWidth: true
-                Layout.preferredHeight: 160
-                spacing: JamiTheme.settingsListViewsSpacing
+                spacing: 8
 
                 visible: count > 0
-                model: ModeratorListModel
 
-                delegate: ContactItemDelegate {
-                    id: moderatorListDelegate
+                Repeater {
+                    model: ModeratorListModel
 
-                    width: moderatorListWidget.width
-                    height: 74
+                    delegate: JamiChip {
+                        //filledChip: true
+                        outlinedChip: true
 
-                    contactName: ContactName
-                    contactID: ContactID
+                        text: ContactName
+                        iconSource: JamiResources.close_black_24dp_svg
+                        toolTipText: ContactID
+                        iconButtonToolTipText: JamiStrings.removeDefaultModerator
 
-                    btnImgSource: JamiStrings.optionRemove
-                    btnToolTip: JamiStrings.removeDefaultModerator
-
-                    onClicked: moderatorListWidget.currentIndex = index
-                    onBtnContactClicked: {
-                        AccountAdapter.setDefaultModerator(LRCInstance.currentAccountId, contactID, false);
-                        updateAndShowModeratorsSlot();
+                        onIconClicked: {
+                            AccountAdapter.setDefaultModerator(LRCInstance.currentAccountId, ContactID, false);
+                            updateAndShowModeratorsSlot();
+                        }
                     }
                 }
             }
