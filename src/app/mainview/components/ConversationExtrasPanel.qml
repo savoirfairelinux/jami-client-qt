@@ -76,10 +76,23 @@ StackLayout {
         }
     }
 
-    SwarmDetailsPanel {
-        id: detailsPanel
+    Loader {
+        active: root.isOpen(ChatView.SwarmDetailsPanel)
+        sourceComponent: SwarmDetailsPanel {}
     }
-    MessagesResearchPanel {}
-    AddMemberPanel {}
-    ConversationStatusView {}
+
+    Loader {
+        active: root.isOpen(ChatView.MessagesResearchPanel)
+        sourceComponent: MessagesResearchPanel {}
+    }
+
+    Loader {
+        active: root.isOpen(ChatView.AddMemberPanel)
+        sourceComponent: AddMemberPanel {}
+    }
+
+    Loader {
+        active: root.isOpen(ChatView.ConversationStatusPanel)
+        sourceComponent: ConversationStatusView {}
+    }
 }
