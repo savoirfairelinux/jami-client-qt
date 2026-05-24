@@ -17,6 +17,7 @@
 
 import QtQuick
 import QtQuick.Controls
+import net.jami.Constants 1.1
 
 Page {
     id: root

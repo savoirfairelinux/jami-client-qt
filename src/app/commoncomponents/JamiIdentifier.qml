@@ -50,6 +50,8 @@ Control {
         }
 
         Text {
+            id: identifierText
+
             Layout.alignment: Qt.AlignVCenter | Qt.AlignHCenter
 
             text: CurrentAccount.registeredName !== "" && !showFingerprint ? CurrentAccount.registeredName : CurrentAccount.uri
@@ -66,7 +68,7 @@ Control {
 
             FontMetrics {
                 id: fontMetrics
-                font: parent.font
+                font: identifierText.font
             }
 
             // Optically center the x-height region of the text within the bounding box.

@@ -90,7 +90,7 @@ Item {
     ComboBox {
         id: dropDownButton
 
-        implicitWidth: background.width - background.radius
+        implicitWidth: JamiTheme.iconButtonSmall
         implicitHeight: JamiTheme.iconButtonSmall
         z: joinCallButton.z - 1
 
