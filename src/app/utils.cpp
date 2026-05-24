@@ -382,7 +382,7 @@ Utils::accountPhoto(LRCInstance* instance, const QString& accountId, const QSize
                                                                                     : accountId);
         auto bestName = instance->accountModel().bestNameForAccount(accInfo.id);
         if (!accInfo.profileInfo.avatar.isEmpty()) {
-            photo = imageFromBase64String(accInfo.profileInfo.avatar);
+            photo = imageFromBase64String(accInfo.profileInfo.avatar, true, size);
             if (photo.isNull()) {
                 qWarning() << "Invalid image for account " << bestName;
             }
@@ -408,7 +408,7 @@ Utils::contactPhoto(LRCInstance* instance, const QString& contactUri, const QSiz
                                                                                     : accountId);
         auto contactPhoto = accInfo.contactModel->avatar(contactUri);
         if (!contactPhoto.isEmpty()) {
-            photo = imageFromBase64String(contactPhoto);
+            photo = imageFromBase64String(contactPhoto, true, size);
             if (!photo.isNull())
                 return Utils::scaleAndFrame(photo, size);
         }
@@ -416,12 +416,12 @@ Utils::contactPhoto(LRCInstance* instance, const QString& contactUri, const QSiz
         auto contactInfo = accInfo.contactModel->getContact(contactUri);
         auto bestName = accInfo.contactModel->bestNameForContact(contactUri);
         if (accInfo.profileInfo.type == profile::Type::SIP && contactInfo.profileInfo.type == profile::Type::TEMPORARY) {
-            photo = Utils::fallbackAvatar(QString(), QString());
+            photo = Utils::fallbackAvatar(QString(), QString(), size);
         } else if (contactInfo.profileInfo.type == profile::Type::TEMPORARY && contactInfo.profileInfo.uri.isEmpty()) {
-            photo = Utils::fallbackAvatar(QString(), QString());
+            photo = Utils::fallbackAvatar(QString(), QString(), size);
         } else {
             auto avatarName = contactInfo.profileInfo.uri == bestName ? QString() : bestName;
-            photo = Utils::fallbackAvatar("jami:" + contactInfo.profileInfo.uri, avatarName);
+            photo = Utils::fallbackAvatar("jami:" + contactInfo.profileInfo.uri, avatarName, size);
         }
     } catch (const std::exception&) {
         photo = fallbackAvatar("jami:" + contactUri, QString(), size);
@@ -442,7 +442,7 @@ Utils::conversationAvatar(LRCInstance* instance, const QString& convId, const QS
         auto* convModel = accInfo.conversationModel.get();
         auto avatarb64 = convModel->avatar(convId);
         if (!avatarb64.isEmpty()) {
-            auto photo = imageFromBase64String(avatarb64, true);
+            auto photo = imageFromBase64String(avatarb64, true, size);
             if (!photo.isNull()) {
                 return scaleAndFrame(photo, size);
             }
@@ -481,25 +481,27 @@ Utils::tempConversationAvatar(const QSize& size)
     QString img = QByteArrayFromFile(getTempSwarmAvatarPath());
     if (img.isEmpty())
         return fallbackAvatar(QString(), QString(), size);
-    return scaleAndFrame(imageFromBase64String(img, true), size);
+    return scaleAndFrame(imageFromBase64String(img, true, size), size);
 }
 
 QImage
-Utils::imageFromBase64String(const QString& str, bool circleCrop)
+Utils::imageFromBase64String(const QString& str, bool circleCrop, const QSize& circleCropSize)
 {
     if (str.isEmpty())
         return {};
-    return imageFromBase64Data(Utils::base64StringToByteArray(str), circleCrop);
+    return imageFromBase64Data(Utils::base64StringToByteArray(str), circleCrop, circleCropSize);
 }
 
 QImage
-Utils::imageFromBase64Data(const QByteArray& data, bool circleCrop)
+Utils::imageFromBase64Data(const QByteArray& data, bool circleCrop, const QSize& circleCropSize)
 {
     QImage img;
 
     if (img.loadFromData(data)) {
         if (circleCrop) {
-            return Utils::getCirclePhoto(img, img.size().width());
+            auto sizePhoto = circleCropSize.isEmpty() ? img.size().width()
+                                                      : qMin(circleCropSize.width(), circleCropSize.height());
+            return Utils::getCirclePhoto(img, sizePhoto);
         }
         return img;
     }
@@ -507,7 +509,7 @@ Utils::imageFromBase64Data(const QByteArray& data, bool circleCrop)
 }
 
 QImage
-Utils::getCirclePhoto(const QImage original, int sizePhoto)
+Utils::getCirclePhoto(const QImage& original, int sizePhoto)
 {
     QImage target(sizePhoto, sizePhoto, QImage::Format_ARGB32_Premultiplied);
     target.fill(Qt::transparent);

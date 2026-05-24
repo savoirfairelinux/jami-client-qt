@@ -30,11 +30,37 @@ import "../../commoncomponents"
 Item {
     id: root
 
+    readonly property real panelMargin: viewCoordinator.isInSinglePaneMode
+                                        ? JamiTheme.sidePanelIslandsSinglePaneModePadding
+                                        : JamiTheme.sidePanelIslandsPadding
+    readonly property real panelTopMargin: JamiTheme.qwkTitleBarHeight + JamiTheme.sidePanelIslandsPadding * 2
+
+    Rectangle {
+        id: shadowRect
+        anchors.fill: parent
+        anchors.margins: root.panelMargin
+        anchors.topMargin: root.panelTopMargin
+
+        color: JamiTheme.globalIslandColor
+        radius: JamiTheme.avatarBasedRadius
+
+        layer.enabled: true
+        layer.effect: MultiEffect {
+            anchors.fill: shadowRect
+            shadowEnabled: true
+            shadowBlur: JamiTheme.shadowBlur
+            shadowColor: JamiTheme.shadowColor
+            shadowHorizontalOffset: JamiTheme.shadowHorizontalOffset
+            shadowVerticalOffset: JamiTheme.shadowVerticalOffset
+            shadowOpacity: JamiTheme.shadowOpacity
+        }
+    }
+
     Rectangle {
         id: innerRect
         anchors.fill: parent
-        anchors.margins: viewCoordinator.isInSinglePaneMode ? JamiTheme.sidePanelIslandsSinglePaneModePadding : JamiTheme.sidePanelIslandsPadding
-        anchors.topMargin: JamiTheme.qwkTitleBarHeight + JamiTheme.sidePanelIslandsPadding * 2
+        anchors.margins: root.panelMargin
+        anchors.topMargin: root.panelTopMargin
 
         color: JamiTheme.globalIslandColor
         radius: JamiTheme.avatarBasedRadius
@@ -507,15 +533,5 @@ Item {
             }
         }
 
-        layer.enabled: true
-        layer.effect: MultiEffect {
-            anchors.fill: innerRect
-            shadowEnabled: true
-            shadowBlur: JamiTheme.shadowBlur
-            shadowColor: JamiTheme.shadowColor
-            shadowHorizontalOffset: JamiTheme.shadowHorizontalOffset
-            shadowVerticalOffset: JamiTheme.shadowVerticalOffset
-            shadowOpacity: JamiTheme.shadowOpacity
-        }
     }
 }
