@@ -84,8 +84,8 @@ Item {
 
         anchors.fill: root
 
-        sourceSize.width: Math.max(24, width)
-        sourceSize.height: Math.max(24, height)
+        sourceSize.width: Math.max(24, width) * CurrentScreenInfo.devicePixelRatio
+        sourceSize.height: Math.max(24, height) * CurrentScreenInfo.devicePixelRatio
 
         smooth: true
         antialiasing: true
