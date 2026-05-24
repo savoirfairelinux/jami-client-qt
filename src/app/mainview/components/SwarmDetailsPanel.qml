@@ -104,14 +104,14 @@ Item {
 
                     anchors.verticalCenter: parent.verticalCenter
 
-                    width: avatarSize
-                    height: avatarSize
+                    width: 180
+                    height: 180
 
                     readOnly: !isAdmin
 
                     newItem: true
                     imageId: LRCInstance.selectedConvUid
-                    avatarSize: 180
+                    avatarSize: 164
                 }
 
                 ColumnLayout {
