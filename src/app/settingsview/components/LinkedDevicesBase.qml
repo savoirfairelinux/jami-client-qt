@@ -17,7 +17,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import SortFilterProxyModel 0.2
+import QtQml.Models
 import net.jami.Enums 1.1
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
@@ -32,7 +32,7 @@ ColumnLayout {
     property string title
     property bool isCurrent: true
 
-    visible: settingsListView.model.count > 0
+    visible: settingsListView.count > 0
 
     function removeDeviceSlot(index) {
         var deviceId = settingsListView.model.data(settingsListView.model.index(index, 0), DeviceItemListModel.DeviceID);
@@ -75,7 +75,7 @@ ColumnLayout {
         id: settingsListView
 
         Layout.fillWidth: true
-        Layout.preferredHeight: Math.min(model.count, 3) * (70 + spacing)
+        Layout.preferredHeight: Math.min(count, 3) * (70 + spacing)
         Layout.maximumHeight: Layout.preferredHeight
 
         spacing: JamiTheme.settingsListViewsSpacing
@@ -86,7 +86,7 @@ ColumnLayout {
         }
 
         model: SortFilterProxyModel {
-            sourceModel: DeviceItemListModel
+            model: DeviceItemListModel
             sorters: [
                 RoleSorter {
                     roleName: "DeviceName"

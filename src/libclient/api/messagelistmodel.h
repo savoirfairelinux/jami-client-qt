@@ -69,6 +69,8 @@ enum Role {
 #define X(role) role,
     MSG_ROLES
 #undef X
+        FilterType,
+    FilterStatus,
 };
 Q_ENUM_NS(Role)
 } // namespace MessageList
