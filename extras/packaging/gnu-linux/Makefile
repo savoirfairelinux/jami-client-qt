@@ -125,7 +125,6 @@ $(RELEASE_TARBALL_FILENAME): tarballs.manifest
 	for m in \
 	    ./daemon \
 	    . \
-	    ./3rdparty/SortFilterProxyModel \
 	    ./3rdparty/md4c \
 	    ./3rdparty/tidy-html5 \
 	    ./3rdparty/zxing-cpp \

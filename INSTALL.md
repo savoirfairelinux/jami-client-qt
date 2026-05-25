@@ -7,9 +7,9 @@ There are essentially two ways to build `client-qt`:
 
 ## Disclaimer
 
-Because the client-qt is multi-platforms and supporting macOS, we need a recent version of Qt to do rendering with Metal. So, Qt 6.8 is necessary.
+Because the client-qt is multi-platforms and supporting macOS, we need a recent version of Qt to do rendering with Metal and to use Qt's native SortFilterProxyModel. So, Qt 6.10 is necessary.
 This version is generally not packaged on a lot of platforms, and to control available plugins and such, we have our own Qt packaged (available on https://jami.net on the distributions we support).
-So, you will need to get Qt 6.8 first. For this, there is 3 methods:
+So, you will need to get Qt 6.10 first. For this, there is 3 methods:
 
 ### Qt from our repo (recommended)
 
@@ -49,7 +49,7 @@ sudo dnf update && sudo dnf install jami-libqt
 
 ### Qt from your distribution
 
-If Qt 6.8 is available, you can use the packages from your distribution:
+If Qt 6.10 is available, you can use the packages from your distribution:
 
 It should be (For now qt5 only is packaged by distributions, so names can change).
 
@@ -118,7 +118,7 @@ Then, you can build daemon and the client using:
 
 If you use a Qt version that is not system-wide installed, you need to
 specify its path using the `--qt` flag, e.g.
-`./build.py --install --qt=/home/<username>/Qt/6.8.3/gcc_64`.
+`./build.py --install --qt=/home/<username>/Qt/6.10.3/gcc_64`.
 
 Now you will have the daemon in `daemon/bin/dbus/jamid` and the client in
 `build/jami`. You can now run Jami using:
@@ -139,7 +139,7 @@ Notes:
 
 ## Build only the client
 
-In order to use the Qt Client it is necessary to have the Qt version 6.8 or higher. If your system does not have it you can install it [from sources or download the binary installer](https://www.qt.io/download).
+In order to use the Qt Client it is necessary to have the Qt version 6.10 or higher. If your system does not have it you can install it [from sources or download the binary installer](https://www.qt.io/download).
 
 ## Build only this repository
 
@@ -189,7 +189,7 @@ Only 64-bit MSVC build can be compiled.
 
 - Download [Qt (Open Source)](https://www.qt.io/download-open-source?hsCtaTracking=9f6a2170-a938-42df-a8e2-a9f0b1d6cdce%7C6cb0de4f-9bb5-4778-ab02-bfb62735f3e5)
 
-- Using the online installer, install the following Qt 6.8.3 components:
+- Using the online installer, install the following Qt 6.10 components:
 
   - Git 2.10.2
   - MSVC 2022 64-bit
@@ -214,7 +214,7 @@ Only 64-bit MSVC build can be compiled.
 
   |                      | Qt Version |
   | -------------------- | ---------- |
-  | Minimum requirement: | 6.8.3      |
+    | Minimum requirement: | 6.10       |
 
 - Install [Python3](https://www.python.org/downloads/) for Windows
 
@@ -240,11 +240,11 @@ Only 64-bit MSVC build can be compiled.
 - Using a new **Non-Elevated Command Prompt**
 
 ```bash
-    python build.py --init --qt <path-to-qt-bin-folder> (e.g. C:/Qt/6.8.3/msvc2022_64)
+    python build.py --init --qt <path-to-qt-bin-folder> (e.g. C:/Qt/6.10.3/msvc2022_64)
 ```
 
 ```bash
-    python build.py --install --qt <path-to-qt-bin-folder> (e.g. C:/Qt/6.8.3/msvc2022_64)
+    python build.py --install --qt <path-to-qt-bin-folder> (e.g. C:/Qt/6.10.3/msvc2022_64)
 ```
 > **CMake** Note: The build script does not specify what CMake generator should be used. This means CMake will search the system for the appropriate generator, which might not always select the right one if, for instance, Ninja is installed. To resolve that, the CMAKE_GENERATOR environment variable can be used, set to "Visual Studio 16 2019" or "Visual Studio 19 2022" depending on the installed Visual Studio version.
 
@@ -288,7 +288,7 @@ Once the build has finished, you should then be able to use the Visual Studio So
 
 ```
     python extras\scripts\build-windows.py --init
-    python extras\scripts\build-windows.py --qt <path-to-qt-bin-folder> (e.g. C:/Qt/6.8.3/msvc2019_64)
+    python extras\scripts\build-windows.py --qt <path-to-qt-bin-folder> (e.g. C:/Qt/6.10.3/msvc2019_64)
 ```
 
 ## Building On MacOS

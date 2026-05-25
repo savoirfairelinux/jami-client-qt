@@ -26,6 +26,7 @@ RowLayout {
     property alias comboModel: comboBoxOfLayout.model
     property alias tipText: comboBoxOfLayout.tooltipText
     property alias role: comboBoxOfLayout.textRole
+    property alias valueRole: comboBoxOfLayout.valueRole
     property alias placeholderText: comboBoxOfLayout.placeholderText
     property alias currentSelectionText: comboBoxOfLayout.currentSelectionText
     property alias enabled: comboBoxOfLayout.enabled

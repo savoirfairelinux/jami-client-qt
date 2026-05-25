@@ -17,7 +17,7 @@
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
-import SortFilterProxyModel 0.2
+import QtQml.Models
 import net.jami.Adapters 1.1
 import net.jami.Models 1.1
 import net.jami.Constants 1.1
@@ -96,28 +96,28 @@ Item {
 
     SortFilterProxyModel {
         id: genericParticipantsModel
-        sourceModel: CallParticipantsModel
-        filters: AllOf {
+        model: CallParticipantsModel
+        filters: [
             ValueFilter {
                 roleName: "Active"
                 value: false
-            }
+            },
             ValueFilter {
                 enabled: CallParticipantsModel.count > 1 && CurrentCall.hideSelf
                 roleName: "IsLocal"
                 value: false
-            }
+            },
             ValueFilter {
                 enabled: root.enableHideSpectators
                 roleName: "HideSpectators"
                 value: false
             }
-        }
+        ]
     }
 
     SortFilterProxyModel {
         id: activeParticipantsModel
-        sourceModel: CallParticipantsModel
+        model: CallParticipantsModel
         filters: ValueFilter {
             roleName: "Active"
             value: true

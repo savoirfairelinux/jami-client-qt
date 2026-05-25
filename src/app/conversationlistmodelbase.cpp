@@ -48,6 +48,7 @@ ConversationListModelBase::roleNames() const
 #define X(role) roles[role] = #role;
     CONV_ROLES
 #undef X
+    roles[FilterTitle] = "title";
     return roles;
 }
 
@@ -107,6 +108,7 @@ ConversationListModelBase::dataForItem(item_t item, int role) const
     case Role::IsRequest:
         return QVariant(item.isRequest);
     case Role::Title:
+    case Role::FilterTitle:
         return QVariant(model_->title(item.uid));
     case Role::UnreadMessagesCount:
         return QVariant(item.unreadMessages);

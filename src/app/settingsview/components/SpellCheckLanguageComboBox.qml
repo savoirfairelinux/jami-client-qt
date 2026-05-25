@@ -23,7 +23,7 @@ import net.jami.Adapters 1.1
 import net.jami.Enums 1.1
 import net.jami.Constants 1.1
 import net.jami.Helpers 1.1
-import SortFilterProxyModel 0.2
+import QtQml.Models
 import "../../commoncomponents"
 import "../../mainview/components"
 
@@ -34,7 +34,7 @@ SettingsComboBox {
     tipText: JamiStrings.textLanguage
     comboModel: SortFilterProxyModel {
         id: installedDictionariesModel
-        sourceModel: SpellCheckAdapter.getDictionaryListModel()
+        model: SpellCheckAdapter.getDictionaryListModel()
 
         // Filter to show only installed dictionaries
         filters: ValueFilter {
@@ -50,23 +50,19 @@ SettingsComboBox {
         Component.onCompleted: {
             // Ensure the model is updated with the latest dictionaries
             root.enabled = Qt.binding(function () {
-                    return installedDictionariesModel.count > 0;
+                    return root.modelSize > 0;
                 });
         }
     }
     role: "NativeName"
+    valueRole: "Locale"
 
     // Show placeholder when disabled
     placeholderText: JamiStrings.none
 
     function getCurrentLocaleIndex() {
         var currentLang = UtilsAdapter.getAppValue(Settings.Key.SpellLang);
-        for (var i = 0; i < comboModel.count; i++) {
-            var item = comboModel.get(i);
-            if (item.Locale === currentLang)
-                return i;
-        }
-        return -1;
+        return comboBox.indexOfValue(currentLang);
     }
 
     // Set initial selection based on current spell language setting
@@ -74,19 +70,19 @@ SettingsComboBox {
 
     property string locale
     function setForIndex(index) {
-        var selectedDict = comboModel.get(index);
-        if (selectedDict && selectedDict.Locale && selectedDict.Installed) {
-            locale = selectedDict.Locale;
+        var selectedLocale = comboBox.valueAt(index);
+        if (selectedLocale) {
+            locale = selectedLocale;
         }
     }
     onLocaleChanged: SpellCheckAdapter.setDictionary(locale)
 
     // When the count changes, we might need to update the model index
-    readonly property int count: installedDictionariesModel.count
+    readonly property int count: modelSize
     onCountChanged: {
         modelIndex = getCurrentLocaleIndex();
         // If the new index is -1 and we still have dictionaries, use the first one
-        if (modelIndex === -1 && installedDictionariesModel.count > 0) {
+        if (modelIndex === -1 && modelSize > 0) {
             modelIndex = 0;
         }
     }

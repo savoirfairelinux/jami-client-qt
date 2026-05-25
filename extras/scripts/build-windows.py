@@ -206,7 +206,6 @@ def init_submodules():
 
     # Init the client submodules for Windows other than the daemon.
     submodules = [
-        "3rdparty/SortFilterProxyModel",
         "3rdparty/md4c",
         "3rdparty/tidy-html5",
         "3rdparty/zxing-cpp",

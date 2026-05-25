@@ -19,7 +19,7 @@ import QtQuick.Controls
 import QtQuick.Layouts
 import Qt.labs.platform
 import Qt5Compat.GraphicalEffects
-import SortFilterProxyModel
+import QtQml.Models
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
@@ -40,10 +40,11 @@ ListView {
         property var messageListModel: MessagesAdapter.mediaMessageListModel
         readonly property int textType: Interaction.Type.TEXT
 
-        onMessageListModelChanged: sourceModel = root.visible && messageListModel ? messageListModel : null
+        onMessageListModelChanged: proxyModel.model = root.visible && messageListModel ? messageListModel : null
 
-        filters: ExpressionFilter {
-            expression: Type === proxyModel.textType
+        filters: ValueFilter {
+            roleName: "Type"
+            value: proxyModel.textType
         }
     }
 

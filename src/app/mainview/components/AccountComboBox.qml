@@ -18,7 +18,7 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import QtQuick.Effects
-import SortFilterProxyModel 0.2
+import QtQml.Models
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
@@ -89,11 +89,11 @@ Item {
                 valueRole: "ID"
 
                 model: SortFilterProxyModel {
-                    sourceModel: AccountListModel
+                    model: AccountListModel
                     filters: ValueFilter {
                         roleName: "ID"
                         value: LRCInstance.currentAccountId
-                        inverted: true
+                        invert: true
                     }
                 }
 

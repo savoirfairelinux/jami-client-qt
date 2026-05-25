@@ -18,8 +18,9 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import Qt.labs.platform
+import QtQml
 import Qt5Compat.GraphicalEffects
-import SortFilterProxyModel
+import QtQml.Models
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
@@ -34,6 +35,11 @@ JamiListView {
     property color themeColor: CurrentConversation.color
     property string textFilter: ""
     property string convId: CurrentConversation.id
+
+    component MessageFilterData: QtObject {
+        property int type
+        property int status
+    }
 
     onVisibleChanged: {
         if (visible) {
@@ -59,21 +65,21 @@ JamiListView {
         readonly property int transferFinishedType: Interaction.TransferStatus.TRANSFER_FINISHED
         readonly property int transferSuccesType: Interaction.Status.SUCCESS
 
-        onMessageListModelChanged: sourceModel = root.visible && messageListModel ? messageListModel : null
+        onMessageListModelChanged: proxyModel.model = root.visible && messageListModel ? messageListModel : null
 
         sorters: RoleSorter {
             roleName: "Timestamp"
             sortOrder: Qt.DescendingOrder
         }
 
-        filters: [
-            ExpressionFilter {
-                expression: Type === proxyModel.documentType
-            },
-            ExpressionFilter {
-                expression: Status === proxyModel.transferFinishedType || Status === proxyModel.transferSuccesType
+        filters: FunctionFilter {
+            column: 0
+            function filter(data: MessageFilterData): bool {
+                return data.type === proxyModel.documentType
+                        && (data.status === proxyModel.transferFinishedType
+                            || data.status === proxyModel.transferSuccesType);
             }
-        ]
+        }
     }
 
     delegate: DocumentPreview {

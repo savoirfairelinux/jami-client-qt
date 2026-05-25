@@ -19,7 +19,7 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import Qt5Compat.GraphicalEffects
-import SortFilterProxyModel 0.2
+import QtQml.Models
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
@@ -81,7 +81,7 @@ BaseModalDialog {
             spacing: 4
 
             model: SortFilterProxyModel {
-                sourceModel: DeviceItemListModel
+                model: DeviceItemListModel
                 sorters: [
                     RoleSorter {
                         roleName: "IsCurrent"

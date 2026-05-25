@@ -55,6 +55,7 @@ enum Role {
 #define X(role) role,
     CONV_ROLES
 #undef X
+        FilterTitle,
 };
 Q_ENUM_NS(Role)
 } // namespace ConversationList

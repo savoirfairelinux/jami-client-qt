@@ -18,10 +18,11 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import Qt5Compat.GraphicalEffects
+import QtQml
+import QtQml.Models
 import net.jami.Constants 1.1
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
-import SortFilterProxyModel 0.2
 import "contextmenu"
 import "../commoncomponents"
 import "../mainview/components"
@@ -46,6 +47,11 @@ BaseContextMenu {
     property string shareToId: msgId
     property string fileLink: msgBody
     property int textareaMaxHeight: 350
+
+    component ConversationFilterData: QtObject {
+        property string title
+    }
+
     function xPosition(width) {
         // Use the width at function scope to retrigger property evaluation.
         const listViewWidth = listView.width;
@@ -84,8 +90,22 @@ BaseContextMenu {
     SortFilterProxyModel {
         id: shareConvProxyModel
 
-        sourceModel: ConversationsAdapter.convListProxyModel
-        filterCaseSensitivity: Qt.CaseInsensitive
+        model: ConversationsAdapter.convListProxyModel
+        property string titleFilter
+
+        filters: FunctionFilter {
+            column: 0
+            function filter(data: ConversationFilterData): bool {
+                if (!shareConvProxyModel.titleFilter)
+                    return true;
+
+                try {
+                    return new RegExp(shareConvProxyModel.titleFilter, "i").test(data.title || "");
+                } catch (e) {
+                    return (data.title || "").toLowerCase().indexOf(shareConvProxyModel.titleFilter.toLowerCase()) !== -1;
+                }
+            }
+        }
     }
 
     contentItem: ColumnLayout {
@@ -107,8 +127,8 @@ BaseContextMenu {
                 placeHolderText: JamiStrings.shareWith
 
                 onSearchBarTextChanged: function (text) {
-                    shareConvProxyModel.filterRole = shareConvProxyModel.roleForName("Title");
-                    shareConvProxyModel.filterPattern = text;
+                    shareConvProxyModel.titleFilter = text;
+                    shareConvProxyModel.invalidate();
                 }
             }
 

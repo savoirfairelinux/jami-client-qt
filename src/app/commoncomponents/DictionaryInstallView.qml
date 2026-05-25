@@ -18,12 +18,13 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import Qt5Compat.GraphicalEffects
+import QtQml
+import QtQml.Models
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import "../mainview/components"
 import "../settingsview/components"
-import SortFilterProxyModel 0.2
 
 // Search bar for filtering dictionaries
 ColumnLayout {
@@ -32,6 +33,11 @@ ColumnLayout {
     property int checkBoxWidth: 24
 
     spacing: 8
+
+    component DictionaryFilterData: QtObject {
+        property string locale
+        property string nativeName
+    }
 
     Component.onCompleted: Qt.callLater(dictionarySearchBar.setTextAreaFocus)
 
@@ -133,31 +139,33 @@ ColumnLayout {
 
         model: SortFilterProxyModel {
             id: dictionaryProxyModel
-            sourceModel: SpellCheckAdapter.getDictionaryListModel()
+            model: SpellCheckAdapter.getDictionaryListModel()
 
             property string combinedFilterPattern
 
-            filters: AllOf {
-                AnyOf {
-                    // Filter by dictionary name
-                    RegExpFilter {
-                        roleName: "Locale"
-                        pattern: dictionaryProxyModel.combinedFilterPattern
-                        caseSensitivity: Qt.CaseInsensitive
+            filters: [
+                FunctionFilter {
+                    column: 0
+                    function filter(data: DictionaryFilterData): bool {
+                        if (!dictionaryProxyModel.combinedFilterPattern)
+                            return true;
+
+                        try {
+                            var expression = new RegExp(dictionaryProxyModel.combinedFilterPattern, "i");
+                            return expression.test(data.locale || "") || expression.test(data.nativeName || "");
+                        } catch (e) {
+                            var pattern = dictionaryProxyModel.combinedFilterPattern.toLowerCase();
+                            return (data.locale || "").toLowerCase().indexOf(pattern) !== -1
+                                    || (data.nativeName || "").toLowerCase().indexOf(pattern) !== -1;
+                        }
                     }
-                    // Filter by native name
-                    RegExpFilter {
-                        roleName: "NativeName"
-                        pattern: dictionaryProxyModel.combinedFilterPattern
-                        caseSensitivity: Qt.CaseInsensitive
-                    }
-                }
+                },
                 ValueFilter {
                     roleName: "Installed"
                     value: true
                     enabled: showInstalledOnlyCheckbox.checked
                 }
-            }
+            ]
 
             sorters: [
                 // Sort by locale alphabetically
@@ -260,7 +268,7 @@ ColumnLayout {
 
                     KeyNavigation.tab: {
                         try {
-                            if (model.index < dictionaryProxyModel.count - 1) {
+                            if (model.index < spellCheckDictionaryListView.count - 1) {
                                 var nextItem = spellCheckDictionaryListView.itemAtIndex(model.index + 1);
                                 if (nextItem) {
                                     var nextButton = nextItem.findChild("installButton") || nextItem.findChild("uninstallButton");
@@ -307,7 +315,7 @@ ColumnLayout {
 
                     KeyNavigation.tab: {
                         try {
-                            if (model.index < dictionaryProxyModel.count - 1) {
+                            if (model.index < spellCheckDictionaryListView.count - 1) {
                                 var nextItem = spellCheckDictionaryListView.itemAtIndex(model.index + 1);
                                 if (nextItem) {
                                     var nextButton = nextItem.findChild("installButton") || nextItem.findChild("uninstallButton");
@@ -368,7 +376,7 @@ ColumnLayout {
 
                 width: parent.width * 0.8
 
-                visible: dictionaryProxyModel.count === 0
+                visible: spellCheckDictionaryListView.count === 0
 
                 // Big books emoji
                 Text {
