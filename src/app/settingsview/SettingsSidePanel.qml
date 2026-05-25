@@ -47,7 +47,7 @@ SidePanelBase {
                             "title": JamiStrings.accountSettingsMenuTitle,
                             "icon": JamiResources.account_24dp_svg,
                             "first": 0,
-                            "last": 17,
+                            "last": 6,
                             "children": [
                                 {
                                     "id": 0,
@@ -75,7 +75,7 @@ SidePanelBase {
                                     "title": JamiStrings.apiSettingsTitle
                                 },
                                 {
-                                    "id": 17,
+                                    "id": 6,
                                     "title": JamiStrings.exposedServicesSettingsTitle,
                                     "visible": CurrentAccount.type !== Profile.Type.SIP
                                 }
@@ -84,35 +84,35 @@ SidePanelBase {
                         {
                             "title": JamiStrings.generalSettingsTitle,
                             "icon": JamiResources.settings_24dp_svg,
-                            "first": 6,
-                            "last": 12,
+                            "first": 7,
+                            "last": 13,
                             "children": [
                                 {
-                                    "id": 6,
+                                    "id": 7,
                                     "title": JamiStrings.system
                                 },
                                 {
-                                    "id": 7,
+                                    "id": 8,
                                     "title": JamiStrings.appearance
                                 },
                                 {
-                                    "id": 8,
+                                    "id": 9,
                                     "title": JamiStrings.chatSettingsTitle
                                 },
                                 {
-                                    "id": 9,
+                                    "id": 10,
                                     "title": JamiStrings.locationSharingLabel
                                 },
                                 {
-                                    "id": 10,
+                                    "id": 11,
                                     "title": JamiStrings.callRecording
                                 },
                                 {
-                                    "id": 11,
+                                    "id": 12,
                                     "title": JamiStrings.troubleshootTitle
                                 },
                                 {
-                                    "id": 12,
+                                    "id": 13,
                                     "title": JamiStrings.updatesTitle,
                                     "visible": AppVersionManager.isUpdaterEnabled()
                                 }
@@ -121,19 +121,19 @@ SidePanelBase {
                         {
                             "title": JamiStrings.mediaSettingsTitle,
                             "icon": JamiResources.media_black_24dp_svg,
-                            "first": 13,
-                            "last": 15,
+                            "first": 14,
+                            "last": 16,
                             "children": [
                                 {
-                                    "id": 13,
+                                    "id": 14,
                                     "title": JamiStrings.audio
                                 },
                                 {
-                                    "id": 14,
+                                    "id": 15,
                                     "title": JamiStrings.video
                                 },
                                 {
-                                    "id": 15,
+                                    "id": 16,
                                     "title": JamiStrings.screenSharing
                                 }
                             ]
@@ -141,11 +141,11 @@ SidePanelBase {
                         {
                             "title": JamiStrings.extensionSettingsTitle,
                             "icon": JamiResources.plugins_24dp_svg,
-                            "first": 16,
-                            "last": 16,
+                            "first": 17,
+                            "last": 17,
                             "children": [
                                 {
-                                    "id": 16,
+                                    "id": 17,
                                     "title": JamiStrings.extensionSettingsTitle
                                 }
                             ]
@@ -157,7 +157,7 @@ SidePanelBase {
                             "title": JamiStrings.accountSettingsMenuTitle,
                             "icon": JamiResources.account_24dp_svg,
                             "first": 0,
-                            "last": 17,
+                            "last": 6,
                             "children": [
                                 {
                                     "id": 0,
@@ -185,7 +185,7 @@ SidePanelBase {
                                     "title": JamiStrings.apiSettingsTitle
                                 },
                                 {
-                                    "id": 17,
+                                    "id": 6,
                                     "title": JamiStrings.exposedServicesSettingsTitle,
                                     "visible": CurrentAccount.type !== Profile.Type.SIP
                                 }
@@ -194,31 +194,31 @@ SidePanelBase {
                         {
                             "title": JamiStrings.generalSettingsTitle,
                             "icon": JamiResources.settings_24dp_svg,
-                            "first": 6,
-                            "last": 11,
+                            "first": 7,
+                            "last": 12,
                             "children": [
                                 {
-                                    "id": 6,
+                                    "id": 7,
                                     "title": JamiStrings.system
                                 },
                                 {
-                                    "id": 7,
+                                    "id": 8,
                                     "title": JamiStrings.appearance
                                 },
                                 {
-                                    "id": 8,
+                                    "id": 9,
                                     "title": JamiStrings.chatSettingsTitle
                                 },
                                 {
-                                    "id": 9,
+                                    "id": 10,
                                     "title": JamiStrings.locationSharingLabel
                                 },
                                 {
-                                    "id": 10,
+                                    "id": 11,
                                     "title": JamiStrings.callRecording
                                 },
                                 {
-                                    "id": 11,
+                                    "id": 12,
                                     "title": JamiStrings.troubleshootTitle
                                 }
                             ]
@@ -226,19 +226,19 @@ SidePanelBase {
                         {
                             "title": JamiStrings.mediaSettingsTitle,
                             "icon": JamiResources.media_black_24dp_svg,
-                            "first": 13,
-                            "last": 15,
+                            "first": 14,
+                            "last": 16,
                             "children": [
                                 {
-                                    "id": 13,
+                                    "id": 14,
                                     "title": JamiStrings.audio
                                 },
                                 {
-                                    "id": 14,
+                                    "id": 15,
                                     "title": JamiStrings.video
                                 },
                                 {
-                                    "id": 15,
+                                    "id": 16,
                                     "title": JamiStrings.screenSharing
                                 }
                             ]
@@ -246,11 +246,11 @@ SidePanelBase {
                         {
                             "title": JamiStrings.extensionSettingsTitle,
                             "icon": JamiResources.plugins_24dp_svg,
-                            "first": 16,
-                            "last": 16,
+                            "first": 17,
+                            "last": 17,
                             "children": [
                                 {
-                                    "id": 16,
+                                    "id": 17,
                                     "title": JamiStrings.extensionSettingsTitle
                                 }
                             ]
