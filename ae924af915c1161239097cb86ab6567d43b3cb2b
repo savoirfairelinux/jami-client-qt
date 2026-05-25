@@ -18,6 +18,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "330758b5_8130846f",
+        "filename": "CMakeLists.txt",
+        "patchSetId": 4
+      },
+      "lineNbr": 630,
+      "author": {
+        "id": 225
+      },
+      "writtenOn": "2026-05-25T18:29:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f259bb89_c75abb07",
+      "revId": "ae924af915c1161239097cb86ab6567d43b3cb2b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d353cf5b_bc0c25d0",
@@ -48,6 +66,24 @@
       "writtenOn": "2026-05-20T16:18:47Z",
       "side": 1,
       "message": "[🟢 Good Practice] Line 10: Good: adding CFBundleIconName while retaining CFBundleIconFile lets macOS use the asset-catalog icon where supported without removing the existing icns fallback.",
+      "revId": "ae924af915c1161239097cb86ab6567d43b3cb2b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0eaa1a6b_c0a36d67",
+        "filename": "resources/Info.plist",
+        "patchSetId": 4
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 225
+      },
+      "writtenOn": "2026-05-25T18:29:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2834f4b0_b368c3d4",
       "revId": "ae924af915c1161239097cb86ab6567d43b3cb2b",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }

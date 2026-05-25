@@ -16,6 +16,42 @@
       "message": "[🔴 Critical Issues] Line 18: Setting CMAKE_OSX_DEPLOYMENT_TARGET to 13.0 unconditionally changes the minimum supported macOS version for every Apple build, which is a user-visible compatibility regression unrelated to adding a macOS 26 icon. Keep the previous deployment target unless the project has explicitly decided to drop older macOS support, or gate only the asset-catalog generation on the required toolchain. Suggested fix:\n```suggestion\nif(APPLE AND NOT DEFINED CMAKE_OSX_DEPLOYMENT_TARGET)\n  set(CMAKE_OSX_DEPLOYMENT_TARGET \"11.0\" CACHE STRING \"Minimum macOS version\")\nendif()\n```",
       "revId": "b5460ac5b742600460c10501f2db95dd3f85ebd6",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2e3d96fd_3ca666b2",
+        "filename": "CMakeLists.txt",
+        "patchSetId": 6
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 225
+      },
+      "writtenOn": "2026-05-25T18:29:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "269b8dac_1de4aaef",
+      "revId": "b5460ac5b742600460c10501f2db95dd3f85ebd6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6cc7aa7d_55fca060",
+        "filename": "CMakeLists.txt",
+        "patchSetId": 6
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 225
+      },
+      "writtenOn": "2026-05-25T18:29:20Z",
+      "side": 1,
+      "message": "target_sources(${PROJECT_NAME} PRIVATE ${resources}) at line 969 out them in the bundle target",
+      "parentUuid": "269b8dac_1de4aaef",
+      "revId": "b5460ac5b742600460c10501f2db95dd3f85ebd6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
