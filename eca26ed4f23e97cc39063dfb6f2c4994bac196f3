@@ -16,6 +16,24 @@
       "message": "[Critical] Line 636: 🔴 Critical Issues - `myApp_ASSETS_CAR` is assigned `MACOSX_PACKAGE_LOCATION`, but it is not added to the macOS bundle target sources in this hunk. CMake only copies files with `MACOSX_PACKAGE_LOCATION` into the `.app` when they are part of the bundle target sources, so local/built app bundles can miss `Contents/Resources/Assets.car` and `CFBundleIconName\u003dAppIcon` will not resolve. Add the asset catalog file wherever `${myApp_ICON}` is passed to the `MACOSX_BUNDLE` target sources.\\n```suggestion\\n    ${myApp_ICON}\\n    ${myApp_ASSETS_CAR}\\n```",
       "revId": "eca26ed4f23e97cc39063dfb6f2c4994bac196f3",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a88b05b9_8c4874e1",
+        "filename": "CMakeLists.txt",
+        "patchSetId": 8
+      },
+      "lineNbr": 636,
+      "author": {
+        "id": 225
+      },
+      "writtenOn": "2026-05-25T18:30:04Z",
+      "side": 1,
+      "message": "target_sources(${PROJECT_NAME} PRIVATE ${resources}) at line 969 out them in the bundle target",
+      "parentUuid": "f02d3ffc_f518d2cd",
+      "revId": "eca26ed4f23e97cc39063dfb6f2c4994bac196f3",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
