@@ -31,7 +31,6 @@
 
 // Configuration globals.
 def SUBMODULES = ['daemon',
-                  '3rdparty/SortFilterProxyModel',
                   '3rdparty/md4c',
                   '3rdparty/tidy-html5',
                   '3rdparty/zxing-cpp',

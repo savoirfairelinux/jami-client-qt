@@ -18,7 +18,6 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import Qt5Compat.GraphicalEffects
-import SortFilterProxyModel 0.2
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
@@ -33,15 +32,16 @@ Item {
         id: pluginPreferenceListView
         height: parent.height
         width: parent.width
-        model: SortFilterProxyModel {
-            sourceModel: PluginListModel
-            filters: [
-                ExpressionFilter {
-                    expression: index === currentIndex
-                    enabled: true
-                }
-            ]
+        model: PluginListModel
+        currentIndex: root.currentIndex
+        interactive: false
+        clip: true
+
+        Component.onCompleted: positionViewAtIndex(currentIndex, ListView.Beginning)
+        onCurrentIndexChanged: {
+            positionViewAtIndex(currentIndex, ListView.Beginning);
         }
+
         delegate: Page {
             id: settings
             width: root.width

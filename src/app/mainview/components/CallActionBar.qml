@@ -17,7 +17,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import SortFilterProxyModel 0.2
+import QtQml.Models
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
@@ -533,7 +533,7 @@ Control {
                 interactive: false
 
                 model: SortFilterProxyModel {
-                    sourceModel: root.visible ? CallOverlayModel.primaryModel() : null
+                    model: root.visible ? CallOverlayModel.primaryModel() : null
                     filters: ValueFilter {
                         roleName: "Enabled"
                         value: true

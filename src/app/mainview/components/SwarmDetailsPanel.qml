@@ -21,7 +21,7 @@ import QtQuick.Layouts
 import Qt.labs.platform
 //import Qt5Compat.GraphicalEffects
 import QtQuick.Effects
-import SortFilterProxyModel
+import QtQml.Models
 
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1

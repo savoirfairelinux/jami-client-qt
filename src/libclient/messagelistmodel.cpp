@@ -82,6 +82,8 @@ MessageListModel::roleNames() const
 #define X(role) roles[role] = #role;
     MSG_ROLES
 #undef X
+    roles[FilterType] = "type";
+    roles[FilterStatus] = "status";
     return roles;
 }
 
@@ -540,8 +542,10 @@ MessageListModel::dataForItem(const item_t& item, int, int role) const
         }
         return QVariant::fromValue(item.second.duration);
     case Role::Type:
+    case Role::FilterType:
         return QVariant(static_cast<int>(item.second.type));
     case Role::Status:
+    case Role::FilterStatus:
         return QVariant(static_cast<int>(item.second.status));
     case Role::TransferStatus:
         return QVariant(static_cast<int>(item.second.transferStatus));

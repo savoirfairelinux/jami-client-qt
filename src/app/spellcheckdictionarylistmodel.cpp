@@ -103,10 +103,12 @@ SpellCheckDictionaryListModel::data(const QModelIndex& index, int role) const
     const auto& itemObject = item.toObject().toVariantMap();
     switch (role) {
     case Role::NativeName:
+    case Role::FilterNativeName:
         return itemObject.value("nativeName");
     case Role::Path:
         return itemObject.value("path");
     case Role::Locale:
+    case Role::FilterLocale:
         return itemObject.value("locale");
     case Role::Installed:
         return itemObject.value("installed").toBool();
@@ -127,6 +129,8 @@ SpellCheckDictionaryListModel::roleNames() const
 #define X(role) roles[role] = #role;
     SPELL_CHECK_DICTIONARY_MODEL_ROLES
 #undef X
+    roles[FilterNativeName] = "nativeName";
+    roles[FilterLocale] = "locale";
     return roles;
 }
 

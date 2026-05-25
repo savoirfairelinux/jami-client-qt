@@ -47,6 +47,8 @@ enum Role {
 #define X(role) role,
     SPELL_CHECK_DICTIONARY_MODEL_ROLES
 #undef X
+        FilterNativeName,
+    FilterLocale,
 };
 Q_ENUM_NS(Role)
 } // namespace SpellCheckDictionaryList

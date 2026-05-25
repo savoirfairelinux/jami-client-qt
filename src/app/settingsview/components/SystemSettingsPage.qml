@@ -23,7 +23,6 @@ import net.jami.Constants 1.1
 import net.jami.Enums 1.1
 import net.jami.Models 1.1
 import "../../commoncomponents"
-import SortFilterProxyModel 0.2
 
 SettingsPageBase {
     id: root

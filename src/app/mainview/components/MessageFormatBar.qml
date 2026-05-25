@@ -18,7 +18,8 @@
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
-import SortFilterProxyModel 0.2
+import QtQml
+import QtQml.Models
 import net.jami.Adapters 1.1
 import net.jami.Models 1.1
 import net.jami.Enums 1.1
@@ -34,6 +35,10 @@ Rectangle {
 
     property alias listViewTypoFirst: listViewTypoFirst
     property bool isEmojiPickerOpen
+
+    component MenuActionFilterData: QtObject {
+        property var menuAction
+    }
 
     Row {
         id: firstRow
@@ -397,22 +402,34 @@ Rectangle {
             }
 
             model: SortFilterProxyModel {
-                sourceModel: listMoreButton
+                model: listMoreButton
                 filters: [
-                    ExpressionFilter {
-                        expression: menuAction.show === true
+                    FunctionFilter {
+                        column: 0
+                        function filter(data: MenuActionFilterData): bool {
+                            return data.menuAction.show === true;
+                        }
                         enabled: showDefault
                     },
-                    ExpressionFilter {
-                        expression: menuAction.needWebEngine === false
+                    FunctionFilter {
+                        column: 0
+                        function filter(data: MenuActionFilterData): bool {
+                            return data.menuAction.needWebEngine === false;
+                        }
                         enabled: !WITH_WEBENGINE
                     },
-                    ExpressionFilter {
-                        expression: menuAction.noSip === true
+                    FunctionFilter {
+                        column: 0
+                        function filter(data: MenuActionFilterData): bool {
+                            return data.menuAction.noSip === true;
+                        }
                         enabled: CurrentConversation.isSip
                     },
-                    ExpressionFilter {
-                        expression: menuAction.needVideoDevice === false
+                    FunctionFilter {
+                        column: 0
+                        function filter(data: MenuActionFilterData): bool {
+                            return data.menuAction.needVideoDevice === false;
+                        }
                         enabled: VideoDevices.listSize === 0
                     }
                 ]
@@ -553,22 +570,34 @@ Rectangle {
             }
 
             model: SortFilterProxyModel {
-                sourceModel: listActions
+                model: listActions
                 filters: [
-                    ExpressionFilter {
-                        expression: menuAction.show === true
+                    FunctionFilter {
+                        column: 0
+                        function filter(data: MenuActionFilterData): bool {
+                            return data.menuAction.show === true;
+                        }
                         enabled: rectangle.showDefault
                     },
-                    ExpressionFilter {
-                        expression: menuAction.needWebEngine === false
+                    FunctionFilter {
+                        column: 0
+                        function filter(data: MenuActionFilterData): bool {
+                            return data.menuAction.needWebEngine === false;
+                        }
                         enabled: !WITH_WEBENGINE
                     },
-                    ExpressionFilter {
-                        expression: menuAction.noSip === true
+                    FunctionFilter {
+                        column: 0
+                        function filter(data: MenuActionFilterData): bool {
+                            return data.menuAction.noSip === true;
+                        }
                         enabled: CurrentConversation.isSip
                     },
-                    ExpressionFilter {
-                        expression: menuAction.needVideoDevice === false
+                    FunctionFilter {
+                        column: 0
+                        function filter(data: MenuActionFilterData): bool {
+                            return data.menuAction.needVideoDevice === false;
+                        }
                         enabled: VideoDevices.listSize === 0
                     }
                 ]

@@ -22,7 +22,7 @@ import net.jami.Enums 1.1
 import "contextmenu"
 import "../mainview"
 import "../mainview/components"
-import SortFilterProxyModel 0.2
+import QtQml.Models
 
 ContextMenuAutoLoader {
     id: root

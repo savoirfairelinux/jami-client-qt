@@ -18,7 +18,7 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import Qt5Compat.GraphicalEffects
-import SortFilterProxyModel 0.2
+import QtQml.Models
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Enums 1.1
@@ -144,15 +144,15 @@ SettingsPageBase {
 
             comboModel: SortFilterProxyModel {
                 id: filteredDevicesModel
-                sourceModel: SortFilterProxyModel {
+                model: SortFilterProxyModel {
                     id: deviceSourceModel
-                    sourceModel: VideoDevices.deviceSourceModel
+                    model: VideoDevices.deviceSourceModel
                 }
                 filters: ValueFilter {
                     roleName: "DeviceName"
                     value: VideoDevices.defaultName
                     inverted: true
-                    enabled: deviceSourceModel.count > 1
+                    enabled: deviceSourceModel.rowCount() > 1
                 }
             }
             role: "DeviceName"
@@ -160,7 +160,7 @@ SettingsPageBase {
             onActivated: {
                 // TODO: start and stop preview logic in here should be in LRC
                 previewWidget.startWithId("");
-                VideoDevices.setDefaultDevice(filteredDevicesModel.mapToSource(modelIndex));
+                VideoDevices.setDefaultDevice(filteredDevicesModel.mapToSource(filteredDevicesModel.index(modelIndex, 0)).row);
                 rootLayout.startPreviewing();
             }
         }
@@ -181,20 +181,20 @@ SettingsPageBase {
 
             comboModel: SortFilterProxyModel {
                 id: filteredResModel
-                sourceModel: SortFilterProxyModel {
+                model: SortFilterProxyModel {
                     id: resSourceModel
-                    sourceModel: VideoDevices.resSourceModel
+                    model: VideoDevices.resSourceModel
                 }
                 filters: ValueFilter {
                     roleName: "Resolution"
                     value: VideoDevices.defaultRes
                     inverted: true
-                    enabled: resSourceModel.count > 1
+                    enabled: resSourceModel.rowCount() > 1
                 }
             }
             role: "Resolution"
 
-            onActivated: VideoDevices.setDefaultDeviceRes(filteredResModel.mapToSource(modelIndex))
+            onActivated: VideoDevices.setDefaultDeviceRes(filteredResModel.mapToSource(filteredResModel.index(modelIndex, 0)).row)
         }
 
         SettingsComboBox {
@@ -212,20 +212,20 @@ SettingsPageBase {
             currentSelectionText: VideoDevices.defaultFps.toString()
             comboModel: SortFilterProxyModel {
                 id: filteredFpsModel
-                sourceModel: SortFilterProxyModel {
+                model: SortFilterProxyModel {
                     id: fpsSourceModel
-                    sourceModel: VideoDevices.fpsSourceModel
+                    model: VideoDevices.fpsSourceModel
                 }
                 filters: ValueFilter {
                     roleName: "FPS"
                     value: VideoDevices.defaultFps
                     inverted: true
-                    enabled: fpsSourceModel.count > 1
+                    enabled: fpsSourceModel.rowCount() > 1
                 }
             }
             role: "FPS"
 
-            onActivated: VideoDevices.setDefaultDeviceFps(filteredFpsModel.mapToSource(modelIndex))
+            onActivated: VideoDevices.setDefaultDeviceFps(filteredFpsModel.mapToSource(filteredFpsModel.index(modelIndex, 0)).row)
         }
 
         ToggleSwitch {

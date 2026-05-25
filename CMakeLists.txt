@@ -163,7 +163,7 @@ set(TESTS_DIR ${PROJECT_SOURCE_DIR}/tests)
 # Here we let find_package(<PackageName>...) try to find Qt 6,
 # If it is found, find_package will succeed, and the CMake variable
 # QT_VERSION_MAJOR will be defined 6.
-set(QT6_MINVER_MINOR 8)
+set(QT6_MINVER_MINOR 10)
 if(QT6_VER AND QT6_PATH)
   find_package(QT NAMES Qt6 REQUIRED
     PATHS ${QT6_PATH} NO_DEFAULT_PATH)
@@ -174,7 +174,7 @@ endif()
 if (${QT_VERSION_MINOR} GREATER_EQUAL ${QT6_MINVER_MINOR})
   message(STATUS "Found a suitable Qt version ${QT_VERSION}")
 else()
-  message(FATAL_ERROR "Qt 6.8 or higher is required. Found ${QT_VERSION}")
+  message(FATAL_ERROR "Qt 6.10 or higher is required. Found ${QT_VERSION}")
 endif()
 
 # libjamiclient
@@ -708,11 +708,6 @@ if(ENABLE_LIBWRAP)
   add_definitions(-DENABLE_LIBWRAP=true)
 endif()
 
-# SFPM
-set(BUILD_SFPM_PIC ON CACHE BOOL "enable -fPIC for SFPM" FORCE)
-add_subdirectory(3rdparty/SortFilterProxyModel)
-set(SFPM_OBJECTS $<TARGET_OBJECTS:SortFilterProxyModel>)
-
 # md4c
 find_package(md4c)
 if(md4c_FOUND)
@@ -766,7 +761,6 @@ qt_add_executable(
   ${COMMON_SOURCES}
   ${QML_RESOURCES}
   ${QML_RESOURCES_QML}
-  ${SFPM_OBJECTS}
   src/app/spellcheckadapter.h src/app/spellcheckadapter.cpp)
 
 #add_dependencies(${PROJECT_NAME} hunspell)
