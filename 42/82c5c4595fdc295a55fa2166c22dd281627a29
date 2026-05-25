@@ -1,0 +1,10 @@
+Verified+1: Jenkins CI <jenkins@ring-packaging.cx>
+Code-Review+2: Adrien Béraud <adrien.beraud@savoirfairelinux.com>
+Code-Review-1: Virtual Engineer <virtual-engineer@jami.net>
+Submitted-by: Kateryna Kostiuk <kateryna.kostiuk@savoirfairelinux.com>
+Submitted-at: Mon, 25 May 2026 15:49:20 -0400
+Reviewed-on: https://review.jami.net/c/jami-client-qt/+/33998
+Comments-Total: 19
+Comments-Unresolved: 1
+Project: jami-client-qt
+Branch: refs/heads/master
