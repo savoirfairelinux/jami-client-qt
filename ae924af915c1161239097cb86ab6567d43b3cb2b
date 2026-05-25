@@ -53,6 +53,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5d3efebf_e97ed55f",
+        "filename": "extras/scripts/regenerate-macos-icon.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 225
+      },
+      "writtenOn": "2026-05-25T18:30:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d353cf5b_bc0c25d0",
+      "revId": "ae924af915c1161239097cb86ab6567d43b3cb2b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2834f4b0_b368c3d4",
