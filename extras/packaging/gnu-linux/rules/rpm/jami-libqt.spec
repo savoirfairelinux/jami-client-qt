@@ -29,11 +29,6 @@ License:       GPLv3+
 Vendor:        Savoir-faire Linux Inc.
 URL:           https://jami.net/
 Source:        jami-libqt-%{version}.tar.xz
-Patch0:        0001-qtwebengine-fix-build-error-due-to-missing-chromium-dependency.patch
-Patch1:        0002-qtwebengine-fix-ASSERT_TRIVIALLY_COPYABLE-failure.patch
-Patch2:        0003-qtwebengine-fix-zygote_communication_linux-dependency.patch
-Patch3:        0004-qtwebengine-fix-SYS_SECCOMP-build-error-in-chromium.patch
-Patch4:        0005-qtwebengine-add-missing-header-includes-in-chromium.patch
 
 %global gst 0.10
 %if 0%{?fedora} || 0%{?rhel} > 7
@@ -66,11 +61,6 @@ This package contains Qt libraries for Jami.
 
 %prep
 %setup -n qt-everywhere-src-%{version}
-%patch -P 0 -p1
-%patch -P 1 -p1
-%patch -P 2 -p1
-%patch -P 3 -p1
-%patch -P 4 -p1
 
 %build
 echo "Building Qt using %{job_count} parallel jobs"
