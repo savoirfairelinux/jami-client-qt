@@ -10,9 +10,6 @@ RUN apt-get update && \
         python-is-python3 \
         wget
 
-ADD extras/packaging/gnu-linux/scripts/install-gcc-debian.sh /opt/install-gcc-debian.sh
-RUN /opt/install-gcc-debian.sh 13
-
 ADD extras/packaging/gnu-linux/scripts/prebuild-package-debian.sh /opt/prebuild-package-debian.sh
 
 COPY extras/packaging/gnu-linux/rules/debian-qt/control /tmp/builddeps/debian/control

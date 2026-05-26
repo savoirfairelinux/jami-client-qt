@@ -1,0 +1,39 @@
+From fcdf32aa1f197ad4a7104ec5371552f4fc780c3c Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Fran=C3=A7ois-Simon=20Fauteux-Chapleau?=
+ <francois-simon.fauteux-chapleau@savoirfairelinux.com>
+Date: Wed, 27 May 2026 09:49:28 -0400
+Subject: [PATCH] qtwebengine: add missing header includes in chromium
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+Chromium's build fails on Fedora 44 because of unrecognized types, e.g.:
+
+In file included from ../../../3rdparty/chromium/base/check_op.h:17,
+                 from ./../../../3rdparty/chromium/base/substring_set_matcher/matcher_string_pattern.cc:10,
+                 from gen/base/base_jumbo_21.cc:5:
+../../../3rdparty/chromium/base/strings/to_string.h: In static member function ‘static void base::internal::ToStringHelper<T>::Stringify(const T&, std::ostringstream&)’:
+../../../3rdparty/chromium/base/strings/to_string.h:87:25: error: ‘uint64_t’ does not name a type [-Wtemplate-body]
+   87 |       ss << static_cast<uint64_t>(v);
+      |                         ^~~~~~~~
+
+This is probably due to standard library header changes in GCC 16.
+---
+ qtwebengine/src/3rdparty/chromium/base/strings/to_string.h | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/qtwebengine/src/3rdparty/chromium/base/strings/to_string.h b/qtwebengine/src/3rdparty/chromium/base/strings/to_string.h
+index 96e61daa9e..5d097946f7 100644
+--- a/qtwebengine/src/3rdparty/chromium/base/strings/to_string.h
++++ b/qtwebengine/src/3rdparty/chromium/base/strings/to_string.h
+@@ -6,6 +6,7 @@
+ #define BASE_STRINGS_TO_STRING_H_
+ 
+ #include <concepts>
++#include <cstdint>
+ #include <iomanip>
+ #include <ios>
+ #include <memory>
+-- 
+2.43.0
+
