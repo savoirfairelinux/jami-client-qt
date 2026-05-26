@@ -93,7 +93,7 @@ Item {
                     filters: ValueFilter {
                         roleName: "ID"
                         value: LRCInstance.currentAccountId
-                        inverted: true
+                        invert: true
                     }
                 }
 
