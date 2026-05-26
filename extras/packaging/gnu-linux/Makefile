@@ -166,7 +166,6 @@ DISTRIBUTIONS := \
 	ubuntu_24.04 \
 	ubuntu_25.10 \
 	ubuntu_26.04 \
-	fedora_42 \
 	fedora_43 \
 	fedora_44 \
 	alma_9 \
