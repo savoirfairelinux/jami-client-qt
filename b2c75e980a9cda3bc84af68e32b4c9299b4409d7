@@ -52,6 +52,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a97c6385_ec1e2f1c",
+        "filename": "src/app/CallPipWindow.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-05-26T16:58:32Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "15786821_e3aee3e3",
+      "revId": "b2c75e980a9cda3bc84af68e32b4c9299b4409d7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7d96d67e_6df07d10",
@@ -65,6 +83,24 @@
       "writtenOn": "2026-05-18T01:51:21Z",
       "side": 1,
       "message": "[critical] Line 196: 🔴 `onWidthChanged` now calls both `_applyVideoAspect()` and `saveGeometry()` unconditionally (geometry is saved even during programmatic resizes). But `_applyVideoAspect()` itself changes `height`, which triggers `onHeightChanged` → `saveGeometry()` again. This means every aspect-ratio adjustment triggers `saveGeometry()` at least twice (once for width, once for height) with an intermediate, possibly incorrect geometry. If `saveGeometry()` persists to disk/settings, this can save a geometry where only width has been updated but height hasn\u0027t yet.\n\nConsider guarding `saveGeometry()` as well:\n\n```suggestion\n    onWidthChanged: { if (!_resizing) { _applyVideoAspect(); saveGeometry(); } }\n    onHeightChanged: { if (!_resizing) saveGeometry(); }\n```",
+      "revId": "b2c75e980a9cda3bc84af68e32b4c9299b4409d7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2b75398d_623716cd",
+        "filename": "src/app/CallPipWindow.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-05-26T16:58:32Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "7d96d67e_6df07d10",
       "revId": "b2c75e980a9cda3bc84af68e32b4c9299b4409d7",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
