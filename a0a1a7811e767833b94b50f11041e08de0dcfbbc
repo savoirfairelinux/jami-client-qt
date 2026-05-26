@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ea595a37_d36e8fd8",
+        "filename": "src/app/conversationsadapter.cpp",
+        "patchSetId": 29
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-26T19:05:37Z",
+      "side": 1,
+      "message": "[🔴 Critical Issues] Line 51: The fallback timer clears the search filter but leaves `selectFirst_` set. If the original search result arrives after the timeout, or if clearing the filter itself emits `onSearchResultEnded()`, the adapter can select row 0 from the wrong result set/conversation. Reset the pending auto-selection before clearing the filter.\n```suggestion\nconnect(\u0026searchFallbackTimer_, \u0026QTimer::timeout, this, [this]() {\n    selectFirst_ \u003d false;\n    setFilter({});\n});\n```",
+      "revId": "a0a1a7811e767833b94b50f11041e08de0dcfbbc",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e8ec3257_a50b4719",
+        "filename": "src/libclient/interaction.cpp",
+        "patchSetId": 29
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-26T19:05:37Z",
+      "side": 1,
+      "message": "[🔴 Critical Issues] Line 127: `bodyOverwrite` from plugin data is accepted as the displayed message body without any validation or provenance checks. This lets plugin-provided metadata fully replace user-visible chat content, which can spoof what was actually sent and may interact badly with downstream body parsing/rendering. Consider using a namespaced key and only applying it for trusted/expected plugin handlers, while preserving the original body for clear UI affordances.\n```suggestion\nconst auto bodyOverwriteIt \u003d msg.pluginData.constFind(\"jami.bodyOverwrite\");\nif (bodyOverwriteIt !\u003d msg.pluginData.constEnd() \u0026\u0026 isTrustedPluginOverwrite(msg.pluginData))\n    body \u003d *bodyOverwriteIt;\n```",
+      "revId": "a0a1a7811e767833b94b50f11041e08de0dcfbbc",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0a7f921a_6677ef59",
+        "filename": "src/libclient/interaction.cpp",
+        "patchSetId": 29
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-26T19:05:37Z",
+      "side": 1,
+      "message": "[🟡 Suggestions] Line 134: Edition history now stores overwritten bodies instead of the actual edited message bodies. That means edit history/audit views can no longer show what was really sent, which weakens the purpose of keeping `previousBodies`. Keep `previousBodies` as original content and add a separate display-body field if overwritten edition display is required.\n```suggestion\npreviousBodies.append(Body {\n    edition.value(\"id\"),\n    edition.value(\"body\"),\n    QString(edition.value(\"timestamp\")).toInt()\n});\n```",
+      "revId": "a0a1a7811e767833b94b50f11041e08de0dcfbbc",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8f10f820_8dc98cb4",
+        "filename": "src/libclient/messagelistmodel.cpp",
+        "patchSetId": 29
+      },
+      "lineNbr": 529,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-26T19:05:37Z",
+      "side": 1,
+      "message": "[🟡 Suggestions] Line 529: `OriginalBody` only falls back to `item.second.body` when `commit` has no `body`, but for edited/overwritten messages the original body source is not explicitly documented or tested. Add coverage for plugin-overwritten messages to ensure editing loads the real original body rather than the displayed overwrite.\n```suggestion\n// Add a unit test: message body \u003d original, pluginData bodyOverwrite \u003d translated;\n// Body role returns translated, OriginalBody role returns original.\n```",
+      "revId": "a0a1a7811e767833b94b50f11041e08de0dcfbbc",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
