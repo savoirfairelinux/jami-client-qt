@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e65ef717_5c368de8",
+        "filename": "src/app/CallPipWindow.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-26T16:58:45Z",
+      "side": 1,
+      "message": "[🟡 Suggestion] Line 58: The height-driven resize path clamps `newWidth` to `minimumWidth` but leaves `newHeight` unchanged, so small heights can produce a window that no longer matches the video aspect ratio. If preserving aspect ratio is the goal, derive the final height again when width is clamped.\n```suggestion\n            newWidth \u003d Math.round(height / videoInvAspect);\n            if (newWidth \u003c minimumWidth) {\n                newWidth \u003d minimumWidth;\n                newHeight \u003d Math.max(minimumHeight, Math.round(newWidth * videoInvAspect));\n            } else {\n                newHeight \u003d height;\n            }\n```",
+      "revId": "0eb91e0f44b493c5340197de2402df6cd200f606",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "70510fb7_a05e4f6c",
+        "filename": "src/app/CallPipWindow.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-26T16:58:45Z",
+      "side": 1,
+      "message": "[🟡 Suggestion] Line 65: When preserving the existing area after a video aspect-ratio change, the computed height can end up below `minimumHeight` after `newWidth` is clamped to `minimumWidth`. In that case `setAspectGeometry()` applies an invalid geometry attempt and the final window can remain off-aspect or depend on platform clamping. Re-check both dimensions after either clamp. For example:\n```suggestion\n            newWidth \u003d Math.max(minimumWidth, Math.round(Math.sqrt(area / videoInvAspect)));\n            newHeight \u003d Math.round(newWidth * videoInvAspect);\n            if (newHeight \u003c minimumHeight) {\n                newHeight \u003d minimumHeight;\n                newWidth \u003d Math.max(minimumWidth, Math.round(newHeight / videoInvAspect));\n            }\n```\nThe same bidirectional clamp should be applied to every path that derives one dimension from the other.",
+      "revId": "0eb91e0f44b493c5340197de2402df6cd200f606",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
