@@ -97,7 +97,7 @@ ColumnLayout {
             filters: ValueFilter {
                 roleName: "DeviceID"
                 value: CurrentAccount.deviceId
-                inverted: root.inverted
+                invert: root.inverted
             }
         }
 
