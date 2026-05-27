@@ -38,6 +38,11 @@ ComboBox {
         // and back.
         restoreActiveTunnels();
         services = [];
+        if (peerUri === CurrentAccount.uri) {
+            services = ExposedServicesAdapter.getExposedServices(accountId).map(function(s) {
+                return Object.assign({}, s, { isLocal: true });
+            });
+        }
         pendingRequestId = ExposedServicesAdapter.queryPeerServices(accountId, peerUri);
     }
 
@@ -87,6 +92,8 @@ ComboBox {
     }
 
     function tunnelFor(service) {
+        if (service.isLocal)
+            return { localPort: parseInt(service.localPort), scheme: service.scheme || "" };
         return openTunnels[service.id];
     }
 
@@ -96,6 +103,8 @@ ComboBox {
     }
 
     function localEndpoint(service) {
+        if (service.isLocal)
+            return (service.localHost || "127.0.0.1") + ":" + service.localPort;
         var tunnel = tunnelFor(service);
         return tunnel ? "127.0.0.1:" + tunnel.localPort : "";
     }
@@ -171,7 +180,22 @@ ComboBox {
             }
             if (requestId !== root.pendingRequestId)
                 return;
-            root.services = status === ExposedServicesAdapter.PeerServicesStatus.OK ? services : [];
+            if (requestId === 0) {
+                // Unsolicited availability/cache update push for this peer.
+                if (status === ExposedServicesAdapter.PeerServicesStatus.OK)
+                    root.services = services;
+                return;
+            }
+            if (requestId !== root.pendingRequestId)
+                return;
+            var result = status === ExposedServicesAdapter.PeerServicesStatus.OK ? services : [];
+            if (root.peerUri === CurrentAccount.uri) {
+                var localServices = ExposedServicesAdapter.getExposedServices(root.accountId);
+                result = result.concat(localServices.map(function(s) {
+                    return Object.assign({}, s, { isLocal: true });
+                }));
+            }
+            root.services = result;
         }
 
         function onTunnelOpened(accountId, tunnelId, localPort) {
@@ -249,11 +273,23 @@ ComboBox {
                 width: JamiTheme.iconButtonMedium
                 height: JamiTheme.iconButtonMedium
 
-                source: serviceDelegate.modelData.scheme === "https" ? JamiResources.vpn_lock_2_24dp_svg : JamiResources.language_24dp_svg
+                source: {
+                    if (serviceDelegate.modelData.isLocal) {
+                        return JamiResources.location_home_24dp_svg;
+                    } else {
+                        return serviceDelegate.modelData.scheme === "https" ? JamiResources.vpn_lock_2_24dp_svg : JamiResources.language_24dp_svg
+                    }
+                }
                 sourceSize.width: JamiTheme.iconButtonMedium
                 sourceSize.height: JamiTheme.iconButtonMedium
 
-                color: root.tunnelFor(serviceDelegate.modelData) !== undefined ? JamiTheme.exposedServiceConnectColor : JamiTheme.buttonTintedGreyHovered
+                color: {
+                    if (serviceDelegate.modelData.isLocal) {
+                        return CurrentConversation.color;
+                    } else {
+                        return root.tunnelFor(serviceDelegate.modelData) !== undefined ? JamiTheme.exposedServiceConnectColor : JamiTheme.buttonTintedGreyHovered
+                    }
+                }
             }
 
             Column {
@@ -298,7 +334,7 @@ ComboBox {
 
                 background: null
 
-                visible: root.tunnelFor(serviceDelegate.modelData) !== undefined
+                visible: root.tunnelFor(serviceDelegate.modelData) !== undefined && !serviceDelegate.modelData.isLocal
 
                 scale: hovered ? 1.1 : 1.0
 
