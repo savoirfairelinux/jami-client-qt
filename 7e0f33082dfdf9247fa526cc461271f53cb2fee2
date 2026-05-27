@@ -18,6 +18,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4e3e11f7_20eef3ba",
+        "filename": "src/app/commoncomponents/PushButton.qml",
+        "patchSetId": 6
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-05-27T20:11:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9ff7daf9_97649269",
+      "revId": "7e0f33082dfdf9247fa526cc461271f53cb2fee2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "124dd680_cd78c8d1",
@@ -31,6 +49,24 @@
       "writtenOn": "2026-05-15T21:02:53Z",
       "side": 1,
       "message": "[🟡 Suggestions] Line 109: Using `Accessible.role: Accessible.StaticText` on a `Control` that contains clickable `MouseArea` and buttons is semantically misleading. Since the whole banner is clickable (line 41), consider `Accessible.Button` or `Accessible.Grouping` with an `Accessible.name` so screen readers convey the interactive nature.",
+      "revId": "7e0f33082dfdf9247fa526cc461271f53cb2fee2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "af36c063_15cb3a63",
+        "filename": "src/app/mainview/components/DonationBanner.qml",
+        "patchSetId": 6
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-05-27T20:11:53Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "124dd680_cd78c8d1",
       "revId": "7e0f33082dfdf9247fa526cc461271f53cb2fee2",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
@@ -52,6 +88,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b3d93e05_9e008df5",
+        "filename": "src/app/mainview/components/InvitationView.qml",
+        "patchSetId": 6
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-05-27T20:11:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a60f92f8_cbf1d0e3",
+      "revId": "7e0f33082dfdf9247fa526cc461271f53cb2fee2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4d196570_9bdbbd6f",
@@ -65,6 +119,24 @@
       "writtenOn": "2026-05-15T21:02:53Z",
       "side": 1,
       "message": "[🟢 Good Practices] Line 84: 🟢 Good use of `Accessible.searchEdit: true` — this correctly marks the field with the search role semantic, which helps screen readers announce its purpose.",
+      "revId": "7e0f33082dfdf9247fa526cc461271f53cb2fee2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3f6c6125_05ee8365",
+        "filename": "src/app/mainview/components/Searchbar.qml",
+        "patchSetId": 6
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-05-27T20:11:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4d196570_9bdbbd6f",
       "revId": "7e0f33082dfdf9247fa526cc461271f53cb2fee2",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
@@ -86,6 +158,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d09f883f_afb74648",
+        "filename": "src/app/mainview/components/SmartListItemDelegate.qml",
+        "patchSetId": 6
+      },
+      "lineNbr": 382,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-05-27T20:11:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "76b4dde3_8c3ecc26",
+      "revId": "7e0f33082dfdf9247fa526cc461271f53cb2fee2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "475e3401_5801d942",
@@ -99,6 +189,24 @@
       "writtenOn": "2026-05-15T21:02:53Z",
       "side": 1,
       "message": "[🟡 Suggestions] Line 388: The magic numbers `1` and `2` for `Presence` are used without documentation. A brief comment explaining these values (e.g., `// 1 \u003d Online, 2 \u003d Available`) would improve readability, or ideally reference named constants if they exist in the codebase.",
+      "revId": "7e0f33082dfdf9247fa526cc461271f53cb2fee2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ae3ff79e_89a2c370",
+        "filename": "src/app/mainview/components/SmartListItemDelegate.qml",
+        "patchSetId": 6
+      },
+      "lineNbr": 388,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-05-27T20:11:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "475e3401_5801d942",
       "revId": "7e0f33082dfdf9247fa526cc461271f53cb2fee2",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
@@ -120,6 +228,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2f92b820_1a7e7e9b",
+        "filename": "src/app/mainview/components/SmartListItemDelegate.qml",
+        "patchSetId": 6
+      },
+      "lineNbr": 390,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-05-27T20:11:53Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "ce238bdd_53c771ec",
+      "revId": "7e0f33082dfdf9247fa526cc461271f53cb2fee2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1f1b6b90_d84818df",
@@ -133,6 +259,24 @@
       "writtenOn": "2026-05-15T21:02:53Z",
       "side": 1,
       "message": "[🔴 Critical Issues] Line 419: References the misspelled property `incomingAndOutgoignShareLocation`. Must be updated if the property name is corrected in JamiStrings.qml.",
+      "revId": "7e0f33082dfdf9247fa526cc461271f53cb2fee2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "88089171_e1462556",
+        "filename": "src/app/mainview/components/SmartListItemDelegate.qml",
+        "patchSetId": 6
+      },
+      "lineNbr": 419,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-05-27T20:11:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1f1b6b90_d84818df",
       "revId": "7e0f33082dfdf9247fa526cc461271f53cb2fee2",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
@@ -154,6 +298,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3c3b4ba9_15f04eb7",
+        "filename": "src/app/mainview/components/SmartListItemDelegate.qml",
+        "patchSetId": 6
+      },
+      "lineNbr": 425,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-05-27T20:11:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "91d74274_d41af2d9",
+      "revId": "7e0f33082dfdf9247fa526cc461271f53cb2fee2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0a8480d4_1932ac30",
@@ -171,6 +333,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "037dc5eb_3c0ed791",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 6
+      },
+      "lineNbr": 1022,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-05-27T20:11:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0a8480d4_1932ac30",
+      "revId": "7e0f33082dfdf9247fa526cc461271f53cb2fee2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4264082b_89afbb5f",
@@ -184,6 +364,24 @@
       "writtenOn": "2026-05-15T21:02:53Z",
       "side": 1,
       "message": "[🔴 Critical Issues] Line 1063: Typo: `incomingAndOutgoignShareLocation` should be `incomingAndOutgoingShareLocation`. This property name has a misspelling of \u0027outgoing\u0027.",
+      "revId": "7e0f33082dfdf9247fa526cc461271f53cb2fee2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5088fc95_0e72258b",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 6
+      },
+      "lineNbr": 1063,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-05-27T20:11:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4264082b_89afbb5f",
       "revId": "7e0f33082dfdf9247fa526cc461271f53cb2fee2",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }

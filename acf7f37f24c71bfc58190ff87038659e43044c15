@@ -18,6 +18,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1c2bd8d8_110e549c",
+        "filename": "src/app/mainview/components/DonationBanner.qml",
+        "patchSetId": 7
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-05-27T20:11:53Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "ea23e372_dc642dbd",
+      "revId": "acf7f37f24c71bfc58190ff87038659e43044c15",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1d6e7c55_429f1de1",
@@ -31,6 +49,24 @@
       "writtenOn": "2026-05-27T19:44:17Z",
       "side": 1,
       "message": "Line 1118: The new string property name contains a typo: `incomingAndOutgoignShareLocation`. QML property names are API, so merging this typo makes future usage harder to discover and likely to be copied elsewhere. Rename the property and update the single use in `SmartListItemDelegate.qml` before it becomes established.\n```suggestion\n    property string incomingAndOutgoingShareLocation: qsTr(\"You and %1 are sharing locations with each other\")\n```",
+      "revId": "acf7f37f24c71bfc58190ff87038659e43044c15",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a0c6dce3_cab3aaaf",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 7
+      },
+      "lineNbr": 1118,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-05-27T20:11:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1d6e7c55_429f1de1",
       "revId": "acf7f37f24c71bfc58190ff87038659e43044c15",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
