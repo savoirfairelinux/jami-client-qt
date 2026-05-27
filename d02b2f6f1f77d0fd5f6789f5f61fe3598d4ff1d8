@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f3e21030_692b4da8",
+        "filename": "src/app/commoncomponents/NewMaterialTextField.qml",
+        "patchSetId": 7
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-27T20:21:08Z",
+      "side": 1,
+      "message": "[Major] Line 176: Calling `accepted()` directly on focus loss manually emits the TextField `accepted` signal, which bypasses Qt Quick Controls\u0027 normal condition that `accepted` is emitted only for Return/Enter and only when the input is acceptable. If this field uses a validator, invalid text can now be committed on blur. Prefer extracting the existing accept logic into a helper that checks `acceptableInput` or the component\u0027s existing validation path before emitting the root-level accepted signal.\n```suggestion\n                onActiveFocusChanged: {\n                    if (!activeFocus \u0026\u0026 acceptableInput)\n                        accepted();\n                }\n```",
+      "revId": "d02b2f6f1f77d0fd5f6789f5f61fe3598d4ff1d8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
