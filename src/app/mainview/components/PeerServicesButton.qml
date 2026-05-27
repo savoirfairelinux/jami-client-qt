@@ -39,6 +39,7 @@ ComboBox {
         restoreActiveTunnels();
         services = [];
         pendingRequestId = SharedServicesAdapter.queryPeerServices(accountId, peerUri);
+
     }
 
     // Rebuild openTunnels from the daemon's authoritative active-tunnel list,
@@ -87,6 +88,8 @@ ComboBox {
     }
 
     function tunnelFor(service) {
+        if (service.isLocal)
+            return { localPort: parseInt(service.localPort), scheme: service.scheme || "" };
         return openTunnels[service.id];
     }
 
@@ -96,6 +99,8 @@ ComboBox {
     }
 
     function localEndpoint(service) {
+        if (service.isLocal)
+            return (service.localHost || "127.0.0.1") + ":" + service.localPort;
         var tunnel = tunnelFor(service);
         return tunnel ? "127.0.0.1:" + tunnel.localPort : "";
     }
@@ -167,13 +172,30 @@ ComboBox {
                 return;
             if (requestId === 0) {
                 // Unsolicited availability/cache update push for this peer.
-                if (status === SharedServicesAdapter.PeerServicesStatus.OK)
-                    root.services = services;
+
+                if (status !== SharedServicesAdapter.PeerServicesStatus.OK)
+                    return;
+                var pushed = services;
+                if (root.peerUri === CurrentAccount.uri) {
+                    var localPushed = SharedServicesAdapter.getExposedServices(root.accountId);
+                    pushed = pushed.concat(localPushed.map(function(s) {
+                        return Object.assign({}, s, { isLocal: true });
+                    }));
+                }
+                root.services = pushed;
                 return;
             }
             if (requestId !== root.pendingRequestId)
                 return;
-            root.services = status === SharedServicesAdapter.PeerServicesStatus.OK ? services : [];
+
+            var result = status === SharedServicesAdapter.PeerServicesStatus.OK ? services : [];
+            if (root.peerUri === CurrentAccount.uri) {
+                var localServices = SharedServicesAdapter.getExposedServices(root.accountId);
+                result = result.concat(localServices.map(function(s) {
+                    return Object.assign({}, s, { isLocal: true });
+                }));
+            }
+            root.services = result;
         }
 
         function onTunnelOpened(accountId, tunnelId, localPort) {
@@ -251,8 +273,11 @@ ComboBox {
                 width: JamiTheme.iconButtonMedium
                 height: JamiTheme.iconButtonMedium
 
+
                 source: {
-                    if (!root.isAvailable(serviceDelegate.modelData)) {
+                    if (serviceDelegate.modelData.isLocal) {
+                        return JamiResources.location_home_24dp_svg;
+                    } else if (!root.isAvailable(serviceDelegate.modelData)) {
                         return JamiResources.globe_2_cancel_24dp_svg;
                     } else if (serviceDelegate.modelData.scheme === "https") {
                         return JamiResources.vpn_lock_2_24dp_svg;
@@ -260,11 +285,17 @@ ComboBox {
                         return JamiResources.language_24dp_svg;
                     }
                 }
-
                 sourceSize.width: JamiTheme.iconButtonMedium
                 sourceSize.height: JamiTheme.iconButtonMedium
 
-                color: root.tunnelFor(serviceDelegate.modelData) !== undefined ? JamiTheme.sharedServicesConnectColor : JamiTheme.buttonTintedGreyHovered
+
+                color: {
+                    if (serviceDelegate.modelData.isLocal) {
+                        return CurrentConversation.color;
+                    } else {
+                        return root.tunnelFor(serviceDelegate.modelData) !== undefined ? JamiTheme.sharedServicesConnectColor : JamiTheme.buttonTintedGreyHovered
+                    }
+                }
             }
 
             Column {
@@ -309,7 +340,7 @@ ComboBox {
 
                 background: null
 
-                visible: root.tunnelFor(serviceDelegate.modelData) !== undefined
+                visible: root.tunnelFor(serviceDelegate.modelData) !== undefined && !serviceDelegate.modelData.isLocal
 
                 scale: hovered ? 1.1 : 1.0
 
@@ -417,7 +448,8 @@ ComboBox {
 
         parent: root
         x: viewCoordinator.isInSinglePaneMode ? root.width - JamiTheme.iconButtonLarge : root.width - width
-        y: root.height
+        y: root.height + 4
+
         width: 300
         padding: 4
 
