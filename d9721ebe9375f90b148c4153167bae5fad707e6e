@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2259d711_b1cd8283",
+        "filename": "src/app/mainview/components/DonationBanner.qml",
+        "patchSetId": 8
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-27T20:12:23Z",
+      "side": 1,
+      "message": "[🟡 Suggestions] Line 36: This makes the banner tabbable as a StaticText element, but the focused banner has no keyboard action and no accessible name. It also coincides with removing the full-banner MouseArea, so keyboard users can tab to a non-actionable item while mouse users lose the previous click-anywhere behavior. Either keep focus only on the actionable BannerButton controls, or make the banner itself a real accessible button with mouse and Enter/Space activation.\n```suggestion\n    activeFocusOnTab: true\n    Keys.onReturnPressed: Qt.openUrlExternally(JamiTheme.donationUrl)\n    Keys.onEnterPressed: Qt.openUrlExternally(JamiTheme.donationUrl)\n    Keys.onSpacePressed: Qt.openUrlExternally(JamiTheme.donationUrl)\n\n    Accessible.role: Accessible.Button\n    Accessible.name: JamiStrings.donationText\n    Accessible.description: JamiStrings.donationText\n```",
+      "revId": "d9721ebe9375f90b148c4153167bae5fad707e6e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bf6e890e_be62f006",
+        "filename": "src/app/mainview/components/DonationBanner.qml",
+        "patchSetId": 8
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-27T20:12:23Z",
+      "side": 1,
+      "message": "[🟡 Suggestions] Line 44: Removing the full-size MouseArea changes existing behavior: clicking the banner background/text no longer opens the donation URL. If that behavior is intentional, the change should be reflected by not making the parent focusable; otherwise restore pointer activation on the banner container while avoiding overlap with child buttons.\n```suggestion\n    TapHandler {\n        acceptedButtons: Qt.LeftButton\n        onTapped: Qt.openUrlExternally(JamiTheme.donationUrl)\n    }\n```",
+      "revId": "d9721ebe9375f90b148c4153167bae5fad707e6e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6e4158e5_e34b3349",
+        "filename": "src/app/mainview/components/SmartListItemDelegate.qml",
+        "patchSetId": 8
+      },
+      "lineNbr": 386,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-27T20:12:23Z",
+      "side": 1,
+      "message": "[🟡 Suggestions] Line 386: The accessible description always announces online/offline presence for every list item, including non-contact conversations where presence may be unavailable or not meaningful. That can produce misleading screen-reader output such as \"Everyone is offline\" for a swarm with no presence data. Gate the presence sentence on an explicit availability condition, or omit it when presence is unknown.\n```suggestion\n        if (Presence \u003d\u003d\u003d 2 || Presence \u003d\u003d\u003d 1) {\n            constructedDescription.push(JamiStrings.presenceStatus.arg(IsCoreDialog ? JamiStrings.oneToOnePresenceOnline : JamiStrings.swarmPresenceOnline))\n        } else if (Presence \u003d\u003d\u003d 0) {\n            constructedDescription.push(JamiStrings.presenceStatus.arg(IsCoreDialog ? JamiStrings.oneToOnePresenceOffline : JamiStrings.swarmPresenceOffline))\n        }\n```",
+      "revId": "d9721ebe9375f90b148c4153167bae5fad707e6e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
