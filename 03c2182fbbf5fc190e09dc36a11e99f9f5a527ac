@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d9d12051_afcfb62b",
+        "filename": "src/app/settingsview/components/CustomizeProfilePage.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-27T20:21:21Z",
+      "side": 1,
+      "message": "[Critical] Line 82: Removing the focus-loss handler changes the display-name save behavior: users who edit the field and then click/tab away without pressing Enter no longer persist the new value. That is an unrelated functional regression in an accessibility patch. Restore the blur save while avoiding unnecessary focus manipulation if that was the accessibility concern.\n\n```suggestion\n                onAccepted: AccountAdapter.setCurrAccDisplayName(modifiedTextFieldContent)\n\n                onActiveFocusChanged: {\n                    if (!activeFocus)\n                        AccountAdapter.setCurrAccDisplayName(modifiedTextFieldContent);\n                }\n```",
+      "revId": "03c2182fbbf5fc190e09dc36a11e99f9f5a527ac",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "67cbec99_371e4350",
+        "filename": "src/app/wizardview/components/CreateAccountPage.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-27T20:21:21Z",
+      "side": 1,
+      "message": "Line 200: A commented-out accessibility binding is being left in the patch, and the button now only exposes the validation text as a tooltip. Screen-reader users may miss the reason the disabled/invalid action cannot proceed. Either remove the dead comment or re-enable the accessible description so the validation state is announced.\n\n```suggestion\n                    Accessible.description: invalidLabel.text\n```",
+      "revId": "03c2182fbbf5fc190e09dc36a11e99f9f5a527ac",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
