@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e895047d_b2e458ce",
+        "filename": "src/app/commoncomponents/NewMaterialTextField.qml",
+        "patchSetId": 9
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-27T20:43:30Z",
+      "side": 1,
+      "message": "[🟡 Suggestions] Line 177: Losing focus now emits the accepted flow every time the field blurs, even when the text was not changed. For consumers where accepted triggers persistence, validation messages, network calls, or dialog state transitions, merely tabbing through the field can cause duplicate commits or unintended side effects. Gate the blur acceptance on an actual content change, matching the feature intent of accepting changes rather than accepting focus transitions.\n\n```suggestion\n                    if (!activeFocus \u0026\u0026 inputIsValid \u0026\u0026 text !\u003d\u003d root.modifiedTextFieldContent)\n                        accepted();\n```\n\nIf `modifiedTextFieldContent` is updated on every `onTextChanged`, use the component\u0027s original/current committed value instead of `modifiedTextFieldContent` for this comparison.",
+      "revId": "99cc0fa502b7f18526f656a1a9651be709ad8cde",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
