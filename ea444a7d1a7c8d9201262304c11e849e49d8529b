@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "526707b7_6f6490a7",
+        "filename": "tests/features/account/account_creation.feature",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-27T17:11:10Z",
+      "side": 1,
+      "message": "[🟡 Suggestion] Line 22: The feature files introduce many literal passwords/tokens such as \"S3cur3P@ss!\", \"sip_pass_123\", and \"ExportP@ss1\". Cucumber reports and CI logs usually echo step text, so these look like real secrets and will also trigger secret scanners. Use clearly synthetic placeholders or fixture aliases instead, e.g. ```suggestion\nAnd the user sets the account password \"\u003cvalid_account_password\u003e\"\n```",
+      "revId": "ea444a7d1a7c8d9201262304c11e849e49d8529b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8579bab3_c32fd678",
+        "filename": "tests/features/account/account_creation.feature",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-27T17:11:10Z",
+      "side": 1,
+      "message": "[🟡 Suggestion] Line 54: The username validation examples mix client-side validation cases with a nameserver availability case (`carol_jami` already taken) under the same expected step. That makes the scenario ambiguous because local validation and remote lookup have different triggers, timing, and failure modes. Move the already-taken case into the dedicated nameserver scenario and keep this outline limited to syntactic validation.",
+      "revId": "ea444a7d1a7c8d9201262304c11e849e49d8529b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0c54db2e_46ce96e4",
+        "filename": "tests/features/account/account_import_export.feature",
+        "patchSetId": 1
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-27T17:11:10Z",
+      "side": 1,
+      "message": "[🟡 Suggestion] Line 122: The round-trip examples use a blank password cell. In Gherkin this becomes an empty string, but the preceding step says the account is exported \"with password\", making the expected behavior ambiguous between no password and an empty password. Use an explicit marker such as `\u003cno_password\u003e` and map it in the step definition, or move the unprotected export into a separate scenario.",
+      "revId": "ea444a7d1a7c8d9201262304c11e849e49d8529b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6439bfc9_c57ca7a0",
+        "filename": "tests/features/api/api_authentication.feature",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-27T17:11:10Z",
+      "side": 1,
+      "message": "[🔴 Critical] Line 1: This patch adds only `.feature` specifications for an API server/token system, but there is no accompanying runner, tags configuration, or step definitions in the patch. As-is, these files do not increase executable coverage and may be ignored by CI or fail as undefined steps once Cucumber is enabled. Add the matching Cucumber harness/step definitions or split this into documentation until the tests are wired into CI.",
+      "revId": "ea444a7d1a7c8d9201262304c11e849e49d8529b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ca154f08_75517a3c",
+        "filename": "tests/features/api/api_server.feature",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-27T17:11:10Z",
+      "side": 1,
+      "message": "[🔴 Critical] Line 61: The API scenarios assert mutating behavior such as initiating calls through `POST /api/calls`, but the feature setup does not define how external peers, media devices, network state, or cleanup are isolated. If executed in CI, this can be flaky or affect real/local client state. Define deterministic test doubles and teardown in the Background or step definitions before adding these scenarios.",
+      "revId": "ea444a7d1a7c8d9201262304c11e849e49d8529b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
