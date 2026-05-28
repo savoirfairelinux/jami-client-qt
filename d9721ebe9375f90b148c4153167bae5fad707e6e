@@ -18,6 +18,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "407e0777_674ebad7",
+        "filename": "src/app/mainview/components/DonationBanner.qml",
+        "patchSetId": 8
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-05-28T14:17:53Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "2259d711_b1cd8283",
+      "revId": "d9721ebe9375f90b148c4153167bae5fad707e6e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bf6e890e_be62f006",
@@ -35,6 +53,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "75722f8a_924bda6f",
+        "filename": "src/app/mainview/components/DonationBanner.qml",
+        "patchSetId": 8
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-05-28T14:17:53Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "bf6e890e_be62f006",
+      "revId": "d9721ebe9375f90b148c4153167bae5fad707e6e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6e4158e5_e34b3349",
@@ -48,6 +84,24 @@
       "writtenOn": "2026-05-27T20:12:23Z",
       "side": 1,
       "message": "[🟡 Suggestions] Line 386: The accessible description always announces online/offline presence for every list item, including non-contact conversations where presence may be unavailable or not meaningful. That can produce misleading screen-reader output such as \"Everyone is offline\" for a swarm with no presence data. Gate the presence sentence on an explicit availability condition, or omit it when presence is unknown.\n```suggestion\n        if (Presence \u003d\u003d\u003d 2 || Presence \u003d\u003d\u003d 1) {\n            constructedDescription.push(JamiStrings.presenceStatus.arg(IsCoreDialog ? JamiStrings.oneToOnePresenceOnline : JamiStrings.swarmPresenceOnline))\n        } else if (Presence \u003d\u003d\u003d 0) {\n            constructedDescription.push(JamiStrings.presenceStatus.arg(IsCoreDialog ? JamiStrings.oneToOnePresenceOffline : JamiStrings.swarmPresenceOffline))\n        }\n```",
+      "revId": "d9721ebe9375f90b148c4153167bae5fad707e6e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "469a9689_3ee9eb0c",
+        "filename": "src/app/mainview/components/SmartListItemDelegate.qml",
+        "patchSetId": 8
+      },
+      "lineNbr": 386,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-05-28T14:17:53Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "6e4158e5_e34b3349",
       "revId": "d9721ebe9375f90b148c4153167bae5fad707e6e",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
