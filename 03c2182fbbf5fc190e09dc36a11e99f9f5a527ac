@@ -18,6 +18,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "593f0e67_1edee0ce",
+        "filename": "src/app/settingsview/components/CustomizeProfilePage.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-05-28T14:19:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d9d12051_afcfb62b",
+      "revId": "03c2182fbbf5fc190e09dc36a11e99f9f5a527ac",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "67cbec99_371e4350",
@@ -31,6 +49,24 @@
       "writtenOn": "2026-05-27T20:21:21Z",
       "side": 1,
       "message": "Line 200: A commented-out accessibility binding is being left in the patch, and the button now only exposes the validation text as a tooltip. Screen-reader users may miss the reason the disabled/invalid action cannot proceed. Either remove the dead comment or re-enable the accessible description so the validation state is announced.\n\n```suggestion\n                    Accessible.description: invalidLabel.text\n```",
+      "revId": "03c2182fbbf5fc190e09dc36a11e99f9f5a527ac",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "de07e1d6_a0efa576",
+        "filename": "src/app/wizardview/components/CreateAccountPage.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-05-28T14:19:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "67cbec99_371e4350",
       "revId": "03c2182fbbf5fc190e09dc36a11e99f9f5a527ac",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }

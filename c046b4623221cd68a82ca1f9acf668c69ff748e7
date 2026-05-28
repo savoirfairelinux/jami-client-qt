@@ -18,6 +18,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9225436f_f300c5f2",
+        "filename": "src/app/commoncomponents/InfoBox.qml",
+        "patchSetId": 7
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-05-28T14:19:18Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "48d94dc7_293ae71c",
+      "revId": "c046b4623221cd68a82ca1f9acf668c69ff748e7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1c425dc6_75c7e8f1",
@@ -31,6 +49,24 @@
       "writtenOn": "2026-05-27T21:00:03Z",
       "side": 1,
       "message": "[Critical] Line 82: Removing the focus-loss handler means profile display-name edits are only persisted when the user presses Enter. Mouse users, touch users, and keyboard users who tab away after editing will silently lose the change, which is especially likely after changing tab/focus behavior for accessibility. Restore save-on-focus-loss while avoiding the old forced focus reset.\n```suggestion\n                onAccepted: AccountAdapter.setCurrAccDisplayName(modifiedTextFieldContent)\n\n                onActiveFocusChanged: {\n                    if (!activeFocus)\n                        AccountAdapter.setCurrAccDisplayName(modifiedTextFieldContent);\n                }\n```",
+      "revId": "c046b4623221cd68a82ca1f9acf668c69ff748e7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "310b7740_814b4e88",
+        "filename": "src/app/settingsview/components/CustomizeProfilePage.qml",
+        "patchSetId": 7
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-05-28T14:19:18Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "1c425dc6_75c7e8f1",
       "revId": "c046b4623221cd68a82ca1f9acf668c69ff748e7",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
