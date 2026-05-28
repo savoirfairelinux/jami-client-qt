@@ -219,6 +219,8 @@ Rectangle {
                                 callCanceled();
                             }
                         }
+
+                        Accessible.name: buttonLabel.text
                     }
 
                     Label {
