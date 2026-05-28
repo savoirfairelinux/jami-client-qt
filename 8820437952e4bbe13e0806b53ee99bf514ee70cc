@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "005dcfb2_4dd90757",
+        "filename": "src/app/commoncomponents/SBSMessageBase.qml",
+        "patchSetId": 7
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-28T16:58:53Z",
+      "side": 1,
+      "message": "[Critical] Line 67: `isPluginOverwrite` treats any `Body !\u003d\u003d OriginalBody` as an extension modification. For edited messages, empty/missing `OriginalBody`, or messages whose original body role is not populated, this can incorrectly show the extension indicator and the original-message toggle. Gate this on the model actually providing an original plugin body, or on an explicit daemon role that indicates a plugin overwrite. Example:\\n```suggestion\\nproperty bool isPluginOverwrite: OriginalBody !\u003d\u003d \\\"\\\" \u0026\u0026 Body !\u003d\u003d OriginalBody\\n```\\nIf empty strings are valid original messages, prefer an explicit boolean role instead.",
+      "revId": "8820437952e4bbe13e0806b53ee99bf514ee70cc",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c4d9fffe_9432bf23",
+        "filename": "src/app/commoncomponents/TextMessageDelegate.qml",
+        "patchSetId": 7
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-28T16:58:53Z",
+      "side": 1,
+      "message": "[Critical] Line 80: The `showOriginal` state is stored on the reusable delegate and is not reset when the delegate is rebound to another message. If a delegate that previously displayed a plugin-overwritten message is reused for a normal edited message, this branch can execute with `isPluginOverwrite \u003d\u003d false` and access `PreviousBodies[0].body`, which may be undefined and can also display the wrong message body. Reset `showOriginal` when the message identity changes and avoid the unused non-plugin fallback. Suggested fix:\\n```suggestion\\nonIdChanged: showOriginal \u003d false\\n\\ntext: {\\n    if (showOriginal \u0026\u0026 isPluginOverwrite)\\n        return OriginalBody;\\n```",
+      "revId": "8820437952e4bbe13e0806b53ee99bf514ee70cc",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b75ae3da_997ca696",
+        "filename": "src/app/settingsview/components/PluginStoreListView.qml",
+        "patchSetId": 7
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-28T16:58:53Z",
+      "side": 1,
+      "message": "[Critical] Line 107: `Layout.preferredHeight: active ? item.implicitHeight : 0` can dereference `item` while the Loader is active but before the component is instantiated, producing a QML runtime error. Guard the access.\\n```suggestion\\nLayout.preferredHeight: active \u0026\u0026 item ? item.implicitHeight : 0\\n```",
+      "revId": "8820437952e4bbe13e0806b53ee99bf514ee70cc",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
