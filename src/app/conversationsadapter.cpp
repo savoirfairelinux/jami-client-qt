@@ -38,12 +38,17 @@ ConversationsAdapter::ConversationsAdapter(SystemTray* systemTray,
                                            QObject* parent)
     : QmlAdapterBase(instance, parent)
     , systemTray_(systemTray)
-    , convSrcModel_(new ConversationListModel(lrcInstance_))
     , convModel_(convProxyModel)
     , searchSrcModel_(new SearchResultsListModel(lrcInstance_))
     , searchModel_(searchProxyModel)
 {
-    convModel_->bindSourceModel(convSrcModel_.get());
+    // Bind ConversationModel directly as the source for the proxy
+    if (auto* model = lrcInstance_->getCurrentConversationModel()) {
+        model->setDraftProvider([this](const QString& convUid, const QString& accountId) -> QString {
+            return lrcInstance_->getContentDraft(convUid, accountId)["text"].toString();
+        });
+        convModel_->bindSourceModel(model);
+    }
     searchModel_->bindSourceModel(searchSrcModel_.get());
 
     set_convListProxyModel(QVariant::fromValue(convModel_));
@@ -83,8 +88,8 @@ ConversationsAdapter::ConversationsAdapter(SystemTray* systemTray,
 
     connect(lrcInstance_, &LRCInstance::draftSaved, this, [this](const QString& convId) {
         auto row = lrcInstance_->indexOf(convId);
-        const auto index = convSrcModel_->index(row, 0);
-        Q_EMIT convSrcModel_->dataChanged(index, index);
+        const auto index = lrcInstance_->getCurrentConversationModel()->index(row, 0);
+        Q_EMIT lrcInstance_->getCurrentConversationModel()->dataChanged(index, index);
     });
 
 #ifdef Q_OS_LINUX
@@ -309,8 +314,8 @@ ConversationsAdapter::onProfileUpdated(const QString& contactUri)
 
     // notify UI elements
     auto row = lrcInstance_->indexOf(convInfo.uid);
-    const auto index = convSrcModel_->index(row, 0);
-    Q_EMIT convSrcModel_->dataChanged(index, index);
+    const auto index = lrcInstance_->getCurrentConversationModel()->index(row, 0);
+    Q_EMIT lrcInstance_->getCurrentConversationModel()->dataChanged(index, index);
 }
 
 void
@@ -395,8 +400,8 @@ ConversationsAdapter::onBannedStatusChanged(const QString& uri, bool banned)
     if (convInfo.uid.isEmpty())
         return;
     auto row = lrcInstance_->indexOf(convInfo.uid);
-    const auto index = convSrcModel_->index(row, 0);
-    Q_EMIT convSrcModel_->dataChanged(index, index);
+    const auto index = lrcInstance_->getCurrentConversationModel()->index(row, 0);
+    Q_EMIT lrcInstance_->getCurrentConversationModel()->dataChanged(index, index);
     lrcInstance_->set_selectedConvUid();
 }
 
@@ -640,8 +645,10 @@ ConversationsAdapter::connectConversationModel()
                         &ContactModel::bannedStatusChanged,
                         &ConversationsAdapter::onBannedStatusChanged);
 
-    convSrcModel_.reset(new ConversationListModel(lrcInstance_));
-    convModel_->bindSourceModel(convSrcModel_.get());
+    model->setDraftProvider([this](const QString& convUid, const QString& accountId) -> QString {
+        return lrcInstance_->getContentDraft(convUid, accountId)["text"].toString();
+    });
+    convModel_->bindSourceModel(model);
     searchSrcModel_.reset(new SearchResultsListModel(lrcInstance_));
     searchModel_->bindSourceModel(searchSrcModel_.get());
 
