@@ -3,8 +3,7 @@
     "C_Cpp.default.cppStandard": "c++20",
     "C_Cpp.default.cStandard": "c11",
     "C_Cpp.autoAddFileAssociations": false,
-    "cmake.configureOnOpen": false,
-    "cmake.configureOnEdit": false,
+    "cmake.useCMakePresets": "always",
     "editor.formatOnSave": true,
-    "files.eol": "\n",
+    "files.eol": "\n"
 }
