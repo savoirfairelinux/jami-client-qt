@@ -41,7 +41,7 @@ else()
     list(APPEND EXTRA_TEST_LIBS gtest)
 endif()
 
-set(QML_TEST_LIBS ${QT_LIBS} ${LIBCLIENT_NAME} ${QT_TEST_LIBS})
+set(QML_TEST_LIBS ${QT_LIBS} ${QT_TEST_LIBS})
 set(TESTS_INCLUDES
     ${EXTRA_TEST_INCLUDES}
     ${CMAKE_SOURCE_DIR}/src
@@ -54,7 +54,10 @@ set(TEST_QML_RESOURCES
 # Common jami files
 add_library(test_common_obj OBJECT
     ${COMMON_SOURCES}
-    ${COMMON_HEADERS})
+    ${COMMON_HEADERS}
+    ${LIBCLIENT_SOURCES}
+    ${LIBCLIENT_HEADERS}
+    ${LIBCLIENT_HEADERS_MOC})
 
 target_include_directories(test_common_obj PRIVATE
     ${CLIENT_INCLUDE_DIRS}

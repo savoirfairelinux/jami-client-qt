@@ -177,8 +177,193 @@ else()
   message(FATAL_ERROR "Qt 6.10 or higher is required. Found ${QT_VERSION}")
 endif()
 
-# libjamiclient
-add_subdirectory(${LIBCLIENT_SRC_DIR})
+# Feature flags (previously in libclient CMakeLists.txt)
+if(NOT (${ENABLE_VIDEO} MATCHES false))
+  message(STATUS "VIDEO enabled")
+  set(ENABLE_VIDEO 1 CACHE BOOL "Enable video")
+  add_definitions(-DENABLE_VIDEO=true)
+endif()
+
+if(NOT (${ENABLE_PLUGIN} MATCHES false))
+  message(STATUS "PLUGIN enabled")
+  set(ENABLE_PLUGIN 1 CACHE BOOL "Enable plugin")
+  add_definitions(-DENABLE_PLUGIN=true)
+endif()
+
+# libjamiclient (sources integrated directly into the jami target)
+set(LIBCLIENT_SOURCES
+  ${LIBCLIENT_SRC_DIR}/uri.cpp
+  ${LIBCLIENT_SRC_DIR}/vcard.cpp
+  ${LIBCLIENT_SRC_DIR}/contactmodel.cpp
+  ${LIBCLIENT_SRC_DIR}/callparticipantsmodel.cpp
+  ${LIBCLIENT_SRC_DIR}/callmodel.cpp
+  ${LIBCLIENT_SRC_DIR}/devicemodel.cpp
+  ${LIBCLIENT_SRC_DIR}/codecmodel.cpp
+  ${LIBCLIENT_SRC_DIR}/conversationmodel.cpp
+  ${LIBCLIENT_SRC_DIR}/database.cpp
+  ${LIBCLIENT_SRC_DIR}/authority/daemon.cpp
+  ${LIBCLIENT_SRC_DIR}/authority/storagehelper.cpp
+  ${LIBCLIENT_SRC_DIR}/lrc.cpp
+  ${LIBCLIENT_SRC_DIR}/accountmodel.cpp
+  ${LIBCLIENT_SRC_DIR}/peerdiscoverymodel.cpp
+  ${LIBCLIENT_SRC_DIR}/callbackshandler.cpp
+  ${LIBCLIENT_SRC_DIR}/behaviorcontroller.cpp
+  ${LIBCLIENT_SRC_DIR}/datatransfermodel.cpp
+  ${LIBCLIENT_SRC_DIR}/messagelistmodel.cpp
+  ${LIBCLIENT_SRC_DIR}/callInformationListModel.cpp
+  ${LIBCLIENT_SRC_DIR}/rendererinformationlistmodel.cpp
+  ${LIBCLIENT_SRC_DIR}/dbus/configurationmanager.cpp
+  ${LIBCLIENT_SRC_DIR}/dbus/callmanager.cpp
+  ${LIBCLIENT_SRC_DIR}/dbus/instancemanager.cpp
+  ${LIBCLIENT_SRC_DIR}/dbus/networkservicemanager.cpp
+  ${LIBCLIENT_SRC_DIR}/dbus/videomanager.cpp
+  ${LIBCLIENT_SRC_DIR}/dbus/presencemanager.cpp
+  ${LIBCLIENT_SRC_DIR}/dbus/pluginmanager.cpp
+  ${LIBCLIENT_SRC_DIR}/globalinstances.cpp
+  ${LIBCLIENT_SRC_DIR}/pixmapmanipulatordefault.cpp
+  ${LIBCLIENT_SRC_DIR}/dbuserrorhandlerdefault.cpp
+  ${LIBCLIENT_SRC_DIR}/avmodel.cpp
+  ${LIBCLIENT_SRC_DIR}/pluginmodel.cpp
+  ${LIBCLIENT_SRC_DIR}/interaction.cpp
+  ${LIBCLIENT_SRC_DIR}/namedirectory.cpp
+  ${LIBCLIENT_SRC_DIR}/renderer.cpp)
+
+set(LIBCLIENT_HEADERS
+  ${LIBCLIENT_SRC_DIR}/uri.h
+  ${LIBCLIENT_SRC_DIR}/globalinstances.h
+  ${LIBCLIENT_SRC_DIR}/pixmapmanipulatordefault.h
+  ${LIBCLIENT_SRC_DIR}/dbuserrorhandlerdefault.h
+  ${LIBCLIENT_SRC_DIR}/vcard.h
+  ${LIBCLIENT_SRC_DIR}/namedirectory.h
+  ${LIBCLIENT_SRC_DIR}/callInformationListModel.h
+  ${LIBCLIENT_SRC_DIR}/rendererinformationlistmodel.h
+  ${LIBCLIENT_SRC_DIR}/interfaces/pixmapmanipulatori.h
+  ${LIBCLIENT_SRC_DIR}/interfaces/dbuserrorhandleri.h
+  ${LIBCLIENT_SRC_DIR}/typedefs.h
+  ${LIBCLIENT_SRC_DIR}/containerview.h
+  ${LIBCLIENT_SRC_DIR}/renderer.h
+  ${LIBCLIENT_SRC_DIR}/api/account.h
+  ${LIBCLIENT_SRC_DIR}/api/avmodel.h
+  ${LIBCLIENT_SRC_DIR}/api/behaviorcontroller.h
+  ${LIBCLIENT_SRC_DIR}/api/call.h
+  ${LIBCLIENT_SRC_DIR}/api/contact.h
+  ${LIBCLIENT_SRC_DIR}/api/conversation.h
+  ${LIBCLIENT_SRC_DIR}/api/contactmodel.h
+  ${LIBCLIENT_SRC_DIR}/api/conversationmodel.h
+  ${LIBCLIENT_SRC_DIR}/api/datatransfermodel.h
+  ${LIBCLIENT_SRC_DIR}/api/messagelistmodel.h
+  ${LIBCLIENT_SRC_DIR}/api/datatransfer.h
+  ${LIBCLIENT_SRC_DIR}/api/interaction.h
+  ${LIBCLIENT_SRC_DIR}/api/lrc.h
+  ${LIBCLIENT_SRC_DIR}/api/member.h
+  ${LIBCLIENT_SRC_DIR}/api/accountmodel.h
+  ${LIBCLIENT_SRC_DIR}/api/callmodel.h
+  ${LIBCLIENT_SRC_DIR}/api/callparticipantsmodel.h
+  ${LIBCLIENT_SRC_DIR}/api/codecmodel.h
+  ${LIBCLIENT_SRC_DIR}/api/devicemodel.h
+  ${LIBCLIENT_SRC_DIR}/api/pluginmodel.h
+  ${LIBCLIENT_SRC_DIR}/api/peerdiscoverymodel.h
+  ${LIBCLIENT_SRC_DIR}/api/profile.h
+  ${LIBCLIENT_SRC_DIR}/api/video.h)
+
+if(ENABLE_LIBWRAP)
+  list(APPEND LIBCLIENT_SOURCES ${LIBCLIENT_SRC_DIR}/directrenderer.cpp)
+  list(APPEND LIBCLIENT_HEADERS ${LIBCLIENT_SRC_DIR}/directrenderer.h)
+else()
+  list(APPEND LIBCLIENT_SOURCES ${LIBCLIENT_SRC_DIR}/shmrenderer.cpp)
+  list(APPEND LIBCLIENT_HEADERS ${LIBCLIENT_SRC_DIR}/shmrenderer.h)
+
+  # Build DBus API
+  if(DEFINED RING_XML_INTERFACES_DIR)
+    set(dbus_xml_introspecs_path ${RING_XML_INTERFACES_DIR})
+  elseif(DEFINED LIBJAMI_XML_INTERFACES_DIR)
+    set(dbus_xml_introspecs_path ${LIBJAMI_XML_INTERFACES_DIR})
+  elseif(EXISTS "${DAEMON_DIR}/bin/dbus")
+    set(dbus_xml_introspecs_path ${DAEMON_DIR}/bin/dbus)
+  else()
+    set(dbus_xml_introspecs_path
+      ${CMAKE_INSTALL_PREFIX}/share/dbus-1/interfaces)
+  endif()
+  message(STATUS "Using Jami (Ring) DBus-XML interfaces in \
+${dbus_xml_introspecs_path}")
+
+  set(presencemanager_xml
+    ${dbus_xml_introspecs_path}/cx.ring.Ring.PresenceManager.xml)
+  set(dbus_metatype_path "${LIBCLIENT_SRC_DIR}/dbus/metatypes.h")
+  set_source_files_properties(
+    ${presencemanager_xml}
+    PROPERTIES
+    CLASSNAME PresenceManagerInterface
+    INCLUDE ${dbus_metatype_path})
+
+  set(configurationmanager_xml
+    ${dbus_xml_introspecs_path}/cx.ring.Ring.ConfigurationManager.xml)
+  set_source_files_properties(
+    ${configurationmanager_xml}
+    PROPERTIES
+    CLASSNAME ConfigurationManagerInterface
+    INCLUDE ${dbus_metatype_path})
+
+  set(callmanager_xml
+    ${dbus_xml_introspecs_path}/cx.ring.Ring.CallManager.xml)
+  set_source_files_properties(
+    ${callmanager_xml}
+    PROPERTIES
+    CLASSNAME CallManagerInterface
+    INCLUDE ${dbus_metatype_path})
+
+  set(video_xml
+    ${dbus_xml_introspecs_path}/cx.ring.Ring.VideoManager.xml)
+  set_source_files_properties(
+    ${video_xml}
+    PROPERTIES
+    CLASSNAME VideoManagerInterface
+    INCLUDE ${dbus_metatype_path})
+
+  set(plugin_xml
+    ${dbus_xml_introspecs_path}/cx.ring.Ring.PluginManagerInterface.xml)
+  set_source_files_properties(
+    ${plugin_xml}
+    PROPERTIES
+    CLASSNAME PluginManagerInterface
+    INCLUDE ${dbus_metatype_path})
+
+  set(instance_xml
+    ${dbus_xml_introspecs_path}/cx.ring.Ring.Instance.xml)
+  set_source_files_properties(
+    ${instance_xml}
+    PROPERTIES
+    CLASSNAME InstanceManagerInterface
+    INCLUDE ${dbus_metatype_path})
+
+  set(networkservicemanager_xml
+    ${dbus_xml_introspecs_path}/cx.ring.Ring.NetworkServiceManager.xml)
+  set_source_files_properties(
+    ${networkservicemanager_xml}
+    PROPERTIES
+    CLASSNAME NetworkServiceManagerInterface
+    INCLUDE ${dbus_metatype_path})
+
+  # Note: qt_add_dbus_interface calls are done after Qt6 component find below.
+endif()
+
+# Note: qt_wrap_cpp for LIBCLIENT_HEADERS_PRIVATE is done after Qt6
+# component find below.
+
+# Manually wrap libjamiclient's private headers.
+set(LIBCLIENT_HEADERS_PRIVATE
+  ${LIBCLIENT_SRC_DIR}/private/namedirectory_p.h)
+
+if(ENABLE_LIBWRAP)
+  list(APPEND LIBCLIENT_HEADERS_PRIVATE
+    ${LIBCLIENT_SRC_DIR}/qtwrapper/callmanager_wrap.h
+    ${LIBCLIENT_SRC_DIR}/qtwrapper/configurationmanager_wrap.h
+    ${LIBCLIENT_SRC_DIR}/qtwrapper/instancemanager_wrap.h
+    ${LIBCLIENT_SRC_DIR}/qtwrapper/networkservicemanager_wrap.h
+    ${LIBCLIENT_SRC_DIR}/qtwrapper/presencemanager_wrap.h
+    ${LIBCLIENT_SRC_DIR}/qtwrapper/videomanager_wrap.h
+    ${LIBCLIENT_SRC_DIR}/qtwrapper/pluginmanager_wrap.h)
+endif()
 
 set(QT_MODULES
   Quick
@@ -612,7 +797,6 @@ elseif (NOT APPLE)
 
   set(JAMI_DATA_PREFIX "${CMAKE_INSTALL_PREFIX}/share")
 
-  find_library(${LIBCLIENT_NAME} ${LIBCLIENT_NAME} NO_DEFAULT_PATH)
   find_library(X11 X11)
 else() # APPLE
   list(APPEND COMMON_SOURCES
@@ -674,6 +858,53 @@ else()
     OPTIONAL_COMPONENTS LinguistTools)
 endif()
 
+# Define ENABLE_LIBWRAP before qtwrapper so dbus headers take the right path
+if(ENABLE_LIBWRAP)
+  add_definitions(-DENABLE_LIBWRAP=true)
+endif()
+
+# qtwrapper (unified/single-process build, must be after Qt6 is found)
+if(ENABLE_LIBWRAP)
+  add_subdirectory(${LIBCLIENT_SRC_DIR}/qtwrapper)
+  if(JAMICORE_AS_SUBDIR)
+    add_dependencies(qtwrapper jami-core)
+  endif()
+endif()
+
+# libclient Qt-dependent processing (must be after Qt6 component find)
+qt_wrap_cpp(LIBCLIENT_HEADERS_MOC ${LIBCLIENT_HEADERS_PRIVATE})
+
+if(NOT ENABLE_LIBWRAP)
+  qt_add_dbus_interface(
+    LIBCLIENT_SOURCES
+    ${presencemanager_xml}
+    presencemanager_dbus_interface)
+  qt_add_dbus_interface(
+    LIBCLIENT_SOURCES
+    ${configurationmanager_xml}
+    configurationmanager_dbus_interface)
+  qt_add_dbus_interface(
+    LIBCLIENT_SOURCES
+    ${callmanager_xml}
+    callmanager_dbus_interface)
+  qt_add_dbus_interface(
+    LIBCLIENT_SOURCES
+    ${video_xml}
+    video_dbus_interface)
+  qt_add_dbus_interface(
+    LIBCLIENT_SOURCES
+    ${plugin_xml}
+    plugin_dbus_interface)
+  qt_add_dbus_interface(
+    LIBCLIENT_SOURCES
+    ${instance_xml}
+    instance_dbus_interface)
+  qt_add_dbus_interface(
+    LIBCLIENT_SOURCES
+    ${networkservicemanager_xml}
+    networkservicemanager_dbus_interface)
+endif()
+
 if (CMAKE_SYSTEM_NAME STREQUAL "Linux")
     if (DEFINED ENV{XDG_SESSION_TYPE})
         if ($ENV{XDG_SESSION_TYPE} STREQUAL "x11")
@@ -700,12 +931,15 @@ endif ()
 # common includes
 include_directories(
   ${PROJECT_SOURCE_DIR}
-  ${APP_SRC_DIR})
+  ${APP_SRC_DIR}
+  ${LIBCLIENT_SRC_DIR}
+  ${LIBCLIENT_SRC_DIR}/dbus
+  ${CMAKE_CURRENT_BINARY_DIR})
 
 if(ENABLE_LIBWRAP)
+  include_directories(${LIBCLIENT_SRC_DIR}/qtwrapper)
   list(APPEND COMMON_HEADERS
     ${LIBCLIENT_SRC_DIR}/qtwrapper/instancemanager_wrap.h)
-  add_definitions(-DENABLE_LIBWRAP=true)
 endif()
 
 # md4c
@@ -759,6 +993,9 @@ qt_add_executable(
   ${APP_SRC_DIR}/main.cpp
   ${COMMON_HEADERS}
   ${COMMON_SOURCES}
+  ${LIBCLIENT_SOURCES}
+  ${LIBCLIENT_HEADERS}
+  ${LIBCLIENT_HEADERS_MOC}
   ${QML_RESOURCES}
   ${QML_RESOURCES_QML}
   src/app/spellcheckadapter.h src/app/spellcheckadapter.cpp)
@@ -767,6 +1004,30 @@ qt_add_executable(
 
 # Ensure the generated version file can be found.
 add_dependencies(${PROJECT_NAME} generate_version_info)
+
+# Dependencies and link libraries from libclient
+if(JAMICORE_AS_SUBDIR)
+  if(ENABLE_LIBWRAP)
+    add_dependencies(${PROJECT_NAME} qtwrapper)
+  else()
+    add_dependencies(${PROJECT_NAME} jami-core)
+  endif()
+endif()
+
+if(NOT(APPLE OR MSVC))
+  pkg_check_modules(XCB REQUIRED IMPORTED_TARGET xcb)
+  list(APPEND CLIENT_LIBS PkgConfig::XCB)
+endif()
+
+if(ENABLE_LIBWRAP)
+  list(APPEND CLIENT_LIBS qtwrapper)
+endif()
+if(NOT MSVC)
+  list(APPEND CLIENT_LIBS -lpthread)
+  if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
+    list(APPEND CLIENT_LIBS -lrt)
+  endif()
+endif()
 
 foreach(MODULE ${QT_MODULES})
   list(APPEND QT_LIBS "Qt::${MODULE}")
@@ -782,7 +1043,6 @@ if(MSVC)
   list(APPEND CLIENT_LIBS
     ${LIBJAMI_LIB}
     ${GNUTLS_LIB}
-    ${LIBCLIENT_NAME}
     ${QT_LIBS}
     ${WINDOWS_SYS_LIBS})
 
@@ -817,7 +1077,6 @@ if(MSVC)
 elseif (NOT APPLE)
   list(APPEND CLIENT_LIBS
     ${QT_LIBS}
-    ${LIBCLIENT_NAME}
     ${X11}
     ${LIBNM_LIBRARIES}
     ${LIBNOTIFY_LIBRARIES}
@@ -955,7 +1214,7 @@ else()
   set(resources
     ${CMAKE_CURRENT_SOURCE_DIR}/resources/images/jami.icns
     ${CMAKE_CURRENT_SOURCE_DIR}/resources/images/Assets.car)
-  set(libs ${QT_LIBS} ${SYSTEM_CONFIGURATUION} ${LIBCLIENT_NAME})
+  set(libs ${QT_LIBS} ${SYSTEM_CONFIGURATUION})
   if(ENABLE_SPARKLE)
     set(resources ${resources} ${SPARKLE_FRAMEWORK})
     set(libs ${libs} ${SPARKLE_FRAMEWORK})
