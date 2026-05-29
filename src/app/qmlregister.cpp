@@ -278,6 +278,7 @@ registerTypes(QQmlEngine* engine,
 
     // Roles & type enums for models
     QML_REGISTERNAMESPACE(NS_MODELS, AccountList::staticMetaObject, "AccountList");
+    QML_REGISTERNAMESPACE(NS_MODELS, CodecList::staticMetaObject, "CodecList");
     QML_REGISTERNAMESPACE(NS_MODELS, ConversationList::staticMetaObject, "ConversationList");
     QML_REGISTERNAMESPACE(NS_MODELS, ContactList::staticMetaObject, "ContactList");
     QML_REGISTERNAMESPACE(NS_MODELS, DeviceList::staticMetaObject, "DeviceList");
