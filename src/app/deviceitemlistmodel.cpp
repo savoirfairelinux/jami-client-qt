@@ -19,16 +19,12 @@
 
 #include "lrcinstance.h"
 
-#include "api/account.h"
-#include "api/contact.h"
-#include "api/conversation.h"
 #include "api/devicemodel.h"
 
 DeviceItemListModel::DeviceItemListModel(LRCInstance* instance, QObject* parent)
-    : AbstractListModelBase(parent)
+    : QIdentityProxyModel(parent)
+    , lrcInstance_(instance)
 {
-    lrcInstance_ = instance;
-
     connect(lrcInstance_,
             &LRCInstance::currentAccountIdChanged,
             this,
@@ -36,61 +32,6 @@ DeviceItemListModel::DeviceItemListModel(LRCInstance* instance, QObject* parent)
             Qt::UniqueConnection);
 
     connectAccount();
-}
-
-int
-DeviceItemListModel::rowCount(const QModelIndex& parent) const
-{
-    if (!parent.isValid() && lrcInstance_) {
-        return lrcInstance_->getCurrentAccountInfo().deviceModel->getAllDevices().size();
-    }
-    return 0;
-}
-
-QVariant
-DeviceItemListModel::data(const QModelIndex& index, int role) const
-{
-    auto deviceList = lrcInstance_->getCurrentAccountInfo().deviceModel->getAllDevices();
-    if (!index.isValid() || deviceList.size() <= index.row()) {
-        return QVariant();
-    }
-
-    switch (role) {
-    case Role::DeviceName:
-        return QVariant(deviceList.at(index.row()).name);
-    case Role::DeviceID:
-        return QVariant(deviceList.at(index.row()).id);
-    case Role::IsCurrent:
-        return QVariant(deviceList.at(index.row()).isCurrent);
-    }
-    return QVariant();
-}
-
-QHash<int, QByteArray>
-DeviceItemListModel::roleNames() const
-{
-    QHash<int, QByteArray> roles;
-    roles[DeviceName] = "DeviceName";
-    roles[DeviceID] = "DeviceID";
-    roles[IsCurrent] = "IsCurrent";
-    return roles;
-}
-
-Qt::ItemFlags
-DeviceItemListModel::flags(const QModelIndex& index) const
-{
-    auto flags = QAbstractItemModel::flags(index) | Qt::ItemNeverHasChildren | Qt::ItemIsSelectable;
-    if (!index.isValid()) {
-        return QAbstractItemModel::flags(index);
-    }
-    return flags;
-}
-
-void
-DeviceItemListModel::reset()
-{
-    beginResetModel();
-    endResetModel();
 }
 
 void
@@ -103,16 +44,8 @@ void
 DeviceItemListModel::connectAccount()
 {
     if (lrcInstance_->get_currentAccountId().isEmpty()) {
+        setSourceModel(nullptr);
         return;
     }
-
-    reset();
-
-    auto* deviceModel = lrcInstance_->getCurrentAccountInfo().deviceModel.get();
-
-    connect(deviceModel, &lrc::api::DeviceModel::deviceAdded, this, &DeviceItemListModel::reset, Qt::UniqueConnection);
-
-    connect(deviceModel, &lrc::api::DeviceModel::deviceRevoked, this, &DeviceItemListModel::reset, Qt::UniqueConnection);
-
-    connect(deviceModel, &lrc::api::DeviceModel::deviceUpdated, this, &DeviceItemListModel::reset, Qt::UniqueConnection);
+    setSourceModel(lrcInstance_->getCurrentAccountInfo().deviceModel.get());
 }

@@ -35,7 +35,7 @@ ColumnLayout {
     visible: settingsListView.count > 0
 
     function removeDeviceSlot(index) {
-        var deviceId = settingsListView.model.data(settingsListView.model.index(index, 0), DeviceItemListModel.DeviceID);
+        var deviceId = settingsListView.model.data(settingsListView.model.index(index, 0), DeviceList.DeviceID);
         if (CurrentAccount.hasArchivePassword) {
             viewCoordinator.presentDialog(appWindow, "settingsview/components/RevokeDevicePasswordDialog.qml", {
                     "deviceId": deviceId
