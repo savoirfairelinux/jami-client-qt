@@ -147,7 +147,9 @@ set(CMAKE_AUTOUIC ON)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 # src
-set(LIBCLIENT_SRC_DIR ${PROJECT_SOURCE_DIR}/src/libclient)
+set(CORE_SRC_DIR ${PROJECT_SOURCE_DIR}/src/core)
+set(DBUS_SRC_DIR ${PROJECT_SOURCE_DIR}/src/dbus)
+set(QTWRAPPER_SRC_DIR ${PROJECT_SOURCE_DIR}/src/qtwrapper)
 set(APP_SRC_DIR ${PROJECT_SOURCE_DIR}/src/app)
 set(VERSION_INFO_DIR ${PROJECT_SOURCE_DIR}/src/version_info)
 # doc
@@ -192,86 +194,86 @@ endif()
 
 # libjamiclient (sources integrated directly into the jami target)
 set(LIBCLIENT_SOURCES
-  ${LIBCLIENT_SRC_DIR}/uri.cpp
-  ${LIBCLIENT_SRC_DIR}/vcard.cpp
-  ${LIBCLIENT_SRC_DIR}/contactmodel.cpp
-  ${LIBCLIENT_SRC_DIR}/callparticipantsmodel.cpp
-  ${LIBCLIENT_SRC_DIR}/callmodel.cpp
-  ${LIBCLIENT_SRC_DIR}/devicemodel.cpp
-  ${LIBCLIENT_SRC_DIR}/codecmodel.cpp
-  ${LIBCLIENT_SRC_DIR}/conversationmodel.cpp
-  ${LIBCLIENT_SRC_DIR}/database.cpp
-  ${LIBCLIENT_SRC_DIR}/authority/daemon.cpp
-  ${LIBCLIENT_SRC_DIR}/authority/storagehelper.cpp
-  ${LIBCLIENT_SRC_DIR}/lrc.cpp
-  ${LIBCLIENT_SRC_DIR}/accountmodel.cpp
-  ${LIBCLIENT_SRC_DIR}/peerdiscoverymodel.cpp
-  ${LIBCLIENT_SRC_DIR}/callbackshandler.cpp
-  ${LIBCLIENT_SRC_DIR}/behaviorcontroller.cpp
-  ${LIBCLIENT_SRC_DIR}/datatransfermodel.cpp
-  ${LIBCLIENT_SRC_DIR}/messagelistmodel.cpp
-  ${LIBCLIENT_SRC_DIR}/callInformationListModel.cpp
-  ${LIBCLIENT_SRC_DIR}/rendererinformationlistmodel.cpp
-  ${LIBCLIENT_SRC_DIR}/dbus/configurationmanager.cpp
-  ${LIBCLIENT_SRC_DIR}/dbus/callmanager.cpp
-  ${LIBCLIENT_SRC_DIR}/dbus/instancemanager.cpp
-  ${LIBCLIENT_SRC_DIR}/dbus/networkservicemanager.cpp
-  ${LIBCLIENT_SRC_DIR}/dbus/videomanager.cpp
-  ${LIBCLIENT_SRC_DIR}/dbus/presencemanager.cpp
-  ${LIBCLIENT_SRC_DIR}/dbus/pluginmanager.cpp
-  ${LIBCLIENT_SRC_DIR}/globalinstances.cpp
-  ${LIBCLIENT_SRC_DIR}/pixmapmanipulatordefault.cpp
-  ${LIBCLIENT_SRC_DIR}/dbuserrorhandlerdefault.cpp
-  ${LIBCLIENT_SRC_DIR}/avmodel.cpp
-  ${LIBCLIENT_SRC_DIR}/pluginmodel.cpp
-  ${LIBCLIENT_SRC_DIR}/interaction.cpp
-  ${LIBCLIENT_SRC_DIR}/namedirectory.cpp
-  ${LIBCLIENT_SRC_DIR}/renderer.cpp)
+  ${CORE_SRC_DIR}/uri.cpp
+  ${CORE_SRC_DIR}/vcard.cpp
+  ${CORE_SRC_DIR}/contactmodel.cpp
+  ${CORE_SRC_DIR}/callparticipantsmodel.cpp
+  ${CORE_SRC_DIR}/callmodel.cpp
+  ${CORE_SRC_DIR}/devicemodel.cpp
+  ${CORE_SRC_DIR}/codecmodel.cpp
+  ${CORE_SRC_DIR}/conversationmodel.cpp
+  ${CORE_SRC_DIR}/database.cpp
+  ${CORE_SRC_DIR}/authority/daemon.cpp
+  ${CORE_SRC_DIR}/authority/storagehelper.cpp
+  ${CORE_SRC_DIR}/lrc.cpp
+  ${CORE_SRC_DIR}/accountmodel.cpp
+  ${CORE_SRC_DIR}/peerdiscoverymodel.cpp
+  ${CORE_SRC_DIR}/callbackshandler.cpp
+  ${CORE_SRC_DIR}/behaviorcontroller.cpp
+  ${CORE_SRC_DIR}/datatransfermodel.cpp
+  ${CORE_SRC_DIR}/messagelistmodel.cpp
+  ${CORE_SRC_DIR}/callInformationListModel.cpp
+  ${CORE_SRC_DIR}/rendererinformationlistmodel.cpp
+  ${DBUS_SRC_DIR}/configurationmanager.cpp
+  ${DBUS_SRC_DIR}/callmanager.cpp
+  ${DBUS_SRC_DIR}/instancemanager.cpp
+  ${DBUS_SRC_DIR}/networkservicemanager.cpp
+  ${DBUS_SRC_DIR}/videomanager.cpp
+  ${DBUS_SRC_DIR}/presencemanager.cpp
+  ${DBUS_SRC_DIR}/pluginmanager.cpp
+  ${CORE_SRC_DIR}/globalinstances.cpp
+  ${CORE_SRC_DIR}/pixmapmanipulatordefault.cpp
+  ${CORE_SRC_DIR}/dbuserrorhandlerdefault.cpp
+  ${CORE_SRC_DIR}/avmodel.cpp
+  ${CORE_SRC_DIR}/pluginmodel.cpp
+  ${CORE_SRC_DIR}/interaction.cpp
+  ${CORE_SRC_DIR}/namedirectory.cpp
+  ${CORE_SRC_DIR}/renderer.cpp)
 
 set(LIBCLIENT_HEADERS
-  ${LIBCLIENT_SRC_DIR}/uri.h
-  ${LIBCLIENT_SRC_DIR}/globalinstances.h
-  ${LIBCLIENT_SRC_DIR}/pixmapmanipulatordefault.h
-  ${LIBCLIENT_SRC_DIR}/dbuserrorhandlerdefault.h
-  ${LIBCLIENT_SRC_DIR}/vcard.h
-  ${LIBCLIENT_SRC_DIR}/namedirectory.h
-  ${LIBCLIENT_SRC_DIR}/callInformationListModel.h
-  ${LIBCLIENT_SRC_DIR}/rendererinformationlistmodel.h
-  ${LIBCLIENT_SRC_DIR}/interfaces/pixmapmanipulatori.h
-  ${LIBCLIENT_SRC_DIR}/interfaces/dbuserrorhandleri.h
-  ${LIBCLIENT_SRC_DIR}/typedefs.h
-  ${LIBCLIENT_SRC_DIR}/containerview.h
-  ${LIBCLIENT_SRC_DIR}/renderer.h
-  ${LIBCLIENT_SRC_DIR}/api/account.h
-  ${LIBCLIENT_SRC_DIR}/api/avmodel.h
-  ${LIBCLIENT_SRC_DIR}/api/behaviorcontroller.h
-  ${LIBCLIENT_SRC_DIR}/api/call.h
-  ${LIBCLIENT_SRC_DIR}/api/contact.h
-  ${LIBCLIENT_SRC_DIR}/api/conversation.h
-  ${LIBCLIENT_SRC_DIR}/api/contactmodel.h
-  ${LIBCLIENT_SRC_DIR}/api/conversationmodel.h
-  ${LIBCLIENT_SRC_DIR}/api/datatransfermodel.h
-  ${LIBCLIENT_SRC_DIR}/api/messagelistmodel.h
-  ${LIBCLIENT_SRC_DIR}/api/datatransfer.h
-  ${LIBCLIENT_SRC_DIR}/api/interaction.h
-  ${LIBCLIENT_SRC_DIR}/api/lrc.h
-  ${LIBCLIENT_SRC_DIR}/api/member.h
-  ${LIBCLIENT_SRC_DIR}/api/accountmodel.h
-  ${LIBCLIENT_SRC_DIR}/api/callmodel.h
-  ${LIBCLIENT_SRC_DIR}/api/callparticipantsmodel.h
-  ${LIBCLIENT_SRC_DIR}/api/codecmodel.h
-  ${LIBCLIENT_SRC_DIR}/api/devicemodel.h
-  ${LIBCLIENT_SRC_DIR}/api/pluginmodel.h
-  ${LIBCLIENT_SRC_DIR}/api/peerdiscoverymodel.h
-  ${LIBCLIENT_SRC_DIR}/api/profile.h
-  ${LIBCLIENT_SRC_DIR}/api/video.h)
+  ${CORE_SRC_DIR}/uri.h
+  ${CORE_SRC_DIR}/globalinstances.h
+  ${CORE_SRC_DIR}/pixmapmanipulatordefault.h
+  ${CORE_SRC_DIR}/dbuserrorhandlerdefault.h
+  ${CORE_SRC_DIR}/vcard.h
+  ${CORE_SRC_DIR}/namedirectory.h
+  ${CORE_SRC_DIR}/callInformationListModel.h
+  ${CORE_SRC_DIR}/rendererinformationlistmodel.h
+  ${CORE_SRC_DIR}/interfaces/pixmapmanipulatori.h
+  ${CORE_SRC_DIR}/interfaces/dbuserrorhandleri.h
+  ${CORE_SRC_DIR}/typedefs.h
+  ${CORE_SRC_DIR}/containerview.h
+  ${CORE_SRC_DIR}/renderer.h
+  ${CORE_SRC_DIR}/api/account.h
+  ${CORE_SRC_DIR}/api/avmodel.h
+  ${CORE_SRC_DIR}/api/behaviorcontroller.h
+  ${CORE_SRC_DIR}/api/call.h
+  ${CORE_SRC_DIR}/api/contact.h
+  ${CORE_SRC_DIR}/api/conversation.h
+  ${CORE_SRC_DIR}/api/contactmodel.h
+  ${CORE_SRC_DIR}/api/conversationmodel.h
+  ${CORE_SRC_DIR}/api/datatransfermodel.h
+  ${CORE_SRC_DIR}/api/messagelistmodel.h
+  ${CORE_SRC_DIR}/api/datatransfer.h
+  ${CORE_SRC_DIR}/api/interaction.h
+  ${CORE_SRC_DIR}/api/lrc.h
+  ${CORE_SRC_DIR}/api/member.h
+  ${CORE_SRC_DIR}/api/accountmodel.h
+  ${CORE_SRC_DIR}/api/callmodel.h
+  ${CORE_SRC_DIR}/api/callparticipantsmodel.h
+  ${CORE_SRC_DIR}/api/codecmodel.h
+  ${CORE_SRC_DIR}/api/devicemodel.h
+  ${CORE_SRC_DIR}/api/pluginmodel.h
+  ${CORE_SRC_DIR}/api/peerdiscoverymodel.h
+  ${CORE_SRC_DIR}/api/profile.h
+  ${CORE_SRC_DIR}/api/video.h)
 
 if(ENABLE_LIBWRAP)
-  list(APPEND LIBCLIENT_SOURCES ${LIBCLIENT_SRC_DIR}/directrenderer.cpp)
-  list(APPEND LIBCLIENT_HEADERS ${LIBCLIENT_SRC_DIR}/directrenderer.h)
+  list(APPEND LIBCLIENT_SOURCES ${CORE_SRC_DIR}/directrenderer.cpp)
+  list(APPEND LIBCLIENT_HEADERS ${CORE_SRC_DIR}/directrenderer.h)
 else()
-  list(APPEND LIBCLIENT_SOURCES ${LIBCLIENT_SRC_DIR}/shmrenderer.cpp)
-  list(APPEND LIBCLIENT_HEADERS ${LIBCLIENT_SRC_DIR}/shmrenderer.h)
+  list(APPEND LIBCLIENT_SOURCES ${CORE_SRC_DIR}/shmrenderer.cpp)
+  list(APPEND LIBCLIENT_HEADERS ${CORE_SRC_DIR}/shmrenderer.h)
 
   # Build DBus API
   if(DEFINED RING_XML_INTERFACES_DIR)
@@ -289,7 +291,7 @@ ${dbus_xml_introspecs_path}")
 
   set(presencemanager_xml
     ${dbus_xml_introspecs_path}/cx.ring.Ring.PresenceManager.xml)
-  set(dbus_metatype_path "${LIBCLIENT_SRC_DIR}/dbus/metatypes.h")
+  set(dbus_metatype_path "${DBUS_SRC_DIR}/metatypes.h")
   set_source_files_properties(
     ${presencemanager_xml}
     PROPERTIES
@@ -352,17 +354,17 @@ endif()
 
 # Manually wrap libjamiclient's private headers.
 set(LIBCLIENT_HEADERS_PRIVATE
-  ${LIBCLIENT_SRC_DIR}/private/namedirectory_p.h)
+  ${CORE_SRC_DIR}/private/namedirectory_p.h)
 
 if(ENABLE_LIBWRAP)
   list(APPEND LIBCLIENT_HEADERS_PRIVATE
-    ${LIBCLIENT_SRC_DIR}/qtwrapper/callmanager_wrap.h
-    ${LIBCLIENT_SRC_DIR}/qtwrapper/configurationmanager_wrap.h
-    ${LIBCLIENT_SRC_DIR}/qtwrapper/instancemanager_wrap.h
-    ${LIBCLIENT_SRC_DIR}/qtwrapper/networkservicemanager_wrap.h
-    ${LIBCLIENT_SRC_DIR}/qtwrapper/presencemanager_wrap.h
-    ${LIBCLIENT_SRC_DIR}/qtwrapper/videomanager_wrap.h
-    ${LIBCLIENT_SRC_DIR}/qtwrapper/pluginmanager_wrap.h)
+    ${QTWRAPPER_SRC_DIR}/callmanager_wrap.h
+    ${QTWRAPPER_SRC_DIR}/configurationmanager_wrap.h
+    ${QTWRAPPER_SRC_DIR}/instancemanager_wrap.h
+    ${QTWRAPPER_SRC_DIR}/networkservicemanager_wrap.h
+    ${QTWRAPPER_SRC_DIR}/presencemanager_wrap.h
+    ${QTWRAPPER_SRC_DIR}/videomanager_wrap.h
+    ${QTWRAPPER_SRC_DIR}/pluginmanager_wrap.h)
 endif()
 
 set(QT_MODULES
@@ -745,7 +747,7 @@ if(MSVC)
 
   include_directories(
     ${JAMID_SRC_PATH}
-    ${LIBCLIENT_SRC_DIR}
+    ${CORE_SRC_DIR}
   )
 elseif (NOT APPLE)
   list(APPEND COMMON_SOURCES
@@ -789,7 +791,7 @@ elseif (NOT APPLE)
   endif()
 
   include_directories(
-    ${LIBCLIENT_SRC_DIR}
+    ${CORE_SRC_DIR}
     ${LIBNM_INCLUDE_DIRS}
     ${LIBNOTIFY_INCLUDE_DIRS}
     ${LIBGDKPIXBUF_INCLUDE_DIRS}
@@ -805,7 +807,7 @@ else() # APPLE
     ${APP_SRC_DIR}/os/macos/macutils.mm)
   list(APPEND COMMON_HEADERS
     ${APP_SRC_DIR}/os/macos/macutils.h)
-  include_directories(${LIBCLIENT_SRC_DIR})
+  include_directories(${CORE_SRC_DIR})
 
   set(JAMI_DATA_PREFIX "${CMAKE_INSTALL_PREFIX}/share")
 
@@ -865,7 +867,7 @@ endif()
 
 # qtwrapper (unified/single-process build, must be after Qt6 is found)
 if(ENABLE_LIBWRAP)
-  add_subdirectory(${LIBCLIENT_SRC_DIR}/qtwrapper)
+  add_subdirectory(${QTWRAPPER_SRC_DIR})
   if(JAMICORE_AS_SUBDIR)
     add_dependencies(qtwrapper jami-core)
   endif()
@@ -932,14 +934,14 @@ endif ()
 include_directories(
   ${PROJECT_SOURCE_DIR}
   ${APP_SRC_DIR}
-  ${LIBCLIENT_SRC_DIR}
-  ${LIBCLIENT_SRC_DIR}/dbus
+  ${CORE_SRC_DIR}
+  ${DBUS_SRC_DIR}
   ${CMAKE_CURRENT_BINARY_DIR})
 
 if(ENABLE_LIBWRAP)
-  include_directories(${LIBCLIENT_SRC_DIR}/qtwrapper)
+  include_directories(${QTWRAPPER_SRC_DIR})
   list(APPEND COMMON_HEADERS
-    ${LIBCLIENT_SRC_DIR}/qtwrapper/instancemanager_wrap.h)
+    ${QTWRAPPER_SRC_DIR}/instancemanager_wrap.h)
 endif()
 
 # md4c

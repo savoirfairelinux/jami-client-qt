@@ -1,5 +1,5 @@
 /****************************************************************************
- *   Copyright (C) 2009-2026 Savoir-faire Linux Inc.                        *
+ *   Copyright (C) 2013-2026 Savoir-faire Linux Inc.                        *
  *                                                                          *
  *   This library is free software; you can redistribute it and/or          *
  *   modify it under the terms of the GNU Lesser General Public             *
@@ -14,30 +14,31 @@
  *   You should have received a copy of the GNU General Public License      *
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.  *
  ***************************************************************************/
-#include "networkservicemanager.h"
+#include "presencemanager.h"
 
-#include "../globalinstances.h"
-#include "../interfaces/dbuserrorhandleri.h"
+#include "globalinstances.h"
+#include "interfaces/dbuserrorhandleri.h"
 
-NetworkServiceManagerInterface&
-NetworkServiceManager::instance()
+PresenceManagerInterface&
+PresenceManager::instance()
 {
 #ifdef ENABLE_LIBWRAP
-    static auto interface = new NetworkServiceManagerInterface();
+    static auto interface = new PresenceManagerInterface();
 #else
     if (!dbus_metaTypeInit)
         registerCommTypes();
-    static auto interface = new NetworkServiceManagerInterface("cx.ring.Ring",
-                                                               "/cx/ring/Ring/NetworkServiceManager",
-                                                               QDBusConnection::sessionBus());
+    static auto interface = new PresenceManagerInterface("cx.ring.Ring",
+                                                         "/cx/ring/Ring/PresenceManager",
+                                                         QDBusConnection::sessionBus());
+
     if (!interface->connection().isConnected()) {
-        GlobalInstances::dBusErrorHandler().connectionError(
-            "Error: jamid not connected. Service " + interface->service()
-            + " is not connected. From network service manager interface.");
+        GlobalInstances::dBusErrorHandler().connectionError("Error : jamid not connected. Service "
+                                                            + interface->service()
+                                                            + " not connected. From presence interface.");
     }
     if (!interface->isValid()) {
         GlobalInstances::dBusErrorHandler().invalidInterfaceError(
-            "Error: jamid is unavailable, make sure it is running");
+            "Error : jamid is not available, make sure it is running");
     }
 #endif
     return *interface;
