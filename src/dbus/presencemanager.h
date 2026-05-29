@@ -1,5 +1,5 @@
 /****************************************************************************
- *   Copyright (C) 2009-2026 Savoir-faire Linux Inc.                        *
+ *   Copyright (C) 2012-2026 Savoir-faire Linux Inc.                        *
  *                                                                          *
  *   This library is free software; you can redistribute it and/or          *
  *   modify it under the terms of the GNU Lesser General Public             *
@@ -15,19 +15,17 @@
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.  *
  ***************************************************************************/
 #pragma once
-
 #ifdef ENABLE_LIBWRAP
-#include "../qtwrapper/configurationmanager_wrap.h"
+#include "qtwrapper/presencemanager_wrap.h"
 #else
-#include "configurationmanager_dbus_interface.h"
+#include "presencemanager_dbus_interface.h"
 #include <QDBusPendingReply>
-#include "../qtwrapper/conversions_wrap.hpp"
 #endif
+
 #include <typedefs.h>
 
-namespace ConfigurationManager {
+namespace PresenceManager {
 
-/// Singleton to access the ConfigurationManager dbus interface
-LIB_EXPORT ConfigurationManagerInterface& instance();
+LIB_EXPORT PresenceManagerInterface& instance();
 
-} // namespace ConfigurationManager
+}

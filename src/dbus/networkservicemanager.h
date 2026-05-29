@@ -1,5 +1,5 @@
 /****************************************************************************
- *   Copyright (C) 2013-2026 Savoir-faire Linux Inc.                        *
+ *   Copyright (C) 2009-2026 Savoir-faire Linux Inc.                        *
  *                                                                          *
  *   This library is free software; you can redistribute it and/or          *
  *   modify it under the terms of the GNU Lesser General Public             *
@@ -14,32 +14,20 @@
  *   You should have received a copy of the GNU General Public License      *
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.  *
  ***************************************************************************/
-#include "presencemanager.h"
+#pragma once
 
-#include "../globalinstances.h"
-#include "../interfaces/dbuserrorhandleri.h"
-
-PresenceManagerInterface&
-PresenceManager::instance()
-{
 #ifdef ENABLE_LIBWRAP
-    static auto interface = new PresenceManagerInterface();
+#include "qtwrapper/networkservicemanager_wrap.h"
 #else
-    if (!dbus_metaTypeInit)
-        registerCommTypes();
-    static auto interface = new PresenceManagerInterface("cx.ring.Ring",
-                                                         "/cx/ring/Ring/PresenceManager",
-                                                         QDBusConnection::sessionBus());
-
-    if (!interface->connection().isConnected()) {
-        GlobalInstances::dBusErrorHandler().connectionError("Error : jamid not connected. Service "
-                                                            + interface->service()
-                                                            + " not connected. From presence interface.");
-    }
-    if (!interface->isValid()) {
-        GlobalInstances::dBusErrorHandler().invalidInterfaceError(
-            "Error : jamid is not available, make sure it is running");
-    }
+#include "networkservicemanager_dbus_interface.h"
+#include <QDBusPendingReply>
+#include "qtwrapper/conversions_wrap.hpp"
 #endif
-    return *interface;
-}
+#include <typedefs.h>
+
+namespace NetworkServiceManager {
+
+/// Singleton to access the NetworkServiceManager interface
+LIB_EXPORT NetworkServiceManagerInterface& instance();
+
+} // namespace NetworkServiceManager

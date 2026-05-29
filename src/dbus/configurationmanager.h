@@ -17,17 +17,17 @@
 #pragma once
 
 #ifdef ENABLE_LIBWRAP
-#include "../qtwrapper/networkservicemanager_wrap.h"
+#include "qtwrapper/configurationmanager_wrap.h"
 #else
-#include "networkservicemanager_dbus_interface.h"
+#include "configurationmanager_dbus_interface.h"
 #include <QDBusPendingReply>
-#include "../qtwrapper/conversions_wrap.hpp"
+#include "qtwrapper/conversions_wrap.hpp"
 #endif
 #include <typedefs.h>
 
-namespace NetworkServiceManager {
+namespace ConfigurationManager {
 
-/// Singleton to access the NetworkServiceManager interface
-LIB_EXPORT NetworkServiceManagerInterface& instance();
+/// Singleton to access the ConfigurationManager dbus interface
+LIB_EXPORT ConfigurationManagerInterface& instance();
 
-} // namespace NetworkServiceManager
+} // namespace ConfigurationManager
