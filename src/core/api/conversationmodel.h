@@ -24,10 +24,11 @@
 #include "api/datatransfer.h"
 #include "containerview.h"
 
-#include <QObject>
+#include <QAbstractListModel>
 #include <QVector>
 #include <QMap>
 
+#include <functional>
 #include <memory>
 #include <deque>
 
@@ -71,10 +72,47 @@ struct AccountConversation
  */
 typedef QVector<QVector<AccountConversation>> ConferenceableValue;
 
+namespace ConversationList {
+Q_NAMESPACE
+enum Role {
+    DummyRole = Qt::UserRole + 1,
+    Title,
+    BestId,
+    Presence,
+    Alias,
+    RegisteredName,
+    URI,
+    UnreadMessagesCount,
+    LastInteractionTimeStamp,
+    LastInteraction,
+    ContactType,
+    IsSwarm,
+    IsCoreDialog,
+    IsBanned,
+    UID,
+    InCall,
+    IsAudioOnly,
+    CallStackViewShouldShow,
+    CallState,
+    SectionName,
+    AccountId,
+    ActiveCallsCount,
+    Draft,
+    IsRequest,
+    Mode,
+    Uris,
+    Monikers,
+    FilterTitle,
+};
+Q_ENUM_NS(Role)
+} // namespace ConversationList
+
+using DraftProvider = std::function<QString(const QString& convUid, const QString& accountId)>;
+
 /**
  *  @brief Class that manages conversation information.
  */
-class LIB_EXPORT ConversationModel : public QObject
+class LIB_EXPORT ConversationModel : public QAbstractListModel
 {
     Q_OBJECT
 public:
@@ -89,6 +127,17 @@ public:
                       const CallbacksHandler& callbacksHandler,
                       const api::BehaviorController& behaviorController);
     ~ConversationModel();
+
+    // QAbstractListModel interface
+    int rowCount(const QModelIndex& parent = QModelIndex()) const override;
+    QVariant data(const QModelIndex& index, int role = Qt::DisplayRole) const override;
+    QHash<int, QByteArray> roleNames() const override;
+
+    // Resolve a role for a given conversation item
+    QVariant dataForItem(const conversation::Info& item, int role) const;
+
+    // Set a callback for resolving Draft content (app-level concern)
+    void setDraftProvider(DraftProvider provider);
 
     void initConversations();
 
@@ -384,8 +433,8 @@ public:
      * @return number of conversations requests + unread
      */
     int notificationsCount() const;
-    void reloadHistory() const;
-    const VectorString peersForConversation(const QString& conversationId);
+    void reloadHistory();
+    const VectorString peersForConversation(const QString& conversationId) const;
 
     // Presentation
 
@@ -536,36 +585,6 @@ Q_SIGNALS:
                                    int status) const;
 
     /**
-     * The following signals are intended for QAbtractListModel compatibility
-     */
-
-    /*!
-     * Emitted before conversations are inserted into the underlying queue
-     * @param position The starting row of the insertion
-     * @param rows The number of items inserted
-     */
-    void beginInsertRows(int position, int rows = 1) const;
-
-    //! Emitted once insertion is complete
-    void endInsertRows() const;
-
-    /*!
-     * Emitted before conversations are removed from the underlying queue
-     * @param position The starting row of the removal
-     * @param rows The number of items removed
-     */
-    void beginRemoveRows(int position, int rows = 1) const;
-
-    //! Emitted once removal is complete
-    void endRemoveRows() const;
-
-    /**
-     * Emitted once a conversation has been updated
-     * @param position
-     */
-    void dataChanged(int position) const;
-
-    /**
      * Emitted once a message search has been done and processed
      * @param accountId
      * @param messageInformation message datas
@@ -603,7 +622,9 @@ Q_SIGNALS:
                          const QString& reactionId) const;
 
 private:
+    friend class lrc::ConversationModelPimpl;
     std::unique_ptr<ConversationModelPimpl> pimpl_;
+    DraftProvider draftProvider_;
 };
 } // namespace api
 } // namespace lrc

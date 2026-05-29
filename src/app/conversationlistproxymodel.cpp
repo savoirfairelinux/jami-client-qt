@@ -15,62 +15,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "conversationlistmodel.h"
+#include "conversationlistproxymodel.h"
 
 #include "uri.h"
-
-ConversationListModel::ConversationListModel(LRCInstance* instance, QObject* parent)
-    : ConversationListModelBase(instance, parent)
-{
-    if (!model_)
-        return;
-
-    connect(
-        model_,
-        &ConversationModel::beginInsertRows,
-        this,
-        [this](int position, int rows) { beginInsertRows(QModelIndex(), position, position + (rows - 1)); },
-        Qt::DirectConnection);
-    connect(model_, &ConversationModel::endInsertRows, this, &ConversationListModel::endInsertRows, Qt::DirectConnection);
-
-    connect(
-        model_,
-        &ConversationModel::beginRemoveRows,
-        this,
-        [this](int position, int rows) { beginRemoveRows(QModelIndex(), position, position + (rows - 1)); },
-        Qt::DirectConnection);
-    connect(model_, &ConversationModel::endRemoveRows, this, &ConversationListModel::endRemoveRows, Qt::DirectConnection);
-
-    connect(
-        model_,
-        &ConversationModel::dataChanged,
-        this,
-        [this](int position) {
-            const auto index = createIndex(position, 0);
-            Q_EMIT ConversationListModel::dataChanged(index, index);
-        },
-        Qt::QueuedConnection);
-}
-
-int
-ConversationListModel::rowCount(const QModelIndex& parent) const
-{
-    // For list models only the root node (an invalid parent) should return the list's size. For all
-    // other (valid) parents, rowCount() should return 0 so that it does not become a tree model.
-    if (!parent.isValid() && model_) {
-        return model_->getConversations().size();
-    }
-    return 0;
-}
-
-QVariant
-ConversationListModel::data(const QModelIndex& index, int role) const
-{
-    const auto& data = model_->getConversations();
-    if (!index.isValid() || data.empty())
-        return {};
-    return dataForItem(data.at(index.row()), role);
-}
 
 ConversationListProxyModel::ConversationListProxyModel(QAbstractListModel* model, QObject* parent)
     : SelectableListProxyModel(model, parent)
