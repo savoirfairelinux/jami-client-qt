@@ -17,11 +17,13 @@
 
 #pragma once
 
-#include "conversationlistmodelbase.h"
+#include "abstractlistmodelbase.h"
 #include "selectablelistproxymodel.h"
 
+#include <api/conversationmodel.h>
+
 // A wrapper view model around ConversationModel's search result data
-class SearchResultsListModel : public ConversationListModelBase
+class SearchResultsListModel : public AbstractListModelBase
 {
     Q_OBJECT
 
@@ -29,12 +31,16 @@ public:
     explicit SearchResultsListModel(LRCInstance* instance, QObject* parent = nullptr);
 
     int rowCount(const QModelIndex& parent = QModelIndex()) const override;
-    virtual QVariant data(const QModelIndex& index, int role = Qt::DisplayRole) const override;
+    QVariant data(const QModelIndex& index, int role = Qt::DisplayRole) const override;
+    QHash<int, QByteArray> roleNames() const override;
 
     Q_INVOKABLE void setFilter(const QString& filterString);
 
 public Q_SLOTS:
     void onSearchResultsUpdated();
+
+private:
+    lrc::api::ConversationModel* model_ {nullptr};
 };
 
 // The top level pre sorted and filtered model to be consumed by QML ListViews
