@@ -41,6 +41,8 @@
 #include "spellcheckdictionarylistmodel.h"
 #include "spellcheckadapter.h"
 #include "accountlistmodel.h"
+
+#include "api/accountmodel.h"
 #include "mediacodeclistmodel.h"
 #include "audiodevicemodel.h"
 #include "audiomanagerlistmodel.h"
