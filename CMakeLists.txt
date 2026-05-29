@@ -521,8 +521,8 @@ set(COMMON_SOURCES
   ${APP_SRC_DIR}/accountsettingsmanager.cpp
   ${APP_SRC_DIR}/lrcinstance.cpp
   ${APP_SRC_DIR}/selectablelistproxymodel.cpp
-  ${APP_SRC_DIR}/conversationlistmodelbase.cpp
-  ${APP_SRC_DIR}/conversationlistmodel.cpp
+
+  ${APP_SRC_DIR}/conversationlistproxymodel.cpp
   ${APP_SRC_DIR}/searchresultslistmodel.cpp
   ${APP_SRC_DIR}/calloverlaymodel.cpp
   ${APP_SRC_DIR}/spellcheckdictionarylistmodel.cpp
@@ -602,8 +602,8 @@ set(COMMON_HEADERS
   ${APP_SRC_DIR}/accountsettingsmanager.h
   ${APP_SRC_DIR}/lrcinstance.h
   ${APP_SRC_DIR}/selectablelistproxymodel.h
-  ${APP_SRC_DIR}/conversationlistmodelbase.h
-  ${APP_SRC_DIR}/conversationlistmodel.h
+
+  ${APP_SRC_DIR}/conversationlistproxymodel.h
   ${APP_SRC_DIR}/searchresultslistmodel.h
   ${APP_SRC_DIR}/calloverlaymodel.h
   ${APP_SRC_DIR}/spellcheckdictionarylistmodel.h

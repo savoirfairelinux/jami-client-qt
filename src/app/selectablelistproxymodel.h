@@ -17,7 +17,7 @@
 
 #pragma once
 
-#include "conversationlistmodelbase.h"
+#include "qtutils.h"
 
 #include <QSortFilterProxyModel>
 
