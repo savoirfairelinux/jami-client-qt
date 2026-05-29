@@ -25,6 +25,8 @@ endif()
 set(CMAKE_SCRIPTS_DIR ${PROJECT_SOURCE_DIR}/extras/build/cmake)
 include(${CMAKE_SCRIPTS_DIR}/extra_tools.cmake)
 
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
 option(WITH_DAEMON_SUBMODULE "Build with daemon submodule" ON)
 option(JAMICORE_AS_SUBDIR "Build Jami-core as a subdir dependency" ON)
 option(WITH_WEBENGINE "Build with WebEngine" ON)
