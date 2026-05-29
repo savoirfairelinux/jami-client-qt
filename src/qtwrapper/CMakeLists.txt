@@ -39,9 +39,10 @@ else()
 endif()
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
+include_directories(${CMAKE_SOURCE_DIR}/src)
 include_directories(${LIBJAMI_INCLUDE_DIR})
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../)
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../dbus)
+include_directories(${CORE_SRC_DIR})
+include_directories(${DBUS_SRC_DIR})
 
 add_library(${PROJECT_NAME} STATIC
   ${QTWRAPPER_SOURCES}
