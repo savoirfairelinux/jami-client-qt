@@ -203,6 +203,10 @@ set(LIBCLIENT_SOURCES
   ${CORE_SRC_DIR}/devicemodel.cpp
   ${CORE_SRC_DIR}/codecmodel.cpp
   ${CORE_SRC_DIR}/conversationmodel.cpp
+  ${CORE_SRC_DIR}/conversationmodel_call.cpp
+  ${CORE_SRC_DIR}/conversationmodel_contacts.cpp
+  ${CORE_SRC_DIR}/conversationmodel_messaging.cpp
+  ${CORE_SRC_DIR}/conversationmodel_transfer.cpp
   ${CORE_SRC_DIR}/database.cpp
   ${CORE_SRC_DIR}/authority/daemon.cpp
   ${CORE_SRC_DIR}/authority/storagehelper.cpp
