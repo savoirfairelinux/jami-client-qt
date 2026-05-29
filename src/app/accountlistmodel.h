@@ -17,42 +17,20 @@
 
 #pragma once
 
-#include "abstractlistmodelbase.h"
+#include <QIdentityProxyModel>
 
-#define ACC_ROLES \
-    X(Alias) \
-    X(Username) \
-    X(Type) \
-    X(Status) \
-    X(NotificationCount) \
-    X(ID) \
-    X(Uri)
+class LRCInstance;
 
-namespace AccountList {
-Q_NAMESPACE
-enum Role {
-    DummyRole = Qt::UserRole + 1,
-#define X(role) role,
-    ACC_ROLES
-#undef X
-};
-Q_ENUM_NS(Role)
-} // namespace AccountList
-
-class AccountListModel final : public AbstractListModelBase
+class AccountListModel final : public QIdentityProxyModel
 {
     Q_OBJECT
 
 public:
     explicit AccountListModel(LRCInstance* instance, QObject* parent = nullptr);
 
-    int rowCount(const QModelIndex& parent = QModelIndex()) const override;
-    QVariant data(const QModelIndex& index, int role = Qt::DisplayRole) const override;
-    QHash<int, QByteArray> roleNames() const override;
-
     Q_INVOKABLE void reset();
     void updateNotifications();
 
 private:
-    using Role = AccountList::Role;
+    LRCInstance* lrcInstance_ {nullptr};
 };

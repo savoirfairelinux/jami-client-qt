@@ -72,6 +72,15 @@ public:
     QList<QString> accountIdList;
     AccountInfoDbMap accounts;
 
+    void emitDataChanged(const QString& accountId)
+    {
+        auto row = accountIdList.indexOf(accountId);
+        if (row >= 0) {
+            const auto idx = linked.index(row);
+            Q_EMIT linked.dataChanged(idx, idx);
+        }
+    }
+
     // Synchronization tools
     std::atomic_bool username_changed;
     QString new_username;
@@ -201,11 +210,63 @@ public Q_SLOTS:
 AccountModel::AccountModel(Lrc& lrc,
                            const CallbacksHandler& callbacksHandler,
                            const BehaviorController& behaviorController)
-    : QObject(nullptr)
+    : QAbstractListModel(nullptr)
     , pimpl_(std::make_unique<AccountModelPimpl>(*this, lrc, callbacksHandler, behaviorController))
 {}
 
 AccountModel::~AccountModel() {}
+
+int
+AccountModel::rowCount(const QModelIndex& parent) const
+{
+    if (parent.isValid())
+        return 0;
+    return pimpl_->accountIdList.size();
+}
+
+QVariant
+AccountModel::data(const QModelIndex& index, int role) const
+{
+    if (!index.isValid() || index.row() >= pimpl_->accountIdList.size())
+        return {};
+
+    auto accountId = pimpl_->accountIdList.at(index.row());
+    try {
+        auto& accountInfo = getAccountInfo(accountId);
+        switch (role) {
+        case AccountList::Alias:
+            return QVariant(bestNameForAccount(accountId));
+        case AccountList::Username:
+            return QVariant(bestIdForAccount(accountId));
+        case AccountList::Type:
+            return QVariant(static_cast<int>(accountInfo.profileInfo.type));
+        case AccountList::Status:
+            return QVariant(static_cast<int>(accountInfo.status));
+        case AccountList::NotificationCount:
+            return QVariant(static_cast<int>(accountInfo.conversationModel->notificationsCount()));
+        case AccountList::ID:
+            return QVariant(accountInfo.id);
+        case AccountList::Uri:
+            return QVariant(accountInfo.profileInfo.uri);
+        }
+    } catch (...) {
+    }
+    return {};
+}
+
+QHash<int, QByteArray>
+AccountModel::roleNames() const
+{
+    return {
+        {AccountList::Alias, "Alias"},
+        {AccountList::Username, "Username"},
+        {AccountList::Type, "Type"},
+        {AccountList::Status, "Status"},
+        {AccountList::NotificationCount, "NotificationCount"},
+        {AccountList::ID, "ID"},
+        {AccountList::Uri, "Uri"},
+    };
+}
 
 const QStringList&
 AccountModel::getAccountList() const
@@ -440,11 +501,15 @@ AccountModelPimpl::updateAccounts()
 
     // If this is just a reordering of the accounts, just notify the view.
     if (accountIdList.size() == previousAccountIdListSize) {
+        linked.beginResetModel();
+        linked.endResetModel();
         Q_EMIT linked.accountsReordered();
         return;
     }
 
     LC_DBG << "Syncing account list";
+
+    linked.beginResetModel();
 
     // Detect removed accounts
     QStringList toBeRemoved;
@@ -471,16 +536,16 @@ AccountModelPimpl::updateAccounts()
             addToAccounts(id);
             auto updatedAccount = accounts.find(id);
             if (updatedAccount == accounts.end()) {
+                linked.endResetModel();
                 return;
             }
             if (updatedAccount->second.first.profileInfo.type == profile::Type::SIP) {
-                // NOTE: At this point, a SIP account is ready, but not a Ring
-                // account. Indeed, the keys are not generated at this point.
-                // See slotAccountStatusChanged for more details.
                 Q_EMIT linked.accountAdded(id);
             }
         }
     }
+
+    linked.endResetModel();
 }
 
 void
@@ -544,10 +609,12 @@ AccountModelPimpl::slotAccountStatusChanged(const QString& accountID, const api:
         } else if (!accountInfo.profileInfo.uri.isEmpty()) {
             accountInfo.status = status;
             Q_EMIT linked.accountStatusChanged(accountID);
+    emitDataChanged(accountID);
         }
     } else {
         accountInfo.status = status;
         Q_EMIT linked.accountStatusChanged(accountID);
+    emitDataChanged(accountID);
     }
 }
 
@@ -565,10 +632,13 @@ AccountModelPimpl::slotAccountDetailsChanged(const QString& accountId, const Map
         username_changed = false;
         accountInfo.registeredName = new_username;
         Q_EMIT linked.profileUpdated(accountId);
+    emitDataChanged(accountId);
     }
     // TODO: Remove accountStatusChanged here.
     Q_EMIT linked.accountStatusChanged(accountId);
+    emitDataChanged(accountId);
     Q_EMIT linked.accountDetailsChanged(accountId);
+    emitDataChanged(accountId);
 }
 
 void
@@ -595,6 +665,7 @@ AccountModelPimpl::slotVolatileAccountDetailsChanged(const QString& accountId, c
         accountInfo.confProperties.currentProxyServer = currentProxyServer.value();
 
     Q_EMIT linked.profileUpdated(accountId);
+    emitDataChanged(accountId);
 }
 
 void
@@ -725,6 +796,7 @@ AccountModelPimpl::slotAccountProfileReceived(const QString& accountId,
     accountInfo.profileInfo.alias = displayName;
     storage::vcard::setProfile(accountInfo.id, accountInfo.profileInfo);
     Q_EMIT linked.profileUpdated(accountId);
+    emitDataChanged(accountId);
 }
 
 void
@@ -1122,7 +1194,7 @@ AccountModel::accountVCard(const QString& accountId, bool compressImage) const
 }
 
 const QString
-AccountModel::bestNameForAccount(const QString& accountID)
+AccountModel::bestNameForAccount(const QString& accountID) const
 {
     // Order: alias, registeredName, uri
     auto& accountInfo = getAccountInfo(accountID);
@@ -1141,7 +1213,7 @@ AccountModel::bestNameForAccount(const QString& accountID)
 }
 
 const QString
-AccountModel::bestIdForAccount(const QString& accountID)
+AccountModel::bestIdForAccount(const QString& accountID) const
 {
     // Order: registeredName, uri after best name
     //        return empty string if duplicated with best name
