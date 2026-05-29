@@ -26,7 +26,7 @@
 #include <QTimer>
 
 #include "jami.h"
-#include "../typedefs.h"
+#include "typedefs.h"
 #include "conversions_wrap.hpp"
 
 /*

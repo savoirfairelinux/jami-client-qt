@@ -14,32 +14,30 @@
  *   You should have received a copy of the GNU General Public License      *
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.  *
  ***************************************************************************/
-#include "callmanager.h"
+#include "networkservicemanager.h"
 
-#include "../globalinstances.h"
-#include "../interfaces/dbuserrorhandleri.h"
+#include "globalinstances.h"
+#include "interfaces/dbuserrorhandleri.h"
 
-CallManagerInterface&
-CallManager::instance()
+NetworkServiceManagerInterface&
+NetworkServiceManager::instance()
 {
 #ifdef ENABLE_LIBWRAP
-    static auto interface = new CallManagerInterface();
+    static auto interface = new NetworkServiceManagerInterface();
 #else
     if (!dbus_metaTypeInit)
         registerCommTypes();
-
-    static auto interface = new CallManagerInterface("cx.ring.Ring",
-                                                     "/cx/ring/Ring/CallManager",
-                                                     QDBusConnection::sessionBus());
-
+    static auto interface = new NetworkServiceManagerInterface("cx.ring.Ring",
+                                                               "/cx/ring/Ring/NetworkServiceManager",
+                                                               QDBusConnection::sessionBus());
     if (!interface->connection().isConnected()) {
-        GlobalInstances::dBusErrorHandler().connectionError("Error : jamid not connected. Service "
-                                                            + interface->service()
-                                                            + " not connected. From call manager interface.");
+        GlobalInstances::dBusErrorHandler().connectionError(
+            "Error: jamid not connected. Service " + interface->service()
+            + " is not connected. From network service manager interface.");
     }
     if (!interface->isValid()) {
         GlobalInstances::dBusErrorHandler().invalidInterfaceError(
-            "Error : jamid is not available, make sure it is running");
+            "Error: jamid is unavailable, make sure it is running");
     }
 #endif
     return *interface;

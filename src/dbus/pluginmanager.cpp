@@ -1,5 +1,5 @@
 /****************************************************************************
- *   Copyright (C) 2009-2026 Savoir-faire Linux Inc.                        *
+ *   Copyright (C) 2013-2026 Savoir-faire Linux Inc.                        *
  *                                                                          *
  *   This library is free software; you can redistribute it and/or          *
  *   modify it under the terms of the GNU Lesser General Public             *
@@ -14,19 +14,32 @@
  *   You should have received a copy of the GNU General Public License      *
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.  *
  ***************************************************************************/
-#pragma once
+#include "pluginmanager.h"
 
+#include "globalinstances.h"
+#include "interfaces/dbuserrorhandleri.h"
+
+PluginManagerInterface&
+PluginManager::instance()
+{
 #ifdef ENABLE_LIBWRAP
-#include "../qtwrapper/callmanager_wrap.h"
+    static auto interface = new PluginManagerInterface();
 #else
-#include "callmanager_dbus_interface.h"
-#include <QDBusPendingReply>
+    if (!dbus_metaTypeInit)
+        registerCommTypes();
+    static auto interface = new PluginManagerInterface("cx.ring.Ring",
+                                                       "/cx/ring/Ring/PluginManagerInterface",
+                                                       QDBusConnection::sessionBus());
+
+    if (!interface->connection().isConnected()) {
+        GlobalInstances::dBusErrorHandler().connectionError("Error : jamid not connected. Service "
+                                                            + interface->service()
+                                                            + " not connected. From presence interface.");
+    }
+    if (!interface->isValid()) {
+        GlobalInstances::dBusErrorHandler().invalidInterfaceError(
+            "Error : jamid is not available, make sure it is running");
+    }
 #endif
-#include <typedefs.h>
-
-namespace CallManager {
-
-/// Singleton to access dbus "CallManager" interface
-LIB_EXPORT CallManagerInterface& instance();
-
-} // namespace CallManager
+    return *interface;
+}

@@ -14,50 +14,31 @@
  *   You should have received a copy of the GNU General Public License      *
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.  *
  ***************************************************************************/
+#include "configurationmanager.h"
 
-#include "instancemanager.h"
+#include "globalinstances.h"
+#include "interfaces/dbuserrorhandleri.h"
 
-#if !defined(_MSC_VER)
-#include <unistd.h>
-#endif
-
-#include "../globalinstances.h"
-#include "../interfaces/dbuserrorhandleri.h"
-
-InstanceManagerInterface&
-InstanceManager::instance(bool muteDaemon)
+ConfigurationManagerInterface&
+ConfigurationManager::instance()
 {
 #ifdef ENABLE_LIBWRAP
-    static auto interface = new InstanceManagerInterface(muteDaemon);
+    static auto interface = new ConfigurationManagerInterface();
 #else
     if (!dbus_metaTypeInit)
         registerCommTypes();
-    Q_UNUSED(muteDaemon)
-
-    static auto interface = new InstanceManagerInterface("cx.ring.Ring",
-                                                         "/cx/ring/Ring/Instance",
-                                                         QDBusConnection::sessionBus());
-
+    static auto interface = new ConfigurationManagerInterface("cx.ring.Ring",
+                                                              "/cx/ring/Ring/ConfigurationManager",
+                                                              QDBusConnection::sessionBus());
     if (!interface->connection().isConnected()) {
-        GlobalInstances::dBusErrorHandler().connectionError("Error : jamid not connected. Service "
-                                                            + interface->service()
-                                                            + " not connected. From instance interface.");
+        GlobalInstances::dBusErrorHandler().connectionError(
+            "Error: jamid not connected. Service " + interface->service()
+            + " is not connected. From configuration manager interface.");
     }
-    static bool registered = false;
-    if (!registered) {
-        QDBusPendingReply<QString> reply = interface->Register(getpid(), "");
-        registered = true;
-        reply.waitForFinished();
+    if (!interface->isValid()) {
+        GlobalInstances::dBusErrorHandler().invalidInterfaceError(
+            "Error: jamid is unavailable, make sure it is running");
     }
-
-    /* we do not check if the interface isValid;
-     * isValid() return 'false' if there was any error;
-     * we expect there to be an error when we first launch the client and the daemon is not yet
-     * running;
-     * TODO: check if we get the expected error, or another, see:
-     * http://doc.qt.io/qt-4.8/qdbuserror.html#ErrorType-enum
-     */
-
 #endif
     return *interface;
 }
