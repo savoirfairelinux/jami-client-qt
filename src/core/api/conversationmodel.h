@@ -20,6 +20,7 @@
 #include "typedefs.h"
 
 #include "api/conversation.h"
+#include "api/contact.h"
 #include "api/profile.h"
 #include "api/datatransfer.h"
 #include "containerview.h"
@@ -32,10 +33,12 @@
 #include <memory>
 #include <deque>
 
+class QTimer;
+
 namespace lrc {
 
 class CallbacksHandler;
-class ConversationModelPimpl;
+class ConversationModelPrivate;
 class Database;
 
 namespace api {
@@ -621,9 +624,134 @@ Q_SIGNALS:
                          const QString& messageId,
                          const QString& reactionId) const;
 
+private Q_SLOTS:
+    void slotContactUpdated(const QString& uri);
+    void slotContactAdded(const QString& contactUri);
+    void slotPendingContactAccepted(const QString& uri);
+    void slotContactRemoved(const QString& uri);
+
+    void slotNewCall(const QString& fromId, const QString& callId, bool isOutgoing, const QString& toUri);
+    void slotCallStatusChanged(const QString& accountId, const QString& callId, int code);
+    void slotCallStarted(const QString& callId);
+    void slotCallEnded(const QString& callId);
+    void slotCallAddedToConference(const QString& callId, const QString& conversationId, const QString& confId);
+    void slotActiveCallsChanged(const QString& accountId,
+                                const QString& conversationId,
+                                const VectorMapStringString& activeCalls);
+
+    void slotNewAccountMessage(const QString& accountId,
+                               const QString& peerId,
+                               const QString& msgId,
+                               const MapStringString& payloads);
+    void slotIncomingCallMessage(const QString& accountId,
+                                 const QString& callId,
+                                 const QString& from,
+                                 const QString& body);
+    void slotComposingStatusChanged(const QString& accountId,
+                                    const QString& convId,
+                                    const QString& contactUri,
+                                    bool isComposing);
+
+    void slotTransferStatusCreated(const QString& fileId, datatransfer::Info info);
+    void slotTransferStatusCanceled(const QString& fileId, datatransfer::Info info);
+    void slotTransferStatusAwaitingPeer(const QString& fileId, datatransfer::Info info);
+    void slotTransferStatusAwaitingHost(const QString& fileId, datatransfer::Info info);
+    void slotTransferStatusOngoing(const QString& fileId, datatransfer::Info info);
+    void slotTransferStatusFinished(const QString& fileId, datatransfer::Info info);
+    void slotTransferStatusError(const QString& fileId, datatransfer::Info info);
+    void slotTransferStatusTimeoutExpired(const QString& fileId, datatransfer::Info info);
+    void slotTransferStatusUnjoinable(const QString& fileId, datatransfer::Info info);
+
+    void slotSwarmLoaded(uint32_t requestId,
+                         const QString& accountId,
+                         const QString& conversationId,
+                         const VectorSwarmMessage& messages);
+    void slotMessagesFound(uint32_t requestId,
+                           const QString& accountId,
+                           const QString& conversationId,
+                           const VectorMapStringString& messages);
+    void slotMessageReceived(const QString& accountId, const QString& conversationId, const SwarmMessage& message);
+    void slotMessageUpdated(const QString& accountId, const QString& conversationId, const SwarmMessage& message);
+    void slotReactionAdded(const QString& accountId,
+                           const QString& conversationId,
+                           const QString& messageId,
+                           const MapStringString& reaction);
+    void slotReactionRemoved(const QString& accountId,
+                             const QString& conversationId,
+                             const QString& messageId,
+                             const QString& reactionId);
+    void slotConversationProfileUpdated(const QString& accountId,
+                                        const QString& conversationId,
+                                        const MapStringString& profile);
+    void slotConversationRequestReceived(const QString& accountId,
+                                         const QString& conversationId,
+                                         const MapStringString& metadatas);
+    void slotConversationMemberEvent(const QString& accountId,
+                                     const QString& conversationId,
+                                     const QString& memberUri,
+                                     int event);
+    void slotOnConversationError(const QString& accountId, const QString& conversationId, int code, const QString& what);
+    void slotConversationReady(const QString& accountId, const QString& conversationId);
+    void slotConversationRemoved(const QString& accountId, const QString& conversationId);
+    void slotConversationPreferencesUpdated(const QString& accountId,
+                                            const QString& conversationId,
+                                            const MapStringString& preferences);
+
 private:
-    friend class lrc::ConversationModelPimpl;
-    std::unique_ptr<ConversationModelPimpl> pimpl_;
+    using FilterPredicate = std::function<bool(const conversation::Info& convInfo)>;
+
+    // Private helpers implemented in conversationmodel.cpp
+    void initConversationsImpl();
+    int indexOf(const QString& uid) const;
+    std::reference_wrapper<conversation::Info> getConversation(
+        const FilterPredicate& pred, bool searchResultIncluded = false) const;
+    std::reference_wrapper<conversation::Info> convForUid(
+        const QString& uid, bool searchResultIncluded = false) const;
+    std::reference_wrapper<conversation::Info> convForPeerUri(
+        const QString& uri, bool searchResultIncluded = false) const;
+    std::vector<int> getIndicesForContact(const QString& uri) const;
+    bool filterConversation(const conversation::Info& conv);
+    bool sortConversation(const conversation::Info& convA, const conversation::Info& convB);
+    const VectorString peersForConversationInfo(const conversation::Info& conversation) const;
+    void invalidateModel();
+    void emplaceBackConversation(conversation::Info&& conversation);
+    void eraseConversation(const QString& convId);
+    void eraseConversation(int index);
+    void sendContactRequest(const QString& contactUri);
+    void addConversationWith(const QString& convId, const QString& contactUri, bool isRequest);
+    void addSwarmConversation(const QString& convId);
+    void addOrUpdateCallMessage(const QString& callId,
+                                const QString& from,
+                                bool incoming,
+                                const std::time_t& duration = -1);
+    QString addIncomingMessage(const QString& peerId,
+                               const QString& body,
+                               const uint64_t& timestamp = 0,
+                               const QString& daemonId = "");
+    void updateInteractionStatus(const QString& accountId,
+                                 const QString& conversationId,
+                                 const QString& peerId,
+                                 const QString& messageId,
+                                 int status);
+    void startCallImpl(const QString& uid, bool isAudioOnly = false);
+    int getNumberOfUnreadMessagesForImpl(const QString& uid);
+    void updateTransferProgress(QTimer* timer, int conversationIdx, const QString& interactionId);
+    bool usefulDataFromDataTransfer(const QString& fileId,
+                                    const datatransfer::Info& info,
+                                    QString& interactionId,
+                                    QString& conversationId);
+    void awaitingHost(const QString& fileId, datatransfer::Info info);
+    bool hasOneOneSwarmWith(const contact::Info& participant);
+    void acceptTransferImpl(const QString& convUid, const QString& interactionId);
+    void handleIncomingFile(const QString& convId, const QString& interactionId, int totalSize);
+    void addConversationRequest(const MapStringString& convRequest, bool emitToClient = false);
+    void addContactRequest(const QString& contactUri);
+    bool updateTransferStatus(const QString& fileId,
+                              datatransfer::Info info,
+                              interaction::TransferStatus newStatus,
+                              bool& updated);
+
+    std::unique_ptr<ConversationModelPrivate> d_;
     DraftProvider draftProvider_;
 };
 } // namespace api
