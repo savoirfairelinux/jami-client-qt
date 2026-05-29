@@ -17,28 +17,22 @@
 
 #pragma once
 
-#include "abstractlistmodelbase.h"
+#include <QIdentityProxyModel>
 
-class DeviceItemListModel final : public AbstractListModelBase
+class LRCInstance;
+
+class DeviceItemListModel final : public QIdentityProxyModel
 {
     Q_OBJECT
 
 public:
-    enum Role { DeviceName = Qt::UserRole + 1, DeviceID, IsCurrent };
-    Q_ENUM(Role)
-
     explicit DeviceItemListModel(LRCInstance* instance, QObject* parent = nullptr);
 
-    // QAbstractListModel override.
-    int rowCount(const QModelIndex& parent = QModelIndex()) const override;
-    QVariant data(const QModelIndex& index, int role = Qt::DisplayRole) const override;
-    QHash<int, QByteArray> roleNames() const override;
-    Qt::ItemFlags flags(const QModelIndex& index) const override;
-
-    // This function is to reset the model when there's new account added.
-    Q_INVOKABLE void reset();
     Q_INVOKABLE void revokeDevice(QString deviceId, QString password);
 
 public Q_SLOTS:
     void connectAccount();
+
+private:
+    LRCInstance* lrcInstance_ {nullptr};
 };

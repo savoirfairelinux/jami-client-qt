@@ -278,6 +278,7 @@ registerTypes(QQmlEngine* engine,
     QML_REGISTERNAMESPACE(NS_MODELS, AccountList::staticMetaObject, "AccountList");
     QML_REGISTERNAMESPACE(NS_MODELS, ConversationList::staticMetaObject, "ConversationList");
     QML_REGISTERNAMESPACE(NS_MODELS, ContactList::staticMetaObject, "ContactList");
+    QML_REGISTERNAMESPACE(NS_MODELS, DeviceList::staticMetaObject, "DeviceList");
     QML_REGISTERNAMESPACE(NS_MODELS, FilesToSend::staticMetaObject, "FilesToSend");
     QML_REGISTERNAMESPACE(NS_MODELS, MessageList::staticMetaObject, "MessageList");
     QML_REGISTERNAMESPACE(NS_MODELS, PluginStatus::staticMetaObject, "PluginStatus");
@@ -315,7 +316,6 @@ registerTypes(QQmlEngine* engine,
     // Enums
     QML_REGISTERUNCREATABLE(NS_ENUMS, Settings)
     QML_REGISTERUNCREATABLE(NS_ENUMS, NetworkManager)
-    QML_REGISTERUNCREATABLE(NS_ENUMS, DeviceItemListModel)
     QML_REGISTERUNCREATABLE(NS_ENUMS, ModeratorListModel)
     QML_REGISTERUNCREATABLE(NS_ENUMS, VideoInputDeviceModel)
     QML_REGISTERUNCREATABLE(NS_ENUMS, VideoFormatResolutionModel)
