@@ -19,7 +19,7 @@
 #include "typedefs.h"
 #include "api/account.h"
 
-#include <QObject>
+#include <QAbstractListModel>
 
 #include <vector>
 #include <map>
@@ -36,13 +36,28 @@ class AccountModelPimpl;
 
 namespace api {
 
+namespace AccountList {
+Q_NAMESPACE
+enum Role {
+    DummyRole = Qt::UserRole + 1,
+    Alias,
+    Username,
+    Type,
+    Status,
+    NotificationCount,
+    ID,
+    Uri,
+};
+Q_ENUM_NS(Role)
+} // namespace AccountList
+
 class Lrc;
 class BehaviorController;
 
 /**
  *  @brief Class that manages account information.
  */
-class LIB_EXPORT AccountModel : public QObject
+class LIB_EXPORT AccountModel : public QAbstractListModel
 {
     Q_OBJECT
     Q_PROPERTY(QString downloadDirectory_qml MEMBER downloadDirectory)
@@ -50,6 +65,12 @@ public:
     AccountModel(Lrc& lrc, const CallbacksHandler& callbackHandler, const api::BehaviorController& behaviorController);
 
     ~AccountModel();
+
+    // QAbstractListModel interface
+    int rowCount(const QModelIndex& parent = QModelIndex()) const override;
+    QVariant data(const QModelIndex& index, int role = Qt::DisplayRole) const override;
+    QHash<int, QByteArray> roleNames() const override;
+
     /**
      * @return a list of all acountId.
      */
@@ -229,13 +250,13 @@ public:
      * @param id
      * @return best name of the account
      */
-    const QString bestNameForAccount(const QString& accountID);
+    const QString bestNameForAccount(const QString& accountID) const;
     /**
      * Get the best id for an account
      * @param id
      * @return best id of the account
      */
-    const QString bestIdForAccount(const QString& accountID);
+    const QString bestIdForAccount(const QString& accountID) const;
     /**
      * Add/remove default moderator
      * @param accountID
@@ -377,6 +398,7 @@ Q_SIGNALS:
                      const QString& daemonId) const;
 
 private:
+    friend class lrc::AccountModelPimpl;
     std::unique_ptr<AccountModelPimpl> pimpl_;
 };
 } // namespace api
