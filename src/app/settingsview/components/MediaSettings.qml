@@ -36,7 +36,7 @@ ColumnLayout {
         var index = mediaListWidget.currentIndex;
         if (index >= mediaListWidget.model.rowCount() - 1)
             return;
-        var codecId = mediaListWidget.model.data(mediaListWidget.model.index(index, 0), MediaCodecListModel.MediaCodecID);
+        var codecId = mediaListWidget.model.data(mediaListWidget.model.index(index, 0), CodecList.MediaCodecID);
         AvAdapter.decreaseCodecPriority(codecId, mediaType === MediaSettings.VIDEO);
         mediaListWidget.currentIndex = index + 1;
         updateCodecs();
@@ -52,7 +52,7 @@ ColumnLayout {
         var index = mediaListWidget.currentIndex;
         if (index === 0)
             return;
-        var codecId = mediaListWidget.model.data(mediaListWidget.model.index(index, 0), MediaCodecListModel.MediaCodecID);
+        var codecId = mediaListWidget.model.data(mediaListWidget.model.index(index, 0), CodecList.MediaCodecID);
         AvAdapter.increaseCodecPriority(codecId, mediaType === MediaSettings.VIDEO);
         mediaListWidget.currentIndex = index - 1;
         updateCodecs();
