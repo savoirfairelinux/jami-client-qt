@@ -19,7 +19,7 @@
 #include "api/account.h"
 #include "typedefs.h"
 
-#include <QObject>
+#include <QAbstractListModel>
 #include <QList>
 
 #include <memory>
@@ -51,10 +51,23 @@ struct Codec
     bool auto_quality_enabled;
 };
 
+namespace CodecList {
+Q_NAMESPACE
+enum Role {
+    DummyRole = Qt::UserRole + 1,
+    MediaCodecName,
+    IsEnabled,
+    MediaCodecID,
+    Samplerate,
+    Type,
+};
+Q_ENUM_NS(Role)
+} // namespace CodecList
+
 /**
- *  @brief Class that manages ring devices for an account
+ *  @brief Class that manages codecs for an account
  */
-class LIB_EXPORT CodecModel : public QObject
+class LIB_EXPORT CodecModel : public QAbstractListModel
 {
     Q_OBJECT
 
@@ -63,6 +76,11 @@ public:
 
     CodecModel(const account::Info& owner, const CallbacksHandler& callbacksHandler);
     ~CodecModel();
+
+    // QAbstractListModel interface
+    int rowCount(const QModelIndex& parent = QModelIndex()) const override;
+    QVariant data(const QModelIndex& index, int role = Qt::DisplayRole) const override;
+    QHash<int, QByteArray> roleNames() const override;
 
     /**
      * @return audio codecs for the account
@@ -114,6 +132,7 @@ public:
     void bitrate(const unsigned int& codecid, double bitrate);
 
 private:
+    friend class lrc::CodecModelPimpl;
     std::unique_ptr<CodecModelPimpl> pimpl_;
 };
 } // namespace api

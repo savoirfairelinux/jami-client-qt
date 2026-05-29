@@ -23,110 +23,49 @@
 #include "api/codecmodel.h"
 
 MediaCodecListModel::MediaCodecListModel(QObject* parent)
-    : AbstractListModelBase(parent)
-{
-    connect(this, &MediaCodecListModel::lrcInstanceChanged, [this]() {
-        connect(lrcInstance_, &LRCInstance::currentAccountIdChanged, this, &MediaCodecListModel::reset);
-    });
-}
+    : QSortFilterProxyModel(parent)
+{}
 
 MediaCodecListModel::~MediaCodecListModel() {}
 
-int
-MediaCodecListModel::rowCount(const QModelIndex& parent) const
+bool
+MediaCodecListModel::filterAcceptsRow(int sourceRow, const QModelIndex& sourceParent) const
 {
-    if (!parent.isValid() && lrcInstance_) {
-        if (mediaType_ == MediaCodecListModel::MediaType::AUDIO)
-            return lrcInstance_->getCurrentAccountInfo().codecModel->getAudioCodecs().size();
-        if (mediaType_ == MediaCodecListModel::MediaType::VIDEO) {
-            QList<lrc::api::Codec> realCodecList;
-            auto videoCodecListOld = lrcInstance_->getCurrentAccountInfo().codecModel->getVideoCodecs();
+    auto index = sourceModel()->index(sourceRow, 0, sourceParent);
+    auto type = index.data(lrc::api::CodecList::Type).toString();
 
-            for (const auto& codec : videoCodecListOld) {
-                if (codec.name.length()) {
-                    realCodecList.append(codec);
-                }
-            }
-
-            return realCodecList.size();
-        }
+    if (mediaType_ == VIDEO) {
+        // Filter out video codecs with empty names
+        auto name = index.data(lrc::api::CodecList::MediaCodecName).toString();
+        return type == "VIDEO" && !name.isEmpty();
     }
-    return 0;
-}
-
-QVariant
-MediaCodecListModel::data(const QModelIndex& index, int role) const
-{
-    QList<lrc::api::Codec> mediaCodecList;
-    if (mediaType_ == MediaCodecListModel::MediaType::AUDIO)
-        mediaCodecList = lrcInstance_->getCurrentAccountInfo().codecModel->getAudioCodecs();
-    else if (mediaType_ == MediaCodecListModel::MediaType::VIDEO) {
-        QList<lrc::api::Codec> videoCodecList = lrcInstance_->getCurrentAccountInfo().codecModel->getVideoCodecs();
-
-        for (const auto& codec : videoCodecList) {
-            if (codec.name.length()) {
-                mediaCodecList.append(codec);
-            }
-        }
-    }
-    if (!index.isValid() || mediaCodecList.size() <= index.row()) {
-        return QVariant();
-    }
-
-    switch (role) {
-    case Role::MediaCodecName:
-        return QVariant(mediaCodecList.at(index.row()).name);
-    case Role::IsEnabled:
-        return QVariant(mediaCodecList.at(index.row()).enabled);
-    case Role::MediaCodecID:
-        return QVariant(mediaCodecList.at(index.row()).id);
-    case Role::Samplerate:
-        return QVariant(mediaCodecList.at(index.row()).samplerate);
-    }
-    return QVariant();
-}
-
-QHash<int, QByteArray>
-MediaCodecListModel::roleNames() const
-{
-    QHash<int, QByteArray> roles;
-    roles[MediaCodecName] = "MediaCodecName";
-    roles[IsEnabled] = "IsEnabled";
-    roles[MediaCodecID] = "MediaCodecID";
-    roles[Samplerate] = "Samplerate";
-    return roles;
-}
-
-QModelIndex
-MediaCodecListModel::index(int row, int column, const QModelIndex& parent) const
-{
-    Q_UNUSED(parent);
-    if (column != 0) {
-        return QModelIndex();
-    }
-
-    if (row >= 0 && row < rowCount()) {
-        return createIndex(row, column);
-    }
-    return QModelIndex();
-}
-
-Qt::ItemFlags
-MediaCodecListModel::flags(const QModelIndex& index) const
-{
-    auto flags = QAbstractItemModel::flags(index) | Qt::ItemNeverHasChildren | Qt::ItemIsSelectable
-                 | Qt::ItemIsUserCheckable | Qt::ItemIsEnabled;
-    if (!index.isValid()) {
-        return QAbstractItemModel::flags(index);
-    }
-    return flags;
+    return type == "AUDIO";
 }
 
 void
 MediaCodecListModel::reset()
 {
-    beginResetModel();
-    endResetModel();
+    invalidateFilter();
+}
+
+LRCInstance*
+MediaCodecListModel::lrcInstance() const
+{
+    return lrcInstance_;
+}
+
+void
+MediaCodecListModel::setLrcInstance(LRCInstance* instance)
+{
+    if (lrcInstance_ == instance)
+        return;
+    lrcInstance_ = instance;
+    Q_EMIT lrcInstanceChanged();
+    connect(lrcInstance_,
+            &LRCInstance::currentAccountIdChanged,
+            this,
+            &MediaCodecListModel::connectAccount);
+    connectAccount();
 }
 
 int
@@ -141,5 +80,16 @@ MediaCodecListModel::setMediaType(int mediaType)
     if (mediaType_ != mediaType) {
         mediaType_ = mediaType;
         Q_EMIT mediaTypeChanged();
+        invalidateFilter();
     }
+}
+
+void
+MediaCodecListModel::connectAccount()
+{
+    if (!lrcInstance_ || lrcInstance_->get_currentAccountId().isEmpty()) {
+        setSourceModel(nullptr);
+        return;
+    }
+    setSourceModel(lrcInstance_->getCurrentAccountInfo().codecModel.get());
 }
