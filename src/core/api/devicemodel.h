@@ -19,7 +19,7 @@
 #include "api/account.h"
 #include "typedefs.h"
 
-#include <QObject>
+#include <QAbstractListModel>
 
 #include <memory>
 #include <string>
@@ -36,6 +36,16 @@ namespace account {
 struct Info;
 }
 
+namespace DeviceList {
+Q_NAMESPACE
+enum Role {
+    DeviceName = Qt::UserRole + 1,
+    DeviceID,
+    IsCurrent,
+};
+Q_ENUM_NS(Role)
+} // namespace DeviceList
+
 struct Device
 {
     QString id = "";
@@ -46,7 +56,7 @@ struct Device
 /**
  *  @brief Class that manages ring devices for an account
  */
-class LIB_EXPORT DeviceModel : public QObject
+class LIB_EXPORT DeviceModel : public QAbstractListModel
 {
     Q_OBJECT
 
@@ -59,6 +69,11 @@ public:
 
     DeviceModel(const account::Info& owner, const CallbacksHandler& callbacksHandler);
     ~DeviceModel();
+
+    // QAbstractListModel interface
+    int rowCount(const QModelIndex& parent = QModelIndex()) const override;
+    QVariant data(const QModelIndex& index, int role = Qt::DisplayRole) const override;
+    QHash<int, QByteArray> roleNames() const override;
 
     /**
      * Get ring devices of an account
@@ -108,6 +123,7 @@ Q_SIGNALS:
     void deviceUpdated(const QString& id) const;
 
 private:
+    friend class lrc::DeviceModelPimpl;
     std::unique_ptr<DeviceModelPimpl> pimpl_;
 };
 } // namespace api
