@@ -18,7 +18,7 @@
 
 #include "typedefs.h"
 #include "api/datatransfer.h"
-#include "qtwrapper/conversions_wrap.hpp"
+#include "libwrap/conversions_wrap.hpp"
 
 #include <conversation_interface.h>
 

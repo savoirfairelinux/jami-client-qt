@@ -17,7 +17,7 @@
 #pragma once
 
 #ifdef ENABLE_LIBWRAP
-#include "../qtwrapper/callmanager_wrap.h"
+#include "../libwrap/callmanager_wrap.h"
 #else
 #include "callmanager_dbus_interface.h"
 #include <QDBusPendingReply>

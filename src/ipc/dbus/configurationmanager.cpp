@@ -1,5 +1,5 @@
 /****************************************************************************
- *   Copyright (C) 2012-2026 Savoir-faire Linux Inc.                        *
+ *   Copyright (C) 2009-2026 Savoir-faire Linux Inc.                        *
  *                                                                          *
  *   This library is free software; you can redistribute it and/or          *
  *   modify it under the terms of the GNU Lesser General Public             *
@@ -14,31 +14,30 @@
  *   You should have received a copy of the GNU General Public License      *
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.  *
  ***************************************************************************/
-#include "videomanager.h"
+#include "configurationmanager.h"
 
-#include "../globalinstances.h"
-#include "../interfaces/dbuserrorhandleri.h"
+#include "globalinstances.h"
+#include "interfaces/dbuserrorhandleri.h"
 
-VideoManagerInterface&
-VideoManager::instance()
+ConfigurationManagerInterface&
+ConfigurationManager::instance()
 {
 #ifdef ENABLE_LIBWRAP
-    static auto interface = new VideoManagerInterface();
+    static auto interface = new ConfigurationManagerInterface();
 #else
     if (!dbus_metaTypeInit)
         registerCommTypes();
-
-    static auto interface = new VideoManagerInterface("cx.ring.Ring",
-                                                      "/cx/ring/Ring/VideoManager",
-                                                      QDBusConnection::sessionBus());
+    static auto interface = new ConfigurationManagerInterface("cx.ring.Ring",
+                                                              "/cx/ring/Ring/ConfigurationManager",
+                                                              QDBusConnection::sessionBus());
     if (!interface->connection().isConnected()) {
-        GlobalInstances::dBusErrorHandler().connectionError("Error : jamid not connected. Service "
-                                                            + interface->service()
-                                                            + " not connected. From video manager interface.");
+        GlobalInstances::dBusErrorHandler().connectionError(
+            "Error: jamid not connected. Service " + interface->service()
+            + " is not connected. From configuration manager interface.");
     }
     if (!interface->isValid()) {
         GlobalInstances::dBusErrorHandler().invalidInterfaceError(
-            "Error : jamid is not available, make sure it is running");
+            "Error: jamid is unavailable, make sure it is running");
     }
 #endif
     return *interface;

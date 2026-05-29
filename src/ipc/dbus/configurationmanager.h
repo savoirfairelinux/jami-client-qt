@@ -17,15 +17,17 @@
 #pragma once
 
 #ifdef ENABLE_LIBWRAP
-#include "../qtwrapper/instancemanager_wrap.h"
+#include "../libwrap/configurationmanager_wrap.h"
 #else
-#include "instance_dbus_interface.h"
+#include "configurationmanager_dbus_interface.h"
 #include <QDBusPendingReply>
+#include "../libwrap/conversions_wrap.hpp"
 #endif
 #include <typedefs.h>
 
-namespace InstanceManager {
+namespace ConfigurationManager {
 
-LIB_EXPORT InstanceManagerInterface& instance(bool muteDaemon = false);
+/// Singleton to access the ConfigurationManager dbus interface
+LIB_EXPORT ConfigurationManagerInterface& instance();
 
-}
+} // namespace ConfigurationManager

@@ -14,20 +14,33 @@
  *   You should have received a copy of the GNU General Public License      *
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.  *
  ***************************************************************************/
-#pragma once
+#include "callmanager.h"
 
+#include "globalinstances.h"
+#include "interfaces/dbuserrorhandleri.h"
+
+CallManagerInterface&
+CallManager::instance()
+{
 #ifdef ENABLE_LIBWRAP
-#include "../qtwrapper/configurationmanager_wrap.h"
+    static auto interface = new CallManagerInterface();
 #else
-#include "configurationmanager_dbus_interface.h"
-#include <QDBusPendingReply>
-#include "../qtwrapper/conversions_wrap.hpp"
+    if (!dbus_metaTypeInit)
+        registerCommTypes();
+
+    static auto interface = new CallManagerInterface("cx.ring.Ring",
+                                                     "/cx/ring/Ring/CallManager",
+                                                     QDBusConnection::sessionBus());
+
+    if (!interface->connection().isConnected()) {
+        GlobalInstances::dBusErrorHandler().connectionError("Error : jamid not connected. Service "
+                                                            + interface->service()
+                                                            + " not connected. From call manager interface.");
+    }
+    if (!interface->isValid()) {
+        GlobalInstances::dBusErrorHandler().invalidInterfaceError(
+            "Error : jamid is not available, make sure it is running");
+    }
 #endif
-#include <typedefs.h>
-
-namespace ConfigurationManager {
-
-/// Singleton to access the ConfigurationManager dbus interface
-LIB_EXPORT ConfigurationManagerInterface& instance();
-
-} // namespace ConfigurationManager
+    return *interface;
+}

@@ -32,7 +32,7 @@
 
 // old LRC
 #include "api/profile.h"
-#include "qtwrapper/conversions_wrap.hpp"
+#include "libwrap/conversions_wrap.hpp"
 
 // Dbus
 #include "dbus/configurationmanager.h"

@@ -23,7 +23,7 @@
 #include <vector>
 #include <ctime>
 
-#include "../typedefs.h"
+#include "typedefs.h"
 
 #define Q_NOREPLY
 

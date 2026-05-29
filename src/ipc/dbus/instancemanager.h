@@ -1,5 +1,5 @@
 /****************************************************************************
- *   Copyright (C) 2012-2026 Savoir-faire Linux Inc.                        *
+ *   Copyright (C) 2009-2026 Savoir-faire Linux Inc.                        *
  *                                                                          *
  *   This library is free software; you can redistribute it and/or          *
  *   modify it under the terms of the GNU Lesser General Public             *
@@ -15,17 +15,17 @@
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.  *
  ***************************************************************************/
 #pragma once
+
 #ifdef ENABLE_LIBWRAP
-#include "../qtwrapper/presencemanager_wrap.h"
+#include "../libwrap/instancemanager_wrap.h"
 #else
-#include "presencemanager_dbus_interface.h"
+#include "instance_dbus_interface.h"
 #include <QDBusPendingReply>
 #endif
-
 #include <typedefs.h>
 
-namespace PresenceManager {
+namespace InstanceManager {
 
-LIB_EXPORT PresenceManagerInterface& instance();
+LIB_EXPORT InstanceManagerInterface& instance(bool muteDaemon = false);
 
 }

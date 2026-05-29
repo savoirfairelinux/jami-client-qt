@@ -1,5 +1,5 @@
 /****************************************************************************
- *   Copyright (C) 2013-2026 Savoir-faire Linux Inc.                        *
+ *   Copyright (C) 2012-2026 Savoir-faire Linux Inc.                        *
  *                                                                          *
  *   This library is free software; you can redistribute it and/or          *
  *   modify it under the terms of the GNU Lesser General Public             *
@@ -14,27 +14,27 @@
  *   You should have received a copy of the GNU General Public License      *
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.  *
  ***************************************************************************/
-#include "pluginmanager.h"
+#include "videomanager.h"
 
-#include "../globalinstances.h"
-#include "../interfaces/dbuserrorhandleri.h"
+#include "globalinstances.h"
+#include "interfaces/dbuserrorhandleri.h"
 
-PluginManagerInterface&
-PluginManager::instance()
+VideoManagerInterface&
+VideoManager::instance()
 {
 #ifdef ENABLE_LIBWRAP
-    static auto interface = new PluginManagerInterface();
+    static auto interface = new VideoManagerInterface();
 #else
     if (!dbus_metaTypeInit)
         registerCommTypes();
-    static auto interface = new PluginManagerInterface("cx.ring.Ring",
-                                                       "/cx/ring/Ring/PluginManagerInterface",
-                                                       QDBusConnection::sessionBus());
 
+    static auto interface = new VideoManagerInterface("cx.ring.Ring",
+                                                      "/cx/ring/Ring/VideoManager",
+                                                      QDBusConnection::sessionBus());
     if (!interface->connection().isConnected()) {
         GlobalInstances::dBusErrorHandler().connectionError("Error : jamid not connected. Service "
                                                             + interface->service()
-                                                            + " not connected. From presence interface.");
+                                                            + " not connected. From video manager interface.");
     }
     if (!interface->isValid()) {
         GlobalInstances::dBusErrorHandler().invalidInterfaceError(
