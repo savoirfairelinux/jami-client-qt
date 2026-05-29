@@ -17,35 +17,39 @@
 
 #pragma once
 
-#include "abstractlistmodelbase.h"
+#include <QSortFilterProxyModel>
 
-class MediaCodecListModel : public AbstractListModelBase
+class LRCInstance;
+
+class MediaCodecListModel : public QSortFilterProxyModel
 {
     Q_OBJECT
+    Q_PROPERTY(LRCInstance* lrcInstance READ lrcInstance WRITE setLrcInstance NOTIFY lrcInstanceChanged)
     Q_PROPERTY(int mediaType READ mediaType WRITE setMediaType NOTIFY mediaTypeChanged)
 public:
     enum MediaType { VIDEO, AUDIO };
-    enum Role { MediaCodecName = Qt::UserRole + 1, IsEnabled, MediaCodecID, Samplerate };
-    Q_ENUM(Role)
 
     explicit MediaCodecListModel(QObject* parent = nullptr);
     ~MediaCodecListModel();
 
-    // QAbstractListModel override.
-    int rowCount(const QModelIndex& parent = QModelIndex()) const override;
-    QVariant data(const QModelIndex& index, int role = Qt::DisplayRole) const override;
-    QHash<int, QByteArray> roleNames() const override;
-    QModelIndex index(int row, int column = 0, const QModelIndex& parent = QModelIndex()) const override;
-    Qt::ItemFlags flags(const QModelIndex& index) const override;
+    bool filterAcceptsRow(int sourceRow, const QModelIndex& sourceParent) const override;
 
     Q_INVOKABLE void reset();
+
+    LRCInstance* lrcInstance() const;
+    void setLrcInstance(LRCInstance* instance);
 
     int mediaType();
     void setMediaType(int mediaType);
 
 Q_SIGNALS:
+    void lrcInstanceChanged();
     void mediaTypeChanged();
 
+private Q_SLOTS:
+    void connectAccount();
+
 private:
-    int mediaType_;
+    LRCInstance* lrcInstance_ {nullptr};
+    int mediaType_ {AUDIO};
 };
