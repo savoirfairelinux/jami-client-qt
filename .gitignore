@@ -30,6 +30,7 @@ changelog.html
 obj/
 build/
 build-*/
+CMakeUserPresets.json
 !extras/build
 build-local/
 build-global/

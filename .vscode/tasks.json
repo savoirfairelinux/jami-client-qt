@@ -27,35 +27,18 @@
             "type": "shell",
             "command": "cmake",
             "args": [
-                "-S", ".",
-                "-B", "build",
-                "-DCMAKE_BUILD_TYPE=Debug",
-                "-DCMAKE_PREFIX_PATH=\"/usr/lib64/qt-jami;/usr/lib/libqt-jami\"",
+                "--preset", "${input:configurePreset}"
             ],
             "group": "build",
             "problemMatcher": [],
-            "detail": "Generate the build system files with CMake."
-        },
-        {
-            "label": "cmake-configure-tests",
-            "type": "shell",
-            "command": "cmake",
-            "args": [
-                "-S", ".",
-                "-B", "build",
-                "-DBUILD_TESTING=${input:buildTestingInput}"
-            ],
-            "group": "build",
-            "problemMatcher": [],
-            "detail": "Generate the build system files with CMake."
+            "detail": "Configure with a CMake preset."
         },
         {
             "label": "cmake-build",
             "type": "shell",
             "command": "cmake",
             "args": [
-                "--build", "build",
-                "-j$(nproc)",
+                "--build", "--preset", "${input:buildPreset}"
             ],
             "group": {
                 "kind": "build",
@@ -64,10 +47,7 @@
             "problemMatcher": [
                 "$gcc"
             ],
-            "detail": "Compile the project using the generated build system.",
-            "dependsOn": [
-                "cmake-configure"
-            ]
+            "detail": "Build with a CMake preset."
         },
         {
             "label": "cmake-clean",
@@ -84,10 +64,18 @@
     ],
     "inputs": [
         {
-            "id": "buildTestingInput",
+            "id": "configurePreset",
             "type": "pickString",
-            "description": "Do you want to enable testing?",
-            "options": ["True", "False"],
+            "description": "Select a configure preset",
+            "options": ["debug", "debug-dbus", "release"],
+            "default": "debug"
+        },
+        {
+            "id": "buildPreset",
+            "type": "pickString",
+            "description": "Select a build preset",
+            "options": ["debug", "debug-dbus", "release"],
+            "default": "debug"
         }
     ]
 }
