@@ -558,7 +558,7 @@ ContactModel::bestNameForContact(const QString& contactUri) const
         } else {
             // This is not a contact, but we should get the registered name
             //
-            // NOTE: bestNameForContact is used by ConversationListModelBase::dataForItem,
+            // NOTE: bestNameForContact is used by ConversationModel::dataForItem,
             // which means that it sometimes gets called multiple times within a short amount
             // of time (less than a second), and can easily get called dozens or even hundreds
             // of times in total after using Jami for a couple of hours. We don't want to send
