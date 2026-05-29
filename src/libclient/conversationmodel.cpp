@@ -1656,7 +1656,7 @@ ConversationModelPimpl::ConversationModelPimpl(const ConversationModel& linked,
     connect(&callbacksHandler, &CallbacksHandler::needsHost, this, [&](auto accountId, auto convId) {
         if (accountId != linked.owner.id)
             return;
-        emit linked.needsHost(convId);
+        Q_EMIT linked.needsHost(convId);
     });
 
     // data transfer
