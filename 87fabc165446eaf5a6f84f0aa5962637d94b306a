@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a1ab52e3_34979f6f",
+        "filename": "src/libclient/interaction.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-01T16:10:21Z",
+      "side": 1,
+      "message": "[Critical] Line 112: 🔴 Critical Issues - `resolved.exists()` alone can mark an incomplete or placeholder receive file as `TRANSFER_FINISHED` whenever daemon progress is stale at 0. That would hide the download button for incoming files that still need to be downloaded. Gate this filesystem fallback to sent/local messages, or at least verify the local file size matches `totalSize` when `totalSize \u003e 0`.\n\n```suggestion\n            QFileInfo resolved(body);\n            if (resolved.exists() \u0026\u0026 totalSize \u003e\u003d 0 \u0026\u0026 resolved.size() \u003d\u003d totalSize) {\n                transferStatus \u003d TransferStatus::TRANSFER_FINISHED;\n            } else {\n                transferStatus \u003d TransferStatus::TRANSFER_AWAITING_HOST;\n            }\n```",
+      "revId": "87fabc165446eaf5a6f84f0aa5962637d94b306a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
