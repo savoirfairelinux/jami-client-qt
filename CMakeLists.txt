@@ -51,6 +51,10 @@ define_macro_with_value(WITH_WEBENGINE)
 define_macro_with_value(APPSTORE)
 define_macro_with_value(ENABLE_CRASHREPORTS)
 
+if(APPSTORE AND WITH_WEBENGINE)
+  message(FATAL_ERROR "App Store builds must use -DWITH_WEBENGINE=OFF")
+endif()
+
 # jami-core
 if(NOT WITH_DAEMON_SUBMODULE)
   set(DAEMON_DIR ${PROJECT_SOURCE_DIR}/../daemon)

@@ -39,10 +39,9 @@ TestWrapper {
     //   2. close → root.destroy() deferred; profile still alive in C++
     //   3. reopen → second profile attempted → CRASH
     //
-    // The fix uses lazy creation: ChatView creates the WebEngineProfile on
-    // first map open (via a Component), then keeps it alive for the lifetime
-    // of ChatView.  MapPosition never creates/destroys a profile, so steps
-    // 2→3 are safe.
+    // The fix uses lazy creation: ChatView loads MapProfileHolder.qml on first
+    // map open, then keeps its profile alive for the lifetime of ChatView.
+    // MapPosition never creates/destroys a profile, so steps 2→3 are safe.
 
     ListSelectionView {
         id: viewNode
@@ -72,9 +71,10 @@ TestWrapper {
                     // Give the event loop a chance to process deferred deletes
                     // before the next test starts.
                     wait(50);
-                    // Reset the map profile so each test starts with a clean state.
-                    if (chatView.mapProfile !== null) {
-                        chatView.mapProfile.destroy();
+                    // Reset the map profile holder so each test starts with a clean state.
+                    if (chatView.mapProfileHolder !== null) {
+                        chatView.mapProfileHolder.destroy();
+                        chatView.mapProfileHolder = null;
                         chatView.mapProfile = null;
                         wait(50);
                     }
