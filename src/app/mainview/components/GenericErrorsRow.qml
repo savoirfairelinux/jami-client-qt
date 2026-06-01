@@ -36,6 +36,7 @@ Rectangle {
              && CurrentAccount.status !== Account.Status.READY
              && CurrentAccount.status !== Account.Status.TRYING
              && CurrentAccount.status !== Account.Status.INITIALIZING
+             && CurrentAccount.status !== Account.Status.ERROR_NEED_MIGRATION
 
     RowLayout {
         anchors.fill: parent
