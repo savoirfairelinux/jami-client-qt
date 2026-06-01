@@ -100,9 +100,21 @@ Info::init(const MapStringString& message,
             .fileTransferInfo(accountId, conversationId, message["fileId"], path, totalSize, bytesProgress);
         QFileInfo fi(path);
         body = fi.isSymLink() ? fi.symLinkTarget() : path;
-        transferStatus = bytesProgress == 0           ? TransferStatus::TRANSFER_AWAITING_HOST
-                         : bytesProgress == totalSize ? TransferStatus::TRANSFER_FINISHED
-                                                      : TransferStatus::TRANSFER_ONGOING;
+        if (bytesProgress == totalSize && bytesProgress > 0) {
+            transferStatus = TransferStatus::TRANSFER_FINISHED;
+        } else if (bytesProgress > 0) {
+            transferStatus = TransferStatus::TRANSFER_ONGOING;
+        } else {
+            // bytesProgress == 0: daemon may have returned stale/incomplete info.
+            // Check if the file actually exists (symlink target or regular file)
+            // before declaring it as awaiting download.
+            QFileInfo resolved(body);
+            if (resolved.exists() && resolved.size() > 0) {
+                transferStatus = TransferStatus::TRANSFER_FINISHED;
+            } else {
+                transferStatus = TransferStatus::TRANSFER_AWAITING_HOST;
+            }
+        }
     }
     commit = message;
 }
