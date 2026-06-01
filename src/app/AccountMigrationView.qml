@@ -36,7 +36,7 @@ BaseView {
 
     function slotMigrationButtonClicked() {
         stackedWidget.currentIndex = AccountMigrationView.AccountMigrationStep.Synching;
-        AccountAdapter.setArchivePasswordAsync(CurrentAccountToMigrate.accountId, passwordInputLineEdit.text);
+        AccountAdapter.setArchivePasswordAsync(CurrentAccountToMigrate.accountId, passwordInputLineEdit.modifiedTextFieldContent);
     }
 
     function slotDeleteButtonClicked() {
@@ -93,10 +93,12 @@ BaseView {
             Rectangle {
                 id: accountMigrationPage
 
-                ColumnLayout {
-                    spacing: 8
+                color: JamiTheme.globalBackgroundColor
 
+                ColumnLayout {
                     anchors.fill: accountMigrationPage
+
+                    spacing: 8
 
                     Label {
                         id: accountMigrationLabel
@@ -104,14 +106,16 @@ BaseView {
                         Layout.alignment: Qt.AlignHCenter
                         Layout.preferredHeight: JamiTheme.preferredFieldHeight
 
-                        font.pointSize: JamiTheme.headerFontSize
-                        font.kerning: true
-                        wrapMode: Text.Wrap
-
                         text: JamiStrings.authenticationRequired
-
                         horizontalAlignment: Text.AlignLeft
                         verticalAlignment: Text.AlignVCenter
+
+                        color: JamiTheme.textColor
+
+                        font.pointSize: JamiTheme.headerFontSize
+                        font.kerning: true
+
+                        wrapMode: Text.Wrap
                     }
 
                     Label {
@@ -120,14 +124,16 @@ BaseView {
                         Layout.alignment: Qt.AlignHCenter
                         Layout.preferredHeight: JamiTheme.preferredFieldHeight
 
-                        font.pointSize: JamiTheme.textFontSize
-                        font.kerning: true
-                        wrapMode: Text.Wrap
-
                         text: JamiStrings.migrationReason
-
                         horizontalAlignment: Text.AlignLeft
                         verticalAlignment: Text.AlignVCenter
+
+                        color: JamiTheme.textColor
+
+                        wrapMode: Text.Wrap
+
+                        font.pointSize: JamiTheme.textFontSize
+                        font.kerning: true
                     }
 
                     Avatar {
@@ -162,11 +168,15 @@ BaseView {
                             Layout.preferredHeight: JamiTheme.preferredFieldHeight
 
                             text: JamiStrings.alias
+                            horizontalAlignment: Text.AlignLeft
+                            verticalAlignment: Text.AlignVCenter
+
+                            color: JamiTheme.textColor
+
                             font.pointSize: JamiTheme.textFontSize
                             font.kerning: true
 
-                            horizontalAlignment: Text.AlignLeft
-                            verticalAlignment: Text.AlignVCenter
+                            visible: aliasInputLabel.visible
                         }
 
                         Label {
@@ -175,18 +185,16 @@ BaseView {
                             Layout.preferredWidth: JamiTheme.preferredFieldWidth
                             Layout.preferredHeight: JamiTheme.preferredFieldHeight
 
-                            text: {
-                                if (CurrentAccountToMigrate.alias.length !== 0) {
-                                    return CurrentAccountToMigrate.alias;
-                                } else {
-                                    return JamiStrings.notAvailable;
-                                }
-                            }
+                            text: CurrentAccountToMigrate.alias.length !== 0 ? CurrentAccountToMigrate.alias : ""
+                            horizontalAlignment: Text.AlignLeft
+                            verticalAlignment: Text.AlignVCenter
+
+                            color: JamiTheme.textColor
+
                             font.pointSize: JamiTheme.textFontSize
                             font.kerning: true
 
-                            horizontalAlignment: Text.AlignLeft
-                            verticalAlignment: Text.AlignVCenter
+                            visible: text.length > 0
                         }
 
                         // 2nd Row
@@ -197,11 +205,15 @@ BaseView {
                             Layout.preferredHeight: JamiTheme.preferredFieldHeight
 
                             text: JamiStrings.username
+                            horizontalAlignment: Text.AlignLeft
+                            verticalAlignment: Text.AlignVCenter
+
+                            color: JamiTheme.textColor
+
                             font.pointSize: JamiTheme.textFontSize
                             font.kerning: true
 
-                            horizontalAlignment: Text.AlignLeft
-                            verticalAlignment: Text.AlignVCenter
+                            visible: usernameInputLabel.visible
                         }
 
                         Label {
@@ -216,14 +228,18 @@ BaseView {
                                 } else if (CurrentAccountToMigrate.managerUsername.length !== 0) {
                                     return CurrentAccountToMigrate.managerUsername;
                                 } else {
-                                    return JamiStrings.notAvailable;
+                                    return "";
                                 }
                             }
+                            horizontalAlignment: Text.AlignLeft
+                            verticalAlignment: Text.AlignVCenter
+
+                            color: JamiTheme.textColor
+
                             font.pointSize: JamiTheme.textFontSize
                             font.kerning: true
 
-                            horizontalAlignment: Text.AlignLeft
-                            verticalAlignment: Text.AlignVCenter
+                            visible: text.length > 0
                         }
 
                         // 3rd Row
@@ -234,11 +250,15 @@ BaseView {
                             Layout.preferredHeight: JamiTheme.preferredFieldHeight
 
                             text: JamiStrings.jamsServer
+                            horizontalAlignment: Text.AlignLeft
+                            verticalAlignment: Text.AlignVCenter
+
+                            color: JamiTheme.textColor
+
                             font.pointSize: JamiTheme.textFontSize
                             font.kerning: true
 
-                            horizontalAlignment: Text.AlignLeft
-                            verticalAlignment: Text.AlignVCenter
+                            visible: managerUriInputLabel.visible
                         }
 
                         Label {
@@ -247,18 +267,16 @@ BaseView {
                             Layout.preferredWidth: JamiTheme.preferredFieldWidth
                             Layout.preferredHeight: JamiTheme.preferredFieldHeight
 
-                            text: {
-                                if (CurrentAccountToMigrate.managerUri.length !== 0) {
-                                    return CurrentAccountToMigrate.managerUri;
-                                } else {
-                                    return JamiStrings.notAvailable;
-                                }
-                            }
+                            text: CurrentAccountToMigrate.managerUri.length !== 0 ? CurrentAccountToMigrate.managerUri : ""
+                            horizontalAlignment: Text.AlignLeft
+                            verticalAlignment: Text.AlignVCenter
+
+                            color: JamiTheme.textColor
+
                             font.pointSize: JamiTheme.textFontSize
                             font.kerning: true
 
-                            horizontalAlignment: Text.AlignLeft
-                            verticalAlignment: Text.AlignVCenter
+                            visible: text.length > 0
                         }
 
                         // 4th Row
@@ -269,69 +287,65 @@ BaseView {
                             Layout.preferredHeight: JamiTheme.preferredFieldHeight
 
                             text: JamiStrings.password
+                            horizontalAlignment: Text.AlignLeft
+                            verticalAlignment: Text.AlignVCenter
+
+                            color: JamiTheme.textColor
+
                             font.pointSize: JamiTheme.textFontSize
                             font.kerning: true
-
-                            horizontalAlignment: Text.AlignLeft
-                            verticalAlignment: Text.AlignVCenter
                         }
 
-                        MaterialLineEdit {
+                        PasswordTextEdit {
                             id: passwordInputLineEdit
 
-                            horizontalAlignment: Text.AlignLeft
-                            verticalAlignment: Text.AlignVCenter
-
-                            Layout.alignment: Qt.AlignHCenter
+                            Layout.fillWidth: false
                             Layout.preferredWidth: JamiTheme.preferredFieldWidth
-                            Layout.preferredHeight: 48
-
-                            echoMode: TextInput.Password
-                            placeholderText: JamiStrings.password
-
-                            onAccepted: slotMigrationButtonClicked()
+                            Layout.alignment: Qt.AlignHCenter
                         }
                     }
 
                     RowLayout {
-                        spacing: 80
-
                         Layout.fillWidth: true
                         Layout.alignment: Qt.AlignHCenter
                         Layout.bottomMargin: JamiTheme.preferredMarginSize
 
-                        MaterialButton {
+                        spacing: 80
+
+                        NewMaterialButton {
                             id: migrationPushButton
 
                             Layout.alignment: Qt.AlignLeft
 
-                            preferredWidth: JamiTheme.preferredFieldWidth / 2
-
-                            color: enabled ? JamiTheme.buttonTintedBlack : JamiTheme.buttonTintedGrey
-                            hoveredColor: JamiTheme.buttonTintedBlackHovered
-                            pressedColor: JamiTheme.buttonTintedBlackPressed
-                            secondary: true
-                            enabled: passwordInputLineEdit.text.length > 0
+                            outlinedButton: true
+                            iconSource: JamiResources.key_black_24dp_svg
 
                             text: JamiStrings.authenticate
 
                             onClicked: slotMigrationButtonClicked()
                         }
 
-                        MaterialButton {
+                        NewMaterialButton {
                             id: deleteAccountPushButton
 
                             Layout.alignment: Qt.AlignRight
 
-                            preferredWidth: JamiTheme.preferredFieldWidth / 2
-
+                            outlinedButton: true
                             color: JamiTheme.buttonTintedRed
-                            hoveredColor: JamiTheme.buttonTintedRedHovered
-                            pressedColor: JamiTheme.buttonTintedRedPressed
-                            secondary: true
+                            iconSource: JamiResources.delete_forever_24dp_svg
 
                             text: JamiStrings.deleteAccount
-                            onClicked: slotDeleteButtonClicked()
+
+                            onClicked: {
+                                var dlg = viewCoordinator.presentDialog(appWindow, "../../commoncomponents/ConfirmDialog.qml", {
+                                                                            "titleText": JamiStrings.confirmAction,
+                                                                            "textLabel": JamiStrings.confirmDeleteAccount,
+                                                                            "confirmLabel": JamiStrings.deleteAccount
+                                                                        });
+                                dlg.accepted.connect(function() {
+                                    slotDeleteButtonClicked()
+                                });
+                            }
                         }
                     }
                 }
@@ -346,25 +360,25 @@ BaseView {
                 Layout.alignment: Qt.AlignHCenter
 
                 ColumnLayout {
-                    spacing: 8
+                    Layout.alignment: Qt.AlignHCenter
 
                     width: stackedWidget.width
                     height: stackedWidget.height
-                    Layout.alignment: Qt.AlignHCenter
+
+                    spacing: 8
 
                     RowLayout {
-                        spacing: 8
-
                         Layout.alignment: Qt.AlignHCenter
                         Layout.fillWidth: true
+
+                        spacing: 8
 
                         ResponsiveImage {
                             id: errorLabel
 
-                            Layout.alignment: Qt.AlignHCenter
-
                             Layout.preferredWidth: 200
                             Layout.preferredHeight: 200
+                            Layout.alignment: Qt.AlignHCenter
 
                             containerHeight: Layout.preferredHeight
                             containerWidth: Layout.preferredWidth
@@ -375,38 +389,41 @@ BaseView {
                             color: JamiTheme.redColor
                         }
 
-                        AnimatedImage {
+                        Item {
                             id: spinnerLabel
-
                             Layout.alignment: Qt.AlignHCenter
-
-                            Layout.preferredWidth: 200
-                            Layout.preferredHeight: 200
+                            Layout.preferredWidth: 194
+                            Layout.preferredHeight: 194
 
                             visible: successState
 
-                            source: JamiResources.jami_eclipse_spinner_gif
+                            SpinningAnimation {
+                                id: animation
 
-                            playing: successState
-                            fillMode: Image.PreserveAspectFit
-                            mipmap: true
+                                anchors.fill: parent
+                                mode: SpinningAnimation.Mode.Radial
+                                color: JamiTheme.tintedBlue
+                                spinningAnimationWidth: 6
+                            }
                         }
                     }
 
                     Label {
                         id: progressLabel
 
-                        Layout.alignment: Qt.AlignHCenter
                         Layout.fillWidth: true
                         Layout.bottomMargin: 80
+                        Layout.alignment: Qt.AlignHCenter
+
+                        text: successState ? JamiStrings.inProgress : JamiStrings.authenticationFailed
+                        horizontalAlignment: Text.AlignHCenter
+                        verticalAlignment: Text.AlignVCenter
 
                         color: successState ? JamiTheme.textColor : JamiTheme.redColor
-                        text: successState ? JamiStrings.inProgress : JamiStrings.authenticationFailed
+
                         font.pointSize: JamiTheme.textFontSize + 5
                         font.kerning: true
 
-                        horizontalAlignment: Text.AlignHCenter
-                        verticalAlignment: Text.AlignVCenter
                         wrapMode: Label.WordWrap
                     }
                 }
