@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1e84a60e_1dd52fd3",
+        "filename": "src/libclient/interaction.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-01T14:28:31Z",
+      "side": 1,
+      "message": "[🟡 Suggestion] Line 114: This fallback still treats existing zero-byte local files as awaiting download because it requires `resolved.size() \u003e 0`. Empty files are valid transfers, so a sent empty file would continue to show the download button. The existence check should not depend on file size; if needed, constrain it to regular files instead.\n```suggestion\n            if (resolved.exists() \u0026\u0026 resolved.isFile()) {\n                transferStatus \u003d TransferStatus::TRANSFER_FINISHED;\n            } else {\n                transferStatus \u003d TransferStatus::TRANSFER_AWAITING_HOST;\n            }\n```",
+      "revId": "b1ec639112b3e12f117bc4f5029150d159d68398",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
