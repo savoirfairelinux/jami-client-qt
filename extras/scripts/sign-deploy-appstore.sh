@@ -20,6 +20,7 @@ rm -rf Jami.app/Contents/Frameworks/QtWebEngineQuickDelegatesQml.framework
 rm -rf Jami.app/Contents/Frameworks/QtWebEngineQuick.framework
 rm -rf Jami.app/Contents/Frameworks/QtWebEngineCore.framework
 rm -rf Jami.app/Contents/Frameworks/QtWebChannel.framework
+rm -rf Jami.app/Contents/Resources/qml/QtWebEngine
 echo "remove web dSYM files"
 find Jami.app/Contents/Resources/qml -type d -name "*.dSYM" -exec rm -r {} \;
 codesign --force --sign "${APP_CERTIFICATE}" --entitlements ../resources/entitlements/appstore/Jami.entitlements Jami.app
