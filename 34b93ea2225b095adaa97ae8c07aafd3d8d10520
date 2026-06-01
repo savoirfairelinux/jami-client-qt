@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ab1f8a2d_079de941",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-06-01T17:21:53Z",
+      "side": 1,
+      "message": "Relevancy: https://forum.jami.net/t/debian-package-updated-now-jami-demands-a-password/5692",
+      "revId": "34b93ea2225b095adaa97ae8c07aafd3d8d10520",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
