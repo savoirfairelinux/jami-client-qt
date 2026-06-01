@@ -16,6 +16,23 @@
       "message": "Relevancy: https://forum.jami.net/t/debian-package-updated-now-jami-demands-a-password/5692",
       "revId": "34b93ea2225b095adaa97ae8c07aafd3d8d10520",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c1d1fac7_f1a73814",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-06-01T18:01:05Z",
+      "side": 1,
+      "message": "Need to fix broken popup on deletion confirmation",
+      "revId": "34b93ea2225b095adaa97ae8c07aafd3d8d10520",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
