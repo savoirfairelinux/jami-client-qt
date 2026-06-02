@@ -33,6 +33,24 @@
       "message": "Need to fix broken popup on deletion confirmation",
       "revId": "34b93ea2225b095adaa97ae8c07aafd3d8d10520",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f86fbf79_c0dbbd35",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-06-02T18:40:27Z",
+      "side": 1,
+      "message": "Popup itself is not actually broken, account deletion via the AccountMigrationView has actually always been broken.",
+      "parentUuid": "c1d1fac7_f1a73814",
+      "revId": "34b93ea2225b095adaa97ae8c07aafd3d8d10520",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
