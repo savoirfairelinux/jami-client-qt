@@ -33,8 +33,8 @@ SidePanelBase {
 
     property bool inNewSwarm: viewCoordinator.currentViewName === "NewSwarmPage"
     property bool isEmptyAccount: inNewSwarm
-        ? (swarmCurrentConversationList.model && swarmCurrentConversationList.model.count === 0)
-        : (!ConversationsAdapter.filterRequests && conversationListView.model && conversationListView.model.count === 0)
+                                  ? (swarmCurrentConversationList.model && swarmCurrentConversationList.model.count === 0)
+                                  : (!ConversationsAdapter.filterRequests && conversationListView.model && conversationListView.model.count === 0)
 
     property var highlighted: []
     property var highlightedMembers: []
@@ -482,7 +482,9 @@ SidePanelBase {
                         Layout.topMargin: 10
                         Layout.alignment: Qt.AlignTop
                         Layout.fillWidth: true
-                        Layout.preferredHeight: count ? JamiTheme.smartListItemHeight + headerItem.height : headerItem.height
+                        Layout.preferredHeight: count * JamiTheme.smartListItemHeight + headerItem.height
+                        Layout.maximumHeight: Math.max(0, (conversationLayout.height - header.height + 10 +
+                                                           (donationBanner.visible ? donationBanner.height + conversationLayout.spacing : 0)) / 2)
 
                         visible: !inNewSwarm && contactSearchBar.textContent
                         activeFocusOnTab: true
