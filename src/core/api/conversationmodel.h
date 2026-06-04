@@ -85,6 +85,7 @@ enum Role {
     Alias,
     RegisteredName,
     URI,
+    BotOwner,
     UnreadMessagesCount,
     LastInteractionTimeStamp,
     LastInteraction,

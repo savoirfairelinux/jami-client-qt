@@ -17,6 +17,8 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
+import QtQuick.Controls.impl
+
 import net.jami.Models 1.1
 import net.jami.Constants 1.1
 import net.jami.Adapters 1.1
@@ -84,18 +86,32 @@ ItemDelegate {
             Layout.fillHeight: true
             spacing: 2
 
-            Text {
+            RowLayout {
                 Layout.fillWidth: true
-                Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
+                Layout.alignment: Qt.AlignVCenter
+                IconImage {
+                    source: JamiResources.robot_2_24dp_svg
+                    sourceSize.width: JamiTheme.iconButtonSmall
+                    sourceSize.height: JamiTheme.iconButtonSmall
 
-                text: Alias
-                textFormat: TextEdit.PlainText
+                    color: JamiTheme.textColor
 
-                font.family: Alias === Uri ? JamiTheme.ubuntuMonoFontFamily : JamiTheme.ubuntuFontFamily
-                font.pointSize: JamiTheme.textFontSize
-                color: JamiTheme.textColor
-                elide: Text.ElideRight
-                horizontalAlignment: Text.AlignLeft
+                    visible: BotOwner.length > 0
+                }
+
+                Text {
+                    Layout.fillWidth: true
+                    Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
+
+                    text: Alias
+                    textFormat: TextEdit.PlainText
+
+                    font.family: Alias === Uri ? JamiTheme.ubuntuMonoFontFamily : JamiTheme.ubuntuFontFamily
+                    font.pointSize: JamiTheme.textFontSize
+                    color: JamiTheme.textColor
+                    elide: Text.ElideRight
+                    horizontalAlignment: Text.AlignLeft
+                }
             }
 
             Text {
