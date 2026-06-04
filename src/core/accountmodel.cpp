@@ -45,6 +45,7 @@
 #include <QtGui/QImage>
 #include <QtCore/QBuffer>
 #include <QJsonDocument>
+#include <QTimer>
 
 #include <atomic>
 
@@ -255,12 +256,16 @@ AccountModel::data(const QModelIndex& index, int role) const
             return QVariant(static_cast<int>(accountInfo.profileInfo.type));
         case AccountList::Status:
             return QVariant(static_cast<int>(accountInfo.status));
+        case AccountList::Enabled:
+            return QVariant(accountInfo.enabled);
         case AccountList::NotificationCount:
             return QVariant(static_cast<int>(accountInfo.conversationModel->notificationsCount()));
         case AccountList::ID:
             return QVariant(accountInfo.id);
         case AccountList::Uri:
             return QVariant(accountInfo.profileInfo.uri);
+        case AccountList::BotOwner:
+            return QVariant(accountInfo.profileInfo.botOwner);
         }
     } catch (...) {
     }
@@ -275,9 +280,11 @@ AccountModel::roleNames() const
         {AccountList::Username, "Username"},
         {AccountList::Type, "Type"},
         {AccountList::Status, "Status"},
+        {AccountList::Enabled, "Enabled"},
         {AccountList::NotificationCount, "NotificationCount"},
         {AccountList::ID, "ID"},
         {AccountList::Uri, "Uri"},
+        {AccountList::BotOwner, "BotOwner"},
     };
 }
 
@@ -366,8 +373,16 @@ AccountModel::setAlias(const QString& accountId, const QString& alias, bool save
                                                        alias,
                                                        "",
                                                        "",
+                                                       "",
                                                        5); // flag out of range to avoid updating avatar
     Q_EMIT profileUpdated(accountId);
+}
+
+void
+AccountModel::setBotAccount(const QString& accountId, const QString& botOwner)
+{
+    auto& accountInfo = pimpl_->getAccountInfo(accountId);
+    ConfigurationManager::instance().updateProfile(accountId, accountInfo.profileInfo.alias, "", "", botOwner, 0);
 }
 
 void
@@ -378,7 +393,7 @@ AccountModel::setAvatar(const QString& accountId, const QString& avatar, bool sa
         return;
     accountInfo.profileInfo.avatar = avatar;
     if (save)
-        ConfigurationManager::instance().updateProfile(accountId, accountInfo.profileInfo.alias, avatar, "PNG", flag);
+        ConfigurationManager::instance().updateProfile(accountId, accountInfo.profileInfo.alias, avatar, "PNG", "", flag);
     Q_EMIT profileUpdated(accountId);
 }
 
@@ -621,6 +636,16 @@ AccountModelPimpl::slotAccountStatusChanged(const QString& accountID, const api:
             // This will load swarms as the account was not loaded before.
             accountInfo.contactModel->initContacts();
             accountInfo.conversationModel->initConversations();
+
+            // Replay conversation state once more after activation so request
+            // propagation has time to settle without requiring a full restart.
+            QTimer::singleShot(1000,
+                               accountInfo.conversationModel.get(),
+                               [conversationModel = accountInfo.conversationModel.get()]() {
+                                   if (conversationModel) {
+                                       conversationModel->initConversations();
+                                   }
+                               });
             Q_EMIT linked.accountAdded(accountID);
         } else if (!accountInfo.profileInfo.uri.isEmpty()) {
             accountInfo.status = status;
@@ -921,6 +946,7 @@ account::Info::fromDetails(const MapStringString& details)
     confProperties.realm = details[ConfProperties::REALM];
     confProperties.localInterface = details[ConfProperties::LOCAL_INTERFACE];
     confProperties.deviceId = volatileDetails[ConfProperties::DEVICE_ID];
+    profileInfo.botOwner = storage::getBotOwner(id);
     confProperties.deviceName = details[ConfProperties::DEVICE_NAME];
     confProperties.publishedSameAsLocal = toBool(details[ConfProperties::PUBLISHED_SAMEAS_LOCAL]);
     confProperties.localPort = toInt(details[ConfProperties::LOCAL_PORT]);

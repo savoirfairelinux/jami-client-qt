@@ -166,6 +166,8 @@ public:
     Q_INVOKABLE QString getMimeNameForUrl(const QUrl& fileUrl) const;
     Q_INVOKABLE QUrl urlFromLocalPath(const QString& filePath) const;
 
+    Q_INVOKABLE QString getBotOwner(const QString& accountId) const;
+
 #ifdef BUILD_TESTING
     Q_INVOKABLE QString createDummyImage() const;
 #endif

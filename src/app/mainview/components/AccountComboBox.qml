@@ -16,9 +16,11 @@
 */
 import QtQuick
 import QtQuick.Controls
+import QtQuick.Controls.impl
 import QtQuick.Layouts
 import QtQuick.Effects
 import QtQml.Models
+
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
@@ -148,15 +150,30 @@ Item {
                     ColumnLayout {
                         Layout.fillWidth: true
 
-                        Text {
+                        RowLayout {
                             Layout.fillWidth: true
                             Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
-                            text: CurrentAccount.bestName
-                            textFormat: TextEdit.PlainText
-                            font.pointSize: JamiTheme.textFontSize
-                            elide: Text.ElideRight
-                            color: JamiTheme.textColor
-                            horizontalAlignment: Text.AlignLeft
+                            IconImage {
+                                Layout.alignment: Qt.AlignVCenter
+
+                                source: JamiResources.robot_2_24dp_svg
+
+                                sourceSize.width: JamiTheme.iconButtonSmall
+                                sourceSize.height: JamiTheme.iconButtonSmall
+
+                                visible: UtilsAdapter.getBotOwner(CurrentAccount.id).length > 0
+                            }
+
+                            Text {
+                                Layout.fillWidth: true
+                                Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
+                                text: CurrentAccount.bestName
+                                textFormat: TextEdit.PlainText
+                                font.pointSize: JamiTheme.textFontSize
+                                elide: Text.ElideRight
+                                color: JamiTheme.textColor
+                                horizontalAlignment: Text.AlignLeft
+                            }
                         }
 
                         Text {
