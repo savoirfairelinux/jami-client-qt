@@ -44,9 +44,11 @@ enum Role {
     Username,
     Type,
     Status,
+    Enabled,
     NotificationCount,
     ID,
     Uri,
+    BotOwnerID,
 };
 Q_ENUM_NS(Role)
 } // namespace AccountList
@@ -188,6 +190,11 @@ public:
      * @throws out_of_range exception if account is not found
      */
     void setAlias(const QString& accountId, const QString& alias, bool save = true);
+    /**
+     * Mark an account as a bot (writes BOT_TYPE:CHAT into its vcard)
+     * @param accountId
+     */
+    void setBotAccount(const QString& accountId, const QString& botOwnerId);
     /**
      * Try to register a name
      * @param accountId

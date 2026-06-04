@@ -110,6 +110,9 @@ AccountAdapter::createJamiAccount(const QVariantMap& settings)
         &lrc::api::AccountModel::accountAdded,
         [this, registeredName, settings](const QString& accountId) {
             lrcInstance_->accountModel().setAvatar(accountId, settings["avatar"].toString(), true, 1);
+            if (settings["isBot"].toBool()) {
+                lrcInstance_->accountModel().setBotAccount(accountId, settings["botOwnerId"].toString());
+            }
             Utils::oneShotConnect(&lrcInstance_->accountModel(),
                                   &lrc::api::AccountModel::accountDetailsChanged,
                                   [this](const QString& accountId) {
