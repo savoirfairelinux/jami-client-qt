@@ -454,6 +454,7 @@ public Q_SLOTS: // METHODS
                        const QString& displayName,
                        const QString& avatarPath,
                        const QString& fileType,
+                       const QString& botOwner,
                        int flag)
     {
         // file type is set to PNG by default
@@ -462,7 +463,7 @@ public Q_SLOTS: // METHODS
                                displayName.toStdString(),
                                avatarPath.toStdString(),
                                fileType.toStdString(),
-                               "",
+                               botOwner.toStdString(),
                                flag);
     }
 

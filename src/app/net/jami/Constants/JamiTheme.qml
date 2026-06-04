@@ -864,6 +864,9 @@ Item {
     property real jamiChipHoveredScaleValue: 1.02
     property real jamiChipIconButtonHoveredScaleValue: 1.1
 
+    // Bot Creation
+    property color botImagePickerBackgroundColor: darkTheme ? "#3c3b3b" : "#ebe7e6"
+
     // Fonts
     property string ubuntuFontFamily: "Ubuntu"
     property string ubuntuMonoFontFamily: "Ubuntu Mono"

@@ -229,6 +229,27 @@ Item {
     property string apiTokenCreatedTitle: qsTr("API token created")
     property string apiTokenCreatedMessage: qsTr("Copy this token now. It will not be shown again.")
     property string apiTokenCopyWarning: qsTr("This token grants access to your account. Keep it secret.")
+    property string apiBotAccounts: qsTr("Bot Accounts")
+    property string apiCreateBotAccount: qsTr("Create Bot")
+    property string apiBotHelp: qsTr("How do bots work?")
+    property string apiNoBotsConfigured: qsTr("No bots configured for this account.")
+    property string apiBotOnline: qsTr("Online")
+    property string apiBotOffline: qsTr("Offline")
+    property string apiOpenChat: qsTr("Open chat")
+    property string apiShareBot: qsTr("Share bot")
+    property string apiShareBotDialogTitle: qsTr("Send bot to contact")
+    property string apiShareBotMessage: qsTr("Add **%1** on Jami!\n Account ID: ```%2```")
+
+    // CreateBotDialog
+    property string createNewBot: qsTr("Create new bot")
+    property string botName: qsTr("Bot Name (as seen by others)")
+    property string botTokenInfo: qsTr("This is the only time you will see the token. Keep it a secret and take note of it somewhere!")
+
+    // AboutBotAccountsPopup
+    property string aboutBotAccountsTitle: qsTr("About Bot Accounts")
+    property string aboutBotAccountsTypeInfo: qsTr("A bot account is a regular Jami account with additional properties.")
+    property string aboutBotAccountsDescription: qsTr("A bot account is designed to be controlled by external applications or scripts. It will have an API token associated with it once created.")
+    property string aboutBotAccountsProfileInfo: qsTr("A bot account includes profile markers indicating that it is a bot and the account controlling it.")
 
     // ExposedServicesSettingsPage
     property string exposedServicesSettingsTitle: qsTr("Shared services")
