@@ -229,6 +229,16 @@ Item {
     property string apiTokenCreatedTitle: qsTr("API token created")
     property string apiTokenCreatedMessage: qsTr("Copy this token now. It will not be shown again.")
     property string apiTokenCopyWarning: qsTr("This token grants access to your account. Keep it secret.")
+    property string apiTokenBots: qsTr("Bots")
+    property string apiTokenBotsDescription: qsTr("Configure bots from this account.")
+    property string apiTokenCreateBot: qsTr("Create Bot")
+    property string apiTokenNoBotsConfigured: qsTr("No bots configured for this account.")
+    property string apiTokenBotOnline: qsTr("Online")
+    property string apiTokenBotOffline: qsTr("Offline")
+    property string apiTokenOpenChat: qsTr("Open chat")
+    property string apiTokenShareBot: qsTr("Share bot")
+    property string apiTokenShareBotDialogTitle: qsTr("Send bot to contact")
+    property string apiTokenShareBotMessage: qsTr("Add **%1** on Jami!\n Account ID: ```%2```")
 
     // ExposedServicesSettingsPage
     property string exposedServicesSettingsTitle: qsTr("Shared services")
