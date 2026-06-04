@@ -67,6 +67,7 @@ struct Property
     constexpr static const char* PHOTO_JPEG = "PHOTO;ENCODING=BASE64;TYPE=JPEG";
 
     constexpr static const char* X_RINGACCOUNT = "X-RINGACCOUNTID";
+    constexpr static const char* RELATED_OWNER = "RELATED;TYPE=owner";
 };
 
 namespace utils {
