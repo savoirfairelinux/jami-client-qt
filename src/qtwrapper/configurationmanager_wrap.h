@@ -451,7 +451,9 @@ public Q_SLOTS: // METHODS
                        const QString& displayName,
                        const QString& avatarPath,
                        const QString& fileType,
-                       int flag)
+                       int flag,
+                       bool isBot = false,
+                       const QString& botOwnerId = QString())
     {
         // file type is set to PNG by default
         // it can be changed to JPEG to optimize compression
@@ -459,7 +461,9 @@ public Q_SLOTS: // METHODS
                                displayName.toStdString(),
                                avatarPath.toStdString(),
                                fileType.toStdString(),
-                               flag);
+                               flag,
+                               isBot,
+                               botOwnerId.toStdString());
     }
 
     QStringList getAccountList()

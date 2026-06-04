@@ -244,6 +244,7 @@ ConversationModel::roleNames() const
     roles[Alias] = "Alias";
     roles[RegisteredName] = "RegisteredName";
     roles[URI] = "URI";
+    roles[BotOwnerID] = "BotOwnerID";
     roles[UnreadMessagesCount] = "UnreadMessagesCount";
     roles[LastInteractionTimeStamp] = "LastInteractionTimeStamp";
     roles[LastInteraction] = "LastInteraction";
@@ -416,6 +417,8 @@ ConversationModel::dataForItem(const conversation::Info& item, int role) const
                 return owner.registeredName;
             case Role::URI:
                 return peerUri;
+            case Role::BotOwnerID:
+                return owner.profileInfo.botOwnerId;
             case Role::IsBanned:
                 return false;
             case Role::ContactType:
@@ -433,6 +436,8 @@ ConversationModel::dataForItem(const conversation::Info& item, int role) const
                 return contact.registeredName;
             case Role::URI:
                 return peerUri;
+            case Role::BotOwnerID:
+                return contact.profileInfo.botOwnerId;
             case Role::IsBanned:
                 return contact.isBanned;
             case Role::ContactType:

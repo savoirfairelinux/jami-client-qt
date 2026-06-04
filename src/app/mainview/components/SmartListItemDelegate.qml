@@ -19,6 +19,8 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import Qt5Compat.GraphicalEffects
+import QtQuick.Controls.impl
+
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import net.jami.Enums 1.1
@@ -120,18 +122,35 @@ ItemDelegate {
             Layout.fillHeight: true
             spacing: 0
 
-            // best name
-            Text {
-                Layout.fillWidth: true
-                Layout.minimumHeight: 20
-                Layout.alignment: Qt.AlignVCenter
-                horizontalAlignment: Text.AlignLeft
-                elide: Text.ElideMiddle
-                text: Title === undefined ? "" : Title
-                textFormat: TextEdit.PlainText
-                font.pointSize: JamiTheme.mediumFontSize
-                font.weight: UnreadMessagesCount ? Font.Bold : Font.Normal
-                color: JamiTheme.textColor
+            RowLayout {
+                IconImage {
+                    Layout.alignment: Qt.AlignVCenter
+
+                    width: 20
+                    height: 20
+
+                    source: JamiResources.robot_2_24dp_svg
+                    sourceSize.width: JamiTheme.iconButtonMedium
+                    sourceSize.height: JamiTheme.iconButtonMedium
+
+                    color: JamiTheme.textColor
+
+                    visible: BotOwnerID !== undefined && BotOwnerID.length > 0
+                }
+                // best name
+                Text {
+                    Layout.fillWidth: true
+                    Layout.minimumHeight: 20
+                    Layout.alignment: Qt.AlignVCenter
+                    horizontalAlignment: Text.AlignLeft
+                    verticalAlignment: Text.AlignVCenter
+                    elide: Text.ElideMiddle
+                    text: Title === undefined ? "" : Title
+                    textFormat: TextEdit.PlainText
+                    font.pointSize: JamiTheme.mediumFontSize
+                    font.weight: UnreadMessagesCount ? Font.Bold : Font.Normal
+                    color: JamiTheme.textColor
+                }
             }
             RowLayout {
                 visible: ContactType !== Profile.Type.TEMPORARY && !IsBanned && lastInteractionTimeStamp > 0 && interactive
