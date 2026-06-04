@@ -76,6 +76,7 @@ struct Info
     QString avatar = "";
     QString alias = "";
     Type type = Type::INVALID;
+    QString botOwner = "";
 };
 
 } // namespace profile

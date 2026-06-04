@@ -49,7 +49,11 @@ AccountAdapter::AccountAdapter(AppSettingsManager* settingsManager,
             &AccountListModel::updateNotifications);
 
     // Switch account to the specified index when an account is added.
-    connect(this, &AccountAdapter::accountAdded, this, [this](const QString&, int index) { changeAccount(index); });
+    connect(this, &AccountAdapter::accountAdded, this, [this](const QString&, int index, bool switchToAccount) {
+        if (!switchToAccount)
+            return;
+        changeAccount(index);
+    });
 }
 
 AccountModel*
@@ -105,11 +109,16 @@ void
 AccountAdapter::createJamiAccount(const QVariantMap& settings)
 {
     auto registeredName = settings["registeredName"].toString();
+    const auto botOwner = settings["botOwner"].toString();
+    const auto switchToCreatedAccount = botOwner.isEmpty();
     Utils::oneShotConnect(
         &lrcInstance_->accountModel(),
         &lrc::api::AccountModel::accountAdded,
-        [this, registeredName, settings](const QString& accountId) {
+        [this, registeredName, settings, botOwner, switchToCreatedAccount](const QString& accountId) {
             lrcInstance_->accountModel().setAvatar(accountId, settings["avatar"].toString(), true, 1);
+            if (!botOwner.isEmpty()) {
+                lrcInstance_->accountModel().setBotAccount(accountId, botOwner);
+            }
             Utils::oneShotConnect(&lrcInstance_->accountModel(),
                                   &lrc::api::AccountModel::accountDetailsChanged,
                                   [this](const QString& accountId) {
@@ -131,12 +140,13 @@ AccountAdapter::createJamiAccount(const QVariantMap& settings)
                     = connect(&lrcInstance_->accountModel(),
                               &lrc::api::AccountModel::profileUpdated,
                               this,
-                              [this, addedAccountId = accountId](const QString& accountId) {
+                              [this, addedAccountId = accountId, switchToCreatedAccount](const QString& accountId) {
                                   if (addedAccountId == accountId) {
                                       Q_EMIT lrcInstance_->accountListChanged();
                                       Q_EMIT accountAdded(accountId,
                                                           lrcInstance_->accountModel().getAccountList().indexOf(
-                                                              accountId));
+                                                              accountId),
+                                                          switchToCreatedAccount);
                                       QObject::disconnect(registeredNameSavedConnection_);
                                   }
                               });
@@ -144,7 +154,9 @@ AccountAdapter::createJamiAccount(const QVariantMap& settings)
                 lrcInstance_->accountModel().registerName(accountId, settings["password"].toString(), registeredName);
             } else {
                 Q_EMIT lrcInstance_->accountListChanged();
-                Q_EMIT accountAdded(accountId, lrcInstance_->accountModel().getAccountList().indexOf(accountId));
+                Q_EMIT accountAdded(accountId,
+                                    lrcInstance_->accountModel().getAccountList().indexOf(accountId),
+                                    switchToCreatedAccount);
             }
         },
         this,
