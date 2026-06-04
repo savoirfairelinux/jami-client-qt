@@ -45,6 +45,7 @@
 #include <QtGui/QImage>
 #include <QtCore/QBuffer>
 #include <QJsonDocument>
+#include <QTimer>
 
 #include <atomic>
 
@@ -297,6 +298,12 @@ AccountModel::setAlias(const QString& accountId, const QString& alias, bool save
 }
 
 void
+AccountModel::setBotAccount(const QString& accountId, const QString& botOwnerId)
+{
+    ConfigurationManager::instance().updateProfile(accountId, "", "", "", 0, true, botOwnerId);
+}
+
+void
 AccountModel::setAvatar(const QString& accountId, const QString& avatar, bool save, int flag)
 {
     auto& accountInfo = pimpl_->getAccountInfo(accountId);
@@ -540,6 +547,16 @@ AccountModelPimpl::slotAccountStatusChanged(const QString& accountID, const api:
             // This will load swarms as the account was not loaded before.
             accountInfo.contactModel->initContacts();
             accountInfo.conversationModel->initConversations();
+
+            // Replay conversation state once more after activation so request
+            // propagation has time to settle without requiring a full restart.
+            QTimer::singleShot(1000,
+                               accountInfo.conversationModel.get(),
+                               [conversationModel = accountInfo.conversationModel.get()]() {
+                                   if (conversationModel) {
+                                       conversationModel->initConversations();
+                                   }
+                               });
             Q_EMIT linked.accountAdded(accountID);
         } else if (!accountInfo.profileInfo.uri.isEmpty()) {
             accountInfo.status = status;
@@ -833,6 +850,7 @@ account::Info::fromDetails(const MapStringString& details)
     confProperties.realm = details[ConfProperties::REALM];
     confProperties.localInterface = details[ConfProperties::LOCAL_INTERFACE];
     confProperties.deviceId = volatileDetails[ConfProperties::DEVICE_ID];
+    profileInfo.botOwnerId = storage::getBotOwnerId(id);
     confProperties.deviceName = details[ConfProperties::DEVICE_NAME];
     confProperties.publishedSameAsLocal = toBool(details[ConfProperties::PUBLISHED_SAMEAS_LOCAL]);
     confProperties.localPort = toInt(details[ConfProperties::LOCAL_PORT]);

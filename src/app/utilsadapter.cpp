@@ -871,6 +871,15 @@ UtilsAdapter::urlFromLocalPath(const QString& filePath) const
     return QUrl::fromLocalFile(filePath);
 }
 
+QString
+UtilsAdapter::getBotOwner(const QString& accountId) const
+{
+    // QString vCard = lrc::authority::storage::getBotOwnerId(accountId);
+    auto vCard = lrcInstance_->accountModel().getAccountInfo(accountId).profileInfo.botOwnerId;
+    qWarning() << vCard.toStdString();
+    return "";
+}
+
 #ifdef BUILD_TESTING
 // Must only be used for testing purposes
 QString

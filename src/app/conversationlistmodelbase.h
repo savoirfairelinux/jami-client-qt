@@ -46,7 +46,8 @@
     X(IsRequest) \
     X(Mode) \
     X(Uris) \
-    X(Monikers)
+    X(Monikers) \
+    X(BotOwnerID)
 
 namespace ConversationList {
 Q_NAMESPACE

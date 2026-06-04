@@ -70,6 +70,8 @@ AccountListModel::data(const QModelIndex& index, int role) const
     auto& accountInfo = lrcInstance_->accountModel().getAccountInfo(accountId);
 
     switch (role) {
+    case Role::Enabled:
+        return accountInfo.enabled;
     case Role::Alias:
         return QVariant(lrcInstance_->accountModel().bestNameForAccount(accountId));
     case Role::Username:
@@ -84,6 +86,8 @@ AccountListModel::data(const QModelIndex& index, int role) const
         return QVariant(accountInfo.id);
     case Role::Uri:
         return QVariant(accountInfo.profileInfo.uri);
+    case Role::BotOwnerID:
+        return QVariant(accountInfo.profileInfo.botOwnerId);
     }
     return QVariant();
 }

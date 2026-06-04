@@ -20,13 +20,15 @@
 #include "abstractlistmodelbase.h"
 
 #define ACC_ROLES \
+    X(Enabled) \
     X(Alias) \
     X(Username) \
     X(Type) \
     X(Status) \
     X(NotificationCount) \
     X(ID) \
-    X(Uri)
+    X(Uri) \
+    X(BotOwnerID)
 
 namespace AccountList {
 Q_NAMESPACE

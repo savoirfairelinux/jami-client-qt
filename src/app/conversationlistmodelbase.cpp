@@ -238,6 +238,8 @@ ConversationListModelBase::dataForItem(item_t item, int role) const
             return QVariant(contact.isBanned);
         case Role::ContactType:
             return QVariant(static_cast<int>(contact.profileInfo.type));
+        case Role::BotOwnerID:
+            return QVariant(contact.profileInfo.botOwnerId);
         }
     }
 
