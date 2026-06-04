@@ -122,6 +122,8 @@ void removeProfile(const QString& accountId, const QString& peerUri);
  */
 QString getAccountAvatar(const QString& accountId);
 
+QString getBotOwner(const QString& accountId);
+
 /**
  * Build a contact info struct from a local profile which includes
  * combining information from the override and regular vCard files.
