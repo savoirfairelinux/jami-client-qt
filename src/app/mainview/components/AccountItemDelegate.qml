@@ -17,6 +17,8 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
+import QtQuick.Controls.impl
+
 import net.jami.Models 1.1
 import net.jami.Constants 1.1
 import net.jami.Adapters 1.1
@@ -77,6 +79,19 @@ ItemDelegate {
 
             imageId: ID
             mode: Avatar.Mode.Account
+        }
+
+        IconImage {
+            width: JamiTheme.accountListAvatarSize
+            height: JamiTheme.accountListAvatarSize
+
+            source: JamiResources.robot_2_24dp_svg
+            sourceSize.width: JamiTheme.iconButtonSmall
+            sourceSize.height: JamiTheme.iconButtonSmall
+
+            color: JamiTheme.textColor
+
+            visible: BotOwnerID.length > 0
         }
 
         ColumnLayout {

@@ -274,6 +274,28 @@ getAccountAvatar(const QString& accountId)
     return avatar;
 }
 
+QString
+getBotOwnerId(const QString& accountId)
+{
+    QString botOwnerId;
+    withProfile(
+        accountId,
+        "",
+        QIODevice::ReadOnly,
+        [&](const QByteArray& readData, QTextStream&) {
+            QHash<QByteArray, QByteArray> vCard = lrc::vCard::utils::toHashMap(readData);
+            for (auto it = vCard.cbegin(); it != vCard.cend(); ++it) {
+                if (it.key().contains("IS_BOT_OF")) {
+                    botOwnerId = it.value();
+                    return;
+                }
+            }
+        },
+        false);
+
+    return botOwnerId;
+}
+
 static QPair<QString, QString>
 getOverridenInfos(const QString& accountId, const QString& peerUri)
 {
@@ -329,6 +351,21 @@ buildContactFromProfile(const QString& accountId, const QString& peerUri, const 
             },
             false);
     }
+
+    // withProfile(
+    //     accountId,
+    //     peerUri,
+    //     QIODevice::ReadOnly,
+    //     [&](const QByteArray& readData, QTextStream&) {
+    //         QHash<QByteArray, QByteArray> vCard = lrc::vCard::utils::toHashMap(readData);
+    //         for (auto it = vCard.cbegin(); it != vCard.cend(); ++it) {
+    //             if (it.key().contains("IS_BOT_OF")) {
+    //                 profileInfo.botOwnerId = it.value();
+    //                 return;
+    //             }
+    //         }
+    //     },
+    //     false);
 
     return {profileInfo, "", type == api::profile::Type::JAMI, false};
 }
@@ -402,6 +439,21 @@ getProfileData(const QString& accountId, const QString& peerUri)
             },
             false);
     }
+
+    withProfile(
+        accountId,
+        peerUri,
+        QIODevice::ReadOnly,
+        [&](const QByteArray& readData, QTextStream&) {
+            QHash<QByteArray, QByteArray> vCard = lrc::vCard::utils::toHashMap(readData);
+            for (auto it = vCard.cbegin(); it != vCard.cend(); ++it) {
+                if (it.key().contains("IS_BOT_OF")) {
+                    profileData["botOwnerId"] = it.value();
+                    return;
+                }
+            }
+        },
+        false);
 
     return profileData;
 }

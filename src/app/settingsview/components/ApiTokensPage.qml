@@ -17,6 +17,8 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
+import QtQuick.Controls.impl
+
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import net.jami.Enums 1.1
@@ -187,7 +189,7 @@ SettingsPageBase {
                     height: 64
                     radius: 5
                     color: tokenHover.hovered ? JamiTheme.smartListSelectedColor
-                                              : "transparent"
+                                              : JamiTheme.transparentColor
 
                     HoverHandler {
                         id: tokenHover
@@ -235,6 +237,237 @@ SettingsPageBase {
                             color: JamiTheme.buttonTintedRed
                             text: JamiStrings.optionDelete
                             onClicked: ApiTokenListModel.revokeToken(tokenDelegate.tokenId)
+                        }
+                    }
+                }
+            }
+
+            RowLayout {
+                Layout.fillWidth: true
+
+                ColumnLayout {
+                    Layout.fillWidth: true
+                    Text {
+                        Layout.alignment: Qt.AlignLeft
+                        Layout.fillWidth: true
+
+                        text: JamiStrings.apiTokenBots
+                        color: JamiTheme.textColor
+                        horizontalAlignment: Text.AlignLeft
+                        font.pixelSize: JamiTheme.settingsTitlePixelSize
+                        font.kerning: true
+                    }
+
+                    Text {
+                        Layout.fillWidth: true
+
+                        text: JamiStrings.apiTokenBotsDescription
+                        color: JamiTheme.faddedLastInteractionFontColor
+                        font.pixelSize: JamiTheme.settingsDescriptionPixelSize
+                        font.italic: true
+                    }
+                }
+
+                NewMaterialButton {
+                    id: createBot
+
+                    implicitHeight: JamiTheme.newMaterialButtonHeight
+                    filledButton: true
+                    iconSource: JamiResources.robot_2_24dp_svg
+                    text: JamiStrings.apiTokenCreateBot
+
+                    onClicked: {
+                        viewCoordinator.presentDialog(appWindow, "settingsview/components/CreateBotDialog.qml");
+                    }
+                }
+            }
+
+            Text {
+                Layout.fillWidth: true
+
+                text: JamiStrings.apiTokenNoBotsConfigured
+                color: JamiTheme.faddedLastInteractionFontColor
+                font.pixelSize: JamiTheme.settingsDescriptionPixelSize
+                font.italic: true
+
+                visible: botListView.count === 0
+            }
+
+            ListView {
+                id: botListView
+
+                Layout.fillWidth: true
+                Layout.preferredHeight: Math.min(count, 5) * 72
+                clip: true
+                interactive: count > 5
+
+                model: SortFilterProxyModel {
+                    model: AccountListModel
+                    filters: ValueFilter {
+                        roleName: "BotOwnerID"
+                        value: CurrentAccount.uri
+                    }
+                }
+
+                delegate: ItemDelegate {
+                    id: botItemDelegate
+
+                    width: botListView.width
+
+                    contentItem: RowLayout {
+                        spacing: 8
+
+                        Avatar {
+                            Layout.alignment: Qt.AlignVCenter
+
+                            width: JamiTheme.accountListAvatarSize
+                            height: JamiTheme.accountListAvatarSize
+
+                            imageId: ID
+                            mode: Avatar.Mode.Account
+
+                            showPresenceIndicator: false
+                        }
+
+                        ColumnLayout {
+                            RowLayout {
+                                Layout.fillWidth: true
+                                IconImage {
+                                    Layout.alignment: Qt.AlignVCenter
+
+                                    width: JamiTheme.iconButtonSmall
+                                    height: JamiTheme.iconButtonSmall
+
+                                    source: JamiResources.robot_2_24dp_svg
+                                    sourceSize.width: JamiTheme.iconButtonMedium
+                                    sourceSize.height: JamiTheme.iconButtonMedium
+
+                                    color: JamiTheme.textColor
+                                }
+
+                                Text {
+                                    Layout.alignment: Qt.AlignVCenter
+                                    Layout.fillWidth: true
+
+                                    text: Alias
+                                    color: JamiTheme.textColor
+
+                                    elide: Text.ElideRight
+
+                                    font.pointSize: JamiTheme.mediumFontSize
+                                    verticalAlignment: Text.AlignVCenter
+                                }
+                            }
+
+                            Row {
+                                spacing: 4
+
+                                Rectangle {
+                                    color: Enabled ? JamiTheme.green_ : JamiTheme.red_
+
+                                    width: statusText.height
+                                    height: statusText.height
+                                    radius: height / 2
+
+                                    SequentialAnimation on scale {
+                                        loops: Animation.Infinite
+                                        running: Enabled
+                                        NumberAnimation {
+                                            from: 0.8
+                                            to: 1.0
+                                            duration: JamiTheme.recordBlinkDuration
+                                        }
+                                        NumberAnimation {
+                                            from: 1.0
+                                            to: 0.8
+                                            duration: JamiTheme.recordBlinkDuration
+                                        }
+                                    }
+
+                                    Behavior on color {
+                                        ColorAnimation {
+                                            duration: JamiTheme.shortFadeDuration
+                                        }
+                                    }
+                                }
+
+                                Text {
+                                    id: statusText
+                                    text: Enabled ? JamiStrings.apiTokenBotOnline : JamiStrings.apiTokenBotOffline
+                                    color: Enabled ? JamiTheme.green_ : JamiTheme.red_
+
+                                    font.family: JamiTheme.ubuntuMonoFontFamily
+                                    font.pointSize: JamiTheme.smallFontSize
+
+                                    Behavior on color {
+                                        ColorAnimation {
+                                            duration: JamiTheme.shortFadeDuration
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        NewIconButton {
+                            id: openChatButton
+
+                            Layout.alignment: Qt.AlignLeft
+
+                            iconSource: JamiResources.chat_24dp_svg
+                            iconSize: JamiTheme.iconButtonMedium
+                            toolTipText: JamiStrings.apiTokenOpenChat
+
+                            // To avoid conflict with delegate background
+                            background.visible: false
+
+                            onClicked: {
+                                // Dismiss the settings prior to searching and selecting the converastion
+                                viewCoordinator.dismiss("SettingsView");
+                                ConversationsAdapter.setFilterAndSelect(Uri);
+                            }
+                        }
+
+                        NewIconButton {
+                            id: shareBotButton
+
+                            Layout.alignment: Qt.AlignLeft
+
+                            iconSource: JamiResources.share_24dp_svg
+                            iconSize: JamiTheme.iconButtonMedium
+                            toolTipText: JamiStrings.apiTokenShareBot
+
+                            // To avoid conflict with delegate background
+                            background.visible: false
+
+                            onClicked: {
+                                var dlg = viewCoordinator.presentDialog(appWindow, "../../mainview/components/ContactPicker.qml", {
+                                                                            "type": ContactList.ONE_TO_ONE,
+                                                                            "titleText": JamiStrings.apiTokenShareBotDialogTitle
+                                                                        });
+
+
+                                dlg.contactSelected.connect(function(uri) {
+                                    const convId = UtilsAdapter.getConvIdForUri(CurrentAccount.id, uri);
+                                    MessagesAdapter.sendMessageToUid(JamiStrings.apiTokenShareBotMessage.arg(Alias).arg(Uri), convId);
+                                });
+                            }
+                        }
+
+                        JamiSwitch {
+                            Layout.alignment: Qt.AlignVCenter
+                            checked: Enabled
+                            onClicked: AccountAdapter.model.setAccountEnabled(ID, checked)
+                        }
+                    }
+
+                    background: Rectangle {
+                        radius: height / 2
+                        color: botItemDelegate.hovered ? JamiTheme.smartListHoveredColor : JamiTheme.globalBackgroundColor
+
+                        Behavior on color {
+                            ColorAnimation {
+                                duration: JamiTheme.shortFadeDuration
+                            }
                         }
                     }
                 }
