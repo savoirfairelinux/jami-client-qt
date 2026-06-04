@@ -882,6 +882,12 @@ UtilsAdapter::urlFromLocalPath(const QString& filePath) const
     return QUrl::fromLocalFile(filePath);
 }
 
+QString
+UtilsAdapter::getBotOwner(const QString& accountId) const
+{
+    return lrcInstance_->accountModel().getAccountInfo(accountId).profileInfo.botOwner;
+}
+
 #ifdef BUILD_TESTING
 // Must only be used for testing purposes
 QString
