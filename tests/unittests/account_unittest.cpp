@@ -87,3 +87,44 @@ TEST_F(AccountFixture, CreateSIPAccountTest)
     accountListSize = globalEnv.lrcInstance->accountModel().getAccountCount();
     ASSERT_EQ(accountListSize, 0);
 }
+
+/*!
+ * WHEN  A bot account is created from an existing account.
+ * THEN  The current account should stay on the creator account.
+ */
+TEST_F(AccountFixture, CreateBotAccountKeepsCreatorAsCurrentAccount)
+{
+    QSignalSpy accountAddedSpy(&globalEnv.lrcInstance->accountModel(), &AccountModel::accountAdded);
+
+    globalEnv.accountAdapter->createSIPAccount(QVariantMap());
+
+    ASSERT_TRUE(accountAddedSpy.wait());
+    ASSERT_EQ(accountAddedSpy.count(), 1);
+
+    const auto creatorAccountId = accountAddedSpy.takeFirst().at(0).toString();
+    globalEnv.lrcInstance->set_currentAccountId(creatorAccountId);
+
+    QSignalSpy accountAdapterAddedSpy(globalEnv.accountAdapter.get(), &AccountAdapter::accountAdded);
+
+    QVariantMap botSettings;
+    botSettings["alias"] = "Bot account";
+    botSettings["registeredName"] = "";
+    botSettings["password"] = "";
+    botSettings["archivePath"] = "";
+    botSettings["avatar"] = "";
+    botSettings["botOwner"] = "jami:" + creatorAccountId;
+
+    globalEnv.accountAdapter->createJamiAccount(botSettings);
+
+    ASSERT_TRUE(accountAdapterAddedSpy.wait());
+    ASSERT_EQ(accountAdapterAddedSpy.count(), 1);
+
+    const auto botAccountId = accountAdapterAddedSpy.takeFirst().at(0).toString();
+    EXPECT_NE(botAccountId, creatorAccountId);
+    EXPECT_EQ(globalEnv.lrcInstance->get_currentAccountId(), creatorAccountId);
+
+    globalEnv.lrcInstance->accountModel().removeAccount(botAccountId);
+    globalEnv.lrcInstance->accountModel().removeAccount(creatorAccountId);
+
+    QTRY_COMPARE(globalEnv.lrcInstance->accountModel().getAccountCount(), 0);
+}

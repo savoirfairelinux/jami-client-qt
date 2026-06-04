@@ -18,7 +18,9 @@
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
+import QtQuick.Controls.impl
 import QtQuick.Effects
+
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import net.jami.Enums 1.1
@@ -86,7 +88,7 @@ Control {
     SequentialAnimation {
         id: titleFadeAnimation
         NumberAnimation {
-            targets: [title, description, userAvatar]
+            targets: [botIcon, title, description, userAvatar]
             property: "opacity"
             to: 0
             duration: JamiTheme.longFadeDuration / 2
@@ -104,7 +106,7 @@ Control {
             }
         }
         NumberAnimation {
-            targets: [title, description, userAvatar]
+            targets: [botIcon, title, description, userAvatar]
             property: "opacity"
             to: 1
             duration: JamiTheme.longFadeDuration / 2
@@ -233,34 +235,58 @@ Control {
 
                 spacing: 0
 
-                ElidedTextLabel {
-                    id: title
-
-                    LineEditContextMenu {
-                        id: displayNameContextMenu
-                        lineEditObj: title
-                        selectOnly: true
-                    }
-                    MouseArea {
-                        anchors.fill: parent
-                        acceptedButtons: Qt.RightButton
-                        cursorShape: Qt.IBeamCursor
-                        onClicked: function (mouse) {
-                            displayNameContextMenu.openMenuAt(mouse);
-                        }
-                    }
-
+                RowLayout {
+                    Layout.alignment: Qt.AlignVCenter
                     Layout.fillWidth: true
-                    Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
+
+                    IconImage {
+                        id: botIcon
+                        Layout.alignment: Qt.AlignVCenter
+
+                        source: JamiResources.robot_2_24dp_svg
+                        sourceSize.width: JamiTheme.iconButtonSmall
+                        sourceSize.height: JamiTheme.iconButtonSmall
+
+                        color: JamiTheme.textColor
+                        opacity: visible ? 1.0 : 0.0
+                        Behavior on opacity {
+                            NumberAnimation {
+                                duration: JamiTheme.shortFadeDuration
+                            }
+                        }
+
+                        visible: convContext.botOwner.length > 0
+                    }
+
+                    ElidedTextLabel {
+                        id: title
+
+                        LineEditContextMenu {
+                            id: displayNameContextMenu
+                            lineEditObj: title
+                            selectOnly: true
+                        }
+                        MouseArea {
+                            anchors.fill: parent
+                            acceptedButtons: Qt.RightButton
+                            cursorShape: Qt.IBeamCursor
+                            onClicked: function (mouse) {
+                                displayNameContextMenu.openMenuAt(mouse);
+                            }
+                        }
+
+                        Layout.fillWidth: true
+                        Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
 
 
-                    font.family: CurrentConversation.isCoreDialog && CurrentConversation.title.length === 40 ? JamiTheme.ubuntuMonoFontFamily : JamiTheme.ubuntuFontFamily
-                    font.pointSize: JamiTheme.textFontSize + 2
+                        font.family: CurrentConversation.isCoreDialog && CurrentConversation.title.length === 40 ? JamiTheme.ubuntuMonoFontFamily : JamiTheme.ubuntuFontFamily
+                        font.pointSize: JamiTheme.textFontSize + 2
 
-                    horizontalAlignment: Text.AlignLeft
-                    verticalAlignment: Text.AlignVCenter
+                        horizontalAlignment: Text.AlignLeft
+                        verticalAlignment: Text.AlignVCenter
 
-                    maxWidth: userNameOrIdColumnLayout.width
+                        maxWidth: userNameOrIdColumnLayout.width
+                    }
                 }
 
                 ElidedTextLabel {

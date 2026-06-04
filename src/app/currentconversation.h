@@ -36,6 +36,7 @@ class CurrentConversation final : public QObject
     QML_PROPERTY(QString, id)
     QML_PROPERTY(QString, title)
     QML_PROPERTY(QString, description)
+    QML_PROPERTY(QString, botOwner)
     QML_PROPERTY(bool, isSwarm)
     QML_PROPERTY(bool, isLegacy)
     QML_PROPERTY(bool, isCoreDialog)

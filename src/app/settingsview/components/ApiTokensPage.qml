@@ -17,6 +17,8 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
+import QtQuick.Controls.impl
+
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import net.jami.Enums 1.1
@@ -33,10 +35,12 @@ SettingsPageBase {
     flickableContent: ColumnLayout {
         id: apiSettingsLayout
 
-        width: contentFlickableWidth
-        spacing: JamiTheme.settingsBlockSpacing
         anchors.left: parent.left
         anchors.leftMargin: JamiTheme.preferredSettingsMarginSize
+
+        width: contentFlickableWidth
+
+        spacing: JamiTheme.settingsBlockSpacing
 
         Text {
             Layout.alignment: Qt.AlignLeft
@@ -103,7 +107,7 @@ SettingsPageBase {
 
         ColumnLayout {
             Layout.fillWidth: true
-            spacing: 10
+            spacing: 12
 
             // ── Create Token ──
 
@@ -174,7 +178,7 @@ SettingsPageBase {
 
                 model: ApiTokenListModel
 
-                delegate: Rectangle {
+                delegate: ItemDelegate {
                     id: tokenDelegate
 
                     required property string tokenId
@@ -185,19 +189,18 @@ SettingsPageBase {
 
                     width: tokenListView.width
                     height: 64
-                    radius: 5
-                    color: tokenHover.hovered ? JamiTheme.smartListSelectedColor
-                                              : "transparent"
 
-                    HoverHandler {
-                        id: tokenHover
-                    }
+                    activeFocusOnTab: true
 
-                    RowLayout {
-                        anchors.fill: parent
-                        anchors.leftMargin: 12
-                        anchors.rightMargin: 12
-                        spacing: 10
+                    contentItem: RowLayout {
+                        IconImage {
+                            source: JamiResources.token_24dp_svg
+
+                            sourceSize.width: JamiTheme.iconButtonMedium
+                            sourceSize.height: JamiTheme.iconButtonMedium
+
+                            color: JamiTheme.textColor
+                        }
 
                         ColumnLayout {
                             Layout.fillWidth: true
@@ -205,11 +208,13 @@ SettingsPageBase {
 
                             Text {
                                 Layout.fillWidth: true
+
                                 text: tokenDelegate.tokenLabel
-                                font.pixelSize: JamiTheme.settingsDescriptionPixelSize
-                                font.weight: Font.Medium
                                 color: JamiTheme.textColor
                                 elide: Text.ElideRight
+
+                                font.pixelSize: JamiTheme.settingsDescriptionPixelSize
+                                font.weight: Font.Medium
                             }
 
                             Text {
@@ -230,90 +235,342 @@ SettingsPageBase {
                             id: revokeTokenButton
 
                             Layout.alignment: Qt.AlignVCenter
-                            visible: tokenHover.hovered
+
                             outlinedButton: true
-                            color: JamiTheme.buttonTintedRed
                             text: JamiStrings.optionDelete
+                            color: JamiTheme.buttonTintedRed
+                            opacity: visible ? 1.0 : 0.0
+                            Behavior on opacity {
+                                NumberAnimation {
+                                    duration: JamiTheme.shortFadeDuration
+                                }
+                            }
+
+                            visible: tokenDelegate.hovered || tokenDelegate.highlighted || tokenDelegate.activeFocus
+
                             onClicked: ApiTokenListModel.revokeToken(tokenDelegate.tokenId)
                         }
+                    }
+
+                    background: Rectangle {
+                        color: JamiTheme.transparentColor
                     }
                 }
             }
         }
 
-        // ── "New token created" dialog ──
+        ColumnLayout {
+            Layout.fillWidth: true
+            spacing: 12
 
-        BaseModalDialog {
-            id: newTokenDialog
+            RowLayout {
+                Layout.fillWidth: true
 
-            property string rawToken: ""
-
-            titleText: JamiStrings.apiTokenCreatedTitle
-
-            popupContent: ColumnLayout {
-                spacing: 16
-
-                Text {
+                Row {
+                    Layout.alignment: Qt.AlignVCenter
                     Layout.fillWidth: true
-                    text: JamiStrings.apiTokenCreatedMessage
-                    wrapMode: Text.WordWrap
-                    color: JamiTheme.textColor
-                    font.pixelSize: JamiTheme.settingsDescriptionPixelSize
+
+                    spacing: 4
+
+                    Text {
+                        anchors.verticalCenter: parent.verticalCenter
+
+                        text: JamiStrings.apiBotAccounts
+                        color: JamiTheme.textColor
+                        horizontalAlignment: Text.AlignLeft
+
+                        font.pixelSize: JamiTheme.settingsTitlePixelSize
+                        font.kerning: true
+                    }
+
+                    NewIconButton {
+                        anchors.verticalCenter: parent.verticalCenter
+
+                        iconSource: JamiResources.bidirectional_help_outline_24dp_svg
+                        iconSize: JamiTheme.iconButtonMedium
+                        toolTipText: JamiStrings.apiBotHelp
+
+                        onClicked: viewCoordinator.presentDialog(appWindow, "settingsview/components/AboutBotAccountsPopup.qml");
+                    }
                 }
 
-                Rectangle {
-                    Layout.fillWidth: true
-                    Layout.preferredHeight: tokenContentLayout.implicitHeight + 20
-                    radius: 5
-                    color: JamiTheme.editBackgroundColor
-                    border.color: JamiTheme.tintedBlue
-                    border.width: 1
 
-                    RowLayout {
-                        id: tokenContentLayout
-                        anchors.fill: parent
-                        anchors.margins: 10
+                NewMaterialButton {
+                    id: createBot
+
+                    implicitHeight: JamiTheme.newMaterialButtonHeight
+                    filledButton: true
+                    iconSource: JamiResources.robot_2_24dp_svg
+                    text: JamiStrings.apiCreateBotAccount
+
+                    onClicked: {
+                        viewCoordinator.presentDialog(appWindow, "settingsview/components/CreateBotDialog.qml");
+                    }
+                }
+            }
+            Text {
+                Layout.fillWidth: true
+
+                text: JamiStrings.apiNoBotsConfigured
+                color: JamiTheme.faddedLastInteractionFontColor
+                font.pixelSize: JamiTheme.settingsDescriptionPixelSize
+                font.italic: true
+
+                visible: botListView.count === 0
+            }
+
+            ListView {
+                id: botListView
+
+                Layout.fillWidth: true
+                Layout.preferredHeight: Math.min(count, 5) * 72
+                clip: true
+                interactive: count > 5
+
+                model: SortFilterProxyModel {
+                    model: AccountListModel
+                    filters: ValueFilter {
+                        roleName: "BotOwner"
+                        value: CurrentAccount.uri
+                    }
+                }
+
+                delegate: ItemDelegate {
+                    id: botItemDelegate
+
+                    width: botListView.width
+
+                    contentItem: RowLayout {
                         spacing: 8
 
-                        Text {
-                            id: tokenText
-                            Layout.fillWidth: true
-                            text: newTokenDialog.rawToken
-                            font.family: JamiTheme.ubuntuMonoFontFamily
-                            font.pixelSize: 13
-                            wrapMode: Text.WrapAnywhere
-                            color: JamiTheme.textColor
+                        Avatar {
+                            Layout.alignment: Qt.AlignVCenter
+
+                            width: JamiTheme.accountListAvatarSize
+                            height: JamiTheme.accountListAvatarSize
+
+                            imageId: ID
+                            mode: Avatar.Mode.Account
+
+                            showPresenceIndicator: false
+                        }
+
+                        ColumnLayout {
+                            RowLayout {
+                                Layout.fillWidth: true
+                                IconImage {
+                                    Layout.alignment: Qt.AlignVCenter
+
+                                    source: JamiResources.robot_2_24dp_svg
+                                    sourceSize.width: JamiTheme.iconButtonSmall
+                                    sourceSize.height: JamiTheme.iconButtonSmall
+
+                                    color: JamiTheme.textColor
+                                }
+
+                                Text {
+                                    Layout.alignment: Qt.AlignVCenter
+                                    Layout.fillWidth: true
+
+                                    text: Alias
+                                    color: JamiTheme.textColor
+
+                                    elide: Text.ElideRight
+
+                                    font.pointSize: JamiTheme.mediumFontSize
+                                    verticalAlignment: Text.AlignVCenter
+                                }
+                            }
+
+                            Row {
+                                spacing: 4
+
+                                Rectangle {
+                                    color: Enabled ? JamiTheme.green_ : JamiTheme.red_
+
+                                    width: statusText.height
+                                    height: statusText.height
+                                    radius: height / 2
+
+                                    SequentialAnimation on scale {
+                                        loops: Animation.Infinite
+                                        running: Enabled
+                                        NumberAnimation {
+                                            from: 0.8
+                                            to: 1.0
+                                            duration: JamiTheme.recordBlinkDuration
+                                        }
+                                        NumberAnimation {
+                                            from: 1.0
+                                            to: 0.8
+                                            duration: JamiTheme.recordBlinkDuration
+                                        }
+                                    }
+
+                                    Behavior on color {
+                                        ColorAnimation {
+                                            duration: JamiTheme.shortFadeDuration
+                                        }
+                                    }
+                                }
+
+                                Text {
+                                    id: statusText
+                                    text: Enabled ? JamiStrings.apiBotOnline : JamiStrings.apiBotOffline
+                                    color: Enabled ? JamiTheme.green_ : JamiTheme.red_
+
+                                    font.family: JamiTheme.ubuntuMonoFontFamily
+                                    font.pointSize: JamiTheme.smallFontSize
+
+                                    Behavior on color {
+                                        ColorAnimation {
+                                            duration: JamiTheme.shortFadeDuration
+                                        }
+                                    }
+                                }
+                            }
                         }
 
                         NewIconButton {
-                            Layout.alignment: Qt.AlignTop
+                            id: copyBotUriButton
+
+                            Layout.alignment: Qt.AlignLeft
+
                             iconSource: JamiResources.content_copy_24dp_svg
                             iconSize: JamiTheme.iconButtonMedium
-                            toolTipText: JamiStrings.copy
+                            toolTipText: JamiStrings.apiOpenChat
+
+                            // To avoid conflict with delegate background
+                            background.visible: false
+
                             onClicked: {
-                                UtilsAdapter.setClipboardText(newTokenDialog.rawToken)
+                                UtilsAdapter.setClipboardText(Uri)
+                            }
+
+                        }
+
+                        NewIconButton {
+                            id: shareBotButton
+
+                            Layout.alignment: Qt.AlignLeft
+
+                            iconSource: JamiResources.share_24dp_svg
+                            iconSize: JamiTheme.iconButtonMedium
+                            toolTipText: JamiStrings.apiShareBot
+
+                            // To avoid conflict with delegate background
+                            background.visible: false
+
+                            onClicked: {
+                                var dlg = viewCoordinator.presentDialog(appWindow, "../../mainview/components/ContactPicker.qml", {
+                                                                            "type": ContactList.ONE_TO_ONE,
+                                                                            "titleText": JamiStrings.apiShareBotDialogTitle
+                                                                        });
+
+
+                                dlg.contactSelected.connect(function(uri) {
+                                    const convId = UtilsAdapter.getConvIdForUri(CurrentAccount.id, uri);
+                                    MessagesAdapter.sendMessageToUid(JamiStrings.apiShareBotMessage.arg(Alias).arg(Uri), convId);
+                                });
+                            }
+                        }
+
+                        JamiSwitch {
+                            Layout.alignment: Qt.AlignVCenter
+                            checked: Enabled
+                            onClicked: AccountAdapter.model.setAccountEnabled(ID, checked)
+                        }
+                    }
+
+                    background: Rectangle {
+                        radius: height / 2
+                        color: botItemDelegate.hovered ? JamiTheme.smartListHoveredColor : JamiTheme.globalBackgroundColor
+
+                        Behavior on color {
+                            ColorAnimation {
+                                duration: JamiTheme.shortFadeDuration
                             }
                         }
                     }
                 }
+            }
+        }
 
-                Text {
-                    Layout.fillWidth: true
-                    text: JamiStrings.apiTokenCopyWarning
-                    wrapMode: Text.WordWrap
-                    color: JamiTheme.redColor
-                    font.pixelSize: JamiTheme.settingsDescriptionPixelSize - 1
-                    font.weight: Font.Medium
+    }
+
+    // ── "New token created" dialog ──
+
+    BaseModalDialog {
+        id: newTokenDialog
+
+        property string rawToken: ""
+
+        titleText: JamiStrings.apiTokenCreatedTitle
+
+        popupContent: ColumnLayout {
+            spacing: 16
+
+            Text {
+                Layout.fillWidth: true
+                text: JamiStrings.apiTokenCreatedMessage
+                wrapMode: Text.WordWrap
+                color: JamiTheme.textColor
+                font.pixelSize: JamiTheme.settingsDescriptionPixelSize
+            }
+
+            Rectangle {
+                Layout.fillWidth: true
+                Layout.preferredHeight: tokenContentLayout.implicitHeight + 20
+                radius: 5
+                color: JamiTheme.editBackgroundColor
+                border.color: JamiTheme.tintedBlue
+                border.width: 1
+
+                RowLayout {
+                    id: tokenContentLayout
+                    anchors.fill: parent
+                    anchors.margins: 10
+                    spacing: 8
+
+                    Text {
+                        id: tokenText
+                        Layout.fillWidth: true
+                        text: newTokenDialog.rawToken
+                        font.family: JamiTheme.ubuntuMonoFontFamily
+                        font.pixelSize: 13
+                        wrapMode: Text.WrapAnywhere
+                        color: JamiTheme.textColor
+                    }
+
+                    NewIconButton {
+                        Layout.alignment: Qt.AlignTop
+                        iconSource: JamiResources.content_copy_24dp_svg
+                        iconSize: JamiTheme.iconButtonMedium
+                        toolTipText: JamiStrings.copy
+                        onClicked: {
+                            UtilsAdapter.setClipboardText(newTokenDialog.rawToken)
+                        }
+                    }
                 }
             }
 
-            button1.text: JamiStrings.optionOk
-            button1.onClicked: {
-                newTokenDialog.close()
-                newTokenDialog.rawToken = ""
+            Text {
+                Layout.fillWidth: true
+                text: JamiStrings.apiTokenCopyWarning
+                wrapMode: Text.WordWrap
+                color: JamiTheme.redColor
+                font.pixelSize: JamiTheme.settingsDescriptionPixelSize - 1
+                font.weight: Font.Medium
             }
         }
+
+        button1.text: JamiStrings.optionOk
+        button1.onClicked: {
+            newTokenDialog.close()
+            newTokenDialog.rawToken = ""
+        }
     }
+
 
     Component.onCompleted: {
         ApiTokenListModel.accountId = CurrentAccount.id
