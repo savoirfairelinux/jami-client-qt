@@ -89,7 +89,7 @@ Q_SIGNALS:
     // Send report failure to QML to make it show the right UI state .
     void reportFailure();
     void accountCreationFailed();
-    void accountAdded(const QString& accountId, int index);
+    void accountAdded(const QString& accountId, int index, bool switchToAccount = true);
     void accountRemoved(const QString& accountId);
     void accountConfigFinalized();
 

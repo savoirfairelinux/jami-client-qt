@@ -274,6 +274,27 @@ getAccountAvatar(const QString& accountId)
     return avatar;
 }
 
+QString
+getBotOwner(const QString& accountId)
+{
+    QString botOwnerId;
+    withProfile(
+        accountId,
+        "",
+        QIODevice::ReadOnly,
+        [&](const QByteArray& readData, QTextStream&) {
+            QHash<QByteArray, QByteArray> vCard = lrc::vCard::utils::toHashMap(readData);
+            auto it = vCard.find(vCard::Property::RELATED_OWNER);
+            if (it != vCard.end()) {
+                auto value = QString::fromUtf8(it.value());
+                botOwnerId = value.startsWith("jami:") ? value.sliced(5) : value;
+            }
+        },
+        false);
+
+    return botOwnerId;
+}
+
 static QPair<QString, QString>
 getOverridenInfos(const QString& accountId, const QString& peerUri)
 {
@@ -402,6 +423,20 @@ getProfileData(const QString& accountId, const QString& peerUri)
             },
             false);
     }
+
+    withProfile(
+        accountId,
+        peerUri,
+        QIODevice::ReadOnly,
+        [&](const QByteArray& readData, QTextStream&) {
+            QHash<QByteArray, QByteArray> vCard = lrc::vCard::utils::toHashMap(readData);
+            auto it = vCard.find(vCard::Property::RELATED_OWNER);
+            if (it != vCard.end()) {
+                auto value = QString::fromUtf8(it.value());
+                profileData["botOwner"] = value.startsWith("jami:") ? value.sliced(5) : value;
+            }
+        },
+        false);
 
     return profileData;
 }

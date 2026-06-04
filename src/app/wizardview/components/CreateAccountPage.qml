@@ -277,7 +277,6 @@ Rectangle {
         Accessible.role: Accessible.Button
         Accessible.name: JamiStrings.backButton
         Accessible.description: JamiStrings.backButtonExplanation
-
     }
 
     NewIconButton {

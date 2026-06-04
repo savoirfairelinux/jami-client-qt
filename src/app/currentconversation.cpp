@@ -53,6 +53,7 @@ CurrentConversation::updateData()
     // If the conversation is empty, clear the id and return.
     if (convId.isEmpty()) {
         set_id();
+        set_botOwner();
         membersModel_->setMembers({}, {}, {});
         return;
     }
@@ -72,9 +73,12 @@ CurrentConversation::updateData()
     try {
         auto accountId = lrcInstance_->get_currentAccountId();
         const auto& accInfo = lrcInstance_->accountModel().getAccountInfo(accountId);
+        QString botOwner;
         auto optConv = accInfo.conversationModel->getConversationForUid(convId);
-        if (!optConv)
+        if (!optConv) {
+            set_botOwner();
             return;
+        }
         auto& convInfo = optConv->get();
         set_lastSelfMessageId(convInfo.lastSelfMessageId);
         QStringList uris, bannedUris;
@@ -121,15 +125,21 @@ CurrentConversation::updateData()
         set_isTemporary(isCoreDialog_ ? (convId == members.at(0) || convId == "SEARCHSIP") : false);
 
         auto isContact {false};
+        if (isCoreDialog_ && !members.isEmpty()) {
+            if (members.at(0) == accInfo.profileInfo.uri)
+                botOwner = accInfo.profileInfo.botOwner;
+        }
         if (isCoreDialog_)
             try {
                 auto& contact = accInfo.contactModel->getContact(members.at(0));
                 set_isBanned(contact.isBanned);
                 isContact = contact.profileInfo.type != profile::Type::TEMPORARY;
+                botOwner = contact.profileInfo.botOwner;
             } catch (const std::exception& e) {
                 qInfo() << "Contact not found: " << e.what();
             }
         set_isContact(isContact);
+        set_botOwner(botOwner);
 
         if (convInfo.mode == conversation::Mode::ONE_TO_ONE) {
             set_modeString(tr("Private"));
@@ -216,6 +226,32 @@ CurrentConversation::updateProfile(const QString& convId)
     const auto& convModel = lrcInstance_->getCurrentConversationModel();
     set_title(convModel->title(convId));
     set_description(convModel->description(convId));
+
+    try {
+        auto accountId = lrcInstance_->get_currentAccountId();
+        const auto& accInfo = lrcInstance_->accountModel().getAccountInfo(accountId);
+        QString botOwner;
+        if (auto optConv = convModel->getConversationForUid(convId)) {
+            auto& convInfo = optConv->get();
+            if (convInfo.isCoreDialog()) {
+                auto members = accInfo.conversationModel->peersForConversation(convId);
+                if (!members.isEmpty()) {
+                    if (members.at(0) == accInfo.profileInfo.uri) {
+                        botOwner = accInfo.profileInfo.botOwner;
+                    } else {
+                        try {
+                            auto& contact = accInfo.contactModel->getContact(members.at(0));
+                            botOwner = contact.profileInfo.botOwner;
+                        } catch (...) {
+                        }
+                    }
+                }
+            }
+        }
+        set_botOwner(botOwner);
+    } catch (...) {
+        set_botOwner();
+    }
 
     try {
         if (auto optConv = convModel->getConversationForUid(convId)) {

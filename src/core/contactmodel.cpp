@@ -1107,6 +1107,7 @@ ContactModelPimpl::updateCachedProfile(profile::Info& profileInfo)
 
     profileInfo.alias = newProfileInfo["alias"];
     profileInfo.avatar = newProfileInfo["avatar"];
+    profileInfo.botOwner = newProfileInfo["botOwner"];
 
     // No matter what has been updated here, we want to make sure the contact
     // is considered cached now.
