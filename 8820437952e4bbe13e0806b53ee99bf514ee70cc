@@ -18,6 +18,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c8e97c9c_7c170fb8",
+        "filename": "src/app/commoncomponents/SBSMessageBase.qml",
+        "patchSetId": 7
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1192
+      },
+      "writtenOn": "2026-06-05T20:08:43Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "005dcfb2_4dd90757",
+      "revId": "8820437952e4bbe13e0806b53ee99bf514ee70cc",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c4d9fffe_9432bf23",
@@ -35,6 +53,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4a7ea5a4_db5350d2",
+        "filename": "src/app/commoncomponents/TextMessageDelegate.qml",
+        "patchSetId": 7
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1192
+      },
+      "writtenOn": "2026-06-05T20:08:43Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "c4d9fffe_9432bf23",
+      "revId": "8820437952e4bbe13e0806b53ee99bf514ee70cc",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b75ae3da_997ca696",
@@ -48,6 +84,24 @@
       "writtenOn": "2026-05-28T16:58:53Z",
       "side": 1,
       "message": "[Critical] Line 107: `Layout.preferredHeight: active ? item.implicitHeight : 0` can dereference `item` while the Loader is active but before the component is instantiated, producing a QML runtime error. Guard the access.\\n```suggestion\\nLayout.preferredHeight: active \u0026\u0026 item ? item.implicitHeight : 0\\n```",
+      "revId": "8820437952e4bbe13e0806b53ee99bf514ee70cc",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "db68784b_4b2571c3",
+        "filename": "src/app/settingsview/components/PluginStoreListView.qml",
+        "patchSetId": 7
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1192
+      },
+      "writtenOn": "2026-06-05T20:08:43Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "b75ae3da_997ca696",
       "revId": "8820437952e4bbe13e0806b53ee99bf514ee70cc",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }

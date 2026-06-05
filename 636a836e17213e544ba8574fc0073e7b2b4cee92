@@ -18,6 +18,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2a48a01a_55e68d85",
+        "filename": "src/app/commoncomponents/SBSMessageBase.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1192
+      },
+      "writtenOn": "2026-06-05T20:08:43Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "df012412_e3eabec0",
+      "revId": "636a836e17213e544ba8574fc0073e7b2b4cee92",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6ec18f62_3358de4f",
@@ -31,6 +49,24 @@
       "writtenOn": "2026-05-20T20:14:43Z",
       "side": 1,
       "message": "[Critical] Line 65: `isPluginOverwrite: Body !\u003d\u003d OriginalBody` will classify messages as modified whenever `OriginalBody` is unset, empty, or absent for older/non-plugin messages. That risks showing a false \"Modified by extension\" indicator for normal messages. Gate the comparison on `OriginalBody` actually being present.\n```suggestion\n    property bool isPluginOverwrite: OriginalBody !\u003d\u003d \"\" \u0026\u0026 Body !\u003d\u003d OriginalBody\n```",
+      "revId": "636a836e17213e544ba8574fc0073e7b2b4cee92",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "45c965d5_5178a95f",
+        "filename": "src/app/commoncomponents/SBSMessageBase.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1192
+      },
+      "writtenOn": "2026-06-05T20:08:43Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "6ec18f62_3358de4f",
       "revId": "636a836e17213e544ba8574fc0073e7b2b4cee92",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
@@ -52,6 +88,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ebadfcd1_0ea46473",
+        "filename": "src/app/commoncomponents/TextMessageDelegate.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1192
+      },
+      "writtenOn": "2026-06-05T20:08:43Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "9b6fe649_bd7ce5d5",
+      "revId": "636a836e17213e544ba8574fc0073e7b2b4cee92",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3bf81463_fd643de3",
@@ -65,6 +119,24 @@
       "writtenOn": "2026-05-20T20:14:43Z",
       "side": 1,
       "message": "[Critical] Line 81: The fallback `PreviousBodies[0].body` can dereference an empty or undefined history if `showOriginal` remains true while the delegate is reused for a non-plugin-overwritten message. QML ListView delegates can be recycled, so state stored on the delegate should be reset or guarded. Since the toggle is only shown for plugin overwrites, avoid reading edit history here or guard it explicitly.\n```suggestion\n                if (showOriginal \u0026\u0026 isPluginOverwrite)\n                    return OriginalBody;\n```",
+      "revId": "636a836e17213e544ba8574fc0073e7b2b4cee92",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "19556a8e_ba223cc6",
+        "filename": "src/app/commoncomponents/TextMessageDelegate.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1192
+      },
+      "writtenOn": "2026-06-05T20:08:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3bf81463_fd643de3",
       "revId": "636a836e17213e544ba8574fc0073e7b2b4cee92",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
@@ -86,6 +158,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "aa4b7a5e_6cd1917a",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 913,
+      "author": {
+        "id": 1192
+      },
+      "writtenOn": "2026-06-05T20:08:43Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "886edac2_50b3d19a",
+      "revId": "636a836e17213e544ba8574fc0073e7b2b4cee92",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "52c1b8bf_385fb3fd",
@@ -99,6 +189,24 @@
       "writtenOn": "2026-05-20T20:14:43Z",
       "side": 1,
       "message": "[Good Practice] Line 82: The per-request error callback is a good improvement over connecting to a long-lived `errorOccurred` signal for every store refresh; it avoids leaking or over-firing request handlers.",
+      "revId": "636a836e17213e544ba8574fc0073e7b2b4cee92",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "995e4bf2_c18d0f21",
+        "filename": "src/app/pluginadapter.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1192
+      },
+      "writtenOn": "2026-06-05T20:08:43Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "52c1b8bf_385fb3fd",
       "revId": "636a836e17213e544ba8574fc0073e7b2b4cee92",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
