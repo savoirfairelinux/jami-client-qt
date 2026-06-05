@@ -79,39 +79,32 @@ PluginAdapter::PluginAdapter(LRCInstance* instance, AppSettingsManager* settings
 void
 PluginAdapter::getPluginsFromStore()
 {
-    const auto& errorHandler = connect(pluginVersionManager_,
-                                       &PluginVersionManager::errorOccurred,
-                                       this,
-                                       [this](NetworkManager::GetError error, const QString& msg) {
-                                           Q_EMIT storeNotAvailable();
-                                       });
     QMap<QString, QByteArray> header;
     const auto& language = settingsManager_->getLanguage();
     header["Accept-Language"] = QByteArray(language.toStdString().c_str(), language.size());
-    pluginVersionManager_->sendGetRequest(QUrl(baseUrl()
-                                               + "?arch=" + lrcInstance_->pluginModel().getPlatformInfo()["os"]),
-                                          header,
-                                          [this, errorHandler](const QByteArray& data) {
-                                              auto result = QJsonDocument::fromJson(data).array();
-                                              auto pluginsInstalled = lrcInstance_->pluginModel().getPluginsId();
-                                              QList<QVariantMap> plugins;
-                                              if (result.size() == 0) {
-                                                  Q_EMIT storeNotAvailableForPlatform();
-                                                  return;
-                                              }
-                                              for (const auto& plugin : result) {
-                                                  auto qPlugin = plugin.toVariant().toMap();
-
-                                                  if (!qPlugin.contains("id")) {
-                                                      qPlugin["id"] = qPlugin["name"];
-                                                  }
-                                                  if (!pluginsInstalled.contains(qPlugin["id"].toString())) {
-                                                      plugins.append(qPlugin);
-                                                  }
-                                              }
-                                              pluginStoreListModel_->setPlugins(plugins);
-                                              disconnect(errorHandler);
-                                          });
+    pluginVersionManager_->sendGetRequest(
+        QUrl(baseUrl() + "?arch=" + lrcInstance_->pluginModel().getPlatformInfo()["os"]),
+        header,
+        [this](const QByteArray& data) {
+            auto result = QJsonDocument::fromJson(data).array();
+            const auto pluginsInstalled = lrcInstance_->pluginModel().getPluginsId();
+            QList<QVariantMap> plugins;
+            if (result.isEmpty()) {
+                Q_EMIT storeNotAvailableForPlatform();
+                return;
+            }
+            for (const auto& plugin : result) {
+                auto qPlugin = plugin.toVariant().toMap();
+                if (!qPlugin.contains("id")) {
+                    qPlugin["id"] = qPlugin["name"];
+                }
+                if (!pluginsInstalled.contains(qPlugin["id"].toString())) {
+                    plugins.append(qPlugin);
+                }
+            }
+            pluginStoreListModel_->setPlugins(plugins);
+        },
+        [this](NetworkManager::GetError, const QString&) { Q_EMIT storeNotAvailable(); });
 }
 
 void
