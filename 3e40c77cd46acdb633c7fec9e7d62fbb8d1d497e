@@ -18,6 +18,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "baed4e58_5f70120f",
+        "filename": "src/app/conversationsadapter.cpp",
+        "patchSetId": 24
+      },
+      "lineNbr": 444,
+      "author": {
+        "id": 1192
+      },
+      "writtenOn": "2026-06-05T19:10:52Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "d522f27a_06cbfd39",
+      "revId": "3e40c77cd46acdb633c7fec9e7d62fbb8d1d497e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bb427b16_4a83e455",
@@ -35,6 +53,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2a5c7111_8cf0f2e3",
+        "filename": "src/libclient/interaction.cpp",
+        "patchSetId": 24
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1192
+      },
+      "writtenOn": "2026-06-05T19:10:52Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "bb427b16_4a83e455",
+      "revId": "3e40c77cd46acdb633c7fec9e7d62fbb8d1d497e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "889a58dd_feb9be27",
@@ -48,6 +84,24 @@
       "writtenOn": "2026-05-19T19:56:06Z",
       "side": 1,
       "message": "Line 528: 🟡 Suggestions: `OriginalBody` falls back to `item.second.body` when the commit body is empty, which means an intentionally empty original body with a non-empty plugin overwrite will return the overwritten text for editing. Check key presence instead of value emptiness so empty originals are preserved.\n```suggestion\nconst auto commitIt \u003d item.second.commit.constFind(\"body\");\nreturn QVariant(commitIt \u003d\u003d item.second.commit.constEnd() ? item.second.body : commitIt.value());\n```",
+      "revId": "3e40c77cd46acdb633c7fec9e7d62fbb8d1d497e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5b833d2d_ef27d324",
+        "filename": "src/libclient/messagelistmodel.cpp",
+        "patchSetId": 24
+      },
+      "lineNbr": 528,
+      "author": {
+        "id": 1192
+      },
+      "writtenOn": "2026-06-05T19:10:52Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "889a58dd_feb9be27",
       "revId": "3e40c77cd46acdb633c7fec9e7d62fbb8d1d497e",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }

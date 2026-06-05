@@ -18,6 +18,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f00098dd_56b0cb6e",
+        "filename": "src/app/conversationsadapter.cpp",
+        "patchSetId": 26
+      },
+      "lineNbr": 445,
+      "author": {
+        "id": 1192
+      },
+      "writtenOn": "2026-06-05T19:10:52Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "f670803f_7b706699",
+      "revId": "74cae8cda64393fbd6634f7efdd1fc22d01bc60a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c0bd2fa9_9c59ed0a",
@@ -35,6 +53,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bc02b75b_3610c409",
+        "filename": "src/libclient/interaction.cpp",
+        "patchSetId": 26
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1192
+      },
+      "writtenOn": "2026-06-05T19:10:52Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "c0bd2fa9_9c59ed0a",
+      "revId": "74cae8cda64393fbd6634f7efdd1fc22d01bc60a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "10ab2af3_650cf85f",
@@ -48,6 +84,24 @@
       "writtenOn": "2026-05-20T13:27:54Z",
       "side": 1,
       "message": "[Major] Line 528: 🟡 Suggestion: `OriginalBody` only returns the current commit body. For edited messages, the edit UI now bypasses the displayed plugin-overwritten body, but it may still edit the latest raw body without considering the same action/body handling used by `Role::Body`. If the commit is an interaction action, this can populate the composer with an empty or incorrect string. Mirror the existing `Body` role fallback logic while intentionally skipping plugin display overrides. Example:\n```suggestion\ncase Role::OriginalBody: {\n    if (item.second.commit.contains(\"body\"))\n        return QVariant(item.second.commit.value(\"body\"));\n    return QVariant(item.second.body);\n}\n```",
+      "revId": "74cae8cda64393fbd6634f7efdd1fc22d01bc60a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "118dd564_0fe336fe",
+        "filename": "src/libclient/messagelistmodel.cpp",
+        "patchSetId": 26
+      },
+      "lineNbr": 528,
+      "author": {
+        "id": 1192
+      },
+      "writtenOn": "2026-06-05T19:10:52Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "10ab2af3_650cf85f",
       "revId": "74cae8cda64393fbd6634f7efdd1fc22d01bc60a",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }

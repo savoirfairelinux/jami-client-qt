@@ -37,6 +37,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "0e97e078_9b766124",
+        "filename": "daemon",
+        "patchSetId": 9
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1192
+      },
+      "writtenOn": "2026-06-05T19:10:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2bf6c5f0_390909fb",
+      "revId": "43375d5a49532b5b64fd783fdb09dbcb95716b4c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "3fc96aab_5f927f50",
         "filename": "src/app/conversationsadapter.cpp",
         "patchSetId": 9
@@ -69,6 +87,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "df2cb4d3_506ecbad",
+        "filename": "src/app/mainview/components/PluginHandlerPicker.qml",
+        "patchSetId": 9
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1192
+      },
+      "writtenOn": "2026-06-05T19:10:52Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "04dcb3d2_cd6042e7",
+      "revId": "43375d5a49532b5b64fd783fdb09dbcb95716b4c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "76c9a6f5_86e96be2",
@@ -82,6 +118,24 @@
       "writtenOn": "2026-05-11T17:34:41Z",
       "side": 1,
       "message": "[error] Line 161: Same issue: `anchors.fill: parent` is commented out on the second StackLayout rectangle. This looks like an unintended debug change that will break the UI layout.",
+      "revId": "43375d5a49532b5b64fd783fdb09dbcb95716b4c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "95a2e5e4_ab89a8b1",
+        "filename": "src/app/mainview/components/PluginHandlerPicker.qml",
+        "patchSetId": 9
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 1192
+      },
+      "writtenOn": "2026-06-05T19:10:52Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "76c9a6f5_86e96be2",
       "revId": "43375d5a49532b5b64fd783fdb09dbcb95716b4c",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
@@ -103,6 +157,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "26007459_6542f288",
+        "filename": "src/libclient/dbus/metatypes.h",
+        "patchSetId": 9
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1192
+      },
+      "writtenOn": "2026-06-05T19:10:52Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "de0dae70_dadd974f",
+      "revId": "43375d5a49532b5b64fd783fdb09dbcb95716b4c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0516295a_586ccbe7",
@@ -116,6 +188,24 @@
       "writtenOn": "2026-05-11T17:34:41Z",
       "side": 1,
       "message": "[warning] Line 128: The `bodyOverwrite` from `pluginData` unconditionally replaces `body` after `init()` has already set it. If a plugin supplies a non-empty but semantically wrong overwrite (e.g. stale translation), there is no way for the user or UI to see the original body. Consider storing the original in a separate field or making the override opt-in at the UI layer.",
+      "revId": "43375d5a49532b5b64fd783fdb09dbcb95716b4c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "be21867c_cc8c7130",
+        "filename": "src/libclient/interaction.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1192
+      },
+      "writtenOn": "2026-06-05T19:10:52Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "0516295a_586ccbe7",
       "revId": "43375d5a49532b5b64fd783fdb09dbcb95716b4c",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
@@ -137,6 +227,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "78f46a93_6eb43767",
+        "filename": "src/libclient/interaction.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1192
+      },
+      "writtenOn": "2026-06-05T19:10:52Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "c7efaded_35863757",
+      "revId": "43375d5a49532b5b64fd783fdb09dbcb95716b4c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e058db2f_164eeee6",
@@ -150,6 +258,24 @@
       "writtenOn": "2026-05-11T17:34:41Z",
       "side": 1,
       "message": "[warning] Line 526: `OriginalBody` returns `item.second.commit.value(\"body\")` which is the raw commit map value, but `commit` may not contain a `\"body\"` key for all message types (e.g. merges, contact events). This silently returns an empty string, which means editing a non-text message could clear the text area. Guard with a fallback to `item.second.body`.",
+      "revId": "43375d5a49532b5b64fd783fdb09dbcb95716b4c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f645d214_2cb347e8",
+        "filename": "src/libclient/messagelistmodel.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 526,
+      "author": {
+        "id": 1192
+      },
+      "writtenOn": "2026-06-05T19:10:52Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "e058db2f_164eeee6",
       "revId": "43375d5a49532b5b64fd783fdb09dbcb95716b4c",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }

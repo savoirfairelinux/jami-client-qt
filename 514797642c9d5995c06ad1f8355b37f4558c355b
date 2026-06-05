@@ -18,6 +18,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "93db775c_e1c7a9d0",
+        "filename": "src/app/conversationsadapter.cpp",
+        "patchSetId": 23
+      },
+      "lineNbr": 442,
+      "author": {
+        "id": 1192
+      },
+      "writtenOn": "2026-06-05T19:10:52Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "625bae71_ffece7ce",
+      "revId": "514797642c9d5995c06ad1f8355b37f4558c355b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7b115c4c_979011cf",
@@ -35,6 +53,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2214e90b_1f9379af",
+        "filename": "src/app/mainview/components/PluginHandlerPicker.qml",
+        "patchSetId": 23
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1192
+      },
+      "writtenOn": "2026-06-05T19:10:52Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "7b115c4c_979011cf",
+      "revId": "514797642c9d5995c06ad1f8355b37f4558c355b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "02ca160b_5bb6e02e",
@@ -48,6 +84,24 @@
       "writtenOn": "2026-05-19T18:54:31Z",
       "side": 1,
       "message": "[Critical] Line 161: Same sizing regression as above: this Rectangle no longer fills the popup page, which can break layout/background rendering for the second plugin handler view. Restore the anchor.\n```suggestion\n            anchors.fill: parent\n```",
+      "revId": "514797642c9d5995c06ad1f8355b37f4558c355b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3832b4a1_18e68355",
+        "filename": "src/app/mainview/components/PluginHandlerPicker.qml",
+        "patchSetId": 23
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 1192
+      },
+      "writtenOn": "2026-06-05T19:10:52Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "02ca160b_5bb6e02e",
       "revId": "514797642c9d5995c06ad1f8355b37f4558c355b",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }

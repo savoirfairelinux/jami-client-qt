@@ -18,6 +18,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "258d171c_1d64b3ed",
+        "filename": "CMakeLists.txt",
+        "patchSetId": 25
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1192
+      },
+      "writtenOn": "2026-06-05T19:10:52Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "3161ccdb_d1db4620",
+      "revId": "f4231ab9e19439347be689c6c05f3646f406a803",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "43075ae1_8eceaec6",
@@ -31,6 +49,24 @@
       "writtenOn": "2026-05-19T20:14:31Z",
       "side": 1,
       "message": "Line 445: 🟡 Suggestions - The hard-coded 1 second fallback can race legitimate slow searches and clear the user\u0027s active search before results arrive, especially on slow networks or large accounts. Prefer handling daemon offline/error states explicitly, or use a longer named constant tied to the search lifecycle so the UI does not discard valid in-progress searches.",
+      "revId": "f4231ab9e19439347be689c6c05f3646f406a803",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fcb62149_4bce24d2",
+        "filename": "src/app/conversationsadapter.cpp",
+        "patchSetId": 25
+      },
+      "lineNbr": 445,
+      "author": {
+        "id": 1192
+      },
+      "writtenOn": "2026-06-05T19:10:52Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "43075ae1_8eceaec6",
       "revId": "f4231ab9e19439347be689c6c05f3646f406a803",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
@@ -52,6 +88,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5fbcfbb0_c8daf04b",
+        "filename": "src/libclient/interaction.cpp",
+        "patchSetId": 25
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1192
+      },
+      "writtenOn": "2026-06-05T19:10:52Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "17d85b0c_bd4e36ee",
+      "revId": "f4231ab9e19439347be689c6c05f3646f406a803",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ef0ad535_8c12ab29",
@@ -65,6 +119,24 @@
       "writtenOn": "2026-05-19T20:14:31Z",
       "side": 1,
       "message": "[Critical] Line 528: 🔴 Critical Issues - `OriginalBody` falls back to `item.second.body` when the commit body is empty. Since `item.second.body` may already contain the plugin-overwritten body, editing a message with an intentionally empty or missing canonical body can prefill and resend plugin-generated display text instead of the original message. Preserve the distinction by returning the canonical commit value directly when the key exists, even if it is empty.\n```suggestion\ncase Role::OriginalBody: {\n    return QVariant(item.second.commit.contains(\"body\") ? item.second.commit.value(\"body\") : QString {});\n}\n```",
+      "revId": "f4231ab9e19439347be689c6c05f3646f406a803",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a3791090_7fb6808b",
+        "filename": "src/libclient/messagelistmodel.cpp",
+        "patchSetId": 25
+      },
+      "lineNbr": 528,
+      "author": {
+        "id": 1192
+      },
+      "writtenOn": "2026-06-05T19:10:52Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "ef0ad535_8c12ab29",
       "revId": "f4231ab9e19439347be689c6c05f3646f406a803",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }

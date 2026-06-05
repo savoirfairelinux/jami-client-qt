@@ -18,6 +18,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "65afbacc_ff231d62",
+        "filename": "src/libclient/dbus/metatypes.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1192
+      },
+      "writtenOn": "2026-06-05T19:10:52Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "8b164772_d65c5d88",
+      "revId": "8cbdd177b02b74e29623c6f47cf7f0e16823de85",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3c38b1dc_28854f9e",
@@ -35,6 +53,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2b302dd4_d1ff1361",
+        "filename": "src/libclient/interaction.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1192
+      },
+      "writtenOn": "2026-06-05T19:10:52Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "3c38b1dc_28854f9e",
+      "revId": "8cbdd177b02b74e29623c6f47cf7f0e16823de85",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "87d6ad71_d7a683b8",
@@ -48,6 +84,24 @@
       "writtenOn": "2026-05-07T16:34:20Z",
       "side": 1,
       "message": "[warning] Line 138: The key `bodyOverwrite_e%1` uses the loop index `i` to identify which edition a plugin override applies to. If `msg.editions` is not guaranteed to arrive in a deterministic, stable order (e.g. it is backed by a hash-keyed container in the daemon), the index can drift across calls, silently applying the wrong plugin override. Consider keying by edition ID instead (e.g. `bodyOverwrite_\u003ceditionId\u003e`).",
+      "revId": "8cbdd177b02b74e29623c6f47cf7f0e16823de85",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ea26d51b_04bdac5b",
+        "filename": "src/libclient/interaction.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1192
+      },
+      "writtenOn": "2026-06-05T19:10:52Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "87d6ad71_d7a683b8",
       "revId": "8cbdd177b02b74e29623c6f47cf7f0e16823de85",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
@@ -82,6 +136,24 @@
       "writtenOn": "2026-05-07T16:34:20Z",
       "side": 1,
       "message": "[warning] Line 275: The `SwarmMessageUpdated` callback constructs `SwarmMessage` with `pluginData`, but plugins that enrich messages may generate `pluginData` asynchronously after the initial load. If the update arrives before plugin processing completes, `pluginData` will be empty and the overwrite logic in `interaction.cpp` will be silently skipped. Verify the daemon guarantees `pluginData` is populated before emitting `SwarmMessageUpdated`.",
+      "revId": "8cbdd177b02b74e29623c6f47cf7f0e16823de85",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a7e0b1a3_80a38b97",
+        "filename": "src/libclient/qtwrapper/configurationmanager_wrap.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 1192
+      },
+      "writtenOn": "2026-06-05T19:10:52Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "2e605730_b0912a3a",
       "revId": "8cbdd177b02b74e29623c6f47cf7f0e16823de85",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }

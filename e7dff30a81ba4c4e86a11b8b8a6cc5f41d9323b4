@@ -18,6 +18,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ffcc453e_25a83496",
+        "filename": "src/app/conversationsadapter.cpp",
+        "patchSetId": 28
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1192
+      },
+      "writtenOn": "2026-06-05T19:10:52Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "e30268c6_d5940213",
+      "revId": "e7dff30a81ba4c4e86a11b8b8a6cc5f41d9323b4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "16f42db3_b698fe71",
@@ -35,6 +53,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a31179ad_acfd60ee",
+        "filename": "src/libclient/dbus/metatypes.h",
+        "patchSetId": 28
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1192
+      },
+      "writtenOn": "2026-06-05T19:10:52Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "16f42db3_b698fe71",
+      "revId": "e7dff30a81ba4c4e86a11b8b8a6cc5f41d9323b4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "095c237a_a378b328",
@@ -48,6 +84,24 @@
       "writtenOn": "2026-05-20T19:01:50Z",
       "side": 1,
       "message": "[Critical] Line 128: `bodyOverwrite` from plugin data is rendered as the message body without preserving the original body in the edit history path. For edited messages, `previousBodies` now stores the overwritten text when an edition contains `bodyOverwrite`, so the UI may expose plugin-generated text as if it were the user\u0027s authored content. Keep plugin display overrides separate from canonical message bodies and only use the original body for editing/history/audit data.\n```suggestion\nconst auto originalBody \u003d edition.value(\"body\");\npreviousBodies.append(Body {edition.value(\"id\"), originalBody, QString(edition.value(\"timestamp\")).toInt()});\n```",
+      "revId": "e7dff30a81ba4c4e86a11b8b8a6cc5f41d9323b4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b5c39439_7b1c8891",
+        "filename": "src/libclient/interaction.cpp",
+        "patchSetId": 28
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1192
+      },
+      "writtenOn": "2026-06-05T19:10:52Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "095c237a_a378b328",
       "revId": "e7dff30a81ba4c4e86a11b8b8a6cc5f41d9323b4",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }

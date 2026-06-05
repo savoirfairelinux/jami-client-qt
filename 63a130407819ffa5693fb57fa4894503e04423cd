@@ -18,6 +18,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "231950b2_ddd91230",
+        "filename": "src/app/conversationsadapter.cpp",
+        "patchSetId": 27
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1192
+      },
+      "writtenOn": "2026-06-05T19:10:52Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "c373fde6_3a4b7e5c",
+      "revId": "63a130407819ffa5693fb57fa4894503e04423cd",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3578f42a_c4ef8a72",
@@ -31,6 +49,24 @@
       "writtenOn": "2026-05-20T13:56:16Z",
       "side": 1,
       "message": "Line 127: 🟡 Suggestions - `bodyOverwrite` from plugin data is applied unconditionally to the visible message body. That means any plugin-provided payload can replace user-visible conversation content without preserving a clear trust boundary here. If only specific plugin keys or trusted plugin sources should be allowed to alter message rendering, validate that before overwriting `body`, or keep the overwrite as a separate display field consumed by UI code that can label it appropriately.",
+      "revId": "63a130407819ffa5693fb57fa4894503e04423cd",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f79e3562_f0236870",
+        "filename": "src/libclient/interaction.cpp",
+        "patchSetId": 27
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1192
+      },
+      "writtenOn": "2026-06-05T19:10:52Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "3578f42a_c4ef8a72",
       "revId": "63a130407819ffa5693fb57fa4894503e04423cd",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }

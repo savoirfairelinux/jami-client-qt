@@ -18,6 +18,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "345a722d_bd928546",
+        "filename": "src/app/conversationsadapter.cpp",
+        "patchSetId": 29
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1192
+      },
+      "writtenOn": "2026-06-05T19:10:52Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "ea595a37_d36e8fd8",
+      "revId": "a0a1a7811e767833b94b50f11041e08de0dcfbbc",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e8ec3257_a50b4719",
@@ -31,6 +49,24 @@
       "writtenOn": "2026-05-26T19:05:37Z",
       "side": 1,
       "message": "[🔴 Critical Issues] Line 127: `bodyOverwrite` from plugin data is accepted as the displayed message body without any validation or provenance checks. This lets plugin-provided metadata fully replace user-visible chat content, which can spoof what was actually sent and may interact badly with downstream body parsing/rendering. Consider using a namespaced key and only applying it for trusted/expected plugin handlers, while preserving the original body for clear UI affordances.\n```suggestion\nconst auto bodyOverwriteIt \u003d msg.pluginData.constFind(\"jami.bodyOverwrite\");\nif (bodyOverwriteIt !\u003d msg.pluginData.constEnd() \u0026\u0026 isTrustedPluginOverwrite(msg.pluginData))\n    body \u003d *bodyOverwriteIt;\n```",
+      "revId": "a0a1a7811e767833b94b50f11041e08de0dcfbbc",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e3cb58c0_ce1ff810",
+        "filename": "src/libclient/interaction.cpp",
+        "patchSetId": 29
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1192
+      },
+      "writtenOn": "2026-06-05T19:10:52Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "e8ec3257_a50b4719",
       "revId": "a0a1a7811e767833b94b50f11041e08de0dcfbbc",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
@@ -52,6 +88,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "51430e36_5259fa7d",
+        "filename": "src/libclient/interaction.cpp",
+        "patchSetId": 29
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1192
+      },
+      "writtenOn": "2026-06-05T19:10:52Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "0a7f921a_6677ef59",
+      "revId": "a0a1a7811e767833b94b50f11041e08de0dcfbbc",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8f10f820_8dc98cb4",
@@ -65,6 +119,24 @@
       "writtenOn": "2026-05-26T19:05:37Z",
       "side": 1,
       "message": "[🟡 Suggestions] Line 529: `OriginalBody` only falls back to `item.second.body` when `commit` has no `body`, but for edited/overwritten messages the original body source is not explicitly documented or tested. Add coverage for plugin-overwritten messages to ensure editing loads the real original body rather than the displayed overwrite.\n```suggestion\n// Add a unit test: message body \u003d original, pluginData bodyOverwrite \u003d translated;\n// Body role returns translated, OriginalBody role returns original.\n```",
+      "revId": "a0a1a7811e767833b94b50f11041e08de0dcfbbc",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a8d8389b_247e3b49",
+        "filename": "src/libclient/messagelistmodel.cpp",
+        "patchSetId": 29
+      },
+      "lineNbr": 529,
+      "author": {
+        "id": 1192
+      },
+      "writtenOn": "2026-06-05T19:10:52Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "8f10f820_8dc98cb4",
       "revId": "a0a1a7811e767833b94b50f11041e08de0dcfbbc",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
