@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e91b802d_4d1b37fe",
+        "filename": "src/app/commoncomponents/SBSMessageBase.qml",
+        "patchSetId": 8
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-05T20:09:05Z",
+      "side": 1,
+      "message": "[🟡 Suggestions - Improvements to consider] Line 66: showOriginal is delegate-local state but is not reset when the delegate is rebound to another message. In a reused ListView delegate, a newly displayed message can inherit the previous message\u0027s toggle state and show the wrong body. Reset it when the message identity changes.\n```suggestion\nproperty bool showOriginal: false\nonIdChanged: showOriginal \u003d false\n```",
+      "revId": "f3d95bd0e9a315827aa14cbd32d9200db9800579",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9680831b_c71b4fc7",
+        "filename": "src/app/commoncomponents/SBSMessageBase.qml",
+        "patchSetId": 8
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-05T20:09:05Z",
+      "side": 1,
+      "message": "[🔴 Critical Issues - Must fix before merge] Line 67: isPluginOverwrite is computed as Body !\u003d\u003d OriginalBody, which will mark every non-empty message as modified if OriginalBody is absent or default-empty for older/non-plugin messages. Gate this on OriginalBody being present and different, or use an explicit model role indicating plugin modification.\n```suggestion\nproperty bool isPluginOverwrite: OriginalBody !\u003d\u003d \"\" \u0026\u0026 Body !\u003d\u003d OriginalBody\n```",
+      "revId": "f3d95bd0e9a315827aa14cbd32d9200db9800579",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "45a80fe6_cc827e44",
+        "filename": "src/app/commoncomponents/TextMessageDelegate.qml",
+        "patchSetId": 8
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-05T20:09:05Z",
+      "side": 1,
+      "message": "[🔴 Critical Issues - Must fix before merge] Line 80: Returning OriginalBody directly bypasses the existing MessagesAdapter.parseMessage path used for Body. If the text item renders rich/styled text, an original message containing markup or links may be displayed unsanitized and will also skip normal link/emoji handling. Parse/sanitize the original body through the same pipeline before displaying it.\n```suggestion\nif (showOriginal \u0026\u0026 isPluginOverwrite) {\n    // Use the same parsing/sanitization path as Body, preferably with a dedicated parsed-original role/cache.\n    return ParsedOriginalBody;\n}\n```",
+      "revId": "f3d95bd0e9a315827aa14cbd32d9200db9800579",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "84ed5dc6_8332bbde",
+        "filename": "src/app/networkmanager.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-05T20:09:05Z",
+      "side": 1,
+      "message": "[🟡 Suggestions - Improvements to consider] Line 120: Header names are converted through std::string().c_str() and an explicit QString size, which is unnecessary and can produce incorrect byte lengths for non-ASCII names. Qt already provides a safe conversion for raw header names.\n```suggestion\nrequest.setRawHeader(it.key().toUtf8(), it.value());\n```",
+      "revId": "f3d95bd0e9a315827aa14cbd32d9200db9800579",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "07b1eac8_95b1db74",
+        "filename": "src/app/settingsview/components/PluginStoreListView.qml",
+        "patchSetId": 8
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-05T20:09:05Z",
+      "side": 1,
+      "message": "[🟡 Suggestions - Improvements to consider] Line 105: Layout.preferredHeight reads item.implicitHeight while the Loader is active. During component creation item can still be null, which can trigger QML binding errors. Guard the access.\n```suggestion\nLayout.preferredHeight: active \u0026\u0026 item ? item.implicitHeight : 0\n```",
+      "revId": "f3d95bd0e9a315827aa14cbd32d9200db9800579",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
