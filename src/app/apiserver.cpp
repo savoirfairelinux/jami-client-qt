@@ -920,7 +920,8 @@ ApiServer::conversationSummaryToCompatJson(const QString& accountId, const QStri
 
         QJsonArray membersNames;
         for (const auto& member : conv.participants) {
-            const auto bestName = accInfo.contactModel ? accInfo.contactModel->bestNameForContact(member.uri) : QString {};
+            const auto bestName = accInfo.contactModel ? accInfo.contactModel->bestNameForContact(member.uri)
+                                                       : QString {};
             membersNames.append(bestName.isEmpty() ? member.uri : bestName);
         }
 
@@ -928,7 +929,11 @@ ApiServer::conversationSummaryToCompatJson(const QString& accountId, const QStri
         obj["id"] = conv.uid;
         obj["avatar"] = conv.infos.value(QStringLiteral("avatar"));
         obj["title"] = conv.infos.value(QStringLiteral("title"));
-        obj["mode"] = conversationModeToCompat(conv);
+        auto convMode = conversationModeToCompat(conv);
+        obj["mode"] = convMode;
+        // Provide description if convMode is INVITES_ONLY
+        if (convMode == "2")
+            obj["description"] = conv.infos.value(QStringLiteral("description"));
         obj["membersNames"] = membersNames;
 
         QJsonObject lastMessage;
