@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cc5e5de3_4b11e135",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6
+      },
+      "writtenOn": "2026-06-09T20:13:06Z",
+      "side": 1,
+      "message": "libwrap is not IPC (inter-process-communication).\nWe only support DBUS as an IPC, not sure we need an ipc directory",
+      "revId": "e88618bddea0fe7ee609d936c1667ea51c2cae1d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
