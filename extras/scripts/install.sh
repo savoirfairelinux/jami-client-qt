@@ -135,11 +135,9 @@ if [ "${debug}" = "true" ]; then
 fi
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
-    #detect arch for macos
-    CMAKE_OSX_ARCHITECTURES="arm64"
     if [[ "$arch" == 'unified' ]]; then
         CMAKE_OSX_ARCHITECTURES="x86_64;arm64"
-    elif [[ "$arch" != '' ]]; then
+    elif [[ -n "$arch" ]]; then
         CMAKE_OSX_ARCHITECTURES="$arch"
     fi
 fi
@@ -173,7 +171,7 @@ else
     daemon_cmake_flags+=(-DCMAKE_INSTALL_PREFIX="${INSTALL_DIR}")
 fi
 
-if [[ "$OSTYPE" == "darwin"* ]]; then
+if [[ "$OSTYPE" == "darwin"* && -n "${CMAKE_OSX_ARCHITECTURES:-}" ]]; then
     daemon_cmake_flags+=(-DCMAKE_OSX_ARCHITECTURES="${CMAKE_OSX_ARCHITECTURES}")
 fi
 
@@ -239,7 +237,7 @@ else
     client_cmake_flags+=(-DENABLE_CRASHREPORTS=OFF)
 fi
 
-if [[ "$OSTYPE" == "darwin"* ]]; then
+if [[ "$OSTYPE" == "darwin"* && -n "${CMAKE_OSX_ARCHITECTURES:-}" ]]; then
     client_cmake_flags+=(-DCMAKE_OSX_ARCHITECTURES="${CMAKE_OSX_ARCHITECTURES}")
 fi
 
