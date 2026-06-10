@@ -24,16 +24,39 @@ ComboBox {
 
     function refresh() {
         servicesPopup.close();
-        openTunnels = ({});
         pendingOpens = ({});
         connectErrors = ({});
         if (!active || !accountId || !peerUri) {
+            openTunnels = ({});
             services = [];
             pendingRequestId = 0;
             return;
         }
+        // Tunnels live in the daemon and outlive this view, so restore the
+        // ones still open for this peer instead of dropping them. This keeps
+        // the tunnel state from being lost when switching conversation away
+        // and back.
+        restoreActiveTunnels();
         services = [];
         pendingRequestId = ExposedServicesAdapter.queryPeerServices(accountId, peerUri);
+    }
+
+    // Rebuild openTunnels from the daemon's authoritative active-tunnel list,
+    // keeping only the tunnels that belong to the current peer.
+    function restoreActiveTunnels() {
+        const restored = ({});
+        if (active && accountId && peerUri) {
+            const tunnels = ExposedServicesAdapter.getActiveTunnels(accountId);
+            tunnels.forEach(tunnel => {
+                if (tunnel.peerUri === peerUri)
+                    restored[tunnel.serviceId] = {
+                        tunnelId: tunnel.id,
+                        localPort: tunnel.localPort,
+                        scheme: ""
+                    };
+            });
+        }
+        openTunnels = restored;
     }
 
     // Re-query availability without tearing down the popup or open tunnels.
