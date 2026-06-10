@@ -89,22 +89,27 @@ NetworkManager::sendGetRequest(const QUrl& url, std::function<void(const QByteAr
 void
 NetworkManager::sendGetRequest(const QUrl& url,
                                const QMap<QString, QByteArray>& header,
-                               std::function<void(const QByteArray&)>&& onDoneCallback)
+                               std::function<void(const QByteArray&)>&& onDoneCallback,
+                               std::function<void(GetError, const QString&)>&& onErrorCallback)
 {
-    QNetworkRequest request = QNetworkRequest(url);
+    auto request = QNetworkRequest(url);
     for (auto it = header.begin(); it != header.end(); ++it) {
-        request.setRawHeader(QByteArray(it.key().toStdString().c_str(), it.key().size()), it.value());
+        request.setRawHeader(it.key().toUtf8(), it.value());
     }
-    sendGetRequest(request, std::move(onDoneCallback));
+    sendGetRequest(request, std::move(onDoneCallback), std::move(onErrorCallback));
 }
 
 void
-NetworkManager::sendGetRequest(const QNetworkRequest& request, std::function<void(const QByteArray&)>&& onDoneCallback)
+NetworkManager::sendGetRequest(const QNetworkRequest& request,
+                               std::function<void(const QByteArray&)>&& onDoneCallback,
+                               std::function<void(GetError, const QString&)>&& onErrorCallback)
 {
     auto* const reply = manager_->get(request);
-    QObject::connect(reply, &QNetworkReply::finished, this, [reply, onDoneCallback, this]() {
+    QObject::connect(reply, &QNetworkReply::finished, this, [reply, onDoneCallback, onErrorCallback, this]() {
         if (reply->error() == QNetworkReply::NoError) {
             onDoneCallback(reply->readAll());
+        } else if (onErrorCallback) {
+            onErrorCallback(GetError::NETWORK_ERROR, reply->errorString());
         } else {
             Q_EMIT errorOccurred(GetError::NETWORK_ERROR, reply->errorString());
         }
