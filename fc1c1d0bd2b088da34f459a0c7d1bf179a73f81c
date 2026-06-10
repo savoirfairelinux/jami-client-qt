@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c97873de_2f5ee086",
+        "filename": "src/app/settingsview/components/PluginStoreListView.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-10T17:55:52Z",
+      "side": 1,
+      "message": "[Minor] Line 106: 🟡 Suggestion: `item` can be null while the Loader binding is evaluated, especially around active/source changes. Accessing `item.implicitHeight` directly may produce QML runtime warnings and leave the layout height in an invalid state. Guard the access explicitly.\n\n```suggestion\n        Layout.preferredHeight: active \u0026\u0026 item ? item.implicitHeight : 0\n```",
+      "revId": "fc1c1d0bd2b088da34f459a0c7d1bf179a73f81c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
