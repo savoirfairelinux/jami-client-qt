@@ -291,7 +291,7 @@ PositionManager::setMapInactive(const QString& key)
             stopPositioning();
         }
     } else {
-        qWarning() << "Error: Can't set inactive a map that doesn't exists";
+        qDebug() << "Error: Can't set inactive a map that doesn't exists";
     }
 }
 

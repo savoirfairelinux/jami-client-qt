@@ -38,7 +38,7 @@ ListView {
         ListElement {
             Author: ""
             IsLastSent: false
-            Body: ""
+            Body: "/tmp/qml-data-transfer-test.txt"
             Id: ""
             IsEmojiOnly: false
             ReplyToBody: ""
@@ -61,7 +61,6 @@ ListView {
         timestamp: 0
         transferStatus: Interaction.TransferStatus.TRANSFER_FINISHED
         author: ""
-        body: ""
     }
 
     TestCase {
@@ -77,4 +76,3 @@ ListView {
         }
     }
 }
-
