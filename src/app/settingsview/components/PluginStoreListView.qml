@@ -103,16 +103,31 @@ ColumnLayout {
         }
     }
     Loader {
+        id: storeNotAvailableLoader
         Layout.fillWidth: true
         Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
-        Layout.preferredHeight: active ? JamiTheme.bigFontSize : 0
+        Layout.preferredHeight: active ? item.implicitHeight : 0
         active: !storeAvailable
-        sourceComponent: Text {
-            font.bold: true
-            color: JamiTheme.textColor
-            font.pixelSize: JamiTheme.bigFontSize
-            horizontalAlignment: Text.AlignHCenter
-            text: JamiStrings.extensionStoreNotAvailable
+        sourceComponent: ColumnLayout {
+            width: storeNotAvailableLoader.width
+            Text {
+                Layout.fillWidth: true
+                wrapMode: Text.WordWrap
+                font.bold: true
+                color: JamiTheme.textColor
+                font.pixelSize: JamiTheme.bigFontSize
+                horizontalAlignment: Text.AlignHCenter
+                text: JamiStrings.extensionStoreNotAvailable
+            }
+            NewMaterialButton {
+                Layout.alignment: Qt.AlignHCenter
+                outlinedButton: true
+                text: JamiStrings.optionTryAgain
+                onClicked: {
+                    storeAvailable = true;
+                    PluginAdapter.getPluginsFromStore();
+                }
+            }
         }
     }
     Loader {
