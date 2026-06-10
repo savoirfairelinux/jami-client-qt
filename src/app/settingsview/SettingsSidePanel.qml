@@ -37,7 +37,7 @@ SidePanelBase {
     // In dual pane mode, SettingsView will sync this to the content index.
     property int currentIndex: -1
     property bool isSinglePane
-    readonly property real sidePanelIslandsMargin: viewCoordinator.isInSinglePaneMode ? JamiTheme.sidePanelIslandsSinglePaneModePadding : JamiTheme.sidePanelIslandsPadding
+    readonly property real sidePanelIslandsMargin: viewCoordinator && viewCoordinator.isInSinglePaneMode ? JamiTheme.sidePanelIslandsSinglePaneModePadding : JamiTheme.sidePanelIslandsPadding
     signal updated
 
     function getHeaders() {
@@ -326,7 +326,7 @@ SidePanelBase {
         anchors.topMargin: JamiQmlUtils.isMacOS26OrLater ? JamiTheme.sidePanelIslandPaddingMac : root.sidePanelIslandsMargin
         anchors.leftMargin: JamiQmlUtils.isMacOS26OrLater ? JamiTheme.sidePanelIslandPaddingMac : root.sidePanelIslandsMargin
         anchors.rightMargin: {
-            if (viewCoordinator.isInSinglePaneMode) {
+            if (viewCoordinator && viewCoordinator.isInSinglePaneMode) {
                 return JamiTheme.sidePanelIslandsSinglePaneModePadding;
             }
             // This manual override for the right margin is necessary,

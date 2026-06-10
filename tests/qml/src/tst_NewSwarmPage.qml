@@ -35,11 +35,18 @@ ColumnLayout {
     width: 300
     height: 300
 
+    Item {
+        id: sidePanelStub
+    }
+
     NewSwarmPage {
         id: uut
 
-        property ViewManager viewManager: ViewManager {}
-        property ViewCoordinator viewCoordinator: ViewCoordinator {}
+        property QtObject viewCoordinator: QtObject {
+            function getView() {
+                return sidePanelStub;
+            }
+        }
 
         Layout.alignment: Qt.AlignHCenter
         Layout.preferredWidth: root.width
