@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "15ea806a_5bde2db0",
+        "filename": "src/app/conversationsadapter.h",
+        "patchSetId": 31
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-10T16:33:39Z",
+      "side": 1,
+      "message": "Line 24: `#include \u003cQTimer\u003e` is added but this header does not use `QTimer` in the shown patch. Please remove the unused include to avoid unnecessary dependencies and rebuild churn.\n\n```suggestion\n#include \u003cQQmlEngine\u003e   // QML registration\n```",
+      "revId": "fa8277ee9bc89a7692ec2416b257b2ca8960291f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "258799b5_2bad4a24",
+        "filename": "src/libclient/dbus/metatypes.h",
+        "patchSetId": 31
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-10T16:33:39Z",
+      "side": 1,
+      "message": "[Critical] Line 97: Adding `pluginData` directly to the serialized `SwarmMessage` DBus struct changes the wire signature and can break compatibility with older daemons/clients that still emit or expect the previous 8-field struct. This is especially risky because the codebase still supports finding libjami externally. Please either gate this with a protocol/API version check or keep the DBus struct backward-compatible by reading/writing optional plugin metadata through a compatible extension path.\n\n```suggestion\n// Keep the DBus SwarmMessage signature stable unless both sides are version-gated.\n// Add plugin data through a versioned signal/struct or a backward-compatible metadata map.\n```",
+      "revId": "fa8277ee9bc89a7692ec2416b257b2ca8960291f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bb14a746_73fbaabd",
+        "filename": "src/libclient/interaction.cpp",
+        "patchSetId": 31
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-10T16:33:39Z",
+      "side": 1,
+      "message": "[Critical] Line 127: `bodyOverwrite` from `pluginData` is used as the displayed message body without any validation or size limiting. Plugin-provided data can be less trusted than the original conversation body and may be rendered through the same rich text/link parsing path, so malformed or very large values could cause UI abuse or performance issues. Please validate this field before assigning it, using the same constraints expected for message bodies.\n\n```suggestion\nconst auto bodyOverwriteIt \u003d msg.pluginData.find(\"bodyOverwrite\");\nif (bodyOverwriteIt !\u003d msg.pluginData.end()\n    \u0026\u0026 !bodyOverwriteIt.value().isEmpty()\n    \u0026\u0026 bodyOverwriteIt.value().size() \u003c\u003d MAX_MESSAGE_BODY_SIZE) {\n    body \u003d bodyOverwriteIt.value();\n}\n```",
+      "revId": "fa8277ee9bc89a7692ec2416b257b2ca8960291f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bc3bc8c3_159fc582",
+        "filename": "src/libclient/interaction.cpp",
+        "patchSetId": 31
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-10T16:33:39Z",
+      "side": 1,
+      "message": "Line 136: Edition handling looks for `bodyOverwrite` inside each edition map, but the new type only adds `pluginData` at the top-level `SwarmMessage`. If the daemon stores plugin metadata only in `msg.pluginData`, edited-message history will not consistently show the plugin-overwritten body. Please confirm the daemon really injects `bodyOverwrite` into every edition entry; otherwise, carry edition plugin metadata explicitly or do not apply overwrite logic here.\n\n```suggestion\n// If editions need plugin-rendered bodies, expose edition plugin data explicitly\n// instead of reading an undocumented key from the edition body map.\n```",
+      "revId": "fa8277ee9bc89a7692ec2416b257b2ca8960291f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
