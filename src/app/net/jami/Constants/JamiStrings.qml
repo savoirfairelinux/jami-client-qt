@@ -271,6 +271,8 @@ Item {
     property string exposedServiceConnect: qsTr("Connect")
     property string exposedServiceDisconnect: qsTr("Disconnect")
     property string exposedServiceOpenInExternalBrowser: qsTr("Open in external browser")
+    property string exposedServiceUnavailable: qsTr("Unavailable (device offline)")
+    property string exposedServiceConnectFailed: qsTr("Connection failed")
 
     // PeerServicesSection / contact details
     property string peerServicesSectionTitle: qsTr("Shared services")
