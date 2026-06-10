@@ -58,6 +58,8 @@ add_library(test_common_obj OBJECT
     ${LIBCLIENT_SOURCES}
     ${LIBCLIENT_HEADERS}
     ${LIBCLIENT_HEADERS_MOC})
+set_source_files_properties(${LIBCLIENT_HEADERS_PRIVATE} PROPERTIES SKIP_AUTOMOC ON)
+set_source_files_properties(${LIBCLIENT_HEADERS_MOC} PROPERTIES GENERATED TRUE)
 
 target_include_directories(test_common_obj PRIVATE
     ${CLIENT_INCLUDE_DIRS}
