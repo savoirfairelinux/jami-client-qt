@@ -37,9 +37,14 @@ Item {
     id: mainView
     objectName: "mainView"
 
+    property var appContext: null
+    readonly property var viewCoordinator: appContext ? appContext.viewCoordinator : null
+
     property string currentConvId: CurrentConversation.id
     onCurrentConvIdChanged: {
-        if (currentConvId !== '') {
+        if (!viewCoordinator) {
+            return;
+        } else if (currentConvId !== '') {
             viewCoordinator.present("ConversationView");
         } else {
             viewCoordinator.present("WelcomePage");
@@ -86,8 +91,12 @@ Item {
     Connections {
         target: JamiQmlUtils
         function onSettingsPageRequested(index) {
+            if (!viewCoordinator)
+                return;
             viewCoordinator.present("SettingsView");
             const settingsView = viewCoordinator.getView("SettingsView");
+            if (!settingsView)
+                return;
             settingsView.leftPaneItem.select(index);
         }
     }

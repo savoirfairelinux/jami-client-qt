@@ -41,6 +41,8 @@ QtObject {
 
     // The `main` view of the application window.
     property StackView rootView
+    property ViewManager viewManager
+    property var appContext: null
 
     readonly property Item currentView: rootView && rootView.currentItem || null
     readonly property var currentViewName: currentView && currentView.objectName || null
@@ -122,6 +124,9 @@ QtObject {
 
     // Present a view by name.
     function present(viewName, props) {
+        if (isTestContext)
+            return null;
+
         const path = resources[viewName];
 
         // Check if the current view should inhibit the presentation of this view.
@@ -142,6 +147,8 @@ QtObject {
             return;
         }
         if (!viewManager.createView(path, rootView, function (view) {
+                if (view.hasOwnProperty("appContext"))
+                    view.appContext = appContext;
                 // push the view onto the stack if it's not already there
                 if (rootView.currentItem !== view) {
                     rootView.push(view, StackView.Immediate);
@@ -240,13 +247,19 @@ QtObject {
             console.log("Failed to load view: " + viewName);
             return null;
         }
+        if (view.hasOwnProperty("appContext"))
+            view.appContext = appContext;
         return view;
     }
 
     // Load a view without presenting it.
     function preload(viewName) {
-        if (!viewManager.createView(resources[viewName], null)) {
+        const view = viewManager.createView(resources[viewName], null);
+        if (!view) {
             console.log("Failed to load view: " + viewName);
+            return;
         }
+        if (view.hasOwnProperty("appContext"))
+            view.appContext = appContext;
     }
 }

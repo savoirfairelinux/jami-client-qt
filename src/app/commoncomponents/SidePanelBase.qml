@@ -24,6 +24,9 @@ Page {
 
     anchors.fill: parent
 
+    property var appContext: null
+    readonly property var appWindow: appContext ? appContext.appWindow : null
+    readonly property var viewCoordinator: appContext ? appContext.viewCoordinator : null
     property color color: "transparent"
 
     // QWK: Title bar spacing for macOS and single pane mode.
@@ -33,12 +36,12 @@ Page {
     header: Rectangle {
         id: titleBarSpacer
         height: {
-            if (!appWindow.useFrameless)
+            if (!appWindow || !appWindow.useFrameless)
                 return 0;
             var extraHeight = 0;
             if (Qt.platform.os.toString() === "osx")
                 extraHeight = JamiQmlUtils.isMacOS26OrLater? 0 : 24;
-            else if (viewCoordinator.isInSinglePaneMode)
+            else if (viewCoordinator && viewCoordinator.isInSinglePaneMode)
                 extraHeight = titleBar.height;
             return extraHeight;
         }
