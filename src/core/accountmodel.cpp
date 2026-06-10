@@ -545,7 +545,7 @@ AccountModelPimpl::updateAccounts()
         // "Remote peer disconnected", "The name is not activable", etc.
         // So avoid to create useless directories.
         if (account == accounts.end() && !id.isEmpty() && id.indexOf(" ") == -1) {
-            qWarning() << QString("detected new account %1").arg(id);
+            qDebug() << QString("detected new account %1").arg(id);
             addToAccounts(id);
             auto updatedAccount = accounts.find(id);
             if (updatedAccount == accounts.end()) {

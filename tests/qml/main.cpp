@@ -112,18 +112,18 @@ public Q_SLOTS:
             const auto accounts_used = 2;
             const auto accountList = lrcInstance_->accountModel().getAccountList();
             if (accountList.size() >= accounts_used) {
-                qWarning() << "Using existing test accounts.";
+                qInfo() << "Using existing test accounts.";
                 try {
                     aliceId = accountList[0];
                     bobId = accountList[1];
                     return;
                 } catch (...) {
-                    qWarning() << "Failed to get existing accounts.";
+                    qInfo() << "Failed to get existing accounts.";
                 }
             }
         }
 
-        qWarning() << "Creating test accounts and conversation, this may take some time...";
+        qInfo() << "Creating test accounts and conversation, this may take some time...";
 
         // Create 2 Accounts
         QSignalSpy accountAddedSpy(&lrcInstance_->accountModel(), &AccountModel::accountAdded);

@@ -1623,7 +1623,7 @@ CallModelPimpl::slotIncomingCall(const QString& accountId,
             displayname = peerId;
     }
 
-    qWarning() << "Initialized incoming call" << callId << "from peer" << peerId;
+    qDebug() << "Initialized incoming call" << callId << "from peer" << peerId;
 
     Q_EMIT linked.newCall(peerId, callId, displayname, false, toUsername);
 
@@ -1638,7 +1638,7 @@ CallModelPimpl::slotCallStateChanged(const QString& accountId, const QString& ca
         return;
 
     if (!linked.hasCall(callId)) {
-        qWarning() << "slotCallStateChanged: unknown callId " << callId;
+        qDebug() << "slotCallStateChanged: unknown callId " << callId;
         return;
     }
 

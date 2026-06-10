@@ -322,7 +322,6 @@ Item {
 
                     layer.enabled: true
                     layer.effect: MultiEffect {
-                        anchors.fill: scrollView
                         maskEnabled: true
                         maskSource: ShaderEffectSource {
                             sourceItem: Rectangle {
