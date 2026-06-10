@@ -108,9 +108,9 @@ ComboBox {
     function openOrCopy(service)  {
         if (isHttpService(service)) {
             var dlg = viewCoordinator.presentDialog(appWindow, "../../commoncomponents/ConfirmDialog.qml", {
-                                                        "titleText": JamiStrings.confirmAction,
+                                                        "titleText": JamiStrings.openExternalLink,
                                                         "textLabel": JamiStrings.confirmNavigationDescription,
-                                                        "confirmLabel": JamiStrings.leaveJami
+                                                        "confirmLabel": JamiStrings.open
                                                     });
             dlg.accepted.connect(function() {
                 Qt.openUrlExternally(service.scheme + "://" + localEndpoint(service));
@@ -226,7 +226,16 @@ ComboBox {
                 width: JamiTheme.iconButtonMedium
                 height: JamiTheme.iconButtonMedium
 
-                source: serviceDelegate.modelData.scheme === "https" ? JamiResources.vpn_lock_2_24dp_svg : JamiResources.language_24dp_svg
+                source: {
+                    if (!root.isAvailable(serviceDelegate.modelData)) {
+                        return JamiResources.globe_2_cancel_24dp_svg;
+                    } else if (serviceDelegate.modelData.scheme === "https") {
+                        return JamiResources.vpn_lock_2_24dp_svg;
+                    } else {
+                        return JamiResources.language_24dp_svg;
+                    }
+                }
+
                 sourceSize.width: JamiTheme.iconButtonMedium
                 sourceSize.height: JamiTheme.iconButtonMedium
 
@@ -296,7 +305,9 @@ ComboBox {
         background: Rectangle {
             radius: height / 2
 
-            color: (serviceDelegate.hovered || serviceDelegate.activeFocus || serviceDelegate.highlighted) ? JamiTheme.smartListHoveredColor : JamiTheme.globalIslandColor
+            color: serviceDelegate.enabled && (serviceDelegate.hovered || serviceDelegate.activeFocus || serviceDelegate.highlighted)
+                   ? JamiTheme.smartListHoveredColor
+                   : JamiTheme.globalIslandColor
 
             Behavior on color {
                 ColorAnimation {
