@@ -19,99 +19,31 @@
 
 #include "lrcinstance.h"
 
-#include "api/account.h"
-
-#include <QDateTime>
+#include "api/accountmodel.h"
 
 AccountListModel::AccountListModel(LRCInstance* instance, QObject* parent)
-    : AbstractListModelBase(parent)
+    : QIdentityProxyModel(parent)
+    , lrcInstance_(instance)
 {
-    lrcInstance_ = instance;
-
-    // Avoid resetting/redrawing the model when the account status changes.
-    QObject::connect(&lrcInstance_->accountModel(),
-                     &AccountModel::accountStatusChanged,
-                     this,
-                     [&](const QString& accountId) {
-                         auto accountList = lrcInstance_->accountModel().getAccountList();
-                         auto index = accountList.indexOf(accountId);
-                         if (index != -1) {
-                             QModelIndex modelIndex = QAbstractListModel::index(index, 0);
-                             Q_EMIT dataChanged(modelIndex, modelIndex /*, ALL ROLES */);
-                         }
-                     });
-    // If there's a reorder, it's reasonable to reset the model for simplicity, instead
-    // of computing the difference. The same goes for accounts being added and removed.
-    // These operations will only occur when the list is hidden, unless dbus is used while
-    // the list is visible.
-    QObject::connect(&lrcInstance_->accountModel(), &AccountModel::accountsReordered, this, &AccountListModel::reset);
-    QObject::connect(&lrcInstance_->accountModel(), &AccountModel::accountAdded, this, &AccountListModel::reset);
-    QObject::connect(&lrcInstance_->accountModel(), &AccountModel::accountRemoved, this, &AccountListModel::reset);
-}
-
-int
-AccountListModel::rowCount(const QModelIndex& parent) const
-{
-    if (!parent.isValid() && lrcInstance_) {
-        return lrcInstance_->accountModel().getAccountCount();
-    }
-    return 0;
-}
-
-QVariant
-AccountListModel::data(const QModelIndex& index, int role) const
-{
-    auto accountList = lrcInstance_->accountModel().getAccountList();
-    if (!index.isValid() || accountList.size() <= index.row()) {
-        return QVariant();
-    }
-
-    auto accountId = accountList.at(index.row());
-    auto& accountInfo = lrcInstance_->accountModel().getAccountInfo(accountId);
-
-    switch (role) {
-    case Role::Alias:
-        return QVariant(lrcInstance_->accountModel().bestNameForAccount(accountId));
-    case Role::Username:
-        return QVariant(lrcInstance_->accountModel().bestIdForAccount(accountId));
-    case Role::Type:
-        return QVariant(static_cast<int>(accountInfo.profileInfo.type));
-    case Role::Status:
-        return QVariant(static_cast<int>(accountInfo.status));
-    case Role::NotificationCount:
-        return QVariant(static_cast<int>(accountInfo.conversationModel->notificationsCount()));
-    case Role::ID:
-        return QVariant(accountInfo.id);
-    case Role::Uri:
-        return QVariant(accountInfo.profileInfo.uri);
-    }
-    return QVariant();
+    setSourceModel(&lrcInstance_->accountModel());
 }
 
 void
 AccountListModel::updateNotifications()
 {
-    for (int i = 0; i < lrcInstance_->accountModel().getAccountCount(); ++i) {
-        QModelIndex modelIndex = QAbstractListModel::index(i, 0);
-        Q_EMIT dataChanged(modelIndex, modelIndex, {Role::NotificationCount});
+    auto* src = sourceModel();
+    if (!src)
+        return;
+    for (int i = 0; i < src->rowCount(); ++i) {
+        QModelIndex modelIndex = src->index(i, 0);
+        Q_EMIT src->dataChanged(modelIndex, modelIndex, {AccountList::NotificationCount});
     }
-}
-
-QHash<int, QByteArray>
-AccountListModel::roleNames() const
-{
-    using namespace AccountList;
-    QHash<int, QByteArray> roles;
-#define X(role) roles[role] = #role;
-    ACC_ROLES
-#undef X
-    return roles;
 }
 
 void
 AccountListModel::reset()
 {
-    // Used to invalidate proxy models.
+    // Force proxy invalidation
     beginResetModel();
     endResetModel();
 }
