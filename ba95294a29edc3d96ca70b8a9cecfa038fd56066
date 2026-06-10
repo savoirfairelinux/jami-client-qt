@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e1bc151e_ac27970c",
+        "filename": "src/app/networkmanager.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1192
+      },
+      "writtenOn": "2026-06-10T17:55:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "49058daa_c9671baf",
+      "range": {
+        "startLine": 123,
+        "startChar": 29,
+        "endLine": 123,
+        "endChar": 88
+      },
+      "revId": "ba95294a29edc3d96ca70b8a9cecfa038fd56066",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2f18197d_932f088d",
@@ -47,6 +71,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6e3e0f31_67b2c13b",
+        "filename": "src/app/networkmanager.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1192
+      },
+      "writtenOn": "2026-06-10T17:55:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2f18197d_932f088d",
+      "range": {
+        "startLine": 114,
+        "startChar": 0,
+        "endLine": 134,
+        "endChar": 1
+      },
+      "revId": "ba95294a29edc3d96ca70b8a9cecfa038fd56066",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2f6a80e8_b8f2eebc",
@@ -60,6 +108,30 @@
       "writtenOn": "2026-06-10T17:39:52Z",
       "side": 1,
       "message": "language.toUtf8()",
+      "range": {
+        "startLine": 84,
+        "startChar": 32,
+        "endLine": 84,
+        "endChar": 91
+      },
+      "revId": "ba95294a29edc3d96ca70b8a9cecfa038fd56066",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "89105467_dc7082a4",
+        "filename": "src/app/pluginadapter.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1192
+      },
+      "writtenOn": "2026-06-10T17:55:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2f6a80e8_b8f2eebc",
       "range": {
         "startLine": 84,
         "startChar": 32,
