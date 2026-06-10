@@ -40,6 +40,7 @@ ItemDelegate {
     property bool interactive: true
     property bool isTemporary: false
     property bool isBanned: false
+    property bool showLocationIconArrow: true
 
     property int lastInteractionTimeStamp: LastInteractionTimeStamp
     property string lastInteractionFormattedDate: MessagesAdapter.getBestFormattedDate(lastInteractionTimeStamp)
@@ -180,7 +181,7 @@ ItemDelegate {
         BlinkingLocationIcon {
             isSharing: true
             visible: showSharePositionIndicator
-            arrowTimerVisibility: locationIconTimer.showIconArrow
+            arrowTimerVisibility: root.showLocationIconArrow
             color: JamiTheme.draftIconColor
             containerWidth: 25
         }
@@ -188,7 +189,7 @@ ItemDelegate {
         BlinkingLocationIcon {
             isSharing: false
             visible: showSharedPositionIndicator
-            arrowTimerVisibility: locationIconTimer.showIconArrow
+            arrowTimerVisibility: root.showLocationIconArrow
             color: JamiTheme.draftIconColor
             containerWidth: 25
         }

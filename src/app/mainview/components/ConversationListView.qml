@@ -29,7 +29,7 @@ JamiListView {
     required property bool headerVisible
 
     delegate: SmartListItemDelegate {}
-    currentIndex: model.currentFilteredRow
+    currentIndex: model && model.currentFilteredRow !== undefined ? model.currentFilteredRow : -1
 
     // Allows scrolling to follow currently focused item
     onCurrentIndexChanged: {
@@ -67,15 +67,20 @@ JamiListView {
     Accessible.description: JamiStrings.conversationListDescription
     Accessible.focusable: true
 
-    Connections {
-        target: model
+    function selectValidConversation() {
+        var row = model.currentFilteredRow;
+        var convId = model.dataForRow(row, ConversationList.UID);
+        LRCInstance.selectConversation(convId);
+    }
 
-        // actually select the conversation
-        function onValidSelectionChanged() {
-            var row = model.currentFilteredRow;
-            var convId = model.dataForRow(row, ConversationList.UID);
-            LRCInstance.selectConversation(convId);
-        }
+    onModelChanged: {
+        if (model && model.validSelectionChanged !== undefined)
+            model.validSelectionChanged.connect(selectValidConversation);
+    }
+
+    Component.onCompleted: {
+        if (model && model.validSelectionChanged !== undefined)
+            model.validSelectionChanged.connect(selectValidConversation);
     }
 
     onCountChanged: positionViewAtBeginning()

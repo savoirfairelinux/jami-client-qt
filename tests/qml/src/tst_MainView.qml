@@ -23,34 +23,36 @@ import net.jami.Models 1.1
 import net.jami.Constants 1.1
 import net.jami.Enums 1.1
 
+import "../../../src/app/"
 import "../../../src/app/mainview"
 import "../../../src/app/commoncomponents"
 
-MainView {
-    id: uut
+TestWrapper {
+    MainView {
+        id: uut
 
-    width: 400
-    height: 600
+        width: 400
+        height: 600
 
-    SignalSpy {
-        id: settingsPageRequestedSpy
+        SignalSpy {
+            id: settingsPageRequestedSpy
 
-        target: JamiQmlUtils
-        signalName: "onSettingsPageRequested"
-    }
+            target: JamiQmlUtils
+            signalName: "onSettingsPageRequested"
+        }
 
-    TestCase {
-        name: "Test shortcuts"
-        when: windowShown
+        TestCase {
+            name: "Test shortcuts"
+            when: windowShown
 
-        function test_shortcuts() {
-            keyClick(Qt.Key_M, Qt.ControlModifier)
-            settingsPageRequestedSpy.wait(1000)
-            compare(settingsPageRequestedSpy.count, 1)
-            keyClick(Qt.Key_G, Qt.ControlModifier)
-            settingsPageRequestedSpy.wait(1000)
-            compare(settingsPageRequestedSpy.count, 2)
+            function test_shortcuts() {
+                keyClick(Qt.Key_M, Qt.ControlModifier)
+                settingsPageRequestedSpy.wait(1000)
+                compare(settingsPageRequestedSpy.count, 1)
+                keyClick(Qt.Key_G, Qt.ControlModifier)
+                settingsPageRequestedSpy.wait(1000)
+                compare(settingsPageRequestedSpy.count, 2)
+            }
         }
     }
-
 }

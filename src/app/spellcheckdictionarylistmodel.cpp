@@ -62,7 +62,7 @@ SpellCheckDictionaryListModel::SpellCheckDictionaryListModel(AppSettingsManager*
     auto spellLangLocale = settingsManager_->getValue(Settings::Key::SpellLang).toString();
     auto currentLocale = settingsManager_->getLanguage();
     if (spellLangLocale.isEmpty() || !isLocaleInstalled(spellLangLocale)) {
-        C_WARN << "Spell check language setting is empty or invalid, resetting to current locale";
+        C_INFO << "Spell check language setting is empty or invalid, resetting to current locale";
         settingsManager_->setValue(Settings::Key::SpellLang, currentLocale);
         installDictionary(currentLocale);
     }
@@ -221,7 +221,7 @@ SpellCheckDictionaryListModel::installDictionary(const QString& locale)
     // Check if already installed
     auto dictObj = dictionaries_.at(index.row()).toObject();
     if (dictObj.value("installed").toBool()) {
-        C_WARN << "Dictionary already installed for locale:" << locale;
+        C_INFO << "Dictionary already installed for locale:" << locale;
         return;
     }
 

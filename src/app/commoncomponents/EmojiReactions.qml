@@ -28,7 +28,7 @@ Item {
     property var reactions
     property real contentHeight: reactionBubble.height
     property real contentWidth: reactionBubble.width
-    property color borderColor: undefined
+    property color borderColor: "transparent"
     property int maxWidth: JamiTheme.defaulMaxWidthReaction
     property string msgBody: ""
 

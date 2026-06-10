@@ -545,7 +545,7 @@ AccountModelPimpl::updateAccounts()
         // "Remote peer disconnected", "The name is not activable", etc.
         // So avoid to create useless directories.
         if (account == accounts.end() && !id.isEmpty() && id.indexOf(" ") == -1) {
-            qWarning() << QString("detected new account %1").arg(id);
+            qDebug() << QString("detected new account %1").arg(id);
             addToAccounts(id);
             auto updatedAccount = accounts.find(id);
             if (updatedAccount == accounts.end()) {
@@ -622,12 +622,12 @@ AccountModelPimpl::slotAccountStatusChanged(const QString& accountID, const api:
         } else if (!accountInfo.profileInfo.uri.isEmpty()) {
             accountInfo.status = status;
             Q_EMIT linked.accountStatusChanged(accountID);
-    emitDataChanged(accountID);
+            emitDataChanged(accountID);
         }
     } else {
         accountInfo.status = status;
         Q_EMIT linked.accountStatusChanged(accountID);
-    emitDataChanged(accountID);
+        emitDataChanged(accountID);
     }
 }
 
@@ -645,7 +645,7 @@ AccountModelPimpl::slotAccountDetailsChanged(const QString& accountId, const Map
         username_changed = false;
         accountInfo.registeredName = new_username;
         Q_EMIT linked.profileUpdated(accountId);
-    emitDataChanged(accountId);
+        emitDataChanged(accountId);
     }
     // TODO: Remove accountStatusChanged here.
     Q_EMIT linked.accountStatusChanged(accountId);
