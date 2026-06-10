@@ -36,6 +36,10 @@ Item {
     property bool hoveredOverVideoMuted: true
     property bool screenshotButtonHovered: false
 
+    ListModel {
+        id: emptyParticipantsModel
+    }
+
     onVisibleChanged: {
         CurrentCall.hideSelf = UtilsAdapter.getAppValue(Settings.HideSelf);
         CurrentCall.hideSpectators = UtilsAdapter.getAppValue(Settings.HideSpectators);
@@ -96,7 +100,7 @@ Item {
 
     SortFilterProxyModel {
         id: genericParticipantsModel
-        model: CallParticipantsModel
+        model: root.visible ? CallParticipantsModel : emptyParticipantsModel
         filters: [
             ValueFilter {
                 roleName: "Active"
@@ -117,7 +121,7 @@ Item {
 
     SortFilterProxyModel {
         id: activeParticipantsModel
-        model: CallParticipantsModel
+        model: root.visible ? CallParticipantsModel : emptyParticipantsModel
         filters: ValueFilter {
             roleName: "Active"
             value: true

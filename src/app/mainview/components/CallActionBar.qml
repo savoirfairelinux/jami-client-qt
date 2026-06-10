@@ -40,6 +40,10 @@ Control {
 
     property real itemSpacing: 2
 
+    ListModel {
+        id: emptyCallControlsModel
+    }
+
     signal chatClicked
     signal addToConferenceClicked
     signal transferClicked
@@ -533,7 +537,7 @@ Control {
                 interactive: false
 
                 model: SortFilterProxyModel {
-                    model: root.visible ? CallOverlayModel.primaryModel() : null
+                    model: root.visible ? CallOverlayModel.primaryModel() : emptyCallControlsModel
                     filters: ValueFilter {
                         roleName: "Enabled"
                         value: true
