@@ -70,6 +70,24 @@
       "parentUuid": "c61cfa2d_76acb57a",
       "revId": "45302fe0f7e64cf83f8c04d01d3641a43c5fbe4a",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3434cd2d_5d2868b8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6
+      },
+      "writtenOn": "2026-06-10T20:33:44Z",
+      "side": 1,
+      "message": "Done, the error string now says \"Device unavailable\" instead of offline.",
+      "parentUuid": "f7dcb838_86573ffe",
+      "revId": "45302fe0f7e64cf83f8c04d01d3641a43c5fbe4a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
