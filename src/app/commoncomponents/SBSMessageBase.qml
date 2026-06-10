@@ -64,7 +64,9 @@ Control {
     property real textContentHeight
     property bool isReply: ReplyTo !== ""
     property real timeWidth: timestampItem.width
-    property real editedWidth: editedRow.visible ? editedRow.width + 10 : 0
+    property real editedWidth: 0
+    property bool showOriginal: false
+    property bool isPluginOverwrite: Body !== OriginalBody
 
     property real maxMsgWidth: root.width - senderMargin - 2 * hPadding - avatarBlockWidth
     property bool bigMsg
@@ -511,42 +513,6 @@ Control {
                         }
                     }
 
-                    RowLayout {
-                        id: editedRow
-                        anchors.left: root.bigMsg ? bubble.left : timestampItem.left
-                        anchors.bottom: parent.bottom
-                        anchors.bottomMargin: root.bigMsg ? 6 : 10
-                        anchors.leftMargin: root.bigMsg ? 10 : -timestampItem.width - 16
-                        visible: bubble.isEdited && !bubble.isDeleted
-                        z: 1
-                        ResponsiveImage {
-                            id: editedImage
-                            source: JamiResources.round_edit_24dp_svg
-                            width: 12
-                            height: 12
-                            color: editedLabel.color
-                            opacity: 0.5
-                        }
-
-                        Text {
-                            id: editedLabel
-                            text: JamiStrings.edited
-                            color: UtilsAdapter.luma(bubble.color) ? "white" : "dark"
-                            opacity: 0.5
-                            font.pixelSize: JamiTheme.timestampFont
-                        }
-
-                        TapHandler {
-                            acceptedButtons: Qt.LeftButton
-                            onTapped: {
-                                viewCoordinator.presentDialog(appWindow,
-                                                              "commoncomponents/EditedPopup.qml", {
-                                                                  "previousBodies": PreviousBodies
-                                                              });
-                            }
-                        }
-                    }
-
                     MouseArea {
                         id: bubbleArea
 
@@ -742,6 +708,104 @@ Control {
                     active: status.isAlone && convContext.lastSelfMessageId === Id
                     sourceComponent: selfReadIconComp
                     anchors.bottom: parent.bottom
+                }
+            }
+        }
+
+        RowLayout {
+            id: editedRow
+
+            visible: (bubble.isEdited || isPluginOverwrite) && !bubble.isDeleted
+            Layout.topMargin: 2
+            Layout.alignment: isOutgoing ? Qt.AlignRight : Qt.AlignLeft
+            Layout.leftMargin: isOutgoing ? 0 : avatarBlockWidth
+            Layout.rightMargin: isOutgoing ? JamiTheme.avatarReadReceiptSize : 0
+            spacing: 4
+
+            // Plugin overwrite indicator (info only, not clickable)
+            RowLayout {
+                visible: isPluginOverwrite
+                spacing: 2
+                ResponsiveImage {
+                    source: JamiResources.plugins_24dp_svg
+                    width: 12
+                    height: 12
+                    color: JamiTheme.chatviewSecondaryInformationColor
+                    opacity: 0.5
+                }
+                Text {
+                    text: JamiStrings.modifiedByExtension
+                    color: JamiTheme.chatviewSecondaryInformationColor
+                    opacity: 0.5
+                    font.pixelSize: JamiTheme.timestampFont
+                }
+            }
+
+            // Separator shown when both indicators are visible
+            Text {
+                visible: isPluginOverwrite && bubble.isEdited
+                text: "·"
+                color: JamiTheme.chatviewSecondaryInformationColor
+                opacity: 0.4
+                font.pixelSize: JamiTheme.timestampFont
+            }
+
+            // User edit indicator (clickable → edit history popup)
+            RowLayout {
+                visible: bubble.isEdited
+                spacing: 2
+                ResponsiveImage {
+                    id: editedImage
+                    source: JamiResources.round_edit_24dp_svg
+                    width: 12
+                    height: 12
+                    color: editedLabel.color
+                    opacity: 0.6
+                }
+                Text {
+                    id: editedLabel
+                    text: JamiStrings.edited
+                    color: JamiTheme.chatviewSecondaryInformationColor
+                    opacity: 0.6
+                    font.pixelSize: JamiTheme.timestampFont
+                }
+                HoverHandler {
+                    cursorShape: Qt.PointingHandCursor
+                }
+                TapHandler {
+                    acceptedButtons: Qt.LeftButton
+                    onTapped: {
+                        viewCoordinator.presentDialog(appWindow,
+                                                      "commoncomponents/EditedPopup.qml", {
+                                                          "previousBodies": PreviousBodies
+                                                      });
+                    }
+                }
+            }
+
+            // Separator before action toggle
+            Text {
+                visible: isPluginOverwrite
+                text: "·"
+                color: JamiTheme.chatviewSecondaryInformationColor
+                opacity: 0.4
+                font.pixelSize: JamiTheme.timestampFont
+            }
+
+            // Toggle action (distinct color signals it is interactive)
+            Text {
+                visible: isPluginOverwrite
+                text: root.showOriginal
+                      ? (bubble.isEdited ? JamiStrings.showEditedMessage : JamiStrings.showModifiedMessage)
+                      : JamiStrings.showOriginalMessage
+                color: JamiTheme.tintedBlue
+                font.pixelSize: JamiTheme.timestampFont
+                HoverHandler {
+                    cursorShape: Qt.PointingHandCursor
+                }
+                TapHandler {
+                    acceptedButtons: Qt.LeftButton
+                    onTapped: root.showOriginal = !root.showOriginal
                 }
             }
         }
