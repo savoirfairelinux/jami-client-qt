@@ -16,6 +16,29 @@
       "message": "[Minor] Line 106: 🟡 Suggestion: `item` can be null while the Loader binding is evaluated, especially around active/source changes. Accessing `item.implicitHeight` directly may produce QML runtime warnings and leave the layout height in an invalid state. Guard the access explicitly.\n\n```suggestion\n        Layout.preferredHeight: active \u0026\u0026 item ? item.implicitHeight : 0\n```",
       "revId": "fc1c1d0bd2b088da34f459a0c7d1bf179a73f81c",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5426c0dc_9177df4e",
+        "filename": "src/app/settingsview/components/PluginStoreListView.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-06-10T18:43:50Z",
+      "side": 1,
+      "message": "We\u0027ve deprecated `MaterialButton` and are slowly replacing most instances of it with `NewMaterialButton`",
+      "range": {
+        "startLine": 122,
+        "startChar": 12,
+        "endLine": 130,
+        "endChar": 13
+      },
+      "revId": "fc1c1d0bd2b088da34f459a0c7d1bf179a73f81c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
