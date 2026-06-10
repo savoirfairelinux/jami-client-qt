@@ -524,6 +524,47 @@ Item {
                 }
             }
 
+            Control {
+                id: conversationUnrecoverableBanner
+                Layout.fillWidth: true
+                visible: convContext.hasUnrecoverableError
+
+                padding: 10
+                background: Rectangle {
+                    color: JamiTheme.infoRectangleColor
+                    radius: 5
+                }
+                contentItem: RowLayout {
+                    spacing: 8
+                    Label {
+                        text: JamiStrings.conversationUnrecoverable
+                        color: JamiTheme.textColor
+                        wrapMode: Text.WordWrap
+                        Layout.alignment: Qt.AlignVCenter
+                        Layout.fillWidth: true
+                    }
+                    NewMaterialButton {
+                        id: removeUnrecoverableConversationButton
+                        Layout.alignment: Qt.AlignVCenter
+
+                        outlinedButton: true
+                        color: JamiTheme.buttonTintedRed
+                        text: convContext.isCoreDialog ? JamiStrings.removeConversation : JamiStrings.leaveGroup
+
+                        onClicked: {
+                            var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/ConfirmDialog.qml", {
+                                "titleText": JamiStrings.confirmAction,
+                                "textLabel": JamiStrings.confirmRemoveConversation,
+                                "confirmLabel": JamiStrings.optionRemove
+                            });
+                            dlg.accepted.connect(function () {
+                                MessagesAdapter.removeConversation(convContext.id, true);
+                            });
+                        }
+                    }
+                }
+            }
+
             JamiSplitView {
                 id: chatViewSplitView
                 objectName: "ChatViewSplitView"
