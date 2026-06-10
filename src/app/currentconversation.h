@@ -57,6 +57,7 @@ class CurrentConversation final : public QObject
     QML_PROPERTY(QVariantList, activeCalls)
     QML_PROPERTY(QStringList, errors)
     QML_PROPERTY(QStringList, backendErrors)
+    QML_PROPERTY(bool, hasUnrecoverableError)
     QML_PROPERTY(QString, lastSelfMessageId)
     QML_RO_PROPERTY(bool, hasCall)
     QML_RO_PROPERTY(QVariant, members)

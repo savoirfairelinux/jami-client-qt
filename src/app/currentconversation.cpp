@@ -298,6 +298,7 @@ CurrentConversation::updateErrors(const QString& convId)
     try {
         QStringList newErrors;
         QStringList newBackendErr;
+        bool unrecoverable = false;
         const auto& convModel = lrcInstance_->getCurrentConversationModel();
         if (auto optConv = convModel->getConversationForUid(convId)) {
             auto& convInfo = optConv->get();
@@ -312,6 +313,12 @@ CurrentConversation::updateErrors(const QString& convId)
                     newErrors.append(tr("Insufficient permission to update conversation information."));
                 } else if (code == 5) {
                     newErrors.append(tr("An error occurred while committing a new message."));
+                } else if (code == 6) {
+                    // EUNRECOVERABLE: the remote repository repeatedly failed validation.
+                    // This is permanent, so surface an actionable error to the user.
+                    unrecoverable = true;
+                    newErrors.append(tr("This conversation can no longer be synchronized. Remove it and ask your "
+                                        "contact for a new invitation."));
                 } else {
                     continue;
                 }
@@ -320,6 +327,7 @@ CurrentConversation::updateErrors(const QString& convId)
         }
         set_backendErrors(newBackendErr);
         set_errors(newErrors);
+        set_hasUnrecoverableError(unrecoverable);
     } catch (...) {
     }
 }

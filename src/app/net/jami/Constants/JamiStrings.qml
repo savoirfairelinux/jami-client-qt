@@ -484,6 +484,9 @@ Item {
     // Conversation ended banner
     property string conversationEnded: qsTr("This conversation has ended.")
 
+    // Unrecoverable conversation banner
+    property string conversationUnrecoverable: qsTr("This conversation can't be synchronized because the data shared by your contact is invalid. Remove it and ask your contact for a new invitation.")
+
     // MessagesResearch
     property string jumpTo: qsTr("Jump to")
     property string messages: qsTr("Messages")
