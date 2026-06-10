@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "99834e03_2d8b60ad",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 943
+      },
+      "writtenOn": "2026-06-10T19:08:56Z",
+      "side": 1,
+      "message": "Just to be on the safe side: Jami also supports offline communication, right? Does this patch take this feature into account—meaning, it prevents a peer from appearing as unavailable even though offline communication would be possible? Or do they show up as online even without internet access if offline communication via local Wi-Fi/WLAN is available? That is, assuming this patch is related to that at all.",
+      "revId": "45302fe0f7e64cf83f8c04d01d3641a43c5fbe4a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
