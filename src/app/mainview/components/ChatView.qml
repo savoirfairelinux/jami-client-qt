@@ -120,7 +120,7 @@ Item {
                     console.log("Error creating MapProfileHolder object");
                     return;
                 }
-                mapProfile = mapProfileHolder.profile;
+                mapProfile = mapProfileHolder.ensureProfile();
             }
             var component = Qt.createComponent("qrc:/webengine/map/MapPosition.qml");
             if (component.status !== Component.Ready) {
