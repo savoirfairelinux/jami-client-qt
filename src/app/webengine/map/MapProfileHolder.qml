@@ -19,12 +19,19 @@ import QtWebEngine
 import net.jami.Adapters 1.1
 
 Item {
-    property alias profile: mapProfile
+    property WebEngineProfile profile: null
 
-    WebEngineProfile {
-        id: mapProfile
-        objectName: "mapProfile"
-        httpUserAgent: "JamiDesktop/" + UtilsAdapter.getVersionStr()
+    WebEngineProfilePrototype {
+        id: mapProfilePrototype
         storageName: "JamiMap"
+    }
+
+    function ensureProfile() {
+        if (!profile) {
+            profile = mapProfilePrototype.instance();
+            profile.objectName = "mapProfile";
+            profile.httpUserAgent = "JamiDesktop/" + UtilsAdapter.getVersionStr();
+        }
+        return profile;
     }
 }
