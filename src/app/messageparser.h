@@ -19,6 +19,7 @@
 
 #include <QObject>
 #include <QColor>
+#include <QPair>
 #include <QThreadPool>
 
 class PreviewEngine;
@@ -50,8 +51,17 @@ public:
                       const QColor& linkColor,
                       const QColor& backgroundColor);
 
+    // Parse the original (pre-plugin) body of a message. Emits originalMessageParsed.
+    void parseOriginalMessage(const QString& messageId,
+                              const QString& msg,
+                              const QColor& linkColor,
+                              const QColor& backgroundColor);
+
     // Emitted when the message is ready to be displayed.
     Q_SIGNAL void messageParsed(const QString& msgId, const QString& msg);
+
+    // Emitted when the original (pre-plugin) body is ready to be displayed.
+    Q_SIGNAL void originalMessageParsed(const QString& msgId, const QString& msg);
 
     // Emitted when the message preview is ready to be displayed.
     Q_SIGNAL void linkInfoReady(const QString& msgId, const QVariantMap& info);
@@ -62,6 +72,9 @@ private:
 
     // Transform markdown syntax into HTML.
     QString markdownToHtml(const char* markdown);
+
+    // Build styled HTML from markdown. Returns {styledHtml, firstLinkHref}.
+    QPair<QString, QString> buildStyledHtml(QString md, const QColor& linkColor, const QColor& backgroundColor);
 
     // Generate a preview for the given link, then emit the messageParsed signal.
     void generatePreview(const QString& msgId, const QString& link);

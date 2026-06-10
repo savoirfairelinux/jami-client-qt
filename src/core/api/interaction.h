@@ -364,10 +364,12 @@ struct Body
 
     Q_PROPERTY(QString commitId MEMBER commitId)
     Q_PROPERTY(QString body MEMBER body)
+    Q_PROPERTY(QString originalBody MEMBER originalBody)
     Q_PROPERTY(int timestamp MEMBER timestamp)
 public:
     QString commitId;
     QString body;
+    QString originalBody;
     std::time_t timestamp;
 };
 
@@ -410,6 +412,7 @@ struct Info
     MapStringString commit;
     QVariantMap linkPreviewInfo = {};
     QString parsedBody = {};
+    QString parsedOriginalBody = {};
     QVariantMap reactions;
     QString react_to;
     QVector<Body> previousBodies;

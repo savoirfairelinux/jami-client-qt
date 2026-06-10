@@ -134,10 +134,13 @@ Info::Info(const SwarmMessage& msg, const QString& accountUri, const QString& ac
     for (int i = 0; i < static_cast<int>(msg.editions.size()); ++i) {
         const auto& edition = msg.editions[i];
         QString edBody = edition.value("body");
+        QString edOriginalBody;
         if (const auto boIt = edition.find("bodyOverwrite"); boIt != edition.end() && !boIt.value().isEmpty()) {
+            edOriginalBody = edBody;
             edBody = boIt.value();
         }
-        previousBodies.append(Body {edition.value("id"), edBody, QString(edition.value("timestamp")).toInt()});
+        previousBodies.append(
+            Body {edition.value("id"), edBody, edOriginalBody, QString(edition.value("timestamp")).toInt()});
     }
     QMap<QString, QVariantList> mapStringEmoji;
     for (const auto& reaction : msg.reactions) {

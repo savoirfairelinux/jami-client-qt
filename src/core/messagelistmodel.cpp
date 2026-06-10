@@ -395,6 +395,19 @@ MessageListModel::setParsedMessage(const QString& messageId, const QString& pars
 }
 
 void
+MessageListModel::setParsedOriginalBody(const QString& messageId, const QString& parsed)
+{
+    std::lock_guard<std::recursive_mutex> lk(mutex_);
+    const int index = indexOfMessage(messageId);
+    if (index == -1) {
+        return;
+    }
+    const QModelIndex modelIndex = QAbstractListModel::index(index, 0);
+    interactions_[index].second.parsedOriginalBody = parsed;
+    Q_EMIT dataChanged(modelIndex, modelIndex, {Role::ParsedOriginalBody});
+}
+
+void
 MessageListModel::setRead(const QString& peer, const QString& messageId)
 {
     std::lock_guard<std::recursive_mutex> lk(mutex_);
@@ -561,6 +574,8 @@ MessageListModel::dataForItem(const item_t& item, int, int role) const
         return QVariant(item.second.linkPreviewInfo);
     case Role::ParsedBody:
         return QVariant(item.second.parsedBody);
+    case Role::ParsedOriginalBody:
+        return QVariant(item.second.parsedOriginalBody);
     case Role::ActionUri:
         return QVariant(item.second.commit["uri"]);
     case Role::ConfId:
