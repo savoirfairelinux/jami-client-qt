@@ -19,18 +19,27 @@ ComboBox {
     property var services: []
     property var openTunnels: ({})
     property var pendingOpens: ({})
+    property var connectErrors: ({})
     property bool completed: false
 
     function refresh() {
         servicesPopup.close();
         openTunnels = ({});
         pendingOpens = ({});
+        connectErrors = ({});
         if (!active || !accountId || !peerUri) {
             services = [];
             pendingRequestId = 0;
             return;
         }
         services = [];
+        pendingRequestId = ExposedServicesAdapter.queryPeerServices(accountId, peerUri);
+    }
+
+    // Re-query availability without tearing down the popup or open tunnels.
+    function requeryServices() {
+        if (!active || !accountId || !peerUri)
+            return;
         pendingRequestId = ExposedServicesAdapter.queryPeerServices(accountId, peerUri);
     }
 
@@ -41,6 +50,17 @@ ComboBox {
 
     function serviceName(service) {
         return service.name || service.id || "";
+    }
+
+    function isAvailable(service) {
+        return service.available === undefined ? true : !!service.available;
+    }
+
+    function flagConnectError(serviceId) {
+        var copy = Object.assign({}, connectErrors);
+        copy[serviceId] = true;
+        connectErrors = copy;
+        connectErrorTimer.restart();
     }
 
     function tunnelFor(service) {
@@ -55,6 +75,18 @@ ComboBox {
     function localEndpoint(service) {
         var tunnel = tunnelFor(service);
         return tunnel ? "127.0.0.1:" + tunnel.localPort : "";
+    }
+
+    // Secondary line under the service name: transient error, live tunnel
+    // endpoint, offline notice, or the service description.
+    function serviceStatusText(service) {
+        if (connectErrors[service.id])
+            return JamiStrings.exposedServiceConnectFailed;
+        if (tunnelFor(service) !== undefined)
+            return service.scheme + "://" + localEndpoint(service);
+        if (!isAvailable(service))
+            return JamiStrings.exposedServiceUnavailable;
+        return service.description || "";
     }
 
     function openTunnel(service) {
@@ -96,13 +128,25 @@ ComboBox {
         refresh();
     }
 
+    Timer {
+        id: connectErrorTimer
+        interval: 4000
+        onTriggered: root.connectErrors = ({})
+    }
+
     Connections {
         target: ExposedServicesAdapter
 
         function onPeerServicesReceived(requestId, accountId, peerId, status, services) {
-            if (requestId !== root.pendingRequestId)
-                return;
             if (accountId !== root.accountId || peerId !== root.peerUri)
+                return;
+            if (requestId === 0) {
+                // Unsolicited availability/cache update push for this peer.
+                if (status === ExposedServicesAdapter.PeerServicesStatus.OK)
+                    root.services = services;
+                return;
+            }
+            if (requestId !== root.pendingRequestId)
                 return;
             root.services = status === ExposedServicesAdapter.PeerServicesStatus.OK ? services : [];
         }
@@ -133,6 +177,8 @@ ComboBox {
                     var copy = Object.assign({}, root.openTunnels);
                     delete copy[serviceId];
                     root.openTunnels = copy;
+                    if (reason !== "closed")
+                        root.flagConnectError(serviceId);
                     break;
                 }
             }
@@ -164,6 +210,9 @@ ComboBox {
         padding: 4
 
         highlighted: root.highlightedIndex === index
+
+        enabled: root.isAvailable(serviceDelegate.modelData) || root.tunnelFor(serviceDelegate.modelData) !== undefined
+        opacity: enabled ? 1.0 : 0.5
 
         contentItem: RowLayout {
             spacing: 8
@@ -202,10 +251,9 @@ ComboBox {
                 Text {
                     width: parent.width
 
-                    text: root.tunnelFor(serviceDelegate.modelData) !== undefined ? serviceDelegate.modelData.scheme + "://" + root.localEndpoint(serviceDelegate.modelData)
-                                                                                  : serviceDelegate.modelData.description
+                    text: root.serviceStatusText(serviceDelegate.modelData)
                     elide: Text.ElideRight
-                    color: JamiTheme.textColor
+                    color: root.connectErrors[serviceDelegate.modelData.id] ? JamiTheme.red_ : JamiTheme.textColor
 
                     font.pixelSize: JamiTheme.exposedServiceDelegateDescriptionPixelSize
                     font.family: root.tunnelFor(serviceDelegate.modelData) !== undefined ? JamiTheme.ubuntuMonoFontFamily : JamiTheme.ubuntuFontFamily
@@ -349,6 +397,7 @@ ComboBox {
         }
 
         onAboutToShow: root.currentIndex = 0
+        onOpened: root.requeryServices()
 
         background: Rectangle {
             color: JamiTheme.globalIslandColor
