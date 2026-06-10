@@ -31,7 +31,8 @@ SidePanelBase {
 
     objectName: "SidePanel"
 
-    property bool inNewSwarm: viewCoordinator.currentViewName === "NewSwarmPage"
+    readonly property var viewCoordinator: appContext ? appContext.viewCoordinator : null
+    property bool inNewSwarm: viewCoordinator && viewCoordinator.currentViewName === "NewSwarmPage"
     property bool isEmptyAccount: inNewSwarm
                                   ? (swarmCurrentConversationList.model && swarmCurrentConversationList.model.count === 0)
                                   : (!ConversationsAdapter.filterRequests && conversationListView.model && conversationListView.model.count === 0)
@@ -39,7 +40,7 @@ SidePanelBase {
     property var highlighted: []
     property var highlightedMembers: []
 
-    readonly property real sidePanelIslandsMargin: viewCoordinator.isInSinglePaneMode ? JamiTheme.sidePanelIslandsSinglePaneModePadding : JamiTheme.sidePanelIslandsPadding
+    readonly property real sidePanelIslandsMargin: viewCoordinator && viewCoordinator.isInSinglePaneMode ? JamiTheme.sidePanelIslandsSinglePaneModePadding : JamiTheme.sidePanelIslandsPadding
 
     color: inNewSwarm ? JamiTheme.globalBackgroundColor : JamiTheme.transparentColor
 
@@ -205,7 +206,7 @@ SidePanelBase {
             anchors.topMargin: JamiQmlUtils.isMacOS26OrLater ? JamiTheme.sidePanelIslandPaddingMac : root.sidePanelIslandsMargin
             anchors.leftMargin: JamiQmlUtils.isMacOS26OrLater ? JamiTheme.sidePanelIslandPaddingMac : root.sidePanelIslandsMargin
             anchors.rightMargin: {
-                if (viewCoordinator.isInSinglePaneMode) {
+                if (viewCoordinator && viewCoordinator.isInSinglePaneMode) {
                     return JamiTheme.sidePanelIslandsSinglePaneModePadding;
                 }
                 // This manual override for the right margin is necessary,
@@ -397,6 +398,8 @@ SidePanelBase {
                     }
 
                     DonationBanner {
+                        id: donationBanner
+
                         Layout.fillWidth: true
                         Layout.leftMargin: 15
                         Layout.rightMargin: 15
@@ -416,6 +419,7 @@ SidePanelBase {
 
                         delegate: SmartListItemDelegate {
                             interactive: false
+                            showLocationIconArrow: locationIconTimer.showIconArrow
 
                             onVisibleChanged: {
                                 if (!swarmCurrentConversationList.visible) {
@@ -492,6 +496,8 @@ SidePanelBase {
                         model: ConversationsAdapter.searchListProxyModel
 
                         delegate: SmartListItemDelegate {
+                            showLocationIconArrow: locationIconTimer.showIconArrow
+
                             extraButtons.contentItem: NewIconButton {
                                 id: sendContactRequestButton
                                 QWKSetParentHitTestVisible {}
@@ -561,6 +567,9 @@ SidePanelBase {
                         model: ConversationsAdapter.convListProxyModel
                         headerLabel: JamiStrings.conversations
                         headerVisible: contactSearchBar.textContent && model.count
+                        delegate: SmartListItemDelegate {
+                            showLocationIconArrow: locationIconTimer.showIconArrow
+                        }
                     }
 
                     Item {
@@ -713,6 +722,8 @@ SidePanelBase {
 
             AccountComboBox {
                 id: accountComboBox
+
+                appContext: root.appContext
 
                 Layout.fillWidth: true
                 Layout.minimumHeight: accountComboBox.height

@@ -38,14 +38,16 @@ Item {
     width: parent.width
     height: JamiTheme.accountListItemHeight
 
-    property bool inSettings: viewCoordinator.currentViewName === "SettingsView"
+    property var appContext: null
+    readonly property var viewCoordinator: appContext ? appContext.viewCoordinator : null
+    property bool inSettings: viewCoordinator && viewCoordinator.currentViewName === "SettingsView"
 
     readonly property real popupTopPadding: JamiQmlUtils.isMacOS26OrLater
                                             ? JamiTheme.accountPopupTopPaddingMac : 0
 
     // Align popup left edge with side panel on macOS 26
     readonly property real popupLeftOffset: JamiQmlUtils.isMacOS26OrLater
-                                            ? JamiTheme.sidePanelIslandPaddingMac - (viewCoordinator.isInSinglePaneMode
+                                            ? JamiTheme.sidePanelIslandPaddingMac - (viewCoordinator && viewCoordinator.isInSinglePaneMode
                                                                                      ? JamiTheme.sidePanelIslandsSinglePaneModePadding
                                                                                      : JamiTheme.sidePanelIslandsPadding)
                                             : 0

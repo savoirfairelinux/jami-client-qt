@@ -139,9 +139,26 @@ Window {
         appContainer: fullscreenContainer
     }
     // Used to manage dynamic view loading and unloading.
-    property ViewManager viewManager: ViewManager {}
+    property ViewManager viewManager: ViewManager {
+        id: appViewManager
+    }
     // Used to manage the view stack and the current view.
-    property ViewCoordinator viewCoordinator: ViewCoordinator {}
+    property ViewCoordinator viewCoordinator: ViewCoordinator {
+        viewManager: appViewManager
+        appContext: appWindow.appContext
+    }
+
+    readonly property var _appContextWindow: appWindow
+    readonly property var _appContextLayoutManager: layoutManager
+    property QtObject appContext: QtObject {
+        property var appWindow: _appContextWindow
+        property ViewManager viewManager: appWindow.viewManager
+        property ViewCoordinator viewCoordinator: appWindow.viewCoordinator
+        property LayoutManager layoutManager: _appContextLayoutManager
+        readonly property bool useFrameless: appWindow.useFrameless
+        readonly property bool isInSinglePaneMode: viewCoordinator.isInSinglePaneMode
+        readonly property string currentViewName: viewCoordinator.currentViewName
+    }
 
     // Tracks whether the main view has finished loading.
     readonly property bool mainViewReady: mainViewLoader.status === Loader.Ready
@@ -443,7 +460,10 @@ Window {
             }
         }
 
-        onLoaded: initMainView(item)
+        onLoaded: {
+            item.appContext = appContext;
+            initMainView(item);
+        }
     }
 
     // Use this as a parent for fullscreen items.
