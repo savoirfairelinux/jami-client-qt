@@ -79,6 +79,9 @@ SBSMessageBase {
             anchors.right: isOutgoing ? parent.right : undefined
             anchors.rightMargin: isOutgoing && !isEmojiOnly && !bigMsg ? rootDelegate.timeWidth + rootDelegate.editedWidth : 0
             text: {
+                if (showOriginal && isPluginOverwrite) {
+                    return OriginalBody;
+                }
                 if (Body !== "" && ParsedBody.length === 0) {
                     MessagesAdapter.parseMessage(Id, Body, UtilsAdapter.getAppValue(Settings.DisplayHyperlinkPreviews), rootDelegate.colorUrl, bubble.color);
                     return "";
