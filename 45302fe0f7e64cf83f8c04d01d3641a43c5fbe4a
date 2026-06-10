@@ -52,6 +52,24 @@
       "parentUuid": "f3efb024_61534a1a",
       "revId": "45302fe0f7e64cf83f8c04d01d3641a43c5fbe4a",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f7dcb838_86573ffe",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 943
+      },
+      "writtenOn": "2026-06-10T20:31:05Z",
+      "side": 1,
+      "message": "Since \u0027Online\u0027 is usually associated with having an internet connection, shouldn\u0027t we use \u0027Available\u0027 or \u0027Active\u0027 instead? I\u0027m worried that if we use \u0027Online\u0027, users might think communication is impossible when they lose internet. What do you think?",
+      "parentUuid": "c61cfa2d_76acb57a",
+      "revId": "45302fe0f7e64cf83f8c04d01d3641a43c5fbe4a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
