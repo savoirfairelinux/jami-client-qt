@@ -70,9 +70,15 @@ Item {
 
     opacity: 0
 
-    Component.onCompleted: CallOverlayModel.setEventFilterActive(appWindow, this, true)
-    Component.onDestruction: CallOverlayModel.setEventFilterActive(appWindow, this, false)
-    onVisibleChanged: CallOverlayModel.setEventFilterActive(appWindow, this, visible)
+    function setEventFilterActive(isActive) {
+        const window = root.Window.window;
+        if (window)
+            CallOverlayModel.setEventFilterActive(window, root, isActive);
+    }
+
+    Component.onCompleted: setEventFilterActive(true)
+    Component.onDestruction: setEventFilterActive(false)
+    onVisibleChanged: setEventFilterActive(visible)
 
     function kickOverlay() {
         root.opacity = 1;
