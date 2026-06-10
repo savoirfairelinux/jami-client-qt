@@ -151,6 +151,10 @@ public:
                                   bool previewLinks,
                                   const QColor& linkColor = QColor(0x06, 0x45, 0xad),
                                   const QColor& backgroundColor = QColor(0x0, 0x0, 0x0));
+    Q_INVOKABLE void parseOriginalMessage(const QString& msgId,
+                                          const QString& msg,
+                                          const QColor& linkColor = QColor(0x06, 0x45, 0xad),
+                                          const QColor& backgroundColor = QColor(0x0, 0x0, 0x0));
     Q_INVOKABLE void onPaste();
     Q_INVOKABLE QVariantMap getTransferStats(const QString& messageId, int);
     Q_INVOKABLE QVariant dataForInteraction(const QString& interactionId, int role = Qt::DisplayRole) const;
@@ -175,6 +179,7 @@ Q_SIGNALS:
 private Q_SLOTS:
     void onNewInteraction(const QString& convUid, const QString& interactionId, const interaction::Info& interaction);
     void onMessageParsed(const QString& messageId, const QString& parsed);
+    void onOriginalMessageParsed(const QString& messageId, const QString& parsed);
     void onLinkInfoReady(const QString& messageIndex, const QVariantMap& info);
     void onConversationMessagesLoaded(uint32_t requestId, const QString& convId);
     void onComposingStatusChanged(const QString& convId, const QString& contactUri, bool isComposing);

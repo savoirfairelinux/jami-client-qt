@@ -74,6 +74,7 @@ MessagesAdapter::MessagesAdapter(AppSettingsManager* settingsManager,
     });
 
     connect(messageParser_, &MessageParser::messageParsed, this, &MessagesAdapter::onMessageParsed);
+    connect(messageParser_, &MessageParser::originalMessageParsed, this, &MessagesAdapter::onOriginalMessageParsed);
     connect(messageParser_, &MessageParser::linkInfoReady, this, &MessagesAdapter::onLinkInfoReady);
 
     connect(settingsManager_, &AppSettingsManager::localeChanged, this, [this]() {
@@ -410,6 +411,15 @@ MessagesAdapter::onMessageParsed(const QString& messageId, const QString& parsed
 }
 
 void
+MessagesAdapter::onOriginalMessageParsed(const QString& messageId, const QString& parsed)
+{
+    const QString& convId = lrcInstance_->get_selectedConvUid();
+    const QString& accId = lrcInstance_->get_currentAccountId();
+    auto& conversation = lrcInstance_->getConversationFromConvUid(convId, accId);
+    conversation.interactions->setParsedOriginalBody(messageId, parsed);
+}
+
+void
 MessagesAdapter::onLinkInfoReady(const QString& messageId, const QVariantMap& info)
 {
     const QString& convId = lrcInstance_->get_selectedConvUid();
@@ -526,6 +536,15 @@ MessagesAdapter::parseMessage(
     const QString& msgId, const QString& msg, bool showPreview, const QColor& linkColor, const QColor& backgroundColor)
 {
     messageParser_->parseMessage(msgId, msg, showPreview, linkColor, backgroundColor);
+}
+
+void
+MessagesAdapter::parseOriginalMessage(const QString& msgId,
+                                      const QString& msg,
+                                      const QColor& linkColor,
+                                      const QColor& backgroundColor)
+{
+    messageParser_->parseOriginalMessage(msgId, msg, linkColor, backgroundColor);
 }
 
 void

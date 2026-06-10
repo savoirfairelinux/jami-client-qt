@@ -47,6 +47,50 @@ MessageParser::MessageParser(PreviewEngine* previewEngine, QObject* parent)
     connect(previewEngine_, &PreviewEngine::infoReady, this, &MessageParser::linkInfoReady);
 }
 
+QPair<QString, QString>
+MessageParser::buildStyledHtml(QString md, const QColor& linkColor, const QColor& backgroundColor)
+{
+    preprocessMarkdown(md);
+    auto html = markdownToHtml(md.toUtf8().constData());
+
+    // Parse HTML to get a list of tags and their values.
+    // We are only interested in the <a> and <pre> tags.
+    htmlParser_->parseHtmlString(html);
+    auto tagsMap = htmlParser_->getTagsNodes({TidyTag_A, TidyTag_DEL, TidyTag_PRE});
+
+    static const QString styleTag("<style>%1</style>");
+    QString style;
+
+    // Check for any <pre> tags. If there are any, we need to:
+    // 1. add some CSS to color them.
+    // 2. add some CSS to make them wrap.
+    if (tagsMap.contains(TidyTag_PRE)) {
+        const auto textColor = (0.2126 * backgroundColor.red() + 0.7152 * backgroundColor.green()
+                                + 0.0722 * backgroundColor.blue())
+                                       < 153
+                                   ? QColor(255, 255, 255)
+                                   : QColor(0, 0, 0);
+        style += QString("pre,code{background-color:%1;"
+                         "color:%2;white-space:pre-wrap;}")
+                     .arg(backgroundColor.name(), textColor.name());
+    }
+
+    // md4c makes DEL tags instead of S tags for ~~strikethrough-text~~,
+    // so we need to style the DEL tag content.
+    if (tagsMap.contains(TidyTag_DEL)) {
+        style += QString("del{text-decoration:line-through;}");
+    }
+
+    QString firstLinkHref;
+    if (tagsMap.contains(TidyTag_A)) {
+        style += QString("a{color:%1;}").arg(linkColor.name());
+        firstLinkHref = htmlParser_->getNodeAttr(tagsMap[TidyTag_A].first(), TidyAttr_HREF);
+    }
+
+    html.prepend(QString(styleTag).arg(style));
+    return {html, firstLinkHref};
+}
+
 void
 MessageParser::parseMessage(const QString& messageId,
                             const QString& msg,
@@ -54,64 +98,24 @@ MessageParser::parseMessage(const QString& messageId,
                             const QColor& linkColor,
                             const QColor& backgroundColor)
 {
-    // Run everything here on a separate thread.
     threadPool_->start([this, messageId, md = msg, previewLinks, linkColor, backgroundColor]() mutable -> void {
-        preprocessMarkdown(md);
-        auto html = markdownToHtml(md.toUtf8().constData());
-
-        // Now that we have the HTML, we can parse it to get a list of tags and their values.
-        // We are only interested in the <a> and <pre> tags.
-        htmlParser_->parseHtmlString(html);
-        auto tagsMap = htmlParser_->getTagsNodes({TidyTag_A, TidyTag_DEL, TidyTag_PRE});
-
-        static const QString styleTag("<style>%1</style>");
-        QString style;
-
-        // Check for any <pre> tags. If there are any, we need to:
-        // 1. add some CSS to color them.
-        // 2. add some CSS to make them wrap.
-        if (tagsMap.contains(TidyTag_PRE)) {
-            auto textColor = (0.2126 * backgroundColor.red() + 0.7152 * backgroundColor.green()
-                              + 0.0722 * backgroundColor.blue())
-                                     < 153
-                                 ? QColor(255, 255, 255)
-                                 : QColor(0, 0, 0);
-            style += QString("pre,code{background-color:%1;"
-                             "color:%2;white-space:pre-wrap;}")
-                         .arg(backgroundColor.name(), textColor.name());
-        }
-
-        // md4c makes DEL tags instead of S tags for ~~strikethrough-text~~,
-        // so we need to style the DEL tag content.
-        if (tagsMap.contains(TidyTag_DEL)) {
-            style += QString("del{text-decoration:line-through;}");
-        }
-
-        // Check for any <a> tags. If there are any, we need to:
-        // 1. add some CSS to color them.
-        // 2. parse them to get a preview IF the user has enabled link previews.
-        if (tagsMap.contains(TidyTag_A)) {
-            style += QString("a{color:%1;}").arg(linkColor.name());
-
-            // Update the UI before we start parsing the link.
-            html.prepend(QString(styleTag).arg(style));
-            Q_EMIT messageParsed(messageId, html);
-
-            // If the user has enabled link previews, then we need to generate the link preview.
-            if (previewLinks) {
-                // Get the first link in the message.
-                auto href = htmlParser_->getNodeAttr(tagsMap[TidyTag_A].first(), TidyAttr_HREF);
-                if (!href.isEmpty()) {
-                    Q_EMIT previewEngine_->parseLink(messageId, href);
-                }
-            }
-
-            return;
-        }
-
-        // If the message didn't contain any links, then we can just update the UI.
-        html.prepend(QString(styleTag).arg(style));
+        auto [html, firstLinkHref] = buildStyledHtml(md, linkColor, backgroundColor);
         Q_EMIT messageParsed(messageId, html);
+        if (previewLinks && !firstLinkHref.isEmpty()) {
+            Q_EMIT previewEngine_->parseLink(messageId, firstLinkHref);
+        }
+    });
+}
+
+void
+MessageParser::parseOriginalMessage(const QString& messageId,
+                                    const QString& msg,
+                                    const QColor& linkColor,
+                                    const QColor& backgroundColor)
+{
+    threadPool_->start([this, messageId, md = msg, linkColor, backgroundColor]() mutable -> void {
+        auto [html, _] = buildStyledHtml(md, linkColor, backgroundColor);
+        Q_EMIT originalMessageParsed(messageId, html);
     });
 }
 
