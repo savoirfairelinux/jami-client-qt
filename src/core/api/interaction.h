@@ -410,6 +410,7 @@ struct Info
     MapStringString commit;
     QVariantMap linkPreviewInfo = {};
     QString parsedBody = {};
+    QString parsedOriginalBody = {};
     QVariantMap reactions;
     QString react_to;
     QVector<Body> previousBodies;
