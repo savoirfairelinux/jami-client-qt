@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2b2f6d85_28ec5950",
+        "filename": "tests/qml/src/tst_NewMaterialTextField.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-10T18:34:19Z",
+      "side": 1,
+      "message": "[🟡 Suggestion] Line 48: The TestCase and function names still refer to MaterialTextField after the file was renamed to cover NewMaterialTextField. This makes test output misleading when failures occur. Rename them to match the component under test.\n```suggestion\nname: \"Check maxCharacters for NewMaterialTextField\"\n```\nAlso rename `test_maxCharacters_material_text_field` and `test_modifiedText_material_text_field` accordingly.",
+      "revId": "dd4e3dd20aafe06bc2b91ad84dee8e8d3b604c2f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fa08ebb8_6808a301",
+        "filename": "tests/qml/src/tst_NewMaterialTextField.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-10T18:34:19Z",
+      "side": 1,
+      "message": "[🟡 Suggestion] Line 51: The renamed maxCharacters test no longer verifies the observable behavior it is named after. It only checks that the inner TextField.maximumLength property is set, so a regression where NewMaterialTextField exposes the right property but still accepts or propagates over-length text would not be caught. Keep the property assertion if useful, but also exercise text entry past the limit and assert the resulting text is capped.\n```suggestion\nfunction test_maxCharacters_new_material_text_field() {\n    const textField \u003d findChild(uut, \"textField\")\n    verify(textField)\n    compare(textField.maximumLength, 20)\n\n    mouseClick(textField)\n    keyClicks(\"Long title more than 20 characters\")\n\n    compare(textField.text, \"Long title more than\")\n    compare(uut.modifiedTextFieldContent, \"Long title more than\")\n}\n```",
+      "revId": "dd4e3dd20aafe06bc2b91ad84dee8e8d3b604c2f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
