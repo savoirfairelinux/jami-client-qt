@@ -26,6 +26,7 @@ BaseModalDialog {
     id: root
 
     property var previousBodies: undefined
+    property bool showOriginal: false
 
     popupContent: JamiListView {
         id: editsList
@@ -59,7 +60,10 @@ BaseModalDialog {
                     Layout.fillWidth: true
                     elide: Text.ElideRight
 
-                    text: modelData.body === "" ? JamiStrings.deletedMessage.arg(UtilsAdapter.getBestNameForUri(CurrentAccount.id, modelData.author)) : modelData.body
+                    text: {
+                        const displayBody = (root.showOriginal && modelData.originalBody !== "") ? modelData.originalBody : modelData.body;
+                        return displayBody === "" ? JamiStrings.deletedMessage.arg(UtilsAdapter.getBestNameForUri(CurrentAccount.id, modelData.author)) : displayBody;
+                    }
                     color: JamiTheme.textColor
                 }
             }

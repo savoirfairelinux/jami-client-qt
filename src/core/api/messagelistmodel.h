@@ -61,7 +61,8 @@ struct Info;
     X(IsEmojiOnly) \
     X(IsLastSent) \
     X(Index) \
-    X(OriginalBody)
+    X(OriginalBody) \
+    X(ParsedOriginalBody)
 
 namespace MessageList {
 Q_NAMESPACE
@@ -131,6 +132,7 @@ public:
     void addReaction(const QString& messageId, const MapStringString& reaction);
     void rmReaction(const QString& messageId, const QString& reactionId);
     void setParsedMessage(const QString& messageId, const QString& parsed);
+    void setParsedOriginalBody(const QString& messageId, const QString& parsed);
     void setRead(const QString& peer, const QString& messageId);
     QString getRead(const QString& peer);
     QString lastSelfMessageId(const QString& id) const;
