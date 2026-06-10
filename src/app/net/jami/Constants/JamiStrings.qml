@@ -37,6 +37,7 @@ Item {
     property string description: qsTr("Jami is a universal communication platform, with privacy as its foundation, that relies on a free distributed network for everyone.")
     property string updateToSwarm: qsTr("Migrating to the Swarm technology will enable synchronizing this conversation across multiple devices and improve reliability. The legacy conversation history will be cleared in the process.")
     property string migrateConversation: qsTr("Migrate conversation")
+    property string open: qsTr("Open")
 
     // DaemonReconnectWindow
     property string reconnectWarn: qsTr("An error occurred while reconnecting to the Jami daemon (jamid).\nThe application will now exit.")
@@ -283,7 +284,6 @@ Item {
     property string peerServicesInternalError: qsTr("Service discovery is unavailable on this account.")
     property string peerServicesRefresh: qsTr("Refresh")
     property string peerServiceOpenTunnel: qsTr("Open local tunnel")
-    property string peerServiceOpenInBrowser: qsTr("Open")
     property string peerServiceCloseTunnel: qsTr("Stop")
     property string peerServiceTunnelOpened: qsTr("Reachable at %1")
 
@@ -467,7 +467,7 @@ Item {
     property string xhourxmin: qsTr("%L1h %L2m")
     property string confirmNavigationTitle: qsTr("Confirm Navigation")
     property string confirmNavigationDescription: qsTr("You are about to navigate to an external link. Do you want to proceed?")
-    property string leaveJami: qsTr("Leave Jami")
+    property string openExternalLink: qsTr("Open external link?")
 
     // Chatview header
     property string hideChat: qsTr("Hide chat")

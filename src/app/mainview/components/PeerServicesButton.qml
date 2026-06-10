@@ -108,9 +108,9 @@ ComboBox {
     function openOrCopy(service)  {
         if (isHttpService(service)) {
             var dlg = viewCoordinator.presentDialog(appWindow, "../../commoncomponents/ConfirmDialog.qml", {
-                                                        "titleText": JamiStrings.confirmAction,
+                                                        "titleText": JamiStrings.openUrlExternally,
                                                         "textLabel": JamiStrings.confirmNavigationDescription,
-                                                        "confirmLabel": JamiStrings.leaveJami
+                                                        "confirmLabel": JamiStrings.open
                                                     });
             dlg.accepted.connect(function() {
                 Qt.openUrlExternally(service.scheme + "://" + localEndpoint(service));
