@@ -103,10 +103,11 @@ QtObject {
     // Create, present, and return a dialog object.
     function presentDialog(parent, path, props = {}, singleInstance = false) {
         // Open the dialog once the object is created
-        let createFunc = singleInstance ? viewManager.createView : viewManager.createUniqueView;
-        return createFunc(path, parent, function (obj, viewName) {
+        const manager = root.viewManager;
+        const createdDialog = function (obj, viewName) {
                 const doneCb = function () {
-                    viewManager.destroyView(viewName);
+                    if (manager && manager.destroyView)
+                        manager.destroyView(viewName);
                 };
                 if (obj.closed !== undefined) {
                     obj.closed.connect(doneCb);
@@ -119,7 +120,9 @@ QtObject {
                     }
                 }
                 obj.open();
-            }, props);
+            };
+        return singleInstance ? manager.createView(path, parent, createdDialog, props)
+                              : manager.createUniqueView(path, parent, createdDialog, props);
     }
 
     // Present a view by name.
