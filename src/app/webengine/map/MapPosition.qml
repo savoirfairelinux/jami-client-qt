@@ -212,9 +212,9 @@ Item {
                 onNewWindowRequested: function(request) {
                     const url = request.requestedUrl.toString();
                     const dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/ConfirmDialog.qml", {
-                        "titleText": JamiStrings.confirmAction,
+                        "titleText": JamiStrings.openExternalLink,
                         "textLabel": JamiStrings.confirmNavigationDescription,
-                        "confirmLabel": JamiStrings.leaveJami
+                        "confirmLabel": JamiStrings.open
                     });
                     dlg.accepted.connect(function () {
                         Qt.openUrlExternally(url)
