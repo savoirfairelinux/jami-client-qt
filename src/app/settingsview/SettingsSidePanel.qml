@@ -495,6 +495,8 @@ SidePanelBase {
         AccountComboBox {
             id: accountComboBox
 
+            appContext: root.appContext
+
             Layout.fillWidth: true
             Layout.minimumHeight: accountComboBox.height
             Layout.alignment: Qt.AlignBottom

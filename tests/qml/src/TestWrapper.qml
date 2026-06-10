@@ -17,6 +17,7 @@
 
 import QtQuick
 import QtQuick.Controls
+import QtQuick.Layouts
 import QtQuick.Window
 import QtTest
 
@@ -32,6 +33,7 @@ Item {
 
     width: childrenRect.width
     height: childrenRect.height
+    property var uut: children.length > 0 ? children[0] : null
 
     // This is a helper function to wait for a signal to be emitted and check a condition.
     function waitForSignalAndCheck(signalObject, signalName, action, checkExpression) {
@@ -54,13 +56,13 @@ Item {
     }
     // A binding to the windowShown property. Never set appWindow to null (e.g. offscreen).
     Binding {
-        tw.appWindow: (QTestRootObject.windowShown && uut.Window.window) ? uut.Window.window : _defaultAppWindow
+        tw.appWindow: (QTestRootObject.windowShown && uut && uut.Window.window) ? uut.Window.window : _defaultAppWindow
         when: QTestRootObject.windowShown
     }
 
     property int visibility: 0
     Binding {
-        tw.visibility: (uut.Window.window) ? uut.Window.window.visibility : Window.Windowed
+        tw.visibility: (uut && uut.Window.window) ? uut.Window.window.visibility : Window.Windowed
         when: QTestRootObject.windowShown
     }
 
@@ -72,11 +74,35 @@ Item {
     property LayoutManager layoutManager: LayoutManager {
         appContainer: null
     }
+    Item {
+        id: testStackContainer
+        anchors.fill: parent
+    }
     // Used to manage dynamic view loading and unloading.
-    property ViewManager viewManager: ViewManager {}
+    property ViewManager viewManager: ViewManager {
+        id: testViewManager
+    }
     // Used to manage the view stack and the current view.
     property ViewCoordinator viewCoordinator: ViewCoordinator {
         isTestContext: true
+        viewManager: testViewManager
+        appContext: tw.appContext
     }
     property QtObject appWindow: _defaultAppWindow
+    readonly property var _appContextWindow: tw.appWindow
+    property QtObject appContext: QtObject {
+        property var appWindow: tw._appContextWindow
+        property ViewManager viewManager: tw.viewManager
+        property ViewCoordinator viewCoordinator: tw.viewCoordinator
+        property LayoutManager layoutManager: tw.layoutManager
+        readonly property bool useFrameless: !!(tw.appWindow && tw.appWindow.useFrameless)
+        readonly property bool isInSinglePaneMode: tw.viewCoordinator.isInSinglePaneMode
+        readonly property string currentViewName: tw.viewCoordinator.currentViewName
+    }
+
+    Component.onCompleted: {
+        if (uut && uut.hasOwnProperty("appContext"))
+            uut.appContext = appContext;
+        viewCoordinator.init(testStackContainer);
+    }
 }
