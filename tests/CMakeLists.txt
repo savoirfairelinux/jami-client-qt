@@ -51,13 +51,17 @@ set(TEST_QML_RESOURCES
     ${CMAKE_SOURCE_DIR}/tests/qml/resources.qrc
     ${CMAKE_SOURCE_DIR}/src/app/resources.qrc)
 
+# Generated sources are directory-scoped in CMake, so tests need their own
+# private libclient MOC outputs instead of reusing the parent directory list.
+qt_wrap_cpp(TEST_LIBCLIENT_HEADERS_MOC ${LIBCLIENT_HEADERS_PRIVATE})
+
 # Common jami files
 add_library(test_common_obj OBJECT
     ${COMMON_SOURCES}
     ${COMMON_HEADERS}
     ${LIBCLIENT_SOURCES}
     ${LIBCLIENT_HEADERS}
-    ${LIBCLIENT_HEADERS_MOC})
+    ${TEST_LIBCLIENT_HEADERS_MOC})
 
 target_include_directories(test_common_obj PRIVATE
     ${CLIENT_INCLUDE_DIRS}
