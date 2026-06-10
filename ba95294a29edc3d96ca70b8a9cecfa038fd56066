@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "49058daa_c9671baf",
+        "filename": "src/app/networkmanager.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 6
+      },
+      "writtenOn": "2026-06-10T17:39:52Z",
+      "side": 1,
+      "message": "it.key().toUtf8()",
+      "range": {
+        "startLine": 123,
+        "startChar": 29,
+        "endLine": 123,
+        "endChar": 88
+      },
+      "revId": "ba95294a29edc3d96ca70b8a9cecfa038fd56066",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2f18197d_932f088d",
+        "filename": "src/app/networkmanager.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 6
+      },
+      "writtenOn": "2026-06-10T17:39:52Z",
+      "side": 1,
+      "message": "combine with\n\n    sendGetRequest(const QNetworkRequest\u0026 request, std::function\u003cvoid(const QByteArray\u0026)\u003e\u0026\u0026 onDoneCallback)\n\nsimply make onErrorCallback optional if needed.",
+      "range": {
+        "startLine": 114,
+        "startChar": 0,
+        "endLine": 134,
+        "endChar": 1
+      },
+      "revId": "ba95294a29edc3d96ca70b8a9cecfa038fd56066",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2f6a80e8_b8f2eebc",
+        "filename": "src/app/pluginadapter.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 6
+      },
+      "writtenOn": "2026-06-10T17:39:52Z",
+      "side": 1,
+      "message": "language.toUtf8()",
+      "range": {
+        "startLine": 84,
+        "startChar": 32,
+        "endLine": 84,
+        "endChar": 91
+      },
+      "revId": "ba95294a29edc3d96ca70b8a9cecfa038fd56066",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
