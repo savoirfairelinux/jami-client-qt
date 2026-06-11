@@ -25,10 +25,12 @@
 #include <QFile>
 #include <QFileInfo>
 #include <QHostAddress>
+#include <QHttpHeaders>
 #include <QHttpServer>
 #include <QHttpServerRequest>
 #include <QHttpServerResponder>
 #include <QHttpServerResponse>
+#include <QIODevice>
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonObject>
@@ -41,8 +43,12 @@
 #include <QTcpServer>
 #include <QTimer>
 #include <QUrl>
+#include <QUuid>
 
+#include <algorithm>
+#include <cstring>
 #include <utility>
+#include <vector>
 
 namespace {
 
@@ -153,7 +159,8 @@ generateDirectoryListing(const QString& rootPath, const QString& dirPath, const 
     }
 
     const auto urlPrefix = urlPath.isEmpty() ? QStringLiteral("/")
-                                             : QStringLiteral("/") + urlPath + (urlPath.endsWith('/') ? QString() : QStringLiteral("/"));
+                                             : QStringLiteral("/") + urlPath
+                                                   + (urlPath.endsWith('/') ? QString() : QStringLiteral("/"));
     for (const auto& entry : entries) {
         const auto name = entry.fileName();
         const auto isDir = entry.isDir();
@@ -174,13 +181,350 @@ generateDirectoryListing(const QString& rootPath, const QString& dirPath, const 
     return html;
 }
 
-QHttpServerResponse
-serveDirectoryFile(const QString& rootPath, const QHttpServerRequest& request)
+constexpr int MAX_RANGES = 16;
+
+struct ByteRange
+{
+    qint64 start {0};
+    qint64 end {0};
+    qint64 length() const
+    {
+        return end - start + 1;
+    }
+};
+
+struct BodySegment
+{
+    QByteArray literal;
+    qint64 fileStart {0};
+    qint64 fileLength {0};
+    qint64 size() const
+    {
+        return fileLength > 0 ? fileLength : static_cast<qint64>(literal.size());
+    }
+};
+
+// Streams an ordered list of BodySegments from a single file without ever
+// loading the whole file into memory. Reported size() is the exact number of
+// bytes produced so QHttpServer can set a correct Content-Length and stream in
+// fixed-size chunks.
+class HttpFileBodyDevice final : public QIODevice
+{
+public:
+    HttpFileBodyDevice(const QString& filePath, std::vector<BodySegment> segments, QObject* parent = nullptr)
+        : QIODevice(parent)
+        , file_(filePath)
+        , segments_(std::move(segments))
+    {
+        for (const auto& segment : segments_)
+            total_ += segment.size();
+    }
+
+    bool open(OpenMode mode) override
+    {
+        if (!(mode & QIODevice::ReadOnly))
+            return false;
+        if (!file_.open(QIODevice::ReadOnly))
+            return false;
+        cursor_ = 0;
+        segmentIndex_ = 0;
+        segmentBase_ = 0;
+        return QIODevice::open(mode);
+    }
+
+    void close() override
+    {
+        file_.close();
+        QIODevice::close();
+    }
+
+    bool isSequential() const override
+    {
+        return false;
+    }
+    qint64 size() const override
+    {
+        return total_;
+    }
+    bool atEnd() const override
+    {
+        return cursor_ >= total_ && QIODevice::bytesAvailable() == 0;
+    }
+
+    bool seek(qint64 pos) override
+    {
+        if (pos < 0 || pos > total_)
+            return false;
+        QIODevice::seek(pos);
+        cursor_ = pos;
+        segmentIndex_ = 0;
+        segmentBase_ = 0;
+        while (segmentIndex_ < segments_.size() && segmentBase_ + segments_[segmentIndex_].size() <= pos) {
+            segmentBase_ += segments_[segmentIndex_].size();
+            ++segmentIndex_;
+        }
+        return true;
+    }
+
+protected:
+    qint64 readData(char* data, qint64 maxSize) override
+    {
+        if (maxSize <= 0)
+            return 0;
+
+        qint64 produced = 0;
+        while (produced < maxSize && cursor_ < total_) {
+            if (segmentIndex_ >= segments_.size())
+                break;
+
+            const auto& segment = segments_[segmentIndex_];
+            const auto segmentSize = segment.size();
+            const auto offsetInSegment = cursor_ - segmentBase_;
+            const auto segmentRemaining = segmentSize - offsetInSegment;
+            if (segmentRemaining <= 0) {
+                segmentBase_ += segmentSize;
+                ++segmentIndex_;
+                continue;
+            }
+
+            const auto toRead = std::min(maxSize - produced, segmentRemaining);
+            if (segment.fileLength > 0) {
+                if (!file_.seek(segment.fileStart + offsetInSegment))
+                    return -1;
+                const auto read = file_.read(data + produced, toRead);
+                if (read <= 0)
+                    return -1; // unexpected EOF/error before logical end
+                produced += read;
+                cursor_ += read;
+            } else {
+                std::memcpy(data + produced, segment.literal.constData() + offsetInSegment, toRead);
+                produced += toRead;
+                cursor_ += toRead;
+            }
+        }
+        return produced;
+    }
+
+    qint64 writeData(const char*, qint64) override
+    {
+        return -1;
+    }
+
+private:
+    QFile file_;
+    std::vector<BodySegment> segments_;
+    qint64 total_ {0};
+    qint64 cursor_ {0};
+    std::size_t segmentIndex_ {0};
+    qint64 segmentBase_ {0};
+};
+
+enum class RangeKind { Full, Single, Multiple, Unsatisfiable };
+
+struct RangeResolution
+{
+    RangeKind kind {RangeKind::Full};
+    QList<ByteRange> ranges;
+};
+
+// Parses an RFC 7233 byte-range request against a known content size.
+// Malformed or unsupported headers resolve to Full (serve 200). A
+// syntactically valid set with no satisfiable range resolves to Unsatisfiable
+// (416). Satisfiable ranges are clamped, sorted and coalesced.
+RangeResolution
+resolveRanges(const QByteArray& rangeHeader, qint64 size)
+{
+    RangeResolution result;
+    if (size <= 0 || rangeHeader.isEmpty())
+        return result;
+
+    const auto trimmed = rangeHeader.trimmed();
+    constexpr char unitPrefix[] = "bytes=";
+    if (!trimmed.startsWith(unitPrefix))
+        return result; // unsupported unit: ignore Range, serve full content
+
+    const auto spec = trimmed.mid(static_cast<int>(sizeof(unitPrefix)) - 1);
+    const auto tokens = spec.split(',');
+    if (tokens.size() > MAX_RANGES)
+        return result;
+
+    QList<ByteRange> ranges;
+    for (const auto& rawToken : tokens) {
+        const auto token = rawToken.trimmed();
+        if (token.isEmpty())
+            continue;
+
+        const auto dash = token.indexOf('-');
+        if (dash < 0)
+            return result; // malformed: ignore Range
+
+        const auto left = token.left(dash).trimmed();
+        const auto right = token.mid(dash + 1).trimmed();
+
+        if (left.isEmpty()) {
+            // suffix form: -N (last N bytes)
+            if (right.isEmpty())
+                return result;
+            bool ok = false;
+            const auto suffix = right.toLongLong(&ok);
+            if (!ok || suffix < 0)
+                return result;
+            if (suffix == 0)
+                continue; // unsatisfiable, skip
+            const auto start = suffix >= size ? 0 : size - suffix;
+            ranges.append({start, size - 1});
+            continue;
+        }
+
+        bool okStart = false;
+        const auto start = left.toLongLong(&okStart);
+        if (!okStart || start < 0)
+            return result;
+
+        qint64 end = size - 1;
+        if (!right.isEmpty()) {
+            bool okEnd = false;
+            end = right.toLongLong(&okEnd);
+            if (!okEnd || end < 0)
+                return result;
+            if (start > end)
+                return result; // malformed: ignore Range
+        }
+
+        if (start >= size)
+            continue; // unsatisfiable, skip
+        ranges.append({start, std::min(end, size - 1)});
+    }
+
+    if (ranges.isEmpty()) {
+        result.kind = RangeKind::Unsatisfiable;
+        return result;
+    }
+
+    std::sort(ranges.begin(), ranges.end(), [](const ByteRange& a, const ByteRange& b) { return a.start < b.start; });
+    QList<ByteRange> coalesced;
+    for (const auto& range : ranges) {
+        if (!coalesced.isEmpty() && range.start <= coalesced.last().end + 1)
+            coalesced.last().end = std::max(coalesced.last().end, range.end);
+        else
+            coalesced.append(range);
+    }
+
+    result.ranges = coalesced;
+    result.kind = coalesced.size() == 1 ? RangeKind::Single : RangeKind::Multiple;
+    return result;
+}
+
+void
+serveFile(const QString& canonicalFilePath,
+          qint64 fileSize,
+          const QByteArray& mimeType,
+          bool headOnly,
+          const QHttpServerRequest& request,
+          QHttpServerResponder& responder)
+{
+    using StatusCode = QHttpServerResponder::StatusCode;
+    using WellKnownHeader = QHttpHeaders::WellKnownHeader;
+
+    const auto resolution = resolveRanges(request.headers().value(WellKnownHeader::Range).toByteArray(), fileSize);
+
+    if (resolution.kind == RangeKind::Unsatisfiable) {
+        QHttpHeaders headers;
+        headers.append(WellKnownHeader::AcceptRanges, "bytes");
+        headers.append(WellKnownHeader::ContentRange, "bytes */" + QByteArray::number(fileSize));
+        headers.append(WellKnownHeader::ContentLength, "0");
+        responder.write(QByteArray {}, headers, StatusCode::RequestRangeNotSatisfiable);
+        return;
+    }
+
+    if (resolution.kind == RangeKind::Full) {
+        QHttpHeaders headers;
+        headers.append(WellKnownHeader::AcceptRanges, "bytes");
+        headers.append(WellKnownHeader::ContentType, mimeType);
+        if (headOnly) {
+            headers.append(WellKnownHeader::ContentLength, QByteArray::number(fileSize));
+            responder.write(QByteArray {}, headers, StatusCode::Ok);
+            return;
+        }
+        std::vector<BodySegment> segments;
+        segments.push_back({QByteArray {}, 0, fileSize});
+        responder.write(new HttpFileBodyDevice(canonicalFilePath, std::move(segments)), headers, StatusCode::Ok);
+        return;
+    }
+
+    if (resolution.kind == RangeKind::Single) {
+        const auto& range = resolution.ranges.first();
+        QHttpHeaders headers;
+        headers.append(WellKnownHeader::AcceptRanges, "bytes");
+        headers.append(WellKnownHeader::ContentType, mimeType);
+        headers.append(WellKnownHeader::ContentRange,
+                       "bytes " + QByteArray::number(range.start) + '-' + QByteArray::number(range.end) + '/'
+                           + QByteArray::number(fileSize));
+        if (headOnly) {
+            headers.append(WellKnownHeader::ContentLength, QByteArray::number(range.length()));
+            responder.write(QByteArray {}, headers, StatusCode::PartialContent);
+            return;
+        }
+        std::vector<BodySegment> segments;
+        segments.push_back({QByteArray {}, range.start, range.length()});
+        responder.write(new HttpFileBodyDevice(canonicalFilePath, std::move(segments)),
+                        headers,
+                        StatusCode::PartialContent);
+        return;
+    }
+
+    // Multiple ranges: multipart/byteranges with a high-entropy boundary.
+    const auto boundary = QUuid::createUuid().toString(QUuid::Id128).toLatin1();
+    std::vector<BodySegment> segments;
+    qint64 total = 0;
+    for (const auto& range : resolution.ranges) {
+        QByteArray header;
+        header.append("\r\n--");
+        header.append(boundary);
+        header.append("\r\nContent-Type: ");
+        header.append(mimeType);
+        header.append("\r\nContent-Range: bytes ");
+        header.append(QByteArray::number(range.start));
+        header.append('-');
+        header.append(QByteArray::number(range.end));
+        header.append('/');
+        header.append(QByteArray::number(fileSize));
+        header.append("\r\n\r\n");
+        segments.push_back({header, 0, 0});
+        segments.push_back({QByteArray {}, range.start, range.length()});
+        total += header.size() + range.length();
+    }
+    QByteArray closing;
+    closing.append("\r\n--");
+    closing.append(boundary);
+    closing.append("--\r\n");
+    segments.push_back({closing, 0, 0});
+    total += closing.size();
+
+    QHttpHeaders headers;
+    headers.append(WellKnownHeader::AcceptRanges, "bytes");
+    headers.append(WellKnownHeader::ContentType, "multipart/byteranges; boundary=" + boundary);
+    if (headOnly) {
+        headers.append(WellKnownHeader::ContentLength, QByteArray::number(total));
+        responder.write(QByteArray {}, headers, StatusCode::PartialContent);
+        return;
+    }
+    responder.write(new HttpFileBodyDevice(canonicalFilePath, std::move(segments)), headers, StatusCode::PartialContent);
+}
+
+void
+serveDirectoryRequest(const QString& rootPath, const QHttpServerRequest& request, QHttpServerResponder& responder)
 {
     using StatusCode = QHttpServerResponse::StatusCode;
 
-    if (request.method() != QHttpServerRequest::Method::Get && request.method() != QHttpServerRequest::Method::Head) {
-        return QHttpServerResponse(StatusCode::MethodNotAllowed);
+    const auto sendResponse = [&responder](QHttpServerResponse&& response) {
+        responder.sendResponse(response);
+    };
+
+    const auto isHead = request.method() == QHttpServerRequest::Method::Head;
+    if (request.method() != QHttpServerRequest::Method::Get && !isHead) {
+        sendResponse(QHttpServerResponse(StatusCode::MethodNotAllowed));
+        return;
     }
 
     auto requestPath = request.url().path(QUrl::FullyDecoded);
@@ -197,53 +541,68 @@ serveDirectoryFile(const QString& rootPath, const QHttpServerRequest& request)
     if (targetInfo.isDir()) {
         // Verify directory is within root.
         auto canonicalDir = targetInfo.canonicalFilePath();
-        if (canonicalDir.isEmpty())
-            return QHttpServerResponse(StatusCode::NotFound);
+        if (canonicalDir.isEmpty()) {
+            sendResponse(QHttpServerResponse(StatusCode::NotFound));
+            return;
+        }
         canonicalDir = QDir::cleanPath(canonicalDir);
-        if (canonicalDir != normalizedRootPath && !canonicalDir.startsWith(rootPrefix))
-            return QHttpServerResponse(StatusCode::Forbidden);
+        if (canonicalDir != normalizedRootPath && !canonicalDir.startsWith(rootPrefix)) {
+            sendResponse(QHttpServerResponse(StatusCode::Forbidden));
+            return;
+        }
 
         // Try index.html first.
         QFileInfo indexInfo(QDir(canonicalDir).filePath(QStringLiteral("index.html")));
         if (indexInfo.isFile() && indexInfo.isReadable()) {
             QFile file(indexInfo.canonicalFilePath());
             if (file.open(QIODevice::ReadOnly)) {
-                auto data = request.method() == QHttpServerRequest::Method::Head ? QByteArray {} : file.readAll();
-                return QHttpServerResponse("text/html", std::move(data));
+                auto data = isHead ? QByteArray {} : file.readAll();
+                sendResponse(QHttpServerResponse("text/html", std::move(data)));
+                return;
             }
         }
 
         // Generate directory listing.
-        auto listing = request.method() == QHttpServerRequest::Method::Head
-                           ? QByteArray {}
-                           : generateDirectoryListing(normalizedRootPath, canonicalDir, requestPath);
-        return QHttpServerResponse("text/html", std::move(listing));
+        auto listing = isHead ? QByteArray {} : generateDirectoryListing(normalizedRootPath, canonicalDir, requestPath);
+        sendResponse(QHttpServerResponse("text/html", std::move(listing)));
+        return;
     }
 
     // Serve a regular file.
-    if (requestPath.isEmpty())
-        return QHttpServerResponse(StatusCode::NotFound);
+    if (requestPath.isEmpty()) {
+        sendResponse(QHttpServerResponse(StatusCode::NotFound));
+        return;
+    }
 
     auto canonicalFilePath = targetInfo.canonicalFilePath();
-    if (canonicalFilePath.isEmpty())
-        return QHttpServerResponse(StatusCode::NotFound);
+    if (canonicalFilePath.isEmpty()) {
+        sendResponse(QHttpServerResponse(StatusCode::NotFound));
+        return;
+    }
 
     canonicalFilePath = QDir::cleanPath(canonicalFilePath);
-    if (canonicalFilePath != normalizedRootPath && !canonicalFilePath.startsWith(rootPrefix))
-        return QHttpServerResponse(StatusCode::Forbidden);
+    if (canonicalFilePath != normalizedRootPath && !canonicalFilePath.startsWith(rootPrefix)) {
+        sendResponse(QHttpServerResponse(StatusCode::Forbidden));
+        return;
+    }
 
     targetInfo.setFile(canonicalFilePath);
-    if (!targetInfo.isFile() || !targetInfo.isReadable())
-        return QHttpServerResponse(StatusCode::NotFound);
+    if (!targetInfo.isFile() || !targetInfo.isReadable()) {
+        sendResponse(QHttpServerResponse(StatusCode::NotFound));
+        return;
+    }
 
-    QFile file(canonicalFilePath);
-    if (!file.open(QIODevice::ReadOnly))
-        return QHttpServerResponse(StatusCode::NotFound);
+    QFile probe(canonicalFilePath);
+    if (!probe.open(QIODevice::ReadOnly)) {
+        sendResponse(QHttpServerResponse(StatusCode::NotFound));
+        return;
+    }
+    const auto fileSize = probe.size();
+    probe.close();
 
     QMimeDatabase mimeDatabase;
-    const auto mimeType = mimeDatabase.mimeTypeForFile(canonicalFilePath);
-    auto data = request.method() == QHttpServerRequest::Method::Head ? QByteArray {} : file.readAll();
-    return QHttpServerResponse(mimeType.name().toUtf8(), std::move(data));
+    const auto mimeType = mimeDatabase.mimeTypeForFile(canonicalFilePath).name().toUtf8();
+    serveFile(canonicalFilePath, fileSize, mimeType, isHead, request, responder);
 }
 
 QVariantMap
@@ -502,8 +861,7 @@ ExposedServicesAdapter::startEmbeddedServer(const QString& accountId,
 
     auto httpServer = std::make_unique<QHttpServer>();
     httpServer->setMissingHandler(this, [rootPath](const QHttpServerRequest& request, QHttpServerResponder& responder) {
-        auto response = serveDirectoryFile(rootPath, request);
-        responder.sendResponse(response);
+        serveDirectoryRequest(rootPath, request, responder);
     });
 
     auto* tcpServer = new QTcpServer();
