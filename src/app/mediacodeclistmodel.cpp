@@ -45,7 +45,7 @@ MediaCodecListModel::filterAcceptsRow(int sourceRow, const QModelIndex& sourcePa
 void
 MediaCodecListModel::reset()
 {
-    invalidateFilter();
+    refreshFilter();
 }
 
 LRCInstance*
@@ -80,7 +80,7 @@ MediaCodecListModel::setMediaType(int mediaType)
     if (mediaType_ != mediaType) {
         mediaType_ = mediaType;
         Q_EMIT mediaTypeChanged();
-        invalidateFilter();
+        refreshFilter();
     }
 }
 
@@ -92,4 +92,15 @@ MediaCodecListModel::connectAccount()
         return;
     }
     setSourceModel(lrcInstance_->getCurrentAccountInfo().codecModel.get());
+}
+
+void
+MediaCodecListModel::refreshFilter()
+{
+#if QT_VERSION >= QT_VERSION_CHECK(6, 10, 0)
+    beginFilterChange();
+    endFilterChange(QSortFilterProxyModel::Direction::Rows);
+#else
+    invalidateFilter();
+#endif
 }

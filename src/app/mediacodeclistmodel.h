@@ -50,6 +50,8 @@ private Q_SLOTS:
     void connectAccount();
 
 private:
+    void refreshFilter();
+
     LRCInstance* lrcInstance_ {nullptr};
     int mediaType_ {AUDIO};
 };

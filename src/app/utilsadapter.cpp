@@ -608,8 +608,12 @@ UtilsAdapter::setTempCreationImageFromImage(const QImage& image, const QString& 
     }
     // Save the image
     if (imageId == "temp") {
-        QFile file(Utils::getTempSwarmAvatarPath());
-        file.open(QIODevice::WriteOnly);
+        const auto avatarPath = Utils::getTempSwarmAvatarPath();
+        QFile file(avatarPath);
+        if (!file.open(QIODevice::WriteOnly)) {
+            C_WARN << "Failed to open temporary swarm avatar for writing:" << avatarPath;
+            return;
+        }
         file.write(ba.toBase64());
         file.close();
         Q_EMIT lrcInstance_->base64SwarmAvatarChanged();
