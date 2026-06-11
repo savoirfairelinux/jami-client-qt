@@ -50,7 +50,18 @@ IndexRangeFilterProxyModel::setRange(int min, int max)
 {
     min_ = min;
     max_ = max;
+    refreshFilter();
+}
+
+void
+IndexRangeFilterProxyModel::refreshFilter()
+{
+#if QT_VERSION >= QT_VERSION_CHECK(6, 10, 0)
+    beginFilterChange();
+    endFilterChange(QSortFilterProxyModel::Direction::Rows);
+#else
     invalidateFilter();
+#endif
 }
 
 PendingConferenceesListModel::PendingConferenceesListModel(LRCInstance* instance, QObject* parent)
@@ -372,10 +383,8 @@ CallOverlayModel::setEventFilterActive(QObject* object, QQuickItem* item, bool i
             watchedItems_.removeOne(item);
             // Remove the event filter only when no more items belong to this window.
             const bool windowStillNeeded = std::any_of(watchedItems_.cbegin(),
-                                                        watchedItems_.cend(),
-                                                        [window](QQuickItem* i) {
-                                                            return i->window() == window;
-                                                        });
+                                                       watchedItems_.cend(),
+                                                       [window](QQuickItem* i) { return i->window() == window; });
             if (!windowStillNeeded) {
                 watchedWindows_.removeOne(window);
                 window->removeEventFilter(this);

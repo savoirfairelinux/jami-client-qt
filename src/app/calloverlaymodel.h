@@ -70,6 +70,8 @@ public:
     void setRange(int min, int max);
 
 private:
+    void refreshFilter();
+
     int min_ {-1};
     int max_ {-1};
 };
