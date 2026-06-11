@@ -310,7 +310,7 @@ AvAdapter::shareScreenArea(unsigned x, unsigned y, unsigned width, unsigned heig
     // xrectsel will freeze all displays too fast so that the call
     // context menu will not be closed even closed signal is emitted
     // use timer to wait until popup is closed
-    QTimer::singleShot(100, this, [=]() mutable {
+    QTimer::singleShot(100, this, [=, this]() mutable {
         x = y = width = height = 0;
         xrectsel(&x, &y, &width, &height);
         auto resource = lrcInstance_->getCurrentCallModel()->getDisplay(getScreenNumber(),
