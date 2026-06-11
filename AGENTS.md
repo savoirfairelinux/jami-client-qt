@@ -8,4 +8,5 @@
 
 # Topics
 - Making changes: .agents/topics/editing-rules.md
+- Analyzing code / trusting comments: .agents/topics/code-analysis.md
 - Git workflow / safety: .agents/topics/git-workflow.md
