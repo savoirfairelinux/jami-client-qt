@@ -569,7 +569,7 @@ ConversationModel::addConversationWith(const QString& convId, const QString& con
                     auto accId = owner.id;
                     updateInteractionStatus(accId, convId, contactUri, daemonId, status);
                 });
-            } catch (const std::exception& e) {
+            } catch (const std::exception&) {
                 qWarning() << Q_FUNC_INFO << "Failed: message id was invalid";
             }
         });
@@ -652,7 +652,7 @@ void
 ConversationModel::addContactRequest(const QString& contactUri)
 {
     try {
-        convForPeerUri(contactUri).get();
+        static_cast<void>(convForPeerUri(contactUri).get());
         // request from contact already exists, return
         return;
     } catch (std::out_of_range&) {
@@ -678,7 +678,7 @@ ConversationModel::sendContactRequest(const QString& contactUri)
                          || contact.profileInfo.type == profile::Type::PENDING;
         if (isNotUsed)
             owner.contactModel->addContact(contact);
-    } catch (std::out_of_range& e) {
+    } catch (std::out_of_range&) {
     }
 }
 
