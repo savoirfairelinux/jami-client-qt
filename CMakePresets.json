@@ -1,0 +1,58 @@
+{
+  "version": 6,
+  "configurePresets": [
+    {
+      "name": "host-dev",
+      "displayName": "Host developer build",
+      "generator": "Unix Makefiles",
+      "binaryDir": "${sourceDir}/build",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "BUILD_TESTING": "ON",
+        "CMAKE_PREFIX_PATH": "$env{CMAKE_PREFIX_PATH}"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "host-dev",
+      "configurePreset": "host-dev",
+      "jobs": 0
+    },
+    {
+      "name": "cqfd-tests",
+      "configurePreset": "host-dev",
+      "targets": [
+        "cqfd-tests"
+      ]
+    },
+    {
+      "name": "cqfd-qml-tests",
+      "configurePreset": "host-dev",
+      "targets": [
+        "cqfd-qml-tests"
+      ]
+    },
+    {
+      "name": "cqfd-unit-tests",
+      "configurePreset": "host-dev",
+      "targets": [
+        "cqfd-unit-tests"
+      ]
+    }
+  ],
+  "testPresets": [
+    {
+      "name": "host-client-tests",
+      "configurePreset": "host-dev",
+      "output": {
+        "outputOnFailure": true
+      },
+      "filter": {
+        "include": {
+          "name": "^(Qml_Tests|Unit_Tests)$"
+        }
+      }
+    }
+  ]
+}

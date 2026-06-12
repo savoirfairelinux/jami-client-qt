@@ -2,6 +2,8 @@ cmake_minimum_required(VERSION 3.16)
 
 enable_testing()
 
+set(JAMI_TEST_QPA_PLATFORM "offscreen" CACHE STRING "Qt platform plugin used by client tests")
+
 set(QT_TESTING_MODULES
     ${QT_MODULES}
     QuickControls2
@@ -51,6 +53,8 @@ set(TEST_QML_RESOURCES
     ${CMAKE_SOURCE_DIR}/tests/qml/resources.qrc
     ${CMAKE_SOURCE_DIR}/src/app/resources.qrc)
 
+set_source_files_properties(${LIBCLIENT_HEADERS_PRIVATE} PROPERTIES SKIP_AUTOMOC ON)
+
 # Common jami files
 add_library(test_common_obj OBJECT
     ${COMMON_SOURCES}
@@ -58,7 +62,6 @@ add_library(test_common_obj OBJECT
     ${LIBCLIENT_SOURCES}
     ${LIBCLIENT_HEADERS}
     ${LIBCLIENT_HEADERS_MOC})
-set_source_files_properties(${LIBCLIENT_HEADERS_PRIVATE} PROPERTIES SKIP_AUTOMOC ON)
 set_source_files_properties(${LIBCLIENT_HEADERS_MOC} PROPERTIES GENERATED TRUE)
 
 target_include_directories(test_common_obj PRIVATE
@@ -144,4 +147,4 @@ setup_test(Unit_Tests
 
 # Use offscreen platform when no display is available (e.g. CI, SSH)
 set_tests_properties(Qml_Tests Unit_Tests PROPERTIES
-    ENVIRONMENT "QT_QPA_PLATFORM=offscreen")
+    ENVIRONMENT "QT_QPA_PLATFORM=${JAMI_TEST_QPA_PLATFORM}")
