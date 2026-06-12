@@ -75,6 +75,7 @@ BaseView {
 
     property var isSinglePaneChangedHandler: function () {
         // Move right pane into left when collapsing
+        leftPaneItem.parent = isSinglePane ? null : leftPane
         rightPaneItem.parent = isSinglePane ? leftPane : rightPane
     }
 
