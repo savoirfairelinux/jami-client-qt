@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fafdc855_69c79c09",
+        "filename": "src/app/audioconfiglistmodel.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-12T13:14:33Z",
+      "side": 1,
+      "message": "[Critical] Line 50: QT_TRANSLATE_NOOP is used in this header, but the header does not include the Qt header that defines it. The new QCoreApplication include was added only to the .cpp file, so this can fail depending on include order when this header is compiled from another translation unit. Include QCoreApplication in the header or avoid the macro in the member initializer.\n```suggestion\n#include \u003cQAbstractListModel\u003e\n#include \u003cQCoreApplication\u003e\n```\n",
+      "revId": "af03f2960c513360c5db6b5f6adb3c54cad48698",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
