@@ -362,8 +362,13 @@ ${dbus_xml_introspecs_path}")
   # Note: qt_add_dbus_interface calls are done after Qt6 component find below.
 endif()
 
-# Note: qt_wrap_cpp for LIBCLIENT_HEADERS_PRIVATE is done after Qt6
-# component find below.
+# Note: qt_wrap_cpp for explicit moc headers is done after Qt6 component find below.
+
+set(LIBCLIENT_HEADERS_EXPLICIT_MOC
+  ${CORE_SRC_DIR}/api/account.h)
+set_source_files_properties(
+  ${LIBCLIENT_HEADERS_EXPLICIT_MOC}
+  PROPERTIES SKIP_AUTOMOC ON)
 
 # Manually wrap libjamiclient's private headers.
 set(LIBCLIENT_HEADERS_PRIVATE
@@ -459,32 +464,38 @@ add_custom_target(
 list(APPEND CLIENT_INCLUDE_DIRS ${VERSION_INFO_DIR})
 
 # Resource auto-gen
-# QML and related code files
-# Check files in the app's src directory and force a reconfigure if it
-# changes.
 # Only include WebEngine resources if specified.
 if(WITH_WEBENGINE)
   set(GEN_QRC_ARGS "--with-webengine")
 endif()
-file(GLOB_RECURSE
-  QML_FILES CONFIGURE_DEPENDS
-  ${APP_SRC_DIR}/*)
+
+# Generate the .qrc manifests BEFORE the CONFIGURE_DEPENDS globs below.
+# Both manifests are written into ${APP_SRC_DIR}, so they are matched by the
+# "${APP_SRC_DIR}/*" glob. Generating them first means the globbed file set is
+# identical at configure time and at the build-time glob re-check; otherwise
+# the freshly generated .qrc files would appear only on the re-check and force
+# a spurious reconfigure during the build -- which, with the daemon built as a
+# subdirectory, re-runs the daemon contrib build (contrib effectively built
+# twice per clean build).
 execute_process(
   COMMAND
   ${PYTHON_EXEC} ${SCRIPTS_DIR}/gen_qml_qrc.py ${GEN_QRC_ARGS}
   WORKING_DIRECTORY ${APP_SRC_DIR})
 set(QML_RESOURCES_QML ${APP_SRC_DIR}/qml.qrc)
-
-# Image and misc. resources
-# check files in the resources directory and force a reconfigure if it
-# changes
-file(GLOB_RECURSE
-  RES_FILES CONFIGURE_DEPENDS
-  ${PROJECT_SOURCE_DIR}/resources/*)
 execute_process(
   COMMAND ${PYTHON_EXEC} ${SCRIPTS_DIR}/gen_resources_qrc.py ${GEN_QRC_ARGS}
   WORKING_DIRECTORY ${APP_SRC_DIR})
 set(QML_RESOURCES ${APP_SRC_DIR}/resources.qrc)
+
+# QML and related code files: force a reconfigure when the source set changes.
+file(GLOB_RECURSE
+  QML_FILES CONFIGURE_DEPENDS
+  ${APP_SRC_DIR}/*)
+
+# Image and misc. resources: force a reconfigure when they change.
+file(GLOB_RECURSE
+  RES_FILES CONFIGURE_DEPENDS
+  ${PROJECT_SOURCE_DIR}/resources/*)
 
 # Find modules (QtCreator) under the root source dir.
 list(APPEND QML_DIRS ${APP_SRC_DIR})
@@ -742,8 +753,8 @@ if(MSVC)
   add_compile_options(
     /wd4068 /wd4099 /wd4189 /wd4267 /wd4577 /wd4467 /wd4715 /wd4828)
   add_compile_options(
-    /MP /GS /W3 /Gy /Zc:__cplusplus /Zc:wchar_t /Zi /Gm- /O2 /Zc:inline /fp:precise)
-  add_compile_options(/Gd /Oi /MD /FC /EHsc /nologo /sdl)
+    /MP /GS /W3 /Gy /Zc:__cplusplus /Zc:wchar_t /Zc:externConstexpr /Zi /Gm- /O2 /Zc:inline /fp:precise)
+  add_compile_options(/Gd /Oi /MD /FC /EHsc /nologo /sdl /constexpr:steps16777216)
 
   # linker options
   add_link_options(
@@ -887,7 +898,9 @@ if(ENABLE_LIBWRAP)
 endif()
 
 # libclient Qt-dependent processing (must be after Qt6 component find)
-qt_wrap_cpp(LIBCLIENT_HEADERS_MOC ${LIBCLIENT_HEADERS_PRIVATE})
+qt_wrap_cpp(LIBCLIENT_HEADERS_MOC
+  ${LIBCLIENT_HEADERS_EXPLICIT_MOC}
+  ${LIBCLIENT_HEADERS_PRIVATE})
 
 if(NOT ENABLE_LIBWRAP)
   qt_add_dbus_interface(
