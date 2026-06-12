@@ -78,6 +78,30 @@ ColumnLayout {
                 compare(description.textFieldContent, "")
 
             }
+
+            function test_side_panel_restored_after_resize() {
+                const expandedWidth = JamiTheme.mainViewMajorPaneMinWidth
+                                    + JamiTheme.mainViewMinorPaneMinWidth + 100;
+                const collapsedWidth = JamiTheme.mainViewMajorPaneMinWidth;
+
+                root.width = expandedWidth;
+                tryCompare(uut, "width", expandedWidth);
+                compare(uut.isSinglePane, false);
+                compare(sidePanelStub.parent, uut.leftPane);
+                compare(uut.rightPaneItem.parent, uut.rightPane);
+
+                root.width = collapsedWidth;
+                tryCompare(uut, "width", collapsedWidth);
+                compare(uut.isSinglePane, true);
+                compare(sidePanelStub.parent, null);
+                compare(uut.rightPaneItem.parent, uut.leftPane);
+
+                root.width = expandedWidth;
+                tryCompare(uut, "width", expandedWidth);
+                compare(uut.isSinglePane, false);
+                compare(sidePanelStub.parent, uut.leftPane);
+                compare(uut.rightPaneItem.parent, uut.rightPane);
+            }
         }
     }
 }
