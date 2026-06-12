@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "afc252f5_7b4e9b45",
+        "filename": "src/app/settingsview/components/PluginStoreListView.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-12T16:09:41Z",
+      "side": 1,
+      "message": "[🟡 Suggestion] Line 108: The Loader height binding dereferences `item` whenever `active` is true. During Loader activation or component replacement, `item` can still be null, which can produce QML runtime errors and leave the unavailable-state layout with an invalid height. Guard the item access explicitly.\n```suggestion\n        Layout.preferredHeight: active \u0026\u0026 item ? item.implicitHeight : 0\n```",
+      "revId": "04db38d17540fd830bfb6a526f945d9a55243b6b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
