@@ -29,6 +29,15 @@ option(WITH_DAEMON_SUBMODULE "Build with daemon submodule" ON)
 option(JAMICORE_AS_SUBDIR "Build Jami-core as a subdir dependency" ON)
 option(WITH_WEBENGINE "Build with WebEngine" ON)
 option(ENABLE_LIBWRAP "Enable libwrap (single process mode)" ON)
+option(JAMI_CQFD_BUILD "Configure the Docker-backed CQFD test build" OFF)
+get_filename_component(JAMI_BINARY_DIR_NAME "${CMAKE_BINARY_DIR}" NAME)
+if(JAMI_BINARY_DIR_NAME STREQUAL "build-cqfd" AND NOT JAMI_CQFD_BUILD)
+  message(FATAL_ERROR
+    "build-cqfd is reserved for the Docker-backed CQFD test build and cannot "
+    "be configured by a host IDE. Use the CMake preset 'host-dev' or configure "
+    "the host build in '${PROJECT_SOURCE_DIR}/build' instead. The CQFD runner "
+    "now uses '${PROJECT_SOURCE_DIR}/.build-cqfd' by default.")
+endif()
 if(NOT (${CMAKE_SYSTEM_NAME} MATCHES "Linux")
     OR ENABLE_LIBWRAP
     # because mocks use the same interface present in qtwrapper/
@@ -1321,4 +1330,20 @@ if(BUILD_TESTING)
   message("Add Jami tests")
   enable_testing()
   add_subdirectory(${TESTS_DIR})
+endif()
+
+find_program(CQFD_EXECUTABLE cqfd)
+if(CQFD_EXECUTABLE)
+  add_custom_target(cqfd-tests
+    COMMAND ${CQFD_EXECUTABLE} run
+    WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+    USES_TERMINAL)
+  add_custom_target(cqfd-qml-tests
+    COMMAND ${CQFD_EXECUTABLE} -b qml run
+    WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+    USES_TERMINAL)
+  add_custom_target(cqfd-unit-tests
+    COMMAND ${CQFD_EXECUTABLE} -b unit run
+    WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+    USES_TERMINAL)
 endif()
