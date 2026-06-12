@@ -42,6 +42,7 @@
 
 #include <algorithm> // std::sort
 #include <chrono>
+#include <ctime> // for localtime_s/localtime_r
 #include <iomanip> // for std::put_time
 #include <string>
 #include <sstream>
@@ -931,7 +932,12 @@ AVModelPimpl::getRecordingPath() const
 
     std::chrono::time_point<std::chrono::system_clock> time_now = std::chrono::system_clock::now();
     std::time_t time_now_t = std::chrono::system_clock::to_time_t(time_now);
-    std::tm now_tm = *std::localtime(&time_now_t);
+    std::tm now_tm {};
+#ifdef _WIN32
+    localtime_s(&now_tm, &time_now_t);
+#else
+    localtime_r(&time_now_t, &now_tm);
+#endif
 
     std::stringstream ss;
     ss << dir.path().toStdString();
