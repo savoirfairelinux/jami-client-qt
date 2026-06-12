@@ -1,0 +1,123 @@
+// Jami Client Qt — Windows CI Pipeline
+//
+// Caches prebuilt daemon contrib keyed by daemon submodule commit, so builds
+// that share the same pinned daemon version skip the full contrib build.
+// Safe for concurrent builds on the same node (named Mutex around robocopy).
+
+// Robocopy flags that keep the log quiet (no file/dir lists, no headers).
+def QUIET = '/MT:16 /R:2 /W:2 /NFL /NDL /NJH /NJS /NP /NC /NS'
+
+// Mirror src -> dst under a named system Mutex so concurrent builds on the
+// same node never interleave reads and writes to the shared cache.
+//
+// /SL copies symbolic links as links rather than following them. The gnutls
+// contrib tree contains relative symlinks (devel/perlasm/*.pl ->
+// ..\openssl\...) whose targets are absent from the built tree; without /SL,
+// robocopy tries to dereference them and fails with ERROR 3.
+//
+// The Mutex is kernel-owned, so it is released automatically if the process
+// crashes while holding it (AbandonedMutexException is caught and treated as
+// a successful acquisition of an orphaned lock).
+def robomirror(src, dst, quiet) {
+    def rc = powershell(returnStatus: true, script: """
+\$mtx = [System.Threading.Mutex]::new(\$false, 'Global\\JamiClientContribCache')
+try {
+    \$acquired = \$false
+    try   { \$acquired = \$mtx.WaitOne(120000) }
+    catch [System.Threading.AbandonedMutexException] { \$acquired = \$true }
+    if (-not \$acquired) { Write-Error 'Timed out waiting for cache lock (120 s)'; exit 2 }
+    try {
+        robocopy "${src}" "${dst}" /MIR /Z /SL ${quiet}
+        if (\$LASTEXITCODE -ge 8) { exit \$LASTEXITCODE }
+    } finally { \$mtx.ReleaseMutex() }
+} finally { \$mtx.Dispose() }
+exit 0
+""")
+    if (rc == 2) {
+        error "Timed out acquiring cache lock: ${src} -> ${dst}"
+    }
+    if (rc >= 8) {
+        error "Robocopy failed: ${src} -> ${dst} (exit code ${rc})"
+    }
+}
+
+node('builder-win') {
+    // Node-provided root for build caches. Fail fast if it is missing, so a
+    // misconfigured job never silently mirrors into a literal "null\..." dir.
+    String cacheRoot = env.JAMI_DAEMON_CACHE_DIR
+    if (!cacheRoot?.trim()) {
+        error 'JAMI_DAEMON_CACHE_DIR is not set on the node; cannot locate the contrib cache.'
+    }
+
+    // Flat cache dir — no version subdirs. pywinmake's content-based hashing
+    // detects stale packages when the daemon submodule changes and rebuilds
+    // only what is needed. This avoids unbounded cache accumulation.
+    String cacheBase  = "${cacheRoot}\\client-build"
+    String cacheBuild = "${cacheBase}\\build"
+    String cacheMsvc  = "${cacheBase}\\msvc"
+
+    String clientDir
+
+    stage('SCM Checkout') {
+        deleteDir()
+        bat """\
+            git clone --depth=1 https://${RING_GERRIT_URL}/jami-client-qt
+            cd jami-client-qt
+            git fetch origin ${GERRIT_REFSPEC}
+            git checkout -q FETCH_HEAD
+            git submodule update --init --force --recursive
+        """
+        clientDir = pwd() + '\\jami-client-qt'
+    }
+
+    String daemonDir    = clientDir + '\\daemon'
+    String contribBuild = daemonDir + '\\contrib\\build'
+    String contribMsvc  = daemonDir + '\\contrib\\msvc'
+
+    stage('Restore contrib cache') {
+        // Restore AFTER checkout: contrib/build and contrib/msvc are
+        // git-ignored, so they never conflict with the working tree.
+        if (fileExists(cacheBuild)) {
+            echo "Contrib cache hit -- restoring"
+            robomirror(cacheBuild, contribBuild, QUIET)
+            if (fileExists(cacheMsvc)) {
+                robomirror(cacheMsvc, contribMsvc, QUIET)
+            }
+        } else {
+            echo "Contrib cache empty -- contrib will build from source"
+        }
+    }
+
+    stage('Build client') {
+        dir(clientDir) {
+            // build-windows.py drives the full build: it configures CMake with
+            // JAMICORE_AS_SUBDIR=ON (which runs winmake for contrib at configure
+            // time) and then builds the client. With a warm cache, winmake skips
+            // all packages instantly. No vcvars setup is needed: the script
+            // discovers and loads the MSVC build environment itself (vswhere +
+            // vcvarsall). QTDIR is exported so winmake can locate jom.
+            //
+            // --skip-deploy skips runtime DLL deployment (only needed for
+            // packaging). Submodules are already initialised above.
+            ansiColor('xterm') {
+                bat """\
+                    set "QTDIR=${QT_LATEST_PATH}"
+                    python extras\\scripts\\build-windows.py --qt=${QT_LATEST_PATH} --skip-deploy || exit /b 1
+                """
+            }
+        }
+    }
+
+    stage('Update contrib cache') {
+        // Best-effort: refreshing the cache must never fail the build.
+        catchError(buildResult: 'SUCCESS', stageResult: 'UNSTABLE') {
+            if (!fileExists(cacheBuild)) {
+                echo "Populating contrib cache"
+                robomirror(contribBuild, cacheBuild, QUIET)
+                robomirror(contribMsvc,  cacheMsvc,  QUIET)
+            } else {
+                echo "Contrib cache already populated"
+            }
+        }
+    }
+}
