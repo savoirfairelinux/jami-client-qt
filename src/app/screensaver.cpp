@@ -52,7 +52,7 @@ ScreenSaver::createInterface(void)
             return true;
         }
     }
-    qWarning() << "Cannot find dbus interface for screen saver";
+    qDebug() << "Cannot find dbus interface for screen saver";
     screenSaverInterface_ = nullptr;
     return false;
 }

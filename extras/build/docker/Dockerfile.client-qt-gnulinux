@@ -3,9 +3,15 @@ FROM ubuntu:24.04
 ENV DEBIAN_FRONTEND noninteractive
 ENV QT_QUICK_BACKEND software
 ENV QT_QPA_PLATFORM offscreen
+ENV QT_OPENGL software
+ENV QSG_RHI_BACKEND software
+ENV QTWEBENGINE_CHROMIUM_FLAGS "--disable-gpu --disable-software-rasterizer --disable-dev-shm-usage"
+ENV LANG en_US.UTF-8
+ENV LC_ALL en_US.UTF-8
 
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends ca-certificates && \
+    apt-get install -y --no-install-recommends ca-certificates libssl-dev locales && \
+    locale-gen en_US.UTF-8 fr_FR.UTF-8 && \
     rm -rf /var/lib/apt/lists/*
 
 # Use only the custom Savoir-faire Linux Ubuntu mirror
@@ -35,6 +41,7 @@ RUN apt-get install -y -o Acquire::Retries=10 \
     cmake \
     meson \
     libtool \
+    dbus-x11 \
     libdbus-1-dev \
     libsystemd-dev \
     libargon2-dev \
@@ -52,6 +59,8 @@ RUN apt-get install -y -o Acquire::Retries=10 \
     libexpat1-dev \
     libpcre3-dev \
     libyaml-cpp-dev \
+    libxcb-shape0-dev \
+    libxcb-xfixes0-dev \
     libboost-dev \
     libxext-dev \
     libxfixes-dev \
@@ -87,10 +96,19 @@ RUN apt-get install -y -o Acquire::Retries=10 \
     libappindicator3-dev \
     libqrencode-dev \
     libnm-dev \
+    libnss3-dev \
     libcrypto++-dev \
     libva-dev \
     libvdpau-dev \
-    libssl-dev
+    libvulkan-dev \
+    libxcomposite-dev \
+    libxdamage-dev \
+    libxkbfile-dev \
+    libxtst-dev \
+    xvfb \
+    xauth \
+    libgl1-mesa-dri \
+    libglx-mesa0
 RUN apt-get install -y pandoc \
     libcppunit-dev \
     googletest \

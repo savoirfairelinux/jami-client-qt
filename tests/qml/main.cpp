@@ -92,6 +92,7 @@ public Q_SLOTS:
 
         connectivityMonitor_.reset(new ConnectivityMonitor(this));
         settingsManager_.reset(new AppSettingsManager(this));
+        settingsManager_->setValue(Settings::Key::EnableNotifications, false);
         accountSettingsManager_.reset(new AccountSettingsManager(this));
         systemTray_.reset(new SystemTray(settingsManager_.get(), this));
         previewEngine_.reset(new PreviewEngine(connectivityMonitor_.get(), this));

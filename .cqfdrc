@@ -3,5 +3,21 @@ org='savoirfairelinux'
 name='jami'
 
 [build]
-; default behaviour
-command='cd client-qt && ./extras/scripts/run-tests.sh'
+distro='ci-client-qt'
+docker_run_args='--network=host --shm-size=2g'
+command='./extras/scripts/run-tests.sh'
+
+[qml]
+distro='ci-client-qt'
+docker_run_args='--network=host --shm-size=2g'
+command='JAMI_TEST_REGEX=^Qml_Tests$ ./extras/scripts/run-tests.sh'
+
+[unit]
+distro='ci-client-qt'
+docker_run_args='--network=host --shm-size=2g'
+command='JAMI_TEST_REGEX=^Unit_Tests$ ./extras/scripts/run-tests.sh'
+
+[shell]
+distro='ci-client-qt'
+docker_run_args='--network=host --shm-size=2g'
+command='bash'

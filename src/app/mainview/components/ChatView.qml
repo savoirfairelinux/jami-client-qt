@@ -59,6 +59,7 @@ Item {
     // is opened/closed.
     property var mapProfile: null
     property var mapProfileHolder: null
+    property bool createMapViewOnPositionSignal: true
 
     // The purpose of this alias is to make the message bar
     // accessible to the EmojiPicker
@@ -178,7 +179,7 @@ Item {
     }
 
     Connections {
-        target: PositionManager
+        target: root.createMapViewOnPositionSignal ? PositionManager : null
         function onOpenNewMap() {
             instanceMapObject();
         }
