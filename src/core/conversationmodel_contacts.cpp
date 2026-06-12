@@ -54,7 +54,10 @@ ConversationModel::slotContactUpdated(const QString& uri)
         if (members.indexOf(uri) != -1) {
             invalidateModel();
             Q_EMIT conversationUpdated(conversation.uid);
-            { const auto _idx = index(indexOf(conversation.uid)); Q_EMIT dataChanged(_idx, _idx); }
+            {
+                const auto _idx = index(indexOf(conversation.uid));
+                Q_EMIT dataChanged(_idx, _idx);
+            }
         }
     }
 
@@ -82,7 +85,6 @@ ConversationModel::slotContactUpdated(const QString& uri)
     Q_EMIT searchResultUpdated();
     Q_EMIT searchResultEnded();
 }
-
 
 void
 ConversationModel::slotContactAdded(const QString& contactUri)
@@ -117,7 +119,10 @@ ConversationModel::slotContactAdded(const QString& contactUri)
         if (conversation.needsSyncing != needsSyncing) {
             conversation.isRequest = false;
             conversation.needsSyncing = needsSyncing;
-            { const auto _idx = index(indexOf(conversation.uid)); Q_EMIT dataChanged(_idx, _idx); }
+            {
+                const auto _idx = index(indexOf(conversation.uid));
+                Q_EMIT dataChanged(_idx, _idx);
+            }
             Q_EMIT conversationUpdated(conversation.uid);
             invalidateModel();
             Q_EMIT modelChanged();
@@ -128,7 +133,6 @@ ConversationModel::slotContactAdded(const QString& contactUri)
         }
     }
 }
-
 
 void
 ConversationModel::slotPendingContactAccepted(const QString& uri)
@@ -160,13 +164,15 @@ ConversationModel::slotPendingContactAccepted(const QString& uri)
             }
             d_->filteredConversations.invalidate();
             Q_EMIT newInteraction(convs[0], msgId, interaction);
-            { const auto idx = index(convIdx); Q_EMIT dataChanged(idx, idx); }
+            {
+                const auto idx = index(convIdx);
+                Q_EMIT dataChanged(idx, idx);
+            }
         } catch (std::out_of_range& e) {
             qDebug() << "ConversationModel::slotContactAdded is unable to find contact.";
         }
     }
 }
-
 
 void
 ConversationModel::slotContactRemoved(const QString& uri)
@@ -188,12 +194,11 @@ ConversationModel::slotContactRemoved(const QString& uri)
     Q_EMIT modelChanged();
 }
 
-
 void
 ConversationModel::slotSwarmLoaded(uint32_t requestId,
-                                        const QString& accountId,
-                                        const QString& conversationId,
-                                        const VectorSwarmMessage& messages)
+                                   const QString& accountId,
+                                   const QString& conversationId,
+                                   const VectorSwarmMessage& messages)
 {
     if (accountId != owner.id)
         return;
@@ -228,7 +233,10 @@ ConversationModel::slotSwarmLoaded(uint32_t requestId,
         Q_EMIT modelChanged();
         Q_EMIT newMessagesAvailable(owner.id, conversationId);
         auto conversationIdx = indexOf(conversationId);
-        { const auto idx = index(conversationIdx); Q_EMIT dataChanged(idx, idx); }
+        {
+            const auto idx = index(conversationIdx);
+            Q_EMIT dataChanged(idx, idx);
+        }
         Q_EMIT conversationMessagesLoaded(requestId, conversationId);
         if (allLoaded) {
             conversation.allMessagesLoaded = true;
@@ -239,12 +247,11 @@ ConversationModel::slotSwarmLoaded(uint32_t requestId,
     }
 }
 
-
 void
 ConversationModel::slotMessagesFound(uint32_t requestId,
-                                          const QString& accountId,
-                                          const QString& conversationId,
-                                          const VectorMapStringString& messageIds)
+                                     const QString& accountId,
+                                     const QString& conversationId,
+                                     const VectorMapStringString& messageIds)
 {
     QMap<QString, interaction::Info> messageDetailedInformation;
     if (requestId == d_->mediaResearchRequestId) {
@@ -262,7 +269,6 @@ ConversationModel::slotMessagesFound(uint32_t requestId,
     }
     Q_EMIT messagesFoundProcessed(accountId, messageDetailedInformation);
 }
-
 
 void
 ConversationModel::slotConversationReady(const QString& accountId, const QString& conversationId)
@@ -318,7 +324,10 @@ ConversationModel::slotConversationReady(const QString& accountId, const QString
         conversation.isRequest = false;
         conversation.needsSyncing = false;
         Q_EMIT conversationUpdated(conversationId);
-        { const auto _idx = index(indexOf(conversationId)); Q_EMIT dataChanged(_idx, _idx); }
+        {
+            const auto _idx = index(indexOf(conversationId));
+            Q_EMIT dataChanged(_idx, _idx);
+        }
         ConfigurationManager::instance().loadConversation(owner.id, conversationId, "", 0);
         auto& peers = peersForConversationInfo(conversation);
         if (peers.size() == 1)
@@ -335,7 +344,6 @@ ConversationModel::slotConversationReady(const QString& accountId, const QString
     Q_EMIT modelChanged();
 }
 
-
 void
 ConversationModel::slotConversationRemoved(const QString& accountId, const QString& conversationId)
 {
@@ -350,12 +358,11 @@ ConversationModel::slotConversationRemoved(const QString& accountId, const QStri
     }
 }
 
-
 void
 ConversationModel::slotConversationMemberEvent(const QString& accountId,
-                                                    const QString& conversationId,
-                                                    const QString& memberUri,
-                                                    int event)
+                                               const QString& conversationId,
+                                               const QString& memberUri,
+                                               int event)
 {
     if (accountId != owner.id || indexOf(conversationId) < 0) {
         return;
@@ -382,15 +389,17 @@ ConversationModel::slotConversationMemberEvent(const QString& accountId,
     }
     Q_EMIT modelChanged();
     Q_EMIT conversationUpdated(conversationId);
-    { const auto _idx = index(indexOf(conversationId)); Q_EMIT dataChanged(_idx, _idx); }
+    {
+        const auto _idx = index(indexOf(conversationId));
+        Q_EMIT dataChanged(_idx, _idx);
+    }
 }
-
 
 void
 ConversationModel::slotOnConversationError(const QString& accountId,
-                                                const QString& conversationId,
-                                                int code,
-                                                const QString& what)
+                                           const QString& conversationId,
+                                           int code,
+                                           const QString& what)
 {
     if (accountId != owner.id || indexOf(conversationId) < 0) {
         return;
@@ -403,22 +412,20 @@ ConversationModel::slotOnConversationError(const QString& accountId,
     }
 }
 
-
 void
 ConversationModel::slotConversationRequestReceived(const QString& accountId,
-                                                        const QString&,
-                                                        const MapStringString& metadatas)
+                                                   const QString&,
+                                                   const MapStringString& metadatas)
 {
     if (accountId != owner.id)
         return;
     addConversationRequest(metadatas, true);
 }
 
-
 void
 ConversationModel::slotConversationPreferencesUpdated(const QString& accountId,
-                                                           const QString& conversationId,
-                                                           const MapStringString& preferences)
+                                                      const QString& conversationId,
+                                                      const MapStringString& preferences)
 {
     if (accountId != owner.id)
         return;
@@ -431,7 +438,6 @@ ConversationModel::slotConversationPreferencesUpdated(const QString& accountId,
     }
 }
 
-
 void
 ConversationModel::addSwarmConversation(const QString& convId)
 {
@@ -441,8 +447,7 @@ ConversationModel::addSwarmConversation(const QString& convId)
         ConfigurationManager::instance().clearCache(owner.id, convId);
     }
     QVector<member::Member> participants;
-    const VectorMapStringString& members = ConfigurationManager::instance().getConversationMembers(owner.id,
-                                                                                                   convId);
+    const VectorMapStringString& members = ConfigurationManager::instance().getConversationMembers(owner.id, convId);
     auto accountURI = owner.profileInfo.uri;
     QString otherMember;
     const MapStringString& details = ConfigurationManager::instance().conversationInfos(owner.id, convId);
@@ -474,8 +479,7 @@ ConversationModel::addSwarmConversation(const QString& convId)
     }
     conversation.participants = participants;
     conversation.mode = mode;
-    const MapStringString& preferences = ConfigurationManager::instance().getConversationPreferences(owner.id,
-                                                                                                     convId);
+    const MapStringString& preferences = ConfigurationManager::instance().getConversationPreferences(owner.id, convId);
     conversation.preferences = preferences;
     conversation.unreadMessages = ConfigurationManager::instance().countInteractions(owner.id,
                                                                                      convId,
@@ -521,12 +525,14 @@ ConversationModel::addSwarmConversation(const QString& convId)
         conversation.interactions->append(convId, msg);
         conversation.needsSyncing = true;
         Q_EMIT conversationUpdated(conversation.uid);
-        { const auto _idx = index(indexOf(conversation.uid)); Q_EMIT dataChanged(_idx, _idx); }
+        {
+            const auto _idx = index(indexOf(conversation.uid));
+            Q_EMIT dataChanged(_idx, _idx);
+        }
     }
     emplaceBackConversation(std::move(conversation));
     ConfigurationManager::instance().loadConversation(owner.id, convId, "", 1);
 }
-
 
 void
 ConversationModel::addConversationWith(const QString& convId, const QString& contactUri, bool isRequest)
@@ -569,7 +575,7 @@ ConversationModel::addConversationWith(const QString& convId, const QString& con
                     auto accId = owner.id;
                     updateInteractionStatus(accId, convId, contactUri, daemonId, status);
                 });
-            } catch (const std::exception& e) {
+            } catch (const std::exception&) {
                 qWarning() << Q_FUNC_INFO << "Failed: message id was invalid";
             }
         });
@@ -582,7 +588,6 @@ ConversationModel::addConversationWith(const QString& convId, const QString& con
     emplaceBackConversation(std::move(conversation));
     invalidateModel();
 }
-
 
 void
 ConversationModel::addConversationRequest(const MapStringString& convRequest, bool emitToClient)
@@ -647,12 +652,11 @@ ConversationModel::addConversationRequest(const MapStringString& convRequest, bo
         Q_EMIT d_->behaviorController.newTrustRequest(owner.id, convId, peerUri);
 }
 
-
 void
 ConversationModel::addContactRequest(const QString& contactUri)
 {
     try {
-        convForPeerUri(contactUri).get();
+        static_cast<void>(convForPeerUri(contactUri).get());
         // request from contact already exists, return
         return;
     } catch (std::out_of_range&) {
@@ -668,7 +672,6 @@ ConversationModel::addContactRequest(const QString& contactUri)
     }
 }
 
-
 void
 ConversationModel::sendContactRequest(const QString& contactUri)
 {
@@ -678,9 +681,8 @@ ConversationModel::sendContactRequest(const QString& contactUri)
                          || contact.profileInfo.type == profile::Type::PENDING;
         if (isNotUsed)
             owner.contactModel->addContact(contact);
-    } catch (std::out_of_range& e) {
+    } catch (std::out_of_range&) {
     }
 }
-
 
 } // namespace lrc

@@ -45,7 +45,9 @@ Q_CLASSINFO("RegisterEnumClassesUnscoped", "false")
 enum class Type { TYPE_INVALID, JAMI, SIP };
 Q_ENUM_NS(Type)
 
+#if !defined(_MSC_VER)
 #pragma push_macro("REGISTERED")
+#endif
 #undef REGISTERED
 
 enum class Status { STATUS_INVALID, ERROR_NEED_MIGRATION, INITIALIZING, UNREGISTERED, TRYING, REGISTERED };
@@ -68,7 +70,13 @@ to_status(const QString& type)
         return account::Status::STATUS_INVALID;
 }
 
+#if defined(_MSC_VER)
+#undef REGISTERED
+#undef NONE
+#undef ERROR
+#else
 #pragma pop_macro("REGISTERED")
+#endif
 
 enum class KeyExchangeProtocol { NONE, SDES };
 Q_ENUM_NS(KeyExchangeProtocol)

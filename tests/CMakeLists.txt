@@ -53,7 +53,10 @@ set(TEST_QML_RESOURCES
     ${CMAKE_SOURCE_DIR}/tests/qml/resources.qrc
     ${CMAKE_SOURCE_DIR}/src/app/resources.qrc)
 
-set_source_files_properties(${LIBCLIENT_HEADERS_PRIVATE} PROPERTIES SKIP_AUTOMOC ON)
+set_source_files_properties(
+    ${LIBCLIENT_HEADERS_EXPLICIT_MOC}
+    ${LIBCLIENT_HEADERS_PRIVATE}
+    PROPERTIES SKIP_AUTOMOC ON)
 
 # Common jami files
 add_library(test_common_obj OBJECT
