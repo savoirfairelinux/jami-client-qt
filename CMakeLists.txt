@@ -459,32 +459,38 @@ add_custom_target(
 list(APPEND CLIENT_INCLUDE_DIRS ${VERSION_INFO_DIR})
 
 # Resource auto-gen
-# QML and related code files
-# Check files in the app's src directory and force a reconfigure if it
-# changes.
 # Only include WebEngine resources if specified.
 if(WITH_WEBENGINE)
   set(GEN_QRC_ARGS "--with-webengine")
 endif()
-file(GLOB_RECURSE
-  QML_FILES CONFIGURE_DEPENDS
-  ${APP_SRC_DIR}/*)
+
+# Generate the .qrc manifests BEFORE the CONFIGURE_DEPENDS globs below.
+# Both manifests are written into ${APP_SRC_DIR}, so they are matched by the
+# "${APP_SRC_DIR}/*" glob. Generating them first means the globbed file set is
+# identical at configure time and at the build-time glob re-check; otherwise
+# the freshly generated .qrc files would appear only on the re-check and force
+# a spurious reconfigure during the build -- which, with the daemon built as a
+# subdirectory, re-runs the daemon contrib build (contrib effectively built
+# twice per clean build).
 execute_process(
   COMMAND
   ${PYTHON_EXEC} ${SCRIPTS_DIR}/gen_qml_qrc.py ${GEN_QRC_ARGS}
   WORKING_DIRECTORY ${APP_SRC_DIR})
 set(QML_RESOURCES_QML ${APP_SRC_DIR}/qml.qrc)
-
-# Image and misc. resources
-# check files in the resources directory and force a reconfigure if it
-# changes
-file(GLOB_RECURSE
-  RES_FILES CONFIGURE_DEPENDS
-  ${PROJECT_SOURCE_DIR}/resources/*)
 execute_process(
   COMMAND ${PYTHON_EXEC} ${SCRIPTS_DIR}/gen_resources_qrc.py ${GEN_QRC_ARGS}
   WORKING_DIRECTORY ${APP_SRC_DIR})
 set(QML_RESOURCES ${APP_SRC_DIR}/resources.qrc)
+
+# QML and related code files: force a reconfigure when the source set changes.
+file(GLOB_RECURSE
+  QML_FILES CONFIGURE_DEPENDS
+  ${APP_SRC_DIR}/*)
+
+# Image and misc. resources: force a reconfigure when they change.
+file(GLOB_RECURSE
+  RES_FILES CONFIGURE_DEPENDS
+  ${PROJECT_SOURCE_DIR}/resources/*)
 
 # Find modules (QtCreator) under the root source dir.
 list(APPEND QML_DIRS ${APP_SRC_DIR})
