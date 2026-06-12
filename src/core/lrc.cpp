@@ -17,7 +17,9 @@
 
 #include "api/lrc.h"
 
-#if !defined(_MSC_VER)
+#if defined(_MSC_VER)
+#include <process.h>
+#else
 #include <unistd.h>
 #endif
 
@@ -80,7 +82,13 @@ Lrc::~Lrc()
 {
     // Unregister from the daemon
     InstanceManagerInterface& instance = InstanceManager::instance();
-    Q_NOREPLY instance.Unregister(getpid());
+    Q_NOREPLY instance.Unregister(
+#if defined(_MSC_VER)
+        _getpid()
+#else
+        getpid()
+#endif
+    );
 #ifndef ENABLE_LIBWRAP
     instance.connection().disconnectFromBus(instance.connection().baseService());
 #endif // ENABLE_LIBWRAP
