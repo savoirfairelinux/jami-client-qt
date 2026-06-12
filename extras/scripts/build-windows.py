@@ -278,6 +278,14 @@ def build(config_str, qt_dir, tests, build_version, enable_crash_reports, crash_
     if build_version:
         cmake_options.append("-DBUILD_VERSION=" + build_version)
 
+    # /FS (Force Synchronous PDB writes) serialises all cl.exe PDB writes
+    # through mspdbsrv.exe. Required on CI nodes where concurrent builds share
+    # one mspdbsrv instance; without it, parallel MSBuild processes exhaust the
+    # named-pipe handle pool and produce C1090 (ERROR_INVALID_HANDLE).
+    if is_jenkins:
+        cmake_options.append("-DCMAKE_CXX_FLAGS=/FS")
+        cmake_options.append("-DCMAKE_C_FLAGS=/FS")
+
     # Make sure the build directory exists.
     if not os.path.exists(build_dir):
         os.makedirs(build_dir)

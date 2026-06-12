@@ -110,9 +110,11 @@ ConversationModel::slotTransferStatusCreated(const QString& fileId, datatransfer
 
     invalidateModel();
     Q_EMIT modelChanged();
-    { const auto idx = index(conversationIdx); Q_EMIT dataChanged(idx, idx); }
+    {
+        const auto idx = index(conversationIdx);
+        Q_EMIT dataChanged(idx, idx);
+    }
 }
-
 
 void
 ConversationModel::slotTransferStatusCanceled(const QString& fileId, datatransfer::Info info)
@@ -123,7 +125,6 @@ ConversationModel::slotTransferStatusCanceled(const QString& fileId, datatransfe
     updateTransferStatus(fileId, info, interaction::TransferStatus::TRANSFER_CANCELED, intUpdated);
 }
 
-
 void
 ConversationModel::slotTransferStatusAwaitingPeer(const QString& fileId, datatransfer::Info info)
 {
@@ -133,7 +134,6 @@ ConversationModel::slotTransferStatusAwaitingPeer(const QString& fileId, datatra
     updateTransferStatus(fileId, info, interaction::TransferStatus::TRANSFER_AWAITING_PEER, intUpdated);
 }
 
-
 void
 ConversationModel::slotTransferStatusAwaitingHost(const QString& fileId, datatransfer::Info info)
 {
@@ -141,7 +141,6 @@ ConversationModel::slotTransferStatusAwaitingHost(const QString& fileId, datatra
         return;
     awaitingHost(fileId, info);
 }
-
 
 void
 ConversationModel::slotTransferStatusOngoing(const QString& fileId, datatransfer::Info info)
@@ -162,10 +161,11 @@ ConversationModel::slotTransferStatusOngoing(const QString& fileId, datatransfer
     }
     auto conversationIdx = indexOf(conversationId);
     auto* timer = new QTimer();
-    connect(timer, &QTimer::timeout, this, [this, timer, conversationIdx, interactionId] { updateTransferProgress(timer, conversationIdx, interactionId); });
+    connect(timer, &QTimer::timeout, this, [this, timer, conversationIdx, interactionId] {
+        updateTransferProgress(timer, conversationIdx, interactionId);
+    });
     timer->start(1000);
 }
-
 
 void
 ConversationModel::slotTransferStatusFinished(const QString& fileId, datatransfer::Info info)
@@ -205,7 +205,6 @@ ConversationModel::slotTransferStatusFinished(const QString& fileId, datatransfe
     }
 }
 
-
 void
 ConversationModel::slotTransferStatusError(const QString& fileId, datatransfer::Info info)
 {
@@ -214,7 +213,6 @@ ConversationModel::slotTransferStatusError(const QString& fileId, datatransfer::
     bool intUpdated;
     updateTransferStatus(fileId, info, interaction::TransferStatus::TRANSFER_ERROR, intUpdated);
 }
-
 
 void
 ConversationModel::slotTransferStatusTimeoutExpired(const QString& fileId, datatransfer::Info info)
@@ -225,7 +223,6 @@ ConversationModel::slotTransferStatusTimeoutExpired(const QString& fileId, datat
     updateTransferStatus(fileId, info, interaction::TransferStatus::TRANSFER_TIMEOUT_EXPIRED, intUpdated);
 }
 
-
 void
 ConversationModel::slotTransferStatusUnjoinable(const QString& fileId, datatransfer::Info info)
 {
@@ -235,12 +232,11 @@ ConversationModel::slotTransferStatusUnjoinable(const QString& fileId, datatrans
     updateTransferStatus(fileId, info, interaction::TransferStatus::TRANSFER_UNJOINABLE_PEER, intUpdated);
 }
 
-
 bool
 ConversationModel::updateTransferStatus(const QString& fileId,
-                                             datatransfer::Info info,
-                                             interaction::TransferStatus newStatus,
-                                             bool& updated)
+                                        datatransfer::Info info,
+                                        interaction::TransferStatus newStatus,
+                                        bool& updated)
 {
     QString interactionId;
     QString conversationId;
@@ -267,7 +263,6 @@ ConversationModel::updateTransferStatus(const QString& fileId,
     return true;
 }
 
-
 void
 ConversationModel::updateTransferProgress(QTimer* timer, int conversationIdx, const QString& interactionId)
 {
@@ -291,12 +286,11 @@ ConversationModel::updateTransferProgress(QTimer* timer, int conversationIdx, co
     timer->deleteLater();
 }
 
-
 bool
 ConversationModel::usefulDataFromDataTransfer(const QString& fileId,
-                                                   const datatransfer::Info& info,
-                                                   QString& interactionId,
-                                                   QString& conversationId)
+                                              const datatransfer::Info& info,
+                                              QString& interactionId,
+                                              QString& conversationId)
 {
     if (info.accountId != owner.id)
         return false;
@@ -304,13 +298,12 @@ ConversationModel::usefulDataFromDataTransfer(const QString& fileId,
         interactionId = owner.dataTransferModel->getInteractionIdFromFileId(fileId);
         conversationId = info.conversationId.isEmpty() ? storage::conversationIdFromInteractionId(d_->db, interactionId)
                                                        : info.conversationId;
-    } catch (const std::out_of_range& e) {
+    } catch (const std::out_of_range&) {
         qWarning() << "Couldn't get interaction from daemon Id: " << fileId;
         return false;
     }
     return true;
 }
-
 
 bool
 ConversationModel::hasOneOneSwarmWith(const contact::Info& participant)
@@ -324,7 +317,6 @@ ConversationModel::hasOneOneSwarmWith(const contact::Info& participant)
     }
     return false;
 }
-
 
 void
 ConversationModel::awaitingHost(const QString& fileId, datatransfer::Info info)
@@ -349,7 +341,6 @@ ConversationModel::awaitingHost(const QString& fileId, datatransfer::Info info)
     handleIncomingFile(conversationId, interactionId, info.totalSize);
 }
 
-
 void
 ConversationModel::handleIncomingFile(const QString& convId, const QString& interactionId, int totalSize)
 {
@@ -357,13 +348,11 @@ ConversationModel::handleIncomingFile(const QString& convId, const QString& inte
     if (owner.accountModel->autoTransferFromTrusted) {
         if (owner.accountModel->autoTransferSizeThreshold == 0
             || (totalSize > 0
-                && static_cast<unsigned>(totalSize)
-                       < owner.accountModel->autoTransferSizeThreshold * 1024 * 1024)) {
+                && static_cast<unsigned>(totalSize) < owner.accountModel->autoTransferSizeThreshold * 1024 * 1024)) {
             acceptTransfer(convId, interactionId);
         }
     }
 }
-
 
 void
 ConversationModel::acceptTransferImpl(const QString& convUid, const QString& interactionId)
@@ -384,6 +373,5 @@ ConversationModel::acceptTransferImpl(const QString& convUid, const QString& int
         qWarning() << "Unable to download file without valid interaction";
     }
 }
-
 
 } // namespace lrc
