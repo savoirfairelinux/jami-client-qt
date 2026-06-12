@@ -18,6 +18,7 @@
 #pragma once
 
 #include <QAbstractListModel>
+#include <QtTranslation>
 
 class AudioConfigListModel : public QAbstractListModel
 {
