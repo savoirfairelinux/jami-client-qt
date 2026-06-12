@@ -483,15 +483,10 @@ AVModel::setAudioManager(const QString& name)
 void
 AVModel::setNoiseSuppression(const QString& name)
 {
-    QString state = QObject::tr("auto"); // Default is auto
-    if (name == QObject::tr("System (if available)"))
-        state = "system";
-    else if (name == QObject::tr("Built-in"))
-        state = "audioProcessor";
-    else if (name == QObject::tr("Auto (default)"))
-        state = "auto";
-    else if (name == QObject::tr("Disabled"))
-        state = "off";
+    // `name` is a stable configuration value from AudioConfigListModel
+    // (AudioConfigValue role), never a translated UI string.
+    static const QStringList validStates {"auto", "system", "audioProcessor", "off"};
+    const QString state = validStates.contains(name) ? name : QStringLiteral("auto");
 
     return ConfigurationManager::instance().setNoiseSuppressState(state);
 }
@@ -499,15 +494,10 @@ AVModel::setNoiseSuppression(const QString& name)
 void
 AVModel::setEchoCancellation(const QString& name)
 {
-    QString state = "auto"; // Default is auto
-    if (name == QObject::tr("System (if available)"))
-        state = "system";
-    else if (name == QObject::tr("Built-in"))
-        state = "audioProcessor";
-    else if (name == QObject::tr("Auto (default)"))
-        state = "auto";
-    else if (name == QObject::tr("Disabled"))
-        state = "off";
+    // `name` is a stable configuration value from AudioConfigListModel
+    // (AudioConfigValue role), never a translated UI string.
+    static const QStringList validStates {"auto", "system", "audioProcessor", "off"};
+    const QString state = validStates.contains(name) ? name : QStringLiteral("auto");
 
     return ConfigurationManager::instance().setEchoCancellationState(state);
 }

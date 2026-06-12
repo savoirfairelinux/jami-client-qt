@@ -23,7 +23,7 @@ class AudioConfigListModel : public QAbstractListModel
 {
     Q_OBJECT
 public:
-    enum Role { AudioConfigOption = Qt::UserRole + 1 };
+    enum Role { AudioConfigOption = Qt::UserRole + 1, AudioConfigValue };
     Q_ENUM(Role);
 
     AudioConfigListModel(QObject* parent = 0);
@@ -45,8 +45,18 @@ public:
     Q_INVOKABLE int getCurrentSettingIndex(const QString& currentSelection) const;
 
 private:
-    QList<QString> audioConfigOptions = {QString("Auto (default)"),
-                                         QString("System (if available)"),
-                                         QString("Built-in"),
-                                         QString("Disabled")};
+    // Display labels, translated at lookup time in data(). QT_TRANSLATE_NOOP
+    // keeps them registered under the historical "QObject" context, where the
+    // existing translations live.
+    QList<const char*> audioConfigOptions = {QT_TRANSLATE_NOOP("QObject", "Auto (default)"),
+                                             QT_TRANSLATE_NOOP("QObject", "System (if available)"),
+                                             QT_TRANSLATE_NOOP("QObject", "Built-in"),
+                                             QT_TRANSLATE_NOOP("QObject", "Disabled")};
+    // Stable configuration values understood by the daemon, parallel to
+    // audioConfigOptions. These are what get stored and must never be
+    // translated or displayed.
+    QList<QString> audioConfigValues = {QString("auto"),
+                                        QString("system"),
+                                        QString("audioProcessor"),
+                                        QString("off")};
 };

@@ -268,7 +268,7 @@ SettingsPageBase {
                 role: "AudioConfigOption"
 
                 onActivated: {
-                    var selectedNoiseReduction = comboModel.data(comboModel.index(modelIndex, 0), AudioConfigListModel.AudioConfigOption);
+                    var selectedNoiseReduction = comboModel.data(comboModel.index(modelIndex, 0), AudioConfigListModel.AudioConfigValue);
                     AVModel.setNoiseSuppression(selectedNoiseReduction);
                 }
             }
@@ -285,7 +285,7 @@ SettingsPageBase {
                 role: "AudioConfigOption"
 
                 onActivated: {
-                    var selectedEchoSuppression = comboModel.data(comboModel.index(modelIndex, 0), AudioConfigListModel.AudioConfigOption);
+                    var selectedEchoSuppression = comboModel.data(comboModel.index(modelIndex, 0), AudioConfigListModel.AudioConfigValue);
                     AVModel.setEchoCancellation(selectedEchoSuppression);
                 }
             }
