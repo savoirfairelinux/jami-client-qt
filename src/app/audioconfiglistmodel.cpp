@@ -17,6 +17,8 @@
 
 #include "audioconfiglistmodel.h"
 
+#include <QCoreApplication>
+
 AudioConfigListModel::AudioConfigListModel(QObject* parent)
     : QAbstractListModel(parent)
 {}
@@ -52,7 +54,9 @@ AudioConfigListModel::data(const QModelIndex& index, int role) const
 
     switch (role) {
     case Role::AudioConfigOption:
-        return QVariant(audioConfigOptions.at(index.row()));
+        return QVariant(QCoreApplication::translate("QObject", audioConfigOptions.at(index.row())));
+    case Role::AudioConfigValue:
+        return QVariant(audioConfigValues.at(index.row()));
     }
 
     return QVariant();
@@ -63,20 +67,13 @@ AudioConfigListModel::roleNames() const
 {
     QHash<int, QByteArray> roles;
     roles[Role::AudioConfigOption] = "AudioConfigOption";
+    roles[Role::AudioConfigValue] = "AudioConfigValue";
     return roles;
 }
 
 int
 AudioConfigListModel::getCurrentSettingIndex(const QString& currentSelection) const
 {
-    if (currentSelection == "auto") // Auto (default)
-        return 0;
-    else if (currentSelection == "system") // System (if available)
-        return 1;
-    else if (currentSelection == "audioProcessor") // Built-in
-        return 2;
-    else if (currentSelection == "off") // Disabled
-        return 3;
-
-    return 0;
+    const auto index = audioConfigValues.indexOf(currentSelection);
+    return index < 0 ? 0 : index;
 }
