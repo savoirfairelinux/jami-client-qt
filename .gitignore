@@ -28,8 +28,8 @@ nuget.exe
 *.autosave
 changelog.html
 obj/
-build/
-build-*/
+build*/
+.build*/
 !extras/build
 build-local/
 build-global/

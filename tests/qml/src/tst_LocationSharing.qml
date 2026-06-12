@@ -158,10 +158,15 @@ TestWrapper {
 
         readonly property string accountId: CurrentAccount.id
 
+        function init() {
+            chatView.createMapViewOnPositionSignal = false;
+        }
+
         // Ensure a clean slate after every individual test function.
         function cleanup() {
             if (PositionManager.isMapActive(accountId))
                 PositionManager.setMapInactive(accountId);
+            chatView.createMapViewOnPositionSignal = true;
         }
 
         function test_setMapActive_makesMapActive() {
@@ -207,11 +212,16 @@ TestWrapper {
             signalName: "onCloseMap"
         }
 
+        function init() {
+            chatView.createMapViewOnPositionSignal = false;
+        }
+
         function cleanup() {
             openNewMapSpy.clear();
             closeMapSpy.clear();
             if (PositionManager.isMapActive(accountId))
                 PositionManager.setMapInactive(accountId);
+            chatView.createMapViewOnPositionSignal = true;
         }
 
         function test_setMapActive_emitsOpenNewMap() {
