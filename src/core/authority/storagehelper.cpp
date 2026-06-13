@@ -350,7 +350,8 @@ withProfile(
 
     QFile file(path);
     if (!file.open(flags)) {
-        LC_DBG << "Can't open file:" << path;
+        if ((flags & QIODevice::WriteOnly) || QFile::exists(path))
+            LC_WARN << "Can't open file:" << path;
         return false;
     }
 
