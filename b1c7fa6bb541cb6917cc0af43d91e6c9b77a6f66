@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fa8c5cf4_4a4f806a",
+        "filename": "extras/scripts/i18n/tslib.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-14T02:04:44Z",
+      "side": 1,
+      "message": "[🟡 Suggestion] Line 225: `apply_translations()` fills base-language translations without running `check_placeholders()`, unlike the JSON importer. If a base `.ts` already contains a bad translation that drops `%1`, `%L1`, or `%n`, this propagates a runtime formatting bug into regional variants. Reuse the same placeholder validation before applying mapped text.\n```suggestion\n    def resolver(index, ctx, src):\n        value \u003d translations.get((ctx, src))\n        if value:\n            check_placeholders(ctx, src, value)\n        return value\n\n    return _patch_empty_translations(ts_path, resolver)\n```",
+      "revId": "b1c7fa6bb541cb6917cc0af43d91e6c9b77a6f66",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c6d5008b_a0dc229f",
+        "filename": "extras/scripts/i18n/tslib.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-14T02:04:44Z",
+      "side": 1,
+      "message": "[🟡 Suggestion] Line 249: `apply_ordered()` indexes directly into translator-controlled JSON entries and can raise `IndexError`/`TypeError`, which `import_translations.py` does not catch. A malformed JSON file then produces an uncaught traceback instead of the intended clean error. Validate that `entries` is a list and that each item has the required shape before indexing.\n```suggestion\n    if not isinstance(entries, list):\n        raise ValueError(\u0027entries must be a list\u0027)\n```\nAlso validate each `entry` is a dict with string `context` and `source` before comparing.",
+      "revId": "b1c7fa6bb541cb6917cc0af43d91e6c9b77a6f66",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f6cfa2f5_58d4ec9b",
+        "filename": "extras/scripts/update-translations.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-14T02:04:44Z",
+      "side": 1,
+      "message": "[🟡 Suggestion] Line 45: Passing `SRC_DIR` as an absolute path can make `lupdate` write absolute `\u003clocation filename\u003d\"...\"\u003e` entries into every `.ts` file, causing noisy machine-specific diffs despite the comment promising stable paths. Run from `REPO_ROOT` with a repo-relative source path instead.\n```suggestion\n    base_args \u003d [\u0027-extensions\u0027, \u0027cpp,h,qml\u0027, \u0027src\u0027,\n                 \u0027-ts\u0027] + ts_files + [\u0027-no-obsolete\u0027]\n```",
+      "revId": "b1c7fa6bb541cb6917cc0af43d91e6c9b77a6f66",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
