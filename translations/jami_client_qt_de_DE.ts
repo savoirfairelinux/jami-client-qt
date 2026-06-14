@@ -4,12 +4,12 @@
     <message>
         <location filename="../src/app/calladapter.cpp" line="193"/>
         <source>Missed call</source>
-        <translation type="unfinished"/>
+        <translation>Verpasster Anruf</translation>
     </message>
     <message>
         <location filename="../src/app/calladapter.cpp" line="194"/>
         <source>Missed call with %1</source>
-        <translation type="unfinished"/>
+        <translation>entgangener Anruf mit %1</translation>
     </message>
     <message>
         <location filename="../src/app/calladapter.cpp" line="521"/>
@@ -19,17 +19,17 @@
     <message>
         <location filename="../src/app/calladapter.cpp" line="522"/>
         <source>%1 is calling you</source>
-        <translation type="unfinished"/>
+        <translation>%1 ruft Sie an</translation>
     </message>
     <message>
         <location filename="../src/app/calladapter.cpp" line="533"/>
         <source>is calling you</source>
-        <translation type="unfinished"/>
+        <translation>ruft Sie an</translation>
     </message>
     <message>
         <location filename="../src/app/calladapter.cpp" line="1005"/>
         <source>Screenshot</source>
-        <translation type="unfinished"/>
+        <translation>Screenshot</translation>
     </message>
 </context>
 <context>
@@ -42,7 +42,7 @@
     <message>
         <location filename="../src/app/conversationlistmodelbase.cpp" line="142"/>
         <source>(deleted message)</source>
-        <translation type="unfinished"/>
+        <translation>(gelöschte Nachricht)</translation>
     </message>
 </context>
 <context>
@@ -60,7 +60,7 @@
     <message>
         <location filename="../src/app/conversationsadapter.cpp" line="196"/>
         <source>%1 received a new message</source>
-        <translation type="unfinished"/>
+        <translation>%1 hat eine neue Nachricht erhalten</translation>
     </message>
     <message>
         <location filename="../src/app/conversationsadapter.cpp" line="249"/>
@@ -73,7 +73,7 @@
     <message>
         <location filename="../src/app/currentcall.cpp" line="179"/>
         <source>Me</source>
-        <translation type="unfinished"/>
+        <translation>Ich</translation>
     </message>
 </context>
 <context>
@@ -81,22 +81,22 @@
     <message>
         <location filename="../src/app/currentconversation.cpp" line="135"/>
         <source>Private</source>
-        <translation type="unfinished"/>
+        <translation>Privat</translation>
     </message>
     <message>
         <location filename="../src/app/currentconversation.cpp" line="137"/>
         <source>Private group (restricted invites)</source>
-        <translation type="unfinished"/>
+        <translation>private Gruppe (eingeschränkte Einladungen)</translation>
     </message>
     <message>
         <location filename="../src/app/currentconversation.cpp" line="139"/>
         <source>Private group</source>
-        <translation type="unfinished"/>
+        <translation>private Gruppe</translation>
     </message>
     <message>
         <location filename="../src/app/currentconversation.cpp" line="141"/>
         <source>Public group</source>
-        <translation type="unfinished"/>
+        <translation>öffentliche Gruppe</translation>
     </message>
     <message>
         <location filename="../src/app/currentconversation.cpp" line="306"/>
@@ -967,7 +967,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="327"/>
         <source>%1 saved to %2</source>
-        <translation type="unfinished"/>
+        <translation>%1 in %2 gespeichert</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="333"/>
@@ -2781,7 +2781,7 @@ Scannen Sie anschließend den QR-Code.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="705"/>
         <source>Share account</source>
-        <translation type="unfinished"/>
+        <translation>Konto teilen</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="714"/>
@@ -2916,7 +2916,7 @@ Scannen Sie anschließend den QR-Code.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="841"/>
         <source>No description</source>
-        <translation type="unfinished"/>
+        <translation>Keine Beschreibung</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="842"/>
@@ -2931,7 +2931,7 @@ Scannen Sie anschließend den QR-Code.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="949"/>
         <source>No dictionaries available.</source>
-        <translation type="unfinished"/>
+        <translation>Keine Wörterbücher verfügbar.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="956"/>
@@ -2991,7 +2991,7 @@ Scannen Sie anschließend den QR-Code.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="881"/>
         <source>Hide fingerprint</source>
-        <translation type="unfinished"/>
+        <translation>Fingerabdruck verbergen</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="882"/>
@@ -3910,27 +3910,27 @@ Bitte bestätigen Sie den Import auf dem neuen Gerät.</translation>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="41"/>
         <source>Open account list</source>
-        <translation type="unfinished"/>
+        <translation>Kontoliste öffnen</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="49"/>
         <source>Requests list</source>
-        <translation type="unfinished"/>
+        <translation>Anfrageliste</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="53"/>
         <source>Previous conversation</source>
-        <translation type="unfinished"/>
+        <translation>Vorherige Unterhaltung</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="57"/>
         <source>Next conversation</source>
-        <translation type="unfinished"/>
+        <translation>Nächste Unterhaltung</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="61"/>
         <source>Search bar</source>
-        <translation type="unfinished"/>
+        <translation>Suchleiste</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="121"/>
@@ -3940,62 +3940,62 @@ Bitte bestätigen Sie den Import auf dem neuen Gerät.</translation>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="133"/>
         <source>Full screen</source>
-        <translation type="unfinished"/>
+        <translation>Vollbild</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="65"/>
         <source>Increase font size</source>
-        <translation type="unfinished"/>
+        <translation>Schriftgröße vergrößern</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="69"/>
         <source>Decrease font size</source>
-        <translation type="unfinished"/>
+        <translation>Schriftgröße verkleinern</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="73"/>
         <source>Reset font size</source>
-        <translation type="unfinished"/>
+        <translation>Schriftgröße zurücksetzen</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="97"/>
         <source>Clear history</source>
-        <translation type="unfinished"/>
+        <translation>Verlauf leeren</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="85"/>
         <source>Search messages/files</source>
-        <translation type="unfinished"/>
+        <translation>Nachrichten/Dateien suchen</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="101"/>
         <source>Block contact</source>
-        <translation type="unfinished"/>
+        <translation>Kontakt blockieren</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="81"/>
         <source>Accept contact request</source>
-        <translation type="unfinished"/>
+        <translation>Kontaktanfrage annehmen</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="89"/>
         <source>Edit last message</source>
-        <translation type="unfinished"/>
+        <translation>Letzte Nachricht bearbeiten</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="93"/>
         <source>Cancel message edition</source>
-        <translation type="unfinished"/>
+        <translation>Bearbeitung der Nachricht abbrechen</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="217"/>
         <source>Open account creation wizard</source>
-        <translation type="unfinished"/>
+        <translation>Assistent zur Kontoerstellung öffnen</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="125"/>
         <source>End call</source>
-        <translation type="unfinished"/>
+        <translation>Anruf beenden</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="45"/>
@@ -4030,57 +4030,57 @@ Bitte bestätigen Sie den Import auf dem neuen Gerät.</translation>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="141"/>
         <source>Stop camera</source>
-        <translation type="unfinished"/>
+        <translation>Kamera stoppen</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="145"/>
         <source>Take tile screenshot</source>
-        <translation type="unfinished"/>
+        <translation>Screenshot-Grafik erstellen</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="153"/>
         <source>Bold</source>
-        <translation type="unfinished"/>
+        <translation>Fett</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="157"/>
         <source>Italic</source>
-        <translation type="unfinished"/>
+        <translation>Kursiv</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="161"/>
         <source>Strikethrough</source>
-        <translation type="unfinished"/>
+        <translation>Durchgestrichen</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="165"/>
         <source>Heading</source>
-        <translation type="unfinished"/>
+        <translation>Überschrift</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="169"/>
         <source>Link</source>
-        <translation type="unfinished"/>
+        <translation>Link</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="173"/>
         <source>Code</source>
-        <translation type="unfinished"/>
+        <translation>Code</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="177"/>
         <source>Quote</source>
-        <translation type="unfinished"/>
+        <translation>Zitieren</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="181"/>
         <source>Unordered list</source>
-        <translation type="unfinished"/>
+        <translation>Unsortierte Liste</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="185"/>
         <source>Ordered list</source>
-        <translation type="unfinished"/>
+        <translation>Sortierte Liste</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="189"/>
@@ -4123,17 +4123,17 @@ Bitte bestätigen Sie den Import auf dem neuen Gerät.</translation>
     <message>
         <location filename="../src/app/mainapplication.cpp" line="483"/>
         <source>E&amp;xit</source>
-        <translation type="unfinished"/>
+        <translation>S&amp;chließen</translation>
     </message>
     <message>
         <location filename="../src/app/mainapplication.cpp" line="485"/>
         <source>&amp;Quit</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Beenden</translation>
     </message>
     <message>
         <location filename="../src/app/mainapplication.cpp" line="491"/>
         <source>&amp;Show Jami</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Jami anzeigen</translation>
     </message>
 </context>
 <context>
@@ -4141,12 +4141,12 @@ Bitte bestätigen Sie den Import auf dem neuen Gerät.</translation>
     <message>
         <location filename="../src/app/positionmanager.cpp" line="401"/>
         <source>%1 is sharing their location</source>
-        <translation type="unfinished"/>
+        <translation>%1 teilt den Standort</translation>
     </message>
     <message>
         <location filename="../src/app/positionmanager.cpp" line="406"/>
         <source>Location sharing</source>
-        <translation type="unfinished"/>
+        <translation>Standortfreigabe</translation>
     </message>
 </context>
 <context>
@@ -4167,73 +4167,73 @@ Bitte bestätigen Sie den Import auf dem neuen Gerät.</translation>
     <message>
         <location filename="../src/libclient/qtwrapper/callmanager_wrap.h" line="402"/>
         <source>Me</source>
-        <translation type="unfinished"/>
+        <translation>Ich</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/call.h" line="61"/>
         <source>Hold</source>
-        <translation type="unfinished"/>
+        <translation>Halten</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/call.h" line="63"/>
         <source>Talking</source>
-        <translation type="unfinished"/>
+        <translation>Sprechend</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/call.h" line="65"/>
         <source>ERROR</source>
-        <translation type="unfinished"/>
+        <translation>FEHLER</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/call.h" line="67"/>
         <source>Incoming</source>
-        <translation type="unfinished"/>
+        <translation>Eingehend</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/call.h" line="69"/>
         <source>Calling</source>
-        <translation type="unfinished"/>
+        <translation>Rufaufbau</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/call.h" line="71"/>
         <source>Connecting</source>
-        <translation type="unfinished"/>
+        <translation>Verbindet</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/call.h" line="73"/>
         <source>Searching</source>
-        <translation type="unfinished"/>
+        <translation>Suchen</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/call.h" line="75"/>
         <source>Inactive</source>
-        <translation type="unfinished"/>
+        <translation>Inaktiv</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/call.h" line="77"/>
         <location filename="../src/libclient/api/call.h" line="83"/>
         <source>Finished</source>
-        <translation type="unfinished"/>
+        <translation>Abgeschlossen</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/call.h" line="79"/>
         <source>Timeout</source>
-        <translation type="unfinished"/>
+        <translation>Zeitüberscheitung</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/call.h" line="81"/>
         <source>Peer busy</source>
-        <translation type="unfinished"/>
+        <translation>Teilnehmer beschäftigt</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/call.h" line="85"/>
         <source>Communication established</source>
-        <translation type="unfinished"/>
+        <translation>Kommunikation hergestellt</translation>
     </message>
     <message>
         <location filename="../src/libclient/authority/storagehelper.cpp" line="480"/>
         <source>Invitation received</source>
-        <translation type="unfinished"/>
+        <translation>Einladung erhalten</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="275"/>
@@ -4241,12 +4241,12 @@ Bitte bestätigen Sie den Import auf dem neuen Gerät.</translation>
         <location filename="../src/libclient/api/interaction.h" line="295"/>
         <location filename="../src/libclient/authority/storagehelper.cpp" line="477"/>
         <source>Contact added</source>
-        <translation type="unfinished"/>
+        <translation>Kontakt hinzugefügt</translation>
     </message>
     <message>
         <location filename="../src/libclient/interaction.cpp" line="88"/>
         <source>Private conversation created</source>
-        <translation type="unfinished"/>
+        <translation>Private Unterhaltung erstellt</translation>
     </message>
     <message>
         <location filename="../src/libclient/interaction.cpp" line="90"/>
@@ -4343,7 +4343,7 @@ Bitte bestätigen Sie den Import auf dem neuen Gerät.</translation>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="466"/>
         <source>Join call</source>
-        <translation type="unfinished"/>
+        <translation>Anruf beitreten</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="476"/>
@@ -4353,13 +4353,13 @@ Bitte bestätigen Sie den Import auf dem neuen Gerät.</translation>
     <message>
         <location filename="../src/libclient/authority/storagehelper.cpp" line="482"/>
         <source>Invitation accepted</source>
-        <translation type="unfinished"/>
+        <translation>Einladung angenommen</translation>
     </message>
     <message>
         <location filename="../src/libclient/avmodel.cpp" line="384"/>
         <location filename="../src/libclient/avmodel.cpp" line="421"/>
         <source>default</source>
-        <translation type="unfinished"/>
+        <translation>Standard</translation>
     </message>
     <message>
         <location filename="../src/libclient/avmodel.cpp" line="486"/>
@@ -4393,57 +4393,57 @@ Bitte bestätigen Sie den Import auf dem neuen Gerät.</translation>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="72"/>
         <source>Null</source>
-        <translation type="unfinished"/>
+        <translation>Null</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="73"/>
         <source>Trying</source>
-        <translation type="unfinished"/>
+        <translation>Versuche</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="74"/>
         <source>Ringing</source>
-        <translation type="unfinished"/>
+        <translation>Klingelt</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="75"/>
         <source>Being Forwarded</source>
-        <translation type="unfinished"/>
+        <translation>Wird weitergeleitet</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="76"/>
         <source>Queued</source>
-        <translation type="unfinished"/>
+        <translation>In Warteschlange</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="77"/>
         <source>Progress</source>
-        <translation type="unfinished"/>
+        <translation>Fortschritt</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="78"/>
         <source>OK</source>
-        <translation type="unfinished"/>
+        <translation>OK</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="79"/>
         <source>Accepted</source>
-        <translation type="unfinished"/>
+        <translation>Angenommen</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="80"/>
         <source>Multiple Choices</source>
-        <translation type="unfinished"/>
+        <translation>Mehrere Wahlmöglichkeiten</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="81"/>
         <source>Moved Permanently</source>
-        <translation type="unfinished"/>
+        <translation>Permanent verschoben</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="82"/>
         <source>Moved Temporarily</source>
-        <translation type="unfinished"/>
+        <translation>Vorübergehend verschoben</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="83"/>
@@ -4453,128 +4453,128 @@ Bitte bestätigen Sie den Import auf dem neuen Gerät.</translation>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="84"/>
         <source>Alternative Service</source>
-        <translation type="unfinished"/>
+        <translation>Alternativer Dienst</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="85"/>
         <source>Bad Request</source>
-        <translation type="unfinished"/>
+        <translation>Ungültige Anfrage</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="86"/>
         <source>Unauthorized</source>
-        <translation type="unfinished"/>
+        <translation>Nicht autorisiert</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="87"/>
         <source>Payment Required</source>
-        <translation type="unfinished"/>
+        <translation>Zahlung notwendig</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="88"/>
         <source>Forbidden</source>
-        <translation type="unfinished"/>
+        <translation>Unzulässig</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="89"/>
         <source>Not Found</source>
-        <translation type="unfinished"/>
+        <translation>Nicht gefunden</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="90"/>
         <source>Method Not Allowed</source>
-        <translation type="unfinished"/>
+        <translation>Methode nicht zulässig</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="91"/>
         <location filename="../src/libclient/callmodel.cpp" line="111"/>
         <source>Not Acceptable</source>
-        <translation type="unfinished"/>
+        <translation>Nicht annehmbar</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="92"/>
         <source>Proxy Authentication Required</source>
-        <translation type="unfinished"/>
+        <translation>Proxy Authentifizierung notwendig</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="93"/>
         <source>Request Timeout</source>
-        <translation type="unfinished"/>
+        <translation>Anfragezeitüberschreitung</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="94"/>
         <source>Gone</source>
-        <translation type="unfinished"/>
+        <translation>Verschwunden</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="95"/>
         <source>Request Entity Too Large</source>
-        <translation type="unfinished"/>
+        <translation>Anfrage zu groß</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="96"/>
         <source>Request URI Too Long</source>
-        <translation type="unfinished"/>
+        <translation>Anfragen-URI zu lang</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="97"/>
         <source>Unsupported Media Type</source>
-        <translation type="unfinished"/>
+        <translation>Medientyp nicht unterstützt</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="98"/>
         <source>Unsupported URI Scheme</source>
-        <translation type="unfinished"/>
+        <translation>URI-Schema nicht unterstützt</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="99"/>
         <source>Bad Extension</source>
-        <translation type="unfinished"/>
+        <translation>Ungültige Erweiterung</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="100"/>
         <source>Extension Required</source>
-        <translation type="unfinished"/>
+        <translation>Erweiterung notwendig</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="101"/>
         <source>Session Timer Too Small</source>
-        <translation type="unfinished"/>
+        <translation>Sitzungstimer zu klein</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="102"/>
         <source>Interval Too Brief</source>
-        <translation type="unfinished"/>
+        <translation>Intervall zu kurz</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="103"/>
         <source>Temporarily Unavailable</source>
-        <translation type="unfinished"/>
+        <translation>Temporär nicht verfügbar</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="104"/>
         <source>Call TSX Does Not Exist</source>
-        <translation type="unfinished"/>
+        <translation>Anruf TSX existiert nicht</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="105"/>
         <source>Loop Detected</source>
-        <translation type="unfinished"/>
+        <translation>Schleife erkannt</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="106"/>
         <source>Too Many Hops</source>
-        <translation type="unfinished"/>
+        <translation>Zu viele Hops</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="107"/>
         <source>Address Incomplete</source>
-        <translation type="unfinished"/>
+        <translation>Adresse unvollständig</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="108"/>
         <source>Ambiguous</source>
-        <translation type="unfinished"/>
+        <translation>Nicht eindeutig</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="125"/>
@@ -4585,87 +4585,87 @@ Bitte bestätigen Sie den Import auf dem neuen Gerät.</translation>
         <location filename="../src/libclient/api/interaction.h" line="333"/>
         <location filename="../src/libclient/callmodel.cpp" line="109"/>
         <source>Busy</source>
-        <translation type="unfinished"/>
+        <translation>Beschäftigt</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="110"/>
         <source>Request Terminated</source>
-        <translation type="unfinished"/>
+        <translation>Anfrage terminiert</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="112"/>
         <source>Bad Event</source>
-        <translation type="unfinished"/>
+        <translation>Ungültiges Ereignis</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="113"/>
         <source>Request Updated</source>
-        <translation type="unfinished"/>
+        <translation>Anfrage aktualisiert</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="114"/>
         <source>Request Pending</source>
-        <translation type="unfinished"/>
+        <translation>Anfrage ausstehend</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="115"/>
         <source>Undecipherable</source>
-        <translation type="unfinished"/>
+        <translation>Nicht entschlüsselbar</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="116"/>
         <source>Internal Server Error</source>
-        <translation type="unfinished"/>
+        <translation>Interner Serverfehler</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="117"/>
         <source>Not Implemented</source>
-        <translation type="unfinished"/>
+        <translation>Nicht implementiert</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="118"/>
         <source>Bad Gateway</source>
-        <translation type="unfinished"/>
+        <translation>Ungültiges Gateway</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="119"/>
         <source>Service Unavailable</source>
-        <translation type="unfinished"/>
+        <translation>Dienst nicht verfügbar</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="120"/>
         <source>Server Timeout</source>
-        <translation type="unfinished"/>
+        <translation>Serverzeitüberschreitung</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="121"/>
         <source>Version Not Supported</source>
-        <translation type="unfinished"/>
+        <translation>Version nicht unterstützt</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="122"/>
         <source>Message Too Large</source>
-        <translation type="unfinished"/>
+        <translation>Nachricht zu groß</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="123"/>
         <source>Precondition Failure</source>
-        <translation type="unfinished"/>
+        <translation>Vorbedingung fehlgeschlagen</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="124"/>
         <source>Busy Everywhere</source>
-        <translation type="unfinished"/>
+        <translation>Überall beschäftigt</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="126"/>
         <source>Does Not Exist Anywhere</source>
-        <translation type="unfinished"/>
+        <translation>Existiert nirgendswo</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="127"/>
         <source>Not Acceptable Anywhere</source>
-        <translation type="unfinished"/>
+        <translation>Nirgendwo annehmbar</translation>
     </message>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="645"/>
@@ -4675,33 +4675,33 @@ Bitte bestätigen Sie den Import auf dem neuen Gerät.</translation>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="696"/>
         <source>Today</source>
-        <translation type="unfinished"/>
+        <translation>Heute</translation>
     </message>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="700"/>
         <source>Yesterday</source>
-        <translation type="unfinished"/>
+        <translation>Gestern</translation>
     </message>
     <message>
         <location filename="../src/app/positioning.cpp" line="105"/>
         <source>locationServicesError</source>
-        <translation type="unfinished"/>
+        <translation>Standortdienstfehler</translation>
     </message>
     <message>
         <location filename="../src/app/positioning.cpp" line="108"/>
         <source>locationServicesClosedError</source>
-        <translation type="unfinished"/>
+        <translation>Standortdienste geschlossen Fehler</translation>
     </message>
     <message>
         <location filename="../src/app/positioning.cpp" line="110"/>
         <source>locationServicesUnknownError</source>
-        <translation type="unfinished"/>
+        <translation>Standortdienste Unbekannter Fehler</translation>
     </message>
     <message>
         <location filename="../src/libclient/conversationmodel.cpp" line="1138"/>
         <location filename="../src/libclient/conversationmodel.cpp" line="1151"/>
         <source>%1 (you)</source>
-        <translation type="unfinished"/>
+        <translation>%1 (Sie)</translation>
     </message>
     <message>
         <location filename="../src/app/utils.cpp" line="587"/>
@@ -4789,7 +4789,7 @@ Bitte bestätigen Sie den Import auf dem neuen Gerät.</translation>
         <location filename="../src/app/smartlistmodel.cpp" line="168"/>
         <location filename="../src/app/smartlistmodel.cpp" line="169"/>
         <source>Contacts</source>
-        <translation type="unfinished"/>
+        <translation>Kontakte</translation>
     </message>
 </context>
 <context>
@@ -4807,7 +4807,7 @@ Bitte bestätigen Sie den Import auf dem neuen Gerät.</translation>
     <message>
         <location filename="../src/app/systemtray.cpp" line="224"/>
         <source>Open conversation</source>
-        <translation type="unfinished"/>
+        <translation>Unterhaltung öffnen</translation>
     </message>
     <message>
         <location filename="../src/app/systemtray.cpp" line="226"/>
@@ -4825,12 +4825,12 @@ Bitte bestätigen Sie den Import auf dem neuen Gerät.</translation>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="84"/>
         <source>Customize</source>
-        <translation type="unfinished"/>
+        <translation>Anpassen</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="87"/>
         <source>What does Jami mean?</source>
-        <translation type="unfinished"/>
+        <translation>Was bedeutet Jami?</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="89"/>
@@ -4845,12 +4845,12 @@ Bitte bestätigen Sie den Import auf dem neuen Gerät.</translation>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="80"/>
         <source>Donate</source>
-        <translation type="unfinished"/>
+        <translation>Spenden</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="85"/>
         <source>Backup account</source>
-        <translation type="unfinished"/>
+        <translation>Konto sichern</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="95"/>
@@ -4860,17 +4860,17 @@ Bitte bestätigen Sie den Import auf dem neuen Gerät.</translation>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="99"/>
         <source>Why should I back up my account?</source>
-        <translation type="unfinished"/>
+        <translation>Warum sollte ich mein Konto sichern?</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="101"/>
         <source>Jami is distributed and your account is only stored locally on your device. If you lose your password or your local account data, you WILL NOT be able to recover your account if you did not back it up earlier.</source>
-        <translation type="unfinished"/>
+        <translation>Jami wird verteilt und Ihr Konto wird nur lokal auf Ihrem Gerät gespeichert. Wenn Sie Ihr Passwort oder Ihre lokalen Kontodaten verlieren, können Sie Ihr Konto NICHT wiederherstellen, wenn Sie es nicht vorher gesichert haben.</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="106"/>
         <source>Can I make a conference call?</source>
-        <translation type="unfinished"/>
+        <translation>Kann ich einen Konferenzanruf machen?</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="107"/>
@@ -4885,17 +4885,17 @@ Bitte bestätigen Sie den Import auf dem neuen Gerät.</translation>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="112"/>
         <source>A Jami account is an asymmetric encryption key. Your account is identified by a Jami ID, which is a fingerprint of your public key.</source>
-        <translation type="unfinished"/>
+        <translation>Ein Jami-Konto ist ein asymmetrischer Verschlüsselungsschlüssel. Ihr Konto wird durch eine Jami-ID identifiziert, die ein Fingerabdruck Ihres öffentlichen Schlüssels ist.</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="116"/>
         <source>What information do I need to provide to create a Jami account?</source>
-        <translation type="unfinished"/>
+        <translation>Welche Informationen muss ich angeben, um ein Jami-Konto zu erstellen?</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="118"/>
         <source>When you create a new Jami account, you do not have to provide any private information like an email, address, or phone number.</source>
-        <translation type="unfinished"/>
+        <translation>Wenn Sie ein neues Jami-Konto erstellen, müssen Sie keine privaten Informationen wie E-Mail, Adresse oder Telefonnummer angeben.</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="122"/>
@@ -4905,7 +4905,7 @@ Bitte bestätigen Sie den Import auf dem neuen Gerät.</translation>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="124"/>
         <source>With Jami, your account is stored in a directory on your device. The password is only used to encrypt your account in order to protect you from someone who has physical access to your device.</source>
-        <translation type="unfinished"/>
+        <translation>Bei Jami wird Ihr Konto in einem Verzeichnis auf Ihrem Gerät gespeichert. Das Passwort wird nur zum Verschlüsseln Ihres Kontos verwendet, um Sie vor jemandem zu schützen, der physischen Zugriff auf Ihr Gerät hat.</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="129"/>
@@ -4915,17 +4915,17 @@ Bitte bestätigen Sie den Import auf dem neuen Gerät.</translation>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="141"/>
         <source>Your account is only stored on your own devices. If you delete your account from all of your devices, the account is gone forever and you CANNOT recover it.</source>
-        <translation type="unfinished"/>
+        <translation>Ihr Konto wird nur auf Ihren eigenen Geräten gespeichert. Wenn Sie Ihr Konto von allen Ihren Geräten löschen, ist das Konto für immer weg und Sie können es NICHT wiederherstellen.</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="145"/>
         <source>Can I use my account on multiple devices?</source>
-        <translation type="unfinished"/>
+        <translation>Kann ich mein Konto auf mehreren Geräten verwenden?</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="147"/>
         <source>Yes, you can link your account from the settings, or you can import your backup on another device.</source>
-        <translation type="unfinished"/>
+        <translation>Ja, Sie können Ihr Konto über die Einstellungen verknüpfen oder Ihr Backup auf einem anderen Gerät importieren.</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="131"/>
@@ -4935,17 +4935,17 @@ Bitte bestätigen Sie den Import auf dem neuen Gerät.</translation>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="135"/>
         <source>How can I back up my account?</source>
-        <translation type="unfinished"/>
+        <translation>Wie kann ich mein Konto sichern?</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="136"/>
         <source>In Account Settings, a button is available to create a backup your account.</source>
-        <translation type="unfinished"/>
+        <translation>In den Kontoeinstellungen ist ein Button verfügbar, um ein Backup Ihres Kontos zu erstellen.</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="139"/>
         <source>What happens when I delete my account?</source>
-        <translation type="unfinished"/>
+        <translation>Was passiert, wenn ich mein Konto lösche?</translation>
     </message>
 </context>
 <context>
@@ -4966,17 +4966,17 @@ Bitte bestätigen Sie den Import auf dem neuen Gerät.</translation>
     <message>
         <location filename="../src/app/utilsadapter.cpp" line="351"/>
         <source>%1 Mbps</source>
-        <translation type="unfinished"/>
+        <translation>%1 MBit/s</translation>
     </message>
     <message>
         <location filename="../src/app/utilsadapter.cpp" line="351"/>
         <source>Default</source>
-        <translation type="unfinished"/>
+        <translation>Standard</translation>
     </message>
     <message>
         <location filename="../src/app/utilsadapter.cpp" line="543"/>
         <source>System</source>
-        <translation type="unfinished"/>
+        <translation>System</translation>
     </message>
 </context>
 <context>
@@ -4984,17 +4984,17 @@ Bitte bestätigen Sie den Import auf dem neuen Gerät.</translation>
     <message>
         <location filename="../src/libclient/contactmodel.cpp" line="488"/>
         <source>Searching…</source>
-        <translation type="unfinished"/>
+        <translation>Suchen…</translation>
     </message>
     <message>
         <location filename="../src/libclient/contactmodel.cpp" line="955"/>
         <source>Invalid ID</source>
-        <translation type="unfinished"/>
+        <translation>Ungültige ID</translation>
     </message>
     <message>
         <location filename="../src/libclient/contactmodel.cpp" line="958"/>
         <source>Username not found</source>
-        <translation type="unfinished"/>
+        <translation>Benutzername nicht gefunden</translation>
     </message>
     <message>
         <location filename="../src/libclient/contactmodel.cpp" line="961"/>
@@ -5007,7 +5007,7 @@ Bitte bestätigen Sie den Import auf dem neuen Gerät.</translation>
     <message>
         <location filename="../src/libclient/contactmodel.cpp" line="452"/>
         <source>Bad URI scheme</source>
-        <translation type="unfinished"/>
+        <translation>Ungültiges URI-Schema</translation>
     </message>
 </context>
 </TS>
