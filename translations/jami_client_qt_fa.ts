@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="fa" sourcelanguage="en">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="fa" sourcelanguage="en">
 <context>
     <name>CallAdapter</name>
     <message>
@@ -12,58 +14,83 @@
         <translation>تماس تلفنی با %1 از دست رفته</translation>
     </message>
     <message>
-        <location filename="../src/app/calladapter.cpp" line="521"/>
+        <location filename="../src/app/calladapter.cpp" line="527"/>
         <source>Incoming call</source>
         <translation>تماس ورودی</translation>
     </message>
     <message>
-        <location filename="../src/app/calladapter.cpp" line="522"/>
+        <location filename="../src/app/calladapter.cpp" line="528"/>
         <source>%1 is calling you</source>
         <translation>%1 در حال تماس با شماست</translation>
     </message>
     <message>
-        <location filename="../src/app/calladapter.cpp" line="533"/>
+        <location filename="../src/app/calladapter.cpp" line="539"/>
         <source>is calling you</source>
         <translation>در حال تماس با شماست</translation>
     </message>
     <message>
-        <location filename="../src/app/calladapter.cpp" line="1005"/>
+        <location filename="../src/app/calladapter.cpp" line="1067"/>
         <source>Screenshot</source>
         <translation>عکس صفحه نمایش</translation>
     </message>
 </context>
 <context>
-    <name>ConversationListModelBase</name>
+    <name>ConversationStatusView</name>
     <message>
-        <location filename="../src/app/conversationlistmodelbase.cpp" line="127"/>
-        <source>Deleted media</source>
-        <translation>رسانه حذف‌شده</translation>
+        <location filename="../src/app/mainview/components/ConversationStatusView.qml" line="79"/>
+        <source>Swarm routing table</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/app/conversationlistmodelbase.cpp" line="142"/>
-        <source>(deleted message)</source>
-        <translation>(پیام حذف‌شده)</translation>
+        <location filename="../src/app/mainview/components/ConversationStatusView.qml" line="153"/>
+        <source>Connection Time</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/app/mainview/components/ConversationStatusView.qml" line="359"/>
+        <source>%1 seconds ago</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/app/mainview/components/ConversationStatusView.qml" line="362"/>
+        <source>%1 minutes ago</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/app/mainview/components/ConversationStatusView.qml" line="365"/>
+        <source>%1 hours ago</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/app/mainview/components/ConversationStatusView.qml" line="368"/>
+        <source>%1 days ago</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/app/mainview/components/ConversationStatusView.qml" line="381"/>
+        <source>Tracked members</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>ConversationsAdapter</name>
     <message>
-        <location filename="../src/app/conversationsadapter.cpp" line="177"/>
+        <location filename="../src/app/conversationsadapter.cpp" line="183"/>
         <source>%1 has joined the conversation.</source>
         <translation>%1 به گفتگو پیوست.</translation>
     </message>
     <message>
-        <location filename="../src/app/conversationsadapter.cpp" line="179"/>
+        <location filename="../src/app/conversationsadapter.cpp" line="185"/>
         <source>%1 has left the conversation.</source>
         <translation>%1 گفتگو را ترک کرد.</translation>
     </message>
     <message>
-        <location filename="../src/app/conversationsadapter.cpp" line="196"/>
+        <location filename="../src/app/conversationsadapter.cpp" line="202"/>
         <source>%1 received a new message</source>
         <translation>%1 یک پیام جدید دریافت کرد</translation>
     </message>
     <message>
-        <location filename="../src/app/conversationsadapter.cpp" line="249"/>
+        <location filename="../src/app/conversationsadapter.cpp" line="255"/>
         <source>%1 received a new invitation</source>
         <translation>%1 دعوت جدیدی دریافت کرد</translation>
     </message>
@@ -158,7 +185,7 @@
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="43"/>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="773"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="877"/>
         <source>Jami daemon (jamid) reconnection is in progress. Please wait…</source>
         <translation>اتصال مجدد سرویس Jami (jamid) در حال انجام است. لطفاً صبر کنید…</translation>
     </message>
@@ -203,1336 +230,1881 @@
         <translation>انتقال به</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="75"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="72"/>
+        <source>Select contacts</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="76"/>
         <source>Please wait…</source>
         <translation>لطفا صبر کنید…</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="76"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="77"/>
         <source>Scan QR code</source>
         <translation>کد QR را اسکن کنید</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="78"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="79"/>
         <source>Authenticating device</source>
         <translation>در حال احراز هویت دستگاه</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="79"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="80"/>
         <source>Transferring account…</source>
         <translation>در حال انتقال حساب…</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="81"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="82"/>
         <source>Confirm</source>
         <translation>تایید</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="82"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="83"/>
         <source>Try again</source>
         <translation>تلاش دوباره</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="84"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="85"/>
         <source>Import from another account</source>
         <translation>وارد کردن از حساب دیگر</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="85"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="86"/>
         <source>Connect to account</source>
         <translation>اتصال به حساب</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="89"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="90"/>
         <source>Authentication required</source>
         <translation>نیاز به احراز هویت</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="92"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="93"/>
         <source>Authenticate</source>
         <translation>احراز هویت</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="93"/>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="448"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="94"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="550"/>
         <source>Delete account</source>
         <translation>حذف حساب</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="94"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="95"/>
         <source>In progress…</source>
         <translation>در جریان...</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="96"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="97"/>
         <source>Password</source>
         <translation>گذرواژه</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="97"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="98"/>
         <source>Username</source>
         <translation>نام کاربری</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="98"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="99"/>
         <source>Alias</source>
         <translation>نام مستعار</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="101"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="102"/>
         <source>Allow incoming calls from unknown contacts</source>
         <translation>اجازه تماس ورودی به مخاطبان ناشناخته</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="104"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="105"/>
         <source>Enable custom ringtone</source>
         <translation>فعال‌سازی صدای زنگ سفارشی</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="105"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="106"/>
         <source>Select custom ringtone</source>
         <translation>انتخاب صدای زنگ سفارشی</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="109"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="110"/>
         <source>Push-to-talk</source>
         <translation>فشار-برای-صحبت</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="110"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="111"/>
         <source>Enable push-to-talk</source>
         <translation>فعال کردن فشار-برای-صحبت</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="111"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="112"/>
         <source>Keyboard shortcut</source>
         <translation>میان‌بر صفحه‌کلید</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="112"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="113"/>
         <source>Change keyboard shortcut</source>
         <translation>تغییر میان‌بر صفحه‌کلید</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="117"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="118"/>
         <source>Change shortcut</source>
         <translation>تغییر میان‌بر</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="118"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="119"/>
         <source>Press the key to be assigned to push-to-talk shortcut</source>
         <translation>کلیدی را که باید به میان‌بر فشار-برای-صحبت اختصاص یابد فشار دهید</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="119"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="120"/>
         <source>Assign</source>
         <translation>اختصاص</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="122"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="123"/>
         <source>Voicemail</source>
         <translation>پیامگیر صوتی</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="123"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="124"/>
         <source>Voicemail dial code</source>
         <translation>کد شماره‌گیری پیام صوتی</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="126"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="127"/>
         <source>Security</source>
         <translation>امنیت</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="127"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="128"/>
         <source>Enable SDES key exchange</source>
         <translation>امکان تبادل کلید SDES را فراهم کنید</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="128"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="129"/>
         <source>Encrypt negotiation (TLS)</source>
         <translation>رمزگذاری مذاکره (TLS)</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="129"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="130"/>
         <source>CA certificate</source>
         <translation>گواهی CA</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="130"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="131"/>
         <source>User certificate</source>
         <translation>گواهی کاربر</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="131"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="132"/>
         <source>Private key</source>
         <translation>کلید خصوصی</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="132"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="133"/>
         <source>Private key password</source>
         <translation>گذرواژه کلید خصوصی</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="133"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="134"/>
         <source>Verify certificates for incoming TLS connections</source>
         <translation>تأیید گواهینامه های اتصال TLS وارد</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="134"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="135"/>
         <source>Verify server TLS certificates</source>
         <translation>تصدیق گواهینامه TLS سرور</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="135"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="136"/>
         <source>Require certificate for incoming TLS connections</source>
         <translation>نیاز به گواهینامه برای اتصال های TLS وارد</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="144"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="145"/>
         <source>Connectivity</source>
         <translation>اتصال</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="145"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="146"/>
         <source>Auto Registration After Expired</source>
         <translation>ثبت‌نام خودکار پس از انقضا</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="146"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="147"/>
         <source>Registration expiration time (seconds)</source>
         <translation>زمان انقضاء ثبت نام (دقیقه)</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="147"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="148"/>
         <source>Network interface</source>
         <translation>رابط شبکه</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="148"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="149"/>
         <source>Use UPnP</source>
         <translation>استفاده از UPnP</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="149"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="150"/>
         <source>Use TURN</source>
         <translation>استفاده از TURN</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="150"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="151"/>
         <source>TURN address</source>
         <translation>نشانی TURN</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="151"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="152"/>
         <source>TURN username</source>
         <translation>نام کاربری TURN</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="152"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="153"/>
         <source>TURN password</source>
         <translation>گذرواژه TURN</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="154"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="155"/>
         <source>Use STUN</source>
         <translation>استفاده از STUN</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="155"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="156"/>
         <source>STUN address</source>
         <translation>نشانی STUN</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="158"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="159"/>
         <source>Allow IP Auto Rewrite</source>
         <translation>اجازه دادن به بازنویسی خودکار IP</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="159"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="160"/>
         <source>Public address</source>
         <translation>سخنرانی عمومی</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="160"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="161"/>
         <source>Use custom address and port</source>
         <translation>استفاده از نشانی و پورت سفارشی</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="161"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="162"/>
         <source>Address</source>
         <translation>نشانی</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="162"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="163"/>
         <source>Port</source>
         <translation>پرت</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="165"/>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="204"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="166"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="205"/>
         <source>Media</source>
         <translation>رسانه</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="166"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="167"/>
         <source>Enable video</source>
         <translation>فعال سازی ویدیو</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="174"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="175"/>
         <source>SDP Session Negotiation (ICE Fallback)</source>
         <translation>مذاکره جلسه SDP (عقبگرد ICE)</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="175"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="176"/>
         <source>Only used during negotiation in case ICE is not supported</source>
         <translation>فقط در هنگام مذاکره استفاده می شود در صورتی که ICE پشتیبانی نمی شود</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="176"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="177"/>
         <source>Audio RTP minimum Port</source>
         <translation>RTP آڈیو حداقل پورت</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="177"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="178"/>
         <source>Audio RTP maximum Port</source>
         <translation>پورت RTP آڈیو</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="178"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="179"/>
         <source>Video RTP minimum Port</source>
         <translation>حداقل RTP ویدیو پورت</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="179"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="180"/>
         <source>Video RTP maximum port</source>
         <translation>پورت حداکثر RTP ویدیو</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="182"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="183"/>
         <source>Current DHT port used</source>
         <translation>درگاه DHT فعلی مورد استفاده</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="183"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="184"/>
         <source>Enable local peer discovery</source>
         <translation>فعال‌سازی کاوش همتای محلی</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="184"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="185"/>
         <source>Connect to other DHT nodes advertising on your local network.</source>
         <translation>با سایر گره های DHT که در شبکه محلی شما تبلیغ می کنند، ارتباط برقرار کنید.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="186"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="187"/>
         <source>Enable proxy</source>
         <translation>فعال‌سازی پروکسی</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="187"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="188"/>
         <source>Proxy address</source>
         <translation>آدرس پروکسی</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="188"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="189"/>
         <source>Proxy list URL</source>
         <translation>نشانی فهرست پراکسی</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="189"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="190"/>
         <source>Bootstrap</source>
         <translation>خود‌راه‌انداز(Bootstrap)</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="190"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="191"/>
         <source>Using proxy:</source>
         <translation>در حال استفاده از پراکسی:</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="191"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="192"/>
         <source>Proxy disabled</source>
         <translation>پراکسی غیرفعال شد</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="194"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="195"/>
         <source>Back</source>
         <translation>بازگشت</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="195"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="196"/>
         <source>Account</source>
         <translation>حساب</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="196"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="197"/>
         <source>General</source>
         <translation>عمومی</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="197"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="198"/>
         <source>Extensions</source>
         <translation>افزونه‌ها</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="207"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="208"/>
+        <source>App access</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="209"/>
+        <source>Manage how external applications, bots, or scripts can access this account through the local API.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="210"/>
+        <source>Enable local API server</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="211"/>
+        <source>Enable server</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="212"/>
+        <source>Start a local HTTP server that external applications can use to interact with Jami</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="213"/>
+        <source>Local API server</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="214"/>
+        <source>API access is managed per account</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="215"/>
+        <source>Configure the local server here, then open App access in the current account settings to create and revoke tokens.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="216"/>
+        <source>Open App access</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="217"/>
+        <source>Server port</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="218"/>
+        <source>Server running on port %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="219"/>
+        <source>Server stopped</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="220"/>
+        <source>Local API server disabled</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="221"/>
+        <source>The local API server is disabled in application settings. Enable it to generate and manage API tokens for this account.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="222"/>
+        <source>Token label (e.g. my-bot)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="223"/>
+        <source>Generate token</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="224"/>
+        <source>Active tokens</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="225"/>
+        <source>No API tokens configured for this account.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="226"/>
+        <source>Created %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="227"/>
+        <source>Expires %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="228"/>
+        <source>API token created</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="229"/>
+        <source>Copy this token now. It will not be shown again.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="230"/>
+        <source>This token grants access to your account. Keep it secret.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="233"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="235"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="278"/>
+        <source>Shared services</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="234"/>
+        <source>Expose local TCP services or a local folder over Jami so trusted contacts can reach them as if they were running on their own machine.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="236"/>
+        <source>No services are exposed yet.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="237"/>
+        <source>Name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="238"/>
+        <source>e.g. webhook, ssh, syncthing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="239"/>
+        <source>Description (optional)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="240"/>
+        <source>Type</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="241"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="249"/>
+        <source>Custom</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="242"/>
+        <source>Web server (embedded)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="243"/>
+        <source>Directory</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="244"/>
+        <source>Choose directory</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="245"/>
+        <source>Local host</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="246"/>
+        <source>Local port</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="247"/>
+        <source>URI scheme</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="248"/>
+        <source>Raw TCP</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="250"/>
+        <source>URI scheme (optional)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="251"/>
+        <source>Accessible by</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="252"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="264"/>
+        <source>Contacts</source>
+        <translation type="unfinished">مخاطبان</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="253"/>
+        <source>Anyone (public)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="254"/>
+        <source>Specific contacts only</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="255"/>
+        <source>Allowed contact URIs (comma-separated)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="256"/>
+        <source>Enabled</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="258"/>
+        <source>Local endpoint: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="259"/>
+        <source>Directory: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="260"/>
+        <source>Disabled</source>
+        <translation type="unfinished">غیرفعال</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="261"/>
+        <source>Open %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="262"/>
+        <source>Copy %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="263"/>
+        <source>Public</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="265"/>
+        <source>Specific</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="266"/>
+        <source>Are you sure you want to delete this shared service?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="267"/>
+        <source>Add website</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="268"/>
+        <source>Custom service</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="269"/>
+        <source>What&apos;s this?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="270"/>
+        <source>Enter the URI scheme to use when accessing the service (e.g. http, https, etc…)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="272"/>
+        <source>Disconnect</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="273"/>
+        <source>Open in external browser</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="274"/>
+        <source>Device unavailable</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="275"/>
+        <source>Connection failed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="279"/>
+        <source>This contact does not expose any service to you.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="280"/>
+        <source>No devices found for this contact. They may be offline.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="281"/>
+        <source>Could not reach any of this contact&apos;s devices.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="282"/>
+        <source>This contact&apos;s device did not respond in time.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="283"/>
+        <source>Service discovery is unavailable on this account.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="284"/>
+        <source>Refresh</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="285"/>
+        <source>Open local tunnel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="286"/>
+        <source>Open</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="287"/>
+        <source>Stop</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="288"/>
+        <source>Reachable at %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="291"/>
         <source>Audio</source>
         <translation>صدا</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="208"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="292"/>
+        <source>Notifications</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="293"/>
+        <source>Application</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="294"/>
+        <source>Language</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="295"/>
         <source>Devices</source>
         <translation>دستگاه ها</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="209"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="296"/>
         <source>Microphone</source>
         <translation>میکروفون</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="210"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="297"/>
         <source>Select audio input device</source>
         <translation>دستگاه ورودی صوتی را انتخاب کنید</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="211"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="298"/>
         <source>Output device</source>
         <translation>دستگاه خروجی</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="212"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="299"/>
         <source>Select audio output device</source>
         <translation>دستگاه خروجی صدا را انتخاب کنید</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="213"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="300"/>
         <source>Ringtone device</source>
         <translation>دستگاه صدای زنگ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="214"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="301"/>
         <source>Select ringtone output device</source>
         <translation>دستگاه خروجی زنگ را انتخاب کنید</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="215"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="302"/>
         <source>Audio manager</source>
         <translation>تنظیمات صوتی</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="217"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="304"/>
         <source>Noise reduction</source>
         <translation>کاهش نویز</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="218"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="305"/>
         <source>Echo suppression</source>
         <translation>حذف پژواک</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="219"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="306"/>
         <source>Voice activity detection</source>
         <translation>تشخیص فعالیت صوتی</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="222"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="309"/>
         <source>Video</source>
         <translation>ویدیو</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="223"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="310"/>
         <source>Select video device</source>
         <translation>دستگاه ویدیویی را انتخاب کنید</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="224"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="311"/>
         <source>Device</source>
         <translation>دستگاه</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="225"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="312"/>
         <source>Resolution</source>
         <translation>کیفیت</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="226"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="313"/>
         <source>Select video resolution</source>
         <translation>رزولوشن ویدیو را انتخاب کنید</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="227"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="314"/>
         <source>Frames per second</source>
         <translation>فریم بر ثانیه</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="228"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="315"/>
         <source>Select video frame rate (frames per second)</source>
         <translation>سرعت فریم ویدیو را انتخاب کنید ( فریم در ثانیه)</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="232"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="319"/>
         <source>Select screen sharing frame rate (frames per second)</source>
         <translation>نرخ فریم های اشتراک صفحه نمایش را انتخاب کنید ( فریم ها در ثانیه)</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="238"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="325"/>
         <source>Back up account here</source>
         <translation>حساب پس انداز رو اينجا</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="239"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="326"/>
         <source>Back up account</source>
         <translation>پشتیبان گیری از حساب</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="250"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="337"/>
         <source>%1 is recording</source>
         <translation>%1 در حال ضبط است</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="251"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="338"/>
         <source>%1 are recording</source>
         <translation>%1 در حال ضبط هستند</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="291"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="378"/>
         <source>Delete conversation</source>
         <translation>حذف گفتگو</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="321"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="408"/>
         <source>Unavailable</source>
         <translation>در دسترس نیست</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="348"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="430"/>
+        <source>Call error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="431"/>
+        <source>An error occured during the call. %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="432"/>
+        <source>The request was invalid or malformed.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="433"/>
+        <source>Authentication is required to complete this call.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="434"/>
+        <source>You don&apos;t have permission to make this call.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="435"/>
+        <source>Proxy authentication credentials are required.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="436"/>
+        <source>Please ensure that both you and your contact have a common codec enabled.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="437"/>
+        <source>How do I change my codecs?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="438"/>
+        <source>&lt;br&gt;&lt;b&gt;Settings &gt; Account &gt; Advanced settings &gt; Video Codecs / Audio Codecs.&lt;/b&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="446"/>
         <source>Turn off sharing</source>
         <translation>اشتراک گذاری را خاموش کنید</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="349"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="447"/>
         <source>Stop location sharing in this conversation (%1)</source>
         <translation>اشتراک گذاری مکان در این مکالمه را متوقف کنید (%1)</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="372"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="468"/>
+        <source>Confirm Navigation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="469"/>
+        <source>You are about to navigate to an external link. Do you want to proceed?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="470"/>
+        <source>Leave Jami</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="473"/>
         <source>Hide chat</source>
         <translation>خبري پنهان کن</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="409"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="482"/>
+        <source>Open in new window</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="511"/>
         <source>You can choose a username to help others more easily find and reach you on Jami.</source>
         <translation>شما می توانید یک نام کاربری را انتخاب کنید تا به دیگران کمک کنید تا به راحتی شما را در Jami پیدا کنند و به شما برسند.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="426"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="528"/>
         <source>Your account will be created and stored locally.</source>
         <translation>حساب شما در محله اي ایجاد و ذخیره ميشه</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="427"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="529"/>
         <source>Choosing a username is recommended, and a chosen username CANNOT be changed later.</source>
         <translation>انتخاب یک نام کاربری توصیه می شود و نام کاربری انتخاب شده بعد از آن تغییر نمی کند.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="438"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="540"/>
         <source>TLS</source>
         <translation>TLS</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="439"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="541"/>
         <source>UDP</source>
         <translation>UDP</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="472"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="574"/>
         <source>Please note that if you lose your password, it CANNOT be recovered!</source>
         <translation>لطفا توجه داشته باشید که اگر رمز عبور خود را از دست بدهید، نمی توان آن را بازیابی کرد!</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="511"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="613"/>
         <source>Dark</source>
         <translation>تاریک</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="512"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="614"/>
         <source>Light</source>
         <translation>نور</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="517"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="619"/>
         <source>Use native window frame (requires restart)</source>
         <translation>استفاده از قاب پنجره بومی (نیازمند راه‌اندازی مجدد)</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="521"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="623"/>
         <source>Include local video in recording</source>
         <translation>ویدیوی محلی را در ضبط قرار دهید</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="522"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="624"/>
         <source>Default settings</source>
         <translation>تنظیمات پیش فرض</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="551"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="653"/>
         <source>Delete file from device</source>
         <translation>حذف پرونده از دستگاه</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="559"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="661"/>
         <source>A new version of the Jami application is available. Do you want to update now? To continue, click Update.</source>
         <translation>نسخه جدیدی از برنامه Jami در دسترس است. آیا می‌خواهید اکنون به‌روزرسانی کنید؟ برای ادامه، روی به‌روزرسانی کلیک کنید.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="560"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="662"/>
         <source>The application is up to date.</source>
         <translation>برنامه به‌روز است.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="561"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="663"/>
         <source>An error occurred while checking for updates.</source>
         <translation>هنگام بررسی به‌روزرسانی‌ها خطایی رخ داد.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="562"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="664"/>
         <source>A network error occurred while checking for updates.</source>
         <translation>هنگام بررسی به‌روزرسانی‌ها خطای شبکه‌ای رخ داد.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="618"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="720"/>
         <source>Enter account password</source>
         <translation>گذرواژه حساب را وارد کنید</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="621"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="723"/>
         <source>Link new device</source>
         <translation>پیوند دستگاه جدید</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="627"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="729"/>
         <source>The account was imported successfully.</source>
         <translation>حساب با موفقیت وارد شد.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="634"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="734"/>
+        <source>No video available, please check your devices.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="737"/>
         <source>Enter password</source>
         <translation>ورود گذرواژه</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="636"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="739"/>
         <source>Enter account password to confirm the removal of this device</source>
         <translation>برای تأیید حذف این دستگاه، گذرواژه حساب را وارد کنید</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="661"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="764"/>
         <source>There are no extensions for the platform to display in the Jami Extension Store. Please try again later.</source>
         <translation>هیچ افزونه‌ای برای این بستر جهت نمایش در فروشگاه افزونه Jami وجود ندارد. لطفاً بعداً دوباره تلاش کنید.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="782"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="886"/>
         <source>Discard and restart</source>
         <translation>لغو و راه‌اندازی مجدد</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="784"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="888"/>
         <source>Show less</source>
         <translation>کمتر نشان بده</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="786"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="890"/>
         <source>Show preview</source>
         <translation>نمایش پیش‌نمایش</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="787"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="891"/>
         <source>Continue editing</source>
         <translation>ادامه ویرایش</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="790"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="894"/>
         <source>Strikethrough</source>
         <translation>خط زده‌شده</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="796"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="900"/>
         <source>Unordered list</source>
         <translation>لیست نامرتب</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="797"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="901"/>
         <source>Ordered list</source>
         <translation>فهرست سفارش داده شده</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="816"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="920"/>
         <source>Call started</source>
         <translation>تماس آغاز شده </translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="820"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="924"/>
         <source>Select this device</source>
         <translation>انتخاب این دستگاه</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="821"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="925"/>
         <source>Select device</source>
         <translation>انتخاب دستگاه</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="826"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="930"/>
         <source>Show local video</source>
         <translation>نمایش ویدیوی محلی</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="827"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="931"/>
         <source>Hide local video</source>
         <translation>پنهان کردن ویدیوی محلی</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="892"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="986"/>
+        <source>Copy fingerprint</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="987"/>
+        <source>Copy username</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="998"/>
         <source>Appearance</source>
         <translation>ظاهر</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="909"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1015"/>
         <source>Background image</source>
         <translation>تصویر پس‌زمینه</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="910"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1016"/>
         <source>Select background image</source>
         <translation>انتخاب تصویر پس‌زمینه</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="911"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1017"/>
         <source>Default</source>
         <translation>پیش‌گزیده</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="916"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1022"/>
         <source>Free and private sharing. &lt;a href=&quot;https://jami.net/donate/&quot;&gt;Donate&lt;/a&gt; to expand it.</source>
         <translation>اشتراک‌گذاری آزاد و خصوصی. برای گسترش آن &lt;a href=&quot;https://jami.net/donate/&quot;&gt;کمک مالی کنید&lt;/a&gt;.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="917"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1023"/>
         <source>Donate</source>
         <translation>اهدا کنید</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="919"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1025"/>
         <source>Not now</source>
         <translation>الان نه</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="920"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1026"/>
         <source>Enable donation campaign</source>
         <translation>فعال کردن کمپین کمک مالی</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="923"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1029"/>
         <source>Enter</source>
         <translation>Enter</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="924"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1030"/>
         <source>Shift+Enter</source>
         <translation>Shift+Enter</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="938"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1044"/>
         <source>Remote: %1</source>
         <translation>راه دور: %1</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="939"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1045"/>
         <source>View</source>
         <translation>نما</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="942"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1048"/>
         <source>Check spelling while typing</source>
         <translation>بررسی املا هنگام تایپ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="944"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1050"/>
         <source>Text language</source>
         <translation>زبان متن</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="926"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1086"/>
+        <source>Use arrows to switch between available accounts</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1111"/>
+        <source>Conversation list</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1112"/>
+        <source>Use arrow keys to navigate through conversations.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1113"/>
+        <source>%L1 unread message.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1114"/>
+        <source>%L1 unread messages.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1115"/>
+        <source>Last message was %1.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1116"/>
+        <source>Message body %1.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1117"/>
+        <source>Search for a conversation or a contact</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1118"/>
+        <source>Status %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1119"/>
+        <source>Online</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1120"/>
+        <source>Offline</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1121"/>
+        <source>At least one person is online</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1122"/>
+        <source>Everyone is offline</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1123"/>
+        <source>You and %1 are sharing locations with each other</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1124"/>
+        <source>%1 is currently sharing their location</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1125"/>
+        <source>You are sharing your location to %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1126"/>
+        <source>Choose a profile picture</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1032"/>
         <source>Text formatting</source>
         <translation>قالب‌بندی متن</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="327"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="414"/>
         <source>%1 saved to %2</source>
         <translation>%1 در %2 ذخیره شد</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="333"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="420"/>
         <source>Call ID</source>
         <translation>شناسه تماس</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="339"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="426"/>
         <source>Renderer ID</source>
         <translation>شناسه رندرکننده</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="378"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="479"/>
         <source>%1 has deleted the message.</source>
         <translation>%1 پیام را حذف کرد.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="379"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="480"/>
         <source>%1 has deleted the media.</source>
         <translation>%1 رسانه را حذف کرد.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="398"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="500"/>
         <source>Enter the management server URL</source>
         <translation>نشانی سرور مدیریت را وارد کنید</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="399"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="501"/>
         <source>Management server URL</source>
         <translation>نشانی سرور مدیریت</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="400"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="502"/>
         <source>Enter management server credentials</source>
         <translation>اطلاعات ورود سرور مدیریت را وارد کنید</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="410"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="512"/>
         <source>Choose rendezvous point name</source>
         <translation>نام نقطه ملاقات را انتخاب کنید</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="428"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="530"/>
         <source>Protecting the account with a password is optional, and if the password is lost it CANNOT be recovered later.</source>
         <translation>محافظت از حساب با گذرواژه اختیاری است، و اگر گذرواژه گم شود، بعداً قابل بازیابی نخواهد بود.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="461"/>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="462"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="563"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="564"/>
         <source>Set password</source>
         <translation>تعیین گذرواژه</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="464"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="566"/>
         <source>Back up the account to a .jac file</source>
         <translation>پشتیبان‌گیری از حساب در یک پرونده ‎.jac</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="468"/>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="470"/>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="888"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="570"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="572"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="994"/>
         <source>Set account password</source>
         <translation>تنظیم گذرواژه حساب</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="473"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="575"/>
         <source>Enter nickname, surname…</source>
         <translation>نام مستعار، نام خانوادگی را وارد کنید…</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="663"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="766"/>
         <source>Installation error</source>
         <translation>خطای نصب</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="664"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="767"/>
         <source>An error occurred while installing the extension.</source>
         <translation>هنگام نصب افزونه خطایی رخ داد.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="667"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="770"/>
         <source>Reset preferences</source>
         <translation>بازنشانی ترجیحات</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="668"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="771"/>
         <source>Select extension to install</source>
         <translation>افزونه‌ای را برای نصب انتخاب کنید</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="669"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="772"/>
         <source>Uninstall extension</source>
         <translation>حذف نصب افزونه</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="670"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="773"/>
         <source>Do you want to reset the preferences for the %1 extension? To continue, click Reset.</source>
         <translation>آیا می‌خواهید ترجیحات افزونه %1 را بازنشانی کنید؟ برای ادامه، روی بازنشانی کلیک کنید.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="671"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="774"/>
         <source>Do you want to uninstall the %1 extension? To continue, click Uninstall.</source>
         <translation>آیا می‌خواهید افزونه %1 را حذف نصب کنید؟ برای ادامه، روی حذف نصب کلیک کنید.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="672"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="775"/>
         <source>Go back to extensions list</source>
         <translation>بازگشت به فهرست افزونه‌ها</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="673"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="776"/>
         <source>Select file</source>
         <translation>انتخاب فایل</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="676"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="779"/>
         <source>Extension files (*.jpl)</source>
         <translation>پرونده‌های افزونه (‎*.jpl)</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="681"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="784"/>
         <source>Choose extension</source>
         <translation>انتخاب افزونه</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="696"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="799"/>
         <source>Select screen to share</source>
         <translation>انتخاب صفحه‌نمایش برای اشتراک‌گذاری</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="697"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="800"/>
         <source>Select window to share</source>
         <translation>انتخاب پنجره برای اشتراک‌گذاری</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="698"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="801"/>
         <source>All screens</source>
         <translation>همه صفحه‌نمایش‌ها</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="717"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="820"/>
         <source>An error occurred while creating the account. Check credentials and try again.</source>
         <translation>هنگام ایجاد حساب خطایی رخ داد. اطلاعات ورود را بررسی کرده و دوباره تلاش کنید.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="729"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="832"/>
         <source>Clear text</source>
         <translation>پاک کردن متن</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="731"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="834"/>
         <source>Search results</source>
         <translation>نتایج جستجو</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="734"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="837"/>
         <source>Decline invitation</source>
         <translation>رد دعوت</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="735"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="838"/>
         <source>Accept invitation</source>
         <translation>پذیرش دعوت</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="741"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="844"/>
         <source>OK</source>
         <translation>خب</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="748"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="851"/>
         <source>Leave</source>
         <translation>از اينجا بريد</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="750"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="853"/>
         <source>Unblock</source>
         <translation>رفع مسدودی</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="757"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="861"/>
         <source>Mute participant</source>
         <translation>بی‌صدا کردن شرکت‌کننده</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="758"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="862"/>
         <source>Unmute participant</source>
         <translation>باصدا کردن شرکت‌کننده</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="42"/>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="774"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="878"/>
         <source>An error occurred while reconnecting to the Jami daemon (jamid).
 The application will now exit.</source>
         <translation>هنگام اتصال مجدد به سرویس Jami (jamid) خطایی رخ داد.
 برنامه اکنون بسته خواهد شد.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="392"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="494"/>
         <source>%1 is typing…</source>
         <translation>%1 در حال تایپ است…</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="393"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="495"/>
         <source>%1 are typing…</source>
         <translation>%1 در حال تایپ هستند…</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="395"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="497"/>
         <source>%1 and %2</source>
         <translation>%1 و %2</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="416"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="518"/>
         <source>Do you want to create a Jami account without a username?
 If yes, only a randomly generated 40-character identifier will be assigned to the account.</source>
         <translation>آیا می‌خواهید یک حساب Jami بدون نام کاربری ایجاد کنید؟
 اگر بله، تنها یک شناسه ۴۰ نویسه‌ای که به‌طور تصادفی تولید می‌شود به حساب اختصاص می‌یابد.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="491"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="593"/>
         <source>A network error occurred while linking the device. Please try again later.</source>
         <translation>هنگام پیوند دادن دستگاه خطای شبکه‌ای رخ داد. لطفاً بعداً دوباره تلاش کنید.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="500"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="602"/>
         <source>If the account has not been backed up or added to another device, the account and registered username will be IRREVOCABLY LOST.</source>
         <translation>اگر از حساب پشتیبان‌گیری نشده باشد یا به دستگاه دیگری افزوده نشده باشد، حساب و نام کاربری ثبت‌شده به‌طور برگشت‌ناپذیر از دست خواهند رفت.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="529"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="631"/>
         <source>Web link previews</source>
         <translation>پیش نمایش های پیوند وب</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="539"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="641"/>
         <source>Accept transfer limit (MB)</source>
         <translation>حد پذیرش انتقال (مگابایت)</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="803"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="907"/>
         <source>Don&apos;t send</source>
         <translation>ارسال نشود</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="814"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="918"/>
         <source>Join with audio</source>
         <translation>پیوستن با صدا</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="815"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="919"/>
         <source>Join with video</source>
         <translation>پیوستن با ویدیو</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="818"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="922"/>
         <source>Current host for this group conversation seems unreachable. Do you want to host the call?</source>
         <translation>به نظر می‌رسد میزبان فعلی این گفتگوی گروهی در دسترس نیست. آیا می‌خواهید میزبان تماس باشید؟</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="819"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="923"/>
         <source>Select dedicated device for hosting future calls in this group conversation. If not set, the host will be the device starting a call.</source>
         <translation>دستگاهی اختصاصی برای میزبانی تماس‌های آینده در این گفتگوی گروهی انتخاب کنید. اگر تنظیم نشود، میزبان دستگاهی خواهد بود که تماس را آغاز می‌کند.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="830"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="934"/>
         <source>%1 sent you a conversation invitation.</source>
         <translation>%1 برای شما دعوت‌نامه گفتگو فرستاد.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="831"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="935"/>
         <source>Hello,
 Do you want to join the conversation?</source>
         <translation>سلام،
 آیا می‌خواهید به گفتگو بپیوندید؟</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="832"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="936"/>
         <source>You have accepted
 the conversation invitation.</source>
         <translation>شما دعوت‌نامه گفتگو
 را پذیرفته‌اید.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="833"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="937"/>
         <source>Waiting for %1
 to connect to synchronize the conversation…</source>
         <translation>در انتظار %1
 برای اتصال جهت همگام‌سازی گفتگو…</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="838"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="942"/>
         <source>Group name</source>
         <translation>نام گروه</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="839"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="943"/>
         <source>Contact name</source>
         <translation>نام مخاطب</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="840"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="944"/>
         <source>Add description</source>
         <translation>افزودن توضیحات</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="848"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="952"/>
         <source>Choose color</source>
         <translation>انتخاب رنگ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="849"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="953"/>
         <source>Color</source>
         <translation>رنگ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="843"/>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="853"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="947"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="957"/>
         <source>Conversation type</source>
         <translation>نوع گفتگو</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="858"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="962"/>
         <source>Block member</source>
         <translation>مسدود کردن عضو</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="859"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="963"/>
         <source>Unblock member</source>
         <translation>رفع مسدودیت عضو</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="918"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1024"/>
         <source>If you enjoy using Jami and believe in our mission, do you want to make a donation?</source>
         <translation>اگر از استفاده از Jami لذت می‌برید و به مأموریت ما باور دارید، آیا می‌خواهید کمک مالی کنید؟</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="929"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1035"/>
         <source>Connected</source>
         <translation>متصل شد</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="930"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1036"/>
         <source>Connecting TLS</source>
         <translation>در حال اتصال TLS</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="931"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1037"/>
         <source>Connecting ICE</source>
         <translation>در حال اتصال ICE</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="932"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1038"/>
         <source>Connecting</source>
         <translation>در حال اتصال</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="933"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1039"/>
         <source>Waiting</source>
         <translation>در انتظار</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="934"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1040"/>
         <source>Contact</source>
         <translation>لطفا تماس بگیرید</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="935"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1041"/>
         <source>Connection</source>
         <translation>اتصال</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="936"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1042"/>
         <source>Channels</source>
         <translation>کانال‌ها</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="937"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1043"/>
         <source>Copy all data</source>
         <translation>کپی همه داده‌ها</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="579"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="681"/>
         <source>Save recordings to</source>
         <translation>ضبط ها را به</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="580"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="682"/>
         <source>Save screenshots to</source>
         <translation>عکس های صفحه نمایش را به</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="723"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="826"/>
         <source>Share freely and privately with Jami</source>
         <translation>با جمی آزادانه و خصوصی به اشتراک بگذارید</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="769"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="856"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="873"/>
         <source>Add</source>
         <translation>افزودن</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="778"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="882"/>
         <source>more emojis</source>
         <translation>اموژى هاي بيشتري</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="804"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="908"/>
         <source>Reply to</source>
         <translation>پاسخ به</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="805"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="909"/>
         <source>In reply to</source>
         <translation>در پاسخ به</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="808"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="912"/>
         <source>Reply</source>
         <translation>پاسخ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="504"/>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="811"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="606"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="915"/>
         <source>Edit</source>
         <translation>ویرایش</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="812"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="916"/>
         <source>Edited</source>
         <translation>ویرایش شده</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="813"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="917"/>
         <source>Join call</source>
         <translation>پیوستن به تماس</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="817"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="921"/>
         <source>A call is in progress. Do you want to join the call?</source>
         <translation>يه تماس داره ادامه مده ميخواي به تماس برسي؟</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="822"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="926"/>
         <source>Remove current device</source>
         <translation>دستگاه فعلی را حذف کنید</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="823"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="927"/>
         <source>Host only this call</source>
         <translation>فقط این تماس رو میزبانی کن</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="824"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="928"/>
         <source>Host this call</source>
         <translation>میزبانی این تماس</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="825"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="929"/>
         <source>Make me the default host for future calls</source>
         <translation>منو میزبان پیش فرض تماس های آینده قرار بده</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="845"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="949"/>
         <source>Mute conversation</source>
         <translation>مکالمه ای خاموش</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="850"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="954"/>
         <source>Default host (calls)</source>
         <translation>میزبان پیش فرض (دعوات)</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="854"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="958"/>
         <source>None</source>
         <translation>هیچ‌کدام</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="867"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="971"/>
         <source>Tip</source>
         <translation>پُر</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="201"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="202"/>
         <source>Call settings</source>
         <translation>تنظیمات تماس</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="136"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="137"/>
         <source>Disable secure dialog check for incoming TLS data</source>
         <translation>باز کردن چک دیالوگ امن برای داده های TLS وارد شده</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="167"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="168"/>
         <source>Video codecs</source>
         <translation>رمزینه های تصویری</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="168"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="169"/>
         <source>Audio codecs</source>
         <translation>رمزینه های صوتی</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="171"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="172"/>
         <source>Name server</source>
         <translation>نام سرور</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="185"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="186"/>
         <source>OpenDHT configuration</source>
         <translation>پیکربندی OpenDHT</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="230"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="317"/>
         <source>Mirror local video</source>
         <translation>عکس ویدیوی محلی</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="236"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="323"/>
         <source>Why should I back-up this account?</source>
         <translation>چرا بايد از اين حساب پشتیبان بگيرم؟</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="240"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="327"/>
         <source>Success</source>
         <translation>موفق</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="241"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="328"/>
         <source>Error</source>
         <translation>خطا</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="243"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="330"/>
         <source>All files (*)</source>
         <translation>تمام پرونده ها (*)</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="246"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="333"/>
         <source>name</source>
         <translation>نام</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="247"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="334"/>
         <source>Identifier</source>
         <translation>شناسه</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="254"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="341"/>
         <source>Pause call</source>
         <translation>توقف تماس</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="255"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="342"/>
         <source>Resume call</source>
         <translation>ازسرگیری تماس</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="260"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="347"/>
         <source>Details</source>
         <translation>جزییات</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="202"/>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="261"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="203"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="348"/>
         <source>Chat</source>
         <translation>چت</translation>
     </message>
@@ -1553,128 +2125,128 @@ to connect to synchronize the conversation…</source>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="65"/>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="199"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="200"/>
         <source>Manage account</source>
         <translation>مدیرت حساب</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="200"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="201"/>
         <source>Linked devices</source>
         <translation>دستگاه‌های پیوند‌‌داده‌شده</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="203"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="204"/>
         <source>Advanced settings</source>
         <translation>تنظیمات پیشرفته</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="216"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="303"/>
         <source>Sound test</source>
         <translation>آزمایش صدا</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="231"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="318"/>
         <source>Screen sharing</source>
         <translation>اشتراک گذاری صفحه نمایش</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="237"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="324"/>
         <source>Your account only exists on this device. If you lose your device or uninstall the application, your account will be deleted and CANNOT be recovered. You can &lt;a href=&apos;blank&apos;&gt; back up your account &lt;/a&gt; now or later (in the Account Settings).</source>
         <translation>حساب شما تنها روی این دستگاه وجود دارد. اگر دستگاه خود را گم کنید یا برنامه را حذف نصب کنید، حساب شما حذف خواهد شد و قابل بازیابی نخواهد بود. می‌توانید اکنون یا بعداً (در تنظیمات حساب) &lt;a href=&apos;blank&apos;&gt; از حساب خود پشتیبان بگیرید &lt;/a&gt;.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="262"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="349"/>
         <source>More options</source>
         <translation>تنظیمات بیشتر</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="263"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="350"/>
         <source>Mosaic</source>
         <translation>موزیک</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="266"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="353"/>
         <source>You are still muted by moderator</source>
         <translation>هنوز توسط مدیر خاموشی داری</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="267"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="354"/>
         <source>You are muted by a moderator</source>
         <translation>تو توسط يه مدراتور خاموشي ميکني</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="268"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="355"/>
         <source>Moderator</source>
         <translation>مدیر</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="269"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="356"/>
         <source>Host</source>
         <translation>میزبان</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="270"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="357"/>
         <source>Local and Moderator muted</source>
         <translation>محلي و مدراتور خاموش شده</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="271"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="358"/>
         <source>Moderator muted</source>
         <translation>مودراتور خاموش شده</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="272"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="359"/>
         <source>Not muted</source>
         <translation>نه خاموش</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="273"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="360"/>
         <source>On the side</source>
         <translation>در کنار</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="274"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="361"/>
         <source>On the top</source>
         <translation>اون بالا</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="275"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="362"/>
         <source>Hide self</source>
         <translation>خودمو پنهان کن</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="276"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="363"/>
         <source>Hide spectators</source>
         <translation>تماشاگران را پنهان کنید</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="285"/>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="594"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="372"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="696"/>
         <source>Copy</source>
         <translation>کپی</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="283"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="370"/>
         <source>Share</source>
         <translation>اشتراک گذاری</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="284"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="371"/>
         <source>Cut</source>
         <translation>برش</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="286"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="373"/>
         <source>Paste</source>
         <translation>چسباندن</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="290"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="377"/>
         <source>Start video call</source>
         <translation>شروع تماس ویدیویی</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="289"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="376"/>
         <source>Start audio call</source>
         <translation>شروع تماس صوتی</translation>
     </message>
@@ -1689,482 +2261,483 @@ to connect to synchronize the conversation…</source>
         <translation>تماس تصویری ورودی از %1</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="74"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="75"/>
         <source>To continue the import account operation, scan the following QR code on the source device.</source>
         <translation>برای ادامه عملیات وارد کردن حساب، کد QR زیر را روی دستگاه مبدأ اسکن کنید.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="77"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="78"/>
         <source>Action required. Please confirm account on the source device.</source>
         <translation>اقدام لازم است. لطفاً حساب را روی دستگاه مبدأ تأیید کنید.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="80"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="81"/>
         <source>If you are unable to scan the QR code, enter the following token on the source device.</source>
         <translation>اگر نمی‌توانید کد QR را اسکن کنید، رمز زیر را روی دستگاه مبدأ وارد کنید.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="83"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="84"/>
         <source>An error occurred while importing the account.</source>
         <translation>هنگام وارد کردن حساب خطایی رخ داد.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="86"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="87"/>
         <source>An authentication error occurred while linking the device. Please check credentials and try again.</source>
         <translation>هنگام پیوند دادن دستگاه خطای احراز هویت رخ داد. لطفاً اطلاعات ورود را بررسی کرده و دوباره تلاش کنید.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="90"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="91"/>
         <source>The session has expired or has been revoked on this device. Please enter the account password.</source>
         <translation>نشست منقضی شده یا روی این دستگاه باطل شده است. لطفاً گذرواژه حساب را وارد کنید.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="91"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="92"/>
         <source>Management server</source>
         <translation>سرور مدیریت</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="102"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="103"/>
         <source>Convert account into rendezvous point</source>
         <translation>تبدیل حساب به نقطه ملاقات</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="106"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="107"/>
         <source>Select new ringtone</source>
         <translation>انتخاب آهنگ زنگ جدید</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="113"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="114"/>
         <source>Bring the application to the front for incoming calls</source>
         <translation>آوردن برنامه به جلو برای تماس‌های ورودی</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="114"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="115"/>
         <source>Decline incoming calls when already in a call</source>
         <translation>رد تماس‌های ورودی هنگامی که در حال تماس هستید</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="280"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="367"/>
         <source>Public group</source>
         <translation>گروه عمومی</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="292"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="379"/>
         <source>Confirm action</source>
         <translation>عمل تایید</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="293"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="380"/>
         <source>Remove conversation</source>
         <translation>حذف گفتگو</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="295"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="382"/>
         <source>Leave group</source>
         <translation>ترک گروه</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="296"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="383"/>
         <source>Are you sure you want to leave this group?</source>
         <translation>آیا مطمئن هستید که می‌خواهید این گروه را ترک کنید؟</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="297"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="384"/>
         <source>Do you want to remove this contact? The existing conversation will be deleted.</source>
         <translation>آیا می‌خواهید این مخاطب را حذف کنید؟ گفتگوی موجود حذف خواهد شد.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="298"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="385"/>
         <source>Do you want to block this contact?</source>
         <translation>آیا می‌خواهید این مخاطب را مسدود کنید؟</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="299"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="386"/>
         <source>Are you sure you want to remove this conversation? The contact will not be removed.</source>
         <translation>آیا مطمئن هستید که می‌خواهید این گفتگو را حذف کنید؟ مخاطب حذف نخواهد شد.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="300"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="387"/>
         <source>Remove contact</source>
         <translation>حذف مخاطب</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="301"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="388"/>
         <source>Block contact</source>
         <translation>مسدودسازی مخاطب</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="302"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="389"/>
         <source>Conversation details</source>
         <translation>جزئیات مکالمه</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="303"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="390"/>
         <source>Contact details</source>
         <translation>جزئیات مخاطب</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="307"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="394"/>
         <source>Show keypad</source>
         <translation>نمایش صفحه‌کلید عددی</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="308"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="395"/>
         <source>Transfer call</source>
         <translation>تماس انتقال</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="309"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="396"/>
         <source>Stop recording</source>
         <translation>توقف ضبط</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="310"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="397"/>
         <source>Start recording</source>
         <translation>شروع ضبط</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="311"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="398"/>
         <source>View full screen</source>
         <translation>مشاهده تمام صفحه</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="312"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="399"/>
         <source>Share screen</source>
         <translation>اشتراک گذاری صفحه نمایش</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="313"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="400"/>
         <source>Share window</source>
         <translation>پنجره اشتراک گذاری</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="314"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="401"/>
         <source>Stop sharing screen or file</source>
         <translation>اشتراک گذاری صفحه یا فایل را متوقف کنید</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="315"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="402"/>
         <source>Share screen area</source>
         <translation>اشتراک گذاری منطقه صفحه نمایش</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="316"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="403"/>
         <source>Share file</source>
         <translation>هم‌رسانی فایل</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="317"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="404"/>
         <source>Select sharing method</source>
         <translation>روش اشتراک گذاری را انتخاب کنید</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="319"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="406"/>
         <source>Advanced information</source>
         <translation>اطلاعات پیشرفته</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="320"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="407"/>
         <source>No video device</source>
         <translation>هیچ دستگاه ویدئویی</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="322"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="409"/>
         <source>Lower hand</source>
         <translation>دست پایین</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="323"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="410"/>
         <source>Raise hand</source>
         <translation>بالا بردن دست </translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="324"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="411"/>
         <source>Layout settings</source>
         <translation>تنظیمات طرح</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="325"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="412"/>
         <source>Take tile screenshot</source>
         <translation>عکس صفحه نمایش کاشی ها رو بگیرید</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="326"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="413"/>
         <source>Screenshot saved to %1</source>
         <translation>عکس صفحه نمایش ذخیره شده به %1</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="330"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="417"/>
         <source>Renderers information</source>
         <translation>اطلاعات ارائه دهنده</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="331"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="418"/>
         <source>Call information</source>
         <translation>اطلاعات تماس</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="332"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="419"/>
         <source>Peer number</source>
         <translation>شماره همتایان</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="334"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="421"/>
         <source>Sockets</source>
         <translation>ساکت ها</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="335"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="422"/>
         <source>Video codec</source>
         <translation>کدک ویدیویی</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="229"/>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="336"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="316"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="423"/>
         <source>Hardware acceleration</source>
         <translation>سرعت افزونه های سخت افزاری</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="337"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="424"/>
         <source>Video bitrate</source>
         <translation>نرخ بیت ویدیو</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="338"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="425"/>
         <source>Audio codec</source>
         <translation>کدک صوتی</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="340"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="427"/>
         <source>Fps</source>
         <translation>Fps</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="343"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="441"/>
         <source>Share location</source>
         <translation>اشتراک مکان</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="344"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="442"/>
         <source>Stop sharing</source>
         <translation>توقف اشتراک‌گذاری</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="347"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="445"/>
         <source>Turn off location sharing</source>
         <translation>اشتراک گذاری مکان را خاموش کنید</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="350"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="448"/>
         <source>Location is shared in several conversations</source>
         <translation>مکان در چند مکالمه به اشتراک گذاشته شده است</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="351"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="449"/>
         <source>Pin map to be able to share location or to turn off location in specific conversations</source>
         <translation>نقشه ی پین برای اشتراک گذاری مکان یا خاموش کردن مکان در مکالمات خاص</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="352"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="450"/>
         <source>Location is shared in several conversations, click to choose how to turn off location sharing</source>
         <translation>مکان در چندین مکالمه به اشتراک گذاشته می شود، برای انتخاب نحوه غیر فعال کردن اشتراک گذاری مکان کلیک کنید</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="353"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="451"/>
         <source>Share location to participants of this conversation (%1)</source>
         <translation>مکان اشتراک گذاری با شرکت کنندگان این مکالمه (%1)</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="355"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="453"/>
         <source>Reduce</source>
         <translation>کاهش دادن</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="356"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="454"/>
         <source>Drag</source>
         <translation>کشش</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="357"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="455"/>
         <source>Center</source>
         <translation>مرکز</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="359"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="457"/>
         <source>Unpin</source>
         <translation>پمپ را باز کنید</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="360"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="458"/>
         <source>Pin</source>
         <translation>پن</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="361"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="459"/>
         <source>Position share duration</source>
         <translation>مدت زمان سهم موقعیت</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="362"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="460"/>
         <source>Location sharing</source>
         <translation>اشتراک گذاری مکان</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="364"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="462"/>
         <source>Unlimited</source>
         <translation>محدود</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="374"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="475"/>
         <source>Add to conversations</source>
         <translation>افزودن به گفتگو‌ها</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="376"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="477"/>
         <source>The account is disabled</source>
         <translation>حساب غیرفعال شده</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="377"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="478"/>
         <source>No network connectivity</source>
         <translation>قطع ارتباط با شبکه</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="386"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="488"/>
         <source>Jump to</source>
         <translation>به سمت</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="387"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="489"/>
         <source>Messages</source>
         <translation>پیام‌ها</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="388"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="490"/>
         <source>Files</source>
         <translation>فایل ها</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="389"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="491"/>
         <source>Search</source>
         <translation>جستجو</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="394"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="496"/>
         <source>Several people are typing…</source>
         <translation>چند نفر داره تایپ مي کنن...</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="401"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="271"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="503"/>
         <source>Connect</source>
         <translation>اتصال</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="402"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="504"/>
         <source>Creating account…</source>
         <translation>...توليد حساب</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="405"/>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="411"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="507"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="513"/>
         <source>Choose name</source>
         <translation>نام را انتخاب کنید</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="406"/>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="407"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="508"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="509"/>
         <source>Choose username</source>
         <translation>نام کاربری را انتخاب کنید</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="417"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="519"/>
         <source>- 32 characters maximum
 - Special characters allowed: dash (-)</source>
         <translation>- حداکثر ۳۲ نویسه
 - نویسه‌های ویژه مجاز: خط تیره (-)</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="418"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="520"/>
         <source>Customize your profile (optional)</source>
         <translation>نمایه خود را سفارشی کنید (اختیاری)</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="419"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="521"/>
         <source>Skip</source>
         <translation>پرش</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="420"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="522"/>
         <source>Skip profile configuration</source>
         <translation>رد شدن از پیکربندی نمایه</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="421"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="523"/>
         <source>Save profile</source>
         <translation>پروفایل ذخیره کنید</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="429"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="531"/>
         <source>Setting a profile picture and display name is optional, and can also be changed later in the settings.</source>
         <translation>تنظیم تصویر نمایه و نام نمایشی اختیاری است، و می‌توان آن را بعداً نیز در تنظیمات تغییر داد.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="435"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="537"/>
         <source>Configure existing SIP account</source>
         <translation>پیکربندی حساب SIP موجود</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="440"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="542"/>
         <source>Display name</source>
         <translation>نام نمایشی</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="445"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="547"/>
         <source>Your Jami account is registered only on this device as an archive containing the keys of your account. Access to this archive can be protected with a password.</source>
         <translation>حساب Jami شما تنها روی این دستگاه به‌صورت آرشیوی حاوی کلیدهای حساب شما ثبت شده است. دسترسی به این آرشیو می‌تواند با گذرواژه محافظت شود.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="447"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="549"/>
         <source>This Jami account exists only on this device. The account will be lost if this device is lost or the application is uninstalled. It is recommended to make a backup of this account.</source>
         <translation>این حساب Jami تنها روی این دستگاه وجود دارد. اگر این دستگاه گم شود یا برنامه حذف نصب شود، حساب از دست خواهد رفت. توصیه می‌شود از این حساب پشتیبان بگیرید.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="454"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="556"/>
         <source>Backup completed successfully.</source>
         <translation>پشتیبان‌گیری با موفقیت کامل شد.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="455"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="557"/>
         <source>An error occurred while backing up the account.</source>
         <translation>هنگام پشتیبان‌گیری از حساب خطایی رخ داد.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="456"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="558"/>
         <source>Password changed successfully.</source>
         <translation>گذرواژه با موفقیت تغییر کرد.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="457"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="559"/>
         <source>An error occurred while changing the account password.</source>
         <translation>هنگام تغییر گذرواژه حساب خطایی رخ داد.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="458"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="560"/>
         <source>Password set successfully.</source>
         <translation>گذرواژه با موفقیت تنظیم شد.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="459"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="561"/>
         <source>An error occurred while setting the account password.</source>
         <translation>هنگام تنظیم گذرواژه حساب خطایی رخ داد.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="945"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1051"/>
         <source>Spell checker</source>
         <translation>غلط‌یاب املایی</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="408"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="510"/>
         <source>Confirm password</source>
         <translation>تأیید گذرواژه</translation>
     </message>
@@ -2204,127 +2777,127 @@ to connect to synchronize the conversation…</source>
         <translation>تنها داده‌های ضروری، شامل نسخه برنامه، اطلاعات بستر، و تصویری لحظه‌ای از وضعیت برنامه در زمان خرابی، به اشتراک گذاشته خواهد شد.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="95"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="96"/>
         <source>An error occurred while authenticating the account.</source>
         <translation>هنگام احراز هویت حساب خطایی رخ داد.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="107"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="108"/>
         <source>Certificate file (*.crt)</source>
         <translation>پرونده گواهی (‎*.crt)</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="108"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="109"/>
         <source>Audio file (*.wav *.ogg *.opus *.mp3 *.aiff *.wma)</source>
         <translation>پرونده صوتی (‎*.wav *.ogg *.opus *.mp3 *.aiff *.wma)</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="137"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="138"/>
         <source>Select private key</source>
         <translation>انتخاب کلید خصوصی</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="138"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="139"/>
         <source>Select user certificate</source>
         <translation>انتخاب گواهی کاربر</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="139"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="140"/>
         <source>Select CA certificate</source>
         <translation>انتخاب گواهی CA</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="141"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="142"/>
         <source>Key file (*.key)</source>
         <translation>پرونده کلید (‎*.key)</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="153"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="154"/>
         <source>TURN realm</source>
         <translation>قلمرو TURN</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="233"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="320"/>
         <source>No camera available</source>
         <translation>هیچ دوربینی در دسترس نیست</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="242"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="329"/>
         <source>Jami account (*.jac)</source>
         <translation>حساب Jami (‎*.jac)</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="252"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="339"/>
         <source>Mute microphone</source>
         <translation>قطع میکروفون</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="253"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="340"/>
         <source>Unmute microphone</source>
         <translation>باصدا کردن میکروفون</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="256"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="343"/>
         <source>Stop camera</source>
         <translation>دوربین توقف</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="257"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="344"/>
         <source>Start camera</source>
         <translation>شروع دوربین</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="258"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="345"/>
         <source>Invite member</source>
         <translation>دعوت عضو</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="259"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="346"/>
         <source>Invite members</source>
         <translation>دعوت اعضا</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="264"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="351"/>
         <source>Participant microphone is still muted.</source>
         <translation>میکروفون شرکت‌کننده هنوز بی‌صدا است.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="265"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="352"/>
         <source>Device microphone is still muted.</source>
         <translation>میکروفون دستگاه هنوز بی‌صدا است.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="277"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="364"/>
         <source>Private</source>
         <translation>خصوصی</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="278"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="365"/>
         <source>Private group (restricted invites)</source>
         <translation>گروه خصوصی (معاونیت محدود)</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="279"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="366"/>
         <source>Private group</source>
         <translation>گروه خصوصی</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="294"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="381"/>
         <source>Do you want to leave this conversation?</source>
         <translation>آیا می‌خواهید این گفتگو را ترک کنید؟</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="306"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="393"/>
         <source>DTMF input panel</source>
         <translation>پنل ورودی DTMF</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="318"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="405"/>
         <source>View extension</source>
         <translation>نمایش افزونه</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="345"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="443"/>
         <source>An error occurred while sharing the device location.
 Enable “Location Services” in device settings in order to use this feature.
 The location of other members can still be received.</source>
@@ -2333,334 +2906,334 @@ The location of other members can still be received.</source>
 موقعیت سایر اعضا همچنان قابل دریافت است.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="346"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="444"/>
         <source>An error occurred while sharing the device location. Please check your Internet connection and try again.</source>
         <translation>هنگام اشتراک‌گذاری موقعیت دستگاه خطایی رخ داد. لطفاً اتصال اینترنت خود را بررسی کرده و دوباره تلاش کنید.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="363"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="461"/>
         <source>1m</source>
         <translation>۱د</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="365"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="463"/>
         <source>%L1s</source>
         <translation>%L1ث</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="366"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="464"/>
         <source>%L1m</source>
         <translation>%L1د</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="367"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="465"/>
         <source>%L1m %L2s</source>
         <translation>%L1د %L2ث</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="368"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="466"/>
         <source>%L1h</source>
         <translation>%L1س</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="369"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="467"/>
         <source>%L1h %L2m</source>
         <translation>%L1س %L2د</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="373"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="474"/>
         <source>Show available extensions</source>
         <translation>نمایش افزونه‌های در دسترس</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="375"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="476"/>
         <source>A backend system error occurred: %0</source>
         <translation>خطای سیستمی در بخش پشتیبان رخ داد: %0</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="380"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="481"/>
         <source>Return to call</source>
         <translation>بازگشت به تماس</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="383"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="485"/>
         <source>This conversation has ended.</source>
         <translation>این گفتگو به پایان رسیده است.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="412"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="514"/>
         <source>Invalid name</source>
         <translation>نام نامعتبر</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="413"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="515"/>
         <source>Invalid username</source>
         <translation>نام کاربری نامعتبر</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="414"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="516"/>
         <source>Name already taken</source>
         <translation>نام پیش از این گرفته شده ‌است</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="415"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="517"/>
         <source>Username already taken</source>
         <translation>نام کاربری قبلا گرفته شده است</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="423"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="525"/>
         <source>Good to know</source>
         <translation>خوشم اومده که بدونم</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="424"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="526"/>
         <source>Local</source>
         <translation>محلی</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="425"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="527"/>
         <source>Encrypt</source>
         <translation>رمزگذاری شده</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="432"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="534"/>
         <source>SIP account</source>
         <translation>حساب SIP</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="433"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="535"/>
         <source>Proxy</source>
         <translation>پراکسی</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="434"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="536"/>
         <source>Server</source>
         <translation>سرور</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="436"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="538"/>
         <source>Personalize account</source>
         <translation>حساب شخصی سازی</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="437"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="539"/>
         <source>Add SIP account</source>
         <translation>افزودن حساب SIP</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="443"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="545"/>
         <source>Your profile is only shared with your contacts. You can customize your profile at any time.</source>
         <translation>نمایه شما تنها با مخاطبانتان به اشتراک گذاشته می‌شود. می‌توانید هر زمان نمایه خود را سفارشی کنید.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="444"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="546"/>
         <source>A chosen username can help to be found more easily on Jami. If a username is not chosen, a randomly generated 40-character identifier will be assigned to this account as a username. It is more difficult to be found and reached with this identifier.</source>
         <translation>یک نام کاربری انتخاب‌شده می‌تواند به یافتن آسان‌تر شما در Jami کمک کند. اگر نام کاربری انتخاب نشود، یک شناسه ۴۰ نویسه‌ای که به‌طور تصادفی تولید می‌شود به‌عنوان نام کاربری به این حساب اختصاص می‌یابد. یافتن و دسترسی به شما با این شناسه دشوارتر است.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="446"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="548"/>
         <source>Backup account</source>
         <translation>پشتیبان‌گیری حساب</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="449"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="551"/>
         <source>List of the devices that are linked to this account:</source>
         <translation>فهرست دستگاه هایی که با این حساب مرتبط هستند:</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="450"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="552"/>
         <source>This device</source>
         <translation>این دستگاه</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="451"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="553"/>
         <source>Other linked devices</source>
         <translation>دیگر دستگاه های پیوند داده شده</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="460"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="562"/>
         <source>Change password</source>
         <translation>تغییر گذرواژه</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="471"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="573"/>
         <source>A Jami account is created and stored locally only on this device, as an archive containing your account keys. Access to this archive can optionally be protected with a password.</source>
         <translation>یک حساب Jami تنها روی این دستگاه به‌صورت محلی ایجاد و ذخیره می‌شود، به‌صورت آرشیوی حاوی کلیدهای حساب شما. دسترسی به این آرشیو می‌تواند به‌صورت اختیاری با گذرواژه محافظت شود.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="474"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="576"/>
         <source>Use this account on other devices</source>
         <translation>استفاده از این حساب روی دستگاه‌های دیگر</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="475"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="577"/>
         <source>This account is created and stored locally, if you want to use it on another device you have to link the new device to this account.</source>
         <translation>این حساب به‌صورت محلی ایجاد و ذخیره می‌شود؛ اگر می‌خواهید آن را روی دستگاه دیگری استفاده کنید، باید دستگاه جدید را به این حساب پیوند دهید.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="486"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="588"/>
         <source>Link new device to this account</source>
         <translation>پیوند دستگاه جدید به این حساب</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="488"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="590"/>
         <source>Remove device</source>
         <translation>حذف دستگاه</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="489"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="591"/>
         <source>Do you want to unlink the selected device? To continue, enter account password and click Unlink.</source>
         <translation>آیا می‌خواهید پیوند دستگاه انتخاب‌شده را قطع کنید؟ برای ادامه، گذرواژه حساب را وارد کرده و روی قطع پیوند کلیک کنید.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="490"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="592"/>
         <source>Account PIN code is:</source>
         <translation>کد PIN حساب این است:</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="494"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="596"/>
         <source>Unblock contact</source>
         <translation>رفع مسدودی مخاطب</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="495"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="597"/>
         <source>Blocked</source>
         <translation>مسدود شد</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="496"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="598"/>
         <source>Blocked contacts</source>
         <translation>مخاطبین مسدود‌شده</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="499"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="601"/>
         <source>Do you want to delete this account? To continue, click Delete.</source>
         <translation>آیا می‌خواهید این حساب را حذف کنید؟ برای ادامه، روی حذف کلیک کنید.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="505"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="607"/>
         <source>Device name:</source>
         <translation>نام دستگاه:</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="507"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="609"/>
         <source>Device ID</source>
         <translation>شناسه دستگاه</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="513"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="615"/>
         <source>Select folder</source>
         <translation>انتخاب پوشه</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="525"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="627"/>
         <source>Typing indicator</source>
         <translation>شاخص تایپ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="526"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="628"/>
         <source>Send and receive typing indicators showing when messages are being typed.</source>
         <translation>ارسال و دریافت نشانگرهای تایپ که نشان می‌دهند چه زمانی پیام‌ها در حال تایپ هستند.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="527"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="629"/>
         <source>Read receipts</source>
         <translation>رسیدهای خواندن</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="528"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="630"/>
         <source>Send and request delivery and read receipts to be sent when messages are delivered or read.</source>
         <translation>ارسال و درخواست رسیدهای تحویل و خواندن برای ارسال هنگام تحویل یا خوانده شدن پیام‌ها.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="540"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="642"/>
         <source>MB, 0 = unlimited</source>
         <translation>مگابایت، ۰ = نامحدود</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="544"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="646"/>
         <source>Incorrect password.</source>
         <translation>گذرواژه نادرست است.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="545"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="647"/>
         <source>A network error occurred.</source>
         <translation>خطای شبکه‌ای رخ داد.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="546"/>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="570"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="648"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="672"/>
         <source>An unexpected error occurred.</source>
         <translation>خطایی غیرمنتظره رخ داد.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="563"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="665"/>
         <source>An SSL error occurred.</source>
         <translation>خطای SSL رخ داد.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="564"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="666"/>
         <source>Installer download was canceled by user.</source>
         <translation>دانلود نصب‌کننده توسط کاربر لغو شد.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="566"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="668"/>
         <source>This will replace the Release version with the Beta version on this device. The latest Release version can always be downloaded from the Jami website.</source>
         <translation>این کار نسخه انتشار را با نسخه بتا روی این دستگاه جایگزین می‌کند. آخرین نسخه انتشار همیشه از وب‌سایت Jami قابل دانلود است.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="568"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="670"/>
         <source>An error occurred while accessing the contents.</source>
         <translation>هنگام دسترسی به محتوا خطایی رخ داد.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="569"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="671"/>
         <source>Content not found.</source>
         <translation>محتوا یافت نشد.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="585"/>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="586"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="687"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="688"/>
         <source>Keyboard shortcuts</source>
         <translation>میان‌برهای صفحه‌کلید</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="590"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="692"/>
         <source>Markdown</source>
         <translation>مارک داون</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="595"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="697"/>
         <source>Submit issue</source>
         <translation>گزارش اشکال</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="598"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="700"/>
         <source>Copied to clipboard.</source>
         <translation>در بریده‌دان کپی شد.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="599"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="701"/>
         <source>View logs</source>
         <translation>نمایش گزارش‌ها</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="610"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="712"/>
         <source>If the account is password protected, please fill the following field.</source>
         <translation>اگر حساب با گذرواژه محافظت می‌شود، لطفاً فیلد زیر را پر کنید.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="619"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="721"/>
         <source>This account is password protected, enter the password to generate PIN code.</source>
         <translation>این حساب با گذرواژه محافظت می‌شود؛ برای تولید کد PIN گذرواژه را وارد کنید.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="622"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="724"/>
         <source>Connecting to the new device…</source>
         <translation>در حال اتصال به دستگاه جدید…</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="624"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="726"/>
         <source>On the new device, initiate a new account.
 Select Add account → Connect from another device.
 When ready, scan the QR code.</source>
@@ -2669,1143 +3242,1159 @@ When ready, scan the QR code.</source>
 هنگامی که آماده شدید، کد QR را اسکن کنید.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="625"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="727"/>
         <source>Alternatively, enter the authentication code manually.</source>
         <translation>یا، کد احراز هویت را به‌صورت دستی وارد کنید.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="628"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="730"/>
         <source>New device connected at the following IP address. Is that you? To continue the export account operation, click Confirm.</source>
         <translation>دستگاه جدید در نشانی IP زیر متصل شد. آیا این شما هستید؟ برای ادامه عملیات صدور حساب، روی تأیید کلیک کنید.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="643"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="746"/>
         <source>Select image as profile picture</source>
         <translation>انتخاب تصویر به‌عنوان تصویر نمایه</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="644"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="747"/>
         <source>How do you want to set the profile picture?</source>
         <translation>چگونه می‌خواهید تصویر نمایه را تنظیم کنید؟</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="645"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="748"/>
         <source>Import profile picture from image file</source>
         <translation>وارد کردن تصویر نمایه از پرونده تصویری</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="646"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="749"/>
         <source>Remove profile picture</source>
         <translation>حذف تصویر نمایه</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="648"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="751"/>
         <source>Image files (*.jpeg *.jpg *.png *.JPEG* .JPG *.PNG)</source>
         <translation>پرونده‌های تصویری (‎*.jpeg *.jpg *.png *.JPEG* .JPG *.PNG)</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="649"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="752"/>
         <source>Edit profile picture</source>
         <translation>ویرایش تصویر نمایه</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="652"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="755"/>
         <source>Auto update</source>
         <translation>به‌روزرسانی خودکار</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="653"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="756"/>
         <source>Disable all</source>
         <translation>غیرفعال کردن همه</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="654"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="757"/>
         <source>Installed</source>
         <translation>نصب‌شده</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="655"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="758"/>
         <source>Install</source>
         <translation>نصب</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="656"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="759"/>
         <source>Installing</source>
         <translation>نصب</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="657"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="760"/>
         <source>Install manually</source>
         <translation>نصب دستی</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="658"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="761"/>
         <source>Install an extension directly from your device.</source>
         <translation>یک افزونه را مستقیماً از دستگاه خود نصب کنید.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="659"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="762"/>
         <source>Available</source>
         <translation>در دسترس</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="660"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="763"/>
         <source>The Jami Extension Store is currently unavailable. Please try again later.</source>
         <translation>فروشگاه افزونه Jami در حال حاضر در دسترس نیست. لطفاً بعداً دوباره تلاش کنید.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="682"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="785"/>
         <source>Version %1</source>
         <translation>نسخه %1</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="683"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="786"/>
         <source>Last update %1</source>
         <translation>آخرین به‌روزرسانی %1</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="684"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="787"/>
         <source>By %1</source>
         <translation>توسط %1</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="685"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="788"/>
         <source>Proposed by %1</source>
         <translation>پیشنهادشده توسط %1</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="689"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="792"/>
         <source>More information</source>
         <translation>اطلاعات بیشتر</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="705"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="808"/>
         <source>Share account</source>
         <translation>اشتراک‌گذاری حساب</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="714"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="817"/>
         <source>Connect to management server</source>
         <translation>اتصال یه سرور مدیریت</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="715"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="818"/>
         <source>Create account from management server</source>
         <translation>ایجاد حساب از سرور مدیریت</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="716"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="819"/>
         <source>Configure SIP account</source>
         <translation>پیکربندی حساب SIP</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="718"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="821"/>
         <source>Create rendezvous point</source>
         <translation>ایجاد نقطه ملاقات</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="719"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="822"/>
         <source>Create Jami account</source>
         <translation>حساب Jami را ایجاد کنید</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="759"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="863"/>
         <source>Maximize participant</source>
         <translation>حداکثر کردن شرکت‌کنندگان</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="760"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="864"/>
         <source>Minimize participant</source>
         <translation>به حداقل رساندن شرکت‌کنندگان</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="761"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="865"/>
         <source>Disconnect participant</source>
         <translation>قطع اتصال شرکت‌کننده</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="780"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="884"/>
         <source>Audio message</source>
         <translation>پیام صوتی</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="781"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="885"/>
         <source>Video message</source>
         <translation>پیام تصویری</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="783"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="887"/>
         <source>Show more</source>
         <translation>بیشتر نشان بده</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="788"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="892"/>
         <source>Bold</source>
         <translation>پررنگ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="789"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="893"/>
         <source>Italic</source>
         <translation>مورب</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="791"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="895"/>
         <source>Title</source>
         <translation>عنوان</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="792"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="896"/>
         <source>Heading</source>
         <translation>سرعنوان</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="793"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="897"/>
         <source>Link</source>
         <translation>پیوند</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="794"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="898"/>
         <source>Code</source>
         <translation>کد</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="795"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="899"/>
         <source>Quote</source>
         <translation>نقل قول</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="798"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="902"/>
         <source>Show formatting</source>
         <translation>نمایش قالب‌بندی</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="799"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="903"/>
         <source>Hide formatting</source>
         <translation>پنهان کردن قالب‌بندی</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="800"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="904"/>
         <source>Press Shift+Enter to insert new line</source>
         <translation>برای درج خط جدید Shift+Enter را فشار دهید</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="801"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="905"/>
         <source>Press Enter to insert new line</source>
         <translation>برای درج خط جدید Enter را فشار دهید</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="806"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="910"/>
         <source>%1 replied to</source>
         <translation>%1 پاسخ داد به</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="807"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="911"/>
         <source>you</source>
         <translation>شما</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="810"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="914"/>
         <source>Send a message to %1 in order to add them as a contact</source>
         <translation>برای افزودن %1 به‌عنوان مخاطب، به او پیامی بفرستید</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="836"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="940"/>
         <source>%L1 members</source>
         <translation>%L1 عضو</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="841"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="945"/>
         <source>No description</source>
         <translation>بدون توضیحات</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="842"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="946"/>
         <source>Members</source>
         <translation>اعضا</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="846"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="950"/>
         <source>Unmute conversation</source>
         <translation>باصدا کردن گفتگو</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="949"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1055"/>
         <source>No dictionaries available.</source>
         <translation>هیچ واژه‌نامه‌ای در دسترس نیست.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="956"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1062"/>
         <source>Search or add</source>
         <translation>جستجو یا افزودن</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="962"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1068"/>
         <source>Add comment</source>
         <translation>افزودن نظر</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="963"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1069"/>
         <source>Share with…</source>
         <translation>هم‌رسانی با...</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="966"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1072"/>
         <source>Add contact</source>
         <translation>افزودن مخاطب</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="967"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1073"/>
         <source>No conversations found.</source>
         <translation>هیچ گفتگویی یافت نشد.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="968"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1074"/>
         <source>No contacts found.</source>
         <translation>هیچ مخاطبی یافت نشد.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="851"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="955"/>
         <source>Select default host</source>
         <translation>انتخاب میزبان پیش‌فرض</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="852"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="956"/>
         <source>Change default host</source>
         <translation>تغییر میزبان پیش‌فرض</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="878"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="982"/>
         <source>Share your Jami identifier in order to be contacted more easily!</source>
         <translation>شناسه Jami خود را به اشتراک بگذارید تا راحت‌تر با شما تماس گرفته شود!</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="879"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="983"/>
         <source>Jami identity</source>
         <translation>هویت جمی</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="880"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="984"/>
         <source>Show fingerprint</source>
         <translation>نشان دادن اثر انگشت</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="881"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="985"/>
         <source>Hide fingerprint</source>
         <translation>پنهان کردن اثر انگشت</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="882"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="988"/>
         <source>Show registered name</source>
         <translation>نام ثبت شده را نشان دهید</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="885"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="991"/>
         <source>Enabling your account allows you to be contacted on Jami</source>
         <translation>فعال کردن حساب شما اجازه می دهد تا شما را در Jami تماس گرفته شود</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="895"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1001"/>
         <source>Experimental</source>
         <translation>آزمایش</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="898"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1004"/>
         <source>Ringtone</source>
         <translation>آهنگ های زنگ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="901"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1007"/>
         <source>Rendezvous point</source>
         <translation>نقطه ملاقات</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="904"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1010"/>
         <source>Moderation</source>
         <translation>اعتدال</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="907"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1013"/>
         <source>Theme</source>
         <translation>موضوع</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="908"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1014"/>
         <source>Text zoom level</source>
         <translation>سطح زوم متن</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="912"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1018"/>
         <source>Blur background image</source>
         <translation>محو کردن تصویر پس‌زمینه</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="913"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1019"/>
         <source>Normalize background image contrast</source>
         <translation>عادی‌سازی کنتراست تصویر پس‌زمینه</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="925"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1031"/>
         <source>Enter or Shift+Enter to insert new line</source>
         <translation>Enter یا Shift+Enter برای درج خط جدید</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="946"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1052"/>
         <source>Search text languages</source>
         <translation>جستجوی زبان‌های متن</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="947"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1053"/>
         <source>Search for available text languages</source>
         <translation>جستجوی زبان‌های متن در دسترس</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="948"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1054"/>
         <source>No dictionary found for %1.</source>
         <translation>هیچ واژه‌نامه‌ای برای %1 یافت نشد.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="950"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1056"/>
         <source>Dictionary manager</source>
         <translation>مدیر واژه‌نامه</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="951"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1057"/>
         <source>An error occurred while downloading the %1 dictionary.</source>
         <translation>هنگام دانلود واژه‌نامه %1 خطایی رخ داد.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="952"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1058"/>
         <source>Show installed dictionaries</source>
         <translation>نمایش واژه‌نامه‌های نصب‌شده</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="953"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1059"/>
         <source>Only show dictionaries that are currently installed</source>
         <translation>تنها واژه‌نامه‌هایی را که در حال حاضر نصب شده‌اند نمایش بده</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="959"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1065"/>
         <source>This conversation has no files.</source>
         <translation>این گفتگو هیچ پرونده‌ای ندارد.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="971"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1077"/>
+        <source>Call in progress</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1078"/>
+        <source>Pop out</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1079"/>
+        <source>Pop in</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1080"/>
+        <source>You&apos;re the only one here!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1083"/>
         <source>Press enter to switch to this account</source>
         <translation>برای تغییر به این حساب Enter را فشار دهید</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="972"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1084"/>
         <source>Display your QR code to allow other users to scan it and add you as a contact</source>
         <translation>کد QR خود را نمایش دهید تا کاربران دیگر بتوانند آن را اسکن کرده و شما را به‌عنوان مخاطب اضافه کنند</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="973"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1085"/>
         <source>Account list</source>
         <translation>فهرست حساب‌ها</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="974"/>
-        <source>Use arrows to switch between available account</source>
-        <translation>برای جابجایی میان حساب‌های در دسترس از کلیدهای جهت‌نما استفاده کنید</translation>
-    </message>
-    <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="975"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1087"/>
         <source>Select the user interface language</source>
         <translation>زبان رابط کاربری را انتخاب کنید</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="976"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1088"/>
         <source>Go back to the previous page</source>
         <translation>بازگشت به صفحه قبلی</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="977"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1089"/>
         <source>Advice Box</source>
         <translation>جعبه راهنمایی</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="978"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1090"/>
         <source>Back button</source>
         <translation>دکمه بازگشت</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="979"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1091"/>
         <source>Open the advice popup that contains information about Jami</source>
         <translation>پنجره بازشوی راهنمایی حاوی اطلاعاتی درباره Jami را باز کنید</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="980"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1092"/>
         <source>More</source>
         <translation>بیشتر</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="981"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1093"/>
         <source>Press to %1</source>
         <translation>برای %1 فشار دهید</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="982"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1094"/>
         <source>Press to toggle %1 (%2)</source>
         <translation>برای تغییر وضعیت %1 (%2) فشار دهید</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="983"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1095"/>
         <source>active</source>
         <translation>فعال</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="984"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1096"/>
         <source>inactive</source>
         <translation>غیرفعال</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="985"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1097"/>
         <source>Minimize application</source>
         <translation>کوچک کردن برنامه</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="986"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1098"/>
         <source>Maximize application</source>
         <translation>بزرگ کردن برنامه</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="987"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1099"/>
         <source>Close application</source>
         <translation>بستن برنامه</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="988"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1100"/>
         <source>Dismiss this tip</source>
         <translation>رد کردن این نکته</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="989"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1101"/>
         <source>Tips to help you use Jami more effectively</source>
         <translation>نکاتی برای کمک به استفاده مؤثرتر از Jami</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="990"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1102"/>
         <source>Show more messaging options</source>
         <translation>نمایش گزینه‌های پیام‌رسانی بیشتر</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="991"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1103"/>
         <source>Open a menu that allows you to send voice and video messages as well as sharing your location</source>
         <translation>منویی را باز کنید که به شما امکان می‌دهد پیام‌های صوتی و تصویری ارسال کنید و همچنین موقعیت خود را به اشتراک بگذارید</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="992"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1104"/>
         <source>Conversation messages list. Use arrow keys to navigate through messages.</source>
         <translation>فهرست پیام‌های گفتگو. برای پیمایش میان پیام‌ها از کلیدهای جهت‌نما استفاده کنید.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="993"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1105"/>
         <source>Data transfer</source>
         <translation>انتقال داده</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="994"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1106"/>
         <source>Status</source>
         <translation>وضعیت</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="995"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1107"/>
         <source>Read by</source>
         <translation>خوانده‌شده توسط</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="996"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1108"/>
         <source>Currently selected: %1</source>
         <translation>در حال حاضر انتخاب‌شده: %1</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="997"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1109"/>
         <source>%1 has been selected for %2</source>
         <translation>%1 برای %2 انتخاب شد</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="998"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1110"/>
         <source>Available option for %1</source>
         <translation>گزینه در دسترس برای %1</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="463"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="565"/>
         <source>Change current password</source>
         <translation>تغییر رمز عبور فعلی</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="465"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="567"/>
         <source>Display advanced settings</source>
         <translation>تنظیمات پیشرفته را نمایش دهید</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="466"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="568"/>
         <source>Hide advanced settings</source>
         <translation>تنظیمات پیشرفته را پنهان کنید</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="198"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="199"/>
         <source>Enable account</source>
         <translation>فعال سازی حساب کاربری</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="103"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="104"/>
         <source>Automatically accept calls</source>
         <translation>پذیرش خودکار تماس‌ها</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="467"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="569"/>
         <source>Advanced account settings</source>
         <translation>تنظیمات پیشرفته حساب</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="469"/>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="889"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="571"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="995"/>
         <source>Customize profile</source>
         <translation>پروفایل را سفارشی کنید</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="479"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="581"/>
         <source>Set username</source>
         <translation>نام کاربری را تنظیم کنید</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="480"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="582"/>
         <source>Registering name</source>
         <translation>نام ثبت نام</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="483"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="585"/>
         <source>Identity</source>
         <translation>هویت</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="487"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="589"/>
         <source>Exporting account…</source>
         <translation>برون برد حساب کاربری...</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="510"/>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="943"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="612"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1049"/>
         <source>System</source>
         <translation>سیستم</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="514"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="616"/>
         <source>Enable notifications</source>
         <translation>فعال سازی نوتیفیکیشن ها</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="519"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="621"/>
         <source>Launch at startup</source>
         <translation>راه اندازی در راه اندازی</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="520"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="622"/>
         <source>Choose download directory</source>
         <translation>فهرست دانلود را انتخاب کنید</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="530"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="632"/>
         <source>Preview requires downloading content from third-party servers.</source>
         <translation>پیش نمایش نیاز به دانلود محتوا از سرورهای شخص ثالث دارد.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="532"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="634"/>
         <source>User interface language</source>
         <translation>زبان رابط کاربری</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="533"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="635"/>
         <source>Vertical view</source>
         <translation>نمای عمودی</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="534"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="636"/>
         <source>Horizontal view</source>
         <translation>نمای افقی</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="537"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="639"/>
         <source>File transfer</source>
         <translation>انتقال فایل</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="538"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="640"/>
         <source>Automatically accept incoming files</source>
         <translation>پذیرش فایل‌های ورودی به صورت خودکار</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="543"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="645"/>
         <source>Register</source>
         <translation>ثبت‌نام</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="549"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="651"/>
         <source>Save file</source>
         <translation>ذخیره فایل</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="550"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="652"/>
         <source>Open location</source>
         <translation>مکان باز</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="554"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="656"/>
         <source>Install beta version</source>
         <translation>نسخه بیتا را نصب کنید</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="555"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="657"/>
         <source>Check for updates now</source>
         <translation>به‌روزرسانی‌ها را همین الان بررسی کن</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="556"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="658"/>
         <source>Enable/Disable automatic updates</source>
         <translation>فعال کردن/ غیر فعال کردن بروزرسانی های خودکار</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="557"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="659"/>
         <source>Updates</source>
         <translation>به‌روزرسانی‌ها</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="558"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="660"/>
         <source>Update</source>
         <translation>بروزرسانی</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="567"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="669"/>
         <source>Network disconnected</source>
         <translation>شبکه قطع شده</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="573"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="675"/>
         <source>Troubleshoot</source>
         <translation>راه حل مشکل</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="574"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="676"/>
         <source>Open logs</source>
         <translation>دفترچه باز</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="575"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="677"/>
         <source>Get logs</source>
         <translation>دستاوردها رو بگير</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="578"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="680"/>
         <source>Quality</source>
         <translation>کیفیت</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="582"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="684"/>
         <source>Always record calls</source>
         <translation>همیشه تماس ها را ضبط کن</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="587"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="689"/>
         <source>Conversation</source>
         <translation>مکالمه</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="588"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="690"/>
         <source>Call</source>
         <translation>برقراری تماس</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="589"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="691"/>
         <source>Settings</source>
         <translation>تنظیمات</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="593"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="695"/>
         <source>Debug</source>
         <translation>بازنویسی</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="596"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="698"/>
         <source>Clear</source>
         <translation>پاک‌سازی</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="597"/>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="743"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="699"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="846"/>
         <source>Cancel</source>
         <translation>لغو</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="602"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="704"/>
         <source>Archive</source>
         <translation>بایگانی</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="603"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="705"/>
         <source>Open file</source>
         <translation>باز کردن فایل</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="606"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="708"/>
         <source>Generating account…</source>
         <translation>ایجاد حساب...</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="607"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="709"/>
         <source>Import from archive backup</source>
         <translation>وارد کردن از پشتیبان بایگانی‌شده</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="609"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="711"/>
         <source>Select archive file</source>
         <translation>فایل آرشیو را انتخاب کنید</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="476"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="578"/>
         <source>Link device</source>
         <translation>پیوند این افزاره</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="613"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="715"/>
         <source>Import</source>
         <translation>واردات</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="873"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="977"/>
         <source>Delete message</source>
         <translation>حذف پیام</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="874"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="978"/>
         <source>*(Deleted Message)*</source>
         <translation>*(پیام حذف شده)*</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="875"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="979"/>
         <source>Edit message</source>
         <translation>پیام را ویرایش کنید</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="358"/>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="617"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="456"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="719"/>
         <source>Close</source>
         <translation>بستن</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="581"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="683"/>
         <source>Call recording</source>
         <translation>ضبط تماس</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="614"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="716"/>
         <source>Enter the PIN code</source>
         <translation>کد PIN را وارد کنید</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="620"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="722"/>
         <source>Add Device</source>
         <translation>اضافه‌کردن دستگاه</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="635"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="738"/>
         <source>Enter current password</source>
         <translation>رمز عبور فعلی را وارد کنید</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="637"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="740"/>
         <source>Enter new password</source>
         <translation>گذرواژه جدید را وارد کنید</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="638"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="741"/>
         <source>Confirm new password</source>
         <translation>تایید گذرواژه جدید</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="639"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="742"/>
         <source>Change</source>
         <translation>تغییر</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="640"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="743"/>
         <source>Export</source>
         <translation>برون‌ریزی</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="647"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="750"/>
         <source>Take photo</source>
         <translation>عکس  بگیرید!</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="662"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="765"/>
         <source>Preferences</source>
         <translation>اولویت ها</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="665"/>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="751"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="768"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="854"/>
         <source>Reset</source>
-        <translation>بازنشانی </translation>
+        <translation>بازنشانی&#xa0;</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="666"/>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="752"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="769"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="855"/>
         <source>Uninstall</source>
         <translation>حذف نصب</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="140"/>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="674"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="141"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="777"/>
         <source>Select</source>
         <translation>گزینش</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="623"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="725"/>
         <source>The export account operation to the new device is in progress.
 Please confirm the import on the new device.</source>
         <translation>عملیات صدور حساب به دستگاه جدید در حال انجام است.
 لطفاً وارد کردن را روی دستگاه جدید تأیید کنید.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="626"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="728"/>
         <source>Enter authentication code</source>
         <translation>کد احراز هویت را وارد کنید</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="629"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="731"/>
         <source>New device IP address: %1</source>
         <translation>نشانی IP دستگاه جدید: %1</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="630"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="732"/>
         <source>Do you want to exit?</source>
         <translation>آیا می‌خواهید خارج شوید؟</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="631"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="733"/>
         <source>Exiting will cancel the import account operation.</source>
         <translation>خروج عملیات وارد کردن حساب را لغو خواهد کرد.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="675"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="778"/>
         <source>Choose image file</source>
         <translation>فایل تصویر را انتخاب کنید</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="677"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="780"/>
         <source>Load/Unload</source>
         <translation>بارگیری/فراغ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="678"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="781"/>
         <source>Select An Image to %1</source>
         <translation>یک تصویر را به %1 انتخاب کنید</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="679"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="782"/>
         <source>Edit preference</source>
         <translation>تنظیم اولویت</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="680"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="783"/>
         <source>On/Off</source>
         <translation>فعال کردن / خاموش کردن</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="688"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="791"/>
         <source>Information</source>
         <translation>اطلاعات</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="690"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="793"/>
         <source>Profile</source>
         <translation>نمایه</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="693"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="796"/>
         <source>Enter the account password to confirm the removal of this device</source>
         <translation>رمز عبور حساب را وارد کنید تا تایید حذف این دستگاه کنید</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="699"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="802"/>
         <source>Screens</source>
         <translation>صفحه نمایش</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="700"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="803"/>
         <source>Windows</source>
         <translation>پنجره ها</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="701"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="804"/>
         <source>Screen %1</source>
         <translation>صفحه نمایش %1</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="704"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="807"/>
         <source>QR code</source>
         <translation>کد QR</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="708"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="811"/>
         <source>Link this device to an existing account</source>
         <translation>پیوند این دستگاه به یک حساب کاربری موجود</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="709"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="812"/>
         <source>Import from another device</source>
         <translation>واردات از دستگاه دیگری</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="710"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="813"/>
         <source>Import from an archive backup</source>
         <translation>وارد کردن از یک پشتیبان آرشیو</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="711"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="814"/>
         <source>Advanced features</source>
         <translation>ویژگی‌های پیش‌رفته</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="712"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="815"/>
         <source>Show advanced features</source>
         <translation>ویژگی های پیشرفته را نمایش دهید</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="713"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="816"/>
         <source>Hide advanced features</source>
         <translation>ویژگی های پیشرفته را پنهان کنید</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="720"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="823"/>
         <source>Create new Jami account</source>
         <translation>حساب جدید Jami ایجاد کنید</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="721"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="824"/>
         <source>Create new SIP account</source>
         <translation>ایجاد حساب SIP جدید</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="722"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="825"/>
         <source>About Jami</source>
         <translation>درباره Jami</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="724"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="827"/>
         <source>I already have an account</source>
         <translation>من قبلاً حسابي دارم</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="725"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="828"/>
         <source>Use existing Jami account</source>
         <translation>از حساب Jami موجود استفاده کنید</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="726"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="829"/>
         <source>Welcome to Jami</source>
         <translation>به جمی خوش آمدید</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="730"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="833"/>
         <source>Conversations</source>
         <translation>گفتگو‌ها</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="738"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="841"/>
         <source>Automatically check for updates</source>
         <translation>بررسی خودکار وجود بروزرسانی </translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="503"/>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="742"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="257"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="605"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="845"/>
         <source>Save</source>
         <translation>ذخیره</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="744"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="847"/>
         <source>Upgrade</source>
         <translation>ارتقاء</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="745"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="848"/>
         <source>Later</source>
         <translation>بعدش</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="746"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="849"/>
         <source>Delete</source>
         <translation>حذف</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="749"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="852"/>
         <source>Block</source>
         <translation>مسدود</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="755"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="859"/>
         <source>Set moderator</source>
         <translation>تعیین مدیریت</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="756"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="860"/>
         <source>Unset moderator</source>
         <translation>لغو میدیریت</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="354"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="452"/>
         <source>Maximize</source>
         <translation>به حداکثر رساندن</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="762"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="866"/>
         <source>Local muted</source>
         <translation>محلي خاموش</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="765"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="869"/>
         <source>Default moderators</source>
         <translation>مودراتورهای پیش فرض</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="766"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="870"/>
         <source>Enable local moderators</source>
         <translation>فعال‌سازی مدیران محلی</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="767"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="871"/>
         <source>Make all participants moderators</source>
         <translation>همه شرکت کنندگان را به عنوان مدراتور تبدیل کنید</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="768"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="872"/>
         <source>Add default moderator</source>
         <translation>افزودن مدیر پیش‌فرض</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="770"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="874"/>
         <source>Remove default moderator</source>
         <translation>حذف مدراتور پیش فرض</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="777"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="881"/>
         <source>Add emoji</source>
         <translation>شکلک اضافه کنید</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="779"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="883"/>
         <source>Send file</source>
         <translation>ارسال فایل</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="802"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="906"/>
         <source>Send</source>
         <translation>ارسال</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="506"/>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="747"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="608"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="850"/>
         <source>Remove</source>
         <translation>حذف کن</translation>
     </message>
@@ -3815,92 +4404,92 @@ Please confirm the import on the new device.</source>
         <translation>مکالمه مهاجرت</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="515"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="617"/>
         <source>Show notifications</source>
         <translation>اطلاعیه ها را نمایش دهید</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="516"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="618"/>
         <source>Minimize on close</source>
         <translation>حداقل کردن نزدیک</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="518"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="620"/>
         <source>Run at system startup</source>
         <translation>در زمان راه اندازی سیستم اجرا کنید</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="604"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="706"/>
         <source>Create account from backup</source>
         <translation>از پشتیبان حساب ایجاد کنید</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="605"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="707"/>
         <source>Restore account from backup</source>
         <translation>حساب را از پشتیبان بازگردانید</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="608"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="710"/>
         <source>Import Jami account from local archive file.</source>
         <translation>حساب جمي رو از پرونده آرشیو محلی وارد کن</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="809"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="913"/>
         <source>Write to %1</source>
         <translation>به %1 بنویسید</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="837"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="941"/>
         <source>Member</source>
         <translation>عضو</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="847"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="951"/>
         <source>Ignore all notifications from this conversation</source>
         <translation>تمام اطلاعیه ها رو از اين مکالمه نادیده بگير</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="857"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="961"/>
         <source>Go to conversation</source>
         <translation>برو به مکالمه</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="860"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="964"/>
         <source>Administrator</source>
         <translation>مدیر</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="861"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="965"/>
         <source>Invited</source>
         <translation>دعوت شده</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="862"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="966"/>
         <source>Remove member</source>
         <translation>عضو را حذف کنید</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="863"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="967"/>
         <source>To:</source>
         <translation>به:</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="866"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="970"/>
         <source>Customize</source>
         <translation>تنظیم</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="868"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="972"/>
         <source>Dismiss</source>
         <translation> رد‌کردن</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="869"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="973"/>
         <source>Add profile picture and nickname to complete your profile</source>
         <translation>برای کامل کردن نمایه خود، تصویر نمایه و نام مستعار اضافه کنید</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="870"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="974"/>
         <source>Your profile is only shared with your contacts</source>
         <translation>نمایه شما تنها با مخاطبانتان هم‌رسانی می‌شود</translation>
     </message>
@@ -3936,11 +4525,6 @@ Please confirm the import on the new device.</source>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="121"/>
         <source>Accept call</source>
         <translation>قبول تماس</translation>
-    </message>
-    <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="133"/>
-        <source>Full screen</source>
-        <translation>تمام صفحه</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="65"/>
@@ -4021,6 +4605,11 @@ Please confirm the import on the new device.</source>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="129"/>
         <source>Decline call</source>
         <translation>رد کردن تماس</translation>
+    </message>
+    <message>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="133"/>
+        <source>Toggle full screen</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="137"/>
@@ -4121,17 +4710,17 @@ Please confirm the import on the new device.</source>
 <context>
     <name>MainApplication</name>
     <message>
-        <location filename="../src/app/mainapplication.cpp" line="483"/>
+        <location filename="../src/app/mainapplication.cpp" line="503"/>
         <source>E&amp;xit</source>
         <translation>E&amp;xit</translation>
     </message>
     <message>
-        <location filename="../src/app/mainapplication.cpp" line="485"/>
+        <location filename="../src/app/mainapplication.cpp" line="505"/>
         <source>&amp;Quit</source>
         <translation>و ترک</translation>
     </message>
     <message>
-        <location filename="../src/app/mainapplication.cpp" line="491"/>
+        <location filename="../src/app/mainapplication.cpp" line="511"/>
         <source>&amp;Show Jami</source>
         <translation>&amp;Show Jami</translation>
     </message>
@@ -4139,12 +4728,12 @@ Please confirm the import on the new device.</source>
 <context>
     <name>PositionManager</name>
     <message>
-        <location filename="../src/app/positionmanager.cpp" line="401"/>
+        <location filename="../src/app/positionmanager.cpp" line="400"/>
         <source>%1 is sharing their location</source>
         <translation>%1 در حال اشتراک‌گذاری موقعیت خود است</translation>
     </message>
     <message>
-        <location filename="../src/app/positionmanager.cpp" line="406"/>
+        <location filename="../src/app/positionmanager.cpp" line="405"/>
         <source>Location sharing</source>
         <translation>اشتراک گذاری مکان</translation>
     </message>
@@ -4165,505 +4754,496 @@ Please confirm the import on the new device.</source>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../src/libclient/qtwrapper/callmanager_wrap.h" line="402"/>
+        <location filename="../src/qtwrapper/callmanager_wrap.h" line="402"/>
         <source>Me</source>
         <translation>من</translation>
     </message>
     <message>
-        <location filename="../src/libclient/api/call.h" line="61"/>
+        <location filename="../src/core/api/call.h" line="61"/>
         <source>Hold</source>
         <translation>نگه داشتن</translation>
     </message>
     <message>
-        <location filename="../src/libclient/api/call.h" line="63"/>
+        <location filename="../src/core/api/call.h" line="63"/>
         <source>Talking</source>
         <translation>در حال صحبت</translation>
     </message>
     <message>
-        <location filename="../src/libclient/api/call.h" line="65"/>
+        <location filename="../src/core/api/call.h" line="65"/>
         <source>ERROR</source>
         <translation>خطا</translation>
     </message>
     <message>
-        <location filename="../src/libclient/api/call.h" line="67"/>
+        <location filename="../src/core/api/call.h" line="67"/>
         <source>Incoming</source>
         <translation>تماس ورودی</translation>
     </message>
     <message>
-        <location filename="../src/libclient/api/call.h" line="69"/>
+        <location filename="../src/core/api/call.h" line="69"/>
         <source>Calling</source>
         <translation>در حال تماس</translation>
     </message>
     <message>
-        <location filename="../src/libclient/api/call.h" line="71"/>
+        <location filename="../src/core/api/call.h" line="71"/>
         <source>Connecting</source>
         <translation>در حال اتصال</translation>
     </message>
     <message>
-        <location filename="../src/libclient/api/call.h" line="73"/>
+        <location filename="../src/core/api/call.h" line="73"/>
         <source>Searching</source>
         <translation>در حال  جستجو</translation>
     </message>
     <message>
-        <location filename="../src/libclient/api/call.h" line="75"/>
+        <location filename="../src/core/api/call.h" line="75"/>
         <source>Inactive</source>
         <translation>غیر فعال</translation>
     </message>
     <message>
-        <location filename="../src/libclient/api/call.h" line="77"/>
-        <location filename="../src/libclient/api/call.h" line="83"/>
+        <location filename="../src/core/api/call.h" line="77"/>
+        <location filename="../src/core/api/call.h" line="83"/>
         <source>Finished</source>
         <translation>پایان یافته</translation>
     </message>
     <message>
-        <location filename="../src/libclient/api/call.h" line="79"/>
+        <location filename="../src/core/api/call.h" line="79"/>
         <source>Timeout</source>
         <translation>انقضا</translation>
     </message>
     <message>
-        <location filename="../src/libclient/api/call.h" line="81"/>
+        <location filename="../src/core/api/call.h" line="81"/>
         <source>Peer busy</source>
         <translation>همتا مشغول</translation>
     </message>
     <message>
-        <location filename="../src/libclient/api/call.h" line="85"/>
+        <location filename="../src/core/api/call.h" line="85"/>
         <source>Communication established</source>
         <translation>ارتباط برقرار شد.</translation>
     </message>
     <message>
-        <location filename="../src/libclient/authority/storagehelper.cpp" line="480"/>
+        <location filename="../src/core/authority/storagehelper.cpp" line="481"/>
         <source>Invitation received</source>
         <translation>دعوت نامه دریافت شد</translation>
     </message>
     <message>
-        <location filename="../src/libclient/api/interaction.h" line="275"/>
-        <location filename="../src/libclient/api/interaction.h" line="293"/>
-        <location filename="../src/libclient/api/interaction.h" line="295"/>
-        <location filename="../src/libclient/authority/storagehelper.cpp" line="477"/>
+        <location filename="../src/core/api/interaction.h" line="275"/>
+        <location filename="../src/core/api/interaction.h" line="293"/>
+        <location filename="../src/core/api/interaction.h" line="295"/>
+        <location filename="../src/core/authority/storagehelper.cpp" line="478"/>
         <source>Contact added</source>
         <translation>مخاطب افزوده شد</translation>
     </message>
     <message>
-        <location filename="../src/libclient/interaction.cpp" line="88"/>
+        <location filename="../src/core/interaction.cpp" line="88"/>
         <source>Private conversation created</source>
         <translation>گفتگوی خصوصی ایجاد شد</translation>
     </message>
     <message>
-        <location filename="../src/libclient/interaction.cpp" line="90"/>
+        <location filename="../src/core/interaction.cpp" line="90"/>
         <source>Group conversation created</source>
         <translation>گفتگوی گروهی ایجاد شد</translation>
     </message>
     <message>
-        <location filename="../src/libclient/api/interaction.h" line="277"/>
+        <location filename="../src/core/api/interaction.h" line="277"/>
         <source>%1 was invited to join the conversation.</source>
         <translation>%1 برای پیوستن به گفتگو دعوت شد.</translation>
     </message>
     <message>
-        <location filename="../src/libclient/api/interaction.h" line="280"/>
+        <location filename="../src/core/api/interaction.h" line="280"/>
         <source>You joined the conversation.</source>
         <translation>شما به گفتگو پیوستید.</translation>
     </message>
     <message>
-        <location filename="../src/libclient/api/interaction.h" line="282"/>
+        <location filename="../src/core/api/interaction.h" line="282"/>
         <source>%1 has joined the conversation.</source>
         <translation>%1 به گفتگو پیوست.</translation>
     </message>
     <message>
-        <location filename="../src/libclient/api/interaction.h" line="285"/>
+        <location filename="../src/core/api/interaction.h" line="285"/>
         <source>You left the conversation.</source>
         <translation>شما گفتگو را ترک کردید.</translation>
     </message>
     <message>
-        <location filename="../src/libclient/api/interaction.h" line="287"/>
+        <location filename="../src/core/api/interaction.h" line="287"/>
         <source>%1 has left the conversation.</source>
         <translation>%1 گفتگو را ترک کرد.</translation>
     </message>
     <message>
-        <location filename="../src/libclient/api/interaction.h" line="289"/>
+        <location filename="../src/core/api/interaction.h" line="289"/>
         <source>%1 was blocked from the conversation.</source>
         <translation>%1 از گفتگو مسدود شد.</translation>
     </message>
     <message>
-        <location filename="../src/libclient/api/interaction.h" line="291"/>
+        <location filename="../src/core/api/interaction.h" line="291"/>
         <source>%1 was unblocked from the conversation.</source>
         <translation>%1 از گفتگو رفع مسدودیت شد.</translation>
     </message>
     <message>
-        <location filename="../src/libclient/api/interaction.h" line="312"/>
+        <location filename="../src/core/api/interaction.h" line="312"/>
         <source>%L4d %L3h %L2m %L1s</source>
         <translation>%L4ر %L3س %L2د %L1ث</translation>
     </message>
     <message>
-        <location filename="../src/libclient/api/interaction.h" line="315"/>
+        <location filename="../src/core/api/interaction.h" line="315"/>
         <source>%L3h %L2m %L1s</source>
         <translation>%L3س %L2د %L1ث</translation>
     </message>
     <message>
-        <location filename="../src/libclient/api/interaction.h" line="317"/>
+        <location filename="../src/core/api/interaction.h" line="317"/>
         <source>%L2m %L1s</source>
         <translation>%L2د %L1ث</translation>
     </message>
     <message>
-        <location filename="../src/libclient/api/interaction.h" line="319"/>
+        <location filename="../src/core/api/interaction.h" line="319"/>
         <source>%L1s</source>
         <translation>%L1ث</translation>
     </message>
     <message>
-        <location filename="../src/libclient/api/interaction.h" line="335"/>
+        <location filename="../src/core/api/interaction.h" line="335"/>
         <source>Call declined</source>
         <translation>تماس رد شد</translation>
     </message>
     <message>
-        <location filename="../src/libclient/api/interaction.h" line="337"/>
+        <location filename="../src/core/api/interaction.h" line="337"/>
         <source>Unreachable peer</source>
         <translation>همتای در دسترس‌نبودن</translation>
     </message>
     <message>
-        <location filename="../src/libclient/api/interaction.h" line="342"/>
-        <location filename="../src/libclient/api/interaction.h" line="348"/>
+        <location filename="../src/core/api/interaction.h" line="342"/>
+        <location filename="../src/core/api/interaction.h" line="348"/>
         <source>Outgoing call</source>
         <translation>تماس خروجی</translation>
     </message>
     <message>
-        <location filename="../src/libclient/api/interaction.h" line="344"/>
-        <location filename="../src/libclient/api/interaction.h" line="354"/>
+        <location filename="../src/core/api/interaction.h" line="344"/>
+        <location filename="../src/core/api/interaction.h" line="354"/>
         <source>Incoming call</source>
         <translation>تماس ورودی</translation>
     </message>
     <message>
-        <location filename="../src/libclient/api/interaction.h" line="350"/>
+        <location filename="../src/core/api/interaction.h" line="350"/>
         <source>Missed outgoing call</source>
         <translation>تماس خروجی بی پاسخ</translation>
     </message>
     <message>
-        <location filename="../src/libclient/api/interaction.h" line="356"/>
+        <location filename="../src/core/api/interaction.h" line="356"/>
         <source>Missed incoming call</source>
         <translation>تماس ورودی بی پاسخ</translation>
     </message>
     <message>
-        <location filename="../src/libclient/api/interaction.h" line="466"/>
+        <location filename="../src/core/api/interaction.h" line="466"/>
         <source>Join call</source>
         <translation>پیوستن به تماس</translation>
     </message>
     <message>
-        <location filename="../src/libclient/api/interaction.h" line="476"/>
+        <location filename="../src/core/api/interaction.h" line="476"/>
         <source>(Profile updated)</source>
         <translation>(نمایه به‌روز شد)</translation>
     </message>
     <message>
-        <location filename="../src/libclient/authority/storagehelper.cpp" line="482"/>
+        <location filename="../src/core/authority/storagehelper.cpp" line="483"/>
         <source>Invitation accepted</source>
         <translation>دعوت پذیرفته شد</translation>
     </message>
     <message>
-        <location filename="../src/libclient/avmodel.cpp" line="384"/>
-        <location filename="../src/libclient/avmodel.cpp" line="421"/>
+        <location filename="../src/core/avmodel.cpp" line="384"/>
+        <location filename="../src/core/avmodel.cpp" line="421"/>
         <source>default</source>
         <translation>پیش فرض</translation>
     </message>
     <message>
-        <location filename="../src/libclient/avmodel.cpp" line="486"/>
-        <source>auto</source>
-        <translation>خودکار</translation>
-    </message>
-    <message>
-        <location filename="../src/libclient/avmodel.cpp" line="487"/>
-        <location filename="../src/libclient/avmodel.cpp" line="503"/>
+        <location filename="../src/app/audioconfiglistmodel.h" line="52"/>
         <source>System (if available)</source>
         <translation>سیستم (در صورت در دسترس بودن)</translation>
     </message>
     <message>
-        <location filename="../src/libclient/avmodel.cpp" line="489"/>
-        <location filename="../src/libclient/avmodel.cpp" line="505"/>
+        <location filename="../src/app/audioconfiglistmodel.h" line="53"/>
         <source>Built-in</source>
         <translation>داخلی</translation>
     </message>
     <message>
-        <location filename="../src/libclient/avmodel.cpp" line="491"/>
-        <location filename="../src/libclient/avmodel.cpp" line="507"/>
+        <location filename="../src/app/audioconfiglistmodel.h" line="51"/>
         <source>Auto (default)</source>
         <translation>خودکار (پیش‌فرض)</translation>
     </message>
     <message>
-        <location filename="../src/libclient/avmodel.cpp" line="493"/>
-        <location filename="../src/libclient/avmodel.cpp" line="509"/>
+        <location filename="../src/app/audioconfiglistmodel.h" line="54"/>
         <source>Disabled</source>
         <translation>غیرفعال</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="72"/>
+        <location filename="../src/core/callmodel.cpp" line="72"/>
         <source>Null</source>
         <translation>خالی</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="73"/>
+        <location filename="../src/core/callmodel.cpp" line="73"/>
         <source>Trying</source>
         <translation>در حال تلاش</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="74"/>
+        <location filename="../src/core/callmodel.cpp" line="74"/>
         <source>Ringing</source>
         <translation>در حال زنگ خوردن</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="75"/>
+        <location filename="../src/core/callmodel.cpp" line="75"/>
         <source>Being Forwarded</source>
         <translation>فرستاده شده است</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="76"/>
+        <location filename="../src/core/callmodel.cpp" line="76"/>
         <source>Queued</source>
         <translation>در صف</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="77"/>
+        <location filename="../src/core/callmodel.cpp" line="77"/>
         <source>Progress</source>
         <translation>در جریان</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="78"/>
+        <location filename="../src/core/callmodel.cpp" line="78"/>
         <source>OK</source>
         <translation>خب</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="79"/>
+        <location filename="../src/core/callmodel.cpp" line="79"/>
         <source>Accepted</source>
         <translation>پذیرفته‌شده</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="80"/>
+        <location filename="../src/core/callmodel.cpp" line="80"/>
         <source>Multiple Choices</source>
         <translation>چندین انتخاب</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="81"/>
+        <location filename="../src/core/callmodel.cpp" line="81"/>
         <source>Moved Permanently</source>
         <translation>برای همیشه منتقل شد</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="82"/>
+        <location filename="../src/core/callmodel.cpp" line="82"/>
         <source>Moved Temporarily</source>
         <translation>به طور موقت منتقل شد</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="83"/>
+        <location filename="../src/core/callmodel.cpp" line="83"/>
         <source>Use Proxy</source>
         <translation>استفاده از پروکسی</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="84"/>
+        <location filename="../src/core/callmodel.cpp" line="84"/>
         <source>Alternative Service</source>
         <translation>سرویس جایگزین</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="85"/>
+        <location filename="../src/core/callmodel.cpp" line="85"/>
         <source>Bad Request</source>
         <translation>درخواست بی‌اعتبار</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="86"/>
+        <location filename="../src/core/callmodel.cpp" line="86"/>
         <source>Unauthorized</source>
         <translation>غیرمجاز</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="87"/>
+        <location filename="../src/core/callmodel.cpp" line="87"/>
         <source>Payment Required</source>
         <translation>مستلزم پرداخت</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="88"/>
+        <location filename="../src/core/callmodel.cpp" line="88"/>
         <source>Forbidden</source>
         <translation>ممنوع</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="89"/>
+        <location filename="../src/core/callmodel.cpp" line="89"/>
         <source>Not Found</source>
         <translation>یافت نشد</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="90"/>
+        <location filename="../src/core/callmodel.cpp" line="90"/>
         <source>Method Not Allowed</source>
         <translation>روش مجاز نمی‌باشد</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="91"/>
-        <location filename="../src/libclient/callmodel.cpp" line="111"/>
+        <location filename="../src/core/callmodel.cpp" line="91"/>
+        <location filename="../src/core/callmodel.cpp" line="111"/>
         <source>Not Acceptable</source>
         <translation>قابل‌قبول نیست</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="92"/>
+        <location filename="../src/core/callmodel.cpp" line="92"/>
         <source>Proxy Authentication Required</source>
         <translation>احراز هویت پروکسی مورد نیاز است</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="93"/>
+        <location filename="../src/core/callmodel.cpp" line="93"/>
         <source>Request Timeout</source>
         <translation>زمان انقضای درخواست</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="94"/>
+        <location filename="../src/core/callmodel.cpp" line="94"/>
         <source>Gone</source>
         <translation>از بین رفته</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="95"/>
+        <location filename="../src/core/callmodel.cpp" line="95"/>
         <source>Request Entity Too Large</source>
         <translation>درخواست بیش‌از‌حد بزرگ</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="96"/>
+        <location filename="../src/core/callmodel.cpp" line="96"/>
         <source>Request URI Too Long</source>
         <translation>درخواست URI بیش از حد طولانی</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="97"/>
+        <location filename="../src/core/callmodel.cpp" line="97"/>
         <source>Unsupported Media Type</source>
         <translation>نوع رسانه پشتیبانی‌نشده</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="98"/>
+        <location filename="../src/core/callmodel.cpp" line="98"/>
         <source>Unsupported URI Scheme</source>
         <translation>طرح URI پشتیبانی‌نشده</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="99"/>
+        <location filename="../src/core/callmodel.cpp" line="99"/>
         <source>Bad Extension</source>
         <translation>افزونه بی‌اعتبار</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="100"/>
+        <location filename="../src/core/callmodel.cpp" line="100"/>
         <source>Extension Required</source>
         <translation>افزونه مورد‌نیاز است</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="101"/>
+        <location filename="../src/core/callmodel.cpp" line="101"/>
         <source>Session Timer Too Small</source>
         <translation>زمان‌سنج جلسه خیلی کوچک است</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="102"/>
+        <location filename="../src/core/callmodel.cpp" line="102"/>
         <source>Interval Too Brief</source>
         <translation>بازه زمانی خیلی کوتاه</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="103"/>
+        <location filename="../src/core/callmodel.cpp" line="103"/>
         <source>Temporarily Unavailable</source>
         <translation>به طور موقت در‌دسترس نیست</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="104"/>
+        <location filename="../src/core/callmodel.cpp" line="104"/>
         <source>Call TSX Does Not Exist</source>
         <translation>TSX تماس وجود ندارد</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="105"/>
+        <location filename="../src/core/callmodel.cpp" line="105"/>
         <source>Loop Detected</source>
         <translation>حلقه شناسایی شد</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="106"/>
+        <location filename="../src/core/callmodel.cpp" line="106"/>
         <source>Too Many Hops</source>
         <translation>تعداد بیش‌از‌حد پرش (گام)</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="107"/>
+        <location filename="../src/core/callmodel.cpp" line="107"/>
         <source>Address Incomplete</source>
         <translation>آدرس ناقص</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="108"/>
+        <location filename="../src/core/callmodel.cpp" line="108"/>
         <source>Ambiguous</source>
         <translation>مبهم</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="125"/>
+        <location filename="../src/core/callmodel.cpp" line="125"/>
         <source>Call Declined</source>
         <translation>تماس رد شد</translation>
     </message>
     <message>
-        <location filename="../src/libclient/api/interaction.h" line="333"/>
-        <location filename="../src/libclient/callmodel.cpp" line="109"/>
+        <location filename="../src/core/api/interaction.h" line="333"/>
+        <location filename="../src/core/callmodel.cpp" line="109"/>
         <source>Busy</source>
         <translation>مشغول</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="110"/>
+        <location filename="../src/core/callmodel.cpp" line="110"/>
         <source>Request Terminated</source>
         <translation>درخواست خاتمه یافت</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="112"/>
+        <location filename="../src/core/callmodel.cpp" line="112"/>
         <source>Bad Event</source>
         <translation>رویداد بی‌اعتبار</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="113"/>
+        <location filename="../src/core/callmodel.cpp" line="113"/>
         <source>Request Updated</source>
         <translation>درخواست به‌روز شد</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="114"/>
+        <location filename="../src/core/callmodel.cpp" line="114"/>
         <source>Request Pending</source>
         <translation>درخواست در‌انتظار</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="115"/>
+        <location filename="../src/core/callmodel.cpp" line="115"/>
         <source>Undecipherable</source>
         <translation>غیرقابل رمز‌گشایی</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="116"/>
+        <location filename="../src/core/callmodel.cpp" line="116"/>
         <source>Internal Server Error</source>
         <translation>خطای داخلی سرور</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="117"/>
+        <location filename="../src/core/callmodel.cpp" line="117"/>
         <source>Not Implemented</source>
         <translation>پیاه‌سازی نشده</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="118"/>
+        <location filename="../src/core/callmodel.cpp" line="118"/>
         <source>Bad Gateway</source>
         <translation>دروازه بی‌اعتبار</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="119"/>
+        <location filename="../src/core/callmodel.cpp" line="119"/>
         <source>Service Unavailable</source>
         <translation>سرویس غیر‌قابل‌دسترس</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="120"/>
+        <location filename="../src/core/callmodel.cpp" line="120"/>
         <source>Server Timeout</source>
         <translation>انقضای سرور</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="121"/>
+        <location filename="../src/core/callmodel.cpp" line="121"/>
         <source>Version Not Supported</source>
         <translation>این نسخه پشتیبانی نمی‌شود</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="122"/>
+        <location filename="../src/core/callmodel.cpp" line="122"/>
         <source>Message Too Large</source>
         <translation>پیام بیش‌از‌حد بزرگ</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="123"/>
+        <location filename="../src/core/callmodel.cpp" line="123"/>
         <source>Precondition Failure</source>
         <translation>پیش‌شرط ناموفق</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="124"/>
+        <location filename="../src/core/callmodel.cpp" line="124"/>
         <source>Busy Everywhere</source>
         <translation>همه‌جا مشغول</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="126"/>
+        <location filename="../src/core/callmodel.cpp" line="126"/>
         <source>Does Not Exist Anywhere</source>
         <translation>هیچ‌جایی وجود ندارد</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="127"/>
+        <location filename="../src/core/callmodel.cpp" line="127"/>
         <source>Not Acceptable Anywhere</source>
         <translation>هیچ‎‌جا قابل قبول نیست</translation>
     </message>
@@ -4698,38 +5278,38 @@ Please confirm the import on the new device.</source>
         <translation>موقعیت سرویس نامعلومخطای</translation>
     </message>
     <message>
-        <location filename="../src/libclient/conversationmodel.cpp" line="1138"/>
-        <location filename="../src/libclient/conversationmodel.cpp" line="1151"/>
+        <location filename="../src/core/conversationmodel.cpp" line="1071"/>
+        <location filename="../src/core/conversationmodel.cpp" line="1084"/>
         <source>%1 (you)</source>
         <translation>%1 (شما)</translation>
     </message>
     <message>
-        <location filename="../src/app/utils.cpp" line="587"/>
+        <location filename="../src/app/utils.cpp" line="599"/>
         <source>We would like to thank our contributors, whose efforts over many years have made this software what it is.</source>
         <translation> مایلیم از مشارکت‌کنندگان خود تشکر کنیم، که تلاش‌هایشان طی سالیان متمادی این نرم‌افزار را به جایگاه کنونی رسانده است .</translation>
     </message>
     <message>
-        <location filename="../src/app/utils.cpp" line="589"/>
+        <location filename="../src/app/utils.cpp" line="601"/>
         <source>Developers</source>
         <translation>توسعه دهندگان</translation>
     </message>
     <message>
-        <location filename="../src/app/utils.cpp" line="590"/>
+        <location filename="../src/app/utils.cpp" line="602"/>
         <source>Media</source>
         <translation>رسانه</translation>
     </message>
     <message>
-        <location filename="../src/app/utils.cpp" line="591"/>
+        <location filename="../src/app/utils.cpp" line="603"/>
         <source>Community Management</source>
         <translation>Community Management</translation>
     </message>
     <message>
-        <location filename="../src/app/utils.cpp" line="592"/>
+        <location filename="../src/app/utils.cpp" line="604"/>
         <source>Special thanks to</source>
         <translation>سپاس ویژه از</translation>
     </message>
     <message>
-        <location filename="../src/app/utils.cpp" line="593"/>
+        <location filename="../src/app/utils.cpp" line="605"/>
         <source>This is a list of people who have made a significant investment of time, with useful results, into Jami. Any such contributors who want to be added to the list should contact us.</source>
         <translation>این فهرستی از افرادی است که زمان قابل توجهی را با نتایج مفید در Jami سرمایه‌گذاری کرده‌اند. هر یک از این مشارکت‌کنندگان که می‌خواهند به فهرست افزوده شوند باید با ما تماس بگیرند.</translation>
     </message>
@@ -4739,32 +5319,32 @@ Please confirm the import on the new device.</source>
         <translation>شناسه دستگاه جدید ناشناخته است. لطفاً دستورالعمل‌های بالا را دنبال کنید.</translation>
     </message>
     <message>
-        <location filename="../src/libclient/api/account.h" line="238"/>
+        <location filename="../src/core/api/account.h" line="238"/>
         <source>An authentication error occurred while linking the device. Please check credentials and try again.</source>
         <translation>هنگام پیوند دادن دستگاه خطای احراز هویت رخ داد. لطفاً اطلاعات ورود را بررسی کرده و دوباره تلاش کنید.</translation>
     </message>
     <message>
-        <location filename="../src/libclient/api/account.h" line="241"/>
+        <location filename="../src/core/api/account.h" line="241"/>
         <source>A network error occurred while linking the account. Please verify your connection and try again.</source>
         <translation>هنگام پیوند دادن حساب خطای شبکه‌ای رخ داد. لطفاً اتصال خود را بررسی کرده و دوباره تلاش کنید.</translation>
     </message>
     <message>
-        <location filename="../src/libclient/api/account.h" line="244"/>
+        <location filename="../src/core/api/account.h" line="244"/>
         <source>The operation timed out. Please try again.</source>
         <translation>زمان عملیات به پایان رسید. لطفاً دوباره تلاش کنید.</translation>
     </message>
     <message>
-        <location filename="../src/libclient/api/account.h" line="246"/>
+        <location filename="../src/core/api/account.h" line="246"/>
         <source>An error occurred while exporting the account. Please try again.</source>
         <translation>هنگام صدور حساب خطایی رخ داد. لطفاً دوباره تلاش کنید.</translation>
     </message>
     <message>
-        <location filename="../src/libclient/api/account.h" line="248"/>
+        <location filename="../src/core/api/account.h" line="248"/>
         <source>The operation was canceled by the user.</source>
         <translation>عملیات توسط کاربر لغو شد.</translation>
     </message>
     <message>
-        <location filename="../src/libclient/api/account.h" line="251"/>
+        <location filename="../src/core/api/account.h" line="251"/>
         <source>An unexpected error occurred while linking the device. Please try again.</source>
         <translation>هنگام پیوند دادن دستگاه خطایی غیرمنتظره رخ داد. لطفاً دوباره تلاش کنید.</translation>
     </message>
@@ -4772,22 +5352,22 @@ Please confirm the import on the new device.</source>
 <context>
     <name>SmartListModel</name>
     <message>
-        <location filename="../src/app/smartlistmodel.cpp" line="52"/>
-        <location filename="../src/app/smartlistmodel.cpp" line="89"/>
-        <location filename="../src/app/smartlistmodel.cpp" line="95"/>
-        <location filename="../src/app/smartlistmodel.cpp" line="137"/>
-        <location filename="../src/app/smartlistmodel.cpp" line="166"/>
-        <location filename="../src/app/smartlistmodel.cpp" line="167"/>
+        <location filename="../src/app/smartlistmodel.cpp" line="62"/>
+        <location filename="../src/app/smartlistmodel.cpp" line="107"/>
+        <location filename="../src/app/smartlistmodel.cpp" line="113"/>
+        <location filename="../src/app/smartlistmodel.cpp" line="156"/>
+        <location filename="../src/app/smartlistmodel.cpp" line="186"/>
+        <location filename="../src/app/smartlistmodel.cpp" line="187"/>
         <source>Calls</source>
         <translation>تماس‌ها</translation>
     </message>
     <message>
-        <location filename="../src/app/smartlistmodel.cpp" line="53"/>
-        <location filename="../src/app/smartlistmodel.cpp" line="90"/>
-        <location filename="../src/app/smartlistmodel.cpp" line="103"/>
-        <location filename="../src/app/smartlistmodel.cpp" line="138"/>
-        <location filename="../src/app/smartlistmodel.cpp" line="168"/>
-        <location filename="../src/app/smartlistmodel.cpp" line="169"/>
+        <location filename="../src/app/smartlistmodel.cpp" line="63"/>
+        <location filename="../src/app/smartlistmodel.cpp" line="108"/>
+        <location filename="../src/app/smartlistmodel.cpp" line="121"/>
+        <location filename="../src/app/smartlistmodel.cpp" line="157"/>
+        <location filename="../src/app/smartlistmodel.cpp" line="188"/>
+        <location filename="../src/app/smartlistmodel.cpp" line="189"/>
         <source>Contacts</source>
         <translation>مخاطبان</translation>
     </message>
@@ -4964,17 +5544,17 @@ Please confirm the import on the new device.</source>
 <context>
     <name>UtilsAdapter</name>
     <message>
-        <location filename="../src/app/utilsadapter.cpp" line="351"/>
+        <location filename="../src/app/utilsadapter.cpp" line="359"/>
         <source>%1 Mbps</source>
         <translation>%1 مگابیت در ثانی</translation>
     </message>
     <message>
-        <location filename="../src/app/utilsadapter.cpp" line="351"/>
+        <location filename="../src/app/utilsadapter.cpp" line="359"/>
         <source>Default</source>
         <translation>پیش فرض</translation>
     </message>
     <message>
-        <location filename="../src/app/utilsadapter.cpp" line="543"/>
+        <location filename="../src/app/utilsadapter.cpp" line="551"/>
         <source>System</source>
         <translation>سیستم</translation>
     </message>
@@ -4982,22 +5562,22 @@ Please confirm the import on the new device.</source>
 <context>
     <name>lrc::ContactModelPimpl</name>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="488"/>
+        <location filename="../src/core/contactmodel.cpp" line="488"/>
         <source>Searching…</source>
         <translation>در حال جستجو...</translation>
     </message>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="955"/>
+        <location filename="../src/core/contactmodel.cpp" line="955"/>
         <source>Invalid ID</source>
         <translation>شناسهٔ نامعتبر</translation>
     </message>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="958"/>
+        <location filename="../src/core/contactmodel.cpp" line="958"/>
         <source>Username not found</source>
         <translation>نام کاربری پیدا نشد</translation>
     </message>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="961"/>
+        <location filename="../src/core/contactmodel.cpp" line="961"/>
         <source>Unable to lookup…</source>
         <translation>امکان جستجو وجود ندارد…</translation>
     </message>
@@ -5005,9 +5585,22 @@ Please confirm the import on the new device.</source>
 <context>
     <name>lrc::api::ContactModel</name>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="452"/>
+        <location filename="../src/core/contactmodel.cpp" line="452"/>
         <source>Bad URI scheme</source>
         <translation>شمای نشانی بد</translation>
+    </message>
+</context>
+<context>
+    <name>lrc::api::ConversationModel</name>
+    <message>
+        <location filename="../src/core/conversationmodel.cpp" line="339"/>
+        <source>Deleted media</source>
+        <translation type="unfinished">رسانه حذف‌شده</translation>
+    </message>
+    <message>
+        <location filename="../src/core/conversationmodel.cpp" line="353"/>
+        <source>(deleted message)</source>
+        <translation type="unfinished">(پیام حذف‌شده)</translation>
     </message>
 </context>
 </TS>
