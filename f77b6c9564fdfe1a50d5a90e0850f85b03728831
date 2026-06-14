@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "03ba940c_81ee71f6",
+        "filename": "translations/jami_client_qt_ar.ts",
+        "patchSetId": 1
+      },
+      "lineNbr": 1114,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-14T12:42:20Z",
+      "side": 1,
+      "message": "Line 1114: 🟡 Suggestion: The plural string `%L1 unread messages.` is translated identically to the singular form on line 1113. This can produce unnatural or misleading accessibility text for counts greater than one. Consider using a plural wording, for example: `\u003ctranslation\u003e%L1 رسائل غير مقروءة.\u003c/translation\u003e`.",
+      "revId": "f77b6c9564fdfe1a50d5a90e0850f85b03728831",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
