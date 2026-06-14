@@ -1891,7 +1891,7 @@ verbinding maakt om het gesprek te synchroniseren…</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="326"/>
         <source>Screenshot saved to %1</source>
-        <translation>Screenshot opgeslagen op % 1</translation>
+        <translation>Screenshot opgeslagen op %1</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="330"/>
@@ -3600,7 +3600,7 @@ Bevestig de import op het nieuwe apparaat.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="678"/>
         <source>Select An Image to %1</source>
-        <translation>Selecteer een afbeelding naar % 1</translation>
+        <translation>Selecteer een afbeelding naar %1</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="679"/>
