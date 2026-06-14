@@ -37,12 +37,12 @@
     <message>
         <location filename="../src/app/conversationlistmodelbase.cpp" line="127"/>
         <source>Deleted media</source>
-        <translation type="unfinished"/>
+        <translation>삭제된 미디어</translation>
     </message>
     <message>
         <location filename="../src/app/conversationlistmodelbase.cpp" line="142"/>
         <source>(deleted message)</source>
-        <translation type="unfinished"/>
+        <translation>(삭제된 메시지)</translation>
     </message>
 </context>
 <context>
@@ -50,12 +50,12 @@
     <message>
         <location filename="../src/app/conversationsadapter.cpp" line="177"/>
         <source>%1 has joined the conversation.</source>
-        <translation type="unfinished"/>
+        <translation>%1 님이 대화에 참여했습니다.</translation>
     </message>
     <message>
         <location filename="../src/app/conversationsadapter.cpp" line="179"/>
         <source>%1 has left the conversation.</source>
-        <translation type="unfinished"/>
+        <translation>%1 님이 대화에서 나갔습니다.</translation>
     </message>
     <message>
         <location filename="../src/app/conversationsadapter.cpp" line="196"/>
@@ -65,7 +65,7 @@
     <message>
         <location filename="../src/app/conversationsadapter.cpp" line="249"/>
         <source>%1 received a new invitation</source>
-        <translation type="unfinished"/>
+        <translation>%1 님이 새 초대를 받았습니다</translation>
     </message>
 </context>
 <context>
@@ -101,27 +101,27 @@
     <message>
         <location filename="../src/app/currentconversation.cpp" line="306"/>
         <source>An error occurred while fetching this repository.</source>
-        <translation type="unfinished"/>
+        <translation>이 저장소를 가져오는 중 오류가 발생했습니다.</translation>
     </message>
     <message>
         <location filename="../src/app/currentconversation.cpp" line="308"/>
         <source>Unrecognized conversation mode.</source>
-        <translation type="unfinished"/>
+        <translation>인식할 수 없는 대화 모드입니다.</translation>
     </message>
     <message>
         <location filename="../src/app/currentconversation.cpp" line="310"/>
         <source>An invalid message was detected.</source>
-        <translation type="unfinished"/>
+        <translation>잘못된 메시지가 감지되었습니다.</translation>
     </message>
     <message>
         <location filename="../src/app/currentconversation.cpp" line="312"/>
         <source>Insufficient permission to update conversation information.</source>
-        <translation type="unfinished"/>
+        <translation>대화 정보를 업데이트할 권한이 부족합니다.</translation>
     </message>
     <message>
         <location filename="../src/app/currentconversation.cpp" line="314"/>
         <source>An error occurred while committing a new message.</source>
-        <translation type="unfinished"/>
+        <translation>새 메시지를 커밋하는 중 오류가 발생했습니다.</translation>
     </message>
 </context>
 <context>
@@ -160,12 +160,12 @@
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="43"/>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="773"/>
         <source>Jami daemon (jamid) reconnection is in progress. Please wait…</source>
-        <translation type="unfinished"/>
+        <translation>Jami 데몬(jamid) 재연결이 진행 중입니다. 잠시 기다려 주세요…</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="57"/>
         <source>Jami has recovered from a crash. Do you want to send a crash report to help fix the issue?</source>
-        <translation type="unfinished"/>
+        <translation>Jami가 충돌에서 복구되었습니다. 문제 해결을 돕기 위해 충돌 보고서를 보내시겠습니까?</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="61"/>
@@ -215,12 +215,12 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="78"/>
         <source>Authenticating device</source>
-        <translation type="unfinished"/>
+        <translation>장치 인증 중</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="79"/>
         <source>Transferring account…</source>
-        <translation type="unfinished"/>
+        <translation>계정 전송 중…</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="81"/>
@@ -235,12 +235,12 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="84"/>
         <source>Import from another account</source>
-        <translation type="unfinished"/>
+        <translation>다른 계정에서 가져오기</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="85"/>
         <source>Connect to account</source>
-        <translation type="unfinished"/>
+        <translation>계정에 연결</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="89"/>
@@ -296,37 +296,37 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="109"/>
         <source>Push-to-talk</source>
-        <translation type="unfinished"/>
+        <translation>푸시 투 토크</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="110"/>
         <source>Enable push-to-talk</source>
-        <translation type="unfinished"/>
+        <translation>푸시 투 토크 활성화</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="111"/>
         <source>Keyboard shortcut</source>
-        <translation type="unfinished"/>
+        <translation>키보드 단축키</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="112"/>
         <source>Change keyboard shortcut</source>
-        <translation type="unfinished"/>
+        <translation>키보드 단축키 변경</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="117"/>
         <source>Change shortcut</source>
-        <translation type="unfinished"/>
+        <translation>단축키 변경</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="118"/>
         <source>Press the key to be assigned to push-to-talk shortcut</source>
-        <translation type="unfinished"/>
+        <translation>푸시 투 토크 단축키에 할당할 키를 누르세요</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="119"/>
         <source>Assign</source>
-        <translation type="unfinished"/>
+        <translation>할당</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="122"/>
@@ -512,7 +512,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="182"/>
         <source>Current DHT port used</source>
-        <translation type="unfinished"/>
+        <translation>현재 사용 중인 DHT 포트</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="183"/>
@@ -537,7 +537,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="188"/>
         <source>Proxy list URL</source>
-        <translation type="unfinished"/>
+        <translation>프록시 목록 URL</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="189"/>
@@ -547,12 +547,12 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="190"/>
         <source>Using proxy:</source>
-        <translation type="unfinished"/>
+        <translation>사용 중인 프록시:</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="191"/>
         <source>Proxy disabled</source>
-        <translation type="unfinished"/>
+        <translation>프록시 비활성화됨</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="194"/>
@@ -572,7 +572,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="197"/>
         <source>Extensions</source>
-        <translation type="unfinished"/>
+        <translation>확장 기능</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="207"/>
@@ -622,17 +622,17 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="217"/>
         <source>Noise reduction</source>
-        <translation type="unfinished"/>
+        <translation>노이즈 감소</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="218"/>
         <source>Echo suppression</source>
-        <translation type="unfinished"/>
+        <translation>에코 억제</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="219"/>
         <source>Voice activity detection</source>
-        <translation type="unfinished"/>
+        <translation>음성 활동 감지</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="222"/>
@@ -687,17 +687,17 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="250"/>
         <source>%1 is recording</source>
-        <translation type="unfinished"/>
+        <translation>%1 님이 녹음 중입니다</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="251"/>
         <source>%1 are recording</source>
-        <translation type="unfinished"/>
+        <translation>%1 님이 녹음 중입니다</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="291"/>
         <source>Delete conversation</source>
-        <translation type="unfinished"/>
+        <translation>대화 삭제</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="321"/>
@@ -762,7 +762,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="517"/>
         <source>Use native window frame (requires restart)</source>
-        <translation type="unfinished"/>
+        <translation>네이티브 창 프레임 사용 (다시 시작 필요)</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="521"/>
@@ -777,27 +777,27 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="551"/>
         <source>Delete file from device</source>
-        <translation type="unfinished"/>
+        <translation>장치에서 파일 삭제</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="559"/>
         <source>A new version of the Jami application is available. Do you want to update now? To continue, click Update.</source>
-        <translation type="unfinished"/>
+        <translation>새 버전의 Jami 애플리케이션을 사용할 수 있습니다. 지금 업데이트하시겠습니까? 계속하려면 업데이트를 클릭하세요.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="560"/>
         <source>The application is up to date.</source>
-        <translation type="unfinished"/>
+        <translation>애플리케이션이 최신 상태입니다.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="561"/>
         <source>An error occurred while checking for updates.</source>
-        <translation type="unfinished"/>
+        <translation>업데이트를 확인하는 중 오류가 발생했습니다.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="562"/>
         <source>A network error occurred while checking for updates.</source>
-        <translation type="unfinished"/>
+        <translation>업데이트를 확인하는 중 네트워크 오류가 발생했습니다.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="618"/>
@@ -812,7 +812,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="627"/>
         <source>The account was imported successfully.</source>
-        <translation type="unfinished"/>
+        <translation>계정을 성공적으로 가져왔습니다.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="634"/>
@@ -822,17 +822,17 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="636"/>
         <source>Enter account password to confirm the removal of this device</source>
-        <translation type="unfinished"/>
+        <translation>이 장치의 제거를 확인하려면 계정 비밀번호를 입력하세요</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="661"/>
         <source>There are no extensions for the platform to display in the Jami Extension Store. Please try again later.</source>
-        <translation type="unfinished"/>
+        <translation>Jami 확장 기능 스토어에 표시할 이 플랫폼용 확장 기능이 없습니다. 나중에 다시 시도하세요.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="782"/>
         <source>Discard and restart</source>
-        <translation type="unfinished"/>
+        <translation>취소하고 다시 시작</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="784"/>
@@ -842,12 +842,12 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="786"/>
         <source>Show preview</source>
-        <translation type="unfinished"/>
+        <translation>미리 보기 표시</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="787"/>
         <source>Continue editing</source>
-        <translation type="unfinished"/>
+        <translation>편집 계속</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="790"/>
@@ -867,27 +867,27 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="816"/>
         <source>Call started</source>
-        <translation type="unfinished"/>
+        <translation>통화 시작됨</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="820"/>
         <source>Select this device</source>
-        <translation type="unfinished"/>
+        <translation>이 장치 선택</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="821"/>
         <source>Select device</source>
-        <translation type="unfinished"/>
+        <translation>장치 선택</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="826"/>
         <source>Show local video</source>
-        <translation type="unfinished"/>
+        <translation>로컬 영상 표시</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="827"/>
         <source>Hide local video</source>
-        <translation type="unfinished"/>
+        <translation>로컬 영상 숨기기</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="892"/>
@@ -902,7 +902,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="910"/>
         <source>Select background image</source>
-        <translation type="unfinished"/>
+        <translation>배경 이미지 선택</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="911"/>
@@ -912,12 +912,12 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="916"/>
         <source>Free and private sharing. &lt;a href=&quot;https://jami.net/donate/&quot;&gt;Donate&lt;/a&gt; to expand it.</source>
-        <translation type="unfinished"/>
+        <translation>자유롭고 사적인 공유. 이를 확장하려면 &lt;a href=&quot;https://jami.net/donate/&quot;&gt;기부&lt;/a&gt;하세요.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="917"/>
         <source>Donate</source>
-        <translation type="unfinished"/>
+        <translation>기부</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="919"/>
@@ -927,190 +927,190 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="920"/>
         <source>Enable donation campaign</source>
-        <translation type="unfinished"/>
+        <translation>기부 캠페인 활성화</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="923"/>
         <source>Enter</source>
-        <translation type="unfinished"/>
+        <translation>Enter</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="924"/>
         <source>Shift+Enter</source>
-        <translation type="unfinished"/>
+        <translation>Shift+Enter</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="938"/>
         <source>Remote: %1</source>
-        <translation type="unfinished"/>
+        <translation>원격: %1</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="939"/>
         <source>View</source>
-        <translation type="unfinished"/>
+        <translation>보기</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="942"/>
         <source>Check spelling while typing</source>
-        <translation type="unfinished"/>
+        <translation>입력하는 동안 맞춤법 검사</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="944"/>
         <source>Text language</source>
-        <translation type="unfinished"/>
+        <translation>텍스트 언어</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="926"/>
         <source>Text formatting</source>
-        <translation type="unfinished"/>
+        <translation>텍스트 서식</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="327"/>
         <source>%1 saved to %2</source>
-        <translation type="unfinished"/>
+        <translation>%1 을(를) %2 에 저장함</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="333"/>
         <source>Call ID</source>
-        <translation type="unfinished"/>
+        <translation>통화 ID</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="339"/>
         <source>Renderer ID</source>
-        <translation type="unfinished"/>
+        <translation>렌더러 ID</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="378"/>
         <source>%1 has deleted the message.</source>
-        <translation type="unfinished"/>
+        <translation>%1 님이 메시지를 삭제했습니다.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="379"/>
         <source>%1 has deleted the media.</source>
-        <translation type="unfinished"/>
+        <translation>%1 님이 미디어를 삭제했습니다.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="398"/>
         <source>Enter the management server URL</source>
-        <translation type="unfinished"/>
+        <translation>관리 서버 URL을 입력하세요</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="399"/>
         <source>Management server URL</source>
-        <translation type="unfinished"/>
+        <translation>관리 서버 URL</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="400"/>
         <source>Enter management server credentials</source>
-        <translation type="unfinished"/>
+        <translation>관리 서버 자격 증명을 입력하세요</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="410"/>
         <source>Choose rendezvous point name</source>
-        <translation type="unfinished"/>
+        <translation>랑데부 지점 이름 선택</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="428"/>
         <source>Protecting the account with a password is optional, and if the password is lost it CANNOT be recovered later.</source>
-        <translation type="unfinished"/>
+        <translation>비밀번호로 계정을 보호하는 것은 선택 사항이며, 비밀번호를 분실하면 나중에 복구할 수 없습니다.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="461"/>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="462"/>
         <source>Set password</source>
-        <translation type="unfinished"/>
+        <translation>비밀번호 설정</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="464"/>
         <source>Back up the account to a .jac file</source>
-        <translation type="unfinished"/>
+        <translation>.jac 파일로 계정 백업</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="468"/>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="470"/>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="888"/>
         <source>Set account password</source>
-        <translation type="unfinished"/>
+        <translation>계정 비밀번호 설정</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="473"/>
         <source>Enter nickname, surname…</source>
-        <translation type="unfinished"/>
+        <translation>별명, 성을 입력…</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="663"/>
         <source>Installation error</source>
-        <translation type="unfinished"/>
+        <translation>설치 오류</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="664"/>
         <source>An error occurred while installing the extension.</source>
-        <translation type="unfinished"/>
+        <translation>확장 기능을 설치하는 중 오류가 발생했습니다.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="667"/>
         <source>Reset preferences</source>
-        <translation type="unfinished"/>
+        <translation>기본 설정 초기화</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="668"/>
         <source>Select extension to install</source>
-        <translation type="unfinished"/>
+        <translation>설치할 확장 기능 선택</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="669"/>
         <source>Uninstall extension</source>
-        <translation type="unfinished"/>
+        <translation>확장 기능 제거</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="670"/>
         <source>Do you want to reset the preferences for the %1 extension? To continue, click Reset.</source>
-        <translation type="unfinished"/>
+        <translation>%1 확장 기능의 기본 설정을 초기화하시겠습니까? 계속하려면 초기화를 클릭하세요.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="671"/>
         <source>Do you want to uninstall the %1 extension? To continue, click Uninstall.</source>
-        <translation type="unfinished"/>
+        <translation>%1 확장 기능을 제거하시겠습니까? 계속하려면 제거를 클릭하세요.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="672"/>
         <source>Go back to extensions list</source>
-        <translation type="unfinished"/>
+        <translation>확장 기능 목록으로 돌아가기</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="673"/>
         <source>Select file</source>
-        <translation type="unfinished"/>
+        <translation>파일 선택</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="676"/>
         <source>Extension files (*.jpl)</source>
-        <translation type="unfinished"/>
+        <translation>확장 기능 파일 (*.jpl)</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="681"/>
         <source>Choose extension</source>
-        <translation type="unfinished"/>
+        <translation>확장 기능 선택</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="696"/>
         <source>Select screen to share</source>
-        <translation type="unfinished"/>
+        <translation>공유할 화면 선택</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="697"/>
         <source>Select window to share</source>
-        <translation type="unfinished"/>
+        <translation>공유할 창 선택</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="698"/>
         <source>All screens</source>
-        <translation type="unfinished"/>
+        <translation>모든 화면</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="717"/>
         <source>An error occurred while creating the account. Check credentials and try again.</source>
-        <translation type="unfinished"/>
+        <translation>계정을 만드는 중 오류가 발생했습니다. 자격 증명을 확인하고 다시 시도하세요.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="729"/>
@@ -1120,17 +1120,17 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="731"/>
         <source>Search results</source>
-        <translation type="unfinished"/>
+        <translation>검색 결과</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="734"/>
         <source>Decline invitation</source>
-        <translation type="unfinished"/>
+        <translation>초대 거절</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="735"/>
         <source>Accept invitation</source>
-        <translation type="unfinished"/>
+        <translation>초대 수락</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="741"/>
@@ -1150,50 +1150,52 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="757"/>
         <source>Mute participant</source>
-        <translation type="unfinished"/>
+        <translation>참가자 음소거</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="758"/>
         <source>Unmute participant</source>
-        <translation type="unfinished"/>
+        <translation>참가자 음소거 해제</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="42"/>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="774"/>
         <source>An error occurred while reconnecting to the Jami daemon (jamid).
 The application will now exit.</source>
-        <translation type="unfinished"/>
+        <translation>Jami 데몬(jamid)에 다시 연결하는 중 오류가 발생했습니다.
+이제 애플리케이션을 종료합니다.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="392"/>
         <source>%1 is typing…</source>
-        <translation type="unfinished"/>
+        <translation>%1 님이 입력 중…</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="393"/>
         <source>%1 are typing…</source>
-        <translation type="unfinished"/>
+        <translation>%1 님이 입력 중…</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="395"/>
         <source>%1 and %2</source>
-        <translation type="unfinished"/>
+        <translation>%1 및 %2</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="416"/>
         <source>Do you want to create a Jami account without a username?
 If yes, only a randomly generated 40-character identifier will be assigned to the account.</source>
-        <translation type="unfinished"/>
+        <translation>사용자 이름 없이 Jami 계정을 만드시겠습니까?
+그렇게 하면 무작위로 생성된 40자 식별자만 계정에 할당됩니다.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="491"/>
         <source>A network error occurred while linking the device. Please try again later.</source>
-        <translation type="unfinished"/>
+        <translation>장치를 연결하는 중 네트워크 오류가 발생했습니다. 나중에 다시 시도하세요.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="500"/>
         <source>If the account has not been backed up or added to another device, the account and registered username will be IRREVOCABLY LOST.</source>
-        <translation type="unfinished"/>
+        <translation>계정이 백업되지 않았거나 다른 장치에 추가되지 않은 경우, 계정과 등록된 사용자 이름은 돌이킬 수 없이 손실됩니다.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="529"/>
@@ -1203,116 +1205,119 @@ If yes, only a randomly generated 40-character identifier will be assigned to th
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="539"/>
         <source>Accept transfer limit (MB)</source>
-        <translation type="unfinished"/>
+        <translation>전송 수락 제한 (MB)</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="803"/>
         <source>Don&apos;t send</source>
-        <translation type="unfinished"/>
+        <translation>보내지 않음</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="814"/>
         <source>Join with audio</source>
-        <translation type="unfinished"/>
+        <translation>음성으로 참여</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="815"/>
         <source>Join with video</source>
-        <translation type="unfinished"/>
+        <translation>영상으로 참여</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="818"/>
         <source>Current host for this group conversation seems unreachable. Do you want to host the call?</source>
-        <translation type="unfinished"/>
+        <translation>이 그룹 대화의 현재 호스트에 연결할 수 없는 것 같습니다. 통화를 호스트하시겠습니까?</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="819"/>
         <source>Select dedicated device for hosting future calls in this group conversation. If not set, the host will be the device starting a call.</source>
-        <translation type="unfinished"/>
+        <translation>이 그룹 대화에서 향후 통화를 호스트할 전용 장치를 선택하세요. 설정하지 않으면 통화를 시작하는 장치가 호스트가 됩니다.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="830"/>
         <source>%1 sent you a conversation invitation.</source>
-        <translation type="unfinished"/>
+        <translation>%1 님이 대화 초대를 보냈습니다.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="831"/>
         <source>Hello,
 Do you want to join the conversation?</source>
-        <translation type="unfinished"/>
+        <translation>안녕하세요,
+대화에 참여하시겠습니까?</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="832"/>
         <source>You have accepted
 the conversation invitation.</source>
-        <translation type="unfinished"/>
+        <translation>대화 초대를
+수락했습니다.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="833"/>
         <source>Waiting for %1
 to connect to synchronize the conversation…</source>
-        <translation type="unfinished"/>
+        <translation>%1 님이 대화를 동기화하기 위해
+연결하기를 기다리는 중…</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="838"/>
         <source>Group name</source>
-        <translation type="unfinished"/>
+        <translation>그룹 이름</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="839"/>
         <source>Contact name</source>
-        <translation type="unfinished"/>
+        <translation>연락처 이름</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="840"/>
         <source>Add description</source>
-        <translation type="unfinished"/>
+        <translation>설명 추가</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="848"/>
         <source>Choose color</source>
-        <translation type="unfinished"/>
+        <translation>색상 선택</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="849"/>
         <source>Color</source>
-        <translation type="unfinished"/>
+        <translation>색상</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="843"/>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="853"/>
         <source>Conversation type</source>
-        <translation type="unfinished"/>
+        <translation>대화 유형</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="858"/>
         <source>Block member</source>
-        <translation type="unfinished"/>
+        <translation>구성원 차단</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="859"/>
         <source>Unblock member</source>
-        <translation type="unfinished"/>
+        <translation>구성원 차단 해제</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="918"/>
         <source>If you enjoy using Jami and believe in our mission, do you want to make a donation?</source>
-        <translation type="unfinished"/>
+        <translation>Jami 사용이 즐겁고 저희의 사명을 믿으신다면, 기부하시겠습니까?</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="929"/>
         <source>Connected</source>
-        <translation type="unfinished"/>
+        <translation>연결됨</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="930"/>
         <source>Connecting TLS</source>
-        <translation type="unfinished"/>
+        <translation>TLS 연결 중</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="931"/>
         <source>Connecting ICE</source>
-        <translation type="unfinished"/>
+        <translation>ICE 연결 중</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="932"/>
@@ -1322,27 +1327,27 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="933"/>
         <source>Waiting</source>
-        <translation type="unfinished"/>
+        <translation>대기 중</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="934"/>
         <source>Contact</source>
-        <translation type="unfinished"/>
+        <translation>연락처</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="935"/>
         <source>Connection</source>
-        <translation type="unfinished"/>
+        <translation>연결</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="936"/>
         <source>Channels</source>
-        <translation type="unfinished"/>
+        <translation>채널</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="937"/>
         <source>Copy all data</source>
-        <translation type="unfinished"/>
+        <translation>모든 데이터 복사</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="579"/>
@@ -1544,7 +1549,7 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="64"/>
         <source>Add another account</source>
-        <translation type="unfinished"/>
+        <translation>다른 계정 추가</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="65"/>
@@ -1575,7 +1580,7 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="237"/>
         <source>Your account only exists on this device. If you lose your device or uninstall the application, your account will be deleted and CANNOT be recovered. You can &lt;a href=&apos;blank&apos;&gt; back up your account &lt;/a&gt; now or later (in the Account Settings).</source>
-        <translation type="unfinished"/>
+        <translation>귀하의 계정은 이 장치에만 존재합니다. 장치를 분실하거나 애플리케이션을 제거하면 계정이 삭제되어 복구할 수 없습니다. 지금 또는 나중에 (계정 설정에서) &lt;a href=&apos;blank&apos;&gt; 계정을 백업 &lt;/a&gt;할 수 있습니다.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="262"/>
@@ -1661,7 +1666,7 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="286"/>
         <source>Paste</source>
-        <translation type="unfinished"/>
+        <translation>붙여넣기</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="290"/>
@@ -1676,67 +1681,67 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="33"/>
         <source>Incoming audio call from %1</source>
-        <translation type="unfinished"/>
+        <translation>%1 님으로부터 걸려온 음성 통화</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="34"/>
         <source>Incoming video call from %1</source>
-        <translation type="unfinished"/>
+        <translation>%1 님으로부터 걸려온 영상 통화</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="74"/>
         <source>To continue the import account operation, scan the following QR code on the source device.</source>
-        <translation type="unfinished"/>
+        <translation>계정 가져오기를 계속하려면 원본 장치에서 다음 QR 코드를 스캔하세요.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="77"/>
         <source>Action required. Please confirm account on the source device.</source>
-        <translation type="unfinished"/>
+        <translation>작업이 필요합니다. 원본 장치에서 계정을 확인하세요.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="80"/>
         <source>If you are unable to scan the QR code, enter the following token on the source device.</source>
-        <translation type="unfinished"/>
+        <translation>QR 코드를 스캔할 수 없으면 원본 장치에서 다음 토큰을 입력하세요.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="83"/>
         <source>An error occurred while importing the account.</source>
-        <translation type="unfinished"/>
+        <translation>계정을 가져오는 중 오류가 발생했습니다.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="86"/>
         <source>An authentication error occurred while linking the device. Please check credentials and try again.</source>
-        <translation type="unfinished"/>
+        <translation>장치를 연결하는 중 인증 오류가 발생했습니다. 자격 증명을 확인하고 다시 시도하세요.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="90"/>
         <source>The session has expired or has been revoked on this device. Please enter the account password.</source>
-        <translation type="unfinished"/>
+        <translation>이 장치에서 세션이 만료되었거나 취소되었습니다. 계정 비밀번호를 입력하세요.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="91"/>
         <source>Management server</source>
-        <translation type="unfinished"/>
+        <translation>관리 서버</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="102"/>
         <source>Convert account into rendezvous point</source>
-        <translation type="unfinished"/>
+        <translation>계정을 랑데부 지점으로 변환</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="106"/>
         <source>Select new ringtone</source>
-        <translation type="unfinished"/>
+        <translation>새 벨소리 선택</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="113"/>
         <source>Bring the application to the front for incoming calls</source>
-        <translation type="unfinished"/>
+        <translation>수신 통화 시 애플리케이션을 앞으로 가져오기</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="114"/>
         <source>Decline incoming calls when already in a call</source>
-        <translation type="unfinished"/>
+        <translation>통화 중일 때 수신 통화 거절</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="280"/>
@@ -1756,27 +1761,27 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="295"/>
         <source>Leave group</source>
-        <translation type="unfinished"/>
+        <translation>그룹 나가기</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="296"/>
         <source>Are you sure you want to leave this group?</source>
-        <translation type="unfinished"/>
+        <translation>이 그룹에서 나가시겠습니까?</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="297"/>
         <source>Do you want to remove this contact? The existing conversation will be deleted.</source>
-        <translation type="unfinished"/>
+        <translation>이 연락처를 삭제하시겠습니까? 기존 대화가 삭제됩니다.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="298"/>
         <source>Do you want to block this contact?</source>
-        <translation type="unfinished"/>
+        <translation>이 연락처를 차단하시겠습니까?</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="299"/>
         <source>Are you sure you want to remove this conversation? The contact will not be removed.</source>
-        <translation type="unfinished"/>
+        <translation>이 대화를 삭제하시겠습니까? 연락처는 삭제되지 않습니다.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="300"/>
@@ -1801,7 +1806,7 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="307"/>
         <source>Show keypad</source>
-        <translation type="unfinished"/>
+        <translation>키패드 표시</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="308"/>
@@ -1992,7 +1997,7 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="360"/>
         <source>Pin</source>
-        <translation type="unfinished"/>
+        <translation>고정</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="361"/>
@@ -2075,12 +2080,13 @@ to connect to synchronize the conversation…</source>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="417"/>
         <source>- 32 characters maximum
 - Special characters allowed: dash (-)</source>
-        <translation type="unfinished"/>
+        <translation>- 최대 32자
+- 허용되는 특수 문자: 하이픈 (-)</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="418"/>
         <source>Customize your profile (optional)</source>
-        <translation type="unfinished"/>
+        <translation>프로필 사용자 지정 (선택 사항)</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="419"/>
@@ -2090,7 +2096,7 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="420"/>
         <source>Skip profile configuration</source>
-        <translation type="unfinished"/>
+        <translation>프로필 구성 건너뛰기</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="421"/>
@@ -2100,62 +2106,62 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="429"/>
         <source>Setting a profile picture and display name is optional, and can also be changed later in the settings.</source>
-        <translation type="unfinished"/>
+        <translation>프로필 사진과 표시 이름 설정은 선택 사항이며, 나중에 설정에서 변경할 수도 있습니다.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="435"/>
         <source>Configure existing SIP account</source>
-        <translation type="unfinished"/>
+        <translation>기존 SIP 계정 구성</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="440"/>
         <source>Display name</source>
-        <translation type="unfinished"/>
+        <translation>표시 이름</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="445"/>
         <source>Your Jami account is registered only on this device as an archive containing the keys of your account. Access to this archive can be protected with a password.</source>
-        <translation type="unfinished"/>
+        <translation>귀하의 Jami 계정은 계정 키가 포함된 아카이브로 이 장치에만 등록되어 있습니다. 이 아카이브에 대한 접근은 비밀번호로 보호할 수 있습니다.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="447"/>
         <source>This Jami account exists only on this device. The account will be lost if this device is lost or the application is uninstalled. It is recommended to make a backup of this account.</source>
-        <translation type="unfinished"/>
+        <translation>이 Jami 계정은 이 장치에만 존재합니다. 이 장치를 분실하거나 애플리케이션을 제거하면 계정이 손실됩니다. 이 계정을 백업하는 것이 좋습니다.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="454"/>
         <source>Backup completed successfully.</source>
-        <translation type="unfinished"/>
+        <translation>백업이 성공적으로 완료되었습니다.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="455"/>
         <source>An error occurred while backing up the account.</source>
-        <translation type="unfinished"/>
+        <translation>계정을 백업하는 중 오류가 발생했습니다.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="456"/>
         <source>Password changed successfully.</source>
-        <translation type="unfinished"/>
+        <translation>비밀번호가 성공적으로 변경되었습니다.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="457"/>
         <source>An error occurred while changing the account password.</source>
-        <translation type="unfinished"/>
+        <translation>계정 비밀번호를 변경하는 중 오류가 발생했습니다.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="458"/>
         <source>Password set successfully.</source>
-        <translation type="unfinished"/>
+        <translation>비밀번호가 성공적으로 설정되었습니다.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="459"/>
         <source>An error occurred while setting the account password.</source>
-        <translation type="unfinished"/>
+        <translation>계정 비밀번호를 설정하는 중 오류가 발생했습니다.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="945"/>
         <source>Spell checker</source>
-        <translation type="unfinished"/>
+        <translation>맞춤법 검사기</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="408"/>
@@ -2165,12 +2171,12 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="29"/>
         <source>Accept with audio</source>
-        <translation type="unfinished"/>
+        <translation>음성으로 수락</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="30"/>
         <source>Accept with video</source>
-        <translation type="unfinished"/>
+        <translation>영상으로 수락</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="31"/>
@@ -2185,52 +2191,52 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="46"/>
         <source>Build ID</source>
-        <translation type="unfinished"/>
+        <translation>빌드 ID</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="56"/>
         <source>Application Recovery</source>
-        <translation type="unfinished"/>
+        <translation>애플리케이션 복구</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="58"/>
         <source>Only essential data, including the app version, platform information, and a snapshot of the program&apos;s state at the time of the crash, will be shared.</source>
-        <translation type="unfinished"/>
+        <translation>앱 버전, 플랫폼 정보, 충돌 당시 프로그램 상태의 스냅샷을 포함한 필수 데이터만 공유됩니다.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="95"/>
         <source>An error occurred while authenticating the account.</source>
-        <translation type="unfinished"/>
+        <translation>계정을 인증하는 중 오류가 발생했습니다.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="107"/>
         <source>Certificate file (*.crt)</source>
-        <translation type="unfinished"/>
+        <translation>인증서 파일 (*.crt)</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="108"/>
         <source>Audio file (*.wav *.ogg *.opus *.mp3 *.aiff *.wma)</source>
-        <translation type="unfinished"/>
+        <translation>오디오 파일 (*.wav *.ogg *.opus *.mp3 *.aiff *.wma)</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="137"/>
         <source>Select private key</source>
-        <translation type="unfinished"/>
+        <translation>개인 키 선택</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="138"/>
         <source>Select user certificate</source>
-        <translation type="unfinished"/>
+        <translation>사용자 인증서 선택</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="139"/>
         <source>Select CA certificate</source>
-        <translation type="unfinished"/>
+        <translation>CA 인증서 선택</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="141"/>
         <source>Key file (*.key)</source>
-        <translation type="unfinished"/>
+        <translation>키 파일 (*.key)</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="153"/>
@@ -2240,12 +2246,12 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="233"/>
         <source>No camera available</source>
-        <translation type="unfinished"/>
+        <translation>사용 가능한 카메라가 없습니다</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="242"/>
         <source>Jami account (*.jac)</source>
-        <translation type="unfinished"/>
+        <translation>Jami 계정 (*.jac)</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="252"/>
@@ -2255,7 +2261,7 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="253"/>
         <source>Unmute microphone</source>
-        <translation type="unfinished"/>
+        <translation>마이크 음소거 해제</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="256"/>
@@ -2265,27 +2271,27 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="257"/>
         <source>Start camera</source>
-        <translation type="unfinished"/>
+        <translation>카메라 시작</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="258"/>
         <source>Invite member</source>
-        <translation type="unfinished"/>
+        <translation>구성원 초대</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="259"/>
         <source>Invite members</source>
-        <translation type="unfinished"/>
+        <translation>구성원 초대</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="264"/>
         <source>Participant microphone is still muted.</source>
-        <translation type="unfinished"/>
+        <translation>참가자의 마이크가 아직 음소거되어 있습니다.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="265"/>
         <source>Device microphone is still muted.</source>
-        <translation type="unfinished"/>
+        <translation>장치의 마이크가 아직 음소거되어 있습니다.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="277"/>
@@ -2305,69 +2311,71 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="294"/>
         <source>Do you want to leave this conversation?</source>
-        <translation type="unfinished"/>
+        <translation>이 대화에서 나가시겠습니까?</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="306"/>
         <source>DTMF input panel</source>
-        <translation type="unfinished"/>
+        <translation>DTMF 입력 패널</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="318"/>
         <source>View extension</source>
-        <translation type="unfinished"/>
+        <translation>확장 기능 보기</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="345"/>
         <source>An error occurred while sharing the device location.
 Enable “Location Services” in device settings in order to use this feature.
 The location of other members can still be received.</source>
-        <translation type="unfinished"/>
+        <translation>장치 위치를 공유하는 중 오류가 발생했습니다.
+이 기능을 사용하려면 장치 설정에서 &quot;위치 서비스&quot;를 활성화하세요.
+다른 구성원의 위치는 계속 받을 수 있습니다.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="346"/>
         <source>An error occurred while sharing the device location. Please check your Internet connection and try again.</source>
-        <translation type="unfinished"/>
+        <translation>장치 위치를 공유하는 중 오류가 발생했습니다. 인터넷 연결을 확인하고 다시 시도하세요.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="363"/>
         <source>1m</source>
-        <translation type="unfinished"/>
+        <translation>1분</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="365"/>
         <source>%L1s</source>
-        <translation type="unfinished"/>
+        <translation>%L1초</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="366"/>
         <source>%L1m</source>
-        <translation type="unfinished"/>
+        <translation>%L1분</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="367"/>
         <source>%L1m %L2s</source>
-        <translation type="unfinished"/>
+        <translation>%L1분 %L2초</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="368"/>
         <source>%L1h</source>
-        <translation type="unfinished"/>
+        <translation>%L1시간</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="369"/>
         <source>%L1h %L2m</source>
-        <translation type="unfinished"/>
+        <translation>%L1시간 %L2분</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="373"/>
         <source>Show available extensions</source>
-        <translation type="unfinished"/>
+        <translation>사용 가능한 확장 기능 표시</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="375"/>
         <source>A backend system error occurred: %0</source>
-        <translation type="unfinished"/>
+        <translation>백엔드 시스템 오류가 발생했습니다: %0</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="380"/>
@@ -2377,7 +2385,7 @@ The location of other members can still be received.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="383"/>
         <source>This conversation has ended.</source>
-        <translation type="unfinished"/>
+        <translation>이 대화가 종료되었습니다.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="412"/>
@@ -2442,12 +2450,12 @@ The location of other members can still be received.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="443"/>
         <source>Your profile is only shared with your contacts. You can customize your profile at any time.</source>
-        <translation type="unfinished"/>
+        <translation>귀하의 프로필은 연락처와만 공유됩니다. 언제든지 프로필을 사용자 지정할 수 있습니다.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="444"/>
         <source>A chosen username can help to be found more easily on Jami. If a username is not chosen, a randomly generated 40-character identifier will be assigned to this account as a username. It is more difficult to be found and reached with this identifier.</source>
-        <translation type="unfinished"/>
+        <translation>선택한 사용자 이름은 Jami에서 더 쉽게 찾을 수 있도록 도와줍니다. 사용자 이름을 선택하지 않으면 무작위로 생성된 40자 식별자가 이 계정의 사용자 이름으로 할당됩니다. 이 식별자로는 찾고 연락받기가 더 어렵습니다.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="446"/>
@@ -2477,37 +2485,37 @@ The location of other members can still be received.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="471"/>
         <source>A Jami account is created and stored locally only on this device, as an archive containing your account keys. Access to this archive can optionally be protected with a password.</source>
-        <translation type="unfinished"/>
+        <translation>Jami 계정은 계정 키가 포함된 아카이브로 이 장치에만 로컬로 만들어지고 저장됩니다. 이 아카이브에 대한 접근은 선택적으로 비밀번호로 보호할 수 있습니다.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="474"/>
         <source>Use this account on other devices</source>
-        <translation type="unfinished"/>
+        <translation>다른 장치에서 이 계정 사용</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="475"/>
         <source>This account is created and stored locally, if you want to use it on another device you have to link the new device to this account.</source>
-        <translation type="unfinished"/>
+        <translation>이 계정은 로컬에 만들어지고 저장됩니다. 다른 장치에서 사용하려면 새 장치를 이 계정에 연결해야 합니다.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="486"/>
         <source>Link new device to this account</source>
-        <translation type="unfinished"/>
+        <translation>이 계정에 새 장치 연결</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="488"/>
         <source>Remove device</source>
-        <translation type="unfinished"/>
+        <translation>장치 제거</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="489"/>
         <source>Do you want to unlink the selected device? To continue, enter account password and click Unlink.</source>
-        <translation type="unfinished"/>
+        <translation>선택한 장치의 연결을 해제하시겠습니까? 계속하려면 계정 비밀번호를 입력하고 연결 해제를 클릭하세요.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="490"/>
         <source>Account PIN code is:</source>
-        <translation type="unfinished"/>
+        <translation>계정 PIN 코드는 다음과 같습니다:</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="494"/>
@@ -2517,7 +2525,7 @@ The location of other members can still be received.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="495"/>
         <source>Blocked</source>
-        <translation type="unfinished"/>
+        <translation>차단됨</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="496"/>
@@ -2527,22 +2535,22 @@ The location of other members can still be received.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="499"/>
         <source>Do you want to delete this account? To continue, click Delete.</source>
-        <translation type="unfinished"/>
+        <translation>이 계정을 삭제하시겠습니까? 계속하려면 삭제를 클릭하세요.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="505"/>
         <source>Device name:</source>
-        <translation type="unfinished"/>
+        <translation>장치 이름:</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="507"/>
         <source>Device ID</source>
-        <translation type="unfinished"/>
+        <translation>장치 ID</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="513"/>
         <source>Select folder</source>
-        <translation type="unfinished"/>
+        <translation>폴더 선택</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="525"/>
@@ -2552,69 +2560,69 @@ The location of other members can still be received.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="526"/>
         <source>Send and receive typing indicators showing when messages are being typed.</source>
-        <translation type="unfinished"/>
+        <translation>메시지를 입력하는 시점을 표시하는 입력 표시기를 보내고 받습니다.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="527"/>
         <source>Read receipts</source>
-        <translation type="unfinished"/>
+        <translation>읽음 확인</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="528"/>
         <source>Send and request delivery and read receipts to be sent when messages are delivered or read.</source>
-        <translation type="unfinished"/>
+        <translation>메시지가 전달되거나 읽혔을 때 전달 및 읽음 확인을 보내고 요청합니다.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="540"/>
         <source>MB, 0 = unlimited</source>
-        <translation type="unfinished"/>
+        <translation>MB, 0 = 무제한</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="544"/>
         <source>Incorrect password.</source>
-        <translation type="unfinished"/>
+        <translation>비밀번호가 올바르지 않습니다.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="545"/>
         <source>A network error occurred.</source>
-        <translation type="unfinished"/>
+        <translation>네트워크 오류가 발생했습니다.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="546"/>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="570"/>
         <source>An unexpected error occurred.</source>
-        <translation type="unfinished"/>
+        <translation>예기치 않은 오류가 발생했습니다.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="563"/>
         <source>An SSL error occurred.</source>
-        <translation type="unfinished"/>
+        <translation>SSL 오류가 발생했습니다.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="564"/>
         <source>Installer download was canceled by user.</source>
-        <translation type="unfinished"/>
+        <translation>설치 프로그램 다운로드가 사용자에 의해 취소되었습니다.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="566"/>
         <source>This will replace the Release version with the Beta version on this device. The latest Release version can always be downloaded from the Jami website.</source>
-        <translation type="unfinished"/>
+        <translation>이렇게 하면 이 장치의 정식 버전이 베타 버전으로 대체됩니다. 최신 정식 버전은 언제든지 Jami 웹사이트에서 다운로드할 수 있습니다.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="568"/>
         <source>An error occurred while accessing the contents.</source>
-        <translation type="unfinished"/>
+        <translation>콘텐츠에 접근하는 중 오류가 발생했습니다.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="569"/>
         <source>Content not found.</source>
-        <translation type="unfinished"/>
+        <translation>콘텐츠를 찾을 수 없습니다.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="585"/>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="586"/>
         <source>Keyboard shortcuts</source>
-        <translation type="unfinished"/>
+        <translation>키보드 단축키</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="590"/>
@@ -2624,99 +2632,101 @@ The location of other members can still be received.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="595"/>
         <source>Submit issue</source>
-        <translation type="unfinished"/>
+        <translation>문제 제출</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="598"/>
         <source>Copied to clipboard.</source>
-        <translation type="unfinished"/>
+        <translation>클립보드에 복사되었습니다.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="599"/>
         <source>View logs</source>
-        <translation type="unfinished"/>
+        <translation>로그 보기</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="610"/>
         <source>If the account is password protected, please fill the following field.</source>
-        <translation type="unfinished"/>
+        <translation>계정이 비밀번호로 보호되어 있으면 다음 필드를 입력하세요.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="619"/>
         <source>This account is password protected, enter the password to generate PIN code.</source>
-        <translation type="unfinished"/>
+        <translation>이 계정은 비밀번호로 보호되어 있습니다. PIN 코드를 생성하려면 비밀번호를 입력하세요.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="622"/>
         <source>Connecting to the new device…</source>
-        <translation type="unfinished"/>
+        <translation>새 장치에 연결하는 중…</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="624"/>
         <source>On the new device, initiate a new account.
 Select Add account → Connect from another device.
 When ready, scan the QR code.</source>
-        <translation type="unfinished"/>
+        <translation>새 장치에서 새 계정을 시작하세요.
+계정 추가 → 다른 장치에서 연결을 선택하세요.
+준비가 되면 QR 코드를 스캔하세요.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="625"/>
         <source>Alternatively, enter the authentication code manually.</source>
-        <translation type="unfinished"/>
+        <translation>또는 인증 코드를 수동으로 입력하세요.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="628"/>
         <source>New device connected at the following IP address. Is that you? To continue the export account operation, click Confirm.</source>
-        <translation type="unfinished"/>
+        <translation>새 장치가 다음 IP 주소로 연결되었습니다. 본인이 맞습니까? 계정 내보내기를 계속하려면 확인을 클릭하세요.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="643"/>
         <source>Select image as profile picture</source>
-        <translation type="unfinished"/>
+        <translation>프로필 사진으로 사용할 이미지 선택</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="644"/>
         <source>How do you want to set the profile picture?</source>
-        <translation type="unfinished"/>
+        <translation>프로필 사진을 어떻게 설정하시겠습니까?</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="645"/>
         <source>Import profile picture from image file</source>
-        <translation type="unfinished"/>
+        <translation>이미지 파일에서 프로필 사진 가져오기</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="646"/>
         <source>Remove profile picture</source>
-        <translation type="unfinished"/>
+        <translation>프로필 사진 제거</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="648"/>
         <source>Image files (*.jpeg *.jpg *.png *.JPEG* .JPG *.PNG)</source>
-        <translation type="unfinished"/>
+        <translation>이미지 파일 (*.jpeg *.jpg *.png *.JPEG* .JPG *.PNG)</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="649"/>
         <source>Edit profile picture</source>
-        <translation type="unfinished"/>
+        <translation>프로필 사진 편집</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="652"/>
         <source>Auto update</source>
-        <translation type="unfinished"/>
+        <translation>자동 업데이트</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="653"/>
         <source>Disable all</source>
-        <translation type="unfinished"/>
+        <translation>모두 비활성화</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="654"/>
         <source>Installed</source>
-        <translation type="unfinished"/>
+        <translation>설치됨</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="655"/>
         <source>Install</source>
-        <translation type="unfinished"/>
+        <translation>설치</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="656"/>
@@ -2726,52 +2736,52 @@ When ready, scan the QR code.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="657"/>
         <source>Install manually</source>
-        <translation type="unfinished"/>
+        <translation>수동으로 설치</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="658"/>
         <source>Install an extension directly from your device.</source>
-        <translation type="unfinished"/>
+        <translation>장치에서 직접 확장 기능을 설치합니다.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="659"/>
         <source>Available</source>
-        <translation type="unfinished"/>
+        <translation>사용 가능</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="660"/>
         <source>The Jami Extension Store is currently unavailable. Please try again later.</source>
-        <translation type="unfinished"/>
+        <translation>Jami 확장 기능 스토어를 현재 사용할 수 없습니다. 나중에 다시 시도하세요.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="682"/>
         <source>Version %1</source>
-        <translation type="unfinished"/>
+        <translation>버전 %1</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="683"/>
         <source>Last update %1</source>
-        <translation type="unfinished"/>
+        <translation>마지막 업데이트 %1</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="684"/>
         <source>By %1</source>
-        <translation type="unfinished"/>
+        <translation>작성자: %1</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="685"/>
         <source>Proposed by %1</source>
-        <translation type="unfinished"/>
+        <translation>제안자: %1</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="689"/>
         <source>More information</source>
-        <translation type="unfinished"/>
+        <translation>자세한 정보</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="705"/>
         <source>Share account</source>
-        <translation type="unfinished"/>
+        <translation>계정 공유</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="714"/>
@@ -2781,17 +2791,17 @@ When ready, scan the QR code.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="715"/>
         <source>Create account from management server</source>
-        <translation type="unfinished"/>
+        <translation>관리 서버에서 계정 만들기</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="716"/>
         <source>Configure SIP account</source>
-        <translation type="unfinished"/>
+        <translation>SIP 계정 구성</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="718"/>
         <source>Create rendezvous point</source>
-        <translation type="unfinished"/>
+        <translation>랑데부 지점 만들기</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="719"/>
@@ -2811,17 +2821,17 @@ When ready, scan the QR code.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="761"/>
         <source>Disconnect participant</source>
-        <translation type="unfinished"/>
+        <translation>참가자 연결 끊기</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="780"/>
         <source>Audio message</source>
-        <translation type="unfinished"/>
+        <translation>음성 메시지</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="781"/>
         <source>Video message</source>
-        <translation type="unfinished"/>
+        <translation>영상 메시지</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="783"/>
@@ -2866,47 +2876,47 @@ When ready, scan the QR code.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="798"/>
         <source>Show formatting</source>
-        <translation type="unfinished"/>
+        <translation>서식 표시</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="799"/>
         <source>Hide formatting</source>
-        <translation type="unfinished"/>
+        <translation>서식 숨기기</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="800"/>
         <source>Press Shift+Enter to insert new line</source>
-        <translation type="unfinished"/>
+        <translation>Shift+Enter를 눌러 새 줄 삽입</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="801"/>
         <source>Press Enter to insert new line</source>
-        <translation type="unfinished"/>
+        <translation>Enter를 눌러 새 줄 삽입</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="806"/>
         <source>%1 replied to</source>
-        <translation type="unfinished"/>
+        <translation>%1 님이 답장함</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="807"/>
         <source>you</source>
-        <translation type="unfinished"/>
+        <translation>나</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="810"/>
         <source>Send a message to %1 in order to add them as a contact</source>
-        <translation type="unfinished"/>
+        <translation>%1 님을 연락처로 추가하려면 메시지를 보내세요</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="836"/>
         <source>%L1 members</source>
-        <translation type="unfinished"/>
+        <translation>%L1명의 구성원</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="841"/>
         <source>No description</source>
-        <translation type="unfinished"/>
+        <translation>설명 없음</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="842"/>
@@ -2916,22 +2926,22 @@ When ready, scan the QR code.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="846"/>
         <source>Unmute conversation</source>
-        <translation type="unfinished"/>
+        <translation>대화 음소거 해제</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="949"/>
         <source>No dictionaries available.</source>
-        <translation type="unfinished"/>
+        <translation>사용 가능한 사전이 없습니다.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="956"/>
         <source>Search or add</source>
-        <translation type="unfinished"/>
+        <translation>검색 또는 추가</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="962"/>
         <source>Add comment</source>
-        <translation type="unfinished"/>
+        <translation>댓글 추가</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="963"/>
@@ -2946,27 +2956,27 @@ When ready, scan the QR code.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="967"/>
         <source>No conversations found.</source>
-        <translation type="unfinished"/>
+        <translation>대화를 찾을 수 없습니다.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="968"/>
         <source>No contacts found.</source>
-        <translation type="unfinished"/>
+        <translation>연락처를 찾을 수 없습니다.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="851"/>
         <source>Select default host</source>
-        <translation type="unfinished"/>
+        <translation>기본 호스트 선택</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="852"/>
         <source>Change default host</source>
-        <translation type="unfinished"/>
+        <translation>기본 호스트 변경</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="878"/>
         <source>Share your Jami identifier in order to be contacted more easily!</source>
-        <translation type="unfinished"/>
+        <translation>더 쉽게 연락받을 수 있도록 Jami 식별자를 공유하세요!</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="879"/>
@@ -2981,7 +2991,7 @@ When ready, scan the QR code.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="881"/>
         <source>Hide fingerprint</source>
-        <translation type="unfinished"/>
+        <translation>지문 숨기기</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="882"/>
@@ -3026,102 +3036,102 @@ When ready, scan the QR code.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="912"/>
         <source>Blur background image</source>
-        <translation type="unfinished"/>
+        <translation>배경 이미지 흐리게</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="913"/>
         <source>Normalize background image contrast</source>
-        <translation type="unfinished"/>
+        <translation>배경 이미지 대비 정규화</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="925"/>
         <source>Enter or Shift+Enter to insert new line</source>
-        <translation type="unfinished"/>
+        <translation>Enter 또는 Shift+Enter로 새 줄 삽입</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="946"/>
         <source>Search text languages</source>
-        <translation type="unfinished"/>
+        <translation>텍스트 언어 검색</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="947"/>
         <source>Search for available text languages</source>
-        <translation type="unfinished"/>
+        <translation>사용 가능한 텍스트 언어 검색</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="948"/>
         <source>No dictionary found for %1.</source>
-        <translation type="unfinished"/>
+        <translation>%1 에 대한 사전을 찾을 수 없습니다.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="950"/>
         <source>Dictionary manager</source>
-        <translation type="unfinished"/>
+        <translation>사전 관리자</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="951"/>
         <source>An error occurred while downloading the %1 dictionary.</source>
-        <translation type="unfinished"/>
+        <translation>%1 사전을 다운로드하는 중 오류가 발생했습니다.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="952"/>
         <source>Show installed dictionaries</source>
-        <translation type="unfinished"/>
+        <translation>설치된 사전 표시</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="953"/>
         <source>Only show dictionaries that are currently installed</source>
-        <translation type="unfinished"/>
+        <translation>현재 설치된 사전만 표시</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="959"/>
         <source>This conversation has no files.</source>
-        <translation type="unfinished"/>
+        <translation>이 대화에는 파일이 없습니다.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="971"/>
         <source>Press enter to switch to this account</source>
-        <translation type="unfinished"/>
+        <translation>Enter를 눌러 이 계정으로 전환</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="972"/>
         <source>Display your QR code to allow other users to scan it and add you as a contact</source>
-        <translation type="unfinished"/>
+        <translation>다른 사용자가 스캔하여 귀하를 연락처로 추가할 수 있도록 QR 코드를 표시합니다</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="973"/>
         <source>Account list</source>
-        <translation type="unfinished"/>
+        <translation>계정 목록</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="974"/>
         <source>Use arrows to switch between available account</source>
-        <translation type="unfinished"/>
+        <translation>화살표를 사용하여 사용 가능한 계정 간 전환</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="975"/>
         <source>Select the user interface language</source>
-        <translation type="unfinished"/>
+        <translation>사용자 인터페이스 언어 선택</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="976"/>
         <source>Go back to the previous page</source>
-        <translation type="unfinished"/>
+        <translation>이전 페이지로 돌아가기</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="977"/>
         <source>Advice Box</source>
-        <translation type="unfinished"/>
+        <translation>조언 상자</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="978"/>
         <source>Back button</source>
-        <translation type="unfinished"/>
+        <translation>뒤로 버튼</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="979"/>
         <source>Open the advice popup that contains information about Jami</source>
-        <translation type="unfinished"/>
+        <translation>Jami에 대한 정보가 포함된 조언 팝업을 엽니다</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="980"/>
@@ -3131,92 +3141,92 @@ When ready, scan the QR code.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="981"/>
         <source>Press to %1</source>
-        <translation type="unfinished"/>
+        <translation>%1 하려면 누르세요</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="982"/>
         <source>Press to toggle %1 (%2)</source>
-        <translation type="unfinished"/>
+        <translation>%1 (%2)을(를) 전환하려면 누르세요</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="983"/>
         <source>active</source>
-        <translation type="unfinished"/>
+        <translation>활성</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="984"/>
         <source>inactive</source>
-        <translation type="unfinished"/>
+        <translation>비활성</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="985"/>
         <source>Minimize application</source>
-        <translation type="unfinished"/>
+        <translation>애플리케이션 최소화</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="986"/>
         <source>Maximize application</source>
-        <translation type="unfinished"/>
+        <translation>애플리케이션 최대화</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="987"/>
         <source>Close application</source>
-        <translation type="unfinished"/>
+        <translation>애플리케이션 닫기</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="988"/>
         <source>Dismiss this tip</source>
-        <translation type="unfinished"/>
+        <translation>이 팁 닫기</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="989"/>
         <source>Tips to help you use Jami more effectively</source>
-        <translation type="unfinished"/>
+        <translation>Jami를 더 효과적으로 사용하는 데 도움이 되는 팁</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="990"/>
         <source>Show more messaging options</source>
-        <translation type="unfinished"/>
+        <translation>더 많은 메시지 옵션 표시</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="991"/>
         <source>Open a menu that allows you to send voice and video messages as well as sharing your location</source>
-        <translation type="unfinished"/>
+        <translation>음성 및 영상 메시지를 보내고 위치를 공유할 수 있는 메뉴를 엽니다</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="992"/>
         <source>Conversation messages list. Use arrow keys to navigate through messages.</source>
-        <translation type="unfinished"/>
+        <translation>대화 메시지 목록. 화살표 키를 사용하여 메시지 간을 탐색하세요.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="993"/>
         <source>Data transfer</source>
-        <translation type="unfinished"/>
+        <translation>데이터 전송</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="994"/>
         <source>Status</source>
-        <translation type="unfinished"/>
+        <translation>상태</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="995"/>
         <source>Read by</source>
-        <translation type="unfinished"/>
+        <translation>읽은 사람</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="996"/>
         <source>Currently selected: %1</source>
-        <translation type="unfinished"/>
+        <translation>현재 선택됨: %1</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="997"/>
         <source>%1 has been selected for %2</source>
-        <translation type="unfinished"/>
+        <translation>%1 이(가) %2 에 선택되었습니다</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="998"/>
         <source>Available option for %1</source>
-        <translation type="unfinished"/>
+        <translation>%1 에 사용 가능한 옵션</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="463"/>
@@ -3241,7 +3251,7 @@ When ready, scan the QR code.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="103"/>
         <source>Automatically accept calls</source>
-        <translation type="unfinished"/>
+        <translation>통화 자동 수락</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="467"/>
@@ -3554,27 +3564,28 @@ When ready, scan the QR code.</source>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="623"/>
         <source>The export account operation to the new device is in progress.
 Please confirm the import on the new device.</source>
-        <translation type="unfinished"/>
+        <translation>새 장치로의 계정 내보내기가 진행 중입니다.
+새 장치에서 가져오기를 확인하세요.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="626"/>
         <source>Enter authentication code</source>
-        <translation type="unfinished"/>
+        <translation>인증 코드 입력</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="629"/>
         <source>New device IP address: %1</source>
-        <translation type="unfinished"/>
+        <translation>새 장치 IP 주소: %1</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="630"/>
         <source>Do you want to exit?</source>
-        <translation type="unfinished"/>
+        <translation>종료하시겠습니까?</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="631"/>
         <source>Exiting will cancel the import account operation.</source>
-        <translation type="unfinished"/>
+        <translation>종료하면 계정 가져오기가 취소됩니다.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="675"/>
@@ -3886,7 +3897,7 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="869"/>
         <source>Add profile picture and nickname to complete your profile</source>
-        <translation type="unfinished"/>
+        <translation>프로필을 완성하려면 프로필 사진과 별명을 추가하세요</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="870"/>
@@ -3924,7 +3935,7 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="121"/>
         <source>Accept call</source>
-        <translation type="unfinished"/>
+        <translation>통화 수락</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="133"/>
@@ -3989,7 +4000,7 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="45"/>
         <source>Focus conversation list</source>
-        <translation type="unfinished"/>
+        <translation>대화 목록에 포커스</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="105"/>
@@ -4009,7 +4020,7 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="129"/>
         <source>Decline call</source>
-        <translation type="unfinished"/>
+        <translation>통화 거절</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="137"/>
@@ -4074,37 +4085,37 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="189"/>
         <source>Show/hide formatting</source>
-        <translation type="unfinished"/>
+        <translation>서식 표시/숨기기</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="193"/>
         <source>Show preview/Continue editing</source>
-        <translation type="unfinished"/>
+        <translation>미리 보기 표시/편집 계속</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="201"/>
         <source>Open account settings</source>
-        <translation type="unfinished"/>
+        <translation>계정 설정 열기</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="205"/>
         <source>Open general settings</source>
-        <translation type="unfinished"/>
+        <translation>일반 설정 열기</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="209"/>
         <source>Open media settings</source>
-        <translation type="unfinished"/>
+        <translation>미디어 설정 열기</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="213"/>
         <source>Open extensions settings</source>
-        <translation type="unfinished"/>
+        <translation>확장 기능 설정 열기</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="222"/>
         <source>View keyboard shortcuts</source>
-        <translation type="unfinished"/>
+        <translation>키보드 단축키 보기</translation>
     </message>
 </context>
 <context>
@@ -4130,7 +4141,7 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/app/positionmanager.cpp" line="401"/>
         <source>%1 is sharing their location</source>
-        <translation type="unfinished"/>
+        <translation>%1 님이 위치를 공유하고 있습니다</translation>
     </message>
     <message>
         <location filename="../src/app/positionmanager.cpp" line="406"/>
@@ -4143,12 +4154,12 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/app/commoncomponents/PresenceIndicator.qml" line="34"/>
         <source>Connected</source>
-        <translation type="unfinished"/>
+        <translation>연결됨</translation>
     </message>
     <message>
         <location filename="../src/app/commoncomponents/PresenceIndicator.qml" line="34"/>
         <source>Available</source>
-        <translation type="unfinished"/>
+        <translation>사용 가능</translation>
     </message>
 </context>
 <context>
@@ -4235,77 +4246,77 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/libclient/interaction.cpp" line="88"/>
         <source>Private conversation created</source>
-        <translation type="unfinished"/>
+        <translation>비공개 대화가 만들어졌습니다</translation>
     </message>
     <message>
         <location filename="../src/libclient/interaction.cpp" line="90"/>
         <source>Group conversation created</source>
-        <translation type="unfinished"/>
+        <translation>그룹 대화가 만들어졌습니다</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="277"/>
         <source>%1 was invited to join the conversation.</source>
-        <translation type="unfinished"/>
+        <translation>%1 님이 대화 참여에 초대되었습니다.</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="280"/>
         <source>You joined the conversation.</source>
-        <translation type="unfinished"/>
+        <translation>대화에 참여했습니다.</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="282"/>
         <source>%1 has joined the conversation.</source>
-        <translation type="unfinished"/>
+        <translation>%1 님이 대화에 참여했습니다.</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="285"/>
         <source>You left the conversation.</source>
-        <translation type="unfinished"/>
+        <translation>대화에서 나갔습니다.</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="287"/>
         <source>%1 has left the conversation.</source>
-        <translation type="unfinished"/>
+        <translation>%1 님이 대화에서 나갔습니다.</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="289"/>
         <source>%1 was blocked from the conversation.</source>
-        <translation type="unfinished"/>
+        <translation>%1 님이 대화에서 차단되었습니다.</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="291"/>
         <source>%1 was unblocked from the conversation.</source>
-        <translation type="unfinished"/>
+        <translation>%1 님이 대화에서 차단 해제되었습니다.</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="312"/>
         <source>%L4d %L3h %L2m %L1s</source>
-        <translation type="unfinished"/>
+        <translation>%L4일 %L3시간 %L2분 %L1초</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="315"/>
         <source>%L3h %L2m %L1s</source>
-        <translation type="unfinished"/>
+        <translation>%L3시간 %L2분 %L1초</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="317"/>
         <source>%L2m %L1s</source>
-        <translation type="unfinished"/>
+        <translation>%L2분 %L1초</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="319"/>
         <source>%L1s</source>
-        <translation type="unfinished"/>
+        <translation>%L1초</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="335"/>
         <source>Call declined</source>
-        <translation type="unfinished"/>
+        <translation>통화 거절됨</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="337"/>
         <source>Unreachable peer</source>
-        <translation type="unfinished"/>
+        <translation>연결할 수 없는 피어</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="342"/>
@@ -4337,7 +4348,7 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="476"/>
         <source>(Profile updated)</source>
-        <translation type="unfinished"/>
+        <translation>(프로필 업데이트됨)</translation>
     </message>
     <message>
         <location filename="../src/libclient/authority/storagehelper.cpp" line="482"/>
@@ -4353,25 +4364,25 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/libclient/avmodel.cpp" line="486"/>
         <source>auto</source>
-        <translation type="unfinished"/>
+        <translation>자동</translation>
     </message>
     <message>
         <location filename="../src/libclient/avmodel.cpp" line="487"/>
         <location filename="../src/libclient/avmodel.cpp" line="503"/>
         <source>System (if available)</source>
-        <translation type="unfinished"/>
+        <translation>시스템 (사용 가능한 경우)</translation>
     </message>
     <message>
         <location filename="../src/libclient/avmodel.cpp" line="489"/>
         <location filename="../src/libclient/avmodel.cpp" line="505"/>
         <source>Built-in</source>
-        <translation type="unfinished"/>
+        <translation>내장</translation>
     </message>
     <message>
         <location filename="../src/libclient/avmodel.cpp" line="491"/>
         <location filename="../src/libclient/avmodel.cpp" line="507"/>
         <source>Auto (default)</source>
-        <translation type="unfinished"/>
+        <translation>자동 (기본값)</translation>
     </message>
     <message>
         <location filename="../src/libclient/avmodel.cpp" line="493"/>
@@ -4568,7 +4579,7 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="125"/>
         <source>Call Declined</source>
-        <translation type="unfinished"/>
+        <translation>통화 거절됨</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="333"/>
@@ -4690,17 +4701,17 @@ Please confirm the import on the new device.</source>
         <location filename="../src/libclient/conversationmodel.cpp" line="1138"/>
         <location filename="../src/libclient/conversationmodel.cpp" line="1151"/>
         <source>%1 (you)</source>
-        <translation type="unfinished"/>
+        <translation>%1 (나)</translation>
     </message>
     <message>
         <location filename="../src/app/utils.cpp" line="587"/>
         <source>We would like to thank our contributors, whose efforts over many years have made this software what it is.</source>
-        <translation type="unfinished"/>
+        <translation>수년간의 노력으로 이 소프트웨어를 지금의 모습으로 만들어 준 기여자들에게 감사드립니다.</translation>
     </message>
     <message>
         <location filename="../src/app/utils.cpp" line="589"/>
         <source>Developers</source>
-        <translation type="unfinished"/>
+        <translation>개발자</translation>
     </message>
     <message>
         <location filename="../src/app/utils.cpp" line="590"/>
@@ -4710,52 +4721,52 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/app/utils.cpp" line="591"/>
         <source>Community Management</source>
-        <translation type="unfinished"/>
+        <translation>커뮤니티 관리</translation>
     </message>
     <message>
         <location filename="../src/app/utils.cpp" line="592"/>
         <source>Special thanks to</source>
-        <translation type="unfinished"/>
+        <translation>특별히 감사드립니다</translation>
     </message>
     <message>
         <location filename="../src/app/utils.cpp" line="593"/>
         <source>This is a list of people who have made a significant investment of time, with useful results, into Jami. Any such contributors who want to be added to the list should contact us.</source>
-        <translation type="unfinished"/>
+        <translation>이것은 유용한 결과와 함께 Jami에 상당한 시간을 투자한 사람들의 목록입니다. 목록에 추가되기를 원하는 기여자는 저희에게 연락해 주세요.</translation>
     </message>
     <message>
         <location filename="../src/app/linkdevicemodel.cpp" line="63"/>
         <source>Unrecognized new device identifier. Please follow the instructions above.</source>
-        <translation type="unfinished"/>
+        <translation>인식할 수 없는 새 장치 식별자입니다. 위의 지침을 따르세요.</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/account.h" line="238"/>
         <source>An authentication error occurred while linking the device. Please check credentials and try again.</source>
-        <translation type="unfinished"/>
+        <translation>장치를 연결하는 중 인증 오류가 발생했습니다. 자격 증명을 확인하고 다시 시도하세요.</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/account.h" line="241"/>
         <source>A network error occurred while linking the account. Please verify your connection and try again.</source>
-        <translation type="unfinished"/>
+        <translation>계정을 연결하는 중 네트워크 오류가 발생했습니다. 연결을 확인하고 다시 시도하세요.</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/account.h" line="244"/>
         <source>The operation timed out. Please try again.</source>
-        <translation type="unfinished"/>
+        <translation>작업 시간이 초과되었습니다. 다시 시도하세요.</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/account.h" line="246"/>
         <source>An error occurred while exporting the account. Please try again.</source>
-        <translation type="unfinished"/>
+        <translation>계정을 내보내는 중 오류가 발생했습니다. 다시 시도하세요.</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/account.h" line="248"/>
         <source>The operation was canceled by the user.</source>
-        <translation type="unfinished"/>
+        <translation>작업이 사용자에 의해 취소되었습니다.</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/account.h" line="251"/>
         <source>An unexpected error occurred while linking the device. Please try again.</source>
-        <translation type="unfinished"/>
+        <translation>장치를 연결하는 중 예기치 않은 오류가 발생했습니다. 다시 시도하세요.</translation>
     </message>
 </context>
 <context>
@@ -4786,12 +4797,12 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/app/systemtray.cpp" line="221"/>
         <source>Accept call</source>
-        <translation type="unfinished"/>
+        <translation>통화 수락</translation>
     </message>
     <message>
         <location filename="../src/app/systemtray.cpp" line="222"/>
         <source>Decline call</source>
-        <translation type="unfinished"/>
+        <translation>통화 거절</translation>
     </message>
     <message>
         <location filename="../src/app/systemtray.cpp" line="224"/>
@@ -4801,12 +4812,12 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/app/systemtray.cpp" line="226"/>
         <source>Accept invitation</source>
-        <translation type="unfinished"/>
+        <translation>초대 수락</translation>
     </message>
     <message>
         <location filename="../src/app/systemtray.cpp" line="227"/>
         <source>Decline invitation</source>
-        <translation type="unfinished"/>
+        <translation>초대 거절</translation>
     </message>
 </context>
 <context>
@@ -4824,7 +4835,7 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="89"/>
         <source>The choice of the name Jami was inspired by the Swahili word “jamii”, which means “community” as a noun and “together” as an adverb.</source>
-        <translation type="unfinished"/>
+        <translation>Jami라는 이름의 선택은 스와힐리어 단어 &quot;jamii&quot;에서 영감을 받았으며, 이는 명사로 &quot;공동체&quot;, 부사로 &quot;함께&quot;를 의미합니다.</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="93"/>
@@ -4834,7 +4845,7 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="80"/>
         <source>Donate</source>
-        <translation type="unfinished"/>
+        <translation>기부</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="85"/>
@@ -4844,7 +4855,7 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="95"/>
         <source>A red dot means that your account is disconnected from the network; it turns green when it’s connected.</source>
-        <translation type="unfinished"/>
+        <translation>빨간 점은 계정이 네트워크에서 연결이 끊어졌음을 의미하며, 연결되면 녹색으로 바뀝니다.</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="99"/>
@@ -4864,7 +4875,7 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="107"/>
         <source>In a call, you can click on “Invite members” to add a contact to a call.</source>
-        <translation type="unfinished"/>
+        <translation>통화 중에 &quot;구성원 초대&quot;를 클릭하여 연락처를 통화에 추가할 수 있습니다.</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="110"/>
@@ -4889,7 +4900,7 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="122"/>
         <source>Why don’t I have to use a password?</source>
-        <translation type="unfinished"/>
+        <translation>왜 비밀번호를 사용하지 않아도 되나요?</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="124"/>
@@ -4899,7 +4910,7 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="129"/>
         <source>Why don’t I have to register a username?</source>
-        <translation type="unfinished"/>
+        <translation>왜 사용자 이름을 등록하지 않아도 되나요?</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="141"/>
@@ -4942,12 +4953,12 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/app/settingsview/components/TroubleshootSettingsPage.qml" line="59"/>
         <source>Enable crash reports</source>
-        <translation type="unfinished"/>
+        <translation>충돌 보고서 활성화</translation>
     </message>
     <message>
         <location filename="../src/app/settingsview/components/TroubleshootSettingsPage.qml" line="73"/>
         <source>Automatically send crash reports</source>
-        <translation type="unfinished"/>
+        <translation>충돌 보고서 자동 전송</translation>
     </message>
 </context>
 <context>
@@ -4988,7 +4999,7 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/libclient/contactmodel.cpp" line="961"/>
         <source>Unable to lookup…</source>
-        <translation type="unfinished"/>
+        <translation>조회할 수 없습니다…</translation>
     </message>
 </context>
 <context>
