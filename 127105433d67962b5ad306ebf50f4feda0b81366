@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56438907_b9857713",
+        "filename": "translations/jami_client_qt_de_DE.ts",
+        "patchSetId": 1
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-14T01:39:49Z",
+      "side": 1,
+      "message": "[🟡 Suggestion] Line 77: The translation for \"Me\" uses a lowercase L (`lch`) instead of uppercase I (`Ich`), which will render visibly wrong in the call UI. Use the correct German spelling.\n```suggestion\n        \u003ctranslation\u003eIch\u003c/translation\u003e\n```",
+      "revId": "127105433d67962b5ad306ebf50f4feda0b81366",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "da8e56ce_8df70eca",
+        "filename": "translations/jami_client_qt_de_DE.ts",
+        "patchSetId": 1
+      },
+      "lineNbr": 4124,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-14T01:39:49Z",
+      "side": 1,
+      "message": "[🟡 Suggestion] Line 4124: The Qt accelerator marker from the source string is dropped. This removes the keyboard mnemonic from the tray/menu action. Preserve an ampersand in the translated action label.\n```suggestion\n        \u003ctranslation\u003eB\u0026amp;eenden\u003c/translation\u003e\n```",
+      "revId": "127105433d67962b5ad306ebf50f4feda0b81366",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "58be3abe_e7227b9f",
+        "filename": "translations/jami_client_qt_de_DE.ts",
+        "patchSetId": 1
+      },
+      "lineNbr": 4129,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-14T01:39:49Z",
+      "side": 1,
+      "message": "[🔴 Critical Issue] Line 4129: The translation of \"%1 is sharing their location\" currently means \"%1 is sharing your location\", which reverses the ownership and can mislead users about location privacy. Translate \"their location\" as the other person\u0027s own location.\n```suggestion\n        \u003ctranslation\u003e%1 teilt seinen/ihren Standort\u003c/translation\u003e\n```",
+      "revId": "127105433d67962b5ad306ebf50f4feda0b81366",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
