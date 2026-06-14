@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python3
 
 ##
 ##  Copyright (C) 2016-2026 Savoir-faire Linux Inc.
@@ -18,42 +18,59 @@
 ##  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301 USA.
 ##
 
+"""Refresh translations/*.ts from the source tree with lupdate.
+
+Jami no longer uses Transifex. Source strings are extracted here, and the
+translations themselves are produced in-house with the helpers in
+extras/scripts/i18n (export untranslated strings, translate, import back).
+See extras/scripts/i18n/README.md for the full workflow.
+"""
+
+import glob
 import os
-import shutil
+import subprocess
+import sys
 
-print("== Updating from sources")
-if os.system("lupdate jami.pro -no-obsolete"):
-    print("Attempting with 'lupdate-qt5'")
-    if os.system("lupdate-qt5 jami.pro -no-obsolete"):
-        raise RuntimeError("Unable to find any suitable lupdate Qt tool on this system. Stopping…")
+REPO_ROOT = os.path.abspath(
+    os.path.join(os.path.dirname(__file__), '..', '..'))
+SRC_DIR = os.path.join(REPO_ROOT, 'src')
+TS_GLOB = os.path.join(REPO_ROOT, 'translations', '*.ts')
 
-print("== Pushing sources")
-os.system("tx push -s")
+# lupdate tool candidates, in order of preference (Qt6 first, Qt5 fallback).
+LUPDATE_TOOLS = ('lupdate', 'lupdate-qt6', 'lupdate6', 'lupdate-qt5', 'lupdate5')
 
-print("== Pulling translations")
-os.system("tx pull -af --minimum-perc=1")
 
-print("Updating .pro file")
+def run_lupdate():
+    ts_files = sorted(glob.glob(TS_GLOB))
+    if not ts_files:
+        raise RuntimeError('no .ts files found under translations/')
 
-translationFiles = []
+    base_args = ['-extensions', 'cpp,h,qml', SRC_DIR,
+                 '-ts'] + ts_files + ['-no-obsolete']
+    for tool in LUPDATE_TOOLS:
+        try:
+            subprocess.check_call([tool] + base_args)
+            return
+        except FileNotFoundError:
+            # tool not installed under this name: try the next candidate
+            continue
+        except subprocess.CalledProcessError as err:
+            # tool ran but failed (bad source, malformed QML, …): surface the
+            # real error instead of masking it behind other candidates
+            raise RuntimeError(
+                '{} failed while updating translations: {}'.format(
+                    tool, err)) from err
+    raise RuntimeError(
+        'No lupdate tool found (tried: {}). Install Qt Linguist tools or add '
+        'lupdate to PATH.'.format(', '.join(LUPDATE_TOOLS)))
 
-for filename in os.listdir('./translations'):
-    translationFiles.append("translations/{0}".format(filename))
 
-proFile = "jami.pro"
-shutil.move(proFile, proFile + "~")
+def main():
+    print('== Updating translations/*.ts from sources')
+    run_lupdate()
+    print('== Done. Translate new strings with extras/scripts/i18n '
+          '(see its README), then rebuild to regenerate the .qm files.')
 
-destination = open(proFile, "w")
-source = open(proFile + "~", "r")
-for line in source:
-    if not ".ts" in line:
-        destination.write(line)
-    if "TRANSLATIONS = " in line:
-        for filename in translationFiles:
-            destination.write("    {0} \\\n".format(filename))
 
-source.close()
-destination.close()
-os.remove(proFile + "~")
-
-print("== All done you can commit now")
+if __name__ == '__main__':
+    sys.exit(main())
