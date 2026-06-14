@@ -39,37 +39,37 @@
     <message>
         <location filename="../src/app/mainview/components/ConversationStatusView.qml" line="79"/>
         <source>Swarm routing table</source>
-        <translation type="unfinished"></translation>
+        <translation>Tábla ródúcháin Swarm</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/ConversationStatusView.qml" line="153"/>
         <source>Connection Time</source>
-        <translation type="unfinished"></translation>
+        <translation>Am Ceangail</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/ConversationStatusView.qml" line="359"/>
         <source>%1 seconds ago</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 soicind ó shin</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/ConversationStatusView.qml" line="362"/>
         <source>%1 minutes ago</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 nóiméad ó shin</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/ConversationStatusView.qml" line="365"/>
         <source>%1 hours ago</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 uair an chloig ó shin</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/ConversationStatusView.qml" line="368"/>
         <source>%1 days ago</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 lá ó shin</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/ConversationStatusView.qml" line="381"/>
         <source>Tracked members</source>
-        <translation type="unfinished"></translation>
+        <translation>Baill rianaithe</translation>
     </message>
 </context>
 <context>
@@ -77,12 +77,12 @@
     <message>
         <location filename="../src/app/conversationsadapter.cpp" line="183"/>
         <source>%1 has joined the conversation.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tá %1 tar éis dul isteach sa chomhrá.</translation>
     </message>
     <message>
         <location filename="../src/app/conversationsadapter.cpp" line="185"/>
         <source>%1 has left the conversation.</source>
-        <translation type="unfinished"></translation>
+        <translation>D&apos;fhág %1 an comhrá.</translation>
     </message>
     <message>
         <location filename="../src/app/conversationsadapter.cpp" line="202"/>
@@ -92,7 +92,7 @@
     <message>
         <location filename="../src/app/conversationsadapter.cpp" line="255"/>
         <source>%1 received a new invitation</source>
-        <translation type="unfinished"></translation>
+        <translation>Fuair %1 cuireadh nua</translation>
     </message>
 </context>
 <context>
@@ -128,27 +128,27 @@
     <message>
         <location filename="../src/app/currentconversation.cpp" line="306"/>
         <source>An error occurred while fetching this repository.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tharla earráid agus an stór seo á fháil.</translation>
     </message>
     <message>
         <location filename="../src/app/currentconversation.cpp" line="308"/>
         <source>Unrecognized conversation mode.</source>
-        <translation type="unfinished"></translation>
+        <translation>Modh comhrá anaithnid.</translation>
     </message>
     <message>
         <location filename="../src/app/currentconversation.cpp" line="310"/>
         <source>An invalid message was detected.</source>
-        <translation type="unfinished"></translation>
+        <translation>Braitheadh teachtaireacht neamhbhailí.</translation>
     </message>
     <message>
         <location filename="../src/app/currentconversation.cpp" line="312"/>
         <source>Insufficient permission to update conversation information.</source>
-        <translation type="unfinished"></translation>
+        <translation>Cead neamhleor chun faisnéis an chomhrá a nuashonrú.</translation>
     </message>
     <message>
         <location filename="../src/app/currentconversation.cpp" line="314"/>
         <source>An error occurred while committing a new message.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tharla earráid agus teachtaireacht nua á cur isteach.</translation>
     </message>
 </context>
 <context>
@@ -187,12 +187,12 @@
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="43"/>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="877"/>
         <source>Jami daemon (jamid) reconnection is in progress. Please wait…</source>
-        <translation type="unfinished"></translation>
+        <translation>Tá athcheangal na seirbhíse Jami (jamid) ar siúl. Fan le do thoil…</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="57"/>
         <source>Jami has recovered from a crash. Do you want to send a crash report to help fix the issue?</source>
-        <translation type="unfinished"></translation>
+        <translation>Tháinig Jami chuige féin tar éis tuairteála. Ar mhaith leat tuairisc tuairteála a sheoladh chun cabhrú leis an bhfadhb a réiteach?</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="61"/>
@@ -232,7 +232,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="72"/>
         <source>Select contacts</source>
-        <translation type="unfinished"></translation>
+        <translation>Roghnaigh teagmhálacha</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="76"/>
@@ -247,12 +247,12 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="79"/>
         <source>Authenticating device</source>
-        <translation type="unfinished"></translation>
+        <translation>Gléas á fhíordheimhniú</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="80"/>
         <source>Transferring account…</source>
-        <translation type="unfinished"></translation>
+        <translation>Cuntas á aistriú…</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="82"/>
@@ -267,12 +267,12 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="85"/>
         <source>Import from another account</source>
-        <translation type="unfinished"></translation>
+        <translation>Iompórtáil ó chuntas eile</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="86"/>
         <source>Connect to account</source>
-        <translation type="unfinished"></translation>
+        <translation>Ceangail leis an gcuntas</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="90"/>
@@ -328,37 +328,37 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="110"/>
         <source>Push-to-talk</source>
-        <translation type="unfinished"></translation>
+        <translation>Brúigh-chun-cainte</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="111"/>
         <source>Enable push-to-talk</source>
-        <translation type="unfinished"></translation>
+        <translation>Cumasaigh brúigh-chun-cainte</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="112"/>
         <source>Keyboard shortcut</source>
-        <translation type="unfinished"></translation>
+        <translation>Aicearra méarchláir</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="113"/>
         <source>Change keyboard shortcut</source>
-        <translation type="unfinished"></translation>
+        <translation>Athraigh an t-aicearra méarchláir</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="118"/>
         <source>Change shortcut</source>
-        <translation type="unfinished"></translation>
+        <translation>Athraigh an t-aicearra</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="119"/>
         <source>Press the key to be assigned to push-to-talk shortcut</source>
-        <translation type="unfinished"></translation>
+        <translation>Brúigh an eochair a shannfar don aicearra brúigh-chun-cainte</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="120"/>
         <source>Assign</source>
-        <translation type="unfinished"></translation>
+        <translation>Sann</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="123"/>
@@ -544,7 +544,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="183"/>
         <source>Current DHT port used</source>
-        <translation type="unfinished"></translation>
+        <translation>Port DHT atá in úsáid faoi láthair</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="184"/>
@@ -569,7 +569,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="189"/>
         <source>Proxy list URL</source>
-        <translation type="unfinished"></translation>
+        <translation>URL liosta seachfhreastalaithe</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="190"/>
@@ -579,12 +579,12 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="191"/>
         <source>Using proxy:</source>
-        <translation type="unfinished"></translation>
+        <translation>Seachfhreastalaí á úsáid:</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="192"/>
         <source>Proxy disabled</source>
-        <translation type="unfinished"></translation>
+        <translation>Seachfhreastalaí díchumasaithe</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="195"/>
@@ -604,366 +604,366 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="198"/>
         <source>Extensions</source>
-        <translation type="unfinished"></translation>
+        <translation>Breiseáin</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="208"/>
         <source>App access</source>
-        <translation type="unfinished"></translation>
+        <translation>Rochtain feidhmchláir</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="209"/>
         <source>Manage how external applications, bots, or scripts can access this account through the local API.</source>
-        <translation type="unfinished"></translation>
+        <translation>Bainistigh conas is féidir le feidhmchláir sheachtracha, róbónna nó scripteanna rochtain a fháil ar an gcuntas seo tríd an API áitiúil.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="210"/>
         <source>Enable local API server</source>
-        <translation type="unfinished"></translation>
+        <translation>Cumasaigh freastalaí API áitiúil</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="211"/>
         <source>Enable server</source>
-        <translation type="unfinished"></translation>
+        <translation>Cumasaigh an freastalaí</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="212"/>
         <source>Start a local HTTP server that external applications can use to interact with Jami</source>
-        <translation type="unfinished"></translation>
+        <translation>Tosaigh freastalaí HTTP áitiúil ar féidir le feidhmchláir sheachtracha a úsáid chun idirghníomhú le Jami</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="213"/>
         <source>Local API server</source>
-        <translation type="unfinished"></translation>
+        <translation>Freastalaí API áitiúil</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="214"/>
         <source>API access is managed per account</source>
-        <translation type="unfinished"></translation>
+        <translation>Bainistítear rochtain API de réir cuntais</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="215"/>
         <source>Configure the local server here, then open App access in the current account settings to create and revoke tokens.</source>
-        <translation type="unfinished"></translation>
+        <translation>Cumraigh an freastalaí áitiúil anseo, ansin oscail Rochtain feidhmchláir i socruithe an chuntais reatha chun comharthaí a chruthú agus a chúlghairm.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="216"/>
         <source>Open App access</source>
-        <translation type="unfinished"></translation>
+        <translation>Oscail Rochtain feidhmchláir</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="217"/>
         <source>Server port</source>
-        <translation type="unfinished"></translation>
+        <translation>Port an fhreastalaí</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="218"/>
         <source>Server running on port %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Tá an freastalaí ag rith ar phort %1</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="219"/>
         <source>Server stopped</source>
-        <translation type="unfinished"></translation>
+        <translation>Stopadh an freastalaí</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="220"/>
         <source>Local API server disabled</source>
-        <translation type="unfinished"></translation>
+        <translation>Freastalaí API áitiúil díchumasaithe</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="221"/>
         <source>The local API server is disabled in application settings. Enable it to generate and manage API tokens for this account.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tá an freastalaí API áitiúil díchumasaithe i socruithe an fheidhmchláir. Cumasaigh é chun comharthaí API a chruthú agus a bhainistiú don chuntas seo.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="222"/>
         <source>Token label (e.g. my-bot)</source>
-        <translation type="unfinished"></translation>
+        <translation>Lipéad an chomhartha (m.sh. mo-bhota)</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="223"/>
         <source>Generate token</source>
-        <translation type="unfinished"></translation>
+        <translation>Gin comhartha</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="224"/>
         <source>Active tokens</source>
-        <translation type="unfinished"></translation>
+        <translation>Comharthaí gníomhacha</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="225"/>
         <source>No API tokens configured for this account.</source>
-        <translation type="unfinished"></translation>
+        <translation>Níl aon chomhartha API cumraithe don chuntas seo.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="226"/>
         <source>Created %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Cruthaithe %1</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="227"/>
         <source>Expires %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Rachaidh in éag %1</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="228"/>
         <source>API token created</source>
-        <translation type="unfinished"></translation>
+        <translation>Comhartha API cruthaithe</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="229"/>
         <source>Copy this token now. It will not be shown again.</source>
-        <translation type="unfinished"></translation>
+        <translation>Cóipeáil an comhartha seo anois. Ní thaispeánfar arís é.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="230"/>
         <source>This token grants access to your account. Keep it secret.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tugann an comhartha seo rochtain ar do chuntas. Coinnigh faoi rún é.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="233"/>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="235"/>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="278"/>
         <source>Shared services</source>
-        <translation type="unfinished"></translation>
+        <translation>Seirbhísí roinnte</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="234"/>
         <source>Expose local TCP services or a local folder over Jami so trusted contacts can reach them as if they were running on their own machine.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nochtaigh seirbhísí TCP áitiúla nó fillteán áitiúil trí Jami ionas gur féidir le teagmhálacha iontaofa rochtain a fháil orthu amhail is dá mbeidís ag rith ar a meaisín féin.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="236"/>
         <source>No services are exposed yet.</source>
-        <translation type="unfinished"></translation>
+        <translation>Níor nochtadh aon seirbhís fós.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="237"/>
         <source>Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Ainm</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="238"/>
         <source>e.g. webhook, ssh, syncthing</source>
-        <translation type="unfinished"></translation>
+        <translation>m.sh. webhook, ssh, syncthing</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="239"/>
         <source>Description (optional)</source>
-        <translation type="unfinished"></translation>
+        <translation>Cur síos (roghnach)</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="240"/>
         <source>Type</source>
-        <translation type="unfinished"></translation>
+        <translation>Cineál</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="241"/>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="249"/>
         <source>Custom</source>
-        <translation type="unfinished"></translation>
+        <translation>Saincheaptha</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="242"/>
         <source>Web server (embedded)</source>
-        <translation type="unfinished"></translation>
+        <translation>Freastalaí gréasáin (leabaithe)</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="243"/>
         <source>Directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Eolaire</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="244"/>
         <source>Choose directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Roghnaigh eolaire</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="245"/>
         <source>Local host</source>
-        <translation type="unfinished"></translation>
+        <translation>Óstach áitiúil</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="246"/>
         <source>Local port</source>
-        <translation type="unfinished"></translation>
+        <translation>Port áitiúil</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="247"/>
         <source>URI scheme</source>
-        <translation type="unfinished"></translation>
+        <translation>Scéim URI</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="248"/>
         <source>Raw TCP</source>
-        <translation type="unfinished"></translation>
+        <translation>TCP amh</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="250"/>
         <source>URI scheme (optional)</source>
-        <translation type="unfinished"></translation>
+        <translation>Scéim URI (roghnach)</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="251"/>
         <source>Accessible by</source>
-        <translation type="unfinished"></translation>
+        <translation>Inrochtana ag</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="252"/>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="264"/>
         <source>Contacts</source>
-        <translation type="unfinished">Contacts</translation>
+        <translation>Contacts</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="253"/>
         <source>Anyone (public)</source>
-        <translation type="unfinished"></translation>
+        <translation>Aon duine (poiblí)</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="254"/>
         <source>Specific contacts only</source>
-        <translation type="unfinished"></translation>
+        <translation>Teagmhálacha sonracha amháin</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="255"/>
         <source>Allowed contact URIs (comma-separated)</source>
-        <translation type="unfinished"></translation>
+        <translation>URInna teagmhála ceadaithe (scartha le camóga)</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="256"/>
         <source>Enabled</source>
-        <translation type="unfinished"></translation>
+        <translation>Cumasaithe</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="258"/>
         <source>Local endpoint: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Críochphointe áitiúil: %1</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="259"/>
         <source>Directory: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Eolaire: %1</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="260"/>
         <source>Disabled</source>
-        <translation type="unfinished">An duine atá faoi mhíchumas</translation>
+        <translation>An duine atá faoi mhíchumas</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="261"/>
         <source>Open %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Oscail %1</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="262"/>
         <source>Copy %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Cóipeáil %1</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="263"/>
         <source>Public</source>
-        <translation type="unfinished"></translation>
+        <translation>Poiblí</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="265"/>
         <source>Specific</source>
-        <translation type="unfinished"></translation>
+        <translation>Sonrach</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="266"/>
         <source>Are you sure you want to delete this shared service?</source>
-        <translation type="unfinished"></translation>
+        <translation>An bhfuil tú cinnte gur mhaith leat an tseirbhís roinnte seo a scriosadh?</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="267"/>
         <source>Add website</source>
-        <translation type="unfinished"></translation>
+        <translation>Cuir suíomh gréasáin leis</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="268"/>
         <source>Custom service</source>
-        <translation type="unfinished"></translation>
+        <translation>Seirbhís shaincheaptha</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="269"/>
         <source>What&apos;s this?</source>
-        <translation type="unfinished"></translation>
+        <translation>Cad é seo?</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="270"/>
         <source>Enter the URI scheme to use when accessing the service (e.g. http, https, etc…)</source>
-        <translation type="unfinished"></translation>
+        <translation>Cuir isteach an scéim URI le húsáid agus rochtain á fáil ar an tseirbhís (m.sh. http, https, srl.)</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="272"/>
         <source>Disconnect</source>
-        <translation type="unfinished"></translation>
+        <translation>Dícheangail</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="273"/>
         <source>Open in external browser</source>
-        <translation type="unfinished"></translation>
+        <translation>Oscail i mbrabhsálaí seachtrach</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="274"/>
         <source>Device unavailable</source>
-        <translation type="unfinished"></translation>
+        <translation>Gléas neamhinfhaighte</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="275"/>
         <source>Connection failed</source>
-        <translation type="unfinished"></translation>
+        <translation>Theip ar an gceangal</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="279"/>
         <source>This contact does not expose any service to you.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ní nochtann an teagmhálaí seo aon seirbhís duit.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="280"/>
         <source>No devices found for this contact. They may be offline.</source>
-        <translation type="unfinished"></translation>
+        <translation>Níor aimsíodh aon ghléas don teagmhálaí seo. B&apos;fhéidir go bhfuil siad as líne.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="281"/>
         <source>Could not reach any of this contact&apos;s devices.</source>
-        <translation type="unfinished"></translation>
+        <translation>Níorbh fhéidir teagmháil a dhéanamh le haon cheann de ghléasanna an teagmhálaí seo.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="282"/>
         <source>This contact&apos;s device did not respond in time.</source>
-        <translation type="unfinished"></translation>
+        <translation>Níor fhreagair gléas an teagmhálaí seo in am.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="283"/>
         <source>Service discovery is unavailable on this account.</source>
-        <translation type="unfinished"></translation>
+        <translation>Níl fionnachtain seirbhísí ar fáil ar an gcuntas seo.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="284"/>
         <source>Refresh</source>
-        <translation type="unfinished"></translation>
+        <translation>Athnuaigh</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="285"/>
         <source>Open local tunnel</source>
-        <translation type="unfinished"></translation>
+        <translation>Oscail tollán áitiúil</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="286"/>
         <source>Open</source>
-        <translation type="unfinished"></translation>
+        <translation>Oscail</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="287"/>
         <source>Stop</source>
-        <translation type="unfinished"></translation>
+        <translation>Stop</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="288"/>
         <source>Reachable at %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Inrochtana ag %1</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="291"/>
@@ -973,17 +973,17 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="292"/>
         <source>Notifications</source>
-        <translation type="unfinished"></translation>
+        <translation>Fógraí</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="293"/>
         <source>Application</source>
-        <translation type="unfinished"></translation>
+        <translation>Feidhmchlár</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="294"/>
         <source>Language</source>
-        <translation type="unfinished"></translation>
+        <translation>Teanga</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="295"/>
@@ -1028,17 +1028,17 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="304"/>
         <source>Noise reduction</source>
-        <translation type="unfinished"></translation>
+        <translation>Laghdú torainn</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="305"/>
         <source>Echo suppression</source>
-        <translation type="unfinished"></translation>
+        <translation>Coisc macalla</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="306"/>
         <source>Voice activity detection</source>
-        <translation type="unfinished"></translation>
+        <translation>Brath gníomhaíochta gutha</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="309"/>
@@ -1093,17 +1093,17 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="337"/>
         <source>%1 is recording</source>
-        <translation type="unfinished"></translation>
+        <translation>Tá %1 ag taifeadadh</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="338"/>
         <source>%1 are recording</source>
-        <translation type="unfinished"></translation>
+        <translation>Tá %1 ag taifeadadh</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="378"/>
         <source>Delete conversation</source>
-        <translation type="unfinished"></translation>
+        <translation>Scrios comhrá</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="408"/>
@@ -1113,47 +1113,47 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="430"/>
         <source>Call error</source>
-        <translation type="unfinished"></translation>
+        <translation>Earráid ghlaonna</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="431"/>
         <source>An error occured during the call. %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Tharla earráid le linn an ghlao. %1</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="432"/>
         <source>The request was invalid or malformed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Bhí an t-iarratas neamhbhailí nó míchumtha.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="433"/>
         <source>Authentication is required to complete this call.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tá fíordheimhniú riachtanach chun an glao seo a chríochnú.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="434"/>
         <source>You don&apos;t have permission to make this call.</source>
-        <translation type="unfinished"></translation>
+        <translation>Níl cead agat an glao seo a dhéanamh.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="435"/>
         <source>Proxy authentication credentials are required.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tá dintiúir fhíordheimhnithe an tseachfhreastalaí riachtanach.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="436"/>
         <source>Please ensure that both you and your contact have a common codec enabled.</source>
-        <translation type="unfinished"></translation>
+        <translation>Cinntigh le do thoil go bhfuil codec coiteann cumasaithe agat féin agus ag do theagmhálaí.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="437"/>
         <source>How do I change my codecs?</source>
-        <translation type="unfinished"></translation>
+        <translation>Conas a athraím mo codecanna?</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="438"/>
         <source>&lt;br&gt;&lt;b&gt;Settings &gt; Account &gt; Advanced settings &gt; Video Codecs / Audio Codecs.&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;br&gt;&lt;b&gt;Socruithe &gt; Cuntas &gt; Ardsocruithe &gt; Codecanna Físe / Codecanna Fuaime.&lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="446"/>
@@ -1168,17 +1168,17 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="468"/>
         <source>Confirm Navigation</source>
-        <translation type="unfinished"></translation>
+        <translation>Deimhnigh Nascleanúint</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="469"/>
         <source>You are about to navigate to an external link. Do you want to proceed?</source>
-        <translation type="unfinished"></translation>
+        <translation>Tá tú ar tí dul chuig nasc seachtrach. Ar mhaith leat leanúint ar aghaidh?</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="470"/>
         <source>Leave Jami</source>
-        <translation type="unfinished"></translation>
+        <translation>Fág Jami</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="473"/>
@@ -1188,7 +1188,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="482"/>
         <source>Open in new window</source>
-        <translation type="unfinished"></translation>
+        <translation>Oscail i bhfuinneog nua</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="511"/>
@@ -1233,7 +1233,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="619"/>
         <source>Use native window frame (requires restart)</source>
-        <translation type="unfinished"></translation>
+        <translation>Úsáid an fráma fuinneoige dúchasach (atosú riachtanach)</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="623"/>
@@ -1248,27 +1248,27 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="653"/>
         <source>Delete file from device</source>
-        <translation type="unfinished"></translation>
+        <translation>Scrios comhad ón ngléas</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="661"/>
         <source>A new version of the Jami application is available. Do you want to update now? To continue, click Update.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tá leagan nua den fheidhmchlár Jami ar fáil. Ar mhaith leat nuashonrú anois? Chun leanúint ar aghaidh, cliceáil Nuashonraigh.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="662"/>
         <source>The application is up to date.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tá an feidhmchlár cothrom le dáta.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="663"/>
         <source>An error occurred while checking for updates.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tharla earráid agus nuashonruithe á seiceáil.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="664"/>
         <source>A network error occurred while checking for updates.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tharla earráid líonra agus nuashonruithe á seiceáil.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="720"/>
@@ -1283,12 +1283,12 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="729"/>
         <source>The account was imported successfully.</source>
-        <translation type="unfinished"></translation>
+        <translation>D&apos;iompórtáladh an cuntas go rathúil.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="734"/>
         <source>No video available, please check your devices.</source>
-        <translation type="unfinished"></translation>
+        <translation>Níl aon fhís ar fáil, seiceáil do ghléasanna le do thoil.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="737"/>
@@ -1298,17 +1298,17 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="739"/>
         <source>Enter account password to confirm the removal of this device</source>
-        <translation type="unfinished"></translation>
+        <translation>Cuir isteach pasfhocal an chuntais chun baint an ghléis seo a dheimhniú</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="764"/>
         <source>There are no extensions for the platform to display in the Jami Extension Store. Please try again later.</source>
-        <translation type="unfinished"></translation>
+        <translation>Níl aon bhreiseán don ardán le taispeáint i Siopa Breiseán Jami. Bain triail eile as níos déanaí le do thoil.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="886"/>
         <source>Discard and restart</source>
-        <translation type="unfinished"></translation>
+        <translation>Cuir i leataobh agus atosaigh</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="888"/>
@@ -1318,12 +1318,12 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="890"/>
         <source>Show preview</source>
-        <translation type="unfinished"></translation>
+        <translation>Taispeáin réamhamharc</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="891"/>
         <source>Continue editing</source>
-        <translation type="unfinished"></translation>
+        <translation>Lean ag eagarthóireacht</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="894"/>
@@ -1343,37 +1343,37 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="920"/>
         <source>Call started</source>
-        <translation type="unfinished"></translation>
+        <translation>Tosaíodh an glao</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="924"/>
         <source>Select this device</source>
-        <translation type="unfinished"></translation>
+        <translation>Roghnaigh an gléas seo</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="925"/>
         <source>Select device</source>
-        <translation type="unfinished"></translation>
+        <translation>Roghnaigh gléas</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="930"/>
         <source>Show local video</source>
-        <translation type="unfinished"></translation>
+        <translation>Taispeáin físeán áitiúil</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="931"/>
         <source>Hide local video</source>
-        <translation type="unfinished"></translation>
+        <translation>Folaigh físeán áitiúil</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="986"/>
         <source>Copy fingerprint</source>
-        <translation type="unfinished"></translation>
+        <translation>Cóipeáil méarlorg</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="987"/>
         <source>Copy username</source>
-        <translation type="unfinished"></translation>
+        <translation>Cóipeáil ainm úsáideora</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="998"/>
@@ -1388,7 +1388,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1016"/>
         <source>Select background image</source>
-        <translation type="unfinished"></translation>
+        <translation>Roghnaigh íomhá chúlra</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1017"/>
@@ -1398,12 +1398,12 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1022"/>
         <source>Free and private sharing. &lt;a href=&quot;https://jami.net/donate/&quot;&gt;Donate&lt;/a&gt; to expand it.</source>
-        <translation type="unfinished"></translation>
+        <translation>Roinnt shaor agus phríobháideach. &lt;a href=&quot;https://jami.net/donate/&quot;&gt;Tabhair síntiús&lt;/a&gt; chun é a leathnú.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1023"/>
         <source>Donate</source>
-        <translation type="unfinished"></translation>
+        <translation>Tabhair síntiús</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1025"/>
@@ -1413,275 +1413,275 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1026"/>
         <source>Enable donation campaign</source>
-        <translation type="unfinished"></translation>
+        <translation>Cumasaigh feachtas síntiús</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1029"/>
         <source>Enter</source>
-        <translation type="unfinished"></translation>
+        <translation>Iontráil</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1030"/>
         <source>Shift+Enter</source>
-        <translation type="unfinished"></translation>
+        <translation>Shift+Iontráil</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1044"/>
         <source>Remote: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Cianda: %1</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1045"/>
         <source>View</source>
-        <translation type="unfinished"></translation>
+        <translation>Amharc</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1048"/>
         <source>Check spelling while typing</source>
-        <translation type="unfinished"></translation>
+        <translation>Seiceáil litriú agus tú ag clóscríobh</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1050"/>
         <source>Text language</source>
-        <translation type="unfinished"></translation>
+        <translation>Teanga an téacs</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1086"/>
         <source>Use arrows to switch between available accounts</source>
-        <translation type="unfinished"></translation>
+        <translation>Úsáid na saigheada chun athrú idir na cuntais atá ar fáil</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1111"/>
         <source>Conversation list</source>
-        <translation type="unfinished"></translation>
+        <translation>Liosta comhráite</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1112"/>
         <source>Use arrow keys to navigate through conversations.</source>
-        <translation type="unfinished"></translation>
+        <translation>Úsáid na heochracha saighde chun nascleanúint trí na comhráite.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1113"/>
         <source>%L1 unread message.</source>
-        <translation type="unfinished"></translation>
+        <translation>%L1 teachtaireacht neamhléite.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1114"/>
         <source>%L1 unread messages.</source>
-        <translation type="unfinished"></translation>
+        <translation>%L1 teachtaireacht neamhléite.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1115"/>
         <source>Last message was %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ba é %1 an teachtaireacht dheireanach.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1116"/>
         <source>Message body %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>Corp na teachtaireachta %1.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1117"/>
         <source>Search for a conversation or a contact</source>
-        <translation type="unfinished"></translation>
+        <translation>Cuardaigh comhrá nó teagmhálaí</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1118"/>
         <source>Status %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Stádas %1</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1119"/>
         <source>Online</source>
-        <translation type="unfinished"></translation>
+        <translation>Ar líne</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1120"/>
         <source>Offline</source>
-        <translation type="unfinished"></translation>
+        <translation>As líne</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1121"/>
         <source>At least one person is online</source>
-        <translation type="unfinished"></translation>
+        <translation>Tá duine amháin ar a laghad ar líne</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1122"/>
         <source>Everyone is offline</source>
-        <translation type="unfinished"></translation>
+        <translation>Tá gach duine as líne</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1123"/>
         <source>You and %1 are sharing locations with each other</source>
-        <translation type="unfinished"></translation>
+        <translation>Tá tú féin agus %1 ag roinnt suíomhanna lena chéile</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1124"/>
         <source>%1 is currently sharing their location</source>
-        <translation type="unfinished"></translation>
+        <translation>Tá %1 ag roinnt a suíomh faoi láthair</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1125"/>
         <source>You are sharing your location to %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Tá tú ag roinnt do shuíomh le %1</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1126"/>
         <source>Choose a profile picture</source>
-        <translation type="unfinished"></translation>
+        <translation>Roghnaigh pictiúr próifíle</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1032"/>
         <source>Text formatting</source>
-        <translation type="unfinished"></translation>
+        <translation>Formáidiú téacs</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="414"/>
         <source>%1 saved to %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Sábháladh %1 chuig %2</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="420"/>
         <source>Call ID</source>
-        <translation type="unfinished"></translation>
+        <translation>Aitheantas glao</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="426"/>
         <source>Renderer ID</source>
-        <translation type="unfinished"></translation>
+        <translation>Aitheantas rindreálaí</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="479"/>
         <source>%1 has deleted the message.</source>
-        <translation type="unfinished"></translation>
+        <translation>Scrios %1 an teachtaireacht.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="480"/>
         <source>%1 has deleted the media.</source>
-        <translation type="unfinished"></translation>
+        <translation>Scrios %1 na meáin.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="500"/>
         <source>Enter the management server URL</source>
-        <translation type="unfinished"></translation>
+        <translation>Cuir isteach URL an fhreastalaí bainistíochta</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="501"/>
         <source>Management server URL</source>
-        <translation type="unfinished"></translation>
+        <translation>URL an fhreastalaí bainistíochta</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="502"/>
         <source>Enter management server credentials</source>
-        <translation type="unfinished"></translation>
+        <translation>Cuir isteach dintiúir an fhreastalaí bainistíochta</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="512"/>
         <source>Choose rendezvous point name</source>
-        <translation type="unfinished"></translation>
+        <translation>Roghnaigh ainm na pointe coinne</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="530"/>
         <source>Protecting the account with a password is optional, and if the password is lost it CANNOT be recovered later.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tá cosaint an chuntais le pasfhocal roghnach, agus má chailltear an pasfhocal NÍ FÉIDIR é a aisghabháil níos déanaí.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="563"/>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="564"/>
         <source>Set password</source>
-        <translation type="unfinished"></translation>
+        <translation>Socraigh pasfhocal</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="566"/>
         <source>Back up the account to a .jac file</source>
-        <translation type="unfinished"></translation>
+        <translation>Déan cúltaca den chuntas chuig comhad .jac</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="570"/>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="572"/>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="994"/>
         <source>Set account password</source>
-        <translation type="unfinished"></translation>
+        <translation>Socraigh pasfhocal an chuntais</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="575"/>
         <source>Enter nickname, surname…</source>
-        <translation type="unfinished"></translation>
+        <translation>Cuir isteach leasainm, sloinne…</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="766"/>
         <source>Installation error</source>
-        <translation type="unfinished"></translation>
+        <translation>Earráid suiteála</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="767"/>
         <source>An error occurred while installing the extension.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tharla earráid agus an breiseán á shuiteáil.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="770"/>
         <source>Reset preferences</source>
-        <translation type="unfinished"></translation>
+        <translation>Athshocraigh sainroghanna</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="771"/>
         <source>Select extension to install</source>
-        <translation type="unfinished"></translation>
+        <translation>Roghnaigh breiseán le suiteáil</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="772"/>
         <source>Uninstall extension</source>
-        <translation type="unfinished"></translation>
+        <translation>Díshuiteáil breiseán</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="773"/>
         <source>Do you want to reset the preferences for the %1 extension? To continue, click Reset.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ar mhaith leat sainroghanna an bhreiseáin %1 a athshocrú? Chun leanúint ar aghaidh, cliceáil Athshocraigh.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="774"/>
         <source>Do you want to uninstall the %1 extension? To continue, click Uninstall.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ar mhaith leat an breiseán %1 a dhíshuiteáil? Chun leanúint ar aghaidh, cliceáil Díshuiteáil.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="775"/>
         <source>Go back to extensions list</source>
-        <translation type="unfinished"></translation>
+        <translation>Téigh ar ais go liosta na mbreiseán</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="776"/>
         <source>Select file</source>
-        <translation type="unfinished"></translation>
+        <translation>Roghnaigh comhad</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="779"/>
         <source>Extension files (*.jpl)</source>
-        <translation type="unfinished"></translation>
+        <translation>Comhaid bhreiseán (*.jpl)</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="784"/>
         <source>Choose extension</source>
-        <translation type="unfinished"></translation>
+        <translation>Roghnaigh breiseán</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="799"/>
         <source>Select screen to share</source>
-        <translation type="unfinished"></translation>
+        <translation>Roghnaigh scáileán le roinnt</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="800"/>
         <source>Select window to share</source>
-        <translation type="unfinished"></translation>
+        <translation>Roghnaigh fuinneog le roinnt</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="801"/>
         <source>All screens</source>
-        <translation type="unfinished"></translation>
+        <translation>Gach scáileán</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="820"/>
         <source>An error occurred while creating the account. Check credentials and try again.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tharla earráid agus an cuntas á chruthú. Seiceáil na dintiúir agus bain triail eile as.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="832"/>
@@ -1691,17 +1691,17 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="834"/>
         <source>Search results</source>
-        <translation type="unfinished"></translation>
+        <translation>Torthaí cuardaigh</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="837"/>
         <source>Decline invitation</source>
-        <translation type="unfinished"></translation>
+        <translation>Diúltaigh cuireadh</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="838"/>
         <source>Accept invitation</source>
-        <translation type="unfinished"></translation>
+        <translation>Glac le cuireadh</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="844"/>
@@ -1721,169 +1721,174 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="861"/>
         <source>Mute participant</source>
-        <translation type="unfinished"></translation>
+        <translation>Balbhaigh rannpháirtí</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="862"/>
         <source>Unmute participant</source>
-        <translation type="unfinished"></translation>
+        <translation>Díbhalbhaigh rannpháirtí</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="42"/>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="878"/>
         <source>An error occurred while reconnecting to the Jami daemon (jamid).
 The application will now exit.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tharla earráid agus athcheangal á dhéanamh leis an tseirbhís Jami (jamid).
+Éireoidh an feidhmchlár as anois.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="494"/>
         <source>%1 is typing…</source>
-        <translation type="unfinished"></translation>
+        <translation>Tá %1 ag clóscríobh…</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="495"/>
         <source>%1 are typing…</source>
-        <translation type="unfinished"></translation>
+        <translation>Tá %1 ag clóscríobh…</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="497"/>
         <source>%1 and %2</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 agus %2</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="518"/>
         <source>Do you want to create a Jami account without a username?
 If yes, only a randomly generated 40-character identifier will be assigned to the account.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ar mhaith leat cuntas Jami a chruthú gan ainm úsáideora?
+Más ea, ní shannfar don chuntas ach aitheantóir 40 carachtar a ghintear go randamach.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="593"/>
         <source>A network error occurred while linking the device. Please try again later.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tharla earráid líonra agus an gléas á nascadh. Bain triail eile as níos déanaí le do thoil.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="602"/>
         <source>If the account has not been backed up or added to another device, the account and registered username will be IRREVOCABLY LOST.</source>
-        <translation type="unfinished"></translation>
+        <translation>Mura ndearnadh cúltaca den chuntas nó mura ndearnadh é a chur le gléas eile, caillfear an cuntas agus an t-ainm úsáideora cláraithe GO DOLEIGHEASTA.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="631"/>
         <source>Web link previews</source>
-        <translation type="unfinished"></translation>
+        <translation>Réamhamhairc nasc gréasáin</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="641"/>
         <source>Accept transfer limit (MB)</source>
-        <translation type="unfinished"></translation>
+        <translation>Teorainn glactha aistrithe (MB)</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="907"/>
         <source>Don&apos;t send</source>
-        <translation type="unfinished"></translation>
+        <translation>Ná seol</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="918"/>
         <source>Join with audio</source>
-        <translation type="unfinished"></translation>
+        <translation>Téigh isteach le fuaim</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="919"/>
         <source>Join with video</source>
-        <translation type="unfinished"></translation>
+        <translation>Téigh isteach le físeán</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="922"/>
         <source>Current host for this group conversation seems unreachable. Do you want to host the call?</source>
-        <translation type="unfinished"></translation>
+        <translation>Dealraíonn sé go bhfuil óstach reatha an chomhrá ghrúpa seo dorochtana. Ar mhaith leat an glao a óstáil?</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="923"/>
         <source>Select dedicated device for hosting future calls in this group conversation. If not set, the host will be the device starting a call.</source>
-        <translation type="unfinished"></translation>
+        <translation>Roghnaigh gléas tiomnaithe chun glaonna amach anseo a óstáil sa chomhrá grúpa seo. Mura socraítear é, beidh an t-óstach mar an gléas a thosaíonn glao.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="934"/>
         <source>%1 sent you a conversation invitation.</source>
-        <translation type="unfinished"></translation>
+        <translation>Sheol %1 cuireadh comhrá chugat.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="935"/>
         <source>Hello,
 Do you want to join the conversation?</source>
-        <translation type="unfinished"></translation>
+        <translation>Dia duit,
+ar mhaith leat dul isteach sa chomhrá?</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="936"/>
         <source>You have accepted
 the conversation invitation.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tá glactha agat
+leis an gcuireadh comhrá.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="937"/>
         <source>Waiting for %1
 to connect to synchronize the conversation…</source>
-        <translation type="unfinished"></translation>
+        <translation>Ag fanacht le %1
+chun ceangal chun an comhrá a shioncronú…</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="942"/>
         <source>Group name</source>
-        <translation type="unfinished"></translation>
+        <translation>Ainm an ghrúpa</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="943"/>
         <source>Contact name</source>
-        <translation type="unfinished"></translation>
+        <translation>Ainm teagmhálaí</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="944"/>
         <source>Add description</source>
-        <translation type="unfinished"></translation>
+        <translation>Cuir cur síos leis</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="952"/>
         <source>Choose color</source>
-        <translation type="unfinished"></translation>
+        <translation>Roghnaigh dath</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="953"/>
         <source>Color</source>
-        <translation type="unfinished"></translation>
+        <translation>Dath</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="947"/>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="957"/>
         <source>Conversation type</source>
-        <translation type="unfinished"></translation>
+        <translation>Cineál comhrá</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="962"/>
         <source>Block member</source>
-        <translation type="unfinished"></translation>
+        <translation>Cuir bac ar bhall</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="963"/>
         <source>Unblock member</source>
-        <translation type="unfinished"></translation>
+        <translation>Bain bac de bhall</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1024"/>
         <source>If you enjoy using Jami and believe in our mission, do you want to make a donation?</source>
-        <translation type="unfinished"></translation>
+        <translation>Má bhaineann tú taitneamh as Jami a úsáid agus má chreideann tú inár misean, ar mhaith leat síntiús a thabhairt?</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1035"/>
         <source>Connected</source>
-        <translation type="unfinished"></translation>
+        <translation>Ceangailte</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1036"/>
         <source>Connecting TLS</source>
-        <translation type="unfinished"></translation>
+        <translation>TLS á cheangal</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1037"/>
         <source>Connecting ICE</source>
-        <translation type="unfinished"></translation>
+        <translation>ICE á cheangal</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1038"/>
@@ -1893,27 +1898,27 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1039"/>
         <source>Waiting</source>
-        <translation type="unfinished"></translation>
+        <translation>Ag fanacht</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1040"/>
         <source>Contact</source>
-        <translation type="unfinished"></translation>
+        <translation>Teagmhálaí</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1041"/>
         <source>Connection</source>
-        <translation type="unfinished"></translation>
+        <translation>Ceangal</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1042"/>
         <source>Channels</source>
-        <translation type="unfinished"></translation>
+        <translation>Cainéil</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1043"/>
         <source>Copy all data</source>
-        <translation type="unfinished"></translation>
+        <translation>Cóipeáil na sonraí go léir</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="681"/>
@@ -2116,7 +2121,7 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="64"/>
         <source>Add another account</source>
-        <translation type="unfinished"></translation>
+        <translation>Cuir cuntas eile leis</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="65"/>
@@ -2147,7 +2152,7 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="324"/>
         <source>Your account only exists on this device. If you lose your device or uninstall the application, your account will be deleted and CANNOT be recovered. You can &lt;a href=&apos;blank&apos;&gt; back up your account &lt;/a&gt; now or later (in the Account Settings).</source>
-        <translation type="unfinished"></translation>
+        <translation>Níl do chuntas ann ach ar an ngléas seo. Má chailleann tú do ghléas nó má dhíshuiteálann tú an feidhmchlár, scriosfar do chuntas agus NÍ FÉIDIR é a aisghabháil. Is féidir leat &lt;a href=&apos;blank&apos;&gt; cúltaca a dhéanamh de do chuntas &lt;/a&gt; anois nó níos déanaí (i Socruithe an Chuntais).</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="349"/>
@@ -2248,67 +2253,67 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="33"/>
         <source>Incoming audio call from %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Glao fuaime isteach ó %1</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="34"/>
         <source>Incoming video call from %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Glao físe isteach ó %1</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="75"/>
         <source>To continue the import account operation, scan the following QR code on the source device.</source>
-        <translation type="unfinished"></translation>
+        <translation>Chun leanúint le hoibríocht iompórtála an chuntais, scan an cód QR seo a leanas ar an ngléas foinse.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="78"/>
         <source>Action required. Please confirm account on the source device.</source>
-        <translation type="unfinished"></translation>
+        <translation>Gníomh riachtanach. Deimhnigh an cuntas ar an ngléas foinse le do thoil.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="81"/>
         <source>If you are unable to scan the QR code, enter the following token on the source device.</source>
-        <translation type="unfinished"></translation>
+        <translation>Mura féidir leat an cód QR a scanadh, cuir isteach an comhartha seo a leanas ar an ngléas foinse.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="84"/>
         <source>An error occurred while importing the account.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tharla earráid agus an cuntas á iompórtáil.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="87"/>
         <source>An authentication error occurred while linking the device. Please check credentials and try again.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tharla earráid fhíordheimhnithe agus an gléas á nascadh. Seiceáil na dintiúir agus bain triail eile as le do thoil.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="91"/>
         <source>The session has expired or has been revoked on this device. Please enter the account password.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tá an seisiún imithe in éag nó cúlghairmeadh é ar an ngléas seo. Cuir isteach pasfhocal an chuntais le do thoil.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="92"/>
         <source>Management server</source>
-        <translation type="unfinished"></translation>
+        <translation>Freastalaí bainistíochta</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="103"/>
         <source>Convert account into rendezvous point</source>
-        <translation type="unfinished"></translation>
+        <translation>Tiontaigh an cuntas ina phointe coinne</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="107"/>
         <source>Select new ringtone</source>
-        <translation type="unfinished"></translation>
+        <translation>Roghnaigh fón nua</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="114"/>
         <source>Bring the application to the front for incoming calls</source>
-        <translation type="unfinished"></translation>
+        <translation>Tabhair an feidhmchlár chun tosaigh do ghlaonna isteach</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="115"/>
         <source>Decline incoming calls when already in a call</source>
-        <translation type="unfinished"></translation>
+        <translation>Diúltaigh glaonna isteach nuair atá tú i nglao cheana</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="367"/>
@@ -2328,27 +2333,27 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="382"/>
         <source>Leave group</source>
-        <translation type="unfinished"></translation>
+        <translation>Fág an grúpa</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="383"/>
         <source>Are you sure you want to leave this group?</source>
-        <translation type="unfinished"></translation>
+        <translation>An bhfuil tú cinnte gur mhaith leat an grúpa seo a fhágáil?</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="384"/>
         <source>Do you want to remove this contact? The existing conversation will be deleted.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ar mhaith leat an teagmhálaí seo a bhaint? Scriosfar an comhrá atá ann.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="385"/>
         <source>Do you want to block this contact?</source>
-        <translation type="unfinished"></translation>
+        <translation>Ar mhaith leat bac a chur ar an teagmhálaí seo?</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="386"/>
         <source>Are you sure you want to remove this conversation? The contact will not be removed.</source>
-        <translation type="unfinished"></translation>
+        <translation>An bhfuil tú cinnte gur mhaith leat an comhrá seo a bhaint? Ní bhainfear an teagmhálaí.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="387"/>
@@ -2373,7 +2378,7 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="394"/>
         <source>Show keypad</source>
-        <translation type="unfinished"></translation>
+        <translation>Taispeáin an eochaircheap</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="395"/>
@@ -2648,12 +2653,13 @@ to connect to synchronize the conversation…</source>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="519"/>
         <source>- 32 characters maximum
 - Special characters allowed: dash (-)</source>
-        <translation type="unfinished"></translation>
+        <translation>- 32 carachtar ar a mhéad
+- Carachtair speisialta ceadaithe: fleiscín (-)</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="520"/>
         <source>Customize your profile (optional)</source>
-        <translation type="unfinished"></translation>
+        <translation>Saincheap do phróifíl (roghnach)</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="521"/>
@@ -2663,7 +2669,7 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="522"/>
         <source>Skip profile configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Scipeáil cumraíocht na próifíle</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="523"/>
@@ -2673,62 +2679,62 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="531"/>
         <source>Setting a profile picture and display name is optional, and can also be changed later in the settings.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tá pictiúr próifíle agus ainm taispeána a shocrú roghnach, agus is féidir é a athrú níos déanaí sna socruithe freisin.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="537"/>
         <source>Configure existing SIP account</source>
-        <translation type="unfinished"></translation>
+        <translation>Cumraigh cuntas SIP atá ann</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="542"/>
         <source>Display name</source>
-        <translation type="unfinished"></translation>
+        <translation>Ainm taispeána</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="547"/>
         <source>Your Jami account is registered only on this device as an archive containing the keys of your account. Access to this archive can be protected with a password.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tá do chuntas Jami cláraithe ar an ngléas seo amháin mar chartlann a bhfuil eochracha do chuntais inti. Is féidir rochtain ar an gcartlann seo a chosaint le pasfhocal.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="549"/>
         <source>This Jami account exists only on this device. The account will be lost if this device is lost or the application is uninstalled. It is recommended to make a backup of this account.</source>
-        <translation type="unfinished"></translation>
+        <translation>Níl an cuntas Jami seo ann ach ar an ngléas seo. Caillfear an cuntas má chailltear an gléas seo nó má dhíshuiteáiltear an feidhmchlár. Moltar cúltaca a dhéanamh den chuntas seo.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="556"/>
         <source>Backup completed successfully.</source>
-        <translation type="unfinished"></translation>
+        <translation>Críochnaíodh an cúltaca go rathúil.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="557"/>
         <source>An error occurred while backing up the account.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tharla earráid agus cúltaca á dhéanamh den chuntas.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="558"/>
         <source>Password changed successfully.</source>
-        <translation type="unfinished"></translation>
+        <translation>Athraíodh an pasfhocal go rathúil.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="559"/>
         <source>An error occurred while changing the account password.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tharla earráid agus pasfhocal an chuntais á athrú.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="560"/>
         <source>Password set successfully.</source>
-        <translation type="unfinished"></translation>
+        <translation>Socraíodh an pasfhocal go rathúil.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="561"/>
         <source>An error occurred while setting the account password.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tharla earráid agus pasfhocal an chuntais á shocrú.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1051"/>
         <source>Spell checker</source>
-        <translation type="unfinished"></translation>
+        <translation>Seiceálaí litrithe</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="510"/>
@@ -2738,12 +2744,12 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="29"/>
         <source>Accept with audio</source>
-        <translation type="unfinished"></translation>
+        <translation>Glac le fuaim</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="30"/>
         <source>Accept with video</source>
-        <translation type="unfinished"></translation>
+        <translation>Glac le físeán</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="31"/>
@@ -2753,57 +2759,57 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="35"/>
         <source>Create new group</source>
-        <translation type="unfinished"></translation>
+        <translation>Cruthaigh grúpa nua</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="46"/>
         <source>Build ID</source>
-        <translation type="unfinished"></translation>
+        <translation>Aitheantas tógála</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="56"/>
         <source>Application Recovery</source>
-        <translation type="unfinished"></translation>
+        <translation>Aisghabháil Feidhmchláir</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="58"/>
         <source>Only essential data, including the app version, platform information, and a snapshot of the program&apos;s state at the time of the crash, will be shared.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ní roinnfear ach sonraí riachtanacha, lena n-áirítear leagan na haipe, faisnéis an ardáin, agus seat de staid an chláir ag am na tuairteála.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="96"/>
         <source>An error occurred while authenticating the account.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tharla earráid agus an cuntas á fhíordheimhniú.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="108"/>
         <source>Certificate file (*.crt)</source>
-        <translation type="unfinished"></translation>
+        <translation>Comhad teastais (*.crt)</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="109"/>
         <source>Audio file (*.wav *.ogg *.opus *.mp3 *.aiff *.wma)</source>
-        <translation type="unfinished"></translation>
+        <translation>Comhad fuaime (*.wav *.ogg *.opus *.mp3 *.aiff *.wma)</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="138"/>
         <source>Select private key</source>
-        <translation type="unfinished"></translation>
+        <translation>Roghnaigh eochair phríobháideach</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="139"/>
         <source>Select user certificate</source>
-        <translation type="unfinished"></translation>
+        <translation>Roghnaigh teastas úsáideora</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="140"/>
         <source>Select CA certificate</source>
-        <translation type="unfinished"></translation>
+        <translation>Roghnaigh teastas CA</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="142"/>
         <source>Key file (*.key)</source>
-        <translation type="unfinished"></translation>
+        <translation>Comhad eochrach (*.key)</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="154"/>
@@ -2813,12 +2819,12 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="320"/>
         <source>No camera available</source>
-        <translation type="unfinished"></translation>
+        <translation>Níl aon cheamara ar fáil</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="329"/>
         <source>Jami account (*.jac)</source>
-        <translation type="unfinished"></translation>
+        <translation>Cuntas Jami (*.jac)</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="339"/>
@@ -2828,7 +2834,7 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="340"/>
         <source>Unmute microphone</source>
-        <translation type="unfinished"></translation>
+        <translation>Díbhalbhaigh micreafón</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="343"/>
@@ -2838,27 +2844,27 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="344"/>
         <source>Start camera</source>
-        <translation type="unfinished"></translation>
+        <translation>Tosaigh ceamara</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="345"/>
         <source>Invite member</source>
-        <translation type="unfinished"></translation>
+        <translation>Tabhair cuireadh do bhall</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="346"/>
         <source>Invite members</source>
-        <translation type="unfinished"></translation>
+        <translation>Tabhair cuireadh do bhaill</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="351"/>
         <source>Participant microphone is still muted.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tá micreafón an rannpháirtí balbhaithe fós.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="352"/>
         <source>Device microphone is still muted.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tá micreafón an ghléis balbhaithe fós.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="364"/>
@@ -2878,79 +2884,81 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="381"/>
         <source>Do you want to leave this conversation?</source>
-        <translation type="unfinished"></translation>
+        <translation>Ar mhaith leat an comhrá seo a fhágáil?</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="393"/>
         <source>DTMF input panel</source>
-        <translation type="unfinished"></translation>
+        <translation>Painéal ionchuir DTMF</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="405"/>
         <source>View extension</source>
-        <translation type="unfinished"></translation>
+        <translation>Amharc ar bhreiseán</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="443"/>
         <source>An error occurred while sharing the device location.
 Enable “Location Services” in device settings in order to use this feature.
 The location of other members can still be received.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tharla earráid agus suíomh an ghléis á roinnt.
+Cumasaigh “Seirbhísí Suímh” i socruithe an ghléis chun an ghné seo a úsáid.
+Is féidir suíomh na mball eile a fháil fós.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="444"/>
         <source>An error occurred while sharing the device location. Please check your Internet connection and try again.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tharla earráid agus suíomh an ghléis á roinnt. Seiceáil do cheangal Idirlín agus bain triail eile as.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="461"/>
         <source>1m</source>
-        <translation type="unfinished"></translation>
+        <translation>1 n</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="463"/>
         <source>%L1s</source>
-        <translation type="unfinished"></translation>
+        <translation>%L1 s</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="464"/>
         <source>%L1m</source>
-        <translation type="unfinished"></translation>
+        <translation>%L1 n</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="465"/>
         <source>%L1m %L2s</source>
-        <translation type="unfinished"></translation>
+        <translation>%L1 n %L2 s</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="466"/>
         <source>%L1h</source>
-        <translation type="unfinished"></translation>
+        <translation>%L1 u</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="467"/>
         <source>%L1h %L2m</source>
-        <translation type="unfinished"></translation>
+        <translation>%L1 u %L2 n</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="474"/>
         <source>Show available extensions</source>
-        <translation type="unfinished"></translation>
+        <translation>Taispeáin breiseáin atá ar fáil</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="476"/>
         <source>A backend system error occurred: %0</source>
-        <translation type="unfinished"></translation>
+        <translation>Tharla earráid chórais in:bhirt: %0</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="481"/>
         <source>Return to call</source>
-        <translation type="unfinished"></translation>
+        <translation>Fill ar an nglao</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="485"/>
         <source>This conversation has ended.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tá deireadh leis an gcomhrá seo.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="514"/>
@@ -3015,12 +3023,12 @@ The location of other members can still be received.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="545"/>
         <source>Your profile is only shared with your contacts. You can customize your profile at any time.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ní roinntear do phróifíl ach le do theagmhálacha. Is féidir leat do phróifíl a shaincheapadh am ar bith.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="546"/>
         <source>A chosen username can help to be found more easily on Jami. If a username is not chosen, a randomly generated 40-character identifier will be assigned to this account as a username. It is more difficult to be found and reached with this identifier.</source>
-        <translation type="unfinished"></translation>
+        <translation>Is féidir le hainm úsáideora roghnaithe cabhrú le go n-aimseofar tú níos éasca ar Jami. Mura roghnaítear ainm úsáideora, sannfar aitheantóir 40 carachtar a ghintear go randamach don chuntas seo mar ainm úsáideora. Tá sé níos deacra tú a aimsiú agus teagmháil a dhéanamh leat leis an aitheantóir seo.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="548"/>
@@ -3050,47 +3058,47 @@ The location of other members can still be received.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="573"/>
         <source>A Jami account is created and stored locally only on this device, as an archive containing your account keys. Access to this archive can optionally be protected with a password.</source>
-        <translation type="unfinished"></translation>
+        <translation>Cruthaítear agus stóráiltear cuntas Jami go háitiúil ar an ngléas seo amháin, mar chartlann a bhfuil eochracha do chuntais inti. Is féidir rochtain ar an gcartlann seo a chosaint le pasfhocal go roghnach.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="576"/>
         <source>Use this account on other devices</source>
-        <translation type="unfinished"></translation>
+        <translation>Úsáid an cuntas seo ar ghléasanna eile</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="577"/>
         <source>This account is created and stored locally, if you want to use it on another device you have to link the new device to this account.</source>
-        <translation type="unfinished"></translation>
+        <translation>Cruthaítear agus stóráiltear an cuntas seo go háitiúil; más mian leat é a úsáid ar ghléas eile, ní mór duit an gléas nua a nascadh leis an gcuntas seo.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="588"/>
         <source>Link new device to this account</source>
-        <translation type="unfinished"></translation>
+        <translation>Nasc gléas nua leis an gcuntas seo</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="590"/>
         <source>Remove device</source>
-        <translation type="unfinished"></translation>
+        <translation>Bain gléas</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="591"/>
         <source>Do you want to unlink the selected device? To continue, enter account password and click Unlink.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ar mhaith leat an gléas roghnaithe a dhínascadh? Chun leanúint ar aghaidh, cuir isteach pasfhocal an chuntais agus cliceáil Dínasc.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="592"/>
         <source>Account PIN code is:</source>
-        <translation type="unfinished"></translation>
+        <translation>Is é cód PIN an chuntais ná:</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="596"/>
         <source>Unblock contact</source>
-        <translation type="unfinished"></translation>
+        <translation>Bain bac den teagmhálaí</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="597"/>
         <source>Blocked</source>
-        <translation type="unfinished"></translation>
+        <translation>Bactha</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="598"/>
@@ -3100,22 +3108,22 @@ The location of other members can still be received.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="601"/>
         <source>Do you want to delete this account? To continue, click Delete.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ar mhaith leat an cuntas seo a scriosadh? Chun leanúint ar aghaidh, cliceáil Scrios.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="607"/>
         <source>Device name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Ainm an ghléis:</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="609"/>
         <source>Device ID</source>
-        <translation type="unfinished"></translation>
+        <translation>Aitheantas gléis</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="615"/>
         <source>Select folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Roghnaigh fillteán</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="627"/>
@@ -3125,69 +3133,69 @@ The location of other members can still be received.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="628"/>
         <source>Send and receive typing indicators showing when messages are being typed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Seol agus faigh táscairí clóscríofa a thaispeánann nuair atá teachtaireachtaí á gclóscríobh.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="629"/>
         <source>Read receipts</source>
-        <translation type="unfinished"></translation>
+        <translation>Admhálacha léite</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="630"/>
         <source>Send and request delivery and read receipts to be sent when messages are delivered or read.</source>
-        <translation type="unfinished"></translation>
+        <translation>Seol agus iarr admhálacha seachadta agus léite le seoladh nuair a sheachadtar nó a léitear teachtaireachtaí.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="642"/>
         <source>MB, 0 = unlimited</source>
-        <translation type="unfinished"></translation>
+        <translation>MB, 0 = gan teorainn</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="646"/>
         <source>Incorrect password.</source>
-        <translation type="unfinished"></translation>
+        <translation>Pasfhocal mícheart.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="647"/>
         <source>A network error occurred.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tharla earráid líonra.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="648"/>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="672"/>
         <source>An unexpected error occurred.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tharla earráid gan choinne.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="665"/>
         <source>An SSL error occurred.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tharla earráid SSL.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="666"/>
         <source>Installer download was canceled by user.</source>
-        <translation type="unfinished"></translation>
+        <translation>Chuir an t-úsáideoir íoslódáil an tsuiteálaí ar ceal.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="668"/>
         <source>This will replace the Release version with the Beta version on this device. The latest Release version can always be downloaded from the Jami website.</source>
-        <translation type="unfinished"></translation>
+        <translation>Cuirfidh sé seo an leagan Beta in ionad an leagain Release ar an ngléas seo. Is féidir an leagan Release is déanaí a íoslódáil i gcónaí ó shuíomh gréasáin Jami.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="670"/>
         <source>An error occurred while accessing the contents.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tharla earráid agus rochtain á fáil ar an inneachar.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="671"/>
         <source>Content not found.</source>
-        <translation type="unfinished"></translation>
+        <translation>Inneachar gan aimsiú.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="687"/>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="688"/>
         <source>Keyboard shortcuts</source>
-        <translation type="unfinished"></translation>
+        <translation>Aicearraí méarchláir</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="692"/>
@@ -3197,99 +3205,101 @@ The location of other members can still be received.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="697"/>
         <source>Submit issue</source>
-        <translation type="unfinished"></translation>
+        <translation>Cuir saincheist isteach</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="700"/>
         <source>Copied to clipboard.</source>
-        <translation type="unfinished"></translation>
+        <translation>Cóipeáilte chuig an ngearrthaisce.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="701"/>
         <source>View logs</source>
-        <translation type="unfinished"></translation>
+        <translation>Amharc ar logaí</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="712"/>
         <source>If the account is password protected, please fill the following field.</source>
-        <translation type="unfinished"></translation>
+        <translation>Má tá an cuntas cosanta le pasfhocal, líon an réimse seo a leanas le do thoil.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="721"/>
         <source>This account is password protected, enter the password to generate PIN code.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tá an cuntas seo cosanta le pasfhocal; cuir isteach an pasfhocal chun cód PIN a ghiniúint.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="724"/>
         <source>Connecting to the new device…</source>
-        <translation type="unfinished"></translation>
+        <translation>Ag ceangal leis an ngléas nua…</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="726"/>
         <source>On the new device, initiate a new account.
 Select Add account → Connect from another device.
 When ready, scan the QR code.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ar an ngléas nua, tosaigh cuntas nua.
+Roghnaigh Cuir cuntas leis → Ceangail ó ghléas eile.
+Nuair atá tú réidh, scan an cód QR.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="727"/>
         <source>Alternatively, enter the authentication code manually.</source>
-        <translation type="unfinished"></translation>
+        <translation>Mar mhalairt air sin, cuir isteach an cód fíordheimhnithe de láimh.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="730"/>
         <source>New device connected at the following IP address. Is that you? To continue the export account operation, click Confirm.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ceangailte gléas nua ag an seoladh IP seo a leanas. An tusa é? Chun leanúint le hoibríocht easpórtála an chuntais, cliceáil Deimhnigh.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="746"/>
         <source>Select image as profile picture</source>
-        <translation type="unfinished"></translation>
+        <translation>Roghnaigh íomhá mar phictiúr próifíle</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="747"/>
         <source>How do you want to set the profile picture?</source>
-        <translation type="unfinished"></translation>
+        <translation>Conas ar mhaith leat an pictiúr próifíle a shocrú?</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="748"/>
         <source>Import profile picture from image file</source>
-        <translation type="unfinished"></translation>
+        <translation>Iompórtáil pictiúr próifíle ó chomhad íomhá</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="749"/>
         <source>Remove profile picture</source>
-        <translation type="unfinished"></translation>
+        <translation>Bain pictiúr próifíle</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="751"/>
         <source>Image files (*.jpeg *.jpg *.png *.JPEG* .JPG *.PNG)</source>
-        <translation type="unfinished"></translation>
+        <translation>Comhaid íomhá (*.jpeg *.jpg *.png *.JPEG* .JPG *.PNG)</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="752"/>
         <source>Edit profile picture</source>
-        <translation type="unfinished"></translation>
+        <translation>Cuir pictiúr próifíle in eagar</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="755"/>
         <source>Auto update</source>
-        <translation type="unfinished"></translation>
+        <translation>Nuashonrú uathoibríoch</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="756"/>
         <source>Disable all</source>
-        <translation type="unfinished"></translation>
+        <translation>Díchumasaigh gach rud</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="757"/>
         <source>Installed</source>
-        <translation type="unfinished"></translation>
+        <translation>Suiteáilte</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="758"/>
         <source>Install</source>
-        <translation type="unfinished"></translation>
+        <translation>Suiteáil</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="759"/>
@@ -3299,52 +3309,52 @@ When ready, scan the QR code.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="760"/>
         <source>Install manually</source>
-        <translation type="unfinished"></translation>
+        <translation>Suiteáil de láimh</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="761"/>
         <source>Install an extension directly from your device.</source>
-        <translation type="unfinished"></translation>
+        <translation>Suiteáil breiseán go díreach ó do ghléas.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="762"/>
         <source>Available</source>
-        <translation type="unfinished"></translation>
+        <translation>Ar fáil</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="763"/>
         <source>The Jami Extension Store is currently unavailable. Please try again later.</source>
-        <translation type="unfinished"></translation>
+        <translation>Níl Siopa Breiseán Jami ar fáil faoi láthair. Bain triail eile as níos déanaí le do thoil.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="785"/>
         <source>Version %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Leagan %1</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="786"/>
         <source>Last update %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Nuashonrú deireanach %1</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="787"/>
         <source>By %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Le %1</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="788"/>
         <source>Proposed by %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Molta ag %1</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="792"/>
         <source>More information</source>
-        <translation type="unfinished"></translation>
+        <translation>Tuilleadh faisnéise</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="808"/>
         <source>Share account</source>
-        <translation type="unfinished"></translation>
+        <translation>Roinn cuntas</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="817"/>
@@ -3354,17 +3364,17 @@ When ready, scan the QR code.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="818"/>
         <source>Create account from management server</source>
-        <translation type="unfinished"></translation>
+        <translation>Cruthaigh cuntas ón bhfreastalaí bainistíochta</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="819"/>
         <source>Configure SIP account</source>
-        <translation type="unfinished"></translation>
+        <translation>Cumraigh cuntas SIP</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="821"/>
         <source>Create rendezvous point</source>
-        <translation type="unfinished"></translation>
+        <translation>Cruthaigh pointe coinne</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="822"/>
@@ -3384,17 +3394,17 @@ When ready, scan the QR code.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="865"/>
         <source>Disconnect participant</source>
-        <translation type="unfinished"></translation>
+        <translation>Dícheangail rannpháirtí</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="884"/>
         <source>Audio message</source>
-        <translation type="unfinished"></translation>
+        <translation>Teachtaireacht fuaime</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="885"/>
         <source>Video message</source>
-        <translation type="unfinished"></translation>
+        <translation>Teachtaireacht físe</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="887"/>
@@ -3439,47 +3449,47 @@ When ready, scan the QR code.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="902"/>
         <source>Show formatting</source>
-        <translation type="unfinished"></translation>
+        <translation>Taispeáin formáidiú</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="903"/>
         <source>Hide formatting</source>
-        <translation type="unfinished"></translation>
+        <translation>Folaigh formáidiú</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="904"/>
         <source>Press Shift+Enter to insert new line</source>
-        <translation type="unfinished"></translation>
+        <translation>Brúigh Shift+Iontráil chun líne nua a chur isteach</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="905"/>
         <source>Press Enter to insert new line</source>
-        <translation type="unfinished"></translation>
+        <translation>Brúigh Iontráil chun líne nua a chur isteach</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="910"/>
         <source>%1 replied to</source>
-        <translation type="unfinished"></translation>
+        <translation>D&apos;fhreagair %1 do</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="911"/>
         <source>you</source>
-        <translation type="unfinished"></translation>
+        <translation>tú</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="914"/>
         <source>Send a message to %1 in order to add them as a contact</source>
-        <translation type="unfinished"></translation>
+        <translation>Seol teachtaireacht chuig %1 chun é a chur leis mar theagmhálaí</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="940"/>
         <source>%L1 members</source>
-        <translation type="unfinished"></translation>
+        <translation>%L1 ball</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="945"/>
         <source>No description</source>
-        <translation type="unfinished"></translation>
+        <translation>Gan cur síos</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="946"/>
@@ -3489,27 +3499,27 @@ When ready, scan the QR code.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="950"/>
         <source>Unmute conversation</source>
-        <translation type="unfinished"></translation>
+        <translation>Díbhalbhaigh comhrá</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1055"/>
         <source>No dictionaries available.</source>
-        <translation type="unfinished"></translation>
+        <translation>Níl aon fhoclóir ar fáil.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1062"/>
         <source>Search or add</source>
-        <translation type="unfinished"></translation>
+        <translation>Cuardaigh nó cuir leis</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1068"/>
         <source>Add comment</source>
-        <translation type="unfinished"></translation>
+        <translation>Cuir nóta tráchta leis</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1069"/>
         <source>Share with…</source>
-        <translation type="unfinished"></translation>
+        <translation>Roinn le…</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1072"/>
@@ -3519,27 +3529,27 @@ When ready, scan the QR code.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1073"/>
         <source>No conversations found.</source>
-        <translation type="unfinished"></translation>
+        <translation>Níor aimsíodh aon chomhrá.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1074"/>
         <source>No contacts found.</source>
-        <translation type="unfinished"></translation>
+        <translation>Níor aimsíodh aon teagmhálaí.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="955"/>
         <source>Select default host</source>
-        <translation type="unfinished"></translation>
+        <translation>Roghnaigh óstach réamhshocraithe</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="956"/>
         <source>Change default host</source>
-        <translation type="unfinished"></translation>
+        <translation>Athraigh óstach réamhshocraithe</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="982"/>
         <source>Share your Jami identifier in order to be contacted more easily!</source>
-        <translation type="unfinished"></translation>
+        <translation>Roinn d&apos;aitheantóir Jami chun teagmháil a dhéanamh leat níos éasca!</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="983"/>
@@ -3554,7 +3564,7 @@ When ready, scan the QR code.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="985"/>
         <source>Hide fingerprint</source>
-        <translation type="unfinished"></translation>
+        <translation>Folaigh méarlorg</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="988"/>
@@ -3599,212 +3609,212 @@ When ready, scan the QR code.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1018"/>
         <source>Blur background image</source>
-        <translation type="unfinished"></translation>
+        <translation>Doiléirigh íomhá an chúlra</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1019"/>
         <source>Normalize background image contrast</source>
-        <translation type="unfinished"></translation>
+        <translation>Normalaigh codarsnacht íomhá an chúlra</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1031"/>
         <source>Enter or Shift+Enter to insert new line</source>
-        <translation type="unfinished"></translation>
+        <translation>Iontráil nó Shift+Iontráil chun líne nua a chur isteach</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1052"/>
         <source>Search text languages</source>
-        <translation type="unfinished"></translation>
+        <translation>Cuardaigh teangacha téacs</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1053"/>
         <source>Search for available text languages</source>
-        <translation type="unfinished"></translation>
+        <translation>Cuardaigh teangacha téacs atá ar fáil</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1054"/>
         <source>No dictionary found for %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>Níor aimsíodh aon fhoclóir do %1.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1056"/>
         <source>Dictionary manager</source>
-        <translation type="unfinished"></translation>
+        <translation>Bainisteoir foclóirí</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1057"/>
         <source>An error occurred while downloading the %1 dictionary.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tharla earráid agus an foclóir %1 á íoslódáil.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1058"/>
         <source>Show installed dictionaries</source>
-        <translation type="unfinished"></translation>
+        <translation>Taispeáin foclóirí suiteáilte</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1059"/>
         <source>Only show dictionaries that are currently installed</source>
-        <translation type="unfinished"></translation>
+        <translation>Ná taispeáin ach na foclóirí atá suiteáilte faoi láthair</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1065"/>
         <source>This conversation has no files.</source>
-        <translation type="unfinished"></translation>
+        <translation>Níl aon chomhad ag an gcomhrá seo.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1077"/>
         <source>Call in progress</source>
-        <translation type="unfinished"></translation>
+        <translation>Glao ar siúl</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1078"/>
         <source>Pop out</source>
-        <translation type="unfinished"></translation>
+        <translation>Bain amach</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1079"/>
         <source>Pop in</source>
-        <translation type="unfinished"></translation>
+        <translation>Cuir isteach arís</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1080"/>
         <source>You&apos;re the only one here!</source>
-        <translation type="unfinished"></translation>
+        <translation>Is tusa an t-aon duine anseo!</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1083"/>
         <source>Press enter to switch to this account</source>
-        <translation type="unfinished"></translation>
+        <translation>Brúigh iontráil chun athrú go dtí an cuntas seo</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1084"/>
         <source>Display your QR code to allow other users to scan it and add you as a contact</source>
-        <translation type="unfinished"></translation>
+        <translation>Taispeáin do chód QR chun ligean d&apos;úsáideoirí eile é a scanadh agus tú a chur leis mar theagmhálaí</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1085"/>
         <source>Account list</source>
-        <translation type="unfinished"></translation>
+        <translation>Liosta cuntas</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1087"/>
         <source>Select the user interface language</source>
-        <translation type="unfinished"></translation>
+        <translation>Roghnaigh teanga an chomhéadain úsáideora</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1088"/>
         <source>Go back to the previous page</source>
-        <translation type="unfinished"></translation>
+        <translation>Téigh ar ais go dtí an leathanach roimhe seo</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1089"/>
         <source>Advice Box</source>
-        <translation type="unfinished"></translation>
+        <translation>Bosca Comhairle</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1090"/>
         <source>Back button</source>
-        <translation type="unfinished"></translation>
+        <translation>Cnaipe ar ais</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1091"/>
         <source>Open the advice popup that contains information about Jami</source>
-        <translation type="unfinished"></translation>
+        <translation>Oscail an preabfhuinneog chomhairle ina bhfuil faisnéis faoi Jami</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1092"/>
         <source>More</source>
-        <translation type="unfinished"></translation>
+        <translation>Tuilleadh</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1093"/>
         <source>Press to %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Brúigh chun %1</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1094"/>
         <source>Press to toggle %1 (%2)</source>
-        <translation type="unfinished"></translation>
+        <translation>Brúigh chun %1 a scoránú (%2)</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1095"/>
         <source>active</source>
-        <translation type="unfinished"></translation>
+        <translation>gníomhach</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1096"/>
         <source>inactive</source>
-        <translation type="unfinished"></translation>
+        <translation>neamhghníomhach</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1097"/>
         <source>Minimize application</source>
-        <translation type="unfinished"></translation>
+        <translation>Íoslaghdaigh feidhmchlár</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1098"/>
         <source>Maximize application</source>
-        <translation type="unfinished"></translation>
+        <translation>Uaslaghdaigh feidhmchlár</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1099"/>
         <source>Close application</source>
-        <translation type="unfinished"></translation>
+        <translation>Dún feidhmchlár</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1100"/>
         <source>Dismiss this tip</source>
-        <translation type="unfinished"></translation>
+        <translation>Cuir an leid seo i leataobh</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1101"/>
         <source>Tips to help you use Jami more effectively</source>
-        <translation type="unfinished"></translation>
+        <translation>Leideanna chun cabhrú leat Jami a úsáid níos éifeachtaí</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1102"/>
         <source>Show more messaging options</source>
-        <translation type="unfinished"></translation>
+        <translation>Taispeáin tuilleadh roghanna teachtaireachta</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1103"/>
         <source>Open a menu that allows you to send voice and video messages as well as sharing your location</source>
-        <translation type="unfinished"></translation>
+        <translation>Oscail roghchlár a ligeann duit teachtaireachtaí gutha agus físe a sheoladh chomh maith le do shuíomh a roinnt</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1104"/>
         <source>Conversation messages list. Use arrow keys to navigate through messages.</source>
-        <translation type="unfinished"></translation>
+        <translation>Liosta teachtaireachtaí comhrá. Úsáid na heochracha saighde chun nascleanúint trí na teachtaireachtaí.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1105"/>
         <source>Data transfer</source>
-        <translation type="unfinished"></translation>
+        <translation>Aistriú sonraí</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1106"/>
         <source>Status</source>
-        <translation type="unfinished"></translation>
+        <translation>Stádas</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1107"/>
         <source>Read by</source>
-        <translation type="unfinished"></translation>
+        <translation>Léite ag</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1108"/>
         <source>Currently selected: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Roghnaithe faoi láthair: %1</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1109"/>
         <source>%1 has been selected for %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Roghnaíodh %1 do %2</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1110"/>
         <source>Available option for %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Rogha atá ar fáil do %1</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="565"/>
@@ -3829,7 +3839,7 @@ When ready, scan the QR code.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="104"/>
         <source>Automatically accept calls</source>
-        <translation type="unfinished"></translation>
+        <translation>Glac le glaonna go huathoibríoch</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="569"/>
@@ -4142,27 +4152,28 @@ When ready, scan the QR code.</source>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="725"/>
         <source>The export account operation to the new device is in progress.
 Please confirm the import on the new device.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tá oibríocht easpórtála an chuntais chuig an ngléas nua ar siúl.
+Deimhnigh an iompórtáil ar an ngléas nua le do thoil.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="728"/>
         <source>Enter authentication code</source>
-        <translation type="unfinished"></translation>
+        <translation>Cuir isteach cód fíordheimhnithe</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="731"/>
         <source>New device IP address: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Seoladh IP an ghléis nua: %1</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="732"/>
         <source>Do you want to exit?</source>
-        <translation type="unfinished"></translation>
+        <translation>Ar mhaith leat scor?</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="733"/>
         <source>Exiting will cancel the import account operation.</source>
-        <translation type="unfinished"></translation>
+        <translation>Cuirfidh scor oibríocht iompórtála an chuntais ar ceal.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="778"/>
@@ -4475,7 +4486,7 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="973"/>
         <source>Add profile picture and nickname to complete your profile</source>
-        <translation type="unfinished"></translation>
+        <translation>Cuir pictiúr próifíle agus leasainm leis chun do phróifíl a chríochnú</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="974"/>
@@ -4513,7 +4524,7 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="121"/>
         <source>Accept call</source>
-        <translation type="unfinished"></translation>
+        <translation>Glac le glao</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="65"/>
@@ -4573,7 +4584,7 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="45"/>
         <source>Focus conversation list</source>
-        <translation type="unfinished"></translation>
+        <translation>Dírigh ar liosta na gcomhráite</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="105"/>
@@ -4593,12 +4604,12 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="129"/>
         <source>Decline call</source>
-        <translation type="unfinished"></translation>
+        <translation>Diúltaigh glao</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="133"/>
         <source>Toggle full screen</source>
-        <translation type="unfinished"></translation>
+        <translation>Scoránaigh lánscáileán</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="137"/>
@@ -4663,37 +4674,37 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="189"/>
         <source>Show/hide formatting</source>
-        <translation type="unfinished"></translation>
+        <translation>Taispeáin/folaigh formáidiú</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="193"/>
         <source>Show preview/Continue editing</source>
-        <translation type="unfinished"></translation>
+        <translation>Taispeáin réamhamharc/Lean ag eagarthóireacht</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="201"/>
         <source>Open account settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Oscail socruithe cuntais</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="205"/>
         <source>Open general settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Oscail socruithe ginearálta</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="209"/>
         <source>Open media settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Oscail socruithe meán</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="213"/>
         <source>Open extensions settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Oscail socruithe breiseán</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="222"/>
         <source>View keyboard shortcuts</source>
-        <translation type="unfinished"></translation>
+        <translation>Amharc ar aicearraí méarchláir</translation>
     </message>
 </context>
 <context>
@@ -4719,7 +4730,7 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/app/positionmanager.cpp" line="400"/>
         <source>%1 is sharing their location</source>
-        <translation type="unfinished"></translation>
+        <translation>Tá %1 ag roinnt a suíomh</translation>
     </message>
     <message>
         <location filename="../src/app/positionmanager.cpp" line="405"/>
@@ -4732,12 +4743,12 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/app/commoncomponents/PresenceIndicator.qml" line="34"/>
         <source>Connected</source>
-        <translation type="unfinished"></translation>
+        <translation>Ceangailte</translation>
     </message>
     <message>
         <location filename="../src/app/commoncomponents/PresenceIndicator.qml" line="34"/>
         <source>Available</source>
-        <translation type="unfinished"></translation>
+        <translation>Ar fáil</translation>
     </message>
 </context>
 <context>
@@ -4824,77 +4835,77 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/core/interaction.cpp" line="88"/>
         <source>Private conversation created</source>
-        <translation type="unfinished"></translation>
+        <translation>Cruthaíodh comhrá príobháideach</translation>
     </message>
     <message>
         <location filename="../src/core/interaction.cpp" line="90"/>
         <source>Group conversation created</source>
-        <translation type="unfinished"></translation>
+        <translation>Cruthaíodh comhrá grúpa</translation>
     </message>
     <message>
         <location filename="../src/core/api/interaction.h" line="277"/>
         <source>%1 was invited to join the conversation.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tugadh cuireadh do %1 dul isteach sa chomhrá.</translation>
     </message>
     <message>
         <location filename="../src/core/api/interaction.h" line="280"/>
         <source>You joined the conversation.</source>
-        <translation type="unfinished"></translation>
+        <translation>Chuaigh tú isteach sa chomhrá.</translation>
     </message>
     <message>
         <location filename="../src/core/api/interaction.h" line="282"/>
         <source>%1 has joined the conversation.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tá %1 tar éis dul isteach sa chomhrá.</translation>
     </message>
     <message>
         <location filename="../src/core/api/interaction.h" line="285"/>
         <source>You left the conversation.</source>
-        <translation type="unfinished"></translation>
+        <translation>D&apos;fhág tú an comhrá.</translation>
     </message>
     <message>
         <location filename="../src/core/api/interaction.h" line="287"/>
         <source>%1 has left the conversation.</source>
-        <translation type="unfinished"></translation>
+        <translation>D&apos;fhág %1 an comhrá.</translation>
     </message>
     <message>
         <location filename="../src/core/api/interaction.h" line="289"/>
         <source>%1 was blocked from the conversation.</source>
-        <translation type="unfinished"></translation>
+        <translation>Cuireadh bac ar %1 ón gcomhrá.</translation>
     </message>
     <message>
         <location filename="../src/core/api/interaction.h" line="291"/>
         <source>%1 was unblocked from the conversation.</source>
-        <translation type="unfinished"></translation>
+        <translation>Baineadh bac de %1 ón gcomhrá.</translation>
     </message>
     <message>
         <location filename="../src/core/api/interaction.h" line="312"/>
         <source>%L4d %L3h %L2m %L1s</source>
-        <translation type="unfinished"></translation>
+        <translation>%L4 l %L3 u %L2 n %L1 s</translation>
     </message>
     <message>
         <location filename="../src/core/api/interaction.h" line="315"/>
         <source>%L3h %L2m %L1s</source>
-        <translation type="unfinished"></translation>
+        <translation>%L3 u %L2 n %L1 s</translation>
     </message>
     <message>
         <location filename="../src/core/api/interaction.h" line="317"/>
         <source>%L2m %L1s</source>
-        <translation type="unfinished"></translation>
+        <translation>%L2 n %L1 s</translation>
     </message>
     <message>
         <location filename="../src/core/api/interaction.h" line="319"/>
         <source>%L1s</source>
-        <translation type="unfinished"></translation>
+        <translation>%L1 s</translation>
     </message>
     <message>
         <location filename="../src/core/api/interaction.h" line="335"/>
         <source>Call declined</source>
-        <translation type="unfinished"></translation>
+        <translation>Diúltaíodh don ghlao</translation>
     </message>
     <message>
         <location filename="../src/core/api/interaction.h" line="337"/>
         <source>Unreachable peer</source>
-        <translation type="unfinished"></translation>
+        <translation>Comhghleacaí dorochtana</translation>
     </message>
     <message>
         <location filename="../src/core/api/interaction.h" line="342"/>
@@ -4926,7 +4937,7 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/core/api/interaction.h" line="476"/>
         <source>(Profile updated)</source>
-        <translation type="unfinished"></translation>
+        <translation>(Próifíl nuashonraithe)</translation>
     </message>
     <message>
         <location filename="../src/core/authority/storagehelper.cpp" line="483"/>
@@ -4942,17 +4953,17 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/app/audioconfiglistmodel.h" line="52"/>
         <source>System (if available)</source>
-        <translation type="unfinished"></translation>
+        <translation>Córas (má tá ar fáil)</translation>
     </message>
     <message>
         <location filename="../src/app/audioconfiglistmodel.h" line="53"/>
         <source>Built-in</source>
-        <translation type="unfinished"></translation>
+        <translation>Ionsuite</translation>
     </message>
     <message>
         <location filename="../src/app/audioconfiglistmodel.h" line="51"/>
         <source>Auto (default)</source>
-        <translation type="unfinished"></translation>
+        <translation>Uath (réamhshocraithe)</translation>
     </message>
     <message>
         <location filename="../src/app/audioconfiglistmodel.h" line="54"/>
@@ -5148,7 +5159,7 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/core/callmodel.cpp" line="125"/>
         <source>Call Declined</source>
-        <translation type="unfinished"></translation>
+        <translation>Diúltaíodh don Ghlao</translation>
     </message>
     <message>
         <location filename="../src/core/api/interaction.h" line="333"/>
@@ -5270,17 +5281,17 @@ Please confirm the import on the new device.</source>
         <location filename="../src/core/conversationmodel.cpp" line="1071"/>
         <location filename="../src/core/conversationmodel.cpp" line="1084"/>
         <source>%1 (you)</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 (tú)</translation>
     </message>
     <message>
         <location filename="../src/app/utils.cpp" line="599"/>
         <source>We would like to thank our contributors, whose efforts over many years have made this software what it is.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ba mhaith linn buíochas a ghabháil lenár ranníocóirí, a ndearna a gcuid iarrachtaí thar na blianta an bogearra seo mar atá sé.</translation>
     </message>
     <message>
         <location filename="../src/app/utils.cpp" line="601"/>
         <source>Developers</source>
-        <translation type="unfinished"></translation>
+        <translation>Forbróirí</translation>
     </message>
     <message>
         <location filename="../src/app/utils.cpp" line="602"/>
@@ -5290,52 +5301,52 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/app/utils.cpp" line="603"/>
         <source>Community Management</source>
-        <translation type="unfinished"></translation>
+        <translation>Bainistíocht Pobail</translation>
     </message>
     <message>
         <location filename="../src/app/utils.cpp" line="604"/>
         <source>Special thanks to</source>
-        <translation type="unfinished"></translation>
+        <translation>Buíochas ar leith le</translation>
     </message>
     <message>
         <location filename="../src/app/utils.cpp" line="605"/>
         <source>This is a list of people who have made a significant investment of time, with useful results, into Jami. Any such contributors who want to be added to the list should contact us.</source>
-        <translation type="unfinished"></translation>
+        <translation>Seo liosta daoine a rinne infheistíocht shuntasach ama, le torthaí úsáideacha, i Jami. Ba chóir d&apos;aon ranníocóir den sórt sin ar mhaith leis a chur leis an liosta teagmháil a dhéanamh linn.</translation>
     </message>
     <message>
         <location filename="../src/app/linkdevicemodel.cpp" line="63"/>
         <source>Unrecognized new device identifier. Please follow the instructions above.</source>
-        <translation type="unfinished"></translation>
+        <translation>Aitheantóir gléis nua anaithnid. Lean na treoracha thuas le do thoil.</translation>
     </message>
     <message>
         <location filename="../src/core/api/account.h" line="238"/>
         <source>An authentication error occurred while linking the device. Please check credentials and try again.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tharla earráid fhíordheimhnithe agus an gléas á nascadh. Seiceáil na dintiúir agus bain triail eile as le do thoil.</translation>
     </message>
     <message>
         <location filename="../src/core/api/account.h" line="241"/>
         <source>A network error occurred while linking the account. Please verify your connection and try again.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tharla earráid líonra agus an cuntas á nascadh. Deimhnigh do cheangal agus bain triail eile as le do thoil.</translation>
     </message>
     <message>
         <location filename="../src/core/api/account.h" line="244"/>
         <source>The operation timed out. Please try again.</source>
-        <translation type="unfinished"></translation>
+        <translation>Chuaigh an oibríocht thar am. Bain triail eile as le do thoil.</translation>
     </message>
     <message>
         <location filename="../src/core/api/account.h" line="246"/>
         <source>An error occurred while exporting the account. Please try again.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tharla earráid agus an cuntas á easpórtáil. Bain triail eile as le do thoil.</translation>
     </message>
     <message>
         <location filename="../src/core/api/account.h" line="248"/>
         <source>The operation was canceled by the user.</source>
-        <translation type="unfinished"></translation>
+        <translation>Chuir an t-úsáideoir an oibríocht ar ceal.</translation>
     </message>
     <message>
         <location filename="../src/core/api/account.h" line="251"/>
         <source>An unexpected error occurred while linking the device. Please try again.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tharla earráid gan choinne agus an gléas á nascadh. Bain triail eile as le do thoil.</translation>
     </message>
 </context>
 <context>
@@ -5366,12 +5377,12 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/app/systemtray.cpp" line="221"/>
         <source>Accept call</source>
-        <translation type="unfinished"></translation>
+        <translation>Glac le glao</translation>
     </message>
     <message>
         <location filename="../src/app/systemtray.cpp" line="222"/>
         <source>Decline call</source>
-        <translation type="unfinished"></translation>
+        <translation>Diúltaigh glao</translation>
     </message>
     <message>
         <location filename="../src/app/systemtray.cpp" line="224"/>
@@ -5381,12 +5392,12 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/app/systemtray.cpp" line="226"/>
         <source>Accept invitation</source>
-        <translation type="unfinished"></translation>
+        <translation>Glac le cuireadh</translation>
     </message>
     <message>
         <location filename="../src/app/systemtray.cpp" line="227"/>
         <source>Decline invitation</source>
-        <translation type="unfinished"></translation>
+        <translation>Diúltaigh cuireadh</translation>
     </message>
 </context>
 <context>
@@ -5404,7 +5415,7 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="89"/>
         <source>The choice of the name Jami was inspired by the Swahili word “jamii”, which means “community” as a noun and “together” as an adverb.</source>
-        <translation type="unfinished"></translation>
+        <translation>Spreag rogha an ainm Jami an focal Svahaílise “jamii”, a chiallaíonn “pobal” mar ainmfhocal agus “le chéile” mar dhobhriathar.</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="93"/>
@@ -5414,7 +5425,7 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="80"/>
         <source>Donate</source>
-        <translation type="unfinished"></translation>
+        <translation>Tabhair síntiús</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="85"/>
@@ -5424,7 +5435,7 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="95"/>
         <source>A red dot means that your account is disconnected from the network; it turns green when it’s connected.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ciallaíonn ponc dearg go bhfuil do chuntas dícheangailte ón líonra; iompaíonn sé glas nuair atá sé ceangailte.</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="99"/>
@@ -5444,7 +5455,7 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="107"/>
         <source>In a call, you can click on “Invite members” to add a contact to a call.</source>
-        <translation type="unfinished"></translation>
+        <translation>I nglao, is féidir leat cliceáil ar “Tabhair cuireadh do bhaill” chun teagmhálaí a chur le glao.</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="110"/>
@@ -5469,7 +5480,7 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="122"/>
         <source>Why don’t I have to use a password?</source>
-        <translation type="unfinished"></translation>
+        <translation>Cén fáth nach gá dom pasfhocal a úsáid?</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="124"/>
@@ -5479,7 +5490,7 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="129"/>
         <source>Why don’t I have to register a username?</source>
-        <translation type="unfinished"></translation>
+        <translation>Cén fáth nach gá dom ainm úsáideora a chlárú?</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="141"/>
@@ -5522,12 +5533,12 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/app/settingsview/components/TroubleshootSettingsPage.qml" line="59"/>
         <source>Enable crash reports</source>
-        <translation type="unfinished"></translation>
+        <translation>Cumasaigh tuairiscí tuairteála</translation>
     </message>
     <message>
         <location filename="../src/app/settingsview/components/TroubleshootSettingsPage.qml" line="73"/>
         <source>Automatically send crash reports</source>
-        <translation type="unfinished"></translation>
+        <translation>Seol tuairiscí tuairteála go huathoibríoch</translation>
     </message>
 </context>
 <context>
@@ -5568,7 +5579,7 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/core/contactmodel.cpp" line="961"/>
         <source>Unable to lookup…</source>
-        <translation type="unfinished"></translation>
+        <translation>Ní féidir cuardach a dhéanamh…</translation>
     </message>
 </context>
 <context>
@@ -5584,12 +5595,12 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/core/conversationmodel.cpp" line="339"/>
         <source>Deleted media</source>
-        <translation type="unfinished"></translation>
+        <translation>Meáin scriosta</translation>
     </message>
     <message>
         <location filename="../src/core/conversationmodel.cpp" line="353"/>
         <source>(deleted message)</source>
-        <translation type="unfinished"></translation>
+        <translation>(teachtaireacht scriosta)</translation>
     </message>
 </context>
 </TS>
