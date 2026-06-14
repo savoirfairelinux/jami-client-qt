@@ -1891,7 +1891,7 @@ se ligue para sincronizar a conversa…</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="326"/>
         <source>Screenshot saved to %1</source>
-        <translation>Captura de tela salva em % 1</translation>
+        <translation>Captura de tela salva em %1</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="330"/>
@@ -3600,7 +3600,7 @@ Confirme a importação no novo dispositivo.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="678"/>
         <source>Select An Image to %1</source>
-        <translation>Selecione uma imagem para % 1</translation>
+        <translation>Selecione uma imagem para %1</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="679"/>

@@ -60,12 +60,12 @@
     <message>
         <location filename="../src/app/conversationsadapter.cpp" line="196"/>
         <source>%1 received a new message</source>
-        <translation>% 1 sai uue sõnumi</translation>
+        <translation>%1 sai uue sõnumi</translation>
     </message>
     <message>
         <location filename="../src/app/conversationsadapter.cpp" line="249"/>
         <source>%1 received a new invitation</source>
-        <translation>% 1 sai uue kutse</translation>
+        <translation>%1 sai uue kutse</translation>
     </message>
 </context>
 <context>
@@ -712,7 +712,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="349"/>
         <source>Stop location sharing in this conversation (%1)</source>
-        <translation>Lõpeta asukoha jagamine selles vestluses (% 1)</translation>
+        <translation>Lõpeta asukoha jagamine selles vestluses (%1)</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="372"/>
@@ -1891,7 +1891,7 @@ ootame kasutaja %1 ühenduse loomist.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="326"/>
         <source>Screenshot saved to %1</source>
-        <translation>Ekraanitõmmis on salvestatud kausta % 1</translation>
+        <translation>Ekraanitõmmis on salvestatud kausta %1</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="330"/>
