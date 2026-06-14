@@ -23,7 +23,7 @@ For more information about the jami project, see the following:
 - IRC: #jami on libera.chat
 - ML: jami@gnu.org
 - Documentation: https://docs.jami.net
-- Localization happens on [Transifex](https://www.transifex.com/savoirfairelinux/jami/dashboard/)
+- Localization is maintained in-house under `translations/` (Qt Linguist `.ts` files); see `extras/scripts/i18n/README.md`
 - [Our contributions propositions](https://git.jami.net/groups/savoirfairelinux/-/epics/1) or [feature requests](https://docs.jami.net/developer/feature-requests.html) asked by the community
 - Packaging: Feel free to contact us
 
