@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "549b7579_5e23ea94",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 943
+      },
+      "writtenOn": "2026-06-14T12:34:32Z",
+      "side": 1,
+      "message": "@cyrille.beraud@savoirfairelinux.com Can the unnecessary \"German (de_DE)\" translation simply be permanently removed from all repositories across all apps (Desktop, Web, Android, iOS, etc.)? Meaning from both review.jami.net and Transifex? There is already an existing GitLab issue about this here: https://git.jami.net/savoirfairelinux/jami-client-qt/-/work_items/2254.\n\nMany of the translations are incorrect and incomplete. Keeping the inaccurate \"German (de_DE)\" locale adds absolutely no value. The only correct version is \"German (de)\" (please keep this one and do not change it! A lot of work went into translating and correcting everything there).",
+      "revId": "bbc126fd8ffab50149b6333acc3ee4464d9473b8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "bc12e422_e8cd7fa9",
         "filename": "translations/jami_client_qt_de.ts",
         "patchSetId": 6
