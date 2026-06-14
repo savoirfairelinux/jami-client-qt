@@ -39,37 +39,37 @@
     <message>
         <location filename="../src/app/mainview/components/ConversationStatusView.qml" line="79"/>
         <source>Swarm routing table</source>
-        <translation type="unfinished"></translation>
+        <translation>Smerovacia tabuľka Swarm</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/ConversationStatusView.qml" line="153"/>
         <source>Connection Time</source>
-        <translation type="unfinished"></translation>
+        <translation>Čas pripojenia</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/ConversationStatusView.qml" line="359"/>
         <source>%1 seconds ago</source>
-        <translation type="unfinished"></translation>
+        <translation>pred %1 sekundami</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/ConversationStatusView.qml" line="362"/>
         <source>%1 minutes ago</source>
-        <translation type="unfinished"></translation>
+        <translation>pred %1 minútami</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/ConversationStatusView.qml" line="365"/>
         <source>%1 hours ago</source>
-        <translation type="unfinished"></translation>
+        <translation>pred %1 hodinami</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/ConversationStatusView.qml" line="368"/>
         <source>%1 days ago</source>
-        <translation type="unfinished"></translation>
+        <translation>pred %1 dňami</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/ConversationStatusView.qml" line="381"/>
         <source>Tracked members</source>
-        <translation type="unfinished"></translation>
+        <translation>Sledovaní členovia</translation>
     </message>
 </context>
 <context>
@@ -232,7 +232,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="72"/>
         <source>Select contacts</source>
-        <translation type="unfinished"></translation>
+        <translation>Vybrať kontakty</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="76"/>
@@ -609,361 +609,361 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="208"/>
         <source>App access</source>
-        <translation type="unfinished"></translation>
+        <translation>Prístup aplikácií</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="209"/>
         <source>Manage how external applications, bots, or scripts can access this account through the local API.</source>
-        <translation type="unfinished"></translation>
+        <translation>Spravujte, ako môžu externé aplikácie, boti alebo skripty pristupovať k tomuto účtu prostredníctvom miestneho API.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="210"/>
         <source>Enable local API server</source>
-        <translation type="unfinished"></translation>
+        <translation>Povoliť miestny server API</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="211"/>
         <source>Enable server</source>
-        <translation type="unfinished"></translation>
+        <translation>Povoliť server</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="212"/>
         <source>Start a local HTTP server that external applications can use to interact with Jami</source>
-        <translation type="unfinished"></translation>
+        <translation>Spustiť miestny HTTP server, ktorý môžu externé aplikácie použiť na interakciu s Jami</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="213"/>
         <source>Local API server</source>
-        <translation type="unfinished"></translation>
+        <translation>Miestny server API</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="214"/>
         <source>API access is managed per account</source>
-        <translation type="unfinished"></translation>
+        <translation>Prístup k API sa spravuje pre každý účet</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="215"/>
         <source>Configure the local server here, then open App access in the current account settings to create and revoke tokens.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nakonfigurujte tu miestny server a potom otvorte Prístup aplikácií v nastaveniach aktuálneho účtu na vytváranie a odvolávanie tokenov.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="216"/>
         <source>Open App access</source>
-        <translation type="unfinished"></translation>
+        <translation>Otvoriť Prístup aplikácií</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="217"/>
         <source>Server port</source>
-        <translation type="unfinished"></translation>
+        <translation>Port servera</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="218"/>
         <source>Server running on port %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Server beží na porte %1</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="219"/>
         <source>Server stopped</source>
-        <translation type="unfinished"></translation>
+        <translation>Server zastavený</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="220"/>
         <source>Local API server disabled</source>
-        <translation type="unfinished"></translation>
+        <translation>Miestny server API zakázaný</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="221"/>
         <source>The local API server is disabled in application settings. Enable it to generate and manage API tokens for this account.</source>
-        <translation type="unfinished"></translation>
+        <translation>Miestny server API je zakázaný v nastaveniach aplikácie. Povoľte ho na generovanie a správu tokenov API pre tento účet.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="222"/>
         <source>Token label (e.g. my-bot)</source>
-        <translation type="unfinished"></translation>
+        <translation>Štítok tokenu (napr. môj-bot)</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="223"/>
         <source>Generate token</source>
-        <translation type="unfinished"></translation>
+        <translation>Vygenerovať token</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="224"/>
         <source>Active tokens</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktívne tokeny</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="225"/>
         <source>No API tokens configured for this account.</source>
-        <translation type="unfinished"></translation>
+        <translation>Pre tento účet nie sú nakonfigurované žiadne tokeny API.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="226"/>
         <source>Created %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Vytvorené %1</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="227"/>
         <source>Expires %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyprší %1</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="228"/>
         <source>API token created</source>
-        <translation type="unfinished"></translation>
+        <translation>Token API vytvorený</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="229"/>
         <source>Copy this token now. It will not be shown again.</source>
-        <translation type="unfinished"></translation>
+        <translation>Skopírujte tento token teraz. Znova sa nezobrazí.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="230"/>
         <source>This token grants access to your account. Keep it secret.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tento token udeľuje prístup k vášmu účtu. Uchovávajte ho v tajnosti.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="233"/>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="235"/>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="278"/>
         <source>Shared services</source>
-        <translation type="unfinished"></translation>
+        <translation>Zdieľané služby</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="234"/>
         <source>Expose local TCP services or a local folder over Jami so trusted contacts can reach them as if they were running on their own machine.</source>
-        <translation type="unfinished"></translation>
+        <translation>Sprístupnite miestne služby TCP alebo miestny priečinok cez Jami, aby k nim dôveryhodné kontakty mohli pristupovať, akoby bežali na ich vlastnom počítači.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="236"/>
         <source>No services are exposed yet.</source>
-        <translation type="unfinished"></translation>
+        <translation>Zatiaľ nie sú sprístupnené žiadne služby.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="237"/>
         <source>Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Názov</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="238"/>
         <source>e.g. webhook, ssh, syncthing</source>
-        <translation type="unfinished"></translation>
+        <translation>napr. webhook, ssh, syncthing</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="239"/>
         <source>Description (optional)</source>
-        <translation type="unfinished"></translation>
+        <translation>Popis (voliteľné)</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="240"/>
         <source>Type</source>
-        <translation type="unfinished"></translation>
+        <translation>Typ</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="241"/>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="249"/>
         <source>Custom</source>
-        <translation type="unfinished"></translation>
+        <translation>Vlastné</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="242"/>
         <source>Web server (embedded)</source>
-        <translation type="unfinished"></translation>
+        <translation>Webový server (vstavaný)</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="243"/>
         <source>Directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Adresár</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="244"/>
         <source>Choose directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Vybrať adresár</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="245"/>
         <source>Local host</source>
-        <translation type="unfinished"></translation>
+        <translation>Miestny hostiteľ</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="246"/>
         <source>Local port</source>
-        <translation type="unfinished"></translation>
+        <translation>Miestny port</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="247"/>
         <source>URI scheme</source>
-        <translation type="unfinished"></translation>
+        <translation>Schéma URI</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="248"/>
         <source>Raw TCP</source>
-        <translation type="unfinished"></translation>
+        <translation>Surové TCP</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="250"/>
         <source>URI scheme (optional)</source>
-        <translation type="unfinished"></translation>
+        <translation>Schéma URI (voliteľné)</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="251"/>
         <source>Accessible by</source>
-        <translation type="unfinished"></translation>
+        <translation>Prístupné pre</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="252"/>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="264"/>
         <source>Contacts</source>
-        <translation type="unfinished">Kontakty</translation>
+        <translation>Kontakty</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="253"/>
         <source>Anyone (public)</source>
-        <translation type="unfinished"></translation>
+        <translation>Ktokoľvek (verejné)</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="254"/>
         <source>Specific contacts only</source>
-        <translation type="unfinished"></translation>
+        <translation>Iba konkrétne kontakty</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="255"/>
         <source>Allowed contact URIs (comma-separated)</source>
-        <translation type="unfinished"></translation>
+        <translation>Povolené URI kontaktov (oddelené čiarkami)</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="256"/>
         <source>Enabled</source>
-        <translation type="unfinished"></translation>
+        <translation>Povolené</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="258"/>
         <source>Local endpoint: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Miestny koncový bod: %1</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="259"/>
         <source>Directory: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Adresár: %1</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="260"/>
         <source>Disabled</source>
-        <translation type="unfinished">Znižujúci</translation>
+        <translation>Znižujúci</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="261"/>
         <source>Open %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Otvoriť %1</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="262"/>
         <source>Copy %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopírovať %1</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="263"/>
         <source>Public</source>
-        <translation type="unfinished"></translation>
+        <translation>Verejné</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="265"/>
         <source>Specific</source>
-        <translation type="unfinished"></translation>
+        <translation>Konkrétne</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="266"/>
         <source>Are you sure you want to delete this shared service?</source>
-        <translation type="unfinished"></translation>
+        <translation>Naozaj chcete odstrániť túto zdieľanú službu?</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="267"/>
         <source>Add website</source>
-        <translation type="unfinished"></translation>
+        <translation>Pridať web</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="268"/>
         <source>Custom service</source>
-        <translation type="unfinished"></translation>
+        <translation>Vlastná služba</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="269"/>
         <source>What&apos;s this?</source>
-        <translation type="unfinished"></translation>
+        <translation>Čo je to?</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="270"/>
         <source>Enter the URI scheme to use when accessing the service (e.g. http, https, etc…)</source>
-        <translation type="unfinished"></translation>
+        <translation>Zadajte schému URI, ktorá sa má použiť pri prístupe k službe (napr. http, https atď.)</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="272"/>
         <source>Disconnect</source>
-        <translation type="unfinished"></translation>
+        <translation>Odpojiť</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="273"/>
         <source>Open in external browser</source>
-        <translation type="unfinished"></translation>
+        <translation>Otvoriť v externom prehliadači</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="274"/>
         <source>Device unavailable</source>
-        <translation type="unfinished"></translation>
+        <translation>Zariadenie nedostupné</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="275"/>
         <source>Connection failed</source>
-        <translation type="unfinished"></translation>
+        <translation>Pripojenie zlyhalo</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="279"/>
         <source>This contact does not expose any service to you.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tento kontakt vám nesprístupňuje žiadnu službu.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="280"/>
         <source>No devices found for this contact. They may be offline.</source>
-        <translation type="unfinished"></translation>
+        <translation>Pre tento kontakt sa nenašli žiadne zariadenia. Možno je offline.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="281"/>
         <source>Could not reach any of this contact&apos;s devices.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nepodarilo sa kontaktovať žiadne zo zariadení tohto kontaktu.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="282"/>
         <source>This contact&apos;s device did not respond in time.</source>
-        <translation type="unfinished"></translation>
+        <translation>Zariadenie tohto kontaktu neodpovedalo včas.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="283"/>
         <source>Service discovery is unavailable on this account.</source>
-        <translation type="unfinished"></translation>
+        <translation>Zisťovanie služieb nie je pre tento účet dostupné.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="284"/>
         <source>Refresh</source>
-        <translation type="unfinished"></translation>
+        <translation>Obnoviť</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="285"/>
         <source>Open local tunnel</source>
-        <translation type="unfinished"></translation>
+        <translation>Otvoriť miestny tunel</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="286"/>
         <source>Open</source>
-        <translation type="unfinished"></translation>
+        <translation>Otvoriť</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="287"/>
         <source>Stop</source>
-        <translation type="unfinished"></translation>
+        <translation>Zastaviť</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="288"/>
         <source>Reachable at %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Dostupné na %1</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="291"/>
@@ -973,17 +973,17 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="292"/>
         <source>Notifications</source>
-        <translation type="unfinished"></translation>
+        <translation>Oznámenia</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="293"/>
         <source>Application</source>
-        <translation type="unfinished"></translation>
+        <translation>Aplikácia</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="294"/>
         <source>Language</source>
-        <translation type="unfinished"></translation>
+        <translation>Jazyk</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="295"/>
@@ -1113,47 +1113,47 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="430"/>
         <source>Call error</source>
-        <translation type="unfinished"></translation>
+        <translation>Chyba hovoru</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="431"/>
         <source>An error occured during the call. %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Počas hovoru došlo k chybe. %1</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="432"/>
         <source>The request was invalid or malformed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Požiadavka bola neplatná alebo poškodená.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="433"/>
         <source>Authentication is required to complete this call.</source>
-        <translation type="unfinished"></translation>
+        <translation>Na dokončenie tohto hovoru sa vyžaduje overenie.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="434"/>
         <source>You don&apos;t have permission to make this call.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemáte povolenie uskutočniť tento hovor.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="435"/>
         <source>Proxy authentication credentials are required.</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyžadujú sa prihlasovacie údaje na overenie proxy.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="436"/>
         <source>Please ensure that both you and your contact have a common codec enabled.</source>
-        <translation type="unfinished"></translation>
+        <translation>Uistite sa, že vy aj váš kontakt máte povolený spoločný kodek.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="437"/>
         <source>How do I change my codecs?</source>
-        <translation type="unfinished"></translation>
+        <translation>Ako zmením svoje kodeky?</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="438"/>
         <source>&lt;br&gt;&lt;b&gt;Settings &gt; Account &gt; Advanced settings &gt; Video Codecs / Audio Codecs.&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;br&gt;&lt;b&gt;Nastavenia &gt; Účet &gt; Rozšírené nastavenia &gt; Video kodeky / Audio kodeky.&lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="446"/>
@@ -1168,17 +1168,17 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="468"/>
         <source>Confirm Navigation</source>
-        <translation type="unfinished"></translation>
+        <translation>Potvrdiť navigáciu</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="469"/>
         <source>You are about to navigate to an external link. Do you want to proceed?</source>
-        <translation type="unfinished"></translation>
+        <translation>Chystáte sa prejsť na externý odkaz. Chcete pokračovať?</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="470"/>
         <source>Leave Jami</source>
-        <translation type="unfinished"></translation>
+        <translation>Opustiť Jami</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="473"/>
@@ -1188,7 +1188,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="482"/>
         <source>Open in new window</source>
-        <translation type="unfinished"></translation>
+        <translation>Otvoriť v novom okne</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="511"/>
@@ -1288,7 +1288,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="734"/>
         <source>No video available, please check your devices.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nie je dostupné žiadne video, skontrolujte svoje zariadenia.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="737"/>
@@ -1368,12 +1368,12 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="986"/>
         <source>Copy fingerprint</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopírovať odtlačok</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="987"/>
         <source>Copy username</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopírovať používateľské meno</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="998"/>
@@ -1448,87 +1448,87 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1086"/>
         <source>Use arrows to switch between available accounts</source>
-        <translation type="unfinished"></translation>
+        <translation>Pomocou šípok prepínajte medzi dostupnými účtami</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1111"/>
         <source>Conversation list</source>
-        <translation type="unfinished"></translation>
+        <translation>Zoznam konverzácií</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1112"/>
         <source>Use arrow keys to navigate through conversations.</source>
-        <translation type="unfinished"></translation>
+        <translation>Pomocou klávesov so šípkami sa pohybujte v konverzáciách.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1113"/>
         <source>%L1 unread message.</source>
-        <translation type="unfinished"></translation>
+        <translation>%L1 neprečítaná správa.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1114"/>
         <source>%L1 unread messages.</source>
-        <translation type="unfinished"></translation>
+        <translation>%L1 neprečítaných správ.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1115"/>
         <source>Last message was %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>Posledná správa bola %1.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1116"/>
         <source>Message body %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>Telo správy %1.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1117"/>
         <source>Search for a conversation or a contact</source>
-        <translation type="unfinished"></translation>
+        <translation>Hľadať konverzáciu alebo kontakt</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1118"/>
         <source>Status %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Stav %1</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1119"/>
         <source>Online</source>
-        <translation type="unfinished"></translation>
+        <translation>Online</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1120"/>
         <source>Offline</source>
-        <translation type="unfinished"></translation>
+        <translation>Offline</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1121"/>
         <source>At least one person is online</source>
-        <translation type="unfinished"></translation>
+        <translation>Aspoň jedna osoba je online</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1122"/>
         <source>Everyone is offline</source>
-        <translation type="unfinished"></translation>
+        <translation>Všetci sú offline</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1123"/>
         <source>You and %1 are sharing locations with each other</source>
-        <translation type="unfinished"></translation>
+        <translation>Vy a %1 si navzájom zdieľate polohy</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1124"/>
         <source>%1 is currently sharing their location</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 práve zdieľa svoju polohu</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1125"/>
         <source>You are sharing your location to %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Zdieľate svoju polohu s %1</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1126"/>
         <source>Choose a profile picture</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyberte profilový obrázok</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1032"/>
@@ -3664,22 +3664,22 @@ Keď budete pripravení, naskenujte QR kód.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1077"/>
         <source>Call in progress</source>
-        <translation type="unfinished"></translation>
+        <translation>Prebieha hovor</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1078"/>
         <source>Pop out</source>
-        <translation type="unfinished"></translation>
+        <translation>Vysunúť</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1079"/>
         <source>Pop in</source>
-        <translation type="unfinished"></translation>
+        <translation>Zasunúť</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1080"/>
         <source>You&apos;re the only one here!</source>
-        <translation type="unfinished"></translation>
+        <translation>Ste tu jediný!</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1083"/>
@@ -4609,7 +4609,7 @@ Potvrďte prosím import na novom zariadení.</translation>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="133"/>
         <source>Toggle full screen</source>
-        <translation type="unfinished"></translation>
+        <translation>Prepnúť celú obrazovku</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="137"/>
@@ -5595,12 +5595,12 @@ Potvrďte prosím import na novom zariadení.</translation>
     <message>
         <location filename="../src/core/conversationmodel.cpp" line="339"/>
         <source>Deleted media</source>
-        <translation type="unfinished">Odstránené médiá</translation>
+        <translation>Odstránené médiá</translation>
     </message>
     <message>
         <location filename="../src/core/conversationmodel.cpp" line="353"/>
         <source>(deleted message)</source>
-        <translation type="unfinished">(odstránená správa)</translation>
+        <translation>(odstránená správa)</translation>
     </message>
 </context>
 </TS>

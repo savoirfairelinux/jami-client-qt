@@ -39,37 +39,37 @@
     <message>
         <location filename="../src/app/mainview/components/ConversationStatusView.qml" line="79"/>
         <source>Swarm routing table</source>
-        <translation type="unfinished"></translation>
+        <translation>Swarm-Routing-Tabelle</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/ConversationStatusView.qml" line="153"/>
         <source>Connection Time</source>
-        <translation type="unfinished"></translation>
+        <translation>Verbindungszeit</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/ConversationStatusView.qml" line="359"/>
         <source>%1 seconds ago</source>
-        <translation type="unfinished"></translation>
+        <translation>vor %1 Sekunden</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/ConversationStatusView.qml" line="362"/>
         <source>%1 minutes ago</source>
-        <translation type="unfinished"></translation>
+        <translation>vor %1 Minuten</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/ConversationStatusView.qml" line="365"/>
         <source>%1 hours ago</source>
-        <translation type="unfinished"></translation>
+        <translation>vor %1 Stunden</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/ConversationStatusView.qml" line="368"/>
         <source>%1 days ago</source>
-        <translation type="unfinished"></translation>
+        <translation>vor %1 Tagen</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/ConversationStatusView.qml" line="381"/>
         <source>Tracked members</source>
-        <translation type="unfinished"></translation>
+        <translation>Verfolgte Mitglieder</translation>
     </message>
 </context>
 <context>
@@ -232,7 +232,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="72"/>
         <source>Select contacts</source>
-        <translation type="unfinished"></translation>
+        <translation>Kontakte auswählen</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="76"/>
@@ -609,361 +609,361 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="208"/>
         <source>App access</source>
-        <translation type="unfinished"></translation>
+        <translation>App-Zugriff</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="209"/>
         <source>Manage how external applications, bots, or scripts can access this account through the local API.</source>
-        <translation type="unfinished"></translation>
+        <translation>Verwalten Sie, wie externe Anwendungen, Bots oder Skripte über die lokale API auf dieses Konto zugreifen können.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="210"/>
         <source>Enable local API server</source>
-        <translation type="unfinished"></translation>
+        <translation>Lokalen API-Server aktivieren</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="211"/>
         <source>Enable server</source>
-        <translation type="unfinished"></translation>
+        <translation>Server aktivieren</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="212"/>
         <source>Start a local HTTP server that external applications can use to interact with Jami</source>
-        <translation type="unfinished"></translation>
+        <translation>Einen lokalen HTTP-Server starten, den externe Anwendungen zur Interaktion mit Jami verwenden können</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="213"/>
         <source>Local API server</source>
-        <translation type="unfinished"></translation>
+        <translation>Lokaler API-Server</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="214"/>
         <source>API access is managed per account</source>
-        <translation type="unfinished"></translation>
+        <translation>Der API-Zugriff wird pro Konto verwaltet</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="215"/>
         <source>Configure the local server here, then open App access in the current account settings to create and revoke tokens.</source>
-        <translation type="unfinished"></translation>
+        <translation>Konfigurieren Sie hier den lokalen Server und öffnen Sie dann App-Zugriff in den aktuellen Kontoeinstellungen, um Token zu erstellen und zu widerrufen.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="216"/>
         <source>Open App access</source>
-        <translation type="unfinished"></translation>
+        <translation>App-Zugriff öffnen</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="217"/>
         <source>Server port</source>
-        <translation type="unfinished"></translation>
+        <translation>Server-Port</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="218"/>
         <source>Server running on port %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Server läuft auf Port %1</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="219"/>
         <source>Server stopped</source>
-        <translation type="unfinished"></translation>
+        <translation>Server gestoppt</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="220"/>
         <source>Local API server disabled</source>
-        <translation type="unfinished"></translation>
+        <translation>Lokaler API-Server deaktiviert</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="221"/>
         <source>The local API server is disabled in application settings. Enable it to generate and manage API tokens for this account.</source>
-        <translation type="unfinished"></translation>
+        <translation>Der lokale API-Server ist in den Anwendungseinstellungen deaktiviert. Aktivieren Sie ihn, um API-Token für dieses Konto zu erstellen und zu verwalten.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="222"/>
         <source>Token label (e.g. my-bot)</source>
-        <translation type="unfinished"></translation>
+        <translation>Token-Bezeichnung (z. B. mein-bot)</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="223"/>
         <source>Generate token</source>
-        <translation type="unfinished"></translation>
+        <translation>Token generieren</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="224"/>
         <source>Active tokens</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktive Token</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="225"/>
         <source>No API tokens configured for this account.</source>
-        <translation type="unfinished"></translation>
+        <translation>Keine API-Token für dieses Konto konfiguriert.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="226"/>
         <source>Created %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Erstellt %1</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="227"/>
         <source>Expires %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Läuft ab %1</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="228"/>
         <source>API token created</source>
-        <translation type="unfinished"></translation>
+        <translation>API-Token erstellt</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="229"/>
         <source>Copy this token now. It will not be shown again.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopieren Sie dieses Token jetzt. Es wird nicht erneut angezeigt.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="230"/>
         <source>This token grants access to your account. Keep it secret.</source>
-        <translation type="unfinished"></translation>
+        <translation>Dieses Token gewährt Zugriff auf Ihr Konto. Halten Sie es geheim.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="233"/>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="235"/>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="278"/>
         <source>Shared services</source>
-        <translation type="unfinished"></translation>
+        <translation>Freigegebene Dienste</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="234"/>
         <source>Expose local TCP services or a local folder over Jami so trusted contacts can reach them as if they were running on their own machine.</source>
-        <translation type="unfinished"></translation>
+        <translation>Stellen Sie lokale TCP-Dienste oder einen lokalen Ordner über Jami bereit, damit vertrauenswürdige Kontakte darauf zugreifen können, als würden sie auf ihrem eigenen Rechner laufen.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="236"/>
         <source>No services are exposed yet.</source>
-        <translation type="unfinished"></translation>
+        <translation>Es werden noch keine Dienste bereitgestellt.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="237"/>
         <source>Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Name</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="238"/>
         <source>e.g. webhook, ssh, syncthing</source>
-        <translation type="unfinished"></translation>
+        <translation>z. B. webhook, ssh, syncthing</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="239"/>
         <source>Description (optional)</source>
-        <translation type="unfinished"></translation>
+        <translation>Beschreibung (optional)</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="240"/>
         <source>Type</source>
-        <translation type="unfinished"></translation>
+        <translation>Typ</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="241"/>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="249"/>
         <source>Custom</source>
-        <translation type="unfinished"></translation>
+        <translation>Benutzerdefiniert</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="242"/>
         <source>Web server (embedded)</source>
-        <translation type="unfinished"></translation>
+        <translation>Webserver (eingebettet)</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="243"/>
         <source>Directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Verzeichnis</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="244"/>
         <source>Choose directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Verzeichnis auswählen</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="245"/>
         <source>Local host</source>
-        <translation type="unfinished"></translation>
+        <translation>Lokaler Host</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="246"/>
         <source>Local port</source>
-        <translation type="unfinished"></translation>
+        <translation>Lokaler Port</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="247"/>
         <source>URI scheme</source>
-        <translation type="unfinished"></translation>
+        <translation>URI-Schema</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="248"/>
         <source>Raw TCP</source>
-        <translation type="unfinished"></translation>
+        <translation>Raw-TCP</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="250"/>
         <source>URI scheme (optional)</source>
-        <translation type="unfinished"></translation>
+        <translation>URI-Schema (optional)</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="251"/>
         <source>Accessible by</source>
-        <translation type="unfinished"></translation>
+        <translation>Zugänglich für</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="252"/>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="264"/>
         <source>Contacts</source>
-        <translation type="unfinished">Kontakte</translation>
+        <translation>Kontakte</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="253"/>
         <source>Anyone (public)</source>
-        <translation type="unfinished"></translation>
+        <translation>Jeder (öffentlich)</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="254"/>
         <source>Specific contacts only</source>
-        <translation type="unfinished"></translation>
+        <translation>Nur bestimmte Kontakte</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="255"/>
         <source>Allowed contact URIs (comma-separated)</source>
-        <translation type="unfinished"></translation>
+        <translation>Erlaubte Kontakt-URIs (kommagetrennt)</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="256"/>
         <source>Enabled</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktiviert</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="258"/>
         <source>Local endpoint: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Lokaler Endpunkt: %1</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="259"/>
         <source>Directory: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Verzeichnis: %1</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="260"/>
         <source>Disabled</source>
-        <translation type="unfinished">Deaktiviert</translation>
+        <translation>Deaktiviert</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="261"/>
         <source>Open %1</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 öffnen</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="262"/>
         <source>Copy %1</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 kopieren</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="263"/>
         <source>Public</source>
-        <translation type="unfinished"></translation>
+        <translation>Öffentlich</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="265"/>
         <source>Specific</source>
-        <translation type="unfinished"></translation>
+        <translation>Bestimmte</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="266"/>
         <source>Are you sure you want to delete this shared service?</source>
-        <translation type="unfinished"></translation>
+        <translation>Möchten Sie diesen freigegebenen Dienst wirklich löschen?</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="267"/>
         <source>Add website</source>
-        <translation type="unfinished"></translation>
+        <translation>Website hinzufügen</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="268"/>
         <source>Custom service</source>
-        <translation type="unfinished"></translation>
+        <translation>Benutzerdefinierter Dienst</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="269"/>
         <source>What&apos;s this?</source>
-        <translation type="unfinished"></translation>
+        <translation>Was ist das?</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="270"/>
         <source>Enter the URI scheme to use when accessing the service (e.g. http, https, etc…)</source>
-        <translation type="unfinished"></translation>
+        <translation>Geben Sie das URI-Schema ein, das beim Zugriff auf den Dienst verwendet werden soll (z. B. http, https usw.)</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="272"/>
         <source>Disconnect</source>
-        <translation type="unfinished"></translation>
+        <translation>Trennen</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="273"/>
         <source>Open in external browser</source>
-        <translation type="unfinished"></translation>
+        <translation>In externem Browser öffnen</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="274"/>
         <source>Device unavailable</source>
-        <translation type="unfinished"></translation>
+        <translation>Gerät nicht verfügbar</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="275"/>
         <source>Connection failed</source>
-        <translation type="unfinished"></translation>
+        <translation>Verbindung fehlgeschlagen</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="279"/>
         <source>This contact does not expose any service to you.</source>
-        <translation type="unfinished"></translation>
+        <translation>Dieser Kontakt stellt Ihnen keinen Dienst bereit.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="280"/>
         <source>No devices found for this contact. They may be offline.</source>
-        <translation type="unfinished"></translation>
+        <translation>Keine Geräte für diesen Kontakt gefunden. Er ist möglicherweise offline.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="281"/>
         <source>Could not reach any of this contact&apos;s devices.</source>
-        <translation type="unfinished"></translation>
+        <translation>Keines der Geräte dieses Kontakts konnte erreicht werden.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="282"/>
         <source>This contact&apos;s device did not respond in time.</source>
-        <translation type="unfinished"></translation>
+        <translation>Das Gerät dieses Kontakts hat nicht rechtzeitig geantwortet.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="283"/>
         <source>Service discovery is unavailable on this account.</source>
-        <translation type="unfinished"></translation>
+        <translation>Die Diensterkennung ist für dieses Konto nicht verfügbar.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="284"/>
         <source>Refresh</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktualisieren</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="285"/>
         <source>Open local tunnel</source>
-        <translation type="unfinished"></translation>
+        <translation>Lokalen Tunnel öffnen</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="286"/>
         <source>Open</source>
-        <translation type="unfinished"></translation>
+        <translation>Öffnen</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="287"/>
         <source>Stop</source>
-        <translation type="unfinished"></translation>
+        <translation>Stoppen</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="288"/>
         <source>Reachable at %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Erreichbar unter %1</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="291"/>
@@ -973,17 +973,17 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="292"/>
         <source>Notifications</source>
-        <translation type="unfinished"></translation>
+        <translation>Benachrichtigungen</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="293"/>
         <source>Application</source>
-        <translation type="unfinished"></translation>
+        <translation>Anwendung</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="294"/>
         <source>Language</source>
-        <translation type="unfinished"></translation>
+        <translation>Sprache</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="295"/>
@@ -1113,47 +1113,47 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="430"/>
         <source>Call error</source>
-        <translation type="unfinished"></translation>
+        <translation>Anruffehler</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="431"/>
         <source>An error occured during the call. %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Während des Anrufs ist ein Fehler aufgetreten. %1</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="432"/>
         <source>The request was invalid or malformed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Die Anfrage war ungültig oder fehlerhaft.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="433"/>
         <source>Authentication is required to complete this call.</source>
-        <translation type="unfinished"></translation>
+        <translation>Zur Durchführung dieses Anrufs ist eine Authentifizierung erforderlich.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="434"/>
         <source>You don&apos;t have permission to make this call.</source>
-        <translation type="unfinished"></translation>
+        <translation>Sie haben keine Berechtigung, diesen Anruf zu tätigen.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="435"/>
         <source>Proxy authentication credentials are required.</source>
-        <translation type="unfinished"></translation>
+        <translation>Proxy-Authentifizierungsdaten sind erforderlich.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="436"/>
         <source>Please ensure that both you and your contact have a common codec enabled.</source>
-        <translation type="unfinished"></translation>
+        <translation>Bitte stellen Sie sicher, dass sowohl Sie als auch Ihr Kontakt einen gemeinsamen Codec aktiviert haben.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="437"/>
         <source>How do I change my codecs?</source>
-        <translation type="unfinished"></translation>
+        <translation>Wie ändere ich meine Codecs?</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="438"/>
         <source>&lt;br&gt;&lt;b&gt;Settings &gt; Account &gt; Advanced settings &gt; Video Codecs / Audio Codecs.&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;br&gt;&lt;b&gt;Einstellungen &gt; Konto &gt; Erweiterte Einstellungen &gt; Video-Codecs / Audio-Codecs.&lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="446"/>
@@ -1168,17 +1168,17 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="468"/>
         <source>Confirm Navigation</source>
-        <translation type="unfinished"></translation>
+        <translation>Navigation bestätigen</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="469"/>
         <source>You are about to navigate to an external link. Do you want to proceed?</source>
-        <translation type="unfinished"></translation>
+        <translation>Sie sind dabei, zu einem externen Link zu navigieren. Möchten Sie fortfahren?</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="470"/>
         <source>Leave Jami</source>
-        <translation type="unfinished"></translation>
+        <translation>Jami verlassen</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="473"/>
@@ -1188,7 +1188,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="482"/>
         <source>Open in new window</source>
-        <translation type="unfinished"></translation>
+        <translation>In neuem Fenster öffnen</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="511"/>
@@ -1288,7 +1288,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="734"/>
         <source>No video available, please check your devices.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kein Video verfügbar, bitte überprüfen Sie Ihre Geräte.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="737"/>
@@ -1368,12 +1368,12 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="986"/>
         <source>Copy fingerprint</source>
-        <translation type="unfinished"></translation>
+        <translation>Fingerabdruck kopieren</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="987"/>
         <source>Copy username</source>
-        <translation type="unfinished"></translation>
+        <translation>Benutzernamen kopieren</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="998"/>
@@ -1448,87 +1448,87 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1086"/>
         <source>Use arrows to switch between available accounts</source>
-        <translation type="unfinished"></translation>
+        <translation>Verwenden Sie die Pfeiltasten, um zwischen verfügbaren Konten zu wechseln</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1111"/>
         <source>Conversation list</source>
-        <translation type="unfinished"></translation>
+        <translation>Unterhaltungsliste</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1112"/>
         <source>Use arrow keys to navigate through conversations.</source>
-        <translation type="unfinished"></translation>
+        <translation>Verwenden Sie die Pfeiltasten, um durch die Unterhaltungen zu navigieren.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1113"/>
         <source>%L1 unread message.</source>
-        <translation type="unfinished"></translation>
+        <translation>%L1 ungelesene Nachricht.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1114"/>
         <source>%L1 unread messages.</source>
-        <translation type="unfinished"></translation>
+        <translation>%L1 ungelesene Nachrichten.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1115"/>
         <source>Last message was %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>Letzte Nachricht war %1.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1116"/>
         <source>Message body %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nachrichtentext %1.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1117"/>
         <source>Search for a conversation or a contact</source>
-        <translation type="unfinished"></translation>
+        <translation>Nach einer Unterhaltung oder einem Kontakt suchen</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1118"/>
         <source>Status %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Status %1</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1119"/>
         <source>Online</source>
-        <translation type="unfinished"></translation>
+        <translation>Online</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1120"/>
         <source>Offline</source>
-        <translation type="unfinished"></translation>
+        <translation>Offline</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1121"/>
         <source>At least one person is online</source>
-        <translation type="unfinished"></translation>
+        <translation>Mindestens eine Person ist online</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1122"/>
         <source>Everyone is offline</source>
-        <translation type="unfinished"></translation>
+        <translation>Alle sind offline</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1123"/>
         <source>You and %1 are sharing locations with each other</source>
-        <translation type="unfinished"></translation>
+        <translation>Sie und %1 teilen Ihre Standorte miteinander</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1124"/>
         <source>%1 is currently sharing their location</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 teilt derzeit den Standort</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1125"/>
         <source>You are sharing your location to %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Sie teilen Ihren Standort mit %1</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1126"/>
         <source>Choose a profile picture</source>
-        <translation type="unfinished"></translation>
+        <translation>Profilbild auswählen</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1032"/>
@@ -3664,22 +3664,22 @@ Scannen Sie anschließend den QR-Code.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1077"/>
         <source>Call in progress</source>
-        <translation type="unfinished"></translation>
+        <translation>Anruf läuft</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1078"/>
         <source>Pop out</source>
-        <translation type="unfinished"></translation>
+        <translation>Herauslösen</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1079"/>
         <source>Pop in</source>
-        <translation type="unfinished"></translation>
+        <translation>Einfügen</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1080"/>
         <source>You&apos;re the only one here!</source>
-        <translation type="unfinished"></translation>
+        <translation>Sie sind allein hier!</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1083"/>
@@ -4609,7 +4609,7 @@ Bitte bestätigen Sie den Import auf dem neuen Gerät.</translation>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="133"/>
         <source>Toggle full screen</source>
-        <translation type="unfinished"></translation>
+        <translation>Vollbild umschalten</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="137"/>
@@ -5595,12 +5595,12 @@ Bitte bestätigen Sie den Import auf dem neuen Gerät.</translation>
     <message>
         <location filename="../src/core/conversationmodel.cpp" line="339"/>
         <source>Deleted media</source>
-        <translation type="unfinished">Gelöschte Medien</translation>
+        <translation>Gelöschte Medien</translation>
     </message>
     <message>
         <location filename="../src/core/conversationmodel.cpp" line="353"/>
         <source>(deleted message)</source>
-        <translation type="unfinished">(gelöschte Nachricht)</translation>
+        <translation>(gelöschte Nachricht)</translation>
     </message>
 </context>
 </TS>

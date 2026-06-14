@@ -39,37 +39,37 @@
     <message>
         <location filename="../src/app/mainview/components/ConversationStatusView.qml" line="79"/>
         <source>Swarm routing table</source>
-        <translation type="unfinished"></translation>
+        <translation>Swarm ルーティングテーブル</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/ConversationStatusView.qml" line="153"/>
         <source>Connection Time</source>
-        <translation type="unfinished"></translation>
+        <translation>接続時間</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/ConversationStatusView.qml" line="359"/>
         <source>%1 seconds ago</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 秒前</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/ConversationStatusView.qml" line="362"/>
         <source>%1 minutes ago</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 分前</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/ConversationStatusView.qml" line="365"/>
         <source>%1 hours ago</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 時間前</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/ConversationStatusView.qml" line="368"/>
         <source>%1 days ago</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 日前</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/ConversationStatusView.qml" line="381"/>
         <source>Tracked members</source>
-        <translation type="unfinished"></translation>
+        <translation>追跡中のメンバー</translation>
     </message>
 </context>
 <context>
@@ -232,7 +232,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="72"/>
         <source>Select contacts</source>
-        <translation type="unfinished"></translation>
+        <translation>連絡先を選択</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="76"/>
@@ -609,361 +609,361 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="208"/>
         <source>App access</source>
-        <translation type="unfinished"></translation>
+        <translation>アプリアクセス</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="209"/>
         <source>Manage how external applications, bots, or scripts can access this account through the local API.</source>
-        <translation type="unfinished"></translation>
+        <translation>外部アプリケーション、ボット、スクリプトがローカル API を介してこのアカウントにアクセスする方法を管理します。</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="210"/>
         <source>Enable local API server</source>
-        <translation type="unfinished"></translation>
+        <translation>ローカル API サーバーを有効にする</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="211"/>
         <source>Enable server</source>
-        <translation type="unfinished"></translation>
+        <translation>サーバーを有効にする</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="212"/>
         <source>Start a local HTTP server that external applications can use to interact with Jami</source>
-        <translation type="unfinished"></translation>
+        <translation>外部アプリケーションが Jami と連携するために使用できるローカル HTTP サーバーを起動します</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="213"/>
         <source>Local API server</source>
-        <translation type="unfinished"></translation>
+        <translation>ローカル API サーバー</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="214"/>
         <source>API access is managed per account</source>
-        <translation type="unfinished"></translation>
+        <translation>API アクセスはアカウントごとに管理されます</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="215"/>
         <source>Configure the local server here, then open App access in the current account settings to create and revoke tokens.</source>
-        <translation type="unfinished"></translation>
+        <translation>ここでローカルサーバーを設定し、現在のアカウント設定で「アプリアクセス」を開いてトークンの作成と取り消しを行います。</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="216"/>
         <source>Open App access</source>
-        <translation type="unfinished"></translation>
+        <translation>アプリアクセスを開く</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="217"/>
         <source>Server port</source>
-        <translation type="unfinished"></translation>
+        <translation>サーバーポート</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="218"/>
         <source>Server running on port %1</source>
-        <translation type="unfinished"></translation>
+        <translation>サーバーはポート %1 で実行中です</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="219"/>
         <source>Server stopped</source>
-        <translation type="unfinished"></translation>
+        <translation>サーバーが停止しました</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="220"/>
         <source>Local API server disabled</source>
-        <translation type="unfinished"></translation>
+        <translation>ローカル API サーバーが無効です</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="221"/>
         <source>The local API server is disabled in application settings. Enable it to generate and manage API tokens for this account.</source>
-        <translation type="unfinished"></translation>
+        <translation>ローカル API サーバーはアプリケーション設定で無効になっています。このアカウントの API トークンを生成・管理するには有効にしてください。</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="222"/>
         <source>Token label (e.g. my-bot)</source>
-        <translation type="unfinished"></translation>
+        <translation>トークンのラベル (例: my-bot)</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="223"/>
         <source>Generate token</source>
-        <translation type="unfinished"></translation>
+        <translation>トークンを生成</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="224"/>
         <source>Active tokens</source>
-        <translation type="unfinished"></translation>
+        <translation>アクティブなトークン</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="225"/>
         <source>No API tokens configured for this account.</source>
-        <translation type="unfinished"></translation>
+        <translation>このアカウントに設定された API トークンはありません。</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="226"/>
         <source>Created %1</source>
-        <translation type="unfinished"></translation>
+        <translation>作成日 %1</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="227"/>
         <source>Expires %1</source>
-        <translation type="unfinished"></translation>
+        <translation>有効期限 %1</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="228"/>
         <source>API token created</source>
-        <translation type="unfinished"></translation>
+        <translation>API トークンを作成しました</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="229"/>
         <source>Copy this token now. It will not be shown again.</source>
-        <translation type="unfinished"></translation>
+        <translation>今すぐこのトークンをコピーしてください。再表示されません。</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="230"/>
         <source>This token grants access to your account. Keep it secret.</source>
-        <translation type="unfinished"></translation>
+        <translation>このトークンはあなたのアカウントへのアクセスを許可します。秘密にしてください。</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="233"/>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="235"/>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="278"/>
         <source>Shared services</source>
-        <translation type="unfinished"></translation>
+        <translation>共有サービス</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="234"/>
         <source>Expose local TCP services or a local folder over Jami so trusted contacts can reach them as if they were running on their own machine.</source>
-        <translation type="unfinished"></translation>
+        <translation>ローカルの TCP サービスまたはローカルフォルダーを Jami 経由で公開し、信頼できる連絡先が自分のマシンで実行されているかのようにアクセスできるようにします。</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="236"/>
         <source>No services are exposed yet.</source>
-        <translation type="unfinished"></translation>
+        <translation>まだ公開されているサービスはありません。</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="237"/>
         <source>Name</source>
-        <translation type="unfinished"></translation>
+        <translation>名前</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="238"/>
         <source>e.g. webhook, ssh, syncthing</source>
-        <translation type="unfinished"></translation>
+        <translation>例: webhook, ssh, syncthing</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="239"/>
         <source>Description (optional)</source>
-        <translation type="unfinished"></translation>
+        <translation>説明 (任意)</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="240"/>
         <source>Type</source>
-        <translation type="unfinished"></translation>
+        <translation>種類</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="241"/>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="249"/>
         <source>Custom</source>
-        <translation type="unfinished"></translation>
+        <translation>カスタム</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="242"/>
         <source>Web server (embedded)</source>
-        <translation type="unfinished"></translation>
+        <translation>Web サーバー (組み込み)</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="243"/>
         <source>Directory</source>
-        <translation type="unfinished"></translation>
+        <translation>ディレクトリ</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="244"/>
         <source>Choose directory</source>
-        <translation type="unfinished"></translation>
+        <translation>ディレクトリを選択</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="245"/>
         <source>Local host</source>
-        <translation type="unfinished"></translation>
+        <translation>ローカルホスト</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="246"/>
         <source>Local port</source>
-        <translation type="unfinished"></translation>
+        <translation>ローカルポート</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="247"/>
         <source>URI scheme</source>
-        <translation type="unfinished"></translation>
+        <translation>URI スキーム</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="248"/>
         <source>Raw TCP</source>
-        <translation type="unfinished"></translation>
+        <translation>生 TCP</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="250"/>
         <source>URI scheme (optional)</source>
-        <translation type="unfinished"></translation>
+        <translation>URI スキーム (任意)</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="251"/>
         <source>Accessible by</source>
-        <translation type="unfinished"></translation>
+        <translation>アクセス可能な相手</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="252"/>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="264"/>
         <source>Contacts</source>
-        <translation type="unfinished">連絡先</translation>
+        <translation>連絡先</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="253"/>
         <source>Anyone (public)</source>
-        <translation type="unfinished"></translation>
+        <translation>全員 (公開)</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="254"/>
         <source>Specific contacts only</source>
-        <translation type="unfinished"></translation>
+        <translation>特定の連絡先のみ</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="255"/>
         <source>Allowed contact URIs (comma-separated)</source>
-        <translation type="unfinished"></translation>
+        <translation>許可する連絡先 URI (カンマ区切り)</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="256"/>
         <source>Enabled</source>
-        <translation type="unfinished"></translation>
+        <translation>有効</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="258"/>
         <source>Local endpoint: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>ローカルエンドポイント: %1</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="259"/>
         <source>Directory: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>ディレクトリ: %1</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="260"/>
         <source>Disabled</source>
-        <translation type="unfinished">無効化</translation>
+        <translation>無効化</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="261"/>
         <source>Open %1</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 を開く</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="262"/>
         <source>Copy %1</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 をコピー</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="263"/>
         <source>Public</source>
-        <translation type="unfinished"></translation>
+        <translation>公開</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="265"/>
         <source>Specific</source>
-        <translation type="unfinished"></translation>
+        <translation>特定</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="266"/>
         <source>Are you sure you want to delete this shared service?</source>
-        <translation type="unfinished"></translation>
+        <translation>この共有サービスを削除してもよろしいですか?</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="267"/>
         <source>Add website</source>
-        <translation type="unfinished"></translation>
+        <translation>ウェブサイトを追加</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="268"/>
         <source>Custom service</source>
-        <translation type="unfinished"></translation>
+        <translation>カスタムサービス</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="269"/>
         <source>What&apos;s this?</source>
-        <translation type="unfinished"></translation>
+        <translation>これは何ですか?</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="270"/>
         <source>Enter the URI scheme to use when accessing the service (e.g. http, https, etc…)</source>
-        <translation type="unfinished"></translation>
+        <translation>サービスにアクセスする際に使用する URI スキームを入力してください (例: http, https など)</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="272"/>
         <source>Disconnect</source>
-        <translation type="unfinished"></translation>
+        <translation>切断</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="273"/>
         <source>Open in external browser</source>
-        <translation type="unfinished"></translation>
+        <translation>外部ブラウザーで開く</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="274"/>
         <source>Device unavailable</source>
-        <translation type="unfinished"></translation>
+        <translation>デバイスを利用できません</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="275"/>
         <source>Connection failed</source>
-        <translation type="unfinished"></translation>
+        <translation>接続に失敗しました</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="279"/>
         <source>This contact does not expose any service to you.</source>
-        <translation type="unfinished"></translation>
+        <translation>この連絡先はあなたにサービスを公開していません。</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="280"/>
         <source>No devices found for this contact. They may be offline.</source>
-        <translation type="unfinished"></translation>
+        <translation>この連絡先のデバイスが見つかりません。オフラインの可能性があります。</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="281"/>
         <source>Could not reach any of this contact&apos;s devices.</source>
-        <translation type="unfinished"></translation>
+        <translation>この連絡先のいずれのデバイスにも接続できませんでした。</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="282"/>
         <source>This contact&apos;s device did not respond in time.</source>
-        <translation type="unfinished"></translation>
+        <translation>この連絡先のデバイスが時間内に応答しませんでした。</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="283"/>
         <source>Service discovery is unavailable on this account.</source>
-        <translation type="unfinished"></translation>
+        <translation>このアカウントではサービス検出を利用できません。</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="284"/>
         <source>Refresh</source>
-        <translation type="unfinished"></translation>
+        <translation>更新</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="285"/>
         <source>Open local tunnel</source>
-        <translation type="unfinished"></translation>
+        <translation>ローカルトンネルを開く</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="286"/>
         <source>Open</source>
-        <translation type="unfinished"></translation>
+        <translation>開く</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="287"/>
         <source>Stop</source>
-        <translation type="unfinished"></translation>
+        <translation>停止</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="288"/>
         <source>Reachable at %1</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 で到達可能</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="291"/>
@@ -973,17 +973,17 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="292"/>
         <source>Notifications</source>
-        <translation type="unfinished"></translation>
+        <translation>通知</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="293"/>
         <source>Application</source>
-        <translation type="unfinished"></translation>
+        <translation>アプリケーション</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="294"/>
         <source>Language</source>
-        <translation type="unfinished"></translation>
+        <translation>言語</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="295"/>
@@ -1113,47 +1113,47 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="430"/>
         <source>Call error</source>
-        <translation type="unfinished"></translation>
+        <translation>通話エラー</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="431"/>
         <source>An error occured during the call. %1</source>
-        <translation type="unfinished"></translation>
+        <translation>通話中にエラーが発生しました。%1</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="432"/>
         <source>The request was invalid or malformed.</source>
-        <translation type="unfinished"></translation>
+        <translation>リクエストが無効または不正な形式でした。</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="433"/>
         <source>Authentication is required to complete this call.</source>
-        <translation type="unfinished"></translation>
+        <translation>この通話を完了するには認証が必要です。</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="434"/>
         <source>You don&apos;t have permission to make this call.</source>
-        <translation type="unfinished"></translation>
+        <translation>この通話を行う権限がありません。</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="435"/>
         <source>Proxy authentication credentials are required.</source>
-        <translation type="unfinished"></translation>
+        <translation>プロキシ認証の資格情報が必要です。</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="436"/>
         <source>Please ensure that both you and your contact have a common codec enabled.</source>
-        <translation type="unfinished"></translation>
+        <translation>あなたと連絡先の両方で共通のコーデックが有効になっていることを確認してください。</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="437"/>
         <source>How do I change my codecs?</source>
-        <translation type="unfinished"></translation>
+        <translation>コーデックを変更するには?</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="438"/>
         <source>&lt;br&gt;&lt;b&gt;Settings &gt; Account &gt; Advanced settings &gt; Video Codecs / Audio Codecs.&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;br&gt;&lt;b&gt;設定 &gt; アカウント &gt; 詳細設定 &gt; ビデオコーデック / オーディオコーデック。&lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="446"/>
@@ -1168,17 +1168,17 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="468"/>
         <source>Confirm Navigation</source>
-        <translation type="unfinished"></translation>
+        <translation>ナビゲーションの確認</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="469"/>
         <source>You are about to navigate to an external link. Do you want to proceed?</source>
-        <translation type="unfinished"></translation>
+        <translation>外部リンクに移動しようとしています。続行しますか?</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="470"/>
         <source>Leave Jami</source>
-        <translation type="unfinished"></translation>
+        <translation>Jami を終了</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="473"/>
@@ -1188,7 +1188,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="482"/>
         <source>Open in new window</source>
-        <translation type="unfinished"></translation>
+        <translation>新しいウィンドウで開く</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="511"/>
@@ -1288,7 +1288,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="734"/>
         <source>No video available, please check your devices.</source>
-        <translation type="unfinished"></translation>
+        <translation>ビデオを利用できません。デバイスを確認してください。</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="737"/>
@@ -1368,12 +1368,12 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="986"/>
         <source>Copy fingerprint</source>
-        <translation type="unfinished"></translation>
+        <translation>フィンガープリントをコピー</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="987"/>
         <source>Copy username</source>
-        <translation type="unfinished"></translation>
+        <translation>ユーザー名をコピー</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="998"/>
@@ -1448,87 +1448,87 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1086"/>
         <source>Use arrows to switch between available accounts</source>
-        <translation type="unfinished"></translation>
+        <translation>矢印キーで利用可能なアカウントを切り替えます</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1111"/>
         <source>Conversation list</source>
-        <translation type="unfinished"></translation>
+        <translation>会話リスト</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1112"/>
         <source>Use arrow keys to navigate through conversations.</source>
-        <translation type="unfinished"></translation>
+        <translation>矢印キーで会話を移動します。</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1113"/>
         <source>%L1 unread message.</source>
-        <translation type="unfinished"></translation>
+        <translation>未読メッセージ %L1 件。</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1114"/>
         <source>%L1 unread messages.</source>
-        <translation type="unfinished"></translation>
+        <translation>未読メッセージ %L1 件。</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1115"/>
         <source>Last message was %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>最後のメッセージは %1 でした。</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1116"/>
         <source>Message body %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>メッセージ本文 %1。</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1117"/>
         <source>Search for a conversation or a contact</source>
-        <translation type="unfinished"></translation>
+        <translation>会話または連絡先を検索</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1118"/>
         <source>Status %1</source>
-        <translation type="unfinished"></translation>
+        <translation>ステータス %1</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1119"/>
         <source>Online</source>
-        <translation type="unfinished"></translation>
+        <translation>オンライン</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1120"/>
         <source>Offline</source>
-        <translation type="unfinished"></translation>
+        <translation>オフライン</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1121"/>
         <source>At least one person is online</source>
-        <translation type="unfinished"></translation>
+        <translation>少なくとも 1 人がオンラインです</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1122"/>
         <source>Everyone is offline</source>
-        <translation type="unfinished"></translation>
+        <translation>全員がオフラインです</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1123"/>
         <source>You and %1 are sharing locations with each other</source>
-        <translation type="unfinished"></translation>
+        <translation>あなたと %1 は互いに位置情報を共有しています</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1124"/>
         <source>%1 is currently sharing their location</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 は現在位置情報を共有しています</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1125"/>
         <source>You are sharing your location to %1</source>
-        <translation type="unfinished"></translation>
+        <translation>あなたは %1 と位置情報を共有しています</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1126"/>
         <source>Choose a profile picture</source>
-        <translation type="unfinished"></translation>
+        <translation>プロフィール画像を選択</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1032"/>
@@ -3664,22 +3664,22 @@ When ready, scan the QR code.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1077"/>
         <source>Call in progress</source>
-        <translation type="unfinished"></translation>
+        <translation>通話中</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1078"/>
         <source>Pop out</source>
-        <translation type="unfinished"></translation>
+        <translation>ポップアウト</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1079"/>
         <source>Pop in</source>
-        <translation type="unfinished"></translation>
+        <translation>ポップイン</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1080"/>
         <source>You&apos;re the only one here!</source>
-        <translation type="unfinished"></translation>
+        <translation>ここにはあなただけです!</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1083"/>
@@ -4609,7 +4609,7 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="133"/>
         <source>Toggle full screen</source>
-        <translation type="unfinished"></translation>
+        <translation>全画面表示を切り替え</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="137"/>
@@ -5595,12 +5595,12 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/core/conversationmodel.cpp" line="339"/>
         <source>Deleted media</source>
-        <translation type="unfinished">削除されたメディア</translation>
+        <translation>削除されたメディア</translation>
     </message>
     <message>
         <location filename="../src/core/conversationmodel.cpp" line="353"/>
         <source>(deleted message)</source>
-        <translation type="unfinished">(削除されたメッセージ)</translation>
+        <translation>(削除されたメッセージ)</translation>
     </message>
 </context>
 </TS>
