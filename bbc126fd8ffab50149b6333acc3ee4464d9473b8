@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bc12e422_e8cd7fa9",
+        "filename": "translations/jami_client_qt_de.ts",
+        "patchSetId": 6
+      },
+      "lineNbr": 401,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-14T02:07:51Z",
+      "side": 1,
+      "message": "Line 401: 🟡 Suggestion: `den Standort` drops the possessive meaning from `their location`. A more precise German translation would make clear that the shared location belongs to `%1`.\n```suggestion\n        \u003ctranslation\u003e%1 teilt den eigenen Standort\u003c/translation\u003e\n```",
+      "revId": "bbc126fd8ffab50149b6333acc3ee4464d9473b8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c4695153_0bf6c660",
+        "filename": "translations/jami_client_qt_de.ts",
+        "patchSetId": 6
+      },
+      "lineNbr": 483,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-14T02:07:51Z",
+      "side": 1,
+      "message": "Line 483: 🟡 Suggestion: The source string `E\u0026xit` means exiting the application, but `S\u0026chließen` reads as closing a window/dialog and can mislead users. Use the same application-exit terminology as the nearby `\u0026Quit` translation while preserving a mnemonic.\n```suggestion\n        \u003ctranslation\u003e\u0026amp;Beenden\u003c/translation\u003e\n```",
+      "revId": "bbc126fd8ffab50149b6333acc3ee4464d9473b8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
