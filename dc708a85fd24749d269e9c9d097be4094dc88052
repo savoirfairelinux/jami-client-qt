@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "99a371b1_ae22d8d6",
+        "filename": "translations/jami_client_qt_de_DE.ts",
+        "patchSetId": 5
+      },
+      "lineNbr": 4618,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-14T02:04:44Z",
+      "side": 1,
+      "message": "[Minor] Line 4618: 🟡 Suggestion: `Proxy Authentifizierung notwendig` is missing the compound hyphen required in German and reads awkwardly. Prefer the standard compound form.\n\n```suggestion\n        \u003ctranslation\u003eProxy-Authentifizierung erforderlich\u003c/translation\u003e\n```",
+      "revId": "dc708a85fd24749d269e9c9d097be4094dc88052",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a3f48a68_48ceafc6",
+        "filename": "translations/jami_client_qt_de_DE.ts",
+        "patchSetId": 5
+      },
+      "lineNbr": 4695,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-14T02:04:44Z",
+      "side": 1,
+      "message": "[Minor] Line 4695: 🟡 Suggestion: The translation for `Does Not Exist Anywhere` uses the non-standard form `nirgendswo`. This should be corrected to standard German.\n\n```suggestion\n        \u003ctranslation\u003eExistiert nirgendwo\u003c/translation\u003e\n```",
+      "revId": "dc708a85fd24749d269e9c9d097be4094dc88052",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a5c062b1_839fd932",
+        "filename": "translations/jami_client_qt_de_DE.ts",
+        "patchSetId": 5
+      },
+      "lineNbr": 4752,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-14T02:04:44Z",
+      "side": 1,
+      "message": "[Minor] Line 4752: 🟡 Suggestion: `locationServicesError` is translated as the compound `Standortdienstfehler`, which is understandable but terse and inconsistent with the nearby user-facing error messages. Prefer a clearer phrase.\n\n```suggestion\n        \u003ctranslation\u003eFehler bei den Standortdiensten\u003c/translation\u003e\n```",
+      "revId": "dc708a85fd24749d269e9c9d097be4094dc88052",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c9516ef0_e17d3231",
+        "filename": "translations/jami_client_qt_de_DE.ts",
+        "patchSetId": 5
+      },
+      "lineNbr": 4757,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-14T02:04:44Z",
+      "side": 1,
+      "message": "[Minor] Line 4757: 🟡 Suggestion: `Standortdienste geschlossen Fehler` is a literal and grammatically incorrect translation. Use a user-facing error phrase instead.\n\n```suggestion\n        \u003ctranslation\u003eStandortdienste wurden geschlossen\u003c/translation\u003e\n```",
+      "revId": "dc708a85fd24749d269e9c9d097be4094dc88052",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
