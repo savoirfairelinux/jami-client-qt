@@ -73,7 +73,7 @@
     <message>
         <location filename="../src/app/currentcall.cpp" line="179"/>
         <source>Me</source>
-        <translation>lch</translation>
+        <translation>Ich</translation>
     </message>
 </context>
 <context>
@@ -967,7 +967,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="327"/>
         <source>%1 saved to %2</source>
-        <translation type="unfinished"/>
+        <translation>%1 in %2 gespeichert</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="333"/>
@@ -2781,7 +2781,7 @@ Scannen Sie anschließend den QR-Code.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="705"/>
         <source>Share account</source>
-        <translation type="unfinished"/>
+        <translation>Konto teilen</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="714"/>
@@ -2916,7 +2916,7 @@ Scannen Sie anschließend den QR-Code.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="841"/>
         <source>No description</source>
-        <translation type="unfinished"/>
+        <translation>Keine Beschreibung</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="842"/>
@@ -2931,7 +2931,7 @@ Scannen Sie anschließend den QR-Code.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="949"/>
         <source>No dictionaries available.</source>
-        <translation type="unfinished"/>
+        <translation>Keine Wörterbücher verfügbar.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="956"/>
@@ -2991,7 +2991,7 @@ Scannen Sie anschließend den QR-Code.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="881"/>
         <source>Hide fingerprint</source>
-        <translation type="unfinished"/>
+        <translation>Fingerabdruck verbergen</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="882"/>
@@ -4123,12 +4123,12 @@ Bitte bestätigen Sie den Import auf dem neuen Gerät.</translation>
     <message>
         <location filename="../src/app/mainapplication.cpp" line="483"/>
         <source>E&amp;xit</source>
-        <translation>Schließen</translation>
+        <translation>S&amp;chließen</translation>
     </message>
     <message>
         <location filename="../src/app/mainapplication.cpp" line="485"/>
         <source>&amp;Quit</source>
-        <translation>Beenden</translation>
+        <translation>&amp;Beenden</translation>
     </message>
     <message>
         <location filename="../src/app/mainapplication.cpp" line="491"/>
@@ -4141,7 +4141,7 @@ Bitte bestätigen Sie den Import auf dem neuen Gerät.</translation>
     <message>
         <location filename="../src/app/positionmanager.cpp" line="401"/>
         <source>%1 is sharing their location</source>
-        <translation>%1 teilt Ihren Standort</translation>
+        <translation>%1 teilt den Standort</translation>
     </message>
     <message>
         <location filename="../src/app/positionmanager.cpp" line="406"/>
@@ -4167,7 +4167,7 @@ Bitte bestätigen Sie den Import auf dem neuen Gerät.</translation>
     <message>
         <location filename="../src/libclient/qtwrapper/callmanager_wrap.h" line="402"/>
         <source>Me</source>
-        <translation>lch</translation>
+        <translation>Ich</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/call.h" line="61"/>
@@ -4494,7 +4494,7 @@ Bitte bestätigen Sie den Import auf dem neuen Gerät.</translation>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="92"/>
         <source>Proxy Authentication Required</source>
-        <translation>Proxy Authentifizierung notwendig</translation>
+        <translation>Proxy-Authentifizierung erforderlich</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="93"/>
@@ -4660,7 +4660,7 @@ Bitte bestätigen Sie den Import auf dem neuen Gerät.</translation>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="126"/>
         <source>Does Not Exist Anywhere</source>
-        <translation>Existiert nirgendswo</translation>
+        <translation>Existiert nirgendwo</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="127"/>
@@ -4685,12 +4685,12 @@ Bitte bestätigen Sie den Import auf dem neuen Gerät.</translation>
     <message>
         <location filename="../src/app/positioning.cpp" line="105"/>
         <source>locationServicesError</source>
-        <translation>Standortdienstfehler</translation>
+        <translation>Fehler bei den Standortdiensten</translation>
     </message>
     <message>
         <location filename="../src/app/positioning.cpp" line="108"/>
         <source>locationServicesClosedError</source>
-        <translation>Standortdienste geschlossen Fehler</translation>
+        <translation>Standortdienste wurden geschlossen</translation>
     </message>
     <message>
         <location filename="../src/app/positioning.cpp" line="110"/>
