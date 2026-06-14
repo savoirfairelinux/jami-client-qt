@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b9ad738b_7eceb9b5",
+        "filename": "translations/jami_client_qt_de_DE.ts",
+        "patchSetId": 7
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-14T17:07:58Z",
+      "side": 1,
+      "message": "[🔴 Critical Issues] Line 77: The translation for \"Me\" is misspelled as \"lch\" with a lowercase L instead of uppercase I, which will be visibly wrong anywhere the local participant is shown. Use the correct German word.\n```suggestion\n        \u003ctranslation\u003eIch\u003c/translation\u003e\n```",
+      "revId": "16d22301628856eb6f25ace321ba3c914ca1fd59",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fcd3679d_983da94d",
+        "filename": "translations/jami_client_qt_de_DE.ts",
+        "patchSetId": 7
+      },
+      "lineNbr": 4125,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-14T17:07:58Z",
+      "side": 1,
+      "message": "[🟡 Suggestions] Line 4125: Qt menu accelerators from the source string are not preserved. Translating \"E\u0026xit\" as \"Schließen\" removes the keyboard mnemonic, unlike the nearby \"\u0026Show Jami\" translation which keeps it. Add an ampersand to the intended mnemonic character.\n```suggestion\n        \u003ctranslation\u003eSch\u0026ließen\u003c/translation\u003e\n```",
+      "revId": "16d22301628856eb6f25ace321ba3c914ca1fd59",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f8f704a6_0ba6339a",
+        "filename": "translations/jami_client_qt_de_DE.ts",
+        "patchSetId": 7
+      },
+      "lineNbr": 4129,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-14T17:07:58Z",
+      "side": 1,
+      "message": "[🟡 Suggestions] Line 4129: Qt menu accelerators from the source string are not preserved. Translating \"\u0026Quit\" as \"Beenden\" removes the keyboard mnemonic. Add an ampersand to keep menu keyboard navigation working.\n```suggestion\n        \u003ctranslation\u003e\u0026amp;Beenden\u003c/translation\u003e\n```",
+      "revId": "16d22301628856eb6f25ace321ba3c914ca1fd59",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f9f5895c_0f85bd89",
+        "filename": "translations/jami_client_qt_de_DE.ts",
+        "patchSetId": 7
+      },
+      "lineNbr": 4133,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-14T17:07:58Z",
+      "side": 1,
+      "message": "[🔴 Critical Issues] Line 4133: This changes \"%1 is sharing their location\" to \"%1 teilt Ihren Standort\", which means \"%1 is sharing your location\" in German. That reverses the meaning and can mislead users about whose location is being shared.\n```suggestion\n        \u003ctranslation\u003e%1 teilt den Standort\u003c/translation\u003e\n```",
+      "revId": "16d22301628856eb6f25ace321ba3c914ca1fd59",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bcc0586e_a888a4bc",
+        "filename": "translations/jami_client_qt_de_DE.ts",
+        "patchSetId": 7
+      },
+      "lineNbr": 4169,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-14T17:07:58Z",
+      "side": 1,
+      "message": "[🔴 Critical Issues] Line 4169: The second translation of \"Me\" has the same typo (\"lch\" instead of \"Ich\"), so call/contact UI can show an incorrect label.\n```suggestion\n        \u003ctranslation\u003eIch\u003c/translation\u003e\n```",
+      "revId": "16d22301628856eb6f25ace321ba3c914ca1fd59",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
