@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1bc954f8_68d0962b",
+        "filename": "translations/jami_client_qt_de_DE.ts",
+        "patchSetId": 2
+      },
+      "lineNbr": 4527,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-14T01:50:30Z",
+      "side": 1,
+      "message": "[🟡 Suggestions] Line 4527: The German translation for \"Does Not Exist Anywhere\" contains a spelling error: \"nirgendswo\" is not standard German. Use \"nirgendwo\" instead.",
+      "revId": "fbbfeb691a0ce8790d8a8e97ba28194d364bee23",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
