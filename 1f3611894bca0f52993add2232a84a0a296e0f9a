@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "364402f2_7b8ac997",
+        "filename": "translations/jami_client_qt_eu.ts",
+        "patchSetId": 1
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-14T17:08:40Z",
+      "side": 1,
+      "message": "[Critical] Line 179: The Basque translation drops the second sentence, which warns that the legacy conversation history will be cleared during Swarm migration. That is user-visible data-loss information, so translating only the first sentence can cause users to consent without being informed. Please include the full warning. ```suggestion\n        \u003ctranslation\u003eSwarm teknologiara migratzeak elkarrizketa hau hainbat gailutan sinkronizatzea ahalbidetuko du eta fidagarritasuna hobetuko du. Prozesuan, elkarrizketaren historia zaharra ezabatuko da.\u003c/translation\u003e\n```",
+      "revId": "1f3611894bca0f52993add2232a84a0a296e0f9a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e687dcdb_d367c4d2",
+        "filename": "translations/jami_client_qt_ga.ts",
+        "patchSetId": 1
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-14T17:08:40Z",
+      "side": 1,
+      "message": "[Critical] Line 179: The Irish translation omits the source string\u0027s final sentence: \"The legacy conversation history will be cleared in the process.\" This is a required data-loss warning before migration, so the localized UI must preserve it. Please translate the full source text. ```suggestion\n        \u003ctranslation\u003eCumasóidh aistriú go teicneolaíocht Swarm an comhrá seo a shioncronú thar ilghléasanna agus feabhsóidh sé iontaofacht. Glanfar stair oidhreachta an chomhrá sa phróiseas.\u003c/translation\u003e\n```",
+      "revId": "1f3611894bca0f52993add2232a84a0a296e0f9a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
