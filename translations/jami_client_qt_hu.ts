@@ -967,7 +967,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="327"/>
         <source>%1 saved to %2</source>
-        <translation type="unfinished"/>
+        <translation>%1 mentve ide: %2</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="333"/>
@@ -2781,7 +2781,7 @@ Ha készen áll, olvassa be a QR-kódot.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="705"/>
         <source>Share account</source>
-        <translation type="unfinished"/>
+        <translation>Fiók megosztása</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="714"/>
@@ -2916,7 +2916,7 @@ Ha készen áll, olvassa be a QR-kódot.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="841"/>
         <source>No description</source>
-        <translation type="unfinished"/>
+        <translation>Nincs leírás</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="842"/>
@@ -2931,7 +2931,7 @@ Ha készen áll, olvassa be a QR-kódot.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="949"/>
         <source>No dictionaries available.</source>
-        <translation type="unfinished"/>
+        <translation>Nincsenek elérhető szótárak.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="956"/>
@@ -2991,7 +2991,7 @@ Ha készen áll, olvassa be a QR-kódot.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="881"/>
         <source>Hide fingerprint</source>
-        <translation type="unfinished"/>
+        <translation>Ujjlenyomat elrejtése</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="882"/>
