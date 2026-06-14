@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f233be67_44168139",
+        "filename": "extras/scripts/i18n/import_translations.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-14T01:39:49Z",
+      "side": 1,
+      "message": "[🔴 Critical] Line 42: The import path is trusted from translator-controlled JSON. An absolute path or `../` traversal in `payload[\u0027file\u0027]` can make the script parse and overwrite files outside `translations/` if they contain matching empty translation tags. Resolve and validate the path before applying changes.\n```suggestion\n    ts_path \u003d os.path.abspath(os.path.join(REPO_ROOT, payload[\u0027file\u0027]))\n    translations_dir \u003d os.path.join(REPO_ROOT, \u0027translations\u0027)\n    if not os.path.commonpath([translations_dir, ts_path]) \u003d\u003d translations_dir:\n        raise ValueError(\u0027translation file must be under translations/\u0027)\n```",
+      "revId": "0488ba7c7dce64235be94cb543ea7cf6421201a9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f1db4984_4f60c726",
         "filename": "extras/scripts/i18n/import_translations.py",
         "patchSetId": 1
@@ -20,6 +37,40 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e153227f_1daf6999",
+        "filename": "extras/scripts/i18n/import_translations.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-14T01:39:49Z",
+      "side": 1,
+      "message": "[🔴 Critical] Line 49: Translations are keyed only by `(context, source)`, so duplicate TS messages with the same source text in the same context collapse into one entry and all matching empty messages receive the same translation. Qt TS can require different translations for the same source depending on disambiguation/comment. Include a stable per-message identifier from export, such as context/source/comment/extracomment or document index, and validate it on import before writing.",
+      "revId": "0488ba7c7dce64235be94cb543ea7cf6421201a9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "87274005_8c2d714d",
+        "filename": "extras/scripts/i18n/tslib.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-14T01:39:49Z",
+      "side": 1,
+      "message": "[🟡 Suggestion] Line 93: `_xml_escape` escapes quotes and apostrophes in element text, but ElementTree/lupdate do not require those in text nodes. This creates non-canonical diffs despite the comment saying it matches `lupdate`, and may cause churn on the next `lupdate` run. Escape only `\u0026`, `\u003c`, and `\u003e` for element content.\n```suggestion\n    return (text.replace(\u0027\u0026\u0027, \u0027\u0026amp;\u0027)\n                .replace(\u0027\u003c\u0027, \u0027\u0026lt;\u0027)\n                .replace(\u0027\u003e\u0027, \u0027\u0026gt;\u0027))\n```",
+      "revId": "0488ba7c7dce64235be94cb543ea7cf6421201a9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1e63cba4_fdf4c375",
         "filename": "extras/scripts/i18n/tslib.py",
         "patchSetId": 1
@@ -31,6 +82,23 @@
       "writtenOn": "2026-06-14T01:39:49Z",
       "side": 1,
       "message": "[Critical] Line 124: Translations are keyed only by `(context, source)`, but Qt TS messages can have the same context/source with different `\u003ccomment\u003e` disambiguation, IDs, plural forms, or locations. In that case, one JSON entry can overwrite another and the importer will apply the same translation to multiple distinct messages, producing incorrect localized UI. Include a stable per-message discriminator in both export and import, such as `\u003ccomment\u003e`/`\u003cextracomment\u003e` or an exported ordinal, and match on that full key.\n```suggestion\n# Include message.findtext(\u0027comment\u0027) or a document-order id in parse/export,\n# then key translations with (context, source, comment_or_id) instead of only\n# (context, source).\n```",
+      "revId": "0488ba7c7dce64235be94cb543ea7cf6421201a9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "60492abc_d7b70f76",
+        "filename": "extras/scripts/update-translations.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-14T01:39:49Z",
+      "side": 1,
+      "message": "[🔴 Critical] Line 34: This drops the existing `lupdate-qt5` fallback, so systems where Qt Linguist is installed under the Qt5 binary name will now fail even though they worked before. Keep the previous fallback and add common Qt versioned names.\n```suggestion\nLUPDATE_TOOLS \u003d (\u0027lupdate\u0027, \u0027lupdate-qt5\u0027, \u0027lupdate5\u0027, \u0027lupdate-qt6\u0027, \u0027lupdate6\u0027)\n```",
       "revId": "0488ba7c7dce64235be94cb543ea7cf6421201a9",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
