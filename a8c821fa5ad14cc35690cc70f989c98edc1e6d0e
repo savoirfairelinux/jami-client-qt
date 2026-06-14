@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e69df41c_d0bb3ae2",
+        "filename": "extras/scripts/i18n/import_translations.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-14T17:07:57Z",
+      "side": 1,
+      "message": "[Critical] Line 43: The JSON-controlled `file` field is joined directly with `REPO_ROOT`, so an absolute path or `../` path in a crafted import file can cause the script to overwrite arbitrary files when run by a maintainer. Restrict imports to the expected `translations/jami_client_qt_\u003clang\u003e.ts` files and reject paths that resolve outside the translations directory. For example:\n```suggestion\n    rel_file \u003d payload[\u0027file\u0027]\n    ts_path \u003d os.path.realpath(os.path.join(REPO_ROOT, rel_file))\n    translations_dir \u003d os.path.realpath(os.path.join(REPO_ROOT, \u0027translations\u0027))\n    if not ts_path.startswith(translations_dir + os.sep):\n        raise ValueError(\u0027invalid translation target: {}\u0027.format(rel_file))\n```",
+      "revId": "a8c821fa5ad14cc35690cc70f989c98edc1e6d0e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "31147124_6b4cdab1",
+        "filename": "extras/scripts/i18n/tslib.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-14T17:07:57Z",
+      "side": 1,
+      "message": "[Major] Line 94: `_xml_escape()` escapes quotes and apostrophes in element text, which turns normal translator input like `Don\u0026apos;t` from exported JSON into `Don\u0026amp;apos;t` in the `.ts` file if a translator preserves existing XML entities. Because the export uses parsed text, the import should either document that translators must use raw characters only and reject entity-looking input, or unescape before escaping. A safer fix is to normalize with `html.unescape()` before XML escaping:\n```suggestion\nimport html\n...\ndef _xml_escape(text):\n    text \u003d html.unescape(text)\n    return (text.replace(\u0027\u0026\u0027, \u0027\u0026amp;\u0027)\n                .replace(\u0027\u003c\u0027, \u0027\u0026lt;\u0027)\n                .replace(\u0027\u003e\u0027, \u0027\u0026gt;\u0027))\n```",
+      "revId": "a8c821fa5ad14cc35690cc70f989c98edc1e6d0e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5ce8674f_9dec7c4a",
+        "filename": "extras/scripts/update-translations.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-14T17:07:57Z",
+      "side": 1,
+      "message": "[Major] Line 42: The new `lupdate` invocation only scans `cpp,h,qml` files under `src/`. The old `lupdate jami.pro` used the project file as the source of truth, so it could include additional file types or paths configured by the project. This risks silently dropping translatable strings outside those extensions/paths. Prefer keeping the project/CMake translation source list as the authority, or include all file types and source roots currently covered by `jami.pro` before removing the project-file based flow.",
+      "revId": "a8c821fa5ad14cc35690cc70f989c98edc1e6d0e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
