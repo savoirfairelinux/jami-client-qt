@@ -3589,7 +3589,7 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="678"/>
         <source>Select An Image to %1</source>
-        <translation>Elektu bildon al % 1</translation>
+        <translation>Elektu bildon al %1</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="679"/>

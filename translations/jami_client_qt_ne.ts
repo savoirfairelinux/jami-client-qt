@@ -60,7 +60,7 @@
     <message>
         <location filename="../src/app/conversationsadapter.cpp" line="196"/>
         <source>%1 received a new message</source>
-        <translation>% 1 ले नयाँ सन्देश प्राप्त गर्यो</translation>
+        <translation>%1 ले नयाँ सन्देश प्राप्त गर्यो</translation>
     </message>
     <message>
         <location filename="../src/app/conversationsadapter.cpp" line="249"/>
@@ -1886,7 +1886,7 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="326"/>
         <source>Screenshot saved to %1</source>
-        <translation>% 1 मा बचत गरिएको स्क्रीनशट</translation>
+        <translation>%1 मा बचत गरिएको स्क्रीनशट</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="330"/>
@@ -3589,7 +3589,7 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="678"/>
         <source>Select An Image to %1</source>
-        <translation>% 1 मा एउटा छवि चयन गर्नुहोस्</translation>
+        <translation>%1 मा एउटा छवि चयन गर्नुहोस्</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="679"/>

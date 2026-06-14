@@ -1886,7 +1886,7 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="326"/>
         <source>Screenshot saved to %1</source>
-        <translation>Captura d&apos; ecran salvada a % 1</translation>
+        <translation>Captura d&apos; ecran salvada a %1</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="330"/>
@@ -4955,7 +4955,7 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/app/utilsadapter.cpp" line="351"/>
         <source>%1 Mbps</source>
-        <translation>% 1 Mbps</translation>
+        <translation>%1 Mbps</translation>
     </message>
     <message>
         <location filename="../src/app/utilsadapter.cpp" line="351"/>

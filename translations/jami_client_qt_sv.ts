@@ -712,7 +712,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="349"/>
         <source>Stop location sharing in this conversation (%1)</source>
-        <translation>Sluta dela plats i denna konversation (% 1)</translation>
+        <translation>Sluta dela plats i denna konversation (%1)</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="372"/>
@@ -1886,7 +1886,7 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="326"/>
         <source>Screenshot saved to %1</source>
-        <translation>Skärmskärm som sparas till % 1</translation>
+        <translation>Skärmskärm som sparas till %1</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="330"/>
@@ -3589,7 +3589,7 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="678"/>
         <source>Select An Image to %1</source>
-        <translation>Välj En bild till % 1</translation>
+        <translation>Välj En bild till %1</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="679"/>
@@ -3629,7 +3629,7 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="701"/>
         <source>Screen %1</source>
-        <translation>Skärm % 1</translation>
+        <translation>Skärm %1</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="704"/>

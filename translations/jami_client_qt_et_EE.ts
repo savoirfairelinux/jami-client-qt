@@ -11,7 +11,7 @@
     <message>
         <location filename="../src/app/calladapter.cpp" line="194"/>
         <source>Missed call with %1</source>
-        <translation>% 1ga telefonikõne jäi puudu</translation>
+        <translation>%1ga telefonikõne jäi puudu</translation>
     </message>
     <message>
         <location filename="../src/app/calladapter.cpp" line="521"/>
@@ -62,7 +62,7 @@
     <message>
         <location filename="../src/app/conversationsadapter.cpp" line="196"/>
         <source>%1 received a new message</source>
-        <translation>% 1 sai uue sõnumi</translation>
+        <translation>%1 sai uue sõnumi</translation>
     </message>
     <message>
         <location filename="../src/app/conversationsadapter.cpp" line="249"/>
@@ -714,7 +714,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="349"/>
         <source>Stop location sharing in this conversation (%1)</source>
-        <translation>Lõpeta asukoha jagamine selles vestluses (% 1)</translation>
+        <translation>Lõpeta asukoha jagamine selles vestluses (%1)</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="372"/>
@@ -1888,7 +1888,7 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="326"/>
         <source>Screenshot saved to %1</source>
-        <translation>Salvestatud ekraanilõpe % 1</translation>
+        <translation>Salvestatud ekraanilõpe %1</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="330"/>
@@ -3591,7 +3591,7 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="678"/>
         <source>Select An Image to %1</source>
-        <translation>Valita % 1 -le kujutis</translation>
+        <translation>Valita %1 -le kujutis</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="679"/>
@@ -3631,7 +3631,7 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="701"/>
         <source>Screen %1</source>
-        <translation>Ekraan % 1</translation>
+        <translation>Ekraan %1</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="704"/>
@@ -3838,7 +3838,7 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="809"/>
         <source>Write to %1</source>
-        <translation>Kirjuta % 1</translation>
+        <translation>Kirjuta %1</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="837"/>
