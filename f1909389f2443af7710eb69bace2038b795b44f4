@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "98be59a1_59ce0172",
+        "filename": "extras/scripts/i18n/import_translations.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-14T01:50:35Z",
+      "side": 1,
+      "message": "[🟡 Suggestions] Line 48: The path confinement check uses `abspath`, so a symlink under `translations/` can still resolve outside the repository and be overwritten by translator-controlled JSON. Use `realpath` for both the allowed directory and target before `commonpath`, and preferably require a `.ts` file. Suggested fix:\n```suggestion\n    ts_path \u003d os.path.realpath(os.path.join(REPO_ROOT, rel_path))\n    translations_dir \u003d os.path.realpath(TRANSLATIONS_DIR)\n    if os.path.commonpath([translations_dir, ts_path]) !\u003d translations_dir:\n        raise ValueError(\n            \u0027{}: translation file must be under translations/\u0027.format(rel_path))\n    if not ts_path.endswith(\u0027.ts\u0027):\n        raise ValueError(\u0027{}: translation file must be a .ts file\u0027.format(rel_path))\n```",
+      "revId": "f1909389f2443af7710eb69bace2038b795b44f4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "26c02862_01942806",
+        "filename": "extras/scripts/i18n/tslib.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-14T01:50:35Z",
+      "side": 1,
+      "message": "[🟡 Suggestions] Line 186: `apply_ordered` accepts JSON payloads with extra entries because it only errors when there are more empty messages than entries. If the `.ts` file changed by removing or completing trailing untranslated messages after export, stale JSON can still be accepted silently, contradicting the documented guarantee that imports refuse changed files. Validate the entry count against the current untranslated message count before patching. Suggested fix:\n```suggestion\n    current \u003d parse_untranslated(ts_path)\n    if len(entries) !\u003d len(current):\n        raise ValueError(\n            \u0027{}: expected {} entries but found {} empty messages; re-export \u0027\n            \u0027after running update-translations.py\u0027.format(\n                ts_path, len(entries), len(current)))\n\n    def resolver(index, ctx, src):\n```",
+      "revId": "f1909389f2443af7710eb69bace2038b795b44f4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9b2ceeb8_0bd74984",
+        "filename": "extras/scripts/update-translations.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-14T01:50:35Z",
+      "side": 1,
+      "message": "[🟡 Suggestions] Line 45: The fallback loop only handles missing executables. If `lupdate` exists but fails because it is the wrong Qt version or lacks required QML support, `subprocess.check_call` raises `CalledProcessError` and the script exits without trying the remaining candidates, which regresses the previous fallback behavior. Catch `subprocess.CalledProcessError` as a failed candidate and continue, preserving the last error for the final message. Suggested fix:\n```suggestion\n    last_error \u003d None\n    for tool in LUPDATE_TOOLS:\n        try:\n            subprocess.check_call([tool] + base_args)\n            return\n        except FileNotFoundError:\n            continue\n        except subprocess.CalledProcessError as err:\n            last_error \u003d err\n            continue\n    raise RuntimeError(\n        \u0027No suitable lupdate tool completed successfully (tried: {}). \u0027\n        \u0027Install Qt Linguist tools or add lupdate to PATH.\u0027.format(\n            \u0027, \u0027.join(LUPDATE_TOOLS)))\n```",
+      "revId": "f1909389f2443af7710eb69bace2038b795b44f4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
