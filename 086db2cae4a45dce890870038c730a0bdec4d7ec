@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec1038c3_ca91baed",
+        "filename": "extras/scripts/i18n/export_untranslated.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-14T01:53:34Z",
+      "side": 1,
+      "message": "[🟡 Suggestions] Line 64: `--lang` is used directly in the JSON output filename, so a value containing path separators can write outside `--out-dir` even though the `.ts` lookup itself will fail or point elsewhere. This is translator/tooling input, so reject language codes that are not plain locale identifiers before constructing paths.\n\n```suggestion\n    if not re.fullmatch(r\u0027[A-Za-z0-9_@.-]+\u0027, lang) or \u0027/\u0027 in lang or \u0027\\\\\u0027 in lang:\n        raise ValueError(\u0027invalid language code: {}\u0027.format(lang))\n```",
+      "revId": "086db2cae4a45dce890870038c730a0bdec4d7ec",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "97fe1868_12176905",
+        "filename": "extras/scripts/update-translations.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-14T01:53:34Z",
+      "side": 1,
+      "message": "[🟡 Suggestions] Line 50: Trying every lupdate candidate after any CalledProcessError can mask a real extraction failure. If the first available tool fails because of an invalid source file, missing include, malformed QML, or bad option, the script continues with other candidates and finally reports a misleading generic tool-selection error. Only FileNotFoundError should fall through; a found lupdate that exits non-zero should fail immediately and preserve its diagnostic.\n\n```suggestion\n        except subprocess.CalledProcessError as err:\n            raise RuntimeError(\n                \u0027{} failed while updating translations: {}\u0027.format(tool, err)) from err\n```",
+      "revId": "086db2cae4a45dce890870038c730a0bdec4d7ec",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
