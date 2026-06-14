@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "72efbca7_aa4beed8",
+        "filename": "translations/jami_client_qt_de_DE.ts",
+        "patchSetId": 1
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-14T01:39:49Z",
+      "side": 1,
+      "message": "[Major] Line 75: The German translation for \"Me\" uses a lowercase L (`lch`) instead of uppercase I (`Ich`), so the UI will show a visible typo. Use:\n```suggestion\n        \u003ctranslation\u003eIch\u003c/translation\u003e\n```",
+      "revId": "127105433d67962b5ad306ebf50f4feda0b81366",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "56438907_b9857713",
         "filename": "translations/jami_client_qt_de_DE.ts",
         "patchSetId": 1
@@ -37,6 +54,40 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7b87a4d1_09d4eb74",
+        "filename": "translations/jami_client_qt_de_DE.ts",
+        "patchSetId": 1
+      },
+      "lineNbr": 4125,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-14T01:39:49Z",
+      "side": 1,
+      "message": "[Minor] Line 4125: The translation for `E\u0026xit` drops the Qt mnemonic marker. This removes the keyboard accelerator from the menu item in German. Preserve an accelerator marker in the translated text, for example:\n```suggestion\n        \u003ctranslation\u003eBe\u0026amp;enden\u003c/translation\u003e\n```",
+      "revId": "127105433d67962b5ad306ebf50f4feda0b81366",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "53ac1d67_b9f72c06",
+        "filename": "translations/jami_client_qt_de_DE.ts",
+        "patchSetId": 1
+      },
+      "lineNbr": 4127,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-14T01:39:49Z",
+      "side": 1,
+      "message": "[Major] Line 4127: The translation of `%1 is sharing their location` currently says `%1 teilt Ihren Standort`, which means the other person is sharing the user\u0027s location. That reverses the meaning and can mislead users about location privacy. Use a neutral phrasing:\n```suggestion\n        \u003ctranslation\u003e%1 teilt den Standort\u003c/translation\u003e\n```",
+      "revId": "127105433d67962b5ad306ebf50f4feda0b81366",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "58be3abe_e7227b9f",
         "filename": "translations/jami_client_qt_de_DE.ts",
         "patchSetId": 1
@@ -48,6 +99,40 @@
       "writtenOn": "2026-06-14T01:39:49Z",
       "side": 1,
       "message": "[🔴 Critical Issue] Line 4129: The translation of \"%1 is sharing their location\" currently means \"%1 is sharing your location\", which reverses the ownership and can mislead users about location privacy. Translate \"their location\" as the other person\u0027s own location.\n```suggestion\n        \u003ctranslation\u003e%1 teilt seinen/ihren Standort\u003c/translation\u003e\n```",
+      "revId": "127105433d67962b5ad306ebf50f4feda0b81366",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ddbd24e1_8e5bac46",
+        "filename": "translations/jami_client_qt_de_DE.ts",
+        "patchSetId": 1
+      },
+      "lineNbr": 4129,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-14T01:39:49Z",
+      "side": 1,
+      "message": "[Minor] Line 4129: The translation for `\u0026Quit` drops the Qt mnemonic marker, unlike nearby `\u0026Show Jami`. Preserve a mnemonic in the translated menu label:\n```suggestion\n        \u003ctranslation\u003e\u0026amp;Beenden\u003c/translation\u003e\n```",
+      "revId": "127105433d67962b5ad306ebf50f4feda0b81366",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c44fe9d9_cfcd7df5",
+        "filename": "translations/jami_client_qt_de_DE.ts",
+        "patchSetId": 1
+      },
+      "lineNbr": 4169,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-14T01:39:49Z",
+      "side": 1,
+      "message": "[Major] Line 4169: This second translation of \"Me\" repeats the same typo (`lch` with lowercase L). Use:\n```suggestion\n        \u003ctranslation\u003eIch\u003c/translation\u003e\n```",
       "revId": "127105433d67962b5ad306ebf50f4feda0b81366",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
