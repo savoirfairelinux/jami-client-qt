@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f1db4984_4f60c726",
+        "filename": "extras/scripts/i18n/import_translations.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-14T01:39:49Z",
+      "side": 1,
+      "message": "[Critical] Line 43: The importer trusts the JSON-controlled `file` value and joins it directly with `REPO_ROOT`. A crafted JSON can use an absolute path or `../` traversal to make the script parse and rewrite arbitrary writable XML files. Derive the target from a validated language code or ensure the resolved path stays under `translations/` and matches `jami_client_qt_\u003clang\u003e.ts`.\n```suggestion\n    rel_path \u003d payload[\u0027file\u0027]\n    ts_path \u003d os.path.abspath(os.path.join(REPO_ROOT, rel_path))\n    translations_dir \u003d os.path.abspath(os.path.join(REPO_ROOT, \u0027translations\u0027))\n    if not ts_path.startswith(translations_dir + os.sep):\n        raise ValueError(\u0027translation file must be under translations/\u0027)\n```",
+      "revId": "0488ba7c7dce64235be94cb543ea7cf6421201a9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1e63cba4_fdf4c375",
+        "filename": "extras/scripts/i18n/tslib.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-14T01:39:49Z",
+      "side": 1,
+      "message": "[Critical] Line 124: Translations are keyed only by `(context, source)`, but Qt TS messages can have the same context/source with different `\u003ccomment\u003e` disambiguation, IDs, plural forms, or locations. In that case, one JSON entry can overwrite another and the importer will apply the same translation to multiple distinct messages, producing incorrect localized UI. Include a stable per-message discriminator in both export and import, such as `\u003ccomment\u003e`/`\u003cextracomment\u003e` or an exported ordinal, and match on that full key.\n```suggestion\n# Include message.findtext(\u0027comment\u0027) or a document-order id in parse/export,\n# then key translations with (context, source, comment_or_id) instead of only\n# (context, source).\n```",
+      "revId": "0488ba7c7dce64235be94cb543ea7cf6421201a9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f84dd69e_02fcadc9",
+        "filename": "extras/scripts/update-translations.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-14T01:39:49Z",
+      "side": 1,
+      "message": "Line 36: The lupdate fallback no longer tries `lupdate-qt5`, which the previous script explicitly supported. On distributions where Qt5 tools are installed under versioned names, translation refresh now fails even though the required tool is available. Keep the previous fallback unless the project has fully dropped Qt5 tooling support.\n```suggestion\nLUPDATE_TOOLS \u003d (\u0027lupdate\u0027, \u0027lupdate-qt6\u0027, \u0027lupdate6\u0027, \u0027lupdate-qt5\u0027)\n```",
+      "revId": "0488ba7c7dce64235be94cb543ea7cf6421201a9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
