@@ -967,7 +967,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="327"/>
         <source>%1 saved to %2</source>
-        <translation type="unfinished"/>
+        <translation>%1 u ruajt te %2</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="333"/>
@@ -977,7 +977,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="339"/>
         <source>Renderer ID</source>
-        <translation type="unfinished"/>
+        <translation>ID-ja e renderuesit</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="378"/>
@@ -2241,7 +2241,7 @@ të lidhet për të njëkohësuar bisedën…</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="153"/>
         <source>TURN realm</source>
-        <translation type="unfinished"/>
+        <translation>Realmi TURN</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="233"/>
@@ -2781,7 +2781,7 @@ Kur të jeni gati, skanoni kodin QR.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="705"/>
         <source>Share account</source>
-        <translation type="unfinished"/>
+        <translation>Ndajeni llogarinë</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="714"/>
@@ -2916,7 +2916,7 @@ Kur të jeni gati, skanoni kodin QR.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="841"/>
         <source>No description</source>
-        <translation type="unfinished"/>
+        <translation>Pa përshkrim</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="842"/>
@@ -2931,7 +2931,7 @@ Kur të jeni gati, skanoni kodin QR.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="949"/>
         <source>No dictionaries available.</source>
-        <translation type="unfinished"/>
+        <translation>S&apos;ka fjalorë të disponueshëm.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="956"/>
@@ -2991,7 +2991,7 @@ Kur të jeni gati, skanoni kodin QR.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="881"/>
         <source>Hide fingerprint</source>
-        <translation type="unfinished"/>
+        <translation>Fshihni shenjën e gishtit</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="882"/>
@@ -4035,7 +4035,7 @@ Ju lutemi, ripohoni importimin te pajisja e re.</translation>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="145"/>
         <source>Take tile screenshot</source>
-        <translation type="unfinished"/>
+        <translation>Bëni foto ekrani të pllakëzës</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="153"/>
@@ -4393,7 +4393,7 @@ Ju lutemi, ripohoni importimin te pajisja e re.</translation>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="72"/>
         <source>Null</source>
-        <translation type="unfinished"/>
+        <translation>Null</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="73"/>
@@ -4685,17 +4685,17 @@ Ju lutemi, ripohoni importimin te pajisja e re.</translation>
     <message>
         <location filename="../src/app/positioning.cpp" line="105"/>
         <source>locationServicesError</source>
-        <translation type="unfinished"/>
+        <translation>locationServicesError</translation>
     </message>
     <message>
         <location filename="../src/app/positioning.cpp" line="108"/>
         <source>locationServicesClosedError</source>
-        <translation type="unfinished"/>
+        <translation>locationServicesClosedError</translation>
     </message>
     <message>
         <location filename="../src/app/positioning.cpp" line="110"/>
         <source>locationServicesUnknownError</source>
-        <translation type="unfinished"/>
+        <translation>locationServicesUnknownError</translation>
     </message>
     <message>
         <location filename="../src/libclient/conversationmodel.cpp" line="1138"/>
