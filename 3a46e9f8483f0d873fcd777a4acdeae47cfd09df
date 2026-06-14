@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1e6c7d99_06aa5c98",
+        "filename": "extras/scripts/i18n/fill_from_base.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-14T01:57:02Z",
+      "side": 1,
+      "message": "[🟡 Suggestions] Line 42: Unlike export_untranslated.py, this script does not validate --base or --target before building paths. A language value containing separators can make the script look outside the intended translations file namespace if a matching intermediate directory exists. Reuse the same locale validation helper/pattern here before calling ts_path so all i18n tools enforce the same boundary.",
+      "revId": "3a46e9f8483f0d873fcd777a4acdeae47cfd09df",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8bcecc6a_a2aab558",
+        "filename": "extras/scripts/i18n/tslib.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-14T01:57:02Z",
+      "side": 1,
+      "message": "[🔴 Critical Issues] Line 58: Plural unfinished translations are skipped entirely because _is_empty_unfinished returns False whenever \u003ctranslation\u003e has child elements. Qt TS plural messages commonly use unfinished \u003cnumerusform/\u003e children, so export_untranslated.py will never expose them and import_translations.py cannot fill them, leaving plural UI strings permanently untranslated under the new workflow. Please add explicit plural support: export each numerus form, validate/import the same number of forms, and patch the \u003cnumerusform\u003e children while preserving the type\u003d\"unfinished\" removal semantics once filled.",
+      "revId": "3a46e9f8483f0d873fcd777a4acdeae47cfd09df",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c55cae6_9ed13430",
+        "filename": "extras/scripts/i18n/tslib.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-14T01:57:02Z",
+      "side": 1,
+      "message": "[🔴 Critical Issues] Line 131: Any non-empty translation removes type\u003d\"unfinished\" without validating Qt placeholders or accelerator/markup preservation. A malformed JSON entry can silently break runtime formatting, e.g. dropping %1 from a source that uses arg(), or breaking rich-text tags. Transifex previously helped enforce this class of checks; the in-house importer should reject unsafe translations before writing. Add validation in the resolver path before patching, for example compare placeholder sets from source and translation and fail with a clear ValueError when they differ.",
+      "revId": "3a46e9f8483f0d873fcd777a4acdeae47cfd09df",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d3b29e29_8d5ad062",
+        "filename": "extras/scripts/update-translations.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-14T01:57:02Z",
+      "side": 1,
+      "message": "[🟡 Suggestions] Line 44: The lupdate invocation relies on the current working directory only indirectly and no longer changes into REPO_ROOT. The README documents running extras/scripts/update-translations.py from the repository root, but invoking the executable from another directory can make lupdate write location paths relative to that other directory or behave differently depending on the Qt version. Run lupdate with cwd\u003dREPO_ROOT to keep generated TS diffs stable.",
+      "revId": "3a46e9f8483f0d873fcd777a4acdeae47cfd09df",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
