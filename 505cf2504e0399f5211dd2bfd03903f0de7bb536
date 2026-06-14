@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f9a31973_b09bf194",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 943
+      },
+      "writtenOn": "2026-06-14T18:29:17Z",
+      "side": 1,
+      "message": "Please also remove it from the other apps like Android and iOS. On Android, there are some extremely strange and incorrect translations, for example, when the Android app automatically switches to the redundant `German (de_DE)` locale (because the OS reports that Android is set to Germany). Please keep only the correct `German (de)` version unmodified (as a lot of work has been invested into a good translation). As soon as Android, etc., detects that the language is German—regardless of the region (Germany, Austria, Switzerland, etc.)—please use exclusively the correct version.",
+      "revId": "505cf2504e0399f5211dd2bfd03903f0de7bb536",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
