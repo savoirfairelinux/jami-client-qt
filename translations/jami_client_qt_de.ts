@@ -293,7 +293,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="95"/>
         <source>In progress…</source>
-        <translation>In Bearbeitung ...</translation>
+        <translation>In Bearbeitung…</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="97"/>
@@ -1028,7 +1028,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="304"/>
         <source>Noise reduction</source>
-        <translation>Rauschverminderung</translation>
+        <translation>Rauschunterdrückung</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="305"/>
@@ -2212,7 +2212,7 @@ um eine Verbindung herzustellen, um die Unterhaltung zu synchronisieren ...</tra
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="362"/>
         <source>Hide self</source>
-        <translation>selbst ausblenden</translation>
+        <translation>Selbst ausblenden</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="363"/>
@@ -2635,7 +2635,7 @@ um eine Verbindung herzustellen, um die Unterhaltung zu synchronisieren ...</tra
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="504"/>
         <source>Creating account…</source>
-        <translation>Erstelle Konto …</translation>
+        <translation>Konto wird erstellt…</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="507"/>
@@ -3906,12 +3906,12 @@ Scannen Sie anschließend den QR-Code.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="635"/>
         <source>Vertical view</source>
-        <translation>vertikale Ansicht</translation>
+        <translation>Vertikale Ansicht</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="636"/>
         <source>Horizontal view</source>
-        <translation>horizontale Ansicht</translation>
+        <translation>Horizontale Ansicht</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="639"/>
@@ -4168,7 +4168,7 @@ Bitte bestätigen Sie den Import auf dem neuen Gerät.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="732"/>
         <source>Do you want to exit?</source>
-        <translation>Möchten Sie aussteigen?</translation>
+        <translation>Möchten Sie den Vorgang beenden?</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="733"/>
