@@ -304,7 +304,7 @@ ConversationModel::usefulDataFromDataTransfer(const QString& fileId,
         interactionId = owner.dataTransferModel->getInteractionIdFromFileId(fileId);
         conversationId = info.conversationId.isEmpty() ? storage::conversationIdFromInteractionId(d_->db, interactionId)
                                                        : info.conversationId;
-    } catch (const std::out_of_range& e) {
+    } catch (const std::out_of_range&) {
         qWarning() << "Couldn't get interaction from daemon Id: " << fileId;
         return false;
     }

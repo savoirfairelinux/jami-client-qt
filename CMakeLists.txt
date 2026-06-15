@@ -362,8 +362,13 @@ ${dbus_xml_introspecs_path}")
   # Note: qt_add_dbus_interface calls are done after Qt6 component find below.
 endif()
 
-# Note: qt_wrap_cpp for LIBCLIENT_HEADERS_PRIVATE is done after Qt6
-# component find below.
+# Note: qt_wrap_cpp for explicit moc headers is done after Qt6 component find below.
+
+set(LIBCLIENT_HEADERS_EXPLICIT_MOC
+  ${CORE_SRC_DIR}/api/account.h)
+set_source_files_properties(
+  ${LIBCLIENT_HEADERS_EXPLICIT_MOC}
+  PROPERTIES SKIP_AUTOMOC ON)
 
 # Manually wrap libjamiclient's private headers.
 set(LIBCLIENT_HEADERS_PRIVATE
@@ -893,7 +898,9 @@ if(ENABLE_LIBWRAP)
 endif()
 
 # libclient Qt-dependent processing (must be after Qt6 component find)
-qt_wrap_cpp(LIBCLIENT_HEADERS_MOC ${LIBCLIENT_HEADERS_PRIVATE})
+qt_wrap_cpp(LIBCLIENT_HEADERS_MOC
+  ${LIBCLIENT_HEADERS_EXPLICIT_MOC}
+  ${LIBCLIENT_HEADERS_PRIVATE})
 
 if(NOT ENABLE_LIBWRAP)
   qt_add_dbus_interface(
