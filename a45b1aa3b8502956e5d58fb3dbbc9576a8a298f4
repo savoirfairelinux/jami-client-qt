@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ac57d6ed_a402550d",
+        "filename": "src/app/utilsadapter.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-15T19:26:24Z",
+      "side": 1,
+      "message": "[🟡 Suggestion] Line 156: The context menu only enables custom paste for images or local-file URLs, but MessagesAdapter::onPaste() now explicitly handles non-local URLs by emitting newTextPasted(). If the clipboard contains only text/uri-list data for a web URL and no plain text, the Paste menu can remain disabled even though the paste handler supports it. Make the predicate match the paste handler, or rename/scope the handler so non-local URL paste is not unreachable from the context menu.\n```suggestion\n    if (mimeData-\u003ehasUrls())\n        return true;\n```\nIf the intent is to enable only attachable files here, then remove the non-local URL handling from MessagesAdapter::onPaste() or add a separate invokable with a precise name.",
+      "revId": "a45b1aa3b8502956e5d58fb3dbbc9576a8a298f4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
