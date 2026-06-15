@@ -26,6 +26,9 @@ import net.jami.Constants 1.1
 ColumnLayout {
     id: root
 
+    // Exposes the inner editor so consumers can drive focus/Tab navigation
+    property alias textFieldItem: textField
+
     property bool isTall: false
 
     // Leading icon properties
