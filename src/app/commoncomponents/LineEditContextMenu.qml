@@ -32,6 +32,7 @@ ContextMenuAutoLoader {
     property var selectionEnd
     property bool customizePaste: false
     property bool selectOnly: false
+    property bool clipboardHasImageOrUrls: false
     property var suggestionList
     property var menuItemsLength
     property string spellLang: ""
@@ -69,7 +70,7 @@ ContextMenuAutoLoader {
         GeneralMenuItem {
             id: paste
 
-            canTrigger: !root.selectOnly && root.lineEditObj && root.lineEditObj.canPaste
+            canTrigger: !root.selectOnly && root.lineEditObj && (root.lineEditObj.canPaste || (root.customizePaste && root.clipboardHasImageOrUrls))
             itemName: JamiStrings.paste
             iconSource: JamiResources.content_paste_24dp_svg
             onClicked: {
@@ -153,6 +154,7 @@ ContextMenuAutoLoader {
         x = mouseEvent.x;
         y = mouseEvent.y;
         root.spellLang = UtilsAdapter.getAppValue(Settings.SpellLang);
+        clipboardHasImageOrUrls = UtilsAdapter.clipboardHasImageOrUrls();
         selectionStart = lineEditObj.selectionStart;
         selectionEnd = lineEditObj.selectionEnd;
         root.openMenu();
