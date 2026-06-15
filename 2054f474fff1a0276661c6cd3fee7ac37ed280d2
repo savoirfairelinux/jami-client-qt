@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3b09882a_aebd26f5",
+        "filename": "src/app/utilsadapter.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-15T19:10:17Z",
+      "side": 1,
+      "message": "[🔴 Critical Issues - Must fix before merge] Line 148: This returns true for any URL MIME data, including copied web links. With `MessagesAdapter::onPaste()` now handling `hasUrls()` by emitting only local files, a clipboard containing only non-local URLs enables the custom Paste action but then pastes nothing. Filter for local file URLs here, or fall back to text handling in `onPaste()` when no local URLs are found.\n```suggestion\nconst QMimeData* mimeData \u003d clipboard_-\u003emimeData();\nif (!mimeData)\n    return false;\nif (mimeData-\u003ehasImage())\n    return true;\nconst auto urls \u003d mimeData-\u003eurls();\nreturn std::any_of(urls.cbegin(), urls.cend(), [](const QUrl\u0026 url) {\n    return url.isLocalFile();\n});\n```",
+      "revId": "2054f474fff1a0276661c6cd3fee7ac37ed280d2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
