@@ -257,7 +257,6 @@ set(LIBCLIENT_HEADERS
   ${CORE_SRC_DIR}/typedefs.h
   ${CORE_SRC_DIR}/containerview.h
   ${CORE_SRC_DIR}/renderer.h
-  ${CORE_SRC_DIR}/api/account.h
   ${CORE_SRC_DIR}/api/avmodel.h
   ${CORE_SRC_DIR}/api/behaviorcontroller.h
   ${CORE_SRC_DIR}/api/call.h
@@ -367,6 +366,7 @@ endif()
 
 # Manually wrap libjamiclient's private headers.
 set(LIBCLIENT_HEADERS_PRIVATE
+  ${CORE_SRC_DIR}/api/account.h
   ${CORE_SRC_DIR}/private/namedirectory_p.h)
 
 if(ENABLE_LIBWRAP)
