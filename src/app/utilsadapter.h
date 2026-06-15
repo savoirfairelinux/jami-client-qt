@@ -94,6 +94,7 @@ public:
     Q_INVOKABLE const QString getBuildIDStr();
     Q_INVOKABLE const QString getVersionStr();
     Q_INVOKABLE void setClipboardText(QString text);
+    Q_INVOKABLE bool clipboardHasImageOrUrls();
     Q_INVOKABLE const QString qStringFromFile(const QString& filename);
     Q_INVOKABLE const QString getStyleSheet(const QString& name, const QString& source);
     Q_INVOKABLE const QString getLocalDataPath();
