@@ -327,15 +327,19 @@ MessagesAdapter::onPaste()
 
         Q_EMIT newFilePasted(path);
     } else if (mimeData->hasUrls()) {
-        QList<QUrl> urlList = mimeData->urls();
+        const QList<QUrl> urlList = mimeData->urls();
 
-        // Extract the local paths of the files.
-        for (int i = 0; i < urlList.size(); ++i) {
-            // Trim file:// or file:/// from url.
-            const static QRegularExpression fileSchemeRe("^file:\\/{2,3}");
-            QString filePath = urlList.at(i).toString().remove(fileSchemeRe);
-            Q_EMIT newFilePasted(filePath);
+        // Extract the local paths of the files; fall back to text for
+        // non-local URLs (e.g. copied web links) so they are not dropped.
+        bool pastedLocalFile = false;
+        for (const QUrl& url : urlList) {
+            if (url.isLocalFile()) {
+                Q_EMIT newFilePasted(url.toLocalFile());
+                pastedLocalFile = true;
+            }
         }
+        if (!pastedLocalFile)
+            Q_EMIT newTextPasted();
     } else {
         // Treat as text content, make chatview.js handle in order to
         // avoid string escape problems

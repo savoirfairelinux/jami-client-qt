@@ -33,6 +33,9 @@
 #include <QMimeData>
 #include <QMimeDatabase>
 #include <QStyleHints>
+#include <QUrl>
+
+#include <algorithm>
 
 #ifdef Q_OS_MACOS
 #include "os/macos/macutils.h"
@@ -142,6 +145,20 @@ void
 UtilsAdapter::setClipboardText(QString text)
 {
     clipboard_->setText(text, QClipboard::Clipboard);
+}
+
+bool
+UtilsAdapter::clipboardHasImageOrUrls()
+{
+    const QMimeData* mimeData = clipboard_->mimeData();
+    if (!mimeData)
+        return false;
+    if (mimeData->hasImage())
+        return true;
+    const auto urls = mimeData->urls();
+    return std::any_of(urls.cbegin(), urls.cend(), [](const QUrl& url) {
+        return url.isLocalFile();
+    });
 }
 
 const QString
