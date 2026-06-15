@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7d63b92e_ca0ad56c",
+        "filename": "src/app/messagesadapter.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 330,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-15T19:10:17Z",
+      "side": 1,
+      "message": "[Critical] Line 330: The new URL handling drops non-local URLs without falling back to text paste. Many clipboards, especially browser-copied links, expose both hasUrls() and hasText(); because this branch runs before the text branch, pasting an HTTP(S) URL can now do nothing. Track whether any local file was emitted and fall back to newTextPasted() when no local files are present.\\n\\n```suggestion\\n        bool pastedLocalFile \u003d false;\\n        for (const QUrl\u0026 url : urlList) {\\n            if (url.isLocalFile()) {\\n                Q_EMIT newFilePasted(url.toLocalFile());\\n                pastedLocalFile \u003d true;\\n            }\\n        }\\n        if (!pastedLocalFile)\\n            Q_EMIT newTextPasted();\\n```",
+      "revId": "2054f474fff1a0276661c6cd3fee7ac37ed280d2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3b09882a_aebd26f5",
         "filename": "src/app/utilsadapter.cpp",
         "patchSetId": 1
