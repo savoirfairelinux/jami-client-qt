@@ -9,17 +9,20 @@ ENV QTWEBENGINE_CHROMIUM_FLAGS "--disable-gpu --disable-software-rasterizer --di
 ENV LANG en_US.UTF-8
 ENV LC_ALL en_US.UTF-8
 
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends ca-certificates libssl-dev locales && \
-    locale-gen en_US.UTF-8 fr_FR.UTF-8 && \
-    rm -rf /var/lib/apt/lists/*
-
 # Use only the custom Savoir-faire Linux Ubuntu mirror
-RUN rm -f /etc/apt/sources.list /etc/apt/sources.list.d/* && \
+RUN rm -f /etc/apt/sources.list /etc/apt/sources.list.d/* /var/lib/apt/lists/* && \
     echo "deb http://gpl.savoirfairelinux.net/pub/mirrors/ubuntu noble main restricted universe multiverse" > /etc/apt/sources.list && \
     echo "deb http://gpl.savoirfairelinux.net/pub/mirrors/ubuntu noble-updates main restricted universe multiverse" >> /etc/apt/sources.list && \
     echo "deb http://gpl.savoirfairelinux.net/pub/mirrors/ubuntu noble-security main restricted universe multiverse" >> /etc/apt/sources.list
 
+# Locale and certificates
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+        ca-certificates \
+        locales && \
+    locale-gen en_US.UTF-8 fr_FR.UTF-8
+
+# Development dependencies
 RUN apt-get update && \
     apt-get install -y \
     devscripts \
@@ -28,10 +31,12 @@ RUN apt-get update && \
     dirmngr \
     curl
 
+# Libqt-jami
 RUN curl -s https://dl.jami.net/public-key.gpg | tee /usr/share/keyrings/jami-archive-keyring.gpg > /dev/null
 RUN sh -c "echo 'deb [signed-by=/usr/share/keyrings/jami-archive-keyring.gpg] https://dl.jami.net/internal/ubuntu_24.04/ jami main' > /etc/apt/sources.list.d/jami.list"
 RUN apt-get update && apt-get install libqt-jami -y
 
+# Build dependencies
 RUN apt-get install -y -o Acquire::Retries=10 \
     python3 \
     git \
@@ -100,6 +105,7 @@ RUN apt-get install -y -o Acquire::Retries=10 \
     libcrypto++-dev \
     libva-dev \
     libvdpau-dev \
+    libssl-dev \
     libvulkan-dev \
     libxcomposite-dev \
     libxdamage-dev \
@@ -109,6 +115,8 @@ RUN apt-get install -y -o Acquire::Retries=10 \
     xauth \
     libgl1-mesa-dri \
     libglx-mesa0
+
+# Testing dependencies
 RUN apt-get install -y pandoc \
     libcppunit-dev \
     googletest \
