@@ -81,7 +81,7 @@ pipeline {
         stage('Building Docker Image') {
             steps {
                 script {
-                    docker.build('client-validation', "-f extras/build/docker/Dockerfile.client-qt-gnulinux --no-cache .")
+                    docker.build('client-validation', "-f extras/build/docker/Dockerfile.client-qt-gnulinux .")
                 }
             }
         }
