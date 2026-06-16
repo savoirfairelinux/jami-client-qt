@@ -477,15 +477,19 @@ endif()
 # a spurious reconfigure during the build -- which, with the daemon built as a
 # subdirectory, re-runs the daemon contrib build (contrib effectively built
 # twice per clean build).
+#
+# gen_resources_qrc.py must run first because it generates JamiResources.qml
+# into ${APP_SRC_DIR}/net/jami/Constants/, which gen_qml_qrc.py then picks up
+# when scanning for .qml files to include in qml.qrc.
+execute_process(
+  COMMAND ${PYTHON_EXEC} ${SCRIPTS_DIR}/gen_resources_qrc.py ${GEN_QRC_ARGS}
+  WORKING_DIRECTORY ${APP_SRC_DIR})
+set(QML_RESOURCES ${APP_SRC_DIR}/resources.qrc)
 execute_process(
   COMMAND
   ${PYTHON_EXEC} ${SCRIPTS_DIR}/gen_qml_qrc.py ${GEN_QRC_ARGS}
   WORKING_DIRECTORY ${APP_SRC_DIR})
 set(QML_RESOURCES_QML ${APP_SRC_DIR}/qml.qrc)
-execute_process(
-  COMMAND ${PYTHON_EXEC} ${SCRIPTS_DIR}/gen_resources_qrc.py ${GEN_QRC_ARGS}
-  WORKING_DIRECTORY ${APP_SRC_DIR})
-set(QML_RESOURCES ${APP_SRC_DIR}/resources.qrc)
 
 # QML and related code files: force a reconfigure when the source set changes.
 file(GLOB_RECURSE
