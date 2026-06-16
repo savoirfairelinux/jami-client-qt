@@ -16,6 +16,24 @@
       "message": "Line 342: 🟡 Suggestion: Mixed clipboard URL payloads can still drop non-local URLs. If the clipboard contains both local files and a web URL, this emits files but never pastes the web URL text because `pastedLocalFile` suppresses `newTextPasted()`. Consider explicitly pasting text whenever any non-local URL is present.\n```suggestion\n        bool pastedLocalFile \u003d false;\n        bool hasNonLocalUrl \u003d false;\n        for (const QUrl\u0026 url : urlList) {\n            if (url.isLocalFile()) {\n                Q_EMIT newFilePasted(url.toLocalFile());\n                pastedLocalFile \u003d true;\n            } else {\n                hasNonLocalUrl \u003d true;\n            }\n        }\n        if (!pastedLocalFile || hasNonLocalUrl)\n            Q_EMIT newTextPasted();\n```",
       "revId": "e4daade91ee61a468adafe1e0e313f18b61b91e9",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dc85e74d_d5e70e9b",
+        "filename": "src/app/messagesadapter.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 342,
+      "author": {
+        "id": 617
+      },
+      "writtenOn": "2026-06-16T17:43:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "10d3b5af_d62dc4c4",
+      "revId": "e4daade91ee61a468adafe1e0e313f18b61b91e9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
