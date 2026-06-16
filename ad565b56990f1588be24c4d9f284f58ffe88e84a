@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "27d6b2b2_ace03a0e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-06-16T22:07:31Z",
+      "side": 1,
+      "message": "I\u0027ll test and go over this ASAP",
+      "revId": "ad565b56990f1588be24c4d9f284f58ffe88e84a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b72e5bbb_77cf26f2",
+        "filename": "src/app/commoncomponents/NewMaterialTextField.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-06-16T22:07:31Z",
+      "side": 1,
+      "message": "there must be a better way to do this - also indicates that other components must have broken tab navigation",
+      "range": {
+        "startLine": 29,
+        "startChar": 4,
+        "endLine": 30,
+        "endChar": 43
+      },
+      "revId": "ad565b56990f1588be24c4d9f284f58ffe88e84a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
