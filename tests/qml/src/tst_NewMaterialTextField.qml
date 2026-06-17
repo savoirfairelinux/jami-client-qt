@@ -34,7 +34,7 @@ ColumnLayout {
     spacing: 0
 
     width: 300
-    height: 300
+    height: 600
 
     NewMaterialTextField {
         id: uut
@@ -42,7 +42,6 @@ ColumnLayout {
         Layout.alignment: Qt.AlignHCenter
         Layout.preferredWidth: root.width
         Layout.maximumWidth: JamiTheme.chatViewMaximumWidth
-        Layout.preferredHeight: root.height
 
         maxCharacters: 20
         textFieldContent: ""
@@ -77,6 +76,104 @@ ColumnLayout {
                 // the original text prior to modification
                 compare(uut.textFieldContent, "")
             }
+        }
+    }
+
+    // Second field for multi-field navigation tests
+    NewMaterialTextField {
+        id: field1
+
+        objectName: "field1"
+
+        Layout.alignment: Qt.AlignHCenter
+        Layout.preferredWidth: root.width
+
+        textFieldContent: ""
+        placeholderText: "Field 1"
+    }
+
+    NewMaterialTextField {
+        id: field2
+
+        objectName: "field2"
+
+        Layout.alignment: Qt.AlignHCenter
+        Layout.preferredWidth: root.width
+
+        textFieldContent: ""
+        placeholderText: "Field 2"
+    }
+
+    NewMaterialTextField {
+        id: field3
+
+        objectName: "field3"
+
+        Layout.alignment: Qt.AlignHCenter
+        Layout.preferredWidth: root.width
+
+        textFieldContent: ""
+        placeholderText: "Field 3"
+    }
+
+    TestCase {
+        name: "Multi-field Tab navigation emits editingFinished and moves focus"
+        when: windowShown
+
+        function test_tabNavigation_emitsEditingFinished_and_movesFocus() {
+            const tf1 = findChild(field1, "textField")
+            const tf2 = findChild(field2, "textField")
+            const tf3 = findChild(field3, "textField")
+
+            // Focus the first field and type text
+            mouseClick(tf1)
+            verify(tf1.activeFocus, "field1 should have focus after click")
+            keyClick("a")
+            keyClick("b")
+            keyClick("c")
+            compare(field1.modifiedTextFieldContent, "abc")
+
+            // Set up a spy on field1's editingFinished signal
+            const spy1 = Qt.createQmlObject('import QtTest 1.0; SignalSpy {}', field1)
+            spy1.target = field1
+            spy1.signalName = "editingFinished"
+
+            // Tab to field2 — this should emit editingFinished on field1
+            keyClick(Qt.Key_Tab)
+            spy1.wait(500)
+
+            compare(spy1.count, 1, "field1 should emit editingFinished when focus leaves via Tab")
+            verify(tf2.activeFocus, "field2 should have focus after Tab from field1")
+
+            // Type into field2
+            keyClick("d")
+            keyClick("e")
+            compare(field2.modifiedTextFieldContent, "de")
+
+            // Set up spy on field2's editingFinished signal
+            const spy2 = Qt.createQmlObject('import QtTest 1.0; SignalSpy {}', field2)
+            spy2.target = field2
+            spy2.signalName = "editingFinished"
+
+            // Tab to field3
+            keyClick(Qt.Key_Tab)
+            spy2.wait(500)
+
+            compare(spy2.count, 1, "field2 should emit editingFinished when focus leaves via Tab")
+            verify(tf3.activeFocus, "field3 should have focus after Tab from field2")
+
+            // Verify field1 still has its text and field2 wasn't disrupted
+            compare(field1.modifiedTextFieldContent, "abc")
+            compare(field2.modifiedTextFieldContent, "de")
+
+            // Clean up
+            spy1.destroy()
+            spy2.destroy()
+
+            // Reset fields
+            field1.modifiedTextFieldContent = ""
+            field2.modifiedTextFieldContent = ""
+            field3.modifiedTextFieldContent = ""
         }
     }
 }

@@ -36,7 +36,7 @@ ColumnLayout {
         titleField: JamiStrings.username
         itemWidth: root.itemWidth
 
-        onAccepted: CurrentAccount.username = modifiedTextFieldContent
+        onEditingFinished: CurrentAccount.username = modifiedTextFieldContent
     }
 
     SettingsMaterialTextEdit {
@@ -49,7 +49,7 @@ ColumnLayout {
         titleField: JamiStrings.server
         itemWidth: root.itemWidth
 
-        onAccepted: CurrentAccount.hostname = modifiedTextFieldContent
+        onEditingFinished: CurrentAccount.hostname = modifiedTextFieldContent
     }
 
     SettingsMaterialTextEdit {
@@ -63,7 +63,7 @@ ColumnLayout {
         itemWidth: root.itemWidth
         isPassword: true
 
-        onAccepted: CurrentAccount.password = modifiedTextFieldContent
+        onEditingFinished: CurrentAccount.password = modifiedTextFieldContent
     }
 
     SettingsMaterialTextEdit {
@@ -76,6 +76,6 @@ ColumnLayout {
         titleField: JamiStrings.proxy
         itemWidth: root.itemWidth
 
-        onAccepted: CurrentAccount.routeset = modifiedTextFieldContent
+        onEditingFinished: CurrentAccount.routeset = modifiedTextFieldContent
     }
 }

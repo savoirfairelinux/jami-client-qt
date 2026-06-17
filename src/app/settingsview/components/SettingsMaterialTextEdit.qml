@@ -35,7 +35,7 @@ RowLayout {
 
     property int itemWidth
 
-    signal accepted
+    signal editingFinished
 
     Text {
         id: title
@@ -66,13 +66,7 @@ RowLayout {
 
         visible: !root.isPassword
 
-        onAccepted: root.accepted()
-
-        onActiveFocusChanged: {
-            if (!activeFocus) {
-                root.accepted()
-            }
-        }
+        onEditingFinished: root.editingFinished()
     }
 
     PasswordTextEdit {
@@ -86,12 +80,6 @@ RowLayout {
         placeholderText: root.placeholderText ? root.placeholderText : root.titleField
         textFieldContent: root.staticText
 
-        onAccepted: root.accepted()
-
-        onActiveFocusChanged: {
-            if (!activeFocus) {
-                root.accepted()
-            }
-        }
+        onEditingFinished: root.editingFinished()
     }
 }

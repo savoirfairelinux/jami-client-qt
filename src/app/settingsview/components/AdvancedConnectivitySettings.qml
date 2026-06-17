@@ -115,7 +115,7 @@ ColumnLayout {
             itemWidth: root.itemWidth
             titleField: JamiStrings.turnAdress
 
-            onAccepted: CurrentAccount.server_TURN = modifiedTextFieldContent
+            onEditingFinished: CurrentAccount.server_TURN = modifiedTextFieldContent
         }
 
         SettingsMaterialTextEdit {
@@ -128,7 +128,7 @@ ColumnLayout {
             itemWidth: root.itemWidth
             titleField: JamiStrings.turnUsername
 
-            onAccepted: CurrentAccount.username_TURN = modifiedTextFieldContent
+            onEditingFinished: CurrentAccount.username_TURN = modifiedTextFieldContent
         }
 
         SettingsMaterialTextEdit {
@@ -139,7 +139,7 @@ ColumnLayout {
             itemWidth: root.itemWidth
             titleField: JamiStrings.turnPassword
 
-            onAccepted: CurrentAccount.password_TURN = modifiedTextFieldContent
+            onEditingFinished: CurrentAccount.password_TURN = modifiedTextFieldContent
             isPassword: true
         }
 
@@ -151,7 +151,7 @@ ColumnLayout {
             itemWidth: root.itemWidth
             titleField: JamiStrings.turnRealm
 
-            onAccepted: CurrentAccount.realm_TURN = modifiedTextFieldContent
+            onEditingFinished: CurrentAccount.realm_TURN = modifiedTextFieldContent
         }
 
         ToggleSwitch {
@@ -177,7 +177,7 @@ ColumnLayout {
             itemWidth: root.itemWidth
             titleField: JamiStrings.stunAdress
 
-            onAccepted: CurrentAccount.server_STUN = modifiedTextFieldContent
+            onEditingFinished: CurrentAccount.server_STUN = modifiedTextFieldContent
         }
     }
 }
