@@ -37,6 +37,23 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "26bd0dad_b973ee26",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-06-17T14:46:29Z",
+      "side": 1,
+      "message": "This relies on forcing focus to individual components which is unideal IMO. This is an issue related to the implementation of the `NewMaterialTextField` component. I\u0027ve implemented a fix that addresses the root component\u0027s problem: I321f6728eebae01ecc6410829d7dc8d3dcdd5f05",
+      "revId": "ad565b56990f1588be24c4d9f284f58ffe88e84a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "b72e5bbb_77cf26f2",
         "filename": "src/app/commoncomponents/NewMaterialTextField.qml",
         "patchSetId": 1
