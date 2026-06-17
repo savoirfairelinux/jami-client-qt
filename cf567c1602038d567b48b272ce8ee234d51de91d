@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b46f9321_eed13d7f",
+        "filename": "src/app/commoncomponents/SBSMessageBase.qml",
+        "patchSetId": 11
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-17T19:34:07Z",
+      "side": 1,
+      "message": "[🔴 Critical Issues - Must fix before merge] Line 67: isPluginOverwrite is true whenever Body differs from OriginalBody, but it does not guard against OriginalBody being empty or unavailable for normal/older messages. That can show \u0027Modified by extension\u0027 on ordinary messages and make \u0027Show original\u0027 switch to an empty body. Gate the comparison on a valid original body value.\n```suggestion\nproperty bool isPluginOverwrite: OriginalBody !\u003d\u003d \"\" \u0026\u0026 Body !\u003d\u003d OriginalBody\n```",
+      "revId": "cf567c1602038d567b48b272ce8ee234d51de91d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2ea3d874_58080056",
+        "filename": "src/app/commoncomponents/TextMessageDelegate.qml",
+        "patchSetId": 11
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-17T19:34:07Z",
+      "side": 1,
+      "message": "[🔴 Critical Issues - Must fix before merge] Line 80: When showOriginal is enabled, OriginalBody is returned directly and bypasses the existing MessagesAdapter.parseMessage path used for Body. If that parser sanitizes/normalizes rich text, links, emojis, or previews, the original message can render inconsistently and may expose unsanitized user-controlled text. Route the selected body through the same parsing/rendering path instead of returning OriginalBody raw, or explicitly force plain text for this branch.\n```suggestion\nconst displayBody \u003d showOriginal \u0026\u0026 isPluginOverwrite ? OriginalBody : Body;\nif (displayBody !\u003d\u003d \"\" \u0026\u0026 ParsedBody.length \u003d\u003d\u003d 0) {\n    MessagesAdapter.parseMessage(Id, displayBody, UtilsAdapter.getAppValue(Settings.DisplayHyperlinkPreviews), rootDelegate.colorUrl, bubble.color);\n    return \"\";\n}\n```",
+      "revId": "cf567c1602038d567b48b272ce8ee234d51de91d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
