@@ -90,7 +90,7 @@ Control {
 
             visible: false
 
-            onAccepted: {
+            onEditingFinished: {
                 usernameTextEdit.visible = false;
                 if (modifiedTextFieldContent === '') {
                     return;

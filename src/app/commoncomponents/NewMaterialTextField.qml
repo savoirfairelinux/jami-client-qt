@@ -53,7 +53,7 @@ ColumnLayout {
     property int echoMode: TextInput.Normal
     property bool inputIsValid: true
     property var validator: RegularExpressionValidator {}
-    signal accepted()
+    signal editingFinished()
 
     // Trailing icon properties
     property color trailingIconColor: JamiTheme.textColor
@@ -170,17 +170,12 @@ ColumnLayout {
                         contextMenu.openMenuAt(event);
                 }
 
-                onAccepted: {
-                    if (root.textFieldContent !== root.modifiedTextFieldContent)
-                        root.accepted()
+                onEditingFinished: {
+                    if (inputIsValid && root.textFieldContent !== root.modifiedTextFieldContent)
+                        root.editingFinished()
                 }
 
                 onTextChanged: root.modifiedTextFieldContent = text
-
-                onActiveFocusChanged: {
-                    if (!activeFocus && inputIsValid)
-                        accepted();
-                }
 
                 Connections {
                     target: root

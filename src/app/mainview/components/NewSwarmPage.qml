@@ -142,7 +142,7 @@ DualPaneView {
                 placeholderText: JamiStrings.groupName
                 textFieldContent: ""
 
-                onAccepted: description.forceActiveFocus()
+                onEditingFinished: description.forceActiveFocus()
             }
 
             NewMaterialTextField {
@@ -159,7 +159,7 @@ DualPaneView {
                 placeholderText: JamiStrings.addDescription
                 textFieldContent: ""
 
-                onAccepted: btnCreateSwarm.forceActiveFocus()
+                onEditingFinished: btnCreateSwarm.forceActiveFocus()
             }
 
             MaterialButton {

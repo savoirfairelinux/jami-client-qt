@@ -48,6 +48,6 @@ ColumnLayout {
 
         staticText: CurrentAccount.mailbox
 
-        onAccepted: CurrentAccount.mailbox = modifiedTextFieldContent
+        onEditingFinished: CurrentAccount.mailbox = modifiedTextFieldContent
     }
 }
