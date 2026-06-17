@@ -280,7 +280,9 @@ SettingsPageBase {
 
                 labelText: JamiStrings.echoSuppression
                 fontPointSize: JamiTheme.settingsFontSize
-                comboModel: AudioConfigListModel {}
+                comboModel: AudioConfigListModel {
+                    defaultValue: "audioProcessor"
+                }
                 widthOfComboBox: itemWidth
                 role: "AudioConfigOption"
 
