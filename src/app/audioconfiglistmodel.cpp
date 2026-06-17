@@ -53,8 +53,12 @@ AudioConfigListModel::data(const QModelIndex& index, int role) const
     }
 
     switch (role) {
-    case Role::AudioConfigOption:
-        return QVariant(QCoreApplication::translate("QObject", audioConfigOptions.at(index.row())));
+    case Role::AudioConfigOption: {
+        const auto label = QCoreApplication::translate("QObject", audioConfigOptions.at(index.row()));
+        if (audioConfigValues.at(index.row()) == defaultValue_)
+            return QVariant(QCoreApplication::translate("QObject", "%1 (default)").arg(label));
+        return QVariant(label);
+    }
     case Role::AudioConfigValue:
         return QVariant(audioConfigValues.at(index.row()));
     }
@@ -76,4 +80,21 @@ AudioConfigListModel::getCurrentSettingIndex(const QString& currentSelection) co
 {
     const auto index = audioConfigValues.indexOf(currentSelection);
     return index < 0 ? 0 : index;
+}
+
+QString
+AudioConfigListModel::defaultValue() const
+{
+    return defaultValue_;
+}
+
+void
+AudioConfigListModel::setDefaultValue(const QString& value)
+{
+    if (defaultValue_ == value)
+        return;
+    defaultValue_ = value;
+    if (!audioConfigOptions.isEmpty())
+        Q_EMIT dataChanged(index(0), index(audioConfigOptions.size() - 1), {Role::AudioConfigOption});
+    Q_EMIT defaultValueChanged();
 }
