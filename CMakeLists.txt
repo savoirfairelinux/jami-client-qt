@@ -509,9 +509,12 @@ file(GLOB_RECURSE
   RES_FILES CONFIGURE_DEPENDS
   ${PROJECT_SOURCE_DIR}/resources/*)
 
-# Find modules (QtCreator) under the root source dir.
+# Find modules (QtCreator) under the root source dir and the binary dir.
+# The binary dir is needed for qt_add_qml_module()-generated qmldir files
+# (e.g. net/jami/UI/qmldir), which are written at configure time into
+# CMAKE_CURRENT_BINARY_DIR by CMake's QML module infrastructure.
 list(APPEND QML_DIRS ${APP_SRC_DIR})
-set(QML_IMPORT_PATH ${QML_DIRS}
+set(QML_IMPORT_PATH ${QML_DIRS} "${CMAKE_CURRENT_BINARY_DIR}"
   CACHE STRING "Qt Creator extra qml import paths" FORCE)
 
 # library compatibility (boost, libnotify, etc.)
@@ -1027,6 +1030,39 @@ else()
   list(APPEND CLIENT_LIBS ZXing)
 endif()
 
+# net.jami.UI — static QML module exposing all commoncomponents/ files as a
+# named module.  Goals:
+#   1. Reduce compile time: the module is built once as a static library and
+#      linked into the main executable; changed application files that only
+#      import this module do not recompile its contents.
+#   2. Clean imports: consumers write `import net.jami.UI 1.0` instead of a
+#      fragile relative-path `import "../../commoncomponents"`.
+#
+# Files outside CMAKE_CURRENT_SOURCE_DIR need QT_RESOURCE_ALIAS set to their
+# bare filename so qt_add_qml_module() places them under the module URI path
+# (qrc:/qt/qml/net/jami/UI/<Name>.qml) rather than under the source-relative
+# path.
+file(GLOB JAMI_UI_QML_FILES
+    "${APP_SRC_DIR}/commoncomponents/*.qml"
+)
+foreach(_f ${JAMI_UI_QML_FILES})
+    get_filename_component(_alias "${_f}" NAME)
+    set_source_files_properties("${_f}" PROPERTIES QT_RESOURCE_ALIAS "${_alias}")
+endforeach()
+qt_add_qml_module(jami_ui
+    URI             net.jami.UI
+    VERSION         1.0
+    STATIC
+    NO_PLUGIN_OPTIONAL
+    OUTPUT_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/net/jami/UI"
+    QML_FILES       ${JAMI_UI_QML_FILES}
+)
+# Pre-generate an empty qmltypes stub so Qt Creator does not warn about
+# missing plugin type information before the first build.  The build step
+# will overwrite this with the real (also effectively empty) file.
+file(WRITE "${CMAKE_CURRENT_BINARY_DIR}/net/jami/UI/jami_ui.qmltypes"
+    "import QtQuick.tooling 1.2\nModule { dependencies: [] }\n")
+
 # common executable sources
 qt_add_executable(
   ${PROJECT_NAME}
@@ -1345,7 +1381,7 @@ endif()
 
 target_include_directories(${PROJECT_NAME} PRIVATE ${CLIENT_INCLUDE_DIRS})
 target_link_directories(${PROJECT_NAME} PRIVATE ${CLIENT_LINK_DIRS})
-target_link_libraries(${PROJECT_NAME} PRIVATE ${CLIENT_LIBS})
+target_link_libraries(${PROJECT_NAME} PRIVATE ${CLIENT_LIBS} jami_ui)
 
 qt_import_qml_plugins(${PROJECT_NAME})
 qt_finalize_executable(${PROJECT_NAME})
