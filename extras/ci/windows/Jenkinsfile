@@ -1,0 +1,176 @@
+// Jami Client Qt — Windows CI Pipeline
+//
+// Two-layer cache to keep builds fully incremental:
+//
+//   1. Contrib cache  (client-build\{build,msvc})
+//      Stores daemon/contrib/{build,msvc}. Populated on cold start,
+//      re-synced after every build so it stays current.
+//
+//   2. Build artifacts cache  (client-build\artifacts)
+//      Stores the full cmake build\ directory (daemon objects, jami-core.lib,
+//      Qt client objects, jami.exe). Re-synced after every build.
+//      Restoring this lets MSBuild skip recompiling any file whose source
+//      has not changed since the last cached build.
+//
+// For MSBuild incremental to work, daemon/ source file mtimes must be OLDER
+// than the corresponding cached build artifacts. git checkout always sets
+// mtimes to the current time, so after checkout we reset every file under
+// daemon/ to the submodule HEAD commit timestamp. Cached artifacts (built
+// after that commit) then appear newer and MSBuild skips them. When the
+// daemon submodule advances to a new commit its files get a newer mtime,
+// MSBuild detects the change, and only the affected translation units are
+// recompiled.
+//
+// Safe for concurrent builds on the same node (named Mutex around robocopy).
+
+// Robocopy flags that keep the log quiet (no file/dir lists, no headers).
+// /Z (restartable mode) is intentionally omitted: it writes a checkpoint for
+// every file, which is only useful for unreliable network paths. For local
+// cache copies it adds significant overhead, and when an interrupted copy
+// resumes after an agent reconnect it replays those checkpoints across
+// thousands of contrib files rather than failing fast.
+def QUIET = '/MT:16 /R:2 /W:2 /NFL /NDL /NJH /NJS /NP /NC /NS'
+
+// Mirror src -> dst under a named system Mutex so concurrent builds on the
+// same node never interleave reads and writes to the shared cache.
+//
+// /SL copies symbolic links as links rather than following them. The gnutls
+// contrib tree contains relative symlinks (devel/perlasm/*.pl ->
+// ..\openssl\...) whose targets are absent from the built tree; without /SL,
+// robocopy tries to dereference them and fails with ERROR 3.
+//
+// The Mutex is kernel-owned, so it is released automatically if the process
+// crashes while holding it (AbandonedMutexException is caught and treated as
+// a successful acquisition of an orphaned lock).
+def robomirror(src, dst, quiet) {
+    def rc = powershell(returnStatus: true, script: """
+\$mtx = [System.Threading.Mutex]::new(\$false, 'Global\\JamiClientContribCache')
+try {
+    \$acquired = \$false
+    try   { \$acquired = \$mtx.WaitOne(120000) }
+    catch [System.Threading.AbandonedMutexException] { \$acquired = \$true }
+    if (-not \$acquired) { Write-Error 'Timed out waiting for cache lock (120 s)'; exit 2 }
+    try {
+        robocopy "${src}" "${dst}" /MIR /SL ${quiet}
+        if (\$LASTEXITCODE -ge 8) { exit \$LASTEXITCODE }
+    } finally { \$mtx.ReleaseMutex() }
+} finally { \$mtx.Dispose() }
+exit 0
+""")
+    if (rc == 2) {
+        error "Timed out acquiring cache lock: ${src} -> ${dst}"
+    }
+    if (rc >= 8) {
+        error "Robocopy failed: ${src} -> ${dst} (exit code ${rc})"
+    }
+}
+
+node('builder-win') {
+    // Node-provided root for build caches. Fail fast if it is missing, so a
+    // misconfigured job never silently mirrors into a literal "null\..." dir.
+    String cacheRoot = env.JAMI_DAEMON_CACHE_DIR
+    if (!cacheRoot?.trim()) {
+        error 'JAMI_DAEMON_CACHE_DIR is not set on the node; cannot locate the contrib cache.'
+    }
+
+    String cacheBase      = "${cacheRoot}\\client-build"
+    String cacheBuild     = "${cacheBase}\\build"        // daemon/contrib/build
+    String cacheMsvc      = "${cacheBase}\\msvc"         // daemon/contrib/msvc
+    String cacheArtifacts = "${cacheBase}\\artifacts"    // build/
+
+    String clientDir
+
+    stage('SCM Checkout') {
+        deleteDir()
+        bat """\
+            git clone --depth=1 https://${RING_GERRIT_URL}/jami-client-qt
+            cd jami-client-qt
+            git fetch origin ${GERRIT_REFSPEC}
+            git checkout -q FETCH_HEAD
+            git submodule update --init --force --recursive
+        """
+        clientDir = pwd() + '\\jami-client-qt'
+    }
+
+    String daemonDir      = clientDir + '\\daemon'
+    String contribBuild   = daemonDir + '\\contrib\\build'
+    String contribMsvc    = daemonDir + '\\contrib\\msvc'
+    String buildDir       = clientDir + '\\build'
+
+    stage('Restore mtime') {
+        // Reset every file under daemon/ to the submodule HEAD commit time.
+        // This makes daemon sources appear OLDER than the cached build
+        // artifacts (which were produced after that commit), so MSBuild's
+        // timestamp-based incremental checks correctly skip unchanged files.
+        // When the submodule advances, the new commit time is more recent
+        // than the cached artifacts and the affected files are recompiled.
+        dir(clientDir) {
+            powershell """\
+\$epoch = (git -C daemon log -1 --pretty=format:%ct HEAD).Trim()
+\$dt = [DateTimeOffset]::FromUnixTimeSeconds([long]\$epoch).LocalDateTime
+Get-ChildItem -Path daemon -Recurse -File | ForEach-Object { \$_.LastWriteTime = \$dt }
+Write-Host "daemon/ mtimes reset to \$dt"
+"""
+        }
+    }
+
+    stage('Restore caches') {
+        // Restore contrib and build artifact caches AFTER checkout so that
+        // git-ignored dirs (contrib/build, contrib/msvc, build/) are never
+        // overwritten by git, and AFTER mtime reset so that restored build
+        // artifacts carry their original (newer-than-source) timestamps.
+        //
+        // Timeout prevents an agent reconnect mid-copy from silently resuming
+        // and blocking the build for hours instead of failing fast.
+        timeout(time: 15, unit: 'MINUTES') {
+            if (fileExists(cacheBuild)) {
+                echo "Contrib cache hit -- restoring"
+                robomirror(cacheBuild, contribBuild, QUIET)
+                if (fileExists(cacheMsvc)) {
+                    robomirror(cacheMsvc, contribMsvc, QUIET)
+                }
+            } else {
+                echo "Contrib cache empty -- contrib will build from source"
+            }
+
+            if (fileExists(cacheArtifacts)) {
+                echo "Build artifacts cache hit -- restoring"
+                robomirror(cacheArtifacts, buildDir, QUIET)
+            } else {
+                echo "Build artifacts cache empty -- full build"
+            }
+        }
+    }
+
+    stage('Build client') {
+        dir(clientDir) {
+            // build-windows.py drives the full build: it configures CMake with
+            // JAMICORE_AS_SUBDIR=ON (which runs winmake for contrib at configure
+            // time) and then builds the client. With a warm cache, winmake skips
+            // all packages instantly and MSBuild only recompiles changed files.
+            // No vcvars setup is needed: the script discovers and loads the MSVC
+            // build environment itself (vswhere + vcvarsall). QTDIR is exported
+            // so winmake can locate jom.
+            //
+            // --skip-deploy skips runtime DLL deployment (only needed for
+            // packaging). Submodules are already initialised above.
+            ansiColor('xterm') {
+                bat """\
+                    set "QTDIR=${QT_LATEST_PATH}"
+                    python extras\\scripts\\build-windows.py --qt=${QT_LATEST_PATH} --skip-deploy || exit /b 1
+                """
+            }
+        }
+    }
+
+    stage('Update caches') {
+        // Always sync both caches after a successful build so the next run
+        // starts from the latest state. Best-effort: cache failures must
+        // never mark the build as failed.
+        catchError(buildResult: 'SUCCESS', stageResult: 'UNSTABLE') {
+            robomirror(contribBuild,   cacheBuild,     QUIET)
+            robomirror(contribMsvc,    cacheMsvc,      QUIET)
+            robomirror(buildDir,       cacheArtifacts, QUIET)
+        }
+    }
+}
