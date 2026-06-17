@@ -107,8 +107,6 @@ Rectangle {
 
             leadingIconSource: JamiResources.jami_logo_icon_24dp_svg
             placeholderText: JamiStrings.jamiManagementServerURL
-
-            onAccepted: usernameManagerEdit.forceActiveFocus()
         }
 
         Label {
@@ -139,8 +137,6 @@ Rectangle {
 
             leadingIconSource: JamiResources.person_24dp_svg
             placeholderText: JamiStrings.username
-
-            onAccepted: passwordManagerEdit.forceActiveFocus()
         }
 
         PasswordTextEdit {
@@ -153,8 +149,6 @@ Rectangle {
             Layout.topMargin: JamiTheme.wizardViewMarginSize
 
             placeholderText: JamiStrings.password
-
-            onAccepted: connectBtn.forceActiveFocus()
         }
 
         Button {

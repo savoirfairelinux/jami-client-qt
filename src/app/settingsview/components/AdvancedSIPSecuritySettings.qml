@@ -133,7 +133,7 @@ ColumnLayout {
             staticText: CurrentAccount.password_TLS
             isPassword: true
 
-            onAccepted: CurrentAccount.password_TLS = modifiedTextFieldContent
+            onEditingFinished: CurrentAccount.password_TLS = modifiedTextFieldContent
         }
 
         ToggleSwitch {

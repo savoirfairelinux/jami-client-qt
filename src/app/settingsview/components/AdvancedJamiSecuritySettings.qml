@@ -108,7 +108,7 @@ ColumnLayout {
 
             staticText: CurrentAccount.password_TLS
 
-            onAccepted: CurrentAccount.password_TLS = modifiedTextFieldContent
+            onEditingFinished: CurrentAccount.password_TLS = modifiedTextFieldContent
             isPassword: true
         }
     }

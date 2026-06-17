@@ -114,7 +114,7 @@ ColumnLayout {
                 placeholderText: JamiStrings.proxyAddress
                 textFieldContent: CurrentAccount.proxyServer
 
-                onAccepted: CurrentAccount.proxyServer = modifiedTextFieldContent
+                onEditingFinished: CurrentAccount.proxyServer = modifiedTextFieldContent
             }
 
             JamiRadioButton {
@@ -158,7 +158,7 @@ ColumnLayout {
                 placeholderText: JamiStrings.proxyListURL
                 textFieldContent: CurrentAccount.dhtProxyListUrl
 
-                onAccepted: CurrentAccount.dhtProxyListUrl = modifiedTextFieldContent
+                onEditingFinished: CurrentAccount.dhtProxyListUrl = modifiedTextFieldContent
             }
 
             JamiRadioButton {
@@ -186,7 +186,7 @@ ColumnLayout {
             itemWidth: root.itemWidth
             titleField: JamiStrings.bootstrap
 
-            onAccepted: CurrentAccount.hostname = modifiedTextFieldContent
+            onEditingFinished: CurrentAccount.hostname = modifiedTextFieldContent
 
             Connections {
                 target: CurrentAccount

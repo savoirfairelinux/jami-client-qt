@@ -168,8 +168,6 @@ Rectangle {
             Layout.maximumWidth: Math.min(440, root.width - JamiTheme.preferredMarginSize * 2)
 
             placeholderText: JamiStrings.enterPassword
-
-            onAccepted: connectBtn.forceActiveFocus()
         }
 
         NewMaterialButton {
