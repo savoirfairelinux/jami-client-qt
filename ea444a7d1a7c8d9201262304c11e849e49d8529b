@@ -18,6 +18,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9b119627_08319522",
+        "filename": "tests/features/account/account_creation.feature",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-06-17T20:29:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "526707b7_6f6490a7",
+      "revId": "ea444a7d1a7c8d9201262304c11e849e49d8529b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8579bab3_c32fd678",
@@ -31,6 +49,24 @@
       "writtenOn": "2026-05-27T17:11:10Z",
       "side": 1,
       "message": "[🟡 Suggestion] Line 54: The username validation examples mix client-side validation cases with a nameserver availability case (`carol_jami` already taken) under the same expected step. That makes the scenario ambiguous because local validation and remote lookup have different triggers, timing, and failure modes. Move the already-taken case into the dedicated nameserver scenario and keep this outline limited to syntactic validation.",
+      "revId": "ea444a7d1a7c8d9201262304c11e849e49d8529b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8c8efd77_82cebbe4",
+        "filename": "tests/features/account/account_creation.feature",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-06-17T20:29:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8579bab3_c32fd678",
       "revId": "ea444a7d1a7c8d9201262304c11e849e49d8529b",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
@@ -52,6 +88,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "eb42291c_9adc925a",
+        "filename": "tests/features/account/account_import_export.feature",
+        "patchSetId": 1
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-06-17T20:29:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0c54db2e_46ce96e4",
+      "revId": "ea444a7d1a7c8d9201262304c11e849e49d8529b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6439bfc9_c57ca7a0",
@@ -69,6 +123,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ff3d9383_e31c442d",
+        "filename": "tests/features/api/api_authentication.feature",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-06-17T20:29:35Z",
+      "side": 1,
+      "message": "TBD",
+      "parentUuid": "6439bfc9_c57ca7a0",
+      "revId": "ea444a7d1a7c8d9201262304c11e849e49d8529b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ca154f08_75517a3c",
@@ -82,6 +154,24 @@
       "writtenOn": "2026-05-27T17:11:10Z",
       "side": 1,
       "message": "[🔴 Critical] Line 61: The API scenarios assert mutating behavior such as initiating calls through `POST /api/calls`, but the feature setup does not define how external peers, media devices, network state, or cleanup are isolated. If executed in CI, this can be flaky or affect real/local client state. Define deterministic test doubles and teardown in the Background or step definitions before adding these scenarios.",
+      "revId": "ea444a7d1a7c8d9201262304c11e849e49d8529b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "06f9117c_8e267a36",
+        "filename": "tests/features/api/api_server.feature",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-06-17T20:29:35Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "ca154f08_75517a3c",
       "revId": "ea444a7d1a7c8d9201262304c11e849e49d8529b",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
