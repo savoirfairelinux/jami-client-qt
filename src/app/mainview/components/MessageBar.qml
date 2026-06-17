@@ -280,7 +280,7 @@ Rectangle {
                 }
 
                 onSendMessagesRequired: {
-                    if (text.trim()){
+                    if (text.trim() || fileContainer.filesToSendCount) {
                         sendMessageButtonClicked();
                     }
                 }

@@ -47,6 +47,13 @@ ColumnLayout {
             name: "MessageWebViewFooter Send Message Button Visibility Test"
             when: windowShown
 
+            function cleanup() {
+                var filesToSendContainer = findChild(uut, "dataTransferSendContainer")
+                var messageBarTextArea = findChild(uut, "messageBarTextArea")
+                messageBarTextArea.clearText()
+                filesToSendContainer.filesToSendListModel.flush()
+            }
+
             function test_send_message_button_visibility() {
                 var filesToSendContainer = findChild(uut, "dataTransferSendContainer")
                 var sendMessageButton = findChild(uut, "sendMessageButton")
@@ -65,6 +72,30 @@ ColumnLayout {
                 // Both are cleared
                 messageBarTextArea.clearText()
                 compare(sendMessageButton.enabled, false)
+            }
+
+            // Regression: pasting a file with no text left the send button enabled but
+            // pressing Enter did nothing because onSendMessagesRequired only checked text.
+            function test_enter_sends_when_files_pending_and_no_text() {
+                var filesToSendContainer = findChild(uut, "dataTransferSendContainer")
+                var sendMessageButton = findChild(uut, "sendMessageButton")
+                var messageBarTextArea = findChild(uut, "messageBarTextArea")
+
+                // Add a file — send button should become enabled
+                filesToSendContainer.filesToSendListModel.addToPending(":/src/resources/png_test.png")
+                compare(filesToSendContainer.filesToSendCount, 1)
+                compare(sendMessageButton.enabled, true)
+
+                // Press Enter: should trigger sendMessageButtonClicked
+                var spy = Qt.createQmlObject('import QtTest 1.0; SignalSpy {}', uut)
+                spy.target = uut.messageBar
+                spy.signalName = "sendMessageButtonClicked"
+
+                messageBarTextArea.textAreaObj.forceActiveFocus()
+                keyClick(Qt.Key_Return)
+                compare(spy.count, 1)
+
+                spy.destroy()
             }
         }
     }
