@@ -23,6 +23,7 @@
 class AudioConfigListModel : public QAbstractListModel
 {
     Q_OBJECT
+    Q_PROPERTY(QString defaultValue READ defaultValue WRITE setDefaultValue NOTIFY defaultValueChanged)
 public:
     enum Role { AudioConfigOption = Qt::UserRole + 1, AudioConfigValue };
     Q_ENUM(Role);
@@ -45,11 +46,17 @@ public:
      */
     Q_INVOKABLE int getCurrentSettingIndex(const QString& currentSelection) const;
 
+    QString defaultValue() const;
+    void setDefaultValue(const QString& value);
+
+Q_SIGNALS:
+    void defaultValueChanged();
+
 private:
     // Display labels, translated at lookup time in data(). QT_TRANSLATE_NOOP
     // keeps them registered under the historical "QObject" context, where the
     // existing translations live.
-    QList<const char*> audioConfigOptions = {QT_TRANSLATE_NOOP("QObject", "Auto (default)"),
+    QList<const char*> audioConfigOptions = {QT_TRANSLATE_NOOP("QObject", "Auto"),
                                              QT_TRANSLATE_NOOP("QObject", "System (if available)"),
                                              QT_TRANSLATE_NOOP("QObject", "Built-in"),
                                              QT_TRANSLATE_NOOP("QObject", "Disabled")};
@@ -60,4 +67,7 @@ private:
                                         QString("system"),
                                         QString("audioProcessor"),
                                         QString("off")};
+    // Configuration value (from audioConfigValues) flagged as the default for
+    // this combo; the matching row gets a "(default)" suffix at lookup time.
+    QString defaultValue_ {QStringLiteral("auto")};
 };
