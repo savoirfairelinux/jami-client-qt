@@ -1,0 +1,119 @@
+/*
+ * Copyright (C) 2025 Savoir-faire Linux Inc.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+// Requirements:
+// - gerrit-trigger plugin
+// - macOS build node labelled 'macOS'
+//
+// Two-tier build cache (local, persistent per node):
+//
+//   Tier 1 — Contrib: /Users/jenkins/jami-build-cache/contrib/<makefile-hash>/
+//     The contrib Makefile hashes its own content (all package rules) and
+//     builds to that path, then symlinks the workspace prefix to it.
+//     A repeated build with unchanged package versions takes seconds.
+//
+//   Tier 2 — Daemon: /Users/jenkins/jami-build-cache/daemon/<commit>/
+//     Keyed on the daemon submodule commit hash.  On a cache hit the daemon
+//     cmake subdirectory is bypassed entirely (JAMICORE_AS_SUBDIR=OFF) and
+//     the pre-built libjami is linked directly.  On a miss the daemon is
+//     built normally and the result is saved for future runs.
+
+node('macOS') {
+    def CACHE_BASE = '/Users/jenkins/jami-build-cache'
+    def TARBALLS_DIR = '/Users/jenkins/ring-contrib'
+    def cpuCount = sh(returnStdout: true,
+        script: 'sysctl -n machdep.cpu.thread_count || echo -n 4').trim()
+
+    stage('SCM Checkout') {
+        deleteDir()
+        sh """
+            git clone --depth=1 https://\${JAMI_GERRIT_URL}/jami-client-qt
+            cd jami-client-qt
+            git fetch https://\${JAMI_GERRIT_URL}/jami-client-qt ${GERRIT_REFSPEC}
+            git checkout FETCH_HEAD
+            git submodule update --init --recursive
+        """
+    }
+
+    stage('Build client') {
+        withEnv([
+            "MACOSX_DEPLOYMENT_TARGET=12",
+            'PATH+JENKINSHOME=/usr/bin',
+            "BATCH_MODE=1",
+            "CACHE_DIR=${CACHE_BASE}",
+            "TARBALLS=${TARBALLS_DIR}"
+        ]) {
+            sh """
+                set -e
+                mkdir -p ${CACHE_BASE}
+
+                DAEMON_COMMIT=\$(git -C jami-client-qt/daemon rev-parse HEAD)
+                DAEMON_CACHE=${CACHE_BASE}/daemon/\${DAEMON_COMMIT}
+
+                cd jami-client-qt
+                mkdir -p build
+
+                if [ -f "\${DAEMON_CACHE}/.done" ]; then
+                    echo "=== Daemon cache HIT: \${DAEMON_COMMIT} ==="
+                    # Build only the Qt client, skipping daemon cmake subdirectory.
+                    # WITH_DAEMON_SUBMODULE=ON keeps DAEMON_DIR pointing at the
+                    # checked-out submodule so jami headers are available at
+                    # daemon/src/jami. JAMICORE_AS_SUBDIR=OFF prevents cmake from
+                    # building the daemon. CMAKE_INSTALL_PREFIX points cmake's
+                    # library search (FindLibJami) at the cached libjami.
+                    cmake -B build . \\
+                        -DCMAKE_BUILD_TYPE=Release \\
+                        -DCMAKE_OSX_ARCHITECTURES="x86_64;arm64" \\
+                        -DWITH_DAEMON_SUBMODULE=ON \\
+                        -DJAMICORE_AS_SUBDIR=OFF \\
+                        -DCMAKE_INSTALL_PREFIX="\${DAEMON_CACHE}/install"
+                else
+                    echo "=== Daemon cache MISS: \${DAEMON_COMMIT} — full build ==="
+                    # CACHE_DIR is forwarded by daemon/CMakeLists.txt to
+                    # contrib/bootstrap as --cache-dir + --cache-builds, activating
+                    # the hash-keyed contrib cache.
+                    cmake -B build . \\
+                        -DCMAKE_BUILD_TYPE=Release \\
+                        -DCMAKE_OSX_ARCHITECTURES="x86_64;arm64" \\
+                        -DWITH_DAEMON_SUBMODULE=ON \\
+                        -DJAMICORE_AS_SUBDIR=ON \\
+                        -DIGNORE_SYSTEM_LIBS=ON
+                fi
+
+                cmake --build build -j${cpuCount}
+
+                # On a cache miss, save the daemon build result for future runs.
+                if [ ! -f "\${DAEMON_CACHE}/.done" ]; then
+                    echo "Saving daemon build to cache: \${DAEMON_COMMIT}"
+                    mkdir -p "\${DAEMON_CACHE}/install"
+                    cmake --install build/daemon --prefix "\${DAEMON_CACHE}/install"
+
+                    # Copy the merged fat contrib prefix so future cache-hit builds
+                    # can resolve pkg-config and cmake package files if needed.
+                    mkdir -p "\${DAEMON_CACHE}/contrib"
+                    FAT_CONTRIB=\$(ls -d daemon/contrib/apple-darwin*/ 2>/dev/null | head -1)
+                    if [ -n "\${FAT_CONTRIB}" ]; then
+                        cp -r "\${FAT_CONTRIB}" "\${DAEMON_CACHE}/contrib/"
+                    fi
+
+                    touch "\${DAEMON_CACHE}/.done"
+                    echo "Daemon cache saved."
+                fi
+            """
+        }
+    }
+}
