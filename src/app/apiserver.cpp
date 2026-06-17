@@ -742,7 +742,7 @@ ApiServer::start(quint16 port)
     setupWebSocket();
 
     auto actualPort = tcpServer_->serverPort();
-    qCInfo(apiLog) << "ApiServer: listening on localhost:" << actualPort;
+    qCDebug(apiLog) << "ApiServer: listening on localhost:" << actualPort;
     Q_EMIT runningChanged();
     Q_EMIT started(actualPort);
     return true;
@@ -766,7 +766,7 @@ ApiServer::stop()
     httpServer_.reset();
     tcpServer_ = nullptr;
 
-    qCInfo(apiLog) << "ApiServer: stopped";
+    qCDebug(apiLog) << "ApiServer: stopped";
     Q_EMIT runningChanged();
     Q_EMIT stopped();
 }
@@ -1903,7 +1903,7 @@ ApiServer::setupWebSocket()
     connect(httpServer_.get(), &QAbstractHttpServer::newWebSocketConnection,
             this, &ApiServer::onNewWebSocketConnection);
 
-    qCInfo(apiLog) << "ApiServer: WebSocket upgrades enabled on localhost:" << tcpServer_->serverPort();
+    qCDebug(apiLog) << "ApiServer: WebSocket upgrades enabled on localhost:" << tcpServer_->serverPort();
 
     // Connect libclient signals to broadcast events (only if LRC is available)
     if (!lrcInstance_)

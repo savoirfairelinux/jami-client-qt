@@ -64,6 +64,9 @@ main(int argc, char* argv[])
     QApplication a(argc, argv);
     a.processEvents();
 
+    // Silence noisy categories that are irrelevant to test assertions.
+    QLoggingCategory::setFilterRules("api=false\napi.tokens=false");
+
     ::testing::InitGoogleTest(&argc, argv);
     globalEnv.SetUp();
     auto result = RUN_ALL_TESTS();
