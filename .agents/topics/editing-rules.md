@@ -6,9 +6,11 @@
 - Do not add comments or docstrings to code you did not change
 
 # Tests
-- Attempt Test-Driven Development (TDD) when possible; especially for new features or bug fixes
+- Bug fixes must follow TDD: write a failing regression test first, then fix the code to make it pass
+- New features should follow TDD where practical
 - Update tests when changing tested logic
 - Do not delete tests unless the covered behavior is removed
+- Run tests with `cqfd -b unit` (unit) or `cqfd -b qml` (QML) to verify
 
 # Docs
 - Update docs when changing public interfaces or user-facing behavior
