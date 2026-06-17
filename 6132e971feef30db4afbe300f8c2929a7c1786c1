@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3537a9ec_6c56a00a",
+        "filename": "src/app/messagesadapter.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 345,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-17T19:23:10Z",
+      "side": 1,
+      "message": "[Major] Line 345: For non-local URLs, this emits newTextPasted() but does not ensure the clipboard actually contains text. QMimeData can contain URLs without hasText(), so URL-only clipboard data can still be dropped by the text paste path. Convert non-local URLs to text explicitly or only route to text paste when hasText() is true and otherwise emit a dedicated text payload. Suggested fix:\\n```suggestion\\n        if (!pastedLocalFile || hasNonLocalUrl) {\\n            if (!mimeData-\u003ehasText()) {\\n                QStringList urls;\\n                for (const auto\u0026 url : urlList) {\\n                    if (!url.isLocalFile())\\n                        urls \u003c\u003c url.toString();\\n                }\\n                clipboard_-\u003esetText(urls.join(u\u0027\\\\n\u0027));\\n            }\\n            Q_EMIT newTextPasted();\\n        }\\n```",
+      "revId": "6132e971feef30db4afbe300f8c2929a7c1786c1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3394239d_de117618",
+        "filename": "tests/unittests/paste_unittest.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-17T19:23:10Z",
+      "side": 1,
+      "message": "[Major] Line 112: The non-local URL test only checks that newTextPasted() is emitted, not that the pasted text path has usable text. This misses the URL-only MIME case introduced by the production logic. Add an assertion covering mimeData()-\u003ehasText() or a test that constructs URL-only data and verifies the text paste consumer receives the URL string.",
+      "revId": "6132e971feef30db4afbe300f8c2929a7c1786c1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
