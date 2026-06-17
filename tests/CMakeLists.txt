@@ -120,7 +120,8 @@ set(UNIT_TESTS_SOURCE_FILES
 set(ALL_TESTS_LIBS
     ${QML_TEST_LIBS}
     ${EXTRA_TEST_LIBS}
-    ${CLIENT_LIBS})
+    ${CLIENT_LIBS}
+    jami_ui jami_uiplugin jami_uiplugin_init)
 
 set(ALL_TESTS_INCLUDES
     ${TESTS_INCLUDES}
@@ -131,6 +132,7 @@ function(setup_test TEST_NAME TEST_SOURCES TEST_INPUT)
     add_executable(${TEST_BINARY_NAME} ${TEST_SOURCES})
     target_compile_definitions(${TEST_BINARY_NAME} PRIVATE BUILD_TESTING="ON")
     target_link_libraries(${TEST_BINARY_NAME} ${ALL_TESTS_LIBS})
+    qt_import_qml_plugins(${TEST_BINARY_NAME})
     target_include_directories(${TEST_BINARY_NAME} PUBLIC ${ALL_TESTS_INCLUDES})
     if(MSVC)
         string(TOUPPER ${CMAKE_BUILD_TYPE} BUILD_TYPE)
