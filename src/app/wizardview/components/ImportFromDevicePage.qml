@@ -271,7 +271,7 @@ Rectangle {
                 placeholderText: JamiStrings.enterPassword
                 echoMode: TextInput.Password
 
-                onAccepted: confirmButton.clicked()
+                onEditingFinished: confirmButton.clicked()
             }
 
             Text {

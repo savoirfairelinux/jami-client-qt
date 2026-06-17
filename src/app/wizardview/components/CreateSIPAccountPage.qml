@@ -98,8 +98,6 @@ Rectangle {
 
                     leadingIconSource: JamiResources.sip_24dp_svg
                     placeholderText: JamiStrings.server
-
-                    onAccepted: sipUsernameEdit.forceActiveFocus()
                 }
 
                 NewMaterialTextField {
@@ -112,8 +110,6 @@ Rectangle {
 
                     leadingIconSource: JamiResources.person_24dp_svg
                     placeholderText: JamiStrings.username
-
-                    onAccepted: sipPasswordEdit.forceActiveFocus()
                 }
 
                 PasswordTextEdit {
@@ -124,8 +120,6 @@ Rectangle {
                     Layout.topMargin: JamiTheme.wizardViewMarginSize
                     objectName: "sipPasswordEdit"
                     placeholderText: JamiStrings.password
-
-                    onAccepted: tlsRadioButton.forceActiveFocus()
                 }
                 Flow {
                     Layout.alignment: Qt.AlignCenter

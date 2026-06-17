@@ -80,7 +80,7 @@ SettingsPageBase {
                 maxCharacters: JamiTheme.maximumCharacters
                 textFieldContent: CurrentAccount.alias
 
-                onAccepted: AccountAdapter.setCurrAccDisplayName(modifiedTextFieldContent)
+                onEditingFinished: AccountAdapter.setCurrAccDisplayName(modifiedTextFieldContent)
             }
         }
 

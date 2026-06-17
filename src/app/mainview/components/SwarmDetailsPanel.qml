@@ -209,7 +209,7 @@ Item {
                 trailingIconToolTipText: JamiStrings.clearText
                 onTrailingIconClicked: modifiedTextFieldContent = ""
 
-                onAccepted: ConversationsAdapter.updateConversationTitle(LRCInstance.selectedConvUid, modifiedTextFieldContent)
+                onEditingFinished: ConversationsAdapter.updateConversationTitle(LRCInstance.selectedConvUid, modifiedTextFieldContent)
             }
 
             NewMaterialTextField {
@@ -237,7 +237,7 @@ Item {
                     }
                 }
 
-                onAccepted: ConversationsAdapter.updateConversationDescription(LRCInstance.selectedConvUid, modifiedTextFieldContent)
+                onEditingFinished: ConversationsAdapter.updateConversationDescription(LRCInstance.selectedConvUid, modifiedTextFieldContent)
             }
 
             ListModel {

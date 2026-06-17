@@ -51,6 +51,6 @@ ColumnLayout {
         leadingIconSource: JamiResources.dns_24dp_svg
         staticText: CurrentAccount.uri_Nameserver
 
-        onAccepted: CurrentAccount.uri_Nameserver = modifiedTextFieldContent
+        onEditingFinished: CurrentAccount.uri_Nameserver = modifiedTextFieldContent
     }
 }
