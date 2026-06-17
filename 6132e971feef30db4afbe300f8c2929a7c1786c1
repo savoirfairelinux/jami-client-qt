@@ -18,6 +18,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dc477474_ad1f1f0c",
+        "filename": "src/app/messagesadapter.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 345,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-06-17T20:01:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3537a9ec_6c56a00a",
+      "revId": "6132e971feef30db4afbe300f8c2929a7c1786c1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3394239d_de117618",
@@ -31,6 +49,24 @@
       "writtenOn": "2026-06-17T19:23:10Z",
       "side": 1,
       "message": "[Major] Line 112: The non-local URL test only checks that newTextPasted() is emitted, not that the pasted text path has usable text. This misses the URL-only MIME case introduced by the production logic. Add an assertion covering mimeData()-\u003ehasText() or a test that constructs URL-only data and verifies the text paste consumer receives the URL string.",
+      "revId": "6132e971feef30db4afbe300f8c2929a7c1786c1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bf5390e3_9c9a933d",
+        "filename": "tests/unittests/paste_unittest.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-06-17T20:01:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3394239d_de117618",
       "revId": "6132e971feef30db4afbe300f8c2929a7c1786c1",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
