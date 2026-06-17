@@ -150,6 +150,14 @@ if(NOT MSVC)
   string(APPEND CMAKE_CXX_FLAGS_DEBUG " -Og")
 endif()
 
+# Use ccache when available to speed up incremental builds.
+find_program(CCACHE_EXECUTABLE ccache)
+if(CCACHE_EXECUTABLE)
+  message(STATUS "ccache found: ${CCACHE_EXECUTABLE}")
+  set(CMAKE_CXX_COMPILER_LAUNCHER ${CCACHE_EXECUTABLE})
+  set(CMAKE_C_COMPILER_LAUNCHER   ${CCACHE_EXECUTABLE})
+endif()
+
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
@@ -1341,6 +1349,50 @@ target_link_libraries(${PROJECT_NAME} PRIVATE ${CLIENT_LIBS})
 
 qt_import_qml_plugins(${PROJECT_NAME})
 qt_finalize_executable(${PROJECT_NAME})
+
+# xrectsel.c (C) and macOS .mm (Objective-C++) files must not use the C++ PCH:
+# the C compiler rejects C++-only headers and clang rejects a PCH built without
+# Objective-C when compiling .mm sources.
+set_source_files_properties(
+  ${APP_SRC_DIR}/xrectsel.c
+  ${APP_SRC_DIR}/os/macos/macutils.mm
+  ${APP_SRC_DIR}/os/macos/connectivitymonitor.mm
+  ${APP_SRC_DIR}/os/macos/appversionmanager.mm
+  PROPERTIES SKIP_PRECOMPILE_HEADERS ON)
+
+# Precompiled header — amortises the cost of parsing heavyweight Qt and STL
+# headers across all translation units. Recompiled only when these headers
+# themselves change, which is rare in practice.
+target_precompile_headers(${PROJECT_NAME} PRIVATE
+  # Qt Core
+  <QtCore/QObject>
+  <QtCore/QString>
+  <QtCore/QStringList>
+  <QtCore/QMap>
+  <QtCore/QHash>
+  <QtCore/QList>
+  <QtCore/QVector>
+  <QtCore/QVariant>
+  <QtCore/QDir>
+  <QtCore/QFile>
+  <QtCore/QFileInfo>
+  <QtCore/QTimer>
+  <QtCore/QDebug>
+  <QtCore/QUrl>
+  <QtCore/QJsonObject>
+  <QtCore/QJsonArray>
+  <QtCore/QJsonDocument>
+  <QtCore/QRegularExpression>
+  # Qt GUI / Quick
+  <QtGui/QImage>
+  # STL
+  <memory>
+  <string>
+  <vector>
+  <map>
+  <functional>
+  <algorithm>
+)
 
 # tests
 if(BUILD_TESTING)
