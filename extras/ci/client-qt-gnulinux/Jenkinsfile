@@ -109,10 +109,13 @@ pipeline {
                                         -DCMAKE_PREFIX_PATH=/usr/lib/libqt-jami/
                                     cmake --build ${dockerTopDir}/build -j${cpuCount}
                                 """)
-                                // Run tests
+                                // Run tests sequentially: both test suites share the same
+                                // jami temp directory (/tmp/jami_test/) and both wipe it at
+                                // startup, so parallel execution causes a SEGFAULT when the
+                                // unit tests delete the dirs mid-run of the QML test suite.
                                 exec_cmd("""
-                                    cd ${dockerTopDir}/build/tests
-                                    HOME=/tmp ctest -V -C Release -j${cpuCount}
+                                    HOME=/tmp ctest --test-dir ${dockerTopDir}/build/tests -V -C Release -R ^Qml_Tests\$
+                                    HOME=/tmp ctest --test-dir ${dockerTopDir}/build/tests -V -C Release -R ^Unit_Tests\$
                                 """)
                             }
                         }
