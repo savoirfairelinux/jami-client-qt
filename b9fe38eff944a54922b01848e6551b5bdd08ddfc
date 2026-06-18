@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7a28de30_b08c86c1",
+        "filename": "src/core/interaction.cpp",
+        "patchSetId": 33
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-18T14:53:52Z",
+      "side": 1,
+      "message": "[Critical] Line 130: pluginData[\"bodyOverwrite\"] is trusted directly as the displayed message body. If plugin-provided content has different trust or formatting guarantees than normal message body content, this can expose injected markup/links or misleading content in the chat view. Please normalize/sanitize it through the same path used for message bodies, or document and enforce that plugins must provide already-safe plain text before assigning it to body.",
+      "revId": "b9fe38eff944a54922b01848e6551b5bdd08ddfc",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4fee1ddf_bd3e74c4",
+        "filename": "src/core/interaction.cpp",
+        "patchSetId": 33
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-18T14:53:52Z",
+      "side": 1,
+      "message": "[Major] Line 139: Edited-message bodyOverwrite is read from the edition map, while the new top-level pluginData field is modeled separately on SwarmMessage. If the daemon represents plugin metadata consistently as pluginData, edition-level plugin data may not be present as a flat \"bodyOverwrite\" key here, causing previousBodies to show/edit the raw body while the current message shows the overwrite. Please confirm the daemon payload shape and parse edition plugin data consistently.",
+      "revId": "b9fe38eff944a54922b01848e6551b5bdd08ddfc",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d6a744f9_7d746e79",
+        "filename": "src/dbus/metatypes.h",
+        "patchSetId": 33
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-18T14:53:52Z",
+      "side": 1,
+      "message": "[Critical] Line 114: Adding pluginData to the serialized SwarmMessage structure changes the D-Bus wire signature unconditionally. This can break clients built or run against a daemon that still emits the previous structure, which is especially relevant because the project supports external daemon builds. Please gate this with an interface/version compatibility check or keep backward-compatible deserialization for the old shape before reading pluginData.",
+      "revId": "b9fe38eff944a54922b01848e6551b5bdd08ddfc",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
