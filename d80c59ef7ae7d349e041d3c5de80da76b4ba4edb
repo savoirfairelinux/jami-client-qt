@@ -34,6 +34,75 @@
       "parentUuid": "0a48d46a_e5cf78cd",
       "revId": "d80c59ef7ae7d349e041d3c5de80da76b4ba4edb",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "13dec5fc_da6a24b8",
+        "filename": "src/app/commoncomponents/SBSMessageBase.qml",
+        "patchSetId": 12
+      },
+      "lineNbr": 724,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-06-18T19:37:56Z",
+      "side": 1,
+      "message": "legibility: the `Layout` properties should be the first items of Layout components. Following spacing, then visibility.",
+      "range": {
+        "startLine": 719,
+        "startChar": 0,
+        "endLine": 724,
+        "endChar": 22
+      },
+      "revId": "d80c59ef7ae7d349e041d3c5de80da76b4ba4edb",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a5a18a08_5dc043d4",
+        "filename": "src/app/commoncomponents/SBSMessageBase.qml",
+        "patchSetId": 12
+      },
+      "lineNbr": 729,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-06-18T19:37:56Z",
+      "side": 1,
+      "message": "Legibility: overall prefer putting component-relevant properties above general ones. Ex. `spacing` should come before `visible`. This applies to other components in this patch.",
+      "range": {
+        "startLine": 729,
+        "startChar": 16,
+        "endLine": 729,
+        "endChar": 26
+      },
+      "revId": "d80c59ef7ae7d349e041d3c5de80da76b4ba4edb",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a29e7163_26eb04a7",
+        "filename": "src/app/commoncomponents/SBSMessageBase.qml",
+        "patchSetId": 12
+      },
+      "lineNbr": 801,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-06-18T19:37:56Z",
+      "side": 1,
+      "message": "LIRR, chained if-else might be more legibile",
+      "range": {
+        "startLine": 799,
+        "startChar": 22,
+        "endLine": 801,
+        "endChar": 55
+      },
+      "revId": "d80c59ef7ae7d349e041d3c5de80da76b4ba4edb",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
