@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0a48d46a_e5cf78cd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-06-18T18:55:38Z",
+      "side": 1,
+      "message": "Minor UI nitpick, but the edited indicator is sitting farther right than the actual message. Ideally it should be padded to the right with the same value used for the radius of the message bubble\u0027s bottom-left corner.",
+      "revId": "d80c59ef7ae7d349e041d3c5de80da76b4ba4edb",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
