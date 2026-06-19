@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2d44ff2b_ae4ef069",
+        "filename": "src/app/commoncomponents/SBSMessageBase.qml",
+        "patchSetId": 13
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-19T13:21:10Z",
+      "side": 1,
+      "message": "[🔴 Critical Issues - Must fix before merge] Line 65: `isPluginOverwrite: Body !\u003d\u003d OriginalBody` can mark ordinary messages as extension-modified if `OriginalBody` is empty, unset, or otherwise unavailable for messages that were never modified by a plugin. That would show the plugin indicator and original-message toggle incorrectly. Please gate this on OriginalBody being present and intentionally different from Body, or on an explicit backend-provided flag if available.\n```suggestion\nproperty bool isPluginOverwrite: OriginalBody !\u003d\u003d \"\" \u0026\u0026 Body !\u003d\u003d OriginalBody\n```",
+      "revId": "1a65f3c521c05ff4e533a511cd6a2b73f3e5015d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e025f66a_5f9192e1",
+        "filename": "src/app/commoncomponents/TextMessageDelegate.qml",
+        "patchSetId": 13
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-19T13:21:10Z",
+      "side": 1,
+      "message": "[🔴 Critical Issues - Must fix before merge] Line 80: Returning OriginalBody directly bypasses the existing MessagesAdapter.parseMessage path used for Body/ParsedBody. If the QML Text item uses rich text or auto text detection, an original message containing markup-like content can render differently from normal messages and may skip the same escaping/link-preview/sanitization behavior. Please route the original body through the same parsing/sanitization pipeline, ideally with a separate parsed-original role/cache so toggling does not overwrite ParsedBody for the current edited body.\n```suggestion\n// Example shape: use a parsed original-body value produced by the same parser\nif (showOriginal \u0026\u0026 isPluginOverwrite) {\n    if (OriginalBody !\u003d\u003d \"\" \u0026\u0026 ParsedOriginalBody.length \u003d\u003d\u003d 0) {\n        MessagesAdapter.parseOriginalMessage(Id, OriginalBody, UtilsAdapter.getAppValue(Settings.DisplayHyperlinkPreviews), rootDelegate.colorUrl, bubble.color);\n        return \"\";\n    }\n    return ParsedOriginalBody;\n}\n```",
+      "revId": "1a65f3c521c05ff4e533a511cd6a2b73f3e5015d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
