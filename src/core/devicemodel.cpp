@@ -90,6 +90,8 @@ DeviceModel::data(const QModelIndex& index, int role) const
         return device.id;
     case DeviceList::IsCurrent:
         return device.isCurrent;
+    case DeviceList::LastSync:
+        return static_cast<qlonglong>(device.lastSync);
     }
     return {};
 }
@@ -101,6 +103,7 @@ DeviceModel::roleNames() const
         {DeviceList::DeviceName, "DeviceName"},
         {DeviceList::DeviceID, "DeviceID"},
         {DeviceList::IsCurrent, "IsCurrent"},
+        {DeviceList::LastSync, "LastSync"},
     };
 }
 
@@ -159,22 +162,16 @@ DeviceModelPimpl::DeviceModelPimpl(DeviceModel& linked, const CallbacksHandler& 
 {
     const MapStringString aDetails = ConfigurationManager::instance().getVolatileAccountDetails(linked.owner.id);
     currentDeviceId_ = aDetails.value(libjami::Account::ConfProperties::DEVICE_ID);
-    const MapStringString accountDevices = ConfigurationManager::instance().getKnownRingDevices(linked.owner.id);
-    auto it = accountDevices.begin();
-    while (it != accountDevices.end()) {
-        {
-            std::lock_guard<std::mutex> lock(devicesMtx_);
-            auto device = Device {/* id= */ it.key(),
-                                  /* name= */ it.value(),
-                                  /* isCurrent= */ it.key() == currentDeviceId_};
-            if (device.isCurrent) {
-                currentDeviceId_ = it.key();
-                devices_.push_back(device);
-            } else {
-                devices_.push_back(device);
-            }
+    const VectorMapStringString deviceList = ConfigurationManager::instance().getDeviceList(linked.owner.id);
+    {
+        std::lock_guard<std::mutex> lock(devicesMtx_);
+        for (const auto& d : deviceList) {
+            const auto id = d.value("id");
+            devices_.push_back(Device {/* id= */ id,
+                                       /* name= */ d.value("label"),
+                                       /* isCurrent= */ id == currentDeviceId_,
+                                       /* lastSync= */ d.value("lastSync").toLongLong()});
         }
-        ++it;
     }
 
     connect(&callbacksHandler, &CallbacksHandler::knownDevicesChanged, this, &DeviceModelPimpl::slotKnownDevicesChanged);

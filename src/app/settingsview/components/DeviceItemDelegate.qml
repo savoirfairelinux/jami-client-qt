@@ -29,6 +29,7 @@ ItemDelegate {
     property string deviceName: ""
     property string deviceId: ""
     property bool isCurrent: false
+    property var lastSync: 0
 
     property bool editable: false
     property bool isHovered: root.hovered || button.hovered || root.editable
@@ -135,6 +136,21 @@ ItemDelegate {
                 elide: Text.ElideMiddle
                 font.family: JamiTheme.ubuntuMonoFontFamily
                 font.pointSize: JamiTheme.textFontSize
+            }
+
+            Text {
+                id: labelLastSync
+
+                Layout.alignment: Qt.AlignVCenter
+                Layout.fillWidth: true
+                Layout.leftMargin: editDeviceName.leftPadding
+
+                visible: !root.isCurrent && root.lastSync > 0
+                text: JamiStrings.lastSync.arg(UtilsAdapter.formatTimestamp(root.lastSync))
+                color: JamiTheme.faddedFontColor
+                horizontalAlignment: Text.AlignLeft
+                elide: Text.ElideRight
+                font.pointSize: JamiTheme.smallFontSize
             }
         }
 

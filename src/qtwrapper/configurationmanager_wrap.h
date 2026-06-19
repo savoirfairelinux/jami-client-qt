@@ -596,6 +596,15 @@ public Q_SLOTS: // METHODS
         return temp;
     }
 
+    VectorMapStringString getDeviceList(const QString& accountId)
+    {
+        VectorMapStringString temp;
+        for (const auto& x : libjami::getDeviceList(accountId.toStdString())) {
+            temp.push_back(convertMap(x));
+        }
+        return temp;
+    }
+
     int getAudioInputDeviceIndex(const QString& devname)
     {
         return libjami::getAudioInputDeviceIndex(devname.toStdString());

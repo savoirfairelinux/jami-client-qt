@@ -42,6 +42,7 @@ enum Role {
     DeviceName = Qt::UserRole + 1,
     DeviceID,
     IsCurrent,
+    LastSync,
 };
 Q_ENUM_NS(Role)
 } // namespace DeviceList
@@ -51,6 +52,7 @@ struct Device
     QString id = "";
     QString name = "";
     bool isCurrent = false;
+    qint64 lastSync = 0;
 };
 
 /**
