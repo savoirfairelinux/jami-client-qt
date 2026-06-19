@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "35cd1621_9e4e44d4",
+        "filename": "src/app/commoncomponents/SBSMessageBase.qml",
+        "patchSetId": 14
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-19T20:26:26Z",
+      "side": 1,
+      "message": "[🔴 Critical Issues] Line 65: `showOriginal` is delegate-local mutable state, but QML list delegates are commonly reused. After a user toggles one overwritten message, the recycled delegate can display another message in the wrong mode. Reset this state when the represented message changes.\n\n```suggestion\nproperty bool showOriginal: false\n\nonIdChanged: showOriginal \u003d false\nonBodyChanged: showOriginal \u003d false\nonOriginalBodyChanged: showOriginal \u003d false\n```",
+      "revId": "b115d6a1cc8cf82bbd8791623ef39d5393f02aee",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8c6ca873_51675875",
+        "filename": "src/app/commoncomponents/TextMessageDelegate.qml",
+        "patchSetId": 14
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-19T20:26:26Z",
+      "side": 1,
+      "message": "[🔴 Critical Issues] Line 80: Returning `OriginalBody` directly bypasses the existing `MessagesAdapter.parseMessage(...)` path used for normal message bodies. That can produce inconsistent rendering for links/emoji/previews and may also bypass whatever escaping/sanitization `ParsedBody` normally provides before assigning text to the delegate. Please parse/render the original body through the same pipeline as `Body`, or add a separate parsed-original role/cache before displaying it.\n\n```suggestion\nif (showOriginal \u0026\u0026 isPluginOverwrite) {\n    MessagesAdapter.parseMessage(Id, OriginalBody, UtilsAdapter.getAppValue(Settings.DisplayHyperlinkPreviews), rootDelegate.colorUrl, bubble.color);\n    return \"\";\n}\n```",
+      "revId": "b115d6a1cc8cf82bbd8791623ef39d5393f02aee",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
