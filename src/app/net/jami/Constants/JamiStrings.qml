@@ -350,6 +350,8 @@ Item {
     // ContactItemDelegate
     property string name: qsTr("name")
     property string identifier: qsTr("Identifier")
+    property string contactAddedOn: qsTr("Added")
+    property string contactRemovedOn: qsTr("Removed")
 
     // CallOverlay
     property string isRecording: qsTr("%1 is recording")
@@ -983,6 +985,7 @@ Item {
     property string noDescription: qsTr("No description")
     property string groupMembers: qsTr("Members")
     property string conversationType: qsTr("Conversation type")
+    property string conversationJoinedOn: qsTr("Joined")
 
     property string muteConversation: qsTr("Mute conversation")
     property string unmuteConversation: qsTr("Unmute conversation")
