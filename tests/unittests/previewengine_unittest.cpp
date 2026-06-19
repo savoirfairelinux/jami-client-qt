@@ -101,3 +101,32 @@ TEST_F(PreviewEngineFixture, UTF8CharactersAreParsedCorrectly)
     EXPECT_TRUE(info.contains("description"));
     EXPECT_EQ(info["description"].toString(), testString);
 }
+
+/*!
+ * WHEN  We parse a link whose page is larger than MAX_PREVIEW_HTML_SIZE
+ * THEN  Only the content within the cap is parsed: metadata at the top of the
+ *       page is read, while metadata pushed past the cap is dropped. This guards
+ *       against pathological pages that make libtidy build an unbounded node
+ *       tree and exhaust memory.
+ */
+TEST_F(PreviewEngineFixture, OversizedPageIsCappedBeforeParsing)
+{
+    const QString early = QStringLiteral("<meta property=\"og:title\" content=\"early\">");
+    const QString filler(PreviewEngine::MAX_PREVIEW_HTML_SIZE, QLatin1Char('x'));
+    const QString late = QStringLiteral("<meta property=\"og:description\" content=\"LATE\">");
+    // Sanity check: the description really does sit beyond the cap.
+    ASSERT_GT((early + filler).toUtf8().size(), PreviewEngine::MAX_PREVIEW_HTML_SIZE);
+
+    server->route("/test", [&]() { return early + filler + late; });
+
+    QSignalSpy infoReadySpy(globalEnv.previewEngine.data(), &PreviewEngine::infoReady);
+
+    Q_EMIT globalEnv.previewEngine->parseLink("msgId_01", "http://localhost:8000/test");
+
+    infoReadySpy.wait();
+    ASSERT_EQ(infoReadySpy.count(), 1) << "infoReady signal should be emitted once";
+
+    QVariantMap info = infoReadySpy.takeFirst().at(1).toMap();
+    EXPECT_EQ(info["title"].toString(), "early") << "metadata before the cap should be parsed";
+    EXPECT_NE(info["description"].toString(), "LATE") << "metadata beyond the cap should be dropped";
+}

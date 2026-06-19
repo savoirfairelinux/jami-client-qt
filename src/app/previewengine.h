@@ -27,6 +27,13 @@ public:
     PreviewEngine(ConnectivityMonitor* cm, QObject* parent = nullptr);
     ~PreviewEngine();
 
+    // Preview pages are fetched from arbitrary remote servers. A malformed page
+    // can drive libtidy into a pathological parse that builds an unbounded node
+    // tree and exhausts memory, so cap how much fetched HTML is handed to the
+    // parser. Link previews only need the <head> metadata, which sits at the top
+    // of the document.
+    static constexpr qsizetype MAX_PREVIEW_HTML_SIZE = 512 * 1024; // 512 KiB
+
 Q_SIGNALS:
     void parseLink(const QString& id, const QString& link);
     void infoReady(const QString& id, const QVariantMap& info);
