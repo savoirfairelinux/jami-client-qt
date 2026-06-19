@@ -89,6 +89,10 @@ public:
      */
     time_t getAddedTs(const QString& contactUri) const;
     /**
+     * Retrieve when a contact is removed (0 if the contact is still active)
+     */
+    time_t getRemovedTs(const QString& contactUri) const;
+    /**
      * get list of banned contacts.
      * @return list of banned contacts uris as string
      */
