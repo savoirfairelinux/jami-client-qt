@@ -28,7 +28,9 @@
 #include <QApplication>
 #include <QBuffer>
 #include <QClipboard>
+#include <QDateTime>
 #include <QFileInfo>
+#include <QLocale>
 #include <QRegularExpression>
 #include <QMimeData>
 #include <QMimeDatabase>
@@ -700,6 +702,35 @@ UtilsAdapter::getParticipantRole(const QString& accountId, const QString& convId
     } catch (...) {
     }
     return lrc::api::member::Role::MEMBER;
+}
+
+qint64
+UtilsAdapter::getContactAddedTime(const QString& accountId, const QString& uri)
+{
+    try {
+        return static_cast<qint64>(lrcInstance_->getAccountInfo(accountId).contactModel->getAddedTs(uri));
+    } catch (...) {
+    }
+    return 0;
+}
+
+qint64
+UtilsAdapter::getContactRemovedTime(const QString& accountId, const QString& uri)
+{
+    try {
+        return static_cast<qint64>(lrcInstance_->getAccountInfo(accountId).contactModel->getRemovedTs(uri));
+    } catch (...) {
+    }
+    return 0;
+}
+
+QString
+UtilsAdapter::formatTimestamp(qint64 epochSeconds) const
+{
+    if (epochSeconds <= 0)
+        return {};
+    const auto dateTime = QDateTime::fromSecsSinceEpoch(epochSeconds);
+    return QLocale().toString(dateTime, QLocale::ShortFormat);
 }
 
 bool

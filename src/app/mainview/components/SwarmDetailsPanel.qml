@@ -528,6 +528,33 @@ Item {
                 RowLayout {
                     width: parent.width
 
+                    visible: CurrentConversation.joinedTimestamp > 0
+
+                    Text {
+                        Layout.fillWidth: true
+                        Layout.alignment: Qt.AlignVCenter
+
+                        text: JamiStrings.conversationJoinedOn
+                        color: JamiTheme.textColor
+                        horizontalAlignment: Text.AlignLeft
+                        elide: Text.ElideRight
+                        font.pointSize: JamiTheme.smallFontSize
+                    }
+
+                    Text {
+                        Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
+
+                        text: UtilsAdapter.formatTimestamp(CurrentConversation.joinedTimestamp)
+                        color: JamiTheme.textColor
+                        horizontalAlignment: Text.AlignRight
+                        elide: Text.ElideRight
+                        font.pointSize: JamiTheme.smallFontSize
+                    }
+                }
+
+                RowLayout {
+                    width: parent.width
+
                     visible: !CurrentConversation.isCoreDialog
 
                     Text {
