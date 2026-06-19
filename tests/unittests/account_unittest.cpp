@@ -17,6 +17,10 @@
 
 #include "globaltestenvironment.h"
 #include "utilsadapter.h"
+#include "api/devicemodel.h"
+#include "dbus/configurationmanager.h"
+
+#include <QScopeGuard>
 
 /*!
  * Test fixture for AccountAdapter testing
@@ -64,6 +68,33 @@ TEST_F(AccountFixture, UnknownAccountHasNoBotOwner)
                               globalEnv.lrcInstance.data());
 
     EXPECT_TRUE(utilsAdapter.getBotOwner("missing-account-id").isEmpty());
+}
+
+TEST_F(AccountFixture, DeviceChangesReloadDaemonDetails)
+{
+    auto& accountModel = globalEnv.lrcInstance->accountModel();
+    QSignalSpy accountAddedSpy(&accountModel, &AccountModel::accountAdded);
+    const auto accountId = accountModel.createNewAccount(lrc::api::profile::Type::JAMI, {{"alias", "Device sync test"}});
+    const auto cleanup = qScopeGuard([&] {
+        accountModel.removeAccount(accountId);
+        EXPECT_TRUE(QTest::qWaitFor([&] { return !accountModel.hasAccount(accountId); }));
+    });
+    ASSERT_TRUE(accountAddedSpy.count() > 0 || accountAddedSpy.wait(15000));
+
+    auto& configuration = ConfigurationManager::instance();
+    ASSERT_TRUE(QTest::qWaitFor([&] { return !configuration.getDeviceList(accountId).isEmpty(); }));
+    const auto details = configuration.getDeviceList(accountId).constFirst();
+    const auto deviceId = details.value("id");
+    auto& devices = *accountModel.getAccountInfo(accountId).deviceModel;
+
+    Q_EMIT configuration.knownDevicesChanged(accountId, {{deviceId, "Stale notification label"}});
+    QCoreApplication::sendPostedEvents(nullptr, QEvent::MetaCall);
+
+    const auto device = devices.getDevice(deviceId);
+    EXPECT_EQ(device.id, deviceId);
+    EXPECT_EQ(device.name, details.value("label"));
+    EXPECT_TRUE(device.isCurrent);
+    EXPECT_EQ(device.lastSync, details.value("lastSync").toLongLong());
 }
 
 /*!
