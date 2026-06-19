@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0d1f5c9e_77c0bea0",
+        "filename": "src/app/commoncomponents/SBSMessageBase.qml",
+        "patchSetId": 15
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-19T20:34:00Z",
+      "side": 1,
+      "message": "[🔴 Critical] Line 67: `showOriginal` is delegate-local state and is not reset when the ListView delegate is reused for another message. A user can toggle one message, scroll, and see a different overwritten message incorrectly displaying its original body. Reset the flag when the message identity changes.\n```suggestion\nproperty bool showOriginal: false\nonIdChanged: showOriginal \u003d false\n```",
+      "revId": "591f63612078c7603844672b40586af5098d7348",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e3c9dd3f_e1467439",
+        "filename": "src/app/commoncomponents/SBSMessageBase.qml",
+        "patchSetId": 15
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-19T20:34:00Z",
+      "side": 1,
+      "message": "[🟡 Suggestion] Line 68: The overwrite indicator is based only on `Body !\u003d\u003d OriginalBody`, which can flag normal messages if `OriginalBody` is empty or unset by older daemon data. Gate this on a real original value before showing extension UI.\n```suggestion\nproperty bool isPluginOverwrite: OriginalBody !\u003d\u003d \"\" \u0026\u0026 Body !\u003d\u003d OriginalBody\n```",
+      "revId": "591f63612078c7603844672b40586af5098d7348",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d62014c6_1c897471",
+        "filename": "src/app/commoncomponents/TextMessageDelegate.qml",
+        "patchSetId": 15
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-19T20:34:00Z",
+      "side": 1,
+      "message": "[🔴 Critical] Line 81: Returning `OriginalBody` directly bypasses the existing message parsing path used for `Body`, so the original view may lose sanitization/link handling/formatting consistency and may expose raw markup differently from normal messages. Parse and render the selected body through the same path instead of special-casing raw original text.\n```suggestion\nconst displayBody \u003d showOriginal \u0026\u0026 isPluginOverwrite ? OriginalBody : Body;\nif (displayBody !\u003d\u003d \"\" \u0026\u0026 ParsedBody.length \u003d\u003d\u003d 0) {\n    MessagesAdapter.parseMessage(Id, displayBody, UtilsAdapter.getAppValue(Settings.DisplayHyperlinkPreviews), rootDelegate.colorUrl, bubble.color);\n    return \"\";\n}\n```",
+      "revId": "591f63612078c7603844672b40586af5098d7348",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
