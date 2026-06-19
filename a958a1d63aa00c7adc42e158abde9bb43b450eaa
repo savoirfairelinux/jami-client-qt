@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "33188aa3_4b93f3dc",
+        "filename": "tests/CMakeLists.txt",
+        "patchSetId": 34
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-19T13:19:47Z",
+      "side": 1,
+      "message": "[🔴 Critical] Line 102: The unit test source paths now include an extra `tests/` segment because this file is already evaluated from the `tests` directory. This resolves to paths like `${repo}/tests/tests/unittests/main_unittest.cpp`, which will break CMake configuration. Use `${CMAKE_CURRENT_SOURCE_DIR}/unittests/...` instead.\n```suggestion\n    ${CMAKE_CURRENT_SOURCE_DIR}/unittests/main_unittest.cpp\n    ${CMAKE_CURRENT_SOURCE_DIR}/unittests/account_unittest.cpp\n    ${CMAKE_CURRENT_SOURCE_DIR}/unittests/contact_unittest.cpp\n    ${CMAKE_CURRENT_SOURCE_DIR}/unittests/messageparser_unittest.cpp\n    ${CMAKE_CURRENT_SOURCE_DIR}/unittests/paste_unittest.cpp\n    ${CMAKE_CURRENT_SOURCE_DIR}/unittests/previewengine_unittest.cpp\n    ${CMAKE_CURRENT_SOURCE_DIR}/unittests/conversationswitch_unittest.cpp\n    ${CMAKE_CURRENT_SOURCE_DIR}/unittests/apitokenmanager_unittest.cpp\n    ${CMAKE_CURRENT_SOURCE_DIR}/unittests/apiserver_unittest.cpp\n    ${CMAKE_CURRENT_SOURCE_DIR}/unittests/globaltestenvironment.h\n```",
+      "revId": "a958a1d63aa00c7adc42e158abde9bb43b450eaa",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
