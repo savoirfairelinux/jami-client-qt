@@ -267,6 +267,12 @@ CurrentConversation::updateProfile(const QString& convId)
             } else {
                 set_rdvDevice("");
             }
+            // Date at which this conversation was created/accepted (joined) locally.
+            if (convInfo.infos.contains("created")) {
+                set_joinedTimestamp(convInfo.infos["created"].toLongLong());
+            } else {
+                set_joinedTimestamp(0);
+            }
         }
     } catch (...) {
     }

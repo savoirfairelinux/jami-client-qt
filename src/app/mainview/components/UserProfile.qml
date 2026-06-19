@@ -245,6 +245,79 @@ BaseModalDialog {
                     radius: 5
                 }
             }
+
+            Control {
+                id: contactDatesControl
+
+                Layout.fillWidth: true
+                Layout.alignment: Qt.AlignHCenter
+
+                padding: 4
+
+                property var addedTs: idText !== "" ? UtilsAdapter.getContactAddedTime(CurrentAccount.id, idText) : 0
+                property var removedTs: idText !== "" ? UtilsAdapter.getContactRemovedTime(CurrentAccount.id, idText) : 0
+
+                visible: addedTs > 0 || removedTs > 0
+
+                contentItem: ColumnLayout {
+                    spacing: 6
+
+                    RowLayout {
+                        Layout.fillWidth: true
+                        spacing: 15
+                        visible: contactDatesControl.addedTs > 0
+
+                        Text {
+                            font.pointSize: JamiTheme.textFontSize
+                            text: JamiStrings.contactAddedOn
+                            color: JamiTheme.faddedFontColor
+                            horizontalAlignment: Text.AlignLeft
+                            verticalAlignment: Text.AlignVCenter
+                            Layout.leftMargin: 10
+                        }
+
+                        Text {
+                            Layout.fillWidth: true
+                            font.pointSize: JamiTheme.textFontSize
+                            text: UtilsAdapter.formatTimestamp(contactDatesControl.addedTs)
+                            color: JamiTheme.textColor
+                            horizontalAlignment: Text.AlignRight
+                            verticalAlignment: Text.AlignVCenter
+                            Layout.rightMargin: 10
+                        }
+                    }
+
+                    RowLayout {
+                        Layout.fillWidth: true
+                        spacing: 15
+                        visible: contactDatesControl.removedTs > 0
+
+                        Text {
+                            font.pointSize: JamiTheme.textFontSize
+                            text: JamiStrings.contactRemovedOn
+                            color: JamiTheme.faddedFontColor
+                            horizontalAlignment: Text.AlignLeft
+                            verticalAlignment: Text.AlignVCenter
+                            Layout.leftMargin: 10
+                        }
+
+                        Text {
+                            Layout.fillWidth: true
+                            font.pointSize: JamiTheme.textFontSize
+                            text: UtilsAdapter.formatTimestamp(contactDatesControl.removedTs)
+                            color: JamiTheme.textColor
+                            horizontalAlignment: Text.AlignRight
+                            verticalAlignment: Text.AlignVCenter
+                            Layout.rightMargin: 10
+                        }
+                    }
+                }
+
+                background: Rectangle {
+                    color: JamiTheme.globalIslandColor
+                    radius: 5
+                }
+            }
         }
 
         background: Rectangle {

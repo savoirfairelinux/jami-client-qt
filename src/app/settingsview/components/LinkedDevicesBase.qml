@@ -109,6 +109,7 @@ ColumnLayout {
 
             deviceName: root.isCurrent ? DeviceName : JamiStrings.deviceName + " " + DeviceName
             deviceId: DeviceID
+            lastSync: LastSync
             onBtnRemoveDeviceClicked: removeDeviceSlot(index)
             isCurrent: root.isCurrent
         }

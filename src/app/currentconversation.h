@@ -49,6 +49,7 @@ class CurrentConversation final : public QObject
     QML_PROPERTY(QString, color)
     QML_PROPERTY(QString, rdvAccount)
     QML_PROPERTY(QString, rdvDevice)
+    QML_PROPERTY(qint64, joinedTimestamp)
     QML_PROPERTY(call::Status, callState)
     QML_PROPERTY(bool, inCall)
     QML_PROPERTY(bool, isTemporary)
