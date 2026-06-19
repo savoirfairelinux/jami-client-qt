@@ -30,7 +30,7 @@ ColumnLayout {
         property int bannedContactsSize: 0
 
         Layout.fillWidth: true
-        Layout.preferredHeight: Math.min(bannedContactsSize, 5) * (74 + spacing)
+        Layout.preferredHeight: Math.min(contentHeight, 5 * contentHeight / Math.max(bannedContactsSize, 1))
         spacing: JamiTheme.settingsListViewsSpacing
 
         model: BannedListModel {
@@ -43,10 +43,10 @@ ColumnLayout {
             id: bannedListDelegate
 
             width: bannedListWidget.width
-            height: 74
 
             contactName: ContactName
             contactID: ContactID
+            removedTs: UtilsAdapter.getContactRemovedTime(CurrentAccount.id, ContactID)
 
             btnImgSource: JamiStrings.optionUnblock
             btnToolTip: JamiStrings.reinstateContact

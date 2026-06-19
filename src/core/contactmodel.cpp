@@ -273,6 +273,16 @@ ContactModel::getAddedTs(const QString& contactUri) const
     return itAdded.value().toUInt();
 }
 
+time_t
+ContactModel::getRemovedTs(const QString& contactUri) const
+{
+    MapStringString details = ConfigurationManager::instance().getContactDetails(owner.id, contactUri);
+    auto itRemoved = details.find("removed");
+    if (itRemoved == details.end())
+        return 0;
+    return itRemoved.value().toUInt();
+}
+
 void
 ContactModel::addContact(contact::Info contactInfo)
 {
