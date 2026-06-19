@@ -18,62 +18,71 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import net.jami.Models 1.1
+import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import "../../commoncomponents"
 
 ItemDelegate {
     id: root
 
+    implicitHeight: Math.max(JamiTheme.smartListItemHeight, textColumn.implicitHeight + 2 * (JamiTheme.itemPadding + JamiTheme.itemMarginVertical))
+
     property string contactName: ""
     property string contactID: ""
     property string btnImgSource: ""
     property string btnToolTip: ""
+    property var removedTs: 0
 
     signal btnContactClicked
 
     background: Rectangle {
+        id: contentRect
+
+        anchors.fill: parent
+        anchors.topMargin: JamiTheme.itemMarginVertical
+        anchors.bottomMargin: JamiTheme.itemMarginVertical
+        anchors.leftMargin: JamiTheme.itemMarginHorizontal
+        anchors.rightMargin: JamiTheme.itemMarginHorizontal
+
         color: JamiTheme.editBackgroundColor
-        height: root.height
         radius: height / 2
     }
 
     RowLayout {
-        anchors.fill: parent
+        anchors.fill: contentRect
+        anchors.margins: JamiTheme.itemPadding
+        anchors.leftMargin: Math.max(JamiTheme.itemPadding, contentRect.radius - avatar.width / 2)
+        anchors.rightMargin: Math.max(JamiTheme.itemPadding, contentRect.radius - btnContact.height / 2)
+        spacing: 16
 
-        Label {
-            id: labelContactAvatar
+        Avatar {
+            id: avatar
 
             Layout.alignment: Qt.AlignVCenter
-            Layout.leftMargin: JamiTheme.preferredMarginSize
-            Layout.rightMargin: JamiTheme.preferredMarginSize
-            Layout.preferredWidth: JamiTheme.preferredFieldHeight
-            Layout.preferredHeight: JamiTheme.preferredFieldHeight
-            horizontalAlignment: Text.AlignLeft
+            Layout.preferredWidth: JamiTheme.smartListAvatarSize
+            Layout.preferredHeight: JamiTheme.smartListAvatarSize
 
-            background: Avatar {
-                id: avatar
-
-                anchors.fill: parent
-
-                mode: Avatar.Mode.Contact
-                imageId: contactID
-                showPresenceIndicator: false
-            }
+            mode: Avatar.Mode.Contact
+            imageId: root.contactID
+            showPresenceIndicator: false
         }
 
         ColumnLayout {
+            id: textColumn
+
             Layout.fillWidth: true
             Layout.fillHeight: true
             Layout.alignment: Qt.AlignVCenter
+            spacing: 0
 
             Label {
                 id: labelContactName
 
                 Layout.fillWidth: true
+                Layout.minimumHeight: 20
+                Layout.alignment: Qt.AlignVCenter
 
-                Layout.preferredHeight: 24
-
-                font.pointSize: JamiTheme.textFontSize
+                font.pointSize: JamiTheme.mediumFontSize
                 font.kerning: true
 
                 horizontalAlignment: Text.AlignLeft
@@ -87,12 +96,11 @@ ItemDelegate {
                 id: labelContactId
 
                 Layout.fillWidth: true
+                Layout.minimumHeight: 20
+                Layout.alignment: Qt.AlignVCenter
 
-                Layout.minimumHeight: 24
-                Layout.preferredHeight: 24
-                Layout.maximumHeight: 24
-
-                font.pointSize: JamiTheme.textFontSize
+                font.family: JamiTheme.ubuntuMonoFontFamily
+                font.pointSize: JamiTheme.smallFontSize
                 font.kerning: true
 
                 horizontalAlignment: Qt.AlignLeft
@@ -101,12 +109,27 @@ ItemDelegate {
                 text: contactID === "" ? JamiStrings.identifier : contactID
                 color: JamiTheme.textColor
             }
+
+            Label {
+                objectName: "labelContactRemovedDate"
+
+                Layout.fillWidth: true
+                Layout.minimumHeight: 20
+                Layout.alignment: Qt.AlignVCenter
+
+                visible: root.removedTs > 0
+                text: JamiStrings.contactRemovedOn + " " + UtilsAdapter.formatTimestamp(root.removedTs)
+                color: JamiTheme.faddedFontColor
+                font.pointSize: JamiTheme.smallFontSize
+                verticalAlignment: Text.AlignVCenter
+                elide: Text.ElideRight
+            }
         }
 
         NewMaterialButton {
             id: btnContact
 
-            Layout.rightMargin: 16
+            Layout.alignment: Qt.AlignVCenter
 
             outlinedButton: true
 

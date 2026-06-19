@@ -145,12 +145,16 @@ public:
 
     // For Swarm details page
     Q_INVOKABLE int getContactPresence(const QString& accountId, const QString& uri);
+    Q_INVOKABLE bool isContact(const QString& accountId, const QString& uri);
     Q_INVOKABLE QString getContactBestName(const QString& accountId, const QString& uri);
     Q_INVOKABLE QString getContactDisplayNameWithoutOverride(const QString& accountId, const QString& uri);
     Q_INVOKABLE bool hasContactDisplayNameOverride(const QString& accountId, const QString& uri);
     Q_INVOKABLE lrc::api::member::Role getParticipantRole(const QString& accountId,
                                                           const QString& convId,
                                                           const QString& uri);
+    Q_INVOKABLE qint64 getContactAddedTime(const QString& accountId, const QString& uri);
+    Q_INVOKABLE qint64 getContactRemovedTime(const QString& accountId, const QString& uri);
+    Q_INVOKABLE QString formatTimestamp(qint64 epochSeconds) const;
     Q_INVOKABLE bool luma(const QColor& color) const;
     Q_INVOKABLE bool useApplicationTheme();
     Q_INVOKABLE bool hasNativeDarkTheme() const;

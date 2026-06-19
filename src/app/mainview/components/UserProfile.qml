@@ -29,6 +29,7 @@ BaseModalDialog {
     property string aliasText
     property string registeredNameText
     property string idText
+    property bool isContact: idText !== "" && UtilsAdapter.isContact(CurrentAccount.id, idText)
 
     property int preferredImgSize: 80
 
@@ -236,6 +237,54 @@ BaseModalDialog {
 
                         onClicked: {
                             UtilsAdapter.setClipboardText(idText);
+                        }
+                    }
+                }
+
+                background: Rectangle {
+                    color: JamiTheme.globalIslandColor
+                    radius: 5
+                }
+            }
+
+            Control {
+                id: contactDatesControl
+                objectName: "contactDatesControl"
+
+                Layout.fillWidth: true
+                Layout.alignment: Qt.AlignHCenter
+
+                padding: 4
+
+                property var addedTs: idText !== "" ? UtilsAdapter.getContactAddedTime(CurrentAccount.id, idText) : 0
+
+                visible: root.isContact && addedTs > 0
+
+                contentItem: ColumnLayout {
+                    spacing: 6
+
+                    RowLayout {
+                        Layout.fillWidth: true
+                        spacing: 15
+                        visible: contactDatesControl.addedTs > 0
+
+                        Text {
+                            font.pointSize: JamiTheme.textFontSize
+                            text: JamiStrings.contactAddedOn
+                            color: JamiTheme.faddedFontColor
+                            horizontalAlignment: Text.AlignLeft
+                            verticalAlignment: Text.AlignVCenter
+                            Layout.leftMargin: 10
+                        }
+
+                        Text {
+                            Layout.fillWidth: true
+                            font.pointSize: JamiTheme.textFontSize
+                            text: UtilsAdapter.formatTimestamp(contactDatesControl.addedTs)
+                            color: JamiTheme.textColor
+                            horizontalAlignment: Text.AlignRight
+                            verticalAlignment: Text.AlignVCenter
+                            Layout.rightMargin: 10
                         }
                     }
                 }
