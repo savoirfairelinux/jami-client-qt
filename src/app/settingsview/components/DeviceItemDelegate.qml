@@ -29,13 +29,15 @@ ItemDelegate {
     property string deviceName: ""
     property string deviceId: ""
     property bool isCurrent: false
+    property var lastSync: 0
 
     property bool editable: false
     property bool isHovered: root.hovered || button.hovered || root.editable
 
     signal btnRemoveDeviceClicked
 
-    // Note that the implicitWidth and implicitHeight are defined directly in LinkedDevicesBase.qml
+    implicitHeight: Math.max(70, implicitContentHeight + topPadding + bottomPadding)
+
     padding: 12
     leftPadding: deviceImage.iconSize / 2
     rightPadding: background.radius - button.height / 2
@@ -135,6 +137,22 @@ ItemDelegate {
                 elide: Text.ElideMiddle
                 font.family: JamiTheme.ubuntuMonoFontFamily
                 font.pointSize: JamiTheme.textFontSize
+            }
+
+            Text {
+                id: labelLastSync
+                objectName: "labelLastSync"
+
+                Layout.alignment: Qt.AlignVCenter
+                Layout.fillWidth: true
+                Layout.leftMargin: editDeviceName.leftPadding
+
+                visible: !root.isCurrent
+                text: JamiStrings.lastSync.arg(root.lastSync > 0 ? UtilsAdapter.formatTimestamp(root.lastSync) : JamiStrings.neverSynced)
+                color: JamiTheme.faddedFontColor
+                horizontalAlignment: Text.AlignLeft
+                elide: Text.ElideRight
+                font.pointSize: JamiTheme.smallFontSize
             }
         }
 
