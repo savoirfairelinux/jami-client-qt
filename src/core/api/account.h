@@ -290,6 +290,10 @@ struct Info
     QString id;
     profile::Info profileInfo; // contains: type, alias
     bool enabled;
+    // Whether the swarm conversation list has been loaded into conversationModel.
+    // Disabled accounts defer conversation loading in the daemon, so this starts
+    // false for them and the models are (re)initialized once they are enabled.
+    bool conversationsInitialized {false};
     ConfProperties_t confProperties;
 
     // load/save
