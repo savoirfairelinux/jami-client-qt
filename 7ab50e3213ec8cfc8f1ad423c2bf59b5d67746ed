@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "653b5fb6_48f4bf6f",
+        "filename": "src/core/accountmodel.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 634,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-20T13:46:47Z",
+      "side": 1,
+      "message": "[🟡 Suggestion] Line 634: Using `getConversations().empty()` as the only guard means accounts that legitimately have zero conversations will re-run `initContacts()` and `initConversations()` on every TRYING/REGISTERED status transition. That can trigger repeated daemon calls/signals and makes the reload non-idempotent despite the comment. Please guard this with an explicit loaded/initialized state instead of the current list size, or mark the refresh as attempted once it succeeds.\n```suggestion\n            if ((status \u003d\u003d api::account::Status::TRYING || status \u003d\u003d api::account::Status::REGISTERED)\n                \u0026\u0026 !accountInfo.conversationsInitialized) {\n                accountInfo.contactModel-\u003einitContacts();\n                accountInfo.conversationModel-\u003einitConversations();\n                accountInfo.conversationsInitialized \u003d true;\n            }\n```",
+      "revId": "7ab50e3213ec8cfc8f1ad423c2bf59b5d67746ed",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
