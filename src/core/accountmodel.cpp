@@ -624,6 +624,18 @@ AccountModelPimpl::slotAccountStatusChanged(const QString& accountID, const api:
             Q_EMIT linked.accountAdded(accountID);
         } else if (!accountInfo.profileInfo.uri.isEmpty()) {
             accountInfo.status = status;
+            // A disabled account does not load its conversations at startup (the
+            // daemon defers loading until the account is enabled). When such an
+            // account becomes active and its swarm conversations were never
+            // loaded on the client side, (re)initialize the models so the
+            // conversations show up without restarting the app. Mirrors the
+            // migration case handled in slotMigrationEnded(). The empty-list
+            // guard keeps this idempotent for accounts that are already loaded.
+            if ((status == api::account::Status::TRYING || status == api::account::Status::REGISTERED)
+                && accountInfo.conversationModel->getConversations().empty()) {
+                accountInfo.contactModel->initContacts();
+                accountInfo.conversationModel->initConversations();
+            }
             Q_EMIT linked.accountStatusChanged(accountID);
             emitDataChanged(accountID);
         }
