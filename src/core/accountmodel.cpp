@@ -621,9 +621,23 @@ AccountModelPimpl::slotAccountStatusChanged(const QString& accountID, const api:
             // This will load swarms as the account was not loaded before.
             accountInfo.contactModel->initContacts();
             accountInfo.conversationModel->initConversations();
+            accountInfo.conversationsInitialized = true;
             Q_EMIT linked.accountAdded(accountID);
         } else if (!accountInfo.profileInfo.uri.isEmpty()) {
             accountInfo.status = status;
+            // A disabled account does not load its conversations at startup (the
+            // daemon defers loading until the account is enabled). When such an
+            // account becomes registered for the first time, (re)initialize the
+            // models so its conversations show up without restarting the app.
+            // Mirrors the migration case handled in slotMigrationEnded(); the
+            // explicit flag ensures this runs at most once per account. Triggered
+            // on REGISTERED (not TRYING) so the daemon has exposed the deferred
+            // conversation list before we read it.
+            if (status == api::account::Status::REGISTERED && !accountInfo.conversationsInitialized) {
+                accountInfo.contactModel->initContacts();
+                accountInfo.conversationModel->initConversations();
+                accountInfo.conversationsInitialized = true;
+            }
             Q_EMIT linked.accountStatusChanged(accountID);
             emitDataChanged(accountID);
         }
@@ -782,6 +796,7 @@ AccountModelPimpl::slotMigrationEnded(const QString& accountId, bool ok)
         // without having to restart the application.
         accountInfo.contactModel->initContacts();
         accountInfo.conversationModel->initConversations();
+        accountInfo.conversationsInitialized = true;
     }
     Q_EMIT linked.migrationEnded(accountId, ok);
 }
@@ -857,6 +872,11 @@ AccountModelPimpl::addToAccounts(const QString& accountId)
                                                                        *db,
                                                                        callbacksHandler,
                                                                        behaviorController);
+    // An enabled account has its conversations loaded by the ConversationModel
+    // constructor above. A disabled account defers loading in the daemon, so its
+    // models are (re)initialized when it is later enabled (see
+    // slotAccountStatusChanged()).
+    newAccInfo.conversationsInitialized = newAccInfo.enabled;
     newAccInfo.peerDiscoveryModel = std::make_unique<PeerDiscoveryModel>(callbacksHandler, accountId);
     newAccInfo.deviceModel = std::make_unique<DeviceModel>(newAccInfo, callbacksHandler);
     newAccInfo.codecModel = std::make_unique<CodecModel>(newAccInfo, callbacksHandler);
