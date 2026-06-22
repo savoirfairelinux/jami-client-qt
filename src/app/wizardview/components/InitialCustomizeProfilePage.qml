@@ -25,7 +25,7 @@ import "../"
 import net.jami.UI as JUI
 import "../../settingsview/components"
 import "../../mainview/components"
-import "../../commoncomponents/contextmenu"
+import net.jami.UI as JUI
 
 Rectangle {
     id: root

@@ -1044,6 +1044,7 @@ endif()
 # path.
 file(GLOB JAMI_UI_QML_FILES
     "${APP_SRC_DIR}/commoncomponents/*.qml"
+    "${APP_SRC_DIR}/commoncomponents/contextmenu/*.qml"
 )
 foreach(_f ${JAMI_UI_QML_FILES})
     get_filename_component(_alias "${_f}" NAME)

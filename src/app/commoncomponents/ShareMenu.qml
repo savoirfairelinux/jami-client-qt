@@ -18,8 +18,6 @@ import QtQuick
 import net.jami.Constants 1.1
 import net.jami.Adapters 1.1
 
-import "contextmenu"
-
 BaseContextMenu {
     id: root
 

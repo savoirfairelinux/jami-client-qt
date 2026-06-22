@@ -20,9 +20,8 @@ import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import net.jami.UI as JUI
-import "../../commoncomponents/contextmenu"
 
-ContextMenuAutoLoader {
+JUI.ContextMenuAutoLoader {
     id: root
 
     signal showSwarmDetails
@@ -44,8 +43,8 @@ ContextMenuAutoLoader {
     property string registeredNameText
     property string idText
 
-    property list<GeneralMenuItem> menuItems: [
-        GeneralMenuItem {
+    property list<JUI.GeneralMenuItem> menuItems: [
+        JUI.GeneralMenuItem {
             id: startOrJoinAudioCall
 
             canTrigger: !readOnly && !isInCall
@@ -56,7 +55,7 @@ ContextMenuAutoLoader {
                 CallAdapter.startAudioOnlyCall();
             }
         },
-        GeneralMenuItem {
+        JUI.GeneralMenuItem {
             id: startOrJoinVideoCall
 
             canTrigger: CurrentAccount.videoEnabled_Video && !readOnly && !isInCall
@@ -68,7 +67,7 @@ ContextMenuAutoLoader {
                     CallAdapter.startCall();
             }
         },
-        GeneralMenuItem {
+        JUI.GeneralMenuItem {
             id: deleteConversation
 
             canTrigger: mode === Conversation.Mode.NON_SWARM && !isInCall && !root.isBanned
@@ -76,7 +75,7 @@ ContextMenuAutoLoader {
             iconSource: JamiResources.clear_24dp_svg
             onClicked: MessagesAdapter.clearConversationHistory(responsibleAccountId, responsibleConvUid)
         },
-        GeneralMenuItem {
+        JUI.GeneralMenuItem {
             id: removeConversation
 
             canTrigger: !isInCall && !root.isBanned
@@ -93,7 +92,7 @@ ContextMenuAutoLoader {
                 });
             }
         },
-        GeneralMenuItem {
+        JUI.GeneralMenuItem {
             id: removeContact
 
             canTrigger: !isInCall && !root.isBanned && mode === Conversation.Mode.ONE_TO_ONE
@@ -110,7 +109,7 @@ ContextMenuAutoLoader {
                 });
             }
         },
-        GeneralMenuItem {
+        JUI.GeneralMenuItem {
             id: endCall
 
             canTrigger: isInCall
@@ -118,7 +117,7 @@ ContextMenuAutoLoader {
             iconSource: JamiResources.call_end_white_24dp_svg
             onClicked: CallAdapter.endCall(responsibleAccountId, responsibleConvUid)
         },
-        GeneralMenuItem {
+        JUI.GeneralMenuItem {
             id: acceptContactRequest
 
             canTrigger: contactType === Profile.Type.PENDING
@@ -126,7 +125,7 @@ ContextMenuAutoLoader {
             iconSource: JamiResources.add_people_24dp_svg
             onClicked: MessagesAdapter.acceptInvitation(responsibleConvUid)
         },
-        GeneralMenuItem {
+        JUI.GeneralMenuItem {
             id: declineContactRequest
 
             canTrigger: contactType === Profile.Type.PENDING
@@ -134,7 +133,7 @@ ContextMenuAutoLoader {
             iconSource: JamiResources.round_close_24dp_svg
             onClicked: MessagesAdapter.declineInvitation(responsibleConvUid)
         },
-        GeneralMenuItem {
+        JUI.GeneralMenuItem {
             id: blockContact
 
             canTrigger: !isInCall && contactType !== Profile.Type.SIP && !root.isBanned && isCoreDialog && root.idText !== CurrentAccount.uri
@@ -151,7 +150,7 @@ ContextMenuAutoLoader {
                 });
             }
         },
-        GeneralMenuItem {
+        JUI.GeneralMenuItem {
             id: unblockContact
 
             canTrigger: root.isBanned
@@ -159,7 +158,7 @@ ContextMenuAutoLoader {
             iconSource: JamiResources.round_remove_circle_24dp_svg
             onClicked: MessagesAdapter.unbanConversation(responsibleConvUid)
         },
-        GeneralMenuItem {
+        JUI.GeneralMenuItem {
             id: contactDetails
 
             canTrigger: contactType !== Profile.Type.SIP
