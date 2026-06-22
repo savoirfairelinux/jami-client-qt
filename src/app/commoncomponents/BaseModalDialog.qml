@@ -20,7 +20,7 @@ import QtQuick.Effects
 import QtQuick.Layouts
 
 import net.jami.Constants 1.1
-import "../mainview/components"
+import net.jami.MainView as JMV
 
 Dialog {
     id: root

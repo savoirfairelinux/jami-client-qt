@@ -1428,7 +1428,7 @@ endif()
 
 target_include_directories(${PROJECT_NAME} PRIVATE ${CLIENT_INCLUDE_DIRS})
 target_link_directories(${PROJECT_NAME} PRIVATE ${CLIENT_LINK_DIRS})
-target_link_libraries(${PROJECT_NAME} PRIVATE ${CLIENT_LIBS} jami_ui jami_settingsview)
+target_link_libraries(${PROJECT_NAME} PRIVATE ${CLIENT_LIBS} jami_ui jami_settingsview jami_mainview)
 
 qt_import_qml_plugins(${PROJECT_NAME})
 qt_finalize_executable(${PROJECT_NAME})

@@ -23,7 +23,7 @@ import QtQml.Models
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-import "../mainview/components"
+import net.jami.MainView as JMV
 import net.jami.SettingsView as JSV
 
 // Search bar for filtering dictionaries
@@ -42,7 +42,7 @@ ColumnLayout {
     Component.onCompleted: Qt.callLater(dictionarySearchBar.setTextAreaFocus)
 
     // Header title
-    Searchbar {
+    JMV.Searchbar {
         id: dictionarySearchBar
 
         Layout.fillWidth: true

@@ -22,7 +22,7 @@ import net.jami.Adapters 1.1
 import Qt5Compat.GraphicalEffects
 import net.jami.Constants 1.1
 import net.jami.UI as JUI
-import "../../mainview/components"
+import net.jami.MainView as JMV
 
 ItemDelegate {
     id: root
@@ -135,7 +135,7 @@ ItemDelegate {
             clip: true
             radius: 5
             color: JamiTheme.secondaryBackgroundColor
-            CachedImage {
+            JMV.CachedImage {
                 id: background
                 defaultImage: JamiResources.default_plugin_background_jpg
                 downloadUrl: PluginAdapter.getBackgroundImageUrl(pluginId)
@@ -232,7 +232,7 @@ ItemDelegate {
                     Layout.alignment: Qt.AlignCenter
                     Layout.topMargin: JamiTheme.iconMargin
                     Layout.bottomMargin: JamiTheme.iconMargin
-                    CachedImage {
+                    JMV.CachedImage {
                         id: icon
                         defaultImage: JamiResources.plugins_default_icon_svg
                         width: 65

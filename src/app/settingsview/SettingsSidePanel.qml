@@ -24,7 +24,7 @@ import net.jami.Constants 1.1
 import net.jami.Enums 1.1
 import net.jami.Models 1.1
 import net.jami.Helpers 1.1
-import "../mainview/components"
+import net.jami.MainView as JMV
 import net.jami.UI as JUI
 import "components"
 
@@ -320,7 +320,7 @@ JUI.SidePanelBase {
 
     ColumnLayout {
         anchors.fill: parent
-        // Note that the margins should be identical to that of SidePanel
+        // Note that the margins should be identical to that of JMV.SidePanel
         // Creates The floating rectangle itself
         anchors.margins: root.sidePanelIslandsMargin
         anchors.topMargin: JamiQmlUtils.isMacOS26OrLater ? JamiTheme.sidePanelIslandPaddingMac : root.sidePanelIslandsMargin
@@ -492,7 +492,7 @@ JUI.SidePanelBase {
                 }
             }
         }
-        AccountComboBox {
+        JMV.AccountComboBox {
             id: accountComboBox
 
             appContext: root.appContext

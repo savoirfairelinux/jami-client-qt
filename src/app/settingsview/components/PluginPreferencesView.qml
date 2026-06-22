@@ -22,7 +22,7 @@ import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import net.jami.UI as JUI
-import "../../mainview/components"
+import net.jami.MainView as JMV
 
 Item {
     id: root
@@ -79,7 +79,7 @@ Item {
                     }
                 }
                 contentItem: ColumnLayout {
-                    JamiPushButton { JUI.QWKSetParentHitTestVisible {}
+                    JMV.JamiPushButton { JUI.QWKSetParentHitTestVisible {}
                         id: closeButton
                         readonly property bool alignLeft: Qt.platform.os.toString() !== "osx"
                         normalColor: Qt.rgba(124, 124, 124, 0.36)

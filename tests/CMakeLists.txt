@@ -122,7 +122,8 @@ set(ALL_TESTS_LIBS
     ${EXTRA_TEST_LIBS}
     ${CLIENT_LIBS}
     jami_ui jami_uiplugin jami_uiplugin_init
-    jami_settingsview jami_settingsviewplugin jami_settingsviewplugin_init)
+    jami_settingsview jami_settingsviewplugin jami_settingsviewplugin_init
+    jami_mainview jami_mainviewplugin jami_mainviewplugin_init)
 
 set(ALL_TESTS_INCLUDES
     ${TESTS_INCLUDES}
