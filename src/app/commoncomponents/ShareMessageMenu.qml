@@ -23,7 +23,6 @@ import QtQml.Models
 import net.jami.Constants 1.1
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
-import "contextmenu"
 
 import "../mainview/components"
 

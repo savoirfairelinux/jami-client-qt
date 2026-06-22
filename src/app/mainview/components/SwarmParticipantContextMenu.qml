@@ -20,16 +20,15 @@ import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import net.jami.UI as JUI
-import "../../commoncomponents/contextmenu"
 
-ContextMenuAutoLoader {
+JUI.ContextMenuAutoLoader {
     id: root
     property string conversationId: ""
     property string participantUri: ""
     property var role
 
-    property list<GeneralMenuItem> menuItems: [
-        GeneralMenuItem {
+    property list<JUI.GeneralMenuItem> menuItems: [
+        JUI.GeneralMenuItem {
             id: startAudioCall
             itemName: JamiStrings.startAudioCall
             canTrigger: ConversationsAdapter.dialogId(participantUri) !== ""
@@ -39,7 +38,7 @@ ContextMenuAutoLoader {
                 CallAdapter.startAudioOnlyCall();
             }
         },
-        GeneralMenuItem {
+        JUI.GeneralMenuItem {
             id: startVideoCall
             itemName: JamiStrings.startVideoCall
             canTrigger: ConversationsAdapter.dialogId(participantUri) !== ""
@@ -49,7 +48,7 @@ ContextMenuAutoLoader {
                 CallAdapter.startCall();
             }
         },
-        GeneralMenuItem {
+        JUI.GeneralMenuItem {
             id: goToConversation
 
             iconSource: JamiResources.gotoconversation_24dp_svg
@@ -61,7 +60,7 @@ ContextMenuAutoLoader {
                     ConversationsAdapter.setFilter(participantUri);
             }
         },
-        GeneralMenuItem {
+        JUI.GeneralMenuItem {
             id: blockContact
             itemName: JamiStrings.blockContact
             iconSource: JamiResources.block_black_24dp_svg
@@ -69,7 +68,7 @@ ContextMenuAutoLoader {
                 ContactAdapter.removeContact(participantUri, true);
             }
         },
-        GeneralMenuItem {
+        JUI.GeneralMenuItem {
             id: kickMember
             property var memberRole: UtilsAdapter.getParticipantRole(CurrentAccount.id, conversationId, participantUri)
             itemName: memberRole === Member.Role.BANNED ? JamiStrings.reinstateMember : JamiStrings.kickMember
@@ -84,7 +83,7 @@ ContextMenuAutoLoader {
                 }
             }
         },
-        GeneralMenuItem {
+        JUI.GeneralMenuItem {
             id: contactDetails
 
             itemName: JamiStrings.contactDetails
