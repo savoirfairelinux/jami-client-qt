@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8207c004_14ed8032",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 15
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-06-22T18:07:03Z",
+      "side": 1,
+      "message": "Code looks fine, but ideally I could test the UI once an up-to-date JPL of the translation plugin is available",
+      "revId": "591f63612078c7603844672b40586af5098d7348",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0d1f5c9e_77c0bea0",
