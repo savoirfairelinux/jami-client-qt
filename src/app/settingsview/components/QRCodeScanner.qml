@@ -19,7 +19,7 @@ import QtQuick
 import net.jami.Constants 1.1
 import net.jami.Adapters 1.1
 import net.jami.Helpers 1.1
-import "../../commoncomponents"
+import net.jami.UI as JUI
 
 Item {
     id: root
@@ -47,7 +47,7 @@ Item {
         color: JamiTheme.primaryForegroundColor
         clip: true
 
-        LocalVideo {
+        JUI.LocalVideo {
             id: previewWidget
             anchors.fill: parent
             flip: true

@@ -22,10 +22,10 @@ import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import net.jami.Enums 1.1
 import net.jami.Models 1.1
-import "../../commoncomponents"
+import net.jami.UI as JUI
 import "../js/keyboardshortcuttablecreation.js" as KeyboardShortcutTableCreation
 
-ListSelectionView {
+JUI.ListSelectionView {
     id: viewNode
 
     objectName: "WelcomePage"
@@ -135,7 +135,7 @@ ListSelectionView {
         contentTipAndIdColor = (hasCustomUi && uiCustomization.tipBoxAndIdColor !== undefined) ? (UtilsAdapter.luma(tipBoxAndIdColor) ? JamiTheme.lightTintedBlue : JamiTheme.darkTintedBlue) : JamiTheme.tintedBlue;
     }
 
-    rightPaneItem: JamiFlickable {
+    rightPaneItem: JUI.Flickable {
         id: root
         objectName: "WelcomeLayout"
 
@@ -247,7 +247,7 @@ ListSelectionView {
                 Layout.margins: JamiTheme.welcomePageSpacing / 2
                 Layout.alignment: Qt.AlignHCenter
 
-                NewMaterialButton {
+                JUI.NewMaterialButton {
                     id: aboutJami
 
                     objectName: "aboutJami"
@@ -260,7 +260,7 @@ ListSelectionView {
                     onClicked: viewCoordinator.presentDialog(appWindow, "mainview/components/AboutPopUp.qml")
                 }
 
-                NewIconButton {
+                JUI.NewIconButton {
                     id: btnKeyboard
 
                     anchors.right: parent.right

@@ -21,7 +21,7 @@ import Qt5Compat.GraphicalEffects
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-import "../../commoncomponents"
+import net.jami.UI as JUI
 
 Rectangle {
     id: root
@@ -57,7 +57,7 @@ Rectangle {
             elide: Text.ElideRight
         }
 
-        ResponsiveImage {
+        JUI.ResponsiveImage {
             id: backEndError
             Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
             width: 30
@@ -71,7 +71,7 @@ Rectangle {
                 }
             }
 
-            MaterialToolTip {
+            JUI.MaterialToolTip {
                 id: backendErrorToolTip
                 text: ""
                 visible: parent.hovered && text !== ""
@@ -79,7 +79,7 @@ Rectangle {
             }
         }
 
-        PushButton {
+        JUI.PushButton {
             id: btnClose
             Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
 

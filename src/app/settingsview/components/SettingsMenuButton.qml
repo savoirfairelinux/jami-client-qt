@@ -18,9 +18,9 @@ import QtQuick
 import QtQuick.Controls
 import net.jami.Models 1.1
 import net.jami.Constants 1.1
-import "../../commoncomponents"
+import net.jami.UI as JUI
 
-PushButton {
+JUI.PushButton {
     id: root
 
     property int menuType: 0

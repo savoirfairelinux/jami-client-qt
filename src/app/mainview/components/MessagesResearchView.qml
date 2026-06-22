@@ -23,7 +23,7 @@ import QtQml.Models
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-import "../../commoncomponents"
+import net.jami.UI as JUI
 import "../../settingsview/components"
 
 ListView {
@@ -103,7 +103,7 @@ ListView {
 
             width: root.width
 
-            TimestampInfo {
+            JUI.TimestampInfo {
                 id: timestampItem
 
                 showDay: true
@@ -116,14 +116,14 @@ ListView {
 
                 property bool isMe: Author === CurrentAccount.uri
 
-                Avatar {
+                JUI.Avatar {
                     id: avatar
 
                     width: 30
                     height: 30
                     imageId: contentRow.isMe ? CurrentAccount.id : Author
                     showPresenceIndicator: false
-                    mode: contentRow.isMe ? Avatar.Mode.Account : Avatar.Mode.Contact
+                    mode: contentRow.isMe ? JUI.Avatar.Mode.Account : JUI.Avatar.Mode.Contact
                     Layout.leftMargin: 10
                     Layout.alignment: Qt.AlignTop
                 }

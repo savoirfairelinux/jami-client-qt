@@ -25,7 +25,7 @@ import "../js/contactpickercreation.js" as ContactPickerCreation
 import "../js/selectscreenwindowcreation.js" as SelectScreenWindowCreation
 import "../js/screenrubberbandcreation.js" as ScreenRubberBandCreation
 import "../js/pluginhandlerpickercreation.js" as PluginHandlerPickerCreation
-import "../../commoncomponents"
+import net.jami.UI as JUI
 
 Item {
     id: root
@@ -91,8 +91,8 @@ Item {
     }
 
     function openShareFileDialog() {
-        var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/JamiFileDialog.qml", {
-            "fileMode": JamiFileDialog.OpenFile,
+        var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/JUI.FileDialog.qml", {
+            "fileMode": JUI.FileDialog.OpenFile,
             "nameFilters": [JamiStrings.allFiles]
         });
         dlg.fileAccepted.connect(function (file) {
@@ -100,7 +100,7 @@ Item {
         });
     }
 
-    ResponsiveImage {
+    JUI.ResponsiveImage {
         id: holdImage
 
         anchors.verticalCenter: root.verticalCenter

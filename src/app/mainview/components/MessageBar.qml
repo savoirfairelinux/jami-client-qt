@@ -23,7 +23,7 @@ import net.jami.Adapters 1.1
 import net.jami.Models 1.1
 import net.jami.Enums 1.1
 import net.jami.Constants 1.1
-import "../../commoncomponents"
+import net.jami.UI as JUI
 import "qrc:/js/markdownedition.js" as MDE
 
 Rectangle {
@@ -139,10 +139,10 @@ Rectangle {
                             var author = MessagesAdapter.dataForInteraction(MessagesAdapter.replyToId, MessageList.Author);
                             isSelf = author === "" || author === undefined;
                             if (isSelf) {
-                                containerLabelAvatar.mode = Avatar.Mode.Account;
+                                containerLabelAvatar.mode = JUI.Avatar.Mode.Account;
                                 containerLabelAvatar.imageId = CurrentAccount.id;
                             } else {
-                                containerLabelAvatar.mode = Avatar.Mode.Contact;
+                                containerLabelAvatar.mode = JUI.Avatar.Mode.Contact;
                                 containerLabelAvatar.imageId = author;
                             }
                             return isSelf ? CurrentAccount.uri : author;
@@ -171,7 +171,7 @@ Rectangle {
                             font.bold: true
                         }
 
-                        Avatar {
+                        JUI.Avatar {
                             id: containerLabelAvatar
 
                             anchors.verticalCenter: parent.verticalCenter
@@ -187,7 +187,7 @@ Rectangle {
 
                             imageId: ""
 
-                            mode: Avatar.Mode.Account
+                            mode: JUI.Avatar.Mode.Account
                         }
 
                         Label {
@@ -216,7 +216,7 @@ Rectangle {
                         }
                     }
 
-                    NewIconButton {
+                    JUI.NewIconButton {
                         id: closeContainerButton
 
                         Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
@@ -412,7 +412,7 @@ Rectangle {
                 }
             }
 
-            PushButton {
+            JUI.PushButton {
                 id: previewButton
 
                 visible: showTypo && messageBarTextArea.text

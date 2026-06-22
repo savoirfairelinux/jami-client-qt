@@ -19,7 +19,7 @@ import QtQuick.Controls
 import QtQuick.Layouts
 import net.jami.Models 1.1
 import net.jami.Constants 1.1
-import "../../commoncomponents"
+import net.jami.UI as JUI
 
 ItemDelegate {
     id: root
@@ -108,7 +108,7 @@ ItemDelegate {
             }
         }
 
-        PushButton {
+        JUI.PushButton {
             id: btnPreferencesPluginHandler
 
             Layout.alignment: Qt.AlingVCenter | Qt.AlignRight

@@ -18,7 +18,7 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import net.jami.Constants 1.1
-import "../../commoncomponents"
+import net.jami.UI as JUI
 
 RowLayout {
     id: root
@@ -70,7 +70,7 @@ RowLayout {
         }
     }
 
-    JamiSwitch {
+    JUI.Switch {
         id: switchOfLayout
         Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
 

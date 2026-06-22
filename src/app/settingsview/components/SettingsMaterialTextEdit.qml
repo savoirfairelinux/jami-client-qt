@@ -19,7 +19,7 @@ import QtQuick.Layouts
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-import "../../commoncomponents"
+import net.jami.UI as JUI
 
 RowLayout {
     id: root
@@ -51,7 +51,7 @@ RowLayout {
         color: JamiTheme.textColor
     }
 
-    NewMaterialTextField {
+    JUI.NewMaterialTextField {
         id: newMaterialTextField
 
         Layout.alignment: Qt.AlignCenter
@@ -69,7 +69,7 @@ RowLayout {
         onEditingFinished: root.editingFinished()
     }
 
-    PasswordTextEdit {
+    JUI.PasswordTextEdit {
         id: passwordTextEdit
 
         Layout.alignment: Qt.AlignCenter

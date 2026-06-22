@@ -123,9 +123,9 @@ BaseModalDialog {
 
                 onClicked: {
                     stopBooth();
-                    var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/JamiFileDialog.qml", {
+                    var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/FileDialog.qml", {
                                                                 title: JamiStrings.selectProfilePicture,
-                                                                fileMode: JamiFileDialog.OpenFile,
+                                                                fileMode: FileDialog.OpenFile,
                                                                 folder: StandardPaths.writableLocation(StandardPaths.PicturesLocation),
                                                                 nameFilters: [JamiStrings.imageFiles, JamiStrings.allFiles]
                                                             });

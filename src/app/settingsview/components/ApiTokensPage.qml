@@ -21,7 +21,7 @@ import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import net.jami.Enums 1.1
 import net.jami.Models 1.1
-import "../../commoncomponents"
+import net.jami.UI as JUI
 
 SettingsPageBase {
     id: root
@@ -86,7 +86,7 @@ SettingsPageBase {
                     font.pixelSize: JamiTheme.settingsDescriptionPixelSize
                 }
 
-                NewMaterialButton {
+                JUI.NewMaterialButton {
                     Layout.alignment: Qt.AlignLeft
                     implicitHeight: JamiTheme.newMaterialButtonHeight
                     filledButton: true
@@ -112,7 +112,7 @@ SettingsPageBase {
                 Layout.bottomMargin: JamiTheme.settingsCategorySpacing
                 spacing: 10
 
-                NewMaterialTextField {
+                JUI.NewMaterialTextField {
                     id: tokenLabelInput
 
                     Layout.fillWidth: true
@@ -120,7 +120,7 @@ SettingsPageBase {
                     placeholderText: JamiStrings.apiTokenLabelPlaceholder
                 }
 
-                NewMaterialButton {
+                JUI.NewMaterialButton {
                     id: createTokenBtn
 
                     implicitHeight: JamiTheme.newMaterialButtonHeight
@@ -226,7 +226,7 @@ SettingsPageBase {
                             }
                         }
 
-                        NewMaterialButton {
+                        JUI.NewMaterialButton {
                             id: revokeTokenButton
 
                             Layout.alignment: Qt.AlignVCenter
@@ -243,7 +243,7 @@ SettingsPageBase {
 
         // ── "New token created" dialog ──
 
-        BaseModalDialog {
+        JUI.BaseModalDialog {
             id: newTokenDialog
 
             property string rawToken: ""
@@ -285,7 +285,7 @@ SettingsPageBase {
                             color: JamiTheme.textColor
                         }
 
-                        NewIconButton {
+                        JUI.NewIconButton {
                             Layout.alignment: Qt.AlignTop
                             iconSource: JamiResources.content_copy_24dp_svg
                             iconSize: JamiTheme.iconButtonMedium

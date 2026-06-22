@@ -16,9 +16,9 @@
  */
 import QtQuick
 import net.jami.Constants 1.1
-import "../../commoncomponents"
+import net.jami.UI as JUI
 
-PushButton {
+JUI.PushButton {
     id: root
 
     normalColor: JamiTheme.buttonConference

@@ -20,9 +20,9 @@ import QtQuick.Layouts
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-import "../../commoncomponents"
+import net.jami.UI as JUI
 
-DualPaneView {
+JUI.DualPaneView {
     id: viewNode
     objectName: "NewSwarmPage"
 
@@ -86,9 +86,9 @@ DualPaneView {
                                 verticalAlignment: Qt.AlignVCenter
                             }
 
-                            NewIconButton {
+                            JUI.NewIconButton {
                                 id: removeUserBtn
-                                QWKSetParentHitTestVisible{}
+                                JUI.QWKSetParentHitTestVisible{}
 
                                 icon.color: hovered || activeFocus ? JamiTheme.textColor : JamiTheme.textColorHovered
                                 iconSize: JamiTheme.iconButtonSmall
@@ -116,7 +116,7 @@ DualPaneView {
             objectName: "mainLayout"
             anchors.centerIn: root
 
-            PhotoboothView {
+            JUI.PhotoboothView {
                 id: currentAccountAvatar
 
                 Layout.alignment: Qt.AlignCenter
@@ -128,7 +128,7 @@ DualPaneView {
                 avatarSize: 180
             }
 
-            NewMaterialTextField {
+            JUI.NewMaterialTextField {
                 id: title
                 objectName: "titleLineEdit"
 
@@ -145,7 +145,7 @@ DualPaneView {
                 onEditingFinished: description.forceActiveFocus()
             }
 
-            NewMaterialTextField {
+            JUI.NewMaterialTextField {
                 id: description
                 objectName: "descriptionLineEdit"
 
@@ -162,7 +162,7 @@ DualPaneView {
                 onEditingFinished: btnCreateSwarm.forceActiveFocus()
             }
 
-            MaterialButton {
+            JUI.MaterialButton {
                 id: btnCreateSwarm
 
                 TextMetrics {

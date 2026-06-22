@@ -19,7 +19,7 @@ import QtQuick.Controls
 import QtQuick.Layouts
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-import "../../commoncomponents"
+import net.jami.UI as JUI
 
 Control {
     padding: 12
@@ -54,7 +54,7 @@ Control {
             Layout.fillWidth: true
             spacing: 12
 
-            MaterialButton {
+            JUI.MaterialButton {
                 text: JamiStrings.removeContact
                 padding: 8
                 autoAccelerator: true
@@ -62,7 +62,7 @@ Control {
                 onClicked: MessagesAdapter.removeContact(LRCInstance.selectedConvUid)
             }
 
-            MaterialButton {
+            JUI.MaterialButton {
                 text: JamiStrings.migrateConversation
                 padding: 8
                 autoAccelerator: true

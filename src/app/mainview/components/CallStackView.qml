@@ -21,7 +21,7 @@ import QtQuick.Layouts
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-import "../../commoncomponents"
+import net.jami.UI as JUI
 
 Item {
     id: root
@@ -34,7 +34,7 @@ Item {
 
     // Set to true in the PiP window so this instance always renders.
     // When false (main window), the loader yields to the PiP window while
-    // it is active to avoid two VideoView instances on the same stream.
+    // it is active to avoid two JUI.VideoView instances on the same stream.
     property bool isPipView: false
 
     property var sipKeys: ["1", "2", "3", "A", "4", "5", "6", "B", "7", "8", "9", "C", "*", "0", "#", "D"]
@@ -100,7 +100,7 @@ Item {
         anchors.fill: parent
 
         sourceComponent: {
-            // Yield to the PiP window: unload to avoid two VideoView
+            // Yield to the PiP window: unload to avoid two JUI.VideoView
             // instances rendering the same call stream simultaneously.
             if (!root.isPipView && CallPipWindowManager.isPipActive
                     && CallPipWindowManager.pipConvId === CurrentConversation.id)

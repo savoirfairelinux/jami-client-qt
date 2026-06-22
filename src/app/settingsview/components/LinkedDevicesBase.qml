@@ -22,7 +22,7 @@ import net.jami.Enums 1.1
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-import "../../commoncomponents"
+import net.jami.UI as JUI
 
 ColumnLayout {
     id: root
@@ -41,11 +41,11 @@ ColumnLayout {
                     "deviceId": deviceId
                 });
         } else {
-            viewCoordinator.presentDialog(appWindow, "commoncomponents/SimpleMessageDialog.qml", {
+            viewCoordinator.presentDialog(appWindow, "commoncomponents/JUI.SimpleMessageDialog.qml", {
                     "title": JamiStrings.removeDevice,
                     "infoText": JamiStrings.confirmRemoveDevice,
                     "buttonTitles": [JamiStrings.optionOk, JamiStrings.optionCancel],
-                    "buttonStyles": [SimpleMessageDialog.ButtonStyle.TintedBlue, SimpleMessageDialog.ButtonStyle.TintedBlack],
+                    "buttonStyles": [JUI.SimpleMessageDialog.ButtonStyle.TintedBlue, JUI.SimpleMessageDialog.ButtonStyle.TintedBlack],
                     "buttonCallBacks": [function () {
                             DeviceItemListModel.revokeDevice(deviceId, "");
                         }],

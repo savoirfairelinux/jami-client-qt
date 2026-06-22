@@ -22,7 +22,7 @@ import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import net.jami.Enums 1.1
-import "../../commoncomponents"
+import net.jami.UI as JUI
 
 Control {
     id: root
@@ -637,23 +637,23 @@ Control {
 
                 indicator: null
 
-                contentItem: ResponsiveImage {
+                contentItem: JUI.ResponsiveImage {
                     color: "white"
                     source: JamiResources.more_vert_24dp_svg
                     anchors.fill: parent
                     anchors.margins: 17
                 }
 
-                background: HalfPill {
+                background: JUI.HalfPill {
                     implicitWidth: root.height
                     implicitHeight: implicitWidth
-                    radius: type === HalfPill.None ? 0 : 5
+                    radius: type === JUI.HalfPill.None ? 0 : 5
                     color: overflowButton.down ? "#c4777777" : overflowButton.hovered ? "#c4444444" : "#c4272727"
                     type: {
                         if (overflowItemListView.count || urgentOverflowListView.count || (overflowHiddenListView.count && overflowButton.popup.visible)) {
-                            return HalfPill.None;
+                            return JUI.HalfPill.None;
                         } else {
-                            return HalfPill.Left;
+                            return JUI.HalfPill.Left;
                         }
                     }
 
@@ -670,7 +670,7 @@ Control {
                     anchors.bottom: parent.top
                     anchors.bottomMargin: itemSpacing
                     visible: !overflowButton.popup.visible
-                    JamiListView {
+                    JUI.ListView {
                         id: urgentOverflowListView
 
                         spacing: itemSpacing
@@ -702,7 +702,7 @@ Control {
                     implicitHeight: Math.min(root.parentHeight - itemSpacing, (overflowButton.width + itemSpacing) * overflowHiddenListView.count)
                     padding: 0
 
-                    contentItem: JamiListView {
+                    contentItem: JUI.ListView {
                         id: overflowHiddenListView
                         spacing: itemSpacing
                         implicitHeight: Math.min(contentHeight, parent.height)

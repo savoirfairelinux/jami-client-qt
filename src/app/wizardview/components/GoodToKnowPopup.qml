@@ -18,9 +18,9 @@ import QtQuick
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import QtQuick.Layouts
-import "../../commoncomponents"
+import net.jami.UI as JUI
 
-BaseModalDialog {
+JUI.BaseModalDialog {
     id: root
 
     titleText: JamiStrings.goodToKnow
@@ -32,7 +32,7 @@ BaseModalDialog {
         spacing: 5
         width: 400 - 2 * root.popupMargins
 
-        InfoBox {
+        JUI.InfoBox {
             id: info
 
             width: parent.width
@@ -42,7 +42,7 @@ BaseModalDialog {
             icoColor: JamiTheme.wizardIconColor
         }
 
-        InfoBox {
+        JUI.InfoBox {
             width: parent.width
             icoSource: JamiResources.assignment_ind_black_24dp_svg
             title: JamiStrings.username
@@ -50,7 +50,7 @@ BaseModalDialog {
             icoColor: JamiTheme.wizardIconColor
         }
 
-        InfoBox {
+        JUI.InfoBox {
             width: parent.width
             icoSource: JamiResources.lock_24dp_svg
             title: JamiStrings.encrypt
@@ -58,7 +58,7 @@ BaseModalDialog {
             icoColor: JamiTheme.wizardIconColor
         }
 
-        InfoBox {
+        JUI.InfoBox {
             width: parent.width
             icoSource: JamiResources.brush_black_24dp_svg
             title: JamiStrings.customize

@@ -20,7 +20,7 @@ import QtQuick.Controls
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-import "../../commoncomponents"
+import net.jami.UI as JUI
 
 ColumnLayout {
     id: root
@@ -30,9 +30,9 @@ ColumnLayout {
 
     function openFileDialog(title, oldPath, fileType, onAcceptedCb) {
         var openPath = oldPath === "" ? (UtilsAdapter.getCurrentPath() + "/ringtones/") : (UtilsAdapter.toFileAbsolutepath(oldPath));
-        var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/JamiFileDialog.qml", {
+        var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/JUI.FileDialog.qml", {
                 "title": title,
-                "fileMode": JamiFileDialog.OpenFile,
+                "fileMode": JUI.FileDialog.OpenFile,
                 "folder": openPath,
                 "nameFilters": [fileType, JamiStrings.allFiles]
             });

@@ -20,7 +20,7 @@ import QtQuick.Controls
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-import "../../commoncomponents"
+import net.jami.UI as JUI
 
 ColumnLayout {
     id: root
@@ -63,7 +63,7 @@ ColumnLayout {
         Layout.fillHeight: true
         Layout.maximumHeight: JamiTheme.preferredFieldHeight
 
-        ElidedTextLabel {
+        JUI.ElidedTextLabel {
             Layout.fillWidth: true
             Layout.preferredHeight: JamiTheme.preferredFieldHeight
 
@@ -77,20 +77,20 @@ ColumnLayout {
             fontSize: JamiTheme.settingsFontSize
         }
 
-        PushButton {
+        JUI.PushButton {
             source: JamiResources.arrow_drop_down_24dp_svg
             imageColor: JamiTheme.textColor
             onClicked: decreaseCodecPriority()
         }
 
-        PushButton {
+        JUI.PushButton {
             source: JamiResources.arrow_drop_up_24dp_svg
             imageColor: JamiTheme.textColor
             onClicked: increaseCodecPriority()
         }
     }
 
-    JamiListView {
+    JUI.ListView {
         id: mediaListWidget
 
         Layout.fillWidth: true

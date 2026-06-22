@@ -20,7 +20,7 @@ import QtQuick.Controls
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-import "../../commoncomponents"
+import net.jami.UI as JUI
 
 ColumnLayout {
     id: root
@@ -104,7 +104,7 @@ ColumnLayout {
                 font.kerning: true
             }
 
-            NewMaterialTextField {
+            JUI.NewMaterialTextField {
                 id: newMaterialTextFieldProxyServer
 
                 Layout.alignment: Qt.AlignVCenter
@@ -117,7 +117,7 @@ ColumnLayout {
                 onEditingFinished: CurrentAccount.proxyServer = modifiedTextFieldContent
             }
 
-            JamiRadioButton {
+            JUI.RadioButton {
                 id: proxyServerRadioButton
 
                 spacing: 0
@@ -149,7 +149,7 @@ ColumnLayout {
                 font.kerning: true
             }
 
-            NewMaterialTextField {
+            JUI.NewMaterialTextField {
                 id: newMaterialTextFieldProxyListURL
 
                 Layout.maximumWidth: itemWidth - proxyListURLRadioButton.indicator.width - proxyListURLRadioButton.spacing - proxyListURLRadioButton.horizontalPadding
@@ -161,7 +161,7 @@ ColumnLayout {
                 onEditingFinished: CurrentAccount.dhtProxyListUrl = modifiedTextFieldContent
             }
 
-            JamiRadioButton {
+            JUI.RadioButton {
                 id: proxyListURLRadioButton
 
                 spacing: 0

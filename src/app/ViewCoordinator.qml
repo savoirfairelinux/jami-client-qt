@@ -19,7 +19,7 @@ import QtQuick.Controls
 import QtQuick.Layouts
 import net.jami.Constants 1.1
 import net.jami.Models 1.1
-import "commoncomponents"
+import net.jami.UI as JUI
 
 QtObject {
     id: root
@@ -46,7 +46,7 @@ QtObject {
 
     readonly property Item currentView: rootView && rootView.currentItem || null
     readonly property var currentViewName: currentView && currentView.objectName || null
-    readonly property bool isDualPane: currentView && currentView instanceof DualPaneView
+    readonly property bool isDualPane: currentView && currentView instanceof JUI.DualPaneView
     readonly property bool isInSinglePaneMode: !isDualPane || currentView.isSinglePane
     readonly property bool isRTL: Qt.application.layoutDirection === Qt.RightToLeft
     // A list of the current visible views. This could be a single view or two views in

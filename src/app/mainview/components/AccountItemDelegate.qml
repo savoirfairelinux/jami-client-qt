@@ -20,7 +20,7 @@ import QtQuick.Layouts
 import net.jami.Models 1.1
 import net.jami.Constants 1.1
 import net.jami.Adapters 1.1
-import "../../commoncomponents"
+import net.jami.UI as JUI
 
 ItemDelegate {
     id: root
@@ -67,7 +67,7 @@ ItemDelegate {
         anchors.rightMargin: 15
         spacing: 10
 
-        Avatar {
+        JUI.Avatar {
             objectName: "accountComboBoxDelegateAvatar"
             Layout.preferredWidth: JamiTheme.accountListAvatarSize
             Layout.preferredHeight: JamiTheme.accountListAvatarSize
@@ -76,7 +76,7 @@ ItemDelegate {
             presenceStatus: Status
 
             imageId: ID
-            mode: Avatar.Mode.Account
+            mode: JUI.Avatar.Mode.Account
         }
 
         ColumnLayout {

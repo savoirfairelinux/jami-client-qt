@@ -50,9 +50,9 @@ ItemDelegate {
             break;
         case PreferenceItemListModel.PATH:
             if (index === 0) {
-                var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/JamiFileDialog.qml", {
+                var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/FileDialog.qml", {
                         "title": JamiStrings.selectAnImage.arg(preferenceName),
-                        "fileMode": JamiFileDialog.OpenFile,
+                        "fileMode": FileDialog.OpenFile,
                         "folder": JamiQmlUtils.qmlFilePrefix + currentPath,
                         "nameFilters": fileFilters
                     });

@@ -22,10 +22,10 @@ import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import net.jami.Enums 1.1
 import Qt.labs.platform
-import "../../commoncomponents"
+import net.jami.UI as JUI
 import "../../mainview/components"
 
-BaseModalDialog {
+JUI.BaseModalDialog {
     id: root
 
     signal accepted
@@ -126,7 +126,7 @@ BaseModalDialog {
                         wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                     }
 
-                    MaterialButton {
+                    JUI.MaterialButton {
                         Layout.alignment: Qt.AlignHCenter
                         text: JamiStrings.close
                         toolTipText: JamiStrings.optionTryAgain
@@ -153,7 +153,7 @@ BaseModalDialog {
                         wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                     }
 
-                    MaterialButton {
+                    JUI.MaterialButton {
                         Layout.alignment: Qt.AlignHCenter
                         text: JamiStrings.close
                         toolTipText: JamiStrings.close
@@ -222,7 +222,7 @@ BaseModalDialog {
                         Layout.alignment: Qt.AlignHCenter
                         spacing: 16
 
-                        MaterialButton {
+                        JUI.MaterialButton {
                             id: confirm
                             primary: true
                             Layout.alignment: Qt.AlignCenter
@@ -233,7 +233,7 @@ BaseModalDialog {
                             }
                         }
 
-                        MaterialButton {
+                        JUI.MaterialButton {
                             id: cancel
                             Layout.alignment: Qt.AlignCenter
                             secondary: true
@@ -337,7 +337,7 @@ BaseModalDialog {
                             color: JamiTheme.textColor
                         }
 
-                        NewMaterialTextField {
+                        JUI.NewMaterialTextField {
                             id: codeInput
 
                             Layout.alignment: Qt.AlignHCenter
@@ -358,7 +358,7 @@ BaseModalDialog {
                         }
                     }
 
-                    MaterialButton {
+                    JUI.MaterialButton {
                         id: connect
                         Layout.alignment: Qt.AlignHCenter
                         primary: true

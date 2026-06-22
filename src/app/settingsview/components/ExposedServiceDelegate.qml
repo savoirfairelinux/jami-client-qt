@@ -6,7 +6,7 @@ import QtQuick.Controls.impl
 import net.jami.Constants 1.1
 import net.jami.Adapters 1.1
 
-import "../../commoncomponents"
+import net.jami.UI as JUI
 
 ItemDelegate {
     id: root
@@ -149,7 +149,7 @@ ItemDelegate {
 
             spacing: 4
 
-            NewIconButton {
+            JUI.NewIconButton {
                 id: editButton
 
                 iconSize: JamiTheme.iconButtonMedium
@@ -173,7 +173,7 @@ ItemDelegate {
                 }
             }
 
-            NewIconButton {
+            JUI.NewIconButton {
                 id: openButton
 
                 iconSize: JamiTheme.iconButtonMedium
@@ -188,7 +188,7 @@ ItemDelegate {
                 }
             }
 
-            JamiSwitch {
+            JUI.Switch {
                 anchors.verticalCenter: parent.verticalCenter
                 checked: modelData.enabled === "true"
                 onClicked: {

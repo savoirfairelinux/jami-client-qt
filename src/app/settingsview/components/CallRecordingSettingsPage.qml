@@ -21,7 +21,7 @@ import Qt.labs.platform
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-import "../../commoncomponents"
+import net.jami.UI as JUI
 
 SettingsPageBase {
     id: root
@@ -199,7 +199,7 @@ SettingsPageBase {
                         }
                     }
 
-                    MaterialToolTip {
+                    JUI.MaterialToolTip {
                         id: toolTip
                         text: JamiStrings.quality
                         visible: parent.hovered
@@ -226,7 +226,7 @@ SettingsPageBase {
                     verticalAlignment: Text.AlignVCenter
                 }
 
-                NewMaterialButton {
+                JUI.NewMaterialButton {
                     id: recordPathButton
 
                     Layout.alignment: Qt.AlignRight
@@ -260,7 +260,7 @@ SettingsPageBase {
                     verticalAlignment: Text.AlignVCenter
                 }
 
-                NewMaterialButton {
+                JUI.NewMaterialButton {
                     id: screenshotPathButton
 
                     Layout.alignment: Qt.AlignRight

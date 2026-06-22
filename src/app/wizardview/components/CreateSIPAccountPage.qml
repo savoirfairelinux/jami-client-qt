@@ -20,7 +20,7 @@ import QtQuick.Controls
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import net.jami.Models 1.1
-import "../../commoncomponents"
+import net.jami.UI as JUI
 
 Rectangle {
     id: root
@@ -88,7 +88,7 @@ Rectangle {
                     verticalAlignment: Text.AlignVCenter
                     wrapMode: Text.WordWrap
                 }
-                NewMaterialTextField {
+                JUI.NewMaterialTextField {
                     id: sipServernameEdit
                     objectName: "sipServernameEdit"
 
@@ -100,7 +100,7 @@ Rectangle {
                     placeholderText: JamiStrings.server
                 }
 
-                NewMaterialTextField {
+                JUI.NewMaterialTextField {
                     id: sipUsernameEdit
                     objectName: "sipUsernameEdit"
 
@@ -112,7 +112,7 @@ Rectangle {
                     placeholderText: JamiStrings.username
                 }
 
-                PasswordTextEdit {
+                JUI.PasswordTextEdit {
                     id: sipPasswordEdit
 
                     Layout.alignment: Qt.AlignCenter
@@ -131,7 +131,7 @@ Rectangle {
                     ButtonGroup {
                         id: optionsB
                     }
-                    MaterialRadioButton {
+                    JUI.MaterialRadioButton {
                         id: tlsRadioButton
                         ButtonGroup.group: optionsB
 
@@ -141,7 +141,7 @@ Rectangle {
                         text: JamiStrings.tls
                         width: 120
                     }
-                    MaterialRadioButton {
+                    JUI.MaterialRadioButton {
                         id: udpRadioButton
                         ButtonGroup.group: optionsB
 
@@ -150,7 +150,7 @@ Rectangle {
                         width: 120
                     }
                 }
-                NewMaterialButton {
+                JUI.NewMaterialButton {
                     id: createAccountButton
 
                     objectName: "createSIPAccountButton"
@@ -175,7 +175,7 @@ Rectangle {
                         WizardViewStepModel.nextStep();
                     }
                 }
-                NewMaterialButton {
+                JUI.NewMaterialButton {
                     id: personalizeAccount
 
                     Layout.alignment: Qt.AlignCenter
@@ -213,7 +213,7 @@ Rectangle {
                     text: JamiStrings.personalizeAccount
                     verticalAlignment: Text.AlignVCenter
                 }
-                PhotoboothView {
+                JUI.PhotoboothView {
                     id: currentAccountAvatar
                     Layout.alignment: Qt.AlignCenter
                     Layout.topMargin: 50
@@ -226,7 +226,7 @@ Rectangle {
                     imageId: visible ? "temp" : ""
                 }
 
-                NewMaterialTextField {
+                JUI.NewMaterialTextField {
                     id: displayNameLineEdit
 
                     Layout.alignment: Qt.AlignCenter
@@ -252,9 +252,9 @@ Rectangle {
             }
         }
     }
-    NewIconButton {
+    JUI.NewIconButton {
         id: backButton
-        QWKSetParentHitTestVisible {}
+        JUI.QWKSetParentHitTestVisible {}
 
         objectName: "createSIPAccountPageBackButton"
 
