@@ -25,10 +25,10 @@ import net.jami.Enums 1.1
 import net.jami.Models 1.1
 import net.jami.Helpers 1.1
 import "../mainview/components"
-import "../commoncomponents"
+import net.jami.UI as JUI
 import "components"
 
-SidePanelBase {
+JUI.SidePanelBase {
     id: root
     objectName: "SettingsSidePanel"
 
@@ -360,7 +360,7 @@ SidePanelBase {
 
             ColumnLayout {
                 id: settingsLayout
-                QWKSetParentHitTestVisible {}
+                JUI.QWKSetParentHitTestVisible {}
 
                 anchors.fill: settingsListRect
                 anchors.leftMargin: JamiTheme.sidePanelConversationsIslandHorizontalPadding
@@ -387,7 +387,7 @@ SidePanelBase {
                         property bool isChildSelected: root.currentIndex >= modelData.first
                                                        && root.currentIndex <= modelData.last
 
-                        PushButton {
+                        JUI.PushButton {
                             id: sectionHeader
                             buttonText: modelData.title
                             circled: false
@@ -446,7 +446,7 @@ SidePanelBase {
                                 // In single pane mode, don't show child selection until user explicitly navigates
                                 property bool isSelected: !root.isSinglePane && root.currentIndex
                                                           === modelData.id
-                                PushButton {
+                                JUI.PushButton {
                                     visible: modelData.visible !== undefined ? modelData.visible :
                                                                                true
                                     buttonText: modelData.title

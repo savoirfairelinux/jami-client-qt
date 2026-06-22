@@ -28,12 +28,12 @@ Flickable {
     maximumFlickVelocity: 1024
     clip: true
 
-    ScrollBar.vertical: JamiScrollBar {
+    ScrollBar.vertical: ScrollBar {
         id: verticalScrollBar
 
         attachedFlickableMoving: root.attachedFlickableMoving
     }
-    ScrollBar.horizontal: JamiScrollBar {
+    ScrollBar.horizontal: ScrollBar {
         id: horizontalScrollBar
 
         attachedFlickableMoving: root.attachedFlickableMoving

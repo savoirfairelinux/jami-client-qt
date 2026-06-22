@@ -22,7 +22,7 @@ import QtQuick.Shapes
 import net.jami.Adapters 1.1
 import net.jami.Models 1.1
 import net.jami.Constants 1.1
-import "../../commoncomponents"
+import net.jami.UI as JUI
 
 Item {
     id: root
@@ -73,7 +73,7 @@ Item {
         }
     }
 
-    QWKSetParentHitTestVisible {
+    JUI.QWKSetParentHitTestVisible {
     }
 
     TextMetrics {
@@ -108,7 +108,7 @@ Item {
         anchors.fill: participantIsActive ? undefined : parent
     }
 
-    VideoView {
+    JUI.VideoView {
         id: mediaDistRender
         anchors.fill: parent
         anchors.margins: 2
@@ -116,7 +116,7 @@ Item {
         crop: !participantIsActive
         flip: isMe && !isSharing && CurrentCall.flipSelf
 
-        underlayItems: Avatar {
+        underlayItems: JUI.Avatar {
             property real componentSize: Math.min(mediaDistRender.contentRect.width / 2, mediaDistRender.contentRect.height / 2)
             height: componentSize
             width: componentSize
@@ -125,7 +125,7 @@ Item {
             readonly property real step: 96
             property real size: Math.floor((componentSize + step - 1) / step) * step
             sourceSize: Qt.size(size, size)
-            mode: root.isMe ? Avatar.Mode.Account : Avatar.Mode.Contact
+            mode: root.isMe ? JUI.Avatar.Mode.Account : JUI.Avatar.Mode.Contact
             showPresenceIndicator: false
             visible: root.videoMuted
 
@@ -247,7 +247,7 @@ Item {
                             HoverHandler {
                                 id: hoverName
                             }
-                            MaterialToolTip {
+                            JUI.MaterialToolTip {
                                 visible: hoverName.hovered && (text.length > 0)
                                 text: bestNameLabel.truncated ? bestName : ""
                             }
@@ -258,7 +258,7 @@ Item {
                             height: parent.height
                             Layout.alignment: Qt.AlignVCenter
 
-                            ResponsiveImage {
+                            JUI.ResponsiveImage {
                                 id: isHostIndicator
 
                                 Layout.alignment: Qt.AlignVCenter
@@ -275,13 +275,13 @@ Item {
                                 HoverHandler {
                                     id: hoverHost
                                 }
-                                MaterialToolTip {
+                                JUI.MaterialToolTip {
                                     visible: hoverHost.hovered
                                     text: JamiStrings.host
                                 }
                             }
 
-                            ResponsiveImage {
+                            JUI.ResponsiveImage {
                                 id: isModeratorIndicator
 
                                 Layout.alignment: Qt.AlignVCenter
@@ -298,13 +298,13 @@ Item {
                                 HoverHandler {
                                     id: hoverModerator
                                 }
-                                MaterialToolTip {
+                                JUI.MaterialToolTip {
                                     visible: hoverModerator.hovered
                                     text: JamiStrings.moderator
                                 }
                             }
 
-                            ResponsiveImage {
+                            JUI.ResponsiveImage {
                                 id: isMutedIndicator
 
                                 Layout.alignment: Qt.AlignVCenter
@@ -321,7 +321,7 @@ Item {
                                 HoverHandler {
                                     id: hoverMicrophone
                                 }
-                                MaterialToolTip {
+                                JUI.MaterialToolTip {
                                     visible: hoverMicrophone.hovered
                                     text: {
                                         if (!root.isMe && !CurrentCall.isModerator && root.participantIsModeratorMuted && root.isLocalMuted)
@@ -345,7 +345,7 @@ Item {
                 }
             }
 
-            PushButton {
+            JUI.PushButton {
                 id: isRaiseHandIndicator
                 source: JamiResources.hand_black_24dp_svg
                 imageColor: JamiTheme.whiteColor

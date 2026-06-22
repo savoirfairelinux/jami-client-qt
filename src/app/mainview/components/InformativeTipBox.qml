@@ -20,7 +20,7 @@ import QtQuick.Layouts
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-import "../../commoncomponents"
+import net.jami.UI as JUI
 
 ColumnLayout {
     id: column
@@ -47,7 +47,7 @@ ColumnLayout {
         Layout.leftMargin: 15
         Layout.alignment: Qt.AlignLeft
 
-        ResponsiveImage {
+        JUI.ResponsiveImage {
             id: icon
 
             visible: !opened
@@ -94,7 +94,7 @@ ColumnLayout {
         color: column.textColor
     }
 
-    JamiFlickable {
+    JUI.Flickable {
         Layout.preferredWidth: root.width - 32
         Layout.alignment: Qt.AlignVCenter | Qt.AlignHCenter
         property real maxDescriptionHeight: maxHeight - rowlayout.Layout.preferredHeight - title.Layout.preferredHeight - 2 * JamiTheme.preferredMarginSize

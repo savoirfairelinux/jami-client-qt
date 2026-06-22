@@ -24,7 +24,7 @@ import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import net.jami.Helpers 1.1
 
-import "../../commoncomponents"
+import net.jami.UI as JUI
 
 /* Why is ComboBox not the root item?
 * To address accessibility, we separate the three main components:
@@ -135,12 +135,12 @@ Item {
 
                     spacing: 10
 
-                    Avatar {
+                    JUI.Avatar {
                         Layout.preferredWidth: JamiTheme.accountListAvatarSize
                         Layout.preferredHeight: JamiTheme.accountListAvatarSize
                         Layout.alignment: Qt.AlignVCenter
                         Layout.leftMargin: 10
-                        mode: Avatar.Mode.Account
+                        mode: JUI.Avatar.Mode.Account
                         imageId: CurrentAccount.id
                         presenceStatus: CurrentAccount.status
                     }
@@ -241,7 +241,7 @@ Item {
                                     RowLayout {
                                         anchors.fill: parent
 
-                                        NewIconButton {
+                                        JUI.NewIconButton {
                                             id: addAccountIcon
 
                                             Layout.alignment: Qt.AlignVCenter
@@ -316,7 +316,7 @@ Item {
                 Accessible.description: JamiStrings.accountListDescription
             }
 
-            NewIconButton {
+            JUI.NewIconButton {
                 id: shareButton
 
                 Layout.alignment: Qt.AlignVCenter
@@ -331,7 +331,7 @@ Item {
                                                          "mainview/components/WelcomePageQrDialog.qml")
             }
 
-            NewIconButton {
+            JUI.NewIconButton {
                 id: settingsButton
 
                 Layout.alignment: Qt.AlignVCenter

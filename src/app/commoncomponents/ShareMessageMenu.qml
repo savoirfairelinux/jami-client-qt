@@ -24,7 +24,7 @@ import net.jami.Constants 1.1
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import "contextmenu"
-import "../commoncomponents"
+
 import "../mainview/components"
 
 BaseContextMenu {
@@ -167,7 +167,7 @@ BaseContextMenu {
             }
         }
 
-        JamiListView {
+        ListView {
             id: contactPickerListView
 
             Layout.alignment: Qt.AlignCenter
@@ -207,7 +207,7 @@ BaseContextMenu {
                 contentHeight: messageInput.implicitHeight
                 contentWidth: messageInput.width
 
-                ScrollBar.vertical: JamiScrollBar {
+                ScrollBar.vertical: ScrollBar {
                     policy: ScrollBar.AsNeeded
                 }
 

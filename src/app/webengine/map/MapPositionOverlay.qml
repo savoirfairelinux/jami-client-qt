@@ -20,7 +20,7 @@ import QtQuick.Controls
 
 import net.jami.Constants 1.1
 import net.jami.Adapters 1.1
-import "../../commoncomponents"
+import net.jami.UI as JUI
 
 Control {
     id: root
@@ -32,7 +32,7 @@ Control {
     padding: 4
 
     contentItem: Row {
-        NewIconButton {
+        JUI.NewIconButton {
             id: btnUnpin
 
             iconSource: JamiResources.bidirectional_unpin_24dp_svg
@@ -48,7 +48,7 @@ Control {
             }
         }
 
-        NewIconButton {
+        JUI.NewIconButton {
             id: btnCenter
 
             iconSource: JamiResources.share_location_24dp_svg
@@ -60,7 +60,7 @@ Control {
             }
         }
 
-        NewIconButton {
+        JUI.NewIconButton {
             id: btnMove
 
             iconSource: JamiResources.move_24dp_svg
@@ -79,7 +79,7 @@ Control {
             }
         }
 
-        NewIconButton {
+        JUI.NewIconButton {
             id: btnMaximise
 
             iconSource: mapObject.isFullScreen ? JamiResources.close_fullscreen_24dp_svg : JamiResources.open_in_full_24dp_svg
@@ -97,7 +97,7 @@ Control {
             }
         }
 
-        NewIconButton {
+        JUI.NewIconButton {
             id: btnClose
 
             iconSource: JamiResources.round_close_24dp_svg

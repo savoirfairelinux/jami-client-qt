@@ -22,9 +22,9 @@ import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import net.jami.Helpers 1.1
-import "../../commoncomponents"
+import net.jami.UI as JUI
 
-BaseModalDialog {
+JUI.BaseModalDialog {
     id: root
 
     // We want this particular dialog to only be as wide as the buttons,
@@ -52,7 +52,7 @@ BaseModalDialog {
         Qt.openUrlExternally("mailto:jami@gnu.org");
     }
 
-    contentItem: JamiFlickable {
+    contentItem: JUI.Flickable {
         id: aboutPopUpScrollView
 
         implicitWidth: aboutPopUpContentRectColumnLayout.implicitWidth
@@ -71,7 +71,7 @@ BaseModalDialog {
                 Layout.alignment: Qt.AlignCenter
                 spacing: 10
 
-                ResponsiveImage {
+                JUI.ResponsiveImage {
                     id: aboutPopUPJamiLogoImage
 
                     Layout.alignment: Qt.AlignCenter
@@ -144,7 +144,7 @@ BaseModalDialog {
 
                                 color: JamiTheme.faddedFontColor
                             }
-                            NewIconButton {
+                            JUI.NewIconButton {
                                 id: copyBuildAndVersionInfoButton
 
                                 Layout.alignment: Qt.AlignRight | Qt.AlignVCenter

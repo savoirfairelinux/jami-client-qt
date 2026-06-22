@@ -21,7 +21,7 @@ import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import Qt5Compat.GraphicalEffects
 import net.jami.Constants 1.1
-import "../../commoncomponents"
+import net.jami.UI as JUI
 
 ItemDelegate {
     id: root
@@ -55,10 +55,10 @@ ItemDelegate {
     }
 
     function presentErrorMessage() {
-        viewCoordinator.presentDialog(appWindow, "commoncomponents/SimpleMessageDialog.qml", {
+        viewCoordinator.presentDialog(appWindow, "commoncomponents/JUI.SimpleMessageDialog.qml", {
                 "title": JamiStrings.installationFailed,
                 "infoText": JamiStrings.extensionInstallationFailed,
-                "buttonStyles": [SimpleMessageDialog.ButtonStyle.TintedBlue],
+                "buttonStyles": [JUI.SimpleMessageDialog.ButtonStyle.TintedBlue],
                 "buttonTitles": [JamiStrings.optionOk],
                 "buttonCallBacks": []
             });
@@ -101,7 +101,7 @@ ItemDelegate {
 
                 background: Rectangle {
                     color: "transparent"
-                    ResponsiveImage {
+                    JUI.ResponsiveImage {
                         anchors.centerIn: parent
                         source: "file:" + pluginIcon
                         containerWidth: JamiTheme.preferredFieldHeight
@@ -123,7 +123,7 @@ ItemDelegate {
                 verticalAlignment: Text.AlignVCenter
             }
 
-            MaterialButton {
+            JUI.MaterialButton {
                 id: update
                 anchors.right: itemSwitch.left
                 buttontextHeightMargin: 10.0

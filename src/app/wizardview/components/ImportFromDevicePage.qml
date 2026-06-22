@@ -23,7 +23,7 @@ import net.jami.Models 1.1
 import net.jami.Constants 1.1
 import net.jami.Enums 1.1
 import Qt.labs.platform
-import "../../commoncomponents"
+import net.jami.UI as JUI
 import "../../mainview/components"
 
 Rectangle {
@@ -214,13 +214,13 @@ Rectangle {
                     }
                     spacing: 20
 
-                    Avatar {
+                    JUI.Avatar {
                         id: accountAvatar
                         showPresenceIndicator: false
                         Layout.alignment: Qt.AlignVCenter
                         Layout.preferredWidth: 48
                         Layout.preferredHeight: 48
-                        mode: Avatar.Mode.TemporaryAccount
+                        mode: JUI.Avatar.Mode.TemporaryAccount
                         imageId: name.text || jamiId
                     }
 
@@ -259,7 +259,7 @@ Rectangle {
             }
 
             // Password
-            PasswordTextEdit {
+            JUI.PasswordTextEdit {
                 id: passwordField
 
                 Layout.fillWidth: true
@@ -291,7 +291,7 @@ Rectangle {
                 spacing: 16
                 Layout.margins: 10
 
-                NewMaterialButton {
+                JUI.NewMaterialButton {
                     id: confirmButton
 
                     implicitHeight: JamiTheme.newMaterialButtonSetupHeight
@@ -392,7 +392,7 @@ Rectangle {
                         }
 
                         // Copy button
-                        PushButton {
+                        JUI.PushButton {
                             id: copyButton
                             Layout.alignment: Qt.AlignVCenter
                             preferredSize: 30
@@ -457,7 +457,7 @@ Rectangle {
                 wrapMode: Text.WordWrap
             }
 
-            NewMaterialButton {
+            JUI.NewMaterialButton {
                 Layout.alignment: Qt.AlignHCenter
 
                 implicitHeight: JamiTheme.newMaterialButtonSetupHeight
@@ -475,9 +475,9 @@ Rectangle {
     }
 
     // Back button
-    NewIconButton {
+    JUI.NewIconButton {
         id: backButton
-        QWKSetParentHitTestVisible {}
+        JUI.QWKSetParentHitTestVisible {}
 
         anchors.left: parent.left
         anchors.top: parent.top

@@ -19,7 +19,7 @@ import QtQuick.Layouts
 import net.jami.Constants 1.1
 import net.jami.Adapters 1.1
 import net.jami.Enums 1.1
-import "../../commoncomponents"
+import net.jami.UI as JUI
 
 ColumnLayout {
     id: root
@@ -83,7 +83,7 @@ ColumnLayout {
 
         Layout.alignment: Qt.AlignHCenter
 
-        MaterialButton {
+        JUI.MaterialButton {
             id: sharePositionButton
 
             preferredWidth: text.contentWidth
@@ -130,7 +130,7 @@ ColumnLayout {
                 webView.runJavaScript("zoomTolayersExtent()");
             }
 
-            MaterialToolTip {
+            JUI.MaterialToolTip {
                 property bool isSharingPossible: !(sharePositionButton.isError && (sharePositionButton.positioningError !== "default"))
 
                 visible: sharePositionButton.hovered
@@ -144,7 +144,7 @@ ColumnLayout {
             }
         }
 
-        MaterialButton {
+        JUI.MaterialButton {
             id: stopSharingPositionButton
 
             preferredWidth: text.contentWidth

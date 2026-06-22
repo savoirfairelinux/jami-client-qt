@@ -25,7 +25,7 @@ import net.jami.Adapters 1.1
 import net.jami.Enums 1.1
 import net.jami.Constants 1.1
 import net.jami.Helpers 1.1
-import "../../commoncomponents"
+import net.jami.UI as JUI
 import "../../mainview/components"
 import "../../mainview/js/contactpickercreation.js" as ContactPickerCreation
 
@@ -109,7 +109,7 @@ SettingsPageBase {
             }
 
             // A button to open the dictionary install view as a popup
-            NewMaterialButton {
+            JUI.NewMaterialButton {
                 id: dictionaryInstallButton
 
                 Layout.alignment: Qt.AlignRight
@@ -121,7 +121,7 @@ SettingsPageBase {
                 text: JamiStrings.dictionaryManager
 
                 onClicked: {
-                    viewCoordinator.presentDialog(appWindow, "commoncomponents/DictionaryManagerDialog.qml");
+                    viewCoordinator.presentDialog(appWindow, "commoncomponents/JUI.DictionaryManagerDialog.qml");
                 }
             }
         }
@@ -212,7 +212,7 @@ SettingsPageBase {
                     id: optionsB
                 }
 
-                MaterialRadioButton {
+                JUI.MaterialRadioButton {
                     id: enterButton
 
                     width: 130
@@ -231,7 +231,7 @@ SettingsPageBase {
                     }
                 }
 
-                MaterialRadioButton {
+                JUI.MaterialRadioButton {
                     id: shiftEnterButton
 
                     width: 210
@@ -298,7 +298,7 @@ SettingsPageBase {
                     verticalAlignment: Text.AlignVCenter
                 }
 
-                NewMaterialButton {
+                JUI.NewMaterialButton {
                     id: downloadButton
 
                     Layout.alignment: Qt.AlignRight
@@ -337,7 +337,7 @@ SettingsPageBase {
             }
         }
 
-        NewMaterialButton {
+        JUI.NewMaterialButton {
             id: defaultSettings
 
             Layout.topMargin: 20

@@ -19,7 +19,7 @@ import QtQuick.Controls
 import Qt5Compat.GraphicalEffects
 import net.jami.Constants 1.1
 import net.jami.Adapters 1.1
-import "../../commoncomponents"
+import net.jami.UI as JUI
 
 Control {
     id: root
@@ -61,7 +61,7 @@ Control {
         }
     ]
 
-    contentItem: ResponsiveImage {
+    contentItem: JUI.ResponsiveImage {
         id: arrowDropDown
 
         anchors.centerIn: parent

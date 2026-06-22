@@ -22,7 +22,7 @@ import QtWebEngine
 import net.jami.Models 1.1
 import net.jami.Constants 1.1
 import net.jami.Adapters 1.1
-import "../commoncomponents"
+import net.jami.UI as JUI
 
 WebEngineView {
     id: wev
@@ -44,7 +44,7 @@ WebEngineView {
     Component.onCompleted: loadHtml(html, 'file:///')
     layer.enabled: !isFullScreen
     layer.effect: OpacityMask {
-        maskSource: MessageBubble {
+        maskSource: JUI.MessageBubble {
             out: isOutgoing
             type: seq
             width: wev.width

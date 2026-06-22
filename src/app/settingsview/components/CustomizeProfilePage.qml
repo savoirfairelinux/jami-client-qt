@@ -21,7 +21,7 @@ import net.jami.Adapters 1.1
 import net.jami.Enums 1.1
 import net.jami.Constants 1.1
 import net.jami.Helpers 1.1
-import "../../commoncomponents"
+import net.jami.UI as JUI
 
 SettingsPageBase {
     id: root
@@ -53,7 +53,7 @@ SettingsPageBase {
                 }
             }
 
-            PhotoboothView {
+            JUI.PhotoboothView {
                 id: currentAccountAvatar
                 width: avatarSize
                 height: avatarSize
@@ -67,7 +67,7 @@ SettingsPageBase {
                 Accessible.name: JamiStrings.chooseProfilePicture
             }
 
-            NewMaterialTextField {
+            JUI.NewMaterialTextField {
                 id: displayNameLineEdit
 
                 Layout.alignment: Qt.AlignVCenter

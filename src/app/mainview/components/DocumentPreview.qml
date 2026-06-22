@@ -20,7 +20,7 @@ import Qt5Compat.GraphicalEffects
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import net.jami.Models 1.1
-import "../../commoncomponents"
+import net.jami.UI as JUI
 
 Item {
     id: root
@@ -49,7 +49,7 @@ Item {
         }
     }
 
-    SBSContextMenu {
+    JUI.SBSContextMenu {
         id: ctxMenu
 
         msgId: Id
@@ -98,7 +98,7 @@ Item {
                     radius: JamiTheme.chatViewFooterButtonRadius
                     color: JamiTheme.secondaryBackgroundColor
 
-                    ResponsiveImage {
+                    JUI.ResponsiveImage {
                         id: fileIcon
                         visible: (!mediaInfo.isImage && !mediaInfo.isAnimatedImage) || icon.status == Image.Error
                         anchors.fill: parent

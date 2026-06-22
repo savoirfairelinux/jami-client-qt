@@ -22,7 +22,7 @@ import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import net.jami.Enums 1.1
 import net.jami.Models 1.1
-import "../../commoncomponents"
+import net.jami.UI as JUI
 import "../../mainview/components"
 import "../../settingsview/components"
 
@@ -166,7 +166,7 @@ Rectangle {
             font.kerning: true
         }
 
-        NewMaterialButton {
+        JUI.NewMaterialButton {
             id: newAccountButton
 
             objectName: "newAccountButton"
@@ -185,7 +185,7 @@ Rectangle {
                            WizardViewStepModel.AccountCreationOption.CreateJamiAccount)
         }
 
-        NewMaterialButton {
+        JUI.NewMaterialButton {
             id: alreadyHaveAccount
 
             Layout.alignment: Qt.AlignCenter
@@ -208,7 +208,7 @@ Rectangle {
             }
         }
 
-        NewMaterialButton {
+        JUI.NewMaterialButton {
             id: fromDeviceButton
 
             objectName: "fromDeviceButton"
@@ -228,7 +228,7 @@ Rectangle {
                            WizardViewStepModel.AccountCreationOption.ImportFromDevice)
         }
 
-        NewMaterialButton {
+        JUI.NewMaterialButton {
             id: fromBackupButton
 
             objectName: "fromBackupButton"
@@ -248,7 +248,7 @@ Rectangle {
                            WizardViewStepModel.AccountCreationOption.ImportFromBackup)
         }
 
-        NewMaterialButton {
+        JUI.NewMaterialButton {
             id: showAdvancedButton
 
             objectName: "showAdvancedButton"
@@ -275,7 +275,7 @@ Rectangle {
             }
         }
 
-        NewMaterialButton {
+        JUI.NewMaterialButton {
             id: newRdvButton
 
             objectName: "newRdvButton"
@@ -295,7 +295,7 @@ Rectangle {
                            WizardViewStepModel.AccountCreationOption.CreateRendezVous)
         }
 
-        NewMaterialButton {
+        JUI.NewMaterialButton {
             id: connectAccountManagerButton
 
             objectName: "connectAccountManagerButton"
@@ -315,7 +315,7 @@ Rectangle {
                            WizardViewStepModel.AccountCreationOption.ConnectToAccountManager)
         }
 
-        NewMaterialButton {
+        JUI.NewMaterialButton {
             id: newSIPAccountButton
 
             objectName: "newSIPAccountButton"
@@ -336,7 +336,7 @@ Rectangle {
                            WizardViewStepModel.AccountCreationOption.CreateSipAccount)
         }
 
-        NewMaterialButton {
+        JUI.NewMaterialButton {
             id: btnAboutPopUp
 
             Layout.alignment: Qt.AlignBottom | Qt.AlignHCenter
@@ -350,9 +350,9 @@ Rectangle {
         }
     }
 
-    NewIconButton {
+    JUI.NewIconButton {
         id: backButton
-        QWKSetParentHitTestVisible {}
+        JUI.QWKSetParentHitTestVisible {}
 
         objectName: "welcomePageBackButton"
 

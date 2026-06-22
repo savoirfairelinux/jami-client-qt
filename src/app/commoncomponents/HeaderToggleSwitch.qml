@@ -35,7 +35,7 @@ RowLayout {
 
     signal switchToggled
     Layout.alignment: Qt.AlignRight
-    JamiSwitch {
+    Switch {
         id: autoupdate
         Layout.alignment: Qt.AlignLeft
 

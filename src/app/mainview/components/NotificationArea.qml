@@ -22,7 +22,7 @@ import Qt5Compat.GraphicalEffects
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-import "../../commoncomponents"
+import net.jami.UI as JUI
 
 Rectangle {
     id: root
@@ -49,7 +49,7 @@ Rectangle {
             elide: Text.ElideRight
         }
 
-        PushButton {
+        JUI.PushButton {
             id: joinCallWithAudio
             Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
             Layout.rightMargin: JamiTheme.preferredMarginSize
@@ -69,7 +69,7 @@ Rectangle {
             }
         }
 
-        PushButton {
+        JUI.PushButton {
             id: joinCallWithVideo
             Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
             Layout.rightMargin: JamiTheme.preferredMarginSize
@@ -90,7 +90,7 @@ Rectangle {
             }
         }
 
-        PushButton {
+        JUI.PushButton {
             id: btnClose
             Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
 

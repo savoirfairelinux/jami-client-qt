@@ -22,7 +22,7 @@ import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import net.jami.Enums 1.1
 import net.jami.Models 1.1
-import "../../commoncomponents"
+import net.jami.UI as JUI
 
 Item {
     id: root
@@ -68,10 +68,10 @@ Item {
                 }
             }
 
-            SpinningAnimation {
+            JUI.SpinningAnimation {
                 id: animation
                 anchors.fill: parent
-                mode: SpinningAnimation.Mode.Radial
+                mode: JUI.SpinningAnimation.Mode.Radial
                 color: parent.hovered ? JamiTheme.buttonCallLightGreen : JamiTheme.buttonCallDarkGreen
                 spinningAnimationWidth: 2
             }

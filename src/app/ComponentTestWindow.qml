@@ -29,7 +29,7 @@ import net.jami.Constants 1.1
 import "mainview"
 import "mainview/components"
 import "wizardview"
-import "commoncomponents"
+import net.jami.UI as JUI
 
 // A window into which we can load a QML file for testing.
 ApplicationWindow {
@@ -160,8 +160,8 @@ ApplicationWindow {
                             type: "checkbox"
                             value: false
                             checkChangedCb: function(checked) {
-                                // Find any child component of type `LocalVideo` and start it.
-                                const localVideo = findChild(loader.item, LocalVideo, "type");
+                                // Find any child component of type `JUI.LocalVideo` and start it.
+                                const localVideo = findChild(loader.item, JUI.LocalVideo, "type");
                                 if (localVideo) {
                                     if (checked) {
                                         localVideo.startWithId(VideoDevices.getDefaultDevice());
@@ -169,7 +169,7 @@ ApplicationWindow {
                                         localVideo.startWithId("");
                                     }
                                 } else {
-                                    console.error("LocalVideo not found");
+                                    console.error("JUI.LocalVideo not found");
                                 }
                             }
                         }

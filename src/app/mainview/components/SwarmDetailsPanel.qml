@@ -27,7 +27,7 @@ import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 
-import "../../commoncomponents"
+import net.jami.UI as JUI
 import "../../settingsview/components"
 
 Item {
@@ -85,7 +85,7 @@ Item {
 
                 spacing: 8
 
-                PhotoboothView {
+                JUI.PhotoboothView {
                     id: currentSwarmAvatar
 
                     anchors.verticalCenter: parent.verticalCenter
@@ -107,7 +107,7 @@ Item {
 
                     spacing: CurrentConversation.isCoreDialog ? 12 : 18
 
-                    NewIconButton {
+                    JUI.NewIconButton {
                         id: contactDetails
 
                         Layout.alignment: Qt.AlignHCenter
@@ -126,7 +126,7 @@ Item {
                         visible: CurrentConversation.isCoreDialog
                     }
 
-                    NewIconButton {
+                    JUI.NewIconButton {
                         id: conversationStatus
 
                         Layout.alignment: Qt.AlignHCenter
@@ -142,7 +142,7 @@ Item {
                         }
                     }
 
-                    NewIconButton {
+                    JUI.NewIconButton {
                         id: muteConversation
 
                         Layout.alignment: Qt.AlignHCenter
@@ -154,7 +154,7 @@ Item {
                         onClicked: CurrentConversation.setPreference("ignoreNotifications", !CurrentConversation.ignoreNotifications)
                     }
 
-                    NewIconButton {
+                    JUI.NewIconButton {
                         id: conversationColorPicker
 
                         Layout.alignment: Qt.AlignHCenter
@@ -192,7 +192,7 @@ Item {
                 }
             }
 
-            NewMaterialTextField {
+            JUI.NewMaterialTextField {
                 id: titleLine
 
                 Layout.fillWidth: true
@@ -212,7 +212,7 @@ Item {
                 onEditingFinished: ConversationsAdapter.updateConversationTitle(LRCInstance.selectedConvUid, modifiedTextFieldContent)
             }
 
-            NewMaterialTextField {
+            JUI.NewMaterialTextField {
                 id: descriptionLineButton
 
                 Layout.fillWidth: true
@@ -294,7 +294,7 @@ Item {
 
                 visible: !CurrentConversation.isCoreDialog && swarmDetailsPanelTabBar.currentIndex === 0
 
-                NewMaterialButton {
+                JUI.NewMaterialButton {
                     id: inviteMemberButton
 
                     Layout.fillWidth: true
@@ -308,7 +308,7 @@ Item {
                     onClicked: extrasPanel.switchToPanel(ChatView.AddMemberPanel)
                 }
 
-                JamiFlickable {
+                JUI.Flickable {
                     id: scrollView
 
                     Layout.fillWidth: true
@@ -508,12 +508,12 @@ Item {
 
                         function onRdvAccountChanged() {
                             // This avoid incorrect avatar by always modifying the mode before the imageId
-                            avatar.mode = CurrentConversation.rdvAccount === CurrentAccount.uri ? Avatar.Mode.Account : Avatar.Mode.Contact;
+                            avatar.mode = CurrentConversation.rdvAccount === CurrentAccount.uri ? JUI.Avatar.Mode.Account : JUI.Avatar.Mode.Contact;
                             avatar.imageId = CurrentConversation.rdvAccount === CurrentAccount.uri ? CurrentAccount.id : CurrentConversation.rdvAccount;
                         }
                     }
 
-                    Avatar {
+                    JUI.Avatar {
                         id: avatar
 
                         Layout.preferredWidth: width
@@ -523,7 +523,7 @@ Item {
                         height: JamiTheme.smartListAvatarSize
 
                         imageId: CurrentConversation.rdvAccount === CurrentAccount.uri ? CurrentAccount.id : CurrentConversation.rdvAccount
-                        mode: Avatar.Mode.Account
+                        mode: JUI.Avatar.Mode.Account
                         showPresenceIndicator: false
 
                         visible: CurrentConversation.rdvAccount !== ""
@@ -562,13 +562,13 @@ Item {
                             verticalAlignment: Text.AlignVCenter
                         }
 
-                        ElidedTextLabel {
+                        JUI.ElidedTextLabel {
                             id: deviceID
 
                             Layout.fillWidth: true
                             Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
 
-                            LineEditContextMenu {
+                            JUI.LineEditContextMenu {
                                 id: deviceIDContextMenu
                                 lineEditObj: deviceID
                                 selectOnly: true
@@ -596,7 +596,7 @@ Item {
                     }
                 }
 
-                NewMaterialButton {
+                JUI.NewMaterialButton {
                     width: parent.width
 
                     outlinedButton: true
@@ -610,7 +610,7 @@ Item {
                     }
                 }
 
-                NewMaterialButton {
+                JUI.NewMaterialButton {
                     id: removeConversation
 
                     width: parent.width
@@ -621,7 +621,7 @@ Item {
                     text: CurrentConversation.isCoreDialog ? JamiStrings.removeConversation : JamiStrings.leaveGroup
 
                     onClicked: {
-                        var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/ConfirmDialog.qml", {
+                        var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/JUI.ConfirmDialog.qml", {
                             "titleText": JamiStrings.confirmAction,
                             "textLabel": JamiStrings.confirmRemoveContact,
                             "confirmLabel": JamiStrings.optionRemove
@@ -632,7 +632,7 @@ Item {
                     }
                 }
 
-                NewMaterialButton {
+                JUI.NewMaterialButton {
                     id: removeContactButton
 
                     width: parent.width
@@ -644,7 +644,7 @@ Item {
 
                     visible: CurrentConversation.isCoreDialog
                     onClicked: {
-                        var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/ConfirmDialog.qml", {
+                        var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/JUI.ConfirmDialog.qml", {
                             "titleText": JamiStrings.confirmAction,
                             "textLabel": JamiStrings.confirmRemoveContact,
                             "confirmLabel": JamiStrings.optionRemove
@@ -655,7 +655,7 @@ Item {
                     }
                 }
 
-                NewMaterialButton {
+                JUI.NewMaterialButton {
                     id: blockContactButton
 
                     width: parent.width
@@ -668,7 +668,7 @@ Item {
                     visible: CurrentConversation.isCoreDialog
 
                     onClicked: {
-                        var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/ConfirmDialog.qml", {
+                        var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/JUI.ConfirmDialog.qml", {
                             "titleText": JamiStrings.confirmAction,
                             "textLabel": JamiStrings.confirmBlockContact,
                             "confirmLabel": JamiStrings.optionBlock

@@ -78,7 +78,7 @@ BaseView {
         rightPaneItem.parent = isSinglePane ? leftPane : rightPane
     }
 
-    JamiSplitView {
+    SplitView {
         id: splitView
         anchors.fill: parent
         splitViewStateKey: viewNode.objectName

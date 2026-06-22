@@ -20,9 +20,9 @@ import QtQuick.Layouts
 
 import net.jami.Constants 1.1
 import net.jami.Adapters 1.1
-import "../../commoncomponents"
+import net.jami.UI as JUI
 
-BaseModalDialog {
+JUI.BaseModalDialog {
     id: root
 
     property string convId
@@ -48,7 +48,7 @@ BaseModalDialog {
 
                 spacing: 10
 
-                Avatar {
+                JUI.Avatar {
                     id: contactImage
 
                     Layout.preferredWidth: preferredImgSize
@@ -56,7 +56,7 @@ BaseModalDialog {
 
                     imageId: convId !== "" ? convId : idText
                     showPresenceIndicator: false
-                    mode: convId !== "" ? Avatar.Mode.Conversation : Avatar.Mode.Contact
+                    mode: convId !== "" ? JUI.Avatar.Mode.Conversation : JUI.Avatar.Mode.Contact
                 }
 
                 ColumnLayout {
@@ -109,7 +109,7 @@ BaseModalDialog {
 
                         visible: registeredNameText ? (registeredNameText === aliasText ? false : true) : false
 
-                        LineEditContextMenu {
+                        JUI.LineEditContextMenu {
                             id: displayNameContextMenu
                             lineEditObj: contactDisplayName
                             selectOnly: true
@@ -200,7 +200,7 @@ BaseModalDialog {
                         readOnly: true
                         text: textMetricsContacIdText.elidedText
 
-                        LineEditContextMenu {
+                        JUI.LineEditContextMenu {
                             id: idContextMenu
                             lineEditObj: contactId
                             selectOnly: true
@@ -227,7 +227,7 @@ BaseModalDialog {
                         verticalAlignment: Text.AlignVCenter
                     }
 
-                    NewIconButton {
+                    JUI.NewIconButton {
                         id: copyButton
 
                         iconSize: JamiTheme.iconButtonSmall

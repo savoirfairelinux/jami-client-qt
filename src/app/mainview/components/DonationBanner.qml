@@ -23,7 +23,7 @@ import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import net.jami.Enums 1.1
 
-import "../../commoncomponents"
+import net.jami.UI as JUI
 
 Control {
     id: control
@@ -82,7 +82,7 @@ Control {
         }
     }
 
-    component BannerButton: PushButton {
+    component BannerButton: JUI.PushButton {
         id: bannerButton
         contentItem: Text {
             text: bannerButton.text

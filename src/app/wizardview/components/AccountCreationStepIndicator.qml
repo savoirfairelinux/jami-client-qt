@@ -16,7 +16,7 @@
  */
 import QtQuick
 import net.jami.Constants 1.1
-import "../../commoncomponents"
+import net.jami.UI as JUI
 
 Row {
     id: root

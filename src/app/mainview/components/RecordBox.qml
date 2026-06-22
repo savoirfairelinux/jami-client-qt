@@ -21,7 +21,7 @@ import Qt5Compat.GraphicalEffects
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-import "../../commoncomponents"
+import net.jami.UI as JUI
 
 Popup {
     id: root
@@ -164,7 +164,7 @@ Popup {
                 source: root.photo === "" ? "" : "data:image/png;base64," + root.photo
             }
 
-            LocalVideo {
+            JUI.LocalVideo {
                 id: localVideo
                 anchors.fill: parent
                 visible: root.showVideo && !screenshotImg.visible
@@ -268,7 +268,7 @@ Popup {
 
                         focusPolicy: Qt.TabFocus
 
-                        background: RoundedBorderRectangle {
+                        background: JUI.RoundedBorderRectangle {
                             opacity: recordButton.hovered ? 1 : 0.5
                             fillColor: JamiTheme.screenshotButtonColor //recordButton.hovered ? JamiTheme.recordBoxHoverColor : JamiTheme.recordBoxButtonColor
                             radius: {
@@ -300,7 +300,7 @@ Popup {
                         imageColor: JamiTheme.whiteColor
                         focusPolicy: Qt.TabFocus
 
-                        background: RoundedBorderRectangle {
+                        background: JUI.RoundedBorderRectangle {
                             opacity: screenshotBtn.hovered ? 1 : 0.7
                             fillColor: screenshotBtn.hovered ? JamiTheme.recordBoxHoverColor : JamiTheme.recordBoxButtonColor
                             radius: {
@@ -317,7 +317,7 @@ Popup {
                         }
                     }
 
-                    PushButton {
+                    JUI.PushButton {
                         id: btnStop
                         objectName: "btnStop"
 
@@ -337,7 +337,7 @@ Popup {
 
                         toolTipText: JamiStrings.stopRec
 
-                        background: RoundedBorderRectangle {
+                        background: JUI.RoundedBorderRectangle {
                             opacity: btnStop.hovered ? 1 : 0.7
                             fillColor: btnStop.hovered ? JamiTheme.recordBoxHoverColor : JamiTheme.recordBoxButtonColor
                             radius: {
@@ -372,7 +372,7 @@ Popup {
 
                         toolTipText: JamiStrings.discardRestart
 
-                        background: RoundedBorderRectangle {
+                        background: JUI.RoundedBorderRectangle {
                             opacity: btnRestart.hovered ? 1 : 0.7
                             fillColor: btnRestart.hovered ? JamiTheme.recordBoxHoverColor : JamiTheme.recordBoxButtonColor
                             radius: isRTL ? {
@@ -395,7 +395,7 @@ Popup {
                         }
                     }
 
-                    RoundedBorderRectangle {
+                    JUI.RoundedBorderRectangle {
                         opacity: 0.7
                         fillColor: JamiTheme.recordBoxButtonColor
                         visible: (!recordButton.visible && !root.isPhoto) || root.isAudio
@@ -438,7 +438,7 @@ Popup {
 
                         toolTipText: JamiStrings.send
 
-                        background: RoundedBorderRectangle {
+                        background: JUI.RoundedBorderRectangle {
                             opacity: btnSend.hovered ? 1 : 0.7
                             fillColor: JamiTheme.chatViewFooterSendButtonColor //btnSend.hovered ? JamiTheme.recordBoxHoverColor : JamiTheme.recordBoxButtonColor
                             radius: isRTL ? {

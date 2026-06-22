@@ -102,7 +102,7 @@ Dialog {
         }
     }
 
-    contentItem: JamiFlickable {
+    contentItem: Flickable {
         implicitWidth: containerSubContentLoader.width + ScrollBar.vertical.width
         implicitHeight: containerSubContentLoader.height
 

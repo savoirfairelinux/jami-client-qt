@@ -5,7 +5,7 @@ import QtQuick.Controls.impl
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-import "../../commoncomponents"
+import net.jami.UI as JUI
 
 ItemDelegate {
     id: root
@@ -21,7 +21,7 @@ ItemDelegate {
 
     contentItem: Column {
         spacing: 4
-        Avatar {
+        JUI.Avatar {
             id: avatar
 
             anchors.horizontalCenter: parent.horizontalCenter
@@ -42,7 +42,7 @@ ItemDelegate {
             imageId: CurrentAccount.uri === MemberUri ? CurrentAccount.id : MemberUri
             presenceStatus: UtilsAdapter.getContactPresence(CurrentAccount.id, MemberUri)
             showPresenceIndicator: presenceStatus > 0
-            mode: CurrentAccount.uri === MemberUri ? Avatar.Mode.Account : Avatar.Mode.Contact
+            mode: CurrentAccount.uri === MemberUri ? JUI.Avatar.Mode.Account : JUI.Avatar.Mode.Contact
 
             IconImage {
                 id: icon
@@ -105,7 +105,7 @@ ItemDelegate {
                 }
             }
 
-            MaterialToolTip {
+            JUI.MaterialToolTip {
                 parent: parent
 
                 text: {
@@ -125,7 +125,7 @@ ItemDelegate {
                 delay: Qt.styleHints.mousePressAndHoldInterval
             }
         }
-        ElidedTextLabel {
+        JUI.ElidedTextLabel {
             id: nameTextEdit
 
             anchors.horizontalCenter: parent.horizontalCenter
@@ -154,7 +154,7 @@ ItemDelegate {
                 }
             }
 
-            LineEditContextMenu {
+            JUI.LineEditContextMenu {
                 id: nameTextEditContextMenu
                 lineEditObj: nameTextEdit
                 selectOnly: true

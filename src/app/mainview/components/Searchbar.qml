@@ -19,7 +19,7 @@ import QtQuick.Controls
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-import "../../commoncomponents"
+import net.jami.UI as JUI
 
 Rectangle {
     id: root
@@ -61,7 +61,7 @@ Rectangle {
         }
     }
 
-    LineEditContextMenu {
+    JUI.LineEditContextMenu {
         id: lineEditContextMenu
 
         lineEditObj: textArea
@@ -114,7 +114,7 @@ Rectangle {
         }
     }
 
-    PushButton {
+    JUI.PushButton {
         id: actionButton
 
         enabled: textArea.text.length

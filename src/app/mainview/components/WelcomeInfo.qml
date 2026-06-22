@@ -21,7 +21,7 @@ import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import net.jami.Enums 1.1
 import net.jami.Models 1.1
-import "../../commoncomponents"
+import net.jami.UI as JUI
 import "../js/keyboardshortcuttablecreation.js" as KeyboardShortcutTableCreation
 
 Item {
@@ -87,7 +87,7 @@ Item {
                 id: loader_bottomIdentifier
                 active: CurrentAccount.type !== Profile.Type.SIP
                 objectName: "loader_bottomIdentifier"
-                sourceComponent: JamiIdentifier {}
+                sourceComponent: JUI.Identifier {}
                 Layout.alignment: Qt.AlignHCenter
             }
         }

@@ -21,7 +21,7 @@ import QtQuick.Controls
 import QtQuick.Layouts
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-import "../../commoncomponents"
+import net.jami.UI as JUI
 
 Window {
     id: root
@@ -235,7 +235,7 @@ Window {
         }
 
         // make a list view of keyboardShortcutsModelList[selectionBar.currentIndex]
-        JamiListView {
+        JUI.ListView {
             id: keyboardShortcutsListView
 
             anchors.fill: parent

@@ -23,9 +23,9 @@ import QtQml.Models
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-import "../../commoncomponents"
+import net.jami.UI as JUI
 
-BaseModalDialog {
+JUI.BaseModalDialog {
     id: root
 
     width: JamiTheme.secondaryDialogDimension
@@ -72,7 +72,7 @@ BaseModalDialog {
             color: JamiTheme.primaryForegroundColor
         }
 
-        JamiListView {
+        JUI.ListView {
             id: devicesListView
 
             Layout.fillWidth: true

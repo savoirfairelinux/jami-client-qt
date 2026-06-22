@@ -21,7 +21,7 @@ import QtQuick.Layouts
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-import "../../commoncomponents"
+import net.jami.UI as JUI
 
 Popup {
     id: popup
@@ -40,10 +40,10 @@ Popup {
             contentHeight: textComponent.contentHeight + 10
             contentWidth: textComponent.contentWidth + 20
             clip: true
-            ScrollBar.vertical: JamiScrollBar {
+            ScrollBar.vertical: JUI.ScrollBar {
                 active: contentHeight > height
             }
-            ScrollBar.horizontal: JamiScrollBar {
+            ScrollBar.horizontal: JUI.ScrollBar {
                 active: contentWidth > width
             }
             contentX: 10

@@ -21,7 +21,7 @@ import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import net.jami.Enums 1.1
 import net.jami.Models 1.1
-import "../../commoncomponents"
+import net.jami.UI as JUI
 import "../js/logviewwindowcreation.js" as LogViewWindowCreation
 
 SettingsPageBase {
@@ -96,7 +96,7 @@ SettingsPageBase {
                     color: JamiTheme.textColor
                 }
 
-                NewMaterialButton {
+                JUI.NewMaterialButton {
                     id: enableTroubleshootingButton
 
                     Layout.alignment: Qt.AlignRight

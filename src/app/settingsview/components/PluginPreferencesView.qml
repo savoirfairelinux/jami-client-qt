@@ -21,7 +21,7 @@ import Qt5Compat.GraphicalEffects
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-import "../../commoncomponents"
+import net.jami.UI as JUI
 import "../../mainview/components"
 
 Item {
@@ -52,7 +52,7 @@ Item {
             header: Control {
                 id: preferenceHeader
                 width: root.width
-                background: ResponsiveImage {
+                background: JUI.ResponsiveImage {
                     id: background
                     anchors.fill: preferenceHeader
                     fillMode: Image.PreserveAspectCrop
@@ -79,7 +79,7 @@ Item {
                     }
                 }
                 contentItem: ColumnLayout {
-                    JamiPushButton { QWKSetParentHitTestVisible {}
+                    JamiPushButton { JUI.QWKSetParentHitTestVisible {}
                         id: closeButton
                         readonly property bool alignLeft: Qt.platform.os.toString() !== "osx"
                         normalColor: Qt.rgba(124, 124, 124, 0.36)
@@ -94,7 +94,7 @@ Item {
                         onClicked: closed()
                     }
 
-                    ResponsiveImage {
+                    JUI.ResponsiveImage {
                         Layout.bottomMargin: 10
                         Layout.rightMargin: 10
                         Layout.alignment: Qt.AlignCenter
@@ -113,7 +113,7 @@ Item {
                         textFormat: Text.PlainText
                     }
 
-                    JamiFlickable {
+                    JUI.Flickable {
                         Layout.leftMargin: 20
                         Layout.bottomMargin: 20
                         Layout.preferredWidth: root.width
@@ -146,7 +146,7 @@ Item {
                 anchors.fill: parent
                 color: JamiTheme.primaryBackgroundColor
             }
-            JamiFlickable {
+            JUI.Flickable {
                 anchors.fill: parent
                 width: root.width
                 contentHeight: contentItem.childrenRect.height
@@ -224,7 +224,7 @@ Item {
                                     height: childrenRect.height
                                     anchors.right: parent.right
                                     anchors.rightMargin: 40
-                                    MaterialButton {
+                                    JUI.MaterialButton {
                                         id: update
                                         anchors.right: parent.right
                                         buttontextHeightMargin: 0.0
@@ -260,7 +260,7 @@ Item {
                             }
                         }
                     }
-                    NewMaterialButton {
+                    JUI.NewMaterialButton {
                         id: uninstallButton
 
                         Layout.topMargin: 20
@@ -272,11 +272,11 @@ Item {
                         text: JamiStrings.uninstall
                         toolTipText: JamiStrings.confirmExtensionUninstall.arg(PluginId)
 
-                        onClicked: viewCoordinator.presentDialog(appWindow, "commoncomponents/SimpleMessageDialog.qml", {
+                        onClicked: viewCoordinator.presentDialog(appWindow, "commoncomponents/JUI.SimpleMessageDialog.qml", {
                                 "title": JamiStrings.uninstallExtension,
                                 "infoText": JamiStrings.confirmExtensionUninstall.arg(PluginName),
                                 "buttonTitles": [JamiStrings.optionUninstall, JamiStrings.optionCancel],
-                                "buttonStyles": [SimpleMessageDialog.ButtonStyle.TintedBlue, SimpleMessageDialog.ButtonStyle.TintedBlack],
+                                "buttonStyles": [JUI.SimpleMessageDialog.ButtonStyle.TintedBlue, JUI.SimpleMessageDialog.ButtonStyle.TintedBlack],
                                 "buttonCallBacks": [function () {
                                         PluginListModel.setVersionStatus(Id, PluginStatus.INSTALLABLE);
                                         PluginModel.uninstallPlugin(PluginId);

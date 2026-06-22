@@ -24,10 +24,10 @@ import QtQml.Models
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-import "../../commoncomponents"
+import net.jami.UI as JUI
 import "../../settingsview/components"
 
-JamiListView {
+JUI.ListView {
     id: root
 
     spacing: JamiTheme.preferredMarginSize

@@ -20,9 +20,9 @@ import QtQuick.Controls
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import net.jami.Models 1.1
-import "../../commoncomponents"
+import net.jami.UI as JUI
 
-JamiListView {
+JUI.ListView {
     id: root
 
     required property string headerLabel
