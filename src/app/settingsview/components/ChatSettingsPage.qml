@@ -26,7 +26,7 @@ import net.jami.Enums 1.1
 import net.jami.Constants 1.1
 import net.jami.Helpers 1.1
 import net.jami.UI as JUI
-import "../../mainview/components"
+import net.jami.MainView as JMV
 import "../../mainview/js/contactpickercreation.js" as ContactPickerCreation
 
 SettingsPageBase {

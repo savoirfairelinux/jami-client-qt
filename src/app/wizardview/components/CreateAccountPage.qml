@@ -25,7 +25,7 @@ import net.jami.Models 1.1
 import "../"
 import net.jami.UI as JUI
 import net.jami.SettingsView as JSV
-import "../../mainview/components"
+import net.jami.MainView as JMV
 import net.jami.UI as JUI
 
 Rectangle {

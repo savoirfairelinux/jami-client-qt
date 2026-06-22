@@ -23,7 +23,7 @@ import net.jami.Constants 1.1
 import net.jami.Enums 1.1
 import net.jami.Models 1.1
 import net.jami.UI as JUI
-import "../../mainview/components"
+import net.jami.MainView as JMV
 import net.jami.SettingsView as JSV
 
 Rectangle {
@@ -346,7 +346,7 @@ Rectangle {
             textButton: true
             text: JamiStrings.aboutJami
 
-            onClicked: viewCoordinator.presentDialog(parent, "mainview/components/AboutPopUp.qml")
+            onClicked: viewCoordinator.presentDialog(parent, "mainview/components/JMV.AboutPopUp.qml")
         }
     }
 

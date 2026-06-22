@@ -25,7 +25,7 @@ import net.jami.Enums 1.1
 import net.jami.Helpers 1.1
 import net.jami.Constants 1.1
 import "mainview"
-import "mainview/components"
+import net.jami.MainView as JMV
 import "wizardview"
 import net.jami.UI as JUI
 import QWindowKit
@@ -88,7 +88,7 @@ Window {
             left: parent.left
             right: parent.right
         }
-        sourceComponent: GenericErrorsRow {
+        sourceComponent: JMV.GenericErrorsRow {
             id: genericError
             text: CurrentAccount.enabled ? JamiStrings.noNetworkConnectivity : JamiStrings.disabledAccount
             height: visible ? JamiTheme.qwkTitleBarHeight : 0
@@ -209,7 +209,7 @@ Window {
 
         function onAllMigrationsFinished() {
             viewCoordinator.dismiss("AccountMigrationView");
-            viewCoordinator.present("WelcomePage");
+            viewCoordinator.present("JMV.WelcomePage");
         }
     }
 
@@ -251,11 +251,11 @@ Window {
                 viewCoordinator.present("AccountMigrationView");
             else
                 // Okay now just start the client normally.
-                viewCoordinator.present("WelcomePage");
+                viewCoordinator.present("JMV.WelcomePage");
 
             // Preload ConversationView so the first conversation selection is instant.
-            // WelcomePage already creates SidePanel; this only instantiates ChatView and
-            // MessageListView, separating QML tree creation from message data loading.
+            // JMV.WelcomePage already creates JMV.SidePanel; this only instantiates JMV.ChatView and
+            // JMV.MessageListView, separating QML tree creation from message data loading.
             Qt.callLater(function () {
                 viewCoordinator.preload("ConversationView");
             });
@@ -315,7 +315,7 @@ Window {
     property real tintOpacity: CurrentConversation.id === "" ? 0.0 : 1.0
     property color baseColor: Qt.tint(JamiTheme.globalBackgroundColor, tintColor)
 
-    // WelcomePage background properties
+    // JMV.WelcomePage background properties
     property variant uiCustomization: CurrentAccount.uiCustomization
     onUiCustomizationChanged: updateWelcomeBackgroundFlags()
     property bool hasCustomUi: false
@@ -385,7 +385,7 @@ Window {
     // 1. The background image set by the user in the Appearance settings
     // 2. The background set by a JAMS administrator (if applicable)
     // 3. The default light/dark mode background
-    CachedImage {
+    JMV.CachedImage {
         id: welcomeCachedImgLogo
         downloadUrl: (AccountSettingsManager.accountSettingsPropertyMap.backgroundUri === undefined || AccountSettingsManager.accountSettingsPropertyMap.backgroundUri === "") ? (hasCustomBgImage ? customBgUrl : JamiTheme.welcomeBg) : AccountSettingsManager.accountSettingsPropertyMap.backgroundUri
         visible: !hasCustomBgColor

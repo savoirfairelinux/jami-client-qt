@@ -21,7 +21,7 @@ import net.jami.Enums 1.1
 import net.jami.Models 1.1
 
 import "../mainview"
-import "../mainview/components"
+import net.jami.MainView as JMV
 
 ContextMenuAutoLoader {
     id: root

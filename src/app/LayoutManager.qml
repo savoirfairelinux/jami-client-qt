@@ -22,7 +22,7 @@ import net.jami.Adapters 1.1
 import net.jami.Enums 1.1
 import net.jami.Constants 1.1
 
-import "mainview/components"
+import net.jami.MainView as JMV
 
 QtObject {
     id: root
@@ -37,7 +37,7 @@ QtObject {
     readonly property bool isHidden: visibility === Window.Hidden ||
                                      visibility === Window.Minimized
 
-    // Used to store if a CallStackView component is fullscreened.
+    // Used to store if a JMV.CallStackView component is fullscreened.
     property bool isCallFullscreen: false
 
     // Used to store if a WebEngineView component is fullscreened.
@@ -293,7 +293,7 @@ QtObject {
         }
 
         // Listen for an "end" call combined with a fullscreen call state and
-        // remove the OngoingCallPage component.
+        // remove the JMV.OngoingCallPage component.
         property var data: Connections {
             target: CallAdapter
             function onHasCallChanged() {

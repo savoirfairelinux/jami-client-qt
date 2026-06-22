@@ -21,7 +21,7 @@ import Qt5Compat.GraphicalEffects
 import QtQuick.Controls.impl
 
 import net.jami.Constants 1.1
-import "../mainview/components"
+import net.jami.MainView as JMV
 
 BaseModalDialog {
     id: root

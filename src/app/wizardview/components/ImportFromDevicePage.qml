@@ -24,7 +24,7 @@ import net.jami.Constants 1.1
 import net.jami.Enums 1.1
 import Qt.labs.platform
 import net.jami.UI as JUI
-import "../../mainview/components"
+import net.jami.MainView as JMV
 
 Rectangle {
     id: root
