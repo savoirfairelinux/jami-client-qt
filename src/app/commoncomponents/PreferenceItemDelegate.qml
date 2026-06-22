@@ -22,7 +22,7 @@ import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import "."
-import "../settingsview/components"
+import net.jami.SettingsView as JSV
 
 ItemDelegate {
     id: root
@@ -113,7 +113,7 @@ ItemDelegate {
             opacity: enabled ? 1.0 : 0.5
         }
 
-        ToggleSwitch {
+        JSV.ToggleSwitch {
             id: btnPreferenceSwitch
 
             visible: preferenceType === PreferenceItemListModel.SWITCH
