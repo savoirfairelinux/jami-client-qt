@@ -22,7 +22,6 @@ import net.jami.Constants 1.1
 import net.jami.Enums 1.1
 import net.jami.Models 1.1
 import net.jami.UI as JUI
-import "../js/keyboardshortcuttablecreation.js" as KeyboardShortcutTableCreation
 
 Item {
     id: welcomeInfo

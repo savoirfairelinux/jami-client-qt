@@ -31,8 +31,6 @@ import "../settingsview"
 import net.jami.SettingsView as JSV
 import net.jami.UI as JUI
 
-import "js/keyboardshortcuttablecreation.js" as KeyboardShortcutTableCreation
-
 Item {
     id: mainView
     objectName: "mainView"
@@ -76,6 +74,11 @@ Item {
 
     Component.onCompleted: {
         JamiQmlUtils.mainViewRectObj = mainView;
+    }
+
+    KeyboardShortcutTable {
+        id: keyboardShortcutTable
+        visible: false
     }
 
     WheelHandler {
@@ -167,8 +170,13 @@ Item {
         sequence: "F10"
         context: Qt.ApplicationShortcut
         onActivated: {
-            KeyboardShortcutTableCreation.createKeyboardShortcutTableWindowObject(appWindow);
-            KeyboardShortcutTableCreation.showKeyboardShortcutTableWindow();
+            keyboardShortcutTable.width = 550
+            keyboardShortcutTable.height = 520
+            keyboardShortcutTable.x = appWindow.x + (appWindow.width - keyboardShortcutTable.width) / 2
+            keyboardShortcutTable.y = appWindow.y + (appWindow.height - keyboardShortcutTable.height) / 2
+            keyboardShortcutTable.show()
+            keyboardShortcutTable.raise()
+            keyboardShortcutTable.requestActivate()
         }
     }
 

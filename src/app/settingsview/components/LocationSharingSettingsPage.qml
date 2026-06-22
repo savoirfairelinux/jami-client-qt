@@ -24,7 +24,6 @@ import net.jami.Constants 1.1
 import net.jami.Helpers 1.1
 import net.jami.UI as JUI
 import net.jami.MainView as JMV
-import "../../mainview/js/contactpickercreation.js" as ContactPickerCreation
 
 SettingsPageBase {
     id: root

@@ -25,7 +25,6 @@ import net.jami.Enums 1.1
 import net.jami.Models 1.1
 
 import net.jami.UI as JUI
-import "../js/logviewwindowcreation.js" as LogViewWindowCreation
 
 ListView {
     id: listview

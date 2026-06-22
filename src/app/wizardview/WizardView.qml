@@ -101,7 +101,8 @@ JUI.BaseView {
             objectName: "controlPanelStackView"
 
             function setPage(obj) {
-                wizardViewScrollView.vScrollBar.position = 0;
+                if (wizardViewScrollView.vScrollBar)
+                    wizardViewScrollView.vScrollBar.position = 0;
                 for (var i in this.children) {
                     if (this.children[i] === obj) {
                         currentIndex = i;

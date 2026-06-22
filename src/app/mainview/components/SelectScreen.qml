@@ -21,7 +21,6 @@ import QtQuick.Layouts
 import net.jami.Adapters 1.1
 import net.jami.Models 1.1
 import net.jami.Constants 1.1
-import "../js/screenrubberbandcreation.js" as ScreenRubberBandCreation
 import net.jami.UI as JUI
 
 // SelectScreenWindow as a seperate window,
@@ -35,9 +34,9 @@ Window {
     modality: Qt.ApplicationModal
     title: showWindows ? JamiStrings.selectWindow : JamiStrings.selectScreen
 
-    onClosing: this.destroy()
+    property bool showWindows: false
 
-    required property bool showWindows
+    onClosing: this.destroy()
 
     property var selectedScreenNumber: undefined
     property bool selectAllScreens: selectedScreenNumber === -1
