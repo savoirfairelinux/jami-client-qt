@@ -1064,6 +1064,23 @@ qt_add_qml_module(jami_ui
 file(WRITE "${CMAKE_CURRENT_BINARY_DIR}/net/jami/UI/jami_ui.qmltypes"
     "import QtQuick.tooling 1.2\nModule { dependencies: [] }\n")
 
+# net.jami.SettingsView — static QML module for settingsview/components/.
+file(GLOB JAMI_SV_QML_FILES "${APP_SRC_DIR}/settingsview/components/*.qml")
+foreach(_f ${JAMI_SV_QML_FILES})
+    get_filename_component(_alias "${_f}" NAME)
+    set_source_files_properties("${_f}" PROPERTIES QT_RESOURCE_ALIAS "${_alias}")
+endforeach()
+qt_add_qml_module(jami_settingsview
+    URI             net.jami.SettingsView
+    VERSION         1.0
+    STATIC
+    NO_PLUGIN_OPTIONAL
+    OUTPUT_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/net/jami/SettingsView"
+    QML_FILES       ${JAMI_SV_QML_FILES}
+)
+file(WRITE "${CMAKE_CURRENT_BINARY_DIR}/net/jami/SettingsView/jami_settingsview.qmltypes"
+    "import QtQuick.tooling 1.2\nModule { dependencies: [] }\n")
+
 # common executable sources
 qt_add_executable(
   ${PROJECT_NAME}
@@ -1382,7 +1399,7 @@ endif()
 
 target_include_directories(${PROJECT_NAME} PRIVATE ${CLIENT_INCLUDE_DIRS})
 target_link_directories(${PROJECT_NAME} PRIVATE ${CLIENT_LINK_DIRS})
-target_link_libraries(${PROJECT_NAME} PRIVATE ${CLIENT_LIBS} jami_ui)
+target_link_libraries(${PROJECT_NAME} PRIVATE ${CLIENT_LIBS} jami_ui jami_settingsview)
 
 qt_import_qml_plugins(${PROJECT_NAME})
 qt_finalize_executable(${PROJECT_NAME})

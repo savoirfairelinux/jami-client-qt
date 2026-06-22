@@ -24,7 +24,7 @@ import net.jami.Enums 1.1
 import net.jami.Models 1.1
 import net.jami.UI as JUI
 import "../../mainview/components"
-import "../../settingsview/components"
+import net.jami.SettingsView as JSV
 
 Rectangle {
     id: root
@@ -382,7 +382,7 @@ Rectangle {
         Accessible.description: JamiStrings.backButtonExplanation
     }
 
-    SettingsComboBox {
+    JSV.SettingsComboBox {
         id: langComboBoxSetting
 
         // This component is not yet accessible via keyboard navigation because our comboboxes
