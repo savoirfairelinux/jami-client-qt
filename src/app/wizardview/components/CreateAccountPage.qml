@@ -24,7 +24,7 @@ import net.jami.Enums 1.1
 import net.jami.Models 1.1
 import "../"
 import net.jami.UI as JUI
-import "../../settingsview/components"
+import net.jami.SettingsView as JSV
 import "../../mainview/components"
 import net.jami.UI as JUI
 

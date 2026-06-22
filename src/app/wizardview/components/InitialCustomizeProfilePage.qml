@@ -23,7 +23,7 @@ import net.jami.Models 1.1
 import Qt5Compat.GraphicalEffects
 import "../"
 import net.jami.UI as JUI
-import "../../settingsview/components"
+import net.jami.SettingsView as JSV
 import "../../mainview/components"
 import net.jami.UI as JUI
 

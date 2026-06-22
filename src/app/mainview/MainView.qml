@@ -28,7 +28,7 @@ import "components"
 import "../"
 import "../wizardview"
 import "../settingsview"
-import "../settingsview/components"
+import net.jami.SettingsView as JSV
 import net.jami.UI as JUI
 
 import "js/keyboardshortcuttablecreation.js" as KeyboardShortcutTableCreation

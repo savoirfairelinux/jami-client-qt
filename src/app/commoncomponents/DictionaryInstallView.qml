@@ -24,7 +24,7 @@ import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import "../mainview/components"
-import "../settingsview/components"
+import net.jami.SettingsView as JSV
 
 // Search bar for filtering dictionaries
 ColumnLayout {
