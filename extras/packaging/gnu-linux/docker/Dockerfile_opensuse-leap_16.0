@@ -2,7 +2,7 @@ FROM opensuse/leap:16.0
 
 RUN zypper --gpg-auto-import-keys refresh
 
-RUN zypper --non-interactive install -y \
+RUN zypper --non-interactive install -y --allow-downgrade \
         dnf \
         rpmdevtools \
         Mesa-dri-devel Mesa-dri \
