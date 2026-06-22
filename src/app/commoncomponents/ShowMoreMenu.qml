@@ -20,7 +20,6 @@ import Qt5Compat.GraphicalEffects
 import QtQuick.Controls
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
-import "contextmenu"
 
 BaseContextMenu {
     id: root

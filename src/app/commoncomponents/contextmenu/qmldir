@@ -1,0 +1,5 @@
+BaseContextMenu 1.0 BaseContextMenu.qml
+ContextMenuAutoLoader 1.0 ContextMenuAutoLoader.qml
+GeneralMenuItem 1.0 GeneralMenuItem.qml
+GeneralMenuItemList 1.0 GeneralMenuItemList.qml
+GeneralMenuSeparator 1.0 GeneralMenuSeparator.qml

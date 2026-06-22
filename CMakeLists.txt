@@ -1044,6 +1044,7 @@ endif()
 # path.
 file(GLOB JAMI_UI_QML_FILES
     "${APP_SRC_DIR}/commoncomponents/*.qml"
+    "${APP_SRC_DIR}/commoncomponents/contextmenu/*.qml"
 )
 foreach(_f ${JAMI_UI_QML_FILES})
     get_filename_component(_alias "${_f}" NAME)
@@ -1061,6 +1062,52 @@ qt_add_qml_module(jami_ui
 # missing plugin type information before the first build.  The build step
 # will overwrite this with the real (also effectively empty) file.
 file(WRITE "${CMAKE_CURRENT_BINARY_DIR}/net/jami/UI/jami_ui.qmltypes"
+    "import QtQuick.tooling 1.2\nModule { dependencies: [] }\n")
+
+# Embed contextmenu QML files a second time under net/jami/UI/contextmenu/
+# so that `import "contextmenu"` from within module-loaded files (qrc context)
+# resolves the same types as the file-path relative import does.
+file(GLOB _CONTEXTMENU_QML "${APP_SRC_DIR}/commoncomponents/contextmenu/*.qml")
+qt_add_resources(jami_ui "jami_ui_contextmenu_subdir"
+    PREFIX "/net/jami/UI/contextmenu"
+    BASE "${APP_SRC_DIR}/commoncomponents/contextmenu"
+    FILES
+        "${APP_SRC_DIR}/commoncomponents/contextmenu/qmldir"
+        ${_CONTEXTMENU_QML}
+)
+
+# net.jami.SettingsView — static QML module for settingsview/components/.
+file(GLOB JAMI_SV_QML_FILES "${APP_SRC_DIR}/settingsview/components/*.qml")
+foreach(_f ${JAMI_SV_QML_FILES})
+    get_filename_component(_alias "${_f}" NAME)
+    set_source_files_properties("${_f}" PROPERTIES QT_RESOURCE_ALIAS "${_alias}")
+endforeach()
+qt_add_qml_module(jami_settingsview
+    URI             net.jami.SettingsView
+    VERSION         1.0
+    STATIC
+    NO_PLUGIN_OPTIONAL
+    OUTPUT_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/net/jami/SettingsView"
+    QML_FILES       ${JAMI_SV_QML_FILES}
+)
+file(WRITE "${CMAKE_CURRENT_BINARY_DIR}/net/jami/SettingsView/jami_settingsview.qmltypes"
+    "import QtQuick.tooling 1.2\nModule { dependencies: [] }\n")
+
+# net.jami.MainView — static QML module for mainview/components/.
+file(GLOB JAMI_MV_QML_FILES "${APP_SRC_DIR}/mainview/components/*.qml")
+foreach(_f ${JAMI_MV_QML_FILES})
+    get_filename_component(_alias "${_f}" NAME)
+    set_source_files_properties("${_f}" PROPERTIES QT_RESOURCE_ALIAS "${_alias}")
+endforeach()
+qt_add_qml_module(jami_mainview
+    URI             net.jami.MainView
+    VERSION         1.0
+    STATIC
+    NO_PLUGIN_OPTIONAL
+    OUTPUT_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/net/jami/MainView"
+    QML_FILES       ${JAMI_MV_QML_FILES}
+)
+file(WRITE "${CMAKE_CURRENT_BINARY_DIR}/net/jami/MainView/jami_mainview.qmltypes"
     "import QtQuick.tooling 1.2\nModule { dependencies: [] }\n")
 
 # common executable sources
