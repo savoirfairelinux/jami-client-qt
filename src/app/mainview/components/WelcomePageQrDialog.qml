@@ -20,9 +20,9 @@ import QtQuick.Layouts
 
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-import "../../commoncomponents"
+import net.jami.UI as JUI
 
-BaseModalDialog {
+JUI.BaseModalDialog {
     id: root
 
     titleText: JamiStrings.shareAccount

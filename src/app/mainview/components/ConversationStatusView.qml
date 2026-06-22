@@ -25,7 +25,7 @@ import net.jami.Constants 1.1
 import net.jami.Enums 1.1
 import net.jami.Models 1.1
 
-import "../../commoncomponents"
+import net.jami.UI as JUI
 
 Item {
     id: root
@@ -222,7 +222,7 @@ Item {
                                                 }
                                             }
 
-                                            MaterialToolTip {
+                                            JUI.MaterialToolTip {
                                                 id: tooltipDevice
                                                 visible: delegateDeviceText.font.underline
                                                 text: DeviceId[index] !== undefined ? DeviceId[index] : ""
@@ -242,7 +242,7 @@ Item {
                                     color: delegate.color
                                     Layout.alignment: Qt.AlignVCenter
                                     visible: IsMobile[index] === "true"
-                                    ResponsiveImage {
+                                    JUI.ResponsiveImage {
                                         anchors.centerIn: parent
                                         width: 20
                                         height: 20
@@ -258,7 +258,7 @@ Item {
                                     Layout.preferredWidth: 130
                                     Layout.alignment: Qt.AlignVCenter
                                     property var status: Status[index]
-                                    ResponsiveImage {
+                                    JUI.ResponsiveImage {
                                         id: connectionImage
                                         anchors.left: parent.left
                                         anchors.verticalCenter: parent.verticalCenter
@@ -323,7 +323,7 @@ Item {
                                                 connectionText.font.underline = false;
                                             }
 
-                                            MaterialToolTip {
+                                            JUI.MaterialToolTip {
                                                 visible: connectionText.font.underline
                                                 text: connectionText.tooltipText
                                             }
@@ -458,14 +458,14 @@ Item {
                                 Layout.leftMargin: 5
                                 Layout.fillWidth: true
                                 color: JamiTheme.transparentColor
-                                Avatar {
+                                JUI.Avatar {
                                     id: trackedAvatar
                                     anchors.left: parent.left
                                     height: 40
                                     width: 40
                                     anchors.verticalCenter: parent.verticalCenter
                                     imageId: PeerUri
-                                    mode: Avatar.Mode.Contact
+                                    mode: JUI.Avatar.Mode.Contact
                                 }
                                 Rectangle {
                                     anchors.left: trackedAvatar.right

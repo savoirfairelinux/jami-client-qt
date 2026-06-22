@@ -5,13 +5,13 @@ import Qt.labs.platform
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-import "../../commoncomponents"
+import net.jami.UI as JUI
 
 ColumnLayout {
     function installPlugin() {
-        var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/JamiFileDialog.qml", {
+        var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/JUI.FileDialog.qml", {
                 "title": JamiStrings.selectExtensionInstall,
-                "fileMode": JamiFileDialog.OpenFile,
+                "fileMode": JUI.FileDialog.OpenFile,
                 "folder": StandardPaths.writableLocation(StandardPaths.DownloadLocation),
                 "nameFilters": [JamiStrings.extensionFiles, JamiStrings.allFiles]
             });
@@ -27,10 +27,10 @@ ColumnLayout {
     }
 
     function presentErrorMessage() {
-        viewCoordinator.presentDialog(appWindow, "commoncomponents/SimpleMessageDialog.qml", {
+        viewCoordinator.presentDialog(appWindow, "commoncomponents/JUI.SimpleMessageDialog.qml", {
                 "title": JamiStrings.installationFailed,
                 "infoText": JamiStrings.extensionInstallationFailed,
-                "buttonStyles": [SimpleMessageDialog.ButtonStyle.TintedBlue],
+                "buttonStyles": [JUI.SimpleMessageDialog.ButtonStyle.TintedBlue],
                 "buttonTitles": [JamiStrings.optionOk],
                 "buttonCallBacks": [],
                 "buttonRoles": [DialogButtonBox.AcceptRole]
@@ -60,7 +60,7 @@ ColumnLayout {
         lineHeight: 1.5
         textFormat: Text.PlainText
     }
-    NewMaterialButton {
+    JUI.NewMaterialButton {
         id: installManually
 
         implicitHeight: JamiTheme.newMaterialButtonSettingsHeight

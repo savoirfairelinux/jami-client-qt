@@ -19,7 +19,7 @@ import QtQuick.Controls
 import QtQuick.Layouts
 import net.jami.Models 1.1
 import net.jami.Constants 1.1
-import "../../commoncomponents"
+import net.jami.UI as JUI
 
 ItemDelegate {
     id: root
@@ -50,12 +50,12 @@ ItemDelegate {
             Layout.preferredHeight: JamiTheme.preferredFieldHeight
             horizontalAlignment: Text.AlignLeft
 
-            background: Avatar {
+            background: JUI.Avatar {
                 id: avatar
 
                 anchors.fill: parent
 
-                mode: Avatar.Mode.Contact
+                mode: JUI.Avatar.Mode.Contact
                 imageId: contactID
                 showPresenceIndicator: false
             }
@@ -103,7 +103,7 @@ ItemDelegate {
             }
         }
 
-        NewMaterialButton {
+        JUI.NewMaterialButton {
             id: btnContact
 
             Layout.rightMargin: 16

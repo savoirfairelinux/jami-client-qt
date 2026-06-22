@@ -20,15 +20,15 @@ import QtQuick.Layouts
 import net.jami.Adapters 1.1
 import net.jami.Models 1.1
 import net.jami.Constants 1.1
-import "../../commoncomponents"
+import net.jami.UI as JUI
 
-SpinningAnimation {
+JUI.SpinningAnimation {
     id: root
 
     width: contentRect.width + spinningAnimationWidth
     height: JamiTheme.participantCallInStatusDelegateHeight
 
-    mode: SpinningAnimation.Mode.BiRadial
+    mode: JUI.SpinningAnimation.Mode.BiRadial
     outerCutRadius: JamiTheme.participantCallInStatusDelegateRadius
     spinningAnimationDuration: 5000
 
@@ -44,7 +44,7 @@ SpinningAnimation {
         opacity: JamiTheme.participantCallInStatusOpacity
         radius: JamiTheme.participantCallInStatusDelegateRadius
 
-        Avatar {
+        JUI.Avatar {
             id: avatar
 
             anchors.left: contentRect.left
@@ -55,7 +55,7 @@ SpinningAnimation {
             height: JamiTheme.participantCallInAvatarSize
 
             showPresenceIndicator: false
-            mode: Avatar.Mode.Contact
+            mode: JUI.Avatar.Mode.Contact
             imageId: ContactUri
         }
 
@@ -106,7 +106,7 @@ SpinningAnimation {
             }
         }
 
-        PushButton {
+        JUI.PushButton {
             id: callCancelButton
 
             anchors.right: contentRect.right

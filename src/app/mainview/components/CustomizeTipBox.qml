@@ -20,7 +20,7 @@ import QtQuick.Layouts
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-import "../../commoncomponents"
+import net.jami.UI as JUI
 
 ColumnLayout {
     id: column
@@ -52,7 +52,7 @@ ColumnLayout {
         Layout.leftMargin: 15
         Layout.alignment: Qt.AlignLeft
 
-        ResponsiveImage {
+        JUI.ResponsiveImage {
             id: icon
 
             visible: !opened
@@ -98,7 +98,7 @@ ColumnLayout {
         color: column.textColor
     }
 
-    PhotoboothView {
+    JUI.PhotoboothView {
         id: setAvatarWidget
         width: avatarSize + avatarSize / 2
         height: avatarSize + avatarSize / 2
@@ -110,7 +110,7 @@ ColumnLayout {
         doubleEditAvatar: true
     }
 
-    ModalTextEdit {
+    JUI.ModalTextEdit {
         id: displayNameLineEdit
 
         visible: opened

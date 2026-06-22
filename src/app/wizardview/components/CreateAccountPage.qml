@@ -23,7 +23,7 @@ import net.jami.Constants 1.1
 import net.jami.Enums 1.1
 import net.jami.Models 1.1
 import "../"
-import "../../commoncomponents"
+import net.jami.UI as JUI
 import "../../settingsview/components"
 import "../../mainview/components"
 import "../../commoncomponents/contextmenu"
@@ -141,7 +141,7 @@ Rectangle {
                     Accessible.focusable: true
                 }
 
-                UsernameTextEdit {
+                JUI.UsernameTextEdit {
                     id: usernameEdit
                     objectName: "usernameEdit"
 
@@ -160,7 +160,7 @@ Rectangle {
                     Accessible.name: JamiStrings.chooseAUsername
                 }
 
-                NewMaterialButton {
+                JUI.NewMaterialButton {
                     id: joinJamiButton
 
                     objectName: "joinJamiButton"
@@ -179,9 +179,9 @@ Rectangle {
                     text: !enabled ? JamiStrings.creatingAccount : root.isRendezVous
                                      ? JamiStrings.chooseName : JamiStrings.joinJami
                     enabled: usernameEdit.nameRegistrationState
-                             === UsernameTextEdit.NameRegistrationState.FREE
+                             === JUI.UsernameTextEdit.NameRegistrationState.FREE
                              || usernameEdit.nameRegistrationState
-                             === UsernameTextEdit.NameRegistrationState.BLANK
+                             === JUI.UsernameTextEdit.NameRegistrationState.BLANK
 
 
                     onClicked: {
@@ -192,13 +192,13 @@ Rectangle {
                                                                                                                  "avatar": UtilsAdapter.tempCreationImage(),
                                                                                                                  "isRendezVous": root.isRendezVous
                                                                                                              });
-                        if (usernameEdit.nameRegistrationState === UsernameTextEdit.NameRegistrationState.FREE) {
+                        if (usernameEdit.nameRegistrationState === JUI.UsernameTextEdit.NameRegistrationState.FREE) {
                             enabled = false;
                             encryptButton.enabled = false;
                             WizardViewStepModel.nextStep();
                         }
                         if (usernameEdit.nameRegistrationState
-                                === UsernameTextEdit.NameRegistrationState.BLANK)
+                                === JUI.UsernameTextEdit.NameRegistrationState.BLANK)
                             popup.visible = true;
                         UtilsAdapter.setTempCreationImageFromString("", "temp");
                     }
@@ -214,7 +214,7 @@ Rectangle {
 
                     spacing: 5
 
-                    NewMaterialButton {
+                    JUI.NewMaterialButton {
                         id: encryptButton
 
                         Layout.alignment: Qt.AlignCenter
@@ -250,9 +250,9 @@ Rectangle {
         }
     }
 
-    NewIconButton {
+    JUI.NewIconButton {
         id: backButton
-        QWKSetParentHitTestVisible {}
+        JUI.QWKSetParentHitTestVisible {}
 
         objectName: "createAccountPageBackButton"
 
@@ -280,7 +280,7 @@ Rectangle {
 
     }
 
-    NewIconButton {
+    JUI.NewIconButton {
         id: adviceBox
 
         anchors.right: parent.right

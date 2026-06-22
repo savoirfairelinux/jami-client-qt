@@ -28,7 +28,7 @@ ListView {
     clip: true
     maximumFlickVelocity: 1024
 
-    ScrollBar.vertical: JamiScrollBar {
+    ScrollBar.vertical: ScrollBar {
         id: verticalScrollBar
 
         attachedFlickableMoving: root.moving

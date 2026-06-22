@@ -22,7 +22,7 @@ import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import net.jami.Enums 1.1
 import net.jami.Models 1.1
-import "commoncomponents"
+import net.jami.UI as JUI
 
 // Picture-in-Picture call window.
 // Shown automatically when the user navigates away from a conversation
@@ -83,7 +83,7 @@ Window {
     }
 
     // QWK-style close button — top-right corner, fades in/out with the overlay.
-    QWKButton {
+    JUI.QWKButton {
         id: closePipButton
 
         anchors.top: parent.top

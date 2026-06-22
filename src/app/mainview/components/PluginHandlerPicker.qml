@@ -20,7 +20,7 @@ import QtQuick.Layouts
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-import "../../commoncomponents"
+import net.jami.UI as JUI
 
 Popup {
     id: root
@@ -97,7 +97,7 @@ Popup {
                         text: JamiStrings.chooseExtension
                     }
 
-                    PushButton {
+                    JUI.PushButton {
                         id: closeButton
                         Layout.alignment: Qt.AlignRight
                         Layout.rightMargin: 5
@@ -112,7 +112,7 @@ Popup {
                     }
                 }
 
-                JamiListView {
+                JUI.ListView {
                     id: pluginhandlerPickerListView
 
                     Layout.alignment: Qt.AlignHCenter
@@ -169,9 +169,9 @@ Popup {
                 RowLayout {
                     height: JamiTheme.preferredFieldHeight
 
-                    NewIconButton {
+                    JUI.NewIconButton {
                         id: backButton
-                        QWKSetParentHitTestVisible {}
+                        JUI.QWKSetParentHitTestVisible {}
 
                         Layout.leftMargin: 5
                         Layout.topMargin: 5
@@ -200,7 +200,7 @@ Popup {
                         text: JamiStrings.extensionPreferences
                     }
 
-                    PushButton {
+                    JUI.PushButton {
                         id: closeButton2
                         Layout.rightMargin: 5
                         Layout.topMargin: 5
@@ -214,7 +214,7 @@ Popup {
                     }
                 }
 
-                JamiListView {
+                JUI.ListView {
                     id: pluginhandlerPreferencePickerListView
 
                     Layout.alignment: Qt.AlignHCenter
@@ -229,7 +229,7 @@ Popup {
                         pluginId: root.pluginId
                     }
 
-                    delegate: PreferenceItemDelegate {
+                    delegate: JUI.PreferenceItemDelegate {
                         id: pluginHandlerPreferenceDelegate
                         width: pluginhandlerPreferencePickerListView.width
                         height: JamiTheme.pluginHandlersPopupViewDelegateHeight

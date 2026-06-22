@@ -60,6 +60,13 @@ def gen_qml_qrc(with_webengine):
             # Skip the webengine directory if WebEngine is unable to be used
             if not with_webengine and path_contains_dir(root, 'webengine'):
                 continue
+            # commoncomponents/ top-level files are embedded by qt_add_qml_module
+            # as the net.jami.UI static QML module (qrc:/net/jami/UI/).
+            # Exclude them here to avoid double-embedding; subdirectories such as
+            # commoncomponents/contextmenu/ are NOT part of the module and must
+            # remain in the qrc.
+            if os.path.relpath(root, app_src_dir) == 'commoncomponents':
+                continue
             filtered = [k for k in files if k.endswith('.qml') or
                         k.endswith('.js') or k.endswith('.html') or
                         k.endswith('.css') or k.endswith('.conf') or

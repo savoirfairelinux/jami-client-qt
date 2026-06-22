@@ -17,7 +17,7 @@
 import QtQuick
 import QtQuick.Controls
 import net.jami.Adapters 1.1
-import "../../commoncomponents"
+import net.jami.UI as JUI
 
 Item {
     id: root
@@ -27,18 +27,18 @@ Item {
     property alias showPresenceIndicator: avatar.showPresenceIndicator
     property alias animationMode: animation.mode
 
-    SpinningAnimation {
+    JUI.SpinningAnimation {
         id: animation
 
         anchors.fill: root
     }
 
-    Avatar {
+    JUI.Avatar {
         id: avatar
 
         anchors.fill: root
-        anchors.margins: animation.mode === SpinningAnimation.Mode.Disabled ? 0 : animation.spinningAnimationWidth
+        anchors.margins: animation.mode === JUI.SpinningAnimation.Mode.Disabled ? 0 : animation.spinningAnimationWidth
 
-        mode: Avatar.Mode.Conversation
+        mode: JUI.Avatar.Mode.Conversation
     }
 }

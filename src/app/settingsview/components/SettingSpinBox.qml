@@ -20,7 +20,7 @@ import QtQuick.Controls
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-import "../../commoncomponents"
+import net.jami.UI as JUI
 
 RowLayout {
     id: root
@@ -93,7 +93,7 @@ RowLayout {
             radius: height / 2
         }
 
-        MaterialToolTip {
+        JUI.MaterialToolTip {
             id: toolTip
             parent: spinbox
             visible: spinbox.hovered && (root.tooltipText.length > 0)
@@ -115,7 +115,7 @@ RowLayout {
 
             color: JamiTheme.transparentColor
 
-            ResponsiveImage {
+            JUI.ResponsiveImage {
 
                 containerHeight: 6
                 containerWidth: 10
@@ -141,7 +141,7 @@ RowLayout {
 
             color: JamiTheme.transparentColor
 
-            ResponsiveImage {
+            JUI.ResponsiveImage {
 
                 containerHeight: 6
                 containerWidth: 10

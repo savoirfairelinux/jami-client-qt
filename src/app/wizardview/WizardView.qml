@@ -22,10 +22,10 @@ import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import net.jami.Enums 1.1
 import "../"
-import "../commoncomponents"
+import net.jami.UI as JUI
 import "components"
 
-BaseView {
+JUI.BaseView {
     id: root
     objectName: "WizardView"
 
@@ -84,7 +84,7 @@ BaseView {
         }
     }
 
-    JamiFlickable {
+    JUI.Flickable {
         id: wizardViewScrollView
 
         property ScrollBar vScrollBar: ScrollBar.vertical

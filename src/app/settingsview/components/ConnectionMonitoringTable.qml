@@ -24,7 +24,7 @@ import net.jami.Constants 1.1
 import net.jami.Enums 1.1
 import net.jami.Models 1.1
 
-import "../../commoncomponents"
+import net.jami.UI as JUI
 import "../js/logviewwindowcreation.js" as LogViewWindowCreation
 
 ListView {
@@ -154,7 +154,7 @@ ListView {
                     Layout.leftMargin: 5
                     Layout.preferredWidth: 200
                     color: JamiTheme.transparentColor
-                    Avatar {
+                    JUI.Avatar {
                         id: avatar
                         visible: index == 0
                         anchors.left: parent.left
@@ -162,7 +162,7 @@ ListView {
                         width: 40
                         anchors.verticalCenter: parent.verticalCenter
                         imageId: PeerId
-                        mode: Avatar.Mode.Contact
+                        mode: JUI.Avatar.Mode.Contact
                     }
                     Rectangle {
                         id: usernameRect
@@ -225,7 +225,7 @@ ListView {
                                 tooltipContact.text = JamiStrings.copyAllData;
                             }
 
-                            MaterialToolTip {
+                            JUI.MaterialToolTip {
                                 id: tooltipContact
                                 visible: usernameText.font.underline
                                 text: JamiStrings.copyAllData
@@ -269,7 +269,7 @@ ListView {
                                 tooltipDevice.text = delegateDeviceText.text;
                             }
 
-                            MaterialToolTip {
+                            JUI.MaterialToolTip {
                                 id: tooltipDevice
                                 visible: delegateDeviceText.font.underline
                                 text: delegateDeviceText.text
@@ -289,7 +289,7 @@ ListView {
                     height: 40
                     Layout.preferredWidth: 130
                     property var status: Status[index]
-                    ResponsiveImage {
+                    JUI.ResponsiveImage {
                         id: connectionImage
                         anchors.left: parent.left
                         anchors.verticalCenter: parent.verticalCenter
@@ -354,7 +354,7 @@ ListView {
                                 connectionText.font.underline = false;
                             }
 
-                            MaterialToolTip {
+                            JUI.MaterialToolTip {
                                 visible: connectionText.font.underline
                                 text: connectionText.tooltipText
                                 toolTipFont: JamiTheme.ubuntuMonoFontFamily

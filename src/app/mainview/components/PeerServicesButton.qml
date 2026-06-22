@@ -7,7 +7,7 @@ import QtQuick.Controls.impl
 
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-import "../../commoncomponents"
+import net.jami.UI as JUI
 
 ComboBox {
     id: root
@@ -130,7 +130,7 @@ ComboBox {
 
     function openOrCopy(service)  {
         if (isHttpService(service)) {
-            var dlg = viewCoordinator.presentDialog(appWindow, "../../commoncomponents/ConfirmDialog.qml", {
+            var dlg = viewCoordinator.presentDialog(appWindow, "../../commoncomponents/JUI.ConfirmDialog.qml", {
                                                         "titleText": JamiStrings.openExternalLink,
                                                         "textLabel": JamiStrings.confirmNavigationDescription,
                                                         "confirmLabel": JamiStrings.open
@@ -295,7 +295,7 @@ ComboBox {
                 }
             }
 
-            NewIconButton {
+            JUI.NewIconButton {
                 id: openOrCopyButton
 
                 Layout.alignment: Qt.AlignVCenter
@@ -347,7 +347,7 @@ ComboBox {
             root.openOrCopy(modelData)
         }
 
-        MaterialToolTip {
+        JUI.MaterialToolTip {
             parent: parent
 
             text: root.tunnelFor(serviceDelegate.modelData) !== undefined ? root.isHttpService(serviceDelegate.modelData)

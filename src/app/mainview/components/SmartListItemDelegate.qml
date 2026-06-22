@@ -23,7 +23,7 @@ import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import net.jami.Enums 1.1
 import net.jami.Models 1.1
-import "../../commoncomponents"
+import net.jami.UI as JUI
 
 ItemDelegate {
     id: root
@@ -195,7 +195,7 @@ ItemDelegate {
         }
 
         // Draft indicator
-        ResponsiveImage {
+        JUI.ResponsiveImage {
             visible: Draft && !root.highlighted
             containerWidth: 20
 
@@ -204,7 +204,7 @@ ItemDelegate {
         }
 
         // Show that a call is ongoing for groups indicator
-        ResponsiveImage {
+        JUI.ResponsiveImage {
             visible: ActiveCallsCount && !root.highlighted
             source: JamiResources.phone_in_talk_24dp_svg
             containerWidth: 16

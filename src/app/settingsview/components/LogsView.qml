@@ -20,7 +20,7 @@ import QtQuick.Layouts
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-import "../../commoncomponents"
+import net.jami.UI as JUI
 
 Window {
     id: root
@@ -118,7 +118,7 @@ Window {
                 }
             }
 
-            NewMaterialButton {
+            JUI.NewMaterialButton {
                 id: clearButton
 
                 Layout.alignment: Qt.AlignHCenter
@@ -139,7 +139,7 @@ Window {
                 }
             }
 
-            NewMaterialButton {
+            JUI.NewMaterialButton {
                 id: copyButton
 
                 Layout.alignment: Qt.AlignHCenter
@@ -157,7 +157,7 @@ Window {
                 }
 
                 // Manual tooltip override to open tooltip on copy only
-                MaterialToolTip {
+                JUI.MaterialToolTip {
                     id: copiedToolTip
 
                     parent: copyButton
@@ -165,7 +165,7 @@ Window {
                 }
             }
 
-            NewMaterialButton {
+            JUI.NewMaterialButton {
                 id: reportButton
 
                 Layout.alignment: Qt.AlignHCenter
@@ -181,7 +181,7 @@ Window {
             }
         }
 
-        JamiFlickable {
+        JUI.Flickable {
             id: scrollView
 
             Layout.alignment: Qt.AlignHCenter

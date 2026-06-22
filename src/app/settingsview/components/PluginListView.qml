@@ -21,7 +21,7 @@ import Qt.labs.platform
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-import "../../commoncomponents"
+import net.jami.UI as JUI
 
 Rectangle {
     id: root
@@ -58,7 +58,7 @@ Rectangle {
                 horizontalAlignment: Text.AlignLeft
                 verticalAlignment: Text.AlignBottom
             }
-            HeaderToggleSwitch {
+            JUI.HeaderToggleSwitch {
                 labelText: "auto update"
                 tooltipText: "auto update"
                 checked: isAutoUpdate
@@ -67,7 +67,7 @@ Rectangle {
                     PluginAdapter.setAutoUpdate(isAutoUpdate);
                 }
             }
-            NewMaterialButton {
+            JUI.NewMaterialButton {
                 id: disableAll
 
                 outlinedButton: true

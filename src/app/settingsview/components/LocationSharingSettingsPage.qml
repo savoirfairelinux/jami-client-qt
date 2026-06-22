@@ -22,7 +22,7 @@ import net.jami.Adapters 1.1
 import net.jami.Enums 1.1
 import net.jami.Constants 1.1
 import net.jami.Helpers 1.1
-import "../../commoncomponents"
+import net.jami.UI as JUI
 import "../../mainview/components"
 import "../../mainview/js/contactpickercreation.js" as ContactPickerCreation
 
@@ -183,7 +183,7 @@ SettingsPageBase {
             }
         }
 
-        NewMaterialButton {
+        JUI.NewMaterialButton {
             id: defaultSettings
 
             outlinedButton: true

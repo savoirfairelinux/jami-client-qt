@@ -21,9 +21,9 @@ import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import Qt5Compat.GraphicalEffects
-import "../../commoncomponents"
+import net.jami.UI as JUI
 
-BaseModalDialog {
+JUI.BaseModalDialog {
     id: root
 
     property real maxHeight: parent.height * 40 / 100
@@ -110,7 +110,7 @@ BaseModalDialog {
                                 width: socketLayout.width
                             }
 
-                            NewIconButton {
+                            JUI.NewIconButton {
                                 iconSize: JamiTheme.iconButtonSmall
                                 iconSource: socketLayout.showAll ? JamiResources.expand_less_24dp_svg : JamiResources.expand_more_24dp_svg
 

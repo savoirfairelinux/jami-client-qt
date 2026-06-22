@@ -21,7 +21,7 @@ import Qt.labs.platform
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-import "../../commoncomponents"
+import net.jami.UI as JUI
 
 Rectangle {
     id: root
@@ -100,7 +100,7 @@ Rectangle {
             lineHeight: JamiTheme.wizardViewTextLineHeight
         }
 
-        NewMaterialButton {
+        JUI.NewMaterialButton {
             id: fileImportBtn
 
             objectName: "fileImportBtn"
@@ -119,9 +119,9 @@ Rectangle {
             onClicked: {
                 errorText = "";
                 var dlg = viewCoordinator.presentDialog(appWindow,
-                                                        "commoncomponents/JamiFileDialog.qml", {
+                                                        "commoncomponents/JUI.FileDialog.qml", {
                                                             "title": JamiStrings.openFile,
-                                                            "fileMode": JamiFileDialog.OpenFile,
+                                                            "fileMode": JUI.FileDialog.OpenFile,
                                                             "folder": StandardPaths.writableLocation(
                                                                           StandardPaths.HomeLocation)
                                                                       + "/Desktop",
@@ -158,7 +158,7 @@ Rectangle {
             lineHeight: JamiTheme.wizardViewTextLineHeight
         }
 
-        PasswordTextEdit {
+        JUI.PasswordTextEdit {
             id: passwordFromBackupEdit
 
             objectName: "passwordFromBackupEdit"
@@ -170,7 +170,7 @@ Rectangle {
             placeholderText: JamiStrings.enterPassword
         }
 
-        NewMaterialButton {
+        JUI.NewMaterialButton {
             id: connectBtn
 
             objectName: "importFromBackupPageConnectBtn"
@@ -241,9 +241,9 @@ Rectangle {
         }
     }
 
-    NewIconButton {
+    JUI.NewIconButton {
         id: backButton
-        QWKSetParentHitTestVisible {}
+        JUI.QWKSetParentHitTestVisible {}
 
         objectName: "importFromBackupPageBackButton"
 

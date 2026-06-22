@@ -18,7 +18,7 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import net.jami.Constants 1.1
-import "../../commoncomponents"
+import net.jami.UI as JUI
 
 TabButton {
     id: root
@@ -107,7 +107,7 @@ TabButton {
         onActivated: selected()
     }
 
-    MaterialToolTip {
+    JUI.MaterialToolTip {
         id: toolTip
         parent: root
         text: toolTipText

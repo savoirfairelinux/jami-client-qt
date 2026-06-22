@@ -21,7 +21,7 @@ import QtQuick.Layouts
 import Qt5Compat.GraphicalEffects
 import net.jami.Models 1.1
 import net.jami.Constants 1.1
-import "../../commoncomponents"
+import net.jami.UI as JUI
 
 ItemDelegate {
     id: root
@@ -65,9 +65,9 @@ ItemDelegate {
         onClicked: menu.popup.open()
     }
 
-    background: HalfPill {
+    background: JUI.HalfPill {
         anchors.fill: parent
-        radius: type === HalfPill.None ? 0 : 5
+        radius: type === JUI.HalfPill.None ? 0 : 5
         color: {
             if (supplimentaryBackground.visible)
                 return "#c4272727";
@@ -76,16 +76,16 @@ ItemDelegate {
         type: {
             if (isVertical) {
                 if (isFirst)
-                    return HalfPill.Top;
+                    return JUI.HalfPill.Top;
                 else if (isLast && hasLast)
-                    return HalfPill.Bottom;
+                    return JUI.HalfPill.Bottom;
             } else {
                 if (isFirst)
-                    return HalfPill.Left;
+                    return JUI.HalfPill.Left;
                 else if (isLast && hasLast)
-                    return HalfPill.Right;
+                    return JUI.HalfPill.Right;
             }
-            return HalfPill.None;
+            return JUI.HalfPill.None;
         }
 
         Behavior on color {
@@ -96,14 +96,14 @@ ItemDelegate {
     }
 
     // TODO: this can be a Rectangle once multistream is done
-    HalfPill {
+    JUI.HalfPill {
         id: supplimentaryBackground
 
         visible: ItemAction.hasBg !== undefined
         color: root.down ? Qt.lighter(JamiTheme.declineRed, 1.5) : root.hovered && !menu.hovered ? JamiTheme.declineRed : JamiTheme.declineRedTransparent
         anchors.fill: parent
         radius: isLast ? 5 : width / 2
-        type: isLast ? HalfPill.Right : HalfPill.None
+        type: isLast ? JUI.HalfPill.Right : JUI.HalfPill.None
 
         Behavior on color {
             ColorAnimation {
@@ -112,7 +112,7 @@ ItemDelegate {
         }
     }
 
-    ResponsiveImage {
+    JUI.ResponsiveImage {
         id: icon
 
         // TODO: remove this when the icons are size corrected
@@ -152,7 +152,7 @@ ItemDelegate {
         anchors.verticalCenter: isVertical ? parent.verticalCenter : undefined
         anchors.verticalCenterOffset: isVertical ? toolTip.contentHeight / 2 + 4 : 0
 
-        MaterialToolTip {
+        JUI.MaterialToolTip {
             id: toolTip
             parent: parent
             visible: text.length > 0 && (root.hovered || menu.hovered)
@@ -203,7 +203,7 @@ ItemDelegate {
             }
         }
 
-        contentItem: ResponsiveImage {
+        contentItem: JUI.ResponsiveImage {
             source: isVertical ? JamiResources.bidirectional_chevron_left_black_24dp_svg : JamiResources.expand_less_24dp_svg
             color: "white"
         }
@@ -258,7 +258,7 @@ ItemDelegate {
                         }
 
                         spacing: 6
-                        ResponsiveImage {
+                        JUI.ResponsiveImage {
                             source: menuAction.popupMode === CallActionBar.ActionPopupMode.ListElement || menuAction.popupMode === CallActionBar.ActionPopupMode.LayoutOption ? IconSource : (menuItem.ListView.isCurrentItem ? JamiResources.check_box_24dp_svg : JamiResources.check_box_outline_blank_24dp_svg)
                             color: "white"
                             width: 20
@@ -274,7 +274,7 @@ ItemDelegate {
                             font.pointSize: JamiTheme.participantFontSize
                             color: "white"
                         }
-                        ResponsiveImage {
+                        JUI.ResponsiveImage {
                             source: JamiResources.check_black_24dp_svg
                             color: "white"
                             width: 20
@@ -347,7 +347,7 @@ ItemDelegate {
 
             onOpened: menuAction.triggered()
 
-            contentItem: JamiListView {
+            contentItem: JUI.ListView {
                 id: itemListView
 
                 property real menuItemWidth: 0

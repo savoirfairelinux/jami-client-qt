@@ -23,10 +23,10 @@ import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import net.jami.Enums 1.1
 import net.jami.Models 1.1
-import "../../commoncomponents"
+import net.jami.UI as JUI
 import "../../settingsview/components"
 
-SidePanelBase {
+JUI.SidePanelBase {
     id: root
 
     objectName: "SidePanel"
@@ -189,7 +189,7 @@ SidePanelBase {
     Item {
         anchors.fill: parent
 
-        BackgroundGradient {
+        JUI.BackgroundGradient {
             id: chatViewGradientExtension
 
             anchors.top: parent.top
@@ -263,7 +263,7 @@ SidePanelBase {
                     RowLayout {
                         id: header
 
-                        QWKSetParentHitTestVisible {}
+                        JUI.QWKSetParentHitTestVisible {}
 
                         width: parent.width
                         height: 40
@@ -308,7 +308,7 @@ SidePanelBase {
                             }
                         }
 
-                        PushButton {
+                        JUI.PushButton {
                             id: actionButton
 
                             radius: JamiTheme.primaryRadius
@@ -407,7 +407,7 @@ SidePanelBase {
                         visible: JamiQmlUtils.isDonationBannerVisible
                     }
 
-                    JamiListView {
+                    JUI.ListView {
                         id: swarmCurrentConversationList
 
                         Layout.fillWidth: true
@@ -498,9 +498,9 @@ SidePanelBase {
                         delegate: SmartListItemDelegate {
                             showLocationIconArrow: locationIconTimer.showIconArrow
 
-                            extraButtons.contentItem: NewIconButton {
+                            extraButtons.contentItem: JUI.NewIconButton {
                                 id: sendContactRequestButton
-                                QWKSetParentHitTestVisible {}
+                                JUI.QWKSetParentHitTestVisible {}
 
                                 anchors.right: parent.right
                                 anchors.verticalCenter: parent.verticalCenter
@@ -586,7 +586,7 @@ SidePanelBase {
                             // Setting the visibiltiy will allow the search results to be forced at the top
                             visible: contactSearchBar.textContent === ""
 
-                            NewIconButton {
+                            JUI.NewIconButton {
                                 Layout.alignment: Qt.AlignHCenter
 
                                 iconSource: inNewSwarm ? JamiResources.emotion_sad_line_24dp_svg :
@@ -608,7 +608,7 @@ SidePanelBase {
                                 verticalAlignment: Text.AlignVCenter
                             }
 
-                            NewMaterialButton {
+                            JUI.NewMaterialButton {
                                 id: findAContactButton
 
                                 Layout.alignment: Qt.AlignHCenter

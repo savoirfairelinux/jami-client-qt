@@ -141,7 +141,7 @@ T.ComboBox {
             currentIndex: control.highlightedIndex
             highlightMoveDuration: 0
 
-            ScrollBar.vertical: JamiScrollBar {}
+            ScrollBar.vertical: ScrollBar {}
         }
     }
 

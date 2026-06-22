@@ -19,7 +19,7 @@ import QtQuick.Controls
 import QtQuick.Layouts
 import net.jami.Models 1.1
 import net.jami.Constants 1.1
-import "../../commoncomponents"
+import net.jami.UI as JUI
 
 RowLayout {
     id: root
@@ -28,9 +28,9 @@ RowLayout {
     signal backArrowClicked
     spacing: 10
 
-    NewIconButton {
+    JUI.NewIconButton {
         id: backToSettingsMenuButton
-        QWKSetParentHitTestVisible {}
+        JUI.QWKSetParentHitTestVisible {}
 
         Layout.preferredWidth: iconSize
         Layout.preferredHeight: iconSize

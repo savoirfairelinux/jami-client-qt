@@ -20,7 +20,7 @@ import QtQuick.Layouts
 import net.jami.Adapters 1.1
 import net.jami.Models 1.1
 import net.jami.Constants 1.1
-import "../../commoncomponents"
+import net.jami.UI as JUI
 
 Rectangle {
     id: root
@@ -50,7 +50,7 @@ Rectangle {
         color: JamiTheme.textColor
     }
 
-    VideoView {
+    JUI.VideoView {
         anchors.top: textTitle.bottom
         anchors.topMargin: 10
         anchors.horizontalCenter: parent.horizontalCenter

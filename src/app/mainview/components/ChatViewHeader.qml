@@ -23,7 +23,7 @@ import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import net.jami.Enums 1.1
 import net.jami.Models 1.1
-import "../../commoncomponents"
+import net.jami.UI as JUI
 
 Control {
     id: root
@@ -116,10 +116,10 @@ Control {
 
         spacing: 8
 
-        NewIconButton {
+        JUI.NewIconButton {
             id: backToWelcomeViewArrowButton
 
-            QWKSetParentHitTestVisible {}
+            JUI.QWKSetParentHitTestVisible {}
 
             Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
 
@@ -132,9 +132,9 @@ Control {
             onClicked: root.backClicked()
         }
 
-        NewIconButton {
+        JUI.NewIconButton {
             id: backToWelcomeViewChevronButton
-            QWKSetParentHitTestVisible {}
+            JUI.QWKSetParentHitTestVisible {}
 
             Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
 
@@ -150,7 +150,7 @@ Control {
         // NOTE: this a very customized component and should be generalized at some point
         Button {
             id: backToActiveCallButton
-            QWKSetParentHitTestVisible {}
+            JUI.QWKSetParentHitTestVisible {}
 
             Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
             
@@ -186,7 +186,7 @@ Control {
                 }
             }
 
-            MaterialToolTip {
+            JUI.MaterialToolTip {
                 parent: backToActiveCallButton
 
                 text: JamiStrings.returnToCall
@@ -210,19 +210,19 @@ Control {
             Layout.preferredWidth: 352
             Layout.preferredHeight: parent.height
 
-            Avatar {
+            JUI.Avatar {
                 id: userAvatar
 
                 width: JamiTheme.iconButtonLarge
                 height: JamiTheme.iconButtonLarge
 
-                mode: convContext.isSwarm ? Avatar.Mode.Conversation : Avatar.Mode.Contact
+                mode: convContext.isSwarm ? JUI.Avatar.Mode.Conversation : JUI.Avatar.Mode.Contact
                 showPresenceIndicator: false
             }
 
             ColumnLayout {
                 id: userNameOrIdColumnLayout
-                QWKSetParentHitTestVisible {}
+                JUI.QWKSetParentHitTestVisible {}
                 objectName: "userNameOrIdColumnLayout"
 
                 Layout.fillWidth: true
@@ -233,10 +233,10 @@ Control {
 
                 spacing: 0
 
-                ElidedTextLabel {
+                JUI.ElidedTextLabel {
                     id: title
 
-                    LineEditContextMenu {
+                    JUI.LineEditContextMenu {
                         id: displayNameContextMenu
                         lineEditObj: title
                         selectOnly: true
@@ -263,7 +263,7 @@ Control {
                     maxWidth: userNameOrIdColumnLayout.width
                 }
 
-                ElidedTextLabel {
+                JUI.ElidedTextLabel {
                     id: description
 
                     Layout.fillWidth: true
@@ -283,7 +283,7 @@ Control {
         }
 
         PeerServicesButton {
-            QWKSetParentHitTestVisible {}
+            JUI.QWKSetParentHitTestVisible {}
             Layout.alignment: Qt.AlignVCenter
             active: CurrentConversation.isCoreDialog && !CurrentConversation.isRequest && !CurrentConversation.needsSyncing
             accountId: CurrentAccount.id
@@ -292,15 +292,15 @@ Control {
 
         // Custom component (DNR: DO NOT REPLACE)
         CallsButton {
-            QWKSetParentHitTestVisible {}
+            JUI.QWKSetParentHitTestVisible {}
             Layout.alignment: Qt.AlignVCenter
             convContext: root.convContext
             visible: convContext.activeCalls.length > 0 && interactionButtonsVisibility
         }
 
-        NewIconButton {
+        JUI.NewIconButton {
             id: startAudioCallButton
-            QWKSetParentHitTestVisible {}
+            JUI.QWKSetParentHitTestVisible {}
 
             visible: convContext.activeCalls.length === 0 && interactionButtonsVisibility
 
@@ -311,9 +311,9 @@ Control {
             onClicked: CallAdapter.startAudioOnlyCall()
         }
 
-        NewIconButton {
+        JUI.NewIconButton {
             id: startVideoCallButton
-            QWKSetParentHitTestVisible {}
+            JUI.QWKSetParentHitTestVisible {}
 
             iconSize: JamiTheme.iconButtonMedium
             iconSource: JamiResources.videocam_24dp_svg

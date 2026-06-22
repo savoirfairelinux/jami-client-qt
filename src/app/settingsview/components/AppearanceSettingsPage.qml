@@ -23,7 +23,7 @@ import net.jami.Adapters 1.1
 import net.jami.Enums 1.1
 import net.jami.Constants 1.1
 import net.jami.Helpers 1.1
-import "../../commoncomponents"
+import net.jami.UI as JUI
 import "../../mainview/components"
 import "../../mainview/js/contactpickercreation.js" as ContactPickerCreation
 
@@ -88,7 +88,7 @@ SettingsPageBase {
                     id: optionsB
                 }
 
-                MaterialRadioButton {
+                JUI.MaterialRadioButton {
                     id: lightThemeButton
 
                     width: 165
@@ -108,7 +108,7 @@ SettingsPageBase {
                     }
                 }
 
-                MaterialRadioButton {
+                JUI.MaterialRadioButton {
                     id: darkThemeButton
 
                     width: 165
@@ -127,7 +127,7 @@ SettingsPageBase {
                     }
                 }
 
-                MaterialRadioButton {
+                JUI.MaterialRadioButton {
                     id: sysThemeButton
 
                     width: 165
@@ -156,9 +156,9 @@ SettingsPageBase {
                     itemWidth: root.itemWidth
 
                     onSettingMaterialButtonClicked: {
-                        var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/JamiFileDialog.qml", {
+                        var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/JUI.FileDialog.qml", {
                             title: JamiStrings.selectBackgroundImage,
-                            fileMode: JamiFileDialog.OpenFile,
+                            fileMode: JUI.FileDialog.OpenFile,
                             folder: StandardPaths.writableLocation(StandardPaths.PicturesLocation),
                             nameFilters: [JamiStrings.imageFiles, JamiStrings.allFiles]
                         });
@@ -315,7 +315,7 @@ SettingsPageBase {
             onSwitchToggled: UtilsAdapter.setAppValue(Settings.Key.UseFramelessWindow, !checked)
         }
 
-        NewMaterialButton {
+        JUI.NewMaterialButton {
             id: defaultSettings
 
             outlinedButton: true
