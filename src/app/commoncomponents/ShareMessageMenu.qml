@@ -24,7 +24,7 @@ import net.jami.Constants 1.1
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 
-import "../mainview/components"
+import net.jami.MainView as JMV
 
 BaseContextMenu {
     id: mainMenu
@@ -116,7 +116,7 @@ BaseContextMenu {
             Layout.fillWidth: true
             Layout.preferredHeight: 35
 
-            Searchbar {
+            JMV.Searchbar {
                 id: contactPickerContactSearchBar
 
                 Layout.fillWidth: true
@@ -177,7 +177,7 @@ BaseContextMenu {
 
             model: shareConvProxyModel
 
-            delegate: ConversationPickerItemDelegate {
+            delegate: JMV.ConversationPickerItemDelegate {
                 id: conversationDelegate
             }
         }

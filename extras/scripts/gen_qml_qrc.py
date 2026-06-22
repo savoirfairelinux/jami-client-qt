@@ -66,8 +66,11 @@ def gen_qml_qrc(with_webengine):
             rel = os.path.relpath(root, app_src_dir)
             if rel in ('commoncomponents', os.path.join('commoncomponents', 'contextmenu')):
                 continue
-            # settingsview/components/ is embedded by qt_add_qml_module (net.jami.SettingsView)
+            # settingsview/components/ → net.jami.SettingsView
             if rel == os.path.join('settingsview', 'components'):
+                continue
+            # mainview/components/ → net.jami.MainView
+            if rel == os.path.join('mainview', 'components'):
                 continue
             filtered = [k for k in files if k.endswith('.qml') or
                         k.endswith('.js') or k.endswith('.html') or

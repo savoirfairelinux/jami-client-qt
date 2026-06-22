@@ -24,7 +24,7 @@ import Qt5Compat.GraphicalEffects
 import "../"
 import net.jami.UI as JUI
 import net.jami.SettingsView as JSV
-import "../../mainview/components"
+import net.jami.MainView as JMV
 import net.jami.UI as JUI
 
 Rectangle {

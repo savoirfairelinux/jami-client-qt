@@ -25,7 +25,7 @@ import net.jami.Constants 1.1
 import net.jami.Helpers 1.1
 import QtQml.Models
 import net.jami.UI as JUI
-import "../../mainview/components"
+import net.jami.MainView as JMV
 
 SettingsComboBox {
     id: root
