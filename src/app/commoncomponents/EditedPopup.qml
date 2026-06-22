@@ -27,7 +27,7 @@ BaseModalDialog {
 
     property var previousBodies: undefined
 
-    popupContent: JamiListView {
+    popupContent: ListView {
         id: editsList
 
         width: 400 - 2 * root.popupMargins

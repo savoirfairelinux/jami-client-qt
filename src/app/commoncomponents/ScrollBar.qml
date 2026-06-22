@@ -16,11 +16,11 @@
  */
 
 import QtQuick
-import QtQuick.Controls
+import QtQuick.Templates as T
 import net.jami.Constants 1.1
 
 // Assumed to be attached to Flickable
-ScrollBar {
+T.ScrollBar {
     id: root
 
     property bool attachedFlickableMoving: false
@@ -51,7 +51,7 @@ ScrollBar {
 
         states: State {
             name: "active"
-            when: root.policy === ScrollBar.AlwaysOn || (root.active && root.size < 1.0)
+            when: root.policy === T.ScrollBar.AlwaysOn || (root.active && root.size < 1.0)
             PropertyChanges {
                 target: root.contentItem
                 opacity: 1

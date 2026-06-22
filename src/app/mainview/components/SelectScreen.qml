@@ -22,7 +22,7 @@ import net.jami.Adapters 1.1
 import net.jami.Models 1.1
 import net.jami.Constants 1.1
 import "../js/screenrubberbandcreation.js" as ScreenRubberBandCreation
-import "../../commoncomponents"
+import net.jami.UI as JUI
 
 // SelectScreenWindow as a seperate window,
 // is to make user aware of which screen they want to share,
@@ -163,7 +163,7 @@ Window {
                 Layout.preferredHeight: childrenRect.height
                 spacing: marginSize
 
-                MaterialButton {
+                JUI.MaterialButton {
                     id: selectButton
                     Layout.maximumWidth: 200
                     Layout.fillWidth: true
@@ -195,7 +195,7 @@ Window {
                     }
                 }
 
-                MaterialButton {
+                JUI.MaterialButton {
                     id: cancelButton
 
                     Layout.maximumWidth: 200

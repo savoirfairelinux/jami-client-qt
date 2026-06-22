@@ -19,9 +19,9 @@ import QtQuick.Controls
 import QtQuick.Layouts
 import net.jami.Constants 1.1
 import net.jami.Models 1.1
-import "../../commoncomponents"
+import net.jami.UI as JUI
 
-BaseModalDialog {
+JUI.BaseModalDialog {
     id: root
 
     required property string deviceId
@@ -65,7 +65,7 @@ BaseModalDialog {
             verticalAlignment: Text.AlignVCenter
         }
 
-        PasswordTextEdit {
+        JUI.PasswordTextEdit {
             id: passwordEdit
 
             Layout.alignment: Qt.AlignHCenter

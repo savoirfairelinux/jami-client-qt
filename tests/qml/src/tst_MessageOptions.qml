@@ -23,6 +23,8 @@ import net.jami.Models 1.1
 import net.jami.Constants 1.1
 import net.jami.Enums 1.1
 
+import net.jami.UI as JUI
+
 import "../../../src/app/"
 import "../../../src/app/commoncomponents"
 
@@ -40,7 +42,7 @@ Item {
     }
 
     // Mock listview
-    JamiListView {
+    JUI.ListView {
         id: listView
     }
 
@@ -51,7 +53,7 @@ Item {
     }
 
     function getOptionsPopup(isOutgoing, id, body, type, transferName) {
-        var component = Qt.createComponent("qrc:/commoncomponents/ShowMoreMenu.qml");
+        var component = Qt.createComponent("qrc:/net/jami/UI/ShowMoreMenu.qml");
         var obj = component.createObject(bubble, {
                 "emojiReactions": emojiReactions,
                 "isOutgoing": isOutgoing,

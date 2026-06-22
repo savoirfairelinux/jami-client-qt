@@ -21,7 +21,7 @@ import QtQuick.Layouts
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-import "../../commoncomponents"
+import net.jami.UI as JUI
 
 Rectangle {
     id: root
@@ -34,7 +34,7 @@ Rectangle {
 
     color: "black"
 
-    LocalVideo {
+    JUI.LocalVideo {
         id: localPreview
         anchors.centerIn: parent
         anchors.fill: parent
@@ -129,7 +129,7 @@ Rectangle {
             Layout.preferredHeight: JamiTheme.avatarSizeInCall
 
             showPresenceIndicator: false
-            animationMode: SpinningAnimation.Mode.Radial
+            animationMode: JUI.SpinningAnimation.Mode.Radial
             imageId: CurrentConversation.id
         }
 
@@ -183,7 +183,7 @@ Rectangle {
                 delegate: ColumnLayout {
                     visible: (type === "cam" && CurrentCall.isAudioOnly) ? false : true
 
-                    PushButton {
+                    JUI.PushButton {
                         id: actionButton
                         Layout.leftMargin: 10
                         Layout.rightMargin: 10

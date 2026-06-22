@@ -24,7 +24,7 @@ import net.jami.Adapters 1.1
 import net.jami.Models 1.1
 import net.jami.Enums 1.1
 import net.jami.Constants 1.1
-import "../../commoncomponents"
+import net.jami.UI as JUI
 import "qrc:/js/markdownedition.js" as MDE
 
 Rectangle {
@@ -131,7 +131,7 @@ Rectangle {
 
                 model: menuTypoActionsFirst
 
-                delegate: NewIconButton {
+                delegate: JUI.NewIconButton {
                     anchors.verticalCenter: parent ? parent.verticalCenter : undefined
 
                     enabled: !showPreview
@@ -189,7 +189,7 @@ Rectangle {
 
                     background: null
 
-                    indicator: NewIconButton {
+                    indicator: JUI.NewIconButton {
                         anchors.centerIn: parent
                         iconSize: JamiTheme.iconButtonSmall
                         iconSource: JamiResources.more_vert_24dp_svg
@@ -202,7 +202,7 @@ Rectangle {
                                                            markdownPopup.open()
                     }
 
-                    popup: MarkdownPopup {
+                    popup: JUI.MarkdownPopup {
                         id: markdownPopup
 
                         x: -parent.width * 2
@@ -265,7 +265,7 @@ Rectangle {
 
                 model: menuTypoActionsSecond
 
-                delegate: NewIconButton {
+                delegate: JUI.NewIconButton {
 
                     anchors.verticalCenter: parent.verticalCenter
 
@@ -290,8 +290,8 @@ Rectangle {
 
         spacing: JamiTheme.messageBarSpacing
 
-        // Overriden NewIconButton due to icon fitting issues
-        NewIconButton {
+        // Overriden JUI.NewIconButton due to icon fitting issues
+        JUI.NewIconButton {
             id: typoButton
 
             anchors.verticalCenter: parent.verticalCenter
@@ -435,7 +435,7 @@ Rectangle {
                 ]
             }
 
-            delegate: NewIconButton {
+            delegate: JUI.NewIconButton {
                 id: buttonDelegateMoreButton
 
                 anchors.verticalCenter: parent ? parent.verticalCenter : undefined
@@ -473,7 +473,7 @@ Rectangle {
 
             background: Item {}
 
-            indicator: NewIconButton {
+            indicator: JUI.NewIconButton {
                 anchors.verticalCenter: parent.verticalCenter
 
                     iconSize: JamiTheme.iconButtonMedium
@@ -488,7 +488,7 @@ Rectangle {
 
             Component {
                 id: sharePopupComp
-                ShareMenu {
+                JUI.ShareMenu {
                     id: sharePopup
                     onAudioRecordMessageButtonClicked: rectangle.audioRecordMessageButtonClicked(
                                                            )
@@ -501,7 +501,7 @@ Rectangle {
                 }
             }
 
-            popup: ShareMenu {
+            popup: JUI.ShareMenu {
                 id: sharePopup
                 onAudioRecordMessageButtonClicked: rectangle.audioRecordMessageButtonClicked()
                 onVideoRecordMessageButtonClicked: rectangle.videoRecordMessageButtonClicked()
@@ -603,7 +603,7 @@ Rectangle {
                 ]
             }
 
-            delegate: NewIconButton {
+            delegate: JUI.NewIconButton {
                 id: buttonDelegate
 
                 anchors.verticalCenter: parent ? parent.verticalCenter : undefined
@@ -628,7 +628,7 @@ Rectangle {
             visible: true
             color: JamiTheme.transparentColor
 
-            PushButton {
+            JUI.PushButton {
                 id: sendMessageButton
 
                 objectName: "sendMessageButton"

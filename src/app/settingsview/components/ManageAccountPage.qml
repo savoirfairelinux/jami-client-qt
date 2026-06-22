@@ -22,7 +22,7 @@ import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import net.jami.Enums 1.1
 import net.jami.Models 1.1
-import "../../commoncomponents"
+import net.jami.UI as JUI
 
 SettingsPageBase {
     id: root
@@ -133,7 +133,7 @@ SettingsPageBase {
                 font.kerning: true
             }
 
-            JamiIdentifier {
+            JUI.Identifier {
                 id: jamiIdentifier
 
                 Layout.alignment: Qt.AlignLeft
@@ -199,7 +199,7 @@ SettingsPageBase {
                 lineHeight: JamiTheme.wizardViewTextLineHeight
             }
 
-            NewMaterialButton {
+            JUI.NewMaterialButton {
                 id: linkDeviceBtn
 
                 Layout.alignment: Qt.AlignLeft
@@ -255,7 +255,7 @@ SettingsPageBase {
                 lineHeight: JamiTheme.wizardViewTextLineHeight
             }
 
-            NewMaterialButton {
+            JUI.NewMaterialButton {
                 id: passwdPushButton
 
                 Layout.alignment: Qt.AlignLeft
@@ -267,8 +267,8 @@ SettingsPageBase {
                 text: CurrentAccount.hasArchivePassword ? JamiStrings.changePassword : JamiStrings.setPassword
                 toolTipText: CurrentAccount.hasArchivePassword ? JamiStrings.changeCurrentPassword : JamiStrings.setAPassword
 
-                onClicked: viewCoordinator.presentDialog(appWindow, "commoncomponents/PasswordDialog.qml", {
-                                                             "purpose": CurrentAccount.hasArchivePassword ? PasswordDialog.ChangePassword : PasswordDialog.SetPassword
+                onClicked: viewCoordinator.presentDialog(appWindow, "commoncomponents/JUI.PasswordDialog.qml", {
+                                                             "purpose": CurrentAccount.hasArchivePassword ? JUI.PasswordDialog.ChangePassword : JUI.PasswordDialog.SetPassword
                                                          })
             }
         }
@@ -312,7 +312,7 @@ SettingsPageBase {
                 lineHeight: JamiTheme.wizardViewTextLineHeight
             }
 
-            NewMaterialButton {
+            JUI.NewMaterialButton {
                 id: btnExportAccount
 
                 Layout.alignment: Qt.AlignLeft
@@ -325,7 +325,7 @@ SettingsPageBase {
                 text: JamiStrings.saveAccountTitle
 
                 onClicked: {
-                    var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/JamiFileDialog.qml", {
+                    var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/JUI.FileDialog.qml", {
                                                                 "title": JamiStrings.backupAccountHere,
                                                                 "fileMode": FileDialog.SaveFile,
                                                                 "folder": StandardPaths.writableLocation(StandardPaths.DesktopLocation),
@@ -336,18 +336,18 @@ SettingsPageBase {
                         // is there password? If so, go to password dialog, else, go to following directly
                         var exportPath = UtilsAdapter.getAbsPath(file.toString());
                         if (CurrentAccount.hasArchivePassword) {
-                            viewCoordinator.presentDialog(appWindow, "commoncomponents/PasswordDialog.qml", {
-                                                              "purpose": PasswordDialog.ExportAccount,
+                            viewCoordinator.presentDialog(appWindow, "commoncomponents/JUI.PasswordDialog.qml", {
+                                                              "purpose": JUI.PasswordDialog.ExportAccount,
                                                               "path": exportPath
                                                           });
                             return;
                         } else if (exportPath.length > 0) {
                             var success = AccountAdapter.model.exportToFile(LRCInstance.currentAccountId, exportPath);
-                            viewCoordinator.presentDialog(appWindow, "commoncomponents/SimpleMessageDialog.qml", {
+                            viewCoordinator.presentDialog(appWindow, "commoncomponents/JUI.SimpleMessageDialog.qml", {
                                                               "title": success ? JamiStrings.success : JamiStrings.error,
                                                               "infoText": success ? JamiStrings.backupSuccessful : JamiStrings.backupFailed,
                                                               "buttonTitles": [JamiStrings.optionOk],
-                                                              "buttonStyles": [SimpleMessageDialog.ButtonStyle.TintedBlue],
+                                                              "buttonStyles": [JUI.SimpleMessageDialog.ButtonStyle.TintedBlue],
                                                               "buttonRoles": [DialogButtonBox.AcceptRole]
                                                           });
                         }
@@ -423,7 +423,7 @@ SettingsPageBase {
                 lineHeight: JamiTheme.wizardViewTextLineHeight
             }
 
-            NewMaterialButton {
+            JUI.NewMaterialButton {
                 id: deleteAccountPushButton
 
                 Layout.alignment: Qt.AlignLeft
@@ -438,7 +438,7 @@ SettingsPageBase {
                 text: JamiStrings.deleteAccount
 
                 onClicked: {
-                    var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/DeleteAccountDialog.qml", {
+                    var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/JUI.DeleteAccountDialog.qml", {
                                                                 "isSIP": CurrentAccount.type === Profile.Type.SIP
                                                             });
                     dlg.accepted.connect(navigateToMainView);

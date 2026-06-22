@@ -23,7 +23,7 @@ import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import net.jami.Enums 1.1
-import "../../commoncomponents"
+import net.jami.UI as JUI
 import "../js/pluginhandlerpickercreation.js" as PluginHandlerPickerCreation
 
 Item {
@@ -228,7 +228,7 @@ Item {
         Connections {
             target: CallAdapter
 
-            property CallEndedWithErrorPopup popup: CallEndedWithErrorPopup {
+            property JUI.CallEndedWithErrorPopup popup: JUI.CallEndedWithErrorPopup {
                 id: callEndedWithErrorPopup
             }
 
@@ -237,7 +237,7 @@ Item {
             }
         }
 
-        BackgroundGradient {
+        JUI.BackgroundGradient {
             anchors.top: parent.top
             anchors.left: parent.left
             anchors.right: parent.right
@@ -369,9 +369,9 @@ Item {
                 }
             ]
 
-            NewIconButton {
+            JUI.NewIconButton {
                 id: inviteMembersButton
-                QWKSetParentHitTestVisible {}
+                JUI.QWKSetParentHitTestVisible {}
 
                 anchors.verticalCenter: parent.verticalCenter
 
@@ -387,9 +387,9 @@ Item {
                 onClicked: extrasPanel.switchToPanel(ChatView.AddMemberPanel)
             }
 
-            NewIconButton {
+            JUI.NewIconButton {
                 id: selectExtensionsButton
-                QWKSetParentHitTestVisible {}
+                JUI.QWKSetParentHitTestVisible {}
 
                 anchors.verticalCenter: parent.verticalCenter
 
@@ -407,9 +407,9 @@ Item {
                 }
             }
 
-            NewIconButton {
+            JUI.NewIconButton {
                 id: searchMessagesButton
-                QWKSetParentHitTestVisible {}
+                JUI.QWKSetParentHitTestVisible {}
 
                 objectName: "searchMessagesButton"
 
@@ -434,9 +434,9 @@ Item {
                 }
             }
 
-            NewIconButton {
+            JUI.NewIconButton {
                 id: detailsButton
-                QWKSetParentHitTestVisible {}
+                JUI.QWKSetParentHitTestVisible {}
 
                 objectName: "detailsButton"
 
@@ -525,7 +525,7 @@ Item {
                 }
             }
 
-            JamiSplitView {
+            JUI.SplitView {
                 id: chatViewSplitView
                 objectName: "ChatViewSplitView"
 

@@ -24,9 +24,9 @@ import QtQuick.Controls.impl
 import net.jami.Constants 1.1
 import net.jami.Adapters 1.1
 import net.jami.Models 1.1
-import "../../commoncomponents"
+import net.jami.UI as JUI
 
-BaseModalDialog {
+JUI.BaseModalDialog {
     id: root
 
     property string editingId: ""
@@ -102,7 +102,7 @@ BaseModalDialog {
     button1.color: JamiTheme.buttonTintedRed
     button1.visible: root.editingId !== ""
     button1.onClicked: {
-        var dlg = viewCoordinator.presentDialog(appWindow, "../../commoncomponents/ConfirmDialog.qml", {
+        var dlg = viewCoordinator.presentDialog(appWindow, "../../commoncomponents/JUI.ConfirmDialog.qml", {
                                                     "titleText": JamiStrings.confirmAction,
                                                     "textLabel": JamiStrings.confirmDeleteSharedService,
                                                     "confirmLabel": JamiStrings.optionDelete
@@ -158,7 +158,7 @@ BaseModalDialog {
         spacing: 10
         width: JamiTheme.preferredDialogWidth
 
-        NewMaterialTextField {
+        JUI.NewMaterialTextField {
             id: nameField
 
             Layout.fillWidth: true
@@ -174,7 +174,7 @@ BaseModalDialog {
         }
 
 
-        NewMaterialTextField {
+        JUI.NewMaterialTextField {
             id: descriptionField
 
             Layout.fillWidth: true
@@ -189,7 +189,7 @@ BaseModalDialog {
             onModifiedTextFieldContentChanged: root.serviceDescription = modifiedTextFieldContent
         }
 
-        NewMaterialButton {
+        JUI.NewMaterialButton {
             Layout.fillWidth: true
 
             implicitHeight: JamiTheme.newMaterialButtonHeight
@@ -210,7 +210,7 @@ BaseModalDialog {
 
             visible: !root.isEmbeddedService()
 
-            NewMaterialTextField {
+            JUI.NewMaterialTextField {
                 id: hostField
 
                 Layout.fillWidth: true
@@ -222,7 +222,7 @@ BaseModalDialog {
                 onModifiedTextFieldContentChanged: root.serviceHost = modifiedTextFieldContent
             }
 
-            NewMaterialTextField {
+            JUI.NewMaterialTextField {
                 id: portField
 
                 Layout.preferredWidth: 110
@@ -243,7 +243,7 @@ BaseModalDialog {
         RowLayout {
             visible: !root.isEmbeddedService()
 
-            NewMaterialTextField {
+            JUI.NewMaterialTextField {
                 id: customSchemeField
 
                 Layout.fillWidth: true
@@ -258,14 +258,14 @@ BaseModalDialog {
                 }
             }
 
-            NewIconButton {
+            JUI.NewIconButton {
                 id: whatsThisButton
 
                 Layout.alignment: Qt.AlignTop
 
                 iconSource: JamiResources.bidirectional_help_outline_24dp_svg
                 iconSize: JamiTheme.iconButtonMedium
-                // The tool tip of the NewIconButton will interfere with the
+                // The tool tip of the JUI.NewIconButton will interfere with the
                 // details popup, so we manually define the accessibility name
                 Accessible.name: JamiStrings.exposedServiceWhatsThis
 
@@ -340,7 +340,7 @@ BaseModalDialog {
                 font.pointSize: JamiTheme.settingsFontSize
             }
 
-            SettingParaCombobox {
+            JUI.SettingParaCombobox {
                 id: policyBox
 
                 Layout.preferredWidth: 240
@@ -376,7 +376,7 @@ BaseModalDialog {
             Repeater {
                 model: root.selectedContacts
 
-                delegate: JamiChip {
+                delegate: JUI.Chip {
                     filledChip: true
 
                     text: UtilsAdapter.getBestNameForUri(CurrentAccount.id, modelData)
@@ -391,7 +391,7 @@ BaseModalDialog {
                 }
             }
 
-            JamiChip {
+            JUI.Chip {
                 outlinedChip: true
 
                 text: JamiStrings.addAContact

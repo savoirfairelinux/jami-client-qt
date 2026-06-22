@@ -127,7 +127,7 @@ ColumnLayout {
         }
     }
 
-    JamiListView {
+    ListView {
         id: spellCheckDictionaryListView
 
         readonly property int itemMargins: 20

@@ -19,7 +19,7 @@ import QtQuick
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-import "../../commoncomponents"
+import net.jami.UI as JUI
 import "../../commoncomponents/contextmenu"
 
 ContextMenuAutoLoader {
@@ -83,7 +83,7 @@ ContextMenuAutoLoader {
             itemName: mode === Conversation.Mode.ONE_TO_ONE ? JamiStrings.removeConversation : JamiStrings.leaveGroup
             iconSource: JamiResources.disconnect_participant_24dp_svg
             onClicked: {
-                var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/ConfirmDialog.qml", {
+                var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/JUI.ConfirmDialog.qml", {
                     "titleText": JamiStrings.confirmAction,
                     "textLabel": mode === Conversation.Mode.ONE_TO_ONE ? JamiStrings.confirmRemoveOneToOneConversation : JamiStrings.confirmLeaveGroup,
                     "confirmLabel": mode === Conversation.Mode.ONE_TO_ONE ? JamiStrings.optionRemove : JamiStrings.optionLeave
@@ -100,7 +100,7 @@ ContextMenuAutoLoader {
             itemName: JamiStrings.removeContact
             iconSource: JamiResources.kick_member_24dp_svg
             onClicked: {
-                var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/ConfirmDialog.qml", {
+                var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/JUI.ConfirmDialog.qml", {
                     "titleText": JamiStrings.confirmAction,
                     "textLabel": JamiStrings.confirmRemoveContact,
                     "confirmLabel": JamiStrings.optionRemove
@@ -141,7 +141,7 @@ ContextMenuAutoLoader {
             itemName: JamiStrings.blockContact
             iconSource: JamiResources.block_black_24dp_svg
             onClicked: {
-                var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/ConfirmDialog.qml", {
+                var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/JUI.ConfirmDialog.qml", {
                     "titleText": JamiStrings.confirmAction,
                     "textLabel": JamiStrings.confirmBlockContact,
                     "confirmLabel": JamiStrings.optionBlock

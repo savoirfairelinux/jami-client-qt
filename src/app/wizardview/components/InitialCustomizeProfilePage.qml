@@ -22,7 +22,7 @@ import net.jami.Constants 1.1
 import net.jami.Models 1.1
 import Qt5Compat.GraphicalEffects
 import "../"
-import "../../commoncomponents"
+import net.jami.UI as JUI
 import "../../settingsview/components"
 import "../../mainview/components"
 import "../../commoncomponents/contextmenu"
@@ -116,7 +116,7 @@ Rectangle {
                         width: accountAvatar.width
                         height: accountAvatar.height
 
-                        PhotoboothView {
+                        JUI.PhotoboothView {
                             id: accountAvatar
 
                             anchors.centerIn: parent
@@ -130,7 +130,7 @@ Rectangle {
                             visible: customProfilePicture
                         }
 
-                        PushButton {
+                        JUI.PushButton {
                             id: editImage
 
                             Accessible.role: Accessible.Button
@@ -166,7 +166,7 @@ Rectangle {
 
                             onClicked: {
                                 var dlg = viewCoordinator.presentDialog(parent,
-                                                                        "commoncomponents/PhotoboothPopup.qml",
+                                                                        "commoncomponents/JUI.PhotoboothPopup.qml",
                                                                         {
                                                                             "parent": editImage,
                                                                             "imageId":
@@ -185,7 +185,7 @@ Rectangle {
                         }
                     }
 
-                    NewMaterialTextField {
+                    JUI.NewMaterialTextField {
                         id: displayNameLineEdit
 
                         Layout.alignment: Qt.AlignLeft
@@ -216,7 +216,7 @@ Rectangle {
                 lineHeight: JamiTheme.wizardViewTextLineHeight
             }
 
-            NewMaterialButton {
+            JUI.NewMaterialButton {
                 id: saveProfileButton
 
                 objectName: "saveProfileButton"
@@ -242,7 +242,7 @@ Rectangle {
 
                 spacing: 5
 
-                NewMaterialButton {
+                JUI.NewMaterialButton {
                     id: skipButton
 
                     Layout.alignment: Qt.AlignCenter
@@ -260,9 +260,9 @@ Rectangle {
         }
     }
 
-    NewIconButton {
+    JUI.NewIconButton {
         id: backButton
-        QWKSetParentHitTestVisible {}
+        JUI.QWKSetParentHitTestVisible {}
 
         objectName: "createAccountPageBackButton"
 

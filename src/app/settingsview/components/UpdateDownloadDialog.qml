@@ -22,9 +22,9 @@ import net.jami.Enums 1.1
 import net.jami.Models 1.1
 import net.jami.Helpers 1.1
 import net.jami.Constants 1.1
-import "../../commoncomponents"
+import net.jami.UI as JUI
 
-SimpleMessageDialog {
+JUI.SimpleMessageDialog {
     id: downloadDialog
 
     property int bytesRead: 0
@@ -103,7 +103,7 @@ SimpleMessageDialog {
     }
 
     buttonTitles: [JamiStrings.optionCancel]
-    buttonStyles: [SimpleMessageDialog.ButtonStyle.TintedBlue]
+    buttonStyles: [JUI.SimpleMessageDialog.ButtonStyle.TintedBlue]
     buttonCallBacks: [function () {
             AppVersionManager.cancelUpdate();
         }]

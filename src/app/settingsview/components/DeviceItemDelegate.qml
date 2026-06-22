@@ -21,7 +21,7 @@ import Qt5Compat.GraphicalEffects
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-import "../../commoncomponents"
+import net.jami.UI as JUI
 
 ItemDelegate {
     id: root
@@ -61,7 +61,7 @@ ItemDelegate {
     contentItem: RowLayout {
         id: rowLayout
 
-        NewIconButton {
+        JUI.NewIconButton {
             id: deviceImage
 
             Layout.alignment: Qt.AlignVCenter
@@ -80,7 +80,7 @@ ItemDelegate {
             Layout.fillHeight: true
             Layout.alignment: Qt.AlignVCenter
 
-            MaterialLineEdit {
+            JUI.MaterialLineEdit {
                 id: editDeviceName
 
                 Layout.alignment: Qt.AlignVCenter
@@ -138,7 +138,7 @@ ItemDelegate {
             }
         }
 
-        NewMaterialButton {
+        JUI.NewMaterialButton {
             id: button
 
             outlinedButton: true

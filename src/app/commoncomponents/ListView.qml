@@ -15,11 +15,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 import QtQuick
-import QtQuick.Controls
+import QtQuick as QQ
+import QtQuick.Controls as QQC
 import net.jami.Constants 1.1
 import net.jami.Models 1.1
 
-ListView {
+QQ.ListView {
     id: root
 
     property alias verticalScrollBar: verticalScrollBar
@@ -28,7 +29,7 @@ ListView {
     clip: true
     maximumFlickVelocity: 1024
 
-    ScrollBar.vertical: JamiScrollBar {
+    QQC.ScrollBar.vertical: ScrollBar {
         id: verticalScrollBar
 
         attachedFlickableMoving: root.moving

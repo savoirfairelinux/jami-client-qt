@@ -19,7 +19,7 @@ import QtQuick.Layouts
 import QtQuick.Controls
 import net.jami.Models 1.1
 import net.jami.Constants 1.1
-import "../../commoncomponents"
+import net.jami.UI as JUI
 
 Rectangle {
     id: root
@@ -94,7 +94,7 @@ Rectangle {
             wrapMode: Text.WordWrap
         }
 
-        NewMaterialTextField {
+        JUI.NewMaterialTextField {
             id: accountManagerEdit
 
             objectName: "accountManagerEdit"
@@ -126,7 +126,7 @@ Rectangle {
             wrapMode: Text.Wrap
         }
 
-        NewMaterialTextField {
+        JUI.NewMaterialTextField {
             id: usernameManagerEdit
 
             objectName: "usernameManagerEdit"
@@ -139,7 +139,7 @@ Rectangle {
             placeholderText: JamiStrings.username
         }
 
-        PasswordTextEdit {
+        JUI.PasswordTextEdit {
             id: passwordManagerEdit
 
             objectName: "passwordManagerEdit"
@@ -179,7 +179,7 @@ Rectangle {
             }
         }
 
-        NewMaterialButton {
+        JUI.NewMaterialButton {
             id: connectBtn
 
             objectName: "connectToAccountManagerPageConnectBtn"
@@ -222,9 +222,9 @@ Rectangle {
         }
     }
 
-    NewIconButton {
+    JUI.NewIconButton {
         id: backButton
-        QWKSetParentHitTestVisible {}
+        JUI.QWKSetParentHitTestVisible {}
 
         objectName: "connectToAccountManagerPageBackButton"
 

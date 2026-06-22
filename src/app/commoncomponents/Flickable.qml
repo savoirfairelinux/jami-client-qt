@@ -15,10 +15,11 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import QtQuick
-import QtQuick.Controls
+import QtQuick as QQ
+import QtQuick.Controls as QQC
 import net.jami.Constants 1.1
 
-Flickable {
+QQ.Flickable {
     id: root
 
     property bool attachedFlickableMoving: root.moving
@@ -28,12 +29,12 @@ Flickable {
     maximumFlickVelocity: 1024
     clip: true
 
-    ScrollBar.vertical: JamiScrollBar {
+    QQC.ScrollBar.vertical: ScrollBar {
         id: verticalScrollBar
 
         attachedFlickableMoving: root.attachedFlickableMoving
     }
-    ScrollBar.horizontal: JamiScrollBar {
+    QQC.ScrollBar.horizontal: ScrollBar {
         id: horizontalScrollBar
 
         attachedFlickableMoving: root.attachedFlickableMoving

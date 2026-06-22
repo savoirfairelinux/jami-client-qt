@@ -15,19 +15,18 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import QtQuick
-import QtQuick.Controls
+import QtQuick.Templates as T
 import net.jami.Constants 1.1
 
-Switch {
+T.Switch {
     id: root
 
     property alias toolTipText: toolTip.text
     property alias radius: handleBackground.radius
+    property bool useSystemFocusVisuals: false
 
     hoverEnabled: true
-
     focusPolicy: Qt.StrongFocus
-    useSystemFocusVisuals: false
 
     MaterialToolTip {
         id: toolTip

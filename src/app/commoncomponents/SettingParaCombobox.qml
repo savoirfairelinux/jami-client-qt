@@ -156,7 +156,7 @@ ComboBox {
         padding: 1
         height: Math.min(contentItem.implicitHeight, 5 * selectOption.implicitHeight)
 
-        contentItem: JamiListView {
+        contentItem: ListView {
             id: listView
 
             implicitHeight: contentHeight

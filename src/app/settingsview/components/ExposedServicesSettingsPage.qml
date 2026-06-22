@@ -20,7 +20,7 @@ import QtQuick.Layouts
 import Qt.labs.platform
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-import "../../commoncomponents"
+import net.jami.UI as JUI
 
 SettingsPageBase {
     id: root
@@ -84,7 +84,7 @@ SettingsPageBase {
                 font.pixelSize: JamiTheme.settingsTitlePixelSize
             }
 
-            NewMaterialButton {
+            JUI.NewMaterialButton {
                 filledButton: true
                 iconSource: JamiResources.language_24dp_svg
                 text: JamiStrings.exposedServiceAddWebsite
@@ -96,7 +96,7 @@ SettingsPageBase {
                 }
             }
 
-            NewMaterialButton {
+            JUI.NewMaterialButton {
                 implicitHeight: JamiTheme.newMaterialButtonHeight
 
                 filledButton: true

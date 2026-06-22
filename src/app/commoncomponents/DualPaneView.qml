@@ -15,7 +15,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import QtQuick
-import QtQuick.Controls
+import QtQuick.Controls as QQC
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 
@@ -29,7 +29,7 @@ BaseView {
 
     property alias leftPane: leftPane
     property alias rightPane: rightPane
-    property alias splitViewStateKey: splitView.splitViewStateKey
+    property string splitViewStateKey: viewNode.objectName
 
     readonly property real minorPaneMinWidth: JamiTheme.mainViewMinorPaneMinWidth
     readonly property real majorPaneMinWidth: JamiTheme.mainViewMajorPaneMinWidth
@@ -78,10 +78,10 @@ BaseView {
         rightPaneItem.parent = isSinglePane ? leftPane : rightPane
     }
 
-    JamiSplitView {
+    SplitView {
         id: splitView
         anchors.fill: parent
-        splitViewStateKey: viewNode.objectName
+        splitViewStateKey: root.splitViewStateKey
         isSinglePane: viewNode.isSinglePane
         handleOffset: JamiTheme.sidePanelIslandRightPadding
 

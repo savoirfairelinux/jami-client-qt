@@ -20,7 +20,7 @@ import QtQuick.Layouts
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import net.jami.Models 1.1
-import "../../commoncomponents"
+import net.jami.UI as JUI
 
 Item {
     id: root
@@ -58,7 +58,7 @@ Item {
 
         width: root.width
 
-        Avatar {
+        JUI.Avatar {
             id: avatar
 
             Layout.alignment: Qt.AlignHCenter
@@ -67,7 +67,7 @@ Item {
             Layout.preferredWidth: JamiTheme.invitationViewAvatarSize
 
             showPresenceIndicator: false
-            mode: Avatar.Mode.Conversation
+            mode: JUI.Avatar.Mode.Conversation
             imageId: convContext.id
         }
 
@@ -119,7 +119,7 @@ Item {
 
             visible: !convContext.needsSyncing
 
-            PushButton {
+            JUI.PushButton {
                 id: blockButton
 
                 Layout.alignment: Qt.AlignHCenter
@@ -144,7 +144,7 @@ Item {
                 Accessible.name: toolTipText
             }
 
-            PushButton {
+            JUI.PushButton {
                 id: declineButton
 
                 Layout.alignment: Qt.AlignHCenter
@@ -169,7 +169,7 @@ Item {
                 Accessible.name: toolTipText
             }
 
-            PushButton {
+            JUI.PushButton {
                 id: acceptButton
 
                 Layout.alignment: Qt.AlignHCenter

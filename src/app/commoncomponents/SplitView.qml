@@ -15,12 +15,12 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import QtQuick
-import QtQuick.Controls
+import QtQuick.Templates as T
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 
 // A SplitView that supports dynamic RTL and splitView state saving.
-SplitView {
+T.SplitView {
     id: control
 
     property bool isRTL: UtilsAdapter.isRTL

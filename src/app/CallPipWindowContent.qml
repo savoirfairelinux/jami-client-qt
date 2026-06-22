@@ -25,7 +25,7 @@ import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import net.jami.Enums 1.1
 import net.jami.Models 1.1
-import "commoncomponents"
+import net.jami.UI as JUI
 
 // Visual content of the Picture-in-Picture call window.
 // Extracted into a standalone Item so it can be tested independently
@@ -38,7 +38,7 @@ Item {
     property real scaleVal: 1.0
     property real iconButtonSize: JamiTheme.iconButtonSmall
 
-    // When true the window chrome close-button (QWKButton) is shown.
+    // When true the window chrome close-button (JUI.QWKButton) is shown.
     // False in tests (no frameless window present).
     property bool useFrameless: false
 
@@ -58,7 +58,7 @@ Item {
     readonly property alias emptyConferenceVisuals: emptyConferenceVisuals
 
     // Remote video
-    VideoView {
+    JUI.VideoView {
         id: remoteVideo
         objectName: "remoteVideo"
 
@@ -72,7 +72,7 @@ Item {
 
         visible: !CallPipWindowManager.pipIsEmptyConference
 
-        underlayItems: Avatar {
+        underlayItems: JUI.Avatar {
             id: peerAvatar
 
             readonly property real componentSize: Math.min(remoteVideo.width / 2,
@@ -84,7 +84,7 @@ Item {
 
             visible: CallPipWindowManager.pipPeerVideoMuted
 
-            mode: Avatar.Mode.Contact
+            mode: JUI.Avatar.Mode.Contact
             showPresenceIndicator: false
 
             imageId: CallPipWindowManager.pipIsConference
@@ -157,7 +157,7 @@ Item {
     }
 
     // Pop-in / reabsorb button
-    NewIconButton {
+    JUI.NewIconButton {
         id: popOutButton
         objectName: "popOutButton"
 
@@ -287,7 +287,7 @@ Item {
 
             spacing: 8
 
-            NewIconButton {
+            JUI.NewIconButton {
                 id: muteAudioButton
                 objectName: "muteAudioButton"
 
@@ -307,7 +307,7 @@ Item {
 
             // Note: heavily overridden — will be generalised in a future patch
             // when a coloured icon button is defined.
-            NewIconButton {
+            JUI.NewIconButton {
                 id: endCallButton
                 objectName: "endCallButton"
 
@@ -366,7 +366,7 @@ Item {
                 }
             }
 
-            NewIconButton {
+            JUI.NewIconButton {
                 id: muteCameraButton
                 objectName: "muteCameraButton"
 
@@ -403,7 +403,7 @@ Item {
 
         padding: JamiTheme.pipActionButtonPadding
 
-        contentItem: NewIconButton {
+        contentItem: JUI.NewIconButton {
             iconColor: JamiTheme.whiteColor
             backgroundColor: "#4d4d4d"
             iconSource: JamiResources.hand_black_24dp_svg

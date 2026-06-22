@@ -27,7 +27,7 @@ import net.jami.Constants 1.1
 import "mainview"
 import "mainview/components"
 import "wizardview"
-import "commoncomponents"
+import net.jami.UI as JUI
 import QWindowKit
 
 Window {
@@ -292,7 +292,7 @@ Window {
         var crashedLastRun = crashReporter.getHasPendingReport();
         if (crashedLastRun) {
             // A crash was detected during the last session. We need to inform the user and offer to send a crash report.
-            var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/ConfirmDialog.qml", {
+            var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/JUI.ConfirmDialog.qml", {
                 "title": JamiStrings.crashReportTitle,
                 "textLabel": JamiStrings.crashReportMessage + "\n\n" + JamiStrings.crashReportMessageExtra,
                 "confirmLabel": JamiStrings.send,
@@ -494,7 +494,7 @@ Window {
                 topMargin: 1
                 rightMargin: 1
             }
-            source: "qrc:/commoncomponents/QWKSystemButtonGroup.qml"
+            source: "qrc:/commoncomponents/JUI.QWKSystemButtonGroup.qml"
         }
     }
 
@@ -589,28 +589,28 @@ Window {
 
         function onShowDaemonReconnectPopup(visible) {
             if (visible) {
-                viewCoordinator.presentDialog(appWindow, "commoncomponents/DaemonReconnectPopup.qml");
+                viewCoordinator.presentDialog(appWindow, "commoncomponents/JUI.DaemonReconnectPopup.qml");
             }
         }
     }
 
     function presentUpdateInfoDialog(infoText) {
-        return viewCoordinator.presentDialog(appWindow, "commoncomponents/SimpleMessageDialog.qml", {
+        return viewCoordinator.presentDialog(appWindow, "commoncomponents/JUI.SimpleMessageDialog.qml", {
             "title": JamiStrings.updateDialogTitle,
             "infoText": infoText,
             "buttonTitles": [JamiStrings.optionOk],
-            "buttonStyles": [SimpleMessageDialog.ButtonStyle.TintedBlue],
+            "buttonStyles": [JUI.SimpleMessageDialog.ButtonStyle.TintedBlue],
             "buttonCallBacks": [],
             "buttonRoles": [DialogButtonBox.AcceptRole]
         });
     }
 
     function presentUpdateConfirmInstallDialog(switchToBeta = false) {
-        return viewCoordinator.presentDialog(appWindow, "commoncomponents/SimpleMessageDialog.qml", {
+        return viewCoordinator.presentDialog(appWindow, "commoncomponents/JUI.SimpleMessageDialog.qml", {
             "title": JamiStrings.updateDialogTitle,
             "infoText": switchToBeta ? JamiStrings.confirmBeta : JamiStrings.updateFound,
             "buttonTitles": [JamiStrings.optionUpgrade, JamiStrings.optionLater],
-            "buttonStyles": [SimpleMessageDialog.ButtonStyle.TintedBlue, SimpleMessageDialog.ButtonStyle.TintedBlue],
+            "buttonStyles": [JUI.SimpleMessageDialog.ButtonStyle.TintedBlue, JUI.SimpleMessageDialog.ButtonStyle.TintedBlue],
             "buttonCallBacks": [function () {
                     AppVersionManager.applyUpdates(switchToBeta);
                 }],

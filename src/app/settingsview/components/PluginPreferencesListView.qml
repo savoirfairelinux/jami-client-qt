@@ -20,7 +20,7 @@ import QtQuick.Layouts
 import net.jami.Adapters 1.1
 import net.jami.Models 1.1
 import net.jami.Constants 1.1
-import "../../commoncomponents"
+import net.jami.UI as JUI
 
 Rectangle {
     id: root
@@ -166,7 +166,7 @@ Rectangle {
                     }
                     interactive: false
 
-                    delegate: PreferenceItemDelegate {
+                    delegate: JUI.PreferenceItemDelegate {
                         id: preferenceItemDelegateCategory
 
                         width: pluginPreferenceViewCategory.width
@@ -225,7 +225,7 @@ Rectangle {
             }
             interactive: false
 
-            delegate: PreferenceItemDelegate {
+            delegate: JUI.PreferenceItemDelegate {
                 id: preferenceItemDelegate
 
                 width: pluginPreferenceView.width
@@ -257,7 +257,7 @@ Rectangle {
             }
         }
 
-        MaterialButton {
+        JUI.MaterialButton {
             id: resetButton
             visible: count > 0
             Layout.alignment: Qt.AlignCenter
@@ -272,11 +272,11 @@ Rectangle {
 
             text: JamiStrings.reset
 
-            onClicked: viewCoordinator.presentDialog(appWindow, "commoncomponents/SimpleMessageDialog.qml", {
+            onClicked: viewCoordinator.presentDialog(appWindow, "commoncomponents/JUI.SimpleMessageDialog.qml", {
                     "title": JamiStrings.resetPreferences,
                     "infoText": JamiStrings.confirmExtensionReset.arg(pluginId),
                     "buttonTitles": [JamiStrings.optionReset, JamiStrings.optionCancel],
-                    "buttonStyles": [SimpleMessageDialog.ButtonStyle.TintedBlue, SimpleMessageDialog.ButtonStyle.TintedBlack],
+                    "buttonStyles": [JUI.SimpleMessageDialog.ButtonStyle.TintedBlue, JUI.SimpleMessageDialog.ButtonStyle.TintedBlack],
                     "buttonCallBacks": [function () {
                             if (isLoaded) {
                                 PluginModel.unloadPlugin(pluginId);

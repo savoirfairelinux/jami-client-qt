@@ -29,7 +29,7 @@ import "../"
 import "../wizardview"
 import "../settingsview"
 import "../settingsview/components"
-import "../commoncomponents"
+import net.jami.UI as JUI
 
 import "js/keyboardshortcuttablecreation.js" as KeyboardShortcutTableCreation
 
@@ -50,7 +50,7 @@ Item {
             viewCoordinator.present("WelcomePage");
         }
     }
-    // These color properties are kept here so that BackgroundGradient (and other
+    // These color properties are kept here so that JUI.BackgroundGradient (and other
     // components) can read them via JamiQmlUtils.mainViewRectObj. The actual
     // background visuals are rendered by MainApplicationWindow directly.
     property color currentConversationColor: CurrentConversation.color

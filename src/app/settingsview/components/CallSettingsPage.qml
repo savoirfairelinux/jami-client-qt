@@ -25,7 +25,7 @@ import net.jami.Enums 1.1
 import net.jami.Models 1.1
 import net.jami.Constants 1.1
 import net.jami.Helpers 1.1
-import "../../commoncomponents"
+import net.jami.UI as JUI
 import "../../mainview/components"
 import "../../mainview/js/contactpickercreation.js" as ContactPickerCreation
 
@@ -156,9 +156,9 @@ SettingsPageBase {
                 itemWidth: root.itemWidth
 
                 onSettingMaterialButtonClicked: {
-                    var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/JamiFileDialog.qml", {
+                    var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/JUI.FileDialog.qml", {
                             "title": JamiStrings.selectNewRingtone,
-                            "fileMode": JamiFileDialog.OpenFile,
+                            "fileMode": JUI.FileDialog.OpenFile,
                             "folder": JamiQmlUtils.qmlFilePrefix + UtilsAdapter.toFileAbsolutepath(CurrentAccount.ringtonePath_Ringtone),
                             "nameFilters": [JamiStrings.audioFile, JamiStrings.allFiles]
                         });
@@ -260,7 +260,7 @@ SettingsPageBase {
                     verticalAlignment: Text.AlignVCenter
                 }
 
-                NewMaterialButton {
+                JUI.NewMaterialButton {
                     id: addDefaultModeratorPushButton
 
                     Layout.alignment: Qt.AlignCenter
@@ -294,7 +294,7 @@ SettingsPageBase {
                 Repeater {
                     model: ModeratorListModel
 
-                    delegate: JamiChip {
+                    delegate: JUI.Chip {
                         outlinedChip: true
 
                         text: ContactName
@@ -350,7 +350,7 @@ SettingsPageBase {
                     id: optionsB
                 }
 
-                MaterialRadioButton {
+                JUI.MaterialRadioButton {
                     id: horizontalRadio
                     width: 255
                     height: 60
@@ -366,7 +366,7 @@ SettingsPageBase {
                     }
                 }
 
-                MaterialRadioButton {
+                JUI.MaterialRadioButton {
                     id: verticalRadio
 
                     width: 255
@@ -437,14 +437,14 @@ SettingsPageBase {
                         radius: 4
                     }
                 }
-                MaterialButton {
+                JUI.MaterialButton {
                     Layout.alignment: Qt.AlignRight
                     buttontextHeightMargin: JamiTheme.buttontextHeightMargin
                     primary: true
                     toolTipText: JamiStrings.changeKeyboardShortcut
                     text: JamiStrings.change
                     onClicked: {
-                        var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/ChangePttKeyPopup.qml");
+                        var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/JUI.ChangePttKeyPopup.qml");
                         dlg.choiceMade.connect(function (chosenKey) {
                                 keyLabel.text = PTTListener.keyToString(chosenKey);
                             });

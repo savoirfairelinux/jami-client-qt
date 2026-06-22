@@ -21,7 +21,7 @@ import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import Qt5Compat.GraphicalEffects
 import net.jami.Constants 1.1
-import "../../commoncomponents"
+import net.jami.UI as JUI
 import "../../mainview/components"
 
 ItemDelegate {
@@ -57,10 +57,10 @@ ItemDelegate {
     }
 
     function presentErrorMessage() {
-        viewCoordinator.presentDialog(appWindow, "commoncomponents/SimpleMessageDialog.qml", {
+        viewCoordinator.presentDialog(appWindow, "commoncomponents/JUI.SimpleMessageDialog.qml", {
                 "title": JamiStrings.installationFailed,
                 "infoText": JamiStrings.extensionInstallationFailed,
-                "buttonStyles": [SimpleMessageDialog.ButtonStyle.TintedBlue],
+                "buttonStyles": [JUI.SimpleMessageDialog.ButtonStyle.TintedBlue],
                 "buttonTitles": [JamiStrings.optionOk],
                 "buttonCallBacks": [],
                 "buttonRoles": [DialogButtonBox.AcceptRole]
@@ -177,7 +177,7 @@ ItemDelegate {
             topPadding: 5
             bottomPadding: 20
             contentItem: ColumnLayout {
-                SpinningAnimation {
+                JUI.SpinningAnimation {
                     id: buttonContainer
                     visible: true
                     Layout.alignment: Qt.AlignTop | Qt.AlignRight
@@ -190,13 +190,13 @@ ItemDelegate {
                     spinningAnimationDuration: 5000
                     mode: {
                         if (pluginStatus === PluginStatus.INSTALLABLE || pluginStatus === PluginStatus.FAILED) {
-                            SpinningAnimation.Mode.Disabled;
+                            JUI.SpinningAnimation.Mode.Disabled;
                         } else {
-                            SpinningAnimation.Mode.Radial;
+                            JUI.SpinningAnimation.Mode.Radial;
                         }
                     }
 
-                    MaterialButton {
+                    JUI.MaterialButton {
                         id: install
 
                         hoverEnabled: pluginStatus !== PluginStatus.INSTALLING
@@ -243,7 +243,7 @@ ItemDelegate {
                 }
             }
         }
-        JamiFlickable {
+        JUI.Flickable {
             anchors.fill: parent
             anchors.rightMargin: 20
             anchors.leftMargin: 20
@@ -251,7 +251,7 @@ ItemDelegate {
             contentHeight: body.height
             clip: true
             flickableDirection: Flickable.VerticalFlick
-            ScrollBar.vertical: JamiScrollBar {
+            ScrollBar.vertical: JUI.ScrollBar {
                 id: scrollBar
                 policy: ScrollBar.AsNeeded
             }

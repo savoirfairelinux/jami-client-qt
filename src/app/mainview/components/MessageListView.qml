@@ -22,7 +22,7 @@ import Qt.labs.qmlmodels
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-import "../../commoncomponents"
+import net.jami.UI as JUI
 
 ListView {
     id: root
@@ -34,7 +34,7 @@ ListView {
     // the main window.
     property var convContext: CurrentConversation
 
-    ScrollBar.vertical: JamiScrollBar {
+    ScrollBar.vertical: JUI.ScrollBar {
         id: verticalScrollBar
 
         attachedFlickableMoving: root.moving
@@ -214,7 +214,7 @@ ListView {
         DelegateChoice {
             roleValue: Interaction.Type.TEXT
 
-            TextMessageDelegate {
+            JUI.TextMessageDelegate {
                 convContext: root.convContext
                 Component.onCompleted: {
                     computeChatview(this, index);
@@ -225,7 +225,7 @@ ListView {
         DelegateChoice {
             roleValue: Interaction.Type.CALL
 
-            CallMessageDelegate {
+            JUI.CallMessageDelegate {
                 convContext: root.convContext
                 Component.onCompleted: {
                     computeChatview(this, index);
@@ -236,7 +236,7 @@ ListView {
         DelegateChoice {
             roleValue: Interaction.Type.CONTACT
 
-            ContactMessageDelegate {
+            JUI.ContactMessageDelegate {
                 Component.onCompleted: {
                     computeChatview(this, index);
                 }
@@ -246,7 +246,7 @@ ListView {
         DelegateChoice {
             roleValue: Interaction.Type.INITIAL
 
-            GeneratedMessageDelegate {
+            JUI.GeneratedMessageDelegate {
                 font.bold: true
                 Component.onCompleted: {
                     computeChatview(this, index);
@@ -257,7 +257,7 @@ ListView {
         DelegateChoice {
             roleValue: Interaction.Type.DATA_TRANSFER
 
-            DataTransferMessageDelegate {
+            JUI.DataTransferMessageDelegate {
                 convContext: root.convContext
                 Component.onCompleted: {
                     computeChatview(this, index);
@@ -350,7 +350,7 @@ ListView {
 
             spacing: 0
 
-            TypingDots {
+            JUI.TypingDots {
                 id: typingDots
 
                 Layout.alignment: Qt.AlignVCenter

@@ -21,7 +21,7 @@ import Qt.labs.platform
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-import "../../commoncomponents"
+import net.jami.UI as JUI
 
 Item {
     id: root
@@ -58,7 +58,7 @@ Item {
             Layout.leftMargin: 15
             Layout.alignment: Qt.AlignLeft
 
-            ResponsiveImage {
+            JUI.ResponsiveImage {
                 id: icon
 
                 visible: !opened
@@ -104,7 +104,7 @@ Item {
             horizontalAlignment: Text.AlignLeft
         }
 
-        JamiFlickable {
+        JUI.Flickable {
             Layout.preferredWidth: root.width - 32
             Layout.leftMargin: 20
             property real maxDescriptionHeight: maxHeight - rowlayout.Layout.preferredHeight - title.Layout.preferredHeight - 3 * JamiTheme.preferredMarginSize
@@ -122,9 +122,9 @@ Item {
                 linkColor: JamiTheme.buttonTintedBlue
 
                 onLinkActivated: {
-                    var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/JamiFileDialog.qml", {
+                    var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/JUI.FileDialog.qml", {
                             "title": JamiStrings.backupAccountHere,
-                            "fileMode": JamiFileDialog.SaveFile,
+                            "fileMode": JUI.FileDialog.SaveFile,
                             "folder": StandardPaths.writableLocation(StandardPaths.HomeLocation) + "/Desktop",
                             "nameFilters": [JamiStrings.jamiAccountFiles, JamiStrings.allFiles],
                             "defaultSuffix": ".jac"
@@ -132,9 +132,9 @@ Item {
                     dlg.fileAccepted.connect(function (file) {
                             // Is there password? If so, go to password dialog, else, go to following directly
                             if (CurrentAccount.hasArchivePassword) {
-                                var pwdDlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/PasswordDialog.qml", {
+                                var pwdDlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/JUI.PasswordDialog.qml", {
                                         "path": UtilsAdapter.getAbsPath(file),
-                                        "purpose": PasswordDialog.ExportAccount
+                                        "purpose": JUI.PasswordDialog.ExportAccount
                                     });
                                 pwdDlg.done.connect(function () {
                                         root.ignore();

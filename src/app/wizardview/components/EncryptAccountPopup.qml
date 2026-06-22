@@ -19,9 +19,9 @@ import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import QtQuick.Controls
 import QtQuick.Layouts
-import "../../commoncomponents"
+import net.jami.UI as JUI
 
-BaseModalDialog {
+JUI.BaseModalDialog {
     id: root
 
     titleText: JamiStrings.encryptAccount
@@ -61,7 +61,7 @@ BaseModalDialog {
             lineHeight: JamiTheme.wizardViewTextLineHeight
         }
 
-        PasswordTextEdit {
+        JUI.PasswordTextEdit {
             id: passwordEdit
 
             Layout.fillWidth: true
@@ -75,7 +75,7 @@ BaseModalDialog {
             }
         }
 
-        PasswordTextEdit {
+        JUI.PasswordTextEdit {
             id: passwordConfirmEdit
 
             Layout.fillWidth: true
@@ -100,7 +100,7 @@ BaseModalDialog {
                 anchors.centerIn: parent
                 spacing: 10
 
-                ResponsiveImage{
+                JUI.ResponsiveImage{
                     Layout.fillWidth: true
                     source: JamiResources.outline_info_24dp_svg
                     fillMode: Image.PreserveAspectFit

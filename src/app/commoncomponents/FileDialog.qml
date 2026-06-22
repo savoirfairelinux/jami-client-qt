@@ -16,13 +16,14 @@
  */
 import QtQuick
 import Qt.labs.platform
+import Qt.labs.platform as QLP
 import net.jami.Constants 1.1
 
-FileDialog {
+QLP.FileDialog {
     id: root
 
-    // Use enum to avoid importing Qt.labs.platform when using JamiFileDialog.
-    property int mode: JamiFileDialog.Mode.OpenFile
+    // Use enum to avoid importing Qt.labs.platform when using FileDialog.
+    property int mode: FileDialog.Mode.OpenFile
 
     signal fileAccepted(string file)
     signal filesAccepted(var files)
@@ -58,10 +59,10 @@ FileDialog {
 
     onModeChanged: {
         switch (mode) {
-        case JamiFileDialog.Mode.OpenFile:
+        case FileDialog.Mode.OpenFile:
             root.fileMode = FileDialog.OpenFile;
             break;
-        case JamiFileDialog.Mode.OpenFiles:
+        case FileDialog.Mode.OpenFiles:
             root.fileMode = FileDialog.OpenFiles;
             break;
         default:

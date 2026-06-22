@@ -21,10 +21,10 @@ import QtQuick.Layouts
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-import "commoncomponents"
+import net.jami.UI as JUI
 
 // Account Migration Dialog for migrating account
-BaseView {
+JUI.BaseView {
     id: root
 
     enum AccountMigrationStep {
@@ -136,7 +136,7 @@ BaseView {
                         font.kerning: true
                     }
 
-                    Avatar {
+                    JUI.Avatar {
                         id: avatarLabel
 
                         Layout.preferredWidth: 200
@@ -145,7 +145,7 @@ BaseView {
                         Layout.alignment: Qt.AlignHCenter
 
                         showPresenceIndicator: false
-                        mode: Avatar.Mode.Account
+                        mode: JUI.Avatar.Mode.Account
                         imageId: CurrentAccountToMigrate.accountId
                     }
 
@@ -296,7 +296,7 @@ BaseView {
                             font.kerning: true
                         }
 
-                        PasswordTextEdit {
+                        JUI.PasswordTextEdit {
                             id: passwordInputLineEdit
 
                             Layout.fillWidth: false
@@ -312,7 +312,7 @@ BaseView {
 
                         spacing: 80
 
-                        NewMaterialButton {
+                        JUI.NewMaterialButton {
                             id: migrationPushButton
 
                             Layout.alignment: Qt.AlignLeft
@@ -327,7 +327,7 @@ BaseView {
                             onClicked: slotMigrationButtonClicked()
                         }
 
-                        NewMaterialButton {
+                        JUI.NewMaterialButton {
                             id: deleteAccountPushButton
 
                             Layout.alignment: Qt.AlignRight
@@ -339,7 +339,7 @@ BaseView {
                             text: JamiStrings.deleteAccount
 
                             onClicked: {
-                                var dlg = viewCoordinator.presentDialog(appWindow, "../../commoncomponents/ConfirmDialog.qml", {
+                                var dlg = viewCoordinator.presentDialog(appWindow, "../../commoncomponents/JUI.ConfirmDialog.qml", {
                                                                             "titleText": JamiStrings.confirmAction,
                                                                             "textLabel": JamiStrings.confirmDeleteAccount,
                                                                             "confirmLabel": JamiStrings.deleteAccount
@@ -375,7 +375,7 @@ BaseView {
 
                         spacing: 8
 
-                        ResponsiveImage {
+                        JUI.ResponsiveImage {
                             id: errorLabel
 
                             Layout.preferredWidth: 200
@@ -399,11 +399,11 @@ BaseView {
 
                             visible: successState
 
-                            SpinningAnimation {
+                            JUI.SpinningAnimation {
                                 id: animation
 
                                 anchors.fill: parent
-                                mode: SpinningAnimation.Mode.Radial
+                                mode: JUI.SpinningAnimation.Mode.Radial
                                 color: JamiTheme.tintedBlue
                                 spinningAnimationWidth: 6
                             }

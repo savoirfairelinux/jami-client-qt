@@ -21,9 +21,9 @@ import Qt5Compat.GraphicalEffects
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-import "../../commoncomponents"
+import net.jami.UI as JUI
 
-BaseModalDialog {
+JUI.BaseModalDialog {
     id: root
     titleText: JamiStrings.stopSharingPopupBody
     button1.text: JamiStrings.stopConvSharing.arg(PositionManager.getmapTitle(attachedAccountId, CurrentConversation.id))
