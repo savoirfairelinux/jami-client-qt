@@ -21,10 +21,6 @@ import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import net.jami.Enums 1.1
-import "../js/contactpickercreation.js" as ContactPickerCreation
-import "../js/selectscreenwindowcreation.js" as SelectScreenWindowCreation
-import "../js/screenrubberbandcreation.js" as ScreenRubberBandCreation
-import "../js/pluginhandlerpickercreation.js" as PluginHandlerPickerCreation
 import net.jami.UI as JUI
 
 Item {
@@ -39,8 +35,8 @@ Item {
     signal swarmDetailsClicked
 
     function closeContextMenuAndRelatedWindows() {
-        ScreenRubberBandCreation.destroyScreenRubberBandWindow();
-        PluginHandlerPickerCreation.closePluginHandlerPicker();
+        screenRubberBand.close()
+        pluginHandlerPicker.close()
         root.closeClicked();
         callInformationOverlay.close();
     }
@@ -62,6 +58,25 @@ Item {
         onDropped: function (drop) {
             AvAdapter.shareFile(drop.urls);
         }
+    }
+
+    ContactPicker {
+        id: contactPicker
+    }
+
+    SelectScreen {
+        id: selectScreen
+    }
+
+    ScreenRubberBand {
+        id: screenRubberBand
+        visible: false
+    }
+
+    PluginHandlerPicker {
+        id: pluginHandlerPicker
+        x: root.width / 2 - pluginHandlerPicker.width / 2
+        y: root.height / 2 - pluginHandlerPicker.height / 2
     }
 
     SipInputPanel {
@@ -115,7 +130,8 @@ Item {
     }
 
     function openContactPicker(type) {
-        ContactPickerCreation.presentContactPickerPopup(type, root);
+        contactPicker.type = type
+        contactPicker.open()
     }
 
     function openShareScreen() {
@@ -124,7 +140,12 @@ Item {
         } else if (Qt.application.screens.length === 1) {
             AvAdapter.shareEntireScreen(0);
         } else {
-            SelectScreenWindowCreation.presentSelectScreenWindow(appWindow, false);
+            selectScreen.showWindows = false
+            selectScreen.width = 0.75 * appWindow.width
+            selectScreen.height = 0.75 * appWindow.height
+            selectScreen.x = appWindow.x + (appWindow.width - selectScreen.width) / 2
+            selectScreen.y = appWindow.y + (appWindow.height - selectScreen.height) / 2
+            selectScreen.show()
         }
     }
 
@@ -135,7 +156,12 @@ Item {
         }
         AvAdapter.getListWindows();
         if (AvAdapter.windowsNames.length >= 1) {
-            SelectScreenWindowCreation.presentSelectScreenWindow(appWindow, true);
+            selectScreen.showWindows = true
+            selectScreen.width = 0.75 * appWindow.width
+            selectScreen.height = 0.75 * appWindow.height
+            selectScreen.x = appWindow.x + (appWindow.width - selectScreen.width) / 2
+            selectScreen.y = appWindow.y + (appWindow.height - selectScreen.height) / 2
+            selectScreen.show()
         }
     }
 
@@ -143,14 +169,14 @@ Item {
         if (Qt.platform.os !== "windows") {
             AvAdapter.shareScreenArea(0, 0, 0, 0);
         } else {
-            ScreenRubberBandCreation.createScreenRubberBandWindowObject();
-            ScreenRubberBandCreation.showScreenRubberBandWindow();
+            screenRubberBand.show()
+            screenRubberBand.setAllScreensGeo()
         }
     }
 
     function openPluginsMenu() {
-        PluginHandlerPickerCreation.createPluginHandlerPickerObjects(root, true);
-        PluginHandlerPickerCreation.openPluginHandlerPicker();
+        pluginHandlerPicker.isCall = true
+        pluginHandlerPicker.open()
     }
 
     MainOverlay {

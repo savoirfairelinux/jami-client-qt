@@ -22,7 +22,6 @@ import net.jami.Constants 1.1
 import net.jami.Enums 1.1
 import net.jami.Models 1.1
 import net.jami.UI as JUI
-import "../js/logviewwindowcreation.js" as LogViewWindowCreation
 
 SettingsPageBase {
     id: root
@@ -38,6 +37,11 @@ SettingsPageBase {
     property int itemWidth
 
     title: JamiStrings.troubleshootTitle
+
+    LogsView {
+        id: logsView
+        visible: false
+    }
 
     flickableContent: Column {
         id: troubleshootSettingsColumnLayout
@@ -107,8 +111,10 @@ SettingsPageBase {
                     toolTipText: JamiStrings.troubleshootButton
 
                     onClicked: {
-                        LogViewWindowCreation.createlogViewWindowObject();
-                        LogViewWindowCreation.showLogViewWindow();
+                        var screen = logsView.screen
+                        logsView.x = screen.virtualX + (screen.width - logsView.width) / 2
+                        logsView.y = screen.virtualY + (screen.height - logsView.height) / 2
+                        logsView.show()
                     }
                 }
             }

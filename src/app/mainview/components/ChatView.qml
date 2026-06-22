@@ -24,7 +24,6 @@ import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import net.jami.Enums 1.1
 import net.jami.UI as JUI
-import "../js/pluginhandlerpickercreation.js" as PluginHandlerPickerCreation
 
 Item {
     id: root
@@ -102,6 +101,12 @@ Item {
     }
 
     signal dismiss
+
+    PluginHandlerPicker {
+        id: pluginHandlerPicker
+        x: root.width / 2 - pluginHandlerPicker.width / 2
+        y: root.height / 2 - pluginHandlerPicker.height / 2
+    }
 
     function focusChatView() {
         chatViewFooter.updateMessageDraft();
@@ -400,10 +405,8 @@ Item {
                 visible: LRCInstance.chatHandlersListCount && interactionButtonsVisibility
 
                 onClicked: {
-                    // Create plugin handler picker - PLUGINS
-                    PluginHandlerPickerCreation.createPluginHandlerPickerObjects(root, false);
-                    PluginHandlerPickerCreation.calculateCurrentGeo(root.width / 2, root.height / 2);
-                    PluginHandlerPickerCreation.openPluginHandlerPicker();
+                    pluginHandlerPicker.isCall = false
+                    pluginHandlerPicker.open()
                 }
             }
 

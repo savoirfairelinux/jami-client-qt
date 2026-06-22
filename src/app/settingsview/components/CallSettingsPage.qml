@@ -27,7 +27,6 @@ import net.jami.Constants 1.1
 import net.jami.Helpers 1.1
 import net.jami.UI as JUI
 import net.jami.MainView as JMV
-import "../../mainview/js/contactpickercreation.js" as ContactPickerCreation
 
 SettingsPageBase {
     id: root
@@ -36,6 +35,10 @@ SettingsPageBase {
     property int itemWidth: 132
     property string key: PTTListener.keyToString(PTTListener.getCurrentKey())
     title: JamiStrings.callSettingsTitle
+
+    JMV.ContactPicker {
+        id: contactPicker
+    }
 
     function updateAndShowModeratorsSlot() {
         ModeratorListModel.reset();
@@ -271,7 +274,8 @@ SettingsPageBase {
                     toolTipText: JamiStrings.addDefaultModerator
 
                     onClicked: {
-                        ContactPickerCreation.presentContactPickerPopup(ContactList.CONVERSATION, appWindow);
+                        contactPicker.type = ContactList.CONVERSATION
+                        contactPicker.open()
                     }
 
                     TextMetrics {

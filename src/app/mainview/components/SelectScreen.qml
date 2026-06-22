@@ -21,7 +21,6 @@ import QtQuick.Layouts
 import net.jami.Adapters 1.1
 import net.jami.Models 1.1
 import net.jami.Constants 1.1
-import "../js/screenrubberbandcreation.js" as ScreenRubberBandCreation
 import net.jami.UI as JUI
 
 // SelectScreenWindow as a seperate window,

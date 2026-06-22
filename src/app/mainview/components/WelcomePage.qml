@@ -23,7 +23,6 @@ import net.jami.Constants 1.1
 import net.jami.Enums 1.1
 import net.jami.Models 1.1
 import net.jami.UI as JUI
-import "../js/keyboardshortcuttablecreation.js" as KeyboardShortcutTableCreation
 
 JUI.ListSelectionView {
     id: viewNode
@@ -36,6 +35,11 @@ JUI.ListSelectionView {
     color: JamiTheme.transparentColor
 
     onPresented: LRCInstance.deselectConversation()
+
+    KeyboardShortcutTable {
+        id: keyboardShortcutTable
+        visible: false
+    }
 
     // Stub when view coordinator does not create views (e.g. test harness).
     property Item _leftPaneStub: Item {
@@ -272,8 +276,13 @@ JUI.ListSelectionView {
                     toolTipText: JamiStrings.keyboardShortcuts
 
                     onClicked: {
-                        KeyboardShortcutTableCreation.createKeyboardShortcutTableWindowObject(appWindow);
-                        KeyboardShortcutTableCreation.showKeyboardShortcutTableWindow();
+                        keyboardShortcutTable.width = 550
+                        keyboardShortcutTable.height = 520
+                        keyboardShortcutTable.x = appWindow.x + (appWindow.width - keyboardShortcutTable.width) / 2
+                        keyboardShortcutTable.y = appWindow.y + (appWindow.height - keyboardShortcutTable.height) / 2
+                        keyboardShortcutTable.show()
+                        keyboardShortcutTable.raise()
+                        keyboardShortcutTable.requestActivate()
                     }
                 }
             }
