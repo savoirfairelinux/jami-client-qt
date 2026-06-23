@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9ffafe3b_0de41e02",
+        "filename": "daemon",
+        "patchSetId": 38
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2026-06-23T20:25:49Z",
+      "side": 1,
+      "message": "No longer needed (the latest release of the client already includes your daemon patch).",
+      "range": {
+        "startLine": 1,
+        "startChar": 18,
+        "endLine": 1,
+        "endChar": 58
+      },
+      "revId": "95e6b4d10e3f35b3ce717f7bf2ed66e7048d0532",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a2e624ba_035bf1c8",
         "filename": "src/core/interaction.cpp",
         "patchSetId": 38
