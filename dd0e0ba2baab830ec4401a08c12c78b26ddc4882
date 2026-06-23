@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "612f9fee_1dcdeeb7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 39
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2026-06-23T21:02:43Z",
+      "side": 1,
+      "message": "The clang-format-client-ci job is failing.",
+      "revId": "dd0e0ba2baab830ec4401a08c12c78b26ddc4882",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e773454e_7e534df4",
         "filename": "src/app/mainview/components/ChatViewFooter.qml",
         "patchSetId": 39
