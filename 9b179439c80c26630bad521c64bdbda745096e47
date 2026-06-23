@@ -16,6 +16,24 @@
       "message": "[🟡 Suggestion] Line 68: The newly added explicit binary directory is unquoted, and DAEMON_DIR remains unquoted. This can break configuration when the checkout/build path contains spaces or semicolon-like list separators. Quote both paths when passing them to add_subdirectory.\n```suggestion\n  add_subdirectory(\"${DAEMON_DIR}\" \"${CMAKE_CURRENT_BINARY_DIR}/daemon\" EXCLUDE_FROM_ALL)\n```",
       "revId": "9b179439c80c26630bad521c64bdbda745096e47",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8a07e453_35af370d",
+        "filename": "CMakeLists.txt",
+        "patchSetId": 3
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1192
+      },
+      "writtenOn": "2026-06-23T15:31:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b1d3a3fc_c27c94ea",
+      "revId": "9b179439c80c26630bad521c64bdbda745096e47",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
