@@ -70,14 +70,6 @@ if [[ "${#build_targets[@]}" -eq 0 ]]; then
     build_targets=(qml_tests unit_tests)
 fi
 
-cmake --build "${build_dir}" --target jami_autogen --parallel "${jobs}"
-mapfile -t generated_moc_targets < <(
-    cmake --build "${build_dir}" --target help \
-        | sed -n 's/^\.\.\. \(src\/.*\/moc_.*\.o\)$/\1/p'
-)
-if [[ "${#generated_moc_targets[@]}" -gt 0 ]]; then
-    cmake --build "${build_dir}" --target "${generated_moc_targets[@]}" --parallel "${jobs}"
-fi
 cmake --build "${build_dir}" --target "${build_targets[@]}" --parallel "${jobs}"
 
 run_ctest() {
