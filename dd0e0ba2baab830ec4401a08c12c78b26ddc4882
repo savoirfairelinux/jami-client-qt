@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e773454e_7e534df4",
+        "filename": "src/app/mainview/components/ChatViewFooter.qml",
+        "patchSetId": 39
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2026-06-23T20:58:57Z",
+      "side": 1,
+      "message": "What\u0027s the purpose of this change? When I log the values of `OriginalBody` and `Body` in this function they seem to always be equal.",
+      "range": {
+        "startLine": 98,
+        "startChar": 99,
+        "endLine": 98,
+        "endChar": 123
+      },
+      "revId": "dd0e0ba2baab830ec4401a08c12c78b26ddc4882",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "71b1c06f_29183965",
         "filename": "src/core/interaction.cpp",
         "patchSetId": 39
