@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a2e624ba_035bf1c8",
+        "filename": "src/core/interaction.cpp",
+        "patchSetId": 38
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-23T16:22:23Z",
+      "side": 1,
+      "message": "[🔴 Critical] Line 129: Using plugin-provided `bodyOverwrite` as the displayed message body without preserving any indication that the visible content differs from the signed/original message can mislead users and reviewers of message history. This is especially risky if arbitrary plugins can write this field. Please gate this to trusted/expected plugin data or expose both values to the UI so overwritten content is visibly marked.\n```suggestion\n// Only apply bodyOverwrite after validating the source/metadata, and expose that\n// the displayed body differs from the original message body.\n```",
+      "revId": "95e6b4d10e3f35b3ce717f7bf2ed66e7048d0532",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fefd8f3b_10a2b76d",
+        "filename": "src/core/interaction.cpp",
+        "patchSetId": 38
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-23T16:22:23Z",
+      "side": 1,
+      "message": "[🔴 Critical] Line 135: The edition loop stores `edBody` after applying `bodyOverwrite`, so the original/raw edited body is lost in `previousBodies`. That conflicts with the new `OriginalBody` role, which needs unmodified content for edit mode. Preserve the raw edition body separately from the display body, or avoid overwriting `previousBodies` if it is used as source-of-truth for editing.\n```suggestion\nconst auto rawBody \u003d edition.value(\"body\");\nauto displayBody \u003d rawBody;\nif (const auto boIt \u003d edition.find(\"bodyOverwrite\"); boIt !\u003d edition.end() \u0026\u0026 !boIt.value().isEmpty())\n    displayBody \u003d boIt.value();\n// Store rawBody for editing and displayBody for rendering, using separate fields/roles.\n```",
+      "revId": "95e6b4d10e3f35b3ce717f7bf2ed66e7048d0532",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "46ee0e82_f2de2a6a",
+        "filename": "src/core/messagelistmodel.cpp",
+        "patchSetId": 38
+      },
+      "lineNbr": 528,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-23T16:22:23Z",
+      "side": 1,
+      "message": "[🔴 Critical] Line 528: `OriginalBody` returns `commit[\"body\"]`, which appears to be the first/original committed body, not necessarily the current editable body after message editions. Editing an already-edited plugin-overwritten message may therefore prefill stale text instead of the latest raw message content. Please derive this role from the latest edition\u0027s raw `body` when editions exist, falling back to the commit body only when there are no editions.\n```suggestion\ncase Role::OriginalBody: {\n    if (!item.second.previousBodies.isEmpty())\n        return QVariant(item.second.previousBodies.last().body);\n    if (item.second.commit.contains(\"body\"))\n        return QVariant(item.second.commit.value(\"body\"));\n    return QVariant(item.second.body);\n}\n```",
+      "revId": "95e6b4d10e3f35b3ce717f7bf2ed66e7048d0532",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
