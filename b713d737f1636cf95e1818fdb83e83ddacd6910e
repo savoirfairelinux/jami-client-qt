@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "280cc35b_d08718ef",
+        "filename": "src/app/conversationsadapter.h",
+        "patchSetId": 35
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-23T14:42:27Z",
+      "side": 1,
+      "message": "Line 25: 🟡 Suggestions - `QTimer` is newly included but not used in this patch. This adds unnecessary dependency noise and may hide accidental leftover changes. Please remove the include unless another declaration in this header requires it.\n```suggestion\n```",
+      "revId": "b713d737f1636cf95e1818fdb83e83ddacd6910e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a2a2ba59_00a35a3d",
+        "filename": "src/core/interaction.cpp",
+        "patchSetId": 35
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-23T14:42:27Z",
+      "side": 1,
+      "message": "Line 128: 🟡 Suggestions - `bodyOverwrite` from plugin data is trusted and rendered as the message body with no validation or size guard. A plugin can now replace arbitrary message text shown in the UI, so malformed or very large values can create spoofing/confusion or UI performance issues. Please constrain this to the intended plugin contract and reject/ignore oversized values before assigning it. For example:\n```suggestion\n    if (auto bodyOverwriteIt \u003d msg.pluginData.find(\"bodyOverwrite\");\n        bodyOverwriteIt !\u003d msg.pluginData.end() \u0026\u0026 !bodyOverwriteIt.value().isEmpty()\n        \u0026\u0026 bodyOverwriteIt.value().size() \u003c\u003d MAX_MESSAGE_BODY_SIZE) {\n        body \u003d bodyOverwriteIt.value();\n    }\n```",
+      "revId": "b713d737f1636cf95e1818fdb83e83ddacd6910e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e29d6796_932e911e",
+        "filename": "src/core/interaction.cpp",
+        "patchSetId": 35
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-23T14:42:27Z",
+      "side": 1,
+      "message": "[Critical] Line 137: 🔴 Critical Issues - Edition entries are read from `msg.editions`, but the wrapper only adds `message.pluginData` at the top level. Unless every edition map is explicitly populated with `bodyOverwrite`, edit history will display a mix of overwritten current body and original previous bodies, which can expose untranslated/original plugin-handled content and make editing history inconsistent. Please either define and marshal per-edition plugin data, or leave edition bodies original and name the role/display behavior explicitly. If the intent is per-edition overwrite, ensure the daemon payload contains it and add a regression test covering an edited message with plugin overwrite.",
+      "revId": "b713d737f1636cf95e1818fdb83e83ddacd6910e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "44aaf6ba_a4afc5a5",
+        "filename": "src/core/messagelistmodel.cpp",
+        "patchSetId": 35
+      },
+      "lineNbr": 528,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-23T14:42:27Z",
+      "side": 1,
+      "message": "[Critical] Line 528: 🔴 Critical Issues - `OriginalBody` falls back to `item.second.body` when `commit[\"body\"]` is absent. For plugin-overwritten messages without a body key, that returns the plugin-modified body rather than the original, so editing can resend the transformed text instead of the source text. Please return an empty/invalid value or store the unmodified body separately before applying plugin overwrites, then use that dedicated field here.\n```suggestion\n    case Role::OriginalBody:\n        return QVariant(item.second.originalBody);\n```",
+      "revId": "b713d737f1636cf95e1818fdb83e83ddacd6910e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
