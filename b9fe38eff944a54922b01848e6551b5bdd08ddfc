@@ -18,6 +18,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "eb671e97_f8446a90",
+        "filename": "src/core/interaction.cpp",
+        "patchSetId": 33
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1192
+      },
+      "writtenOn": "2026-06-23T16:19:09Z",
+      "side": 1,
+      "message": "same comment",
+      "parentUuid": "7a28de30_b08c86c1",
+      "revId": "b9fe38eff944a54922b01848e6551b5bdd08ddfc",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4fee1ddf_bd3e74c4",
@@ -35,6 +53,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "424822ff_e1edd698",
+        "filename": "src/core/interaction.cpp",
+        "patchSetId": 33
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1192
+      },
+      "writtenOn": "2026-06-23T16:19:09Z",
+      "side": 1,
+      "message": "Already investigated this.",
+      "parentUuid": "4fee1ddf_bd3e74c4",
+      "revId": "b9fe38eff944a54922b01848e6551b5bdd08ddfc",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d6a744f9_7d746e79",
@@ -48,6 +84,24 @@
       "writtenOn": "2026-06-18T14:53:52Z",
       "side": 1,
       "message": "[Critical] Line 114: Adding pluginData to the serialized SwarmMessage structure changes the D-Bus wire signature unconditionally. This can break clients built or run against a daemon that still emits the previous structure, which is especially relevant because the project supports external daemon builds. Please gate this with an interface/version compatibility check or keep backward-compatible deserialization for the old shape before reading pluginData.",
+      "revId": "b9fe38eff944a54922b01848e6551b5bdd08ddfc",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1c64c6f5_de815681",
+        "filename": "src/dbus/metatypes.h",
+        "patchSetId": 33
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1192
+      },
+      "writtenOn": "2026-06-23T16:19:09Z",
+      "side": 1,
+      "message": "The D-Bus wire format change is real but consistent with how all previous SwarmMessage field additions",
+      "parentUuid": "d6a744f9_7d746e79",
       "revId": "b9fe38eff944a54922b01848e6551b5bdd08ddfc",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }

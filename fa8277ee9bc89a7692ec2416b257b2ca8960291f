@@ -18,6 +18,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "581f4db3_79d48cbc",
+        "filename": "src/app/conversationsadapter.h",
+        "patchSetId": 31
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1192
+      },
+      "writtenOn": "2026-06-23T16:19:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "15ea806a_5bde2db0",
+      "revId": "fa8277ee9bc89a7692ec2416b257b2ca8960291f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "258799b5_2bad4a24",
@@ -31,6 +49,24 @@
       "writtenOn": "2026-06-10T16:33:39Z",
       "side": 1,
       "message": "[Critical] Line 97: Adding `pluginData` directly to the serialized `SwarmMessage` DBus struct changes the wire signature and can break compatibility with older daemons/clients that still emit or expect the previous 8-field struct. This is especially risky because the codebase still supports finding libjami externally. Please either gate this with a protocol/API version check or keep the DBus struct backward-compatible by reading/writing optional plugin metadata through a compatible extension path.\n\n```suggestion\n// Keep the DBus SwarmMessage signature stable unless both sides are version-gated.\n// Add plugin data through a versioned signal/struct or a backward-compatible metadata map.\n```",
+      "revId": "fa8277ee9bc89a7692ec2416b257b2ca8960291f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "775be565_223337ec",
+        "filename": "src/libclient/dbus/metatypes.h",
+        "patchSetId": 31
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1192
+      },
+      "writtenOn": "2026-06-23T16:19:09Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "258799b5_2bad4a24",
       "revId": "fa8277ee9bc89a7692ec2416b257b2ca8960291f",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
@@ -52,6 +88,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4c5a19cd_8b5b9776",
+        "filename": "src/libclient/interaction.cpp",
+        "patchSetId": 31
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1192
+      },
+      "writtenOn": "2026-06-23T16:19:09Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "bb14a746_73fbaabd",
+      "revId": "fa8277ee9bc89a7692ec2416b257b2ca8960291f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bc3bc8c3_159fc582",
@@ -65,6 +119,24 @@
       "writtenOn": "2026-06-10T16:33:39Z",
       "side": 1,
       "message": "Line 136: Edition handling looks for `bodyOverwrite` inside each edition map, but the new type only adds `pluginData` at the top-level `SwarmMessage`. If the daemon stores plugin metadata only in `msg.pluginData`, edited-message history will not consistently show the plugin-overwritten body. Please confirm the daemon really injects `bodyOverwrite` into every edition entry; otherwise, carry edition plugin metadata explicitly or do not apply overwrite logic here.\n\n```suggestion\n// If editions need plugin-rendered bodies, expose edition plugin data explicitly\n// instead of reading an undocumented key from the edition body map.\n```",
+      "revId": "fa8277ee9bc89a7692ec2416b257b2ca8960291f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0f667e12_512294e4",
+        "filename": "src/libclient/interaction.cpp",
+        "patchSetId": 31
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1192
+      },
+      "writtenOn": "2026-06-23T16:19:09Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "bc3bc8c3_159fc582",
       "revId": "fa8277ee9bc89a7692ec2416b257b2ca8960291f",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }

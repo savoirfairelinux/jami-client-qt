@@ -16,6 +16,24 @@
       "message": "Line 136: Edited message history now stores the plugin-overwritten body in previousBodies, which loses the actual original edition text. Any UI that displays edit history or reuses previousBodies for editing/copying will show plugin-generated content as if it were authored message content. Keep the authored body in the model and expose a separate display/overwritten body if needed, or at least preserve both values.\n```suggestion\nconst auto originalBody \u003d edition.value(\"body\");\nQString displayBody \u003d originalBody;\nif (const auto boIt \u003d edition.find(\"bodyOverwrite\"); boIt !\u003d edition.end() \u0026\u0026 !boIt.value().isEmpty()) {\n    displayBody \u003d boIt.value();\n}\npreviousBodies.append(Body {edition.value(\"id\"), originalBody, QString(edition.value(\"timestamp\")).toInt()});\n```\n",
       "revId": "dbae6e752f7439bca5f2b449f23272b384c2f14d",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "edba09bb_3b8615b0",
+        "filename": "src/core/interaction.cpp",
+        "patchSetId": 36
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1192
+      },
+      "writtenOn": "2026-06-23T16:19:09Z",
+      "side": 1,
+      "message": "Behavior is intentional and consistent",
+      "parentUuid": "3f5e9072_dc0e6894",
+      "revId": "dbae6e752f7439bca5f2b449f23272b384c2f14d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }

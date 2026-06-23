@@ -16,6 +16,24 @@
       "message": "[Medium] Line 128: 🟡 Suggestions - `bodyOverwrite` is applied after `init(msgBody, ...)` has already derived message metadata from the original body. Any body-dependent fields computed in `init` (for example emoji-only detection, preview/parsing state, or formatted content) can become inconsistent with what is actually displayed. Build the effective body before calling `init`, while preserving the original body in `commit` for editing. Suggested approach:\n```suggestion\n    auto displayBody \u003d msgBody;\n    if (auto bodyOverwriteIt \u003d msg.pluginData.find(\"bodyOverwrite\");\n        bodyOverwriteIt !\u003d msg.pluginData.end() \u0026\u0026 !bodyOverwriteIt.value().isEmpty()) {\n        displayBody[\"body\"] \u003d bodyOverwriteIt.value();\n    }\n    init(displayBody, accountUri, accountId, conversationId);\n    commit \u003d msgBody;\n```\n",
       "revId": "6a47cb799d9606824522996df1545ce1a635abc6",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fd4470f7_8ec348ed",
+        "filename": "src/libclient/interaction.cpp",
+        "patchSetId": 30
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1192
+      },
+      "writtenOn": "2026-06-23T16:19:09Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "84716cb9_1fc36077",
+      "revId": "6a47cb799d9606824522996df1545ce1a635abc6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
