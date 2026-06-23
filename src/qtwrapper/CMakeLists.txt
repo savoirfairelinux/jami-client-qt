@@ -39,7 +39,7 @@ else()
 endif()
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
-include_directories(${CMAKE_SOURCE_DIR}/src)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/..)
 include_directories(${LIBJAMI_INCLUDE_DIR})
 include_directories(${CORE_SRC_DIR})
 include_directories(${DBUS_SRC_DIR})
