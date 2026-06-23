@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "002fdd14_07ddb284",
+        "filename": "src/app/commoncomponents/SBSMessageBase.qml",
+        "patchSetId": 16
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-23T14:57:00Z",
+      "side": 1,
+      "message": "[Major] Line 67: showOriginal is local delegate state and is never reset when the delegate starts representing a different message. In a reused chat delegate, toggling one overwritten message can leak that display state into another item after scrolling or model updates. Reset it when the message identity/content changes, or make the state model-backed per message.\n```suggestion\nonIdChanged: showOriginal \u003d false\nonBodyChanged: showOriginal \u003d false\nonOriginalBodyChanged: showOriginal \u003d false\n```",
+      "revId": "805a4e937d396cbaf4ce08d237c98418fc4d7def",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dbeb218d_80ef4e73",
+        "filename": "src/app/commoncomponents/SBSMessageBase.qml",
+        "patchSetId": 16
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-23T14:57:00Z",
+      "side": 1,
+      "message": "[Major] Line 68: isPluginOverwrite treats any strict mismatch between Body and OriginalBody as an extension overwrite. If OriginalBody is missing, null, or not populated for older/non-plugin messages, this will incorrectly show the plugin-modified indicator and toggle. Gate this on OriginalBody being a real value before comparing.\n```suggestion\nproperty bool hasOriginalBody: OriginalBody !\u003d\u003d undefined \u0026\u0026 OriginalBody !\u003d\u003d null \u0026\u0026 OriginalBody !\u003d\u003d \"\"\nproperty bool isPluginOverwrite: hasOriginalBody \u0026\u0026 Body !\u003d\u003d OriginalBody\n```",
+      "revId": "805a4e937d396cbaf4ce08d237c98418fc4d7def",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c6773dbb_1e5ad572",
+        "filename": "src/app/commoncomponents/TextMessageDelegate.qml",
+        "patchSetId": 16
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-23T14:57:00Z",
+      "side": 1,
+      "message": "[Critical] Line 80: Returning OriginalBody directly bypasses the existing MessagesAdapter.parseMessage/ParsedBody path used for normal message rendering. That can produce inconsistent rendering and may expose unsanitized rich-text/HTML if the Text component interprets markup. Route the original body through the same parsing/sanitization path as Body, ideally with a separate parsed-original role/cache so toggling does not display raw user-controlled content.\n```suggestion\n// Use the same parsed/sanitized representation for OriginalBody as for Body,\n// e.g. parse OriginalBody into ParsedOriginalBody and return that here.\nif (showOriginal \u0026\u0026 isPluginOverwrite) {\n    return ParsedOriginalBody;\n}\n```",
+      "revId": "805a4e937d396cbaf4ce08d237c98418fc4d7def",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
