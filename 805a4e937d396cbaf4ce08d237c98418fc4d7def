@@ -18,6 +18,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fd08b581_933206ec",
+        "filename": "src/app/commoncomponents/SBSMessageBase.qml",
+        "patchSetId": 16
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1192
+      },
+      "writtenOn": "2026-06-23T17:26:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "002fdd14_07ddb284",
+      "revId": "805a4e937d396cbaf4ce08d237c98418fc4d7def",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dbeb218d_80ef4e73",
@@ -35,6 +53,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "65601192_9475679f",
+        "filename": "src/app/commoncomponents/SBSMessageBase.qml",
+        "patchSetId": 16
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1192
+      },
+      "writtenOn": "2026-06-23T17:26:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dbeb218d_80ef4e73",
+      "revId": "805a4e937d396cbaf4ce08d237c98418fc4d7def",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c6773dbb_1e5ad572",
@@ -48,6 +84,24 @@
       "writtenOn": "2026-06-23T14:57:00Z",
       "side": 1,
       "message": "[Critical] Line 80: Returning OriginalBody directly bypasses the existing MessagesAdapter.parseMessage/ParsedBody path used for normal message rendering. That can produce inconsistent rendering and may expose unsanitized rich-text/HTML if the Text component interprets markup. Route the original body through the same parsing/sanitization path as Body, ideally with a separate parsed-original role/cache so toggling does not display raw user-controlled content.\n```suggestion\n// Use the same parsed/sanitized representation for OriginalBody as for Body,\n// e.g. parse OriginalBody into ParsedOriginalBody and return that here.\nif (showOriginal \u0026\u0026 isPluginOverwrite) {\n    return ParsedOriginalBody;\n}\n```",
+      "revId": "805a4e937d396cbaf4ce08d237c98418fc4d7def",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "451726c7_6c7307ce",
+        "filename": "src/app/commoncomponents/TextMessageDelegate.qml",
+        "patchSetId": 16
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1192
+      },
+      "writtenOn": "2026-06-23T17:26:04Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "c6773dbb_1e5ad572",
       "revId": "805a4e937d396cbaf4ce08d237c98418fc4d7def",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }

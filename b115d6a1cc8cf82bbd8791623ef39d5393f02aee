@@ -18,6 +18,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "61f10435_8c78a1b1",
+        "filename": "src/app/commoncomponents/SBSMessageBase.qml",
+        "patchSetId": 14
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1192
+      },
+      "writtenOn": "2026-06-23T17:26:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "35cd1621_9e4e44d4",
+      "revId": "b115d6a1cc8cf82bbd8791623ef39d5393f02aee",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8c6ca873_51675875",
@@ -31,6 +49,24 @@
       "writtenOn": "2026-06-19T20:26:26Z",
       "side": 1,
       "message": "[🔴 Critical Issues] Line 80: Returning `OriginalBody` directly bypasses the existing `MessagesAdapter.parseMessage(...)` path used for normal message bodies. That can produce inconsistent rendering for links/emoji/previews and may also bypass whatever escaping/sanitization `ParsedBody` normally provides before assigning text to the delegate. Please parse/render the original body through the same pipeline as `Body`, or add a separate parsed-original role/cache before displaying it.\n\n```suggestion\nif (showOriginal \u0026\u0026 isPluginOverwrite) {\n    MessagesAdapter.parseMessage(Id, OriginalBody, UtilsAdapter.getAppValue(Settings.DisplayHyperlinkPreviews), rootDelegate.colorUrl, bubble.color);\n    return \"\";\n}\n```",
+      "revId": "b115d6a1cc8cf82bbd8791623ef39d5393f02aee",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "064b992f_cf9743bb",
+        "filename": "src/app/commoncomponents/TextMessageDelegate.qml",
+        "patchSetId": 14
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1192
+      },
+      "writtenOn": "2026-06-23T17:26:04Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "8c6ca873_51675875",
       "revId": "b115d6a1cc8cf82bbd8791623ef39d5393f02aee",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }

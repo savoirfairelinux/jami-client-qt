@@ -18,6 +18,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ed61beef_5cab357b",
+        "filename": "src/app/commoncomponents/SBSMessageBase.qml",
+        "patchSetId": 8
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1192
+      },
+      "writtenOn": "2026-06-23T17:26:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e91b802d_4d1b37fe",
+      "revId": "f3d95bd0e9a315827aa14cbd32d9200db9800579",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9680831b_c71b4fc7",
@@ -31,6 +49,24 @@
       "writtenOn": "2026-06-05T20:09:05Z",
       "side": 1,
       "message": "[🔴 Critical Issues - Must fix before merge] Line 67: isPluginOverwrite is computed as Body !\u003d\u003d OriginalBody, which will mark every non-empty message as modified if OriginalBody is absent or default-empty for older/non-plugin messages. Gate this on OriginalBody being present and different, or use an explicit model role indicating plugin modification.\n```suggestion\nproperty bool isPluginOverwrite: OriginalBody !\u003d\u003d \"\" \u0026\u0026 Body !\u003d\u003d OriginalBody\n```",
+      "revId": "f3d95bd0e9a315827aa14cbd32d9200db9800579",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e69e0914_39811cd3",
+        "filename": "src/app/commoncomponents/SBSMessageBase.qml",
+        "patchSetId": 8
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1192
+      },
+      "writtenOn": "2026-06-23T17:26:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9680831b_c71b4fc7",
       "revId": "f3d95bd0e9a315827aa14cbd32d9200db9800579",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
@@ -52,6 +88,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ca101678_6eaeafa1",
+        "filename": "src/app/commoncomponents/TextMessageDelegate.qml",
+        "patchSetId": 8
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1192
+      },
+      "writtenOn": "2026-06-23T17:26:04Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "45a80fe6_cc827e44",
+      "revId": "f3d95bd0e9a315827aa14cbd32d9200db9800579",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "84ed5dc6_8332bbde",
@@ -69,6 +123,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "82a86e20_301d14a1",
+        "filename": "src/app/networkmanager.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1192
+      },
+      "writtenOn": "2026-06-23T17:26:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "84ed5dc6_8332bbde",
+      "revId": "f3d95bd0e9a315827aa14cbd32d9200db9800579",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "07b1eac8_95b1db74",
@@ -82,6 +154,24 @@
       "writtenOn": "2026-06-05T20:09:05Z",
       "side": 1,
       "message": "[🟡 Suggestions - Improvements to consider] Line 105: Layout.preferredHeight reads item.implicitHeight while the Loader is active. During component creation item can still be null, which can trigger QML binding errors. Guard the access.\n```suggestion\nLayout.preferredHeight: active \u0026\u0026 item ? item.implicitHeight : 0\n```",
+      "revId": "f3d95bd0e9a315827aa14cbd32d9200db9800579",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e2e2ba08_69a67c37",
+        "filename": "src/app/settingsview/components/PluginStoreListView.qml",
+        "patchSetId": 8
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1192
+      },
+      "writtenOn": "2026-06-23T17:26:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "07b1eac8_95b1db74",
       "revId": "f3d95bd0e9a315827aa14cbd32d9200db9800579",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }

@@ -35,6 +35,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "121b56eb_3cda11a1",
+        "filename": "src/app/commoncomponents/SBSMessageBase.qml",
+        "patchSetId": 15
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1192
+      },
+      "writtenOn": "2026-06-23T17:26:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0d1f5c9e_77c0bea0",
+      "revId": "591f63612078c7603844672b40586af5098d7348",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e3c9dd3f_e1467439",
@@ -52,6 +70,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "54114426_c5f65fe6",
+        "filename": "src/app/commoncomponents/SBSMessageBase.qml",
+        "patchSetId": 15
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1192
+      },
+      "writtenOn": "2026-06-23T17:26:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e3c9dd3f_e1467439",
+      "revId": "591f63612078c7603844672b40586af5098d7348",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d62014c6_1c897471",
@@ -65,6 +101,24 @@
       "writtenOn": "2026-06-19T20:34:00Z",
       "side": 1,
       "message": "[🔴 Critical] Line 81: Returning `OriginalBody` directly bypasses the existing message parsing path used for `Body`, so the original view may lose sanitization/link handling/formatting consistency and may expose raw markup differently from normal messages. Parse and render the selected body through the same path instead of special-casing raw original text.\n```suggestion\nconst displayBody \u003d showOriginal \u0026\u0026 isPluginOverwrite ? OriginalBody : Body;\nif (displayBody !\u003d\u003d \"\" \u0026\u0026 ParsedBody.length \u003d\u003d\u003d 0) {\n    MessagesAdapter.parseMessage(Id, displayBody, UtilsAdapter.getAppValue(Settings.DisplayHyperlinkPreviews), rootDelegate.colorUrl, bubble.color);\n    return \"\";\n}\n```",
+      "revId": "591f63612078c7603844672b40586af5098d7348",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "87bac1b1_94537e4c",
+        "filename": "src/app/commoncomponents/TextMessageDelegate.qml",
+        "patchSetId": 15
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1192
+      },
+      "writtenOn": "2026-06-23T17:26:04Z",
+      "side": 1,
+      "message": "Acknowledged. The current return OriginalBody bypasses parseMessage and renders raw text with Text.RichText, which breaks markdown rendering and could expose unsanitized markup. A proper fix requires a separate ParsedOriginalBody role and parseOriginalMessage path through the same pipeline. This will be addressed in a follow-up patch.",
+      "parentUuid": "d62014c6_1c897471",
       "revId": "591f63612078c7603844672b40586af5098d7348",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
