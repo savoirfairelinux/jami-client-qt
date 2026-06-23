@@ -41,6 +41,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0530f07f_46c1d7b0",
+        "filename": "src/core/interaction.cpp",
+        "patchSetId": 39
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2026-06-23T21:01:27Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "71b1c06f_29183965",
+      "revId": "dd0e0ba2baab830ec4401a08c12c78b26ddc4882",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e552b76f_f5a16522",
@@ -58,6 +76,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b032aff8_9a590493",
+        "filename": "src/core/interaction.cpp",
+        "patchSetId": 39
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2026-06-23T21:01:27Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "e552b76f_f5a16522",
+      "revId": "dd0e0ba2baab830ec4401a08c12c78b26ddc4882",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5e139f28_72c3f9cd",
@@ -71,6 +107,24 @@
       "writtenOn": "2026-06-23T20:33:08Z",
       "side": 1,
       "message": "[Critical] Line 97: Adding pluginData to the serialized SwarmMessage DBus structure changes the wire signature unconditionally. Any client/daemon version skew that still sends the old structure will fail to deserialize correctly, which can break swarm loading and message updates during upgrades. Add a compatibility strategy, such as versioning the DBus type/signal, gating the new field behind an updated interface, or documenting and enforcing that client and daemon must be upgraded together.",
+      "revId": "dd0e0ba2baab830ec4401a08c12c78b26ddc4882",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "da9e912c_11c179d7",
+        "filename": "src/dbus/metatypes.h",
+        "patchSetId": 39
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2026-06-23T21:01:27Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "5e139f28_72c3f9cd",
       "revId": "dd0e0ba2baab830ec4401a08c12c78b26ddc4882",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
