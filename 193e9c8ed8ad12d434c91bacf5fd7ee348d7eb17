@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b3567d57_64573329",
+        "filename": "CMakeLists.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-23T15:01:25Z",
+      "side": 1,
+      "message": "Line 68: Using `${CMAKE_BINARY_DIR}/daemon` places the daemon build directory at the top-level build root, not this project\u0027s build tree. If jami-client-qt is included by another project, this can collide with other targets or write outside the expected sub-build directory. Use the current project binary directory instead.\n\n```suggestion\n  add_subdirectory(${DAEMON_DIR} ${CMAKE_CURRENT_BINARY_DIR}/daemon EXCLUDE_FROM_ALL)\n```",
+      "revId": "193e9c8ed8ad12d434c91bacf5fd7ee348d7eb17",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5e9f9c00_c1953209",
+        "filename": "tests/CMakeLists.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-23T15:01:25Z",
+      "side": 1,
+      "message": "[Critical] Line 103: The unit test source paths now resolve to `tests/tests/unittests/...` because `CMAKE_CURRENT_SOURCE_DIR` is already the `tests` directory. This will make CMake fail to find every unit test source. Drop the extra `tests/` path segment.\n\n```suggestion\nset(UNIT_TESTS_SOURCE_FILES\n    ${CMAKE_CURRENT_SOURCE_DIR}/unittests/main_unittest.cpp\n    ${CMAKE_CURRENT_SOURCE_DIR}/unittests/account_unittest.cpp\n    ${CMAKE_CURRENT_SOURCE_DIR}/unittests/contact_unittest.cpp\n    ${CMAKE_CURRENT_SOURCE_DIR}/unittests/messageparser_unittest.cpp\n    ${CMAKE_CURRENT_SOURCE_DIR}/unittests/paste_unittest.cpp\n    ${CMAKE_CURRENT_SOURCE_DIR}/unittests/previewengine_unittest.cpp\n    ${CMAKE_CURRENT_SOURCE_DIR}/unittests/conversationswitch_unittest.cpp\n    ${CMAKE_CURRENT_SOURCE_DIR}/unittests/apitokenmanager_unittest.cpp\n    ${CMAKE_CURRENT_SOURCE_DIR}/unittests/apiserver_unittest.cpp\n    ${CMAKE_CURRENT_SOURCE_DIR}/unittests/globaltestenvironment.h\n    ${COMMON_TESTS_SOURCES})\n```",
+      "revId": "193e9c8ed8ad12d434c91bacf5fd7ee348d7eb17",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
