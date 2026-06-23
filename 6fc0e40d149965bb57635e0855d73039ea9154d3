@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1ce20b6a_d4ed879e",
+        "filename": "src/app/commoncomponents/SBSMessageBase.qml",
+        "patchSetId": 17
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-23T17:26:20Z",
+      "side": 1,
+      "message": "Line 67: isPluginOverwrite requires OriginalBody to be truthy, so a valid plugin change from an empty original message to a non-empty Body will not be detected and the user cannot toggle back to the original. Use an explicit null/undefined check instead of truthiness so empty strings remain valid original values.\n```suggestion\nproperty bool hasOriginalBody: OriginalBody !\u003d\u003d undefined \u0026\u0026 OriginalBody !\u003d\u003d null\nproperty bool isPluginOverwrite: hasOriginalBody \u0026\u0026 Body !\u003d\u003d OriginalBody\n```",
+      "revId": "6fc0e40d149965bb57635e0855d73039ea9154d3",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dfa14625_21db0e5e",
+        "filename": "src/app/commoncomponents/TextMessageDelegate.qml",
+        "patchSetId": 17
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-23T17:26:20Z",
+      "side": 1,
+      "message": "[Critical] Line 80: Returning OriginalBody directly bypasses the existing MessagesAdapter.parseMessage path used for Body. That can make the original-message view inconsistent with normal messages: links, previews, emoji/markup handling, and any escaping/sanitization performed by parseMessage will not apply. Store and render a parsed original body, or invoke the same parsing path for OriginalBody before displaying it.\n```suggestion\nif (showOriginal \u0026\u0026 isPluginOverwrite) {\n    MessagesAdapter.parseMessage(Id + \"-original\", OriginalBody, UtilsAdapter.getAppValue(Settings.DisplayHyperlinkPreviews), rootDelegate.colorUrl, bubble.color);\n    return ParsedOriginalBody;\n}\n```",
+      "revId": "6fc0e40d149965bb57635e0855d73039ea9154d3",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
