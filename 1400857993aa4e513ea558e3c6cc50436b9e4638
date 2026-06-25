@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "163520e9_d8ce886f",
+        "filename": "src/core/interaction.cpp",
+        "patchSetId": 40
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-25T13:44:03Z",
+      "side": 1,
+      "message": "[Critical] Line 126: bodyOverwrite from pluginData is trusted and rendered as the message body, but there is no validation of size or content before it enters the normal message rendering path. A plugin can replace a short message with arbitrarily large content, which may cause UI/memory issues, and may bypass assumptions made for original message bodies. Please apply the same constraints/sanitization used for normal message bodies before assigning it.\n```suggestion\nconst auto originalBody \u003d body;\nif (auto bodyOverwriteIt \u003d msg.pluginData.find(\"bodyOverwrite\");\n    bodyOverwriteIt !\u003d msg.pluginData.end() \u0026\u0026 !bodyOverwriteIt.value().isEmpty()) {\n    body \u003d sanitizeMessageBody(bodyOverwriteIt.value());\n}\n```",
+      "revId": "1400857993aa4e513ea558e3c6cc50436b9e4638",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b35913e1_9e740cd0",
+        "filename": "src/core/messagelistmodel.cpp",
+        "patchSetId": 40
+      },
+      "lineNbr": 529,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-25T13:44:03Z",
+      "side": 1,
+      "message": "[Critical] Line 529: OriginalBody falls back to item.second.body, which may already contain the plugin-overwritten body. For messages where the original commit body is absent or not named exactly \"body\", editing will still preload plugin-generated display text and can persist translated/rewritten text as the user\u0027s edit. Please store the original body separately when constructing interaction::Info and return that field here, instead of deriving it from the mutable display body.",
+      "revId": "1400857993aa4e513ea558e3c6cc50436b9e4638",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "70ad4e54_2c681765",
+        "filename": "src/dbus/metatypes.h",
+        "patchSetId": 40
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-25T13:44:03Z",
+      "side": 1,
+      "message": "[Critical] Line 97: Appending pluginData changes the serialized DBus struct signature for SwarmMessage. Any client/daemon pair built against different revisions will deserialize a different number of fields, which can break message loading/signals at runtime. Please make this change in lockstep with the daemon DBus API/versioning, or introduce a backward-compatible transport shape/version gate instead of unconditionally changing the struct layout.",
+      "revId": "1400857993aa4e513ea558e3c6cc50436b9e4638",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
