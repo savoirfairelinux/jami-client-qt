@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "db0e367a_855a7488",
+        "filename": "extras/packaging/gnu-linux/docker/Dockerfile_ubuntu_24.04",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-25T14:17:11Z",
+      "side": 1,
+      "message": "[Major] Line 15: The build image installs Rust by piping a live network script into `sh` and uses the moving `stable` toolchain. This makes package builds non-reproducible and adds supply-chain risk. Prefer distro packages or pin the rustup-init binary/toolchain with checksum verification. Example:\n```suggestion\nARG RUST_TOOLCHAIN\u003d1.86.0\n# Install rustc/cargo from a pinned, verified source or distro package, then:\nRUN rustup toolchain install ${RUST_TOOLCHAIN} --profile minimal \u0026\u0026 \\\n    rustup default ${RUST_TOOLCHAIN}\n```",
+      "revId": "e537aba248f05f13aabe3aa8059b90a64dca990e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "804958be_c0b5bbe1",
         "filename": "extras/packaging/gnu-linux/docker/Dockerfile_ubuntu_24.04",
         "patchSetId": 1
@@ -20,6 +37,40 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e08f61ba_27513bcd",
+        "filename": "src/app/collaborativeadapter.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-25T14:17:11Z",
+      "side": 1,
+      "message": "[Major] Line 70: The adapter marks every `collaborativeDocumentDelta` / `collaborativeDocumentChanged` signal as unread without knowing whether it came from the local user or whether the document is currently open. If the daemon echoes local edits or sends updates for the active editor, users will see unread document indicators for their own/current edits. Track opened documents and/or have the daemon include the author/source so only remote updates for unopened documents call `markDocumentUpdated()`.",
+      "revId": "e537aba248f05f13aabe3aa8059b90a64dca990e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c74e904b_0c439fab",
+        "filename": "src/app/collabrichbinding.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-25T14:17:11Z",
+      "side": 1,
+      "message": "[Critical] Line 107: The `link` attribute accepts and persists arbitrary href values. If these anchors are later opened by Qt or copied/rendered elsewhere, `file:`, `javascript:`, or other non-web schemes can become a local file exposure or script/handler launch vector. Validate links before applying them and only allow expected schemes such as http/https. Example:\n```suggestion\n} else if (key \u003d\u003d QLatin1String(\"link\")) {\n    const QUrl url(v.toString());\n    const bool safeLink \u003d url.isValid() \u0026\u0026 (url.scheme() \u003d\u003d QLatin1String(\"http\") || url.scheme() \u003d\u003d QLatin1String(\"https\"));\n    if (on \u0026\u0026 safeLink) {\n        f.setAnchor(true);\n        f.setAnchorHref(url.toString());\n        f.setForeground(LINK_COLOR);\n        f.setFontUnderline(true);\n    } else {\n        f.setAnchor(false);\n        f.setAnchorHref(QString());\n        f.clearForeground();\n        f.setFontUnderline(false);\n    }\n}\n```",
+      "revId": "e537aba248f05f13aabe3aa8059b90a64dca990e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0e7088f3_864b17e0",
         "filename": "src/app/collabrichbinding.cpp",
         "patchSetId": 1
@@ -31,6 +82,23 @@
       "writtenOn": "2026-06-25T14:17:07Z",
       "side": 1,
       "message": "[Medium] Line 263: 🟡 Suggestions - Improvements to consider: malformed or hostile remote delta JSON is silently accepted and partially clamped. Negative `retain` values can move `index` backwards, very large operations are clamped without rejecting the edit, and invalid JSON simply returns without surfacing the sync problem. Since this data comes from peers through the daemon, validate the delta shape and bounds before mutating the QTextDocument, and log/reject invalid operations instead of applying a best-effort partial edit.\n```suggestion\nconst auto parseError \u003d QJsonParseError{};\nconst QJsonDocument jd \u003d QJsonDocument::fromJson(deltaJson.toUtf8(), \u0026parseError);\nif (parseError.error !\u003d QJsonParseError::NoError || !jd.isArray()) {\n    qWarning() \u003c\u003c \"Invalid collaborative rich-text delta\" \u003c\u003c parseError.errorString();\n    return;\n}\n// Before applying each op, reject negative retain/delete values and ranges past docLen.\n```",
+      "revId": "e537aba248f05f13aabe3aa8059b90a64dca990e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d72000a3_f17aa3d4",
+        "filename": "src/app/collabrichbinding.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 267,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-25T14:17:11Z",
+      "side": 1,
+      "message": "[Critical] Line 267: Remote deltas are applied with `qBound()` on retain/delete ranges, which silently truncates invalid CRDT operations. That can make the local rich document diverge from peers instead of rejecting or surfacing a corrupt/out-of-order delta. Validate every operation against the current document length and abort/log when an operation is out of range. Example:\n```suggestion\nconst int docLen \u003d d-\u003echaracterCount() - 1;\nif (index \u003c 0 || n \u003c 0 || index + n \u003e docLen) {\n    qWarning() \u003c\u003c \"Invalid collaborative rich-text delta\" \u003c\u003c deltaJson;\n    applyingRemote_ \u003d false;\n    return;\n}\ncc.setPosition(index);\ncc.setPosition(index + n, QTextCursor::KeepAnchor);\n```",
       "revId": "e537aba248f05f13aabe3aa8059b90a64dca990e",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
