@@ -20,6 +20,7 @@
 #include "qmladapterbase.h"
 
 #include "api/accountmodel.h"
+#include "apitokenmanager.h"
 
 #include <QSettings>
 #include <QString>
@@ -46,6 +47,7 @@ public:
     static AccountAdapter* create(QQmlEngine*, QJSEngine*);
 
     explicit AccountAdapter(AppSettingsManager* settingsManager,
+                            ApiTokenManager* apiTokenManager,
                             SystemTray* systemTray,
                             LRCInstance* instance,
                             QObject* parent = nullptr);
@@ -104,5 +106,6 @@ private:
 
     AppSettingsManager* settingsManager_;
     SystemTray* systemTray_;
+    ApiTokenManager* apiTokenManager_;
 };
 Q_DECLARE_METATYPE(AccountAdapter*)
