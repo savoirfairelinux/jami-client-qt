@@ -68,18 +68,15 @@ TEST_F(AccountFixture, CreateSIPAccountTest)
     ASSERT_EQ(accountListSize, 1);
 
     // Make sure the account setup is done
-    QSignalSpy accountStatusChangedSpy(&globalEnv.lrcInstance->accountModel(),
-                                       &AccountModel::accountStatusChanged);
+    QSignalSpy accountStatusChangedSpy(&globalEnv.lrcInstance->accountModel(), &AccountModel::accountStatusChanged);
 
     accountStatusChangedSpy.wait();
     EXPECT_GE(accountStatusChangedSpy.count(), 1);
 
     // Remove the account
-    QSignalSpy accountRemovedSpy(&globalEnv.lrcInstance->accountModel(),
-                                 &AccountModel::accountRemoved);
+    QSignalSpy accountRemovedSpy(&globalEnv.lrcInstance->accountModel(), &AccountModel::accountRemoved);
 
-    globalEnv.lrcInstance->accountModel().removeAccount(
-        globalEnv.lrcInstance->get_currentAccountId());
+    globalEnv.lrcInstance->accountModel().removeAccount(globalEnv.lrcInstance->get_currentAccountId());
 
     accountRemovedSpy.wait();
     EXPECT_EQ(accountRemovedSpy.count(), 1);
@@ -87,7 +84,6 @@ TEST_F(AccountFixture, CreateSIPAccountTest)
     accountListSize = globalEnv.lrcInstance->accountModel().getAccountCount();
     ASSERT_EQ(accountListSize, 0);
 }
-
 /*!
  * WHEN  A bot account is created from an existing account.
  * THEN  The current account should stay on the creator account.
@@ -127,4 +123,39 @@ TEST_F(AccountFixture, CreateBotAccountKeepsCreatorAsCurrentAccount)
     globalEnv.lrcInstance->accountModel().removeAccount(creatorAccountId);
 
     QTRY_COMPARE(globalEnv.lrcInstance->accountModel().getAccountCount(), 0);
+}
+
+/*!
+ * WHEN  Current account is deleted through AccountAdapter.
+ * THEN  All API tokens for that account are revoked.
+ */
+TEST_F(AccountFixture, DeleteCurrentAccountRevokesAllApiTokens)
+{
+    QSignalSpy accountAddedSpy(&globalEnv.lrcInstance->accountModel(), &AccountModel::accountAdded);
+
+    globalEnv.accountAdapter->createSIPAccount(QVariantMap());
+
+    accountAddedSpy.wait();
+    ASSERT_EQ(accountAddedSpy.count(), 1);
+
+    const auto accountId = accountAddedSpy.takeFirst().at(0).toString();
+    globalEnv.lrcInstance->set_currentAccountId(accountId);
+
+    auto firstToken = globalEnv.apiTokenManager->createToken(accountId, "token-a");
+    auto secondToken = globalEnv.apiTokenManager->createToken(accountId, "token-b");
+
+    ASSERT_EQ(globalEnv.apiTokenManager->listTokens(accountId).size(), 2);
+    ASSERT_NE(globalEnv.apiTokenManager->validateToken(firstToken.rawToken), nullptr);
+    ASSERT_NE(globalEnv.apiTokenManager->validateToken(secondToken.rawToken), nullptr);
+
+    QSignalSpy accountRemovedSpy(&globalEnv.lrcInstance->accountModel(), &AccountModel::accountRemoved);
+
+    globalEnv.accountAdapter->deleteCurrentAccount();
+
+    accountRemovedSpy.wait();
+    ASSERT_EQ(accountRemovedSpy.count(), 1);
+
+    EXPECT_EQ(globalEnv.apiTokenManager->listTokens(accountId).size(), 0);
+    EXPECT_EQ(globalEnv.apiTokenManager->validateToken(firstToken.rawToken), nullptr);
+    EXPECT_EQ(globalEnv.apiTokenManager->validateToken(secondToken.rawToken), nullptr);
 }

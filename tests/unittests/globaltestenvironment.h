@@ -22,6 +22,7 @@
 #include "previewengine.h"
 #include "messageparser.h"
 #include "accountadapter.h"
+#include "apitokenmanager.h"
 
 #include <QTest>
 #include <QSignalSpy>
@@ -47,9 +48,11 @@ public:
         std::atomic_bool isMigrating(false);
         lrcInstance.reset(new LRCInstance("", connectivityMonitor.get(), debugMode, muteDaemon));
         lrcInstance->subscribeToDebugReceived();
+        apiTokenManager.reset(new ApiTokenManager(nullptr));
 
         // setup the adapters (their lifetimes are that of MainApplication)
         accountAdapter.reset(new AccountAdapter(settingsManager.get(),
+                                                apiTokenManager.get(),
                                                 systemTray.get(),
                                                 lrcInstance.data(),
                                                 nullptr));
@@ -61,6 +64,7 @@ public:
     void TearDown()
     {
         accountAdapter.reset();
+        apiTokenManager.reset();
 
         systemTray.reset();
         settingsManager.reset();
@@ -72,6 +76,7 @@ public:
     bool muteDaemon {false};
 
     QScopedPointer<AccountAdapter> accountAdapter;
+    QScopedPointer<ApiTokenManager> apiTokenManager;
 
     QScopedPointer<LRCInstance> lrcInstance;
     QScopedPointer<ConnectivityMonitor> connectivityMonitor;

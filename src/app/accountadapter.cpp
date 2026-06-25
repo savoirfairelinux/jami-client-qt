@@ -29,11 +29,13 @@
 #include <QThreadPool>
 
 AccountAdapter::AccountAdapter(AppSettingsManager* settingsManager,
+                               ApiTokenManager* apiTokenManager,
                                SystemTray* systemTray,
                                LRCInstance* instance,
                                QObject* parent)
     : QmlAdapterBase(instance, parent)
     , settingsManager_(settingsManager)
+    , apiTokenManager_(apiTokenManager)
     , systemTray_(systemTray)
 {
     connect(&lrcInstance_->accountModel(),
@@ -66,6 +68,7 @@ AccountAdapter*
 AccountAdapter::create(QQmlEngine*, QJSEngine*)
 {
     return new AccountAdapter(qApp->property("AppSettingsManager").value<AppSettingsManager*>(),
+                              qobject_cast<ApiTokenManager*>(qApp->property("ApiTokenManager").value<QObject*>()),
                               qApp->property("SystemTray").value<SystemTray*>(),
                               qApp->property("LRCInstance").value<LRCInstance*>());
 }
@@ -262,14 +265,18 @@ AccountAdapter::createJAMSAccount(const QVariantMap& settings)
 void
 AccountAdapter::deleteCurrentAccount()
 {
+    const auto currentAccountId = lrcInstance_->get_currentAccountId();
+
     Utils::oneShotConnect(&lrcInstance_->accountModel(),
                           &lrc::api::AccountModel::accountRemoved,
                           [this](const QString& accountId) {
+                              if (apiTokenManager_)
+                                  apiTokenManager_->revokeAllTokens(accountId);
                               Q_EMIT accountRemoved(accountId);
                               Q_EMIT lrcInstance_->accountListChanged();
                           });
 
-    lrcInstance_->accountModel().removeAccount(lrcInstance_->get_currentAccountId());
+    lrcInstance_->accountModel().removeAccount(currentAccountId);
 }
 
 bool
