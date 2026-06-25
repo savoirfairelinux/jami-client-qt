@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c64e627a_378268fa",
+        "filename": "src/app/commoncomponents/SBSMessageBase.qml",
+        "patchSetId": 19
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-25T15:10:02Z",
+      "side": 1,
+      "message": "[Major] Line 65: editedWidth is now always 0, but TextMessageDelegate still uses rootDelegate.editedWidth in the right margin calculation. For non-big outgoing messages this removes the reserved space for the edited/modified indicator and timestamp/action text can overlap or be clipped. Either remove the margin dependency completely if the indicator is no longer inline, or bind editedWidth to the new editedRow width.\n```suggestion\nproperty real editedWidth: editedRow.visible ? editedRow.implicitWidth + 10 : 0\n```",
+      "revId": "d2a46da900e5244b72ba1748ed9e3f78d8afcbb3",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e7e13f3b_594c7e5d",
+        "filename": "src/app/commoncomponents/SBSMessageBase.qml",
+        "patchSetId": 19
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-25T15:10:02Z",
+      "side": 1,
+      "message": "[Major] Line 66: showOriginal is only reset when Id changes. In virtualized delegates, Body/OriginalBody/ParsedOriginalBody can change for the same item after edits, plugin updates, or model refreshes, leaving the UI showing an original body that no longer matches the current message state. Reset or validate the toggle when the overwrite inputs change.\n```suggestion\nonIdChanged: showOriginal \u003d false\nonOriginalBodyChanged: showOriginal \u003d false\nonBodyChanged: showOriginal \u003d false\n```",
+      "revId": "d2a46da900e5244b72ba1748ed9e3f78d8afcbb3",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "faedfe17_456b7d4d",
+        "filename": "src/app/messageparser.cpp",
+        "patchSetId": 19
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-25T15:10:02Z",
+      "side": 1,
+      "message": "[Minor] Line 112: The structured binding discards the second value using `_`. In C++ this is still a named local variable, not a discard, and may trigger unused-variable warnings depending on the build flags. Avoid binding the unused value.\n```suggestion\nauto result \u003d buildStyledHtml(md, linkColor, backgroundColor);\nQ_EMIT originalMessageParsed(messageId, result.first);\n```",
+      "revId": "d2a46da900e5244b72ba1748ed9e3f78d8afcbb3",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3675e872_27cb2079",
+        "filename": "src/app/messagesadapter.cpp",
+        "patchSetId": 19
+      },
+      "lineNbr": 411,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-25T15:10:02Z",
+      "side": 1,
+      "message": "[Major] Line 411: The asynchronous original-message parse result is applied to whatever conversation is selected when parsing finishes. If the user switches conversations while the worker is running, this can update the wrong MessageListModel or silently fail if the message id does not exist there. Pass the conversation/account id through the parse request, or look up the interaction by a stable conversation id captured at request time instead of using get_selectedConvUid() in the completion slot.",
+      "revId": "d2a46da900e5244b72ba1748ed9e3f78d8afcbb3",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
