@@ -1,0 +1,11 @@
+.git
+build
+jami-cache
+*.tar.gz
+daemon/contrib/build-*
+daemon/contrib/native
+daemon/contrib/native-*
+daemon/contrib/x86_64-linux-gnu
+daemon/contrib/tarballs
+**/*.o
+**/*.a

@@ -66,6 +66,7 @@ override_dh_auto_build:
 	  -DJAMI_DBUS=On \
 	  -DBUILD_SHARED_LIBS=On \
 	  -DBUILD_TESTING=Off \
+	  -DCONTRIB_BUILD_JOBS=$(NO_CPUS) \
 	  $(CMAKE_OPTIONS) ..
 	make -C daemon/build -j$(NO_CPUS) VERBOSE=1
 	pod2man daemon/man/jamid.pod > daemon/jamid.1

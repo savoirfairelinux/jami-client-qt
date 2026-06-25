@@ -25,12 +25,14 @@ Rectangle {
     property int lastCount: count
     property bool populated: false
     property bool animate: true
+    property color badgeColor: JamiTheme.filterBadgeColor
+    property color badgeTextColor: JamiTheme.filterBadgeTextColor
 
     width: size
     height: size
 
     radius: height / 2
-    color: JamiTheme.filterBadgeColor
+    color: badgeColor
 
     visible: count > 0
 
@@ -39,7 +41,7 @@ Rectangle {
 
         anchors.centerIn: root
         text: count > 9 ? "9+" : count
-        color: JamiTheme.filterBadgeTextColor
+        color: root.badgeTextColor
         font.pointSize: JamiTheme.filterBadgeFontSize
         font.weight: Font.ExtraBold
     }
@@ -57,16 +59,16 @@ Rectangle {
         ColorAnimation {
             target: root
             properties: "color"
-            from: JamiTheme.filterBadgeTextColor
-            to: JamiTheme.filterBadgeColor
+            from: root.badgeTextColor
+            to: root.badgeColor
             duration: 150
             easing.type: Easing.InOutQuad
         }
         ColorAnimation {
             target: countLabel
             properties: "color"
-            from: JamiTheme.filterBadgeColor
-            to: JamiTheme.filterBadgeTextColor
+            from: root.badgeColor
+            to: root.badgeTextColor
             duration: 150
             easing.type: Easing.InOutQuad
         }
