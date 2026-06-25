@@ -81,7 +81,7 @@ public:
     /// Whole current content of a document as a Quill delta JSON (for initial render).
     Q_INVOKABLE QString contentDelta(const QString& convId, const QString& documentId);
     /// List the editable documents shared in @p convId, most recent first. Each
-    /// entry is a map: { documentId, name, author, timestamp }.
+    /// entry is a map: { documentId, name, author, kind, hasUpdate, timestamp }.
     Q_INVOKABLE QVariantList documents(const QString& convId);
     /// Whether @p convId has a collaborative document update that hasn't been opened yet.
     Q_INVOKABLE bool hasUnreadDocumentUpdate(const QString& convId) const;

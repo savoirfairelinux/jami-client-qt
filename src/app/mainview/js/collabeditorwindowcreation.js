@@ -15,14 +15,18 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-// Manages independent collaborative-editor windows, one per document. Opening a
-// document that already has a window simply raises it instead of creating a
-// duplicate. A document's "kind" ("rich" or "text") selects the editor flavour:
-// a WYSIWYG rich-text window or a plain-text window.
+// Manages independent collaborative-editor windows, one per conversation
+// document. Opening a document that already has a window simply raises it
+// instead of creating a duplicate. A document's "kind" ("rich" or "text")
+// selects the editor flavour: a WYSIWYG rich-text window or a plain-text window.
 
 var components = ({})
-// Map of documentId -> window object.
+// Map of conversation/document keys -> window object.
 var windows = ({})
+
+function windowKey(conversationId, documentId) {
+    return conversationId + "::" + documentId
+}
 
 function sourceForKind(kind) {
     return kind === "rich" ? "../components/CollabRichEditorWindow.qml"
@@ -30,9 +34,14 @@ function sourceForKind(kind) {
 }
 
 function openEditor(appWindow, conversationId, documentId, documentName, peerName, kind) {
+    if (!conversationId || !documentId) {
+        console.log("Cannot open collaborative editor: missing conversation or document id")
+        return
+    }
     kind = (kind === "rich") ? "rich" : "text"
     // Reuse an already-open window for this document.
-    var existing = windows[documentId]
+    var key = windowKey(conversationId, documentId)
+    var existing = windows[key]
     if (existing) {
         if (documentName && documentName.length > 0)
             existing.documentName = documentName
@@ -70,7 +79,7 @@ function openEditor(appWindow, conversationId, documentId, documentName, peerNam
         console.log("Error creating CollabEditor:", component.errorString())
         return
     }
-    windows[documentId] = win
+    windows[key] = win
 
     // Center on the main window the first time.
     if (appWindow) {
@@ -78,7 +87,7 @@ function openEditor(appWindow, conversationId, documentId, documentName, peerNam
         win.y = appWindow.y + (appWindow.height - win.height) / 2
     }
     win.closing.connect(function () {
-        delete windows[documentId]
+        delete windows[key]
         win.destroy()
     })
     win.show()

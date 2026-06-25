@@ -40,6 +40,7 @@ Rectangle {
     property bool showTypoSecond: false
     property bool showPreview: false
     property bool isEmojiPickerOpen: false
+    property var convContext: CurrentConversation
 
     property bool maximized: (showTypo || dataTransferSendContainer.visible)
     property int messageBarLayoutMaximumWidth: 486
@@ -264,7 +265,7 @@ Rectangle {
                 id: messageBarTextArea
                 objectName: "messageBarTextArea"
 
-                placeholderText: CurrentConversation.isTemporary ? JamiStrings.writeToNewContact.arg(CurrentConversation.title) : JamiStrings.writeTo.arg(CurrentConversation.title)
+                placeholderText: convContext.isTemporary ? JamiStrings.writeToNewContact.arg(convContext.title) : JamiStrings.writeTo.arg(convContext.title)
 
                 anchors {
                     right: (showTypo) ? previewButton.left : messageRow.right
@@ -458,6 +459,7 @@ Rectangle {
         MessageFormatBar {
             id: formatRow
             color: JamiTheme.transparentColor
+            convContext: rectangle.convContext
 
             isEmojiPickerOpen: rectangle.isEmojiPickerOpen
 

@@ -21,7 +21,6 @@ import QtQuick.Layouts
 import net.jami.Models 1.1
 import net.jami.Constants 1.1
 import net.jami.Adapters 1.1
-import "../mainview/js/collabeditorwindowcreation.js" as CollabEditorWindows
 
 // Chat bubble announcing a shared editable document. Clicking it opens the
 // collaborative editor for everyone in the conversation.
@@ -31,7 +30,7 @@ Item {
     property var convContext: CurrentConversation
     property string author: Author
     property string documentId: DocumentId
-    property string docKind: (typeof DocumentKind !== "undefined" && DocumentKind !== "") ? DocumentKind : "text"
+    property string docKind: (typeof DocumentKind !== "undefined" && DocumentKind === "rich") ? "rich" : "text"
     // Displayed name: starts from the announcing commit (Body) but follows live
     // renames (CRDT name field) broadcast through CollaborativeAdapter.
     property string docName: Body
@@ -120,9 +119,9 @@ Item {
             anchors.fill: parent
             cursorShape: Qt.PointingHandCursor
             onClicked: {
-                CollabEditorWindows.openEditor(appWindow, root.conversationIdOf(), root.documentId, root.docName,
-                                               root.convContext ? root.convContext.title : CurrentConversation.title,
-                                               root.docKind);
+                appWindow.openCollabEditor(root.conversationIdOf(), root.documentId, root.docName,
+                                           root.convContext ? root.convContext.title : CurrentConversation.title,
+                                           root.docKind);
             }
         }
     }

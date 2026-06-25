@@ -120,6 +120,7 @@ Rectangle {
 
     MessageBar {
         id: messageBar
+        convContext: root.convContext
 
         anchors.bottom: root.bottom
         anchors.bottomMargin: marginSize

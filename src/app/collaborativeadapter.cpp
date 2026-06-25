@@ -204,7 +204,8 @@ CollaborativeAdapter::documents(const QString& convId)
         entry[QStringLiteral("documentId")] = documentId;
         entry[QStringLiteral("name")] = name;
         entry[QStringLiteral("author")] = model->data(idx, MessageList::Role::Author).toString();
-        entry[QStringLiteral("kind")] = model->data(idx, MessageList::Role::DocumentKind).toString();
+        const auto kind = model->data(idx, MessageList::Role::DocumentKind).toString();
+        entry[QStringLiteral("kind")] = kind == QStringLiteral("rich") ? kind : QStringLiteral("text");
         entry[QStringLiteral("hasUpdate")] = hasUnreadDocumentUpdateForDocument(convId, documentId);
         entry[QStringLiteral("timestamp")] = model->data(idx, MessageList::Role::Timestamp).toLongLong();
         result.prepend(entry); // most recent first

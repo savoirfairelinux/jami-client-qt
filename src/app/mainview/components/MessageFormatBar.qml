@@ -35,13 +35,15 @@ Rectangle {
 
     property alias listViewTypoFirst: listViewTypoFirst
     property bool isEmojiPickerOpen
+    property var convContext: CurrentConversation
 
     // True when the current conversation has at least one editable document.
     // Recomputed when the conversation changes or its interactions change (a
     // created document surfaces as a COLLAB_DOC interaction).
     property bool hasEditableDocuments: false
     function updateHasEditableDocuments() {
-        hasEditableDocuments = CollaborativeAdapter.documents(CurrentConversation.id).length > 0;
+        hasEditableDocuments = convContext && convContext.id !== ""
+                               && CollaborativeAdapter.documents(convContext.id).length > 0;
     }
     onHasEditableDocumentsChanged: Qt.callLater(function () {
         actionsProxyModel.invalidate();
@@ -49,7 +51,7 @@ Rectangle {
     Component.onCompleted: updateHasEditableDocuments()
 
     Connections {
-        target: CurrentConversation
+        target: convContext
         function onIdChanged() {
             messageBarRowLayout.updateHasEditableDocuments();
         }
@@ -449,7 +451,7 @@ Rectangle {
                         function filter(data: MenuActionFilterData): bool {
                             return data.menuAction.noSip === true;
                         }
-                        enabled: CurrentConversation.isSip
+                        enabled: convContext && convContext.isSip
                     },
                     FunctionFilter {
                         column: 0
@@ -488,7 +490,7 @@ Rectangle {
             hoverEnabled: !showPreview
 
             focus: true
-            visible: !CurrentConversation.isSip
+            visible: convContext && !convContext.isSip
 
             Accessible.name: JamiStrings.showMoreMessagingOptions
             Accessible.role: Accessible.ComboBox
@@ -536,7 +538,7 @@ Rectangle {
                     viewCoordinator.presentDialog(appWindow,
                                                   "commoncomponents/CollabNewDocPopup.qml",
                                                   {
-                                                      "conversationId": CurrentConversation.id
+                                                      "conversationId": convContext.id
                                                   });
                     textAreaObj.forceActiveFocus();
                 }
@@ -589,8 +591,8 @@ Rectangle {
                         viewCoordinator.presentDialog(appWindow,
                                                       "commoncomponents/CollabDocListPopup.qml",
                                                       {
-                                                          "conversationId": CurrentConversation.id,
-                                                          "peerName": CurrentConversation.title
+                                                          "conversationId": convContext.id,
+                                                          "peerName": convContext.title
                                                       });
                         textAreaObj.forceActiveFocus();
                     }
@@ -644,7 +646,7 @@ Rectangle {
                         function filter(data: MenuActionFilterData): bool {
                             return data.menuAction.noSip === true;
                         }
-                        enabled: CurrentConversation.isSip
+                        enabled: convContext && convContext.isSip
                     },
                     FunctionFilter {
                         column: 0

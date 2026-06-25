@@ -21,7 +21,6 @@ import QtQuick.Layouts
 import net.jami.Models 1.1
 import net.jami.Constants 1.1
 import net.jami.Adapters 1.1
-import "../mainview/js/collabeditorwindowcreation.js" as CollabEditorWindows
 
 // Lists the editable documents shared in a conversation. Clicking an entry opens
 // its collaborative editor (reusing an already-open window if any).
@@ -91,6 +90,12 @@ BaseModalDialog {
             model: docsModel
 
             delegate: ItemDelegate {
+                property string docId: model.documentId || ""
+                property string docName: model.name || ""
+                property string docAuthor: model.author || ""
+                property string docKind: model.kind === "rich" ? "rich" : "text"
+                property bool docHasUpdate: model.hasUpdate === true
+
                 width: docsView.width
                 height: 48
 
@@ -112,7 +117,7 @@ BaseModalDialog {
                         }
 
                         Rectangle {
-                            visible: hasUpdate
+                            visible: docHasUpdate
                             anchors.right: parent.right
                             anchors.verticalCenter: parent.verticalCenter
                             width: 8
@@ -130,7 +135,7 @@ BaseModalDialog {
 
                         Text {
                             Layout.fillWidth: true
-                            text: name !== "" ? name : qsTr("Untitled document")
+                            text: docName !== "" ? docName : qsTr("Untitled document")
                             elide: Text.ElideRight
                             font.pointSize: JamiTheme.textFontSize
                             font.bold: true
@@ -138,7 +143,7 @@ BaseModalDialog {
                         }
                         Text {
                             Layout.fillWidth: true
-                            text: UtilsAdapter.getBestNameForUri(CurrentAccount.id, author)
+                            text: UtilsAdapter.getBestNameForUri(CurrentAccount.id, docAuthor)
                             elide: Text.ElideRight
                             font.pointSize: JamiTheme.tinyFontSize
                             color: JamiTheme.faddedFontColor
@@ -147,9 +152,13 @@ BaseModalDialog {
                 }
 
                 onClicked: {
-                    CollabEditorWindows.openEditor(appWindow, root.conversationId, documentId, name,
-                                                   root.peerName !== "" ? root.peerName : CurrentConversation.title,
-                                                   kind);
+                    if (docId === "") {
+                        console.log("Cannot open collaborative document: missing document id");
+                        return;
+                    }
+                    appWindow.openCollabEditor(root.conversationId, docId, docName,
+                                               root.peerName !== "" ? root.peerName : CurrentConversation.title,
+                                               docKind);
                     root.close();
                 }
             }
