@@ -462,6 +462,7 @@ public Q_SLOTS: // METHODS
                                displayName.toStdString(),
                                avatarPath.toStdString(),
                                fileType.toStdString(),
+                               "",
                                flag);
     }
 
