@@ -448,6 +448,7 @@ MainApplication::initQmlLayer()
 
     // Expose API token manager and list model to QML.
     apiTokenManager_ = new ApiTokenManager(this);
+    qApp->setProperty("ApiTokenManager", QVariant::fromValue(static_cast<QObject*>(apiTokenManager_)));
     apiTokenListModel_ = new ApiTokenListModel(apiTokenManager_, this);
     engine_->rootContext()->setContextProperty("ApiTokenListModel", apiTokenListModel_);
 
