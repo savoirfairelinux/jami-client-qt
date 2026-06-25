@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f973badc_55ac9d09",
+        "filename": "src/app/mainview/components/MessageFormatBar.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-25T14:17:06Z",
+      "side": 1,
+      "message": "[🟡 Suggestion] Line 42: hasEditableDocuments is not recomputed when convContext itself is replaced. The Connections handler only catches idChanged on the current target, so switching the chat/footer to a different conversation object whose id is already set can leave the \"open editable documents\" action visible/hidden based on the previous conversation. Add a convContext change handler so the cached state follows the scoped conversation.\n```suggestion\n    onConvContextChanged: updateHasEditableDocuments()\n```",
+      "revId": "b17473ec333f03f6ac8e557c8e1eb4bb104e4e24",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "96eb3256_a936601f",
+        "filename": "src/app/mainview/components/MessageFormatBar.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 536,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-25T14:17:06Z",
+      "side": 1,
+      "message": "[🟡 Suggestion] Line 536: This click handler dereferences convContext.id without guarding that convContext is valid. Most visibility/filter bindings now handle a missing convContext, but an action can still be triggered while the context is being rebound, causing a QML runtime error or opening a dialog with an empty conversation. Guard consistently before presenting the dialog.\n```suggestion\n                    if (!convContext || convContext.id \u003d\u003d\u003d \"\")\n                        return;\n                    viewCoordinator.presentDialog(appWindow,\n                                                  \"commoncomponents/CollabNewDocPopup.qml\",\n                                                  {\n                                                      \"conversationId\": convContext.id\n                                                  });\n```",
+      "revId": "b17473ec333f03f6ac8e557c8e1eb4bb104e4e24",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b87ee837_1048def4",
+        "filename": "src/app/mainview/components/MessageFormatBar.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 592,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-25T14:17:06Z",
+      "side": 1,
+      "message": "[🟡 Suggestion] Line 592: The document-list action also dereferences convContext.id/title without a validity check. Since this patch makes conversation context explicit and potentially app-scoped, this should fail closed when no scoped conversation is available instead of relying on surrounding visibility state.\n```suggestion\n                        if (!convContext || convContext.id \u003d\u003d\u003d \"\")\n                            return;\n                        viewCoordinator.presentDialog(appWindow,\n                                                      \"commoncomponents/CollabDocListPopup.qml\",\n                                                      {\n                                                          \"conversationId\": convContext.id,\n                                                          \"peerName\": convContext.title\n                                                      });\n```",
+      "revId": "b17473ec333f03f6ac8e557c8e1eb4bb104e4e24",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
