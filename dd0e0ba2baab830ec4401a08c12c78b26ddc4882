@@ -18,6 +18,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c44bffdc_72a1f459",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 39
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1192
+      },
+      "writtenOn": "2026-06-25T13:43:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "612f9fee_1dcdeeb7",
+      "revId": "dd0e0ba2baab830ec4401a08c12c78b26ddc4882",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e773454e_7e534df4",
@@ -31,6 +49,30 @@
       "writtenOn": "2026-06-23T20:58:57Z",
       "side": 1,
       "message": "What\u0027s the purpose of this change? When I log the values of `OriginalBody` and `Body` in this function they seem to always be equal.",
+      "range": {
+        "startLine": 98,
+        "startChar": 99,
+        "endLine": 98,
+        "endChar": 123
+      },
+      "revId": "dd0e0ba2baab830ec4401a08c12c78b26ddc4882",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1afb5217_c7125d02",
+        "filename": "src/app/mainview/components/ChatViewFooter.qml",
+        "patchSetId": 39
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1192
+      },
+      "writtenOn": "2026-06-25T13:43:28Z",
+      "side": 1,
+      "message": "The purpose is so that it shows the original message in the edit box and the the body overwrite when the user edits their message. TranslateMessages doesn\u0027t change the sent messages",
+      "parentUuid": "e773454e_7e534df4",
       "range": {
         "startLine": 98,
         "startChar": 99,

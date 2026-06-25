@@ -65,6 +65,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "55c3b33b_e27c8a53",
+        "filename": "src/core/interaction.cpp",
+        "patchSetId": 38
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1192
+      },
+      "writtenOn": "2026-06-25T13:43:28Z",
+      "side": 1,
+      "message": "overwriting the body is the feature, and indication that the body changed is done in the next patchset",
+      "parentUuid": "a2e624ba_035bf1c8",
+      "revId": "95e6b4d10e3f35b3ce717f7bf2ed66e7048d0532",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fefd8f3b_10a2b76d",
@@ -82,6 +100,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6d1d8a8a_92dbb79e",
+        "filename": "src/core/interaction.cpp",
+        "patchSetId": 38
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1192
+      },
+      "writtenOn": "2026-06-25T13:43:28Z",
+      "side": 1,
+      "message": "Applying bodyOverwrite in edition history is intentional",
+      "parentUuid": "fefd8f3b_10a2b76d",
+      "revId": "95e6b4d10e3f35b3ce717f7bf2ed66e7048d0532",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "46ee0e82_f2de2a6a",
@@ -95,6 +131,24 @@
       "writtenOn": "2026-06-23T16:22:23Z",
       "side": 1,
       "message": "[🔴 Critical] Line 528: `OriginalBody` returns `commit[\"body\"]`, which appears to be the first/original committed body, not necessarily the current editable body after message editions. Editing an already-edited plugin-overwritten message may therefore prefill stale text instead of the latest raw message content. Please derive this role from the latest edition\u0027s raw `body` when editions exist, falling back to the commit body only when there are no editions.\n```suggestion\ncase Role::OriginalBody: {\n    if (!item.second.previousBodies.isEmpty())\n        return QVariant(item.second.previousBodies.last().body);\n    if (item.second.commit.contains(\"body\"))\n        return QVariant(item.second.commit.value(\"body\"));\n    return QVariant(item.second.body);\n}\n```",
+      "revId": "95e6b4d10e3f35b3ce717f7bf2ed66e7048d0532",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0fb348ce_dc43c50e",
+        "filename": "src/core/messagelistmodel.cpp",
+        "patchSetId": 38
+      },
+      "lineNbr": 528,
+      "author": {
+        "id": 1192
+      },
+      "writtenOn": "2026-06-25T13:43:28Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "46ee0e82_f2de2a6a",
       "revId": "95e6b4d10e3f35b3ce717f7bf2ed66e7048d0532",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
