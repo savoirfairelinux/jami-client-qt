@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "804958be_c0b5bbe1",
+        "filename": "extras/packaging/gnu-linux/docker/Dockerfile_ubuntu_24.04",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-25T14:17:07Z",
+      "side": 1,
+      "message": "[Critical] Line 19: 🔴 Critical Issues - Must fix before merge: `chmod -R a+rwX /usr/local/rustup /usr/local/cargo` makes the Rust toolchain and cargo binaries world-writable. Any unprivileged process in the image can replace `cargo`/`rustc` and execute arbitrary code during package builds. The build user only needs read/execute access, not write access. Use root-owned, non-world-writable permissions, or chown only the cache directories that genuinely need writes.\n```suggestion\nRUN curl --proto \u0027\u003dhttps\u0027 --tlsv1.2 -sSf https://sh.rustup.rs \\\n        | sh -s -- -y --profile minimal --default-toolchain stable \u0026\u0026 \\\n    chmod -R a+rX /usr/local/rustup /usr/local/cargo\n```",
+      "revId": "e537aba248f05f13aabe3aa8059b90a64dca990e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0e7088f3_864b17e0",
+        "filename": "src/app/collabrichbinding.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-25T14:17:07Z",
+      "side": 1,
+      "message": "[Medium] Line 263: 🟡 Suggestions - Improvements to consider: malformed or hostile remote delta JSON is silently accepted and partially clamped. Negative `retain` values can move `index` backwards, very large operations are clamped without rejecting the edit, and invalid JSON simply returns without surfacing the sync problem. Since this data comes from peers through the daemon, validate the delta shape and bounds before mutating the QTextDocument, and log/reject invalid operations instead of applying a best-effort partial edit.\n```suggestion\nconst auto parseError \u003d QJsonParseError{};\nconst QJsonDocument jd \u003d QJsonDocument::fromJson(deltaJson.toUtf8(), \u0026parseError);\nif (parseError.error !\u003d QJsonParseError::NoError || !jd.isArray()) {\n    qWarning() \u003c\u003c \"Invalid collaborative rich-text delta\" \u003c\u003c parseError.errorString();\n    return;\n}\n// Before applying each op, reject negative retain/delete values and ranges past docLen.\n```",
+      "revId": "e537aba248f05f13aabe3aa8059b90a64dca990e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c54dcff5_1d1bf3ee",
+        "filename": "src/app/collabrichbinding.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 438,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-25T14:17:07Z",
+      "side": 1,
+      "message": "[Medium] Line 438: 🟡 Suggestions - Improvements to consider: `setLink()` accepts and syncs arbitrary href strings. If these anchors are later activated by the editor, schemes such as `javascript:`, `file:`, or other unsafe/custom schemes can become a local injection or data-exposure path. Validate links before applying/syncing them and reject or normalize unsupported schemes.\n```suggestion\nconst QUrl url(href);\nif (!href.isEmpty() \u0026\u0026 (!url.isValid() || (url.scheme() !\u003d QStringLiteral(\"http\") \u0026\u0026 url.scheme() !\u003d QStringLiteral(\"https\"))))\n    return;\nattrs[QStringLiteral(\"link\")] \u003d href.isEmpty() ? QJsonValue(QJsonValue::Null) : QJsonValue(url.toString());\n```",
+      "revId": "e537aba248f05f13aabe3aa8059b90a64dca990e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
