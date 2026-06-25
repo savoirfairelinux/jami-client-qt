@@ -18,6 +18,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "527ff022_a582324f",
+        "filename": "src/core/interaction.cpp",
+        "patchSetId": 40
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2026-06-25T14:22:24Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "163520e9_d8ce886f",
+      "revId": "1400857993aa4e513ea558e3c6cc50436b9e4638",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b35913e1_9e740cd0",
@@ -35,6 +53,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1f94db66_80d405c3",
+        "filename": "src/core/messagelistmodel.cpp",
+        "patchSetId": 40
+      },
+      "lineNbr": 529,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2026-06-25T14:22:24Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "b35913e1_9e740cd0",
+      "revId": "1400857993aa4e513ea558e3c6cc50436b9e4638",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "70ad4e54_2c681765",
@@ -48,6 +84,24 @@
       "writtenOn": "2026-06-25T13:44:03Z",
       "side": 1,
       "message": "[Critical] Line 97: Appending pluginData changes the serialized DBus struct signature for SwarmMessage. Any client/daemon pair built against different revisions will deserialize a different number of fields, which can break message loading/signals at runtime. Please make this change in lockstep with the daemon DBus API/versioning, or introduce a backward-compatible transport shape/version gate instead of unconditionally changing the struct layout.",
+      "revId": "1400857993aa4e513ea558e3c6cc50436b9e4638",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cad1afa9_5545df08",
+        "filename": "src/dbus/metatypes.h",
+        "patchSetId": 40
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2026-06-25T14:22:24Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "70ad4e54_2c681765",
       "revId": "1400857993aa4e513ea558e3c6cc50436b9e4638",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
