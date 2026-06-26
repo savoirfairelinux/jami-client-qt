@@ -527,7 +527,7 @@ set(COMMON_SOURCES
   ${APP_SRC_DIR}/conversationsadapter.cpp
   ${APP_SRC_DIR}/avadapter.cpp
   ${APP_SRC_DIR}/contactadapter.cpp
-  ${APP_SRC_DIR}/exposedservicesadapter.cpp
+  ${APP_SRC_DIR}/sharedservicesadapter.cpp
   ${APP_SRC_DIR}/pluginadapter.cpp
   ${APP_SRC_DIR}/deviceitemlistmodel.cpp
   ${APP_SRC_DIR}/pluginlistmodel.cpp

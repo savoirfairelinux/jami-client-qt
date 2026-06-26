@@ -33,10 +33,10 @@ ItemDelegate {
 
     function policyTag(policy) {
         if (policy === "public")
-            return JamiStrings.exposedServicePolicyTagPublic;
+            return JamiStrings.sharedServicesPolicyTagPublic;
         if (policy === "specific")
-            return JamiStrings.exposedServicePolicyTagSpecific;
-        return JamiStrings.exposedServicePolicyTagContacts;
+            return JamiStrings.sharedServicesPolicyTagSpecific;
+        return JamiStrings.sharedServicesPolicyTagContacts;
     }
 
     function serviceEndpoint(service) {
@@ -103,7 +103,7 @@ ItemDelegate {
                         color: JamiTheme.textColor
 
                         elide: Text.ElideRight
-                        font.pixelSize: JamiTheme.exposedServiceDelegateTitlePixelSize
+                        font.pixelSize: JamiTheme.sharedServicesDelegateTitlePixelSize
                     }
 
                     Label {
@@ -117,7 +117,7 @@ ItemDelegate {
 
                         color: JamiTheme.textColor
 
-                        font.pixelSize: JamiTheme.exposedServiceDelegateDescriptionPixelSize
+                        font.pixelSize: JamiTheme.sharedServicesDelegateDescriptionPixelSize
 
                         background: Rectangle {
                             radius: height / 2
@@ -137,7 +137,7 @@ ItemDelegate {
                     opacity: 0.7
 
                     elide: Text.ElideRight
-                    font.pixelSize: JamiTheme.exposedServiceDelegateDescriptionPixelSize
+                    font.pixelSize: JamiTheme.sharedServicesDelegateDescriptionPixelSize
                     font.italic: true
                 }
             }
@@ -157,7 +157,7 @@ ItemDelegate {
                 toolTipText: JamiStrings.settings
 
                 onClicked: {
-                    viewCoordinator.presentDialog(appWindow, "settingsview/components/ExposedServiceDialog.qml", {
+                    viewCoordinator.presentDialog(appWindow, "settingsview/components/SharedServiceDialog.qml", {
                                                       "serviceType": modelData.type || "custom",
                                                       "editingId": modelData.id,
                                                       "serviceName": modelData.name || "",
@@ -178,7 +178,7 @@ ItemDelegate {
 
                 iconSize: JamiTheme.iconButtonMedium
                 iconSource: root.isHttpService(modelData) ? JamiResources.open_in_new_24dp_svg : JamiResources.content_copy_24dp_svg
-                toolTipText: root.isHttpService(modelData) ? JamiStrings.exposedServiceOpenUrl.arg(root.serviceUrl(modelData)) : JamiStrings.exposedServiceCopyEndpoint.arg(root.serviceEndpoint(modelData))
+                toolTipText: root.isHttpService(modelData) ? JamiStrings.sharedServicesOpenUrl.arg(root.serviceUrl(modelData)) : JamiStrings.sharedServicesCopyEndpoint.arg(root.serviceEndpoint(modelData))
 
                 onClicked: {
                     if (root.isHttpService(modelData))
@@ -193,7 +193,7 @@ ItemDelegate {
                 checked: modelData.enabled === "true"
                 onClicked: {
                     modelData.enabled = checked ? "true" : "false"
-                    ExposedServicesAdapter.updateExposedService(CurrentAccount.id, modelData);
+                    SharedServicesAdapter.updateSharedService(CurrentAccount.id, modelData);
                 }
             }
         }

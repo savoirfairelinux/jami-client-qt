@@ -104,16 +104,16 @@ BaseModalDialog {
     button1.onClicked: {
         var dlg = viewCoordinator.presentDialog(appWindow, "../../commoncomponents/ConfirmDialog.qml", {
                                                     "titleText": JamiStrings.confirmAction,
-                                                    "textLabel": JamiStrings.confirmDeleteSharedService,
+                                                    "textLabel": JamiStrings.sharedServicesConfirmDelete,
                                                     "confirmLabel": JamiStrings.optionDelete
                                                 });
         dlg.accepted.connect(function() {
-            ExposedServicesAdapter.removeExposedService(CurrentAccount.id, root.editingId);
+            SharedServicesAdapter.removeSharedService(CurrentAccount.id, root.editingId);
             root.close();
         });
     }
 
-    button2.text: JamiStrings.exposedServiceSave
+    button2.text: JamiStrings.sharedServicesSave
     button2.iconSource: JamiResources.save_file_24dp_svg
     button2.enabled: root.canSave()
     button2.onClicked: {
@@ -135,9 +135,9 @@ BaseModalDialog {
         var saved = false;
         if (root.editingId.length > 0) {
             service.id = root.editingId;
-            saved = ExposedServicesAdapter.updateExposedService(CurrentAccount.id, service);
+            saved = SharedServicesAdapter.updateSharedService(CurrentAccount.id, service);
         } else {
-            saved = ExposedServicesAdapter.addExposedService(CurrentAccount.id, service).length > 0;
+            saved = SharedServicesAdapter.addSharedService(CurrentAccount.id, service).length > 0;
         }
         if (!saved)
             return;
@@ -148,9 +148,9 @@ BaseModalDialog {
         if (editingId.length > 0) {
             return JamiStrings.edit;
         } else if (serviceType === "embedded") {
-            return JamiStrings.exposedServiceAddWebsite
+            return JamiStrings.sharedServicesAddWebsite
         } else {
-            return JamiStrings.exposedServiceCustomService
+            return JamiStrings.sharedServicesCustomService
         }
     }
 
@@ -165,7 +165,7 @@ BaseModalDialog {
 
             leadingIconSource: JamiResources.label_24dp_svg
 
-            placeholderText: JamiStrings.exposedServiceNameLabel
+            placeholderText: JamiStrings.sharedServicesNameLabel
             textFieldContent: root.serviceName
 
             visible: !root.isEmbeddedService() || (root.isEmbeddedService() && root.serviceDirectory !== "")
@@ -181,7 +181,7 @@ BaseModalDialog {
 
             leadingIconSource: JamiResources.swarm_details_panel_24dp_svg
 
-            placeholderText: JamiStrings.exposedServiceDescriptionLabel
+            placeholderText: JamiStrings.sharedServicesDescriptionLabel
             textFieldContent: root.serviceDescription
 
             visible: !root.isEmbeddedService()
@@ -196,7 +196,7 @@ BaseModalDialog {
 
             outlinedButton: true
             iconSource: JamiResources.round_folder_24dp_svg
-            text: root.serviceDirectory === "" ? JamiStrings.exposedServiceChooseDirectory : root.serviceDirectory
+            text: root.serviceDirectory === "" ? JamiStrings.sharedServicesChooseDirectory : root.serviceDirectory
 
             visible: root.isEmbeddedService()
 
@@ -216,7 +216,7 @@ BaseModalDialog {
                 Layout.fillWidth: true
 
                 leadingIconSource: JamiResources.host_24dp_svg
-                placeholderText: JamiStrings.exposedServiceHostLabel
+                placeholderText: JamiStrings.sharedServicesHostLabel
                 textFieldContent: root.serviceHost
 
                 onModifiedTextFieldContentChanged: root.serviceHost = modifiedTextFieldContent
@@ -228,7 +228,7 @@ BaseModalDialog {
                 Layout.preferredWidth: 110
 
                 leadingIconSource: JamiResources.plug_connect_24dp_svg
-                placeholderText: JamiStrings.exposedServicePortLabel
+                placeholderText: JamiStrings.sharedServicesPortLabel
                 textFieldContent: root.servicePort
 
                 validator: IntValidator {
@@ -249,7 +249,7 @@ BaseModalDialog {
                 Layout.fillWidth: true
 
                 leadingIconSource: JamiResources.network_reverse_24dp_svg
-                placeholderText: JamiStrings.exposedServiceCustomSchemeLabel
+                placeholderText: JamiStrings.sharedServicesCustomSchemeLabel
                 textFieldContent: root.serviceCustomScheme
 
                 onModifiedTextFieldContentChanged: {
@@ -267,7 +267,7 @@ BaseModalDialog {
                 iconSize: JamiTheme.iconButtonMedium
                 // The tool tip of the NewIconButton will interfere with the
                 // details popup, so we manually define the accessibility name
-                Accessible.name: JamiStrings.exposedServiceWhatsThis
+                Accessible.name: JamiStrings.sharedServicesWhatsThis
 
                 checked: uriSchemeDetailsPopup.opened
 
@@ -292,7 +292,7 @@ BaseModalDialog {
                     opacity: visible ? 1.0 : 0.0
 
                     contentItem: Text {
-                        text: JamiStrings.exposedServiceUriSchemeDetails
+                        text: JamiStrings.sharedServicesUriSchemeDetails
                         color: JamiTheme.textColor
                         lineHeight: JamiTheme.wizardViewTextLineHeight
                         verticalAlignment: Text.AlignVCenter
@@ -334,7 +334,7 @@ BaseModalDialog {
             Text {
                 Layout.fillWidth: true
 
-                text: JamiStrings.exposedServicePolicyLabel
+                text: JamiStrings.sharedServicesPolicyLabel
                 color: JamiTheme.textColor
 
                 font.pointSize: JamiTheme.settingsFontSize
@@ -351,9 +351,9 @@ BaseModalDialog {
                     // in a list model, so we fall back to adding them dynamically. This
                     // ensures that the strings in the ListModel are translatable.
                     Component.onCompleted: {
-                        append({ "value": "contacts", "label": JamiStrings.exposedServicePolicyContacts });
-                        append({ "value": "public", "label": JamiStrings.exposedServicePolicyPublic });
-                        append({ "value": "specific", "label": JamiStrings.exposedServicePolicySpecific });
+                        append({ "value": "contacts", "label": JamiStrings.sharedServicesPolicyContacts });
+                        append({ "value": "public", "label": JamiStrings.sharedServicesPolicyPublic });
+                        append({ "value": "specific", "label": JamiStrings.sharedServicesPolicySpecific });
                     }
                 }
 

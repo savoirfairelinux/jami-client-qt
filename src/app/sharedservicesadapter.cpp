@@ -15,7 +15,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include "exposedservicesadapter.h"
+#include "sharedservicesadapter.h"
 
 #include "lrcinstance.h"
 
@@ -610,7 +610,7 @@ existingServiceMap(const QString& accountId, const QString& serviceId)
 {
     if (serviceId.isEmpty())
         return {};
-    const auto records = NetworkServiceManager::instance().getExposedServices(accountId);
+    const auto records = NetworkServiceManager::instance().getSharedServices(accountId);
     for (const auto& record : records) {
         if (record.value(ID_KEY) == serviceId)
             return mapToVariant(record);
@@ -620,7 +620,7 @@ existingServiceMap(const QString& accountId, const QString& serviceId)
 
 } // namespace
 
-struct ExposedServicesAdapter::EmbeddedServer
+struct SharedServicesAdapter::EmbeddedServer
 {
     QString accountId;
     QString serviceId;
@@ -630,13 +630,13 @@ struct ExposedServicesAdapter::EmbeddedServer
     QTcpServer* tcpServer {nullptr};
 };
 
-ExposedServicesAdapter*
-ExposedServicesAdapter::create(QQmlEngine*, QJSEngine*)
+SharedServicesAdapter*
+SharedServicesAdapter::create(QQmlEngine*, QJSEngine*)
 {
-    return new ExposedServicesAdapter(qApp->property("LRCInstance").value<LRCInstance*>());
+    return new SharedServicesAdapter(qApp->property("LRCInstance").value<LRCInstance*>());
 }
 
-ExposedServicesAdapter::ExposedServicesAdapter(LRCInstance* instance, QObject* parent)
+SharedServicesAdapter::SharedServicesAdapter(LRCInstance* instance, QObject* parent)
     : QmlAdapterBase(instance, parent)
 {
     auto& nsm = NetworkServiceManager::instance();
@@ -690,10 +690,10 @@ ExposedServicesAdapter::ExposedServicesAdapter(LRCInstance* instance, QObject* p
     }
 }
 
-ExposedServicesAdapter::~ExposedServicesAdapter() = default;
+SharedServicesAdapter::~SharedServicesAdapter() = default;
 
 QString
-ExposedServicesAdapter::resolveAccountId(const QString& accountId) const
+SharedServicesAdapter::resolveAccountId(const QString& accountId) const
 {
     if (!accountId.isEmpty())
         return accountId;
@@ -703,14 +703,14 @@ ExposedServicesAdapter::resolveAccountId(const QString& accountId) const
 }
 
 QVariantList
-ExposedServicesAdapter::getExposedServices(const QString& accountId)
+SharedServicesAdapter::getSharedServices(const QString& accountId)
 {
     QVariantList out;
     const auto id = resolveAccountId(accountId);
     if (id.isEmpty())
         return out;
     syncEmbeddedServers(id);
-    const auto records = NetworkServiceManager::instance().getExposedServices(id);
+    const auto records = NetworkServiceManager::instance().getSharedServices(id);
     out.reserve(records.size());
     for (const auto& m : records)
         out.append(mapToVariant(m));
@@ -718,7 +718,7 @@ ExposedServicesAdapter::getExposedServices(const QString& accountId)
 }
 
 QString
-ExposedServicesAdapter::addExposedService(const QString& accountId, const QVariantMap& service)
+SharedServicesAdapter::addSharedService(const QString& accountId, const QVariantMap& service)
 {
     const auto id = resolveAccountId(accountId);
     if (id.isEmpty())
@@ -729,7 +729,7 @@ ExposedServicesAdapter::addExposedService(const QString& accountId, const QVaria
     if (!prepareServiceForStorage(id, serviceForStorage, replacementServer))
         return {};
 
-    const auto serviceId = NetworkServiceManager::instance().addExposedService(id, variantToMap(serviceForStorage));
+    const auto serviceId = NetworkServiceManager::instance().addSharedService(id, variantToMap(serviceForStorage));
     if (serviceId.isEmpty())
         return {};
 
@@ -739,12 +739,12 @@ ExposedServicesAdapter::addExposedService(const QString& accountId, const QVaria
     }
     syncEmbeddedServers(id);
 
-    Q_EMIT refreshExposedServices();
+    Q_EMIT refreshSharedServices();
     return serviceId;
 }
 
 bool
-ExposedServicesAdapter::updateExposedService(const QString& accountId, const QVariantMap& service)
+SharedServicesAdapter::updateSharedService(const QString& accountId, const QVariantMap& service)
 {
     const auto id = resolveAccountId(accountId);
     if (id.isEmpty())
@@ -756,7 +756,7 @@ ExposedServicesAdapter::updateExposedService(const QString& accountId, const QVa
     if (!prepareServiceForStorage(id, serviceForStorage, replacementServer))
         return false;
 
-    const auto updated = NetworkServiceManager::instance().updateExposedService(id, variantToMap(serviceForStorage));
+    const auto updated = NetworkServiceManager::instance().updateSharedService(id, variantToMap(serviceForStorage));
     if (!updated)
         return false;
 
@@ -768,34 +768,34 @@ ExposedServicesAdapter::updateExposedService(const QString& accountId, const QVa
         stopEmbeddedServer(id, serviceId);
     }
     syncEmbeddedServers(id);
-    Q_EMIT refreshExposedServices();
+    Q_EMIT refreshSharedServices();
     return true;
 }
 
 bool
-ExposedServicesAdapter::removeExposedService(const QString& accountId, const QString& serviceId)
+SharedServicesAdapter::removeSharedService(const QString& accountId, const QString& serviceId)
 {
     const auto id = resolveAccountId(accountId);
     if (id.isEmpty() || serviceId.isEmpty())
         return false;
-    const auto removed = NetworkServiceManager::instance().removeExposedService(id, serviceId);
+    const auto removed = NetworkServiceManager::instance().removeSharedService(id, serviceId);
     if (removed) {
         stopEmbeddedServer(id, serviceId);
-        Q_EMIT refreshExposedServices();
+        Q_EMIT refreshSharedServices();
     }
     return removed;
 }
 
 QString
-ExposedServicesAdapter::embeddedServerKey(const QString& accountId, const QString& serviceId) const
+SharedServicesAdapter::embeddedServerKey(const QString& accountId, const QString& serviceId) const
 {
     return accountId + '\n' + serviceId;
 }
 
 bool
-ExposedServicesAdapter::prepareServiceForStorage(const QString& accountId,
-                                                 QVariantMap& service,
-                                                 std::unique_ptr<EmbeddedServer>& replacementServer)
+SharedServicesAdapter::prepareServiceForStorage(const QString& accountId,
+                                                QVariantMap& service,
+                                                std::unique_ptr<EmbeddedServer>& replacementServer)
 {
     const auto type = normalizedServiceType(service);
     service[TYPE_KEY] = type;
@@ -849,11 +849,11 @@ ExposedServicesAdapter::prepareServiceForStorage(const QString& accountId,
     return true;
 }
 
-std::unique_ptr<ExposedServicesAdapter::EmbeddedServer>
-ExposedServicesAdapter::startEmbeddedServer(const QString& accountId,
-                                            const QString& serviceId,
-                                            const QString& directory,
-                                            quint16 requestedPort)
+std::unique_ptr<SharedServicesAdapter::EmbeddedServer>
+SharedServicesAdapter::startEmbeddedServer(const QString& accountId,
+                                           const QString& serviceId,
+                                           const QString& directory,
+                                           quint16 requestedPort)
 {
     const auto rootPath = canonicalDirectoryPath(directory);
     if (rootPath.isEmpty())
@@ -871,14 +871,14 @@ ExposedServicesAdapter::startEmbeddedServer(const QString& accountId,
         listening = tcpServer->listen(QHostAddress::LocalHost, 0);
     }
     if (!listening) {
-        qWarning() << "ExposedServicesAdapter: failed to listen for embedded service" << serviceId
+        qWarning() << "SharedServicesAdapter: failed to listen for embedded service" << serviceId
                    << tcpServer->errorString();
         delete tcpServer;
         return nullptr;
     }
 
     if (!httpServer->bind(tcpServer)) {
-        qWarning() << "ExposedServicesAdapter: failed to bind embedded HTTP server" << serviceId;
+        qWarning() << "SharedServicesAdapter: failed to bind embedded HTTP server" << serviceId;
         tcpServer->close();
         delete tcpServer;
         return nullptr;
@@ -896,7 +896,7 @@ ExposedServicesAdapter::startEmbeddedServer(const QString& accountId,
 }
 
 void
-ExposedServicesAdapter::syncAllEmbeddedServers()
+SharedServicesAdapter::syncAllEmbeddedServers()
 {
     if (!lrcInstance_)
         return;
@@ -906,13 +906,13 @@ ExposedServicesAdapter::syncAllEmbeddedServers()
 }
 
 void
-ExposedServicesAdapter::syncEmbeddedServers(const QString& accountId)
+SharedServicesAdapter::syncEmbeddedServers(const QString& accountId)
 {
     if (accountId.isEmpty())
         return;
 
     auto& configurationManager = NetworkServiceManager::instance();
-    const auto records = configurationManager.getExposedServices(accountId);
+    const auto records = configurationManager.getSharedServices(accountId);
     QSet<QString> desiredServerKeys;
 
     for (auto record : records) {
@@ -959,7 +959,7 @@ ExposedServicesAdapter::syncEmbeddedServers(const QString& accountId)
             record[LOCAL_HOST_KEY] = LOCALHOST;
             record[LOCAL_PORT_KEY] = actualPortString;
             record[SCHEME_KEY] = "http";
-            configurationManager.updateExposedService(accountId, record);
+            configurationManager.updateSharedService(accountId, record);
         }
     }
 
@@ -974,13 +974,13 @@ ExposedServicesAdapter::syncEmbeddedServers(const QString& accountId)
 }
 
 void
-ExposedServicesAdapter::stopEmbeddedServer(const QString& accountId, const QString& serviceId)
+SharedServicesAdapter::stopEmbeddedServer(const QString& accountId, const QString& serviceId)
 {
     embeddedServers_.erase(embeddedServerKey(accountId, serviceId));
 }
 
 void
-ExposedServicesAdapter::stopEmbeddedServersForAccount(const QString& accountId)
+SharedServicesAdapter::stopEmbeddedServersForAccount(const QString& accountId)
 {
     const auto accountPrefix = accountId + '\n';
     for (auto serverIterator = embeddedServers_.begin(); serverIterator != embeddedServers_.end();) {
@@ -992,7 +992,7 @@ ExposedServicesAdapter::stopEmbeddedServersForAccount(const QString& accountId)
 }
 
 quint32
-ExposedServicesAdapter::queryPeerServices(const QString& accountId, const QString& peerUri)
+SharedServicesAdapter::queryPeerServices(const QString& accountId, const QString& peerUri)
 {
     const auto id = resolveAccountId(accountId);
     if (id.isEmpty() || peerUri.isEmpty())
@@ -1001,12 +1001,12 @@ ExposedServicesAdapter::queryPeerServices(const QString& accountId, const QStrin
 }
 
 QString
-ExposedServicesAdapter::openServiceTunnel(const QString& accountId,
-                                          const QString& peerUri,
-                                          const QString& peerDevice,
-                                          const QString& serviceId,
-                                          const QString& serviceName,
-                                          quint16 localPort)
+SharedServicesAdapter::openServiceTunnel(const QString& accountId,
+                                         const QString& peerUri,
+                                         const QString& peerDevice,
+                                         const QString& serviceId,
+                                         const QString& serviceName,
+                                         quint16 localPort)
 {
     const auto id = resolveAccountId(accountId);
     if (id.isEmpty())
@@ -1016,7 +1016,7 @@ ExposedServicesAdapter::openServiceTunnel(const QString& accountId,
 }
 
 bool
-ExposedServicesAdapter::closeServiceTunnel(const QString& accountId, const QString& tunnelId)
+SharedServicesAdapter::closeServiceTunnel(const QString& accountId, const QString& tunnelId)
 {
     const auto id = resolveAccountId(accountId);
     if (id.isEmpty() || tunnelId.isEmpty())
@@ -1025,7 +1025,7 @@ ExposedServicesAdapter::closeServiceTunnel(const QString& accountId, const QStri
 }
 
 QVariantList
-ExposedServicesAdapter::getActiveTunnels(const QString& accountId) const
+SharedServicesAdapter::getActiveTunnels(const QString& accountId) const
 {
     QVariantList out;
     const auto id = resolveAccountId(accountId);

@@ -27,7 +27,7 @@
 #include "conversions_wrap.hpp"
 
 /*
- * Proxy class for the network service (exposed services / tunnels) interface.
+ * Proxy class for the network service (shared services / tunnels) interface.
  */
 class NetworkServiceManagerInterface : public QObject
 {
@@ -67,22 +67,22 @@ public:
         };
     }
 
-    VectorMapStringString getExposedServices(const QString& accountId)
+    VectorMapStringString getSharedServices(const QString& accountId)
     {
         return convertVecMap(libjami::getExposedServices(accountId.toStdString()));
     }
 
-    QString addExposedService(const QString& accountId, MapStringString service)
+    QString addSharedService(const QString& accountId, MapStringString service)
     {
         return QString::fromStdString(libjami::addExposedService(accountId.toStdString(), convertMap(service)));
     }
 
-    bool updateExposedService(const QString& accountId, MapStringString service)
+    bool updateSharedService(const QString& accountId, MapStringString service)
     {
         return libjami::updateExposedService(accountId.toStdString(), convertMap(service));
     }
 
-    bool removeExposedService(const QString& accountId, const QString& serviceId)
+    bool removeSharedService(const QString& accountId, const QString& serviceId)
     {
         return libjami::removeExposedService(accountId.toStdString(), serviceId.toStdString());
     }

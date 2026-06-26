@@ -21,7 +21,7 @@
 #include "avadapter.h"
 #include "calladapter.h"
 #include "contactadapter.h"
-#include "exposedservicesadapter.h"
+#include "sharedservicesadapter.h"
 #include "pluginadapter.h"
 #include "messagesadapter.h"
 #include "positionmanager.h"
@@ -228,9 +228,9 @@ registerTypes(QQmlEngine* engine,
     qApp->setProperty("ConnectivityMonitor", QVariant::fromValue(connectivityMonitor));
     qApp->setProperty("PreviewEngine", QVariant::fromValue(previewEngine));
 
-    auto exposedServicesAdapter = new ExposedServicesAdapter(lrcInstance, app);
-    qApp->setProperty("ExposedServicesAdapter", QVariant::fromValue(exposedServicesAdapter));
-    QQmlEngine::setObjectOwnership(exposedServicesAdapter, QQmlEngine::CppOwnership);
+    auto sharedServicesAdapter = new SharedServicesAdapter(lrcInstance, app);
+    qApp->setProperty("SharedServicesAdapter", QVariant::fromValue(sharedServicesAdapter));
+    QQmlEngine::setObjectOwnership(sharedServicesAdapter, QQmlEngine::CppOwnership);
 
     // qml adapter registration
     QML_REGISTERSINGLETON_TYPE(NS_HELPERS, QRCodeScannerModel);
@@ -240,11 +240,11 @@ registerTypes(QQmlEngine* engine,
     QML_REGISTERSINGLETON_TYPE(NS_ADAPTERS, MessagesAdapter);
     QML_REGISTERSINGLETON_TYPE(NS_ADAPTERS, ConversationsAdapter);
     QML_REGISTERSINGLETON_TYPE(NS_ADAPTERS, ContactAdapter);
-    REG_QML_SINGLETON<ExposedServicesAdapter>(NS_ADAPTERS,
+    REG_QML_SINGLETON<SharedServicesAdapter>(NS_ADAPTERS,
                                               MODULE_VER_MAJ,
                                               MODULE_VER_MIN,
-                                              "ExposedServicesAdapter",
-                                              CREATE(exposedServicesAdapter));
+                                              "SharedServicesAdapter",
+                                              CREATE(sharedServicesAdapter));
     QML_REGISTERSINGLETON_TYPE(NS_ADAPTERS, UtilsAdapter);
     QML_REGISTERSINGLETON_TYPE(NS_ADAPTERS, PositionManager);
     QML_REGISTERSINGLETON_TYPE(NS_ADAPTERS, AvAdapter);

@@ -855,9 +855,9 @@ Item {
     property real pipActionButtonMarginMac: 8
 
     // Shared services
-    property color exposedServiceConnectColor: darkTheme ? "#20C68D" : "#00796B"
-    property real exposedServiceDelegateTitlePixelSize: calcSize(15)
-    property real exposedServiceDelegateDescriptionPixelSize: calcSize(13)
+    property color sharedServicesConnectColor: darkTheme ? "#20C68D" : "#00796B"
+    property real sharedServicesDelegateTitlePixelSize: calcSize(15)
+    property real sharedServicesDelegateDescriptionPixelSize: calcSize(13)
 
     // JamiChip
     property real jamiChipVerticalPadding: 4

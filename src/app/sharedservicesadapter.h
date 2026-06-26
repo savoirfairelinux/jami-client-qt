@@ -30,11 +30,11 @@
 #include <memory>
 
 /*!
- * Exposes the daemon's "exposed services" / peer-tunnel API to QML.
+ * Exposes the daemon's shared-services / peer-tunnel API to QML.
  *
  * Local services configured by the user are listed/edited via
- * getExposedServices / addExposedService / updateExposedService /
- * removeExposedService. To discover what a remote peer exposes, call
+ * getSharedServices / addSharedService / updateSharedService /
+ * removeSharedService. To discover what a remote peer exposes, call
  * queryPeerServices(peerUri) — the result is delivered asynchronously
  * via the peerServicesReceived signal, correlated by requestId.
  *
@@ -42,41 +42,41 @@
  * getActiveTunnels; tunnelOpened fires once a local TCP listener is
  * ready, tunnelClosed when it is torn down.
  */
-class ExposedServicesAdapter final : public QmlAdapterBase
+class SharedServicesAdapter final : public QmlAdapterBase
 {
     Q_OBJECT
     QML_SINGLETON
 
 public:
-    static ExposedServicesAdapter* create(QQmlEngine*, QJSEngine*);
+    static SharedServicesAdapter* create(QQmlEngine*, QJSEngine*);
 
-    explicit ExposedServicesAdapter(LRCInstance* instance, QObject* parent = nullptr);
-    ~ExposedServicesAdapter() override;
+    explicit SharedServicesAdapter(LRCInstance* instance, QObject* parent = nullptr);
+    ~SharedServicesAdapter() override;
 
-    // ----- Local exposed services (per account) ------------------------------
+    // ----- Local shared services (per account) -------------------------------
 
-    /// Returns a list of QVariantMap describing the services exposed by
+    /// Returns a list of QVariantMap describing the services shared by
     /// `accountId` (or by the current account when empty). Each map
     /// contains the keys: id, type, name, description, localHost, localPort,
     /// directory, policy ("public"|"contacts"|"specific"), allowedContacts (CSV),
     /// enabled ("true"|"false").
-    Q_INVOKABLE QVariantList getExposedServices(const QString& accountId = {});
+    Q_INVOKABLE QVariantList getSharedServices(const QString& accountId = {});
 
-    /// Add a new exposed service. Returns the generated service id, or
+    /// Add a new shared service. Returns the generated service id, or
     /// empty on failure. `service` mirrors the map shape returned by
-    /// getExposedServices (id is ignored).
-    Q_INVOKABLE QString addExposedService(const QString& accountId, const QVariantMap& service);
+    /// getSharedServices (id is ignored).
+    Q_INVOKABLE QString addSharedService(const QString& accountId, const QVariantMap& service);
 
     /// Update an existing service (keyed by service.id). Returns true on
     /// success.
-    Q_INVOKABLE bool updateExposedService(const QString& accountId, const QVariantMap& service);
+    Q_INVOKABLE bool updateSharedService(const QString& accountId, const QVariantMap& service);
 
-    /// Remove the exposed service with the given id.
-    Q_INVOKABLE bool removeExposedService(const QString& accountId, const QString& serviceId);
+    /// Remove the shared service with the given id.
+    Q_INVOKABLE bool removeSharedService(const QString& accountId, const QString& serviceId);
 
     // ----- Peer service discovery -------------------------------------------
 
-    /// Asynchronously query the services exposed by `peerUri`. The
+    /// Asynchronously query the services shared by `peerUri`. The
     /// response is delivered via peerServicesReceived; the returned
     /// requestId can be used by callers to correlate.
     Q_INVOKABLE quint32 queryPeerServices(const QString& accountId, const QString& peerUri);
@@ -122,7 +122,7 @@ Q_SIGNALS:
 
     void tunnelClosed(const QString& accountId, const QString& tunnelId, const QString& reason);
 
-    void refreshExposedServices();
+    void refreshSharedServices();
 
 private:
     struct EmbeddedServer;
@@ -143,4 +143,4 @@ private:
 
     std::map<QString, std::unique_ptr<EmbeddedServer>> embeddedServers_;
 };
-Q_DECLARE_METATYPE(ExposedServicesAdapter*)
+Q_DECLARE_METATYPE(SharedServicesAdapter*)

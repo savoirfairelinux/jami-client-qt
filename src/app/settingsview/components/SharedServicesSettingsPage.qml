@@ -26,13 +26,13 @@ SettingsPageBase {
     id: root
 
 
-    property var exposedServices: []
+    property var sharedServices: []
 
     function refresh() {
-        exposedServices = ExposedServicesAdapter.getExposedServices(CurrentAccount.id);
+        sharedServices = SharedServicesAdapter.getSharedServices(CurrentAccount.id);
     }
 
-    title: JamiStrings.exposedServicesSettingsTitle
+    title: JamiStrings.sharedServicesSettingsTitle
 
     Component.onCompleted: refresh()
 
@@ -44,9 +44,9 @@ SettingsPageBase {
     }
 
     Connections {
-        target: ExposedServicesAdapter
+        target: SharedServicesAdapter
 
-        function onRefreshExposedServices() {
+        function onRefreshSharedServices() {
             root.refresh();
         }
     }
@@ -62,7 +62,7 @@ SettingsPageBase {
         Text {
             Layout.fillWidth: true
 
-            text: JamiStrings.exposedServicesDescription
+            text: JamiStrings.sharedServicesDescription
             color: JamiTheme.textColor
             wrapMode: Text.WordWrap
             font.pixelSize: JamiTheme.settingsDescriptionPixelSize
@@ -78,7 +78,7 @@ SettingsPageBase {
                 Layout.fillWidth: true
                 Layout.alignment: Qt.AlignLeft
 
-                text: JamiStrings.exposedServicesListTitle
+                text: JamiStrings.sharedServicesListTitle
                 color: JamiTheme.textColor
 
                 font.pixelSize: JamiTheme.settingsTitlePixelSize
@@ -87,10 +87,10 @@ SettingsPageBase {
             NewMaterialButton {
                 filledButton: true
                 iconSource: JamiResources.language_24dp_svg
-                text: JamiStrings.exposedServiceAddWebsite
+                text: JamiStrings.sharedServicesAddWebsite
 
                 onClicked: {
-                    viewCoordinator.presentDialog(appWindow, "settingsview/components/ExposedServiceDialog.qml", {
+                    viewCoordinator.presentDialog(appWindow, "settingsview/components/SharedServiceDialog.qml", {
                                                       "serviceType": "embedded",
                                                   });
                 }
@@ -101,10 +101,10 @@ SettingsPageBase {
 
                 filledButton: true
                 iconSource: JamiResources.build_circle_24dp_svg
-                text: JamiStrings.exposedServiceCustomService
+                text: JamiStrings.sharedServicesCustomService
 
                 onClicked: {
-                    viewCoordinator.presentDialog(appWindow, "settingsview/components/ExposedServiceDialog.qml", {
+                    viewCoordinator.presentDialog(appWindow, "settingsview/components/SharedServiceDialog.qml", {
                                                       "serviceType": "custom",
                                                   });
                 }
@@ -114,25 +114,25 @@ SettingsPageBase {
         Text {
             Layout.fillWidth: true
 
-            text: JamiStrings.exposedServicesNone
+            text: JamiStrings.sharedServicesNone
             color: JamiTheme.faddedLastInteractionFontColor
 
             font.italic: true
             font.pixelSize: JamiTheme.settingsDescriptionPixelSize
 
-            visible: root.exposedServices.length === 0
+            visible: root.sharedServices.length === 0
         }
 
         ListView {
-            id: exposedServicesListView
+            id: sharedServicesListView
 
             Layout.fillWidth: true
             Layout.preferredHeight: contentHeight
 
-            model: root.exposedServices
+            model: root.sharedServices
             spacing: 8
 
-            delegate: ExposedServiceDelegate {
+            delegate: SharedServiceDelegate {
                 Layout.fillWidth: true
 
                 implicitWidth: ListView ? ListView.view.width : implicitWidth

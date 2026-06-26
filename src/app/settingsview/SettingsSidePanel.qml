@@ -76,7 +76,7 @@ SidePanelBase {
                                 },
                                 {
                                     "id": 6,
-                                    "title": JamiStrings.exposedServicesSettingsTitle,
+                                    "title": JamiStrings.sharedServicesSettingsTitle,
                                     "visible": CurrentAccount.type !== Profile.Type.SIP
                                 }
                             ]
@@ -186,7 +186,7 @@ SidePanelBase {
                                 },
                                 {
                                     "id": 6,
-                                    "title": JamiStrings.exposedServicesSettingsTitle,
+                                    "title": JamiStrings.sharedServicesSettingsTitle,
                                     "visible": CurrentAccount.type !== Profile.Type.SIP
                                 }
                             ]

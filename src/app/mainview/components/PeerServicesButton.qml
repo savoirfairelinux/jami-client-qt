@@ -38,7 +38,7 @@ ComboBox {
         // and back.
         restoreActiveTunnels();
         services = [];
-        pendingRequestId = ExposedServicesAdapter.queryPeerServices(accountId, peerUri);
+        pendingRequestId = SharedServicesAdapter.queryPeerServices(accountId, peerUri);
     }
 
     // Rebuild openTunnels from the daemon's authoritative active-tunnel list,
@@ -46,7 +46,7 @@ ComboBox {
     function restoreActiveTunnels() {
         const restored = ({});
         if (active && accountId && peerUri) {
-            const tunnels = ExposedServicesAdapter.getActiveTunnels(accountId);
+            const tunnels = SharedServicesAdapter.getActiveTunnels(accountId);
             tunnels.forEach(tunnel => {
                 if (tunnel.peerUri === peerUri)
                     restored[tunnel.serviceId] = {
@@ -63,7 +63,7 @@ ComboBox {
     function requeryServices() {
         if (!active || !accountId || !peerUri)
             return;
-        pendingRequestId = ExposedServicesAdapter.queryPeerServices(accountId, peerUri);
+        pendingRequestId = SharedServicesAdapter.queryPeerServices(accountId, peerUri);
     }
 
     function scheduleRefresh() {
@@ -104,11 +104,11 @@ ComboBox {
     // endpoint, offline notice, or the service description.
     function serviceStatusText(service) {
         if (connectErrors[service.id])
-            return JamiStrings.exposedServiceConnectFailed;
+            return JamiStrings.sharedServicesConnectFailed;
         if (tunnelFor(service) !== undefined)
             return service.scheme + "://" + localEndpoint(service);
         if (!isAvailable(service))
-            return JamiStrings.exposedServiceUnavailable;
+            return JamiStrings.sharedServicesUnavailable;
         return service.description || "";
     }
 
@@ -119,7 +119,7 @@ ComboBox {
             scheme: service.scheme || ""
         };
         pendingOpens = pending;
-        ExposedServicesAdapter.openServiceTunnel(accountId, peerUri, service.device || "", service.id, serviceName(service), 0);
+        SharedServicesAdapter.openServiceTunnel(accountId, peerUri, service.device || "", service.id, serviceName(service), 0);
     }
 
     function activateService(service) {
@@ -158,20 +158,20 @@ ComboBox {
     }
 
     Connections {
-        target: ExposedServicesAdapter
+        target: SharedServicesAdapter
 
         function onPeerServicesReceived(requestId, accountId, peerId, status, services) {
             if (accountId !== root.accountId || peerId !== root.peerUri)
                 return;
             if (requestId === 0) {
                 // Unsolicited availability/cache update push for this peer.
-                if (status === ExposedServicesAdapter.PeerServicesStatus.OK)
+                if (status === SharedServicesAdapter.PeerServicesStatus.OK)
                     root.services = services;
                 return;
             }
             if (requestId !== root.pendingRequestId)
                 return;
-            root.services = status === ExposedServicesAdapter.PeerServicesStatus.OK ? services : [];
+            root.services = status === SharedServicesAdapter.PeerServicesStatus.OK ? services : [];
         }
 
         function onTunnelOpened(accountId, tunnelId, localPort) {
@@ -262,7 +262,7 @@ ComboBox {
                 sourceSize.width: JamiTheme.iconButtonMedium
                 sourceSize.height: JamiTheme.iconButtonMedium
 
-                color: root.tunnelFor(serviceDelegate.modelData) !== undefined ? JamiTheme.exposedServiceConnectColor : JamiTheme.buttonTintedGreyHovered
+                color: root.tunnelFor(serviceDelegate.modelData) !== undefined ? JamiTheme.sharedServicesConnectColor : JamiTheme.buttonTintedGreyHovered
             }
 
             Column {
@@ -277,7 +277,7 @@ ComboBox {
                     elide: Text.ElideRight
                     color: JamiTheme.textColor
 
-                    font.pixelSize: JamiTheme.exposedServiceDelegateTitlePixelSize
+                    font.pixelSize: JamiTheme.sharedServicesDelegateTitlePixelSize
                 }
 
                 Text {
@@ -287,7 +287,7 @@ ComboBox {
                     elide: Text.ElideRight
                     color: root.connectErrors[serviceDelegate.modelData.id] ? JamiTheme.red_ : JamiTheme.textColor
 
-                    font.pixelSize: JamiTheme.exposedServiceDelegateDescriptionPixelSize
+                    font.pixelSize: JamiTheme.sharedServicesDelegateDescriptionPixelSize
                     font.family: root.tunnelFor(serviceDelegate.modelData) !== undefined ? JamiTheme.ubuntuMonoFontFamily : JamiTheme.ubuntuFontFamily
                     font.italic: root.tunnelFor(serviceDelegate.modelData) === undefined
 
@@ -303,7 +303,7 @@ ComboBox {
                 iconSource: JamiResources.stop_circle_24dp_svg
                 iconSize: JamiTheme.iconButtonMedium
                 iconColor: JamiTheme.red_
-                toolTipText: JamiStrings.exposedServiceDisconnect
+                toolTipText: JamiStrings.sharedServicesDisconnect
 
                 background: null
 
@@ -320,7 +320,7 @@ ComboBox {
                 onClicked: {
                     var tunnel = root.tunnelFor(serviceDelegate.modelData);
                     if (tunnel)
-                        ExposedServicesAdapter.closeServiceTunnel(root.accountId, tunnel.tunnelId);
+                        SharedServicesAdapter.closeServiceTunnel(root.accountId, tunnel.tunnelId);
                 }
             }
         }
@@ -351,7 +351,7 @@ ComboBox {
             parent: parent
 
             text: root.tunnelFor(serviceDelegate.modelData) !== undefined ? root.isHttpService(serviceDelegate.modelData)
-                                                                            ? JamiStrings.exposedServiceOpenInExternalBrowser : JamiStrings.copy : JamiStrings.exposedServiceConnect
+                                                                            ? JamiStrings.sharedServicesOpenInExternalBrowser : JamiStrings.copy : JamiStrings.sharedServicesConnect
 
             visible: (serviceDelegate.hovered || serviceDelegate.activeFocus) && !openOrCopyButton.hovered && (text.length > 0)
             delay: Qt.styleHints.mousePressAndHoldInterval
