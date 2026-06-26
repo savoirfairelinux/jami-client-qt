@@ -119,6 +119,29 @@
       "message": "[🟡 Suggestion] Line 137: An empty `originalBody` is used as both “no plugin overwrite” and “the real original body was empty”. That makes `EditedPopup.qml` and `isPluginOverwrite` unable to represent messages whose original body is intentionally empty and then overwritten by a plugin. Store explicit metadata for whether an overwrite exists, or preserve the original body separately without using emptiness as the sentinel.\n```suggestion\nstruct Body {\n    QString commitId;\n    QString body;\n    QString originalBody;\n    bool hasOriginalBody \u003d false;\n    std::time_t timestamp;\n};\n```",
       "revId": "ba987c5b3b320318431dfbed533136be64fb50c8",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "16f917f9_b51fb3e5",
+        "filename": "src/core/messagelistmodel.cpp",
+        "patchSetId": 21
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2026-06-26T19:57:54Z",
+      "side": 1,
+      "message": "I think the cause of the bug I mentioned to you earlier (with \"Show original\" sometimes showing the original version of the first edit instead of the latest edit) is that you also need to set\n```\ncurrent.parsedOriginalBody \u003d interaction.parsedOriginalBody;\n```\nhere.",
+      "range": {
+        "startLine": 209,
+        "startChar": 4,
+        "endLine": 209,
+        "endChar": 48
+      },
+      "revId": "ba987c5b3b320318431dfbed533136be64fb50c8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
