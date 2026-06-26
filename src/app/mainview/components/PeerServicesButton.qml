@@ -350,8 +350,17 @@ ComboBox {
         MaterialToolTip {
             parent: parent
 
-            text: root.tunnelFor(serviceDelegate.modelData) !== undefined ? root.isHttpService(serviceDelegate.modelData)
-                                                                            ? JamiStrings.sharedServicesOpenInExternalBrowser : JamiStrings.copy : JamiStrings.sharedServicesConnect
+            text: {
+                var service = serviceDelegate.modelData;
+                if (root.tunnelFor(service) !== undefined) {
+                    if (root.isHttpService(service))
+                        return JamiStrings.sharedServicesOpenInExternalBrowser;
+                    return JamiStrings.copy;
+                }
+                if (!root.isAvailable(service))
+                    return "";
+                return JamiStrings.sharedServicesConnect;
+            }
 
             visible: (serviceDelegate.hovered || serviceDelegate.activeFocus) && !openOrCopyButton.hovered && (text.length > 0)
             delay: Qt.styleHints.mousePressAndHoldInterval
