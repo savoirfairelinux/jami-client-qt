@@ -3,6 +3,52 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0b44126b_e0a3ebb2",
+        "filename": "src/app/commoncomponents/SBSMessageBase.qml",
+        "patchSetId": 21
+      },
+      "lineNbr": 741,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-06-26T13:57:22Z",
+      "side": 1,
+      "message": "Suggestion: remove the lowered opacity for this text and the image above. It is a little difficult to make out the text on lighter backgrounds.",
+      "range": {
+        "startLine": 741,
+        "startChar": 20,
+        "endLine": 741,
+        "endChar": 32
+      },
+      "revId": "ba987c5b3b320318431dfbed533136be64fb50c8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "42b0afdd_dcfed41a",
+        "filename": "src/app/commoncomponents/SBSMessageBase.qml",
+        "patchSetId": 21
+      },
+      "lineNbr": 819,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-06-26T13:57:22Z",
+      "side": 1,
+      "message": "Minor UI enhancement: add a slight opacity change (0.8 -\u003e 1.0) for the text when it goes from unhovered -\u003e hovered with along with a NumberAnimation to imply state.\n```suggestion\n            Text {\n                visible: isPluginOverwrite\n                text: {\n                    if (!root.showOriginal) {\n                        return JamiStrings.showOriginalMessage;\n                    }\n                    if (bubble.isEdited) {\n                        return JamiStrings.showEditedMessage;\n                    }\n                    return JamiStrings.showModifiedMessage;\n                }\n                color: JamiTheme.tintedBlue\n                opacity: hoverHandler.hovered ? 1.0 : 0.8\n                Behavior on opacity {\n                    NumberAnimation {\n                        duration: JamiTheme.shortFadeDuration\n                    }\n                }\n                font.pixelSize: JamiTheme.timestampFont\n                HoverHandler {\n                    id: hoverHandler\n                    cursorShape: Qt.PointingHandCursor\n                }\n                TapHandler {\n                    acceptedButtons: Qt.LeftButton\n                    onTapped: root.showOriginal \u003d !root.showOriginal\n                }\n            }\n```",
+      "range": {
+        "startLine": 799,
+        "startChar": 12,
+        "endLine": 819,
+        "endChar": 13
+      },
+      "revId": "ba987c5b3b320318431dfbed533136be64fb50c8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "09deba5a_e7e062fc",
         "filename": "src/app/commoncomponents/TextMessageDelegate.qml",
         "patchSetId": 21
