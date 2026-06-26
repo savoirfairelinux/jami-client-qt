@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2b2522d6_01a276f6",
+        "filename": "src/app/commoncomponents/SBSMessageBase.qml",
+        "patchSetId": 23
+      },
+      "lineNbr": 730,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-26T20:07:41Z",
+      "side": 1,
+      "message": "Line 730: 🟡 Suggestions - The new clickable indicators are implemented with nested `RowLayout`/`Text` plus `TapHandler`, but there is no accessible name/role or keyboard activation path. This makes the edit history and original/modified toggle mouse-only. Use a `Button`/`LabelButton` pattern used elsewhere in the app, or add accessibility metadata and key handling.\n```suggestion\nAccessible.role: Accessible.Button\nAccessible.name: root.showOriginal ? JamiStrings.showModifiedMessage : JamiStrings.showOriginalMessage\nKeys.onReturnPressed: root.showOriginal \u003d !root.showOriginal\nKeys.onSpacePressed: root.showOriginal \u003d !root.showOriginal\n```",
+      "revId": "e30a979f8d86601ea2f5afa94c776f767b3dcd66",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "19129c70_4a623e5c",
+        "filename": "src/app/commoncomponents/TextMessageDelegate.qml",
+        "patchSetId": 23
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-26T20:07:41Z",
+      "side": 1,
+      "message": "[Critical] Line 80: 🔴 Critical Issues - The text binding calls `MessagesAdapter.parseOriginalMessage()` every time `showOriginal` is true and `ParsedOriginalBody.length \u003d\u003d\u003d 0`. Because parsing is asynchronous and the model role is empty until completion, repeated binding reevaluations can enqueue duplicate parse jobs for the same message. Add an in-flight flag/role, or cache parse requests per message before starting another parse.\n```suggestion\nif (showOriginal \u0026\u0026 isPluginOverwrite) {\n    if (OriginalBody !\u003d\u003d \"\" \u0026\u0026 ParsedOriginalBody.length \u003d\u003d\u003d 0 \u0026\u0026 !originalParseRequested) {\n        originalParseRequested \u003d true;\n        MessagesAdapter.parseOriginalMessage(Id, OriginalBody, rootDelegate.colorUrl, bubble.color);\n    }\n    return ParsedOriginalBody;\n}\n```",
+      "revId": "e30a979f8d86601ea2f5afa94c776f767b3dcd66",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6a81bc7c_ac1a7297",
+        "filename": "src/app/messageparser.cpp",
+        "patchSetId": 23
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-26T20:07:41Z",
+      "side": 1,
+      "message": "Line 50: 🟡 Suggestions - `buildStyledHtml()` now contains the shared parsing logic but still uses the instance `htmlParser_` from worker-thread tasks. The current pool size of 1 limits concurrency, but this helper is not self-contained and can become unsafe if the pool size changes or another caller uses it concurrently. Prefer a parser instance local to the worker/helper, or document/enforce that all calls are serialized.\n```suggestion\nHtmlParser htmlParser;\nhtmlParser.parseHtmlString(html);\nauto tagsMap \u003d htmlParser.getTagsNodes({TidyTag_A, TidyTag_DEL, TidyTag_PRE});\n```",
+      "revId": "e30a979f8d86601ea2f5afa94c776f767b3dcd66",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "79fc38c3_f0abc94e",
+        "filename": "src/app/messagesadapter.cpp",
+        "patchSetId": 23
+      },
+      "lineNbr": 413,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-26T20:07:41Z",
+      "side": 1,
+      "message": "[Critical] Line 413: 🔴 Critical Issues - `onOriginalMessageParsed()` applies the async parse result to whatever conversation is currently selected when the worker finishes, not the conversation that requested parsing. If the user switches conversations while parsing is queued, `setParsedOriginalBody()` can update the wrong model or silently drop the result. Carry the conversation/account id through the parse request, or emit them with `originalMessageParsed`, and update that exact conversation.\n```suggestion\n// Example shape: capture the destination at request time and pass it back with the result.\nQ_EMIT originalMessageParsed(accountId, convId, messageId, html);\n```",
+      "revId": "e30a979f8d86601ea2f5afa94c776f767b3dcd66",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
