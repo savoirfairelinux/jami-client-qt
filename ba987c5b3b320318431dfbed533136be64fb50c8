@@ -83,6 +83,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7f2a6316_b88899a7",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 21
+      },
+      "lineNbr": 919,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2026-06-26T19:36:44Z",
+      "side": 1,
+      "message": "I\u0027m not sure we need \"Show edited\". Given that the text to the left is always \"Modified by extension\", I feel like it\u0027d be clearer to also always use \"Show modified\" to switch from the original to the modified version.",
+      "range": {
+        "startLine": 918,
+        "startChar": 4,
+        "endLine": 919,
+        "endChar": 62
+      },
+      "revId": "ba987c5b3b320318431dfbed533136be64fb50c8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d8530e1b_148990b8",
         "filename": "src/core/interaction.cpp",
         "patchSetId": 21
