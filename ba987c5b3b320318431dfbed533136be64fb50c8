@@ -214,6 +214,30 @@
       },
       "revId": "ba987c5b3b320318431dfbed533136be64fb50c8",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9f6f2add_6107fe54",
+        "filename": "src/core/messagelistmodel.cpp",
+        "patchSetId": 21
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 1192
+      },
+      "writtenOn": "2026-06-26T20:05:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "16f917f9_b51fb3e5",
+      "range": {
+        "startLine": 209,
+        "startChar": 4,
+        "endLine": 209,
+        "endChar": 48
+      },
+      "revId": "ba987c5b3b320318431dfbed533136be64fb50c8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
