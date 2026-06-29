@@ -386,7 +386,7 @@ SettingsPageBase {
                                 spacing: 4
 
                                 Rectangle {
-                                    color: Enabled ? JamiTheme.green_ : JamiTheme.red_
+                                    color: Enabled ? JamiTheme.presenceGreen : JamiTheme.notificationRed
 
                                     width: statusText.height
                                     height: statusText.height
@@ -417,7 +417,7 @@ SettingsPageBase {
                                 Text {
                                     id: statusText
                                     text: Enabled ? JamiStrings.appAccessBotOnline : JamiStrings.appAccessBotOffline
-                                    color: Enabled ? JamiTheme.green_ : JamiTheme.red_
+                                    color: Enabled ? JamiTheme.presenceGreen : JamiTheme.notificationRed
 
                                     font.family: JamiTheme.ubuntuMonoFontFamily
                                     font.pointSize: JamiTheme.smallFontSize
