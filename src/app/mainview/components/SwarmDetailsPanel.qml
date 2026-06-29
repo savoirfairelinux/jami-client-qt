@@ -38,6 +38,20 @@ Item {
 
     property var isAdmin: UtilsAdapter.getParticipantRole(CurrentAccount.id, CurrentConversation.id, CurrentAccount.uri) === Member.Role.ADMIN || CurrentConversation.isCoreDialog
     property string textColor: UtilsAdapter.luma(innerRect.color) ? JamiTheme.chatviewTextColorLight : JamiTheme.chatviewTextColorDark
+    property string coreDialogDisplayName: ""
+    property bool coreDialogHasDisplayNameOverride: false
+
+    function refreshCoreDialogDisplayNameState() {
+        if (!CurrentConversation.isCoreDialog || CurrentConversation.id === "") {
+            coreDialogDisplayName = "";
+            coreDialogHasDisplayNameOverride = false;
+            return;
+        }
+
+        const peerUri = UtilsAdapter.getPeerUri(CurrentAccount.id, CurrentConversation.id);
+        coreDialogDisplayName = UtilsAdapter.getContactDisplayNameWithoutOverride(CurrentAccount.id, peerUri);
+        coreDialogHasDisplayNameOverride = UtilsAdapter.hasContactDisplayNameOverride(CurrentAccount.id, peerUri);
+    }
 
     Rectangle {
         id: innerRect
@@ -199,15 +213,22 @@ Item {
 
                 leadingIconSource: CurrentConversation.isCoreDialog ? JamiResources.person_24dp_svg : JamiResources.create_swarm_24dp_svg
 
-                placeholderText: JamiStrings.title
-                textFieldContent: CurrentConversation.title
+                placeholderText: CurrentConversation.isCoreDialog
+                                 ? (root.coreDialogDisplayName !== "" ? root.coreDialogDisplayName : JamiStrings.title)
+                                 : JamiStrings.title
+                textFieldContent: CurrentConversation.isCoreDialog && !root.coreDialogHasDisplayNameOverride
+                                  ? ""
+                                  : CurrentConversation.title
                 maxCharacters: JamiTheme.maximumCharacters
                 readOnly: !isAdmin
                 toolTipText: CurrentConversation.isCoreDialog ? JamiStrings.contactName : JamiStrings.groupName
 
                 trailingIconSource: JamiResources.cancel_24dp_svg
                 trailingIconToolTipText: JamiStrings.clearText
-                onTrailingIconClicked: modifiedTextFieldContent = ""
+                onTrailingIconClicked: {
+                    modifiedTextFieldContent = "";
+                    editingFinished();
+                }
 
                 onEditingFinished: ConversationsAdapter.updateConversationTitle(LRCInstance.selectedConvUid, modifiedTextFieldContent)
             }
@@ -248,7 +269,16 @@ Item {
                 target: CurrentConversation
 
                 function onIdChanged() {
-                    innerRect.updateSwarmDetailsTabModel()
+                    innerRect.updateSwarmDetailsTabModel();
+                    root.refreshCoreDialogDisplayNameState();
+                }
+
+                function onTitleChanged() {
+                    root.refreshCoreDialogDisplayNameState();
+                }
+
+                function onIsCoreDialogChanged() {
+                    root.refreshCoreDialogDisplayNameState();
                 }
 
             }
@@ -692,5 +722,8 @@ Item {
         }
     }
 
-    Component.onCompleted: innerRect.updateSwarmDetailsTabModel()
+    Component.onCompleted: {
+        innerRect.updateSwarmDetailsTabModel();
+        refreshCoreDialogDisplayNameState();
+    }
 }

@@ -59,6 +59,19 @@ TestWrapper {
                     CurrentConversation.needsSyncing = true
                     compare(chatViewFooter.visible, false)
                 }
+
+                function test_headerTitleUpdatesOnConversationTitleChange() {
+                    const chatviewHeader = findChild(uut, "chatViewHeader")
+                    const titleLabel = findChild(chatviewHeader, "chatViewHeaderTitle")
+
+                    verify(titleLabel !== null)
+
+                    CurrentConversation.title = "Name A"
+                    tryCompare(titleLabel, "eText", "Name A", 1000)
+
+                    CurrentConversation.title = "Name B"
+                    tryCompare(titleLabel, "eText", "Name B", 1000)
+                }
             }
         }
     }

@@ -146,6 +146,8 @@ public:
     // For Swarm details page
     Q_INVOKABLE int getContactPresence(const QString& accountId, const QString& uri);
     Q_INVOKABLE QString getContactBestName(const QString& accountId, const QString& uri);
+    Q_INVOKABLE QString getContactDisplayNameWithoutOverride(const QString& accountId, const QString& uri);
+    Q_INVOKABLE bool hasContactDisplayNameOverride(const QString& accountId, const QString& uri);
     Q_INVOKABLE lrc::api::member::Role getParticipantRole(const QString& accountId,
                                                           const QString& convId,
                                                           const QString& uri);

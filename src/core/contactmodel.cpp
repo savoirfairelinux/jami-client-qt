@@ -46,6 +46,22 @@ namespace lrc {
 
 using namespace api;
 
+static QString
+profileDisplayNameFromStorage(const QString& accountId, const QString& peerUri, bool ov)
+{
+    QString displayName;
+    authority::storage::withProfile(
+        accountId,
+        peerUri,
+        QIODevice::ReadOnly,
+        [&](const QByteArray& readData, QTextStream&) {
+            const auto vCard = lrc::vCard::utils::toHashMap(readData);
+            displayName = vCard[vCard::Property::FORMATTED_NAME];
+        },
+        ov);
+    return displayName.simplified();
+}
+
 class ContactModelPimpl : public QObject
 {
     Q_OBJECT
@@ -402,6 +418,13 @@ ContactModel::updateContact(const QString& uri, const MapStringString& infos)
     // Update the profile in the database
     storage::vcard::setProfile(owner.id, profileInfo, true /*isPeer*/, true /*ov*/);
 
+    // Reload merged profile data (override + base profile) so clearing an
+    // override immediately restores the base display name in cached state.
+    const auto mergedProfileData = storage::getProfileData(owner.id, uri);
+    profileInfo.alias = mergedProfileData["alias"];
+    profileInfo.avatar = mergedProfileData["avatar"];
+    profileInfo.botOwner = mergedProfileData["botOwner"];
+
     // We can consider the contact profile as cached
     pimpl_->cachedProfiles.insert(uri);
 
@@ -583,6 +606,24 @@ QString
 ContactModel::displayName(const QString& contactUri) const
 {
     return pimpl_->getCachedProfileProperty(contactUri, [](const profile::Info& profile) { return profile.alias; });
+}
+
+QString
+ContactModel::displayNameWithoutOverride(const QString& contactUri) const
+{
+    if (contactUri.isEmpty())
+        return {};
+    if (contactUri == owner.profileInfo.uri)
+        return owner.profileInfo.alias.simplified();
+    return profileDisplayNameFromStorage(owner.id, contactUri, false);
+}
+
+bool
+ContactModel::hasDisplayNameOverride(const QString& contactUri) const
+{
+    if (contactUri.isEmpty() || contactUri == owner.profileInfo.uri)
+        return false;
+    return !profileDisplayNameFromStorage(owner.id, contactUri, true).isEmpty();
 }
 
 const QString
