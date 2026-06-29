@@ -20,6 +20,7 @@
 #include "systemtray.h"
 #include "appsettingsmanager.h"
 #include "pttlistener.h"
+#include "callcontroldevice.h"
 
 #include <api/callmodel.h>
 #include <api/callparticipantsmodel.h>
@@ -40,6 +41,10 @@ CallAdapter::CallAdapter(AppSettingsManager* settingsManager,
 {
     // Get the PTTListener instance.
     listener_ = qApp->property("PTTListener").value<PTTListener*>();
+
+    // Get the HID call-control device (speakerphone/headset) instance.
+    callDevice_ = qApp->property("CallControlDevice").value<CallControlDevice*>();
+    connectCallControlDevice();
 
     set_callInformationList(QVariant::fromValue(callInformationListModel_.get()));
 
@@ -143,6 +148,114 @@ CallAdapter::disconnectPtt()
 }
 
 void
+CallAdapter::connectCallControlDevice()
+{
+    if (!callDevice_)
+        return;
+
+    connect(
+        callDevice_,
+        &CallControlDevice::hookSwitchPressed,
+        this,
+        [this] {
+            if (deviceCallAccountId_.isEmpty() || deviceCallConvUid_.isEmpty())
+                return;
+            // Interpret the hook press by call state: answer a ringing call,
+            // otherwise hang up the active one.
+            if (deviceRinging_)
+                acceptCall(deviceCallAccountId_, deviceCallConvUid_);
+            else if (deviceInCall_)
+                endCall(deviceCallAccountId_, deviceCallConvUid_);
+        },
+        Qt::QueuedConnection);
+
+    connect(
+        callDevice_,
+        &CallControlDevice::muteToggleRequested,
+        this,
+        [this] {
+            if (!deviceCallAccountId_.isEmpty() && !deviceCallConvUid_.isEmpty())
+                muteAudioToggle(deviceCallAccountId_, deviceCallConvUid_);
+        },
+        Qt::QueuedConnection);
+}
+
+void
+CallAdapter::updateCallControlLeds()
+{
+    if (!callDevice_)
+        return;
+    callDevice_->setRinging(deviceRinging_);
+    callDevice_->setInCall(deviceInCall_);
+
+    bool muted = false;
+    if (deviceInCall_ && !deviceCallAccountId_.isEmpty() && !deviceCallConvUid_.isEmpty()) {
+        try {
+            const auto callId = lrcInstance_->getCallIdForConversationUid(deviceCallConvUid_, deviceCallAccountId_);
+            if (!callId.isEmpty())
+                muted = isMuted(callId);
+        } catch (const std::exception&) {
+        }
+    }
+    callDevice_->setMuted(muted);
+}
+
+void
+CallAdapter::syncCallControlDevice(int statusInt, const QString& accountId, const QString& convUid)
+{
+    if (!callDevice_)
+        return;
+    using lrc::api::call::Status;
+
+    // The device is a single physical endpoint, so it follows one call at a
+    // time. A call is identified by its (account, conversation) pair so that
+    // calls on different accounts stay distinct. Once a call owns the device,
+    // another call (e.g. an incoming one on a second account) does not steal
+    // it until the owning call ends.
+    const bool tracking = !deviceCallConvUid_.isEmpty();
+    const bool sameCall = tracking && deviceCallAccountId_ == accountId && deviceCallConvUid_ == convUid;
+
+    switch (static_cast<Status>(statusInt)) {
+    case Status::INCOMING_RINGING:
+        if (tracking && !sameCall)
+            break;
+        deviceCallAccountId_ = accountId;
+        deviceCallConvUid_ = convUid;
+        deviceRinging_ = true;
+        deviceInCall_ = false;
+        break;
+    case Status::OUTGOING_RINGING:
+    case Status::CONNECTING:
+    case Status::SEARCHING:
+    case Status::CONNECTED:
+    case Status::IN_PROGRESS:
+        if (tracking && !sameCall)
+            break;
+        deviceCallAccountId_ = accountId;
+        deviceCallConvUid_ = convUid;
+        deviceRinging_ = false;
+        deviceInCall_ = true;
+        break;
+    case Status::ENDED:
+    case Status::TERMINATING:
+    case Status::PEER_BUSY:
+    case Status::TIMEOUT:
+    case Status::INACTIVE:
+    case Status::INVALID:
+        if (!tracking || sameCall) {
+            deviceCallAccountId_.clear();
+            deviceCallConvUid_.clear();
+            deviceRinging_ = false;
+            deviceInCall_ = false;
+        }
+        break;
+    default:
+        break;
+    }
+    updateCallControlLeds();
+}
+
+void
 CallAdapter::startTimerInformation()
 {
     updateAdvancedInformation();
@@ -222,6 +335,23 @@ CallAdapter::onCallStarted(const QString& callId)
 void
 CallAdapter::onCallEnded(const QString& callId, int code)
 {
+    // Clear the HID call-control device LEDs/target when its call ends.
+    if (callDevice_ && !deviceCallConvUid_.isEmpty()) {
+        QString trackedCallId;
+        try {
+            trackedCallId = lrcInstance_->getCallIdForConversationUid(deviceCallConvUid_, deviceCallAccountId_);
+        } catch (const std::exception&) {
+            // The conversation/account may already be gone during teardown.
+        }
+        if (trackedCallId.isEmpty() || trackedCallId == callId) {
+            deviceCallAccountId_.clear();
+            deviceCallConvUid_.clear();
+            deviceRinging_ = false;
+            deviceInCall_ = false;
+            updateCallControlLeds();
+        }
+    }
+
     if (lrcInstance_->get_selectedConvUid().isEmpty())
         return;
     // only SIP codes greater than 400 are errors/failures and all SIP codes are less than 700
@@ -255,6 +385,9 @@ CallAdapter::onCallStatusChanged(const QString& accountId, const QString& callId
         if (!convInfo.uid.isEmpty()) {
             Q_EMIT callStatusChanged(static_cast<int>(call.status), accountId_, convInfo.uid);
         }
+
+        // Reflect the call onto the HID call-control device (button target + LEDs).
+        syncCallControlDevice(static_cast<int>(call.status), accountId_, convInfo.uid);
 
         switch (call.status) {
         case lrc::api::call::Status::INVALID:
@@ -332,6 +465,9 @@ CallAdapter::onCallInfosChanged(const QString& accountId, const QString& callId)
     auto mute = toMute.remove(callId);
     if (mute && listener_->getPttState())
         muteAudioToggle();
+
+    // Mute state may have changed: refresh the device mute LED.
+    updateCallControlLeds();
 }
 
 void

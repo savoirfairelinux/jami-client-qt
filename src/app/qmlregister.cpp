@@ -37,6 +37,7 @@
 #include "videodevices.h"
 #include "currentaccounttomigrate.h"
 #include "pttlistener.h"
+#include "callcontroldevice.h"
 #include "calloverlaymodel.h"
 #include "spellcheckdictionarylistmodel.h"
 #include "spellcheckadapter.h"
@@ -170,6 +171,12 @@ registerTypes(QQmlEngine* engine,
     qApp->setProperty("PTTListener", QVariant::fromValue(pttListener));
     QQmlEngine::setObjectOwnership(pttListener, QQmlEngine::CppOwnership);
     REG_QML_SINGLETON<PTTListener>(REG_MODEL, "PTTListener", CREATE(pttListener));
+
+    /* USB HID Telephony call-control device (speakerphone/headset buttons + LEDs).
+       Used in CallAdapter. */
+    auto callControlDevice = new CallControlDevice(app);
+    qApp->setProperty("CallControlDevice", QVariant::fromValue(callControlDevice));
+    QQmlEngine::setObjectOwnership(callControlDevice, QQmlEngine::CppOwnership);
 
     auto callOverlayModel = new CallOverlayModel(lrcInstance, pttListener, app);
     qApp->setProperty("CallOverlayModel", QVariant::fromValue(callOverlayModel));
