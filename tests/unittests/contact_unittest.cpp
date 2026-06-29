@@ -17,6 +17,10 @@
 
 #include "globaltestenvironment.h"
 
+#include "authority/storagehelper.h"
+
+using namespace lrc;
+
 /*!
  * Test fixture for AccountAdapter testing
  */
@@ -101,4 +105,41 @@ TEST_F(ContactFixture, AddSIPContactTest)
 
     auto accountListSize = globalEnv.lrcInstance->accountModel().getAccountCount();
     ASSERT_EQ(accountListSize, 0);
+}
+
+/*!
+ * WHEN  A peer profile has a base display name and a local override that is then cleared.
+ * THEN  Profile data resolution should fall back to the base display name.
+ */
+TEST_F(ContactFixture, ProfileDataFallsBackToBaseAliasWhenOverrideCleared)
+{
+    const QString accountId = "test_profile_account";
+    const QString peerUri = "peer@example.org";
+    const QString avatarData
+        = "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAAAAAA6fptVAAAACklEQVR42mNgAAAAAgAB9HFkPgAAAABJRU5ErkJggg==";
+
+    authority::storage::removeProfile(accountId, peerUri);
+
+    api::profile::Info baseProfile;
+    baseProfile.uri = peerUri;
+    baseProfile.type = api::profile::Type::SIP;
+    baseProfile.alias = "Base Display Name";
+    baseProfile.avatar = avatarData;
+
+    authority::storage::vcard::setProfile(accountId, baseProfile, true /*isPeer*/, false /*ov*/);
+    auto profileData = authority::storage::getProfileData(accountId, peerUri);
+    EXPECT_EQ(profileData["alias"], "Base Display Name");
+
+    auto overrideProfile = baseProfile;
+    overrideProfile.alias = "Custom Override Name";
+    authority::storage::vcard::setProfile(accountId, overrideProfile, true /*isPeer*/, true /*ov*/);
+    profileData = authority::storage::getProfileData(accountId, peerUri);
+    EXPECT_EQ(profileData["alias"], "Custom Override Name");
+
+    overrideProfile.alias = "";
+    authority::storage::vcard::setProfile(accountId, overrideProfile, true /*isPeer*/, true /*ov*/);
+    profileData = authority::storage::getProfileData(accountId, peerUri);
+    EXPECT_EQ(profileData["alias"], "Base Display Name");
+
+    authority::storage::removeProfile(accountId, peerUri);
 }
