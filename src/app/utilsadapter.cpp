@@ -228,6 +228,32 @@ UtilsAdapter::getBestNameForUri(const QString& accountId, const QString& uri)
 }
 
 QString
+UtilsAdapter::getContactDisplayNameWithoutOverride(const QString& accountId, const QString& uri)
+{
+    if (accountId.isEmpty() || uri.isEmpty())
+        return {};
+    try {
+        return lrcInstance_->getAccountInfo(accountId).contactModel->displayNameWithoutOverride(uri);
+    } catch (const std::out_of_range& e) {
+        C_DBG << e.what();
+        return {};
+    }
+}
+
+bool
+UtilsAdapter::hasContactDisplayNameOverride(const QString& accountId, const QString& uri)
+{
+    if (accountId.isEmpty() || uri.isEmpty())
+        return false;
+    try {
+        return lrcInstance_->getAccountInfo(accountId).contactModel->hasDisplayNameOverride(uri);
+    } catch (const std::out_of_range& e) {
+        C_DBG << e.what();
+        return false;
+    }
+}
+
+QString
 UtilsAdapter::getBestIdForUri(const QString& accountId, const QString& uri)
 {
     return lrcInstance_->getAccountInfo(accountId).contactModel->bestIdForContact(uri);

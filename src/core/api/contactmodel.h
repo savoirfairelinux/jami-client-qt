@@ -129,6 +129,18 @@ public:
      */
     QString displayName(const QString& contactUri) const;
 
+    /**
+     * Get display name from the base (non-overridden) profile.
+     * @param contactUri
+     */
+    QString displayNameWithoutOverride(const QString& contactUri) const;
+
+    /**
+     * Check if a local display name override exists for this contact.
+     * @param contactUri
+     */
+    bool hasDisplayNameOverride(const QString& contactUri) const;
+
 Q_SIGNALS:
     /**
      * Connect this signal to know when a contact was updated.

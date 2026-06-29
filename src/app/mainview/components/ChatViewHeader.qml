@@ -40,21 +40,36 @@ Control {
     // Injected conversation context; defaults to the global singleton.
     property var convContext: CurrentConversation
 
+    function updateHeaderProfile() {
+        title.eText = convContext.title;
+        description.eText = convContext.description;
+        userAvatar.imageId = convContext.id;
+        description.visible = convContext.description !== "" && convContext.title !== convContext.description;
+    }
+
     Connections {
         target: convContext
         enabled: true
 
         function onIdChanged() {
             if (title.eText === "" || userAvatar.imageId === "") {
-                title.eText = convContext.title
-                description.eText = convContext.description
-                userAvatar.imageId = convContext.id
+                root.updateHeaderProfile();
             } else {
                 // When switching between conversations
                 if (titleFadeAnimation.running)
                     titleFadeAnimation.stop();
                 titleFadeAnimation.start();
             }
+        }
+
+        function onTitleChanged() {
+            if (!titleFadeAnimation.running)
+                root.updateHeaderProfile();
+        }
+
+        function onDescriptionChanged() {
+            if (!titleFadeAnimation.running)
+                root.updateHeaderProfile();
         }
 
         function onShowSwarmDetails() {
@@ -78,11 +93,7 @@ Control {
 
     // We must assign the title, desc., and avatar id on the initial
     // creation of the component
-    Component.onCompleted: {
-        title.eText = convContext.title
-        description.eText = convContext.description
-        userAvatar.imageId = convContext.id
-    }
+    Component.onCompleted: root.updateHeaderProfile()
 
 
     SequentialAnimation {
@@ -95,14 +106,7 @@ Control {
         }
         ScriptAction {
             script: {
-                title.eText = convContext.title;
-                description.eText = convContext.description;
-                userAvatar.imageId = convContext.id;
-                if (convContext.description === "" || convContext.title === convContext.description) {
-                    description.visible = false;
-                } else {
-                    description.visible = true;
-                }
+                root.updateHeaderProfile();
             }
         }
         NumberAnimation {
@@ -260,6 +264,7 @@ Control {
 
                     ElidedTextLabel {
                         id: title
+                        objectName: "chatViewHeaderTitle"
 
                         LineEditContextMenu {
                             id: displayNameContextMenu
