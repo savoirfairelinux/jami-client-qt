@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "18dc22b1_8365fe00",
+        "filename": "extras/udev/70-jami-hid-telephony.rules",
+        "patchSetId": 5
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-29T22:16:33Z",
+      "side": 1,
+      "message": "[warning] Line 11: These rules grant the active desktop user raw HID read/write access to every hidraw interface from each listed vendor, not just devices/interfaces that Jami has verified as HID Telephony. Vendor-wide hidraw access is broader than needed and can expose unrelated HID interfaces from the same vendor to user-space reads/writes. Please narrow the match to known telephony products/interfaces where possible, or add per-product rules for the supported/tested devices instead of granting all devices from the vendor. For example:\n```suggestion\n# Poly Sync 60-M\nKERNEL\u003d\u003d\"hidraw*\", SUBSYSTEM\u003d\u003d\"hidraw\", ATTRS{idVendor}\u003d\u003d\"047f\", ATTRS{idProduct}\u003d\u003d\"\u003cproduct-id\u003e\", TAG+\u003d\"uaccess\"\n```",
+      "revId": "a5f9d6ef586931f5d79bee9044e3d53f4cc788c6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
