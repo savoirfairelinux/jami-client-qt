@@ -191,7 +191,7 @@ SettingsPageBase {
                 Layout.alignment: Qt.AlignLeft
                 Layout.preferredWidth: parent.width
 
-                text: JamiStrings.apiServerSectionTitle
+                text: JamiStrings.systemApiServerSectionTitle
                 color: JamiTheme.textColor
                 horizontalAlignment: Text.AlignLeft
                 verticalAlignment: Text.AlignVCenter
@@ -217,7 +217,7 @@ SettingsPageBase {
 
                     Text {
                         Layout.fillWidth: true
-                        text: JamiStrings.apiServerInfoTitle
+                        text: JamiStrings.systemApiServerInfoTitle
                         color: JamiTheme.textColor
                         font.pixelSize: JamiTheme.settingsDescriptionPixelSize
                         font.weight: Font.DemiBold
@@ -226,7 +226,7 @@ SettingsPageBase {
 
                     Text {
                         Layout.fillWidth: true
-                        text: JamiStrings.apiServerInfoMessage
+                        text: JamiStrings.systemApiServerInfoMessage
                         color: JamiTheme.textColor
                         font.pixelSize: JamiTheme.settingsDescriptionPixelSize
                         wrapMode: Text.WordWrap
@@ -238,7 +238,7 @@ SettingsPageBase {
                         filledButton: true
                         iconSource: JamiResources.api_24dp_svg
                         color: JamiTheme.buttonTintedBlue
-                        text: JamiStrings.apiOpenAppAccess
+                        text: JamiStrings.systemApiOpenAppAccess
                         onClicked: root.openAppAccessPage()
                     }
                 }
@@ -249,8 +249,8 @@ SettingsPageBase {
                 Layout.fillWidth: true
 
                 checked: UtilsAdapter.getAppValue(Settings.Key.EnableApi)
-                labelText: JamiStrings.apiEnableServer
-                tooltipText: JamiStrings.apiEnableServerTooltip
+                labelText: JamiStrings.systemApiEnableServer
+                tooltipText: JamiStrings.systemApiEnableServerTooltip
 
                 onSwitchToggled: {
                     UtilsAdapter.setAppValue(Settings.Key.EnableApi, checked)
@@ -265,7 +265,7 @@ SettingsPageBase {
             SettingSpinBox {
                 id: apiPortSpinBox
 
-                title: JamiStrings.apiServerPort
+                title: JamiStrings.systemApiServerPort
                 itemWidth: root.itemWidth
                 bottomValue: 1024
                 topValue: 65535
@@ -288,8 +288,8 @@ SettingsPageBase {
                 color: ApiServer.running ? JamiTheme.successLabelColor
                                          : JamiTheme.faddedLastInteractionFontColor
                 text: ApiServer.running
-                      ? JamiStrings.apiServerRunning.arg(ApiServer.port)
-                      : JamiStrings.apiServerStopped
+                      ? JamiStrings.systemApiServerRunning.arg(ApiServer.port)
+                      : JamiStrings.systemApiServerStopped
                 wrapMode: Text.WordWrap
                 font.pixelSize: JamiTheme.settingsDescriptionPixelSize - 1
                 font.italic: true
