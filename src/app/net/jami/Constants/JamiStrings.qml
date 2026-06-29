@@ -226,7 +226,7 @@ Item {
     property string appAccessNoBotsConfigured: qsTr("No bots configured for this account.")
     property string appAccessBotOnline: qsTr("Online")
     property string appAccessBotOffline: qsTr("Offline")
-    property string appAccessOpenChat: qsTr("Open chat")
+    property string appAccessCopyBotUri: qsTr("Copy URI")
     property string appAccessShareBot: qsTr("Share bot")
     property string appAccessShareBotDialogTitle: qsTr("Send bot to contact")
     property string appAccessShareBotMessage: qsTr("Add **%1** on Jami!\n Account ID: ```%2```")
