@@ -72,7 +72,7 @@ SidePanelBase {
                                 },
                                 {
                                     "id": 5,
-                                    "title": JamiStrings.apiSettingsTitle
+                                    "title": JamiStrings.appAccessSettingsTitle
                                 },
                                 {
                                     "id": 6,
@@ -182,7 +182,7 @@ SidePanelBase {
                                 },
                                 {
                                     "id": 5,
-                                    "title": JamiStrings.apiSettingsTitle
+                                    "title": JamiStrings.appAccessSettingsTitle
                                 },
                                 {
                                     "id": 6,
