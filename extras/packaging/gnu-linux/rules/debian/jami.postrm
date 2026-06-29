@@ -1,0 +1,15 @@
+#!/bin/sh
+# Reload udev after the HID Telephony call-control rule is removed.
+set -e
+
+case "$1" in
+    remove|purge)
+        if command -v udevadm >/dev/null 2>&1; then
+            udevadm control --reload-rules || true
+        fi
+        ;;
+esac
+
+#DEBHELPER#
+
+exit 0

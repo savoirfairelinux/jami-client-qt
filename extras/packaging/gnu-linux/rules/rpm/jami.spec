@@ -79,9 +79,23 @@ make -C %{_builddir}/jami-%{version}/build %{_smp_mflags} VERBOSE=1
 %install
 DESTDIR=%{buildroot} make -C %{_builddir}/jami-%{version}/build install V=2
 
+%post
+# Reload udev so the HID Telephony call-control rule takes effect and
+# re-trigger already-connected hidraw devices (no replug/reboot needed).
+if command -v udevadm >/dev/null 2>&1; then
+    udevadm control --reload-rules || :
+    udevadm trigger --subsystem-match=hidraw --action=add || :
+fi
+
+%postun
+if [ $1 -eq 0 ] && command -v udevadm >/dev/null 2>&1; then
+    udevadm control --reload-rules || :
+fi
+
 %files
 %defattr(-,root,root,-)
 %{_bindir}/jami
+%{_prefix}/lib/udev/rules.d/70-jami-hid-telephony.rules
 %{_datadir}/applications/net.jami.Jami.desktop
 %{_datadir}/jami/net.jami.Jami.desktop
 %{_datadir}/icons/hicolor/scalable/apps/net.jami.Jami.svg
