@@ -32,6 +32,7 @@
 class SystemTray;
 class AppSettingsManager;
 class PTTListener;
+class CallControlDevice;
 
 class CallAdapter final : public QmlAdapterBase
 {
@@ -129,6 +130,11 @@ private:
     void preventScreenSaver(bool state);
     void saveConferenceSubcalls();
 
+    // USB HID Telephony call-control device (hook-switch / mute buttons + LEDs).
+    void connectCallControlDevice();
+    void updateCallControlLeds();
+    void syncCallControlDevice(int statusInt, const QString& accountId, const QString& convUid);
+
     QString accountId_;
 
     ScreenSaver screenSaver;
@@ -137,6 +143,13 @@ private:
     std::unique_ptr<CallInformationListModel> callInformationListModel_;
 
     PTTListener* listener_;
+    CallControlDevice* callDevice_ = nullptr;
+    // Call the device buttons act on (the ringing call to answer / active call
+    // to hang up), and the LED state currently reflected on the device.
+    QString deviceCallAccountId_;
+    QString deviceCallConvUid_;
+    bool deviceRinging_ = false;
+    bool deviceInCall_ = false;
     bool isMicrophoneMuted_ = true;
     QSet<QString> toMute;
 };
