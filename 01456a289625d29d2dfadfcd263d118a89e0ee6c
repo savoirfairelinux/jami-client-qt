@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a0a5d3fc_b6c1a4ce",
+        "filename": "src/app/audioconfiglistmodel.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-29T17:45:44Z",
+      "side": 1,
+      "message": "[warning] Line 94: The file now lacks a trailing newline, which can trip formatting/CI checks and is consistent with the reported clang-format failure. Please add the final newline at EOF.\n```suggestion\n}\n```",
+      "revId": "01456a289625d29d2dfadfcd263d118a89e0ee6c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
