@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9f1406fc_6d582e8e",
+        "filename": "src/app/calladapter.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 374,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-29T18:05:33Z",
+      "side": 1,
+      "message": "[error] Line 374: The HID device target is stored with `accountId_` instead of the `accountId` that owns `callId`. If an incoming or active call belongs to an account other than the currently selected one, the hardware hook/mute actions can answer, hang up, or mute the wrong account/conversation pair. Pass through the signal\u0027s account id instead.\n```suggestion\n        syncCallControlDevice(static_cast\u003cint\u003e(call.status), accountId, convInfo.uid);\n```",
+      "revId": "255d1d9a2528efb9c0a70b80536423f1bdd5ded8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
