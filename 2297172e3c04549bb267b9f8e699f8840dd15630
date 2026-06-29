@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dbad9ab2_da5e4397",
+        "filename": "src/app/calladapter.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 334,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-29T17:45:17Z",
+      "side": 1,
+      "message": "[warning] Line 334: getCallIdForConversationUid() is called without the exception guard used in updateCallControlLeds(). If the tracked conversation/account is already gone during call teardown, this can throw from a call-ended signal handler and prevent the rest of onCallEnded() from running. Reuse the guarded lookup pattern here before clearing the device state.",
+      "revId": "2297172e3c04549bb267b9f8e699f8840dd15630",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bfc506ab_724f5193",
+        "filename": "src/app/platform/linux/callcontroldevice.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-29T17:45:17Z",
+      "side": 1,
+      "message": "[warning] Line 117: The descriptor parser only records explicit Usage items and ignores Usage Minimum/Usage Maximum ranges. HID button and LED fields commonly use ranges, so supported devices may be opened but their hook/mute inputs or LEDs will not be discovered. Add handling for local Usage Minimum/Maximum and expand those usages before consumeMain().",
+      "revId": "2297172e3c04549bb267b9f8e699f8840dd15630",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "69713117_d8e0e927",
+        "filename": "src/app/platform/linux/callcontroldevice.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 376,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-29T17:45:17Z",
+      "side": 1,
+      "message": "[error] Line 376: applyLeds() writes each LED as a separate report, but writeLed() builds a zero-filled report containing only the single requested bit. When multiple LED usages share the same output report, the later writes clear bits set by earlier writes, e.g. ringing_ can be cleared immediately by the off-hook write. Build one report per reportId containing all LED bits, then write it once.",
+      "revId": "2297172e3c04549bb267b9f8e699f8840dd15630",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4bcc0b14_f95a01d6",
+        "filename": "src/app/platform/linux/callcontroldevice.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 391,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-29T17:45:17Z",
+      "side": 1,
+      "message": "[error] Line 391: Unnumbered HID reports are handled as if byte 0 were always a report ID. For descriptors without a Report ID, loc.reportId remains 0, so input reports whose first payload byte is non-zero are ignored and bitValue() reads the wrong byte by skipping byte 0. Track whether numbered reports are used and only require/skip the ID byte when the descriptor actually declares a Report ID.",
+      "revId": "2297172e3c04549bb267b9f8e699f8840dd15630",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
