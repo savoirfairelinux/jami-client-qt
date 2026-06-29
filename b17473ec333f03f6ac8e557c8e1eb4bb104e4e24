@@ -20,6 +20,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "68cef77d_73f57127",
+        "filename": "src/app/mainview/components/MessageFormatBar.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-29T17:45:54Z",
+      "side": 1,
+      "message": "[warning] Line 46: hasEditableDocuments is a cached value, but it is not recomputed when convContext itself is replaced. Connections will retarget to the new object, but onIdChanged is not emitted merely because the target object changed, so a reused MessageFormatBar can keep the previous conversation\u0027s document availability and show/hide the document list action incorrectly. Recompute when convContext changes as well.\n```suggestion\n    onConvContextChanged: updateHasEditableDocuments()\n```",
+      "revId": "b17473ec333f03f6ac8e557c8e1eb4bb104e4e24",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "96eb3256_a936601f",
         "filename": "src/app/mainview/components/MessageFormatBar.qml",
         "patchSetId": 1
@@ -48,6 +65,23 @@
       "writtenOn": "2026-06-25T14:17:06Z",
       "side": 1,
       "message": "[🟡 Suggestion] Line 592: The document-list action also dereferences convContext.id/title without a validity check. Since this patch makes conversation context explicit and potentially app-scoped, this should fail closed when no scoped conversation is available instead of relying on surrounding visibility state.\n```suggestion\n                        if (!convContext || convContext.id \u003d\u003d\u003d \"\")\n                            return;\n                        viewCoordinator.presentDialog(appWindow,\n                                                      \"commoncomponents/CollabDocListPopup.qml\",\n                                                      {\n                                                          \"conversationId\": convContext.id,\n                                                          \"peerName\": convContext.title\n                                                      });\n```",
+      "revId": "b17473ec333f03f6ac8e557c8e1eb4bb104e4e24",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f3bd5304_e79e2e4a",
+        "filename": "src/app/mainview/js/collabeditorwindowcreation.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-29T17:45:54Z",
+      "side": 1,
+      "message": "[warning] Line 28: The app-scoped window map still uses an ambiguous concatenated string key. If either identifier can contain the delimiter, two different conversation/document pairs can collide and reuse the wrong editor window, which undermines the fix this change is trying to make. Use a nested map or an unambiguous serialized tuple for the key.\n```suggestion\n    return JSON.stringify([conversationId, documentId])\n```",
       "revId": "b17473ec333f03f6ac8e557c8e1eb4bb104e4e24",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
