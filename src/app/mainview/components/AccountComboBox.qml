@@ -161,6 +161,8 @@ Item {
                                 sourceSize.width: JamiTheme.iconButtonSmall
                                 sourceSize.height: JamiTheme.iconButtonSmall
 
+                                color: JamiTheme.textColor
+
                                 visible: UtilsAdapter.getBotOwner(CurrentAccount.id).length > 0
                             }
 
