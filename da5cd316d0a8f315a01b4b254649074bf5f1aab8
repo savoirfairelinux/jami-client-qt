@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a361116f_c9e89735",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-06-29T21:08:29Z",
+      "side": 1,
+      "message": "What happens in the case of an account switch? Looks like the previous connections are leaked. Also, related, what is the desired behavior for multi-account simultaneous calls (unlikely but possible - e.g. 2 accounts same device, alice calls bob)?",
+      "revId": "da5cd316d0a8f315a01b4b254649074bf5f1aab8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
