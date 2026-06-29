@@ -37,6 +37,40 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a178b861_9a00e4a0",
+        "filename": "extras/packaging/gnu-linux/docker/Dockerfile_ubuntu_24.04",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-29T17:45:47Z",
+      "side": 1,
+      "message": "[error] Line 20: The Rust toolchain is made world-writable with `chmod -R a+rwX`, so any process in the image can replace `cargo`, rustup metadata, or crates and get code execution during package builds. Keep the toolchain root-owned/readable and only make a dedicated build cache writable if needed.\n```suggestion\nRUN curl --proto \u0027\u003dhttps\u0027 --tlsv1.2 -sSf https://sh.rustup.rs \\\n        | sh -s -- -y --profile minimal --default-toolchain stable \u0026\u0026 \\\n    chmod -R a+rX /usr/local/rustup /usr/local/cargo\n```",
+      "revId": "e537aba248f05f13aabe3aa8059b90a64dca990e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0a9f5778_a0d44f69",
+        "filename": "src/app/collaborativeadapter.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-29T17:45:47Z",
+      "side": 1,
+      "message": "[warning] Line 34: Every `collaborativeDocumentChanged`/`collaborativeDocumentDelta` signal marks the document unread before re-emitting it, including updates for a document that is currently open locally. That means typing in or viewing an open document can leave a stale unread badge until the document is reopened. Track open documents and/or the update origin, and skip `markDocumentUpdated` for the active local document/session.",
+      "revId": "e537aba248f05f13aabe3aa8059b90a64dca990e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e08f61ba_27513bcd",
         "filename": "src/app/collaborativeadapter.cpp",
         "patchSetId": 1
@@ -71,6 +105,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8dc7864b_a816fb64",
+        "filename": "src/app/collabrichbinding.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-29T17:45:47Z",
+      "side": 1,
+      "message": "[error] Line 117: Link hrefs from local input or remote deltas are applied without scheme validation. QTextDocument anchors may later be opened by the UI, so `javascript:`, `file:`, or other unsafe schemes can become a code/data-exposure path. Validate and normalize links before setting `AnchorHref`; reject or clear anything outside an allowlist such as http/https/mailto.\n```suggestion\nconst QUrl url(v.toString());\nif (url.isValid() \u0026\u0026 (url.scheme() \u003d\u003d QLatin1String(\"http\")\n                      || url.scheme() \u003d\u003d QLatin1String(\"https\")\n                      || url.scheme() \u003d\u003d QLatin1String(\"mailto\"))) {\n    f.setAnchor(true);\n    f.setAnchorHref(url.toString(QUrl::FullyEncoded));\n    f.setForeground(LINK_COLOR);\n    f.setFontUnderline(true);\n}\n```",
+      "revId": "e537aba248f05f13aabe3aa8059b90a64dca990e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0e7088f3_864b17e0",
         "filename": "src/app/collabrichbinding.cpp",
         "patchSetId": 1
@@ -99,6 +150,23 @@
       "writtenOn": "2026-06-25T14:17:11Z",
       "side": 1,
       "message": "[Critical] Line 267: Remote deltas are applied with `qBound()` on retain/delete ranges, which silently truncates invalid CRDT operations. That can make the local rich document diverge from peers instead of rejecting or surfacing a corrupt/out-of-order delta. Validate every operation against the current document length and abort/log when an operation is out of range. Example:\n```suggestion\nconst int docLen \u003d d-\u003echaracterCount() - 1;\nif (index \u003c 0 || n \u003c 0 || index + n \u003e docLen) {\n    qWarning() \u003c\u003c \"Invalid collaborative rich-text delta\" \u003c\u003c deltaJson;\n    applyingRemote_ \u003d false;\n    return;\n}\ncc.setPosition(index);\ncc.setPosition(index + n, QTextCursor::KeepAnchor);\n```",
+      "revId": "e537aba248f05f13aabe3aa8059b90a64dca990e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ce3272d5_d9df49ca",
+        "filename": "src/app/collabrichbinding.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 286,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-29T17:45:47Z",
+      "side": 1,
+      "message": "[error] Line 286: Remote delta positions are silently clamped with `qBound`. If a peer sends an invalid retain/delete length, this applies a different operation locally instead of rejecting it, which can make collaborators diverge while appearing successful. Validate the delta against the current document length before mutating the QTextDocument, and abort/report the whole delta when an operation would move outside `[0, docLen]`.\n```suggestion\nif (index \u003c 0 || index + n \u003e docLen) {\n    qWarning() \u003c\u003c \"Invalid collaborative delta range\" \u003c\u003c index \u003c\u003c n \u003c\u003c docLen;\n    applyingRemote_ \u003d false;\n    return;\n}\n```",
       "revId": "e537aba248f05f13aabe3aa8059b90a64dca990e",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
