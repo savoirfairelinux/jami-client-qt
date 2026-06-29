@@ -438,7 +438,7 @@ SettingsPageBase {
 
                             iconSource: JamiResources.content_copy_24dp_svg
                             iconSize: JamiTheme.iconButtonMedium
-                            toolTipText: JamiStrings.appAccessOpenChat
+                            toolTipText: JamiStrings.appAccessCopyBotUri
 
                             // To avoid conflict with delegate background
                             background.visible: false
