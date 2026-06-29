@@ -1,0 +1,16 @@
+# Grant the logged-in desktop user access to USB HID Telephony "call control"
+# devices (speakerphones / headsets) so Jami can read their hook-switch and mute
+# buttons and drive their LEDs through the hidraw interface.
+#
+# hidraw nodes are root-only by default. The HID Telephony usage page is not
+# exposed as a udev attribute, so access is granted per vendor. The TAG+="uaccess"
+# tag lets systemd-logind hand the device to the user of the active local session.
+#
+# If your device is not picked up, add its USB vendor id (lsusb) below.
+
+# Plantronics / Poly
+KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="047f", TAG+="uaccess"
+# Jabra (GN Netcom)
+KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="0b0e", TAG+="uaccess"
+# EPOS / Sennheiser
+KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="1395", TAG+="uaccess"
