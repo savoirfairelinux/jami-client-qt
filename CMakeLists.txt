@@ -657,6 +657,7 @@ set(COMMON_HEADERS
   ${APP_SRC_DIR}/conversationstatusmodel.h
   ${APP_SRC_DIR}/trackedmembersmodel.h
   ${APP_SRC_DIR}/pttlistener.h
+  ${APP_SRC_DIR}/callcontroldevice.h
   ${APP_SRC_DIR}/crashreportclient.h
   ${APP_SRC_DIR}/crashreporter.h
   ${APP_SRC_DIR}/linkdevicemodel.h
@@ -960,6 +961,23 @@ else ()
     list(APPEND COMMON_SOURCES ${APP_SRC_DIR}/platform/local/pttlistener.cpp)
 endif ()
 
+# HID Telephony call-control device (speakerphone/headset hook-switch and mute
+# buttons, plus LED feedback). Linux uses libudev + hidraw; other platforms get
+# a no-op stub for now.
+if (CMAKE_SYSTEM_NAME STREQUAL "Linux")
+    pkg_check_modules(LIBUDEV libudev)
+endif ()
+if (LIBUDEV_FOUND)
+    message(STATUS "HID call-control device support enabled (libudev)")
+    add_definitions(-DHAVE_HID_CALLCONTROL)
+    list(APPEND COMMON_SOURCES ${APP_SRC_DIR}/platform/linux/callcontroldevice.cpp)
+    include_directories(${LIBUDEV_INCLUDE_DIRS})
+    list(APPEND CLIENT_LIBS ${LIBUDEV_LIBRARIES})
+else ()
+    message(WARNING "HID call-control device not supported (libudev missing).")
+    list(APPEND COMMON_SOURCES ${APP_SRC_DIR}/platform/local/callcontroldevice.cpp)
+endif ()
+
 # common includes
 include_directories(
   ${PROJECT_SOURCE_DIR}
@@ -1120,6 +1138,15 @@ elseif (NOT APPLE)
   install(
     TARGETS ${PROJECT_NAME}
     RUNTIME DESTINATION bin)
+
+  # Install the udev rule that grants desktop-user access to USB HID Telephony
+  # call-control devices (speakerphones/headsets) used by CallControlDevice.
+  if(LIBUDEV_FOUND)
+    install(
+      FILES ${PROJECT_SOURCE_DIR}/extras/udev/70-jami-hid-telephony.rules
+      DESTINATION lib/udev/rules.d
+      PERMISSIONS OWNER_READ OWNER_WRITE GROUP_READ WORLD_READ) # 644
+  endif()
 
   # Install .desktop in XDG desktop direcory so that it is recognized
   # by the system.
