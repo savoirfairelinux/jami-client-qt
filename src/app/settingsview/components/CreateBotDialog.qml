@@ -167,6 +167,8 @@ BaseModalDialog {
 
                     color: JamiTheme.textColor
                     text: JamiStrings.botTokenInfo
+
+                    wrapMode: Text.WordWrap
                 }
 
                 RowLayout {
