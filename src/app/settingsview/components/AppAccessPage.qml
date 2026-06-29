@@ -30,7 +30,7 @@ SettingsPageBase {
 
     property bool apiEnabled: UtilsAdapter.getAppValue(Settings.Key.EnableApi)
 
-    title: JamiStrings.apiSettingsTitle
+    title: JamiStrings.appAccessSettingsTitle
 
     flickableContent: ColumnLayout {
         id: apiSettingsLayout
@@ -46,7 +46,7 @@ SettingsPageBase {
             Layout.alignment: Qt.AlignLeft
             Layout.fillWidth: true
 
-            text: JamiStrings.apiSettingsDescription
+            text: JamiStrings.appAccessSettingsDescription
             color: JamiTheme.textColor
             horizontalAlignment: Text.AlignLeft
             wrapMode: Text.WordWrap
@@ -75,7 +75,7 @@ SettingsPageBase {
 
                 Text {
                     Layout.fillWidth: true
-                    text: JamiStrings.apiServerDisabledTitle
+                    text: JamiStrings.appAccessServerDisabledTitle
                     color: JamiTheme.textColor
                     font.pixelSize: JamiTheme.settingsTitlePixelSize
                     font.weight: Font.DemiBold
@@ -84,7 +84,7 @@ SettingsPageBase {
 
                 Text {
                     Layout.fillWidth: true
-                    text: JamiStrings.apiServerDisabledMessage
+                    text: JamiStrings.appAccessServerDisabledMessage
                     color: JamiTheme.textColor
                     wrapMode: Text.WordWrap
                     font.pixelSize: JamiTheme.settingsDescriptionPixelSize
@@ -95,7 +95,7 @@ SettingsPageBase {
                     implicitHeight: JamiTheme.newMaterialButtonHeight
                     filledButton: true
                     color: JamiTheme.blockOrange
-                    text: JamiStrings.apiEnableServerButton
+                    text: JamiStrings.appAccessEnableServerButton
                     onClicked: {
                         root.apiEnabled = true
                         UtilsAdapter.setAppValue(Settings.Key.EnableApi, true)
@@ -121,7 +121,7 @@ SettingsPageBase {
 
                     Layout.fillWidth: true
                     textFieldContent: ""
-                    placeholderText: JamiStrings.apiTokenLabelPlaceholder
+                    placeholderText: JamiStrings.appAccessTokenLabelPlaceholder
                 }
 
                 NewMaterialButton {
@@ -130,7 +130,7 @@ SettingsPageBase {
                     implicitHeight: JamiTheme.newMaterialButtonHeight
                     filledButton: true
                     iconSource: JamiResources.token_24dp_svg
-                    text: JamiStrings.apiCreateToken
+                    text: JamiStrings.appAccessCreateToken
                     enabled: (tokenLabelInput.modifiedTextFieldContent || "").trim().length > 0
 
                     onClicked: {
@@ -151,7 +151,7 @@ SettingsPageBase {
                 Layout.alignment: Qt.AlignLeft
                 Layout.fillWidth: true
 
-                text: JamiStrings.apiTokensListTitle
+                text: JamiStrings.appAccessTokensListTitle
                 color: JamiTheme.textColor
                 horizontalAlignment: Text.AlignLeft
                 font.pixelSize: JamiTheme.settingsTitlePixelSize
@@ -162,7 +162,7 @@ SettingsPageBase {
                 visible: tokenListView.count === 0
                 Layout.fillWidth: true
 
-                text: JamiStrings.apiNoTokens
+                text: JamiStrings.appAccessNoTokens
                 color: JamiTheme.faddedLastInteractionFontColor
                 font.pixelSize: JamiTheme.settingsDescriptionPixelSize
                 font.italic: true
@@ -220,9 +220,9 @@ SettingsPageBase {
                             Text {
                                 Layout.fillWidth: true
                                 text: {
-                                    var s = JamiStrings.apiTokenCreatedAt.arg(tokenDelegate.tokenCreatedAt)
+                                    var s = JamiStrings.appAccessTokenCreatedAt.arg(tokenDelegate.tokenCreatedAt)
                                     if (tokenDelegate.tokenExpiresAt.length > 0)
-                                        s += " · " + JamiStrings.apiTokenExpiresAt.arg(tokenDelegate.tokenExpiresAt)
+                                        s += " · " + JamiStrings.appAccessTokenExpiresAt.arg(tokenDelegate.tokenExpiresAt)
                                     return s
                                 }
                                 font.pixelSize: JamiTheme.settingsDescriptionPixelSize - 2
@@ -275,7 +275,7 @@ SettingsPageBase {
                     Text {
                         anchors.verticalCenter: parent.verticalCenter
 
-                        text: JamiStrings.apiBotAccounts
+                        text: JamiStrings.appAccessBotAccounts
                         color: JamiTheme.textColor
                         horizontalAlignment: Text.AlignLeft
 
@@ -288,7 +288,7 @@ SettingsPageBase {
 
                         iconSource: JamiResources.bidirectional_help_outline_24dp_svg
                         iconSize: JamiTheme.iconButtonMedium
-                        toolTipText: JamiStrings.apiBotHelp
+                        toolTipText: JamiStrings.appAccessBotHelp
 
                         onClicked: viewCoordinator.presentDialog(appWindow, "settingsview/components/AboutBotAccountsPopup.qml");
                     }
@@ -301,7 +301,7 @@ SettingsPageBase {
                     implicitHeight: JamiTheme.newMaterialButtonHeight
                     filledButton: true
                     iconSource: JamiResources.robot_2_24dp_svg
-                    text: JamiStrings.apiCreateBotAccount
+                    text: JamiStrings.appAccessCreateBotAccount
 
                     onClicked: {
                         viewCoordinator.presentDialog(appWindow, "settingsview/components/CreateBotDialog.qml");
@@ -311,7 +311,7 @@ SettingsPageBase {
             Text {
                 Layout.fillWidth: true
 
-                text: JamiStrings.apiNoBotsConfigured
+                text: JamiStrings.appAccessNoBotsConfigured
                 color: JamiTheme.faddedLastInteractionFontColor
                 font.pixelSize: JamiTheme.settingsDescriptionPixelSize
                 font.italic: true
@@ -416,7 +416,7 @@ SettingsPageBase {
 
                                 Text {
                                     id: statusText
-                                    text: Enabled ? JamiStrings.apiBotOnline : JamiStrings.apiBotOffline
+                                    text: Enabled ? JamiStrings.appAccessBotOnline : JamiStrings.appAccessBotOffline
                                     color: Enabled ? JamiTheme.green_ : JamiTheme.red_
 
                                     font.family: JamiTheme.ubuntuMonoFontFamily
@@ -438,7 +438,7 @@ SettingsPageBase {
 
                             iconSource: JamiResources.content_copy_24dp_svg
                             iconSize: JamiTheme.iconButtonMedium
-                            toolTipText: JamiStrings.apiOpenChat
+                            toolTipText: JamiStrings.appAccessOpenChat
 
                             // To avoid conflict with delegate background
                             background.visible: false
@@ -456,7 +456,7 @@ SettingsPageBase {
 
                             iconSource: JamiResources.share_24dp_svg
                             iconSize: JamiTheme.iconButtonMedium
-                            toolTipText: JamiStrings.apiShareBot
+                            toolTipText: JamiStrings.appAccessShareBot
 
                             // To avoid conflict with delegate background
                             background.visible: false
@@ -464,13 +464,13 @@ SettingsPageBase {
                             onClicked: {
                                 var dlg = viewCoordinator.presentDialog(appWindow, "../../mainview/components/ContactPicker.qml", {
                                                                             "type": ContactList.ONE_TO_ONE,
-                                                                            "titleText": JamiStrings.apiShareBotDialogTitle
+                                                                            "titleText": JamiStrings.appAccessShareBotDialogTitle
                                                                         });
 
 
                                 dlg.contactSelected.connect(function(uri) {
                                     const convId = UtilsAdapter.getConvIdForUri(CurrentAccount.id, uri);
-                                    MessagesAdapter.sendMessageToUid(JamiStrings.apiShareBotMessage.arg(Alias).arg(Uri), convId);
+                                    MessagesAdapter.sendMessageToUid(JamiStrings.appAccessShareBotMessage.arg(Alias).arg(Uri), convId);
                                 });
                             }
                         }
@@ -505,14 +505,14 @@ SettingsPageBase {
 
         property string rawToken: ""
 
-        titleText: JamiStrings.apiTokenCreatedTitle
+        titleText: JamiStrings.appAccessTokenCreatedTitle
 
         popupContent: ColumnLayout {
             spacing: 16
 
             Text {
                 Layout.fillWidth: true
-                text: JamiStrings.apiTokenCreatedMessage
+                text: JamiStrings.appAccessTokenCreatedMessage
                 wrapMode: Text.WordWrap
                 color: JamiTheme.textColor
                 font.pixelSize: JamiTheme.settingsDescriptionPixelSize
@@ -556,7 +556,7 @@ SettingsPageBase {
 
             Text {
                 Layout.fillWidth: true
-                text: JamiStrings.apiTokenCopyWarning
+                text: JamiStrings.appAccessTokenCopyWarning
                 wrapMode: Text.WordWrap
                 color: JamiTheme.redColor
                 font.pixelSize: JamiTheme.settingsDescriptionPixelSize - 1
