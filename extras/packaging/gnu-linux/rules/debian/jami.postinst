@@ -1,0 +1,18 @@
+#!/bin/sh
+# Reload udev so the HID Telephony call-control rule shipped by Jami takes
+# effect, and re-trigger already-connected hidraw devices so they pick up the
+# access rule without requiring a replug or reboot.
+set -e
+
+case "$1" in
+    configure)
+        if command -v udevadm >/dev/null 2>&1; then
+            udevadm control --reload-rules || true
+            udevadm trigger --subsystem-match=hidraw --action=add || true
+        fi
+        ;;
+esac
+
+#DEBHELPER#
+
+exit 0

@@ -125,6 +125,13 @@ fi
 
 case "$1" in
     configure)
+        # Reload udev so the HID Telephony call-control rule takes effect and
+        # re-trigger already-connected hidraw devices (no replug/reboot needed).
+        if command -v udevadm >/dev/null 2>&1; then
+            udevadm control --reload-rules || true
+            udevadm trigger --subsystem-match=hidraw --action=add || true
+        fi
+
         if [ "`command -v apt-key`" = "" ]; then
             # we can only add key if apt-key is present
             CAN_ADD_DEB_SOURCE=false
