@@ -155,17 +155,26 @@ CallAdapter::connectCallControlDevice()
 
     connect(
         callDevice_,
-        &CallControlDevice::hookSwitchPressed,
+        &CallControlDevice::hookSwitchChanged,
         this,
-        [this] {
+        [this](bool offHook) {
             if (deviceCallAccountId_.isEmpty() || deviceCallConvUid_.isEmpty())
                 return;
-            // Interpret the hook press by call state: answer a ringing call,
-            // otherwise hang up the active one.
-            if (deviceRinging_)
+            // The hook switch is an absolute off-hook/on-hook state: answer a
+            // ringing call when going off-hook, hang up an active call when
+            // going on-hook. Off-hook while already in a call is a no-op so the
+            // off-hook report some devices echo when we light the off-hook LED
+            // does not drop the call.
+            switch (hookSwitchAction(offHook, deviceRinging_, deviceInCall_)) {
+            case HookSwitchAction::Accept:
                 acceptCall(deviceCallAccountId_, deviceCallConvUid_);
-            else if (deviceInCall_)
+                break;
+            case HookSwitchAction::HangUp:
                 endCall(deviceCallAccountId_, deviceCallConvUid_);
+                break;
+            case HookSwitchAction::None:
+                break;
+            }
         },
         Qt::QueuedConnection);
 
@@ -178,12 +187,15 @@ CallAdapter::connectCallControlDevice()
                 muteAudioToggle(deviceCallAccountId_, deviceCallConvUid_);
         },
         Qt::QueuedConnection);
+
+    // A device plugged in mid-call must pick up the current call state.
+    connect(callDevice_, &CallControlDevice::deviceConnected, this, [this] { updateCallControlLeds(); }, Qt::QueuedConnection);
 }
 
 void
 CallAdapter::updateCallControlLeds()
 {
-    if (!callDevice_)
+    if (!callDevice_ || !callDevice_->hasDevice())
         return;
     callDevice_->setRinging(deviceRinging_);
     callDevice_->setInCall(deviceInCall_);
@@ -203,6 +215,10 @@ CallAdapter::updateCallControlLeds()
 void
 CallAdapter::syncCallControlDevice(int statusInt, const QString& accountId, const QString& convUid)
 {
+    // The bookkeeping below is cheap and must run even with no device connected,
+    // so a device hot-plugged mid-call can be initialized with the current call
+    // state. The actual device I/O is gated on hasDevice() in
+    // updateCallControlLeds().
     if (!callDevice_)
         return;
     using lrc::api::call::Status;

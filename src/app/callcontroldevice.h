@@ -43,16 +43,42 @@ public:
     void setInCall(bool inCall);
     void setMuted(bool muted);
 
+    // True when at least one call-control device is currently connected. Lets
+    // callers skip per-call bookkeeping on the common no-device path.
+    bool hasDevice() const;
+
 Q_SIGNALS:
-    // The user pressed the hook-switch button. The hook switch is a toggle whose
-    // physical state can drift out of sync with the call, so the press is
-    // reported as a single intent and the application decides whether it means
-    // "answer" or "hang up" based on the current call state.
-    void hookSwitchPressed();
+    // The hook-switch state changed. The HID Telephony hook switch is an absolute
+    // on/off control (offHook == true means "be in a call", false means "hang
+    // up"), not a momentary press, so the new state is reported and the
+    // application maps it to an action with hookSwitchAction().
+    void hookSwitchChanged(bool offHook);
     // The user pressed the mute button.
     void muteToggleRequested();
+    // A call-control device became available (e.g. hot-plugged), so the current
+    // call state should be re-applied to it.
+    void deviceConnected();
 
 private:
     class Impl;
     std::unique_ptr<Impl> pimpl_;
 };
+
+// Action to take for a hook-switch state change, given the current call state.
+enum class HookSwitchAction { None, Accept, HangUp };
+
+// Map an absolute hook-switch state to a call action. The hook switch reports
+// off-hook ("be in a call") or on-hook ("hang up") rather than a momentary
+// press, so:
+//   - off-hook only answers a ringing call; if a call is already active it is a
+//     no-op. This is essential because driving the off-hook LED makes some
+//     devices (e.g. the Poly Sync 60-M) echo an off-hook report, and treating
+//     that echo as "hang up" would drop the call we just connected.
+//   - on-hook hangs up an active call.
+inline HookSwitchAction
+hookSwitchAction(bool offHook, bool ringing, bool inCall)
+{
+    if (offHook)
+        return ringing ? HookSwitchAction::Accept : HookSwitchAction::None;
+    return inCall ? HookSwitchAction::HangUp : HookSwitchAction::None;
+}

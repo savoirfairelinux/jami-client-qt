@@ -38,7 +38,7 @@
 
 #include <algorithm>
 #include <array>
-#include <chrono>
+#include <cerrno>
 #include <cstdint>
 #include <vector>
 
@@ -285,6 +285,8 @@ public:
     bool inCall_ {false};
     bool muted_ {false};
 
+    bool hasDevice() const { return !devices_.empty(); }
+
 private:
     struct DeviceCtx
     {
@@ -295,7 +297,6 @@ private:
         bool hookKnown {false};
         bool lastHook {false};
         bool lastMute {false};
-        std::chrono::steady_clock::time_point lastHookEvent {};
     };
 
     void enumerate()
@@ -363,6 +364,8 @@ private:
                                       << " mute=" << layout.mute.valid << " leds: ring=" << layout.ledRing.valid
                                       << " offhook=" << layout.ledOffHook.valid << " mute=" << layout.ledMute.valid
                                       << ")";
+        // Let the app re-apply the current call state to the new device.
+        Q_EMIT parent_.deviceConnected();
     }
 
     static bool readLayout(int fd, DeviceLayout& layout)
@@ -388,9 +391,22 @@ private:
         uint8_t buf[64];
         for (;;) {
             const ssize_t n = ::read(ctx.fd, buf, sizeof(buf));
-            if (n <= 0)
-                break;
-            handleReport(ctx, buf, static_cast<size_t>(n));
+            if (n > 0) {
+                handleReport(ctx, buf, static_cast<size_t>(n));
+                continue;
+            }
+            if (n < 0) {
+                if (errno == EINTR)
+                    continue; // interrupted by a signal, retry
+                if (errno == EAGAIN || errno == EWOULDBLOCK)
+                    break; // no more data for now
+            }
+            // EOF (n == 0) or a hard error such as ENODEV on unplug: the device
+            // is gone. Remove it now instead of spinning on POLLHUP until the
+            // udev "remove" event arrives. removeDevice() invalidates ctx, so
+            // we must return immediately.
+            removeDevice(sys);
+            return;
         }
     }
 
@@ -404,17 +420,14 @@ private:
                 ctx.lastHook = hook;
             } else if (hook != ctx.lastHook) {
                 ctx.lastHook = hook;
-                // The hook switch may be a latching toggle (one transition per
-                // press) or a momentary button (a press is a quick 0->1->0
-                // pulse). Coalesce transitions that are close in time so each
-                // physical press yields a single intent, then let the app map it
-                // to answer/hang up based on the current call state.
-                const auto now = std::chrono::steady_clock::now();
-                if (now - ctx.lastHookEvent >= std::chrono::milliseconds(300)) {
-                    ctx.lastHookEvent = now;
-                    qCDebug(LOG_CALLCTL) << "hook switch pressed";
-                    Q_EMIT parent_.hookSwitchPressed();
-                }
+                // The HID Telephony hook switch is an absolute on/off control:
+                // hook == true means off-hook ("be in a call"), false means
+                // on-hook ("hang up"). Report the new state and let the app map
+                // it to answer/hang up based on the current call state. This is
+                // what prevents the off-hook report that some devices echo when
+                // we drive the off-hook LED from being read as a hang up.
+                qCDebug(LOG_CALLCTL) << "hook switch changed, offHook=" << hook;
+                Q_EMIT parent_.hookSwitchChanged(hook);
             }
         }
         if (ctx.layout.mute.valid && reportMatches(ctx.layout.mute, numbered, buf, n)) {
@@ -544,6 +557,12 @@ CallControlDevice::setMuted(bool muted)
         return;
     pimpl_->muted_ = muted;
     pimpl_->applyLeds();
+}
+
+bool
+CallControlDevice::hasDevice() const
+{
+    return pimpl_->hasDevice();
 }
 
 #include "callcontroldevice.moc"
