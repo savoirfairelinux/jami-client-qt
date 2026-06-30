@@ -183,7 +183,7 @@ CallAdapter::connectCallControlDevice()
 void
 CallAdapter::updateCallControlLeds()
 {
-    if (!callDevice_)
+    if (!callDevice_ || !callDevice_->hasDevice())
         return;
     callDevice_->setRinging(deviceRinging_);
     callDevice_->setInCall(deviceInCall_);
@@ -203,7 +203,10 @@ CallAdapter::updateCallControlLeds()
 void
 CallAdapter::syncCallControlDevice(int statusInt, const QString& accountId, const QString& convUid)
 {
-    if (!callDevice_)
+    // ponytail: skipped if no device is connected. A device hot-plugged mid-call
+    // won't track the active call until the next call-status change; add a
+    // device-connected re-sync if that case matters.
+    if (!callDevice_ || !callDevice_->hasDevice())
         return;
     using lrc::api::call::Status;
 
