@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c038c33b_52eb5dbd",
+        "filename": "src/app/calladapter.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-30T21:26:43Z",
+      "side": 1,
+      "message": "[warning] Line 208: This early return skips the call-control state bookkeeping whenever no HID device is currently attached, so a device plugged in during an active/ringing call cannot be initialized with the current call state. The comment documents the regression rather than preventing it. Keep updating the cached call-control state regardless of device presence, and gate only the HID I/O/LED application on `hasDevice()`.\n```suggestion\n    // Keep call-control state in sync even with no connected device so a\n    // hot-plugged device can be initialized with the current call state.\n```\nMove the `hasDevice()` check to just before the code that writes to the physical device, or trigger a full re-sync from the device-connected path.",
+      "revId": "34dcd7d453a9595d79072fcb132a8d1c63a95169",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
