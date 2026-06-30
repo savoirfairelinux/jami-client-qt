@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "213746ba_0c68fc57",
+        "filename": "src/app/platform/linux/callcontroldevice.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 398,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-30T20:55:22Z",
+      "side": 1,
+      "message": "[warning] Line 398: This now treats every read error except EAGAIN/EWOULDBLOCK as device removal. `read(2)` can also fail with `EINTR` when interrupted by a signal, which should not disconnect a valid HID device. Please retry on `EINTR` before falling through to `removeDevice()`.\n\n```suggestion\n            if (n \u003c 0) {\n                if (errno \u003d\u003d EINTR)\n                    continue;\n                if (errno \u003d\u003d EAGAIN || errno \u003d\u003d EWOULDBLOCK)\n                    break; // no more data for now\n            }\n```",
+      "revId": "eb98f2f8e6670d7306a377ad9e8bf564a19230c3",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
