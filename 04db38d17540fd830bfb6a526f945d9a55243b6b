@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "74709fd4_4993831b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-06-30T19:38:49Z",
+      "side": 1,
+      "message": "Commit message is longer than 50 chars. https://docs.jami.net/en_US/contribute/index.html#commit-message-guidelines",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 104
+      },
+      "revId": "04db38d17540fd830bfb6a526f945d9a55243b6b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "afc252f5_7b4e9b45",
         "filename": "src/app/settingsview/components/PluginStoreListView.qml",
         "patchSetId": 3
