@@ -43,6 +43,10 @@ public:
     void setInCall(bool inCall);
     void setMuted(bool muted);
 
+    // True when at least one call-control device is currently connected. Lets
+    // callers skip per-call bookkeeping on the common no-device path.
+    bool hasDevice() const;
+
 Q_SIGNALS:
     // The user pressed the hook-switch button. The hook switch is a toggle whose
     // physical state can drift out of sync with the call, so the press is
@@ -51,6 +55,9 @@ Q_SIGNALS:
     void hookSwitchPressed();
     // The user pressed the mute button.
     void muteToggleRequested();
+    // A call-control device became available (e.g. hot-plugged), so the current
+    // call state should be re-applied to it.
+    void deviceConnected();
 
 private:
     class Impl;

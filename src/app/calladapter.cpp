@@ -178,12 +178,15 @@ CallAdapter::connectCallControlDevice()
                 muteAudioToggle(deviceCallAccountId_, deviceCallConvUid_);
         },
         Qt::QueuedConnection);
+
+    // A device plugged in mid-call must pick up the current call state.
+    connect(callDevice_, &CallControlDevice::deviceConnected, this, [this] { updateCallControlLeds(); }, Qt::QueuedConnection);
 }
 
 void
 CallAdapter::updateCallControlLeds()
 {
-    if (!callDevice_)
+    if (!callDevice_ || !callDevice_->hasDevice())
         return;
     callDevice_->setRinging(deviceRinging_);
     callDevice_->setInCall(deviceInCall_);
@@ -203,6 +206,10 @@ CallAdapter::updateCallControlLeds()
 void
 CallAdapter::syncCallControlDevice(int statusInt, const QString& accountId, const QString& convUid)
 {
+    // The bookkeeping below is cheap and must run even with no device connected,
+    // so a device hot-plugged mid-call can be initialized with the current call
+    // state. The actual device I/O is gated on hasDevice() in
+    // updateCallControlLeds().
     if (!callDevice_)
         return;
     using lrc::api::call::Status;
