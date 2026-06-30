@@ -108,7 +108,19 @@ TestWrapper {
             endCurrentCall()
         }
 
-        // Switching accounts while PiP is open must not close it.
+        // A call that is only ringing (not answered) must not count as an
+        // in-progress call: navigating to the other account during a ringing
+        // call must not auto-pop a PiP that looks like the call was answered.
+        function test_ringingCall_isNotInProgress() {
+            startCallAndWait()
+
+            verify(CallPipWindowManager.convHasActiveCall(aliceConvId, aliceId),
+                   "The ringing call should still register as an active call")
+            verify(!CallPipWindowManager.convHasInProgressCall(aliceConvId, aliceId),
+                   "A ringing (unanswered) call must not be reported as in-progress")
+
+            endCurrentCall()
+        }
         // The onAccountChanged handler was intentionally removed; PiP must persist.
         function test_accountSwitch_doesNotClosePip() {
             startCallAndWait()

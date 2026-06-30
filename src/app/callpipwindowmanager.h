@@ -126,6 +126,12 @@ public:
     // Returns true if the given conversation has an active call.
     Q_INVOKABLE bool convHasActiveCall(const QString& convId, const QString& accountId) const;
 
+    // Returns true only if the given conversation has an established (answered)
+    // call, i.e. one that is in progress, connected or held. Calls that are still
+    // ringing/connecting are not yet something the user is "in", so they are
+    // excluded; used to decide whether navigating away should pop the call out.
+    Q_INVOKABLE bool convHasInProgressCall(const QString& convId, const QString& accountId) const;
+
     // Close the PiP window and select the call's conversation in the main window,
     // effectively "reabsorbing" the call view back into the main window.
     Q_INVOKABLE void reabsorb();

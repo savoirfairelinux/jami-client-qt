@@ -512,7 +512,7 @@ Window {
                     && appWindow._prevConvForAutoPip.length > 0
                     && appWindow._prevConvForAutoPip !== newConvId
                     && !CallPipWindowManager.isPipActive
-                    && CallPipWindowManager.convHasActiveCall(appWindow._prevConvForAutoPip,
+                    && CallPipWindowManager.convHasInProgressCall(appWindow._prevConvForAutoPip,
                                                               appWindow._prevAccountForAutoPip)) {
                 CallPipWindowManager.popOutCall(appWindow._prevConvForAutoPip,
                                                 appWindow._prevAccountForAutoPip);

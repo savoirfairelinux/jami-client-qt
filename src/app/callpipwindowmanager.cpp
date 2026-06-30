@@ -65,6 +65,28 @@ CallPipWindowManager::convHasActiveCall(const QString& convId, const QString& ac
     return !lrcInstance_->getCallIdForConversationUid(convId, accountId).isEmpty();
 }
 
+bool
+CallPipWindowManager::convHasInProgressCall(const QString& convId, const QString& accountId) const
+{
+    try {
+        const QString callId = lrcInstance_->getCallIdForConversationUid(convId, accountId);
+        if (callId.isEmpty())
+            return false;
+        auto& accInfo = lrcInstance_->accountModel().getAccountInfo(accountId);
+        if (!accInfo.callModel->hasCall(callId))
+            return false;
+        using lrc::api::call::Status;
+        const auto status = accInfo.callModel->getCall(callId).status;
+        // Only an answered call (both ends connected) should auto-pop to PiP;
+        // a still-ringing outgoing/incoming call must not, or navigating to the
+        // other account would spawn a PiP that looks like the call was answered.
+        return status == Status::IN_PROGRESS || status == Status::CONNECTED
+               || status == Status::PAUSED;
+    } catch (const std::exception&) {
+        return false;
+    }
+}
+
 void
 CallPipWindowManager::popOutCall(const QString& convId, const QString& accountId)
 {
