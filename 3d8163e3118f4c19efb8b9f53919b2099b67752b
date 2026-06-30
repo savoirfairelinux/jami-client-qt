@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2df451f0_601e05f2",
+        "filename": "src/app/platform/linux/callcontroldevice.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 430,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-06-30T22:52:59Z",
+      "side": 1,
+      "message": "[warning] Line 430: This removes the previous coalescing for momentary hook buttons and now forwards both edges as absolute state changes. A quick 0-\u003e1-\u003e0 press used to produce one logical hook intent; now the release edge can be interpreted as `HangUp` if the call becomes active before it is processed, causing an answered call to be dropped immediately on devices that report hook as a momentary pulse. Please preserve pulse coalescing for short transitions while still handling true absolute on-hook/off-hook changes.\n```suggestion\n                const auto now \u003d std::chrono::steady_clock::now();\n                if (!hook \u0026\u0026 now - ctx.lastHookEvent \u003c std::chrono::milliseconds(300))\n                    return;\n                ctx.lastHookEvent \u003d now;\n                qCDebug(LOG_CALLCTL) \u003c\u003c \"hook switch changed, offHook\u003d\" \u003c\u003c hook;\n                Q_EMIT parent_.hookSwitchChanged(hook);\n```",
+      "revId": "3d8163e3118f4c19efb8b9f53919b2099b67752b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
