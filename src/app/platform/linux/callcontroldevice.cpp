@@ -38,6 +38,7 @@
 
 #include <algorithm>
 #include <array>
+#include <cerrno>
 #include <chrono>
 #include <cstdint>
 #include <vector>
@@ -285,6 +286,8 @@ public:
     bool inCall_ {false};
     bool muted_ {false};
 
+    bool hasDevice() const { return !devices_.empty(); }
+
 private:
     struct DeviceCtx
     {
@@ -388,9 +391,22 @@ private:
         uint8_t buf[64];
         for (;;) {
             const ssize_t n = ::read(ctx.fd, buf, sizeof(buf));
-            if (n <= 0)
-                break;
-            handleReport(ctx, buf, static_cast<size_t>(n));
+            if (n > 0) {
+                handleReport(ctx, buf, static_cast<size_t>(n));
+                continue;
+            }
+            if (n < 0) {
+                if (errno == EINTR)
+                    continue; // interrupted by a signal, retry
+                if (errno == EAGAIN || errno == EWOULDBLOCK)
+                    break; // no more data for now
+            }
+            // EOF (n == 0) or a hard error such as ENODEV on unplug: the device
+            // is gone. Remove it now instead of spinning on POLLHUP until the
+            // udev "remove" event arrives. removeDevice() invalidates ctx, so
+            // we must return immediately.
+            removeDevice(sys);
+            return;
         }
     }
 
@@ -544,6 +560,12 @@ CallControlDevice::setMuted(bool muted)
         return;
     pimpl_->muted_ = muted;
     pimpl_->applyLeds();
+}
+
+bool
+CallControlDevice::hasDevice() const
+{
+    return pimpl_->hasDevice();
 }
 
 #include "callcontroldevice.moc"

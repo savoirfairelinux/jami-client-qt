@@ -41,3 +41,9 @@ CallControlDevice::setInCall(bool)
 void
 CallControlDevice::setMuted(bool)
 {}
+
+bool
+CallControlDevice::hasDevice() const
+{
+    return false;
+}
