@@ -73,9 +73,17 @@ main(int argc, char* argv[])
     QApplication::setHighDpiScaleFactorRoundingPolicy(Qt::HighDpiScaleFactorRoundingPolicy::PassThrough);
 
 #if WITH_WEBENGINE
-    qputenv("QTWEBENGINE_CHROMIUM_FLAGS",
-            "--disable-web-security"
-            " --single-process");
+    // Preserve any user-provided QTWEBENGINE_CHROMIUM_FLAGS instead of
+    // overwriting them, so a problematic GPU driver can be worked around from
+    // the environment, e.g. QTWEBENGINE_CHROMIUM_FLAGS="--disable-gpu" to avoid
+    // a Chromium GPU crash. ponytail: --single-process means the GPU runs
+    // in-process, so such a crash is fatal; drop it for out-of-process GPU
+    // isolation if that trade-off ever changes.
+    QByteArray chromiumFlags = qgetenv("QTWEBENGINE_CHROMIUM_FLAGS");
+    if (!chromiumFlags.isEmpty())
+        chromiumFlags.append(' ');
+    chromiumFlags.append("--disable-web-security --single-process");
+    qputenv("QTWEBENGINE_CHROMIUM_FLAGS", chromiumFlags);
     QtWebEngineQuick::initialize();
 #endif
 
