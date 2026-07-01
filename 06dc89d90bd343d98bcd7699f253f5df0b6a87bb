@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1e13585c_a097ed72",
+        "filename": "src/app/collaborativeadapter.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-07-01T03:00:11Z",
+      "side": 1,
+      "message": "[error] Line 183: This adds a call to ConfigurationManager::getCollaborativeDocuments(), but this patch only adds the method to the Qt wrapper. collaborativeadapter.cpp includes the DBus ConfigurationManager interface, so DBus builds will fail unless the DBus binding exposes the same method as well. Please update/regenerate the DBus configuration manager interface too, or guard the call behind the same abstraction used for both backends.\n\n```suggestion\n// Ensure dbus/configurationmanager.h also exposes:\nQ_NOREPLY VectorMapStringString getCollaborativeDocuments(const QString\u0026 accountId,\n                                                          const QString\u0026 conversationId);\n```",
+      "revId": "06dc89d90bd343d98bcd7699f253f5df0b6a87bb",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
