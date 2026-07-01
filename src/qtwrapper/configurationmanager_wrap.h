@@ -1043,6 +1043,10 @@ public Q_SLOTS: // METHODS
         auto members = libjami::getConversationMembers(accountId.toStdString(), conversationId.toStdString());
         return convertVecMap(members);
     }
+    VectorMapStringString getCollaborativeDocuments(const QString& accountId, const QString& conversationId)
+    {
+        return convertVecMap(libjami::getCollaborativeDocuments(accountId.toStdString(), conversationId.toStdString()));
+    }
     QString createCollaborativeDocument(const QString& accountId,
                                         const QString& conversationId,
                                         const QString& name,

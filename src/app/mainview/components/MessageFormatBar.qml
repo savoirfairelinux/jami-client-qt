@@ -60,7 +60,11 @@ Rectangle {
         target: MessagesAdapter.messageListModel
         ignoreUnknownSignals: true
         function onCountChanged() {
-            messageBarRowLayout.updateHasEditableDocuments();
+            // documents() reads the conversation history from the daemon; a conversation
+            // that has documents keeps having them, so only rescan while none is known to
+            // avoid a git scan on every incoming message.
+            if (!messageBarRowLayout.hasEditableDocuments)
+                messageBarRowLayout.updateHasEditableDocuments();
         }
     }
 
