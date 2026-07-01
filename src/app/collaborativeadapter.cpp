@@ -22,6 +22,7 @@
 #include <api/messagelistmodel.h>
 
 #include <QSet>
+#include <algorithm>
 
 CollaborativeAdapter::CollaborativeAdapter(LRCInstance* instance, QObject* parent)
     : QmlAdapterBase(instance, parent)
@@ -176,41 +177,40 @@ CollaborativeAdapter::documents(const QString& convId)
 {
     QVariantList result;
     const auto accountId = lrcInstance_->get_currentAccountId();
-    const auto& conv = lrcInstance_->getConversationFromConvUid(convId);
-    auto* model = conv.interactions.get();
-    if (!model)
-        return result;
 
+    // Ask the daemon for every document in the conversation (read from its history),
+    // so the list is complete regardless of which messages the UI has paged in.
+    const auto docs = ConfigurationManager::instance().getCollaborativeDocuments(accountId, convId);
     QSet<QString> seen;
-    for (int i = 0; i < model->rowCount(); ++i) {
-        const auto idx = model->index(i, 0);
-        const auto type = static_cast<interaction::Type>(
-            model->data(idx, MessageList::Role::Type).toInt());
-        if (type != interaction::Type::COLLAB_DOC)
-            continue;
-        const auto documentId = model->data(idx, MessageList::Role::DocumentId).toString();
+    for (const auto& commit : docs) {
+        const auto documentId = commit.value(QStringLiteral("uri"));
         if (documentId.isEmpty() || seen.contains(documentId))
             continue;
         seen.insert(documentId);
 
-        // Prefer the live CRDT name (reflects renames); fall back to the
-        // announcing commit's body for documents not currently in memory.
+        // Prefer the live CRDT name (reflects renames); fall back to the announcing
+        // commit's display name.
         QString name = ConfigurationManager::instance()
                            .collaborativeDocumentName(accountId, convId, documentId);
         if (name.isEmpty())
-            name = model->data(idx, MessageList::Role::Body).toString();
+            name = commit.value(QStringLiteral("displayName"));
 
         QVariantMap entry;
         entry[QStringLiteral("documentId")] = documentId;
         entry[QStringLiteral("name")] = name;
-        entry[QStringLiteral("author")] = model->data(idx, MessageList::Role::Author).toString();
-        const auto kind = model->data(idx, MessageList::Role::DocumentKind).toString();
+        entry[QStringLiteral("author")] = commit.value(QStringLiteral("author"));
+        const auto kind = commit.value(QStringLiteral("kind"));
         entry[QStringLiteral("kind")] = kind == QStringLiteral("rich") ? kind : QStringLiteral("text");
         entry[QStringLiteral("hasUpdate")] = hasUnreadDocumentUpdateForDocument(convId, documentId);
-        entry[QStringLiteral("timestamp")] = model->data(idx, MessageList::Role::Timestamp).toLongLong();
-        result.prepend(entry); // most recent first
+        entry[QStringLiteral("timestamp")] = commit.value(QStringLiteral("timestamp")).toLongLong();
+        result.append(entry);
     }
 
+    // Most recent first.
+    std::sort(result.begin(), result.end(), [](const QVariant& a, const QVariant& b) {
+        return a.toMap().value(QStringLiteral("timestamp")).toLongLong()
+               > b.toMap().value(QStringLiteral("timestamp")).toLongLong();
+    });
     return result;
 }
 
