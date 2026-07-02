@@ -432,6 +432,8 @@ Item {
     property string callId: qsTr("Call ID")
     property string sockets: qsTr("Sockets")
     property string videoCodec: qsTr("Video codec")
+    property string videoProfileSent: qsTr("Video profile (sent)")
+    property string videoProfileReceived: qsTr("Video profile (received)")
     property string hardwareAcceleration: qsTr("Hardware acceleration")
     property string videoBitrate: qsTr("Video bitrate")
     property string audioCodec: qsTr("Audio codec")

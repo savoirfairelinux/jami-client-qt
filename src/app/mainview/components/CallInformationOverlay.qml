@@ -140,6 +140,24 @@ BaseModalDialog {
 
                     Text {
                         color: JamiTheme.textColor
+                        text: JamiStrings.videoProfileSent + ": " + VIDEO_PROFILE_SENT
+                        font.pointSize: JamiTheme.textFontPointSize
+                        wrapMode: Text.WrapAnywhere
+                        width: callInfoListview.width
+                        visible: typeof VIDEO_PROFILE_SENT !== "undefined" && VIDEO_PROFILE_SENT.length > 0
+                    }
+
+                    Text {
+                        color: JamiTheme.textColor
+                        text: JamiStrings.videoProfileReceived + ": " + VIDEO_PROFILE_RECEIVED
+                        font.pointSize: JamiTheme.textFontPointSize
+                        wrapMode: Text.WrapAnywhere
+                        width: callInfoListview.width
+                        visible: typeof VIDEO_PROFILE_RECEIVED !== "undefined" && VIDEO_PROFILE_RECEIVED.length > 0
+                    }
+
+                    Text {
+                        color: JamiTheme.textColor
                         text: JamiStrings.audioCodec + ": " + AUDIO_CODEC + " " + AUDIO_SAMPLE_RATE + " Hz"
                         font.pointSize: JamiTheme.textFontPointSize
                         wrapMode: Text.WrapAnywhere
