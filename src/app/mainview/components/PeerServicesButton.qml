@@ -414,7 +414,7 @@ ComboBox {
         id: servicesPopup
 
         parent: root
-        x: root.width - width
+        x: viewCoordinator.isInSinglePaneMode ? root.width - JamiTheme.iconButtonLarge : root.width - width
         y: root.height
         width: 300
         padding: 4
