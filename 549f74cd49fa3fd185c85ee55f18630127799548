@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "251cd13c_d7253f65",
+        "filename": "src/app/mainview/components/ConversationStatusView.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-07-03T15:04:24Z",
+      "side": 1,
+      "message": "Prefer `NewIconButton` when possible",
+      "range": {
+        "startLine": 89,
+        "startChar": 0,
+        "endLine": 101,
+        "endChar": 13
+      },
+      "revId": "549f74cd49fa3fd185c85ee55f18630127799548",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1e67e9f7_03da5189",
+        "filename": "src/app/settingsview/components/ConnectionMonitoringTable.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-07-03T15:04:24Z",
+      "side": 1,
+      "message": "Should probably be `real`s, should probably be theme variables.",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 48,
+        "endChar": 42
+      },
+      "revId": "549f74cd49fa3fd185c85ee55f18630127799548",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
