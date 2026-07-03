@@ -63,12 +63,12 @@ Control {
         }
 
         function onTitleChanged() {
-            if (!titleFadeAnimation.running)
+            if (!titleFadeAnimation.running && userAvatar.imageId === convContext.id)
                 root.updateHeaderProfile();
         }
 
         function onDescriptionChanged() {
-            if (!titleFadeAnimation.running)
+            if (!titleFadeAnimation.running && userAvatar.imageId === convContext.id)
                 root.updateHeaderProfile();
         }
 
