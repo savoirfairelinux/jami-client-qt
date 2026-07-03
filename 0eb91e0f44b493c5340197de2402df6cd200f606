@@ -18,6 +18,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6c1e7f17_09bd7b89",
+        "filename": "src/app/CallPipWindow.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-07-03T14:55:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e65ef717_5c368de8",
+      "revId": "0eb91e0f44b493c5340197de2402df6cd200f606",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "70510fb7_a05e4f6c",
@@ -31,6 +49,24 @@
       "writtenOn": "2026-05-26T16:58:45Z",
       "side": 1,
       "message": "[🟡 Suggestion] Line 65: When preserving the existing area after a video aspect-ratio change, the computed height can end up below `minimumHeight` after `newWidth` is clamped to `minimumWidth`. In that case `setAspectGeometry()` applies an invalid geometry attempt and the final window can remain off-aspect or depend on platform clamping. Re-check both dimensions after either clamp. For example:\n```suggestion\n            newWidth \u003d Math.max(minimumWidth, Math.round(Math.sqrt(area / videoInvAspect)));\n            newHeight \u003d Math.round(newWidth * videoInvAspect);\n            if (newHeight \u003c minimumHeight) {\n                newHeight \u003d minimumHeight;\n                newWidth \u003d Math.max(minimumWidth, Math.round(newHeight / videoInvAspect));\n            }\n```\nThe same bidirectional clamp should be applied to every path that derives one dimension from the other.",
+      "revId": "0eb91e0f44b493c5340197de2402df6cd200f606",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5e05a443_f781556e",
+        "filename": "src/app/CallPipWindow.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-07-03T14:55:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "70510fb7_a05e4f6c",
       "revId": "0eb91e0f44b493c5340197de2402df6cd200f606",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
