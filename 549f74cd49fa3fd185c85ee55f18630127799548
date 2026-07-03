@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "561d5fc7_aaddafce",
+        "filename": "src/app/mainview/components/ConversationStatusView.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 6
+      },
+      "writtenOn": "2026-07-03T17:18:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "251cd13c_d7253f65",
+      "range": {
+        "startLine": 89,
+        "startChar": 0,
+        "endLine": 101,
+        "endChar": 13
+      },
+      "revId": "549f74cd49fa3fd185c85ee55f18630127799548",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1e67e9f7_03da5189",
@@ -37,6 +61,30 @@
       "writtenOn": "2026-07-03T15:04:24Z",
       "side": 1,
       "message": "Should probably be `real`s, should probably be theme variables.",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 48,
+        "endChar": 42
+      },
+      "revId": "549f74cd49fa3fd185c85ee55f18630127799548",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dbf8ad2b_f086c8ff",
+        "filename": "src/app/settingsview/components/ConnectionMonitoringTable.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 6
+      },
+      "writtenOn": "2026-07-03T17:18:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1e67e9f7_03da5189",
       "range": {
         "startLine": 40,
         "startChar": 0,
