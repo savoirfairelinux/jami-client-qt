@@ -1069,6 +1069,10 @@ Item {
     property string copyAllData: qsTr("Copy all data")
     property string remote: qsTr("Remote: %1")
     property string view: qsTr("View")
+    property string swarmConnectivity: qsTr("Swarm connectivity")
+    property string connectionTime: qsTr("Connection Time")
+    property string searchedContact: qsTr("Searched contact")
+    property string noChannels: qsTr("No channels")
 
     // Spell checker
     property string checkSpelling: qsTr("Check spelling while typing")
