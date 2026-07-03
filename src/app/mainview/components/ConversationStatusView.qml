@@ -65,309 +65,305 @@ Item {
         color: JamiTheme.globalIslandColor
         radius: JamiTheme.avatarBasedRadius
 
+        // Panel header with title and close button
+        Item {
+            id: panelHeader
+            anchors.top: parent.top
+            anchors.left: parent.left
+            anchors.right: parent.right
+            height: 64
+
+            Text {
+                anchors.left: parent.left
+                anchors.leftMargin: 20
+                anchors.right: closeButton.left
+                anchors.rightMargin: 8
+                anchors.verticalCenter: parent.verticalCenter
+                text: JamiStrings.swarmConnectivity
+                color: JamiTheme.textColor
+                font.weight: Font.DemiBold
+                font.pixelSize: 16
+                elide: Text.ElideRight
+            }
+
+            NewIconButton {
+                id: closeButton
+                anchors.right: parent.right
+                anchors.rightMargin: 16
+                anchors.verticalCenter: parent.verticalCenter
+                iconSize: root.iconButtonSize
+                iconSource: JamiResources.round_close_24dp_svg
+                backgroundColor: JamiTheme.transparentColor
+                iconColor: JamiTheme.textColor
+                toolTipText: JamiStrings.close
+                onClicked: extrasPanel.switchToPanel(ChatView.SwarmDetailsPanel)
+            }
+        }
+
         ScrollView {
             id: scrollView
-            anchors.fill: parent
+            anchors.top: panelHeader.bottom
+            anchors.left: parent.left
+            anchors.right: parent.right
+            anchors.bottom: parent.bottom
             clip: true
 
             ColumnLayout {
                 width: scrollView.availableWidth
-                spacing: 20
-
-                // Routing table Title
-                Text {
-                    text: qsTr("Swarm routing table")
-                    color: JamiTheme.textColor
-                    font.weight: Font.DemiBold
-                    font.pixelSize: 16
-                    Layout.fillWidth: true
-                    Layout.topMargin: 20
-                    Layout.leftMargin: 10
-                }
+                spacing: 16
 
                 // Routing table
-                ListView {
-                    id: listview
+                Item {
+                    id: routingSection
                     Layout.fillWidth: true
-                    Layout.preferredHeight: contentHeight
+                    Layout.leftMargin: 16
+                    Layout.rightMargin: 16
+                    Layout.topMargin: 8
+                    Layout.preferredHeight: visible ? routingHeader.height + listview.contentHeight : 0
+                    visible: listview.count > 0
 
-                    spacing: 5
-                    cacheBuffer: 10
-
-                    boundsBehavior: Flickable.StopAtBounds
-                    interactive: false
-
-                    header: Rectangle {
-                        color: JamiTheme.connectionMonitoringHeaderColor
-                        height: 40
-                        width: listview.width
+                    Item {
+                        id: routingHeader
+                        anchors.top: parent.top
+                        anchors.left: parent.left
+                        anchors.right: parent.right
+                        height: listview.rowHeight
 
                         RowLayout {
                             anchors.fill: parent
-                            Rectangle {
-                                id: device
+                            spacing: listview.colSpacing
+
+                            Text {
                                 Layout.fillWidth: true
-                                Layout.minimumWidth: 50
-                                height: 40
-                                color: JamiTheme.transparentColor
-                                Layout.leftMargin: 10
-                                Text {
-                                    id: deviceText
-                                    color: JamiTheme.textColor
-                                    anchors.verticalCenter: parent.verticalCenter
-                                    text: JamiStrings.device
-                                }
+                                text: JamiStrings.device
+                                color: JamiTheme.textColor
+                                opacity: 0.6
+                                font.weight: Font.DemiBold
+                                font.pixelSize: 12
+                                elide: Text.ElideRight
                             }
 
-                            Rectangle {
-                                width: 40
-                                height: 40
-                                color: JamiTheme.transparentColor
+                            Item {
+                                Layout.preferredWidth: listview.connectionColWidth
                             }
 
-                            Rectangle {
-                                id: connection
-                                width: 130
-                                height: 40
-                                radius: 5
-                                color: JamiTheme.transparentColor
-                                Text {
-                                    id: connectionText
-                                    color: JamiTheme.textColor
-                                    anchors.verticalCenter: parent.verticalCenter
-                                    anchors.leftMargin: 10
-                                    text: JamiStrings.connection
-                                }
-                            }
-
-                            Rectangle {
-                                id: connectionTime
-                                width: 130
-                                height: 40
-                                color: JamiTheme.transparentColor
-                                Text {
-                                    id: connectionTimeText
-                                    color: JamiTheme.textColor
-                                    anchors.verticalCenter: parent.verticalCenter
-                                    anchors.leftMargin: 10
-                                    text: qsTr("Connection Time")
-                                }
+                            Text {
+                                Layout.preferredWidth: listview.timeColWidth
+                                text: JamiStrings.connectionTime
+                                color: JamiTheme.textColor
+                                opacity: 0.6
+                                font.weight: Font.DemiBold
+                                font.pixelSize: 12
+                                elide: Text.ElideRight
                             }
                         }
                     }
 
-                    model: ConversationStatusModel
+                    ListView {
+                        id: listview
+                        anchors.top: routingHeader.bottom
+                        anchors.left: parent.left
+                        anchors.right: parent.right
+                        height: contentHeight
 
-                    Component.onCompleted: {
-                        ConversationStatusModel.conversationId = CurrentConversation.id;
-                        ConversationStatusModel.update();
-                    }
+                        spacing: 0
+                        cacheBuffer: 10
 
-                    delegate: Rectangle {
-                        id: delegate
-                        height: Count == 0 ? 0 : 10 + 20 * Count
-                        width: listview.width
-                        color: index % 2 === 0 ? JamiTheme.connectionMonitoringTableColor1 : JamiTheme.connectionMonitoringTableColor2
+                        boundsBehavior: Flickable.StopAtBounds
+                        interactive: false
 
-                        ListView {
-                            id: listView2
-                            height: 20 * Count
-                            width: parent.width
+                        readonly property int colSpacing: 10
+                        readonly property int connectionColWidth: 40
+                        readonly property int timeColWidth: 104
+                        readonly property int rowHeight: 34
 
-                            anchors.verticalCenter: parent.verticalCenter
+                        model: ConversationStatusModel
 
-                            spacing: 0
+                        Component.onCompleted: {
+                            ConversationStatusModel.conversationId = CurrentConversation.id;
+                            ConversationStatusModel.update();
+                        }
 
-                            model: Count
+                        delegate: Item {
+                            id: nodeDelegate
+                            width: listview.width
+                            height: Count === 0 ? 0 : listview.rowHeight * Count
 
-                            boundsBehavior: Flickable.StopAtBounds
-                            interactive: false
+                            ListView {
+                                id: deviceRows
+                                anchors.fill: parent
 
-                            delegate: RowLayout {
-                                id: rowLayoutDelegate
-                                height: 20
-                                width: listview.width
+                                interactive: false
+                                boundsBehavior: Flickable.StopAtBounds
+                                spacing: 0
 
-                                Rectangle {
-                                    height: 20
-                                    Layout.fillWidth: true
-                                    Layout.minimumWidth: 50
-                                    Layout.alignment: Qt.AlignVCenter
-                                    color: delegate.color
-                                    Text {
-                                        id: delegateDeviceText
-                                        color: JamiTheme.textColor
-                                        anchors.verticalCenter: parent.verticalCenter
-                                        anchors.left: parent.left
-                                        anchors.leftMargin: 10
-                                        text: {
-                                            if (DeviceId[index] !== undefined) {
-                                                return DeviceId[index].substring(0, 16);
-                                            } else {
-                                                return "";
-                                            }
-                                        }
-                                        width: parent.width - 10
-                                        elide: Text.ElideRight
-                                        MouseArea {
-                                            anchors.fill: parent
-                                            hoverEnabled: true
-                                            onEntered: {
-                                                delegateDeviceText.font.underline = true;
-                                            }
-                                            onExited: {
-                                                delegateDeviceText.font.underline = false;
-                                                if (DeviceId[index] !== undefined) {
-                                                    tooltipDevice.text = DeviceId[index];
-                                                }
-                                            }
+                                model: Count
 
-                                            MaterialToolTip {
-                                                id: tooltipDevice
-                                                visible: delegateDeviceText.font.underline
-                                                text: DeviceId[index] !== undefined ? DeviceId[index] : ""
-                                            }
-                                            onClicked: {
-                                                var fullKey = DeviceId[index] !== undefined ? DeviceId[index] : "";
-                                                tooltipDevice.text = fullKey + " (" + JamiStrings.logsViewCopied + ")";
-                                                UtilsAdapter.setClipboardText(fullKey);
-                                            }
-                                        }
-                                    }
-                                }
+                                delegate: Item {
+                                    id: deviceRow
+                                    width: deviceRows.width
+                                    height: listview.rowHeight
 
-                                Rectangle {
-                                    height: 20
-                                    width: 20
-                                    color: delegate.color
-                                    Layout.alignment: Qt.AlignVCenter
-                                    visible: IsMobile[index] === "true"
-                                    ResponsiveImage {
-                                        anchors.centerIn: parent
-                                        width: 20
-                                        height: 20
-                                        source: JamiResources.phone_in_talk_24dp_svg
-                                        color: JamiTheme.textColor
-                                    }
-                                }
-
-                                Rectangle {
-                                    id: connectionRectangle
-                                    color: delegate.color
-                                    height: 20
-                                    Layout.preferredWidth: 130
-                                    Layout.alignment: Qt.AlignVCenter
-                                    property var status: Status[index]
-                                    ResponsiveImage {
-                                        id: connectionImage
-                                        anchors.left: parent.left
-                                        anchors.verticalCenter: parent.verticalCenter
-                                        source: {
-                                            if (connectionRectangle.status === 0) {
-                                                return JamiResources.connected_black_24dp_svg;
-                                            } else {
-                                                return JamiResources.connecting_black_24dp_svg;
-                                            }
-                                        }
-                                        RotationAnimation on rotation {
-                                            running: connectionRectangle.status !== 0
-                                            from: 0
-                                            to: 360
-                                            duration: 3000
-                                            loops: Animation.Infinite
-                                            direction: RotationAnimation.Clockwise
-                                        }
-                                        color: {
-                                            if (connectionRectangle.status === 0) {
-                                                return "#009c7f";
-                                            } else {
-                                                if (connectionRectangle.status === 4) {
-                                                    return "red";
-                                                } else {
-                                                    return "#ff8100";
-                                                }
-                                            }
-                                        }
-                                    }
-                                    Text {
-                                        id: connectionText
-                                        anchors.left: connectionImage.right
-                                        anchors.verticalCenter: parent.verticalCenter
-                                        anchors.leftMargin: 5
-                                        text: if (connectionRectangle.status === 0) {
+                                    readonly property int connStatus: Status[index] === undefined ? -1 : Status[index]
+                                    readonly property color connColor: connStatus === 0 ? "#009c7f" : (connStatus === 4 ? "#e5484d" : "#ff8100")
+                                    readonly property string connLabel: {
+                                        switch (connStatus) {
+                                        case 0:
                                             return JamiStrings.connected;
-                                        } else {
-                                            if (connectionRectangle.status === 1) {
-                                                return JamiStrings.connectingTLS;
-                                            } else {
-                                                if (connectionRectangle.status === 2) {
-                                                    return JamiStrings.connectingICE;
-                                                } else {
-                                                    if (connectionRectangle.status === 3) {
-                                                        return JamiStrings.connecting;
-                                                    } else {
-                                                        return JamiStrings.waiting;
+                                        case 1:
+                                            return JamiStrings.connectingTLS;
+                                        case 2:
+                                            return JamiStrings.connectingICE;
+                                        case 3:
+                                            return JamiStrings.connecting;
+                                        default:
+                                            return JamiStrings.waiting;
+                                        }
+                                    }
+
+                                    RowLayout {
+                                        anchors.fill: parent
+                                        spacing: listview.colSpacing
+
+                                        // Device id (+ mobile marker)
+                                        Item {
+                                            Layout.fillWidth: true
+                                            Layout.fillHeight: true
+
+                                            Row {
+                                                anchors.left: parent.left
+                                                anchors.verticalCenter: parent.verticalCenter
+                                                width: parent.width
+                                                spacing: 6
+
+                                                ResponsiveImage {
+                                                    anchors.verticalCenter: parent.verticalCenter
+                                                    visible: IsMobile[index] === "true"
+                                                    width: visible ? 18 : 0
+                                                    height: 18
+                                                    source: JamiResources.phone_in_talk_24dp_svg
+                                                    color: JamiTheme.textColor
+                                                }
+
+                                                Text {
+                                                    id: delegateDeviceText
+                                                    anchors.verticalCenter: parent.verticalCenter
+                                                    width: parent.width - (IsMobile[index] === "true" ? 24 : 0)
+                                                    text: DeviceId[index] !== undefined ? DeviceId[index] : ""
+                                                    color: deviceMouse.containsMouse ? JamiTheme.textColorHovered : JamiTheme.textColor
+                                                    font.family: JamiTheme.ubuntuMonoFontFamily
+                                                    font.pixelSize: 12
+                                                    elide: Text.ElideMiddle
+                                                }
+                                            }
+
+                                            MouseArea {
+                                                id: deviceMouse
+                                                anchors.fill: parent
+                                                hoverEnabled: true
+                                                cursorShape: Qt.PointingHandCursor
+                                                onExited: tooltipDevice.text = delegateDeviceText.text
+                                                onClicked: {
+                                                    var fullKey = DeviceId[index] !== undefined ? DeviceId[index] : "";
+                                                    tooltipDevice.text = fullKey + " (" + JamiStrings.logsViewCopied + ")";
+                                                    UtilsAdapter.setClipboardText(fullKey);
+                                                }
+
+                                                MaterialToolTip {
+                                                    id: tooltipDevice
+                                                    visible: deviceMouse.containsMouse
+                                                    text: DeviceId[index] !== undefined ? DeviceId[index] : ""
+                                                    toolTipFont: JamiTheme.ubuntuMonoFontFamily
+                                                }
+                                            }
+                                        }
+
+                                        // Connection state (icon only)
+                                        Item {
+                                            Layout.preferredWidth: listview.connectionColWidth
+                                            Layout.fillHeight: true
+
+                                            Rectangle {
+                                                id: statusBadge
+                                                anchors.centerIn: parent
+                                                width: 28
+                                                height: 28
+                                                radius: width / 2
+                                                color: Qt.rgba(deviceRow.connColor.r, deviceRow.connColor.g, deviceRow.connColor.b, 0.14)
+
+                                                ResponsiveImage {
+                                                    id: connectionImage
+                                                    anchors.centerIn: parent
+                                                    width: 18
+                                                    height: 18
+                                                    source: deviceRow.connStatus === 0 ? JamiResources.connected_black_24dp_svg : JamiResources.connecting_black_24dp_svg
+                                                    color: deviceRow.connColor
+
+                                                    RotationAnimation on rotation {
+                                                        running: deviceRow.connStatus !== 0
+                                                        from: 0
+                                                        to: 360
+                                                        duration: 3000
+                                                        loops: Animation.Infinite
+                                                        direction: RotationAnimation.Clockwise
+                                                    }
+                                                }
+
+                                                MouseArea {
+                                                    id: statusMouse
+                                                    anchors.fill: parent
+                                                    hoverEnabled: true
+
+                                                    MaterialToolTip {
+                                                        visible: statusMouse.containsMouse
+                                                        text: deviceRow.connLabel + " \u00b7 " + JamiStrings.remote.arg(RemoteAddress[index])
+                                                        toolTipFont: JamiTheme.ubuntuMonoFontFamily
                                                     }
                                                 }
                                             }
                                         }
-                                        color: connectionImage.color
-                                        property var tooltipText: JamiStrings.remote.arg(RemoteAddress[index])
-                                        MouseArea {
-                                            anchors.fill: parent
-                                            hoverEnabled: true
-                                            onEntered: {
-                                                connectionText.font.underline = true;
-                                            }
-                                            onExited: {
-                                                connectionText.font.underline = false;
-                                            }
 
-                                            MaterialToolTip {
-                                                visible: connectionText.font.underline
-                                                text: connectionText.tooltipText
-                                            }
-                                        }
-                                    }
-                                }
+                                        // Connection time
+                                        Item {
+                                            Layout.preferredWidth: listview.timeColWidth
+                                            Layout.fillHeight: true
 
-                                Rectangle {
-                                    id: connectionTimeRect
-                                    height: 20
-                                    Layout.preferredWidth: 130
-                                    Layout.alignment: Qt.AlignVCenter
-                                    color: delegate.color
-                                    Text {
-                                        anchors.left: parent.left
-                                        anchors.verticalCenter: parent.verticalCenter
-                                        anchors.leftMargin: 10
-                                        color: JamiTheme.textColor
-                                        text: {
-                                            if (ConnectionTime === undefined)
-                                                return "";
-                                            const time = ConnectionTime[index];
-                                            if (time === undefined || time === "")
-                                                return "";
-                                            const date = new Date(parseInt(time) * 1000);
-                                            const now = new Date();
-                                            const diff = now - date;
-                                            const oneDay = 24 * 60 * 60 * 1000;
-                                            const oneHour = 60 * 60 * 1000;
-                                            const oneMinute = 60 * 1000;
-                                            if (diff < oneMinute) {
-                                                const seconds = Math.floor(diff / 1000);
-                                                return qsTr("%1 seconds ago").arg(seconds);
-                                            } else if (diff < oneHour) {
-                                                const minutes = Math.floor(diff / oneMinute);
-                                                return qsTr("%1 minutes ago").arg(minutes);
-                                            } else if (diff < oneDay) {
-                                                const hours = Math.floor(diff / oneHour);
-                                                return qsTr("%1 hours ago").arg(hours);
-                                            } else if (diff < 7 * oneDay) {
-                                                const days = Math.floor(diff / oneDay);
-                                                return qsTr("%1 days ago").arg(days);
-                                            } else
-                                                return date.toLocaleString(Qt.locale(), Locale.ShortFormat);
+                                            Text {
+                                                anchors.left: parent.left
+                                                anchors.verticalCenter: parent.verticalCenter
+                                                width: parent.width
+                                                color: JamiTheme.textColor
+                                                opacity: 0.8
+                                                font.pixelSize: 12
+                                                elide: Text.ElideRight
+                                                text: {
+                                                    if (ConnectionTime === undefined)
+                                                        return "";
+                                                    const time = ConnectionTime[index];
+                                                    if (time === undefined || time === "")
+                                                        return "";
+                                                    const date = new Date(parseInt(time) * 1000);
+                                                    const now = new Date();
+                                                    const diff = now - date;
+                                                    const oneDay = 24 * 60 * 60 * 1000;
+                                                    const oneHour = 60 * 60 * 1000;
+                                                    const oneMinute = 60 * 1000;
+                                                    if (diff < oneMinute) {
+                                                        const seconds = Math.floor(diff / 1000);
+                                                        return qsTr("%1 seconds ago").arg(seconds);
+                                                    } else if (diff < oneHour) {
+                                                        const minutes = Math.floor(diff / oneMinute);
+                                                        return qsTr("%1 minutes ago").arg(minutes);
+                                                    } else if (diff < oneDay) {
+                                                        const hours = Math.floor(diff / oneHour);
+                                                        return qsTr("%1 hours ago").arg(hours);
+                                                    } else if (diff < 7 * oneDay) {
+                                                        const days = Math.floor(diff / oneDay);
+                                                        return qsTr("%1 days ago").arg(days);
+                                                    } else
+                                                        return date.toLocaleString(Qt.locale(), Locale.ShortFormat);
+                                                }
+                                            }
                                         }
                                     }
                                 }
@@ -376,136 +372,136 @@ Item {
                     }
                 }
 
-                // Tracked members Title
-                Text {
-                    text: qsTr("Tracked members")
-                    color: JamiTheme.textColor
-                    font.weight: Font.DemiBold
-                    font.pixelSize: 16
+                // Searched contacts
+                Item {
+                    id: trackedMembersSection
                     Layout.fillWidth: true
-                    Layout.leftMargin: 10
+                    Layout.leftMargin: 16
+                    Layout.rightMargin: 16
+                    Layout.bottomMargin: 16
+                    Layout.preferredHeight: visible ? trackedMembersHeader.height + trackedMembersList.contentHeight : 0
                     visible: trackedMembersList.count > 0
-                }
 
-                // Tracked members
-                ListView {
-                    id: trackedMembersList
-                    Layout.fillWidth: true
-                    Layout.preferredHeight: contentHeight
-                    visible: count > 0
-
-                    spacing: 5
-                    cacheBuffer: 10
-                    boundsBehavior: Flickable.StopAtBounds
-                    interactive: false
-
-                    header: Rectangle {
-                        color: JamiTheme.transparentColor
-                        height: 45
-                        width: trackedMembersList.width
-                        Rectangle {
-                            color: JamiTheme.connectionMonitoringHeaderColor
-                            anchors.top: parent.top
-                            height: 40
-                            width: trackedMembersList.width
-
-                            RowLayout {
-                                anchors.fill: parent
-                                Rectangle {
-                                    height: 40
-                                    Layout.leftMargin: 10
-                                    Layout.fillWidth: true
-                                    color: JamiTheme.transparentColor
-                                    Text {
-                                        color: JamiTheme.textColor
-                                        anchors.leftMargin: 10
-                                        anchors.verticalCenter: parent.verticalCenter
-                                        text: JamiStrings.contact
-                                    }
-                                }
-                                Rectangle {
-                                    width: 130
-                                    height: 40
-                                    color: JamiTheme.transparentColor
-                                    Text {
-                                        color: JamiTheme.textColor
-                                        anchors.verticalCenter: parent.verticalCenter
-                                        text: JamiStrings.devices
-                                    }
-                                }
-                            }
-                        }
-                    }
-
-                    model: TrackedMembersModel
-
-                    Component.onCompleted: {
-                        TrackedMembersModel.conversationId = CurrentConversation.id;
-                        TrackedMembersModel.update();
-                    }
-
-                    delegate: Rectangle {
-                        id: trackedDelegate
-                        height: 50
-                        width: trackedMembersList.width
-                        color: index % 2 === 0 ? JamiTheme.connectionMonitoringTableColor1 : JamiTheme.connectionMonitoringTableColor2
+                    Item {
+                        id: trackedMembersHeader
+                        anchors.top: parent.top
+                        anchors.left: parent.left
+                        anchors.right: parent.right
+                        height: 34
 
                         RowLayout {
                             anchors.fill: parent
-                            // Contact Info
-                            Rectangle {
-                                height: 50
-                                Layout.leftMargin: 5
-                                Layout.fillWidth: true
-                                color: JamiTheme.transparentColor
-                                Avatar {
-                                    id: trackedAvatar
-                                    anchors.left: parent.left
-                                    height: 40
-                                    width: 40
-                                    anchors.verticalCenter: parent.verticalCenter
-                                    imageId: PeerUri
-                                    mode: Avatar.Mode.Contact
-                                }
-                                Rectangle {
-                                    anchors.left: trackedAvatar.right
-                                    anchors.verticalCenter: parent.verticalCenter
-                                    width: parent.width - 50
-                                    height: 40
-                                    color: JamiTheme.transparentColor
+                            spacing: 10
 
-                                    Text {
-                                        color: JamiTheme.textColor
-                                        font.bold: true
-                                        anchors.top: parent.top
-                                        anchors.left: parent.left
-                                        anchors.leftMargin: 10
-                                        width: parent.width
-                                        text: UtilsAdapter.getBestNameForUri(CurrentAccount.id, PeerUri)
-                                        elide: Text.ElideRight
-                                    }
-                                    Text {
-                                        color: JamiTheme.textColor
-                                        anchors.bottom: parent.bottom
-                                        anchors.left: parent.left
-                                        anchors.leftMargin: 10
-                                        width: parent.width
-                                        text: UtilsAdapter.getBestIdForUri(CurrentAccount.id, PeerUri)
-                                        font.pixelSize: 12
-                                        elide: Text.ElideRight
-                                        visible: UtilsAdapter.getBestIdForUri(CurrentAccount.id, PeerUri) !== UtilsAdapter.getBestNameForUri(CurrentAccount.id, PeerUri)
-                                    }
-                                }
+                            Text {
+                                Layout.fillWidth: true
+                                text: JamiStrings.searchedContact
+                                color: JamiTheme.textColor
+                                opacity: 0.6
+                                font.weight: Font.DemiBold
+                                font.pixelSize: 12
+                                elide: Text.ElideRight
                             }
 
-                            // Count
-                            Rectangle {
-                                width: 130
-                                height: 40
-                                color: JamiTheme.transparentColor
+                            Text {
+                                Layout.preferredWidth: 60
+                                horizontalAlignment: Text.AlignRight
+                                text: JamiStrings.devices
+                                color: JamiTheme.textColor
+                                opacity: 0.6
+                                font.weight: Font.DemiBold
+                                font.pixelSize: 12
+                                elide: Text.ElideRight
+                            }
+                        }
+                    }
+
+                    ListView {
+                        id: trackedMembersList
+                        anchors.top: trackedMembersHeader.bottom
+                        anchors.left: parent.left
+                        anchors.right: parent.right
+                        height: contentHeight
+
+                        spacing: 0
+                        cacheBuffer: 10
+                        boundsBehavior: Flickable.StopAtBounds
+                        interactive: false
+
+                        readonly property int rowHeight: 52
+
+                        model: TrackedMembersModel
+
+                        Component.onCompleted: {
+                            TrackedMembersModel.conversationId = CurrentConversation.id;
+                            TrackedMembersModel.update();
+                        }
+
+                        delegate: Item {
+                            id: trackedDelegate
+                            width: trackedMembersList.width
+                            height: trackedMembersList.rowHeight
+
+                            RowLayout {
+                                anchors.fill: parent
+                                spacing: 10
+
+                                // Contact info
+                                Item {
+                                    Layout.fillWidth: true
+                                    Layout.fillHeight: true
+
+                                    Row {
+                                        anchors.left: parent.left
+                                        anchors.verticalCenter: parent.verticalCenter
+                                        width: parent.width
+                                        spacing: 10
+
+                                        Avatar {
+                                            id: trackedAvatar
+                                            width: 38
+                                            height: 38
+                                            anchors.verticalCenter: parent.verticalCenter
+                                            imageId: PeerUri
+                                            mode: Avatar.Mode.Contact
+                                        }
+
+                                        Column {
+                                            anchors.verticalCenter: parent.verticalCenter
+                                            width: parent.width - trackedAvatar.width - parent.spacing
+                                            spacing: 2
+
+                                            Text {
+                                                width: parent.width
+                                                color: JamiTheme.textColor
+                                                font.weight: Font.DemiBold
+                                                font.pixelSize: 14
+                                                text: UtilsAdapter.getBestNameForUri(CurrentAccount.id, PeerUri)
+                                                elide: Text.ElideRight
+                                            }
+
+                                            Text {
+                                                width: parent.width
+                                                color: JamiTheme.textColor
+                                                opacity: 0.55
+                                                font.pixelSize: 12
+                                                text: UtilsAdapter.getBestIdForUri(CurrentAccount.id, PeerUri)
+                                                elide: Text.ElideRight
+                                                visible: UtilsAdapter.getBestIdForUri(CurrentAccount.id, PeerUri) !== UtilsAdapter.getBestNameForUri(CurrentAccount.id, PeerUri)
+                                            }
+                                        }
+                                    }
+                                }
+
+                                // Devices count
                                 Text {
+                                    Layout.preferredWidth: 60
+                                    Layout.fillHeight: true
+                                    horizontalAlignment: Text.AlignRight
+                                    verticalAlignment: Text.AlignVCenter
                                     color: JamiTheme.textColor
-                                    anchors.verticalCenter: parent.verticalCenter
+                                    font.pixelSize: 13
+                                    font.weight: Font.Medium
                                     text: Count
                                 }
                             }
