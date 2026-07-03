@@ -74,15 +74,25 @@ main(int argc, char* argv[])
 
 #if WITH_WEBENGINE
     // Preserve any user-provided QTWEBENGINE_CHROMIUM_FLAGS instead of
-    // overwriting them, so a problematic GPU driver can be worked around from
-    // the environment, e.g. QTWEBENGINE_CHROMIUM_FLAGS="--disable-gpu" to avoid
-    // a Chromium GPU crash. ponytail: --single-process means the GPU runs
-    // in-process, so such a crash is fatal; drop it for out-of-process GPU
-    // isolation if that trade-off ever changes.
+    // overwriting them, so the GPU behaviour can still be overridden from the
+    // environment.
+    //
+    // --single-process is intentional: it avoids spawning a QtWebEngineProcess
+    // per message webview in a busy chat. A consequence is that Chromium's GPU
+    // runs in-process, so a GPU crash is fatal to the whole app.
+    //
+    // --disable-gpu works around a Qt 6.10 QtWebEngine crash: on some configs
+    // (e.g. NVIDIA on native Wayland) Chromium logs "GBM is not supported ...
+    // Fallback to Vulkan rendering in Chromium" and then intermittently crashes
+    // in its in-process Vulkan GPU. Disabling the Chromium GPU only affects web
+    // content rendering (emoji picker, message/map webviews); the Qt Quick scene
+    // graph keeps its own GPU acceleration. Nothing narrower removes the Vulkan
+    // fallback (--disable-vulkan, --disable-features=Vulkan, --use-gl=*,
+    // QSG_RHI_BACKEND=opengl were all verified ineffective).
     QByteArray chromiumFlags = qgetenv("QTWEBENGINE_CHROMIUM_FLAGS");
     if (!chromiumFlags.isEmpty())
         chromiumFlags.append(' ');
-    chromiumFlags.append("--disable-web-security --single-process");
+    chromiumFlags.append("--disable-web-security --single-process --disable-gpu");
     qputenv("QTWEBENGINE_CHROMIUM_FLAGS", chromiumFlags);
     QtWebEngineQuick::initialize();
 #endif
