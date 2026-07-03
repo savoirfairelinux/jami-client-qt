@@ -25,92 +25,27 @@ import net.jami.Enums 1.1
 import net.jami.Models 1.1
 
 import "../../commoncomponents"
-import "../js/logviewwindowcreation.js" as LogViewWindowCreation
 
-ListView {
+Rectangle {
     id: listview
-    height: contentHeight
+
     anchors.top: parent.top
     anchors.topMargin: 10
     width: parent.width
+    height: (deviceGroups.count > 0 ? headerHeight : 0) + deviceGroups.contentHeight + bottomPadding
 
-    spacing: 5
-    cacheBuffer: 10
+    radius: 12
+    color: JamiTheme.globalIslandColor
 
-    boundsBehavior: Flickable.StopAtBounds
-
-    header: Rectangle {
-        color: JamiTheme.transparentColor
-        height: 45
-        width: listview.width
-        Rectangle {
-            color: JamiTheme.connectionMonitoringHeaderColor
-            anchors.top: parent.top
-            height: 40
-            width: listview.width
-
-            RowLayout {
-                anchors.fill: parent
-                Rectangle {
-                    id: profile
-                    height: 40
-                    Layout.leftMargin: 10
-                    Layout.preferredWidth: 200
-                    color: JamiTheme.transparentColor
-                    Text {
-                        id: textImage
-                        color: JamiTheme.textColor
-                        anchors.leftMargin: 10
-                        anchors.verticalCenter: parent.verticalCenter
-                        text: JamiStrings.contact
-                    }
-                }
-
-                Rectangle {
-                    id: device
-                    Layout.fillWidth: true
-                    Layout.minimumWidth: 50
-                    height: 40
-                    color: JamiTheme.transparentColor
-                    Text {
-                        id: deviceText
-                        color: JamiTheme.textColor
-                        anchors.verticalCenter: parent.verticalCenter
-                        text: JamiStrings.device
-                    }
-                }
-
-                Rectangle {
-                    id: connection
-                    width: 130
-                    height: 40
-                    radius: 5
-                    color: JamiTheme.transparentColor
-                    Text {
-                        id: connectionText
-                        color: JamiTheme.textColor
-                        anchors.verticalCenter: parent.verticalCenter
-                        anchors.leftMargin: 10
-                        text: JamiStrings.connection
-                    }
-                }
-
-                Rectangle {
-                    id: channel
-                    height: 40
-                    width: 70
-                    color: JamiTheme.transparentColor
-                    Text {
-                        color: JamiTheme.textColor
-                        anchors.verticalCenter: parent.verticalCenter
-                        text: JamiStrings.channels
-                    }
-                }
-            }
-        }
-    }
-
-    model: ConnectionInfoListModel
+    // Shared column metrics keep the header and the rows aligned.
+    readonly property real hMargin: 16
+    readonly property real colSpacing: 12
+    readonly property real contactColWidth: 210
+    readonly property real connectionColWidth: 150
+    readonly property real channelsColWidth: 84
+    readonly property real rowHeight: 44
+    readonly property real headerHeight: 46
+    readonly property real bottomPadding: 8
 
     Component.onCompleted: ConnectionInfoListModel.update()
 
@@ -118,293 +53,323 @@ ListView {
         interval: 1000
         running: root.visible
         repeat: true
-        onTriggered: {
-            ConnectionInfoListModel.update();
+        onTriggered: ConnectionInfoListModel.update()
+    }
+
+    // Column titles
+    Item {
+        id: headerItem
+        anchors.top: parent.top
+        anchors.left: parent.left
+        anchors.right: parent.right
+        visible: deviceGroups.count > 0
+        height: visible ? listview.headerHeight : 0
+
+        RowLayout {
+            anchors.fill: parent
+            anchors.leftMargin: listview.hMargin
+            anchors.rightMargin: listview.hMargin
+            spacing: listview.colSpacing
+
+            Text {
+                Layout.preferredWidth: listview.contactColWidth
+                text: JamiStrings.contact
+                color: JamiTheme.textColor
+                opacity: 0.6
+                font.weight: Font.DemiBold
+                font.pixelSize: 13
+                elide: Text.ElideRight
+            }
+
+            Text {
+                Layout.fillWidth: true
+                text: JamiStrings.device
+                color: JamiTheme.textColor
+                opacity: 0.6
+                font.weight: Font.DemiBold
+                font.pixelSize: 13
+                elide: Text.ElideRight
+            }
+
+            Text {
+                Layout.preferredWidth: listview.connectionColWidth
+                text: JamiStrings.connection
+                color: JamiTheme.textColor
+                opacity: 0.6
+                font.weight: Font.DemiBold
+                font.pixelSize: 13
+                elide: Text.ElideRight
+            }
+
+            Text {
+                Layout.preferredWidth: listview.channelsColWidth
+                text: JamiStrings.channels
+                color: JamiTheme.textColor
+                opacity: 0.6
+                font.weight: Font.DemiBold
+                font.pixelSize: 13
+                elide: Text.ElideRight
+            }
         }
     }
 
-    delegate: Rectangle {
-        id: delegate
-        height: Count == 0 ? 0 : 10 + 40 * Count
-        width: listview.width
-        color: index % 2 === 0 ? JamiTheme.connectionMonitoringTableColor1 : JamiTheme.connectionMonitoringTableColor2
+    // Contact groups
+    ListView {
+        id: deviceGroups
+        anchors.top: headerItem.bottom
+        anchors.left: parent.left
+        anchors.right: parent.right
+        height: contentHeight
 
-        ListView {
-            id: listView2
-            height: 40 * Count
-            width: parent.width
+        interactive: false
+        boundsBehavior: Flickable.StopAtBounds
+        spacing: 0
 
-            anchors.top: delegate.top
+        model: ConnectionInfoListModel
 
-            spacing: 0
+        delegate: Item {
+            id: groupDelegate
+            width: deviceGroups.width
+            height: Count === 0 ? 0 : listview.rowHeight * Count
 
-            model: Count
+            // One row per device/connection of this contact.
+            ListView {
+                id: deviceRows
+                anchors.fill: parent
 
-            // HACK: remove after migration to Qt 6.7+
-            boundsBehavior: Flickable.StopAtBounds
+                interactive: false
+                boundsBehavior: Flickable.StopAtBounds
+                spacing: 0
 
-            delegate: RowLayout {
-                id: rowLayoutDelegate
-                height: 40
-                width: listview.width
+                model: Count
 
-                Rectangle {
-                    id: profile
-                    height: 50
-                    Layout.leftMargin: 5
-                    Layout.preferredWidth: 200
-                    color: JamiTheme.transparentColor
-                    Avatar {
-                        id: avatar
-                        visible: index == 0
-                        anchors.left: parent.left
-                        height: 40
-                        width: 40
-                        anchors.verticalCenter: parent.verticalCenter
-                        imageId: PeerId
-                        mode: Avatar.Mode.Contact
-                    }
-                    Rectangle {
-                        id: usernameRect
-                        anchors.left: avatar.right
-                        anchors.verticalCenter: parent.verticalCenter
-                        width: profile.width - 50
-                        height: 40
-                        color: JamiTheme.transparentColor
+                delegate: Item {
+                    id: deviceRow
+                    width: deviceRows.width
+                    height: listview.rowHeight
 
-                        Rectangle {
-                            id: usernameRect2
-                            visible: index == 0
-                            width: profile.width - 50
-                            height: 20
-                            anchors.leftMargin: 10
-                            anchors.top: parent.top
-                            anchors.left: parent.left
-                            color: JamiTheme.transparentColor
+                    readonly property int connStatus: Status[index] === undefined ? -1 : Status[index]
+                    readonly property color connColor: connStatus === 0 ? "#009c7f" : (connStatus === 4 ? "#e5484d" : "#ff8100")
 
-                            Text {
-                                id: usernameText
-                                color: JamiTheme.textColor
-                                font.bold: true
+                    RowLayout {
+                        anchors.fill: parent
+                        anchors.leftMargin: listview.hMargin
+                        anchors.rightMargin: listview.hMargin
+                        spacing: listview.colSpacing
+
+                        // Contact (shown once per group)
+                        Item {
+                            Layout.preferredWidth: listview.contactColWidth
+                            Layout.fillHeight: true
+
+                            Row {
+                                anchors.verticalCenter: parent.verticalCenter
+                                width: parent.width
+                                spacing: 10
+
+                                Avatar {
+                                    id: avatar
+                                    visible: index === 0
+                                    width: 36
+                                    height: 36
+                                    anchors.verticalCenter: parent.verticalCenter
+                                    imageId: PeerId
+                                    mode: Avatar.Mode.Contact
+                                }
+
+                                Column {
+                                    anchors.verticalCenter: parent.verticalCenter
+                                    width: parent.width - (avatar.visible ? avatar.width + parent.spacing : 0)
+                                    visible: index === 0
+                                    spacing: 2
+
+                                    Text {
+                                        id: nameText
+                                        width: parent.width
+                                        text: UtilsAdapter.getBestNameForUri(CurrentAccount.id, PeerId)
+                                        color: JamiTheme.textColor
+                                        font.weight: Font.DemiBold
+                                        font.pixelSize: 14
+                                        elide: Text.ElideRight
+                                    }
+
+                                    Text {
+                                        id: idText
+                                        width: parent.width
+                                        visible: UtilsAdapter.getBestIdForUri(CurrentAccount.id, PeerId) !== nameText.text
+                                        text: UtilsAdapter.getBestIdForUri(CurrentAccount.id, PeerId)
+                                        color: JamiTheme.textColor
+                                        opacity: 0.55
+                                        font.family: text === PeerId ? JamiTheme.ubuntuMonoFontFamily : JamiTheme.ubuntuFontFamily
+                                        font.pixelSize: 12
+                                        elide: Text.ElideRight
+                                    }
+                                }
+                            }
+
+                            MouseArea {
+                                id: contactMouse
                                 anchors.fill: parent
-                                text: UtilsAdapter.getBestNameForUri(CurrentAccount.id, PeerId)
-                                elide: Text.ElideRight
-                            }
-                        }
+                                enabled: index === 0
+                                hoverEnabled: true
+                                cursorShape: Qt.PointingHandCursor
+                                onClicked: {
+                                    contactTooltip.text = JamiStrings.logsViewCopied;
+                                    UtilsAdapter.setClipboardText(ConnectionDatas);
+                                }
+                                onExited: contactTooltip.text = JamiStrings.copyAllData
 
-                        Rectangle {
-                            width: profile.width - 50
-                            height: 20
-                            anchors.leftMargin: 10
-                            anchors.top: usernameRect2.bottom
-                            anchors.left: parent.left
-                            visible: usernameRect2.visible && (UtilsAdapter.getBestIdForUri(CurrentAccount.id, PeerId) !== UtilsAdapter.getBestNameForUri(CurrentAccount.id, PeerId))
-                            color: JamiTheme.transparentColor
-
-                            Text {
-                                id: idText
-                                color: JamiTheme.textColor
-                                anchors.fill: parent
-                                text: UtilsAdapter.getBestIdForUri(CurrentAccount.id, PeerId)
-                                font.family: text === PeerId ? JamiTheme.ubuntuMonoFontFamily : JamiTheme.ubuntuFontFamily
-                                font.pixelSize: 12
-                                font.underline: usernameText.font.underline
-                                elide: Text.ElideRight
-                            }
-                        }
-
-                        MouseArea {
-                            anchors.fill: parent
-                            hoverEnabled: true
-                            onEntered: {
-                                usernameText.font.underline = true;
-                                tooltipContact.text = JamiStrings.copyAllData;
-                            }
-                            onExited: {
-                                usernameText.font.underline = false;
-                                tooltipContact.text = JamiStrings.copyAllData;
-                            }
-
-                            MaterialToolTip {
-                                id: tooltipContact
-                                visible: usernameText.font.underline
-                                text: JamiStrings.copyAllData
-                            }
-                            onClicked: {
-                                tooltipContact.text = JamiStrings.logsViewCopied;
-                                UtilsAdapter.setClipboardText(ConnectionDatas);
-                            }
-                        }
-                    }
-                }
-
-                Rectangle {
-                    height: 40
-                    Layout.fillWidth: true
-                    Layout.minimumWidth: 50
-                    color: delegate.color
-                    Text {
-                        id: delegateDeviceText
-                        color: JamiTheme.textColor
-                        anchors.verticalCenter: parent.verticalCenter
-                        anchors.left: parent.left
-                        text: {
-                            if (DeviceId[index] !== undefined) {
-                                return DeviceId[index];
-                            } else {
-                                return "";
-                            }
-                        }
-                        font.family: JamiTheme.ubuntuMonoFontFamily
-                        elide: Text.ElideMiddle
-                        width: parent.width - 10
-                        MouseArea {
-                            anchors.fill: parent
-                            hoverEnabled: true
-                            onEntered: {
-                                delegateDeviceText.font.underline = true;
-                            }
-                            onExited: {
-                                delegateDeviceText.font.underline = false;
-                                tooltipDevice.text = delegateDeviceText.text;
-                            }
-
-                            MaterialToolTip {
-                                id: tooltipDevice
-                                visible: delegateDeviceText.font.underline
-                                text: delegateDeviceText.text
-                                toolTipFont: JamiTheme.ubuntuMonoFontFamily
-                            }
-                            onClicked: {
-                                tooltipDevice.text = delegateDeviceText.text + " (" + JamiStrings.logsViewCopied + ")";
-                                UtilsAdapter.setClipboardText(delegateDeviceText.text);
-                            }
-                        }
-                    }
-                }
-
-                Rectangle {
-                    id: connectionRectangle
-                    color: delegate.color
-                    height: 40
-                    Layout.preferredWidth: 130
-                    property var status: Status[index]
-                    ResponsiveImage {
-                        id: connectionImage
-                        anchors.left: parent.left
-                        anchors.verticalCenter: parent.verticalCenter
-                        source: {
-                            if (connectionRectangle.status === 0) {
-                                return JamiResources.connected_black_24dp_svg;
-                            } else {
-                                return JamiResources.connecting_black_24dp_svg;
-                            }
-                        }
-                        RotationAnimation on rotation {
-                            running: connectionRectangle.status !== 0
-                            from: 0
-                            to: 360
-                            duration: 3000
-                            loops: Animation.Infinite
-                            direction: RotationAnimation.Clockwise
-                        }
-                        color: {
-                            if (connectionRectangle.status === 0) {
-                                return "#009c7f";
-                            } else {
-                                if (connectionRectangle.status === 4) {
-                                    return "red";
-                                } else {
-                                    return "#ff8100";
+                                MaterialToolTip {
+                                    id: contactTooltip
+                                    visible: contactMouse.containsMouse && index === 0
+                                    text: JamiStrings.copyAllData
                                 }
                             }
                         }
-                    }
-                    Text {
-                        id: connectionText
-                        anchors.left: connectionImage.right
-                        anchors.verticalCenter: parent.verticalCenter
-                        anchors.leftMargin: 5
-                        text: if (connectionRectangle.status === 0) {
-                            return JamiStrings.connected;
-                        } else {
-                            if (connectionRectangle.status === 1) {
-                                return JamiStrings.connectingTLS;
-                            } else {
-                                if (connectionRectangle.status === 2) {
-                                    return JamiStrings.connectingICE;
-                                } else {
-                                    if (connectionRectangle.status === 3) {
-                                        return JamiStrings.connecting;
-                                    } else {
-                                        return JamiStrings.waiting;
+
+                        // Device id
+                        Item {
+                            Layout.fillWidth: true
+                            Layout.fillHeight: true
+
+                            Text {
+                                id: deviceText
+                                anchors.verticalCenter: parent.verticalCenter
+                                width: parent.width
+                                text: DeviceId[index] !== undefined ? DeviceId[index] : ""
+                                color: deviceMouse.containsMouse ? JamiTheme.textColorHovered : JamiTheme.textColor
+                                font.family: JamiTheme.ubuntuMonoFontFamily
+                                font.pixelSize: 13
+                                elide: Text.ElideMiddle
+                            }
+
+                            MouseArea {
+                                id: deviceMouse
+                                anchors.fill: parent
+                                hoverEnabled: true
+                                cursorShape: Qt.PointingHandCursor
+                                onClicked: {
+                                    deviceTooltip.text = deviceText.text + " (" + JamiStrings.logsViewCopied + ")";
+                                    UtilsAdapter.setClipboardText(deviceText.text);
+                                }
+                                onExited: deviceTooltip.text = deviceText.text
+
+                                MaterialToolTip {
+                                    id: deviceTooltip
+                                    visible: deviceMouse.containsMouse
+                                    text: deviceText.text
+                                    toolTipFont: JamiTheme.ubuntuMonoFontFamily
+                                }
+                            }
+                        }
+
+                        // Connection status pill
+                        Item {
+                            Layout.preferredWidth: listview.connectionColWidth
+                            Layout.fillHeight: true
+
+                            Rectangle {
+                                id: statusPill
+                                anchors.verticalCenter: parent.verticalCenter
+                                height: 28
+                                width: Math.min(parent.width, statusRow.width + 20)
+                                radius: height / 2
+                                color: Qt.rgba(deviceRow.connColor.r, deviceRow.connColor.g, deviceRow.connColor.b, 0.14)
+
+                                Row {
+                                    id: statusRow
+                                    anchors.centerIn: parent
+                                    spacing: 5
+
+                                    ResponsiveImage {
+                                        id: statusIcon
+                                        anchors.verticalCenter: parent.verticalCenter
+                                        width: 18
+                                        height: 18
+                                        source: deviceRow.connStatus === 0 ? JamiResources.connected_black_24dp_svg : JamiResources.connecting_black_24dp_svg
+                                        color: deviceRow.connColor
+
+                                        RotationAnimation on rotation {
+                                            running: deviceRow.connStatus !== 0
+                                            from: 0
+                                            to: 360
+                                            duration: 3000
+                                            loops: Animation.Infinite
+                                            direction: RotationAnimation.Clockwise
+                                        }
+                                    }
+
+                                    Text {
+                                        id: statusText
+                                        anchors.verticalCenter: parent.verticalCenter
+                                        color: deviceRow.connColor
+                                        font.pixelSize: 13
+                                        font.weight: Font.Medium
+                                        text: {
+                                            switch (deviceRow.connStatus) {
+                                            case 0:
+                                                return JamiStrings.connected;
+                                            case 1:
+                                                return JamiStrings.connectingTLS;
+                                            case 2:
+                                                return JamiStrings.connectingICE;
+                                            case 3:
+                                                return JamiStrings.connecting;
+                                            default:
+                                                return JamiStrings.waiting;
+                                            }
+                                        }
+                                    }
+                                }
+
+                                MouseArea {
+                                    id: statusMouse
+                                    anchors.fill: parent
+                                    hoverEnabled: true
+
+                                    MaterialToolTip {
+                                        visible: statusMouse.containsMouse
+                                        text: JamiStrings.remote.arg(RemoteAddress[index])
+                                        toolTipFont: JamiTheme.ubuntuMonoFontFamily
                                     }
                                 }
                             }
                         }
-                        color: connectionImage.color
-                        property var tooltipText: JamiStrings.remote.arg(RemoteAddress[index])
-                        MouseArea {
-                            anchors.fill: parent
-                            hoverEnabled: true
-                            onEntered: {
-                                connectionText.font.underline = true;
-                            }
-                            onExited: {
-                                connectionText.font.underline = false;
-                            }
 
-                            MaterialToolTip {
-                                visible: connectionText.font.underline
-                                text: connectionText.tooltipText
-                                toolTipFont: JamiTheme.ubuntuMonoFontFamily
-                            }
-                        }
-                    }
-                }
+                        // Channels badge
+                        Item {
+                            Layout.preferredWidth: listview.channelsColWidth
+                            Layout.fillHeight: true
 
-                Rectangle {
-                    id: channelDelegateRectangle
-                    height: 40
-                    Layout.preferredWidth: 70
-                    color: delegate.color
-                    Text {
-                        id: channelText
-                        color: JamiTheme.textColor
-                        anchors.verticalCenter: parent.verticalCenter
-                        anchors.leftMargin: 10
-                        anchors.left: parent.left
-                        text: {
-                            if (Channels[index] !== undefined) {
-                                return Channels[index];
-                            } else {
-                                return "";
-                            }
-                        }
-                        MouseArea {
-                            anchors.fill: parent
-                            hoverEnabled: true
+                            Rectangle {
+                                id: channelsBadge
+                                anchors.verticalCenter: parent.verticalCenter
+                                height: 28
+                                width: Math.max(44, channelsText.width + 24)
+                                radius: height / 2
+                                color: channelsMouse.containsMouse ? JamiTheme.hoverColor : (JamiTheme.darkTheme ? Qt.rgba(1, 1, 1, 0.06) : Qt.rgba(0, 0, 0, 0.05))
 
-                            onExited: {
-                                channelText.font.underline = false;
-                            }
-
-                            onEntered: {
-                                channelText.font.underline = true;
-                            }
-
-                            onClicked: {
-                                let output = "";
-                                const channelMap = ChannelsMap[index];
-                                for (const key in channelMap) {
-                                    const value = channelMap[key];
-                                    const keyHexa = parseInt(key, 16).toString();
-                                    output += keyHexa + " : " + value + "\n";
+                                Text {
+                                    id: channelsText
+                                    anchors.centerIn: parent
+                                    color: JamiTheme.textColor
+                                    font.pixelSize: 13
+                                    font.weight: Font.Medium
+                                    text: Channels[index] !== undefined ? Channels[index] : ""
                                 }
-                                viewCoordinator.presentDialog(parent, "settingsview/components/ChannelsPopup.qml", {
-                                        "text": output,
-                                        "maxWidth": listview.width
-                                    });
+
+                                MouseArea {
+                                    id: channelsMouse
+                                    anchors.fill: parent
+                                    hoverEnabled: true
+                                    cursorShape: Qt.PointingHandCursor
+                                    onClicked: {
+                                        viewCoordinator.presentDialog(parent, "settingsview/components/ChannelsPopup.qml", {
+                                                "channels": ChannelsMap[index],
+                                                "maxWidth": listview.width
+                                            });
+                                    }
+                                }
                             }
                         }
                     }
