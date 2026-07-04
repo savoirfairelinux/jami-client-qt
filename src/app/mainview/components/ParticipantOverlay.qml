@@ -113,7 +113,9 @@ Item {
         anchors.fill: parent
         anchors.margins: 2
         rendererId: root.sinkId
-        crop: !participantIsActive
+        // Keep the full frame (no crop) for minimized tiles in the
+        // "one big + small" layout; only crop in the grid layout.
+        crop: !participantIsActive && CallParticipantsModel.conferenceLayout !== CallParticipantsModel.ONE_WITH_SMALL
         flip: isMe && !isSharing && CurrentCall.flipSelf
 
         underlayItems: Avatar {
