@@ -610,7 +610,7 @@ existingServiceMap(const QString& accountId, const QString& serviceId)
 {
     if (serviceId.isEmpty())
         return {};
-    const auto records = NetworkServiceManager::instance().getSharedServices(accountId);
+    const VectorMapStringString records = NetworkServiceManager::instance().getSharedServices(accountId);
     for (const auto& record : records) {
         if (record.value(ID_KEY) == serviceId)
             return mapToVariant(record);
@@ -710,7 +710,7 @@ SharedServicesAdapter::getSharedServices(const QString& accountId)
     if (id.isEmpty())
         return out;
     syncEmbeddedServers(id);
-    const auto records = NetworkServiceManager::instance().getSharedServices(id);
+    const VectorMapStringString records = NetworkServiceManager::instance().getSharedServices(id);
     out.reserve(records.size());
     for (const auto& m : records)
         out.append(mapToVariant(m));
@@ -729,7 +729,7 @@ SharedServicesAdapter::addSharedService(const QString& accountId, const QVariant
     if (!prepareServiceForStorage(id, serviceForStorage, replacementServer))
         return {};
 
-    const auto serviceId = NetworkServiceManager::instance().addSharedService(id, variantToMap(serviceForStorage));
+    const QString serviceId = NetworkServiceManager::instance().addSharedService(id, variantToMap(serviceForStorage));
     if (serviceId.isEmpty())
         return {};
 
@@ -912,7 +912,7 @@ SharedServicesAdapter::syncEmbeddedServers(const QString& accountId)
         return;
 
     auto& configurationManager = NetworkServiceManager::instance();
-    const auto records = configurationManager.getSharedServices(accountId);
+    const VectorMapStringString records = configurationManager.getSharedServices(accountId);
     QSet<QString> desiredServerKeys;
 
     for (auto record : records) {
@@ -1031,7 +1031,7 @@ SharedServicesAdapter::getActiveTunnels(const QString& accountId) const
     const auto id = resolveAccountId(accountId);
     if (id.isEmpty())
         return out;
-    const auto records = NetworkServiceManager::instance().getActiveTunnels(id);
+    const VectorMapStringString records = NetworkServiceManager::instance().getActiveTunnels(id);
     out.reserve(records.size());
     for (const auto& m : records)
         out.append(mapToVariant(m));

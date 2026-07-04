@@ -85,7 +85,7 @@ public:
         // The function getNewFrame() will return false if no new frame is available.
         thread = QThread::create([this] {
             running = true;
-            forever {
+            Q_FOREVER {
                 if (QThread::currentThread()->isInterruptionRequested()) {
                     return;
                 }

@@ -489,7 +489,7 @@ AVModel::setNoiseSuppression(const QString& name)
     static const QStringList validStates {"auto", "system", "audioProcessor", "off"};
     const QString state = validStates.contains(name) ? name : QStringLiteral("auto");
 
-    return ConfigurationManager::instance().setNoiseSuppressState(state);
+    ConfigurationManager::instance().setNoiseSuppressState(state);
 }
 
 void
@@ -500,13 +500,13 @@ AVModel::setEchoCancellation(const QString& name)
     static const QStringList validStates {"auto", "system", "audioProcessor", "off"};
     const QString state = validStates.contains(name) ? name : QStringLiteral("auto");
 
-    return ConfigurationManager::instance().setEchoCancellationState(state);
+    ConfigurationManager::instance().setEchoCancellationState(state);
 }
 
 void
 AVModel::setVoiceActivityDetection(bool state)
 {
-    return ConfigurationManager::instance().setVoiceActivityDetectionState(state);
+    ConfigurationManager::instance().setVoiceActivityDetectionState(state);
 }
 
 void
