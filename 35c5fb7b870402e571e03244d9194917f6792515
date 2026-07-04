@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dc12ffac_81eda9e5",
+        "filename": "src/app/mainview/components/ParticipantsLayoutHorizontal.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-07-04T01:35:20Z",
+      "side": 1,
+      "message": "[warning] Line 236: This ignores the height available for the row. When the inline strip is height-constrained, `width * 9 / 16` can exceed `h`, causing minimized tiles to overflow or be clipped by the `Flow`. Keep the 16:9 target but clamp it to the computed available height.\\n```suggestion\\nh \u003d Math.min(h, Math.round(width * 9 / 16));\\n```",
+      "revId": "35c5fb7b870402e571e03244d9194917f6792515",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "84e8d577_83eee220",
+        "filename": "src/app/mainview/components/ParticipantsLayoutVertical.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-07-04T01:35:20Z",
+      "side": 1,
+      "message": "[warning] Line 149: This ignores the width available for the column. In the vertical inline layout, `height * 16 / 9` can exceed `w`, so minimized tiles may overflow horizontally or overlap/clamp unexpectedly. Preserve the 16:9 target while respecting the computed available width.\\n```suggestion\\nw \u003d Math.min(w, Math.round(height * 16 / 9));\\n```",
+      "revId": "35c5fb7b870402e571e03244d9194917f6792515",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
