@@ -145,8 +145,9 @@ SplitView {
                         var totalSpacing = commonParticipantsFlow.spacing * commonParticipantsFlow.columns;
                         var w = Math.floor((commonParticipantsFlow.width - totalSpacing) / commonParticipantsFlow.columns);
                         if (inLine) {
-                            w = Math.max(w, height);
-                            w = Math.min(w, height * 4 / 3); // Avoid too wide elements
+                            // 16:9 tiles so the uncropped video fills them,
+                            // bounded by the strip so a tile never overflows.
+                            w = Math.min(Math.round(height * 16 / 9), commonParticipantsFlow.width);
                         }
                         return w;
                     }
