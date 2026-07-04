@@ -1,0 +1,40 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7a20aa32_ede6e5ed",
+        "filename": "src/app/mainview/components/ParticipantsLayoutHorizontal.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 617
+      },
+      "writtenOn": "2026-07-04T01:59:31Z",
+      "side": 1,
+      "message": "Done in PS2, clamped to the flow height rather than the per-participant share: the strip paginates through participants (showable + up/down buttons), so clamping to the share would squeeze all tiles when many participants are present instead of paginating at a legible size. The flow bound guarantees a single tile can never overflow the strip.",
+      "parentUuid": "dc12ffac_81eda9e5",
+      "revId": "712161a6da0c5edd9b57e9146fb5bcfc295b5458",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f7b7b299_a4f352da",
+        "filename": "src/app/mainview/components/ParticipantsLayoutVertical.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 617
+      },
+      "writtenOn": "2026-07-04T01:59:31Z",
+      "side": 1,
+      "message": "Done in PS2 (same approach, clamped to the flow width).",
+      "parentUuid": "84e8d577_83eee220",
+      "revId": "712161a6da0c5edd9b57e9146fb5bcfc295b5458",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
