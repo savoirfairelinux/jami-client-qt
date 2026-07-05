@@ -202,145 +202,146 @@ Item {
                     showDisconnect: CurrentCall.isModerator && !root.isMe && !root.participantIsHost
                 }
 
-                // Participant footer with host, moderator and mute indicators
-                // Mute indicator is as follow:
-                // - In another participant, if i am not moderator, the mute state is isLocalMuted || participantIsModeratorMuted
-                // - In another participant, if i am moderator, the mute state is isLocalMuted
-                // - In my video, the mute state is isLocalMuted
-                Item {
-                    id: participantIndicators
-                    width: participantRect.width
-                    height: shapeHeight
-                    anchors.bottom: parent.bottom
-
-                    Shape {
-                        id: backgroundShape
-                        ShapePath {
-                            id: backgroundShapePath
-                            strokeColor: "transparent"
-                            fillColor: JamiTheme.darkGreyColorOpacity
-                            capStyle: ShapePath.RoundCap
-                            PathSvg {
-                                path: pathShape
-                            }
-                        }
+                Behavior on opacity  {
+                    NumberAnimation {
+                        duration: JamiTheme.shortFadeDuration
                     }
+                }
+            }
 
-                    RowLayout {
-                        id: participantFootInfo
+            // Participant footer with host, moderator and mute indicators
+            // Mute indicator is as follow:
+            // - In another participant, if i am not moderator, the mute state is isLocalMuted || participantIsModeratorMuted
+            // - In another participant, if i am moderator, the mute state is isLocalMuted
+            // - In my video, the mute state is isLocalMuted
+            Item {
+                id: participantIndicators
+                width: participantRect.width
+                height: shapeHeight
+                anchors.bottom: parent.bottom
+                z: participantRect.z + 1
 
-                        height: parent.height
-                        anchors.verticalCenter: parent.verticalCenter
-                        Text {
-                            id: bestNameLabel
-
-                            Layout.leftMargin: 8
-                            Layout.preferredWidth: Math.min(nameTextMetrics.boundingRect.width + 8, participantIndicators.width - indicatorsRowLayout.width - 16)
-                            Layout.preferredHeight: shapeHeight
-
-                            text: bestName
-                            elide: Text.ElideRight
-                            color: JamiTheme.whiteColor
-                            font.pointSize: JamiTheme.participantFontSize
-                            horizontalAlignment: Text.AlignLeft
-                            verticalAlignment: Text.AlignVCenter
-                            HoverHandler {
-                                id: hoverName
-                            }
-                            MaterialToolTip {
-                                visible: hoverName.hovered && (text.length > 0)
-                                text: bestNameLabel.truncated ? bestName : ""
-                            }
-                        }
-
-                        RowLayout {
-                            id: indicatorsRowLayout
-                            height: parent.height
-                            Layout.alignment: Qt.AlignVCenter
-
-                            ResponsiveImage {
-                                id: isHostIndicator
-
-                                Layout.alignment: Qt.AlignVCenter
-                                Layout.leftMargin: 6
-
-                                containerHeight: 12
-                                containerWidth: 12
-
-                                visible: root.participantIsHost
-
-                                source: JamiResources.star_outline_24dp_svg
-                                color: JamiTheme.whiteColor
-
-                                HoverHandler {
-                                    id: hoverHost
-                                }
-                                MaterialToolTip {
-                                    visible: hoverHost.hovered
-                                    text: JamiStrings.host
-                                }
-                            }
-
-                            ResponsiveImage {
-                                id: isModeratorIndicator
-
-                                Layout.alignment: Qt.AlignVCenter
-                                Layout.leftMargin: 6
-
-                                containerHeight: 12
-                                containerWidth: 12
-
-                                visible: !root.participantIsHost && root.participantIsModerator
-
-                                source: JamiResources.moderator_24dp_svg
-                                color: JamiTheme.whiteColor
-
-                                HoverHandler {
-                                    id: hoverModerator
-                                }
-                                MaterialToolTip {
-                                    visible: hoverModerator.hovered
-                                    text: JamiStrings.moderator
-                                }
-                            }
-
-                            ResponsiveImage {
-                                id: isMutedIndicator
-
-                                Layout.alignment: Qt.AlignVCenter
-                                Layout.leftMargin: 6
-
-                                containerHeight: 12
-                                containerWidth: 12
-
-                                visible: (!root.isMe && !CurrentCall.isModerator) ? root.participantIsMuted : root.isLocalMuted
-
-                                source: JamiResources.micro_off_black_24dp_svg
-                                color: JamiTheme.redColor
-
-                                HoverHandler {
-                                    id: hoverMicrophone
-                                }
-                                MaterialToolTip {
-                                    visible: hoverMicrophone.hovered
-                                    text: {
-                                        if (!root.isMe && !CurrentCall.isModerator && root.participantIsModeratorMuted && root.isLocalMuted)
-                                            return JamiStrings.bothMuted;
-                                        if (root.isLocalMuted)
-                                            return JamiStrings.localMuted;
-                                        if (!root.isMe && !CurrentCall.isModerator && root.participantIsModeratorMuted)
-                                            return JamiStrings.moderatorMuted;
-                                        return JamiStrings.notMuted;
-                                    }
-                                }
-                            }
+                Shape {
+                    id: backgroundShape
+                    ShapePath {
+                        id: backgroundShapePath
+                        strokeColor: "transparent"
+                        fillColor: JamiTheme.darkGreyColorOpacity
+                        capStyle: ShapePath.RoundCap
+                        PathSvg {
+                            path: pathShape
                         }
                     }
                 }
 
-                Behavior on opacity  {
-                    NumberAnimation {
-                        duration: JamiTheme.shortFadeDuration
+                RowLayout {
+                    id: participantFootInfo
+
+                    height: parent.height
+                    anchors.verticalCenter: parent.verticalCenter
+                    Text {
+                        id: bestNameLabel
+
+                        Layout.leftMargin: 8
+                        Layout.preferredWidth: Math.min(nameTextMetrics.boundingRect.width + 8, participantIndicators.width - indicatorsRowLayout.width - 16)
+                        Layout.preferredHeight: shapeHeight
+
+                        text: bestName
+                        elide: Text.ElideRight
+                        color: JamiTheme.whiteColor
+                        font.pointSize: JamiTheme.participantFontSize
+                        horizontalAlignment: Text.AlignLeft
+                        verticalAlignment: Text.AlignVCenter
+                        HoverHandler {
+                            id: hoverName
+                        }
+                        MaterialToolTip {
+                            visible: hoverName.hovered && (text.length > 0)
+                            text: bestNameLabel.truncated ? bestName : ""
+                        }
+                    }
+
+                    RowLayout {
+                        id: indicatorsRowLayout
+                        height: parent.height
+                        Layout.alignment: Qt.AlignVCenter
+
+                        ResponsiveImage {
+                            id: isHostIndicator
+
+                            Layout.alignment: Qt.AlignVCenter
+                            Layout.leftMargin: 6
+
+                            containerHeight: 12
+                            containerWidth: 12
+
+                            visible: root.participantIsHost
+
+                            source: JamiResources.star_outline_24dp_svg
+                            color: JamiTheme.whiteColor
+
+                            HoverHandler {
+                                id: hoverHost
+                            }
+                            MaterialToolTip {
+                                visible: hoverHost.hovered
+                                text: JamiStrings.host
+                            }
+                        }
+
+                        ResponsiveImage {
+                            id: isModeratorIndicator
+
+                            Layout.alignment: Qt.AlignVCenter
+                            Layout.leftMargin: 6
+
+                            containerHeight: 12
+                            containerWidth: 12
+
+                            visible: !root.participantIsHost && root.participantIsModerator
+
+                            source: JamiResources.moderator_24dp_svg
+                            color: JamiTheme.whiteColor
+
+                            HoverHandler {
+                                id: hoverModerator
+                            }
+                            MaterialToolTip {
+                                visible: hoverModerator.hovered
+                                text: JamiStrings.moderator
+                            }
+                        }
+
+                        ResponsiveImage {
+                            id: isMutedIndicator
+
+                            Layout.alignment: Qt.AlignVCenter
+                            Layout.leftMargin: 6
+
+                            containerHeight: 12
+                            containerWidth: 12
+
+                            visible: (!root.isMe && !CurrentCall.isModerator) ? root.participantIsMuted : root.isLocalMuted
+
+                            source: JamiResources.micro_off_black_24dp_svg
+                            color: JamiTheme.redColor
+
+                            HoverHandler {
+                                id: hoverMicrophone
+                            }
+                            MaterialToolTip {
+                                visible: hoverMicrophone.hovered
+                                text: {
+                                    if (!root.isMe && !CurrentCall.isModerator && root.participantIsModeratorMuted && root.isLocalMuted)
+                                        return JamiStrings.bothMuted;
+                                    if (root.isLocalMuted)
+                                        return JamiStrings.localMuted;
+                                    if (!root.isMe && !CurrentCall.isModerator && root.participantIsModeratorMuted)
+                                        return JamiStrings.moderatorMuted;
+                                    return JamiStrings.notMuted;
+                                }
+                            }
+                        }
                     }
                 }
             }
