@@ -13,7 +13,8 @@ ENV LC_ALL en_US.UTF-8
 RUN rm -f /etc/apt/sources.list /etc/apt/sources.list.d/* /var/lib/apt/lists/* && \
     echo "deb http://gpl.savoirfairelinux.net/pub/mirrors/ubuntu noble main restricted universe multiverse" > /etc/apt/sources.list && \
     echo "deb http://gpl.savoirfairelinux.net/pub/mirrors/ubuntu noble-updates main restricted universe multiverse" >> /etc/apt/sources.list && \
-    echo "deb http://gpl.savoirfairelinux.net/pub/mirrors/ubuntu noble-security main restricted universe multiverse" >> /etc/apt/sources.list
+    echo "deb http://gpl.savoirfairelinux.net/pub/mirrors/ubuntu noble-security main restricted universe multiverse" >> /etc/apt/sources.list && \
+    echo "deb http://security.ubuntu.com/ubuntu noble-security main restricted universe multiverse" >> /etc/apt/sources.list
 
 # Locale and certificates
 RUN apt-get update && \
