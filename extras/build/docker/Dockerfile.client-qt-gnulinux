@@ -37,7 +37,7 @@ RUN sh -c "echo 'deb [signed-by=/usr/share/keyrings/jami-archive-keyring.gpg] ht
 RUN apt-get update && apt-get install libqt-jami -y
 
 # Build dependencies
-RUN apt-get install -y -o Acquire::Retries=10 \
+RUN apt-get update && apt-get install -y -o Acquire::Retries=10 \
     python3 \
     git \
     autoconf \
