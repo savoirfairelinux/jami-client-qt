@@ -100,13 +100,22 @@ ComboBox {
         return tunnel ? "127.0.0.1:" + tunnel.localPort : "";
     }
 
+    function hasPreferredPortFallback(service) {
+        var tunnel = tunnelFor(service);
+        return tunnel !== undefined
+               && Number(service.preferredPort) > 0
+               && Number(tunnel.localPort) !== Number(service.preferredPort);
+    }
+
     // Secondary line under the service name: transient error, live tunnel
     // endpoint, offline notice, or the service description.
     function serviceStatusText(service) {
         if (connectErrors[service.id])
             return JamiStrings.sharedServicesConnectFailed;
-        if (tunnelFor(service) !== undefined)
+        var tunnel = tunnelFor(service);
+        if (tunnel !== undefined) {
             return service.scheme + "://" + localEndpoint(service);
+        }
         if (!isAvailable(service))
             return JamiStrings.sharedServicesUnavailable;
         return service.description || "";
@@ -119,7 +128,18 @@ ComboBox {
             scheme: service.scheme || ""
         };
         pendingOpens = pending;
-        SharedServicesAdapter.openServiceTunnel(accountId, peerUri, service.device || "", service.id, serviceName(service), 0);
+        // Try the publisher's preferred local port first (already sanitized
+        // by the adapter); fall back to an OS-assigned port if it is busy.
+        var preferred = Number(service.preferredPort) || 0;
+        var tunnelId = SharedServicesAdapter.openServiceTunnel(accountId, peerUri, service.device || "", service.id, serviceName(service), preferred);
+        if (tunnelId === "" && preferred !== 0)
+            tunnelId = SharedServicesAdapter.openServiceTunnel(accountId, peerUri, service.device || "", service.id, serviceName(service), 0);
+        if (tunnelId === "") {
+            var copy = Object.assign({}, pendingOpens);
+            delete copy[service.id];
+            pendingOpens = copy;
+            flagConnectError(service.id);
+        }
     }
 
     function activateService(service) {
@@ -292,6 +312,20 @@ ComboBox {
                     font.italic: root.tunnelFor(serviceDelegate.modelData) === undefined
 
                     visible: text.length > 0
+                }
+
+                Text {
+                    width: parent.width
+
+                    text: JamiStrings.sharedServicesPortFallback
+                    elide: Text.ElideRight
+                    color: JamiTheme.textColor
+
+                    font.pixelSize: JamiTheme.sharedServicesDelegateDescriptionPixelSize
+                    font.family: JamiTheme.ubuntuFontFamily
+                    font.italic: true
+
+                    visible: root.hasPreferredPortFallback(serviceDelegate.modelData)
                 }
             }
 
