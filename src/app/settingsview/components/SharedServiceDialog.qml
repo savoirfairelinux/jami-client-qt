@@ -35,6 +35,8 @@ BaseModalDialog {
     property string serviceDescription: ""
     property string serviceHost: "localhost"
     property string servicePort: ""
+    property string servicePreferredPort: ""
+    property bool useServicePortAsPreferred: false
     property string serviceDirectory: ""
     property string serviceSchemeSelection: ""
     property string serviceScheme: ""
@@ -49,6 +51,7 @@ BaseModalDialog {
         if (serviceScheme) {
             setServiceScheme(serviceScheme);
         }
+        useServicePortAsPreferred = servicePreferredPort.length > 0 && servicePreferredPort === servicePort;
         // Populate selectedContacts from the comma-separated serviceAllowed string
         if (serviceAllowed.length > 0) {
             selectedContacts = serviceAllowed.split(",").filter(function(s) { return s.length > 0; });
@@ -126,6 +129,7 @@ BaseModalDialog {
             "description": root.serviceDescription,
             "localHost": embedded ? "localhost" : root.serviceHost.trim(),
             "localPort": embedded ? "0" : root.servicePort,
+            "preferredPort": (!embedded && root.useServicePortAsPreferred && root.servicePort.length > 0) ? root.servicePort : "0",
             "scheme": embedded ? "http" : root.effectiveScheme(),
             "directory": embedded ? root.serviceDirectory : "",
             "policy": root.servicePolicy,
@@ -314,6 +318,88 @@ BaseModalDialog {
                         layer.enabled: true
                         layer.effect: MultiEffect {
                             anchors.fill: uriSchemeDetailsPopup.background
+                            shadowEnabled: true
+                            shadowBlur: JamiTheme.shadowBlur
+                            shadowColor: JamiTheme.shadowColor
+                            shadowHorizontalOffset: JamiTheme.shadowHorizontalOffset
+                            shadowVerticalOffset: JamiTheme.shadowVerticalOffset
+                            shadowOpacity: JamiTheme.shadowOpacity
+                        }
+                    }
+                }
+            }
+        }
+
+        RowLayout {
+            Layout.fillWidth: true
+
+            visible: !root.isEmbeddedService()
+
+            ToggleSwitch {
+                id: preferredPortToggle
+
+                Layout.fillWidth: true
+
+                labelText: JamiStrings.sharedServicesPreferredPortUseServicePort
+                checked: root.useServicePortAsPreferred
+
+                onSwitchToggled: root.useServicePortAsPreferred = checked
+            }
+
+            NewIconButton {
+                id: preferredPortWhatsThisButton
+
+                Layout.alignment: Qt.AlignTop
+
+                iconSource: JamiResources.bidirectional_help_outline_24dp_svg
+                iconSize: JamiTheme.iconButtonMedium
+                Accessible.name: JamiStrings.sharedServicesWhatsThis
+
+                checked: preferredPortDetailsPopup.opened
+
+                onClicked: {
+                    if (preferredPortDetailsPopup.opened)
+                        preferredPortDetailsPopup.close()
+                    else
+                        preferredPortDetailsPopup.open()
+                }
+
+                Popup {
+                    id: preferredPortDetailsPopup
+
+                    parent: parent
+                    x: parent.width - width
+                    y: - (parent.height + 16)
+
+                    padding: 8
+
+                    closePolicy: Popup.CloseOnEscape
+                    visible: false
+                    opacity: visible ? 1.0 : 0.0
+
+                    contentItem: Text {
+                        text: JamiStrings.sharedServicesPreferredPortDetails
+                        color: JamiTheme.textColor
+                        lineHeight: JamiTheme.wizardViewTextLineHeight
+                        verticalAlignment: Text.AlignVCenter
+
+                        font.kerning: true
+                        font.pixelSize: JamiTheme.infoBoxDescFontSize
+                    }
+
+                    Behavior on opacity {
+                        NumberAnimation {
+                            duration: JamiTheme.shortFadeDuration
+                        }
+                    }
+
+                    background: Rectangle {
+                        color: JamiTheme.globalIslandColor
+                        radius: 12
+
+                        layer.enabled: true
+                        layer.effect: MultiEffect {
+                            anchors.fill: preferredPortDetailsPopup.background
                             shadowEnabled: true
                             shadowBlur: JamiTheme.shadowBlur
                             shadowColor: JamiTheme.shadowColor

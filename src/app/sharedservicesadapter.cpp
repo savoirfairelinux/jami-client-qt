@@ -58,6 +58,7 @@ constexpr const char* TYPE_EMBEDDED = "embedded";
 constexpr const char* DIRECTORY_KEY = "directory";
 constexpr const char* LOCAL_HOST_KEY = "localHost";
 constexpr const char* LOCAL_PORT_KEY = "localPort";
+constexpr const char* PREFERRED_PORT_KEY = "preferredPort";
 constexpr const char* SCHEME_KEY = "scheme";
 constexpr const char* ENABLED_KEY = "enabled";
 constexpr const char* ID_KEY = "id";
@@ -110,6 +111,15 @@ servicePort(const QVariant& value)
     bool ok = false;
     const auto port = value.toString().toUShort(&ok);
     return ok ? port : 0;
+}
+
+/// Remote port hints are advisory: accept only non-privileged ports
+/// (1024-65535); anything else means "let the OS pick" (0).
+quint16
+sanitizePreferredPort(const QVariant& value)
+{
+    const auto port = servicePort(value);
+    return port >= 1024 ? port : 0;
 }
 
 QString
@@ -655,8 +665,12 @@ SharedServicesAdapter::SharedServicesAdapter(LRCInstance* instance, QObject* par
                 if (err.error == QJsonParseError::NoError && doc.isArray()) {
                     const auto arr = doc.array();
                     services.reserve(arr.size());
-                    for (const auto& v : arr)
-                        services.append(v.toObject().toVariantMap());
+                    for (const auto& v : arr) {
+                        auto service = v.toObject().toVariantMap();
+                        // Peer-supplied hint: never honor privileged ports.
+                        service[PREFERRED_PORT_KEY] = sanitizePreferredPort(service.value(PREFERRED_PORT_KEY));
+                        services.append(service);
+                    }
                 }
                 Q_EMIT peerServicesReceived(requestId, accountId, peerId, status, services);
             });

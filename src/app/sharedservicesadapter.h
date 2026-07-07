@@ -58,6 +58,7 @@ public:
     /// Returns a list of QVariantMap describing the services shared by
     /// `accountId` (or by the current account when empty). Each map
     /// contains the keys: id, type, name, description, localHost, localPort,
+    /// preferredPort (suggested peer-side listener port, "0" = any),
     /// directory, policy ("public"|"contacts"|"specific"), allowedContacts (CSV),
     /// enabled ("true"|"false").
     Q_INVOKABLE QVariantList getSharedServices(const QString& accountId = {});
