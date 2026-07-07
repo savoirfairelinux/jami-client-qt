@@ -257,6 +257,9 @@ Item {
     property string sharedServicesChooseDirectory: qsTr("Choose directory")
     property string sharedServicesHostLabel: qsTr("Local host")
     property string sharedServicesPortLabel: qsTr("Local port")
+    property string sharedServicesPreferredPortLabel: qsTr("Preferred port on peer (optional)")
+    property string sharedServicesPreferredPortDetails: qsTr("Suggest a fixed port for peers. If busy, Jami uses a random port.")
+    property string sharedServicesPreferredPortRangeError: qsTr("Port must be between 1024 and 65535.")
     property string sharedServicesSchemeLabel: qsTr("URI scheme")
     property string sharedServicesSchemeRaw: qsTr("Raw TCP")
     property string sharedServicesSchemeCustom: qsTr("Custom")
@@ -298,6 +301,7 @@ Item {
     property string sharedServicesOpenTunnel: qsTr("Open local tunnel")
     property string sharedServicesCloseTunnel: qsTr("Stop")
     property string sharedServicesTunnelOpened: qsTr("Reachable at %1")
+    property string sharedServicesPortFallback: qsTr("preferred port busy")
 
     // AudioSettings
     property string audio: qsTr("Audio")
