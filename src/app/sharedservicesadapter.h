@@ -58,6 +58,7 @@ public:
     /// Returns a list of QVariantMap describing the services shared by
     /// `accountId` (or by the current account when empty). Each map
     /// contains the keys: id, type, name, description, localHost, localPort,
+    /// preferredPort (suggested peer-side listener port, "0" = any),
     /// directory, policy ("public"|"contacts"|"specific"), allowedContacts (CSV),
     /// enabled ("true"|"false").
     Q_INVOKABLE QVariantList getSharedServices(const QString& accountId = {});
@@ -95,8 +96,9 @@ public:
     // ----- Tunnels ----------------------------------------------------------
 
     /// Open a TCP tunnel to a peer device's service. Returns the tunnel
-    /// id (or empty on failure). Pass localPort=0 to let the OS pick a
-    /// free port; the actual bound port is reported by tunnelOpened.
+    /// id after binding its local listener, or empty on immediate failure.
+    /// Pass localPort=0 to let the OS pick a free port; the actual bound
+    /// port is reported by tunnelOpened.
     Q_INVOKABLE QString openServiceTunnel(const QString& accountId,
                                           const QString& peerUri,
                                           const QString& peerDevice,
