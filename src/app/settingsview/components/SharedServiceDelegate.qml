@@ -164,6 +164,7 @@ ItemDelegate {
                                                       "serviceDescription": modelData.description || "",
                                                       "serviceHost": modelData.localHost || "localhost",
                                                       "servicePort": modelData.localPort || "",
+                                                      "servicePreferredPort": (modelData.preferredPort && modelData.preferredPort !== "0") ? modelData.preferredPort : "",
                                                       "serviceDirectory": modelData.directory || "",
                                                       "serviceScheme": modelData.type === "embedded" ? "http" : modelData.scheme,
                                                       "servicePolicy": modelData.policy || "contacts",
