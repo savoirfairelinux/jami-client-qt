@@ -35,6 +35,7 @@ BaseModalDialog {
     property string serviceDescription: ""
     property string serviceHost: "localhost"
     property string servicePort: ""
+    property string servicePreferredPort: ""
     property string serviceDirectory: ""
     property string serviceSchemeSelection: ""
     property string serviceScheme: ""
@@ -85,8 +86,19 @@ BaseModalDialog {
         return serviceSchemeSelection !== "custom" || /^[A-Za-z][A-Za-z0-9+.-]*$/.test(serviceCustomScheme.trim());
     }
 
+    function hasValidPreferredPort() {
+        if (servicePreferredPort.length === 0)
+            return true;
+        if (!/^[0-9]+$/.test(servicePreferredPort))
+            return false;
+        var port = parseInt(servicePreferredPort, 10);
+        return port >= 1024 && port <= 65535;
+    }
+
     function canSave() {
         if (serviceName.trim().length === 0)
+            return false;
+        if (!hasValidPreferredPort())
             return false;
         if (isEmbeddedService())
             return serviceDirectory.length > 0;
@@ -126,6 +138,7 @@ BaseModalDialog {
             "description": root.serviceDescription,
             "localHost": embedded ? "localhost" : root.serviceHost.trim(),
             "localPort": embedded ? "0" : root.servicePort,
+            "preferredPort": root.servicePreferredPort.length > 0 ? root.servicePreferredPort : "0",
             "scheme": embedded ? "http" : root.effectiveScheme(),
             "directory": embedded ? root.serviceDirectory : "",
             "policy": root.servicePolicy,
@@ -237,6 +250,98 @@ BaseModalDialog {
                 }
 
                 onModifiedTextFieldContentChanged: root.servicePort = modifiedTextFieldContent
+            }
+        }
+
+        RowLayout {
+            Layout.fillWidth: true
+            Layout.bottomMargin: preferredPortField.inputIsValid ? 0 : 8
+
+            visible: !root.isEmbeddedService()
+
+            NewMaterialTextField {
+                id: preferredPortField
+
+                Layout.fillWidth: true
+
+                leadingIconSource: JamiResources.plug_connect_24dp_svg
+                placeholderText: JamiStrings.sharedServicesPreferredPortLabel
+                textFieldContent: root.servicePreferredPort
+                inputIsValid: root.hasValidPreferredPort()
+                supportingText: !inputIsValid ? JamiStrings.sharedServicesPreferredPortRangeError : ""
+                supportingTextColor: "#CC0022"
+                borderColor: !inputIsValid ? "#CC0022" : JamiTheme.tintedBlue
+
+                validator: RegularExpressionValidator {
+                    regularExpression: /^[0-9]*$/
+                }
+
+                onModifiedTextFieldContentChanged: root.servicePreferredPort = modifiedTextFieldContent
+            }
+
+            NewIconButton {
+                id: preferredPortWhatsThisButton
+
+                Layout.alignment: Qt.AlignTop
+
+                iconSource: JamiResources.bidirectional_help_outline_24dp_svg
+                iconSize: JamiTheme.iconButtonMedium
+                Accessible.name: JamiStrings.sharedServicesWhatsThis
+
+                checked: preferredPortDetailsPopup.opened
+
+                onClicked: {
+                    if (preferredPortDetailsPopup.opened)
+                        preferredPortDetailsPopup.close()
+                    else
+                        preferredPortDetailsPopup.open()
+                }
+
+                Popup {
+                    id: preferredPortDetailsPopup
+
+                    parent: parent
+                    x: parent.width - width
+                    y: - (parent.height + 16)
+
+                    padding: 8
+
+                    closePolicy: Popup.CloseOnEscape
+                    visible: false
+                    opacity: visible ? 1.0 : 0.0
+
+                    contentItem: Text {
+                        text: JamiStrings.sharedServicesPreferredPortDetails
+                        color: JamiTheme.textColor
+                        lineHeight: JamiTheme.wizardViewTextLineHeight
+                        verticalAlignment: Text.AlignVCenter
+
+                        font.kerning: true
+                        font.pixelSize: JamiTheme.infoBoxDescFontSize
+                    }
+
+                    Behavior on opacity {
+                        NumberAnimation {
+                            duration: JamiTheme.shortFadeDuration
+                        }
+                    }
+
+                    background: Rectangle {
+                        color: JamiTheme.globalIslandColor
+                        radius: 12
+
+                        layer.enabled: true
+                        layer.effect: MultiEffect {
+                            anchors.fill: preferredPortDetailsPopup.background
+                            shadowEnabled: true
+                            shadowBlur: JamiTheme.shadowBlur
+                            shadowColor: JamiTheme.shadowColor
+                            shadowHorizontalOffset: JamiTheme.shadowHorizontalOffset
+                            shadowVerticalOffset: JamiTheme.shadowVerticalOffset
+                            shadowOpacity: JamiTheme.shadowOpacity
+                        }
+                    }
+                }
             }
         }
 
