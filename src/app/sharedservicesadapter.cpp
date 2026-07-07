@@ -16,6 +16,7 @@
  */
 
 #include "sharedservicesadapter.h"
+#include "sharedserviceutils.h"
 
 #include "lrcinstance.h"
 
@@ -58,6 +59,7 @@ constexpr const char* TYPE_EMBEDDED = "embedded";
 constexpr const char* DIRECTORY_KEY = "directory";
 constexpr const char* LOCAL_HOST_KEY = "localHost";
 constexpr const char* LOCAL_PORT_KEY = "localPort";
+constexpr const char* PREFERRED_PORT_KEY = "preferredPort";
 constexpr const char* SCHEME_KEY = "scheme";
 constexpr const char* ENABLED_KEY = "enabled";
 constexpr const char* ID_KEY = "id";
@@ -67,8 +69,12 @@ QVariantMap
 mapToVariant(const MapStringString& m)
 {
     QVariantMap out;
-    for (auto it = m.cbegin(); it != m.cend(); ++it)
-        out.insert(it.key(), it.value());
+    for (auto it = m.cbegin(); it != m.cend(); ++it) {
+        if (it.key() == PREFERRED_PORT_KEY)
+            out.insert(it.key(), SharedServiceUtils::sanitizePreferredPort(it.value()));
+        else
+            out.insert(it.key(), it.value());
+    }
     return out;
 }
 
@@ -655,8 +661,13 @@ SharedServicesAdapter::SharedServicesAdapter(LRCInstance* instance, QObject* par
                 if (err.error == QJsonParseError::NoError && doc.isArray()) {
                     const auto arr = doc.array();
                     services.reserve(arr.size());
-                    for (const auto& v : arr)
-                        services.append(v.toObject().toVariantMap());
+                    for (const auto& v : arr) {
+                        auto service = v.toObject().toVariantMap();
+                        // Peer-supplied hint: never honor privileged ports.
+                        service[PREFERRED_PORT_KEY] = SharedServiceUtils::sanitizePreferredPort(
+                            service.value(PREFERRED_PORT_KEY));
+                        services.append(service);
+                    }
                 }
                 Q_EMIT peerServicesReceived(requestId, accountId, peerId, status, services);
             });
