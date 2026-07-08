@@ -37,7 +37,11 @@ RUN sh -c "echo 'deb [signed-by=/usr/share/keyrings/jami-archive-keyring.gpg] ht
 RUN apt-get update && apt-get install libqt-jami -y
 
 # Build dependencies
-RUN apt-get install -y -o Acquire::Retries=10 \
+# ponytail: update must be in the same layer as install, otherwise Docker's
+# cached index (from the libqt-jami RUN above) can drift from the mirror's
+# actual current package versions between successive builds on the same
+# node, causing "unmet dependencies" apt errors.
+RUN apt-get update && apt-get install -y -o Acquire::Retries=10 \
     python3 \
     git \
     autoconf \
