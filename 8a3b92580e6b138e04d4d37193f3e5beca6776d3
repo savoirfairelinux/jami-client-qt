@@ -3,6 +3,108 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3283c6eb_c684ad34",
+        "filename": "src/app/commoncomponents/PasswordDialog.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 948
+      },
+      "writtenOn": "2026-07-08T14:17:53Z",
+      "side": 1,
+      "message": "[warning] Security suggestion: password fields (currentPasswordEdit, passwordEdit, confirmPasswordEdit) should be cleared from the UI when the dialog closes or after successful use to reduce the time sensitive data remains in memory. Add a single place to clear their .text/modifiedTextFieldContent when visible becomes false or onAccepted/onRejected.",
+      "revId": "8a3b92580e6b138e04d4d37193f3e5beca6776d3",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c7f9dad2_cb33a2a8",
+        "filename": "src/app/commoncomponents/PasswordDialog.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 948
+      },
+      "writtenOn": "2026-07-08T14:17:53Z",
+      "side": 1,
+      "message": "[info] Suggested fix (example to add on the dialog root):\n\n```suggestion\nonVisibleChanged: {\n    if (!visible) {\n        currentPasswordEdit.text \u003d \"\";\n        passwordEdit.text \u003d \"\";\n        confirmPasswordEdit.text \u003d \"\";\n        currentPasswordEdit.modifiedTextFieldContent \u003d \"\";\n        passwordEdit.modifiedTextFieldContent \u003d \"\";\n        confirmPasswordEdit.modifiedTextFieldContent \u003d \"\";\n    }\n}\n```",
+      "revId": "8a3b92580e6b138e04d4d37193f3e5beca6776d3",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "da5e085e_98faf5ef",
+        "filename": "src/app/commoncomponents/PasswordDialog.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 948
+      },
+      "writtenOn": "2026-07-08T14:17:53Z",
+      "side": 1,
+      "message": "[error] Line 72: Critical: button1.text uses a top-level switch with return statements inside a property binding. \u0027return\u0027 is only valid inside functions; using a switch like this in a binding will cause a QML/JS syntax error and break compilation. Replace with an expression or wrap the switch in a function/IIFE.",
+      "revId": "8a3b92580e6b138e04d4d37193f3e5beca6776d3",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "38b59347_10302f39",
+        "filename": "src/app/commoncomponents/PasswordDialog.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 948
+      },
+      "writtenOn": "2026-07-08T14:17:53Z",
+      "side": 1,
+      "message": "[info] Line 72: Suggested fix (replace the current button1.text block with an IIFE that returns the appropriate string):\n\n```suggestion\nbutton1.text: (function() {\n    switch (purpose) {\n        case PasswordDialog.ExportAccount:\n            return JamiStrings.exportAccount;\n        case PasswordDialog.SetPassword:\n            return JamiStrings.set;\n        case PasswordDialog.ChangePassword:\n            return JamiStrings.change;\n        default:\n            return JamiStrings.change;\n    }\n})()\n```",
+      "revId": "8a3b92580e6b138e04d4d37193f3e5beca6776d3",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "73219be2_b56bd3d2",
+        "filename": "src/app/commoncomponents/PasswordDialog.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 948
+      },
+      "writtenOn": "2026-07-08T14:17:53Z",
+      "side": 1,
+      "message": "[info] Line 76: Suggested fix (remove the binding and initialize false, then ensure validatePassword() is called when dialog opens or purpose changes):\n\n```suggestion\nbutton1.enabled: false\n// elsewhere: when purpose or input changes call popupContentColumnLayout.validatePassword()\n```",
+      "revId": "8a3b92580e6b138e04d4d37193f3e5beca6776d3",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "80fe258e_ea10933e",
+        "filename": "src/app/commoncomponents/PasswordDialog.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 948
+      },
+      "writtenOn": "2026-07-08T14:17:53Z",
+      "side": 1,
+      "message": "[warning] Line 76: Warning: button1.enabled is declared as a binding (button1.enabled: purpose \u003d\u003d\u003d PasswordDialog.SetPassword) while validatePassword() assigns to button1.enabled imperatively. A binding and imperative assignments will conflict (the binding may be re-established and override the imperative assignment). Use a single control mechanism: either keep the binding and base it on a helper function/expression, or remove the binding and let validatePassword() control the property consistently.",
+      "revId": "8a3b92580e6b138e04d4d37193f3e5beca6776d3",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b42af7bf_2d9495f0",
         "filename": "src/app/commoncomponents/PasswordDialog.qml",
         "patchSetId": 5
@@ -14,6 +116,57 @@
       "writtenOn": "2026-04-29T18:47:40Z",
       "side": 1,
       "message": "[error] Missing semicolon at end of statement in ChangePassword validation. The boolean expression is not properly terminated, which will cause a syntax error.",
+      "revId": "8a3b92580e6b138e04d4d37193f3e5beca6776d3",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b632333e_a2849868",
+        "filename": "src/app/commoncomponents/PasswordDialog.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 948
+      },
+      "writtenOn": "2026-07-08T14:17:53Z",
+      "side": 1,
+      "message": "[info] Line 110: Suggested fix (add semicolon at end of the assignment):\n\n```suggestion\ncase PasswordDialog.ChangePassword:\n    button1.enabled \u003d currentPasswordEdit.modifiedTextFieldContent !\u003d\u003d passwordEdit.modifiedTextFieldContent \u0026\u0026 passwordEdit.modifiedTextFieldContent \u003d\u003d\u003d confirmPasswordEdit.modifiedTextFieldContent;\n    break;\n```",
+      "revId": "8a3b92580e6b138e04d4d37193f3e5beca6776d3",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "62521f6d_0319f0de",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 687,
+      "author": {
+        "id": 948
+      },
+      "writtenOn": "2026-07-08T14:17:53Z",
+      "side": 1,
+      "message": "[warning] Line 687: Suggestion: the new translation property is named `set`, which is a very generic identifier and may be confusing or possibly collide with other contexts. Prefer a clearer name like `setPassword` or `setButton` to make purpose explicit and improve readability.",
+      "revId": "8a3b92580e6b138e04d4d37193f3e5beca6776d3",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "321f63f4_86d42c93",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 687,
+      "author": {
+        "id": 948
+      },
+      "writtenOn": "2026-07-08T14:17:53Z",
+      "side": 1,
+      "message": "[info] Line 687: Suggested fix (rename property and update usages accordingly):\n\n```suggestion\nproperty string setPassword: qsTr(\"Set\")\n```\n\nAnd update usages in PasswordDialog.qml from JamiStrings.set to JamiStrings.setPassword.",
       "revId": "8a3b92580e6b138e04d4d37193f3e5beca6776d3",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
