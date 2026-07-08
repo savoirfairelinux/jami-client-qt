@@ -1,0 +1,123 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b547191a_439e2339",
+        "filename": "src/app/collaborativeadapter.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 948
+      },
+      "writtenOn": "2026-07-08T14:17:58Z",
+      "side": 1,
+      "message": "[info] Line 180: Performance suggestion: reserve result capacity before appending and avoid repeated ConfigurationManager lookups when possible. Rationale: convertVecMap/docs.size() is known and reserving avoids reallocations; calling collaborativeDocumentName() for every document may be an IPC/query — consider using commit-provided displayName as primary or batching name lookups. Suggested change:\n```suggestion\nresult.reserve(static_cast\u003cint\u003e(docs.size()));\n// prefer commit displayName when possible and only query collaborativeDocumentName() if necessary\n```",
+      "revId": "f9d89b2a352a6fb9b6b45214cdd497a00361d3fa",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "832ea5f1_ffcdf3f4",
+        "filename": "src/app/collaborativeadapter.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 948
+      },
+      "writtenOn": "2026-07-08T14:17:58Z",
+      "side": 1,
+      "message": "[warning] Line 181: Potential robustness issue: getCollaborativeDocuments() return values are used without strict type conversions/validation. Fields such as \"uri\", \"displayName\", \"author\", \"kind\", and especially \"timestamp\" are taken from the daemon map and used directly (timestamp converted with toLongLong()). If the daemon returns unexpected types or missing fields this can lead to incorrect values (0) or subtle UI issues. Rationale: Inputs from the daemon are untrusted; explicit conversions and fallbacks make behavior deterministic. Suggested change: normalize fields with toString()/toLongLong() and guard timestamp parsing. Example:\n```suggestion\nfor (const auto\u0026 commit : docs) {\n    const QString documentId \u003d commit.value(QStringLiteral(\"uri\")).toString();\n    if (documentId.isEmpty() || seen.contains(documentId))\n        continue;\n    seen.insert(documentId);\n\n    QString name \u003d ConfigurationManager::instance()\n                       .collaborativeDocumentName(accountId, convId, documentId);\n    if (name.isEmpty())\n        name \u003d commit.value(QStringLiteral(\"displayName\")).toString();\n\n    QString author \u003d commit.value(QStringLiteral(\"author\")).toString();\n    QString kind \u003d commit.value(QStringLiteral(\"kind\")).toString();\n    qint64 timestamp \u003d 0;\n    const QVariant tsVar \u003d commit.value(QStringLiteral(\"timestamp\"));\n    if (tsVar.isValid()) {\n        bool ok \u003d false;\n        timestamp \u003d tsVar.toLongLong(\u0026ok);\n        if (!ok) {\n            // attempt fallback from string\n            timestamp \u003d tsVar.toString().toLongLong(\u0026ok);\n            if (!ok) timestamp \u003d 0; // deterministic fallback\n        }\n    }\n\n    QVariantMap entry;\n    entry[QStringLiteral(\"documentId\")] \u003d documentId;\n    entry[QStringLiteral(\"name\")] \u003d name;\n    entry[QStringLiteral(\"author\")] \u003d author;\n    entry[QStringLiteral(\"kind\")] \u003d (kind \u003d\u003d QLatin1String(\"rich\")) ? kind : QLatin1String(\"text\");\n    entry[QStringLiteral(\"hasUpdate\")] \u003d hasUnreadDocumentUpdateForDocument(convId, documentId);\n    entry[QStringLiteral(\"timestamp\")] \u003d timestamp;\n    result.append(entry);\n}\n```",
+      "revId": "f9d89b2a352a6fb9b6b45214cdd497a00361d3fa",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "edb2229e_0ff9a77a",
+        "filename": "src/app/collaborativeadapter.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 948
+      },
+      "writtenOn": "2026-07-08T14:17:58Z",
+      "side": 1,
+      "message": "[info] Line 189: Behavioral suggestion: fallback to commit.displayName is used which is good. Consider preferring the CRDT live name only when it is non-empty and valid; but be aware collaborativeDocumentName() may trigger further I/O. Add a comment documenting potential cost of collaborativeDocumentName().",
+      "revId": "f9d89b2a352a6fb9b6b45214cdd497a00361d3fa",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "45199c38_10d472b1",
+        "filename": "src/app/mainview/components/MessageFormatBar.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 948
+      },
+      "writtenOn": "2026-07-08T14:17:58Z",
+      "side": 1,
+      "message": "[warning] Line 64: Behavioral concern: the optimization prevents rescanning for editable documents while hasEditableDocuments is true. This reduces repeated scans but may cause the UI to miss updates if documents are deleted/renamed elsewhere (daemon-side) and the flag isn\u0027t cleared. Rationale: external changes to conversation documents may require re-evaluation. Suggested improvements: add explicit hooks to clear hasEditableDocuments on conversation switch, on focus, or add a periodic light refresh. Example suggestion:\n```suggestion\n// Consider calling updateHasEditableDocuments() also on conversation change or window focus\nConnections { target: ConversationsModel; function onCurrentChanged() { messageBarRowLayout.hasEditableDocuments \u003d false; messageBarRowLayout.updateHasEditableDocuments(); } }\n```",
+      "revId": "f9d89b2a352a6fb9b6b45214cdd497a00361d3fa",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "75cf416c_3f140e35",
+        "filename": "src/qtwrapper/configurationmanager_wrap.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 1041,
+      "author": {
+        "id": 948
+      },
+      "writtenOn": "2026-07-08T14:17:58Z",
+      "side": 1,
+      "message": "[info] Line 1041: API compatibility: ensure the new getCollaborativeDocuments method is reflected in any public Qt API docs and bindings. Also add unit/ integration tests that exercise the method in both Qt and DBus builds (once DBus wrapper is added). Rationale: prevents regressions and documents expected structure of returned VectorMapStringString.",
+      "revId": "f9d89b2a352a6fb9b6b45214cdd497a00361d3fa",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ea829fe_12c4695b",
+        "filename": "src/qtwrapper/configurationmanager_wrap.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 1045,
+      "author": {
+        "id": 948
+      },
+      "writtenOn": "2026-07-08T14:17:58Z",
+      "side": 1,
+      "message": "[error] Line 1045: Critical: New Qt wrapper method getCollaborativeDocuments was added, but the DBus/other ConfigurationManager backends (used in DBus builds) do not appear to expose the same API. This will break DBus builds as noted in the open thread. Rationale: CollaborativeAdapter calls ConfigurationManager::instance().getCollaborativeDocuments() — when ConfigurationManager is provided by the DBus wrapper the symbol must exist. Suggested fix: Add an equivalent getCollaborativeDocuments method to the DBus ConfigurationManager implementation and expose it through the same interface. Example (gerrit-style):\n```suggestion\n// In dbus/configurationmanager.h / corresponding dbus wrapper\nVectorMapStringString getCollaborativeDocuments(const QString\u0026 accountId, const QString\u0026 conversationId)\n{\n    auto docs \u003d libjami::getCollaborativeDocuments(accountId.toStdString(), conversationId.toStdString());\n    return convertVecMap(docs);\n}\n```\nAlso ensure the DBus introspection/signature and binding code are updated so the method is available in DBus builds.",
+      "revId": "f9d89b2a352a6fb9b6b45214cdd497a00361d3fa",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "566eaa50_618a5f7c",
+        "filename": "src/qtwrapper/configurationmanager_wrap.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 1045,
+      "author": {
+        "id": 948
+      },
+      "writtenOn": "2026-07-08T14:17:58Z",
+      "side": 1,
+      "message": "[warning] Line 1045: Sanitization: convertVecMap() likely returns QVariant values that may contain arbitrary strings. Downstream code and QML should escape/validate displayName and author fields before rendering as rich text. Rationale: avoid accidental rich text/HTML injection if these values are ever interpreted as HTML in QML.",
+      "revId": "f9d89b2a352a6fb9b6b45214cdd497a00361d3fa",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
