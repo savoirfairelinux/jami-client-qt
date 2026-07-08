@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7d6124d7_e06978cb",
+        "filename": "src/app/mainview/components/PeerServicesButton.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 948
+      },
+      "writtenOn": "2026-07-08T16:36:46Z",
+      "side": 1,
+      "message": "[warning] Line 126: openServiceTunnel currently expects an immediate return value (tunnelId) and falls back synchronously if empty. If SharedServicesAdapter.openServiceTunnel is asynchronous (emits success/failure later), relying on an immediate empty-string return could hide the true asynchronous success path.\n\nSuggestion: confirm the adapter\u0027s contract. If openServiceTunnel is asynchronous, remove the synchronous fallback logic and handle failures via the adapter\u0027s signals/callbacks. Example (pseudocode):\n```suggestion\n// If openServiceTunnel is asynchronous, don\u0027t assume immediate failure; rely on open/failed signals\nvar preferred \u003d Number(service.preferredPort) || 0;\nSharedServicesAdapter.openServiceTunnel(accountId, peerUri, service.device || \"\", service.id, serviceName(service), preferred);\n// Adapter should emit tunnelOpened/tunnelOpenFailed which the UI listens to and shows fallback/open errors.\n```\nRationale: mixing sync expectations with async implementations can cause races and inconsistent error handling.",
+      "revId": "ac8d20557de1452a4ed45e1ede9631d7a5c926c0",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e98e734b_b675e98d",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 948
+      },
+      "writtenOn": "2026-07-08T16:36:46Z",
+      "side": 1,
+      "message": "[info] Line 260: New strings were added (preferred port label/details/range error). Ensure these keys are added to translation templates and translators are informed. Missing translations will fall back to the source language; add a TODO to update translation files.",
+      "revId": "ac8d20557de1452a4ed45e1ede9631d7a5c926c0",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "33a06a41_ef175f3c",
+        "filename": "src/app/settingsview/components/SharedServiceDelegate.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 948
+      },
+      "writtenOn": "2026-07-08T16:36:46Z",
+      "side": 1,
+      "message": "[warning] Line 162: Type-mismatch when reading modelData.preferredPort: the code compares to the string \"0\" which fails if the model provides a numeric 0. Normalize/coerce the value before checking so the delegate shows/edits preferred ports reliably.\n\nSuggested fix (coerce to Number and stringify):\n```suggestion\n\"servicePreferredPort\": (modelData.preferredPort \u0026\u0026 Number(modelData.preferredPort) !\u003d\u003d 0) ? String(modelData.preferredPort) : \"\",\n```\nRationale: this will work whether preferredPort is a number or a string, avoiding incorrect empty/zero handling.",
+      "revId": "ac8d20557de1452a4ed45e1ede9631d7a5c926c0",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "339aec97_c131dc5a",
+        "filename": "src/app/settingsview/components/SharedServiceDialog.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 948
+      },
+      "writtenOn": "2026-07-08T16:36:46Z",
+      "side": 1,
+      "message": "[info] Line 260: No automated tests were added for the new preferred port validation or the adapter sanitization. Please add a small unit test (C++ or JS QML test) that verifies sanitizePreferredPort rejects privileged ports and accepts 1024..65535. This reduces regression risk.",
+      "revId": "ac8d20557de1452a4ed45e1ede9631d7a5c926c0",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c768cdc2_5fc73865",
+        "filename": "src/app/sharedservicesadapter.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 948
+      },
+      "writtenOn": "2026-07-08T16:36:46Z",
+      "side": 1,
+      "message": "[info] Line 115: sanitizePreferredPort is a good safety measure. Suggest making the non-privileged range explicit using named constants and assert the upper bound (65535) for clarity and future maintenance. Also add a short note that this sanitization is applied because peer-supplied hints are untrusted.\n\nSuggested change:\n```suggestion\nstatic constexpr quint16 PREFERRED_PORT_MIN \u003d 1024;\nstatic constexpr quint16 PREFERRED_PORT_MAX \u003d 65535;\n\nquint16\nsanitizePreferredPort(const QVariant\u0026 value)\n{\n    const auto port \u003d servicePort(value);\n    // Only accept non-privileged ports in [PREFERRED_PORT_MIN .. PREFERRED_PORT_MAX].\n    return (port \u003e\u003d PREFERRED_PORT_MIN \u0026\u0026 port \u003c\u003d PREFERRED_PORT_MAX) ? port : 0;\n}\n```\nRationale: makes intent explicit and protects against invalid values above 65535 if servicePort implementation changes.",
+      "revId": "ac8d20557de1452a4ed45e1ede9631d7a5c926c0",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2fb24d1b_0d70f319",
+        "filename": "src/app/sharedservicesadapter.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 670,
+      "author": {
+        "id": 948
+      },
+      "writtenOn": "2026-07-08T16:36:46Z",
+      "side": 1,
+      "message": "[warning] Line 670: The code stores sanitizePreferredPort(...) result into the QVariantMap as a numeric QVariant. QML consumers in this patch sometimes compare preferredPort to string values (e.g. \"0\"), which can cause inconsistent behaviour across platforms/JS engines. Please pick a single canonical type (prefer numeric) or normalize to string consistently on the C++ side.\n\nTwo options (prefer updating QML to treat the value as numeric). If instead normalizing here, store as a string:\n```suggestion\nservice[PREFERRED_PORT_KEY] \u003d QString::number(sanitizePreferredPort(service.value(PREFERRED_PORT_KEY)));\n```\nRationale: consistent cross-language typing avoids subtle bugs where JS strict comparisons against \"0\" or empty string fail.",
+      "revId": "ac8d20557de1452a4ed45e1ede9631d7a5c926c0",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
