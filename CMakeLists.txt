@@ -768,8 +768,10 @@ if(MSVC)
   # compiler options
   add_compile_options(
     /wd4068 /wd4099 /wd4189 /wd4267 /wd4577 /wd4467 /wd4715 /wd4828)
+  # ponytail: bare /MP fans out to all logical CPUs per project, can multiply
+  # across concurrent Jenkins jobs on one agent and exhaust heap (C1060).
   add_compile_options(
-    /MP /GS /W3 /Gy /Zc:__cplusplus /Zc:wchar_t /Zc:externConstexpr /Zi /Gm- /O2 /Zc:inline /fp:precise)
+    /MP4 /GS /W3 /Gy /Zc:__cplusplus /Zc:wchar_t /Zc:externConstexpr /Zi /Gm- /O2 /Zc:inline /fp:precise)
   add_compile_options(/Gd /Oi /MD /FC /EHsc /nologo /sdl /constexpr:steps16777216)
 
   # linker options
