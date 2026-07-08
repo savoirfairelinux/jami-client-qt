@@ -70,6 +70,10 @@ endif()
 if(JAMICORE_AS_SUBDIR)
   add_subdirectory(${DAEMON_DIR} EXCLUDE_FROM_ALL)
   set(LIBJAMI_LIB jami-core)
+  # ponytail: BUILD_SHARED_LIBS is later force-set OFF (md4c bundling, below)
+  # since it's a shared global CACHE var, so latch jami-core's actual type
+  # here rather than re-reading BUILD_SHARED_LIBS after that point.
+  get_target_property(JAMICORE_TARGET_TYPE jami-core TYPE)
 endif()
 
 # init some variables for includes, libs, etc.
@@ -1087,12 +1091,31 @@ if(MSVC)
     ${QT_LIBS}
     ${WINDOWS_SYS_LIBS})
 
+  if(JAMICORE_TARGET_TYPE STREQUAL "SHARED_LIBRARY")
+    # src/core/directrenderer.cpp calls av_frame_alloc/free directly. A
+    # static jami-core.lib re-exposed ffmpeg's symbols transitively; a DLL
+    # doesn't, so the client needs its own link against libavutil (and
+    # libmfx, which libavutil's QSV hwcontext references).
+    list(APPEND CLIENT_LIBS
+      ${DAEMON_DIR}/contrib/build/ffmpeg/Build/win32/x64/lib/libavutil.lib
+      ${DAEMON_DIR}/contrib/msvc/lib/x64/libmfx.lib)
+  endif()
+
   # specify output executable files
   set_target_properties(
     ${PROJECT_NAME}
     PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY_RELEASE
     "${JAMI_OUTPUT_DIRECTORY_RELEASE}")
+
+  if(JAMICORE_TARGET_TYPE STREQUAL "SHARED_LIBRARY")
+    # jami-core.dll isn't found via PATH, so it has to sit next to Jami.exe.
+    add_custom_command(
+      TARGET ${PROJECT_NAME} POST_BUILD
+      COMMAND ${CMAKE_COMMAND} -E copy_if_different
+      "$<TARGET_FILE:jami-core>" "$<TARGET_FILE_DIR:${PROJECT_NAME}>"
+      COMMENT "Copying jami-core.dll next to Jami.exe")
+  endif()
 
   # executable icon
   target_sources(${PROJECT_NAME} PRIVATE ${PACKAGING_DIR}/wix/ico.rc)
