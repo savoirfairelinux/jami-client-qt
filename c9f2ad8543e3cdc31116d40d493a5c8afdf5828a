@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5e9309c3_f796da98",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 943
+      },
+      "writtenOn": "2026-07-08T20:46:15Z",
+      "side": 1,
+      "message": "Great! That should take care of this issue:https://git.jami.net/savoirfairelinux/jami-client-qt/-/work_items/2253. Now we just need to restore the original version of the translation as described here: https://git.jami.net/savoirfairelinux/jami-client-qt/-/work_items/2254#note_58000 .Regarding the translation, only the following issues remain to be resolved: https://git.jami.net/savoirfairelinux/jami-client-qt/-/work_items/2250 and https://git.jami.net/savoirfairelinux/jami-client-android/-/work_items/1959",
+      "revId": "c9f2ad8543e3cdc31116d40d493a5c8afdf5828a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
