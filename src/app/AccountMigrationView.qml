@@ -64,7 +64,7 @@ BaseView {
         function onMigrationEnded(ok) {
             successState = ok;
             if (ok) {
-                passwordInputLineEdit.clear();
+                passwordInputLineEdit.modifiedTextFieldContent = "";
                 stackedWidget.currentIndex = AccountMigrationView.AccountMigrationStep.PasswordEnter;
             } else {
                 timerFailureReturn.restart();
@@ -73,7 +73,7 @@ BaseView {
 
         function onCurrentAccountToMigrateRemoved() {
             successState = true;
-            passwordInputLineEdit.clear();
+            passwordInputLineEdit.modifiedTextFieldContent = "";
             stackedWidget.currentIndex = AccountMigrationView.AccountMigrationStep.PasswordEnter;
         }
     }
@@ -296,12 +296,15 @@ BaseView {
                             font.kerning: true
                         }
 
-                        PasswordTextEdit {
+                        NewMaterialTextField {
                             id: passwordInputLineEdit
 
                             Layout.fillWidth: false
                             Layout.preferredWidth: JamiTheme.preferredFieldWidth
                             Layout.alignment: Qt.AlignHCenter
+
+                            placeholderText: JamiStrings.password
+                            echoMode: TextInput.Password
                         }
                     }
 
