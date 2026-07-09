@@ -71,6 +71,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "652b1bc3_58ade070",
+        "filename": "src/app/mainview/components/MessageFormatBar.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-07-09T15:09:57Z",
+      "side": 1,
+      "message": "[warning] Line 65: This throttling is one-directional: once hasEditableDocuments becomes true, onCountChanged never rescans again. If the last collaborative document is removed (or the conversation is cleared), the format bar will keep advertising editable documents indefinitely for the lifetime of this component. The previous code always resynced. Consider still calling updateHasEditableDocuments() when documents can be removed, or gate on a cheaper daemon signal rather than assuming \u0027a conversation that has documents keeps having them\u0027.",
+      "revId": "f9d89b2a352a6fb9b6b45214cdd497a00361d3fa",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "75cf416c_3f140e35",
         "filename": "src/qtwrapper/configurationmanager_wrap.h",
         "patchSetId": 4
