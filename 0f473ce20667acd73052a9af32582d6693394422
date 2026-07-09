@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1ae67707_6201a1dc",
+        "filename": "src/app/CallPipWindow.qml",
+        "patchSetId": 7
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-07-09T18:28:36Z",
+      "side": 1,
+      "message": "[warning] Line 217: During an interactive corner resize, the window manager updates both width and height, so onWidthChanged and onHeightChanged fire in sequence (order not guaranteed). The width-driven call (applyVideoAspect()) keeps width and re-derives height, while the height-driven call (applyVideoAspect(true)) keeps height and re-derives width. Because they derive opposite dimensions, the final geometry depends purely on which signal is delivered last, and the first handler triggers an intermediate programmatic resize that is immediately overwritten by the second. This is a synchronous problem independent of the async-echo guard concern already noted at line 181. Consider coalescing the aspect application so it runs once per resize with a single, consistent branch, e.g. defer it to a 0-interval Timer restarted from both handlers and pick the driving dimension from the net delta:\n```suggestion\n    onWidthChanged: { if (!adjustingAspectGeometry) applyAspectTimer.restart(); saveGeometry(); }\n    onHeightChanged: { if (!adjustingAspectGeometry) applyAspectTimer.restart(); saveGeometry(); }\n```",
+      "revId": "0f473ce20667acd73052a9af32582d6693394422",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
