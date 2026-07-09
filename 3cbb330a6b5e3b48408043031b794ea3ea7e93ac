@@ -21,6 +21,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "173197dc_9f16144c",
+        "filename": "src/app/CallPipWindow.qml",
+        "patchSetId": 10
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-07-09T18:35:12Z",
+      "side": 1,
+      "message": "[info] Line 101: The new screen clamp bounds the window *size* (newWidth/newHeight) against Screen.desktopAvailableWidth/Height, but never adjusts the window *position*. When the PiP sits near the bottom/right edge and the aspect change grows the paired dimension, the window can still extend past the visible screen because x/y are unchanged. After computing the final newWidth/newHeight, also nudge x/y back on-screen before calling setAspectGeometry, e.g.: `const nx \u003d Math.min(root.x, Screen.desktopAvailableLeft + maxWidth - newWidth); const ny \u003d Math.min(root.y, Screen.desktopAvailableTop + maxHeight - newHeight); root.x \u003d Math.max(Screen.desktopAvailableLeft, nx); root.y \u003d Math.max(Screen.desktopAvailableTop, ny);`",
+      "revId": "3cbb330a6b5e3b48408043031b794ea3ea7e93ac",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f928cb12_1673e878",
         "filename": "src/app/CallPipWindowContent.qml",
         "patchSetId": 10
