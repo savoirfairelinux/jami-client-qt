@@ -1,0 +1,76 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9853313c_a8d34c58",
+        "filename": "src/app/CallPipWindow.qml",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-07-09T18:31:34Z",
+      "side": 1,
+      "message": "Fixed: the height-driven branch now re-derives newHeight when newWidth is clamped to minimumWidth, mirroring the area-preserving branch\u0027s bidirectional clamp.",
+      "parentUuid": "68e76214_750ee5ef",
+      "revId": "a175146a9cb3fa19a96c8f1d74b00b3958686585",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6e475072_8da1f58b",
+        "filename": "src/app/CallPipWindow.qml",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-07-09T18:31:34Z",
+      "side": 1,
+      "message": "Fixed: the width-driven branch now re-derives newWidth when newHeight is clamped to minimumHeight.",
+      "parentUuid": "b1d7eee3_d4f8af17",
+      "revId": "a175146a9cb3fa19a96c8f1d74b00b3958686585",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "42ac7801_a71da457",
+        "filename": "src/app/CallPipWindow.qml",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-07-09T18:31:34Z",
+      "side": 1,
+      "message": "Addressed: setAspectGeometry() now clears adjustingAspectGeometry via Qt.callLater instead of synchronously, so a WM-deferred resize confirmation arriving after the assignment still sees the guard active.",
+      "parentUuid": "87657523_a44e2eea",
+      "revId": "a175146a9cb3fa19a96c8f1d74b00b3958686585",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "57af76ec_f699aad1",
+        "filename": "src/app/CallPipWindow.qml",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-07-09T18:31:34Z",
+      "side": 1,
+      "message": "Fixed: onWidthChanged/onHeightChanged now restart a single 0-interval applyAspectTimer instead of calling applyVideoAspect() directly. The timer compares against the last settled width/height to determine which edge actually moved, so a corner drag (both dimensions changing in the same turn) resolves once instead of racing between the two derivation branches.",
+      "parentUuid": "1ae67707_6201a1dc",
+      "revId": "a175146a9cb3fa19a96c8f1d74b00b3958686585",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
