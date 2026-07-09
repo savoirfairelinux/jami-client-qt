@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8967885a_9b155401",
+        "filename": "src/app/mainview/components/PeerServicesButton.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-07-09T15:11:27Z",
+      "side": 1,
+      "message": "[warning] Line 135: This fallback assumes openServiceTunnel returns a synchronous status where an empty string means \"failed to open\". If the adapter returns a tunnel id immediately (i.e. the request is queued and the connection/port-bind happens asynchronously), then: (a) a busy preferred port will NOT produce an empty return, so the OS-assigned fallback here never fires, and (b) if it does return a non-empty id, a later async bind failure leaves a broken pending entry with no error flagged. Conversely, if the first call already registered a tunnel and then returns \"\", the retry with port 0 could open a second tunnel. Please confirm openServiceTunnel\u0027s contract; if the port-busy condition is only known asynchronously, drive the fallback from the adapter\u0027s tunnel-status signal rather than from the return value.",
+      "revId": "bb41a603353a2df92cd2f3a1ceba37eda6bea19f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b40d21fd_6a2ad113",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-07-09T15:11:27Z",
+      "side": 1,
+      "message": "[warning] Line 260: sharedServicesPreferredPortLabel (260) and sharedServicesPreferredPortRangeError (263) do not appear to be referenced anywhere in this patchset — the dialog only exposes a toggle (sharedServicesPreferredPortUseServicePort) plus the details popup, with no numeric port field to validate. These look like leftovers from an earlier design with a free-form port input. Either wire up the numeric input + range validation these strings imply, or remove the dead strings to avoid shipping unused translatable text.",
+      "revId": "bb41a603353a2df92cd2f3a1ceba37eda6bea19f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fda17d6c_1f5ed49e",
+        "filename": "src/app/settingsview/components/SharedServiceDelegate.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-07-09T15:11:27Z",
+      "side": 1,
+      "message": "[info] Line 167: preferredPort is represented as a numeric quint16 on the peer path (sanitizePreferredPort in sharedservicesadapter.cpp) but as a string on the local path (\"0\"/servicePort in SharedServiceDialog). The `!\u003d\u003d \"0\"` string comparison here only works because local getSharedServices stores strings; if this delegate ever received the numeric form, `0 !\u003d\u003d \"0\"` would be true and a 0 port could leak through (only saved by the falsy short-circuit). Normalize with Number() for robustness and consistency: `(Number(modelData.preferredPort) \u003e 0) ? modelData.preferredPort : \"\"`.",
+      "revId": "bb41a603353a2df92cd2f3a1ceba37eda6bea19f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fb75c907_2b84c3e4",
+        "filename": "src/app/settingsview/components/SharedServiceDialog.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 370,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-07-09T15:11:27Z",
+      "side": 1,
+      "message": "[info] Line 370: `parent: parent` is redundant and confusing: a Popup already defaults its parent to the item it is declared in (the NewIconButton), so this binding is a no-op that reads as self-assignment. Additionally, `visible: false` (line 377) is a declarative binding on a property that Popup manages imperatively via open()/close(); relying on open() to break the binding is fragile, and the `opacity: visible ? 1.0 : 0.0` fade-out will be skipped because close() flips visible to false instantly. Prefer removing `parent: parent` and driving open state through open()/close() only.",
+      "revId": "bb41a603353a2df92cd2f3a1ceba37eda6bea19f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
