@@ -1,0 +1,22 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bcfa2520_2549b29c",
+        "filename": "src/app/CallPipWindow.qml",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-07-09T18:32:53Z",
+      "side": 1,
+      "message": "Fixed: after deriving newWidth/newHeight in any branch, both are clamped against Screen.desktopAvailableWidth/Height, re-deriving the paired dimension when a clamp bites, mirroring the minimum-size clamps.",
+      "parentUuid": "ed4acf2f_9e592c70",
+      "revId": "3cbb330a6b5e3b48408043031b794ea3ea7e93ac",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
