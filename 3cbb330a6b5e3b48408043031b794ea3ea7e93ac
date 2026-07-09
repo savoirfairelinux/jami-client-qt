@@ -17,6 +17,24 @@
       "parentUuid": "ed4acf2f_9e592c70",
       "revId": "3cbb330a6b5e3b48408043031b794ea3ea7e93ac",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f928cb12_1673e878",
+        "filename": "src/app/CallPipWindowContent.qml",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-07-09T18:33:01Z",
+      "side": 1,
+      "message": "Acknowledged, leaving as-is for now: this is a cosmetic one-frame double-snap on non-16:9 sources while VideoView.qml\u0027s sourceRect settles, not a correctness bug. Flagging as info rather than gating this change on it; happy to add the sourceRect.width \u003e 0 guard separately if it\u0027s visibly annoying in practice.",
+      "parentUuid": "e235019f_ef2be0cd",
+      "revId": "3cbb330a6b5e3b48408043031b794ea3ea7e93ac",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
