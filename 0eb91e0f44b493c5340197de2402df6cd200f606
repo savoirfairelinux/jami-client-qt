@@ -55,6 +55,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "68e76214_750ee5ef",
+        "filename": "src/app/CallPipWindow.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-07-09T15:11:20Z",
+      "side": 1,
+      "message": "[warning] Line 62: Height-driven branch: when the derived width is clamped to `minimumWidth`, `newHeight` is left equal to the current `height`, so the resulting window no longer matches `videoInvAspect` and the video letterboxes with `crop:false`. Re-derive the other dimension after clamping, mirroring the middle (area-preserving) branch. e.g.:\n```suggestion\n            newWidth \u003d Math.round(height / videoInvAspect);\n            if (newWidth \u003c minimumWidth) {\n                newWidth \u003d minimumWidth;\n                newHeight \u003d Math.max(minimumHeight, Math.round(newWidth * videoInvAspect));\n            } else {\n                newHeight \u003d height;\n            }\n```",
+      "revId": "0eb91e0f44b493c5340197de2402df6cd200f606",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "70510fb7_a05e4f6c",
         "filename": "src/app/CallPipWindow.qml",
         "patchSetId": 5
@@ -84,6 +101,40 @@
       "side": 1,
       "message": "Done",
       "parentUuid": "70510fb7_a05e4f6c",
+      "revId": "0eb91e0f44b493c5340197de2402df6cd200f606",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b1d7eee3_d4f8af17",
+        "filename": "src/app/CallPipWindow.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-07-09T15:11:20Z",
+      "side": 1,
+      "message": "[warning] Line 75: Width-driven `else` branch: clamping `newHeight` up to `minimumHeight` without also adjusting `newWidth` leaves the window off-aspect (video will letterbox). Handle it symmetrically to the middle branch by bumping the width when the height is clamped. e.g.:\n```suggestion\n            newWidth \u003d width;\n            newHeight \u003d Math.round(width * videoInvAspect);\n            if (newHeight \u003c minimumHeight) {\n                newHeight \u003d minimumHeight;\n                newWidth \u003d Math.max(minimumWidth, Math.round(newHeight / videoInvAspect));\n            }\n```",
+      "revId": "0eb91e0f44b493c5340197de2402df6cd200f606",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "87657523_a44e2eea",
+        "filename": "src/app/CallPipWindow.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-07-09T15:11:20Z",
+      "side": 1,
+      "message": "[warning] Line 181: The `adjustingAspectGeometry` guard is set and cleared synchronously around the `width`/`height` assignments. For a top-level `Window`, the window manager/compositor can clamp or confirm the size asynchronously, firing a *second* `onWidthChanged`/`onHeightChanged` after the guard has already been reset to false. That echo re-enters `applyVideoAspect()` and can cause visible jitter or leave geometry out of sync. Consider tracking the last programmatically-requested size and short-circuiting when the incoming width/height matches it, rather than relying on a purely synchronous boolean.",
       "revId": "0eb91e0f44b493c5340197de2402df6cd200f606",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
