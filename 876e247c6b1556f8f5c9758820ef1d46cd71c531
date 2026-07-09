@@ -1,0 +1,22 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "25692c68_7426674e",
+        "filename": "src/app/CallPipWindow.qml",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-07-09T18:50:47Z",
+      "side": 1,
+      "message": "Fixed: applyVideoAspect() now also nudges root.x/root.y back within Screen.desktopAvailableLeft/Top..+Width/Height whenever the clamped size would otherwise push the window past the right/bottom edge (via PipAspectGeometry.clampPosition, unit-tested in tst_PipAspectGeometry.qml).",
+      "parentUuid": "173197dc_9f16144c",
+      "revId": "876e247c6b1556f8f5c9758820ef1d46cd71c531",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
