@@ -35,6 +35,23 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "ed4acf2f_9e592c70",
+        "filename": "src/app/CallPipWindow.qml",
+        "patchSetId": 8
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-07-09T18:31:17Z",
+      "side": 1,
+      "message": "[warning] Line 87: None of the branches clamp the derived geometry to an upper bound. For a portrait remote video (videoInvAspect \u003e 1) the width-driven branch computes newHeight \u003d width * videoInvAspect (e.g. 400 * 1.78 ≈ 711), and the area-preserving branch is likewise unbounded above. On small displays this can make the PiP window taller/wider than the screen or push it partially off-screen, with no way to shrink it back below the aspect-derived size. Clamp against Screen.desktopAvailableWidth/Height (or a maximumWidth/maximumHeight) after deriving newWidth/newHeight, re-deriving the opposite dimension when the clamp bites, the same way the minimum-size clamps are handled.",
+      "revId": "cf7d8797483a9b0f42b62be2a8ead04d258df0dc",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "883b01f4_86509cd6",
@@ -48,6 +65,23 @@
       "writtenOn": "2026-07-09T18:29:35Z",
       "side": 1,
       "message": "Addressed: setAspectGeometry() now clears adjustingAspectGeometry via Qt.callLater instead of synchronously, so a deferred WM-confirmed resize signal arriving after the assignment still sees the guard active.",
+      "revId": "cf7d8797483a9b0f42b62be2a8ead04d258df0dc",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e235019f_ef2be0cd",
+        "filename": "src/app/CallPipWindowContent.qml",
+        "patchSetId": 8
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-07-09T18:31:17Z",
+      "side": 1,
+      "message": "[info] Line 62: remoteVideo.invAspectRatio falls back to 0.5625 (16:9) whenever videoOutput.sourceRect is empty (see VideoView.qml:28). Since videoInvAspectRatio gates only on isRendering, the window can be resized to a hard-coded 16:9 the instant rendering flips true but before a real frame has sized sourceRect, then resized again once the true aspect is known — a visible double snap for non-16:9 sources. Consider also requiring sourceRect.width \u003e 0 (or exposing the raw ratio without the default) so the aspect adjustment only fires on a genuine measured aspect.",
       "revId": "cf7d8797483a9b0f42b62be2a8ead04d258df0dc",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
