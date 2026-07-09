@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a58cc7d3_378cf9c7",
+        "filename": "src/app/CallPipWindow.qml",
+        "patchSetId": 8
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-07-09T18:29:35Z",
+      "side": 1,
+      "message": "Fixed: the height-driven branch now re-derives newHeight when newWidth is clamped to minimumWidth, matching the area-preserving branch\u0027s bidirectional clamp.",
+      "revId": "cf7d8797483a9b0f42b62be2a8ead04d258df0dc",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bbefd54b_0586f59c",
+        "filename": "src/app/CallPipWindow.qml",
+        "patchSetId": 8
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-07-09T18:29:35Z",
+      "side": 1,
+      "message": "Fixed: the width-driven branch now re-derives newWidth when newHeight is clamped to minimumHeight.",
+      "revId": "cf7d8797483a9b0f42b62be2a8ead04d258df0dc",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "883b01f4_86509cd6",
+        "filename": "src/app/CallPipWindow.qml",
+        "patchSetId": 8
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-07-09T18:29:35Z",
+      "side": 1,
+      "message": "Addressed: setAspectGeometry() now clears adjustingAspectGeometry via Qt.callLater instead of synchronously, so a deferred WM-confirmed resize signal arriving after the assignment still sees the guard active.",
+      "revId": "cf7d8797483a9b0f42b62be2a8ead04d258df0dc",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
