@@ -300,25 +300,35 @@ AccountAdapter::setCurrAccDisplayName(const QString& text)
 void
 AccountAdapter::setCurrentAccountAvatarFile(const QString& source)
 {
-    QThreadPool::globalInstance()->start([this, source]() {
-        QPixmap image;
-        if (!image.load(source)) {
-            qWarning() << "Not a valid image file";
-            return;
-        }
+    const auto accountId = lrcInstance_->get_currentAccountId();
+    if (accountId.isEmpty())
+        return;
 
-        auto accountId = lrcInstance_->get_currentAccountId();
-        lrcInstance_->accountModel().setAvatar(accountId, source);
-    });
+    QMetaObject::invokeMethod(
+        lrcInstance_,
+        [this, accountId, source]() {
+            QPixmap image;
+            if (!image.load(source)) {
+                qWarning() << "Not a valid image file";
+                return;
+            }
+
+            lrcInstance_->accountModel().setAvatar(accountId, source);
+        },
+        Qt::QueuedConnection);
 }
 
 void
 AccountAdapter::setCurrentAccountAvatarBase64(const QString& data)
 {
-    QThreadPool::globalInstance()->start([this, data]() {
-        auto accountId = lrcInstance_->get_currentAccountId();
-        lrcInstance_->accountModel().setAvatar(accountId, data, true, 1);
-    });
+    const auto accountId = lrcInstance_->get_currentAccountId();
+    if (accountId.isEmpty())
+        return;
+
+    QMetaObject::invokeMethod(
+        lrcInstance_,
+        [this, accountId, data]() { lrcInstance_->accountModel().setAvatar(accountId, data, true, 1); },
+        Qt::QueuedConnection);
 }
 
 void
@@ -342,11 +352,17 @@ AccountAdapter::exportToFile(const QString& accountId, const QString& path, cons
 void
 AccountAdapter::setArchivePasswordAsync(const QString& accountID, const QString& password)
 {
-    QThreadPool::globalInstance()->start([this, accountID, password] {
-        auto config = lrcInstance_->accountModel().getAccountConfig(accountID);
-        config.archivePassword = password;
-        lrcInstance_->accountModel().setAccountConfig(accountID, config);
-    });
+    if (accountID.isEmpty())
+        return;
+
+    QMetaObject::invokeMethod(
+        lrcInstance_,
+        [this, accountID, password] {
+            auto config = lrcInstance_->accountModel().getAccountConfig(accountID);
+            config.archivePassword = password;
+            lrcInstance_->accountModel().setAccountConfig(accountID, config);
+        },
+        Qt::QueuedConnection);
 }
 
 void
