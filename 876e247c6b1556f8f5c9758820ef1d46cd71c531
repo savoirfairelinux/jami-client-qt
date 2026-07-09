@@ -17,6 +17,40 @@
       "parentUuid": "173197dc_9f16144c",
       "revId": "876e247c6b1556f8f5c9758820ef1d46cd71c531",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "62c8bac6_71790055",
+        "filename": "src/app/js/pipaspectgeometry.js",
+        "patchSetId": 12
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-07-09T18:50:58Z",
+      "side": 1,
+      "message": "[info] Line 65: The two upper-bound clamps re-derive the paired dimension but never re-check the minimum. On a display whose available size is smaller than minimumWidth/minimumHeight (e.g. a very small secondary screen, or an unusually tall/wide video where maxHeight/videoInvAspect \u003c minimumWidth), the final newWidth/newHeight can be pushed below the minimum. Consider re-applying Math.max(minimumWidth/Height, ...) after each max clamp, or asserting max \u003e\u003d min, so the result can never violate the minimum size. Minor/defensive, since normally the screen exceeds the min window.",
+      "revId": "876e247c6b1556f8f5c9758820ef1d46cd71c531",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e4f28d99_008fd798",
+        "filename": "tests/qml/src/tst_PipAspectGeometry.qml",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-07-09T18:50:58Z",
+      "side": 1,
+      "message": "[warning] This new test file is added, but the patchset contains no change to the QML test build wiring (e.g. tests/qml/CMakeLists.txt or the test manifest that lists tst_*.qml cases). If the harness enumerates tests explicitly rather than globbing, tst_PipAspectGeometry will silently never run in CI, so the extracted geometry math would ship untested despite the good coverage here. Please confirm the file is registered with the QML test runner (add it to the relevant list if needed) so these cases actually execute.",
+      "revId": "876e247c6b1556f8f5c9758820ef1d46cd71c531",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
