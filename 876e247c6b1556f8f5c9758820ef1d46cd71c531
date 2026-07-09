@@ -36,6 +36,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4e7b9a2e_ac02a4d4",
+        "filename": "src/app/js/pipaspectgeometry.js",
+        "patchSetId": 12
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-07-09T18:57:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "62c8bac6_71790055",
+      "revId": "876e247c6b1556f8f5c9758820ef1d46cd71c531",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e4f28d99_008fd798",
@@ -49,6 +67,24 @@
       "writtenOn": "2026-07-09T18:50:58Z",
       "side": 1,
       "message": "[warning] This new test file is added, but the patchset contains no change to the QML test build wiring (e.g. tests/qml/CMakeLists.txt or the test manifest that lists tst_*.qml cases). If the harness enumerates tests explicitly rather than globbing, tst_PipAspectGeometry will silently never run in CI, so the extracted geometry math would ship untested despite the good coverage here. Please confirm the file is registered with the QML test runner (add it to the relevant list if needed) so these cases actually execute.",
+      "revId": "876e247c6b1556f8f5c9758820ef1d46cd71c531",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "684ec164_082aca1a",
+        "filename": "tests/qml/src/tst_PipAspectGeometry.qml",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-07-09T18:57:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e4f28d99_008fd798",
       "revId": "876e247c6b1556f8f5c9758820ef1d46cd71c531",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }

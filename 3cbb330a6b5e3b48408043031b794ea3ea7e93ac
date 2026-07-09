@@ -52,6 +52,24 @@
       "parentUuid": "e235019f_ef2be0cd",
       "revId": "3cbb330a6b5e3b48408043031b794ea3ea7e93ac",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "95d19eed_815ac064",
+        "filename": "src/app/CallPipWindowContent.qml",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-07-09T18:57:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f928cb12_1673e878",
+      "revId": "3cbb330a6b5e3b48408043031b794ea3ea7e93ac",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
