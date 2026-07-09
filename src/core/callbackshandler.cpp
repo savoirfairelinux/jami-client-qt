@@ -143,7 +143,8 @@ CallbacksHandler::CallbacksHandler(const Lrc& parent)
     connect(&ConfigurationManager::instance(),
             &ConfigurationManagerInterface::accountsChanged,
             this,
-            &CallbacksHandler::slotAccountsChanged);
+            &CallbacksHandler::slotAccountsChanged,
+            Qt::QueuedConnection);
 
     connect(&ConfigurationManager::instance(),
             &ConfigurationManagerInterface::registrationStateChanged,
