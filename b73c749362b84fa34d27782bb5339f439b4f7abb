@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5f6556c3_b737c277",
+        "filename": "src/app/currentcall.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 406,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-07-10T21:51:12Z",
+      "side": 1,
+      "message": "[info] Line 406: For consistency with onShowWithFocus (lines 356-359), consider ordering updateParticipants() before updateCallInfo(). getConferencesInfos()/updateCallInfo may depend on the freshly refreshed participant/isConference state, and matching the established ordering makes the two slots easier to reason about. Not blocking.",
+      "revId": "b73c749362b84fa34d27782bb5339f439b4f7abb",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
