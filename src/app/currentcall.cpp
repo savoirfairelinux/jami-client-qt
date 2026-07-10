@@ -401,4 +401,7 @@ CurrentCall::onShowIncomingCallView(const QString& accountId, const QString& con
     updateId();
     updateCallStatus();
     updateCallInfo();
+    // Refresh participants/isConference here; otherwise isConference_ can remain stale after a hosted conference and
+    // hide video for the next call.
+    updateParticipants();
 }
