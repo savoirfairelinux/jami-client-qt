@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "caaeb0d2_15ddc187",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 943
+      },
+      "writtenOn": "2026-07-12T12:32:54Z",
+      "side": 1,
+      "message": "Just to be on the safe side: Jami can be used for offline communication without any internet connection (for text messages as well as audio and video calls), right?\n\nI read the following in the patch description: “Keep an outlined indicator visible while contacts are offline.”\n\nShouldn\u0027t we rather speak of “available” and “unavailable” and update the corresponding icons and graphics accordingly?\nOr perhaps introduce a distinct color and/or icon for when a contact is offline but communication without internet is still possible?\n\nAnd maybe use a specific marker for when a contact is neither offline nor online—meaning absolutely unreachable?",
+      "revId": "34ec3f686c0f7dccaed707fac5b0d674b8303812",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b1bd37f9_3492f97b",
         "filename": "src/app/mainview/components/SmartListItemDelegate.qml",
         "patchSetId": 2
