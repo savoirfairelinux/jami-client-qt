@@ -87,7 +87,7 @@ ItemDelegate {
 
             imageId: UID
             presenceStatus: Presence
-            showPresenceIndicator: Presence !== undefined ? Presence : false
+            showPresenceIndicator: Presence !== undefined
 
             Layout.preferredWidth: JamiTheme.smartListAvatarSize
             Layout.preferredHeight: JamiTheme.smartListAvatarSize

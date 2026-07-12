@@ -41,7 +41,8 @@ ItemDelegate {
 
             imageId: CurrentAccount.uri === MemberUri ? CurrentAccount.id : MemberUri
             presenceStatus: UtilsAdapter.getContactPresence(CurrentAccount.id, MemberUri)
-            showPresenceIndicator: presenceStatus > 0
+            presenceStatusType: PresenceIndicator.StatusType.Contact
+            showPresenceIndicator: mode === Avatar.Mode.Contact || presenceStatus > 0
             mode: CurrentAccount.uri === MemberUri ? Avatar.Mode.Account : Avatar.Mode.Contact
 
             IconImage {

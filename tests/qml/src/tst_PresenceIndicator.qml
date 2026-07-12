@@ -29,7 +29,12 @@ PresenceIndicator {
     TestCase {
         name: "Presence Indicator Color Test"
 
-        function test_color() {
+        function init() {
+            uut.statusType = PresenceIndicator.StatusType.Account;
+            uut.status = Account.Status.REGISTERED;
+        }
+
+        function test_accountColor() {
             compare(uut.color, JamiTheme.presenceGreen)
 
             uut.status = Account.Status.TRYING
@@ -39,6 +44,30 @@ PresenceIndicator {
             uut.status = Account.Status.UNREGISTERED
 
             compare(uut.color, JamiTheme.notificationRed)
+
+            uut.status = Account.Status.ERROR_NEED_MIGRATION
+
+            compare(uut.color, JamiTheme.notificationRed)
+
+            uut.status = Account.Status.INITIALIZING
+
+            compare(uut.color, JamiTheme.notificationRed)
+        }
+
+        function test_contactColor() {
+            uut.statusType = PresenceIndicator.StatusType.Contact;
+            uut.status = PresenceIndicator.ContactStatus.Connected;
+
+            compare(uut.color, JamiTheme.presenceGreen)
+
+            uut.status = PresenceIndicator.ContactStatus.Available;
+
+            compare(uut.color, JamiTheme.presenceGreen)
+
+            uut.status = PresenceIndicator.ContactStatus.Offline;
+
+            compare(uut.color, JamiTheme.transparentColor)
+            compare(uut.border.color, JamiTheme.textColorHoveredHighContrast)
         }
     }
 }
