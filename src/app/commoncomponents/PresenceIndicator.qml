@@ -43,17 +43,19 @@ Rectangle {
     height: size
     radius: size * 0.5
     border {
-        color: JamiTheme.backgroundColor
+        color: status === 0
+               ? JamiTheme.textColorHoveredHighContrast
+               : JamiTheme.backgroundColor
         width: 2
     }
     color: {
+        if (status === 1 || status === 2)
+            return JamiTheme.presenceGreen;
+        else if (status === 0)
+            return JamiTheme.transparentColor;
         if (status === Account.Status.REGISTERED)
             return JamiTheme.presenceGreen;
         else if (status === Account.Status.TRYING)
-            return JamiTheme.unPresenceOrange;
-        else if (status === 2)
-            return JamiTheme.presenceGreen;
-        else if (status === 1)
             return JamiTheme.unPresenceOrange;
         return JamiTheme.notificationRed;
     }

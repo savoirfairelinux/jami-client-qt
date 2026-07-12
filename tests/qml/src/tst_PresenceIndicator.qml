@@ -29,7 +29,11 @@ PresenceIndicator {
     TestCase {
         name: "Presence Indicator Color Test"
 
-        function test_color() {
+        function init() {
+            uut.status = Account.Status.REGISTERED;
+        }
+
+        function test_accountColor() {
             compare(uut.color, JamiTheme.presenceGreen)
 
             uut.status = Account.Status.TRYING
@@ -39,6 +43,21 @@ PresenceIndicator {
             uut.status = Account.Status.UNREGISTERED
 
             compare(uut.color, JamiTheme.notificationRed)
+        }
+
+        function test_contactColor() {
+            uut.status = 2;
+
+            compare(uut.color, JamiTheme.presenceGreen)
+
+            uut.status = 1;
+
+            compare(uut.color, JamiTheme.presenceGreen)
+
+            uut.status = 0;
+
+            compare(uut.color, JamiTheme.transparentColor)
+            compare(uut.border.color, JamiTheme.textColorHoveredHighContrast)
         }
     }
 }
