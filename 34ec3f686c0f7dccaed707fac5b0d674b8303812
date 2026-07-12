@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b1bd37f9_3492f97b",
+        "filename": "src/app/mainview/components/SmartListItemDelegate.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-07-12T02:41:25Z",
+      "side": 1,
+      "message": "[warning] Line 90: Visibility behavior change: `showPresenceIndicator: Presence !\u003d\u003d undefined` is true even when `Presence \u003d\u003d\u003d 0` (offline), whereas the previous `Presence !\u003d\u003d undefined ? Presence : false` evaluated to a falsy 0 and hid the indicator for offline contacts. Combined with the new PresenceIndicator styling (Offline -\u003e transparent fill + `textColorHoveredHighContrast` border), offline contacts will now render a hollow ring where nothing was shown before. The same change applies to ConversationPickerItemDelegate.qml:48 and ContactPickerItemDelegate.qml:53. If displaying an offline ring is intended, please note it in the commit message; otherwise restore the prior \u0027hidden when offline\u0027 behavior, e.g. `showPresenceIndicator: Presence !\u003d\u003d undefined \u0026\u0026 Presence \u003e 0`.",
+      "revId": "34ec3f686c0f7dccaed707fac5b0d674b8303812",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
