@@ -23,15 +23,38 @@ import net.jami.Constants 1.1
 Rectangle {
     id: root
 
-    // This is set to REGISTERED for contact presence
-    // as status is not currently tracked for contact items.
+    enum StatusType {
+        Account,
+        Contact
+    }
+    enum ContactStatus {
+        Offline,
+        Available,
+        Connected
+    }
+
     property int status: Account.Status.REGISTERED
+    property int statusType: PresenceIndicator.StatusType.Account
     property int size: 15
+
+    // A contact that is neither available nor connected has no presence worth
+    // showing, so the indicator is hidden entirely rather than drawn as an
+    // empty outlined dot. Account indicators are always shown.
+    readonly property bool active: statusType !== PresenceIndicator.StatusType.Contact
+                                   || status !== PresenceIndicator.ContactStatus.Offline
+
+    visible: active
 
     MaterialToolTip {
         visible: text !== "" && hoverHandler.hovered
         delay: Qt.styleHints.mousePressAndHoldInterval
-        text: status === 2 ? qsTr("Connected") : status === 1 ? qsTr("Available") : ""
+        text: statusType === PresenceIndicator.StatusType.Contact
+              && status === PresenceIndicator.ContactStatus.Connected
+              ? qsTr("Connected")
+              : statusType === PresenceIndicator.StatusType.Contact
+                && status === PresenceIndicator.ContactStatus.Available
+                ? qsTr("Available")
+                : ""
     }
 
     HoverHandler {
@@ -43,17 +66,22 @@ Rectangle {
     height: size
     radius: size * 0.5
     border {
-        color: JamiTheme.backgroundColor
+        color: statusType === PresenceIndicator.StatusType.Contact
+               && status === PresenceIndicator.ContactStatus.Offline
+               ? JamiTheme.textColorHoveredHighContrast
+               : JamiTheme.backgroundColor
         width: 2
     }
     color: {
+        if (statusType === PresenceIndicator.StatusType.Contact) {
+            return status === PresenceIndicator.ContactStatus.Available
+                    || status === PresenceIndicator.ContactStatus.Connected
+                    ? JamiTheme.presenceGreen
+                    : JamiTheme.transparentColor;
+        }
         if (status === Account.Status.REGISTERED)
             return JamiTheme.presenceGreen;
         else if (status === Account.Status.TRYING)
-            return JamiTheme.unPresenceOrange;
-        else if (status === 2)
-            return JamiTheme.presenceGreen;
-        else if (status === 1)
             return JamiTheme.unPresenceOrange;
         return JamiTheme.notificationRed;
     }

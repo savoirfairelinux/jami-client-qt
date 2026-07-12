@@ -52,6 +52,7 @@ Item {
     }
 
     property alias presenceStatus: presenceIndicator.status
+    property alias presenceStatusType: presenceIndicator.statusType
     property bool showPresenceIndicator: true
     property alias fillMode: image.fillMode
 
@@ -110,6 +111,10 @@ Item {
 
         size: root.width * JamiTheme.avatarPresenceRatio
 
-        visible: showPresenceIndicator
+        statusType: root.mode === Avatar.Mode.Account
+                    || root.mode === Avatar.Mode.TemporaryAccount
+                    ? PresenceIndicator.StatusType.Account
+                    : PresenceIndicator.StatusType.Contact
+        visible: showPresenceIndicator && presenceIndicator.active
     }
 }

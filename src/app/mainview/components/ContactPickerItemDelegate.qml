@@ -49,7 +49,8 @@ ItemDelegate {
 
             imageId: UID
 
-            showPresenceIndicator: root.showPresenceIndicator && Presence
+            presenceStatus: Presence
+            showPresenceIndicator: root.showPresenceIndicator && Presence !== undefined
         }
 
         ColumnLayout {

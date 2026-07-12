@@ -29,8 +29,14 @@ PresenceIndicator {
     TestCase {
         name: "Presence Indicator Color Test"
 
-        function test_color() {
+        function init() {
+            uut.statusType = PresenceIndicator.StatusType.Account;
+            uut.status = Account.Status.REGISTERED;
+        }
+
+        function test_accountColor() {
             compare(uut.color, JamiTheme.presenceGreen)
+            verify(uut.active)
 
             uut.status = Account.Status.TRYING
 
@@ -39,6 +45,39 @@ PresenceIndicator {
             uut.status = Account.Status.UNREGISTERED
 
             compare(uut.color, JamiTheme.notificationRed)
+
+            uut.status = Account.Status.ERROR_NEED_MIGRATION
+
+            compare(uut.color, JamiTheme.notificationRed)
+
+            uut.status = Account.Status.INITIALIZING
+
+            compare(uut.color, JamiTheme.notificationRed)
+
+            // Account indicators are always shown, whatever the status.
+            verify(uut.active)
+        }
+
+        function test_contactColor() {
+            uut.statusType = PresenceIndicator.StatusType.Contact;
+            uut.status = PresenceIndicator.ContactStatus.Connected;
+
+            compare(uut.color, JamiTheme.presenceGreen)
+            verify(uut.active)
+
+            uut.status = PresenceIndicator.ContactStatus.Available;
+
+            compare(uut.color, JamiTheme.presenceGreen)
+            verify(uut.active)
+        }
+
+        function test_offlineContactHidden() {
+            uut.statusType = PresenceIndicator.StatusType.Contact;
+            uut.status = PresenceIndicator.ContactStatus.Offline;
+
+            // Offline contacts show no indicator at all (no empty outlined dot).
+            verify(!uut.active)
+            verify(!uut.visible)
         }
     }
 }
