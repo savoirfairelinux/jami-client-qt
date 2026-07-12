@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0d08e922_8d0c9654",
+        "filename": "src/app/commoncomponents/PresenceIndicator.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-07-12T02:32:44Z",
+      "side": 1,
+      "message": "[info] Line 52: Behavior change: previously contact status 1 returned `unPresenceOrange` and status 2 returned `presenceGreen`; now both map to `presenceGreen`, collapsing the intermediate/away state. If this loss of the orange state is intentional as part of the unification, please note it in the commit message; otherwise preserve the distinction.",
+      "revId": "794fb6ab0e3b2282bb59a5c4ec077c1fe1fa6eb9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a0a31439_9188538f",
+        "filename": "src/app/commoncomponents/PresenceIndicator.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-07-12T02:32:44Z",
+      "side": 1,
+      "message": "[warning] Line 52: The `status` property now carries two different semantic domains in the same expression: raw contact-presence codes (0/1/2) and `Account.Status` enum values. Because the contact-presence branch (`status \u003d\u003d\u003d 1 || status \u003d\u003d\u003d 2`) is evaluated *before* the `Account.Status` branches, any `Account.Status` enum member whose integer value is 1 or 2 will be silently mis-colored green. This depends on an undocumented, fragile assumption about the enum\u0027s numeric layout (e.g. that TRYING/UNREGISTERED are \u003e\u003d 3). Please (a) confirm no `Account.Status` value collides with 0/1/2, and (b) replace the magic numbers with named constants / an enum (e.g. an explicit contact-presence enum) so the two domains cannot overlap and the intent is self-documenting.",
+      "revId": "794fb6ab0e3b2282bb59a5c4ec077c1fe1fa6eb9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
