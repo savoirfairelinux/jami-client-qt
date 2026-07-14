@@ -34,14 +34,15 @@ TestWrapper {
     //
     // These tests exercise the full open/close/reopen cycle through ChatView,
     // including actual MapPosition.qml creation.  This is the scenario that
-    // caused the "Single mode supports only single profile" fatal crash:
-    //   1. open  → WebEngineProfile created inside MapPosition
-    //   2. close → root.destroy() deferred; profile still alive in C++
-    //   3. reopen → second profile attempted → CRASH
+    // caused fatal Chromium breakpoint crashes (BREAKPOINT_80000003 in
+    // Qt6WebEngineCore) during WebContents/profile creation.
     //
-    // The fix uses lazy creation: ChatView loads MapProfileHolder.qml on first
-    // map open, then keeps its profile alive for the lifetime of ChatView.
-    // MapPosition never creates/destroys a profile, so steps 2→3 are safe.
+    // In --single-process mode Chromium supports only a SINGLE profile, so every
+    // WebEngineView in the app must share the one default profile (configured in
+    // main.cpp). Previously the map used its own custom "JamiMap" profile while
+    // the emoji picker / media previews used the default profile: two profiles
+    // in one process → crash. The map now uses the default profile too, so only
+    // one profile ever exists regardless of how many web views coexist.
 
     ListSelectionView {
         id: viewNode
@@ -71,13 +72,6 @@ TestWrapper {
                     // Give the event loop a chance to process deferred deletes
                     // before the next test starts.
                     wait(50);
-                    // Reset the map profile holder so each test starts with a clean state.
-                    if (chatView.mapProfileHolder !== null) {
-                        chatView.mapProfileHolder.destroy();
-                        chatView.mapProfileHolder = null;
-                        chatView.mapProfile = null;
-                        wait(50);
-                    }
                 }
 
                 // Opening the map must create a MapPosition containing a WebEngineView.
@@ -115,38 +109,36 @@ TestWrapper {
                            "A new WebEngineView should exist after reopen");
                 }
 
-                // The WebEngineProfile must be lazily created on first map
-                // open (not at ChatView construction time) and then persist
-                // across map close/reopen cycles within the same ChatView
-                // lifetime – avoiding the "Single mode supports only single
-                // profile" fatal assertion.
-                function test_webEngineProfile_lazyCreationAndPersistence() {
-                    // The profile property starts null (lazy – not eagerly created).
-                    compare(chatView.mapProfile, null,
-                            "mapProfile must be null before any map open (lazy creation)");
-
-                    // First map open triggers lazy instantiation.
+                // Regression for the two-profiles crash: the map WebEngineView
+                // must not own a private profile. It uses the shared default
+                // profile, so opening the map, closing it, and reopening it must
+                // always yield the exact same profile instance – proving a single
+                // profile exists process-wide (the invariant that avoids the
+                // single-process Chromium crash when web views coexist).
+                //
+                // Reading WebEngineView.profile with no explicit binding returns
+                // WebEngineProfile.defaultProfile(); this file therefore needs no
+                // static QtWebEngine import (which would break WITH_WEBENGINE=0
+                // builds).
+                function test_mapView_usesStableSharedProfile() {
                     PositionManager.setMapActive(accountId);
-                    var profile = findChild(chatView, "mapProfile");
-                    verify(profile !== null,
-                           "mapProfile should be created on first map open");
-                    verify(chatView.mapProfile !== null,
-                           "chatView.mapProfile property should be set after first map open");
+                    var firstView = findChild(chatView, "mapWebEngine");
+                    verify(firstView !== null,
+                           "A WebEngineView named 'mapWebEngine' should exist after setMapActive");
+                    var sharedProfile = firstView.profile;
+                    verify(sharedProfile !== null,
+                           "The map view must use the shared default profile (non-null)");
 
-                    // Closing the map must NOT destroy the profile.
+                    // Close and reopen: the map must not create a second profile.
                     PositionManager.setMapInactive(accountId);
                     wait(50);
-                    verify(chatView.mapProfile !== null,
-                           "mapProfile must persist after map close");
-                    verify(findChild(chatView, "mapProfile") !== null,
-                           "mapProfile child must still be findable after map close");
-
-                    // Reopening must reuse the same profile instance (no second
-                    // profile – that would trigger the Chromium fatal assertion).
-                    var savedProfile = chatView.mapProfile;
                     PositionManager.setMapActive(accountId);
-                    compare(chatView.mapProfile, savedProfile,
-                            "mapProfile must be the same instance after reopen (no recreation)");
+                    var secondView = findChild(chatView, "mapWebEngine");
+                    verify(secondView !== null,
+                           "A new WebEngineView should exist after reopen");
+
+                    compare(secondView.profile, sharedProfile,
+                            "reopened map view must reuse the same single shared profile");
                 }
             }
         }

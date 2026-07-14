@@ -99,6 +99,26 @@ main(int argc, char* argv[])
 
     MainApplication app(argc, argv);
 
+#if WITH_WEBENGINE
+    // In --single-process mode Chromium supports only a single profile
+    // (BrowserContext). Every WebEngineView in the app (emoji picker, media and
+    // video previews, and the location-sharing map) must therefore share the one
+    // default profile. Configure it once here so no QML view has to create its
+    // own QWebEngineProfile or mutate the profile while it is already in use;
+    // either of those spawns a second profile / re-initialises an active one and
+    // triggers a fatal Chromium breakpoint (BREAKPOINT_80000003 in
+    // Qt6WebEngineCore) during WebContents/profile creation.
+    //
+    // QWebEngineProfile::defaultProfile() requires a live QApplication, so this
+    // must run after MainApplication is constructed (not right after
+    // QtWebEngineQuick::initialize()).
+    auto* defaultProfile = QWebEngineProfile::defaultProfile();
+    defaultProfile->setHttpUserAgent(QStringLiteral("JamiDesktop/")
+                                     + QCoreApplication::applicationVersion());
+    defaultProfile->setPersistentCookiesPolicy(QWebEngineProfile::NoPersistentCookies);
+    defaultProfile->setHttpCacheType(QWebEngineProfile::NoCache);
+#endif
+
     app.setDesktopFileName(QStringLiteral("net.jami.Jami"));
 #if defined(Q_OS_MACOS)
     if (macutils::isMetalSupported()) {
