@@ -52,13 +52,6 @@ Item {
     // the main window.
     property var convContext: CurrentConversation
 
-    // Persistent WebEngineProfile for the map view. Created lazily on first
-    // map open via MapProfileHolder.qml so ChatView does not import QtWebEngine
-    // (required for App Store builds with WITH_WEBENGINE=0). Once created, it
-    // lives for the lifetime of ChatView so it is never recreated when the map
-    // is opened/closed.
-    property var mapProfile: null
-    property var mapProfileHolder: null
     property bool createMapViewOnPositionSignal: true
 
     // The purpose of this alias is to make the message bar
@@ -110,19 +103,10 @@ Item {
 
     function instanceMapObject() {
         if (WITH_WEBENGINE) {
-            if (!mapProfile) {
-                var holderComp = Qt.createComponent("qrc:/webengine/map/MapProfileHolder.qml");
-                if (holderComp.status !== Component.Ready) {
-                    console.log("Error loading MapProfileHolder:", holderComp.errorString());
-                    return;
-                }
-                mapProfileHolder = holderComp.createObject(root);
-                if (mapProfileHolder === null) {
-                    console.log("Error creating MapProfileHolder object");
-                    return;
-                }
-                mapProfile = mapProfileHolder.ensureProfile();
-            }
+            // The map view intentionally does not set a WebEngineProfile, so it
+            // uses the application-wide default profile. In --single-process mode
+            // Chromium supports only a single profile; creating a dedicated one
+            // for the map crashed when another WebEngineView already existed.
             var component = Qt.createComponent("qrc:/webengine/map/MapPosition.qml");
             if (component.status !== Component.Ready) {
                 console.log("Error loading MapPosition:", component.errorString());
@@ -131,7 +115,6 @@ Item {
             var sprite = component.createObject(root, {
                                                     "maxWidth": root.width,
                                                     "maxHeight": root.height,
-                                                    "mapProfile": mapProfile,
                                                     "attachedAccountId": CurrentAccount.id
                                                 });
             if (sprite === null) {
