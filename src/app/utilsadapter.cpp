@@ -911,7 +911,12 @@ UtilsAdapter::urlFromLocalPath(const QString& filePath) const
 QString
 UtilsAdapter::getBotOwner(const QString& accountId) const
 {
-    return lrcInstance_->accountModel().getAccountInfo(accountId).profileInfo.botOwner;
+    try {
+        return lrcInstance_->accountModel().getAccountInfo(accountId).profileInfo.botOwner;
+    } catch (const std::out_of_range& e) {
+        qWarning() << "UtilsAdapter::getBotOwner: " << e.what();
+        return {};
+    }
 }
 
 #ifdef BUILD_TESTING
