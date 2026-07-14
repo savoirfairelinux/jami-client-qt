@@ -709,10 +709,24 @@ Utils::fallbackAvatar(const QString& canonicalUri, const QString& name, const QS
     painter.drawEllipse(avatar.rect());
 
     // if a letter was passed, then we paint a letter in the circle,
-    // otherwise we draw the default avatar icon
-    QString trimmedName(name);
-    const static QRegularExpression newlineRe("[\\n\\t\\r]");
-    if (!trimmedName.remove(newlineRe).isEmpty()) {
+    // otherwise we draw the default avatar icon.
+    // Find the first character that is not a newline, tab or carriage return.
+    // Note: we deliberately avoid QString::remove() with a QRegularExpression
+    // here. PCRE2's JIT matcher can overflow the stack on pathological or very
+    // long input strings, which crashed the client
+    // (STACK_OVERFLOW_c00000fd_Qt6Core.dll!__chkstk). A manual scan is both
+    // cheaper and safe regardless of the input length.
+    int firstIdx = 0;
+    while (firstIdx < name.size()) {
+        const QChar c = name.at(firstIdx);
+        if (c != QLatin1Char('\n') && c != QLatin1Char('\t') && c != QLatin1Char('\r'))
+            break;
+        ++firstIdx;
+    }
+    if (firstIdx < name.size()) {
+        // Keep at most two UTF-16 code units so a leading surrogate pair
+        // (e.g. an emoji) is preserved when computing the first code point.
+        QString trimmedName = name.mid(firstIdx, 2);
         auto unicode = trimmedName.toUcs4().at(0);
         if (unicode >= 0x1F000 && unicode <= 0x1FFFF) {
             // emoticon
