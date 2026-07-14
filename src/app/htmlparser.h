@@ -36,10 +36,7 @@ public:
     HtmlParser(QObject* parent = nullptr)
         : QObject(parent)
     {
-        doc_ = tidyCreate();
-        tidyOptSetBool(doc_, TidyQuiet, yes);
-        tidyOptSetBool(doc_, TidyShowWarnings, no);
-        tidyOptSetInt(doc_, TidyUseCustomTags, TidyCustomEmpty);
+        doc_ = createDoc();
     }
 
     ~HtmlParser()
@@ -49,6 +46,12 @@ public:
 
     bool parseHtmlString(const QString& html)
     {
+        // Re-parsing into an already populated TidyDoc leaves stale node
+        // references in libtidy's internal structures (e.g. the anchor hash),
+        // which are later dereferenced during tidyRelease and can crash. Start
+        // every parse from a fresh document to guarantee a clean state.
+        tidyRelease(doc_);
+        doc_ = createDoc();
         return tidyParseString(doc_, html.toUtf8().data()) >= 0;
     }
 
@@ -121,12 +124,26 @@ public:
     }
 
 private:
+    // Create and configure a fresh TidyDoc instance.
+    static TidyDoc createDoc()
+    {
+        TidyDoc doc = tidyCreate();
+        tidyOptSetBool(doc, TidyQuiet, yes);
+        tidyOptSetBool(doc, TidyShowWarnings, no);
+        tidyOptSetInt(doc, TidyUseCustomTags, TidyCustomEmpty);
+        return doc;
+    }
+
     // NOLINTNEXTLINE(misc-no-recursion)
     void traverseNode(TidyNode node,
                       const QList<TidyTagId>& tags,
                       const std::function<void(TidyNode, TidyTagId)>& cb,
                       int depth = -1)
     {
+        if (!node) {
+            return;
+        }
+
         for (auto tag : tags) {
             if (tidyNodeGetId(node) == tag && cb) {
                 cb(node, tag);
