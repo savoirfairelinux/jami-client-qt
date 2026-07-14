@@ -37,7 +37,6 @@ Item {
     property string currentConvId: CurrentConversation.id
     property bool isSharing: (PositionManager.positionShareConvIdsCount !== 0)
     property bool isSharingToCurrentConversation
-    property WebEngineProfile mapProfile: null
 
     function closeMapPosition() {
         root.destroy();
@@ -135,7 +134,6 @@ Item {
             WebEngineView {
                 id: webView
                 objectName: JamiQmlUtils.webEngineNames.map
-                profile: root.mapProfile
 
                 layer.enabled: !isFullScreen
                 layer.effect: OpacityMask {

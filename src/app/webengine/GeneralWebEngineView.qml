@@ -67,11 +67,6 @@ WebEngineView {
     }
 
     Component.onCompleted: {
-        profile.cachePath = UtilsAdapter.getLocalDataPath();
-        profile.persistentStoragePath = UtilsAdapter.getLocalDataPath();
-        profile.persistentCookiesPolicy = WebEngineProfile.NoPersistentCookies;
-        profile.httpCacheType = WebEngineProfile.NoCache;
-        profile.httpUserAgent = JamiStrings.httpUserAgentName;
         // Load the local content once using the qrc URL as the base. Setting
         // 'url' separately would trigger a second, redundant navigation to the
         // same page, needlessly re-entering the WebEngine navigation machinery.
