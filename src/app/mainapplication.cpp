@@ -213,6 +213,23 @@ MainApplication::init()
     systemTray_ = new SystemTray(settingsManager_, this);
     previewEngine_ = new PreviewEngine(connectivityMonitor_, this);
 
+    // During application teardown, sibling QObjects (e.g. ConnectivityMonitor)
+    // may pump a nested message loop while being destroyed. On Windows this can
+    // deliver a pending tray context-menu request, which would try to pop up the
+    // QMenu while the widget/QApplication infrastructure is already being torn
+    // down, crashing in QWidget::isActiveWindow. Detach and hide the tray icon
+    // before that happens so no context menu can be shown during shutdown.
+    connect(this, &QCoreApplication::aboutToQuit, this, [this] {
+        if (!systemTray_)
+            return;
+        if (auto* menu = systemTray_->contextMenu()) {
+            systemTray_->setContextMenu(nullptr);
+            menu->hide();
+            menu->deleteLater();
+        }
+        systemTray_->hide();
+    });
+
     // These should should be QueuedConnection to ensure that the
     // they are executed after the QML engine has been initialized,
     // and after the QSystemTrayIcon has been created and shown.
