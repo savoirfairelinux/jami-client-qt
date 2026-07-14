@@ -107,7 +107,24 @@ main(int argc, char* argv[])
         QQuickWindow::setGraphicsApi(QSGRendererInterface::OpenGLRhi);
     }
 #else
-    if (std::invoke([] {
+#if defined(Q_OS_WIN)
+    // Some vendor GPU drivers crash inside the driver itself during Direct3D 11
+    // scene graph initialization. A recurring example is older AMD Direct3D
+    // user-mode drivers (amdxx64.dll) on Windows 8, which fault while allocating
+    // inside the driver heap before the app ever gets control. Provide an escape
+    // hatch so users hitting such GPU driver crashes can run Jami with the Qt
+    // Quick software rasterizer instead, keeping the app usable on machines with
+    // a broken vendor driver.
+    const bool forceSoftwareRendering = qEnvironmentVariableIntValue("JAMI_SOFTWARE_RENDERING") > 0;
+    if (forceSoftwareRendering) {
+        qputenv("QT_QUICK_BACKEND", "software");
+        qWarning() << "Software rendering forced via JAMI_SOFTWARE_RENDERING; "
+                      "using the Qt Quick software rasterizer.";
+    }
+#else
+    const bool forceSoftwareRendering = false;
+#endif
+    if (!forceSoftwareRendering && std::invoke([] {
 #if defined(HAS_VULKAN) && defined(PREFER_VULKAN)
             // Somehow, several bug reports show that, on Windows, QVulkanInstance
             // verification  passes, but goes on to fail when creating the QQuickWindow
