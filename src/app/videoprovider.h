@@ -32,6 +32,7 @@ extern "C" {
 
 #include <map>
 #include <atomic>
+#include <utility>
 
 using namespace lrc::api;
 
@@ -61,6 +62,7 @@ private Q_SLOTS:
 private:
     AVModel& avModel_;
     void copyUnaligned(QVideoFrame& dst, const video::Frame& src);
+    void dispatchFrame(const QString& id, QVideoFrame frame);
 
     struct FrameObject
     {

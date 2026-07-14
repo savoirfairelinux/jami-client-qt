@@ -212,17 +212,14 @@ VideoProvider::onFrameUpdated(const QString& id)
 
         QVideoFrame& videoFrame = it->second.videoFrame;
         videoFrame.unmap();
+
+        // QVideoFrame is implicitly shared and owns its buffer, so this copy
+        // keeps the frame data alive for the (possibly deferred) delivery below.
+        QVideoFrame frameCopy = videoFrame;
         it->second.frameMutex.unlock(); // locked by onFrameBufferRequested()
+        renderersMutex_.unlock();        // locked by onFrameBufferRequested()
 
-        it->second.frameMutex.lockForRead();
-        it->second.subscribersMutex.lockForRead();
-        for (const auto& sink : std::as_const(it->second.subscribers)) {
-            sink->setVideoFrame(videoFrame);
-        }
-        it->second.subscribersMutex.unlock();
-        it->second.frameMutex.unlock();
-
-        renderersMutex_.unlock(); // locked by onFrameBufferRequested()
+        dispatchFrame(id, std::move(frameCopy));
     } else {
         QReadLocker lock(&renderersMutex_);
         auto it = renderers_.find(id);
@@ -246,16 +243,41 @@ VideoProvider::onFrameUpdated(const QString& id)
         }
 
         videoFrame.unmap();
+        QVideoFrame frameCopy = videoFrame;
         it->second.frameMutex.unlock();
 
-        it->second.frameMutex.lockForRead();
-        it->second.subscribersMutex.lockForRead();
-        for (const auto& sink : std::as_const(it->second.subscribers)) {
-            sink->setVideoFrame(videoFrame);
-        }
-        it->second.subscribersMutex.unlock();
-        it->second.frameMutex.unlock();
+        dispatchFrame(id, std::move(frameCopy));
     }
+}
+
+void
+VideoProvider::dispatchFrame(const QString& id, QVideoFrame frame)
+{
+    // Frame updates arrive on the daemon's decoder thread (the signals are
+    // connected with Qt::DirectConnection), whereas the QVideoSink subscribers
+    // are GUI-thread objects created and destroyed by the QML engine.
+    //
+    // Delivering the frame on the VideoProvider's own thread serializes
+    // setVideoFrame() with sink destruction, which also happens on that thread.
+    // This prevents a use-after-free: QVideoSink::destroyed() (and therefore
+    // unsubscribe()) is only emitted from ~QObject, after the derived
+    // ~QVideoSink has already freed the platform sink, so calling setVideoFrame()
+    // on a sink that is being torn down from another thread would dereference
+    // freed memory.
+    QMetaObject::invokeMethod(
+        this,
+        [this, id, frame = std::move(frame)]() {
+            QReadLocker lock(&renderersMutex_);
+            auto it = renderers_.find(id);
+            if (it == renderers_.end()) {
+                return;
+            }
+            QReadLocker subscribersLock(&it->second.subscribersMutex);
+            for (const auto& sink : std::as_const(it->second.subscribers)) {
+                sink->setVideoFrame(frame);
+            }
+        },
+        Qt::QueuedConnection);
 }
 
 void
