@@ -209,11 +209,12 @@ NetworkManager::downloadFile(const QUrl& url,
 void
 NetworkManager::cancelDownload(int replyId)
 {
-    if (downloadReplies_.value(replyId) != NULL) {
+    auto* const reply = downloadReplies_.value(replyId, nullptr);
+    if (reply != nullptr) {
         // Aborting the download will trigger the emission of a QNetworkReply error
         // (`QNetworkReply::OperationCanceledError`), and be caught, translated to our internal
         // error `GetError::CANCELED`, and re-emitted.
-        downloadReplies_[replyId]->abort();
+        reply->abort();
         resetDownload(replyId);
     }
 }
