@@ -35,6 +35,9 @@ public:
     ~Impl()
     {
         stopListening();
+        if (qApp != nullptr) {
+            qApp->setProperty("PTTListener", QVariant());
+        }
     };
 
     void startListening()
@@ -44,15 +47,30 @@ public:
 
     void stopListening()
     {
-        UnhookWindowsHookEx(keyboardHook);
+        if (keyboardHook != nullptr) {
+            UnhookWindowsHookEx(keyboardHook);
+            keyboardHook = nullptr;
+        }
     }
 
     static LRESULT CALLBACK GlobalKeyboardProc(int nCode, WPARAM wParam, LPARAM lParam)
     {
+        // Per MSDN, a hook procedure must forward the event without processing
+        // it when nCode is negative.
+        if (nCode < 0) {
+            return CallNextHookEx(NULL, nCode, wParam, lParam);
+        }
+        // The application may already be shutting down when this low-level
+        // keyboard hook fires. Dereferencing qApp (QCoreApplication::instance())
+        // once it is null would crash inside QObject::property, so bail out and
+        // forward the event to the next hook.
+        if (qApp == nullptr) {
+            return CallNextHookEx(NULL, nCode, wParam, lParam);
+        }
         auto* pThis = qApp->property("PTTListener").value<PTTListener*>();
         if (pThis == nullptr) {
             qWarning() << "PTTListener not found";
-            return {};
+            return CallNextHookEx(NULL, nCode, wParam, lParam);
         }
         auto* keyboardHook = pThis->pimpl_->keyboardHook;
 
@@ -77,7 +95,7 @@ public:
         return CallNextHookEx(keyboardHook, nCode, wParam, lParam);
     }
 
-    HHOOK keyboardHook;
+    HHOOK keyboardHook = nullptr;
 
     static quint32 qtKeyToVKey(Qt::Key key);
 };
