@@ -61,12 +61,10 @@ WebEngineView {
             request.accepted = true;
     }
 
+    // The shared default profile is configured once at startup (see main.cpp).
+    // This view must not create or mutate a profile: in --single-process mode
+    // Chromium allows a single profile, and mutating the active one crashes.
     Component.onCompleted: {
-        profile.cachePath = UtilsAdapter.getLocalDataPath();
-        profile.persistentStoragePath = UtilsAdapter.getLocalDataPath();
-        profile.persistentCookiesPolicy = WebEngineProfile.NoPersistentCookies;
-        profile.httpCacheType = WebEngineProfile.NoCache;
-        profile.httpUserAgent = JamiStrings.httpUserAgentName;
         root.loadHtml(UtilsAdapter.qStringFromFile(onCompletedLoadHtml), onCompletedLoadHtml);
         root.url = onCompletedUrl;
     }

@@ -95,6 +95,20 @@ main(int argc, char* argv[])
     chromiumFlags.append("--disable-web-security --single-process --disable-gpu");
     qputenv("QTWEBENGINE_CHROMIUM_FLAGS", chromiumFlags);
     QtWebEngineQuick::initialize();
+
+    // In --single-process mode Chromium supports only a single profile
+    // (BrowserContext). Every WebEngineView in the app (emoji picker, media and
+    // video previews, and the location-sharing map) must therefore share the one
+    // default profile. Configure it once here so no QML view has to create its
+    // own QWebEngineProfile or mutate the profile while it is already in use;
+    // either of those spawns a second profile / re-initialises an active one and
+    // triggers a fatal Chromium breakpoint (BREAKPOINT_80000003 in
+    // Qt6WebEngineCore) during WebContents/profile creation.
+    auto* defaultProfile = QWebEngineProfile::defaultProfile();
+    defaultProfile->setHttpUserAgent(QStringLiteral("JamiDesktop/")
+                                     + QCoreApplication::applicationVersion());
+    defaultProfile->setPersistentCookiesPolicy(QWebEngineProfile::NoPersistentCookies);
+    defaultProfile->setHttpCacheType(QWebEngineProfile::NoCache);
 #endif
 
     MainApplication app(argc, argv);
