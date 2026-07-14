@@ -34,13 +34,21 @@ ListView {
     // HACK: remove after migration to Qt 6.7+
     boundsBehavior: Flickable.StopAtBounds
 
+    // Empty placeholder used instead of a null source model. Assigning a
+    // null model to a SortFilterProxyModel can crash Qt in
+    // QSortFilterProxyModelHelper::proxy_to_source when delegates still
+    // request data during the reset (NULL_POINTER_READ).
+    ListModel {
+        id: emptyModel
+    }
+
     model: SortFilterProxyModel {
         id: proxyModel
 
         property var messageListModel: MessagesAdapter.mediaMessageListModel
         readonly property int textType: Interaction.Type.TEXT
 
-        onMessageListModelChanged: proxyModel.model = root.visible && messageListModel ? messageListModel : null
+        onMessageListModelChanged: proxyModel.model = root.visible && messageListModel ? messageListModel : emptyModel
 
         filters: ValueFilter {
             roleName: "Type"

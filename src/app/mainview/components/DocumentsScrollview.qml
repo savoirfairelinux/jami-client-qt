@@ -57,6 +57,14 @@ JamiListView {
         MessagesAdapter.startSearch(textFilter, true);
     }
 
+    // Empty placeholder used instead of a null source model. Assigning a
+    // null model to a SortFilterProxyModel can crash Qt in
+    // QSortFilterProxyModelHelper::proxy_to_source when delegates still
+    // request data during the reset (NULL_POINTER_READ).
+    ListModel {
+        id: emptyModel
+    }
+
     model: SortFilterProxyModel {
         id: proxyModel
 
@@ -65,7 +73,7 @@ JamiListView {
         readonly property int transferFinishedType: Interaction.TransferStatus.TRANSFER_FINISHED
         readonly property int transferSuccesType: Interaction.Status.SUCCESS
 
-        onMessageListModelChanged: proxyModel.model = root.visible && messageListModel ? messageListModel : null
+        onMessageListModelChanged: proxyModel.model = root.visible && messageListModel ? messageListModel : emptyModel
 
         sorters: RoleSorter {
             roleName: "Timestamp"
