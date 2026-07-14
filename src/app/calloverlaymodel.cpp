@@ -381,12 +381,18 @@ CallOverlayModel::setEventFilterActive(QObject* object, QQuickItem* item, bool i
             C_DBG << "Item not registered" << item;
         } else {
             watchedItems_.removeOne(item);
+            // Drop any items that have been destroyed in the meantime so they
+            // are never dereferenced by the event filter.
+            watchedItems_.removeAll(QPointer<QQuickItem>(nullptr));
             // Remove the event filter only when no more items belong to this window.
             const bool windowStillNeeded = std::any_of(watchedItems_.cbegin(),
                                                        watchedItems_.cend(),
-                                                       [window](QQuickItem* i) { return i->window() == window; });
+                                                       [window](const QPointer<QQuickItem>& i) {
+                                                           return i && i->window() == window;
+                                                       });
             if (!windowStillNeeded) {
                 watchedWindows_.removeOne(window);
+                watchedWindows_.removeAll(QPointer<QQuickWindow>(nullptr));
                 window->removeEventFilter(this);
             }
         }
@@ -400,9 +406,13 @@ CallOverlayModel::eventFilter(QObject* object, QEvent* event)
         auto mouseEvent = static_cast<QMouseEvent*>(event);
         auto sourceWindow = static_cast<QQuickWindow*>(object);
         auto windowItem = sourceWindow->contentItem();
+        // Purge any items destroyed without unregistering to avoid touching or
+        // emitting dangling QObject pointers to QML.
+        watchedItems_.removeAll(QPointer<QQuickItem>(nullptr));
         Q_FOREACH (const auto& item, watchedItems_) {
-            // Only consider items belonging to the window that generated the event.
-            if (item->window() != sourceWindow)
+            // Skip destroyed items and those not belonging to the window that
+            // generated the event.
+            if (!item || item->window() != sourceWindow)
                 continue;
             if (item->contains(windowItem->mapToItem(item, mouseEvent->pos()))) {
                 Q_EMIT mouseMoved(item);

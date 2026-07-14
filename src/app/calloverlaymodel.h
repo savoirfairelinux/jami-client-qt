@@ -23,6 +23,7 @@
 
 #include <QAbstractListModel>
 #include <QObject>
+#include <QPointer>
 #include <QQmlEngine>
 #include <QSortFilterProxyModel>
 #include <QQuickItem>
@@ -160,8 +161,12 @@ private:
     IndexRangeFilterProxyModel* overflowHiddenModel_;
     PendingConferenceesListModel* pendingConferenceesModel_;
 
-    QList<QQuickItem*> watchedItems_;
-    QList<QQuickWindow*> watchedWindows_;
+    // Guarded pointers: watched items/windows may be destroyed (e.g. when the
+    // PiP or call overlay window is torn down) without QML unregistering them.
+    // Using QPointer ensures we never dereference or emit a dangling QObject*
+    // to QML, which would crash inside QV4::QObjectWrapper::wrap.
+    QList<QPointer<QQuickItem>> watchedItems_;
+    QList<QPointer<QQuickWindow>> watchedWindows_;
 
 #ifndef HAVE_GLOBAL_PTT
     PTTListener* listener_ {nullptr};
