@@ -62,11 +62,6 @@ WebEngineView {
     }
 
     Component.onCompleted: {
-        profile.cachePath = UtilsAdapter.getLocalDataPath();
-        profile.persistentStoragePath = UtilsAdapter.getLocalDataPath();
-        profile.persistentCookiesPolicy = WebEngineProfile.NoPersistentCookies;
-        profile.httpCacheType = WebEngineProfile.NoCache;
-        profile.httpUserAgent = JamiStrings.httpUserAgentName;
         root.loadHtml(UtilsAdapter.qStringFromFile(onCompletedLoadHtml), onCompletedLoadHtml);
         root.url = onCompletedUrl;
     }
