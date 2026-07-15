@@ -49,6 +49,11 @@ WebEngineView {
     }
 
     onNavigationRequested: function (request) {
+        // The request object is created and wrapped by the WebEngine on every
+        // navigation. Guard against a null/invalid request to avoid
+        // dereferencing it while the view is being torn down.
+        if (!request)
+            return;
         if (request.navigationType === WebEngineView.LinkClickedNavigation) {
             MessagesAdapter.openUrl(request.url);
             request.action = WebEngineView.IgnoreRequest;
@@ -67,7 +72,9 @@ WebEngineView {
         profile.persistentCookiesPolicy = WebEngineProfile.NoPersistentCookies;
         profile.httpCacheType = WebEngineProfile.NoCache;
         profile.httpUserAgent = JamiStrings.httpUserAgentName;
-        root.loadHtml(UtilsAdapter.qStringFromFile(onCompletedLoadHtml), onCompletedLoadHtml);
-        root.url = onCompletedUrl;
+        // Load the local content once using the qrc URL as the base. Setting
+        // 'url' separately would trigger a second, redundant navigation to the
+        // same page, needlessly re-entering the WebEngine navigation machinery.
+        root.loadHtml(UtilsAdapter.qStringFromFile(onCompletedLoadHtml), onCompletedUrl);
     }
 }
