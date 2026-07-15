@@ -514,7 +514,13 @@ MessagesAdapter::removeContact(const QString& convUid, bool banContact)
     // remove the uri from the default moderators list
     // TODO: seems like this should be done in libringclient
     QStringList list = lrcInstance_->accountModel().getDefaultModerators(accInfo.id);
-    const auto contactUri = accInfo.conversationModel->peersForConversation(convUid).at(0);
+    const auto peers = accInfo.conversationModel->peersForConversation(convUid);
+    if (peers.isEmpty()) {
+        qWarning() << "Cannot remove contact: no peer found for conversation" << convUid << "in account"
+                   << accInfo.id;
+        return;
+    }
+    const auto contactUri = peers.at(0);
     if (!contactUri.isEmpty() && list.contains(contactUri)) {
         lrcInstance_->accountModel().setDefaultModerator(accInfo.id, contactUri, false);
     }
