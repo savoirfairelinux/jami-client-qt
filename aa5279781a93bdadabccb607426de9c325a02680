@@ -16,6 +16,23 @@
       "message": "Addressed in this patchset.",
       "revId": "aa5279781a93bdadabccb607426de9c325a02680",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dc167568_bff91bf2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-07-15T20:44:19Z",
+      "side": 1,
+      "message": "your second patchset did not address the formatting, and introduced significant unwarranted code changes",
+      "revId": "aa5279781a93bdadabccb607426de9c325a02680",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
