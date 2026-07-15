@@ -186,6 +186,20 @@ MainApplication::MainApplication(int& argc, char** argv)
 
 MainApplication::~MainApplication()
 {
+    // Tear the system tray down first. During shutdown, releasing certain
+    // Windows COM objects (e.g. the network list manager owned by
+    // ConnectivityMonitor) pumps a nested modal message loop that can dispatch
+    // a still-pending tray context-menu request. Popping up the menu while the
+    // application is being destroyed dereferences an invalid widget/window and
+    // crashes (NULL_POINTER_READ in Qt6Widgets). Hide the icon and detach its
+    // (parentless) context menu up front so no menu can be shown during teardown.
+    if (systemTray_) {
+        systemTray_->hide();
+        QMenu* menu = systemTray_->contextMenu();
+        systemTray_->setContextMenu(nullptr);
+        delete menu;
+    }
+
     engine_.reset();
     lrcInstance_.reset();
 
