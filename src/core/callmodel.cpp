@@ -1263,7 +1263,9 @@ CallModelPimpl::initCallFromDaemon()
         callInfo->id = callId;
         auto now = std::chrono::steady_clock::now();
         auto system_now = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
-        auto diff = static_cast<int64_t>(system_now) - std::stol(details["TIMESTAMP_START"].toStdString());
+        bool ok = false;
+        auto timestampStart = details["TIMESTAMP_START"].toLong(&ok);
+        auto diff = ok ? static_cast<int64_t>(system_now) - timestampStart : 0;
         callInfo->startTime = now - std::chrono::seconds(diff);
         callInfo->status = call::to_status(details["CALL_STATE"]);
         auto endId = details["PEER_NUMBER"].indexOf("@");
@@ -1306,7 +1308,9 @@ CallModelPimpl::initConferencesFromDaemon()
             MapStringString callDetails = CallManager::instance().getCallDetails(linked.owner.id, call);
             auto now = std::chrono::steady_clock::now();
             auto system_now = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
-            auto diff = static_cast<int64_t>(system_now) - std::stol(callDetails["TIMESTAMP_START"].toStdString());
+            bool ok = false;
+            auto timestampStart = callDetails["TIMESTAMP_START"].toLong(&ok);
+            auto diff = ok ? static_cast<int64_t>(system_now) - timestampStart : 0;
             callInfo->status = details["CONF_STATE"] == "ACTIVE_ATTACHED" ? call::Status::IN_PROGRESS
                                                                           : call::Status::PAUSED;
             callInfo->startTime = now - std::chrono::seconds(diff);
