@@ -20,9 +20,9 @@ QtObject {
     id: viewManager
 
     // A map of path strings to view objects.
-    property variant views: ({})
+    property var views: ({})
     // A map of view names to path strings.
-    property variant viewPaths: ({})
+    property var viewPaths: ({})
 
     // The number of views loaded (`views` is only resized).
     function viewCount() {
@@ -72,7 +72,7 @@ QtObject {
             views[viewName] = obj
             // Set the view name to the object name if it has one.
             const friendlyName = obj.objectName.toString() !== '' ?
-                obj.objectName :
+                obj.objectName.toString() :
                 viewName.replace(/^.*[\\\/]/, '').replace(/\.[^/.]+$/, "")
             viewPaths[friendlyName] = viewName
             if (cb !== null) {
