@@ -16,6 +16,24 @@
       "message": "Failing CI",
       "revId": "3453378c608e66492e9f06e7d412c95fbed6437b",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fb1fef8d_eb51d953",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-07-15T21:02:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "18293fe4_8eb4ec0e",
+      "revId": "3453378c608e66492e9f06e7d412c95fbed6437b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
