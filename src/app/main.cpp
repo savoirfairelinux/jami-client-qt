@@ -18,6 +18,7 @@
 #include "mainapplication.h"
 #include "instancemanager.h"
 #include "version_info.h"
+#include "webengineflags.h"
 #if defined(Q_OS_MACOS)
 #include <os/macos/macutils.h>
 #endif
@@ -74,7 +75,7 @@ main(int argc, char* argv[])
 
 #if WITH_WEBENGINE
     // Preserve any user-provided QTWEBENGINE_CHROMIUM_FLAGS instead of
-    // overwriting them, so the GPU behaviour can still be overridden from the
+    // overwriting them, so Chromium can still be configured from the
     // environment.
     //
     // --single-process is intentional: it avoids spawning a QtWebEngineProcess
@@ -89,11 +90,19 @@ main(int argc, char* argv[])
     // graph keeps its own GPU acceleration. Nothing narrower removes the Vulkan
     // fallback (--disable-vulkan, --disable-features=Vulkan, --use-gl=*,
     // QSG_RHI_BACKEND=opengl were all verified ineffective).
-    QByteArray chromiumFlags = qgetenv("QTWEBENGINE_CHROMIUM_FLAGS");
-    if (!chromiumFlags.isEmpty())
-        chromiumFlags.append(' ');
-    chromiumFlags.append("--disable-web-security --single-process --disable-gpu");
-    qputenv("QTWEBENGINE_CHROMIUM_FLAGS", chromiumFlags);
+    //
+    // --js-flags=--jitless works around Windows crashes reported in
+    // Qt6WebEngineCore's non-ABI compliant generated-code range. Keep it scoped
+    // to older x86 CPUs without AVX so common Windows systems do not pay the V8
+    // interpreter-only performance cost.
+#ifdef Q_OS_WIN
+    const auto disableJavascriptJit = shouldDisableWebEngineJavascriptJit(
+        true, currentCpuSupportsAvxInstructions());
+#else
+    constexpr auto disableJavascriptJit = false;
+#endif
+    qputenv("QTWEBENGINE_CHROMIUM_FLAGS",
+            makeWebEngineFlags(qgetenv("QTWEBENGINE_CHROMIUM_FLAGS"), disableJavascriptJit));
     QtWebEngineQuick::initialize();
 #endif
 
