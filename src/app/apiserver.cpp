@@ -1203,8 +1203,8 @@ ApiServer::setupConversationRoutes()
         }
     });
 
-    // POST /api/conversations/<conversationId>/editmessage - Edit or remove a message
-    httpServer_->route("/api/conversations/<arg>/editmessage", QHttpServerRequest::Method::Post,
+    // POST /api/conversations/<conversation-id>/edit-message - Edit or remove a message
+    httpServer_->route("/api/conversations/<arg>/edit-message", QHttpServerRequest::Method::Post,
                        [this](const QString& convId, const QHttpServerRequest& request) {
         bool ok;
         const auto tokenScope = authenticate(request, ok);
