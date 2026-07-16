@@ -225,6 +225,17 @@ TEST_F(ApiServerFixture, GetCurrentAccountUsesJamiWebCompatibleShape)
     EXPECT_TRUE(obj.contains("devices"));
 }
 
+TEST_F(ApiServerFixture, EditMessageUsesKebabCaseRoute)
+{
+    createSipAccount();
+
+    auto resp = post("/api/conversations/nonexistent/edit-message",
+                     {{"messageId", QStringLiteral("nonexistent")},
+                      {"message", QStringLiteral("updated")}});
+    EXPECT_EQ(resp.statusCode, 404);
+    EXPECT_EQ(resp.jsonObj()["error"].toString(), "Conversation not found");
+}
+
 // ── Token Management Routes ─────────────────────────────────────────
 
 TEST_F(ApiServerFixture, CreateTokenReturns201)
