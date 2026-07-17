@@ -142,6 +142,11 @@ CrashPadClient::~CrashPadClient()
 void
 CrashPadClient::startHandler()
 {
+    if (!handlerState_.shouldStartHandler()) {
+        syncHandlerWithSettings();
+        return;
+    }
+
     std::vector<std::string> arguments;
 
     // We disable rate-limiting because we want to upload crash reports as soon as possible.
@@ -175,6 +180,8 @@ CrashPadClient::startHandler()
         C_WARN << "Crashpad initialization failed";
         return;
     }
+
+    handlerState_.markHandlerStarted();
 
     // Update the handler settings after starting the handler (we may have restarted it).
     syncHandlerWithSettings();
@@ -220,13 +227,11 @@ CrashPadClient::clearReports()
     database->CleanDatabase(secondsToWaitForReportLocks);
 
     ::clearCompletedReports(database.get());
+    crashedLastRun_ = false;
 
-    // If the crashedLastRun_ flag is set, then we should follow up and start the handler.
-    // Refer to the comment in constructor for more information on why the handler wasn't
-    // started in the constructor if we crashed last time.
-    if (crashedLastRun_) {
-        startHandler();
-    }
+    // The constructor defers handler startup while reports are pending, so make
+    // sure crash handling is active again after completed reports are cleared.
+    startHandler();
 }
 
 void
@@ -266,7 +271,9 @@ CrashPadClient::uploadLastReport()
         return;
     }
 
-    // In this case, unless we restart the crashpad handler, the report won't
+    crashedLastRun_ = false;
+
+    // In this case, unless we start the crashpad handler, the report won't
     // be uploaded until the application is terminated.
     startHandler();
 

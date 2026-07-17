@@ -708,7 +708,9 @@ if(ENABLE_CRASHREPORTS)
   if(ENABLE_CRASHPAD)
     list(APPEND CLIENT_LIBS crashpad_client)
     list(APPEND COMMON_SOURCES ${CRASHREPORT_CLIENT_DIR}/crashpad.cpp)
-    list(APPEND COMMON_HEADERS ${CRASHREPORT_CLIENT_DIR}/crashpad.h)
+    list(APPEND COMMON_HEADERS
+      ${CRASHREPORT_CLIENT_DIR}/crashpad.h
+      ${CRASHREPORT_CLIENT_DIR}/crashpadhandlerstate.h)
   endif()
 endif()
 

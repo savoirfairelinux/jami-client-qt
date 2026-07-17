@@ -18,6 +18,7 @@
 #pragma once
 
 #include "crashreportclient.h"
+#include "crashpadhandlerstate.h"
 
 #include <client/crashpad_client.h>
 
@@ -42,6 +43,7 @@ private:
     void startHandler();
 
     crashpad::CrashpadClient client_;
+    CrashPadHandlerState handlerState_;
     base::FilePath dbPath_;
     base::FilePath handlerPath_;
 };
