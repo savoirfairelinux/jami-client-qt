@@ -20,6 +20,7 @@
 #include <QJSEngine>
 #include <QQmlEngine>
 #include <QObject>
+#include <QPointer>
 
 #define NS_MODELS      "net.jami.Models"
 #define NS_ADAPTERS    "net.jami.Adapters"
@@ -45,19 +46,31 @@ class ConnectivityMonitor;
 #define QML_REGISTERSINGLETONTYPE_POBJECT(NS, I, N) \
     QQmlEngine::setObjectOwnership(I, QQmlEngine::CppOwnership); \
     { using T = std::remove_reference<decltype(*I)>::type; \
+    QPointer<QObject> singletonObject(I); \
     qmlRegisterSingletonType<T>(NS, MODULE_VER_MAJ, MODULE_VER_MIN, N, \
-                                [i=I](QQmlEngine*, QJSEngine*) -> QObject* { \
-                                    return i; }); }
+                                [singletonObject](QQmlEngine*, QJSEngine*) -> QObject* { \
+                                    return Utils::qmlSingletonObject(singletonObject, N); }); }
 
 #define QML_REGISTERSINGLETONTYPE_CUSTOM(NS, T, P) \
     QQmlEngine::setObjectOwnership(P, QQmlEngine::CppOwnership); \
+    { QPointer<QObject> singletonObject(P); \
     qmlRegisterSingletonType<T>(NS, MODULE_VER_MAJ, MODULE_VER_MIN, #T, \
-                                [p=P](QQmlEngine*, QJSEngine*) -> QObject* { \
-                                    return p; \
-                                });
+                                [singletonObject](QQmlEngine*, QJSEngine*) -> QObject* { \
+                                    return Utils::qmlSingletonObject(singletonObject, #T); \
+                                }); }
 // clang-format on
 
 namespace Utils {
+inline QObject*
+qmlSingletonObject(const QPointer<QObject>& object, const char* name)
+{
+    if (!object) {
+        qWarning("Ignoring QML singleton request for destroyed object %s", name);
+        return nullptr;
+    }
+    return object.data();
+}
+
 void registerTypes(QQmlEngine* engine,
                    LRCInstance* lrcInstance,
                    SystemTray* systemTray,
