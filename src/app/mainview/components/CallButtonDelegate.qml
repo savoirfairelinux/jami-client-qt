@@ -164,6 +164,27 @@ ItemDelegate {
 
     property var menuAction: ItemAction.menuAction
 
+    function syncMenuCurrentIndex() {
+        if (menuAction === undefined || menuAction === null)
+            return;
+
+        var index;
+        switch (menuAction.popupMode) {
+        case CallActionBar.ActionPopupMode.MediaDevice:
+            index = menuAction.listModel.getCurrentIndex();
+            break;
+        case CallActionBar.ActionPopupMode.LayoutOption:
+        case CallActionBar.ActionPopupMode.ListElement:
+            index = menuAction.listModel.currentIndex;
+            break;
+        default:
+            console.warn("Unknown popup mode: " + menuAction.popupMode);
+            return;
+        }
+        if (index !== undefined)
+            itemListView.currentIndex = index;
+    }
+
     ComboBox {
         id: menu
 
@@ -178,30 +199,6 @@ ItemDelegate {
 
         width: 18
         height: width
-
-        Connections {
-            target: menuAction !== undefined ? menuAction : null
-            function onTriggered() {
-                var index;
-                switch (menuAction.popupMode) {
-                case CallActionBar.ActionPopupMode.MediaDevice:
-                    index = menuAction.listModel.getCurrentIndex();
-                    break;
-                case CallActionBar.ActionPopupMode.LayoutOption:
-                    index = menuAction.listModel.currentIndex;
-                    break;
-                case CallActionBar.ActionPopupMode.ListElement:
-                    index = menuAction.listModel.currentIndex;
-                    break;
-                default:
-                    console.warn("Unknown popup mode: " + menuAction.popupMode);
-                    return;
-                }
-                if (index !== undefined) {
-                    itemListView.currentIndex = index;
-                }
-            }
-        }
 
         contentItem: ResponsiveImage {
             source: isVertical ? JamiResources.bidirectional_chevron_left_black_24dp_svg : JamiResources.expand_less_24dp_svg
@@ -353,10 +350,14 @@ ItemDelegate {
             leftPadding: 0
             rightPadding: 0
 
-            onOpened: menuAction.triggered()
+            onOpened: {
+                menuAction.triggered();
+                root.syncMenuCurrentIndex();
+            }
 
             contentItem: JamiListView {
                 id: itemListView
+                objectName: "callButtonMenuListView"
 
                 property real menuItemWidth: 0
                 property real menuItemHeight: 39
