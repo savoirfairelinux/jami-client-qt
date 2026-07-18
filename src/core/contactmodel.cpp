@@ -760,6 +760,7 @@ ContactModelPimpl::fillWithJamiContacts()
     for (const auto& subscription : subscriptions) {
         auto first = true;
         QString uri = "";
+        bool contactUpdated = false;
         for (const auto& key : subscription) {
             if (first) {
                 first = false;
@@ -770,12 +771,14 @@ ContactModelPimpl::fillWithJamiContacts()
                     auto it = contacts.find(uri);
                     if (it != contacts.end()) {
                         it->presence = key == "Online" ? 1 : 0;
-                        Q_EMIT linked.contactUpdated(uri);
+                        contactUpdated = true;
                     }
                 }
                 break;
             }
         }
+        if (contactUpdated)
+            Q_EMIT linked.contactUpdated(uri);
     }
     return true;
 }
@@ -964,20 +967,22 @@ ContactModelPimpl::slotRegisteredNameFound(const QString& accountId,
 
     if (status == 0 /* SUCCESS */) {
         QString foundName = registeredName.toLower();
-        std::lock_guard<std::mutex> lk(contactsMtx_);
-        if (contacts.find(uri) != contacts.end()) {
-            // update contact and remove temporary item
-            contacts[uri].registeredName = foundName;
-            searchResult.clear();
-        } else {
-            nonContactLookup_[uri] = foundName;
-            if ((searchQuery != uri && searchQuery != requestedName) || searchQuery.isEmpty()) {
-                // we are notified that a previous lookup ended
-                return;
+        {
+            std::lock_guard<std::mutex> lk(contactsMtx_);
+            if (contacts.find(uri) != contacts.end()) {
+                // update contact and remove temporary item
+                contacts[uri].registeredName = foundName;
+                searchResult.clear();
+            } else {
+                nonContactLookup_[uri] = foundName;
+                if ((searchQuery != uri && searchQuery != requestedName) || searchQuery.isEmpty()) {
+                    // we are notified that a previous lookup ended
+                    return;
+                }
+                // Update the temporary item
+                lrc::api::profile::Info profileInfo = {uri, "", "", profile::Type::TEMPORARY};
+                searchResult[uri] = {profileInfo, foundName, false, false};
             }
-            // Update the temporary item
-            lrc::api::profile::Info profileInfo = {uri, "", "", profile::Type::TEMPORARY};
-            searchResult[uri] = {profileInfo, foundName, false, false};
         }
     } else {
         {

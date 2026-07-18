@@ -17,7 +17,9 @@
 
 #include "globaltestenvironment.h"
 
+#include "api/contact.h"
 #include "authority/storagehelper.h"
+#include "dbus/configurationmanager.h"
 
 using namespace lrc;
 
@@ -142,4 +144,51 @@ TEST_F(ContactFixture, ProfileDataFallsBackToBaseAliasWhenOverrideCleared)
     EXPECT_EQ(profileData["alias"], "Base Display Name");
 
     authority::storage::removeProfile(accountId, peerUri);
+}
+
+/*!
+ * WHEN  A contact update callback is delivered while observers query display data.
+ * THEN  The reentrant display-name read should complete without relocking failures.
+ */
+TEST_F(ContactFixture, ContactUpdateAllowsReentrantDisplayNameRead)
+{
+    QSignalSpy accountAddedSpy(&globalEnv.lrcInstance->accountModel(),
+                               &lrc::api::AccountModel::accountAdded);
+
+    globalEnv.accountAdapter->createSIPAccount(QVariantMap());
+
+    ASSERT_TRUE(accountAddedSpy.wait());
+    ASSERT_EQ(accountAddedSpy.count(), 1);
+
+    const auto accountId = accountAddedSpy.takeFirst().at(0).toString();
+    globalEnv.lrcInstance->set_currentAccountId(accountId);
+
+    const QString peerUri = "reentrant@example.org";
+    auto* contactModel = globalEnv.lrcInstance->getCurrentContactModel();
+
+    api::contact::Info contactInfo;
+    contactInfo.profileInfo.uri = peerUri;
+    contactInfo.profileInfo.alias = "Initial Name";
+    contactInfo.profileInfo.type = api::profile::Type::SIP;
+    contactModel->addContact(contactInfo);
+
+    QString reentrantDisplayName;
+    connect(contactModel, &api::ContactModel::contactUpdated, contactModel, [&](const QString& uri) {
+        if (uri == peerUri)
+            reentrantDisplayName = contactModel->displayName(uri);
+    });
+
+    QSignalSpy contactUpdatedSpy(contactModel, &api::ContactModel::contactUpdated);
+    Q_EMIT ConfigurationManager::instance().registeredNameFound(accountId,
+                                                               peerUri,
+                                                               0,
+                                                               peerUri,
+                                                               "registered");
+
+    ASSERT_TRUE(contactUpdatedSpy.wait());
+    EXPECT_EQ(contactUpdatedSpy.count(), 1);
+    EXPECT_EQ(reentrantDisplayName, "Initial Name");
+
+    globalEnv.lrcInstance->accountModel().removeAccount(accountId);
+    QTRY_COMPARE(globalEnv.lrcInstance->accountModel().getAccountCount(), 0);
 }
