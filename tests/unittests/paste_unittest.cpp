@@ -23,12 +23,20 @@
 
 #include <QApplication>
 #include <QClipboard>
+#include <QDesktopServices>
+#include <QDir>
+#include <QFile>
+#include <QFileInfo>
 #include <QMimeData>
+#include <QScopeGuard>
 #include <QSignalSpy>
+#include <QTemporaryDir>
 #include <QUrl>
 
-class PasteFixture : public ::testing::Test
+class PasteFixture : public QObject, public ::testing::Test
 {
+    Q_OBJECT
+
 public:
     void SetUp() override
     {
@@ -69,6 +77,13 @@ public:
 
     QScopedPointer<MessagesAdapter> messagesAdapter;
     QScopedPointer<UtilsAdapter> utilsAdapter;
+    QUrl openedUrl;
+
+public Q_SLOTS:
+    void recordOpenedUrl(const QUrl& url)
+    {
+        openedUrl = url;
+    }
 };
 
 // ── MessagesAdapter::onPaste ──────────────────────────────────────────────────
@@ -238,3 +253,36 @@ TEST_F(PasteFixture, ClipboardHasImageOrUrls_TrueForWebUrl)
 
     EXPECT_TRUE(utilsAdapter->clipboardHasImageOrUrls());
 }
+
+/*!
+ * WHEN  A local file path contains spaces and URL-reserved characters.
+ * THEN  the directory URL passed to the desktop shell is fully encoded.
+ */
+TEST_F(PasteFixture, OpenDirectoryEncodesReservedCharacters)
+{
+    QTemporaryDir tempDir;
+    ASSERT_TRUE(tempDir.isValid());
+
+    QDir dir(tempDir.path());
+    ASSERT_TRUE(dir.mkpath("folder with spaces/#hash"));
+    const QString filePath = dir.filePath("folder with spaces/#hash/file.txt");
+    QFile file(filePath);
+    ASSERT_TRUE(file.open(QIODevice::WriteOnly));
+    file.close();
+
+    QDesktopServices::setUrlHandler("file", this, "recordOpenedUrl");
+    const auto resetUrlHandler = qScopeGuard([] { QDesktopServices::unsetUrlHandler("file"); });
+
+    const QString directoryPath = QFileInfo(filePath).dir().absolutePath();
+    const QString expectedUrl = QUrl::fromLocalFile(directoryPath).toString(QUrl::FullyEncoded);
+    for (const auto& path : {filePath,
+                             QUrl::fromLocalFile(filePath).toString(QUrl::FullyEncoded),
+                             directoryPath,
+                             expectedUrl}) {
+        openedUrl.clear();
+        messagesAdapter->openDirectory(path);
+        EXPECT_EQ(openedUrl.toString(QUrl::FullyEncoded).toStdString(), expectedUrl.toStdString());
+    }
+}
+
+#include "paste_unittest.moc"
