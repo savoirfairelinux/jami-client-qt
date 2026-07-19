@@ -37,6 +37,7 @@ Item {
     property string deviceId: ""
     property string bestName: ""
     property string sinkId: ""
+    property alias invAspectRatio: mediaDistRender.invAspectRatio
     property bool participantIsActive: false
     property bool canMaximize: CurrentCall.isModerator && (!root.participantIsActive || CallParticipantsModel.conferenceLayout === CallParticipantsModel.ONE_WITH_SMALL)
     property bool participantIsHost: CallAdapter.participantIsHost(uri)
@@ -113,7 +114,9 @@ Item {
         anchors.fill: parent
         anchors.margins: 2
         rendererId: root.sinkId
-        crop: !participantIsActive
+        // Thumbnails in the "one big + small" layout keep the incoming video
+        // aspect ratio (the tile is sized to it), so never crop there.
+        crop: !participantIsActive && CallParticipantsModel.conferenceLayout !== CallParticipantsModel.ONE_WITH_SMALL
         flip: isMe && !isSharing && CurrentCall.flipSelf
 
         underlayItems: Avatar {
