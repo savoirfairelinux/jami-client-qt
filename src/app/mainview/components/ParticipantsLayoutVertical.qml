@@ -145,8 +145,9 @@ SplitView {
                         var totalSpacing = commonParticipantsFlow.spacing * commonParticipantsFlow.columns;
                         var w = Math.floor((commonParticipantsFlow.width - totalSpacing) / commonParticipantsFlow.columns);
                         if (inLine) {
-                            w = Math.max(w, height);
-                            w = Math.min(w, height * 4 / 3); // Avoid too wide elements
+                            // Reference width of a 16:9 landscape tile; used only for
+                            // paging/centering since each tile sizes to its own ratio.
+                            w = Math.round(genericParticipantsRect.height / 0.5625);
                         }
                         return w;
                     }
@@ -176,7 +177,11 @@ SplitView {
                                     return index >= genericParticipantsRect.currentPos && index < genericParticipantsRect.currentPos + genericParticipantsRect.showable;
                                 return true;
                             }
-                            width: commonParticipantsFlow.componentWidth + leftMargin_
+                            width: {
+                                if (inLine)
+                                    return Math.round(height / invAspectRatio_);
+                                return commonParticipantsFlow.componentWidth + leftMargin_;
+                            }
                             height: {
                                 if (inLine || commonParticipantsFlow.rows === 1)
                                     return genericParticipantsRect.height;
@@ -184,6 +189,12 @@ SplitView {
                                 return Math.floor((genericParticipantsRect.height - totalSpacing) / commonParticipantsFlow.rows);
                             }
 
+                            // Cache the last aspect ratio seen while loaded so an
+                            // unloaded/not-ready delegate keeps a stable width and
+                            // paging/centering does not shift (see horizontal layout).
+                            property real lastInvAspectRatio_: 0.5625
+                            property real invAspectRatio_: (item && item.invAspectRatio > 0) ? item.invAspectRatio : lastInvAspectRatio_
+                            onInvAspectRatio_Changed: if (item && item.invAspectRatio > 0) lastInvAspectRatio_ = invAspectRatio_
                             property int leftMargin_: {
                                 if (inLine || commonParticipantsFlow.rows === 1)
                                     return 0;
