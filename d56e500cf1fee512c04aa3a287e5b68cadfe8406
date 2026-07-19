@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ed5b1f24_4461253b",
+        "filename": "src/app/mainview/components/ParticipantsLayoutHorizontal.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 250,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-07-19T16:11:39Z",
+      "side": 1,
+      "message": "[warning] Line 250: 🟡 maxInvAspectRatio only ever increases and is never recomputed when a portrait participant leaves or changes back to landscape. That can leave scrollStep permanently too large and make button scrolling skip content. Recompute the maximum from current delegates/model changes, or avoid storing a monotonic maximum.",
+      "revId": "d56e500cf1fee512c04aa3a287e5b68cadfe8406",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a028b2ac_0b587634",
+        "filename": "src/app/mainview/components/ParticipantsLayoutHorizontal.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 272,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-07-19T16:11:39Z",
+      "side": 1,
+      "message": "[warning] Line 272: 🟡 This makes every inline participant Loader visible/active inside the Flickable, whereas the previous paging logic only showed the current window. In larger conferences this can keep off-screen VideoView instances rendering and increase CPU/GPU usage. Please either use a view with delegate culling or gate Loader active/visible based on the viewport while preserving flick scrolling.",
+      "revId": "d56e500cf1fee512c04aa3a287e5b68cadfe8406",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
