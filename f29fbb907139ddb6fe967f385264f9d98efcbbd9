@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f6dbed2a_93bc22e0",
+        "filename": "src/app/mainview/components/ParticipantsLayoutHorizontal.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 267,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-07-19T17:21:55Z",
+      "side": 1,
+      "message": "[warning] Line 267: 🟡 Off-screen inline delegates are deactivated, so `item` becomes null and `invAspectRatio_` falls back to 16:9. Portrait or other non-16:9 thumbnails then reserve the wrong height until they enter the viewport, which can make `contentHeight` and scroll positions jump while scrolling. Keep the last known aspect ratio in the delegate/model before deactivating, or size the placeholder from data that survives Loader deactivation.",
+      "revId": "f29fbb907139ddb6fe967f385264f9d98efcbbd9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
