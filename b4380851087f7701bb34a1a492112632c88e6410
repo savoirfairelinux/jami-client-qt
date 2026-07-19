@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c5c40101_080603d9",
+        "filename": "src/app/mainview/components/ParticipantsLayoutVertical.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-07-19T17:25:36Z",
+      "side": 1,
+      "message": "[warning] Line 179: 🟡 The horizontal inline strip now sizes each tile from `item.invAspectRatio`, but unloaded/non-ready delegates fall back to 16:9. Because the existing paging logic can keep off-page delegates inactive, a portrait participant can reserve the wrong width until it becomes visible, shifting paging/centering when scrolling. Mirror the horizontal fix by caching the last valid aspect ratio in the delegate/model so inactive delegates keep a stable width.",
+      "revId": "b4380851087f7701bb34a1a492112632c88e6410",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
