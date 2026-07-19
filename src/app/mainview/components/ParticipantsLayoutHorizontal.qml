@@ -138,43 +138,26 @@ SplitView {
         visible: commonParticipants.count > 0 && (inLine || CallParticipantsModel.conferenceLayout === CallParticipantsModel.GRID)
         color: "transparent"
 
-        property int lowLimit: 0
-        property int topLimit: commonParticipants.count
-        property int currentPos: 0
-        property int showable: {
-            if (!inLine)
-                return commonParticipants.count;
-            if (commonParticipantsFlow.componentHeight === 0)
-                return 1;
-            var placeableElements = Math.floor((height * 0.9) / commonParticipantsFlow.componentHeight);
-            if (commonParticipants.count - placeableElements < currentPos)
-                currentPos = Math.max(commonParticipants.count - placeableElements, 0);
-            return Math.max(1, placeableElements);
-        }
-
         ColumnLayout {
             anchors.fill: parent
             width: parent.width
 
             RowLayout {
                 Layout.alignment: Qt.AlignHCenter
-                width: parent.width
-                height: 30
+                Layout.preferredHeight: 30
                 Layout.bottomMargin: 16
                 Layout.topMargin: 16
                 spacing: 8
-                visible: (genericParticipantsRect.currentPos > 0 && activeParticipantsFlow.visible) || (genericParticipantsRect.topLimit - genericParticipantsRect.showable > genericParticipantsRect.currentPos && activeParticipantsFlow.visible)
+                visible: centerItem.canScrollUp || centerItem.canScrollDown
 
                 RoundButton {
-                    width: 30
-                    height: 30
+                    Layout.preferredWidth: 30
+                    Layout.preferredHeight: 30
                     radius: 10
                     text: "^"
-                    visible: genericParticipantsRect.currentPos > 0 && activeParticipantsFlow.visible
-                    onClicked: {
-                        if (genericParticipantsRect.currentPos > 0)
-                            genericParticipantsRect.currentPos--;
-                    }
+                    enabled: centerItem.canScrollUp
+                    opacity: enabled ? 1 : 0.35
+                    onClicked: centerItem.scrollUp()
                     background: Rectangle {
                         anchors.fill: parent
                         color: JamiTheme.lightGrey_
@@ -183,15 +166,13 @@ SplitView {
                 }
 
                 RoundButton {
-                    width: 30
-                    height: 30
+                    Layout.preferredWidth: 30
+                    Layout.preferredHeight: 30
                     radius: 10
                     text: "v"
-                    visible: genericParticipantsRect.topLimit - genericParticipantsRect.showable > genericParticipantsRect.currentPos && activeParticipantsFlow.visible
-                    onClicked: {
-                        if (genericParticipantsRect.topLimit - genericParticipantsRect.showable > genericParticipantsRect.currentPos)
-                            genericParticipantsRect.currentPos++;
-                    }
+                    enabled: centerItem.canScrollDown
+                    opacity: enabled ? 1 : 0.35
+                    onClicked: centerItem.scrollDown()
                     background: Rectangle {
                         anchors.fill: parent
                         color: JamiTheme.lightGrey_
@@ -200,16 +181,41 @@ SplitView {
                 }
             }
 
-            Item {
+            Flickable {
                 id: centerItem
                 Layout.fillHeight: true
                 Layout.fillWidth: true
                 Layout.margins: 4
 
+                clip: true
+                interactive: inLine
+                flickableDirection: Flickable.VerticalFlick
+                boundsBehavior: Flickable.StopAtBounds
+                contentWidth: width
+                contentHeight: inLine ? commonParticipantsFlow.implicitHeight : height
+
+                ScrollBar.vertical: ScrollBar {
+                    policy: inLine ? ScrollBar.AsNeeded : ScrollBar.AlwaysOff
+                }
+
+                readonly property bool canScrollUp: inLine && contentY > 0.5
+                readonly property bool canScrollDown: inLine && contentY < contentHeight - height - 0.5
+                function scrollStep() {
+                    // Scroll by most of a page; robust to variable tile heights.
+                    return Math.max(1, centerItem.height * 0.85);
+                }
+                function scrollUp() {
+                    contentY = Math.max(0, contentY - scrollStep());
+                }
+                function scrollDown() {
+                    contentY = Math.max(0, Math.min(contentHeight - height, contentY + scrollStep()));
+                }
+
                 // GENERIC
                 Flow {
                     id: commonParticipantsFlow
-                    anchors.fill: parent
+                    width: centerItem.width
+                    height: inLine ? implicitHeight : centerItem.height
 
                     spacing: 4
                     property int columns: {
@@ -230,12 +236,7 @@ SplitView {
                     }
                     property int componentHeight: {
                         var totalSpacing = commonParticipantsFlow.spacing * commonParticipantsFlow.rows;
-                        var h = Math.floor((commonParticipantsFlow.height - totalSpacing) / commonParticipantsFlow.rows);
-                        if (inLine) {
-                            h = Math.max(width, h);
-                            h = Math.min(width, h * 4 / 3); // Avoid too high elements
-                        }
-                        return h;
+                        return Math.floor((commonParticipantsFlow.height - totalSpacing) / commonParticipantsFlow.rows);
                     }
                     property int componentWidth: {
                         var totalSpacing = commonParticipantsFlow.spacing * commonParticipantsFlow.columns;
@@ -248,12 +249,7 @@ SplitView {
 
                     Item {
                         width: parent.width
-                        height: {
-                            if (!inLine)
-                                return 0;
-                            var showed = Math.min(genericParticipantsRect.showable, commonParticipantsFlow.rows);
-                            return Math.max(0, Math.ceil((centerItem.height - commonParticipantsFlow.componentHeight * showed) / 2));
-                        }
+                        height: 0
                     }
 
                     Repeater {
@@ -262,23 +258,33 @@ SplitView {
                         model: genericParticipantsModel
                         delegate: Loader {
                             sourceComponent: callVideoMedia
-                            active: root.visible
+                            // Cull off-screen tiles in the scrollable side strip so
+                            // their VideoView stops rendering; keep them laid out
+                            // (visible + sized) so flick scrolling still reaches all.
+                            active: root.visible && (!inLine || inViewport_)
                             asynchronous: true
-                            visible: {
-                                if (status !== Loader.Ready)
-                                    return false;
-                                if (inLine)
-                                    return index >= genericParticipantsRect.currentPos && index < genericParticipantsRect.currentPos + genericParticipantsRect.showable;
-                                return true;
-                            }
+                            visible: inLine || status === Loader.Ready
                             width: commonParticipantsFlow.componentWidth + leftMargin_
                             height: {
-                                if (inLine || commonParticipantsFlow.columns === 1)
+                                if (inLine)
+                                    return Math.round(commonParticipantsFlow.componentWidth * invAspectRatio_);
+                                if (commonParticipantsFlow.columns === 1)
                                     return commonParticipantsFlow.componentHeight;
                                 var totalSpacing = commonParticipantsFlow.spacing * commonParticipantsFlow.rows;
                                 return Math.floor((genericParticipantsRect.height - totalSpacing) / commonParticipantsFlow.rows);
                             }
 
+                            property real invAspectRatio_: (item && item.invAspectRatio > 0) ? item.invAspectRatio : 0.5625
+                            // Whether this tile is within (or near) the visible
+                            // viewport of the scrollable side strip; used to cull
+                            // off-screen VideoView rendering while keeping layout.
+                            property bool inViewport_: {
+                                if (!inLine)
+                                    return true;
+                                var relTop = y - centerItem.contentY;
+                                var buffer = centerItem.height;
+                                return (relTop + height > -buffer) && (relTop < centerItem.height + buffer);
+                            }
                             property int leftMargin_: {
                                 if (inLine || commonParticipantsFlow.rows === 1)
                                     return 0;
