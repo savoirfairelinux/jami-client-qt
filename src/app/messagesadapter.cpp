@@ -272,18 +272,22 @@ MessagesAdapter::openUrl(const QString& url)
 void
 MessagesAdapter::openDirectory(const QString& path)
 {
-    QString p = path;
-    QFileInfo f(p);
+    const QUrl inputUrl(path);
+    const QString p = inputUrl.isLocalFile() ? inputUrl.toLocalFile() : path;
+    const QFileInfo f(p);
     if (f.exists()) {
-        if (!f.isDir())
-            p = f.dir().absolutePath();
-        QString url;
-        if (!p.startsWith("file:/"))
-            url = "file:///" + p;
-        else
-            url = p;
-        openUrl(url);
+        openUrl(localDirectoryUrl(p));
     }
+}
+
+QString
+MessagesAdapter::localDirectoryUrl(const QString& path)
+{
+    const QFileInfo fileInfo(path);
+    const QString directoryPath = fileInfo.isDir() ? fileInfo.absoluteFilePath()
+                                                  : fileInfo.dir().absolutePath();
+    return QUrl::fromLocalFile(QDir::cleanPath(directoryPath))
+        .toString(QUrl::FullyEncoded);
 }
 
 void

@@ -23,8 +23,12 @@
 
 #include <QApplication>
 #include <QClipboard>
+#include <QDir>
+#include <QFile>
+#include <QFileInfo>
 #include <QMimeData>
 #include <QSignalSpy>
+#include <QTemporaryDir>
 #include <QUrl>
 
 class PasteFixture : public ::testing::Test
@@ -237,4 +241,32 @@ TEST_F(PasteFixture, ClipboardHasImageOrUrls_TrueForWebUrl)
     QApplication::clipboard()->setMimeData(mime);
 
     EXPECT_TRUE(utilsAdapter->clipboardHasImageOrUrls());
+}
+
+// ── MessagesAdapter::openDirectory ────────────────────────────────────────────
+
+/*!
+ * WHEN  A local file path contains spaces and URL-reserved characters.
+ * THEN  the directory URL passed to the desktop shell is fully encoded.
+ */
+TEST_F(PasteFixture, LocalDirectoryUrlEncodesReservedCharacters)
+{
+    QTemporaryDir tempDir;
+    ASSERT_TRUE(tempDir.isValid());
+
+    QDir dir(tempDir.path());
+    ASSERT_TRUE(dir.mkpath("folder with spaces/#hash"));
+    const QString filePath = dir.filePath("folder with spaces/#hash/file.txt");
+    QFile file(filePath);
+    ASSERT_TRUE(file.open(QIODevice::WriteOnly));
+    file.close();
+
+    const auto url = MessagesAdapter::localDirectoryUrl(filePath);
+
+    EXPECT_EQ(url.toStdString(),
+              QUrl::fromLocalFile(QFileInfo(filePath).dir().absolutePath())
+                  .toString(QUrl::FullyEncoded)
+                  .toStdString());
+    EXPECT_TRUE(url.contains("%20"));
+    EXPECT_TRUE(url.contains("%23hash"));
 }
