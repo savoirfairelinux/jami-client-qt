@@ -16,6 +16,23 @@
       "message": "Addressed in this patchset.",
       "revId": "c2e9b6791084cb421940866f9921542f20a32d1c",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5c4e2838_309bf29d",
+        "filename": "src/app/messagesadapter.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 516,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-07-20T19:08:54Z",
+      "side": 1,
+      "message": "[warning] Line 516: 🔴 The latest patchset has a failing clang-format CI job. Please run the project\u0027s clang-format on this changed block before merge.",
+      "revId": "c2e9b6791084cb421940866f9921542f20a32d1c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
