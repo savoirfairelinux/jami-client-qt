@@ -1145,12 +1145,12 @@ Kasutajakonto tunnus: ```%2```</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="418"/>
         <source>Share audio</source>
-        <translation type="unfinished"/>
+        <translation>Jaga helifaili</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="420"/>
         <source>Sharing options</source>
-        <translation type="unfinished"/>
+        <translation>Jagamise valikud</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="424"/>
@@ -4827,17 +4827,17 @@ Jätkamiseks palun kinnita importimine uues seadmes.</translation>
 <context>
     <name>MainApplication</name>
     <message>
-        <location filename="../src/app/mainapplication.cpp" line="504"/>
+        <location filename="../src/app/mainapplication.cpp" line="545"/>
         <source>E&amp;xit</source>
         <translation>Pane &amp;kinni</translation>
     </message>
     <message>
-        <location filename="../src/app/mainapplication.cpp" line="506"/>
+        <location filename="../src/app/mainapplication.cpp" line="547"/>
         <source>&amp;Quit</source>
         <translation>&amp;Lahku</translation>
     </message>
     <message>
-        <location filename="../src/app/mainapplication.cpp" line="512"/>
+        <location filename="../src/app/mainapplication.cpp" line="553"/>
         <source>&amp;Show Jami</source>
         <translation>&amp;Näita Jami teavet</translation>
     </message>
