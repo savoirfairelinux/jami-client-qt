@@ -17,6 +17,7 @@
 import QtQuick
 import QtWebEngine
 import Qt5Compat.GraphicalEffects
+import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 
 Rectangle {
@@ -36,6 +37,7 @@ Rectangle {
         settings.fullScreenSupportEnabled: root.isVideo
         settings.javascriptCanOpenWindows: false
         Component.onCompleted: {
+            UtilsAdapter.ensureWebEngineProfileConfigured()
             objectName = JamiQmlUtils.webEngineNames.videoPreview
             loadHtml(root.html, 'file:///')
         }

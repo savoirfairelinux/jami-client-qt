@@ -34,6 +34,10 @@
 #include <QMimeDatabase>
 #include <QStyleHints>
 
+#if WITH_WEBENGINE
+#include <QtWebEngineCore/QWebEngineProfile>
+#endif
+
 #ifdef Q_OS_MACOS
 #include "os/macos/macutils.h"
 #endif
@@ -959,5 +963,27 @@ UtilsAdapter::isMacOS26OrLater() const
     return macutils::isMacOS26OrLater();
 #else
     return false;
+#endif
+}
+
+void
+UtilsAdapter::ensureWebEngineProfileConfigured()
+{
+#if WITH_WEBENGINE
+    static bool configured = false;
+    if (configured)
+        return;
+    if (auto* profile = QWebEngineProfile::defaultProfile()) {
+        // The default profile is off-the-record, so it already keeps cookies
+        // and cache in memory only; we make that explicit and set the
+        // descriptive User-Agent required by the OpenStreetMap tile usage
+        // policy. We intentionally do NOT call setCachePath()/
+        // setPersistentStoragePath(): those are no-ops on an off-the-record
+        // profile and can trigger unnecessary browser-context churn.
+        profile->setPersistentCookiesPolicy(QWebEngineProfile::NoPersistentCookies);
+        profile->setHttpCacheType(QWebEngineProfile::NoCache);
+        profile->setHttpUserAgent(QStringLiteral("JamiDesktop/") + QCoreApplication::applicationVersion());
+        configured = true;
+    }
 #endif
 }

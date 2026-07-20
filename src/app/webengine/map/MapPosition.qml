@@ -203,6 +203,7 @@ Item {
                 }
 
                 Component.onCompleted: {
+                    UtilsAdapter.ensureWebEngineProfileConfigured();
                     loadHtml(UtilsAdapter.qStringFromFile(mapHtml), mapHtml);
                     loadScripts();
                 }
