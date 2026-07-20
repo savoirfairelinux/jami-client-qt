@@ -67,6 +67,7 @@ WebEngineView {
     }
 
     Component.onCompleted: {
+        UtilsAdapter.ensureWebEngineProfileConfigured();
         // Load the local content once using the qrc URL as the base. Setting
         // 'url' separately would trigger a second, redundant navigation to the
         // same page, needlessly re-entering the WebEngine navigation machinery.
