@@ -4826,17 +4826,17 @@ Mohon konfirmasi impor pada perangkat baru.</translation>
 <context>
     <name>MainApplication</name>
     <message>
-        <location filename="../src/app/mainapplication.cpp" line="504"/>
+        <location filename="../src/app/mainapplication.cpp" line="545"/>
         <source>E&amp;xit</source>
         <translation>K&amp;eluar</translation>
     </message>
     <message>
-        <location filename="../src/app/mainapplication.cpp" line="506"/>
+        <location filename="../src/app/mainapplication.cpp" line="547"/>
         <source>&amp;Quit</source>
         <translation>&amp;Keluar</translation>
     </message>
     <message>
-        <location filename="../src/app/mainapplication.cpp" line="512"/>
+        <location filename="../src/app/mainapplication.cpp" line="553"/>
         <source>&amp;Show Jami</source>
         <translation>&amp;Tampilkan Jami</translation>
     </message>

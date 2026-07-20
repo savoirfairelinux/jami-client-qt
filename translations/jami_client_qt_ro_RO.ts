@@ -4825,17 +4825,17 @@ Confirmă importarea în noul aparat</translation>
 <context>
     <name>MainApplication</name>
     <message>
-        <location filename="../src/app/mainapplication.cpp" line="504"/>
+        <location filename="../src/app/mainapplication.cpp" line="545"/>
         <source>E&amp;xit</source>
         <translation>I&amp;eșire</translation>
     </message>
     <message>
-        <location filename="../src/app/mainapplication.cpp" line="506"/>
+        <location filename="../src/app/mainapplication.cpp" line="547"/>
         <source>&amp;Quit</source>
         <translation>Î&amp;nchide</translation>
     </message>
     <message>
-        <location filename="../src/app/mainapplication.cpp" line="512"/>
+        <location filename="../src/app/mainapplication.cpp" line="553"/>
         <source>&amp;Show Jami</source>
         <translation>&amp;Arată Jami</translation>
     </message>

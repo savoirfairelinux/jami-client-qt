@@ -667,22 +667,22 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="223"/>
         <source>Bot Accounts</source>
-        <translation type="unfinished"/>
+        <translation>Bottitilit</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="224"/>
         <source>Create Bot</source>
-        <translation type="unfinished"/>
+        <translation>Luo botti</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="225"/>
         <source>How do bots work?</source>
-        <translation type="unfinished"/>
+        <translation>Miten botit toimivat?</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="226"/>
         <source>No bots configured for this account.</source>
-        <translation type="unfinished"/>
+        <translation>Tälle tilille ei ole määritetty botteja.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="227"/>
@@ -699,58 +699,59 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="229"/>
         <source>Copy URI</source>
-        <translation type="unfinished"/>
+        <translation>Kopioi osoite</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="230"/>
         <source>Share bot</source>
-        <translation type="unfinished"/>
+        <translation>Jaa botti</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="231"/>
         <source>Send bot to contact</source>
-        <translation type="unfinished"/>
+        <translation>Lähetä botti henkilölle</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="232"/>
         <source>Add **%1** on Jami!
  Account ID: ```%2```</source>
-        <translation type="unfinished"/>
+        <translation>Lisää **%1** Jamiin
+ Tili-idtunnus: ```%2```</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="235"/>
         <source>Create new bot</source>
-        <translation type="unfinished"/>
+        <translation>Luo uusi botti</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="236"/>
         <source>Bot Name (as seen by others)</source>
-        <translation type="unfinished"/>
+        <translation>Botin nimi (näkyvä kaikille)</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="237"/>
         <source>This is the only time you will see the token. Keep it a secret and take note of it somewhere!</source>
-        <translation type="unfinished"/>
+        <translation>Tämä on ainoa kerta, kun näet merkkijonon. Kirjoita se talteen ja pidä omana tietonasi!</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="240"/>
         <source>About Bot Accounts</source>
-        <translation type="unfinished"/>
+        <translation>Tietoa bottitileistä</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="241"/>
         <source>A bot account is a regular Jami account with additional properties.</source>
-        <translation type="unfinished"/>
+        <translation>Bottitili on tavallinen Jami-tili, jossa on lisäominaisuuksia.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="242"/>
         <source>A bot account is designed to be controlled by external applications or scripts. It will have an API token associated with it once created.</source>
-        <translation type="unfinished"/>
+        <translation>Bottitili on suunniteltu ulkoisten sovellusten tai skriptien hallittavaksi. Siihen liitetään API-tunnus, kun se on luotu.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="243"/>
         <source>A bot account includes profile markers indicating that it is a bot and the account controlling it.</source>
-        <translation type="unfinished"/>
+        <translation>Bottitili sisältää tiedon, josta tietää, että kyseessä on botti, sekä sitä hallinnoiva tili.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="246"/>
@@ -767,7 +768,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="249"/>
         <source>No services are shared yet.</source>
-        <translation type="unfinished"/>
+        <translation>Mitään palveluita ei ole vielä jaettuna.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="250"/>
@@ -1104,12 +1105,12 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="329"/>
         <source>Conference resolution</source>
-        <translation type="unfinished"/>
+        <translation>Kokouspäätös</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="330"/>
         <source>Group calls and conferences</source>
-        <translation type="unfinished"/>
+        <translation>Ryhmäpuhelut ja kokoukset</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="333"/>
@@ -1144,12 +1145,12 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="418"/>
         <source>Share audio</source>
-        <translation type="unfinished"/>
+        <translation>Jaa ääni</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="420"/>
         <source>Sharing options</source>
-        <translation type="unfinished"/>
+        <translation>Jakamisen asetukset</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="424"/>
@@ -1224,7 +1225,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="486"/>
         <source>Open external link?</source>
-        <translation type="unfinished"/>
+        <translation>Avataanko linkki?</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="489"/>
@@ -1434,17 +1435,17 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="942"/>
         <source>Show original</source>
-        <translation type="unfinished"/>
+        <translation>Näytä alkuperäinen</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="943"/>
         <source>Show modified</source>
-        <translation type="unfinished"/>
+        <translation>Näytä muokattu</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="944"/>
         <source>Modified by extension</source>
-        <translation type="unfinished"/>
+        <translation>Laajennuksen muokkaama</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="948"/>
@@ -1544,7 +1545,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1074"/>
         <source>Swarm connectivity</source>
-        <translation type="unfinished"/>
+        <translation>Parviverkko</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1075"/>
@@ -1554,12 +1555,12 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1076"/>
         <source>Searched contact</source>
-        <translation type="unfinished"/>
+        <translation>Haettu yhteystieto</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1077"/>
         <source>No channels</source>
-        <translation type="unfinished"/>
+        <translation>Ei kanavia</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1080"/>
@@ -4825,17 +4826,17 @@ Vahvista tuonti uudella laitteella.</translation>
 <context>
     <name>MainApplication</name>
     <message>
-        <location filename="../src/app/mainapplication.cpp" line="504"/>
+        <location filename="../src/app/mainapplication.cpp" line="545"/>
         <source>E&amp;xit</source>
         <translation>P&amp;oistu</translation>
     </message>
     <message>
-        <location filename="../src/app/mainapplication.cpp" line="506"/>
+        <location filename="../src/app/mainapplication.cpp" line="547"/>
         <source>&amp;Quit</source>
         <translation>&amp;Lopeta</translation>
     </message>
     <message>
-        <location filename="../src/app/mainapplication.cpp" line="512"/>
+        <location filename="../src/app/mainapplication.cpp" line="553"/>
         <source>&amp;Show Jami</source>
         <translation>&amp;Näytä Jami</translation>
     </message>
