@@ -138,6 +138,7 @@ Item {
     ParticipantsLayoutHorizontal {
         anchors.fill: parent
         participantComponent: callVideoMedia
+        inLine: root.inLine
         visible: participantsSide
         onLayoutCountChanged: root.count = layoutCount
     }

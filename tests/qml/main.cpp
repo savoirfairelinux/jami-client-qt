@@ -17,6 +17,7 @@
 
 #include "appsettingsmanager.h"
 #include "accountsettingsmanager.h"
+#include "callparticipantsmodel.h"
 #include "connectivitymonitor.h"
 #include "mainapplication.h"
 #include "previewengine.h"
@@ -35,6 +36,9 @@
 #include <QScopedPointer>
 #include <QtQuickTest/quicktest.h>
 #include <QSignalSpy>
+#include <QVideoFrame>
+#include <QVideoFrameFormat>
+#include <QVideoSink>
 
 #if WITH_WEBENGINE
 #include <QtWebEngineCore>
@@ -59,6 +63,48 @@ using namespace std::literals::chrono_literals;
 
 bool useCache = false;
 bool muteDaemon = false;
+
+// Test-only helper: pushes a synthetic video frame of a chosen size into a
+// QVideoSink so that VideoOutput.sourceRect (and therefore VideoView's
+// invAspectRatio) takes a known value, without any daemon/AVModel video path.
+class VideoTestHelper : public QObject
+{
+    Q_OBJECT
+public:
+    using QObject::QObject;
+
+    // sink is the QVideoSink exposed by a VideoView (videoView.videoSink).
+    Q_INVOKABLE bool pushFrame(QObject* sink, int width, int height)
+    {
+        auto* videoSink = qobject_cast<QVideoSink*>(sink);
+        if (!videoSink || width <= 0 || height <= 0)
+            return false;
+        QVideoFrameFormat format(QSize(width, height), QVideoFrameFormat::Format_ARGB8888);
+        QVideoFrame frame(format);
+        if (!frame.map(QVideoFrame::WriteOnly))
+            return false;
+        // Fill with an arbitrary opaque colour so the frame is a valid image.
+        if (auto* bits = frame.bits(0))
+            memset(bits, 0x20, static_cast<size_t>(frame.mappedBytes(0)));
+        frame.unmap();
+        videoSink->setVideoFrame(frame);
+        return true;
+    }
+
+    // Populates the shared CallParticipantsModel with fake participants and a
+    // conference layout, driving the participant strips without a live call.
+    // Each entry in participants is a JS object using the daemon key names
+    // (e.g. { uri: "p0", sinkId: "s0", active: false }).
+    Q_INVOKABLE void setConferenceParticipants(const QVariantList& participants, int layout)
+    {
+        auto* model = qApp->property("CallParticipantsModel").value<CallParticipantsModel*>();
+        if (!model)
+            return;
+        const QString callId = QStringLiteral("test-call");
+        model->setParticipants(callId, participants);
+        model->setConferenceLayout(layout, callId);
+    }
+};
 
 class Setup : public QObject
 {
@@ -183,6 +229,9 @@ public Q_SLOTS:
                              previewEngine_.get(),
                              &screenInfo_,
                              this);
+
+        // Test-only helper for injecting synthetic video frames.
+        engine->rootContext()->setContextProperty("videoTestHelper", new VideoTestHelper(this));
     }
 
     /*
@@ -212,9 +261,7 @@ main(int argc, char** argv)
     QDir tempDir(QStandardPaths::writableLocation(QStandardPaths::TempLocation));
 
     // See if we should run these UI tests offscreen.
-    Utils::remove_argument(argv, argc, "--offscreen", [&]() {
-        qputenv("QT_QPA_PLATFORM", "offscreen");
-    });
+    Utils::remove_argument(argv, argc, "--offscreen", [&]() { qputenv("QT_QPA_PLATFORM", "offscreen"); });
 
     // Check if we should use the cache.
     Utils::remove_argument(argv, argc, "--use-cache", [&]() { useCache = true; });
