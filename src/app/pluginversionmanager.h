@@ -68,6 +68,7 @@ public Q_SLOTS:
 Q_SIGNALS:
     void versionStatusChanged(const QString& pluginId, PluginStatus::Role status);
     void newVersionAvailable(const QString& pluginId, const QString& version);
+    void pluginDownloadProgress(const QString& pluginId, double progress);
 
 private:
     bool checkVersion(const QString& installedVersion, const QString& remoteVersion) const;

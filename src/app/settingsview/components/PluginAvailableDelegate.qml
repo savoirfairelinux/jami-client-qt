@@ -34,37 +34,32 @@ ItemDelegate {
     property string pluginAuthor
     property string pluginShortDescription
     property int pluginStatus
-    property string backgroundLocalPath: UtilsAdapter.getCachePath() + '/backgrounds/' + pluginId + '.jpg'
-    property string iconLocalPath: UtilsAdapter.getCachePath() + '/icons/' + pluginId + '.svg'
+    property double pluginProgress: -1
+    property string backgroundLocalPath: UtilsAdapter.getCachePath() + "/backgrounds/" + pluginId + ".jpg"
+    property string iconLocalPath: UtilsAdapter.getCachePath() + "/icons/" + pluginId + ".svg"
     readonly property real scalingFactor: 1 + hovered * 0.02
     property int duration: JamiTheme.shortFadeDuration
     property string installButtonStatus: {
         switch (pluginStatus) {
-        case PluginStatus.DOWNLOADING:
-            return JamiStrings.cancel;
-        case PluginStatus.INSTALLABLE:
-            return JamiStrings.install;
-        case PluginStatus.INSTALLING:
-            return JamiStrings.installing;
-        default:
-            return JamiStrings.install;
+        case PluginStatus.DOWNLOADING: return JamiStrings.cancel;
+        case PluginStatus.INSTALLABLE: return JamiStrings.install;
+        case PluginStatus.INSTALLING: return JamiStrings.installing;
+        default: return JamiStrings.install;
         }
     }
     onPluginStatusChanged: {
-        if (pluginStatus === PluginStatus.FAILED) {
+        if (pluginStatus === PluginStatus.FAILED)
             presentErrorMessage();
-        }
     }
-
     function presentErrorMessage() {
         viewCoordinator.presentDialog(appWindow, "commoncomponents/SimpleMessageDialog.qml", {
-                "title": JamiStrings.installationFailed,
-                "infoText": JamiStrings.extensionInstallationFailed,
-                "buttonStyles": [SimpleMessageDialog.ButtonStyle.TintedBlue],
-                "buttonTitles": [JamiStrings.optionOk],
-                "buttonCallBacks": [],
-                "buttonRoles": [DialogButtonBox.AcceptRole]
-            });
+            "title": JamiStrings.installationFailed,
+            "infoText": JamiStrings.extensionInstallationFailed,
+            "buttonStyles": [SimpleMessageDialog.ButtonStyle.TintedBlue],
+            "buttonTitles": [JamiStrings.optionOk],
+            "buttonCallBacks": [],
+            "buttonRoles": [DialogButtonBox.AcceptRole]
+        });
     }
     function growSize(x) {
         return !hovered * x;
@@ -75,9 +70,7 @@ ItemDelegate {
         radius: 5
         color: JamiTheme.secondaryBackgroundColor
     }
-
     background: null
-
     Page {
         id: plugin
         anchors.fill: parent
@@ -140,37 +133,23 @@ ItemDelegate {
                 defaultImage: JamiResources.default_plugin_background_jpg
                 downloadUrl: PluginAdapter.getBackgroundImageUrl(pluginId)
                 anchors.fill: parent
-                localPath: root.backgroundLocalPath === undefined ? '' : root.backgroundLocalPath
+                localPath: root.backgroundLocalPath === undefined ? "" : root.backgroundLocalPath
                 imageFillMode: Image.PreserveAspectCrop
-                layer {
-                    enabled: true
-                    effect: OpacityMask {
-                        maskSource: mask
-                    }
-                }
+                layer.enabled: true
+                layer.effect: OpacityMask { maskSource: mask }
                 LinearGradient {
                     id: gradient
                     anchors.fill: parent
                     start: Qt.point(0, height / 3)
                     gradient: Gradient {
-                        GradientStop {
-                            position: 0.0
-                            color: JamiTheme.transparentColor
-                        }
-                        GradientStop {
-                            position: 1.0
-                            color: JamiTheme.darkGreyColorOpacityFade
-                        }
+                        GradientStop { position: 0.0; color: JamiTheme.transparentColor }
+                        GradientStop { position: 1.0; color: JamiTheme.darkGreyColorOpacityFade }
                     }
                 }
             }
         }
-        layer {
-            enabled: true
-            effect: OpacityMask {
-                maskSource: mask
-            }
-        }
+        layer.enabled: true
+        layer.effect: OpacityMask { maskSource: mask }
         header: Control {
             leftPadding: 20
             rightPadding: 5
@@ -188,17 +167,10 @@ ItemDelegate {
                     color: JamiTheme.whiteColor
                     outerCutRadius: install.radius
                     spinningAnimationDuration: 5000
-                    mode: {
-                        if (pluginStatus === PluginStatus.INSTALLABLE || pluginStatus === PluginStatus.FAILED) {
-                            SpinningAnimation.Mode.Disabled;
-                        } else {
-                            SpinningAnimation.Mode.Radial;
-                        }
-                    }
-
+                    mode: pluginStatus === PluginStatus.INSTALLABLE || pluginStatus === PluginStatus.FAILED
+                          ? SpinningAnimation.Mode.Disabled : SpinningAnimation.Mode.Radial
                     MaterialButton {
                         id: install
-
                         hoverEnabled: pluginStatus !== PluginStatus.INSTALLING
                         buttontextHeightMargin: 10.0
                         secHoveredColor: JamiTheme.darkBlueGreen
@@ -214,16 +186,51 @@ ItemDelegate {
                         onClicked: installPlugin()
                         secondary: true
                         preferredWidth: installTextSize.width + JamiTheme.buttontextWizzardPadding
-                        text: {
-                            switch (pluginStatus) {
-                            case PluginStatus.DOWNLOADING:
-                                return JamiStrings.cancel;
-                            case PluginStatus.INSTALLABLE:
-                                return JamiStrings.install;
-                            case PluginStatus.INSTALLING:
-                                return JamiStrings.installing;
-                            default:
-                                return JamiStrings.install;
+                        text: installButtonStatus
+                    }
+                }
+                ProgressBar {
+                    id: downloadProgressBar
+                    visible: pluginStatus === PluginStatus.DOWNLOADING
+                    Layout.fillWidth: true
+                    Layout.rightMargin: 8
+                    Layout.leftMargin: 8
+                    Layout.topMargin: 4
+                    to: 1
+                    value: pluginProgress < 0 ? 0 : pluginProgress
+                    indeterminate: pluginProgress < 0
+                    background: Rectangle {
+                        implicitHeight: 6
+                        radius: height / 2
+                        color: JamiTheme.whiteColorTransparent
+                    }
+                    contentItem: Item {
+                        id: progressContent
+                        implicitHeight: 6
+                        clip: true
+                        Rectangle {
+                            width: downloadProgressBar.visualPosition * parent.width
+                            height: parent.height
+                            radius: height / 2
+                            color: JamiTheme.whiteColor
+                            visible: !downloadProgressBar.indeterminate
+                        }
+                        Rectangle {
+                            id: indeterminateBar
+                            width: parent.width * 0.3
+                            height: parent.height
+                            radius: height / 2
+                            color: JamiTheme.whiteColor
+                            visible: downloadProgressBar.indeterminate
+                            x: 0
+                            SequentialAnimation on x {
+                                running: indeterminateBar.visible
+                                loops: Animation.Infinite
+                                NumberAnimation {
+                                    to: progressContent.width
+                                    duration: 1200
+                                    easing.type: Easing.InOutQuad
+                                }
                             }
                         }
                     }
@@ -251,10 +258,7 @@ ItemDelegate {
             contentHeight: body.height
             clip: true
             flickableDirection: Flickable.VerticalFlick
-            ScrollBar.vertical: JamiScrollBar {
-                id: scrollBar
-                policy: ScrollBar.AsNeeded
-            }
+            ScrollBar.vertical: JamiScrollBar { id: scrollBar; policy: ScrollBar.AsNeeded }
             ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
             ColumnLayout {
                 id: body
@@ -294,7 +298,6 @@ ItemDelegate {
                 Layout.preferredHeight: implicitHeight
                 Layout.leftMargin: 8
                 color: JamiTheme.whiteColor
-
                 font.pixelSize: JamiTheme.settingsFontSize
                 font.kerning: true
                 font.italic: true
@@ -310,8 +313,6 @@ ItemDelegate {
             PluginAdapter.cancelDownload(pluginId);
             break;
         case PluginStatus.INSTALLABLE:
-            PluginAdapter.installRemotePlugin(pluginId);
-            break;
         case PluginStatus.FAILED:
             PluginAdapter.installRemotePlugin(pluginId);
             break;

@@ -49,6 +49,22 @@ public:
                 parent_.pluginRepliesId.remove(pluginId);
             }
         });
+        connect(&parent_,
+                &NetworkManager::downloadProgressChanged,
+                this,
+                [this](const int replyId, const qint64 bytesReceived, const qint64 bytesTotal) {
+                    const auto pluginsId = parent_.pluginRepliesId.keys(replyId);
+                    if (pluginsId.isEmpty()) {
+                        return;
+                    }
+                    // A negative total means the size is unknown (indeterminate download).
+                    const double progress = bytesTotal > 0
+                                                ? static_cast<double>(bytesReceived) / static_cast<double>(bytesTotal)
+                                                : -1.0;
+                    for (const auto& pluginId : pluginsId) {
+                        Q_EMIT parent_.pluginDownloadProgress(pluginId, progress);
+                    }
+                });
         checkForUpdates();
         setAutoUpdateCheck(true);
     }

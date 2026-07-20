@@ -60,6 +60,8 @@ PluginStoreListModel::data(const QModelIndex& index, int role) const
         return QVariant(plugin["author"].toString());
     case Role::Status:
         return QVariant(plugin.value("status", PluginStatus::INSTALLABLE));
+    case Role::Progress:
+        return QVariant(plugin.value("progress", -1.0));
     }
     return QVariant();
 }
@@ -189,9 +191,11 @@ PluginStoreListModel::onVersionStatusChanged(const QString& pluginId, PluginStat
     auto& plugin = *it;
 
     plugin["status"] = status;
-    auto index = createIndex(rowFromPluginId(pluginId), 0);
-    if (index.isValid()) {
-        Q_EMIT dataChanged(index, index, {PluginStoreList::Role::Status});
+    if (status == PluginStatus::DOWNLOADING || status == PluginStatus::INSTALLABLE) {
+        plugin["progress"] = -1.0;
+    }
+    if (const auto index = createIndex(rowFromPluginId(pluginId), 0); index.isValid()) {
+        Q_EMIT dataChanged(index, index, {PluginStoreList::Role::Status, PluginStoreList::Role::Progress});
     }
     switch (status) {
     case PluginStatus::INSTALLED:
@@ -199,6 +203,20 @@ PluginStoreListModel::onVersionStatusChanged(const QString& pluginId, PluginStat
         break;
     default:
         break;
+    }
+}
+
+void
+PluginStoreListModel::onDownloadProgress(const QString& pluginId, const double progress)
+{
+    const auto it = std::ranges::find_if(plugins_,
+                                         [&pluginId](const QVariantMap& p) { return p["id"].toString() == pluginId; });
+    if (it == plugins_.end()) {
+        return;
+    }
+    (*it)["progress"] = progress;
+    if (const auto index = createIndex(rowFromPluginId(pluginId), 0); index.isValid()) {
+        Q_EMIT dataChanged(index, index, {PluginStoreList::Role::Progress});
     }
 }
 

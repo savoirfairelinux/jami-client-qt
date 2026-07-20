@@ -57,6 +57,10 @@ PluginAdapter::PluginAdapter(LRCInstance* instance, AppSettingsManager* settings
             &PluginVersionManager::versionStatusChanged,
             pluginStoreListModel_,
             &PluginStoreListModel::onVersionStatusChanged);
+    connect(pluginVersionManager_,
+            &PluginVersionManager::pluginDownloadProgress,
+            pluginStoreListModel_,
+            &PluginStoreListModel::onDownloadProgress);
     connect(pluginStoreListModel_, &PluginStoreListModel::pluginAdded, this, &PluginAdapter::getPluginDetails);
     connect(pluginListModel_,
             &PluginListModel::versionCheckRequested,

@@ -97,6 +97,7 @@ ColumnLayout {
                         pluginAuthor: Author
                         pluginShortDescription: ""
                         pluginStatus: Status
+                        pluginProgress: Progress
                     }
                 }
             }

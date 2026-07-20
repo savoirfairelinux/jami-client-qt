@@ -173,9 +173,12 @@ NetworkManager::downloadFile(const QUrl& url,
         }
     });
 
-    connect(reply, &QNetworkReply::downloadProgress, this, [this](qint64 bytesReceived, qint64 bytesTotal) {
-        Q_EMIT downloadProgressChanged(bytesReceived, bytesTotal);
-    });
+    connect(reply,
+            &QNetworkReply::downloadProgress,
+            this,
+            [this, uuid](const qint64 bytesReceived, const qint64 bytesTotal) {
+                Q_EMIT downloadProgressChanged(uuid, bytesReceived, bytesTotal);
+            });
 
     connect(reply,
             QOverload<QNetworkReply::NetworkError>::of(&QNetworkReply::errorOccurred),
