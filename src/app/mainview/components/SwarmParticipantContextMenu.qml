@@ -62,14 +62,6 @@ ContextMenuAutoLoader {
             }
         },
         GeneralMenuItem {
-            id: blockContact
-            itemName: JamiStrings.blockContact
-            iconSource: JamiResources.block_black_24dp_svg
-            onClicked: {
-                ContactAdapter.removeContact(participantUri, true);
-            }
-        },
-        GeneralMenuItem {
             id: kickMember
             property var memberRole: UtilsAdapter.getParticipantRole(CurrentAccount.id, conversationId, participantUri)
             itemName: memberRole === Member.Role.BANNED ? JamiStrings.reinstateMember : JamiStrings.kickMember
