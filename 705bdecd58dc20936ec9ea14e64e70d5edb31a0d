@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ef92e99a_cf651d20",
+        "filename": "src/app/crashreportclients/crashpadhandlerstate.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-07-20T19:08:57Z",
+      "side": 1,
+      "message": "[error] Line 38: 🔴 `CrashPadClient::startHandler()` can be reached from different flows, including UI-triggered report actions and asynchronous cleanup paths, but this state is a plain bool with a check-then-set sequence. Two concurrent callers can both observe `shouldStartHandler() \u003d\u003d true` and both start a handler, which defeats the crash fix. Make the guard atomic, or combine the check-and-mark into one synchronized `tryMarkHandlerStarting()` operation.",
+      "revId": "705bdecd58dc20936ec9ea14e64e70d5edb31a0d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
