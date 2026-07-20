@@ -43,11 +43,8 @@
 #include <QLibraryInfo>
 #include <QQuickWindow>
 
-#if WITH_WEBENGINE
-#include <QtWebEngineCore/QWebEngineProfile>
 #include <QDir>
 #include <QStandardPaths>
-#endif
 
 #ifdef Q_OS_WIN
 #include <windows.h>
@@ -226,27 +223,6 @@ MainApplication::init()
     // This 2-phase initialisation prevents ephemeral instances from
     // performing unnecessary tasks, like initializing the WebEngine.
     engine_.reset(new QQmlApplicationEngine(this));
-
-#if WITH_WEBENGINE
-    // Configure the single shared default WebEngine profile exactly once, here,
-    // instead of letting each WebEngineView mutate it from its own
-    // Component.onCompleted. In --single-process mode Chromium supports only a
-    // single profile, so every view (map, emoji picker, media/video previews,
-    // general views) must share the default one. Centralising the setup keeps a
-    // consistent configuration regardless of which view is created first, and
-    // guarantees the map always gets the descriptive User-Agent required by the
-    // OpenStreetMap tile usage policy even when it is the first view opened.
-    if (auto* profile = QWebEngineProfile::defaultProfile()) {
-        QDir dataDir(QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation));
-        dataDir.cdUp();
-        const QString dataPath = dataDir.absolutePath() + "/jami";
-        profile->setCachePath(dataPath);
-        profile->setPersistentStoragePath(dataPath);
-        profile->setPersistentCookiesPolicy(QWebEngineProfile::NoPersistentCookies);
-        profile->setHttpCacheType(QWebEngineProfile::NoCache);
-        profile->setHttpUserAgent(QStringLiteral("JamiDesktop/") + QCoreApplication::applicationVersion());
-    }
-#endif
 
     QWK::registerTypes(engine_.get());
 

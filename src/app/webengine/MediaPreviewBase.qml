@@ -41,7 +41,10 @@ WebEngineView {
     }
     settings.fullScreenSupportEnabled: isVideo
     settings.javascriptCanOpenWindows: false
-    Component.onCompleted: loadHtml(html, 'file:///')
+    Component.onCompleted: {
+        UtilsAdapter.ensureWebEngineProfileConfigured();
+        loadHtml(html, 'file:///');
+    }
     layer.enabled: !isFullScreen
     layer.effect: OpacityMask {
         maskSource: MessageBubble {
