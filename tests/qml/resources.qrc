@@ -4,6 +4,8 @@
         <file>src/tst_NewSwarmPage.qml</file>
         <file>src/tst_MessageOptions.qml</file>
         <file>src/tst_OngoingCallPage.qml</file>
+        <file>src/tst_ParticipantsLayoutHorizontal.qml</file>
+        <file>src/tst_ConferenceParticipantStrip.qml</file>
         <file>src/tst_MainView.qml</file>
         <file>src/tst_ChatView.qml</file>
         <file>src/tst_ChatViewFooter.qml</file>

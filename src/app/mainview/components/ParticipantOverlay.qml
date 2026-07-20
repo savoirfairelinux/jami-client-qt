@@ -38,6 +38,7 @@ Item {
     property string bestName: ""
     property string sinkId: ""
     property alias invAspectRatio: mediaDistRender.invAspectRatio
+    property alias videoSink: mediaDistRender.videoSink
     property bool participantIsActive: false
     property bool canMaximize: CurrentCall.isModerator && (!root.participantIsActive || CallParticipantsModel.conferenceLayout === CallParticipantsModel.ONE_WITH_SMALL)
     property bool participantIsHost: CallAdapter.participantIsHost(uri)

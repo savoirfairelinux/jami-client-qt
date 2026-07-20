@@ -28,6 +28,11 @@ SplitView {
     property int layoutCount: commonParticipants.count + activeParticipants.count
     property var participantComponent
 
+    // Injected by ParticipantsLayer. Declared as a property (instead of relying
+    // on the enclosing component scope) so the scroll behavior of this layout can
+    // be instantiated/tested in isolation.
+    property bool inLine: false
+
     orientation: Qt.Horizontal
     handle: Rectangle {
         implicitHeight: root.height
@@ -183,6 +188,7 @@ SplitView {
 
             Flickable {
                 id: centerItem
+                objectName: "centerItem"
                 Layout.fillHeight: true
                 Layout.fillWidth: true
                 Layout.margins: 4
@@ -214,6 +220,7 @@ SplitView {
                 // GENERIC
                 Flow {
                     id: commonParticipantsFlow
+                    objectName: "commonParticipantsFlow"
                     width: centerItem.width
                     height: inLine ? implicitHeight : centerItem.height
 
@@ -257,6 +264,7 @@ SplitView {
 
                         model: genericParticipantsModel
                         delegate: Loader {
+                            objectName: "genericTile"
                             sourceComponent: callVideoMedia
                             // Cull off-screen tiles in the scrollable side strip so
                             // their VideoView stops rendering; keep them laid out
