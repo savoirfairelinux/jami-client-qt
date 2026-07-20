@@ -14,142 +14,111 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-import QtQuick
-import QtQuick.Controls
-import QtQuick.Layouts
-import Qt.labs.platform
-import Qt5Compat.GraphicalEffects
-import net.jami.Models 1.1
-import net.jami.Adapters 1.1
-import net.jami.Constants 1.1
-import "../../commoncomponents"
+import QtQuick import QtQuick.Controls import QtQuick.Layouts import Qt.labs.platform import Qt5Compat.GraphicalEffects import net.jami.Models 1.1 import net.jami.Adapters 1.1 import net.jami.Constants 1.1 import "../../commoncomponents"
 
-ColumnLayout {
-    id: root
-    property bool storeAvailable: true
-    property bool remotePluginHovered: false
-    property bool storeAvailableForPlatform: true
+    ColumnLayout{id:root property bool storeAvailable: true property bool remotePluginHovered: false property bool storeAvailableForPlatform: true
 
-    Component.onCompleted: {
-        PluginAdapter.getPluginsFromStore();
+                 Component.onCompleted: {PluginAdapter.getPluginsFromStore();
+}
+Connections
+{
+target:
+    PluginAdapter function onStoreNotAvailable()
+    {
+        storeAvailable = false;
     }
-    Connections {
-        target: PluginAdapter
-        function onStoreNotAvailable() {
-            storeAvailable = false;
-        }
-        function onStoreNotAvailableForPlatform() {
-            storeAvailableForPlatform = false;
-        }
+    function onStoreNotAvailableForPlatform()
+    {
+        storeAvailableForPlatform = false;
     }
-    Label {
-        Layout.fillWidth: true
-        Layout.bottomMargin: 20
-        text: JamiStrings.extensionStoreTitle
-        font.pixelSize: JamiTheme.settingsTitlePixelSize
-        font.kerning: true
-        color: JamiTheme.textColor
-        horizontalAlignment: Text.AlignLeft
-        verticalAlignment: Text.AlignVCenter
-    }
-    Loader {
-        active: storeAvailable
-        Layout.fillWidth: true
-        Layout.alignment: Qt.AlignHCenter
-        Layout.preferredHeight: active ? wrapper.height : 0
-        sourceComponent: Flow {
-            id: pluginStoreList
-            height: childrenRect.height
-            spacing: 10
-            Repeater {
-                id: pluginStoreRepeater
-                Component.onCompleted: root.visible = root.storeAvailable && pluginStoreRepeater.count !== 0 || !root.storeAvailable
-                onCountChanged: root.visible = root.storeAvailable && pluginStoreRepeater.count !== 0 || !root.storeAvailable
-                model: PluginStoreListModel
-                delegate: Item {
-                    id: wrapper
-                    function widthProvider() {
-                        if (JamiTheme.remotePluginDelegateWidth < JamiTheme.remotePluginMinimumDelegateWidth) {
-                            return JamiTheme.remotePluginMinimumDelegateWidth;
-                        } else if (JamiTheme.remotePluginDelegateWidth > JamiTheme.remotePluginMaximumDelegateWidth) {
-                            return JamiTheme.remotePluginMaximumDelegateWidth;
-                        }
-                        return JamiTheme.remotePluginDelegateWidth;
+}
+Label {
+    Layout.fillWidth: true Layout.bottomMargin: 20 text: JamiStrings.extensionStoreTitle font.
+    pixelSize: JamiTheme.settingsTitlePixelSize font.kerning: true color: JamiTheme.textColor
+    horizontalAlignment: Text.AlignLeft verticalAlignment: Text.AlignVCenter
+} Loader
+{
+active:
+    storeAvailable Layout.fillWidth : true Layout.alignment : Qt.AlignHCenter Layout.preferredHeight : active
+        ? wrapper.height
+        : 0 sourceComponent : Flow
+    {
+    id:
+        pluginStoreList height : childrenRect.height spacing : 10 Repeater
+        {
+        id:
+            pluginStoreRepeater Component.onCompleted : root.visible = root.storeAvailable&& pluginStoreRepeater.count
+                                                                       !=
+                = 0 || !root.storeAvailable onCountChanged : root.visible
+                = root.storeAvailable&& pluginStoreRepeater.count !=
+                = 0 || !root.storeAvailable model : PluginStoreListModel delegate : Item
+            {
+            id:
+                wrapper function widthProvider()
+                {
+                    if (JamiTheme.remotePluginDelegateWidth < JamiTheme.remotePluginMinimumDelegateWidth) {
+                        return JamiTheme.remotePluginMinimumDelegateWidth;
+                    } else if (JamiTheme.remotePluginDelegateWidth > JamiTheme.remotePluginMaximumDelegateWidth) {
+                        return JamiTheme.remotePluginMaximumDelegateWidth;
                     }
-                    function heightProvider() {
-                        if (JamiTheme.remotePluginDelegateHeight < JamiTheme.remotePluginMinimumDelegateHeight) {
-                            return JamiTheme.remotePluginMinimumDelegateHeight;
-                        } else if (JamiTheme.remotePluginDelegateHeight > JamiTheme.remotePluginMaximumDelegateHeight) {
-                            return JamiTheme.remotePluginMaximumDelegateHeight;
-                        }
-                        return JamiTheme.remotePluginDelegateHeight;
+                    return JamiTheme.remotePluginDelegateWidth;
+                }
+                function heightProvider()
+                {
+                    if (JamiTheme.remotePluginDelegateHeight < JamiTheme.remotePluginMinimumDelegateHeight) {
+                        return JamiTheme.remotePluginMinimumDelegateHeight;
+                    } else if (JamiTheme.remotePluginDelegateHeight > JamiTheme.remotePluginMaximumDelegateHeight) {
+                        return JamiTheme.remotePluginMaximumDelegateHeight;
                     }
-                    width: widthProvider()
-                    height: heightProvider()
-                    PluginAvailableDelegate {
-                        id: pluginItemDelegate
-                        anchors.centerIn: parent
-                        anchors.fill: parent
-                        pluginName: Name
-                        pluginId: Id
-                        pluginIcon: IconPath
-                        pluginDescription: Description
-                        pluginAuthor: Author
-                        pluginShortDescription: ""
-                        pluginStatus: Status
-                    }
+                    return JamiTheme.remotePluginDelegateHeight;
+                }
+            width:
+                widthProvider() height : heightProvider() PluginAvailableDelegate
+                {
+                id:
+                    pluginItemDelegate anchors.centerIn : parent anchors.fill : parent pluginName : Name pluginId
+                        : Id pluginIcon : IconPath pluginDescription : Description pluginAuthor
+                        : Author pluginShortDescription : "" pluginStatus : Status pluginProgress : Progress
                 }
             }
         }
     }
-    Loader {
-        Layout.fillWidth: true
-        Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
-        Layout.preferredHeight: active ? JamiTheme.bigFontSize : 0
-        active: !storeAvailable
-        sourceComponent: Text {
-            font.bold: true
-            color: JamiTheme.textColor
-            font.pixelSize: JamiTheme.bigFontSize
-            horizontalAlignment: Text.AlignHCenter
-            text: JamiStrings.extensionStoreNotAvailable
-        }
+}
+Loader
+{
+    Layout.fillWidth : true Layout.alignment : Qt.AlignHCenter | Qt.AlignTop Layout.preferredHeight : active
+        ? JamiTheme.bigFontSize
+        : 0 active : !storeAvailable sourceComponent : Text
+    {
+        font.bold : true color : JamiTheme.textColor font.pixelSize : JamiTheme.bigFontSize horizontalAlignment
+            : Text.AlignHCenter text : JamiStrings.extensionStoreNotAvailable
     }
-    Loader {
-        id: platormNotAvailableLoader
-        Layout.fillWidth: true
-        active: !storeAvailableForPlatform && storeAvailable
-        Layout.preferredHeight: active ? JamiTheme.materialButtonPreferredHeight + 10 : 0
-        sourceComponent: Rectangle {
-            width: platormNotAvailableLoader.width
-            height: platormNotAvailableLoader.height
-            color: JamiTheme.lightTintedBlue
-            radius: 5
-            RowLayout {
-                width: parent.width
-                height: parent.height
-                ResponsiveImage {
-                    layer {
-                        enabled: true
-                        effect: ColorOverlay {
-                            color: JamiTheme.darkTintedBlue
-                        }
-                    }
-                    Layout.leftMargin: 5
-                    Layout.alignment: Qt.AlignRight | Qt.AlignHCenter
-                    width: JamiTheme.popuptextSize
-                    height: JamiTheme.popuptextSize
-                    source: JamiResources.outline_info_24dp_svg
-                }
-                Text {
-                    Layout.fillWidth: true
-                    Layout.alignment: Qt.AlignHCenter | Qt.AlignRight
-                    wrapMode: Text.WordWrap
-                    color: JamiTheme.blackColor
-                    font.pixelSize: JamiTheme.popuptextSize
-                    text: JamiStrings.storeNotSupportedPlatform
-                }
+}
+Loader
+{
+id:
+    platormNotAvailableLoader Layout.fillWidth : true active
+        : !storeAvailableForPlatform&& storeAvailable Layout.preferredHeight : active
+        ? JamiTheme.materialButtonPreferredHeight + 10
+        : 0 sourceComponent : Rectangle
+    {
+    width:
+        platormNotAvailableLoader.width height : platormNotAvailableLoader.height color
+            : JamiTheme.lightTintedBlue radius : 5 RowLayout
+        {
+        width:
+            parent.width height : parent.height ResponsiveImage {
+                layer {enabled: true effect: ColorOverlay {color: JamiTheme.darkTintedBlue}} Layout.
+                leftMargin: 5 Layout.alignment: Qt.AlignRight
+                | Qt.AlignHCenter width: JamiTheme.popuptextSize height: JamiTheme.popuptextSize
+                  source: JamiResources.outline_info_24dp_svg
+            } Text
+            {
+                Layout.fillWidth : true Layout.alignment : Qt.AlignHCenter
+                    | Qt.AlignRight wrapMode : Text.WordWrap color : JamiTheme.blackColor font.pixelSize
+                    : JamiTheme.popuptextSize text : JamiStrings.storeNotSupportedPlatform
             }
         }
     }
+}
 }

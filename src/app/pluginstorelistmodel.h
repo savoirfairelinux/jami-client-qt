@@ -29,6 +29,7 @@ class QString;
     X(Background) \
     X(Description) \
     X(Status) \
+    X(Progress) \
     X(Author)
 
 namespace PluginStoreList {
@@ -66,6 +67,7 @@ Q_SIGNALS:
 
 public Q_SLOTS:
     void onVersionStatusChanged(const QString& pluginId, PluginStatus::Role status);
+    void onDownloadProgress(const QString& pluginId, double progress);
 
 private:
     QList<QVariantMap> filterPlugins(const QList<QVariantMap>& plugins);

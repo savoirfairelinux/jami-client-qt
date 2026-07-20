@@ -60,7 +60,7 @@ public:
     void cancelDownload(int replyId);
 Q_SIGNALS:
     void errorOccurred(GetError error, const QString& msg = {});
-    void downloadProgressChanged(qint64 bytesRead, qint64 totalBytes);
+    void downloadProgressChanged(int replyId, qint64 bytesRead, qint64 totalBytes);
     void downloadFinished(int replyId);
     void downloadStarted(int replyId);
 
