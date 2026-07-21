@@ -20,6 +20,8 @@
 #include "appsettingsmanager.h"
 #include "global.h"
 
+#include <QMenu>
+
 #ifdef USE_LIBNOTIFY
 #include <libnotify/notification.h>
 #include <libnotify/notify.h>
@@ -127,6 +129,8 @@ SystemTray::SystemTray(AppSettingsManager* settingsManager, QObject* parent)
 
 SystemTray::~SystemTray()
 {
+    teardownContextMenu();
+
 #ifdef USE_LIBNOTIFY
     // Clearing notifications to ensure that g_object_unref is called on every
     // NotifyNotification object *before* we call notify_uninit. This isn't strictly
@@ -139,6 +143,20 @@ SystemTray::~SystemTray()
     notify_uninit();
 #endif // USE_LIBNOTIFY
     hide();
+}
+
+void
+SystemTray::teardownContextMenu()
+{
+    hide();
+
+    auto* menu = contextMenu();
+    if (!menu) {
+        return;
+    }
+
+    setContextMenu(nullptr);
+    delete menu;
 }
 
 void
