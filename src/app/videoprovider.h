@@ -61,6 +61,17 @@ private Q_SLOTS:
 private:
     AVModel& avModel_;
     void copyUnaligned(QVideoFrame& dst, const video::Frame& src);
+    static void deliverVideoFrame(QVideoSink* sink, const QVideoFrame& videoFrame);
+
+#ifdef BUILD_TESTING
+public:
+    static void deliverVideoFrameForTest(QVideoSink* sink, const QVideoFrame& videoFrame)
+    {
+        deliverVideoFrame(sink, videoFrame);
+    }
+
+private:
+#endif
 
     struct FrameObject
     {

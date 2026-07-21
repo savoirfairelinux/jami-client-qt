@@ -20,6 +20,8 @@
 
 #include <QReadLocker>
 #include <QWriteLocker>
+#include <QMetaObject>
+#include <QPointer>
 
 using namespace lrc::api;
 
@@ -217,7 +219,7 @@ VideoProvider::onFrameUpdated(const QString& id)
         it->second.frameMutex.lockForRead();
         it->second.subscribersMutex.lockForRead();
         for (const auto& sink : std::as_const(it->second.subscribers)) {
-            sink->setVideoFrame(videoFrame);
+            deliverVideoFrame(sink, videoFrame);
         }
         it->second.subscribersMutex.unlock();
         it->second.frameMutex.unlock();
@@ -251,11 +253,30 @@ VideoProvider::onFrameUpdated(const QString& id)
         it->second.frameMutex.lockForRead();
         it->second.subscribersMutex.lockForRead();
         for (const auto& sink : std::as_const(it->second.subscribers)) {
-            sink->setVideoFrame(videoFrame);
+            deliverVideoFrame(sink, videoFrame);
         }
         it->second.subscribersMutex.unlock();
         it->second.frameMutex.unlock();
     }
+}
+
+void
+VideoProvider::deliverVideoFrame(QVideoSink* sink, const QVideoFrame& videoFrame)
+{
+    if (sink == nullptr) {
+        qWarning() << Q_FUNC_INFO << "Cannot deliver frame to null sink.";
+        return;
+    }
+
+    QPointer<QVideoSink> guardedSink(sink);
+    QMetaObject::invokeMethod(
+        sink,
+        [guardedSink, videoFrame] {
+            if (guardedSink) {
+                guardedSink->setVideoFrame(videoFrame);
+            }
+        },
+        Qt::QueuedConnection);
 }
 
 void
