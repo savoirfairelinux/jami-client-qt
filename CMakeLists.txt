@@ -532,6 +532,7 @@ set(COMMON_SOURCES
   ${APP_SRC_DIR}/utils.cpp
   ${APP_SRC_DIR}/mainapplication.cpp
   ${APP_SRC_DIR}/messagesadapter.cpp
+  ${APP_SRC_DIR}/webengineutils.cpp
   ${APP_SRC_DIR}/positionobject.cpp
   ${APP_SRC_DIR}/positionmanager.cpp
   ${APP_SRC_DIR}/accountadapter.cpp
@@ -610,6 +611,7 @@ set(COMMON_HEADERS
   ${APP_SRC_DIR}/mainapplication.h
   ${APP_SRC_DIR}/qrimageprovider.h
   ${APP_SRC_DIR}/messagesadapter.h
+  ${APP_SRC_DIR}/webengineutils.h
   ${APP_SRC_DIR}/positionobject.h
   ${APP_SRC_DIR}/positionmanager.h
   ${APP_SRC_DIR}/accountadapter.h
@@ -1099,6 +1101,15 @@ if(MSVC)
     list(APPEND CLIENT_LIBS
       ${DAEMON_DIR}/contrib/build/ffmpeg/Build/win32/x64/lib/libavutil.lib
       ${DAEMON_DIR}/contrib/msvc/lib/x64/libmfx.lib)
+  endif()
+
+  if(WITH_WEBENGINE)
+    # Let main() run the Chromium CPU guard before Windows loads WebEngine.
+    target_link_options(${PROJECT_NAME} PRIVATE
+      /DELAYLOAD:$<TARGET_FILE_NAME:Qt::WebEngineCore>
+      /DELAYLOAD:$<TARGET_FILE_NAME:Qt::WebEngineQuick>
+      /DELAYLOAD:$<TARGET_FILE_NAME:Qt::WebEngineWidgets>)
+    list(APPEND CLIENT_LIBS delayimp)
   endif()
 
   # specify output executable files

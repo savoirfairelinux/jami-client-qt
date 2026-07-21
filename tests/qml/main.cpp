@@ -22,6 +22,7 @@
 #include "previewengine.h"
 #include "qmlregister.h"
 #include "systemtray.h"
+#include "webengineutils.h"
 
 #include <api/profile.h>
 #include <api/account.h>
@@ -59,6 +60,7 @@ using namespace std::literals::chrono_literals;
 
 bool useCache = false;
 bool muteDaemon = false;
+bool webEngineRuntimeAvailable = false;
 
 class Setup : public QObject
 {
@@ -89,6 +91,7 @@ public Q_SLOTS:
                                          "*.debug=false\n"
                                          "libclient.debug=false\n"
                                          "\n");
+        qApp->setProperty(Utils::WebEngineRuntimeAvailableProperty, webEngineRuntimeAvailable);
 
         connectivityMonitor_.reset(new ConnectivityMonitor(this));
         settingsManager_.reset(new AppSettingsManager(this));
@@ -243,7 +246,14 @@ main(int argc, char** argv)
         return 1;
 
 #if WITH_WEBENGINE
-    QtWebEngineQuick::initialize();
+    webEngineRuntimeAvailable = Utils::isWebEngineRuntimeAvailable();
+    if (webEngineRuntimeAvailable) {
+        Utils::configureWebEngineEnvironment();
+        QtWebEngineQuick::initialize();
+    } else {
+        qWarning() << "Qt WebEngine disabled: this CPU does not support Chromium's minimum "
+                      "instruction set.";
+    }
 #endif
     QTEST_SET_MAIN_SOURCE_PATH
     Setup setup;
