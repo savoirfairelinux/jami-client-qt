@@ -134,26 +134,6 @@ TestWrapper {
                     compare(secondView.profile, sharedProfile,
                             "reopened map view must reuse the same single shared profile");
                 }
-
-                // Regression for the eager-profile startup crash: the shared
-                // default profile must be configured LAZILY, when a WebEngineView
-                // is created, not eagerly at application startup (creating the
-                // profile before the render context exists raced with Chromium's
-                // in-process GPU and crashed on start). Creating the map view must
-                // therefore apply the descriptive OpenStreetMap User-Agent to the
-                // shared profile.
-                function test_mapView_lazilyConfiguresSharedProfileUserAgent() {
-                    PositionManager.setMapActive(accountId);
-                    var view = findChild(chatView, "mapWebEngine");
-                    verify(view !== null,
-                           "A WebEngineView named 'mapWebEngine' should exist after setMapActive");
-                    verify(view.profile !== null,
-                           "The map view must use the shared default profile (non-null)");
-                    verify(view.profile.httpUserAgent.indexOf("JamiDesktop/") === 0,
-                           "Creating the view must lazily configure the shared profile "
-                           + "with the descriptive OSM User-Agent, got: "
-                           + view.profile.httpUserAgent);
-                }
             }
         }
     }

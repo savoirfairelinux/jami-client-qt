@@ -175,17 +175,6 @@ public:
 #endif
     Q_INVOKABLE bool isWayland() const;
     Q_INVOKABLE bool isMacOS26OrLater() const;
-
-    // Configure the single shared default WebEngine profile exactly once, on
-    // first use. This is invoked lazily from each WebEngineView's
-    // Component.onCompleted (map, emoji picker, media/video previews, general
-    // views) rather than eagerly at application startup: creating the profile
-    // before the Qt Quick render context exists races with Chromium's
-    // in-process GPU (--single-process) and fatally crashes on startup. Doing it
-    // here keeps a single, consistent configuration regardless of which view is
-    // created first, and guarantees the map always gets the descriptive
-    // User-Agent required by the OpenStreetMap tile usage policy.
-    Q_INVOKABLE void ensureWebEngineProfileConfigured();
 Q_SIGNALS:
     void debugMessageReceived(const QString& message);
     void changeFontSize();

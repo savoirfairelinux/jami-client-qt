@@ -103,10 +103,6 @@ Item {
 
     function instanceMapObject() {
         if (WITH_WEBENGINE) {
-            // The map view intentionally does not set a WebEngineProfile, so it
-            // uses the application-wide default profile. In --single-process mode
-            // Chromium supports only a single profile; creating a dedicated one
-            // for the map crashed when another WebEngineView already existed.
             var component = Qt.createComponent("qrc:/webengine/map/MapPosition.qml");
             if (component.status !== Component.Ready) {
                 console.log("Error loading MapPosition:", component.errorString());
