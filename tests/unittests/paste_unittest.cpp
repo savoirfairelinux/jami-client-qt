@@ -27,6 +27,17 @@
 #include <QSignalSpy>
 #include <QUrl>
 
+namespace {
+QStringList* capturedWarnings = nullptr;
+
+void
+captureWarnings(QtMsgType type, const QMessageLogContext&, const QString& msg)
+{
+    if (type == QtWarningMsg && capturedWarnings)
+        capturedWarnings->append(msg);
+}
+}
+
 class PasteFixture : public ::testing::Test
 {
 public:
@@ -237,4 +248,24 @@ TEST_F(PasteFixture, ClipboardHasImageOrUrls_TrueForWebUrl)
     QApplication::clipboard()->setMimeData(mime);
 
     EXPECT_TRUE(utilsAdapter->clipboardHasImageOrUrls());
+}
+
+/*!
+ * WHEN  QML asks for the bot owner of a stale account id.
+ * THEN  getBotOwner() returns empty without logging an account lookup warning.
+ */
+TEST_F(PasteFixture, GetBotOwner_ReturnsEmptyForStaleAccountId)
+{
+    QStringList warnings;
+    capturedWarnings = &warnings;
+    auto previousHandler = qInstallMessageHandler(captureWarnings);
+
+    const auto botOwner = utilsAdapter->getBotOwner("stale-account-id");
+
+    qInstallMessageHandler(previousHandler);
+    capturedWarnings = nullptr;
+
+    EXPECT_TRUE(botOwner.isEmpty());
+    for (const auto& warning : warnings)
+        EXPECT_FALSE(warning.contains("UtilsAdapter::getBotOwner"));
 }
