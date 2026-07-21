@@ -82,7 +82,7 @@ BaseContextMenu {
     }
 
     function openEmojiPicker() {
-        var component = WITH_WEBENGINE ? Qt.createComponent("qrc:/webengine/emojipicker/EmojiPicker.qml") : Qt.createComponent("qrc:/nowebengine/EmojiPicker.qml");
+        var component = WEBENGINE_AVAILABLE ? Qt.createComponent("qrc:/webengine/emojipicker/EmojiPicker.qml") : Qt.createComponent("qrc:/nowebengine/EmojiPicker.qml");
         emojiPicker = component.createObject(root.parent, {
             "listView": listView
         });

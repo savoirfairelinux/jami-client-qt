@@ -102,7 +102,7 @@ Item {
     }
 
     function instanceMapObject() {
-        if (WITH_WEBENGINE) {
+        if (WEBENGINE_AVAILABLE) {
             // The map view intentionally does not set a WebEngineProfile, so it
             // uses the application-wide default profile. In --single-process mode
             // Chromium supports only a single profile; creating a dedicated one

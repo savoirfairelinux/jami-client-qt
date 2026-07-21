@@ -21,6 +21,7 @@
 #include "avadapter.h"
 #include "calladapter.h"
 #include "contactadapter.h"
+#include "webenginesupport.h"
 #include "sharedservicesadapter.h"
 #include "pluginadapter.h"
 #include "messagesadapter.h"
@@ -133,6 +134,12 @@ registerTypes(QQmlEngine* engine,
               ScreenInfo* screenInfo,
               QObject* app)
 {
+#if WITH_WEBENGINE
+    engine->rootContext()->setContextProperty("WEBENGINE_AVAILABLE", WebEngineSupport::isSupported());
+#else
+    engine->rootContext()->setContextProperty("WEBENGINE_AVAILABLE", false);
+#endif
+
     /* Used in ContactAdapter */
     auto connectionInfoListModel = new ConnectionInfoListModel(lrcInstance, app);
     qApp->setProperty("ConnectionInfoListModel", QVariant::fromValue(connectionInfoListModel));

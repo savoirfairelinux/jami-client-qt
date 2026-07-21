@@ -142,7 +142,7 @@ Rectangle {
         }
 
         function openEmojiPicker() {
-            var component = WITH_WEBENGINE ? Qt.createComponent("qrc:/webengine/emojipicker/EmojiPicker.qml") : Qt.createComponent("qrc:/nowebengine/EmojiPicker.qml");
+            var component = WEBENGINE_AVAILABLE ? Qt.createComponent("qrc:/webengine/emojipicker/EmojiPicker.qml") : Qt.createComponent("qrc:/nowebengine/EmojiPicker.qml");
             messageBar.emojiPicker = component.createObject(messageBar, {
                 "x": setXposition(),
                 "y": setYposition(),

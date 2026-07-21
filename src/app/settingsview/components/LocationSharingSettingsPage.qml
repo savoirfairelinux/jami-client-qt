@@ -74,7 +74,7 @@ SettingsPageBase {
 
         RowLayout {
 
-            visible: WITH_WEBENGINE
+            visible: WEBENGINE_AVAILABLE
             Layout.preferredWidth: parent.width
             Layout.preferredHeight: childrenRect.height
 
@@ -111,7 +111,7 @@ SettingsPageBase {
         Slider {
             id: timeSharingSlider
 
-            visible: WITH_WEBENGINE
+            visible: WEBENGINE_AVAILABLE
 
             Layout.maximumWidth: itemWidth
             Layout.alignment: Qt.AlignLeft

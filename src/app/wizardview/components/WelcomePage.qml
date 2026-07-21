@@ -86,7 +86,7 @@ Rectangle {
                                                                     JamiTheme.secondaryBackgroundColor)
                 anchors.fill: parent
                 anchors.margins: 2
-                sourceComponent: WITH_WEBENGINE ? avMediaComp : basicPlayer
+                sourceComponent: WEBENGINE_AVAILABLE ? avMediaComp : basicPlayer
 
                 // We don't need the screen reader to focus on the video player
                 activeFocusOnTab: false

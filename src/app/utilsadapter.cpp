@@ -20,6 +20,7 @@
 #include "lrcinstance.h"
 #include "systemtray.h"
 #include "utils.h"
+#include "webenginesupport.h"
 #include "version_info.h"
 #include "global.h"
 #include <api/datatransfermodel.h>
@@ -966,10 +967,23 @@ UtilsAdapter::isMacOS26OrLater() const
 #endif
 }
 
+bool
+UtilsAdapter::isWebEngineSupported() const
+{
+#if WITH_WEBENGINE
+    return WebEngineSupport::isSupported();
+#else
+    return false;
+#endif
+}
+
 void
 UtilsAdapter::ensureWebEngineProfileConfigured()
 {
 #if WITH_WEBENGINE
+    if (!WebEngineSupport::isSupported())
+        return;
+
     static bool configured = false;
     if (configured)
         return;

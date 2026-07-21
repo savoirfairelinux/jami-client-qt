@@ -63,7 +63,7 @@ Loader {
             return;
         } else if (transferStatus === Interaction.TransferStatus.TRANSFER_FINISHED) {
             mediaInfo = MessagesAdapter.getMediaInfo(rootDelegate.body);
-            if (Object.keys(mediaInfo).length !== 0 && WITH_WEBENGINE) {
+            if (Object.keys(mediaInfo).length !== 0 && WEBENGINE_AVAILABLE) {
                 sourceComponent = localMediaMsgComp;
                 return;
             }
@@ -376,7 +376,7 @@ Loader {
 
                         Loader {
                             Component.onCompleted: {
-                                var qml = WITH_WEBENGINE ? "qrc:/webengine/MediaPreviewBase.qml" : "qrc:/nowebengine/MediaPreviewBase.qml";
+                                var qml = WEBENGINE_AVAILABLE ? "qrc:/webengine/MediaPreviewBase.qml" : "qrc:/nowebengine/MediaPreviewBase.qml";
                                 setSource(qml, {
                                         isVideo: mediaInfo.isVideo,
                                         html: mediaInfo.html

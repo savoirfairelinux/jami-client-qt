@@ -416,7 +416,7 @@ Rectangle {
                         function filter(data: MenuActionFilterData): bool {
                             return data.menuAction.needWebEngine === false;
                         }
-                        enabled: !WITH_WEBENGINE
+                        enabled: !WEBENGINE_AVAILABLE
                     },
                     FunctionFilter {
                         column: 0
@@ -584,7 +584,7 @@ Rectangle {
                         function filter(data: MenuActionFilterData): bool {
                             return data.menuAction.needWebEngine === false;
                         }
-                        enabled: !WITH_WEBENGINE
+                        enabled: !WEBENGINE_AVAILABLE
                     },
                     FunctionFilter {
                         column: 0

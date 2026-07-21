@@ -281,7 +281,7 @@ QtObject {
             isCallFullscreen = fullScreenItems
                 .filter(o => o.item.objectName === "callViewLoader")
                 .length
-            isWebFullscreen = WITH_WEBENGINE ? fullScreenItems
+            isWebFullscreen = WEBENGINE_AVAILABLE ? fullScreenItems
                 .filter(o => o.item && (
                     o.item.objectName === JamiQmlUtils.webEngineNames.mediaPreview ||
                     o.item.objectName === JamiQmlUtils.webEngineNames.videoPreview ||
