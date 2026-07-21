@@ -678,6 +678,7 @@ set(COMMON_HEADERS
   ${APP_SRC_DIR}/apiserver.h
   ${APP_SRC_DIR}/apitokenmanager.h
   ${APP_SRC_DIR}/apitokenlistmodel.h
+  ${APP_SRC_DIR}/webengineavailability.h
 )
 
 set(CONTRIB_DARWIN_FOLDER "")
