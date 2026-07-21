@@ -120,6 +120,27 @@ Utils::testVulkanSupport()
 }
 
 bool
+Utils::isWebEngineRuntimeSupported()
+{
+    return isWebEngineRuntimeSupported(QOperatingSystemVersion::current());
+}
+
+bool
+Utils::isWebEngineRuntimeSupported(const QOperatingSystemVersionBase& currentOs)
+{
+#if WITH_WEBENGINE
+    if (currentOs.type() == QOperatingSystemVersionBase::Windows
+        && currentOs < QOperatingSystemVersion::Windows10) {
+        return false;
+    }
+    return true;
+#else
+    Q_UNUSED(currentOs);
+    return false;
+#endif
+}
+
+bool
 Utils::CreateStartupLink(const std::wstring& wstrAppName)
 {
     /*

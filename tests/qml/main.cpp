@@ -243,7 +243,8 @@ main(int argc, char** argv)
         return 1;
 
 #if WITH_WEBENGINE
-    QtWebEngineQuick::initialize();
+    if (Utils::isWebEngineRuntimeSupported())
+        QtWebEngineQuick::initialize();
 #endif
     QTEST_SET_MAIN_SOURCE_PATH
     Setup setup;

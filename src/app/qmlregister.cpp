@@ -41,6 +41,7 @@
 #include "spellcheckdictionarylistmodel.h"
 #include "spellcheckadapter.h"
 #include "accountlistmodel.h"
+#include "utils.h"
 
 #include "api/accountmodel.h"
 #include "mediacodeclistmodel.h"
@@ -335,7 +336,7 @@ registerTypes(QQmlEngine* engine,
     engine->rootContext()->setContextProperty("videoProvider", videoProvider);
 
     engine->rootContext()->setContextProperty("ENABLE_CRASHREPORTS", ENABLE_CRASHREPORTS);
-    engine->rootContext()->setContextProperty("WITH_WEBENGINE", WITH_WEBENGINE);
+    engine->rootContext()->setContextProperty("WITH_WEBENGINE", Utils::isWebEngineRuntimeSupported());
     engine->rootContext()->setContextProperty("APPSTORE", APPSTORE);
 }
 // clang-format on
