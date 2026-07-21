@@ -48,18 +48,6 @@ WebEngineView {
         id: webViewChannel
     }
 
-    onNavigationRequested: function (request) {
-        // The request object is created and wrapped by the WebEngine on every
-        // navigation. Guard against a null/invalid request to avoid
-        // dereferencing it while the view is being torn down.
-        if (!request)
-            return;
-        if (request.navigationType === WebEngineView.LinkClickedNavigation) {
-            MessagesAdapter.openUrl(request.url);
-            request.action = WebEngineView.IgnoreRequest;
-        }
-    }
-
     onContextMenuRequested: function (request) {
         var needContextMenu = request.selectedText.length || request.isContentEditable;
         if (!needContextMenu)
