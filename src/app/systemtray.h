@@ -36,6 +36,7 @@ public:
     explicit SystemTray(AppSettingsManager* settingsManager, QObject* parent = nullptr);
     ~SystemTray();
 
+    void teardownContextMenu();
     void onNotificationCountChanged(int count);
 #ifdef Q_OS_LINUX
     bool hideNotification(const QString& id);
