@@ -91,6 +91,13 @@ public:
     const account::Info& getAccountInfo(const QString& accountId) const;
 
     /**
+     * Check whether account information is available for an accountId.
+     * @param accountId.
+     * @return true if the account is loaded in the model.
+     */
+    Q_INVOKABLE bool hasAccount(const QString& accountId) const;
+
+    /**
      * Used when images < 20 Mb are automatically accepted and downloaded
      * Should contains the full directory with the end marker (/ on linux for example)
      */
