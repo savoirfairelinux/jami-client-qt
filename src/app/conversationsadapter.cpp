@@ -27,6 +27,7 @@
 
 #include <QApplication>
 #include <QJsonObject>
+#include <QScopeGuard>
 #include <QTimer>
 
 using namespace lrc::api;
@@ -487,15 +488,16 @@ ConversationsAdapter::getConvInfoMap(const QString& convId)
     bool callStackViewShouldShow {false};
     call::Status callState {};
     if (!convInfo.callId.isEmpty()) {
-        auto* callModel = lrcInstance_->getCurrentCallModel();
-        const auto& call = callModel->getCall(convInfo.callId);
-        callStackViewShouldShow = callModel->hasCall(convInfo.callId)
-                                  && ((!call.isOutgoing
-                                       && (call.status == call::Status::IN_PROGRESS
-                                           || call.status == call::Status::PAUSED
-                                           || call.status == call::Status::INCOMING_RINGING))
-                                      || (call.isOutgoing && call.status != call::Status::ENDED));
-        callState = call.status;
+        auto* callModel = accountInfo.callModel.get();
+        if (callModel->hasCall(convInfo.callId)) {
+            const auto& call = callModel->getCall(convInfo.callId);
+            callStackViewShouldShow = ((!call.isOutgoing
+                                        && (call.status == call::Status::IN_PROGRESS
+                                            || call.status == call::Status::PAUSED
+                                            || call.status == call::Status::INCOMING_RINGING))
+                                       || (call.isOutgoing && call.status != call::Status::ENDED));
+            callState = call.status;
+        }
     }
     return {{"convId", convId},
             {"bestId", bestId},
@@ -510,6 +512,18 @@ ConversationsAdapter::getConvInfoMap(const QString& convId)
             {"callState", static_cast<int>(callState)},
             {"callStackViewShouldShow", callStackViewShouldShow}};
 }
+
+#ifdef BUILD_TESTING
+QVariantMap
+ConversationsAdapter::getConvInfoMapWithCallIdForTest(const QString& convId, const QString& callId)
+{
+    auto& convInfo = const_cast<conversation::Info&>(lrcInstance_->getConversationFromConvUid(convId));
+    const auto originalCallId = convInfo.callId;
+    auto restoreCallId = qScopeGuard([&convInfo, originalCallId] { convInfo.callId = originalCallId; });
+    convInfo.callId = callId;
+    return getConvInfoMap(convId);
+}
+#endif
 
 void
 ConversationsAdapter::restartConversation(const QString& convId)

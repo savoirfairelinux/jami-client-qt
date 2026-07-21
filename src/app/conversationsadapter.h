@@ -74,6 +74,9 @@ public:
                                       const QString& uri,
                                       const QString& device);
     Q_INVOKABLE void updateConversationDescription(const QString& convId, const QString& newDescription);
+#ifdef BUILD_TESTING
+    Q_INVOKABLE QVariantMap getConvInfoMapWithCallIdForTest(const QString& convId, const QString& callId);
+#endif
 
     Q_INVOKABLE QString dialogId(const QString& peerUri);
     Q_INVOKABLE void openDialogConversationWith(const QString& peerUri);
