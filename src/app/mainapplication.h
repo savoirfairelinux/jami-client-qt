@@ -38,6 +38,8 @@ class ApiServer;
 class ApiTokenManager;
 class ApiTokenListModel;
 
+void destroySystemTrayForShutdown(SystemTray*& systemTray);
+
 // Provides information about the screen the app is displayed on
 class ScreenInfo : public QObject
 {

@@ -17,8 +17,15 @@
 
 #include "globaltestenvironment.h"
 
+#include "appsettingsmanager.h"
+#include "mainapplication.h"
+#include "systemtray.h"
+
 #include <QApplication>
+#include <QMenu>
+#include <QPointer>
 #include <QStandardPaths>
+#include <QSignalSpy>
 
 #ifdef Q_OS_WIN
 #define DATA_DIR    "JAMI_DATA_HOME"
@@ -31,6 +38,25 @@
 #endif
 
 TestEnvironment globalEnv;
+
+TEST(MainApplicationShutdown, DeletesSystemTrayAndContextMenu)
+{
+    AppSettingsManager settingsManager(nullptr);
+    auto systemTray = new SystemTray(&settingsManager, nullptr);
+    auto menu = new QMenu;
+    QPointer<SystemTray> systemTrayGuard(systemTray);
+    QPointer<QMenu> menuGuard(menu);
+    QSignalSpy destroyedSpy(systemTray, &QObject::destroyed);
+
+    systemTray->setContextMenu(menu);
+
+    destroySystemTrayForShutdown(systemTray);
+
+    EXPECT_EQ(systemTray, nullptr);
+    EXPECT_TRUE(systemTrayGuard.isNull());
+    EXPECT_TRUE(menuGuard.isNull());
+    EXPECT_EQ(destroyedSpy.count(), 1);
+}
 
 int
 main(int argc, char* argv[])
