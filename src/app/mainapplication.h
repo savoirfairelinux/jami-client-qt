@@ -64,6 +64,8 @@ public:
     explicit MainApplication(int& argc, char** argv);
     ~MainApplication();
 
+    static bool isQtRuntimeVersionCompatible(const QString& runtimeVersion);
+
     bool init();
     void restoreApp();
 

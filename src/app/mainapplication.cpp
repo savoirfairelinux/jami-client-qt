@@ -117,6 +117,14 @@ getRenderInterfaceString()
     return {};
 }
 
+bool
+MainApplication::isQtRuntimeVersionCompatible(const QString& runtimeVersion)
+{
+    const auto buildVersion = QStringLiteral(QT_VERSION_STR);
+    return runtimeVersion.section(QLatin1Char('.'), 0, 1)
+           == buildVersion.section(QLatin1Char('.'), 0, 1);
+}
+
 void
 ScreenInfo::setCurrentFocusWindow(QWindow* window)
 {
@@ -154,9 +162,9 @@ ScreenInfo::onPhysicalDotsPerInchChanged()
 MainApplication::MainApplication(int& argc, char** argv)
     : QApplication(argc, argv)
 {
-    const char* qtVersion = qVersion();
-    if (strncmp(qtVersion, QT_VERSION_STR, strnlen(qtVersion, sizeof qtVersion)) != 0) {
-        C_FATAL << "Qt build version mismatch!" << QT_VERSION_STR;
+    const auto qtVersion = QString::fromLatin1(qVersion());
+    if (!isQtRuntimeVersionCompatible(qtVersion)) {
+        C_FATAL << "Qt build version mismatch!" << QT_VERSION_STR << "runtime:" << qtVersion;
     }
 
     parseArguments();
