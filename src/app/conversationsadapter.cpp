@@ -422,6 +422,15 @@ ConversationsAdapter::updateConversationFilterData()
     // TODO: this may be further spliced to respond separately to
     // incoming messages and invites
     // total unread message and pending invite counts, and tab selection
+    if (!lrcInstance_->hasCurrentAccount()) {
+        set_totalUnreadMessageCount(0);
+        set_pendingRequestCount(0);
+        systemTray_->onNotificationCountChanged(lrcInstance_->notificationsCount());
+        if (get_filterRequests())
+            set_filterRequests(false);
+        return;
+    }
+
     auto& accountInfo = lrcInstance_->getCurrentAccountInfo();
     int totalUnreadMessages {0};
     if (accountInfo.profileInfo.type != profile::Type::SIP) {

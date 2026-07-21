@@ -84,6 +84,11 @@ public:
     Q_INVOKABLE size_t getAccountCount() const;
 
     /**
+     * @return true when accountId is currently loaded in the model.
+     */
+    Q_INVOKABLE bool hasAccount(const QString& accountId) const;
+
+    /**
      * get account information associated to an accountId.
      * @param accountId.
      * @return a const account::Info& structure.

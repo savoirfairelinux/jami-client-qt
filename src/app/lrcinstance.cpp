@@ -162,6 +162,12 @@ LRCInstance::getCurrentAccountInfo()
 }
 
 bool
+LRCInstance::hasCurrentAccount()
+{
+    return accountModel().hasAccount(get_currentAccountId());
+}
+
+bool
 LRCInstance::hasActiveCall(bool withVideo)
 {
     auto activeCalls = lrc_->activeCalls();

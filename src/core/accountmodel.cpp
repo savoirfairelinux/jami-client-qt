@@ -300,6 +300,12 @@ AccountModel::getAccountCount() const
     return pimpl_->accountIdList.size();
 }
 
+bool
+AccountModel::hasAccount(const QString& accountId) const
+{
+    return pimpl_->accounts.find(accountId) != pimpl_->accounts.end();
+}
+
 void
 AccountModel::setAccountEnabled(const QString& accountId, bool enabled) const
 {

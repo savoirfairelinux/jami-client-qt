@@ -84,6 +84,7 @@ public:
 
     const account::Info& getAccountInfo(const QString& accountId);
     const account::Info& getCurrentAccountInfo();
+    bool hasCurrentAccount();
     QString getCurrentCallId(bool forceCallOnly = false);
     QString getCallIdForConversationUid(const QString& convUid, const QString& accountId);
     const call::Info* getCallInfo(const QString& callId, const QString& accountId);

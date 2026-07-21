@@ -16,6 +16,9 @@
  */
 
 #include "globaltestenvironment.h"
+#include "conversationlistproxymodel.h"
+#include "conversationsadapter.h"
+#include "selectablelistproxymodel.h"
 
 /*!
  * Test fixture for AccountAdapter testing
@@ -41,6 +44,32 @@ TEST_F(AccountFixture, InitialAccountListCheck)
     auto accountListSize = globalEnv.lrcInstance->accountModel().getAccountCount();
 
     ASSERT_EQ(accountListSize, 0);
+}
+
+/*!
+ * WHEN  A conversation model update arrives with a stale current account id.
+ * THEN  Conversation filter counters are reset without reading account info.
+ */
+TEST_F(AccountFixture, ConversationFilterUpdateIgnoresMissingCurrentAccount)
+{
+    globalEnv.lrcInstance->set_currentAccountId("missing-account");
+    ASSERT_FALSE(globalEnv.lrcInstance->hasCurrentAccount());
+
+    ConversationListProxyModel convModel(nullptr);
+    SelectableListProxyModel searchModel(nullptr);
+    ConversationsAdapter adapter(globalEnv.systemTray.get(),
+                                 globalEnv.lrcInstance.get(),
+                                 &convModel,
+                                 &searchModel);
+    adapter.set_totalUnreadMessageCount(3);
+    adapter.set_pendingRequestCount(2);
+    adapter.set_filterRequests(true);
+
+    ASSERT_TRUE(QMetaObject::invokeMethod(&adapter, "onModelChanged", Qt::DirectConnection));
+
+    EXPECT_EQ(adapter.get_totalUnreadMessageCount(), 0);
+    EXPECT_EQ(adapter.get_pendingRequestCount(), 0);
+    EXPECT_FALSE(adapter.get_filterRequests());
 }
 
 /*!
