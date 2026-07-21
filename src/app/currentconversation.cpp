@@ -334,7 +334,13 @@ CurrentConversation::updateErrors(const QString& convId)
     try {
         QStringList newErrors;
         QStringList newBackendErr;
-        const auto& convModel = lrcInstance_->getCurrentConversationModel();
+        auto* convModel = lrcInstance_->getCurrentConversationModel();
+        if (!convModel) {
+            C_DBG << "CurrentConversation: unable to update errors from unavailable conversation model";
+            set_backendErrors({});
+            set_errors({});
+            return;
+        }
         if (auto optConv = convModel->getConversationForUid(convId)) {
             auto& convInfo = optConv->get();
             for (const auto& [code, error] : convInfo.errors) {
