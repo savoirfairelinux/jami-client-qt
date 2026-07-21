@@ -120,6 +120,26 @@ Utils::testVulkanSupport()
 }
 
 bool
+Utils::isWebEngineAvailable()
+{
+    return isWebEngineAvailable(QOperatingSystemVersion::current());
+}
+
+bool
+Utils::isWebEngineAvailable(const QOperatingSystemVersion& osVersion)
+{
+#if WITH_WEBENGINE
+    if (osVersion.type() == QOperatingSystemVersion::Windows && osVersion.majorVersion() < 10) {
+        return false;
+    }
+    return true;
+#else
+    Q_UNUSED(osVersion)
+    return false;
+#endif
+}
+
+bool
 Utils::CreateStartupLink(const std::wstring& wstrAppName)
 {
     /*

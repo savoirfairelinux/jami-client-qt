@@ -26,6 +26,7 @@
 #include <QLabel>
 #include <QListWidget>
 #include <QMessageBox>
+#include <QOperatingSystemVersion>
 #include <QQmlEngine>
 #include <QSettings>
 #include <QStackedWidget>
@@ -115,6 +116,8 @@ QString generateUid();
 // Misc
 QString humanFileSize(qint64 fileSize);
 QString getDebugFilePath();
+bool isWebEngineAvailable();
+bool isWebEngineAvailable(const QOperatingSystemVersion& osVersion);
 
 // Convert a MapStringString to a QVariantMap
 QVariantMap mapStringStringToVariantMap(const MapStringString& map);

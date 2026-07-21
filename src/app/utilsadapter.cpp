@@ -973,6 +973,8 @@ UtilsAdapter::ensureWebEngineProfileConfigured()
     static bool configured = false;
     if (configured)
         return;
+    if (!Utils::isWebEngineAvailable())
+        return;
     if (auto* profile = QWebEngineProfile::defaultProfile()) {
         // The default profile is off-the-record, so it already keeps cookies
         // and cache in memory only; we make that explicit and set the
