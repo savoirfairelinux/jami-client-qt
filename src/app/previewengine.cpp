@@ -65,8 +65,13 @@ PreviewEngine::PreviewEngine(ConnectivityMonitor* cm, QObject* parent)
 
 PreviewEngine::~PreviewEngine()
 {
+    if (parser_) {
+        auto* parser = parser_.take();
+        parser->deleteLater();
+    }
     parserThread_->quit();
     parserThread_->wait();
+    delete parserThread_;
 }
 
 void
