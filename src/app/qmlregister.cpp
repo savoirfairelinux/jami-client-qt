@@ -17,6 +17,7 @@
 
 #include "qmlregister.h"
 
+#include "webengineconfig.h"
 #include "accountadapter.h"
 #include "avadapter.h"
 #include "calladapter.h"
@@ -335,7 +336,8 @@ registerTypes(QQmlEngine* engine,
     engine->rootContext()->setContextProperty("videoProvider", videoProvider);
 
     engine->rootContext()->setContextProperty("ENABLE_CRASHREPORTS", ENABLE_CRASHREPORTS);
-    engine->rootContext()->setContextProperty("WITH_WEBENGINE", WITH_WEBENGINE);
+    engine->rootContext()->setContextProperty("WITH_WEBENGINE",
+                                              WITH_WEBENGINE && jami::webEngineRuntimeAvailable());
     engine->rootContext()->setContextProperty("APPSTORE", APPSTORE);
 }
 // clang-format on

@@ -54,9 +54,6 @@ def gen_qml_qrc(with_webengine):
     with open(resfile, 'w', encoding='utf-8') as qrc:
         qrc.write('<RCC>\n')
         for root, _, files in os.walk(app_src_dir):
-            # Skip the nowebengine directory if we can use WebEngine
-            if with_webengine and path_contains_dir(root, 'nowebengine'):
-                continue
             # Skip the webengine directory if WebEngine is unable to be used
             if not with_webengine and path_contains_dir(root, 'webengine'):
                 continue

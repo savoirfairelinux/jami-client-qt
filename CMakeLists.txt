@@ -527,6 +527,7 @@ set(COMMON_SOURCES
   ${APP_SRC_DIR}/accountlistmodel.cpp
   ${APP_SRC_DIR}/networkmanager.cpp
   ${APP_SRC_DIR}/instancemanager.cpp
+  ${APP_SRC_DIR}/webengineconfig.cpp
   ${APP_SRC_DIR}/main.cpp
   ${APP_SRC_DIR}/smartlistmodel.cpp
   ${APP_SRC_DIR}/utils.cpp
@@ -600,6 +601,7 @@ set(COMMON_HEADERS
   ${APP_SRC_DIR}/avatarimageprovider.h
   ${APP_SRC_DIR}/networkmanager.h
   ${APP_SRC_DIR}/smartlistmodel.h
+  ${APP_SRC_DIR}/webengineconfig.h
   ${APP_SRC_DIR}/appversionmanager.h
   ${APP_SRC_DIR}/utils.h
   ${APP_SRC_DIR}/bannedlistmodel.h
