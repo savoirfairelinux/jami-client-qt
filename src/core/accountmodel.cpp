@@ -466,6 +466,12 @@ AccountModel::getAccountInfo(const QString& accountId) const
     return accountInfo->second.first;
 }
 
+bool
+AccountModel::hasAccount(const QString& accountId) const
+{
+    return pimpl_->accounts.find(accountId) != pimpl_->accounts.end();
+}
+
 AccountModelPimpl::AccountModelPimpl(AccountModel& linked,
                                      Lrc& lrc,
                                      const CallbacksHandler& callbacksHandler,

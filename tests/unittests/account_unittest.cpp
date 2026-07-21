@@ -16,6 +16,7 @@
  */
 
 #include "globaltestenvironment.h"
+#include "utilsadapter.h"
 
 /*!
  * Test fixture for AccountAdapter testing
@@ -41,6 +42,28 @@ TEST_F(AccountFixture, InitialAccountListCheck)
     auto accountListSize = globalEnv.lrcInstance->accountModel().getAccountCount();
 
     ASSERT_EQ(accountListSize, 0);
+}
+
+/*!
+ * WHEN  Account data is requested for an unknown account id.
+ * THEN  The account model reports that the account is unavailable.
+ */
+TEST_F(AccountFixture, UnknownAccountIsNotAvailable)
+{
+    EXPECT_FALSE(globalEnv.lrcInstance->accountModel().hasAccount("missing-account-id"));
+}
+
+/*!
+ * WHEN  Bot owner is requested for an unknown account id.
+ * THEN  The helper returns an empty owner without throwing.
+ */
+TEST_F(AccountFixture, UnknownAccountHasNoBotOwner)
+{
+    UtilsAdapter utilsAdapter(globalEnv.settingsManager.data(),
+                              globalEnv.systemTray.data(),
+                              globalEnv.lrcInstance.data());
+
+    EXPECT_TRUE(utilsAdapter.getBotOwner("missing-account-id").isEmpty());
 }
 
 /*!
