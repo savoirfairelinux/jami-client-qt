@@ -36,10 +36,7 @@ public:
     HtmlParser(QObject* parent = nullptr)
         : QObject(parent)
     {
-        doc_ = tidyCreate();
-        tidyOptSetBool(doc_, TidyQuiet, yes);
-        tidyOptSetBool(doc_, TidyShowWarnings, no);
-        tidyOptSetInt(doc_, TidyUseCustomTags, TidyCustomEmpty);
+        createDocument();
     }
 
     ~HtmlParser()
@@ -49,6 +46,7 @@ public:
 
     bool parseHtmlString(const QString& html)
     {
+        resetDocument();
         return tidyParseString(doc_, html.toUtf8().data()) >= 0;
     }
 
@@ -121,6 +119,20 @@ public:
     }
 
 private:
+    void createDocument()
+    {
+        doc_ = tidyCreate();
+        tidyOptSetBool(doc_, TidyQuiet, yes);
+        tidyOptSetBool(doc_, TidyShowWarnings, no);
+        tidyOptSetInt(doc_, TidyUseCustomTags, TidyCustomEmpty);
+    }
+
+    void resetDocument()
+    {
+        tidyRelease(doc_);
+        createDocument();
+    }
+
     // NOLINTNEXTLINE(misc-no-recursion)
     void traverseNode(TidyNode node,
                       const QList<TidyTagId>& tags,
