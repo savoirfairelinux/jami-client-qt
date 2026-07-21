@@ -101,3 +101,26 @@ TEST_F(PreviewEngineFixture, UTF8CharactersAreParsedCorrectly)
     EXPECT_TRUE(info.contains("description"));
     EXPECT_EQ(info["description"].toString(), testString);
 }
+
+/*!
+ * WHEN  A preview engine parses a document containing an anchor and is destroyed
+ * THEN  The parser is destroyed safely after the worker thread has used Tidy
+ */
+TEST_F(PreviewEngineFixture, DestroyAfterParsingAnchorDoesNotCrash)
+{
+    auto link = QString("http://localhost:8000/test");
+    server->route("/test", []() {
+        return QString("<html><body><a href=\"https://jami.net\">Jami</a></body></html>");
+    });
+
+    QScopedPointer<PreviewEngine> previewEngine(
+        new PreviewEngine(globalEnv.connectivityMonitor.get(), nullptr));
+    QSignalSpy infoReadySpy(previewEngine.data(), &PreviewEngine::infoReady);
+
+    Q_EMIT previewEngine->parseLink("msgId_01", link);
+
+    ASSERT_TRUE(infoReadySpy.wait());
+    EXPECT_EQ(infoReadySpy.count(), 1) << "infoReady signal should be emitted once";
+
+    previewEngine.reset();
+}
