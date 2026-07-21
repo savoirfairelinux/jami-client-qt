@@ -108,6 +108,7 @@ set(UNIT_TESTS_SOURCE_FILES
     ${CMAKE_SOURCE_DIR}/tests/unittests/main_unittest.cpp
     ${CMAKE_SOURCE_DIR}/tests/unittests/account_unittest.cpp
     ${CMAKE_SOURCE_DIR}/tests/unittests/contact_unittest.cpp
+    ${CMAKE_SOURCE_DIR}/tests/unittests/htmlparser_unittest.cpp
     ${CMAKE_SOURCE_DIR}/tests/unittests/messageparser_unittest.cpp
     ${CMAKE_SOURCE_DIR}/tests/unittests/paste_unittest.cpp
     ${CMAKE_SOURCE_DIR}/tests/unittests/previewengine_unittest.cpp
