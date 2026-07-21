@@ -23,6 +23,7 @@
 #include <api/pluginmodel.h>
 
 #include <QBuffer>
+#include <QDebug>
 #include <QMutex>
 #include <QObject>
 #include <QPixmap>
@@ -294,7 +295,12 @@ LRCInstance::getCurrentAccountIndex()
 void
 LRCInstance::setCurrAccDisplayName(const QString& displayName)
 {
-    auto accountId = get_currentAccountId();
+    const auto accountId = get_currentAccountId();
+    if (accountId.isEmpty() || !accountModel().getAccountList().contains(accountId)) {
+        qWarning() << "Cannot set current account display name: invalid current account" << accountId;
+        return;
+    }
+
     accountModel().setAlias(accountId, displayName);
 }
 

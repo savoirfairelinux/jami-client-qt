@@ -44,6 +44,21 @@ TEST_F(AccountFixture, InitialAccountListCheck)
 }
 
 /*!
+ * WHEN  The current account id is empty or stale.
+ * THEN  Updating the current account display name should be ignored.
+ */
+TEST_F(AccountFixture, SetCurrentDisplayNameWithoutCurrentAccountDoesNotThrow)
+{
+    ASSERT_EQ(globalEnv.lrcInstance->accountModel().getAccountCount(), 0);
+
+    globalEnv.lrcInstance->set_currentAccountId("");
+    EXPECT_NO_THROW(globalEnv.lrcInstance->setCurrAccDisplayName("Alice"));
+
+    globalEnv.lrcInstance->set_currentAccountId("stale-account-id");
+    EXPECT_NO_THROW(globalEnv.lrcInstance->setCurrAccDisplayName("Alice"));
+}
+
+/*!
  * WHEN  An SIP account is created.
  * THEN  The size of the account list should be one.
  */
