@@ -530,6 +530,7 @@ set(COMMON_SOURCES
   ${APP_SRC_DIR}/main.cpp
   ${APP_SRC_DIR}/smartlistmodel.cpp
   ${APP_SRC_DIR}/utils.cpp
+  ${APP_SRC_DIR}/webengineutils.cpp
   ${APP_SRC_DIR}/mainapplication.cpp
   ${APP_SRC_DIR}/messagesadapter.cpp
   ${APP_SRC_DIR}/positionobject.cpp
