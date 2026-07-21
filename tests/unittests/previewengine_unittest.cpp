@@ -101,3 +101,24 @@ TEST_F(PreviewEngineFixture, UTF8CharactersAreParsedCorrectly)
     EXPECT_TRUE(info.contains("description"));
     EXPECT_EQ(info["description"].toString(), testString);
 }
+
+/*!
+ * WHEN  A preview engine is destroyed after parsing HTML
+ * THEN  Its parser and tidy document should be released safely
+ */
+TEST_F(PreviewEngineFixture, DestroyingPreviewEngineAfterParsingReleasesParserSafely)
+{
+    server->route("/teardown",
+                  []() { return QString("<meta property=\"og:title\" content=\"Test title\">"); });
+
+    QScopedPointer<PreviewEngine> previewEngine(new PreviewEngine(globalEnv.connectivityMonitor.get(), nullptr));
+    QSignalSpy infoReadySpy(previewEngine.data(), &PreviewEngine::infoReady);
+
+    Q_EMIT previewEngine->parseLink("msgId_01", "http://localhost:8000/teardown");
+
+    infoReadySpy.wait();
+    ASSERT_EQ(infoReadySpy.count(), 1);
+
+    previewEngine.reset();
+    SUCCEED();
+}
