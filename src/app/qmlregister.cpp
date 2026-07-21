@@ -74,6 +74,7 @@
 #include "wizardviewstepmodel.h"
 #include "linkdevicemodel.h"
 #include "qrcodescannermodel.h"
+#include "webenginesupport.h"
 
 #include "api/peerdiscoverymodel.h"
 #include "api/codecmodel.h"
@@ -335,7 +336,7 @@ registerTypes(QQmlEngine* engine,
     engine->rootContext()->setContextProperty("videoProvider", videoProvider);
 
     engine->rootContext()->setContextProperty("ENABLE_CRASHREPORTS", ENABLE_CRASHREPORTS);
-    engine->rootContext()->setContextProperty("WITH_WEBENGINE", WITH_WEBENGINE);
+    engine->rootContext()->setContextProperty("WITH_WEBENGINE", WebEngineSupport::isSupported());
     engine->rootContext()->setContextProperty("APPSTORE", APPSTORE);
 }
 // clang-format on
