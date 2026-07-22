@@ -327,6 +327,27 @@ Utils::removeOldVersions()
 #endif
 }
 
+bool
+Utils::isSupportedWebEngineWindowsVersion(const QOperatingSystemVersion& version)
+{
+    return version.type() != QOperatingSystemVersion::Windows
+           || version >= QOperatingSystemVersion(QOperatingSystemVersion::Windows, 10, 0);
+}
+
+bool
+Utils::isWebEngineAvailable()
+{
+#if WITH_WEBENGINE
+#ifdef Q_OS_WIN
+    return isSupportedWebEngineWindowsVersion(QOperatingSystemVersion::current());
+#else
+    return true;
+#endif
+#else
+    return false;
+#endif
+}
+
 QString
 Utils::GetRingtonePath()
 {
