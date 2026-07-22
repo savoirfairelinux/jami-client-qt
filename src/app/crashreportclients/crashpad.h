@@ -23,7 +23,7 @@
 
 class AppSettingsManager;
 
-class CrashPadClient final : public CrashReportClient
+class CrashPadClient : public CrashReportClient
 {
     Q_OBJECT
 
@@ -39,7 +39,7 @@ protected:
     void setUploadsEnabled(bool enabled) override;
 
 private:
-    void startHandler();
+    virtual void startHandler();
 
     crashpad::CrashpadClient client_;
     base::FilePath dbPath_;
