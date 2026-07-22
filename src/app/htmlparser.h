@@ -17,6 +17,7 @@
 
 #pragma once
 
+#include <QByteArray>
 #include <QObject>
 #include <QVariantMap>
 
@@ -36,10 +37,7 @@ public:
     HtmlParser(QObject* parent = nullptr)
         : QObject(parent)
     {
-        doc_ = tidyCreate();
-        tidyOptSetBool(doc_, TidyQuiet, yes);
-        tidyOptSetBool(doc_, TidyShowWarnings, no);
-        tidyOptSetInt(doc_, TidyUseCustomTags, TidyCustomEmpty);
+        createDoc();
     }
 
     ~HtmlParser()
@@ -49,7 +47,9 @@ public:
 
     bool parseHtmlString(const QString& html)
     {
-        return tidyParseString(doc_, html.toUtf8().data()) >= 0;
+        resetDoc();
+        const QByteArray htmlUtf8 = html.toUtf8();
+        return tidyParseString(doc_, htmlUtf8.constData()) >= 0;
     }
 
     using TagNodeList = QMap<TidyTagId, QList<TidyNode>>;
@@ -127,6 +127,10 @@ private:
                       const std::function<void(TidyNode, TidyTagId)>& cb,
                       int depth = -1)
     {
+        if (!node) {
+            return;
+        }
+
         for (auto tag : tags) {
             if (tidyNodeGetId(node) == tag && cb) {
                 cb(node, tag);
@@ -140,6 +144,20 @@ private:
         for (TidyNode child = tidyGetChild(node); child; child = tidyGetNext(child)) {
             traverseNode(child, tags, cb, depth);
         }
+    }
+
+    void createDoc()
+    {
+        doc_ = tidyCreate();
+        tidyOptSetBool(doc_, TidyQuiet, yes);
+        tidyOptSetBool(doc_, TidyShowWarnings, no);
+        tidyOptSetInt(doc_, TidyUseCustomTags, TidyCustomEmpty);
+    }
+
+    void resetDoc()
+    {
+        tidyRelease(doc_);
+        createDoc();
     }
 
     TidyDoc doc_;
