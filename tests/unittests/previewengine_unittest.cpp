@@ -17,6 +17,8 @@
 
 #include "globaltestenvironment.h"
 
+#include "htmlparser.h"
+
 #include <QtHttpServer>
 #include <QTcpServer>
 
@@ -100,4 +102,25 @@ TEST_F(PreviewEngineFixture, UTF8CharactersAreParsedCorrectly)
     QVariantMap info = infoReadyArguments.at(1).toMap();
     EXPECT_TRUE(info.contains("description"));
     EXPECT_EQ(info["description"].toString(), testString);
+}
+
+/*!
+ * WHEN  We parse HTML containing custom elements
+ * THEN  The parser should be safely destroyed after parsing
+ */
+TEST(HtmlParserTest, ReleasesAfterCustomElements)
+{
+    for (int i = 0; i < 3; ++i) {
+        HtmlParser parser;
+
+        ASSERT_TRUE(parser.parseHtmlString(
+            "<html><head><meta property=\"og:title\" content=\"Test title\"></head>"
+            "<body><jami-preview-card data-id=\"1\"></jami-preview-card></body></html>"));
+
+        auto tagsNodes = parser.getTagsNodes({TidyTag_META});
+        ASSERT_TRUE(tagsNodes.contains(TidyTag_META));
+        ASSERT_EQ(tagsNodes[TidyTag_META].size(), 1);
+        EXPECT_EQ(parser.getNodeAttr(tagsNodes[TidyTag_META].first(), TidyAttr_CONTENT),
+                  "Test title");
+    }
 }

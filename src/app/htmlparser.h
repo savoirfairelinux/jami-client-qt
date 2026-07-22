@@ -39,7 +39,6 @@ public:
         doc_ = tidyCreate();
         tidyOptSetBool(doc_, TidyQuiet, yes);
         tidyOptSetBool(doc_, TidyShowWarnings, no);
-        tidyOptSetInt(doc_, TidyUseCustomTags, TidyCustomEmpty);
     }
 
     ~HtmlParser()
