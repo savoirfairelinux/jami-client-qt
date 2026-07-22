@@ -615,6 +615,7 @@ set(COMMON_HEADERS
   ${APP_SRC_DIR}/accountadapter.h
   ${APP_SRC_DIR}/calladapter.h
   ${APP_SRC_DIR}/conversationsadapter.h
+  ${APP_SRC_DIR}/conversationsadapterutils.h
   ${APP_SRC_DIR}/qmladapterbase.h
   ${APP_SRC_DIR}/avadapter.h
   ${APP_SRC_DIR}/contactadapter.h
