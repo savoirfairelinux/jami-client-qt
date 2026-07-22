@@ -19,6 +19,7 @@
 
 #include "htmlparser.h"
 
+#include <QMetaObject>
 #include <QRegularExpression>
 #include <QThread>
 
@@ -65,8 +66,18 @@ PreviewEngine::PreviewEngine(ConnectivityMonitor* cm, QObject* parent)
 
 PreviewEngine::~PreviewEngine()
 {
+    if (parser_) {
+        auto* parser = parser_.take();
+        if (parser->thread() == QThread::currentThread()) {
+            delete parser;
+        } else {
+            QMetaObject::invokeMethod(parser, [parser]() { delete parser; }, Qt::BlockingQueuedConnection);
+        }
+    }
+
     parserThread_->quit();
     parserThread_->wait();
+    delete parserThread_;
 }
 
 void
