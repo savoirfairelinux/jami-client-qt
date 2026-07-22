@@ -20,6 +20,7 @@
 
 #include <QReadLocker>
 #include <QWriteLocker>
+#include <QMetaObject>
 
 using namespace lrc::api;
 
@@ -217,7 +218,7 @@ VideoProvider::onFrameUpdated(const QString& id)
         it->second.frameMutex.lockForRead();
         it->second.subscribersMutex.lockForRead();
         for (const auto& sink : std::as_const(it->second.subscribers)) {
-            sink->setVideoFrame(videoFrame);
+            queueVideoFrameUpdate(sink, videoFrame);
         }
         it->second.subscribersMutex.unlock();
         it->second.frameMutex.unlock();
@@ -251,7 +252,7 @@ VideoProvider::onFrameUpdated(const QString& id)
         it->second.frameMutex.lockForRead();
         it->second.subscribersMutex.lockForRead();
         for (const auto& sink : std::as_const(it->second.subscribers)) {
-            sink->setVideoFrame(videoFrame);
+            queueVideoFrameUpdate(sink, videoFrame);
         }
         it->second.subscribersMutex.unlock();
         it->second.frameMutex.unlock();
@@ -284,6 +285,20 @@ VideoProvider::onRendererStopped(const QString& id)
 
     renderersMutex_.unlock();
     Q_EMIT activeRenderersChanged();
+}
+
+void
+VideoProvider::queueVideoFrameUpdate(QVideoSink* sink, const QVideoFrame& videoFrame)
+{
+    QPointer<QVideoSink> guardedSink(sink);
+    QMetaObject::invokeMethod(
+        sink,
+        [guardedSink, videoFrame] {
+            if (guardedSink) {
+                guardedSink->setVideoFrame(videoFrame);
+            }
+        },
+        Qt::QueuedConnection);
 }
 
 void

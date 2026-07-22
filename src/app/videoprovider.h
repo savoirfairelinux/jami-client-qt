@@ -28,6 +28,7 @@ extern "C" {
 #include <QVideoSink>
 #include <QVideoFrame>
 #include <QQmlEngine>
+#include <QPointer>
 #include <QReadWriteLock>
 
 #include <map>
@@ -61,6 +62,7 @@ private Q_SLOTS:
 private:
     AVModel& avModel_;
     void copyUnaligned(QVideoFrame& dst, const video::Frame& src);
+    void queueVideoFrameUpdate(QVideoSink* sink, const QVideoFrame& videoFrame);
 
     struct FrameObject
     {
