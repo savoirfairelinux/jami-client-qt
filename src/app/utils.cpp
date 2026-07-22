@@ -29,6 +29,7 @@
 #include <QFile>
 #include <QMessageBox>
 #include <QObject>
+#include <QOperatingSystemVersion>
 #include <QPainter>
 #include <QPropertyAnimation>
 #include <QScreen>
@@ -116,6 +117,20 @@ Utils::testVulkanSupport()
     if (!instance || result != 0) {
         throw std::runtime_error("Unable to create Vulkan instance.");
     }
+#endif
+}
+
+bool
+Utils::isWebEngineRuntimeAvailable()
+{
+#if WITH_WEBENGINE
+#if defined(Q_OS_WIN)
+    return QOperatingSystemVersion::current() >= QOperatingSystemVersion::Windows10;
+#else
+    return true;
+#endif
+#else
+    return false;
 #endif
 }
 

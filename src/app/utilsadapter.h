@@ -175,6 +175,7 @@ public:
 #endif
     Q_INVOKABLE bool isWayland() const;
     Q_INVOKABLE bool isMacOS26OrLater() const;
+    Q_INVOKABLE bool isWebEngineRuntimeAvailable() const;
 
     // Configure the single shared default WebEngine profile exactly once, on
     // first use. This is invoked lazily from each WebEngineView's

@@ -52,6 +52,7 @@ void remove_argument(char** argv, int& argc, const std::string& arg_to_remove, s
 
 // Throws if Vulkan cannot be instantiated.
 void testVulkanSupport();
+bool isWebEngineRuntimeAvailable();
 
 // App System
 bool CreateStartupLink(const std::wstring& wstrAppName);

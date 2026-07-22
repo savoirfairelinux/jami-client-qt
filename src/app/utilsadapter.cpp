@@ -966,10 +966,18 @@ UtilsAdapter::isMacOS26OrLater() const
 #endif
 }
 
+bool
+UtilsAdapter::isWebEngineRuntimeAvailable() const
+{
+    return Utils::isWebEngineRuntimeAvailable();
+}
+
 void
 UtilsAdapter::ensureWebEngineProfileConfigured()
 {
 #if WITH_WEBENGINE
+    if (!Utils::isWebEngineRuntimeAvailable())
+        return;
     static bool configured = false;
     if (configured)
         return;
