@@ -26,6 +26,7 @@
 #include <QLabel>
 #include <QListWidget>
 #include <QMessageBox>
+#include <QOperatingSystemVersion>
 #include <QQmlEngine>
 #include <QSettings>
 #include <QStackedWidget>
@@ -52,6 +53,8 @@ void remove_argument(char** argv, int& argc, const std::string& arg_to_remove, s
 
 // Throws if Vulkan cannot be instantiated.
 void testVulkanSupport();
+bool isWebEngineSupported(const QOperatingSystemVersion& version);
+bool isWebEngineSupported();
 
 // App System
 bool CreateStartupLink(const std::wstring& wstrAppName);

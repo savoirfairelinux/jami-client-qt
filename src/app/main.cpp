@@ -17,6 +17,7 @@
 
 #include "mainapplication.h"
 #include "instancemanager.h"
+#include "utils.h"
 #include "version_info.h"
 #if defined(Q_OS_MACOS)
 #include <os/macos/macutils.h>
@@ -85,12 +86,14 @@ main(int argc, char* argv[])
     // keeps its own GPU acceleration. Nothing narrower removes the Vulkan
     // fallback (--disable-vulkan, --disable-features=Vulkan, --use-gl=*,
     // QSG_RHI_BACKEND=opengl were all verified ineffective).
-    QByteArray chromiumFlags = qgetenv("QTWEBENGINE_CHROMIUM_FLAGS");
-    if (!chromiumFlags.isEmpty())
-        chromiumFlags.append(' ');
-    chromiumFlags.append("--disable-web-security --disable-gpu");
-    qputenv("QTWEBENGINE_CHROMIUM_FLAGS", chromiumFlags);
-    QtWebEngineQuick::initialize();
+    if (Utils::isWebEngineSupported()) {
+        QByteArray chromiumFlags = qgetenv("QTWEBENGINE_CHROMIUM_FLAGS");
+        if (!chromiumFlags.isEmpty())
+            chromiumFlags.append(' ');
+        chromiumFlags.append("--disable-web-security --disable-gpu");
+        qputenv("QTWEBENGINE_CHROMIUM_FLAGS", chromiumFlags);
+        QtWebEngineQuick::initialize();
+    }
 #endif
 
     MainApplication app(argc, argv);
