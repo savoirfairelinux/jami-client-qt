@@ -73,7 +73,7 @@ public:
         , settingsManager_(settingsManager)
         , crashReportUrl_(CRASH_REPORT_URL)
     {}
-    ~CrashReportClient() = default;
+    virtual ~CrashReportClient() = default;
 
     virtual void syncHandlerWithSettings() = 0;
     virtual void uploadLastReport() = 0;

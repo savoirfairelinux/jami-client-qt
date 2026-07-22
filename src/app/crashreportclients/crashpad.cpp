@@ -102,6 +102,8 @@ CrashPadClient::CrashPadClient(AppSettingsManager* settingsManager, QObject* par
         handlerPath_ = base::FilePath(FILEPATHSTR(QDir(appBinPath).filePath(CRASHPAD_EXECUTABLE)));
         C_DBG << "Handler runtime path: " << handlerPath_.value();
 
+        initialized_ = true;
+
         // Check if the application crashed last time it was run by checking the crashpad database
         // report count. If there is at least one report, we set the crashedLastRun_ flag to true.
         // The flag will be queried by the QML interface to display a dialog. If the user accepts,
@@ -130,6 +132,10 @@ CrashPadClient::CrashPadClient(AppSettingsManager* settingsManager, QObject* par
 
 CrashPadClient::~CrashPadClient()
 {
+    if (!initialized_) {
+        return;
+    }
+
     // Remove any remaining stale crash reports.
     // We use sleep to ensure that the reports are cleared after a forced upload,
     // and it's possible that the reports are still being processed. This is a
@@ -142,6 +148,14 @@ CrashPadClient::~CrashPadClient()
 void
 CrashPadClient::startHandler()
 {
+    if (!initialized_) {
+        C_WARN << "Crashpad handler start requested before initialization completed";
+        return;
+    }
+    if (handlerStarted_) {
+        return;
+    }
+
     std::vector<std::string> arguments;
 
     // We disable rate-limiting because we want to upload crash reports as soon as possible.
@@ -175,14 +189,20 @@ CrashPadClient::startHandler()
         C_WARN << "Crashpad initialization failed";
         return;
     }
+    handlerStarted_ = true;
 
-    // Update the handler settings after starting the handler (we may have restarted it).
+    // Update the handler settings after starting the handler.
     syncHandlerWithSettings();
 }
 
 void
 CrashPadClient::syncHandlerWithSettings()
 {
+    if (!initialized_) {
+        C_WARN << "Crashpad settings sync requested before initialization completed";
+        return;
+    }
+
     // Configure the crashpad handler with the settings from the settings manager.
     using key = Settings::Key;
     using namespace crashpad;
@@ -200,6 +220,10 @@ CrashPadClient::syncHandlerWithSettings()
 void
 CrashPadClient::setUploadsEnabled(bool enabled)
 {
+    if (!initialized_) {
+        return;
+    }
+
     auto database = crashpad::CrashReportDatabase::Initialize(base::FilePath(dbPath_));
     if (database != nullptr && database->GetSettings() != nullptr) {
         database->GetSettings()->SetUploadsEnabled(enabled);
@@ -209,6 +233,11 @@ CrashPadClient::setUploadsEnabled(bool enabled)
 void
 CrashPadClient::clearReports()
 {
+    if (!initialized_) {
+        C_WARN << "Crashpad report cleanup requested before initialization completed";
+        return;
+    }
+
     auto database = crashpad::CrashReportDatabase::Initialize(base::FilePath(dbPath_));
     if (database == nullptr) {
         return;
@@ -220,18 +249,21 @@ CrashPadClient::clearReports()
     database->CleanDatabase(secondsToWaitForReportLocks);
 
     ::clearCompletedReports(database.get());
+    crashedLastRun_ = false;
 
-    // If the crashedLastRun_ flag is set, then we should follow up and start the handler.
     // Refer to the comment in constructor for more information on why the handler wasn't
     // started in the constructor if we crashed last time.
-    if (crashedLastRun_) {
-        startHandler();
-    }
+    startHandler();
 }
 
 void
 CrashPadClient::uploadLastReport()
 {
+    if (!initialized_) {
+        C_WARN << "Crashpad report upload requested before initialization completed";
+        return;
+    }
+
     using namespace crashpad;
 
     // Find the latest crash report.
@@ -251,6 +283,7 @@ CrashPadClient::uploadLastReport()
 
     if (reports.empty()) {
         C_WARN << "Crashpad database contains no completed reports";
+        crashedLastRun_ = false;
         return;
     }
 
@@ -265,8 +298,9 @@ CrashPadClient::uploadLastReport()
         C_WARN << "Failed to request upload, status: " << status;
         return;
     }
+    crashedLastRun_ = false;
 
-    // In this case, unless we restart the crashpad handler, the report won't
+    // In this case, unless we start the crashpad handler, the report won't
     // be uploaded until the application is terminated.
     startHandler();
 

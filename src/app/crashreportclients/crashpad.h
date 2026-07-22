@@ -29,7 +29,7 @@ class CrashPadClient final : public CrashReportClient
 
 public:
     explicit CrashPadClient(AppSettingsManager* settingsManager, QObject* parent = nullptr);
-    ~CrashPadClient();
+    ~CrashPadClient() override;
 
     void syncHandlerWithSettings() override;
     void uploadLastReport() override;
@@ -44,4 +44,6 @@ private:
     crashpad::CrashpadClient client_;
     base::FilePath dbPath_;
     base::FilePath handlerPath_;
+    bool initialized_ {false};
+    bool handlerStarted_ {false};
 };
