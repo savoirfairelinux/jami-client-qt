@@ -38,6 +38,8 @@ class ApiServer;
 class ApiTokenManager;
 class ApiTokenListModel;
 
+bool isCompatibleQtRuntimeVersion(const QString& runtimeVersion, const QString& buildVersion);
+
 // Provides information about the screen the app is displayed on
 class ScreenInfo : public QObject
 {
@@ -112,15 +114,16 @@ private:
     QScopedPointer<LRCInstance> lrcInstance_;
 
     // These are injected into the QML layer along with our LRCInstance
-    ConnectivityMonitor* connectivityMonitor_;
-    SystemTray* systemTray_;
-    AppSettingsManager* settingsManager_;
-    AccountSettingsManager* accountSettingsManager_;
-    PreviewEngine* previewEngine_;
-    CrashReporter* crashReporter_;
+    ConnectivityMonitor* connectivityMonitor_ {nullptr};
+    SystemTray* systemTray_ {nullptr};
+    AppSettingsManager* settingsManager_ {nullptr};
+    AccountSettingsManager* accountSettingsManager_ {nullptr};
+    PreviewEngine* previewEngine_ {nullptr};
+    CrashReporter* crashReporter_ {nullptr};
     ApiServer* apiServer_ {nullptr};
     ApiTokenManager* apiTokenManager_ {nullptr};
     class ApiTokenListModel* apiTokenListModel_ {nullptr};
+    bool runtimeVersionCompatible_ {true};
 
     ScreenInfo screenInfo_;
     QCommandLineParser parser_;
