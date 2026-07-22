@@ -31,6 +31,19 @@
 
 using namespace lrc::api;
 
+ConversationsAdapter::CallUiState
+ConversationsAdapter::callUiStateForCall(const call::Info* call)
+{
+    if (!call)
+        return {};
+
+    return {(!call->isOutgoing
+             && (call->status == call::Status::IN_PROGRESS || call->status == call::Status::PAUSED
+                 || call->status == call::Status::INCOMING_RINGING))
+                || (call->isOutgoing && call->status != call::Status::ENDED),
+            call->status};
+}
+
 ConversationsAdapter::ConversationsAdapter(SystemTray* systemTray,
                                            LRCInstance* instance,
                                            ConversationListProxyModel* convProxyModel,
@@ -484,18 +497,9 @@ ConversationsAdapter::getConvInfoMap(const QString& convId)
             isAudioOnly = call->isAudioOnly;
         }
     }
-    bool callStackViewShouldShow {false};
-    call::Status callState {};
+    CallUiState callUiState;
     if (!convInfo.callId.isEmpty()) {
-        auto* callModel = lrcInstance_->getCurrentCallModel();
-        const auto& call = callModel->getCall(convInfo.callId);
-        callStackViewShouldShow = callModel->hasCall(convInfo.callId)
-                                  && ((!call.isOutgoing
-                                       && (call.status == call::Status::IN_PROGRESS
-                                           || call.status == call::Status::PAUSED
-                                           || call.status == call::Status::INCOMING_RINGING))
-                                      || (call.isOutgoing && call.status != call::Status::ENDED));
-        callState = call.status;
+        callUiState = callUiStateForCall(lrcInstance_->getCallInfo(convInfo.callId, convInfo.accountId));
     }
     return {{"convId", convId},
             {"bestId", bestId},
@@ -507,8 +511,8 @@ ConversationsAdapter::getConvInfoMap(const QString& convId)
             {"isRequest", convInfo.isRequest},
             {"needsSyncing", convInfo.needsSyncing},
             {"isAudioOnly", isAudioOnly},
-            {"callState", static_cast<int>(callState)},
-            {"callStackViewShouldShow", callStackViewShouldShow}};
+            {"callState", static_cast<int>(callUiState.callState)},
+            {"callStackViewShouldShow", callUiState.callStackViewShouldShow}};
 }
 
 void

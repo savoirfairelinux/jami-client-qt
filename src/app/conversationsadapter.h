@@ -21,6 +21,8 @@
 #include "conversationlistproxymodel.h"
 #include "searchresultslistmodel.h"
 
+#include <api/call.h>
+
 #include <QObject>
 #include <QString>
 #include <QQmlEngine>   // QML registration
@@ -40,6 +42,12 @@ class ConversationsAdapter final : public QmlAdapterBase
     QML_RO_PROPERTY(QVariant, searchListProxyModel)
 
 public:
+    struct CallUiState
+    {
+        bool callStackViewShouldShow {false};
+        call::Status callState {};
+    };
+
     static ConversationsAdapter* create(QQmlEngine*, QJSEngine*)
     {
         return new ConversationsAdapter(qApp->property("SystemTray").value<SystemTray*>(),
@@ -54,6 +62,8 @@ public:
                                   SelectableListProxyModel* searchProxyModel,
                                   QObject* parent = nullptr);
     ~ConversationsAdapter() = default;
+
+    static CallUiState callUiStateForCall(const call::Info* call);
 
 public:
     void connectConversationModel();
