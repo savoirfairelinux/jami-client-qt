@@ -34,6 +34,24 @@
       "message": "[warning] Line 61: 🟡 The test populates the shared CallParticipantsModel singleton but never resets it, so the 12 fake participants and ONE_WITH_SMALL layout can leak into later QML tests in the same process and make the suite order-dependent. Add cleanup()/cleanupTestCase() that clears the participants and restores a neutral conference layout.",
       "revId": "6cf577f5273dd23b9220c7a3d9c8e0196b3f470c",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "741ca120_49095946",
+        "filename": "tests/qml/src/tst_ConferenceParticipantStrip.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-07-22T19:47:56Z",
+      "side": 1,
+      "message": "Fixed in PS2: added cleanup() which resets CallParticipantsModel (empty participants + GRID layout) after each test so it can\u0027t leak state into later tests.",
+      "parentUuid": "cf60dafb_efd116e7",
+      "revId": "6cf577f5273dd23b9220c7a3d9c8e0196b3f470c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
