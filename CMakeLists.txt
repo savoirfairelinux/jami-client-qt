@@ -593,7 +593,8 @@ set(COMMON_SOURCES
   ${APP_SRC_DIR}/spellchecker.cpp
   ${APP_SRC_DIR}/apiserver.cpp
   ${APP_SRC_DIR}/apitokenmanager.cpp
-  ${APP_SRC_DIR}/apitokenlistmodel.cpp)
+  ${APP_SRC_DIR}/apitokenlistmodel.cpp
+  ${APP_SRC_DIR}/webenginesupport.cpp)
 
 set(COMMON_HEADERS
   ${APP_SRC_DIR}/global.h
@@ -678,6 +679,7 @@ set(COMMON_HEADERS
   ${APP_SRC_DIR}/apiserver.h
   ${APP_SRC_DIR}/apitokenmanager.h
   ${APP_SRC_DIR}/apitokenlistmodel.h
+  ${APP_SRC_DIR}/webenginesupport.h
 )
 
 set(CONTRIB_DARWIN_FOLDER "")

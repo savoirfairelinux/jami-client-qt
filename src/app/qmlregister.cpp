@@ -66,6 +66,7 @@
 #include "appsettingsmanager.h"
 #include "accountsettingsmanager.h"
 #include "mainapplication.h"
+#include "webenginesupport.h"
 #include "namedirectory.h"
 #include "pluginversionmanager.h"
 #include "appversionmanager.h"
@@ -335,7 +336,8 @@ registerTypes(QQmlEngine* engine,
     engine->rootContext()->setContextProperty("videoProvider", videoProvider);
 
     engine->rootContext()->setContextProperty("ENABLE_CRASHREPORTS", ENABLE_CRASHREPORTS);
-    engine->rootContext()->setContextProperty("WITH_WEBENGINE", WITH_WEBENGINE);
+    engine->rootContext()->setContextProperty("WITH_WEBENGINE",
+                                              bool(WITH_WEBENGINE) && Utils::isWebEngineRuntimeSupported());
     engine->rootContext()->setContextProperty("APPSTORE", APPSTORE);
 }
 // clang-format on

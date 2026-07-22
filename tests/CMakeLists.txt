@@ -114,6 +114,7 @@ set(UNIT_TESTS_SOURCE_FILES
     ${CMAKE_SOURCE_DIR}/tests/unittests/conversationswitch_unittest.cpp
     ${CMAKE_SOURCE_DIR}/tests/unittests/apitokenmanager_unittest.cpp
     ${CMAKE_SOURCE_DIR}/tests/unittests/apiserver_unittest.cpp
+    ${CMAKE_SOURCE_DIR}/tests/unittests/webenginesupport_unittest.cpp
     ${CMAKE_SOURCE_DIR}/tests/unittests/globaltestenvironment.h
     ${COMMON_TESTS_SOURCES})
 
