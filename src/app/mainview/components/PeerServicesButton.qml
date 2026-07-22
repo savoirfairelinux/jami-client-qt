@@ -105,8 +105,10 @@ ComboBox {
     function serviceStatusText(service) {
         if (connectErrors[service.id])
             return JamiStrings.sharedServicesConnectFailed;
-        if (tunnelFor(service) !== undefined)
-            return service.scheme + "://" + localEndpoint(service);
+        if (tunnelFor(service) !== undefined) {
+            var endpoint = localEndpoint(service);
+            return service.scheme ? service.scheme + "://" + endpoint : endpoint;
+        }
         if (!isAvailable(service))
             return JamiStrings.sharedServicesUnavailable;
         return service.description || "";
