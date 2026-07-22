@@ -225,6 +225,22 @@ TEST_F(PasteFixture, ClipboardHasImageOrUrls_FalseForPlainText)
     EXPECT_FALSE(utilsAdapter->clipboardHasImageOrUrls());
 }
 
+// ── UtilsAdapter contact URI helpers ──────────────────────────────────────────
+
+/*!
+ * WHEN  QML asks for contact labels using a stale account id.
+ * THEN  UtilsAdapter returns an empty label instead of letting
+ *       AccountModel::getAccountInfo throw through the QML binding.
+ */
+TEST_F(PasteFixture, ContactUriHelpersIgnoreStaleAccountId)
+{
+    const QString staleAccountId = "stale-account-id";
+    const QString contactUri = "jami:0123456789abcdef";
+
+    EXPECT_EQ(utilsAdapter->getBestNameForUri(staleAccountId, contactUri), QString());
+    EXPECT_EQ(utilsAdapter->getBestIdForUri(staleAccountId, contactUri), QString());
+}
+
 /*!
  * WHEN  The clipboard holds a non-local (web) URL.
  * THEN  clipboardHasImageOrUrls() returns true because the URL list is
