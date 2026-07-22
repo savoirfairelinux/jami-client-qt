@@ -42,6 +42,7 @@
 #include <QTranslator>
 #include <QLibraryInfo>
 #include <QQuickWindow>
+#include <QVersionNumber>
 
 #include <QDir>
 #include <QStandardPaths>
@@ -64,6 +65,27 @@
 Q_LOGGING_CATEGORY(clientLog, "client")
 
 static const QtMessageHandler QT_DEFAULT_MESSAGE_HANDLER = qInstallMessageHandler(0);
+
+bool
+isCompatibleQtRuntimeVersion(const QString& runtimeVersion, const QString& buildVersion)
+{
+    static constexpr int requiredSegmentCount = 2;
+
+    const auto runtime = QVersionNumber::fromString(runtimeVersion);
+    const auto build = QVersionNumber::fromString(buildVersion);
+    if (runtime.segmentCount() < requiredSegmentCount
+        || build.segmentCount() < requiredSegmentCount) {
+        return false;
+    }
+
+    for (int i = 0; i < requiredSegmentCount; ++i) {
+        if (runtime.segmentAt(i) != build.segmentAt(i)) {
+            return false;
+        }
+    }
+
+    return true;
+}
 
 void
 messageHandler(QtMsgType type, const QMessageLogContext& context, const QString& msg)
@@ -154,9 +176,14 @@ ScreenInfo::onPhysicalDotsPerInchChanged()
 MainApplication::MainApplication(int& argc, char** argv)
     : QApplication(argc, argv)
 {
-    const char* qtVersion = qVersion();
-    if (strncmp(qtVersion, QT_VERSION_STR, strnlen(qtVersion, sizeof qtVersion)) != 0) {
-        C_FATAL << "Qt build version mismatch!" << QT_VERSION_STR;
+    const QString qtVersion = qVersion();
+    if (!isCompatibleQtRuntimeVersion(qtVersion, QT_VERSION_STR)) {
+        runtimeVersionCompatible_ = false;
+        C_ERR << "Qt runtime version" << qtVersion << "is incompatible with build version"
+              << QT_VERSION_STR;
+    } else if (qtVersion != QLatin1String(QT_VERSION_STR)) {
+        C_WARN << "Qt runtime patch version" << qtVersion << "differs from build version"
+               << QT_VERSION_STR;
     }
 
     parseArguments();
@@ -213,6 +240,10 @@ MainApplication::~MainApplication()
 bool
 MainApplication::init()
 {
+    if (!runtimeVersionCompatible_) {
+        return false;
+    }
+
     // Let's make sure we can provide postmortem debugging information prior
     // to any other initialization. This won't do anything if crashpad isn't
     // enabled.
