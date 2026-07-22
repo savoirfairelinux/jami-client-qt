@@ -36,20 +36,21 @@ public:
     HtmlParser(QObject* parent = nullptr)
         : QObject(parent)
     {
-        doc_ = tidyCreate();
-        tidyOptSetBool(doc_, TidyQuiet, yes);
-        tidyOptSetBool(doc_, TidyShowWarnings, no);
-        tidyOptSetInt(doc_, TidyUseCustomTags, TidyCustomEmpty);
+        resetDoc();
     }
 
     ~HtmlParser()
     {
-        tidyRelease(doc_);
+        if (doc_) {
+            tidyRelease(doc_);
+        }
     }
 
     bool parseHtmlString(const QString& html)
     {
-        return tidyParseString(doc_, html.toUtf8().data()) >= 0;
+        resetDoc();
+        const auto htmlData = html.toUtf8();
+        return tidyParseString(doc_, htmlData.constData()) >= 0;
     }
 
     using TagNodeList = QMap<TidyTagId, QList<TidyNode>>;
@@ -127,6 +128,10 @@ private:
                       const std::function<void(TidyNode, TidyTagId)>& cb,
                       int depth = -1)
     {
+        if (!node) {
+            return;
+        }
+
         for (auto tag : tags) {
             if (tidyNodeGetId(node) == tag && cb) {
                 cb(node, tag);
@@ -142,5 +147,15 @@ private:
         }
     }
 
-    TidyDoc doc_;
+    void resetDoc()
+    {
+        if (doc_) {
+            tidyRelease(doc_);
+        }
+        doc_ = tidyCreate();
+        tidyOptSetBool(doc_, TidyQuiet, yes);
+        tidyOptSetBool(doc_, TidyShowWarnings, no);
+    }
+
+    TidyDoc doc_ {};
 };
