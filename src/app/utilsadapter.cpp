@@ -228,7 +228,12 @@ UtilsAdapter::getBestName(const QString& accountId, const QString& uid)
 QString
 UtilsAdapter::getBestNameForUri(const QString& accountId, const QString& uri)
 {
-    return lrcInstance_->getAccountInfo(accountId).contactModel->bestNameForContact(uri);
+    try {
+        return lrcInstance_->getAccountInfo(accountId).contactModel->bestNameForContact(uri);
+    } catch (const std::out_of_range& e) {
+        C_DBG << e.what();
+        return {};
+    }
 }
 
 QString
@@ -260,7 +265,12 @@ UtilsAdapter::hasContactDisplayNameOverride(const QString& accountId, const QStr
 QString
 UtilsAdapter::getBestIdForUri(const QString& accountId, const QString& uri)
 {
-    return lrcInstance_->getAccountInfo(accountId).contactModel->bestIdForContact(uri);
+    try {
+        return lrcInstance_->getAccountInfo(accountId).contactModel->bestIdForContact(uri);
+    } catch (const std::out_of_range& e) {
+        C_DBG << e.what();
+        return {};
+    }
 }
 
 QString

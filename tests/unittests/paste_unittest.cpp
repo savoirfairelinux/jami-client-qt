@@ -199,6 +199,18 @@ TEST_F(PasteFixture, KeyboardPaste_LocalFileEmitsAbsolutePath)
 // ── UtilsAdapter::clipboardHasImageOrUrls ────────────────────────────────────
 
 /*!
+ * WHEN  QML asks for a URI display name using an account that no longer exists.
+ * THEN  UtilsAdapter returns an empty name instead of letting getAccountInfo throw.
+ */
+TEST_F(PasteFixture, GetBestNameForUriIgnoresMissingAccount)
+{
+    EXPECT_NO_THROW({
+        const auto bestName = utilsAdapter->getBestNameForUri("missing-account", "jami:peer");
+        EXPECT_TRUE(bestName.isEmpty());
+    });
+}
+
+/*!
  * WHEN  The clipboard holds a local file URL.
  * THEN  clipboardHasImageOrUrls() returns true, enabling the Paste menu entry.
  */
