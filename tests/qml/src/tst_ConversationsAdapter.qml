@@ -19,6 +19,7 @@ import QtQuick
 import QtTest
 
 import net.jami.Adapters 1.1
+import net.jami.Constants 1.1
 
 // Tests for ConversationsAdapter logic that does not require a rendered UI.
 Item {
@@ -39,6 +40,15 @@ Item {
             // Reset the filter and spy after every test.
             ConversationsAdapter.setFilter("");
             filterSpy.clear();
+        }
+
+        function test_getConvInfoMap_withoutLiveCallIsInactive() {
+            var convInfo = ConversationsAdapter.getConvInfoMap(LRCInstance.selectedConvUid);
+
+            verify(Object.keys(convInfo).length > 0,
+                   "selected conversation should produce a conversation info map");
+            compare(convInfo.callState, 0);
+            compare(convInfo.callStackViewShouldShow, false);
         }
 
         // Regression test: when setFilterAndSelect() is called (e.g. triggered by

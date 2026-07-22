@@ -488,14 +488,15 @@ ConversationsAdapter::getConvInfoMap(const QString& convId)
     call::Status callState {};
     if (!convInfo.callId.isEmpty()) {
         auto* callModel = lrcInstance_->getCurrentCallModel();
-        const auto& call = callModel->getCall(convInfo.callId);
-        callStackViewShouldShow = callModel->hasCall(convInfo.callId)
-                                  && ((!call.isOutgoing
+        if (callModel && callModel->hasCall(convInfo.callId)) {
+            const auto& call = callModel->getCall(convInfo.callId);
+            callStackViewShouldShow = (!call.isOutgoing
                                        && (call.status == call::Status::IN_PROGRESS
                                            || call.status == call::Status::PAUSED
                                            || call.status == call::Status::INCOMING_RINGING))
-                                      || (call.isOutgoing && call.status != call::Status::ENDED));
-        callState = call.status;
+                                      || (call.isOutgoing && call.status != call::Status::ENDED);
+            callState = call.status;
+        }
     }
     return {{"convId", convId},
             {"bestId", bestId},
