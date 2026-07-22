@@ -19,6 +19,7 @@
 
 #include "qtutils.h"
 #include "systemtray.h"
+#include "utils.h"
 
 #ifdef Q_OS_LINUX
 #include <namedirectory.h>
@@ -488,14 +489,14 @@ ConversationsAdapter::getConvInfoMap(const QString& convId)
     call::Status callState {};
     if (!convInfo.callId.isEmpty()) {
         auto* callModel = lrcInstance_->getCurrentCallModel();
-        const auto& call = callModel->getCall(convInfo.callId);
-        callStackViewShouldShow = callModel->hasCall(convInfo.callId)
-                                  && ((!call.isOutgoing
-                                       && (call.status == call::Status::IN_PROGRESS
-                                           || call.status == call::Status::PAUSED
-                                           || call.status == call::Status::INCOMING_RINGING))
-                                      || (call.isOutgoing && call.status != call::Status::ENDED));
-        callState = call.status;
+        const auto callDisplayInfo = Utils::conversationCallDisplayInfo(
+            convInfo.callId,
+            [callModel](const QString& callId) { return callModel->hasCall(callId); },
+            [callModel](const QString& callId) -> const call::Info& {
+                return callModel->getCall(callId);
+            });
+        callStackViewShouldShow = callDisplayInfo.callStackViewShouldShow;
+        callState = callDisplayInfo.callState;
     }
     return {{"convId", convId},
             {"bestId", bestId},

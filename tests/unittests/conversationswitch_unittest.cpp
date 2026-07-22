@@ -16,10 +16,15 @@
  */
 
 #include "api/callmodel.h"
+#include "utils.h"
 
 #include <gtest/gtest.h>
 
+#include <stdexcept>
+
 using lrc::api::CallModel;
+using lrc::api::call::Info;
+using lrc::api::call::Status;
 
 /**
  * For context, let's imagine that Alice calls Bob from the conversation she has with him.
@@ -158,4 +163,51 @@ TEST(ConversationSwitch, DoNotSwitchToEmptyConversationUids)
                                                          remoteParticipantUris,
                                                          peerUriToConversationUid);
     ASSERT_FALSE(result.has_value()) << "No valid fallback conversation should be found";
+}
+
+TEST(ConversationCallDisplay, DoesNotFetchMissingCall)
+{
+    bool fetchedCall = false;
+
+    const auto result = Utils::conversationCallDisplayInfo(
+        "stale-call-id",
+        [](const QString&) { return false; },
+        [&fetchedCall](const QString&) -> const Info& {
+            fetchedCall = true;
+            throw std::out_of_range("missing call");
+        });
+
+    EXPECT_FALSE(fetchedCall);
+    EXPECT_FALSE(result.callStackViewShouldShow);
+    EXPECT_EQ(result.callState, Status::INVALID);
+}
+
+TEST(ConversationCallDisplay, ShowsActiveIncomingCall)
+{
+    Info call;
+    call.isOutgoing = false;
+    call.status = Status::IN_PROGRESS;
+
+    const auto result = Utils::conversationCallDisplayInfo(
+        "call-id",
+        [](const QString&) { return true; },
+        [&call](const QString&) -> const Info& { return call; });
+
+    EXPECT_TRUE(result.callStackViewShouldShow);
+    EXPECT_EQ(result.callState, Status::IN_PROGRESS);
+}
+
+TEST(ConversationCallDisplay, HidesEndedOutgoingCall)
+{
+    Info call;
+    call.isOutgoing = true;
+    call.status = Status::ENDED;
+
+    const auto result = Utils::conversationCallDisplayInfo(
+        "call-id",
+        [](const QString&) { return true; },
+        [&call](const QString&) -> const Info& { return call; });
+
+    EXPECT_FALSE(result.callStackViewShouldShow);
+    EXPECT_EQ(result.callState, Status::ENDED);
 }

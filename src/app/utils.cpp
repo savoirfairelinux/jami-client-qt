@@ -50,6 +50,24 @@
 #include <BitMatrix.h>
 #include <MultiFormatWriter.h>
 
+Utils::ConversationCallDisplayInfo
+Utils::conversationCallDisplayInfo(
+    const QString& callId,
+    const std::function<bool(const QString&)>& hasCall,
+    const std::function<const lrc::api::call::Info&(const QString&)>& getCall)
+{
+    if (callId.isEmpty() || !hasCall(callId))
+        return {};
+
+    const auto& call = getCall(callId);
+    return {(!call.isOutgoing
+                && (call.status == lrc::api::call::Status::IN_PROGRESS
+                    || call.status == lrc::api::call::Status::PAUSED
+                    || call.status == lrc::api::call::Status::INCOMING_RINGING))
+                || (call.isOutgoing && call.status != lrc::api::call::Status::ENDED),
+            call.status};
+}
+
 // Removes the given argument from the command line arguments, and invokes the callback
 // function with the removed argument if it was found.
 // This is required for custom args as quick_test_main_with_setup() will

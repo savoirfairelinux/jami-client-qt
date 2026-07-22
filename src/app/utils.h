@@ -18,6 +18,7 @@
 #pragma once
 
 #include "api/conversationmodel.h"
+#include "api/call.h"
 
 #include <QCryptographicHash>
 #include <QDir>
@@ -34,6 +35,7 @@
 #include <QTextDocument>
 #include <QtGlobal>
 
+#include <functional>
 #include <string>
 
 #ifdef Q_OS_WIN
@@ -72,6 +74,17 @@ lrc::api::profile::Type profileType(const lrc::api::conversation::Info& conv, co
 bool isInteractionGenerated(const lrc::api::interaction::Type& interaction);
 bool isContactValid(const QString& contactUid, const lrc::api::ConversationModel& model);
 bool getReplyMessageBox(QWidget* widget, const QString& title, const QString& text);
+
+struct ConversationCallDisplayInfo
+{
+    bool callStackViewShouldShow {false};
+    lrc::api::call::Status callState {lrc::api::call::Status::INVALID};
+};
+
+ConversationCallDisplayInfo conversationCallDisplayInfo(
+    const QString& callId,
+    const std::function<bool(const QString&)>& hasCall,
+    const std::function<const lrc::api::call::Info&(const QString&)>& getCall);
 
 // Image manipulation
 constexpr static const QSize defaultAvatarSize {128, 128};
