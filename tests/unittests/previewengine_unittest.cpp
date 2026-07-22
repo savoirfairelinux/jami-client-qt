@@ -16,6 +16,7 @@
  */
 
 #include "globaltestenvironment.h"
+#include "app/htmlparser.h"
 
 #include <QtHttpServer>
 #include <QTcpServer>
@@ -100,4 +101,18 @@ TEST_F(PreviewEngineFixture, UTF8CharactersAreParsedCorrectly)
     QVariantMap info = infoReadyArguments.at(1).toMap();
     EXPECT_TRUE(info.contains("description"));
     EXPECT_EQ(info["description"].toString(), testString);
+}
+
+/*!
+ * WHEN  We parse generic elements with id attributes repeatedly
+ * THEN  The parser should release the Tidy document without crashing
+ */
+TEST(HtmlParserTest, GenericIdAnchorsAreReleasedSafely)
+{
+    HtmlParser parser;
+
+    for (int i = 0; i < 5; ++i) {
+        ASSERT_TRUE(parser.parseHtmlString("<html><body><div id=\"preview\">content</div></body></html>"));
+        EXPECT_FALSE(parser.getTagInnerHtml(TidyTag_DIV).isEmpty());
+    }
 }
