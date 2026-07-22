@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ba217fac_3f7b5f95",
+        "filename": "tests/qml/src/tst_ConferenceParticipantStrip.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-07-22T18:58:19Z",
+      "side": 1,
+      "message": "[warning] Line 58: 🟡 `populate()` mutates the shared `CallParticipantsModel` singleton but the test never resets it. Because the QML test process is shared, the fake `test-call` participants/layout can leak into later tests and make ordering-dependent failures. Add `cleanup()`/`cleanupTestCase()` to clear the participants or provide a helper reset method in `VideoTestHelper` and restore the layout.",
+      "revId": "1358f876ac26db8fb3ec25bf7647b3f5de9cdd38",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
