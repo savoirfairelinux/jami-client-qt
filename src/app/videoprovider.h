@@ -59,9 +59,6 @@ private Q_SLOTS:
     void onRendererStopped(const QString& id);
 
 private:
-    AVModel& avModel_;
-    void copyUnaligned(QVideoFrame& dst, const video::Frame& src);
-
     struct FrameObject
     {
         QVideoFrame videoFrame;
@@ -70,6 +67,11 @@ private:
         QReadWriteLock subscribersMutex;
         bool active {false};
     };
+
+    AVModel& avModel_;
+    void copyUnaligned(QVideoFrame& dst, const video::Frame& src);
+    void publishVideoFrame(FrameObject& frameObject, const QVideoFrame& videoFrame);
+
     std::map<QString, FrameObject> renderers_;
     QReadWriteLock renderersMutex_;
 };

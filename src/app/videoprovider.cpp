@@ -18,6 +18,9 @@
 #include "videoprovider.h"
 #include "utils.h"
 
+#include <QList>
+#include <QMetaObject>
+#include <QPointer>
 #include <QReadLocker>
 #include <QWriteLocker>
 
@@ -214,13 +217,7 @@ VideoProvider::onFrameUpdated(const QString& id)
         videoFrame.unmap();
         it->second.frameMutex.unlock(); // locked by onFrameBufferRequested()
 
-        it->second.frameMutex.lockForRead();
-        it->second.subscribersMutex.lockForRead();
-        for (const auto& sink : std::as_const(it->second.subscribers)) {
-            sink->setVideoFrame(videoFrame);
-        }
-        it->second.subscribersMutex.unlock();
-        it->second.frameMutex.unlock();
+        publishVideoFrame(it->second, videoFrame);
 
         renderersMutex_.unlock(); // locked by onFrameBufferRequested()
     } else {
@@ -248,13 +245,7 @@ VideoProvider::onFrameUpdated(const QString& id)
         videoFrame.unmap();
         it->second.frameMutex.unlock();
 
-        it->second.frameMutex.lockForRead();
-        it->second.subscribersMutex.lockForRead();
-        for (const auto& sink : std::as_const(it->second.subscribers)) {
-            sink->setVideoFrame(videoFrame);
-        }
-        it->second.subscribersMutex.unlock();
-        it->second.frameMutex.unlock();
+        publishVideoFrame(it->second, videoFrame);
     }
 }
 
@@ -318,6 +309,37 @@ VideoProvider::copyUnaligned(QVideoFrame& dst, const video::Frame& src)
         auto srcPtr = src.ptr + row * dst.width() * BYTES_PER_PIXEL;
         std::memcpy(dstPtr, srcPtr, dst.width() * BYTES_PER_PIXEL);
     }
+}
+
+void
+VideoProvider::publishVideoFrame(FrameObject& frameObject, const QVideoFrame& videoFrame)
+{
+    QList<QPointer<QVideoSink>> subscribers;
+    QVideoFrame frame;
+    {
+        QReadLocker frameLock(&frameObject.frameMutex);
+        QReadLocker subscribersLock(&frameObject.subscribersMutex);
+        frame = videoFrame;
+        subscribers.reserve(frameObject.subscribers.size());
+        for (const auto& sink : std::as_const(frameObject.subscribers)) {
+            subscribers.append(sink);
+        }
+    }
+
+    if (subscribers.isEmpty()) {
+        return;
+    }
+
+    QMetaObject::invokeMethod(
+        this,
+        [subscribers = std::move(subscribers), frame] {
+            for (const auto& sink : subscribers) {
+                if (sink) {
+                    sink->setVideoFrame(frame);
+                }
+            }
+        },
+        Qt::QueuedConnection);
 }
 
 QVariantMap
