@@ -198,6 +198,13 @@ TEST_F(PasteFixture, KeyboardPaste_LocalFileEmitsAbsolutePath)
 
 // ── UtilsAdapter::clipboardHasImageOrUrls ────────────────────────────────────
 
+TEST_F(PasteFixture, GetBestNameForUri_ReturnsEmptyForMissingAccount)
+{
+    QString bestName;
+    EXPECT_NO_THROW(bestName = utilsAdapter->getBestNameForUri("missing-account-id", "ring:alice"));
+    EXPECT_TRUE(bestName.isEmpty());
+}
+
 /*!
  * WHEN  The clipboard holds a local file URL.
  * THEN  clipboardHasImageOrUrls() returns true, enabling the Paste menu entry.
