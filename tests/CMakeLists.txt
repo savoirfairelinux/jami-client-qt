@@ -126,6 +126,11 @@ set(UNIT_TESTS_SOURCE_FILES
     ${CMAKE_SOURCE_DIR}/tests/unittests/globaltestenvironment.h
     ${COMMON_TESTS_SOURCES})
 
+if(ENABLE_CRASHREPORTS)
+    list(APPEND UNIT_TESTS_SOURCE_FILES
+        ${CMAKE_SOURCE_DIR}/tests/unittests/crashreportclient_unittest.cpp)
+endif()
+
 set(ALL_TESTS_LIBS
     ${QML_TEST_LIBS}
     ${EXTRA_TEST_LIBS}
