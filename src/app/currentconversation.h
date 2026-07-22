@@ -24,6 +24,7 @@
 #include <QString>
 #include <QQmlEngine>   // QML registration
 #include <QApplication> // QML registration
+#include <QPointer>
 
 // an adapter object to expose a conversation::Info struct
 // as a group of observable properties
@@ -100,6 +101,9 @@ Q_SIGNALS:
 private:
     LRCInstance* lrcInstance_;
     CurrentConversationMembers* membersModel_;
+    QPointer<ConversationModel> connectedConversationModel_;
+    QPointer<CallModel> connectedCallModel_;
 
     void connectModel();
+    ConversationModel* currentConversationModel() const;
 };

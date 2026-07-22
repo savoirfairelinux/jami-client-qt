@@ -71,10 +71,16 @@ CurrentConversation::updateData()
     id_ = convId;
 
     try {
+        auto* convModel = currentConversationModel();
+        if (!convModel) {
+            set_botOwner();
+            membersModel_->setMembers({}, {}, {});
+            return;
+        }
         auto accountId = lrcInstance_->get_currentAccountId();
         const auto& accInfo = lrcInstance_->accountModel().getAccountInfo(accountId);
         QString botOwner;
-        auto optConv = accInfo.conversationModel->getConversationForUid(convId);
+        auto optConv = convModel->getConversationForUid(convId);
         if (!optConv) {
             set_botOwner();
             return;
@@ -121,7 +127,7 @@ CurrentConversation::updateData()
         // It can be used to display add contact/conversation UI and
         // is consistently determined by the peer's uri being equal to
         // the conversation id.
-        auto members = accInfo.conversationModel->peersForConversation(convId);
+        auto members = convModel->peersForConversation(convId);
         set_isTemporary(isCoreDialog_ ? (convId == members.at(0) || convId == "SEARCHSIP") : false);
 
         auto isContact {false};
@@ -223,7 +229,15 @@ CurrentConversation::updateProfile(const QString& convId)
 {
     if (convId != id_)
         return;
-    const auto& convModel = lrcInstance_->getCurrentConversationModel();
+    auto* convModel = currentConversationModel();
+    if (!convModel) {
+        set_title();
+        set_description();
+        set_botOwner();
+        set_rdvAccount();
+        set_rdvDevice();
+        return;
+    }
     set_title(convModel->title(convId));
     set_description(convModel->description(convId));
 
@@ -296,6 +310,13 @@ CurrentConversation::connectModel()
 {
     membersModel_->setMembers({}, {}, {});
 
+    if (connectedConversationModel_)
+        disconnect(connectedConversationModel_, nullptr, this, nullptr);
+    if (connectedCallModel_)
+        disconnect(connectedCallModel_, nullptr, this, nullptr);
+    connectedConversationModel_ = nullptr;
+    connectedCallModel_ = nullptr;
+
     auto currentConversationModel = lrcInstance_->getCurrentConversationModel();
     auto currentCallModel = lrcInstance_->getCurrentCallModel();
     if (!currentConversationModel || !currentCallModel) {
@@ -306,6 +327,9 @@ CurrentConversation::connectModel()
     auto connectObjectSignal = [this](auto obj, auto signal, auto slot) {
         connect(obj, signal, this, slot, Qt::UniqueConnection);
     };
+
+    connectedConversationModel_ = currentConversationModel;
+    connectedCallModel_ = currentCallModel;
 
     connectObjectSignal(currentConversationModel,
                         &ConversationModel::conversationUpdated,
@@ -334,7 +358,12 @@ CurrentConversation::updateErrors(const QString& convId)
     try {
         QStringList newErrors;
         QStringList newBackendErr;
-        const auto& convModel = lrcInstance_->getCurrentConversationModel();
+        auto* convModel = currentConversationModel();
+        if (!convModel) {
+            set_backendErrors(newBackendErr);
+            set_errors(newErrors);
+            return;
+        }
         if (auto optConv = convModel->getConversationForUid(convId)) {
             auto& convInfo = optConv->get();
             for (const auto& [code, error] : convInfo.errors) {
@@ -365,7 +394,11 @@ CurrentConversation::updateActiveCalls(const QString&, const QString& convId)
 {
     if (convId != id_)
         return;
-    const auto& convModel = lrcInstance_->getCurrentConversationModel();
+    auto* convModel = currentConversationModel();
+    if (!convModel) {
+        set_activeCalls({});
+        return;
+    }
     if (auto optConv = convModel->getConversationForUid(convId)) {
         auto& convInfo = optConv->get();
         QVariantList callList;
@@ -403,6 +436,10 @@ CurrentConversation::onCallStatusChanged(const QString& accountId, const QString
         return;
     }
     auto callModel = lrcInstance_->getCurrentCallModel();
+    if (!callModel) {
+        set_hasCall(false);
+        return;
+    }
     if (callModel->hasCall(callId_)) {
         auto callInfo = callModel->getCall(callId_);
         set_hasCall(callInfo.status != call::Status::ENDED);
@@ -415,11 +452,28 @@ CurrentConversation::onShowIncomingCallView(const QString& accountId, const QStr
     if (accountId != lrcInstance_->get_currentAccountId()) {
         return;
     }
-    const auto& convModel = lrcInstance_->getCurrentConversationModel();
+    auto* convModel = currentConversationModel();
+    if (!convModel) {
+        set_hasCall(false);
+        return;
+    }
     if (auto optConv = convModel->getConversationForUid(convUid)) {
         auto& convInfo = optConv->get();
         set_hasCall(!convInfo.getCallId().isEmpty());
     }
+}
+
+ConversationModel*
+CurrentConversation::currentConversationModel() const
+{
+    if (!lrcInstance_) {
+        qWarning() << "CurrentConversation: missing LRC instance";
+        return nullptr;
+    }
+    auto* convModel = lrcInstance_->getCurrentConversationModel();
+    if (!convModel)
+        qWarning() << "CurrentConversation: no current conversation model";
+    return convModel;
 }
 
 void
