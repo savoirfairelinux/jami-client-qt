@@ -36,19 +36,19 @@ public:
     HtmlParser(QObject* parent = nullptr)
         : QObject(parent)
     {
-        doc_ = tidyCreate();
-        tidyOptSetBool(doc_, TidyQuiet, yes);
-        tidyOptSetBool(doc_, TidyShowWarnings, no);
-        tidyOptSetInt(doc_, TidyUseCustomTags, TidyCustomEmpty);
+        resetDocument();
     }
 
     ~HtmlParser()
     {
-        tidyRelease(doc_);
+        if (doc_) {
+            tidyRelease(doc_);
+        }
     }
 
     bool parseHtmlString(const QString& html)
     {
+        resetDocument();
         return tidyParseString(doc_, html.toUtf8().data()) >= 0;
     }
 
@@ -94,6 +94,9 @@ public:
     // Extract the attribute value from a node.
     QString getNodeAttr(TidyNode node, TidyAttrId attrId)
     {
+        if (!node) {
+            return QString();
+        }
         TidyAttr attr = tidyAttrGetById(node, attrId);
         if (!attr) {
             return QString();
@@ -121,12 +124,27 @@ public:
     }
 
 private:
+    void resetDocument()
+    {
+        if (doc_) {
+            tidyRelease(doc_);
+        }
+        doc_ = tidyCreate();
+        tidyOptSetBool(doc_, TidyQuiet, yes);
+        tidyOptSetBool(doc_, TidyShowWarnings, no);
+        tidyOptSetInt(doc_, TidyUseCustomTags, TidyCustomEmpty);
+    }
+
     // NOLINTNEXTLINE(misc-no-recursion)
     void traverseNode(TidyNode node,
                       const QList<TidyTagId>& tags,
                       const std::function<void(TidyNode, TidyTagId)>& cb,
                       int depth = -1)
     {
+        if (!node) {
+            return;
+        }
+
         for (auto tag : tags) {
             if (tidyNodeGetId(node) == tag && cb) {
                 cb(node, tag);
@@ -142,5 +160,5 @@ private:
         }
     }
 
-    TidyDoc doc_;
+    TidyDoc doc_ {nullptr};
 };

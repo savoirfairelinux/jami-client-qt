@@ -16,6 +16,7 @@
  */
 
 #include "globaltestenvironment.h"
+#include "htmlparser.h"
 
 #include <QtHttpServer>
 #include <QTcpServer>
@@ -50,6 +51,24 @@ public:
     QHttpServer* server;
     QTcpServer* tcpserver;
 };
+
+/*!
+ * WHEN  HtmlParser parses multiple HTML documents during its lifetime
+ * THEN  Each parse should discard the previous tidy DOM tree
+ */
+TEST(HtmlParserTest, ReparseDiscardsPreviousDocument)
+{
+    HtmlParser parser;
+
+    ASSERT_TRUE(parser.parseHtmlString("<a href=\"https://jami.net\">Jami</a>"));
+    auto linkNodes = parser.getTagsNodes({TidyTag_A});
+    ASSERT_TRUE(linkNodes.contains(TidyTag_A));
+    ASSERT_EQ(linkNodes[TidyTag_A].size(), 1);
+
+    ASSERT_TRUE(parser.parseHtmlString("<p>No link here</p>"));
+    linkNodes = parser.getTagsNodes({TidyTag_A});
+    EXPECT_FALSE(linkNodes.contains(TidyTag_A));
+}
 
 /*!
  * WHEN  We parse a link
