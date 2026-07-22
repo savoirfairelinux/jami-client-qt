@@ -530,6 +530,7 @@ set(COMMON_SOURCES
   ${APP_SRC_DIR}/main.cpp
   ${APP_SRC_DIR}/smartlistmodel.cpp
   ${APP_SRC_DIR}/utils.cpp
+  ${APP_SRC_DIR}/webenginebootstrap.cpp
   ${APP_SRC_DIR}/mainapplication.cpp
   ${APP_SRC_DIR}/messagesadapter.cpp
   ${APP_SRC_DIR}/positionobject.cpp
@@ -635,6 +636,7 @@ set(COMMON_HEADERS
   ${APP_SRC_DIR}/quickimageproviderbase.h
   ${APP_SRC_DIR}/qtutils.h
   ${APP_SRC_DIR}/utilsadapter.h
+  ${APP_SRC_DIR}/webenginebootstrap.h
   ${APP_SRC_DIR}/moderatorlistmodel.h
   ${APP_SRC_DIR}/screensaver.h
   ${APP_SRC_DIR}/systemtray.h
