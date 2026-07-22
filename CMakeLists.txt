@@ -1118,7 +1118,11 @@ if(MSVC)
   endif()
 
   # executable icon
-  target_sources(${PROJECT_NAME} PRIVATE ${PACKAGING_DIR}/wix/ico.rc)
+  target_sources(
+    ${PROJECT_NAME}
+    PRIVATE
+      ${PACKAGING_DIR}/wix/ico.rc
+      ${PACKAGING_DIR}/wix/jami.manifest)
 
   # translations
   if(Qt${QT_VERSION_MAJOR}LinguistTools_FOUND)
