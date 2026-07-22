@@ -110,6 +110,7 @@ set(UNIT_TESTS_SOURCE_FILES
     ${CMAKE_SOURCE_DIR}/tests/unittests/contact_unittest.cpp
     ${CMAKE_SOURCE_DIR}/tests/unittests/messageparser_unittest.cpp
     ${CMAKE_SOURCE_DIR}/tests/unittests/paste_unittest.cpp
+    ${CMAKE_SOURCE_DIR}/tests/unittests/crashreportclient_unittest.cpp
     ${CMAKE_SOURCE_DIR}/tests/unittests/previewengine_unittest.cpp
     ${CMAKE_SOURCE_DIR}/tests/unittests/conversationswitch_unittest.cpp
     ${CMAKE_SOURCE_DIR}/tests/unittests/apitokenmanager_unittest.cpp
@@ -130,6 +131,7 @@ function(setup_test TEST_NAME TEST_SOURCES TEST_INPUT)
     string(TOLOWER ${TEST_NAME} TEST_BINARY_NAME)
     add_executable(${TEST_BINARY_NAME} ${TEST_SOURCES})
     target_compile_definitions(${TEST_BINARY_NAME} PRIVATE BUILD_TESTING="ON")
+    target_compile_definitions(${TEST_BINARY_NAME} PRIVATE JAMI_TEST_SOURCE_DIR="${CMAKE_SOURCE_DIR}")
     target_link_libraries(${TEST_BINARY_NAME} ${ALL_TESTS_LIBS})
     target_include_directories(${TEST_BINARY_NAME} PUBLIC ${ALL_TESTS_INCLUDES})
     if(MSVC)

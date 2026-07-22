@@ -272,8 +272,8 @@ CrashPadClient::uploadLastReport()
 
     // Let's wait for the report to be uploaded then clear all reports on a
     // separate thread to avoid blocking the UI.
-    QThreadPool::globalInstance()->start([this, uuid = report.uuid]() {
-        auto database = CrashReportDatabase::Initialize(base::FilePath(dbPath_));
+    QThreadPool::globalInstance()->start([dbPath = dbPath_, uuid = report.uuid]() {
+        auto database = CrashReportDatabase::Initialize(base::FilePath(dbPath));
         if (database == nullptr) {
             C_WARN << "Crashpad database initialization failed";
             return;
