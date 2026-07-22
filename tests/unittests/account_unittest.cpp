@@ -159,3 +159,29 @@ TEST_F(AccountFixture, DeleteCurrentAccountRevokesAllApiTokens)
     EXPECT_EQ(globalEnv.apiTokenManager->validateToken(firstToken.rawToken), nullptr);
     EXPECT_EQ(globalEnv.apiTokenManager->validateToken(secondToken.rawToken), nullptr);
 }
+
+/*!
+ * WHEN  A conversation still references a call id that is no longer active.
+ * THEN  Fetching call info should return null instead of throwing.
+ */
+TEST_F(AccountFixture, MissingConversationCallReturnsNull)
+{
+    QSignalSpy accountAddedSpy(&globalEnv.lrcInstance->accountModel(), &AccountModel::accountAdded);
+
+    globalEnv.accountAdapter->createSIPAccount(QVariantMap());
+
+    ASSERT_TRUE(accountAddedSpy.wait());
+    ASSERT_EQ(accountAddedSpy.count(), 1);
+
+    const auto accountId = accountAddedSpy.takeFirst().at(0).toString();
+    globalEnv.lrcInstance->set_currentAccountId(accountId);
+
+    const auto& accountInfo = globalEnv.lrcInstance->getAccountInfo(accountId);
+    lrc::api::conversation::Info conversation("stale-call-conversation", &accountInfo);
+    conversation.callId = "missing-call-id";
+
+    EXPECT_EQ(globalEnv.lrcInstance->getCallInfoForConversation(conversation, true), nullptr);
+
+    globalEnv.lrcInstance->accountModel().removeAccount(accountId);
+    QTRY_COMPARE(globalEnv.lrcInstance->accountModel().getAccountCount(), 0);
+}
