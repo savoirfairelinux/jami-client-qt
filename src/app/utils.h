@@ -27,6 +27,7 @@
 #include <QListWidget>
 #include <QMessageBox>
 #include <QQmlEngine>
+#include <QOperatingSystemVersion>
 #include <QSettings>
 #include <QStackedWidget>
 #include <QStandardPaths>
@@ -52,6 +53,8 @@ void remove_argument(char** argv, int& argc, const std::string& arg_to_remove, s
 
 // Throws if Vulkan cannot be instantiated.
 void testVulkanSupport();
+bool isWebEngineSupported(
+    const QOperatingSystemVersion& osVersion = QOperatingSystemVersion::current());
 
 // App System
 bool CreateStartupLink(const std::wstring& wstrAppName);

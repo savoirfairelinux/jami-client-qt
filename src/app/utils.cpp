@@ -282,6 +282,19 @@ Utils::CheckStartupLink(const std::wstring& wstrAppName)
 #endif
 }
 
+bool
+Utils::isWebEngineSupported(const QOperatingSystemVersion& osVersion)
+{
+#if !WITH_WEBENGINE
+    Q_UNUSED(osVersion);
+    return false;
+#else
+    if (osVersion.type() == QOperatingSystemVersion::Windows && osVersion.majorVersion() < 10)
+        return false;
+    return true;
+#endif
+}
+
 void
 Utils::removeOldVersions()
 {

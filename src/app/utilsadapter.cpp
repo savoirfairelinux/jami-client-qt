@@ -970,6 +970,9 @@ void
 UtilsAdapter::ensureWebEngineProfileConfigured()
 {
 #if WITH_WEBENGINE
+    if (!Utils::isWebEngineSupported())
+        return;
+
     static bool configured = false;
     if (configured)
         return;

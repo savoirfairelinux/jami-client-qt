@@ -29,6 +29,7 @@
 #include "connectivitymonitor.h"
 #include "filedownloader.h"
 #include "utilsadapter.h"
+#include "utils.h"
 #include "conversationsadapter.h"
 #include "currentcall.h"
 #include "currentconversation.h"
@@ -335,7 +336,7 @@ registerTypes(QQmlEngine* engine,
     engine->rootContext()->setContextProperty("videoProvider", videoProvider);
 
     engine->rootContext()->setContextProperty("ENABLE_CRASHREPORTS", ENABLE_CRASHREPORTS);
-    engine->rootContext()->setContextProperty("WITH_WEBENGINE", WITH_WEBENGINE);
+    engine->rootContext()->setContextProperty("WITH_WEBENGINE", Utils::isWebEngineSupported());
     engine->rootContext()->setContextProperty("APPSTORE", APPSTORE);
 }
 // clang-format on
