@@ -16,6 +16,9 @@
  */
 
 #include "globaltestenvironment.h"
+#include "utilsadapter.h"
+
+#include <QRegularExpression>
 
 /*!
  * Test fixture for AccountAdapter testing
@@ -41,6 +44,21 @@ TEST_F(AccountFixture, InitialAccountListCheck)
     auto accountListSize = globalEnv.lrcInstance->accountModel().getAccountCount();
 
     ASSERT_EQ(accountListSize, 0);
+}
+
+/*!
+ * WHEN  QML asks for the bot owner of a stale or missing account.
+ * THEN  An empty owner is returned without warning.
+ */
+TEST_F(AccountFixture, MissingAccountBotOwnerReturnsEmpty)
+{
+    UtilsAdapter utilsAdapter(globalEnv.settingsManager.data(),
+                              globalEnv.systemTray.data(),
+                              globalEnv.lrcInstance.data());
+
+    QTest::failOnWarning(QRegularExpression("UtilsAdapter::getBotOwner.*"));
+
+    EXPECT_TRUE(utilsAdapter.getBotOwner("missing-account").isEmpty());
 }
 
 /*!
