@@ -30,6 +30,7 @@ Item {
     property string acceptVideo: qsTr("Accept with video")
     property string decline: qsTr("Decline")
     property string endCall: qsTr("End call")
+    property string edits: qsTr("Edits")
     property string incomingAudioCallFrom: qsTr("Incoming audio call from %1")
     property string incomingVideoCallFrom: qsTr("Incoming video call from %1")
     property string newGroup: qsTr("Create new group")
