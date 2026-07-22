@@ -223,7 +223,15 @@ CurrentConversation::updateProfile(const QString& convId)
 {
     if (convId != id_)
         return;
-    const auto& convModel = lrcInstance_->getCurrentConversationModel();
+    auto convModel = lrcInstance_->getCurrentConversationModel();
+    if (!convModel) {
+        set_title();
+        set_description();
+        set_botOwner();
+        set_rdvAccount();
+        set_rdvDevice();
+        return;
+    }
     set_title(convModel->title(convId));
     set_description(convModel->description(convId));
 
@@ -277,9 +285,13 @@ CurrentConversation::updateConversationPreferences(const QString& convId)
 {
     if (convId != id_)
         return;
-    auto accountId = lrcInstance_->get_currentAccountId();
-    const auto& accInfo = lrcInstance_->accountModel().getAccountInfo(accountId);
-    if (auto optConv = accInfo.conversationModel->getConversationForUid(convId)) {
+    auto convModel = lrcInstance_->getCurrentConversationModel();
+    if (!convModel) {
+        set_color();
+        set_ignoreNotifications(false);
+        return;
+    }
+    if (auto optConv = convModel->getConversationForUid(convId)) {
         auto& convInfo = optConv->get();
         auto color = Utils::getAvatarColor(convId).name();
         if (convInfo.preferences.contains("color")) {
@@ -331,10 +343,15 @@ CurrentConversation::updateErrors(const QString& convId)
 {
     if (convId != id_)
         return;
+    auto convModel = lrcInstance_->getCurrentConversationModel();
+    if (!convModel) {
+        set_backendErrors();
+        set_errors();
+        return;
+    }
     try {
         QStringList newErrors;
         QStringList newBackendErr;
-        const auto& convModel = lrcInstance_->getCurrentConversationModel();
         if (auto optConv = convModel->getConversationForUid(convId)) {
             auto& convInfo = optConv->get();
             for (const auto& [code, error] : convInfo.errors) {
@@ -365,7 +382,11 @@ CurrentConversation::updateActiveCalls(const QString&, const QString& convId)
 {
     if (convId != id_)
         return;
-    const auto& convModel = lrcInstance_->getCurrentConversationModel();
+    auto convModel = lrcInstance_->getCurrentConversationModel();
+    if (!convModel) {
+        set_activeCalls();
+        return;
+    }
     if (auto optConv = convModel->getConversationForUid(convId)) {
         auto& convInfo = optConv->get();
         QVariantList callList;
@@ -403,6 +424,10 @@ CurrentConversation::onCallStatusChanged(const QString& accountId, const QString
         return;
     }
     auto callModel = lrcInstance_->getCurrentCallModel();
+    if (!callModel) {
+        set_hasCall(false);
+        return;
+    }
     if (callModel->hasCall(callId_)) {
         auto callInfo = callModel->getCall(callId_);
         set_hasCall(callInfo.status != call::Status::ENDED);
@@ -415,7 +440,11 @@ CurrentConversation::onShowIncomingCallView(const QString& accountId, const QStr
     if (accountId != lrcInstance_->get_currentAccountId()) {
         return;
     }
-    const auto& convModel = lrcInstance_->getCurrentConversationModel();
+    auto convModel = lrcInstance_->getCurrentConversationModel();
+    if (!convModel) {
+        set_hasCall(false);
+        return;
+    }
     if (auto optConv = convModel->getConversationForUid(convUid)) {
         auto& convInfo = optConv->get();
         set_hasCall(!convInfo.getCallId().isEmpty());
