@@ -66,6 +66,9 @@ public:
     Q_INVOKABLE void setFilterAndSelect(const QString& filterString);
     Q_INVOKABLE void ignoreFiltering(const QVariant& hightlighted);
     Q_INVOKABLE QVariantMap getConvInfoMap(const QString& convId);
+#ifdef BUILD_TESTING
+    Q_INVOKABLE QVariantMap getConvInfoMapWithCallIdForTest(const QString& convId, const QString& callId);
+#endif
     Q_INVOKABLE void restartConversation(const QString& convId);
     Q_INVOKABLE void updateConversationTitle(const QString& convId, const QString& newTitle);
     Q_INVOKABLE void popFrontError(const QString& convId);
@@ -108,6 +111,9 @@ private Q_SLOTS:
     void onSearchStatusChanged(const QString&);
     void onSearchResultUpdated();
     void onSearchResultEnded();
+
+private:
+    QVariantMap getConvInfoMap(const QString& convId, const QString& callIdOverride);
     void onConversationReady(const QString&);
     void onBannedStatusChanged(const QString&, bool);
 

@@ -19,6 +19,7 @@ import QtQuick
 import QtTest
 
 import net.jami.Adapters 1.1
+import net.jami.Constants 1.1
 
 // Tests for ConversationsAdapter logic that does not require a rendered UI.
 Item {
@@ -72,6 +73,17 @@ Item {
                    "textFilterChanged should have been emitted a second time to clear the filter");
             compare(filterSpy.signalArguments[filterSpy.count - 1][0], "",
                     "The last textFilterChanged emission must clear the filter");
+        }
+
+        function test_getConvInfoMap_ignoresStaleCallId() {
+            var convId = LRCInstance.selectedConvUid;
+            verify(convId !== "", "A test conversation must be selected");
+
+            var convInfo = ConversationsAdapter.getConvInfoMapWithCallIdForTest(
+                    convId, "__missing_call_id__");
+
+            compare(convInfo.convId, convId);
+            compare(convInfo.callStackViewShouldShow, false);
         }
     }
 }

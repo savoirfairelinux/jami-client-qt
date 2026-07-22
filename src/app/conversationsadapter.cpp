@@ -26,6 +26,7 @@
 #include <api/contact.h>
 
 #include <QApplication>
+#include <QDebug>
 #include <QJsonObject>
 #include <QTimer>
 
@@ -463,6 +464,20 @@ ConversationsAdapter::ignoreFiltering(const QVariant& hightlighted)
 QVariantMap
 ConversationsAdapter::getConvInfoMap(const QString& convId)
 {
+    return getConvInfoMap(convId, {});
+}
+
+#ifdef BUILD_TESTING
+QVariantMap
+ConversationsAdapter::getConvInfoMapWithCallIdForTest(const QString& convId, const QString& callId)
+{
+    return getConvInfoMap(convId, callId);
+}
+#endif
+
+QVariantMap
+ConversationsAdapter::getConvInfoMap(const QString& convId, const QString& callIdOverride)
+{
     const auto& convInfo = lrcInstance_->getConversationFromConvUid(convId);
     if (convInfo.participants.empty())
         return {};
@@ -486,16 +501,20 @@ ConversationsAdapter::getConvInfoMap(const QString& convId)
     }
     bool callStackViewShouldShow {false};
     call::Status callState {};
-    if (!convInfo.callId.isEmpty()) {
+    const auto callId = callIdOverride.isNull() ? convInfo.callId : callIdOverride;
+    if (!callId.isEmpty()) {
         auto* callModel = lrcInstance_->getCurrentCallModel();
-        const auto& call = callModel->getCall(convInfo.callId);
-        callStackViewShouldShow = callModel->hasCall(convInfo.callId)
-                                  && ((!call.isOutgoing
+        if (callModel->hasCall(callId)) {
+            const auto& call = callModel->getCall(callId);
+            callStackViewShouldShow = (!call.isOutgoing
                                        && (call.status == call::Status::IN_PROGRESS
                                            || call.status == call::Status::PAUSED
                                            || call.status == call::Status::INCOMING_RINGING))
-                                      || (call.isOutgoing && call.status != call::Status::ENDED));
-        callState = call.status;
+                                      || (call.isOutgoing && call.status != call::Status::ENDED);
+            callState = call.status;
+        } else {
+            qWarning() << "ConversationsAdapter::getConvInfoMap: no call for id" << callId;
+        }
     }
     return {{"convId", convId},
             {"bestId", bestId},
