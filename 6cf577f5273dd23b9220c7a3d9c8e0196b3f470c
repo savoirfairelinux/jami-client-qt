@@ -1,6 +1,24 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d2736f6d_895ed402",
+        "filename": "tests/qml/src/tst_ConferenceParticipantStrip.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-07-22T19:35:12Z",
+      "side": 1,
+      "message": "Fixed: added cleanup() that resets CallParticipantsModel (empty participants + GRID layout) after each test, in PS2.",
+      "parentUuid": "cf60dafb_efd116e7",
+      "revId": "6cf577f5273dd23b9220c7a3d9c8e0196b3f470c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cf60dafb_efd116e7",
