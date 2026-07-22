@@ -18,6 +18,7 @@
 #include "mainapplication.h"
 #include "instancemanager.h"
 #include "version_info.h"
+#include "webenginepreflight.h"
 #if defined(Q_OS_MACOS)
 #include <os/macos/macutils.h>
 #endif
@@ -73,6 +74,8 @@ main(int argc, char* argv[])
     QApplication::setHighDpiScaleFactorRoundingPolicy(Qt::HighDpiScaleFactorRoundingPolicy::PassThrough);
 
 #if WITH_WEBENGINE
+    WebEnginePreflight::disableIfUnsupportedCpu();
+
     // Preserve any user-provided QTWEBENGINE_CHROMIUM_FLAGS instead of
     // overwriting them, so the GPU behaviour can still be overridden from the
     // environment.
@@ -90,7 +93,8 @@ main(int argc, char* argv[])
         chromiumFlags.append(' ');
     chromiumFlags.append("--disable-web-security --disable-gpu");
     qputenv("QTWEBENGINE_CHROMIUM_FLAGS", chromiumFlags);
-    QtWebEngineQuick::initialize();
+    if (WebEnginePreflight::isRuntimeAvailable())
+        QtWebEngineQuick::initialize();
 #endif
 
     MainApplication app(argc, argv);

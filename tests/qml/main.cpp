@@ -22,6 +22,7 @@
 #include "previewengine.h"
 #include "qmlregister.h"
 #include "systemtray.h"
+#include "webenginepreflight.h"
 
 #include <api/profile.h>
 #include <api/account.h>
@@ -243,7 +244,9 @@ main(int argc, char** argv)
         return 1;
 
 #if WITH_WEBENGINE
-    QtWebEngineQuick::initialize();
+    WebEnginePreflight::disableIfUnsupportedCpu();
+    if (WebEnginePreflight::isRuntimeAvailable())
+        QtWebEngineQuick::initialize();
 #endif
     QTEST_SET_MAIN_SOURCE_PATH
     Setup setup;
