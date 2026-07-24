@@ -485,29 +485,6 @@ Item {
                 visible: false
             }
 
-            Control {
-                id: conversationEndedBanner
-                Layout.fillWidth: true
-                visible: isConversationEndedFlag
-
-                padding: 10
-                background: Rectangle {
-                    color: JamiTheme.infoRectangleColor
-                    radius: 5
-                }
-                contentItem: RowLayout {
-                    spacing: 8
-                    Label {
-                        text: JamiStrings.conversationEnded
-                        color: JamiTheme.textColor
-                        wrapMode: Text.WordWrap
-                        horizontalAlignment: Text.AlignHCenter
-                        Layout.alignment: Qt.AlignHCenter
-                        Layout.fillWidth: true
-                    }
-                }
-            }
-
             JamiSplitView {
                 id: chatViewSplitView
                 objectName: "ChatViewSplitView"
@@ -671,6 +648,30 @@ Item {
                     SplitView.maximumWidth: root.width
                     SplitView.minimumWidth: JamiTheme.extrasPanelMinWidth
                     SplitView.preferredWidth: JamiTheme.extrasPanelMinWidth
+                }
+            }
+
+            Control {
+                id: conversationEndedBanner
+                Layout.fillWidth: true
+                Layout.bottomMargin: JamiTheme.sidePanelIslandsPadding * 2
+                visible: isConversationEndedFlag
+
+                padding: 10
+                background: Rectangle {
+                    color: JamiTheme.infoRectangleColor
+                    radius: height / 2
+                }
+                contentItem: RowLayout {
+                    spacing: 8
+                    Label {
+                        text: JamiStrings.conversationEnded
+                        color: JamiTheme.textColor
+                        wrapMode: Text.WordWrap
+                        horizontalAlignment: Text.AlignHCenter
+                        Layout.alignment: Qt.AlignHCenter
+                        Layout.fillWidth: true
+                    }
                 }
             }
         }
