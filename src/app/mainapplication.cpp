@@ -34,10 +34,13 @@
 #include <QAction>
 #include <QCommandLineParser>
 #include <QCoreApplication>
+#include <QFile>
 #include <QFontDatabase>
 #include <QMenu>
+#include <QMutex>
 #include <QQmlContext>
 #include <QResource>
+#include <QTextStream>
 #include <QTimer>
 #include <QTranslator>
 #include <QLibraryInfo>
@@ -61,6 +64,7 @@
 Q_LOGGING_CATEGORY(clientLog, "client")
 
 static const QtMessageHandler QT_DEFAULT_MESSAGE_HANDLER = qInstallMessageHandler(0);
+static QMutex CLIENT_LOG_FILE_MUTEX;
 
 void
 messageHandler(QtMsgType type, const QMessageLogContext& context, const QString& msg)
@@ -91,6 +95,16 @@ messageHandler(QtMsgType type, const QMessageLogContext& context, const QString&
 #endif
 
     const auto fmtMsg = QString("[%1][%2][%3]:%4 %5").arg(ts, fmt[type].c_str(), tid, fileLineInfo, localMsg.constData());
+
+    const auto clientLogPath = qEnvironmentVariable("JAMI_CLIENT_LOG_FILE");
+    if (!clientLogPath.isEmpty()) {
+        QMutexLocker locker(&CLIENT_LOG_FILE_MUTEX);
+        QFile file(clientLogPath);
+        if (file.open(QIODevice::WriteOnly | QIODevice::Append | QIODevice::Text)) {
+            QTextStream stream(&file);
+            stream << fmtMsg << '\n';
+        }
+    }
 
     (*QT_DEFAULT_MESSAGE_HANDLER)(type, context, fmtMsg);
 }
@@ -349,6 +363,9 @@ MainApplication::parseArguments()
     QCommandLineOption logFileOption({"f", "file"}, "Debug to <file>.", "file");
     parser_.addOption(logFileOption);
 
+    QCommandLineOption clientLogFileOption(QStringList() << "client-log", "Client/Qt debug to <file>.", "file");
+    parser_.addOption(clientLogFileOption);
+
 #ifdef Q_OS_WINDOWS
     QCommandLineOption updateUrlOption({"u", "url"}, "<url> for debugging version queries.", "url");
     parser_.addOption(updateUrlOption);
@@ -379,6 +396,11 @@ MainApplication::parseArguments()
         auto logFileValue = parser_.value(logFileOption);
         auto logFile = logFileValue.isEmpty() ? Utils::getDebugFilePath() : logFileValue;
         qputenv("JAMI_LOG_FILE", logFile.toStdString().c_str());
+    }
+    if (parser_.isSet(clientLogFileOption)) {
+        auto logFile = parser_.value(clientLogFileOption);
+        if (!logFile.isEmpty())
+            qputenv("JAMI_CLIENT_LOG_FILE", logFile.toStdString().c_str());
     }
 #ifdef Q_OS_WINDOWS
     runOptions_[Option::UpdateUrl] = parser_.value(updateUrlOption);

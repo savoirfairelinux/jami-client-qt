@@ -21,6 +21,8 @@
 
 #include "callcontroldevice.h"
 
+#include <QStringList>
+
 class CallControlDevice::Impl
 {};
 
@@ -29,6 +31,12 @@ CallControlDevice::CallControlDevice(QObject* parent)
 {}
 
 CallControlDevice::~CallControlDevice() = default;
+
+QStringList
+CallControlDevice::diagnosticMessages() const
+{
+    return {};
+}
 
 void
 CallControlDevice::setRinging(bool)

@@ -54,6 +54,10 @@ CallAdapter::CallAdapter(AppSettingsManager* settingsManager,
     accountId_ = lrcInstance_->get_currentAccountId();
     connectCallModel(accountId_);
 
+    // Reflect/control calls on the HID call-control device for every account
+    // (the headset is a single physical endpoint, not per-account).
+    connectCallControlAccounts();
+
     connect(&lrcInstance_->behaviorController(),
             &BehaviorController::showIncomingCallView,
             this,
@@ -178,6 +182,62 @@ CallAdapter::connectCallControlDevice()
                 muteAudioToggle(deviceCallAccountId_, deviceCallConvUid_);
         },
         Qt::QueuedConnection);
+}
+
+void
+CallAdapter::connectCallControlAccounts()
+{
+    if (!callDevice_)
+        return;
+    // The headset/speakerphone is a single physical endpoint for the whole app,
+    // so reflect and control calls on every account, not only the current one.
+    const auto accounts = lrcInstance_->accountModel().getAccountList();
+    for (const auto& accountId : accounts)
+        connectCallControlAccount(accountId);
+
+    // Wire any account added later in the session.
+    connect(&lrcInstance_->accountModel(),
+            &AccountModel::accountAdded,
+            this,
+            &CallAdapter::connectCallControlAccount,
+            Qt::UniqueConnection);
+}
+
+void
+CallAdapter::connectCallControlAccount(const QString& accountId)
+{
+    if (!callDevice_ || accountId.isEmpty())
+        return;
+    try {
+        auto& accInfo = lrcInstance_->accountModel().getAccountInfo(accountId);
+        connect(accInfo.callModel.get(),
+                &CallModel::callStatusChanged,
+                this,
+                &CallAdapter::onDeviceCallStatusChanged,
+                Qt::UniqueConnection);
+    } catch (const std::exception&) {
+        // Account not ready yet; ignore.
+    }
+}
+
+void
+CallAdapter::onDeviceCallStatusChanged(const QString& accountId, const QString& callId, int code)
+{
+    Q_UNUSED(code)
+    if (!callDevice_ || accountId.isEmpty())
+        return;
+    // Drive the device from whichever account the call belongs to, using the
+    // signalling account rather than the currently-selected one.
+    try {
+        auto& accInfo = lrcInstance_->accountModel().getAccountInfo(accountId);
+        const auto call = accInfo.callModel->getCall(callId);
+        const auto& convInfo = lrcInstance_->getConversationFromCallId(callId, accountId);
+        if (convInfo.uid.isEmpty())
+            return;
+        syncCallControlDevice(static_cast<int>(call.status), accountId, convInfo.uid);
+    } catch (const std::exception&) {
+        // Unknown call/account; nothing to reflect.
+    }
 }
 
 void
@@ -372,9 +432,6 @@ CallAdapter::onCallStatusChanged(const QString& accountId, const QString& callId
         if (!convInfo.uid.isEmpty()) {
             Q_EMIT callStatusChanged(static_cast<int>(call.status), accountId_, convInfo.uid);
         }
-
-        // Reflect the call onto the HID call-control device (button target + LEDs).
-        syncCallControlDevice(static_cast<int>(call.status), accountId_, convInfo.uid);
 
         switch (call.status) {
         case lrc::api::call::Status::INVALID:

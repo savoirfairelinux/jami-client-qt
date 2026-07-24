@@ -18,6 +18,7 @@
 #pragma once
 
 #include <QObject>
+#include <QStringList>
 
 #include <memory>
 
@@ -42,6 +43,7 @@ public:
     void setRinging(bool ringing);
     void setInCall(bool inCall);
     void setMuted(bool muted);
+    QStringList diagnosticMessages() const;
 
 Q_SIGNALS:
     // The user pressed the hook-switch button. The hook switch is a toggle whose
@@ -51,6 +53,7 @@ Q_SIGNALS:
     void hookSwitchPressed();
     // The user pressed the mute button.
     void muteToggleRequested();
+    void diagnosticMessage(const QString& message);
 
 private:
     class Impl;

@@ -29,6 +29,7 @@
 #include <QHash>
 #include <QPointer>
 #include <QLoggingCategory>
+#include <QStringList>
 
 #include <libudev.h>
 #include <linux/hidraw.h>
@@ -518,6 +519,12 @@ CallControlDevice::CallControlDevice(QObject* parent)
 {}
 
 CallControlDevice::~CallControlDevice() = default;
+
+QStringList
+CallControlDevice::diagnosticMessages() const
+{
+    return {};
+}
 
 void
 CallControlDevice::setRinging(bool ringing)

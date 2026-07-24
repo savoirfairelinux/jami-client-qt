@@ -132,6 +132,11 @@ private:
 
     // USB HID Telephony call-control device (hook-switch / mute buttons + LEDs).
     void connectCallControlDevice();
+    // Reflect/control calls on the device for every account (the headset is a
+    // single physical endpoint, not per-account).
+    void connectCallControlAccounts();
+    void connectCallControlAccount(const QString& accountId);
+    void onDeviceCallStatusChanged(const QString& accountId, const QString& callId, int code);
     void updateCallControlLeds();
     void syncCallControlDevice(int statusInt, const QString& accountId, const QString& convUid);
 

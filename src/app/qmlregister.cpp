@@ -88,6 +88,20 @@
 #include <QQmlEngine>
 #include <QQmlContext>
 
+#ifdef Q_OS_WINDOWS
+#include <QCheckBox>
+#include <QDateTime>
+#include <QDialog>
+#include <QDialogButtonBox>
+#include <QGridLayout>
+#include <QGroupBox>
+#include <QLabel>
+#include <QPlainTextEdit>
+#include <QPushButton>
+#include <QTimer>
+#include <QVBoxLayout>
+#endif
+
 // clang-format off
 // TODO: remove this
 #define QML_REGISTERSINGLETONTYPE_WITH_INSTANCE(T) \
@@ -117,6 +131,91 @@
 #define REG_QML_SINGLETON qmlRegisterSingletonType
 #define REG_MODEL NS_MODELS, MODULE_VER_MAJ, MODULE_VER_MIN
 #define CREATE(Obj) [=](QQmlEngine*, QJSEngine*) -> QObject* { return Obj; }
+
+#ifdef Q_OS_WINDOWS
+namespace {
+
+void
+showCallControlDebugDialog(CallControlDevice* device)
+{
+    auto dialog = new QDialog;
+    dialog->setAttribute(Qt::WA_DeleteOnClose);
+    dialog->setWindowTitle("Jami HID Call-Control Debug");
+    // Non-modal so the user can place/receive real calls and watch hook/mute
+    // button and LED events live while the dialog stays open.
+    dialog->setModal(false);
+    dialog->resize(520, 420);
+
+    auto layout = new QVBoxLayout(dialog);
+    auto status = new QLabel("CallControlDevice constructed. Use the controls below to test LEDs, detection, and button events.");
+    status->setWordWrap(true);
+    layout->addWidget(status);
+
+    auto ledGroup = new QGroupBox("LED state requests");
+    auto ledLayout = new QGridLayout(ledGroup);
+    auto ring = new QCheckBox("Ring");
+    auto active = new QCheckBox("Active call / off-hook");
+    auto muted = new QCheckBox("Muted");
+    auto clear = new QPushButton("Clear all");
+    ledLayout->addWidget(ring, 0, 0);
+    ledLayout->addWidget(active, 0, 1);
+    ledLayout->addWidget(muted, 1, 0);
+    ledLayout->addWidget(clear, 1, 1);
+    layout->addWidget(ledGroup);
+
+    auto eventLog = new QPlainTextEdit;
+    eventLog->setReadOnly(true);
+    eventLog->setPlaceholderText("Hook and mute button events will appear here.");
+    layout->addWidget(eventLog, 1);
+
+    auto appendEvent = [eventLog](const QString& message) {
+        eventLog->appendPlainText(QDateTime::currentDateTime().toString("HH:mm:ss.zzz") + "  " + message);
+    };
+
+    const auto diagnostics = device->diagnosticMessages();
+    for (const auto& message : diagnostics)
+        appendEvent(message);
+
+    QObject::connect(ring, &QCheckBox::toggled, device, [device, appendEvent](bool checked) {
+        device->setRinging(checked);
+        appendEvent(QString("setRinging(%1)").arg(checked));
+    });
+    QObject::connect(active, &QCheckBox::toggled, device, [device, appendEvent](bool checked) {
+        device->setInCall(checked);
+        appendEvent(QString("setInCall(%1)").arg(checked));
+    });
+    QObject::connect(muted, &QCheckBox::toggled, device, [device, appendEvent](bool checked) {
+        device->setMuted(checked);
+        appendEvent(QString("setMuted(%1)").arg(checked));
+    });
+    QObject::connect(clear, &QPushButton::clicked, dialog, [device, ring, active, muted, appendEvent] {
+        ring->setChecked(false);
+        active->setChecked(false);
+        muted->setChecked(false);
+        device->setRinging(false);
+        device->setInCall(false);
+        device->setMuted(false);
+        appendEvent("clear LEDs");
+    });
+    QObject::connect(device, &CallControlDevice::hookSwitchPressed, dialog, [appendEvent] {
+        appendEvent("hookSwitchPressed()");
+    });
+    QObject::connect(device, &CallControlDevice::muteToggleRequested, dialog, [appendEvent] {
+        appendEvent("muteToggleRequested()");
+    });
+    QObject::connect(device, &CallControlDevice::diagnosticMessage, dialog, [appendEvent](const QString& message) {
+        appendEvent(message);
+    });
+
+    auto buttons = new QDialogButtonBox(QDialogButtonBox::Close);
+    QObject::connect(buttons, &QDialogButtonBox::rejected, dialog, &QDialog::close);
+    layout->addWidget(buttons);
+
+    QTimer::singleShot(0, dialog, [dialog] { dialog->show(); dialog->raise(); dialog->activateWindow(); });
+}
+
+} // namespace
+#endif
 
 namespace Utils {
 
@@ -177,6 +276,9 @@ registerTypes(QQmlEngine* engine,
     auto callControlDevice = new CallControlDevice(app);
     qApp->setProperty("CallControlDevice", QVariant::fromValue(callControlDevice));
     QQmlEngine::setObjectOwnership(callControlDevice, QQmlEngine::CppOwnership);
+#ifdef Q_OS_WINDOWS
+    showCallControlDebugDialog(callControlDevice);
+#endif
 
     auto callOverlayModel = new CallOverlayModel(lrcInstance, pttListener, app);
     qApp->setProperty("CallOverlayModel", QVariant::fromValue(callOverlayModel));
