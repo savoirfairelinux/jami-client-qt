@@ -46,6 +46,7 @@ ItemDelegate {
 
     property int lastInteractionTimeStamp: LastInteractionTimeStamp
     property string lastInteractionFormattedDate: MessagesAdapter.getBestFormattedDate(lastInteractionTimeStamp)
+    property int documentUpdateCount: CollaborativeAdapter.unreadDocumentUpdateCount(UID)
 
     property bool showSharePositionIndicator: PositionManager.isPositionSharedToConv(accountId, UID)
     property bool showSharedPositionIndicator: PositionManager.isConvSharingPosition(accountId, UID)
@@ -64,6 +65,14 @@ ItemDelegate {
         target: MessagesAdapter
         function onTimestampUpdated() {
             lastInteractionFormattedDate = MessagesAdapter.getBestFormattedDate(lastInteractionTimeStamp);
+        }
+    }
+
+    Connections {
+        target: CollaborativeAdapter
+        function onDocumentUpdateIndicatorChanged(convId) {
+            if (convId === UID)
+                root.documentUpdateCount = CollaborativeAdapter.unreadDocumentUpdateCount(UID);
         }
     }
 
@@ -245,11 +254,20 @@ ItemDelegate {
                 color: JamiTheme.textColor
             }
 
-            // unread message count
-            Item {
+            // unread document and message counts
+            RowLayout {
                 Layout.preferredWidth: childrenRect.width
                 Layout.preferredHeight: childrenRect.height
                 Layout.alignment: Qt.AlignTop | Qt.AlignRight
+                spacing: 4
+
+                BadgeNotifier {
+                    size: 16
+                    count: root.documentUpdateCount
+                    animate: index === 0
+                    badgeColor: "#D5F6FF"
+                    badgeTextColor: "#00AEEF"
+                }
 
                 BadgeNotifier {
                     size: 16
