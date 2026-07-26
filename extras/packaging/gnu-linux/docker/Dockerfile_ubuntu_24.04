@@ -8,7 +8,24 @@ RUN apt-get update && \
         devscripts \
         equivs \
         python-is-python3 \
+        curl \
         wget
+
+# Rust toolchain, required to build the yffi (Y-CRDT) contrib package used by
+# the collaborative editing feature. Installed system-wide so the unprivileged
+# package build user can invoke cargo.
+ENV RUSTUP_HOME=/usr/local/rustup \
+    CARGO_HOME=/usr/local/cargo \
+    PATH=/usr/local/cargo/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+# The toolchain is pinned: "stable" moves under us, so an unrelated Rust release
+# could break the build with no change on our side. Bump this line deliberately.
+# The toolchain itself stays read-only -- a build must not be able to rewrite the
+# compiler it is about to use. Only the CARGO_HOME directory is writable, which is
+# all cargo needs to create its registry cache and lock file as an arbitrary user.
+RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs \
+        | sh -s -- -y --profile minimal --default-toolchain 1.96.0 && \
+    chmod -R a+rX /usr/local/rustup /usr/local/cargo && \
+    chmod a+rwx /usr/local/cargo
 
 ADD extras/packaging/gnu-linux/scripts/prebuild-package-debian.sh /opt/prebuild-package-debian.sh
 
