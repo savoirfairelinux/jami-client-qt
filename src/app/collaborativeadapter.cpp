@@ -221,6 +221,24 @@ CollaborativeAdapter::history(const QString& convId, const QString& documentId, 
     return result;
 }
 
+QString
+CollaborativeAdapter::textAt(const QString& convId, const QString& documentId, const QString& commitId)
+{
+    return ConfigurationManager::instance().collaborativeDocumentTextAt(lrcInstance_->get_currentAccountId(),
+                                                                        convId,
+                                                                        documentId,
+                                                                        commitId);
+}
+
+bool
+CollaborativeAdapter::restore(const QString& convId, const QString& documentId, const QString& commitId)
+{
+    return ConfigurationManager::instance().restoreCollaborativeDocument(lrcInstance_->get_currentAccountId(),
+                                                                         convId,
+                                                                         documentId,
+                                                                         commitId);
+}
+
 bool
 CollaborativeAdapter::hasUnreadDocumentUpdate(const QString& convId) const
 {
