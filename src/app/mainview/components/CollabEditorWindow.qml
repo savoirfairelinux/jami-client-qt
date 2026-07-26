@@ -31,6 +31,11 @@ import "../../commoncomponents"
 Window {
     id: root
 
+    // The account this window belongs to. Editor windows are top-level and stay
+    // open across account switches, and two local accounts in the same swarm see
+    // the same conversation and document ids, so every call and every signal has
+    // to name the account explicitly.
+    property string accountId: ""
     property string conversationId: ""
     property string documentId: ""
     property string documentName: ""
@@ -83,7 +88,7 @@ Window {
     }
 
     function loadInitialContent() {
-        var initial = CollaborativeAdapter.openDocument(conversationId, documentId);
+        var initial = CollaborativeAdapter.openDocument(accountId, conversationId, documentId);
         applyingRemote = true;
         editor.text = initial;
         previousText = initial;
@@ -97,17 +102,29 @@ Window {
         });
     }
 
+    // The name server is queried asynchronously, so the first lookup for a peer
+    // often returns its raw URI. Re-resolve until a real name comes back instead
+    // of freezing whatever was available when the cursor first appeared.
+    function displayNameFor(peerId, current) {
+        if (current && current !== peerId)
+            return current;
+        var name = UtilsAdapter.getBestNameForUri(root.accountId, peerId);
+        return name && name.length > 0 ? name : peerId;
+    }
+
     function upsertCursor(peerId, position, anchor) {
         for (var i = 0; i < remoteCursorsModel.count; ++i) {
-            if (remoteCursorsModel.get(i).peerId === peerId) {
+            var entry = remoteCursorsModel.get(i);
+            if (entry.peerId === peerId) {
                 remoteCursorsModel.setProperty(i, "position", position);
                 remoteCursorsModel.setProperty(i, "anchor", anchor);
+                remoteCursorsModel.setProperty(i, "name", root.displayNameFor(peerId, entry.name));
                 return;
             }
         }
         remoteCursorsModel.append({
             "peerId": peerId,
-            "name": UtilsAdapter.getBestNameForUri(CurrentAccount.id, peerId),
+            "name": root.displayNameFor(peerId, ""),
             "pColor": colorForPeer(peerId),
             "position": position,
             "anchor": anchor
@@ -124,7 +141,7 @@ Window {
     }
 
     Component.onCompleted: loadInitialContent()
-    onClosing: CollaborativeAdapter.closeDocument(conversationId, documentId)
+    onClosing: CollaborativeAdapter.closeDocument(accountId, conversationId, documentId)
 
     ListModel {
         id: remoteCursorsModel
@@ -133,8 +150,8 @@ Window {
     Connections {
         target: CollaborativeAdapter
 
-        function onDocumentChanged(convId, docId, index, deleteLen, insert) {
-            if (convId !== root.conversationId || docId !== root.documentId)
+        function onDocumentChanged(accId, convId, docId, index, deleteLen, insert) {
+            if (accId !== root.accountId || convId !== root.conversationId || docId !== root.documentId)
                 return;
             var t = editor.text;
             var newText = t.substring(0, index) + insert + t.substring(index + deleteLen);
@@ -151,20 +168,20 @@ Window {
             root.applyingRemote = false;
         }
 
-        function onCursorChanged(convId, docId, peerId, position, anchor) {
-            if (convId !== root.conversationId || docId !== root.documentId)
+        function onCursorChanged(accId, convId, docId, peerId, position, anchor) {
+            if (accId !== root.accountId || convId !== root.conversationId || docId !== root.documentId)
                 return;
             root.upsertCursor(peerId, position, anchor);
         }
 
-        function onParticipantLeft(convId, docId, peerId) {
-            if (convId !== root.conversationId || docId !== root.documentId)
+        function onParticipantLeft(accId, convId, docId, peerId) {
+            if (accId !== root.accountId || convId !== root.conversationId || docId !== root.documentId)
                 return;
             root.removeCursor(peerId);
         }
 
-        function onDocumentRenamed(convId, docId, name) {
-            if (convId !== root.conversationId || docId !== root.documentId)
+        function onDocumentRenamed(accId, convId, docId, name) {
+            if (accId !== root.accountId || convId !== root.conversationId || docId !== root.documentId)
                 return;
             root.documentName = name;
         }
@@ -200,7 +217,7 @@ Window {
                     var newName = nameField.text.trim();
                     if (newName !== "" && newName !== root.documentName) {
                         root.documentName = newName; // optimistic; daemon echoes it back
-                        CollaborativeAdapter.setName(root.conversationId, root.documentId, newName);
+                        CollaborativeAdapter.setName(root.accountId, root.conversationId, root.documentId, newName);
                     }
                     titleContainer.editing = false;
                 }
@@ -367,7 +384,8 @@ Window {
                             var diff = root.computeDiff(root.previousText, text);
                             root.previousText = text;
                             if (diff.deleteLen > 0 || diff.insert.length > 0)
-                                CollaborativeAdapter.edit(root.conversationId,
+                                CollaborativeAdapter.edit(root.accountId,
+                                                          root.conversationId,
                                                           root.documentId,
                                                           diff.index,
                                                           diff.deleteLen,
@@ -467,6 +485,7 @@ Window {
                 Layout.preferredWidth: 220
                 Layout.fillHeight: true
                 visible: false
+                accountId: root.accountId
                 conversationId: root.conversationId
                 documentId: root.documentId
 
@@ -491,7 +510,8 @@ Window {
         onTriggered: {
             if (root.applyingRemote)
                 return;
-            CollaborativeAdapter.setCursor(root.conversationId,
+            CollaborativeAdapter.setCursor(root.accountId,
+                                           root.conversationId,
                                            root.documentId,
                                            editor.cursorPosition,
                                            editor.selectionStart);

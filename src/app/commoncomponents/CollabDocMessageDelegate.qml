@@ -40,15 +40,15 @@ Item {
     }
 
     Component.onCompleted: {
-        var current = CollaborativeAdapter.documentName(conversationIdOf(), root.documentId);
+        var current = CollaborativeAdapter.documentName(CurrentAccount.id, conversationIdOf(), root.documentId);
         if (current !== "")
             root.docName = current;
     }
 
     Connections {
         target: CollaborativeAdapter
-        function onDocumentRenamed(convId, docId, name) {
-            if (docId === root.documentId && convId === root.conversationIdOf())
+        function onDocumentRenamed(accId, convId, docId, name) {
+            if (accId === CurrentAccount.id && docId === root.documentId && convId === root.conversationIdOf())
                 root.docName = name;
         }
     }

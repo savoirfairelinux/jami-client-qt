@@ -29,6 +29,9 @@ import "../../commoncomponents"
 Rectangle {
     id: root
 
+    // Named explicitly rather than taken from CurrentAccount: the editor window
+    // that owns this panel may not belong to the selected account.
+    property string accountId: ""
     property string conversationId: ""
     property string documentId: ""
     // Checkpoint currently previewed, empty when the live document is shown.
@@ -47,7 +50,7 @@ Rectangle {
     function refresh() {
         var current = root.selectedCommitId;
         versionsModel.clear();
-        var entries = CollaborativeAdapter.history(conversationId, documentId, 0);
+        var entries = CollaborativeAdapter.history(accountId, conversationId, documentId, 0);
         for (var i = 0; i < entries.length; ++i) {
             var e = entries[i];
             versionsModel.append({
@@ -63,7 +66,7 @@ Rectangle {
     }
 
     function preview(commitId) {
-        var text = CollaborativeAdapter.textAt(conversationId, documentId, commitId);
+        var text = CollaborativeAdapter.textAt(accountId, conversationId, documentId, commitId);
         root.selectedCommitId = commitId;
         root.previewRequested(commitId, text);
     }
@@ -178,7 +181,7 @@ Rectangle {
                     Text {
                         Layout.fillWidth: true
                         text: {
-                            var who = UtilsAdapter.getBestNameForUri(CurrentAccount.id, author);
+                            var who = UtilsAdapter.getBestNameForUri(root.accountId, author);
                             if (who === "")
                                 who = qsTr("Someone");
                             return who + " · " + qsTr("%n change(s)", "", deltas);
@@ -199,7 +202,7 @@ Rectangle {
             text: qsTr("Restore this version")
             toolTipText: qsTr("Brings the document back to this content for everyone. Reversible.")
             onClicked: {
-                if (CollaborativeAdapter.restore(root.conversationId, root.documentId, root.selectedCommitId)) {
+                if (CollaborativeAdapter.restore(root.accountId, root.conversationId, root.documentId, root.selectedCommitId)) {
                     root.clearPreview();
                     root.restored();
                 }

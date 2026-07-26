@@ -45,7 +45,9 @@ Window {
     property var raiseWhenCalled: AppSettingsManager.getValue(Settings.RaiseWhenCalled)
 
     function openCollabEditor(conversationId, documentId, documentName, peerName, kind) {
-        CollabEditorWindows.openEditor(appWindow, conversationId, documentId, documentName, peerName, kind);
+        // Bind the window to the account that is selected when it opens; it must
+        // keep using that account even if the selection changes later.
+        CollabEditorWindows.openEditor(appWindow, CurrentAccount.id, conversationId, documentId, documentName, peerName, kind);
     }
 
     // DEBUG Button on top left to force switch RTL (toggle between AR and EN
