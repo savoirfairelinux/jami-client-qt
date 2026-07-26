@@ -24,8 +24,11 @@ var components = ({})
 // Map of conversation/document keys -> window object.
 var windows = ({})
 
-function windowKey(conversationId, documentId) {
-    return conversationId + "::" + documentId
+// The account is part of the key: two local accounts can be members of the same
+// swarm, and would otherwise share a single window bound to whichever account
+// opened it first.
+function windowKey(accountId, conversationId, documentId) {
+    return accountId + "::" + conversationId + "::" + documentId
 }
 
 function sourceForKind(kind) {
@@ -33,14 +36,14 @@ function sourceForKind(kind) {
                            : "../components/CollabEditorWindow.qml"
 }
 
-function openEditor(appWindow, conversationId, documentId, documentName, peerName, kind) {
-    if (!conversationId || !documentId) {
-        console.log("Cannot open collaborative editor: missing conversation or document id")
+function openEditor(appWindow, accountId, conversationId, documentId, documentName, peerName, kind) {
+    if (!accountId || !conversationId || !documentId) {
+        console.log("Cannot open collaborative editor: missing account, conversation or document id")
         return
     }
     kind = (kind === "rich") ? "rich" : "text"
     // Reuse an already-open window for this document.
-    var key = windowKey(conversationId, documentId)
+    var key = windowKey(accountId, conversationId, documentId)
     var existing = windows[key]
     if (existing) {
         if (documentName && documentName.length > 0)
@@ -69,6 +72,7 @@ function openEditor(appWindow, conversationId, documentId, documentName, peerNam
     }
 
     var win = component.createObject(null, {
+        "accountId": accountId,
         "conversationId": conversationId,
         "documentId": documentId,
         "documentName": documentName || "",

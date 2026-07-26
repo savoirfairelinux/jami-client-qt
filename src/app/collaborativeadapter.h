@@ -56,45 +56,62 @@ public:
                                        const QString& name,
                                        const QString& kind = QStringLiteral("text"));
     /// Open a document and return its current full text.
-    Q_INVOKABLE QString openDocument(const QString& convId, const QString& documentId);
+    Q_INVOKABLE QString openDocument(const QString& accountId,
+                                     const QString& convId,
+                                     const QString& documentId);
     /// Release the local editing session for a document.
-    Q_INVOKABLE void closeDocument(const QString& convId, const QString& documentId);
+    Q_INVOKABLE void closeDocument(const QString& accountId,
+                                   const QString& convId,
+                                   const QString& documentId);
     /// Apply a local edit: remove @p deleteLen UTF-16 units at @p index then insert @p insert.
-    Q_INVOKABLE void edit(const QString& convId,
+    Q_INVOKABLE void edit(const QString& accountId,
+                          const QString& convId,
                           const QString& documentId,
                           int index,
                           int deleteLen,
                           const QString& insert);
     /// Broadcast the local cursor position/selection (UTF-16 units) to other members.
-    Q_INVOKABLE void setCursor(const QString& convId,
+    Q_INVOKABLE void setCursor(const QString& accountId,
+                               const QString& convId,
                                const QString& documentId,
                                int position,
                                int anchor);
     /// Rename a document; the new name syncs to all members and persists.
-    Q_INVOKABLE void setName(const QString& convId, const QString& documentId, const QString& name);
+    Q_INVOKABLE void setName(const QString& accountId,
+                             const QString& convId,
+                             const QString& documentId,
+                             const QString& name);
     /// Current name of a document, or an empty string if unknown.
-    Q_INVOKABLE QString documentName(const QString& convId, const QString& documentId);
+    Q_INVOKABLE QString documentName(const QString& accountId,
+                                     const QString& convId,
+                                     const QString& documentId);
     /// Apply a local rich-text edit (Quill-style delta JSON) to a document.
-    Q_INVOKABLE void applyDelta(const QString& convId,
+    Q_INVOKABLE void applyDelta(const QString& accountId,
+                                const QString& convId,
                                 const QString& documentId,
                                 const QString& deltaJson);
     /// Whole current content of a document as a Quill delta JSON (for initial render).
-    Q_INVOKABLE QString contentDelta(const QString& convId, const QString& documentId);
+    Q_INVOKABLE QString contentDelta(const QString& accountId,
+                                     const QString& convId,
+                                     const QString& documentId);
     /// List the editable documents shared in @p convId, most recent first. Each
     /// entry is a map: { documentId, name, author, kind, hasUpdate, timestamp }.
     Q_INVOKABLE QVariantList documents(const QString& convId);
     /// Checkpoints of a document, newest first. Each entry is a map:
     /// { id, author, device, timestamp, deltas }.
-    Q_INVOKABLE QVariantList history(const QString& convId,
+    Q_INVOKABLE QVariantList history(const QString& accountId,
+                                     const QString& convId,
                                      const QString& documentId,
                                      int max = 0);
     /// Content of a document as of a checkpoint, for read-only review.
-    Q_INVOKABLE QString textAt(const QString& convId,
+    Q_INVOKABLE QString textAt(const QString& accountId,
+                               const QString& convId,
                                const QString& documentId,
                                const QString& commitId);
     /// Restore an open document to a checkpoint. Applied as a normal edit, so
     /// every member converges on it and it can itself be undone.
-    Q_INVOKABLE bool restore(const QString& convId,
+    Q_INVOKABLE bool restore(const QString& accountId,
+                             const QString& convId,
                              const QString& documentId,
                              const QString& commitId);
     /// Whether @p convId has a collaborative document update that hasn't been opened yet.
@@ -106,30 +123,54 @@ public:
                                                         const QString& documentId) const;
 
 Q_SIGNALS:
+    // Every document signal names the account it belongs to. Editor windows are
+    // top-level and outlive the selection made in the main window, and two local
+    // accounts in the same swarm share the conversation and document ids, so
+    // filtering on those alone would let one account's events drive the other's
+    // window.
+
     /// A remote edit was applied to a document; the editor should mirror it.
-    void documentChanged(const QString& convId,
+    void documentChanged(const QString& accountId,
+                         const QString& convId,
                          const QString& documentId,
                          int index,
                          int deleteLen,
                          const QString& insert);
     /// A remote participant moved their cursor/selection in a document.
-    void cursorChanged(const QString& convId,
+    void cursorChanged(const QString& accountId,
+                       const QString& convId,
                        const QString& documentId,
                        const QString& peerId,
                        int position,
                        int anchor);
     /// A remote participant stopped editing a document.
-    void participantLeft(const QString& convId, const QString& documentId, const QString& peerId);
+    void participantLeft(const QString& accountId,
+                         const QString& convId,
+                         const QString& documentId,
+                         const QString& peerId);
     /// A document was renamed (locally or remotely); UIs should update the title.
-    void documentRenamed(const QString& convId, const QString& documentId, const QString& name);
+    void documentRenamed(const QString& accountId,
+                         const QString& convId,
+                         const QString& documentId,
+                         const QString& name);
     /// A remote rich-text edit (Quill-style delta JSON) should be applied to the editor.
-    void documentDelta(const QString& convId, const QString& documentId, const QString& deltaJson);
+    void documentDelta(const QString& accountId,
+                       const QString& convId,
+                       const QString& documentId,
+                       const QString& deltaJson);
     /// The blue document-update indicator changed for @p convId.
     void documentUpdateIndicatorChanged(const QString& convId);
 
 private:
-    void markDocumentUpdated(const QString& convId, const QString& documentId);
-    void clearDocumentUpdated(const QString& convId, const QString& documentId);
+    void markDocumentUpdated(const QString& accountId,
+                             const QString& convId,
+                             const QString& documentId);
+    void clearDocumentUpdated(const QString& accountId,
+                              const QString& convId,
+                              const QString& documentId);
+    /// Unread state is per account as well as per conversation: the same swarm
+    /// seen from two local accounts carries the same conversation id.
+    static QString unreadKey(const QString& accountId, const QString& convId);
 
     QHash<QString, QSet<QString>> updatedDocumentsByConversation_;
 };

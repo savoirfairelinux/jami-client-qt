@@ -49,8 +49,8 @@ BaseModalDialog {
     Connections {
         target: CollaborativeAdapter
         enabled: root.opened
-        function onDocumentRenamed(convId, docId, name) {
-            if (convId === root.conversationId)
+        function onDocumentRenamed(accId, convId, docId, name) {
+            if (accId === CurrentAccount.id && convId === root.conversationId)
                 root.refresh();
         }
         function onDocumentUpdateIndicatorChanged(convId) {

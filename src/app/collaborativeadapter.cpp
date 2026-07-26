@@ -36,10 +36,8 @@ CollaborativeAdapter::CollaborativeAdapter(LRCInstance* instance, QObject* paren
                    int index,
                    int deleteLen,
                    const QString& insert) {
-                if (accountId != lrcInstance_->get_currentAccountId())
-                    return;
-                markDocumentUpdated(convId, documentId);
-                Q_EMIT documentChanged(convId, documentId, index, deleteLen, insert);
+                markDocumentUpdated(accountId, convId, documentId);
+                Q_EMIT documentChanged(accountId, convId, documentId, index, deleteLen, insert);
             });
     connect(&ConfigurationManager::instance(),
             &ConfigurationManagerInterface::collaborativeCursorChanged,
@@ -50,9 +48,7 @@ CollaborativeAdapter::CollaborativeAdapter(LRCInstance* instance, QObject* paren
                    const QString& peerId,
                    int position,
                    int anchor) {
-                if (accountId != lrcInstance_->get_currentAccountId())
-                    return;
-                Q_EMIT cursorChanged(convId, documentId, peerId, position, anchor);
+                Q_EMIT cursorChanged(accountId, convId, documentId, peerId, position, anchor);
             });
     connect(&ConfigurationManager::instance(),
             &ConfigurationManagerInterface::collaborativeParticipantLeft,
@@ -61,9 +57,7 @@ CollaborativeAdapter::CollaborativeAdapter(LRCInstance* instance, QObject* paren
                    const QString& convId,
                    const QString& documentId,
                    const QString& peerId) {
-                if (accountId != lrcInstance_->get_currentAccountId())
-                    return;
-                Q_EMIT participantLeft(convId, documentId, peerId);
+                Q_EMIT participantLeft(accountId, convId, documentId, peerId);
             });
     connect(&ConfigurationManager::instance(),
             &ConfigurationManagerInterface::collaborativeDocumentRenamed,
@@ -72,9 +66,7 @@ CollaborativeAdapter::CollaborativeAdapter(LRCInstance* instance, QObject* paren
                    const QString& convId,
                    const QString& documentId,
                    const QString& name) {
-                if (accountId != lrcInstance_->get_currentAccountId())
-                    return;
-                Q_EMIT documentRenamed(convId, documentId, name);
+                Q_EMIT documentRenamed(accountId, convId, documentId, name);
             });
     connect(&ConfigurationManager::instance(),
             &ConfigurationManagerInterface::collaborativeDocumentDelta,
@@ -83,10 +75,8 @@ CollaborativeAdapter::CollaborativeAdapter(LRCInstance* instance, QObject* paren
                    const QString& convId,
                    const QString& documentId,
                    const QString& deltaJson) {
-                if (accountId != lrcInstance_->get_currentAccountId())
-                    return;
-                markDocumentUpdated(convId, documentId);
-                Q_EMIT documentDelta(convId, documentId, deltaJson);
+                markDocumentUpdated(accountId, convId, documentId);
+                Q_EMIT documentDelta(accountId, convId, documentId, deltaJson);
             });
 }
 
@@ -98,28 +88,32 @@ CollaborativeAdapter::createDocument(const QString& convId, const QString& name,
 }
 
 QString
-CollaborativeAdapter::openDocument(const QString& convId, const QString& documentId)
+CollaborativeAdapter::openDocument(const QString& accountId,
+                                   const QString& convId,
+                                   const QString& documentId)
 {
-    clearDocumentUpdated(convId, documentId);
+    clearDocumentUpdated(accountId, convId, documentId);
     return ConfigurationManager::instance()
-        .openCollaborativeDocument(lrcInstance_->get_currentAccountId(), convId, documentId);
+        .openCollaborativeDocument(accountId, convId, documentId);
 }
 
 void
-CollaborativeAdapter::closeDocument(const QString& convId, const QString& documentId)
+CollaborativeAdapter::closeDocument(const QString& accountId,
+                                    const QString& convId,
+                                    const QString& documentId)
 {
-    ConfigurationManager::instance()
-        .closeCollaborativeDocument(lrcInstance_->get_currentAccountId(), convId, documentId);
+    ConfigurationManager::instance().closeCollaborativeDocument(accountId, convId, documentId);
 }
 
 void
-CollaborativeAdapter::edit(const QString& convId,
+CollaborativeAdapter::edit(const QString& accountId,
+                           const QString& convId,
                            const QString& documentId,
                            int index,
                            int deleteLen,
                            const QString& insert)
 {
-    ConfigurationManager::instance().editCollaborativeDocument(lrcInstance_->get_currentAccountId(),
+    ConfigurationManager::instance().editCollaborativeDocument(accountId,
                                                                convId,
                                                                documentId,
                                                                index,
@@ -128,12 +122,13 @@ CollaborativeAdapter::edit(const QString& convId,
 }
 
 void
-CollaborativeAdapter::setCursor(const QString& convId,
+CollaborativeAdapter::setCursor(const QString& accountId,
+                                const QString& convId,
                                 const QString& documentId,
                                 int position,
                                 int anchor)
 {
-    ConfigurationManager::instance().setCollaborativeCursor(lrcInstance_->get_currentAccountId(),
+    ConfigurationManager::instance().setCollaborativeCursor(accountId,
                                                             convId,
                                                             documentId,
                                                             position,
@@ -141,35 +136,39 @@ CollaborativeAdapter::setCursor(const QString& convId,
 }
 
 void
-CollaborativeAdapter::setName(const QString& convId,
+CollaborativeAdapter::setName(const QString& accountId,
+                              const QString& convId,
                               const QString& documentId,
                               const QString& name)
 {
     ConfigurationManager::instance()
-        .setCollaborativeDocumentName(lrcInstance_->get_currentAccountId(), convId, documentId, name);
+        .setCollaborativeDocumentName(accountId, convId, documentId, name);
 }
 
 QString
-CollaborativeAdapter::documentName(const QString& convId, const QString& documentId)
+CollaborativeAdapter::documentName(const QString& accountId,
+                                   const QString& convId,
+                                   const QString& documentId)
 {
-    return ConfigurationManager::instance()
-        .collaborativeDocumentName(lrcInstance_->get_currentAccountId(), convId, documentId);
+    return ConfigurationManager::instance().collaborativeDocumentName(accountId, convId, documentId);
 }
 
 void
-CollaborativeAdapter::applyDelta(const QString& convId,
+CollaborativeAdapter::applyDelta(const QString& accountId,
+                                 const QString& convId,
                                  const QString& documentId,
                                  const QString& deltaJson)
 {
-    ConfigurationManager::instance()
-        .applyCollaborativeDelta(lrcInstance_->get_currentAccountId(), convId, documentId, deltaJson);
+    ConfigurationManager::instance().applyCollaborativeDelta(accountId, convId, documentId, deltaJson);
 }
 
 QString
-CollaborativeAdapter::contentDelta(const QString& convId, const QString& documentId)
+CollaborativeAdapter::contentDelta(const QString& accountId,
+                                   const QString& convId,
+                                   const QString& documentId)
 {
     return ConfigurationManager::instance()
-        .collaborativeDocumentContentDelta(lrcInstance_->get_currentAccountId(), convId, documentId);
+        .collaborativeDocumentContentDelta(accountId, convId, documentId);
 }
 
 QVariantList
@@ -215,11 +214,14 @@ CollaborativeAdapter::documents(const QString& convId)
 }
 
 QVariantList
-CollaborativeAdapter::history(const QString& convId, const QString& documentId, int max)
+CollaborativeAdapter::history(const QString& accountId,
+                              const QString& convId,
+                              const QString& documentId,
+                              int max)
 {
     QVariantList result;
     const auto entries = ConfigurationManager::instance()
-                             .getCollaborativeDocumentHistory(lrcInstance_->get_currentAccountId(),
+                             .getCollaborativeDocumentHistory(accountId,
                                                               convId,
                                                               documentId,
                                                               max);
@@ -236,27 +238,37 @@ CollaborativeAdapter::history(const QString& convId, const QString& documentId, 
 }
 
 QString
-CollaborativeAdapter::textAt(const QString& convId,
+CollaborativeAdapter::textAt(const QString& accountId,
+                             const QString& convId,
                              const QString& documentId,
                              const QString& commitId)
 {
     return ConfigurationManager::instance()
-        .collaborativeDocumentTextAt(lrcInstance_->get_currentAccountId(),
+        .collaborativeDocumentTextAt(accountId,
                                      convId,
                                      documentId,
                                      commitId);
 }
 
 bool
-CollaborativeAdapter::restore(const QString& convId,
+CollaborativeAdapter::restore(const QString& accountId,
+                              const QString& convId,
                               const QString& documentId,
                               const QString& commitId)
 {
     return ConfigurationManager::instance()
-        .restoreCollaborativeDocument(lrcInstance_->get_currentAccountId(),
+        .restoreCollaborativeDocument(accountId,
                                       convId,
                                       documentId,
                                       commitId);
+}
+
+QString
+CollaborativeAdapter::unreadKey(const QString& accountId, const QString& convId)
+{
+    // Account ids are fixed-width hex, so concatenating cannot make two distinct
+    // pairs collide.
+    return accountId + convId;
 }
 
 bool
@@ -268,7 +280,9 @@ CollaborativeAdapter::hasUnreadDocumentUpdate(const QString& convId) const
 int
 CollaborativeAdapter::unreadDocumentUpdateCount(const QString& convId) const
 {
-    auto it = updatedDocumentsByConversation_.constFind(convId);
+    // The conversation list only ever shows the selected account.
+    auto it = updatedDocumentsByConversation_.constFind(
+        unreadKey(lrcInstance_->get_currentAccountId(), convId));
     return it != updatedDocumentsByConversation_.constEnd() ? it->size() : 0;
 }
 
@@ -276,27 +290,34 @@ bool
 CollaborativeAdapter::hasUnreadDocumentUpdateForDocument(const QString& convId,
                                                          const QString& documentId) const
 {
-    auto it = updatedDocumentsByConversation_.constFind(convId);
+    auto it = updatedDocumentsByConversation_.constFind(
+        unreadKey(lrcInstance_->get_currentAccountId(), convId));
     return it != updatedDocumentsByConversation_.constEnd() && it->contains(documentId);
 }
 
 void
-CollaborativeAdapter::markDocumentUpdated(const QString& convId, const QString& documentId)
+CollaborativeAdapter::markDocumentUpdated(const QString& accountId,
+                                          const QString& convId,
+                                          const QString& documentId)
 {
-    auto& documents = updatedDocumentsByConversation_[convId];
+    auto& documents = updatedDocumentsByConversation_[unreadKey(accountId, convId)];
     if (documents.contains(documentId))
         return;
     documents.insert(documentId);
-    Q_EMIT documentUpdateIndicatorChanged(convId);
+    if (accountId == lrcInstance_->get_currentAccountId())
+        Q_EMIT documentUpdateIndicatorChanged(convId);
 }
 
 void
-CollaborativeAdapter::clearDocumentUpdated(const QString& convId, const QString& documentId)
+CollaborativeAdapter::clearDocumentUpdated(const QString& accountId,
+                                           const QString& convId,
+                                           const QString& documentId)
 {
-    auto it = updatedDocumentsByConversation_.find(convId);
+    auto it = updatedDocumentsByConversation_.find(unreadKey(accountId, convId));
     if (it == updatedDocumentsByConversation_.end() || !it->remove(documentId))
         return;
     if (it->isEmpty())
         updatedDocumentsByConversation_.erase(it);
-    Q_EMIT documentUpdateIndicatorChanged(convId);
+    if (accountId == lrcInstance_->get_currentAccountId())
+        Q_EMIT documentUpdateIndicatorChanged(convId);
 }

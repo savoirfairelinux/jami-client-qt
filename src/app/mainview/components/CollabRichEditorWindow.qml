@@ -31,6 +31,11 @@ import "../../commoncomponents"
 Window {
     id: root
 
+    // The account this window belongs to. Editor windows are top-level and stay
+    // open across account switches, and two local accounts in the same swarm see
+    // the same conversation and document ids, so every call and every signal has
+    // to name the account explicitly.
+    property string accountId: ""
     property string conversationId: ""
     property string documentId: ""
     property string documentName: ""
@@ -67,16 +72,28 @@ Window {
         return Qt.hsla(h / 360, 0.65, 0.5, 1.0);
     }
 
+    // The name server is queried asynchronously, so the first lookup for a peer
+    // often returns its raw URI. Re-resolve until a real name comes back instead
+    // of freezing whatever was available when the cursor first appeared.
+    function displayNameFor(peerId, current) {
+        if (current && current !== peerId)
+            return current;
+        var name = UtilsAdapter.getBestNameForUri(root.accountId, peerId);
+        return name && name.length > 0 ? name : peerId;
+    }
+
     function upsertCursor(peerId, pos) {
         for (var i = 0; i < remoteCursorsModel.count; ++i) {
-            if (remoteCursorsModel.get(i).peerId === peerId) {
+            var entry = remoteCursorsModel.get(i);
+            if (entry.peerId === peerId) {
                 remoteCursorsModel.setProperty(i, "position", pos);
+                remoteCursorsModel.setProperty(i, "name", root.displayNameFor(peerId, entry.name));
                 return;
             }
         }
         remoteCursorsModel.append({
             "peerId": peerId,
-            "name": UtilsAdapter.getBestNameForUri(CurrentAccount.id, peerId),
+            "name": root.displayNameFor(peerId, ""),
             "pColor": colorForPeer(peerId),
             "position": pos
         });
@@ -100,7 +117,7 @@ Window {
         id: cursorBroadcast
         interval: 120
         repeat: false
-        onTriggered: CollaborativeAdapter.setCursor(root.conversationId, root.documentId,
+        onTriggered: CollaborativeAdapter.setCursor(root.accountId, root.conversationId, root.documentId,
                                                     editor.cursorPosition, editor.selectionStart)
     }
 
@@ -133,11 +150,11 @@ Window {
 
     Component.onCompleted: {
         // Ensure the daemon session exists, then render the current content.
-        CollaborativeAdapter.openDocument(conversationId, documentId);
-        richBinding.loadContentDelta(CollaborativeAdapter.contentDelta(conversationId, documentId));
+        CollaborativeAdapter.openDocument(accountId, conversationId, documentId);
+        richBinding.loadContentDelta(CollaborativeAdapter.contentDelta(accountId, conversationId, documentId));
         refreshFormatState();
     }
-    onClosing: CollaborativeAdapter.closeDocument(conversationId, documentId)
+    onClosing: CollaborativeAdapter.closeDocument(accountId, conversationId, documentId)
 
     function focusEditor() {
         editor.forceActiveFocus();
@@ -149,25 +166,25 @@ Window {
     Connections {
         target: CollaborativeAdapter
 
-        function onDocumentDelta(convId, docId, deltaJson) {
-            if (convId !== root.conversationId || docId !== root.documentId)
+        function onDocumentDelta(accId, convId, docId, deltaJson) {
+            if (accId !== root.accountId || convId !== root.conversationId || docId !== root.documentId)
                 return;
             richBinding.applyRemoteDelta(deltaJson);
             root.refreshFormatState();
         }
 
-        function onDocumentRenamed(convId, docId, name) {
-            if (convId === root.conversationId && docId === root.documentId)
+        function onDocumentRenamed(accId, convId, docId, name) {
+            if (accId === root.accountId && convId === root.conversationId && docId === root.documentId)
                 root.documentName = name;
         }
 
-        function onCursorChanged(convId, docId, peerId, pos, anchor) {
-            if (convId === root.conversationId && docId === root.documentId)
+        function onCursorChanged(accId, convId, docId, peerId, pos, anchor) {
+            if (accId === root.accountId && convId === root.conversationId && docId === root.documentId)
                 root.upsertCursor(peerId, pos);
         }
 
-        function onParticipantLeft(convId, docId, peerId) {
-            if (convId === root.conversationId && docId === root.documentId)
+        function onParticipantLeft(accId, convId, docId, peerId) {
+            if (accId === root.accountId && convId === root.conversationId && docId === root.documentId)
                 root.removeCursor(peerId);
         }
     }
@@ -177,7 +194,7 @@ Window {
         id: richBinding
         textDocument: editor.textDocument
         onLocalDelta: function (deltaJson) {
-            CollaborativeAdapter.applyDelta(root.conversationId, root.documentId, deltaJson);
+            CollaborativeAdapter.applyDelta(root.accountId, root.conversationId, root.documentId, deltaJson);
         }
     }
 
@@ -203,7 +220,7 @@ Window {
                     var newName = nameField.text.trim();
                     if (newName !== "" && newName !== root.documentName) {
                         root.documentName = newName;
-                        CollaborativeAdapter.setName(root.conversationId, root.documentId, newName);
+                        CollaborativeAdapter.setName(root.accountId, root.conversationId, root.documentId, newName);
                     }
                     titleContainer.editing = false;
                 }
@@ -617,6 +634,7 @@ Window {
                 Layout.preferredWidth: 220
                 Layout.fillHeight: true
                 visible: false
+                accountId: root.accountId
                 conversationId: root.conversationId
                 documentId: root.documentId
 
