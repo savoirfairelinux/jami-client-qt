@@ -609,6 +609,7 @@ Item {
                     ChatViewFooter {
                         id: chatViewFooter
                         objectName: "chatViewFooter"
+                        convContext: root.convContext
 
                         visible: {
                             if (CurrentAccount.type === Profile.Type.SIP)
