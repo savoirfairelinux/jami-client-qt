@@ -146,4 +146,9 @@ ENV RUSTUP_HOME=/usr/local/rustup \
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs \
         | CARGO_HOME=/usr/local/cargo sh -s -- -y --profile minimal --default-toolchain 1.96.0 && \
     chmod -R a+rX /usr/local/rustup /usr/local/cargo && \
-    install -d -m 1777 /var/cache/cargo
+    install -d -m 1777 /var/cache/cargo && \
+    # cqfd invokes the build via `sudo -E`, and sudo's secure_path silently
+    # overrides PATH regardless of -E, dropping /usr/local/cargo/bin. Symlink
+    # the toolchain into /usr/local/bin (part of secure_path) so cargo/rustc
+    # stay reachable no matter how the build shell is invoked.
+    ln -s /usr/local/cargo/bin/cargo /usr/local/cargo/bin/rustc /usr/local/bin/
