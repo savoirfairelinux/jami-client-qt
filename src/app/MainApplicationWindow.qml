@@ -26,6 +26,7 @@ import net.jami.Helpers 1.1
 import net.jami.Constants 1.1
 import "mainview"
 import "mainview/components"
+import "mainview/js/collabeditorwindowcreation.js" as CollabEditorWindows
 import "wizardview"
 import "commoncomponents"
 import QWindowKit
@@ -42,6 +43,10 @@ Window {
     LayoutMirroring.enabled: isRTL
     LayoutMirroring.childrenInherit: isRTL
     property var raiseWhenCalled: AppSettingsManager.getValue(Settings.RaiseWhenCalled)
+
+    function openCollabEditor(conversationId, documentId, documentName, peerName, kind) {
+        CollabEditorWindows.openEditor(appWindow, conversationId, documentId, documentName, peerName, kind);
+    }
 
     // DEBUG Button on top left to force switch RTL (toggle between AR and EN
     Button {
