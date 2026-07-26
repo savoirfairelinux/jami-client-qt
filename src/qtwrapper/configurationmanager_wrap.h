@@ -1073,6 +1073,29 @@ public Q_SLOTS: // METHODS
                                                                      documentId.toStdString(),
                                                                      static_cast<uint32_t>(max)));
     }
+
+    QString collaborativeDocumentTextAt(const QString& accountId,
+                                        const QString& conversationId,
+                                        const QString& documentId,
+                                        const QString& commitId)
+    {
+        return QString::fromStdString(
+            libjami::collaborativeDocumentTextAt(accountId.toStdString(),
+                                                 conversationId.toStdString(),
+                                                 documentId.toStdString(),
+                                                 commitId.toStdString()));
+    }
+
+    bool restoreCollaborativeDocument(const QString& accountId,
+                                      const QString& conversationId,
+                                      const QString& documentId,
+                                      const QString& commitId)
+    {
+        return libjami::restoreCollaborativeDocument(accountId.toStdString(),
+                                                     conversationId.toStdString(),
+                                                     documentId.toStdString(),
+                                                     commitId.toStdString());
+    }
     QString createCollaborativeDocument(const QString& accountId,
                                         const QString& conversationId,
                                         const QString& name,

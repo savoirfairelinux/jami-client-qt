@@ -88,6 +88,15 @@ public:
     Q_INVOKABLE QVariantList history(const QString& convId,
                                      const QString& documentId,
                                      int max = 0);
+    /// Content of a document as of a checkpoint, for read-only review.
+    Q_INVOKABLE QString textAt(const QString& convId,
+                               const QString& documentId,
+                               const QString& commitId);
+    /// Restore an open document to a checkpoint. Applied as a normal edit, so
+    /// every member converges on it and it can itself be undone.
+    Q_INVOKABLE bool restore(const QString& convId,
+                             const QString& documentId,
+                             const QString& commitId);
     /// Whether @p convId has a collaborative document update that hasn't been opened yet.
     Q_INVOKABLE bool hasUnreadDocumentUpdate(const QString& convId) const;
     /// Number of collaborative documents in @p convId that haven't been opened since their update.

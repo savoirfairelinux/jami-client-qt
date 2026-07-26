@@ -41,6 +41,11 @@ Window {
     // Editor base font size (local view preference; headings scale relative to it).
     property int baseFontSize: JamiTheme.textFontSize
 
+    // Read-only review of a past version. Only the text is replayed: character
+    // formatting is not part of what a checkpoint restores.
+    property bool previewing: false
+    property string previewText: ""
+
     title: (documentName !== "" ? documentName : qsTr("Editable document"))
            + (peerName !== "" ? " — " + peerName : "")
            + " — " + JamiStrings.appTitle
@@ -246,6 +251,7 @@ Window {
             }
 
             FormatButton {
+                enabled: !root.previewing
                 glyph: "B"
                 active: root.fmt.b === true
                 onClicked: {
@@ -255,6 +261,7 @@ Window {
                 }
             }
             FormatButton {
+                enabled: !root.previewing
                 glyph: "I"
                 active: root.fmt.i === true
                 onClicked: {
@@ -264,6 +271,7 @@ Window {
                 }
             }
             FormatButton {
+                enabled: !root.previewing
                 glyph: "U"
                 active: root.fmt.u === true
                 onClicked: {
@@ -273,6 +281,7 @@ Window {
                 }
             }
             FormatButton {
+                enabled: !root.previewing
                 glyph: "S"
                 active: root.fmt.s === true
                 onClicked: {
@@ -290,6 +299,7 @@ Window {
             }
 
             FormatButton {
+                enabled: !root.previewing
                 glyph: "H1"
                 active: root.fmt.header === 1
                 onClicked: {
@@ -299,6 +309,7 @@ Window {
                 }
             }
             FormatButton {
+                enabled: !root.previewing
                 glyph: "H2"
                 active: root.fmt.header === 2
                 onClicked: {
@@ -308,6 +319,7 @@ Window {
                 }
             }
             FormatButton {
+                enabled: !root.previewing
                 glyph: "H3"
                 active: root.fmt.header === 3
                 onClicked: {
@@ -325,6 +337,7 @@ Window {
             }
 
             FormatButton {
+                enabled: !root.previewing
                 glyph: "•"
                 ToolTip.visible: hovered
                 ToolTip.text: qsTr("Bulleted list")
@@ -336,6 +349,7 @@ Window {
                 }
             }
             FormatButton {
+                enabled: !root.previewing
                 glyph: "1."
                 ToolTip.visible: hovered
                 ToolTip.text: qsTr("Numbered list")
@@ -355,6 +369,7 @@ Window {
             }
 
             FormatButton {
+                enabled: !root.previewing
                 glyph: "🔗"
                 active: root.fmt.link !== undefined && root.fmt.link !== ""
                 onClicked: {
@@ -363,6 +378,7 @@ Window {
                 }
             }
             FormatButton {
+                enabled: !root.previewing
                 glyph: "⌫"
                 ToolTip.visible: hovered
                 ToolTip.text: qsTr("Clear formatting")
@@ -403,90 +419,215 @@ Window {
                 }
                 onClicked: fontSizeMenu.popup(fontSizeButton, 0, fontSizeButton.height)
             }
+
+            PushButton {
+                Layout.alignment: Qt.AlignVCenter
+                preferredSize: 26
+                imageContainerWidth: 18
+                imageContainerHeight: 18
+                source: JamiResources.time_clock_svg
+                toolTipText: qsTr("Version history")
+                checkable: true
+                checked: historyPanel.visible
+                normalColor: "transparent"
+                imageColor: JamiTheme.textColor
+                onClicked: {
+                    historyPanel.visible = !historyPanel.visible;
+                    if (!historyPanel.visible)
+                        historyPanel.clearPreview();
+                }
+            }
         }
 
-        ScrollView {
+        // Banner shown while reviewing a past version.
+        Rectangle {
+            Layout.fillWidth: true
+            Layout.preferredHeight: 30
+            visible: root.previewing
+            radius: 6
+            color: JamiTheme.secondaryBackgroundColor
+            border.width: 1
+            border.color: JamiTheme.buttonTintedBlue
+
+            RowLayout {
+                anchors.fill: parent
+                anchors.leftMargin: 8
+                anchors.rightMargin: 8
+                spacing: 8
+
+                Text {
+                    Layout.fillWidth: true
+                    text: qsTr("Viewing a past version — read only, without formatting")
+                    font.pointSize: JamiTheme.smallFontSize
+                    color: JamiTheme.textColor
+                    elide: Text.ElideRight
+                }
+                MaterialButton {
+                    secondary: true
+                    text: qsTr("Back to current")
+                    onClicked: historyPanel.clearPreview()
+                }
+            }
+        }
+
+        RowLayout {
             Layout.fillWidth: true
             Layout.fillHeight: true
-            clip: true
+            spacing: JamiTheme.preferredMarginSize
 
-            TextArea {
-                id: editor
+            // The live editor stays mounted and visible to Qt at all times: a
+            // TextArea whose text changes while it is hidden comes back with a
+            // stale render. The preview is laid over it instead.
+            Item {
+                Layout.fillWidth: true
+                Layout.fillHeight: true
 
-                padding: 10
-                textFormat: TextEdit.RichText
-                wrapMode: TextEdit.Wrap
-                selectByMouse: true
-                persistentSelection: true
-                focus: true
-                font.pointSize: root.baseFontSize
-                color: JamiTheme.textColor
-                placeholderText: qsTr("Start typing…")
-                background: Rectangle {
-                    color: JamiTheme.secondaryBackgroundColor
-                    border.width: 1
-                    border.color: JamiTheme.tabbarBorderColor
-                    radius: 8
-                }
+                ScrollView {
+                    anchors.fill: parent
+                    clip: true
 
-                onSelectionStartChanged: root.refreshFormatState()
-                onSelectionEndChanged: root.refreshFormatState()
-                onCursorPositionChanged: {
-                    root.refreshFormatState();
-                    cursorBroadcast.restart();
-                }
+                    TextArea {
+                        id: editor
 
-                // Intercept paste so it inserts sanitized plain text (rich
-                // clipboard styling would otherwise render only locally and diverge
-                // from what peers receive).
-                Keys.onPressed: function (event) {
-                    if (event.matches(StandardKey.Paste)) {
-                        richBinding.pasteText(editor.selectionStart, editor.selectionEnd);
-                        event.accepted = true;
-                    }
-                }
-
-                // Right-click opens the context menu (declared at window root to
-                // avoid nesting a Menu inside the TextArea/Flickable content).
-                TapHandler {
-                    acceptedButtons: Qt.RightButton
-                    onTapped: editorMenu.popup()
-                }
-
-                // Remote participants' carets, drawn over the text.
-                Repeater {
-                    model: remoteCursorsModel
-                    delegate: Item {
-                        property rect caret: {
-                            editor.text;
-                            editor.width;
-                            var p = Math.max(0, Math.min(position, editor.length));
-                            return editor.positionToRectangle(p);
+                        padding: 10
+                        // Keystrokes must not reach a document the user cannot see.
+                        readOnly: root.previewing
+                        textFormat: TextEdit.RichText
+                        wrapMode: TextEdit.Wrap
+                        selectByMouse: true
+                        persistentSelection: true
+                        focus: true
+                        font.pointSize: root.baseFontSize
+                        color: JamiTheme.textColor
+                        placeholderText: qsTr("Start typing…")
+                        background: Rectangle {
+                            color: JamiTheme.secondaryBackgroundColor
+                            border.width: 1
+                            border.color: JamiTheme.tabbarBorderColor
+                            radius: 8
                         }
-                        x: caret.x
-                        y: caret.y
-                        width: 2
-                        height: caret.height > 0 ? caret.height : editor.font.pixelSize
-                        Rectangle {
-                            anchors.fill: parent
-                            color: pColor
+
+                        onSelectionStartChanged: root.refreshFormatState()
+                        onSelectionEndChanged: root.refreshFormatState()
+                        onCursorPositionChanged: {
+                            root.refreshFormatState();
+                            cursorBroadcast.restart();
                         }
-                        Rectangle {
-                            anchors.bottom: parent.top
-                            anchors.left: parent.left
-                            width: flagText.implicitWidth + 6
-                            height: flagText.implicitHeight + 2
-                            radius: 3
-                            color: pColor
-                            Text {
-                                id: flagText
-                                anchors.centerIn: parent
-                                text: name !== "" ? name : qsTr("Someone")
-                                color: "white"
-                                font.pointSize: JamiTheme.tinyFontSize
+
+                        // Intercept paste so it inserts sanitized plain text (rich
+                        // clipboard styling would otherwise render only locally and diverge
+                        // from what peers receive).
+                        Keys.onPressed: function (event) {
+                            if (event.matches(StandardKey.Paste)) {
+                                richBinding.pasteText(editor.selectionStart, editor.selectionEnd);
+                                event.accepted = true;
+                            }
+                        }
+
+                        // Right-click opens the context menu (declared at window root to
+                        // avoid nesting a Menu inside the TextArea/Flickable content).
+                        TapHandler {
+                            acceptedButtons: Qt.RightButton
+                            onTapped: editorMenu.popup()
+                        }
+
+                        // Remote participants' carets, drawn over the text.
+                        Repeater {
+                            model: remoteCursorsModel
+                            delegate: Item {
+                                property rect caret: {
+                                    editor.text;
+                                    editor.width;
+                                    var p = Math.max(0, Math.min(position, editor.length));
+                                    return editor.positionToRectangle(p);
+                                }
+                                x: caret.x
+                                y: caret.y
+                                width: 2
+                                height: caret.height > 0 ? caret.height : editor.font.pixelSize
+                                Rectangle {
+                                    anchors.fill: parent
+                                    color: pColor
+                                }
+                                Rectangle {
+                                    anchors.bottom: parent.top
+                                    anchors.left: parent.left
+                                    width: flagText.implicitWidth + 6
+                                    height: flagText.implicitHeight + 2
+                                    radius: 3
+                                    color: pColor
+                                    Text {
+                                        id: flagText
+                                        anchors.centerIn: parent
+                                        text: name !== "" ? name : qsTr("Someone")
+                                        color: "white"
+                                        font.pointSize: JamiTheme.tinyFontSize
+                                    }
+                                }
                             }
                         }
                     }
+                }
+
+                // Read-only rendering of the selected past version, opaque so
+                // the editor underneath is neither seen nor reachable.
+                Rectangle {
+                    anchors.fill: parent
+                    visible: root.previewing
+                    color: JamiTheme.backgroundColor
+
+                    MouseArea {
+                        anchors.fill: parent
+                        acceptedButtons: Qt.AllButtons
+                        onWheel: function (wheel) {
+                            wheel.accepted = false;
+                        }
+                    }
+
+                    ScrollView {
+                        anchors.fill: parent
+                        clip: true
+
+                        TextArea {
+                            padding: 10
+                            readOnly: true
+                            // A checkpoint holds text, not markup: rendering it as
+                            // rich text would obey tags a peer wrote, down to
+                            // fetching an <img> from a URL of their choosing.
+                            textFormat: TextEdit.PlainText
+                            wrapMode: TextEdit.Wrap
+                            selectByMouse: true
+                            font.pointSize: root.baseFontSize
+                            color: JamiTheme.faddedFontColor
+                            text: root.previewText
+                            background: Rectangle {
+                                color: JamiTheme.secondaryBackgroundColor
+                                border.width: 1
+                                border.color: JamiTheme.tabbarBorderColor
+                                radius: 8
+                            }
+                        }
+                    }
+                }
+            }
+
+            CollabHistoryPanel {
+                id: historyPanel
+
+                Layout.preferredWidth: 220
+                Layout.fillHeight: true
+                visible: false
+                conversationId: root.conversationId
+                documentId: root.documentId
+
+                onPreviewRequested: function (commitId, text) {
+                    root.previewText = text;
+                    root.previewing = true;
+                }
+                onPreviewCleared: {
+                    root.previewing = false;
+                    root.previewText = "";
+                    root.focusEditor();
                 }
             }
         }
