@@ -16,6 +16,26 @@
 
 cmake_minimum_required(VERSION 3.19)
 
+# The daemon's contrib libraries are built with the macOS deployment target
+# pinned in contrib/src/main.mak. libc++ selects a different std::mutex
+# representation depending on that target, so building the client and jami-core
+# against a different one silently changes the layout of header-only contrib
+# types such as asio::detail::kqueue_reactor::descriptor_state. Align both sides
+# on the contrib target. This must happen before project().
+if(APPLE AND NOT CMAKE_OSX_DEPLOYMENT_TARGET)
+  set(CONTRIB_MAIN_MAK "${CMAKE_CURRENT_SOURCE_DIR}/daemon/contrib/src/main.mak")
+  if(EXISTS "${CONTRIB_MAIN_MAK}")
+    file(STRINGS "${CONTRIB_MAIN_MAK}" MIN_OSX_LINES REGEX "^MIN_OSX_VERSION[ \t]*=")
+    if(MIN_OSX_LINES)
+      list(GET MIN_OSX_LINES 0 MIN_OSX_LINE)
+      string(REGEX REPLACE "^MIN_OSX_VERSION[ \t]*=[ \t]*([0-9.]+).*$" "\\1"
+             CONTRIB_OSX_TARGET "${MIN_OSX_LINE}")
+      set(CMAKE_OSX_DEPLOYMENT_TARGET "${CONTRIB_OSX_TARGET}" CACHE STRING
+          "Minimum macOS version, kept in sync with the daemon contrib libraries" FORCE)
+    endif()
+  endif()
+endif()
+
 if(APPLE)
   project(Jami)
 else()

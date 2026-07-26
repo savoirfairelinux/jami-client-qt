@@ -149,6 +149,14 @@ setup_test(Qml_Tests
 setup_test(Unit_Tests
     "${UNIT_TESTS_SOURCE_FILES}" "")
 
+if(APPLE)
+    add_test(NAME MacOSDeploymentTarget_Test
+        COMMAND ${CMAKE_COMMAND}
+            -DCONTRIB_MAIN_MAK=${CMAKE_SOURCE_DIR}/daemon/contrib/src/main.mak
+            -DDEPLOYMENT_TARGET=${CMAKE_OSX_DEPLOYMENT_TARGET}
+            -P ${CMAKE_CURRENT_SOURCE_DIR}/cmake/check_macos_deployment_target.cmake)
+endif()
+
 # Use offscreen platform when no display is available (e.g. CI, SSH)
 set_tests_properties(Qml_Tests Unit_Tests PROPERTIES
     ENVIRONMENT "QT_QPA_PLATFORM=${JAMI_TEST_QPA_PLATFORM}")
