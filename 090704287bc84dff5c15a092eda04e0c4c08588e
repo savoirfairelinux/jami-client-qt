@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e945b314_577a3ae6",
+        "filename": "src/app/mainview/components/SmartListItemDelegate.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-07-27T21:35:20Z",
+      "side": 1,
+      "message": "[warning] Line 48: 🟡 The document update badge count is initialized once and then only refreshed when `onDocumentUpdateIndicatorChanged` fires for the current `UID`. If this delegate is rebound/reused for another conversation or if `UID` changes without that signal, the badge can show a stale count. Bind the property to `UID`/adapter state or explicitly refresh it when the delegate\u0027s conversation identity changes.",
+      "revId": "090704287bc84dff5c15a092eda04e0c4c08588e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cdce27ce_3cbc281c",
+        "filename": "src/core/messagelistmodel.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 554,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-07-27T21:35:20Z",
+      "side": 1,
+      "message": "[warning] Line 554: 🟡 `DocumentId` reads `commit[\"uri\"]` without checking presence, unlike `DocumentKind` below. If malformed or older collab-doc commits lack `uri`, QML may receive an empty id and attempt to open/update the wrong document state. Use `find()` and return an invalid/empty QVariant consistently, with the delegate handling the missing id explicitly.",
+      "revId": "090704287bc84dff5c15a092eda04e0c4c08588e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
