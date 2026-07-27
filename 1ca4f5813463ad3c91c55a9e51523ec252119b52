@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eab8106e_f2732fb9",
+        "filename": "extras/packaging/gnu-linux/docker/Dockerfile_ubuntu_24.04",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-07-27T21:34:51Z",
+      "side": 1,
+      "message": "[error] Line 21: 🔴 Installing `stable` through `curl | sh` makes the Linux packaging image non-reproducible: future rebuilds of the same Dockerfile can silently pick up a different Rust/Cargo version and produce different package results or new build failures. Pin the Rust toolchain to the minimum tested version required by `yffi` (for example `--default-toolchain 1.xx.x`) and update it deliberately when needed.",
+      "revId": "1ca4f5813463ad3c91c55a9e51523ec252119b52",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "11cc8a3c_737df0bd",
+        "filename": "extras/packaging/gnu-linux/docker/Dockerfile_ubuntu_24.04",
+        "patchSetId": 2
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-07-27T21:34:51Z",
+      "side": 1,
+      "message": "[error] Line 23: 🔴 `chmod -R a+rwX /usr/local/rustup /usr/local/cargo` makes the system Rust toolchain world-writable, so the unprivileged package build user or any build script can overwrite `cargo`/`rustc` for later build steps. The build user only needs to execute the installed toolchain; keep it read/execute-only (`chmod -R a+rX`) and, if Cargo needs a writable cache, point `CARGO_HOME` or build cache directories to a per-user writable location instead of making the toolchain mutable.",
+      "revId": "1ca4f5813463ad3c91c55a9e51523ec252119b52",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
