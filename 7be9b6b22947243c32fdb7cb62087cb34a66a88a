@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f4d3c576_25519573",
+        "filename": "src/app/mainview/components/CollabRichEditorWindow.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 559,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-07-27T21:35:08Z",
+      "side": 1,
+      "message": "[error] Line 559: 🔴 Link URLs are accepted and persisted without validation. Reject or normalize unsafe schemes before calling `richBinding.setLink` (for example allow only `https://`, `http://`, `mailto:` as appropriate), otherwise a peer can inject dangerous/local URLs such as `javascript:`, `file:`, or custom handlers into a shared document.",
+      "revId": "7be9b6b22947243c32fdb7cb62087cb34a66a88a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "16067646_b64d95eb",
+        "filename": "src/app/mainview/components/CollabRichEditorWindow.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 586,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-07-27T21:35:08Z",
+      "side": 1,
+      "message": "[error] Line 586: 🔴 The context-menu Delete action mutates `editor` directly instead of going through `CollabRichBinding`, so this deletion can remain local and diverge from peers/the CRDT stream. Route deletion through the same binding path used for collaborative edits, or remove the menu item until it emits a CRDT delta.",
+      "revId": "7be9b6b22947243c32fdb7cb62087cb34a66a88a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
