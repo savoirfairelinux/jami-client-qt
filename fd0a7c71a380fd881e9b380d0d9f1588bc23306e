@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c4769a5b_e6437513",
+        "filename": "src/app/utilsadapter.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-07-27T21:35:19Z",
+      "side": 1,
+      "message": "[error] Line 234: 🔴 `std::out_of_range` is used without showing an accompanying `\u003cstdexcept\u003e` include in this patch. Relying on transitive includes can break builds across platforms/toolchains, which is consistent with the non-format CI failures. Add `#include \u003cstdexcept\u003e` to this file.",
+      "revId": "fd0a7c71a380fd881e9b380d0d9f1588bc23306e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
