@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bed86c2d_ceb49bdd",
+        "filename": "src/app/commoncomponents/CollabDocMessageDelegate.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-07-27T21:35:08Z",
+      "side": 1,
+      "message": "[error] Line 115: 🔴 The delegate opens the editor even when `DocumentId` is empty. Unlike the list popup, this path does not guard against malformed/old interactions, so a click can call `openCollabEditor()` with an invalid document id. Add the same `docId \u003d\u003d\u003d \"\"` check before opening and surface/log the error consistently.",
+      "revId": "de39b4ca6b88345422189763528e3a3dc65511fa",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b3010fbd_a6e2b10c",
+        "filename": "src/app/mainview/components/MessageFormatBar.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-07-27T21:35:08Z",
+      "side": 1,
+      "message": "[warning] Line 44: 🟡 `documents(convContext.id)` is called synchronously from UI state updates and `onCountChanged`. If this queries/scans conversation history from the daemon, it can block or become expensive on large conversations. Prefer an adapter-provided cached/count property or a signal-driven document presence flag instead of rescanning from QML.",
+      "revId": "de39b4ca6b88345422189763528e3a3dc65511fa",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "26511722_3a489478",
+        "filename": "src/app/mainview/components/MessageFormatBar.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 536,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-07-27T21:35:08Z",
+      "side": 1,
+      "message": "[error] Line 536: 🔴 `convContext.id` is used without checking that `convContext` is non-null and initialized. The surrounding component already treats `convContext` as nullable in filters; opening the popup during conversation transitions can throw a QML TypeError. Disable/hide the action or guard the handler when `!convContext || convContext.id \u003d\u003d\u003d \"\"`.",
+      "revId": "de39b4ca6b88345422189763528e3a3dc65511fa",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
