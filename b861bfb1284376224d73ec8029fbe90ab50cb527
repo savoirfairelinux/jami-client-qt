@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "197a1b1b_b5747fc5",
+        "filename": "src/app/collaborativeadapter.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-07-27T21:35:20Z",
+      "side": 1,
+      "message": "[warning] Line 221: 🟡 The key format relies on account ids being fixed-width hex and on conversation ids never creating ambiguous concatenations. This is fragile for future id formats and hard to audit. Use a structured key, e.g. accountId + \u0027\\0\u0027 + convId or a small pair type/hash, so per-account unread state cannot collide by construction.",
+      "revId": "b861bfb1284376224d73ec8029fbe90ab50cb527",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "049e85ee_9845a284",
+        "filename": "src/app/collaborativeadapter.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-07-27T21:35:20Z",
+      "side": 1,
+      "message": "[warning] Line 257: 🟡 Updates received for a non-selected account are stored but never announced when the user later switches to that account, because documentUpdateIndicatorChanged is only emitted at mark/clear time for the current account. Please hook account-selection changes to emit/recompute affected conversation indicators for the newly selected account, otherwise unread collaborative document badges can remain hidden until another update occurs.",
+      "revId": "b861bfb1284376224d73ec8029fbe90ab50cb527",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
