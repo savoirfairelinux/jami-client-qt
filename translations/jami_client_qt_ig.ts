@@ -147,2713 +147,2718 @@
         <translation>Kwụsị oku</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="36"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="37"/>
         <source>Invitations</source>
         <translation>Akwụkwọ ịkpọ òkù</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="37"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="38"/>
         <source>Jami is a universal communication platform, with privacy as its foundation, that relies on a free distributed network for everyone.</source>
         <translation>Jami bụ usoro nkwukọrịta zuru ụwa ọnụ, na nzuzo dị ka ntọala ya, nke dabere na netwọkụ na-ekesa n&apos;efu maka mmadụ niile.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="38"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="39"/>
         <source>Migrating to the Swarm technology will enable synchronizing this conversation across multiple devices and improve reliability. The legacy conversation history will be cleared in the process.</source>
         <translation>Ịkwaga na teknụzụ Swarm ga-eme ka ọ dị mfe ịmekọrịta mkparịta ụka a n&apos;ofe ọtụtụ ngwaọrụ ma melite ntụkwasị obi. A ga-ehichapụ akụkọ ihe mere eme mkparịta ụka ochie na usoro ahụ.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="48"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="49"/>
         <source>Version</source>
         <translation>Version</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="44"/>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="902"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="45"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="903"/>
         <source>Jami daemon (jamid) reconnection is in progress. Please wait…</source>
         <translation>Njikọ ọzọ nke Jami daemon (jamid) na-aga n&apos;ihu. Biko chere…</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="40"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="33"/>
+        <source>Edits</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="41"/>
         <source>Open</source>
         <translation>Mepee</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="58"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="59"/>
         <source>Jami has recovered from a crash. Do you want to send a crash report to help fix the issue?</source>
         <translation>Jami agbakeghachila site na nkwụsị. Ị chọrọ izipu akụkọ nkwụsị iji nyere aka idozi nsogbu ahụ?</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="62"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="63"/>
         <source>Display QR code</source>
         <translation>Gosi koodu QR</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="63"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="64"/>
         <source>Open settings</source>
         <translation>Mbido oghere</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="64"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="65"/>
         <source>Close settings</source>
         <translation>Ntọala imechi</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="69"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="70"/>
         <source>Add to conference</source>
         <translation>Tinye na ogbako</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="70"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="71"/>
         <source>Add to conversation</source>
         <translation>Tinye ya ná mkparịta ụka</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="71"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="72"/>
         <source>Transfer this call</source>
         <translation>Nyefee oku a</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="72"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="73"/>
         <source>Transfer to</source>
         <translation>Nyefe na</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="73"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="74"/>
         <source>Select contacts</source>
         <translation>Họrọ kọntaktị</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="77"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="78"/>
         <source>Please wait…</source>
         <translation>Biko chere...</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="78"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="79"/>
         <source>Scan QR code</source>
         <translation>Nyochaa koodu QR</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="80"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="81"/>
         <source>Authenticating device</source>
         <translation>Na-akwado ngwaọrụ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="81"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="82"/>
         <source>Transferring account…</source>
         <translation>Na-ebufe akaụntụ…</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="83"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="84"/>
         <source>Confirm</source>
         <translation>Kwado</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="84"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="85"/>
         <source>Try again</source>
         <translation>Gbalịa ọzọ.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="86"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="87"/>
         <source>Import from another account</source>
         <translation>Bubata site na akaụntụ ọzọ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="87"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="88"/>
         <source>Connect to account</source>
         <translation>Jikọọ na akaụntụ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="91"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="92"/>
         <source>Authentication required</source>
         <translation>A chọrọ nkwenye</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="94"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="95"/>
         <source>Authenticate</source>
         <translation>Gosi na ọ bụ eziokwu</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="95"/>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="566"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="96"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="567"/>
         <source>Delete account</source>
         <translation>Ihichapụ akaụntụ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="96"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="97"/>
         <source>In progress…</source>
         <translation>N&apos;ime usoro...</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="98"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="99"/>
         <source>Password</source>
         <translation>Paswọdu</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="99"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="100"/>
         <source>Username</source>
         <translation>Aha njirimara</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="100"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="101"/>
         <source>Alias</source>
         <translation>Ndị a na-akpọ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="103"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="104"/>
         <source>Allow incoming calls from unknown contacts</source>
         <translation>Kwe ka oku na-abata site na kọntaktị ndị a na-amaghị</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="106"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="107"/>
         <source>Enable custom ringtone</source>
         <translation>Gbaa ụdaolu omenala</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="107"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="108"/>
         <source>Select custom ringtone</source>
         <translation>Họrọ omenala ringtone</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="111"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="112"/>
         <source>Push-to-talk</source>
         <translation>Pịa-ekwu</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="112"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="113"/>
         <source>Enable push-to-talk</source>
         <translation>Gbanye pịa-ekwu</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="113"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="114"/>
         <source>Keyboard shortcut</source>
         <translation>Ụzọ mkpirisi kibọọdụ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="114"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="115"/>
         <source>Change keyboard shortcut</source>
         <translation>Gbanwee ụzọ mkpirisi kibọọdụ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="119"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="120"/>
         <source>Change shortcut</source>
         <translation>Gbanwee ụzọ mkpirisi</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="120"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="121"/>
         <source>Press the key to be assigned to push-to-talk shortcut</source>
         <translation>Pịa mkpịsị a ga-enye ụzọ mkpirisi pịa-ekwu</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="121"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="122"/>
         <source>Assign</source>
         <translation>Nyefee</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="124"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="125"/>
         <source>Voicemail</source>
         <translation>Ozi olu</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="125"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="126"/>
         <source>Voicemail dial code</source>
         <translation>Koodu oku olu</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="128"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="129"/>
         <source>Security</source>
         <translation>Nchebe</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="129"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="130"/>
         <source>Enable SDES key exchange</source>
         <translation>Mee ka SDES igodo mgbanwe</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="130"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="131"/>
         <source>Encrypt negotiation (TLS)</source>
         <translation>Nkwurịta okwu nzuzo (TLS)</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="131"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="132"/>
         <source>CA certificate</source>
         <translation>Akwụkwọ ikike ikike</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="132"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="133"/>
         <source>User certificate</source>
         <translation>Akwụkwọ onye ọrụ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="133"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="134"/>
         <source>Private key</source>
         <translation>Isi ihe nzuzo</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="134"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="135"/>
         <source>Private key password</source>
         <translation>Paswọdu isi nzuzo</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="135"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="136"/>
         <source>Verify certificates for incoming TLS connections</source>
         <translation>Nyochaa asambodo maka njikọ TLS na-abata</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="136"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="137"/>
         <source>Verify server TLS certificates</source>
         <translation>Nyochaa akwụkwọ TLS nke ihe nkesa</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="137"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="138"/>
         <source>Require certificate for incoming TLS connections</source>
         <translation>Chọrọ asambodo maka njikọ TLS na-abata</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="146"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="147"/>
         <source>Connectivity</source>
         <translation>Njikọ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="147"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="148"/>
         <source>Auto Registration After Expired</source>
         <translation>Ịdebanye aha na-akpaghị aka mgbe ọ gwụchara</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="148"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="149"/>
         <source>Registration expiration time (seconds)</source>
         <translation>Oge ngwụcha ndebanye aha (sekọnd)</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="149"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="150"/>
         <source>Network interface</source>
         <translation>Ntanetị netwọk</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="150"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="151"/>
         <source>Use UPnP</source>
         <translation>Jiri UPnP</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="151"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="152"/>
         <source>Use TURN</source>
         <translation>Jiri TURN</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="152"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="153"/>
         <source>TURN address</source>
         <translation>Adreesị TURN</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="153"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="154"/>
         <source>TURN username</source>
         <translation>Aha njirimara TURN</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="154"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="155"/>
         <source>TURN password</source>
         <translation>Paswọdu TURN</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="156"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="157"/>
         <source>Use STUN</source>
         <translation>Jiri STUN</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="157"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="158"/>
         <source>STUN address</source>
         <translation>Adreesị STUN</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="160"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="161"/>
         <source>Allow IP Auto Rewrite</source>
         <translation>Hapụ Auto Rewrite IP</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="161"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="162"/>
         <source>Public address</source>
         <translation>Okwu ihu ọha</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="162"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="163"/>
         <source>Use custom address and port</source>
         <translation>Jiri adreesị omenala na ọdụ ụgbọ mmiri</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="163"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="164"/>
         <source>Address</source>
         <translation>Adreesị</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="164"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="165"/>
         <source>Port</source>
         <translation>Port</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="167"/>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="206"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="168"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="207"/>
         <source>Media</source>
         <translation>Ndị mgbasa ozi</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="168"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="169"/>
         <source>Enable video</source>
         <translation>Gbaa vidiyo</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="176"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="177"/>
         <source>SDP Session Negotiation (ICE Fallback)</source>
         <translation>Nkwurịta Okwu Oge SDP (ICE Fallback)</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="177"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="178"/>
         <source>Only used during negotiation in case ICE is not supported</source>
         <translation>Naanị eji n&apos;oge mkparịta ụka ma ọ bụrụ na anaghị akwado ICE</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="178"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="179"/>
         <source>Audio RTP minimum Port</source>
         <translation>Audio RTP kacha nta Port</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="179"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="180"/>
         <source>Audio RTP maximum Port</source>
         <translation>Audio RTP kacha Port</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="180"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="181"/>
         <source>Video RTP minimum Port</source>
         <translation>Video RTP kacha nta Port</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="181"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="182"/>
         <source>Video RTP maximum port</source>
         <translation>Video RTP kacha ọdụ ụgbọ mmiri</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="184"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="185"/>
         <source>Current DHT port used</source>
         <translation>Ọdụ DHT a na-eji ugbu a</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="185"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="186"/>
         <source>Enable local peer discovery</source>
         <translation>Mee ka nchọpụta ndị ọgbọ dị n&apos;ógbè ahụ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="186"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="187"/>
         <source>Connect to other DHT nodes advertising on your local network.</source>
         <translation>Jikọọ na ndị ọzọ DHT ọnụ mgbasa ozi na gị na mpaghara netwọk.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="188"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="189"/>
         <source>Enable proxy</source>
         <translation>Gbaa proxy</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="189"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="190"/>
         <source>Proxy address</source>
         <translation>Adreesị nnọchiteanya</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="190"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="191"/>
         <source>Proxy list URL</source>
         <translation>URL ndepụta proksi</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="191"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="192"/>
         <source>Bootstrap</source>
         <translation>Akpụkpọ ụkwụ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="192"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="193"/>
         <source>Using proxy:</source>
         <translation>Na-eji proksi:</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="193"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="194"/>
         <source>Proxy disabled</source>
         <translation>Agbanyụrụ proksi</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="196"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="197"/>
         <source>Back</source>
         <translation>Ịlaghachi azụ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="197"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="198"/>
         <source>Account</source>
         <translation>Ihe ndekọ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="198"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="199"/>
         <source>General</source>
         <translation>General</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="199"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="200"/>
         <source>Extensions</source>
         <translation>Ndọtị</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="209"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="210"/>
         <source>App access</source>
         <translation>Ohere ngwa</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="210"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="211"/>
         <source>Manage how external applications, bots, or scripts can access this account through the local API.</source>
         <translation>Jikwaa otú ngwa mpụga, bọtụ, ma ọ bụ eskrip si enweta ohere na akaụntụ a site na API mpaghara.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="211"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="212"/>
         <source>Enable server</source>
         <translation>Gbanye sava</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="212"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="213"/>
         <source>Local API server disabled</source>
         <translation>Agbanyụrụ sava API mpaghara</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="213"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="214"/>
         <source>The local API server is disabled in application settings. Enable it to generate and manage API tokens for this account.</source>
         <translation>Agbanyụrụ sava API mpaghara na ntọala ngwa. Gbanye ya iji mepụta ma jikwaa tokin API maka akaụntụ a.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="214"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="215"/>
         <source>Token label (e.g. my-bot)</source>
         <translation>Lebụlụ tokin (dịka my-bot)</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="215"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="216"/>
         <source>Generate token</source>
         <translation>Mepụta tokin</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="216"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="217"/>
         <source>Active tokens</source>
         <translation>Tokin na-arụ ọrụ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="217"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="218"/>
         <source>No API tokens configured for this account.</source>
         <translation>Enweghị tokin API ahaziri maka akaụntụ a.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="218"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="219"/>
         <source>Created %1</source>
         <translation>Emepụtara %1</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="219"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="220"/>
         <source>Expires %1</source>
         <translation>Na-agwụ %1</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="220"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="221"/>
         <source>API token created</source>
         <translation>Emepụtala tokin API</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="221"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="222"/>
         <source>Copy this token now. It will not be shown again.</source>
         <translation>Detuo tokin a ugbu a. A gaghị egosi ya ọzọ.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="222"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="223"/>
         <source>This token grants access to your account. Keep it secret.</source>
         <translation>Tokin a na-enye ohere na akaụntụ gị. Zoo ya nzuzo.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="223"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="224"/>
         <source>Bot Accounts</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="224"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="225"/>
         <source>Create Bot</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="225"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="226"/>
         <source>How do bots work?</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="226"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="227"/>
         <source>No bots configured for this account.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="227"/>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1159"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="228"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1160"/>
         <source>Online</source>
         <translation>N&apos;ịntanetị</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="228"/>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1160"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="229"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1161"/>
         <source>Offline</source>
         <translation>Na-anọghị n&apos;ịntanetị</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="229"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="230"/>
         <source>Copy URI</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="230"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="231"/>
         <source>Share bot</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="231"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="232"/>
         <source>Send bot to contact</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="232"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="233"/>
         <source>Add **%1** on Jami!
  Account ID: ```%2```</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="235"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="236"/>
         <source>Create new bot</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="236"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="237"/>
         <source>Bot Name (as seen by others)</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="237"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="238"/>
         <source>This is the only time you will see the token. Keep it a secret and take note of it somewhere!</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="240"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="241"/>
         <source>About Bot Accounts</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="241"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="242"/>
         <source>A bot account is a regular Jami account with additional properties.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="242"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="243"/>
         <source>A bot account is designed to be controlled by external applications or scripts. It will have an API token associated with it once created.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="243"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="244"/>
         <source>A bot account includes profile markers indicating that it is a bot and the account controlling it.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="246"/>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="248"/>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="291"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="247"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="249"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="292"/>
         <source>Shared services</source>
         <translation>Ọrụ e kekọrọ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="247"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="248"/>
         <source>Expose local TCP services or a local folder over Jami so trusted contacts can reach them as if they were running on their own machine.</source>
         <translation>Gosipụta ọrụ TCP mpaghara ma ọ bụ folda mpaghara site na Jami ka kọntaktị a tụkwasịrị obi nwee ike iru ha dịka à ga-asị na ha na-agba n&apos;igwe nke ha.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="249"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="250"/>
         <source>No services are shared yet.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="250"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="251"/>
         <source>Name</source>
         <translation>Aha</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="251"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="252"/>
         <source>e.g. webhook, ssh, syncthing</source>
         <translation>dịka webhook, ssh, syncthing</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="252"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="253"/>
         <source>Description (optional)</source>
         <translation>Nkọwa (nhọrọ)</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="253"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="254"/>
         <source>Type</source>
         <translation>Ụdị</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="254"/>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="262"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="255"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="263"/>
         <source>Custom</source>
         <translation>Ahaziri ahazi</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="255"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="256"/>
         <source>Web server (embedded)</source>
         <translation>Sava weebụ (etinyere)</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="256"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="257"/>
         <source>Directory</source>
         <translation>Ndekọ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="257"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="258"/>
         <source>Choose directory</source>
         <translation>Họrọ ndekọ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="258"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="259"/>
         <source>Local host</source>
         <translation>Ọbịa mpaghara</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="259"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="260"/>
         <source>Local port</source>
         <translation>Ọdụ mpaghara</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="260"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="261"/>
         <source>URI scheme</source>
         <translation>Atụmatụ URI</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="261"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="262"/>
         <source>Raw TCP</source>
         <translation>TCP raw</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="263"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="264"/>
         <source>URI scheme (optional)</source>
         <translation>Atụmatụ URI (nhọrọ)</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="264"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="265"/>
         <source>Accessible by</source>
         <translation>Onye nwere ike ịnweta</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="265"/>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="277"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="266"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="278"/>
         <source>Contacts</source>
         <translation>Ndị a na-akpọtụrụ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="266"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="267"/>
         <source>Anyone (public)</source>
         <translation>Onye ọ bụla (ọha)</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="267"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="268"/>
         <source>Specific contacts only</source>
         <translation>Naanị kọntaktị akọwapụtara</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="268"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="269"/>
         <source>Allowed contact URIs (comma-separated)</source>
         <translation>URI kọntaktị e kwere (e ji rịkọm kewaa)</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="269"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="270"/>
         <source>Enabled</source>
         <translation>Agbanyere</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="271"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="272"/>
         <source>Local endpoint: %1</source>
         <translation>Njedebe mpaghara: %1</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="272"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="273"/>
         <source>Directory: %1</source>
         <translation>Ndekọ: %1</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="273"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="274"/>
         <source>Disabled</source>
         <translation>Ndị nwere nkwarụ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="274"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="275"/>
         <source>Open %1</source>
         <translation>Mepee %1</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="275"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="276"/>
         <source>Copy %1</source>
         <translation>Detuo %1</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="276"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="277"/>
         <source>Public</source>
         <translation>Ọha</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="278"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="279"/>
         <source>Specific</source>
         <translation>Akọwapụtara</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="279"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="280"/>
         <source>Are you sure you want to delete this shared service?</source>
         <translation>Ị ji n&apos;aka na ị chọrọ ihichapụ ọrụ a e kekọrọ?</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="280"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="281"/>
         <source>Add website</source>
         <translation>Tinye weebụsaịtị</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="281"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="282"/>
         <source>Custom service</source>
         <translation>Ọrụ ahaziri ahazi</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="282"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="283"/>
         <source>What&apos;s this?</source>
         <translation>Gịnị bụ nke a?</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="283"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="284"/>
         <source>Enter the URI scheme to use when accessing the service (e.g. http, https, etc…)</source>
         <translation>Tinye atụmatụ URI iji mee ihe mgbe ị na-enweta ọrụ ahụ (dịka http, https, wdg…)</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="285"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="286"/>
         <source>Disconnect</source>
         <translation>Kwụsị njikọ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="286"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="287"/>
         <source>Open in external browser</source>
         <translation>Mepee na ihe nchọgharị mpụga</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="287"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="288"/>
         <source>Device unavailable</source>
         <translation>Ngwaọrụ adịghị</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="288"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="289"/>
         <source>Connection failed</source>
         <translation>Njikọ dara</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="292"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="293"/>
         <source>This contact does not expose any service to you.</source>
         <translation>Kọntaktị a anaghị egosi gị ọrụ ọ bụla.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="293"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="294"/>
         <source>No devices found for this contact. They may be offline.</source>
         <translation>Achọtaghị ngwaọrụ ọ bụla maka kọntaktị a. Ha nwere ike ịnọ na-anọghị n&apos;ịntanetị.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="294"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="295"/>
         <source>Could not reach any of this contact&apos;s devices.</source>
         <translation>Enweghị ike iru ngwaọrụ ọ bụla nke kọntaktị a.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="295"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="296"/>
         <source>This contact&apos;s device did not respond in time.</source>
         <translation>Ngwaọrụ kọntaktị a azaghị n&apos;oge.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="296"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="297"/>
         <source>Service discovery is unavailable on this account.</source>
         <translation>Nchọpụta ọrụ adịghị na akaụntụ a.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="297"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="298"/>
         <source>Refresh</source>
         <translation>Mee ọhụrụ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="298"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="299"/>
         <source>Open local tunnel</source>
         <translation>Mepee ọwara mpaghara</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="299"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="300"/>
         <source>Stop</source>
         <translation>Kwụsị</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="300"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="301"/>
         <source>Reachable at %1</source>
         <translation>Enwere ike iru na %1</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="303"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="304"/>
         <source>Audio</source>
         <translation>Ihe a na-anụ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="304"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="305"/>
         <source>Notifications</source>
         <translation>Ọkwa</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="305"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="306"/>
         <source>Application</source>
         <translation>Ngwa</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="306"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="307"/>
         <source>Language</source>
         <translation>Asụsụ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="307"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="308"/>
         <source>Devices</source>
         <translation>Ngwaọrụ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="308"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="309"/>
         <source>Microphone</source>
         <translation>Igwe okwu</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="309"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="310"/>
         <source>Select audio input device</source>
         <translation>Họrọ ngwaọrụ ntinye ọdịyo</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="310"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="311"/>
         <source>Output device</source>
         <translation>Ngwaọrụ mmepụta</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="311"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="312"/>
         <source>Select audio output device</source>
         <translation>Họrọ ngwaọrụ mmepụta ọdịyo</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="312"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="313"/>
         <source>Ringtone device</source>
         <translation>Ihe eji eme ka ụdaolu dị</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="313"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="314"/>
         <source>Select ringtone output device</source>
         <translation>Họrọ ringtone mmepụta ngwaọrụ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="314"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="315"/>
         <source>Audio manager</source>
         <translation>Onye njikwa ọdịyo</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="316"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="317"/>
         <source>Noise reduction</source>
         <translation>Mbelata mkpọtụ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="317"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="318"/>
         <source>Echo suppression</source>
         <translation>Mkpụchi mkpọghachi olu</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="318"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="319"/>
         <source>Voice activity detection</source>
         <translation>Nchọpụta mmega olu</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="321"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="322"/>
         <source>Video</source>
         <translation>Vidio</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="322"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="323"/>
         <source>Select video device</source>
         <translation>Họrọ ngwaọrụ vidiyo</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="323"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="324"/>
         <source>Device</source>
         <translation>Ngwaọrụ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="324"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="325"/>
         <source>Resolution</source>
         <translation>Mkpebi</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="325"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="326"/>
         <source>Select video resolution</source>
         <translation>Họrọ mkpebi vidiyo</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="326"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="327"/>
         <source>Frames per second</source>
         <translation>Ihe osise kwa nke abụọ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="327"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="328"/>
         <source>Select video frame rate (frames per second)</source>
         <translation>Họrọ video etiti ọsọ (okirikiri kwa nke abụọ)</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="329"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="330"/>
         <source>Conference resolution</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="330"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="331"/>
         <source>Group calls and conferences</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="333"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="334"/>
         <source>Select screen sharing frame rate (frames per second)</source>
         <translation>Họrọ ihuenyo nkekọrịta ọnụego (frame kwa nke abụọ)</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="339"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="340"/>
         <source>Back up account here</source>
         <translation>Ndabere akaụntụ ebe a</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="340"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="341"/>
         <source>Back up account</source>
         <translation>Nkwụnye ego</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="351"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="352"/>
         <source>%1 is recording</source>
         <translation>%1 na-edekọ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="352"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="353"/>
         <source>%1 are recording</source>
         <translation>%1 na-edekọ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="392"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="393"/>
         <source>Delete conversation</source>
         <translation>Hichapụ nkata</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="418"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="419"/>
         <source>Share audio</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="420"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="421"/>
         <source>Sharing options</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="424"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="425"/>
         <source>Unavailable</source>
         <translation>Enweghị ike ịchọta ya</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="446"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="447"/>
         <source>Call error</source>
         <translation>Njehie oku</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="447"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="448"/>
         <source>An error occured during the call. %1</source>
         <translation>Njehie mere n&apos;oge oku ahụ. %1</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="448"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="449"/>
         <source>The request was invalid or malformed.</source>
         <translation>Arịrịọ ahụ ezighi ezi ma ọ bụ emebiri emebi.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="449"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="450"/>
         <source>Authentication is required to complete this call.</source>
         <translation>Achọrọ nkwado iji mezue oku a.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="450"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="451"/>
         <source>You don&apos;t have permission to make this call.</source>
         <translation>Ị nweghị ikike ịkpọ oku a.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="451"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="452"/>
         <source>Proxy authentication credentials are required.</source>
         <translation>Achọrọ nzere nkwado proksi.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="452"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="453"/>
         <source>Please ensure that both you and your contact have a common codec enabled.</source>
         <translation>Biko hụ na gị na kọntaktị gị agbanyela otu kodek.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="453"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="454"/>
         <source>How do I change my codecs?</source>
         <translation>Olee otú m ga-esi gbanwee kodek m?</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="454"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="455"/>
         <source>&lt;br&gt;&lt;b&gt;Settings &gt; Account &gt; Advanced settings &gt; Video Codecs / Audio Codecs.&lt;/b&gt;</source>
         <translation>&lt;br&gt;&lt;b&gt;Ntọala &gt; Akaụntụ &gt; Ntọala dị elu &gt; Kodek Vidiyo / Kodek Ọdiyo.&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="462"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="463"/>
         <source>Turn off sharing</source>
         <translation>Gbanyụọ ịkekọrịta</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="463"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="464"/>
         <source>Stop location sharing in this conversation (%1)</source>
         <translation>Kwụsị ịkekọrịta ọnọdụ na mkparịta ụka a (%1)</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="484"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="485"/>
         <source>Confirm Navigation</source>
         <translation>Kwado Njegharị</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="485"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="486"/>
         <source>You are about to navigate to an external link. Do you want to proceed?</source>
         <translation>Ị na-achọ ịga na njikọ mpụga. Ị chọrọ ịga n&apos;ihu?</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="486"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="487"/>
         <source>Open external link?</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="489"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="490"/>
         <source>Hide chat</source>
         <translation>Zọpụtanụ mkparịta ụka</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="498"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="499"/>
         <source>Open in new window</source>
         <translation>Mepee na windo ọhụrụ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="527"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="528"/>
         <source>You can choose a username to help others more easily find and reach you on Jami.</source>
         <translation>Ị nwere ike ịhọrọ aha njirimara iji nyere ndị ọzọ aka ịchọta gị na Jami.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="544"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="545"/>
         <source>Your account will be created and stored locally.</source>
         <translation>A ga-ekepụta akaụntụ gị ma chekwaa ya n&apos;ógbè gị.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="545"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="546"/>
         <source>Choosing a username is recommended, and a chosen username CANNOT be changed later.</source>
         <translation>A na-atụ aro ịhọrọ aha njirimara, a PỤRỤGHỊ ịgbanwe aha njirimara a họọrọ mgbe e mesịrị.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="556"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="557"/>
         <source>TLS</source>
         <translation>TLS</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="557"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="558"/>
         <source>UDP</source>
         <translation>UDP</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="590"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="591"/>
         <source>Please note that if you lose your password, it CANNOT be recovered!</source>
         <translation>Biko mara na ọ bụrụ na ị hapụ paswọọdụ gị, a PỤRỤGHỊ iweghachite ya!</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="629"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="630"/>
         <source>Dark</source>
         <translation>Ọchịchịrị</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="630"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="631"/>
         <source>Light</source>
         <translation>Ìhè</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="635"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="636"/>
         <source>Use native window frame (requires restart)</source>
         <translation>Jiri etiti windo nke sistem (chọrọ ịmaliteghachi)</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="639"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="640"/>
         <source>Include local video in recording</source>
         <translation>Gụnye vidio dị n&apos;ógbè ahụ n&apos;ime ndekọ ahụ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="640"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="641"/>
         <source>Default settings</source>
         <translation>Ntọala ndabara</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="641"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="642"/>
         <source>Enable local API server</source>
         <translation>Gbanye sava API mpaghara</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="642"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="643"/>
         <source>Start a local HTTP server that external applications can use to interact with Jami</source>
         <translation>Malite sava HTTP mpaghara nke ngwa mpụga nwere ike iji soro Jami mkparịta</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="643"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="644"/>
         <source>Local API server</source>
         <translation>Sava API mpaghara</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="644"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="645"/>
         <source>API access is managed per account</source>
         <translation>A na-ejikwa ohere API maka akaụntụ ọ bụla</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="645"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="646"/>
         <source>Configure the local server here, then open App access in the current account settings to create and revoke tokens.</source>
         <translation>Hazie sava mpaghara ebe a, wee mepee Ohere ngwa na ntọala akaụntụ ugbu a iji mepụta ma kagbuo tokin.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="646"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="647"/>
         <source>Open App access</source>
         <translation>Mepee Ohere ngwa</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="647"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="648"/>
         <source>Server port</source>
         <translation>Ọdụ sava</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="648"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="649"/>
         <source>Server running on port %1</source>
         <translation>Sava na-arụ ọrụ na ọdụ %1</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="649"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="650"/>
         <source>Server stopped</source>
         <translation>Akwụsịla sava</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="678"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="679"/>
         <source>Delete file from device</source>
         <translation>Hichapụ faịlụ site na ngwaọrụ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="686"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="687"/>
         <source>A new version of the Jami application is available. Do you want to update now? To continue, click Update.</source>
         <translation>Ụdị ọhụrụ nke ngwa Jami dị. Ị chọrọ imelite ugbu a? Iji gaa n&apos;ihu, pịa Melite.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="687"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="688"/>
         <source>The application is up to date.</source>
         <translation>Ngwa ahụ adịla ọhụrụ.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="688"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="689"/>
         <source>An error occurred while checking for updates.</source>
         <translation>Njehie mere mgbe a na-elele mmelite.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="689"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="690"/>
         <source>A network error occurred while checking for updates.</source>
         <translation>Njehie netwọk mere mgbe a na-elele mmelite.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="745"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="746"/>
         <source>Enter account password</source>
         <translation>Tinye paswọọdụ akaụntụ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="748"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="749"/>
         <source>Link new device</source>
         <translation>Jikọọ ngwaọrụ ọhụrụ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="754"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="755"/>
         <source>The account was imported successfully.</source>
         <translation>E bubatara akaụntụ ahụ nke ọma.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="759"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="760"/>
         <source>No video available, please check your devices.</source>
         <translation>Enweghị vidiyo dị, biko lelee ngwaọrụ gị.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="762"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="763"/>
         <source>Enter password</source>
         <translation>Tinye paswọọdụ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="764"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="765"/>
         <source>Enter account password to confirm the removal of this device</source>
         <translation>Tinye paswọọdụ akaụntụ iji kwado mwepụ ngwaọrụ a</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="789"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="790"/>
         <source>There are no extensions for the platform to display in the Jami Extension Store. Please try again later.</source>
         <translation>Enweghị ndọtị maka usoroihe iji gosi na Ụlọ Ahịa Ndọtị Jami. Biko nwaa ọzọ ma emechaa.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="911"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="912"/>
         <source>Discard and restart</source>
         <translation>Tụfuo ma maliteghachi</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="913"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="914"/>
         <source>Show less</source>
         <translation>Gosi ihe na-erughị</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="915"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="916"/>
         <source>Show preview</source>
         <translation>Gosi nlele</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="916"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="917"/>
         <source>Continue editing</source>
         <translation>Gaa n&apos;ihu na-edezi</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="919"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="920"/>
         <source>Strikethrough</source>
         <translation>Kèakàgbùrùnù</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="925"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="926"/>
         <source>Unordered list</source>
         <translation>Ndepụta edeghị aha</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="926"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="927"/>
         <source>Ordered list</source>
         <translation>Ndepụta ahaziri</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="942"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="943"/>
         <source>Show original</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="943"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="944"/>
         <source>Show modified</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="944"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="945"/>
         <source>Modified by extension</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="948"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="949"/>
         <source>Call started</source>
         <translation>Oku amalitela</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="952"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="953"/>
         <source>Select this device</source>
         <translation>Họrọ ngwaọrụ a</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="953"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="954"/>
         <source>Select device</source>
         <translation>Họrọ ngwaọrụ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="958"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="959"/>
         <source>Show local video</source>
         <translation>Gosi vidiyo mpaghara</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="959"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="960"/>
         <source>Hide local video</source>
         <translation>Zoo vidiyo mpaghara</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1014"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1015"/>
         <source>Copy fingerprint</source>
         <translation>Detuo akara mkpịsịaka</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1015"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1016"/>
         <source>Copy username</source>
         <translation>Detuo aha njirimara</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1026"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1027"/>
         <source>Appearance</source>
         <translation>Otú Ọ Dị</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1043"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1044"/>
         <source>Background image</source>
         <translation>Foto dị n&apos;azụ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1044"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1045"/>
         <source>Select background image</source>
         <translation>Họrọ onyonyo ndabere</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1045"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1046"/>
         <source>Default</source>
         <translation>Eburupụta</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1050"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1051"/>
         <source>Free and private sharing. &lt;a href=&quot;https://jami.net/donate/&quot;&gt;Donate&lt;/a&gt; to expand it.</source>
         <translation>Nkesa efu na nke nzuzo. &lt;a href=&quot;https://jami.net/donate/&quot;&gt;Nye onyinye&lt;/a&gt; iji gbasaa ya.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1051"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1052"/>
         <source>Donate</source>
         <translation>Nye onyinye</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1053"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1054"/>
         <source>Not now</source>
         <translation>Ọbụghị ugbu a</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1054"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1055"/>
         <source>Enable donation campaign</source>
         <translation>Gbanye mgbasa onyinye</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1057"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1058"/>
         <source>Enter</source>
         <translation>Enter</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1058"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1059"/>
         <source>Shift+Enter</source>
         <translation>Shift+Enter</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1072"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1073"/>
         <source>Remote: %1</source>
         <translation>Dịpụrụ adịpụ: %1</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1073"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1074"/>
         <source>View</source>
         <translation>Lee</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1074"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1075"/>
         <source>Swarm connectivity</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1075"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1076"/>
         <source>Connection Time</source>
         <translation>Oge njikọ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1076"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1077"/>
         <source>Searched contact</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1077"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1078"/>
         <source>No channels</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1080"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1081"/>
         <source>Check spelling while typing</source>
         <translation>Lelee nsụpe mgbe ị na-apịnye</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1082"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1083"/>
         <source>Text language</source>
         <translation>Asụsụ ederede</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1126"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1127"/>
         <source>Use arrows to switch between available accounts</source>
         <translation>Jiri akụ iji gbanwee n&apos;etiti akaụntụ dị</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1151"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1152"/>
         <source>Conversation list</source>
         <translation>Ndepụta nkata</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1152"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1153"/>
         <source>Use arrow keys to navigate through conversations.</source>
         <translation>Jiri mkpịsị akụ iji gagharịa na nkata.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1153"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1154"/>
         <source>%L1 unread message.</source>
         <translation>Ozi %L1 a na-agụghị agụ.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1154"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1155"/>
         <source>%L1 unread messages.</source>
         <translation>Ozi %L1 a na-agụghị agụ.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1155"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1156"/>
         <source>Last message was %1.</source>
         <translation>Ozi ikpeazụ bụ %1.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1156"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1157"/>
         <source>Message body %1.</source>
         <translation>Ahụ ozi %1.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1157"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1158"/>
         <source>Search for a conversation or a contact</source>
         <translation>Chọọ nkata ma ọ bụ kọntaktị</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1158"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1159"/>
         <source>Status %1</source>
         <translation>Ọnọdụ %1</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1161"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1162"/>
         <source>At least one person is online</source>
         <translation>Opekata mpe otu onye nọ n&apos;ịntanetị</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1162"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1163"/>
         <source>Everyone is offline</source>
         <translation>Onye ọ bụla anọghị n&apos;ịntanetị</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1163"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1164"/>
         <source>You and %1 are sharing locations with each other</source>
         <translation>Gị na %1 na-ekekọrịta ọnọdụ ibe unu</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1164"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1165"/>
         <source>%1 is currently sharing their location</source>
         <translation>%1 na-ekekọ ọnọdụ ya ugbu a</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1165"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1166"/>
         <source>You are sharing your location to %1</source>
         <translation>Ị na-ekekọrọ %1 ọnọdụ gị</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1166"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1167"/>
         <source>Choose a profile picture</source>
         <translation>Họrọ foto profaịlụ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1060"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1061"/>
         <source>Text formatting</source>
         <translation>Nhazi ederede</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="430"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="431"/>
         <source>%1 saved to %2</source>
         <translation>E chekwara %1 na %2</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="436"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="437"/>
         <source>Call ID</source>
         <translation>ID oku</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="442"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="443"/>
         <source>Renderer ID</source>
         <translation>ID nrenda</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="495"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="496"/>
         <source>%1 has deleted the message.</source>
         <translation>%1 ehichapụla ozi ahụ.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="496"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="497"/>
         <source>%1 has deleted the media.</source>
         <translation>%1 ehichapụla mịdia ahụ.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="516"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="517"/>
         <source>Enter the management server URL</source>
         <translation>Tinye URL sava njikwa</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="517"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="518"/>
         <source>Management server URL</source>
         <translation>URL sava njikwa</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="518"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="519"/>
         <source>Enter management server credentials</source>
         <translation>Tinye nzere sava njikwa</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="528"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="529"/>
         <source>Choose rendezvous point name</source>
         <translation>Họrọ aha ebe nzukọ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="546"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="547"/>
         <source>Protecting the account with a password is optional, and if the password is lost it CANNOT be recovered later.</source>
         <translation>Iji paswọọdụ chebe akaụntụ bụ nhọrọ, ọ bụrụ na paswọọdụ ahụ funahụ, A GAGHỊ ENWE IKE iweghachi ya ma emechaa.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="579"/>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="580"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="581"/>
         <source>Set password</source>
         <translation>Tọọ paswọọdụ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="582"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="583"/>
         <source>Back up the account to a .jac file</source>
         <translation>Chekwaa akaụntụ na faịlụ .jac</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="586"/>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="588"/>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1022"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="587"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="589"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1023"/>
         <source>Set account password</source>
         <translation>Tọọ paswọọdụ akaụntụ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="591"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="592"/>
         <source>Enter nickname, surname…</source>
         <translation>Tinye aha mba, aha ezinụlọ…</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="791"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="792"/>
         <source>Installation error</source>
         <translation>Njehie nwụnye</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="792"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="793"/>
         <source>An error occurred while installing the extension.</source>
         <translation>Njehie mere mgbe a na-awụnye ndọtị ahụ.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="795"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="796"/>
         <source>Reset preferences</source>
         <translation>Tọgharịa mmasị</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="796"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="797"/>
         <source>Select extension to install</source>
         <translation>Họrọ ndọtị ị ga-awụnye</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="797"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="798"/>
         <source>Uninstall extension</source>
         <translation>Wepụ ndọtị</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="798"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="799"/>
         <source>Do you want to reset the preferences for the %1 extension? To continue, click Reset.</source>
         <translation>Ị chọrọ ịtọgharị mmasị maka ndọtị %1? Iji gaa n&apos;ihu, pịa Tọgharịa.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="799"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="800"/>
         <source>Do you want to uninstall the %1 extension? To continue, click Uninstall.</source>
         <translation>Ị chọrọ iwepụ ndọtị %1? Iji gaa n&apos;ihu, pịa Wepụ.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="800"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="801"/>
         <source>Go back to extensions list</source>
         <translation>Laghachi na ndepụta ndọtị</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="801"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="802"/>
         <source>Select file</source>
         <translation>Họrọ faịlụ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="804"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="805"/>
         <source>Extension files (*.jpl)</source>
         <translation>Faịlụ ndọtị (*.jpl)</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="809"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="810"/>
         <source>Choose extension</source>
         <translation>Họrọ ndọtị</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="824"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="825"/>
         <source>Select screen to share</source>
         <translation>Họrọ ihuenyo ị ga-ekekọrịta</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="825"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="826"/>
         <source>Select window to share</source>
         <translation>Họrọ windo ị ga-ekekọrịta</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="826"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="827"/>
         <source>All screens</source>
         <translation>Ihuenyo niile</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="845"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="846"/>
         <source>An error occurred while creating the account. Check credentials and try again.</source>
         <translation>Njehie mere mgbe a na-emepụta akaụntụ. Lelee nzere ma nwaa ọzọ.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="857"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="858"/>
         <source>Clear text</source>
         <translation>Hichaa ngwe</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="859"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="860"/>
         <source>Search results</source>
         <translation>Nsonaazụ nchọta</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="862"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="863"/>
         <source>Decline invitation</source>
         <translation>Jụ òkù</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="863"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="864"/>
         <source>Accept invitation</source>
         <translation>Nabata òkù</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="869"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="870"/>
         <source>OK</source>
         <translation>Dị-mma</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="876"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="877"/>
         <source>Leave</source>
         <translation>Hapụ ya</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="878"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="879"/>
         <source>Unblock</source>
         <translation>Ịgbanwee</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="886"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="887"/>
         <source>Mute participant</source>
         <translation>Mechie olu onye sonyere</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="887"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="888"/>
         <source>Unmute participant</source>
         <translation>Mepe olu onye sonyere</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="43"/>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="903"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="44"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="904"/>
         <source>An error occurred while reconnecting to the Jami daemon (jamid).
 The application will now exit.</source>
         <translation>Njehie mere mgbe a na-ejikọ ọzọ na Jami daemon (jamid).
 Ngwa ahụ ga-apụ ugbu a.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="510"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="511"/>
         <source>%1 is typing…</source>
         <translation>%1 na-apịnye…</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="511"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="512"/>
         <source>%1 are typing…</source>
         <translation>%1 na-apịnye…</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="513"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="514"/>
         <source>%1 and %2</source>
         <translation>%1 na %2</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="534"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="535"/>
         <source>Do you want to create a Jami account without a username?
 If yes, only a randomly generated 40-character identifier will be assigned to the account.</source>
         <translation>Ị chọrọ imepụta akaụntụ Jami na-enweghị aha njirimara?
 Ọ bụrụ ee, naanị njirimara mkpụrụedemede 40 e mepụtara n&apos;enweghị usoro ka a ga-enye akaụntụ ahụ.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="609"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="610"/>
         <source>A network error occurred while linking the device. Please try again later.</source>
         <translation>Njehie netwọk mere mgbe a na-ejikọ ngwaọrụ. Biko nwaa ọzọ ma emechaa.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="618"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="619"/>
         <source>If the account has not been backed up or added to another device, the account and registered username will be IRREVOCABLY LOST.</source>
         <translation>Ọ bụrụ na e chekwabeghị akaụntụ ahụ ma ọ bụ tinye ya na ngwaọrụ ọzọ, akaụntụ ahụ na aha njirimara e debanyere aha GA-EFU EFU N&apos;ENWEGHỊ NWEGHACHI.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="656"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="657"/>
         <source>Web link previews</source>
         <translation>Nlele njikọ weebụ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="666"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="667"/>
         <source>Accept transfer limit (MB)</source>
         <translation>Oke nnabata mbufe (MB)</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="932"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="933"/>
         <source>Don&apos;t send</source>
         <translation>Ezila</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="946"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="947"/>
         <source>Join with audio</source>
         <translation>Jiri ọdiyo sonye</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="947"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="948"/>
         <source>Join with video</source>
         <translation>Jiri vidiyo sonye</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="950"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="951"/>
         <source>Current host for this group conversation seems unreachable. Do you want to host the call?</source>
         <translation>Ọ dị ka a gaghị eru ọbịa ugbu a maka nkata otu a. Ị chọrọ ịnabata oku ahụ?</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="951"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="952"/>
         <source>Select dedicated device for hosting future calls in this group conversation. If not set, the host will be the device starting a call.</source>
         <translation>Họrọ ngwaọrụ akọwapụtara maka ịnabata oku ndị ga-abịa na nkata otu a. Ọ bụrụ na e tozighi ya, ọbịa ga-abụ ngwaọrụ na-amalite oku.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="962"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="963"/>
         <source>%1 sent you a conversation invitation.</source>
         <translation>%1 zigaara gị òkù nkata.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="963"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="964"/>
         <source>Hello,
 Do you want to join the conversation?</source>
         <translation>Ndewo,
 Ị chọrọ isonye na nkata?</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="964"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="965"/>
         <source>You have accepted
 the conversation invitation.</source>
         <translation>Ị nabatala
 òkù nkata ahụ.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="965"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="966"/>
         <source>Waiting for %1
 to connect to synchronize the conversation…</source>
         <translation>Na-eche %1
 ka o jikọọ iji mekọrịta nkata…</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="970"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="971"/>
         <source>Group name</source>
         <translation>Aha otu</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="971"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="972"/>
         <source>Contact name</source>
         <translation>Aha kọntaktị</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="972"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="973"/>
         <source>Add description</source>
         <translation>Tinye nkọwa</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="980"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="981"/>
         <source>Choose color</source>
         <translation>Họrọ agba</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="981"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="982"/>
         <source>Color</source>
         <translation>Agba</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="975"/>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="985"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="976"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="986"/>
         <source>Conversation type</source>
         <translation>Ụdị nkata</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="990"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="991"/>
         <source>Block member</source>
         <translation>Gbochie onye òtù</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="991"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="992"/>
         <source>Unblock member</source>
         <translation>Wepụ mgbochi onye òtù</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1052"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1053"/>
         <source>If you enjoy using Jami and believe in our mission, do you want to make a donation?</source>
         <translation>Ọ bụrụ na ị na-enwe mmasị iji Jami ma kwenye na ebumnobi anyị, ị chọrọ inye onyinye?</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1063"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1064"/>
         <source>Connected</source>
         <translation>Ejikọrọ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1064"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1065"/>
         <source>Connecting TLS</source>
         <translation>Na-ejikọ TLS</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1065"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1066"/>
         <source>Connecting ICE</source>
         <translation>Na-ejikọ ICE</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1066"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1067"/>
         <source>Connecting</source>
         <translation>Njikọ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1067"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1068"/>
         <source>Waiting</source>
         <translation>Na-eche</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1068"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1069"/>
         <source>Contact</source>
         <translation>Kọntaktị</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1069"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1070"/>
         <source>Connection</source>
         <translation>Njikọ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1070"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1071"/>
         <source>Channels</source>
         <translation>Ọwa</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1071"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1072"/>
         <source>Copy all data</source>
         <translation>Detuo data niile</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="706"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="707"/>
         <source>Save recordings to</source>
         <translation>Chekwaa ndekọ na</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="707"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="708"/>
         <source>Save screenshots to</source>
         <translation>Chekwaa screenshots ka</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="851"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="852"/>
         <source>Share freely and privately with Jami</source>
         <translation>Gị na Jami na-ekerịta onwe unu</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="881"/>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="898"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="882"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="899"/>
         <source>Add</source>
         <translation>Tinye</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="907"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="908"/>
         <source>more emojis</source>
         <translation>emojis ndị ọzọ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="933"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="934"/>
         <source>Reply to</source>
         <translation>Zaa</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="934"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="935"/>
         <source>In reply to</source>
         <translation>Na nzaghachi</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="937"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="938"/>
         <source>Reply</source>
         <translation>Zaa</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="622"/>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="940"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="623"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="941"/>
         <source>Edit</source>
         <translation>Dezie</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="941"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="942"/>
         <source>Edited</source>
         <translation>E Deziiri Ya</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="945"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="946"/>
         <source>Join call</source>
         <translation>Jikọọ oku</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="949"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="950"/>
         <source>A call is in progress. Do you want to join the call?</source>
         <translation>A na-akpọ oku na-aga n&apos;ihu. Ị chọrọ isonyere oku ahụ?</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="954"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="955"/>
         <source>Remove current device</source>
         <translation>Wepụ ihe eji arụ ọrụ ugbu a</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="955"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="956"/>
         <source>Host only this call</source>
         <translation>Naanị kpọọ oku a</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="956"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="957"/>
         <source>Host this call</source>
         <translation>Nweta oku a</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="957"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="958"/>
         <source>Make me the default host for future calls</source>
         <translation>Mee ka m bụrụ onye ọbịa ndabara maka oku ọdịnihu</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="977"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="978"/>
         <source>Mute conversation</source>
         <translation>Mkparịta ụka nkịtị</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="982"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="983"/>
         <source>Default host (calls)</source>
         <translation>Ntọala ndabara (kpọọ)</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="986"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="987"/>
         <source>None</source>
         <translation>Ọ dịghị nke ọ bụla</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="999"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1000"/>
         <source>Tip</source>
         <translation>Ihe Ị Ga-eji Akpa Gị</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="203"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="204"/>
         <source>Call settings</source>
         <translation>Ntọala oku</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="138"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="139"/>
         <source>Disable secure dialog check for incoming TLS data</source>
         <translation>Gbanyụọ nchọpụta nkata nchekwa maka data TLS na-abata</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="169"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="170"/>
         <source>Video codecs</source>
         <translation>Usoro vidio</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="170"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="171"/>
         <source>Audio codecs</source>
         <translation>Ihe ndị e ji edepụta ihe</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="173"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="174"/>
         <source>Name server</source>
         <translation>Aha ihe nkesa</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="187"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="188"/>
         <source>OpenDHT configuration</source>
         <translation>Nhazi OpenDHT</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="331"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="332"/>
         <source>Mirror local video</source>
         <translation>Mirror video obodo</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="337"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="338"/>
         <source>Why should I back-up this account?</source>
         <translation>Gịnị mere m ga-eji kwado akaụntụ a?</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="341"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="342"/>
         <source>Success</source>
         <translation>Ihe Ịga nke Ọma</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="342"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="343"/>
         <source>Error</source>
         <translation>Njehie</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="344"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="345"/>
         <source>All files (*)</source>
         <translation>Ihe ndekọ niile (*)</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="347"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="348"/>
         <source>name</source>
         <translation>aha</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="348"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="349"/>
         <source>Identifier</source>
         <translation>Ihe Nkọwapụta</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="355"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="356"/>
         <source>Pause call</source>
         <translation>Nkwupụta nkwụsịtụ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="356"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="357"/>
         <source>Resume call</source>
         <translation>Nchịkọta oku</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="361"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="362"/>
         <source>Details</source>
         <translation>Ihe ndị ọzọ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="204"/>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="362"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="205"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="363"/>
         <source>Chat</source>
         <translation>Kparịtanụ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="53"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="54"/>
         <source>Contribute</source>
         <translation>Nye aka</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="54"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="55"/>
         <source>Feedback</source>
         <translation>Nzaghachi</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="65"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="66"/>
         <source>Add another account</source>
         <translation>Tinye akaụntụ ọzọ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="66"/>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="201"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="67"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="202"/>
         <source>Manage account</source>
         <translation>Jikwaa akaụntụ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="202"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="203"/>
         <source>Linked devices</source>
         <translation>Ngwaọrụ jikọtara</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="205"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="206"/>
         <source>Advanced settings</source>
         <translation>Ntọala dị elu</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="315"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="316"/>
         <source>Sound test</source>
         <translation>Nnwale ụda</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="332"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="333"/>
         <source>Screen sharing</source>
         <translation>Ịkekọrịta ihuenyo</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="338"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="339"/>
         <source>Your account only exists on this device. If you lose your device or uninstall the application, your account will be deleted and CANNOT be recovered. You can &lt;a href=&apos;blank&apos;&gt; back up your account &lt;/a&gt; now or later (in the Account Settings).</source>
         <translation>Akaụntụ gị dị naanị na ngwaọrụ a. Ọ bụrụ na ị tufuo ngwaọrụ gị ma ọ bụ wepụ ngwa ahụ, a ga-ehichapụ akaụntụ gị, A GAGHỊ ENWEKWA IKE iweghachi ya. Ị nwere ike &lt;a href=&apos;blank&apos;&gt; chekwaa akaụntụ gị &lt;/a&gt; ugbu a ma ọ bụ ma emechaa (na Ntọala Akaụntụ).</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="363"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="364"/>
         <source>More options</source>
         <translation>Ihe ndị ọzọ ị ga-eme</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="364"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="365"/>
         <source>Mosaic</source>
         <translation>Ihe ndị e ji eme ihe</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="367"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="368"/>
         <source>You are still muted by moderator</source>
         <translation>Onye na-eduzi gị ka na-eme ka ị ghara ikwu okwu</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="368"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="369"/>
         <source>You are muted by a moderator</source>
         <translation>Onye na-eduzi gị na-eme ka ị ghara ikwu okwu</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="369"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="370"/>
         <source>Moderator</source>
         <translation>Onye na-eduzi</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="370"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="371"/>
         <source>Host</source>
         <translation>Onye ọbịa</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="371"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="372"/>
         <source>Local and Moderator muted</source>
         <translation>Ndị na-elekọta obodo na ndị na-elekọta ndị mmadụ na-emechi</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="372"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="373"/>
         <source>Moderator muted</source>
         <translation>Onye na-eduzi ihe na-eme ka ọ ghara ịdị irè</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="373"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="374"/>
         <source>Not muted</source>
         <translation>Ọ bụghị ihe a na-apụghị imebi emebi</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="374"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="375"/>
         <source>On the side</source>
         <translation>N&apos;akụkụ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="375"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="376"/>
         <source>On the top</source>
         <translation>N&apos;elu</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="376"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="377"/>
         <source>Hide self</source>
         <translation>Zọpụtanụ onwe unu</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="377"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="378"/>
         <source>Hide spectators</source>
         <translation>Zọpụtakwa ndị na-ekiri ya</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="386"/>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="721"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="387"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="722"/>
         <source>Copy</source>
         <translation>Nkọwa</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="384"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="385"/>
         <source>Share</source>
         <translation>Ịkekọrịta</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="385"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="386"/>
         <source>Cut</source>
         <translation>Echebe</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="387"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="388"/>
         <source>Paste</source>
         <translation>Ihe a ga-eji na-ekpuchi ya</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="391"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="392"/>
         <source>Start video call</source>
         <translation>Malite ịkpọ oku vidiyo</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="390"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="391"/>
         <source>Start audio call</source>
         <translation>Malite oku ọdịyo</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="33"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="34"/>
         <source>Incoming audio call from %1</source>
         <translation>Oku ọdiyo na-abata site na %1</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="34"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="35"/>
         <source>Incoming video call from %1</source>
         <translation>Oku vidiyo na-abata site na %1</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="76"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="77"/>
         <source>To continue the import account operation, scan the following QR code on the source device.</source>
         <translation>Iji gaa n&apos;ihu na ọrụ ibubata akaụntụ, nyochaa koodu QR a n&apos;okwu na ngwaọrụ isi.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="79"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="80"/>
         <source>Action required. Please confirm account on the source device.</source>
         <translation>Achọrọ ihe omume. Biko kwado akaụntụ na ngwaọrụ isi.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="82"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="83"/>
         <source>If you are unable to scan the QR code, enter the following token on the source device.</source>
         <translation>Ọ bụrụ na ị nweghị ike inyocha koodu QR, tinye tokin a n&apos;okwu na ngwaọrụ isi.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="85"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="86"/>
         <source>An error occurred while importing the account.</source>
         <translation>Njehie mere mgbe a na-ebubata akaụntụ.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="88"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="89"/>
         <source>An authentication error occurred while linking the device. Please check credentials and try again.</source>
         <translation>Njehie nkwado mere mgbe a na-ejikọ ngwaọrụ. Biko lelee nzere ma nwaa ọzọ.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="92"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="93"/>
         <source>The session has expired or has been revoked on this device. Please enter the account password.</source>
         <translation>Oge nnọkọ agwụla ma ọ bụ kagburu ya na ngwaọrụ a. Biko tinye paswọọdụ akaụntụ.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="93"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="94"/>
         <source>Management server</source>
         <translation>Sava njikwa</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="104"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="105"/>
         <source>Convert account into rendezvous point</source>
         <translation>Gbanwee akaụntụ ka ọ bụrụ ebe nzukọ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="108"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="109"/>
         <source>Select new ringtone</source>
         <translation>Họrọ ụda ekwentị ọhụrụ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="115"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="116"/>
         <source>Bring the application to the front for incoming calls</source>
         <translation>Wepụta ngwa ahụ n&apos;ihu maka oku na-abata</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="116"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="117"/>
         <source>Decline incoming calls when already in a call</source>
         <translation>Jụ oku na-abata mgbe ị nọ n&apos;oku</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="381"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="382"/>
         <source>Public group</source>
         <translation>Ndị otu ọha</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="393"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="394"/>
         <source>Confirm action</source>
         <translation>Nkwado</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="394"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="395"/>
         <source>Remove conversation</source>
         <translation>Wepụ mkparịta ụka ahụ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="396"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="397"/>
         <source>Leave group</source>
         <translation>Hapụ otu</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="397"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="398"/>
         <source>Are you sure you want to leave this group?</source>
         <translation>Ị ji n&apos;aka na ị chọrọ ịhapụ otu a?</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="398"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="399"/>
         <source>Do you want to remove this contact? The existing conversation will be deleted.</source>
         <translation>Ị chọrọ iwepụ kọntaktị a? A ga-ehichapụ nkata dị adị.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="399"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="400"/>
         <source>Do you want to block this contact?</source>
         <translation>Ị chọrọ igbochi kọntaktị a?</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="400"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="401"/>
         <source>Are you sure you want to remove this conversation? The contact will not be removed.</source>
         <translation>Ị ji n&apos;aka na ị chọrọ iwepụ nkata a? A gaghị ewepụ kọntaktị ahụ.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="401"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="402"/>
         <source>Remove contact</source>
         <translation>Wepụ njikọ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="402"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="403"/>
         <source>Block contact</source>
         <translation>Njikọ na-ekpuchi</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="403"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="404"/>
         <source>Conversation details</source>
         <translation>Ihe ndị e kwuru n&apos;okwu ahụ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="404"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="405"/>
         <source>Contact details</source>
         <translation>Ihe ndị a ga-eji kparịta ụka</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="408"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="409"/>
         <source>Show keypad</source>
         <translation>Gosi ihe ọpịpị</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="409"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="410"/>
         <source>Transfer call</source>
         <translation>N&apos;ịkpọ oku maka nnyefe</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="410"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="411"/>
         <source>Stop recording</source>
         <translation>Kwụsị ndekọ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="411"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="412"/>
         <source>Start recording</source>
         <translation>Malite ndekọ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="412"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="413"/>
         <source>View full screen</source>
         <translation>Lelee ènyòngosịpụta ńùju</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="413"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="414"/>
         <source>Share screen</source>
         <translation>Kekọrịta ihuenyo</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="414"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="415"/>
         <source>Share window</source>
         <translation>Kekọrịta windo</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="415"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="416"/>
         <source>Stop sharing screen or file</source>
         <translation>Kwụsị ịkekọrịta ihuenyo ma ọ bụ faịlụ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="416"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="417"/>
         <source>Share screen area</source>
         <translation>Kekọrịta mpaghara ihuenyo</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="417"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="418"/>
         <source>Share file</source>
         <translation>Share faịlụ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="419"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="420"/>
         <source>Select sharing method</source>
         <translation>Họrọ usoro ịkekọrịta</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="422"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="423"/>
         <source>Advanced information</source>
         <translation>Ozi dị elu</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="423"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="424"/>
         <source>No video device</source>
         <translation>Enweghị ngwaọrụ vidiyo</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="425"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="426"/>
         <source>Lower hand</source>
         <translation>Aka ala</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="426"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="427"/>
         <source>Raise hand</source>
         <translation>Welie aka gị</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="427"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="428"/>
         <source>Layout settings</source>
         <translation>Ntọala nhazi</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="428"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="429"/>
         <source>Take tile screenshot</source>
         <translation>Were nseta ihuenyo tile</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="429"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="430"/>
         <source>Screenshot saved to %1</source>
         <translation>Screenshot echekwara na %1</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="433"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="434"/>
         <source>Renderers information</source>
         <translation>Ozi ndị na-enye onyinye</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="434"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="435"/>
         <source>Call information</source>
         <translation>Ozi ịkpọ oku</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="435"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="436"/>
         <source>Peer number</source>
         <translation>Ọnụ ọgụgụ ndị ọgbọ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="437"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="438"/>
         <source>Sockets</source>
         <translation>Ihe ndị a na-agbanye</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="438"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="439"/>
         <source>Video codec</source>
         <translation>Usoro vidiyo</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="328"/>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="439"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="329"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="440"/>
         <source>Hardware acceleration</source>
         <translation>Ngwaọrụ ngwaike</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="440"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="441"/>
         <source>Video bitrate</source>
         <translation>Bitrate vidiyo</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="441"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="442"/>
         <source>Audio codec</source>
         <translation>Audio codec</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="443"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="444"/>
         <source>Fps</source>
         <translation>Fps</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="457"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="458"/>
         <source>Share location</source>
         <translation>Ebe a na-ekenye ndị mmadụ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="458"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="459"/>
         <source>Stop sharing</source>
         <translation>Kwụsị ịkekọrịta</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="461"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="462"/>
         <source>Turn off location sharing</source>
         <translation>Gbanyụọ ebe ịkekọrịta</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="464"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="465"/>
         <source>Location is shared in several conversations</source>
         <translation>Ebe a na-anọ eme ihe n&apos;ọtụtụ mkparịta ụka</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="465"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="466"/>
         <source>Pin map to be able to share location or to turn off location in specific conversations</source>
         <translation>Pin map iji nwee ike ịkekọrịta ọnọdụ ma ọ bụ gbanyụọ ọnọdụ na mkparịta ụka akọwapụtara</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="466"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="467"/>
         <source>Location is shared in several conversations, click to choose how to turn off location sharing</source>
         <translation>Ebe a na-akọrọ na ọtụtụ mkparịta ụka, pịa ịhọrọ otu esi gbanyụọ nkekọrịta ebe</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="467"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="468"/>
         <source>Share location to participants of this conversation (%1)</source>
         <translation>Kesaa ebe ndị sonyere na mkparịta ụka a (%1)</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="469"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="470"/>
         <source>Reduce</source>
         <translation>Belata</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="470"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="471"/>
         <source>Drag</source>
         <translation>Dọrọ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="471"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="472"/>
         <source>Center</source>
         <translation>Ebe etiti</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="473"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="474"/>
         <source>Unpin</source>
         <translation>Ịkwụsị ịpị</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="474"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="475"/>
         <source>Pin</source>
         <translation>Pin</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="475"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="476"/>
         <source>Position share duration</source>
         <translation>Oge nke òkè ọnọdụ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="476"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="477"/>
         <source>Location sharing</source>
         <translation>Ịkekọrịta ebe</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="478"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="479"/>
         <source>Unlimited</source>
         <translation>Enweghị njedebe</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="491"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="492"/>
         <source>Add to conversations</source>
         <translation>Tinye aka n&apos;okwu ndị a</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="493"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="494"/>
         <source>The account is disabled</source>
         <translation>E mebiela akaụntụ ahụ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="494"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="495"/>
         <source>No network connectivity</source>
         <translation>Enweghị njikọ netwọk</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="504"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="505"/>
         <source>Jump to</source>
         <translation>Pụọ n&apos; ebe ahụ.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="505"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="506"/>
         <source>Messages</source>
         <translation>Ozi</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="506"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="507"/>
         <source>Files</source>
         <translation>Ihe ndekọ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="507"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="508"/>
         <source>Search</source>
         <translation>Ịchọ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="512"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="513"/>
         <source>Several people are typing…</source>
         <translation>Ọtụtụ ndị na-ede...</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="284"/>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="519"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="285"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="520"/>
         <source>Connect</source>
         <translation>Jikọọ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="520"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="521"/>
         <source>Creating account…</source>
         <translation>Ịmepụta akaụntụ...</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="523"/>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="529"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="524"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="530"/>
         <source>Choose name</source>
         <translation>Họrọ aha</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="524"/>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="525"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="526"/>
         <source>Choose username</source>
         <translation>Họrọ aha njirimara</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="535"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="536"/>
         <source>- 32 characters maximum
 - Special characters allowed: dash (-)</source>
         <translation>- mkpụrụedemede 32 kacha
 - Mkpụrụedemede pụrụ iche e kwere: dash (-)</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="536"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="537"/>
         <source>Customize your profile (optional)</source>
         <translation>Hazie profaịlụ gị (nhọrọ)</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="537"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="538"/>
         <source>Skip</source>
         <translation>Ịpụ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="538"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="539"/>
         <source>Skip profile configuration</source>
         <translation>Mafee nhazi profaịlụ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="539"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="540"/>
         <source>Save profile</source>
         <translation>Chekwaa profaịlụ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="547"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="548"/>
         <source>Setting a profile picture and display name is optional, and can also be changed later in the settings.</source>
         <translation>Ịtọ foto profaịlụ na aha ngosi bụ nhọrọ, enwekwara ike ịgbanwe ya ma emechaa na ntọala.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="553"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="554"/>
         <source>Configure existing SIP account</source>
         <translation>Hazie akaụntụ SIP dị adị</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="558"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="559"/>
         <source>Display name</source>
         <translation>Aha ngosi</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="563"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="564"/>
         <source>Your Jami account is registered only on this device as an archive containing the keys of your account. Access to this archive can be protected with a password.</source>
         <translation>E debanyere akaụntụ Jami gị naanị na ngwaọrụ a dịka akụ nchekwa nwere igodo akaụntụ gị. Enwere ike iji paswọọdụ chebe ohere na akụ nchekwa a.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="565"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="566"/>
         <source>This Jami account exists only on this device. The account will be lost if this device is lost or the application is uninstalled. It is recommended to make a backup of this account.</source>
         <translation>Akaụntụ Jami a dị naanị na ngwaọrụ a. Akaụntụ ahụ ga-efu ma ọ bụrụ na ngwaọrụ a furu efu ma ọ bụ wepụ ngwa ahụ. A na-akwado ka i chekwaa akaụntụ a.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="572"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="573"/>
         <source>Backup completed successfully.</source>
         <translation>Emechaala nchekwa nke ọma.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="573"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="574"/>
         <source>An error occurred while backing up the account.</source>
         <translation>Njehie mere mgbe a na-echekwa akaụntụ.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="574"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="575"/>
         <source>Password changed successfully.</source>
         <translation>Agbanwela paswọọdụ nke ọma.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="575"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="576"/>
         <source>An error occurred while changing the account password.</source>
         <translation>Njehie mere mgbe a na-agbanwe paswọọdụ akaụntụ.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="576"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="577"/>
         <source>Password set successfully.</source>
         <translation>Atọọla paswọọdụ nke ọma.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="577"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="578"/>
         <source>An error occurred while setting the account password.</source>
         <translation>Njehie mere mgbe a na-atọ paswọọdụ akaụntụ.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1083"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1084"/>
         <source>Spell checker</source>
         <translation>Onye nyocha nsụpe</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="526"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="527"/>
         <source>Confirm password</source>
         <translation>Nyochaa paswọọdụ</translation>
     </message>
@@ -2873,147 +2878,147 @@ ka o jikọọ iji mekọrịta nkata…</translation>
         <translation>Ọdịda</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="35"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="36"/>
         <source>Create new group</source>
         <translation>Mepụta otu ọhụrụ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="47"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="48"/>
         <source>Build ID</source>
         <translation>ID nwube</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="57"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="58"/>
         <source>Application Recovery</source>
         <translation>Mgbakeghachi Ngwa</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="59"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="60"/>
         <source>Only essential data, including the app version, platform information, and a snapshot of the program&apos;s state at the time of the crash, will be shared.</source>
         <translation>Naanị data dị mkpa, gụnyere ụdị ngwa, ozi gbasara usoroihe, na foto ọnọdụ mmemme n&apos;oge nkwụsị, ka a ga-ekekọrịta.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="97"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="98"/>
         <source>An error occurred while authenticating the account.</source>
         <translation>Njehie mere mgbe a na-akwado akaụntụ.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="109"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="110"/>
         <source>Certificate file (*.crt)</source>
         <translation>Faịlụ asambodo (*.crt)</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="110"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="111"/>
         <source>Audio file (*.wav *.ogg *.opus *.mp3 *.aiff *.wma)</source>
         <translation>Faịlụ ọdiyo (*.wav *.ogg *.opus *.mp3 *.aiff *.wma)</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="139"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="140"/>
         <source>Select private key</source>
         <translation>Họrọ igodo nzuzo</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="140"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="141"/>
         <source>Select user certificate</source>
         <translation>Họrọ asambodo onye ọrụ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="141"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="142"/>
         <source>Select CA certificate</source>
         <translation>Họrọ asambodo CA</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="143"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="144"/>
         <source>Key file (*.key)</source>
         <translation>Faịlụ igodo (*.key)</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="155"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="156"/>
         <source>TURN realm</source>
         <translation>Ala nke TORN</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="334"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="335"/>
         <source>No camera available</source>
         <translation>Enweghị igwefoto dị</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="343"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="344"/>
         <source>Jami account (*.jac)</source>
         <translation>Akaụntụ Jami (*.jac)</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="353"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="354"/>
         <source>Mute microphone</source>
         <translation>Igwe okwu na-adịghị arụ ọrụ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="354"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="355"/>
         <source>Unmute microphone</source>
         <translation>Mepe maịkrofoonụ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="357"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="358"/>
         <source>Stop camera</source>
         <translation>Kwụsị igwefoto</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="358"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="359"/>
         <source>Start camera</source>
         <translation>Malite igwefoto</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="359"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="360"/>
         <source>Invite member</source>
         <translation>Kpọọ onye òtù</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="360"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="361"/>
         <source>Invite members</source>
         <translation>Kpọọ ndị òtù</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="365"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="366"/>
         <source>Participant microphone is still muted.</source>
         <translation>A ka mechiri maịkrofoonụ onye sonyere.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="366"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="367"/>
         <source>Device microphone is still muted.</source>
         <translation>A ka mechiri maịkrofoonụ ngwaọrụ.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="378"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="379"/>
         <source>Private</source>
         <translation>Ndị mmadụ n&apos;onwe ha</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="379"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="380"/>
         <source>Private group (restricted invites)</source>
         <translation>Otu ndị mmadụ n&apos;otu n&apos;otu (n&apos;ụdị ịkpọ òkù)</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="380"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="381"/>
         <source>Private group</source>
         <translation>Otu ndị na-ahụ maka ndị mmadụ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="395"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="396"/>
         <source>Do you want to leave this conversation?</source>
         <translation>Ị chọrọ ịhapụ nkata a?</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="407"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="408"/>
         <source>DTMF input panel</source>
         <translation>Paịnụ ntinye DTMF</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="421"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="422"/>
         <source>View extension</source>
         <translation>Lee ndọtị</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="459"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="460"/>
         <source>An error occurred while sharing the device location.
 Enable “Location Services” in device settings in order to use this feature.
 The location of other members can still be received.</source>
@@ -3022,334 +3027,334 @@ Gbanye “Ọrụ Ọnọdụ” na ntọala ngwaọrụ iji jiri njirimara a.
 A ka nwere ike inweta ọnọdụ ndị òtù ndị ọzọ.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="460"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="461"/>
         <source>An error occurred while sharing the device location. Please check your Internet connection and try again.</source>
         <translation>Njehie mere mgbe a na-ekekọ ọnọdụ ngwaọrụ. Biko lelee njikọ Ịntanetị gị ma nwaa ọzọ.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="477"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="478"/>
         <source>1m</source>
         <translation>1 nk</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="479"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="480"/>
         <source>%L1s</source>
         <translation>%L1 sek</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="480"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="481"/>
         <source>%L1m</source>
         <translation>%L1 nk</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="481"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="482"/>
         <source>%L1m %L2s</source>
         <translation>%L1 nk %L2 sek</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="482"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="483"/>
         <source>%L1h</source>
         <translation>%L1 awa</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="483"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="484"/>
         <source>%L1h %L2m</source>
         <translation>%L1 awa %L2 nk</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="490"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="491"/>
         <source>Show available extensions</source>
         <translation>Gosi ndọtị dị</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="492"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="493"/>
         <source>A backend system error occurred: %0</source>
         <translation>Njehie sistemụ azụ mere: %0</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="497"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="498"/>
         <source>Return to call</source>
         <translation>Laghachi na oku</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="501"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="502"/>
         <source>This conversation has ended.</source>
         <translation>Nkata a akwụsịla.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="530"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="531"/>
         <source>Invalid name</source>
         <translation>Aha na-adịghị mma</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="531"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="532"/>
         <source>Invalid username</source>
         <translation>Aha njirimara na-ezighi ezi</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="532"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="533"/>
         <source>Name already taken</source>
         <translation>Aha e dere ede</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="533"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="534"/>
         <source>Username already taken</source>
         <translation>Aha njirimara e nwetara</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="541"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="542"/>
         <source>Good to know</source>
         <translation>Ọ dị mma ịmara</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="542"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="543"/>
         <source>Local</source>
         <translation>Ebe a na-anọ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="543"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="544"/>
         <source>Encrypt</source>
         <translation>Ejiri ya mee ihe</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="550"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="551"/>
         <source>SIP account</source>
         <translation>Akụ̀ SIP</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="551"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="552"/>
         <source>Proxy</source>
         <translation>Onye nnọchianya</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="552"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="553"/>
         <source>Server</source>
         <translation>Ihe nkesa</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="554"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="555"/>
         <source>Personalize account</source>
         <translation>Hazie akaụntụ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="555"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="556"/>
         <source>Add SIP account</source>
         <translation>Tinye akaụntụ SIP</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="561"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="562"/>
         <source>Your profile is only shared with your contacts. You can customize your profile at any time.</source>
         <translation>A na-ekekọrịta profaịlụ gị naanị na kọntaktị gị. Ị nwere ike hazie profaịlụ gị mgbe ọ bụla.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="562"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="563"/>
         <source>A chosen username can help to be found more easily on Jami. If a username is not chosen, a randomly generated 40-character identifier will be assigned to this account as a username. It is more difficult to be found and reached with this identifier.</source>
         <translation>Aha njirimara a họọrọ nwere ike inye aka ka achọta gị ngwa ngwa na Jami. Ọ bụrụ na a họọghị aha njirimara, a ga-enye akaụntụ a njirimara mkpụrụedemede 40 e mepụtara n&apos;enweghị usoro dịka aha njirimara. Ọ na-esiri ike ịchọta na iru ya site na njirimara a.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="564"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="565"/>
         <source>Backup account</source>
         <translation>Akaụntụ ndabere</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="567"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="568"/>
         <source>List of the devices that are linked to this account:</source>
         <translation>Ndepụta nke ngwaọrụ ndị jikọtara na akaụntụ a:</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="568"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="569"/>
         <source>This device</source>
         <translation>Ngwaọrụ a</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="569"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="570"/>
         <source>Other linked devices</source>
         <translation>Ngwaọrụ ndị ọzọ jikọtara</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="578"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="579"/>
         <source>Change password</source>
         <translation>Gbanwee paswọọdụ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="589"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="590"/>
         <source>A Jami account is created and stored locally only on this device, as an archive containing your account keys. Access to this archive can optionally be protected with a password.</source>
         <translation>A na-emepụta ma chekwaa akaụntụ Jami naanị na ngwaọrụ a, dịka akụ nchekwa nwere igodo akaụntụ gị. Enwere ike iji paswọọdụ chebe ohere na akụ nchekwa a ma ọ bụrụ uche gị.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="592"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="593"/>
         <source>Use this account on other devices</source>
         <translation>Jiri akaụntụ a na ngwaọrụ ndị ọzọ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="593"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="594"/>
         <source>This account is created and stored locally, if you want to use it on another device you have to link the new device to this account.</source>
         <translation>A na-emepụta ma chekwaa akaụntụ a na mpaghara; ọ bụrụ na ị chọrọ iji ya na ngwaọrụ ọzọ, ị ga-ejikọrịrị ngwaọrụ ọhụrụ na akaụntụ a.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="604"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="605"/>
         <source>Link new device to this account</source>
         <translation>Jikọọ ngwaọrụ ọhụrụ na akaụntụ a</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="606"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="607"/>
         <source>Remove device</source>
         <translation>Wepụ ngwaọrụ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="607"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="608"/>
         <source>Do you want to unlink the selected device? To continue, enter account password and click Unlink.</source>
         <translation>Ị chọrọ ịkwụsị njikọ ngwaọrụ ahọpụtara? Iji gaa n&apos;ihu, tinye paswọọdụ akaụntụ ma pịa Kwụsị njikọ.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="608"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="609"/>
         <source>Account PIN code is:</source>
         <translation>Koodu PIN akaụntụ bụ:</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="612"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="613"/>
         <source>Unblock contact</source>
         <translation>Wepụ mgbochi kọntaktị</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="613"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="614"/>
         <source>Blocked</source>
         <translation>Egbochiri</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="614"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="615"/>
         <source>Blocked contacts</source>
         <translation>Ndị a na-egbochi</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="617"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="618"/>
         <source>Do you want to delete this account? To continue, click Delete.</source>
         <translation>Ị chọrọ ihichapụ akaụntụ a? Iji gaa n&apos;ihu, pịa Hichapụ.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="623"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="624"/>
         <source>Device name:</source>
         <translation>Aha ngwaọrụ:</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="625"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="626"/>
         <source>Device ID</source>
         <translation>ID ngwaọrụ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="631"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="632"/>
         <source>Select folder</source>
         <translation>Họrọ folda</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="652"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="653"/>
         <source>Typing indicator</source>
         <translation>Ihe ngosi maka ịpị</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="653"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="654"/>
         <source>Send and receive typing indicators showing when messages are being typed.</source>
         <translation>Zipu ma nata ihe ngosi ọpịpị nke na-egosi mgbe a na-apịnye ozi.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="654"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="655"/>
         <source>Read receipts</source>
         <translation>Akwụkwọ nnata ọgụgụ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="655"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="656"/>
         <source>Send and request delivery and read receipts to be sent when messages are delivered or read.</source>
         <translation>Zipu ma rịọ akwụkwọ nnata nnyefe na ọgụgụ ka e zipu mgbe e nyefere ma ọ bụ gụọ ozi.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="667"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="668"/>
         <source>MB, 0 = unlimited</source>
         <translation>MB, 0 = enweghị oke</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="671"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="672"/>
         <source>Incorrect password.</source>
         <translation>Paswọọdụ na-ezighi ezi.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="672"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="673"/>
         <source>A network error occurred.</source>
         <translation>Njehie netwọk mere.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="673"/>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="697"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="674"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="698"/>
         <source>An unexpected error occurred.</source>
         <translation>Njehie a na-atụghị anya ya mere.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="690"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="691"/>
         <source>An SSL error occurred.</source>
         <translation>Njehie SSL mere.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="691"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="692"/>
         <source>Installer download was canceled by user.</source>
         <translation>Onye ọrụ kagburu mbudata onye nwụnye.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="693"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="694"/>
         <source>This will replace the Release version with the Beta version on this device. The latest Release version can always be downloaded from the Jami website.</source>
         <translation>Nke a ga-eji ụdị Beta dochie ụdị Release na ngwaọrụ a. Enwere ike ibudata ụdị Release kachasị ọhụrụ mgbe niile site na weebụsaịtị Jami.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="695"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="696"/>
         <source>An error occurred while accessing the contents.</source>
         <translation>Njehie mere mgbe a na-enweta ọdịnaya.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="696"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="697"/>
         <source>Content not found.</source>
         <translation>Achọtaghị ọdịnaya.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="712"/>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="713"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="714"/>
         <source>Keyboard shortcuts</source>
         <translation>Ụzọ mkpirisi kibọọdụ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="717"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="718"/>
         <source>Markdown</source>
         <translation>Ihe a na-akpọ &quot;Markdown&quot;</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="722"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="723"/>
         <source>Submit issue</source>
         <translation>Nyefee nsogbu</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="725"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="726"/>
         <source>Copied to clipboard.</source>
         <translation>Edetuola ya na klipbọọdụ.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="726"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="727"/>
         <source>View logs</source>
         <translation>Lee ndekọ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="737"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="738"/>
         <source>If the account is password protected, please fill the following field.</source>
         <translation>Ọ bụrụ na e ji paswọọdụ chebe akaụntụ ahụ, biko dejupụta mpaghara a.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="746"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="747"/>
         <source>This account is password protected, enter the password to generate PIN code.</source>
         <translation>E ji paswọọdụ chebe akaụntụ a, tinye paswọọdụ iji mepụta koodu PIN.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="749"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="750"/>
         <source>Connecting to the new device…</source>
         <translation>Na-ejikọ na ngwaọrụ ọhụrụ…</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="751"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="752"/>
         <source>On the new device, initiate a new account.
 Select Add account → Connect from another device.
 When ready, scan the QR code.</source>
@@ -3358,1254 +3363,1254 @@ Họrọ Tinye akaụntụ → Jikọọ site na ngwaọrụ ọzọ.
 Mgbe ị dị njikere, nyochaa koodu QR.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="752"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="753"/>
         <source>Alternatively, enter the authentication code manually.</source>
         <translation>Ma ọ bụ, jiri aka tinye koodu nkwado.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="755"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="756"/>
         <source>New device connected at the following IP address. Is that you? To continue the export account operation, click Confirm.</source>
         <translation>E jikọrọ ngwaọrụ ọhụrụ na adreesị IP a. Ọ bụ gị? Iji gaa n&apos;ihu na ọrụ mbupụ akaụntụ, pịa Kwado.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="771"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="772"/>
         <source>Select image as profile picture</source>
         <translation>Họrọ onyonyo dịka foto profaịlụ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="772"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="773"/>
         <source>How do you want to set the profile picture?</source>
         <translation>Olee otú ị chọrọ ịtọ foto profaịlụ?</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="773"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="774"/>
         <source>Import profile picture from image file</source>
         <translation>Bubata foto profaịlụ site na faịlụ onyonyo</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="774"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="775"/>
         <source>Remove profile picture</source>
         <translation>Wepụ foto profaịlụ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="776"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="777"/>
         <source>Image files (*.jpeg *.jpg *.png *.JPEG* .JPG *.PNG)</source>
         <translation>Faịlụ onyonyo (*.jpeg *.jpg *.png *.JPEG* .JPG *.PNG)</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="777"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="778"/>
         <source>Edit profile picture</source>
         <translation>Dezie foto profaịlụ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="780"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="781"/>
         <source>Auto update</source>
         <translation>Mmelite akpaaka</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="781"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="782"/>
         <source>Disable all</source>
         <translation>Gbanyụọ ha niile</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="782"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="783"/>
         <source>Installed</source>
         <translation>Awụnyere</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="783"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="784"/>
         <source>Install</source>
         <translation>Wụnye</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="784"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="785"/>
         <source>Installing</source>
         <translation>Ịwụnye</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="785"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="786"/>
         <source>Install manually</source>
         <translation>Jiri aka wụnye</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="786"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="787"/>
         <source>Install an extension directly from your device.</source>
         <translation>Wụnye ndọtị ozugbo site na ngwaọrụ gị.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="787"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="788"/>
         <source>Available</source>
         <translation>Dị</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="788"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="789"/>
         <source>The Jami Extension Store is currently unavailable. Please try again later.</source>
         <translation>Ụlọ Ahịa Ndọtị Jami adịghị ka ugbu a. Biko nwaa ọzọ ma emechaa.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="810"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="811"/>
         <source>Version %1</source>
         <translation>Ụdị %1</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="811"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="812"/>
         <source>Last update %1</source>
         <translation>Mmelite ikpeazụ %1</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="812"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="813"/>
         <source>By %1</source>
         <translation>Site na %1</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="813"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="814"/>
         <source>Proposed by %1</source>
         <translation>Onye %1 tụrụ aro</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="817"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="818"/>
         <source>More information</source>
         <translation>Ozi ndị ọzọ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="833"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="834"/>
         <source>Share account</source>
         <translation>Kekọrịta akaụntụ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="842"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="843"/>
         <source>Connect to management server</source>
         <translation>Jikọọ na njikwa ihe nkesa</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="843"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="844"/>
         <source>Create account from management server</source>
         <translation>Mepụta akaụntụ site na sava njikwa</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="844"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="845"/>
         <source>Configure SIP account</source>
         <translation>Hazie akaụntụ SIP</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="846"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="847"/>
         <source>Create rendezvous point</source>
         <translation>Mepụta ebe nzukọ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="847"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="848"/>
         <source>Create Jami account</source>
         <translation>Mepụta akaụntụ Jami</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="888"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="889"/>
         <source>Maximize participant</source>
         <translation>Mee ka onye so na ya na- eme ihe kacha mma</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="889"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="890"/>
         <source>Minimize participant</source>
         <translation>Mee ka ndị na-ekere òkè dịkwuo ala</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="890"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="891"/>
         <source>Disconnect participant</source>
         <translation>Kwụsị njikọ onye sonyere</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="909"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="910"/>
         <source>Audio message</source>
         <translation>Ozi ọdiyo</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="910"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="911"/>
         <source>Video message</source>
         <translation>Ozi vidiyo</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="912"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="913"/>
         <source>Show more</source>
         <translation>Gosi ihe ndị ọzọ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="917"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="918"/>
         <source>Bold</source>
         <translation>Mbadamba</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="918"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="919"/>
         <source>Italic</source>
         <translation>Èdekịrị</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="920"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="921"/>
         <source>Title</source>
         <translation>Isiokwu</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="921"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="922"/>
         <source>Heading</source>
         <translation>Isi</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="922"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="923"/>
         <source>Link</source>
         <translation>Njikọ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="923"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="924"/>
         <source>Code</source>
         <translation>Usoro</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="924"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="925"/>
         <source>Quote</source>
         <translation>Ihe e dere n&apos;akwụkwọ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="927"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="928"/>
         <source>Show formatting</source>
         <translation>Gosi nhazi</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="928"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="929"/>
         <source>Hide formatting</source>
         <translation>Zoo nhazi</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="929"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="930"/>
         <source>Press Shift+Enter to insert new line</source>
         <translation>Pịa Shift+Enter iji tinye ahịrị ọhụrụ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="930"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="931"/>
         <source>Press Enter to insert new line</source>
         <translation>Pịa Enter iji tinye ahịrị ọhụrụ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="935"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="936"/>
         <source>%1 replied to</source>
         <translation>%1 zaghachiri</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="936"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="937"/>
         <source>you</source>
         <translation>gị</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="939"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="940"/>
         <source>Send a message to %1 in order to add them as a contact</source>
         <translation>Zipu ozi na %1 iji tinye ya dịka kọntaktị</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="968"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="969"/>
         <source>%L1 members</source>
         <translation>Ndị òtù %L1</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="973"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="974"/>
         <source>No description</source>
         <translation>Enweghị nkọwa</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="974"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="975"/>
         <source>Members</source>
         <translation>Ndị otu</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="978"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="979"/>
         <source>Unmute conversation</source>
         <translation>Mepe nkata</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1087"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1088"/>
         <source>No dictionaries available.</source>
         <translation>Enweghị akwụkwọ ọkọwa okwu dị.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1094"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1095"/>
         <source>Search or add</source>
         <translation>Chọọ ma ọ bụ tinye</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1100"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1101"/>
         <source>Add comment</source>
         <translation>Tinye nkọwa</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1101"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1102"/>
         <source>Share with…</source>
         <translation>Kekọrịta na…</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1104"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1105"/>
         <source>Add contact</source>
         <translation>Tinye kọntaktị</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1105"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1106"/>
         <source>No conversations found.</source>
         <translation>Achọtaghị nkata ọ bụla.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1106"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1107"/>
         <source>No contacts found.</source>
         <translation>Achọtaghị kọntaktị ọ bụla.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="983"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="984"/>
         <source>Select default host</source>
         <translation>Họrọ ọbịa ndabara</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="984"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="985"/>
         <source>Change default host</source>
         <translation>Gbanwee ọbịa ndabara</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1010"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1011"/>
         <source>Share your Jami identifier in order to be contacted more easily!</source>
         <translation>Kekọrịta njirimara Jami gị ka e wee na-akpọtụrụ gị ngwa ngwa!</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1011"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1012"/>
         <source>Jami identity</source>
         <translation>Ihe ọmụma Jami</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1012"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1013"/>
         <source>Show fingerprint</source>
         <translation>Gosi mkpịsị aka</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1013"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1014"/>
         <source>Hide fingerprint</source>
         <translation>Zoo akara mkpịsịaka</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1016"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1017"/>
         <source>Show registered name</source>
         <translation>Gosi aha edebanyere aha</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1019"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1020"/>
         <source>Enabling your account allows you to be contacted on Jami</source>
         <translation>Ịnye akaụntụ gị na-enye gị ohere ịkpọtụrụ na Jami</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1029"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1030"/>
         <source>Experimental</source>
         <translation>Ihe a na-eme na-eme ka a na-ahụ ya</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1032"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1033"/>
         <source>Ringtone</source>
         <translation>Ụda ụdaolu</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1035"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1036"/>
         <source>Rendezvous point</source>
         <translation>Ebe a ga-anọ na-aga nzukọ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1038"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1039"/>
         <source>Moderation</source>
         <translation>Ịdị nwayọọ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1041"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1042"/>
         <source>Theme</source>
         <translation>Isiokwu</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1042"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1043"/>
         <source>Text zoom level</source>
         <translation>Nkọwa nke ederede</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1046"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1047"/>
         <source>Blur background image</source>
         <translation>Gbaa onyonyo ndabere nro</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1047"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1048"/>
         <source>Normalize background image contrast</source>
         <translation>Hazie ọdịiche ìhè onyonyo ndabere</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1059"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1060"/>
         <source>Enter or Shift+Enter to insert new line</source>
         <translation>Enter ma ọ bụ Shift+Enter iji tinye ahịrị ọhụrụ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1084"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1085"/>
         <source>Search text languages</source>
         <translation>Chọọ asụsụ ederede</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1085"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1086"/>
         <source>Search for available text languages</source>
         <translation>Chọọ asụsụ ederede dị</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1086"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1087"/>
         <source>No dictionary found for %1.</source>
         <translation>Achọtaghị akwụkwọ ọkọwa okwu maka %1.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1088"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1089"/>
         <source>Dictionary manager</source>
         <translation>Onye njikwa akwụkwọ ọkọwa okwu</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1089"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1090"/>
         <source>An error occurred while downloading the %1 dictionary.</source>
         <translation>Njehie mere mgbe a na-ebudata akwụkwọ ọkọwa okwu %1.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1090"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1091"/>
         <source>Show installed dictionaries</source>
         <translation>Gosi akwụkwọ ọkọwa okwu awụnyere</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1091"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1092"/>
         <source>Only show dictionaries that are currently installed</source>
         <translation>Gosi naanị akwụkwọ ọkọwa okwu awụnyere ugbu a</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1097"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1098"/>
         <source>This conversation has no files.</source>
         <translation>Nkata a enweghị faịlụ.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1117"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1118"/>
         <source>Call in progress</source>
         <translation>Oku na-aga n&apos;ihu</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1118"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1119"/>
         <source>Pop out</source>
         <translation>Wepụta</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1119"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1120"/>
         <source>Pop in</source>
         <translation>Tinyeghachi</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1120"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1121"/>
         <source>You&apos;re the only one here!</source>
         <translation>Ọ bụ naanị gị nọ ebe a!</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1123"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1124"/>
         <source>Press enter to switch to this account</source>
         <translation>Pịa enter iji gbanwee na akaụntụ a</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1124"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1125"/>
         <source>Display your QR code to allow other users to scan it and add you as a contact</source>
         <translation>Gosi koodu QR gị ka ndị ọrụ ndị ọzọ nwee ike ịnyocha ya ma tinye gị dịka kọntaktị</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1125"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1126"/>
         <source>Account list</source>
         <translation>Ndepụta akaụntụ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1127"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1128"/>
         <source>Select the user interface language</source>
         <translation>Họrọ asụsụ interface onye ọrụ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1128"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1129"/>
         <source>Go back to the previous page</source>
         <translation>Laghachi na ibe gara aga</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1129"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1130"/>
         <source>Advice Box</source>
         <translation>Igbe Ndụmọdụ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1130"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1131"/>
         <source>Back button</source>
         <translation>Bọtịnụ azụ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1131"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1132"/>
         <source>Open the advice popup that contains information about Jami</source>
         <translation>Mepee popọpụ ndụmọdụ nke nwere ozi gbasara Jami</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1132"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1133"/>
         <source>More</source>
         <translation>Ọzọ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1133"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1134"/>
         <source>Press to %1</source>
         <translation>Pịa iji %1</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1134"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1135"/>
         <source>Press to toggle %1 (%2)</source>
         <translation>Pịa iji gbanwee %1 (%2)</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1135"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1136"/>
         <source>active</source>
         <translation>na-arụ ọrụ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1136"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1137"/>
         <source>inactive</source>
         <translation>anaghị arụ ọrụ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1137"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1138"/>
         <source>Minimize application</source>
         <translation>Belata ngwa</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1138"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1139"/>
         <source>Maximize application</source>
         <translation>Baa ngwa ukwuu</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1139"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1140"/>
         <source>Close application</source>
         <translation>Mechie ngwa</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1140"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1141"/>
         <source>Dismiss this tip</source>
         <translation>Wepụ ndụmọdụ a</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1141"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1142"/>
         <source>Tips to help you use Jami more effectively</source>
         <translation>Ndụmọdụ iji nyere gị aka iji Jami nke ọma karịa</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1142"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1143"/>
         <source>Show more messaging options</source>
         <translation>Gosi nhọrọ ozi ndị ọzọ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1143"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1144"/>
         <source>Open a menu that allows you to send voice and video messages as well as sharing your location</source>
         <translation>Mepee menu nke na-enye gị ohere izipu ozi olu na vidiyo yana ikekọ ọnọdụ gị</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1144"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1145"/>
         <source>Conversation messages list. Use arrow keys to navigate through messages.</source>
         <translation>Ndepụta ozi nkata. Jiri mkpịsị akụ iji gagharịa na ozi.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1145"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1146"/>
         <source>Data transfer</source>
         <translation>Mbufe data</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1146"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1147"/>
         <source>Status</source>
         <translation>Ọnọdụ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1147"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1148"/>
         <source>Read by</source>
         <translation>Onye gụrụ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1148"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1149"/>
         <source>Currently selected: %1</source>
         <translation>Ahọpụtara ugbu a: %1</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1149"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1150"/>
         <source>%1 has been selected for %2</source>
         <translation>Ahọpụtala %1 maka %2</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1150"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1151"/>
         <source>Available option for %1</source>
         <translation>Nhọrọ dị maka %1</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="581"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="582"/>
         <source>Change current password</source>
         <translation>Gbanwee paswọọdụ dị ugbu a</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="583"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="584"/>
         <source>Display advanced settings</source>
         <translation>Gosi ntọala dị elu</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="584"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="585"/>
         <source>Hide advanced settings</source>
         <translation>Zọpụta ntọala ndị dị elu</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="200"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="201"/>
         <source>Enable account</source>
         <translation>Nweta akaụntụ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="105"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="106"/>
         <source>Automatically accept calls</source>
         <translation>Nabata oku akpaaka</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="585"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="586"/>
         <source>Advanced account settings</source>
         <translation>Ntọala akaụntụ dị elu</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="587"/>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1023"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="588"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1024"/>
         <source>Customize profile</source>
         <translation>Hazie profaịlụ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="597"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="598"/>
         <source>Set username</source>
         <translation>Tọọ aha njirimara</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="598"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="599"/>
         <source>Registering name</source>
         <translation>Aha ịdebanye aha</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="601"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="602"/>
         <source>Identity</source>
         <translation>Ihe Ndị A Kpọrọ Mmadụ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="605"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="606"/>
         <source>Exporting account…</source>
         <translation>Ihe ndekọ mbupụ...</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="628"/>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1081"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="629"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1082"/>
         <source>System</source>
         <translation>Sịstèm</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="632"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="633"/>
         <source>Enable notifications</source>
         <translation>Mee ka ọkwa dị</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="637"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="638"/>
         <source>Launch at startup</source>
         <translation>Launch na mmalite</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="638"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="639"/>
         <source>Choose download directory</source>
         <translation>Họrọ ndekọ nbudata</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="657"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="658"/>
         <source>Preview requires downloading content from third-party servers.</source>
         <translation>Nlele anya chọrọ ibudata ọdịnaya site na sava ndị ọzọ.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="659"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="660"/>
         <source>User interface language</source>
         <translation>Asụsụ interface onye ọrụ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="660"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="661"/>
         <source>Vertical view</source>
         <translation>Ogologo</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="661"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="662"/>
         <source>Horizontal view</source>
         <translation>Uhie</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="664"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="665"/>
         <source>File transfer</source>
         <translation>Nyefe faịlụ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="665"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="666"/>
         <source>Automatically accept incoming files</source>
         <translation>Akpọrọ faịlụ na-abata na akpaghị aka</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="670"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="671"/>
         <source>Register</source>
         <translation>Debanye aha</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="676"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="677"/>
         <source>Save file</source>
         <translation>Chekwaa faịlụ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="677"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="678"/>
         <source>Open location</source>
         <translation>Ebe a na-emeghe</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="681"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="682"/>
         <source>Install beta version</source>
         <translation>Wụnye beta version</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="682"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="683"/>
         <source>Check for updates now</source>
         <translation>Lelee maka mmelite ugbu a</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="683"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="684"/>
         <source>Enable/Disable automatic updates</source>
         <translation>Gbanye / Gbanyụọ mmelite akpaghị aka</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="684"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="685"/>
         <source>Updates</source>
         <translation>Mmelite</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="685"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="686"/>
         <source>Update</source>
         <translation>Melite</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="694"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="695"/>
         <source>Network disconnected</source>
         <translation>Njikọ netwọk akwụsị</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="700"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="701"/>
         <source>Troubleshoot</source>
         <translation>Ngwọta nsogbu</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="701"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="702"/>
         <source>Open logs</source>
         <translation>Ihe ndekọ ndị mepere emepe</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="702"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="703"/>
         <source>Get logs</source>
         <translation>Nweta akwụkwọ ndekọ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="705"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="706"/>
         <source>Quality</source>
         <translation>Ọdịdị</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="709"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="710"/>
         <source>Always record calls</source>
         <translation>Na-edekọ oku mgbe niile</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="714"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="715"/>
         <source>Conversation</source>
         <translation>Mkparịta ụka</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="715"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="716"/>
         <source>Call</source>
         <translation>Kpọọ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="716"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="717"/>
         <source>Settings</source>
         <translation>Ntọala</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="720"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="721"/>
         <source>Debug</source>
         <translation>Debug</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="723"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="724"/>
         <source>Clear</source>
         <translation>Ọ dị ọcha</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="724"/>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="871"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="725"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="872"/>
         <source>Cancel</source>
         <translation>Kagbụo</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="729"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="730"/>
         <source>Archive</source>
         <translation>Ihe ndekọ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="730"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="731"/>
         <source>Open file</source>
         <translation>Mepee faịlụ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="733"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="734"/>
         <source>Generating account…</source>
         <translation>Ịmepụta akaụntụ...</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="734"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="735"/>
         <source>Import from archive backup</source>
         <translation>Import si ndabere nchekwa</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="736"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="737"/>
         <source>Select archive file</source>
         <translation>Họrọ faịlụ nchekwa</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="594"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="595"/>
         <source>Link device</source>
         <translation>Ngwaọrụ njikọ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="740"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="741"/>
         <source>Import</source>
         <translation>Ịba n&apos;ime</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1005"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1006"/>
         <source>Delete message</source>
         <translation>Ihichapụ ozi</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1006"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1007"/>
         <source>*(Deleted Message)*</source>
         <translation>*(Ehichapụ Ozi) *</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1007"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1008"/>
         <source>Edit message</source>
         <translation>Dezie ozi</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="472"/>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="744"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="473"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="745"/>
         <source>Close</source>
         <translation>Ọ ga-abụ na ọ dị nso.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="708"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="709"/>
         <source>Call recording</source>
         <translation>Nkọwa oku</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="741"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="742"/>
         <source>Enter the PIN code</source>
         <translation>Tinye koodu PIN</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="747"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="748"/>
         <source>Add Device</source>
         <translation>Tinye Ngwaọrụ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="763"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="764"/>
         <source>Enter current password</source>
         <translation>Tinye paswọọdụ ugbu a</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="765"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="766"/>
         <source>Enter new password</source>
         <translation>Tinye paswọọdụ ọhụrụ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="766"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="767"/>
         <source>Confirm new password</source>
         <translation>Nyochaa paswọọdụ ọhụrụ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="767"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="768"/>
         <source>Change</source>
         <translation>Mgbanwe</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="768"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="769"/>
         <source>Export</source>
         <translation>Ihe ndị a na-ebupụ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="775"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="776"/>
         <source>Take photo</source>
         <translation>Were foto</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="790"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="791"/>
         <source>Preferences</source>
         <translation>Ihe ndị a na-ahọrọ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="793"/>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="879"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="794"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="880"/>
         <source>Reset</source>
         <translation>Tọgharia</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="794"/>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="880"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="795"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="881"/>
         <source>Uninstall</source>
         <translation>Wepụ ihe nrụnye</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="142"/>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="802"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="143"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="803"/>
         <source>Select</source>
         <translation>Họrọ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="750"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="751"/>
         <source>The export account operation to the new device is in progress.
 Please confirm the import on the new device.</source>
         <translation>Ọrụ mbupụ akaụntụ na ngwaọrụ ọhụrụ na-aga n&apos;ihu.
 Biko kwado mbubata na ngwaọrụ ọhụrụ.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="753"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="754"/>
         <source>Enter authentication code</source>
         <translation>Tinye koodu nkwado</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="756"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="757"/>
         <source>New device IP address: %1</source>
         <translation>Adreesị IP ngwaọrụ ọhụrụ: %1</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="757"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="758"/>
         <source>Do you want to exit?</source>
         <translation>Ị chọrọ ịpụ?</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="758"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="759"/>
         <source>Exiting will cancel the import account operation.</source>
         <translation>Ịpụ ga-akagbu ọrụ mbubata akaụntụ.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="803"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="804"/>
         <source>Choose image file</source>
         <translation>Họrọ faịlụ oyiyi</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="805"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="806"/>
         <source>Load/Unload</source>
         <translation>Ibu Ibu / Ịtọpụ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="806"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="807"/>
         <source>Select An Image to %1</source>
         <translation>Họrọ Ihe oyiyi na %1</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="807"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="808"/>
         <source>Edit preference</source>
         <translation>Dezie mmasị</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="808"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="809"/>
         <source>On/Off</source>
         <translation>N&apos;ime / Gbanyụọ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="816"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="817"/>
         <source>Information</source>
         <translation>Ihe ọmụma</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="818"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="819"/>
         <source>Profile</source>
         <translation>Ihe gbasara ya</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="821"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="822"/>
         <source>Enter the account password to confirm the removal of this device</source>
         <translation>Tinye paswọọdụ akaụntụ iji gosi na e wepụrụ ngwaọrụ a</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="827"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="828"/>
         <source>Screens</source>
         <translation>Ihe ngosi</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="828"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="829"/>
         <source>Windows</source>
         <translation>Windows</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="829"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="830"/>
         <source>Screen %1</source>
         <translation>Ihuenyo %1</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="832"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="833"/>
         <source>QR code</source>
         <translation>Usoro QR</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="836"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="837"/>
         <source>Link this device to an existing account</source>
         <translation>Jikọọ ngwaọrụ a na akaụntụ dị adị</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="837"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="838"/>
         <source>Import from another device</source>
         <translation>Ịbubata site na ngwaọrụ ọzọ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="838"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="839"/>
         <source>Import from an archive backup</source>
         <translation>Import si nchekwa data ndabere</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="839"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="840"/>
         <source>Advanced features</source>
         <translation>Ihe ndị dị elu</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="840"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="841"/>
         <source>Show advanced features</source>
         <translation>Gosi atụmatụ ndị dị elu</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="841"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="842"/>
         <source>Hide advanced features</source>
         <translation>Zọpụtaghachi atụmatụ ndị dị elu</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="848"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="849"/>
         <source>Create new Jami account</source>
         <translation>Mepụta akaụntụ ọhụrụ na Jami</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="849"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="850"/>
         <source>Create new SIP account</source>
         <translation>Mepụta akaụntụ SIP ọhụrụ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="850"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="851"/>
         <source>About Jami</source>
         <translation>Banyere Jami</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="852"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="853"/>
         <source>I already have an account</source>
         <translation>Enwere m akaụntụ m.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="853"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="854"/>
         <source>Use existing Jami account</source>
         <translation>Jiri akaụntụ Jami dị ugbu a</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="854"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="855"/>
         <source>Welcome to Jami</source>
         <translation>Mmadụ Bịa na Jami</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="858"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="859"/>
         <source>Conversations</source>
         <translation>Mkparịta ụka</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="866"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="867"/>
         <source>Automatically check for updates</source>
         <translation>Akpaghị aka nyochaa maka mmelite</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="270"/>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="621"/>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="870"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="271"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="622"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="871"/>
         <source>Save</source>
         <translation>Chekwaa</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="872"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="873"/>
         <source>Upgrade</source>
         <translation>Nwelite</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="873"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="874"/>
         <source>Later</source>
         <translation>Mgbe e mesịrị</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="874"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="875"/>
         <source>Delete</source>
         <translation>Ihichapụ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="877"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="878"/>
         <source>Block</source>
         <translation>Ihe mgbochi</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="884"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="885"/>
         <source>Set moderator</source>
         <translation>Set moderator</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="885"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="886"/>
         <source>Unset moderator</source>
         <translation>Ịkwụsị ịhazi ihe</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="468"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="469"/>
         <source>Maximize</source>
         <translation>Mee Ka Ihe Dịkwuo Mma</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="891"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="892"/>
         <source>Local muted</source>
         <translation>Ndị obodo na-emechi ọnụ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="894"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="895"/>
         <source>Default moderators</source>
         <translation>Nchịkọta ndị na-edozi ihe</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="895"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="896"/>
         <source>Enable local moderators</source>
         <translation>Gbaa ndị na-eduzi mpaghara aka</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="896"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="897"/>
         <source>Make all participants moderators</source>
         <translation>Mee ka ndị nile sonyere bụrụ ndị nhazi</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="897"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="898"/>
         <source>Add default moderator</source>
         <translation>Tinye ndabara moderator</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="899"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="900"/>
         <source>Remove default moderator</source>
         <translation>Wepụ ndabara moderator</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="906"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="907"/>
         <source>Add emoji</source>
         <translation>Tinye emoji</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="908"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="909"/>
         <source>Send file</source>
         <translation>Zipu faịlụ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="931"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="932"/>
         <source>Send</source>
         <translation>Zie</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="624"/>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="875"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="625"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="876"/>
         <source>Remove</source>
         <translation>Wepụ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="39"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="40"/>
         <source>Migrate conversation</source>
         <translation>Mbanye mkparịta ụka</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="633"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="634"/>
         <source>Show notifications</source>
         <translation>Gosi ọkwa</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="634"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="635"/>
         <source>Minimize on close</source>
         <translation>Mee ka ọ dịkarịa ala na nso</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="636"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="637"/>
         <source>Run at system startup</source>
         <translation>Na-agba ọsọ na usoro mmalite</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="731"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="732"/>
         <source>Create account from backup</source>
         <translation>Mepụta akaụntụ site na ndabere</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="732"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="733"/>
         <source>Restore account from backup</source>
         <translation>Weghachi akaụntụ site na ndabere</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="735"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="736"/>
         <source>Import Jami account from local archive file.</source>
         <translation>Bubata akaụntụ Jami site na faịlụ ihe ndekọ mpaghara.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="938"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="939"/>
         <source>Write to %1</source>
         <translation>Dee na %1</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="969"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="970"/>
         <source>Member</source>
         <translation>Onye so na ya</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="979"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="980"/>
         <source>Ignore all notifications from this conversation</source>
         <translation>Echefula ihe niile a gwara gị n&apos; oge a</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="989"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="990"/>
         <source>Go to conversation</source>
         <translation>Gaa n&apos;ihu na-akparịta ụka</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="992"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="993"/>
         <source>Administrator</source>
         <translation>Onye nchịkwa</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="993"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="994"/>
         <source>Invited</source>
         <translation>A Kpọọrọ Ha</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="994"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="995"/>
         <source>Remove member</source>
         <translation>Wepụ onye so</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="995"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="996"/>
         <source>To:</source>
         <translation>Iji:</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="998"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="999"/>
         <source>Customize</source>
         <translation>Nhazi</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1000"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1001"/>
         <source>Dismiss</source>
         <translation>Ịkwụsị</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1001"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1002"/>
         <source>Add profile picture and nickname to complete your profile</source>
         <translation>Tinye foto profaịlụ na aha mba iji mezue profaịlụ gị</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1002"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1003"/>
         <source>Your profile is only shared with your contacts</source>
         <translation>A na-ekenye profaịlụ gị naanị na kọntaktị gị</translation>
     </message>
@@ -4826,17 +4831,17 @@ Biko kwado mbubata na ngwaọrụ ọhụrụ.</translation>
 <context>
     <name>MainApplication</name>
     <message>
-        <location filename="../src/app/mainapplication.cpp" line="545"/>
+        <location filename="../src/app/mainapplication.cpp" line="521"/>
         <source>E&amp;xit</source>
         <translation>E&amp;xit</translation>
     </message>
     <message>
-        <location filename="../src/app/mainapplication.cpp" line="547"/>
+        <location filename="../src/app/mainapplication.cpp" line="523"/>
         <source>&amp;Quit</source>
         <translation>&amp; Hapụ</translation>
     </message>
     <message>
-        <location filename="../src/app/mainapplication.cpp" line="553"/>
+        <location filename="../src/app/mainapplication.cpp" line="529"/>
         <source>&amp;Show Jami</source>
         <translation>&amp;Show Jami</translation>
     </message>
@@ -5660,17 +5665,17 @@ Biko kwado mbubata na ngwaọrụ ọhụrụ.</translation>
 <context>
     <name>UtilsAdapter</name>
     <message>
-        <location filename="../src/app/utilsadapter.cpp" line="392"/>
+        <location filename="../src/app/utilsadapter.cpp" line="396"/>
         <source>%1 Mbps</source>
         <translation>%1 Mbps</translation>
     </message>
     <message>
-        <location filename="../src/app/utilsadapter.cpp" line="392"/>
+        <location filename="../src/app/utilsadapter.cpp" line="396"/>
         <source>Default</source>
         <translation>Eburupụta</translation>
     </message>
     <message>
-        <location filename="../src/app/utilsadapter.cpp" line="584"/>
+        <location filename="../src/app/utilsadapter.cpp" line="588"/>
         <source>System</source>
         <translation>Sịstèm</translation>
     </message>
