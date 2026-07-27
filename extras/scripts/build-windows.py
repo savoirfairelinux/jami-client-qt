@@ -22,18 +22,15 @@ optional arguments:
 positional arguments:
   {pack}
 
-usage: build.py pack [-h] [-s] (-m | -z)
+usage: build.py pack [-h] -m
 
-mutually exclusive required arguments:
+required arguments:
   -m, --msi         Build MSI installer
-  -z, --zip         Build portable archive
 
 examples:
 1.  build.py --qt=C:/Qt/6.6.2/msvc2019_64  # Build the app using a specific Qt
 2.  build.py --init pack --msi             # Build the app and an MSI installer
 3.  build.py --init --tests                # Build the app and run tests
-    build.py pack --zip --skip-build       # Generate a 7z archive of the app
-                                             without building
 
 """
 
@@ -419,26 +416,6 @@ def generate_msi(version):
         os.rename(msi_file_file, msi_version_file)
 
 
-def generate_zip(version):
-    """Package archive for Windows."""
-    print('Generating 7z archive...')
-
-    # Generate 7z archive for Windows
-    app_output_dir = os.path.join(repo_root_dir, 'x64', 'Release')
-    app_files = os.path.join(app_output_dir, '*')
-
-    # TODO: exclude Jami.PDB, .deploy.stamp
-
-    artifacts_dir = os.path.join(build_dir, 'artifacts')
-    if not os.path.exists(artifacts_dir):
-        os.makedirs(artifacts_dir)
-    zip_file = os.path.join(artifacts_dir, 'jami-' +
-                            version + '.7z')
-    cmd = ['7z', 'a', '-t7z', '-r', zip_file, app_files]
-    if execute_cmd(cmd, False):
-        print('Generating 7z error.')
-
-
 def get_version():
     """Get version from git tag."""
     version = ""
@@ -496,11 +473,9 @@ def parse_args():
         default=None)
 
     pack_arg_parser = subparsers.add_parser("pack")
-    pack_group = pack_arg_parser.add_mutually_exclusive_group(required=True)
-    pack_group.add_argument(
-        "-m", "--msi", action="store_true", help="Build MSI installer")
-    pack_group.add_argument(
-        "-z", "--zip", action="store_true", help="Build ZIP archive")
+    pack_arg_parser.add_argument(
+        "-m", "--msi", action="store_true", required=True,
+        help="Build MSI installer")
 
     return parser.parse_args()
 
@@ -556,8 +531,6 @@ def main():
         do_build(False)
         if parsed_args.msi:
             generate_msi(get_version())
-        elif parsed_args.zip:
-            generate_zip(get_version())
     else:
         do_build(parsed_args.tests)
         if parsed_args.tests:
