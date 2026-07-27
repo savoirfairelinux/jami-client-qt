@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b672a64a_1d390512",
+        "filename": "src/app/mainview/components/CollabHistoryPanel.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-07-27T21:35:40Z",
+      "side": 1,
+      "message": "[warning] Line 199: 🟡 Restoring applies a collaborative edit for everyone immediately on a single click. Add a confirmation dialog before calling CollaborativeAdapter.restore(...) so accidental clicks do not overwrite the shared live document state, even if the operation is later reversible.",
+      "revId": "1850cf208de2da709ff67f5a485df9a0de5056de",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0ed4d63b_808079b6",
+        "filename": "src/app/mainview/components/CollabRichEditorWindow.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 532,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-07-27T21:35:40Z",
+      "side": 1,
+      "message": "[error] Line 532: 🔴 The custom paste handler still runs while a past-version preview is active. Because the live editor remains mounted/focused underneath the overlay, Ctrl+V can call richBinding.pasteText(...) and modify the hidden current document despite readOnly being set. Guard this handler with !root.previewing, or move focus to the preview editor and disable all edit shortcuts while previewing.",
+      "revId": "1850cf208de2da709ff67f5a485df9a0de5056de",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
