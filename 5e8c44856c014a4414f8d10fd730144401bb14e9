@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "523bb0c8_66b9d62e",
+        "filename": "tests/unittests/paste_unittest.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-07-27T19:48:22Z",
+      "side": 1,
+      "message": "seems like the wrong place for a test like this",
+      "range": {
+        "startLine": 228,
+        "startChar": 0,
+        "endLine": 242,
+        "endChar": 1
+      },
+      "revId": "5e8c44856c014a4414f8d10fd730144401bb14e9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
