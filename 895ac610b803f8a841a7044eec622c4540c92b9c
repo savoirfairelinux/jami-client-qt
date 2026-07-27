@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b0915399_6fbb779e",
+        "filename": "src/qtwrapper/configurationmanager_wrap.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 1064,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-07-27T21:34:54Z",
+      "side": 1,
+      "message": "[error] Line 1064: 🔴 Validate `max` before `static_cast\u003cuint32_t\u003e(max)`. A negative value from QML becomes a huge unsigned limit, which can request an unexpectedly large history and cause avoidable daemon/UI memory and latency issues. Clamp or reject negative values before forwarding.",
+      "revId": "895ac610b803f8a841a7044eec622c4540c92b9c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "37c17986_c11cd2a1",
+        "filename": "src/qtwrapper/configurationmanager_wrap.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 1092,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-07-27T21:34:54Z",
+      "side": 1,
+      "message": "[error] Line 1092: 🔴 Validate `index` and `deleteLen` before casting them to `uint32_t`. These values come from QML as signed integers; a negative value wraps to a very large unsigned offset/length and can corrupt the collaborative document state or trigger expensive daemon-side processing. Reject negative values before calling `libjami::editCollaborativeDocument`, consistent with the API contract.",
+      "revId": "895ac610b803f8a841a7044eec622c4540c92b9c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
