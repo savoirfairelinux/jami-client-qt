@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "985c7235_fdb2a116",
+        "filename": "src/app/collabrichbinding.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-07-27T21:35:03Z",
+      "side": 1,
+      "message": "[error] Line 129: 🔴 `charAttrsAt()` reads `index + 1` without clamping. A caret/selection at EOF is a normal QML state, and for `start \u003d\u003d d-\u003echaracterCount() - 1` this attempts to set the cursor past the valid document range, which can trigger Qt warnings/asserts and return the wrong format. Clamp to the last valid character position, or handle empty/EOF by reading the previous character/current block format explicitly.",
+      "revId": "f0ec7c5b77bf8b4c6edbc2b59126920a74b49366",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9df7d6f2_09e7d524",
+        "filename": "src/app/collabrichbinding.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 431,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-07-27T21:35:03Z",
+      "side": 1,
+      "message": "[error] Line 431: 🔴 `setLink()` accepts and persists arbitrary href values. If these anchors are later opened by the UI, peers/local users can inject `file:`, `javascript:`, or other unsafe schemes. Validate and normalize links here before applying/emitting them, e.g. allow only expected schemes such as `http`, `https`, and Jami-specific URIs, and reject or clear anything else.",
+      "revId": "f0ec7c5b77bf8b4c6edbc2b59126920a74b49366",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a6a07c3e_6f517de7",
+        "filename": "src/app/collabrichbinding.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 468,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-07-27T21:35:03Z",
+      "side": 1,
+      "message": "[warning] Line 468: 🟡 The `end` parameter is ignored, so toolbar state for a mixed-format selection is reported from only the first character. This can show bold/link/list controls as active for a selection where the attribute is not consistently applied. Either compute the intersection/common attributes across `[start, end)` or rename/document this as caret-only state and pass a collapsed position from QML.",
+      "revId": "f0ec7c5b77bf8b4c6edbc2b59126920a74b49366",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
