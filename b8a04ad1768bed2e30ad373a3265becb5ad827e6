@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c280a153_c9db80e1",
+        "filename": "CMakeLists.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-07-27T21:35:05Z",
+      "side": 1,
+      "message": "[error] 🔴 The patchset currently has failing macOS, GNU/Linux, and MSVC CI jobs after adding the collaborative sources and QML registrations. Please inspect the build logs and fix the cross-platform build failures before merge; registration changes should not land while the project does not compile.",
+      "revId": "b8a04ad1768bed2e30ad373a3265becb5ad827e6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
