@@ -342,6 +342,53 @@ Window {
         editor.forceActiveFocus();
     }
 
+    // Dropping follows the same rule as pasting: a picture if the drop carries
+    // one, text otherwise. Only the transcription of the event happens here; what
+    // counts as a picture is decided in C++, once, for both.
+    function insertDrop(drop, position) {
+        if (root.previewing)
+            return;
+        var payload = {};
+        for (var i = 0; i < drop.formats.length; ++i) {
+            var format = drop.formats[i];
+            if (format.indexOf("image/") === 0)
+                payload[format] = drop.getDataAsArrayBuffer(format);
+        }
+        if (drop.hasText)
+            payload["text"] = drop.text;
+        if (drop.hasUrls)
+            payload["urls"] = drop.urls;
+
+        const info = CollaborativeAdapter.addAttachmentFromDrop(root.accountId, root.conversationId, root.documentId, payload);
+        if (info && info.id) {
+            root.attachmentError = "";
+            CollaborativeAdapter.deliverAttachment(root.accountId, root.conversationId, root.documentId, info.id, richBinding);
+            richBinding.insertImage(position, info.id, info.width !== undefined ? info.width : 0, 0);
+            editor.forceActiveFocus();
+            return;
+        }
+        if (richBinding.dropCarriesLocalFile(payload)) {
+            // A file was dropped and it is not a picture. Inserting its path as
+            // text would be a strange answer to the gesture. A link dragged from
+            // a browser is a different matter entirely: it carries a URL too, but
+            // it is text, and inserting it is what was meant.
+            root.attachmentError = qsTr("This image could not be added. It has to be an image of at most 16 MB.");
+            attachmentErrorTimer.restart();
+            return;
+        }
+        if (drop.hasText && drop.text.length > 0) {
+            richBinding.insertText(position, position, drop.text);
+            editor.forceActiveFocus();
+            return;
+        }
+        // A remote URL dropped without any text of its own: the address is the
+        // only thing there is to insert, and it is what was dropped.
+        if (drop.hasUrls && drop.urls.length > 0) {
+            richBinding.insertText(position, position, String(drop.urls[0]));
+            editor.forceActiveFocus();
+        }
+    }
+
     // Bridges the editor's QTextDocument to the collaborative CRDT.
     CollabRichBinding {
         id: richBinding
@@ -778,6 +825,32 @@ Window {
                                 root.pasteFromClipboard();
                                 event.accepted = true;
                             }
+                        }
+
+                        // Dropping a picture, or a file holding one, inserts it where
+                        // it was dropped rather than where the caret happens to be.
+                        DropArea {
+                            id: editorDropArea
+
+                            anchors.fill: parent
+                            enabled: !root.previewing
+                            onEntered: function (drag) {
+                                drag.accept(Qt.CopyAction);
+                            }
+                            onDropped: function (drop) {
+                                root.insertDrop(drop, editor.positionAt(drop.x, drop.y));
+                                drop.accept(Qt.CopyAction);
+                            }
+                        }
+
+                        // Says where a drop would land, so it is not a leap of faith.
+                        Rectangle {
+                            anchors.fill: parent
+                            visible: editorDropArea.containsDrag
+                            color: "transparent"
+                            border.width: 2
+                            border.color: JamiTheme.tintedBlue
+                            radius: 4
                         }
 
                         // Right-click opens the context menu (declared at window root to

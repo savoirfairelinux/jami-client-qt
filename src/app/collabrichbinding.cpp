@@ -35,6 +35,7 @@
 #include <QBuffer>
 #include <QUrl>
 #include <QMimeData>
+#include <QVariantMap>
 #include <QBuffer>
 #include <QFile>
 #include <QFileInfo>
@@ -1020,22 +1021,72 @@ CollabRichBinding::clipboardHasImage() const
     return !imageFromMimeData(QGuiApplication::clipboard()->mimeData()).isEmpty();
 }
 
+QByteArray
+CollabRichBinding::imageFromDropData(const QVariantMap& payload)
+{
+    QMimeData mime;
+    for (auto it = payload.begin(); it != payload.end(); ++it) {
+        if (it.key() == QLatin1String("text")) {
+            const QString text = it.value().toString();
+            if (!text.isEmpty())
+                mime.setText(text);
+        } else if (it.key() == QLatin1String("urls")) {
+            QList<QUrl> urls;
+            const QVariantList list = it.value().toList();
+            for (const QVariant& v : list) {
+                const QUrl url = v.canConvert<QUrl>() ? v.toUrl() : QUrl(v.toString());
+                if (url.isValid())
+                    urls.append(url);
+            }
+            if (!urls.isEmpty())
+                mime.setUrls(urls);
+        } else if (it.key().startsWith(QLatin1String("image/"))) {
+            const QByteArray data = it.value().toByteArray();
+            if (!data.isEmpty())
+                mime.setData(it.key(), data);
+        }
+    }
+    return imageFromMimeData(&mime);
+}
+
+bool
+CollabRichBinding::dropCarriesLocalFile(const QVariantMap& payload)
+{
+    const QVariantList list = payload.value(QStringLiteral("urls")).toList();
+    for (const QVariant& v : list) {
+        const QUrl url = v.canConvert<QUrl>() ? v.toUrl() : QUrl(v.toString());
+        if (url.isValid() && url.isLocalFile())
+            return true;
+    }
+    return false;
+}
+
 void
 CollabRichBinding::pasteText(int start, int end)
 {
     QTextDocument* d = doc();
     if (!d)
         return;
-    const QString text = QGuiApplication::clipboard()->text();
+    // Rich clipboard styling is intentionally dropped so every participant
+    // stays consistent.
+    insertText(start, end, QGuiApplication::clipboard()->text());
+}
+
+void
+CollabRichBinding::insertText(int start, int end, const QString& text)
+{
+    QTextDocument* d = doc();
+    if (!d)
+        return;
     if (text.isEmpty() && start == end)
         return;
-    // Insert as literal plain text (not interpreted as HTML), replacing any
-    // selection. This goes through onContentsChange like a normal edit, so it
-    // syncs; rich clipboard styling is intentionally dropped for consistency.
+    // Literal text, never interpreted as markup. This goes through
+    // onContentsChange like a normal edit, so it syncs.
     QTextCursor c(d);
-    c.setPosition(qMin(start, end));
+    const int last = d->characterCount() - 1;
+    c.setPosition(qBound(0, qMin(start, end), last));
     if (start != end) {
-        c.setPosition(qMax(start, end), QTextCursor::KeepAnchor);
+        c.setPosition(qBound(0, qMax(start, end), last), QTextCursor::KeepAnchor);
         c.removeSelectedText();
     }
     if (!text.isEmpty()) {
