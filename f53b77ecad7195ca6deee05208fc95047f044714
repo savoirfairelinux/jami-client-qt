@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "231df8bd_89eb0e05",
+        "filename": "CMakeLists.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 727,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-07-28T02:45:17Z",
+      "side": 1,
+      "message": "[warning] Line 727: 🟡 GLOBing every contrib */lib directory can select the wrong triplet when multiple daemon contrib builds exist, which is common for cross-builds or stale local trees. Resolve the exact daemon contrib prefix/triplet used by this client build instead of letting find_library choose from all of them.",
+      "revId": "f53b77ecad7195ca6deee05208fc95047f044714",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "21a21133_b2d0a3c8",
+        "filename": "CMakeLists.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 740,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-07-28T02:45:17Z",
+      "side": 1,
+      "message": "[error] Line 740: 🔴 libyrs is a Rust static library, but only -ldl and -lm are linked on non-MSVC and no platform-specific private dependencies are handled. This will fail or be brittle across Linux/macOS/MSVC; consume the yrs pkg-config/CMake metadata from contrib, or otherwise import all Libs.private/system framework dependencies for the selected platform.",
+      "revId": "f53b77ecad7195ca6deee05208fc95047f044714",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e73434a4_82f83d5e",
+        "filename": "src/app/yrsdocument.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-07-28T02:45:17Z",
+      "side": 1,
+      "message": "[warning] Line 147: 🟡 Parsed insert ops leave RichOp::len at 0 even though the public contract says it contains the UTF-16 length of the inserted text. Set op.len \u003d utf16Len(op.text) after decoding so callers that inspect parsed ops do not treat inserts as zero-length.",
+      "revId": "f53b77ecad7195ca6deee05208fc95047f044714",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "11e9a4a6_b58aa444",
+        "filename": "src/app/yrsdocument.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-07-28T02:45:17Z",
+      "side": 1,
+      "message": "[error] Line 153: 🔴 Negative or non-integer delete/retain lengths pass isDouble() and are cast to uint32_t; for example -1 becomes 4294967295, and applyDelta() can then clamp it into deleting the remaining document. Validate that numeric ops are integral and within the uint32_t range before casting, otherwise skip/reject the op.",
+      "revId": "f53b77ecad7195ca6deee05208fc95047f044714",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
