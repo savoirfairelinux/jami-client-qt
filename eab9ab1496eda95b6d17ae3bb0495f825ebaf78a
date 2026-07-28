@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0dfa9e8e_3b7a6993",
+        "filename": "src/app/collabrichbinding.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-07-28T02:44:29Z",
+      "side": 1,
+      "message": "[error] Line 145: 🔴 `charAttrsAt()` always reads `index + 1`, which is out of range when the caret/selection start is at the end of the document. `selectionFormat()` and toolbar actions can hit this for an end-of-text caret, producing invalid cursor positioning and wrong toolbar state. Clamp to the last real character (or return an empty format for an empty document) before calling `setPosition()`.",
+      "revId": "eab9ab1496eda95b6d17ae3bb0495f825ebaf78a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1c84851c_07833d10",
+        "filename": "src/app/collabrichbinding.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 298,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-07-28T02:44:29Z",
+      "side": 1,
+      "message": "[warning] Line 298: 🟡 Remote `retain` values are accepted without validation and added to `index` even when negative. A malformed peer delta can move the logical cursor backwards and make following operations apply at the wrong location after `qBound()` clamps positions. Reject negative/non-numeric retain/delete lengths before applying the delta.",
+      "revId": "eab9ab1496eda95b6d17ae3bb0495f825ebaf78a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
