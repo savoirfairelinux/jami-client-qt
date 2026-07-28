@@ -93,6 +93,9 @@ utf16Len(const std::string& utf8)
     return units;
 }
 
+// UTF-8 encoding of U+FFFC, the character standing for an embed in a text view.
+const std::string PLACEHOLDER_UTF8 {"\xEF\xBF\xBC"};
+
 /// Whether @p json is a JSON object yinput_json() will accept.
 ///
 /// This is not belt and braces: yinput_json() parses with serde_json and
@@ -107,6 +110,33 @@ isJsonObject(const std::string& json)
         return false;
     const auto doc = QJsonDocument::fromJson(QByteArray::fromStdString(json));
     return doc.isObject();
+}
+
+/// The document as plain text, with U+FFFC standing for each embed.
+///
+/// ytext_string() cannot be used for this: it silently omits embeds, so its
+/// length disagrees with ytext_len() by one per embed. Any offset computed from
+/// it and handed back to the engine would then be wrong, and the engine does not
+/// bound its arguments -- it aborts the process. Measured on the real engine:
+/// "AB" + one embed + "CD" is 5 units long and ytext_string() returns 4.
+std::string
+plainTextWithEmbeds(Branch* text, YTransaction* txn)
+{
+    uint32_t n = 0;
+    YChunk* chunks = ytext_chunks(text, txn, &n);
+    if (!chunks)
+        return {};
+    std::string out;
+    for (uint32_t i = 0; i < n; ++i) {
+        if (chunks[i].data.tag != Y_JSON_STR) {
+            out += PLACEHOLDER_UTF8;
+            continue;
+        }
+        if (char* s = youtput_read_string(&chunks[i].data))
+            out += s;
+    }
+    ychunks_destroy(chunks, n);
+    return out;
 }
 
 // Compact (no-indent) JSON serialization, used for the per-op attribute objects
@@ -142,6 +172,25 @@ yOutputToJson(const YOutput& o)
         char* s = youtput_read_string(&o);
         return QJsonValue(QString::fromUtf8(s ? s : ""));
     }
+    // Embedded content -- what a client puts in the document besides text, an
+    // image reference say -- comes back as a JSON-like map or array.
+    case Y_JSON_MAP: {
+        QJsonObject obj;
+        const YMapEntry* entries = youtput_read_json_map(&o);
+        if (entries)
+            for (uint32_t i = 0; i < static_cast<uint32_t>(o.len); ++i)
+                if (entries[i].key && entries[i].value)
+                    obj.insert(QString::fromUtf8(entries[i].key), yOutputToJson(*entries[i].value));
+        return QJsonValue(obj);
+    }
+    case Y_JSON_ARR: {
+        QJsonArray arr;
+        const YOutput* values = youtput_read_json_array(&o);
+        if (values)
+            for (uint32_t i = 0; i < static_cast<uint32_t>(o.len); ++i)
+                arr.append(yOutputToJson(values[i]));
+        return QJsonValue(arr);
+    }
     default:
         return QJsonValue(QJsonValue::Null);
     }
@@ -176,7 +225,16 @@ YrsDocument::richOpsToDeltaJson(const std::vector<RichOp>& ops)
             o[QStringLiteral("delete")] = static_cast<qint64>(op.len);
             break;
         case RichOp::Kind::Insert:
-            o[QStringLiteral("insert")] = QString::fromStdString(op.text);
+            if (!op.embed.empty()) {
+                // Quill's convention: an object-valued "insert" is an embed, a
+                // string-valued one is text.
+                const auto embed = QJsonDocument::fromJson(QByteArray::fromStdString(op.embed));
+                if (!embed.isObject())
+                    continue; // malformed: dropping the op beats emitting a text insert of it
+                o[QStringLiteral("insert")] = embed.object();
+            } else {
+                o[QStringLiteral("insert")] = QString::fromStdString(op.text);
+            }
             break;
         }
         if (!op.attrs.empty()) {
@@ -204,6 +262,10 @@ YrsDocument::deltaJsonToRichOps(const std::string& deltaJson)
         if (o.value(QStringLiteral("insert")).isString()) {
             op.kind = RichOp::Kind::Insert;
             op.text = o.value(QStringLiteral("insert")).toString().toStdString();
+        } else if (o.value(QStringLiteral("insert")).isObject()) {
+            op.kind = RichOp::Kind::Insert;
+            op.embed = toCompactJson(o.value(QStringLiteral("insert")));
+            op.len = 1; // one unit, like the U+FFFC that stands for it in a text view
         } else if (o.value(QStringLiteral("retain")).isDouble()) {
             op.kind = RichOp::Kind::Retain;
             op.len = static_cast<uint32_t>(o.value(QStringLiteral("retain")).toInt());
@@ -275,6 +337,17 @@ struct YrsDocument::Impl
                 richOps.push_back({RichOp::Kind::Delete, delta[i].len, std::string {}, std::string {}});
                 break;
             case Y_EVENT_CHANGE_ADD: {
+                if (delta[i].insert && delta[i].insert->tag != Y_JSON_STR) {
+                    // Embedded content, not text. A plain-text view still has to
+                    // account for it or every offset after it would be off by
+                    // one, so it is reported as the placeholder character Qt
+                    // already uses for an inline object.
+                    const auto embed = toCompactJson(yOutputToJson(*delta[i].insert));
+                    changes.push_back({pos, 0, PLACEHOLDER_UTF8});
+                    richOps.push_back({RichOp::Kind::Insert, delta[i].len, std::string {}, attrs, embed});
+                    pos += delta[i].len;
+                    break;
+                }
                 char* str = youtput_read_string(delta[i].insert);
                 std::string text = str ? std::string {str} : std::string {};
                 changes.push_back({pos, 0, text});
@@ -375,6 +448,21 @@ YrsDocument::applyDelta(const std::vector<RichOp>& ops)
             break;
         }
         case RichOp::Kind::Insert: {
+            if (!op.embed.empty()) {
+                // A malformed embed is dropped: passing it on would abort the
+                // process rather than fail the op.
+                if (!isJsonObject(op.embed))
+                    break;
+                YInput content = yinput_json(op.embed.c_str());
+                if (!isJsonObject(op.attrs)) {
+                    ytext_insert_embed(pimpl_->text, txn, index, &content, nullptr);
+                } else {
+                    YInput attr = yinput_json(op.attrs.c_str());
+                    ytext_insert_embed(pimpl_->text, txn, index, &content, &attr);
+                }
+                index += 1; // an embed is one unit, whatever it holds
+                break;
+            }
             if (!op.text.empty()) {
                 if (!isJsonObject(op.attrs)) {
                     ytext_insert(pimpl_->text, txn, index, op.text.c_str(), nullptr);
@@ -407,9 +495,15 @@ YrsDocument::contentDelta() const
     YChunk* chunks = ytext_chunks(pimpl_->text, scoped.get(), &n);
     QJsonArray arr;
     for (uint32_t i = 0; i < n; ++i) {
-        char* s = youtput_read_string(&chunks[i].data);
         QJsonObject op;
-        op.insert("insert", QString::fromUtf8(s ? s : ""));
+        if (chunks[i].data.tag != Y_JSON_STR) {
+            // Embedded content: hand it back as the object it was inserted as,
+            // so reopening a document restores it exactly.
+            op.insert("insert", yOutputToJson(chunks[i].data));
+        } else {
+            char* s = youtput_read_string(&chunks[i].data);
+            op.insert("insert", QString::fromUtf8(s ? s : ""));
+        }
         if (chunks[i].fmt_len > 0) {
             QJsonObject attrs;
             for (uint32_t j = 0; j < chunks[i].fmt_len; ++j) {
@@ -538,11 +632,7 @@ YrsDocument::spliceTo(const std::string& target)
         ScopedTxn rtxn(pimpl_->doc, ScopedTxn::Kind::Read);
         if (!rtxn)
             return false;
-        char* str = ytext_string(pimpl_->text, rtxn.get());
-        if (str) {
-            current = str;
-            ystring_destroy(str);
-        }
+        current = plainTextWithEmbeds(pimpl_->text, rtxn.get());
     }
 
     uint32_t index = 0, deleteLen = 0;
@@ -596,11 +686,9 @@ YrsDocument::text() const
     ScopedTxn scoped(pimpl_->doc, ScopedTxn::Kind::Read);
     if (!scoped)
         return {};
-    char* str = ytext_string(pimpl_->text, scoped.get());
-    std::string result = str ? str : "";
-    if (str)
-        ystring_destroy(str);
-    return result;
+    // Not ytext_string(): it drops embeds, and a text view whose offsets are
+    // short by one per embed eventually asks the engine to edit past the end.
+    return plainTextWithEmbeds(pimpl_->text, scoped.get());
 }
 
 YrsDocument::Bytes
