@@ -19,6 +19,7 @@
 
 #include <QObject>
 #include <QPointer>
+#include <QSet>
 #include <QQuickTextDocument>
 #include <QString>
 #include <QVariantMap>
@@ -75,10 +76,23 @@ public:
     /// Inline attributes currently set across [start, end), for toolbar state.
     Q_INVOKABLE QVariantMap selectionFormat(int start, int end);
 
+    /// Insert the attachment @p id as an inline image at @p position (UTF-16).
+    /// Goes through the normal local-edit path, so the delta is emitted as for
+    /// any other typing.
+    Q_INVOKABLE void insertImage(int position, const QString& id, int width = 0, int height = 0);
+    /// Make the bytes of attachment @p id available to the layout, so an image
+    /// already present in the document stops rendering as a broken placeholder.
+    void registerAttachment(const QString& id, const QByteArray& data);
+    /// Whether the document holds an image referring to attachment @p id.
+    Q_INVOKABLE bool referencesAttachment(const QString& id) const;
+
 Q_SIGNALS:
     void textDocumentChanged();
     /// A local edit produced a Quill delta to be sent to the daemon.
     void localDelta(const QString& deltaJson);
+    /// The document refers to an attachment whose bytes are not loaded yet.
+    /// Whoever can fetch them answers with registerAttachment().
+    void attachmentNeeded(const QString& id);
 
 private:
     QTextDocument* doc() const;
@@ -96,4 +110,7 @@ private:
     // True while applying a remote/initial delta, so contentsChange is not echoed
     // back as a local edit.
     bool applyingRemote_ {false};
+    // Attachments met while applying a delta whose bytes the document does not
+    // hold. Asked for once the delta is fully applied, not during.
+    QSet<QString> pendingAttachments_;
 };
