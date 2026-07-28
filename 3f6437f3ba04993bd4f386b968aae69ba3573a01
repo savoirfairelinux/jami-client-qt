@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c328bc7e_33726ef9",
+        "filename": "src/app/mainview/components/CollabEditorWindow.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 503,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-07-28T01:40:24Z",
+      "side": 1,
+      "message": "[warning] Line 503: 🟡 Cursor updates can still be broadcast while the user is previewing a historical version, because the editor can retain focus under the overlay and cursorBroadcast only checks applyingRemote. Guard this with !root.previewing to avoid advertising a live caret position while the user is not editing the current document.",
+      "revId": "3f6437f3ba04993bd4f386b968aae69ba3573a01",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8e638661_30de4a16",
+        "filename": "src/app/mainview/components/CollabHistoryPanel.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-07-28T01:40:24Z",
+      "side": 1,
+      "message": "[warning] Line 202: 🟡 Restore failures are silently ignored. If CollaborativeAdapter.restore() returns false, the UI gives no indication and leaves the user with an apparently dead button; surface an error/status message consistent with the rest of the app.",
+      "revId": "3f6437f3ba04993bd4f386b968aae69ba3573a01",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
