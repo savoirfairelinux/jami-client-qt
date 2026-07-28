@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "410aa70d_47fcc672",
+        "filename": "src/app/collabrichbinding.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 982,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-07-28T18:12:22Z",
+      "side": 1,
+      "message": "[warning] Line 982: 🟡 mimeCarriesImage() returns true for any accepted encoded image MIME type without checking whether the payload is non-empty and within MAX_PASTED_IMAGE_SIZE. That can enable the Paste action for an oversized or empty encoded image, then addAttachmentFromClipboard() fails and shows an error instead of keeping Paste disabled. Mirror the same size/non-empty checks used by imageFromMimeData() before returning true.",
+      "revId": "31198c33a098a21375e76d393ebe3252d5cd240f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
