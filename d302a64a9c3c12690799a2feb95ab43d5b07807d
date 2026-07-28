@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ecec9c1d_fcd6cc8f",
+        "filename": "src/app/collabrichbinding.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-07-28T01:40:25Z",
+      "side": 1,
+      "message": "[error] Line 94: 🔴 Remote deltas can set arbitrary link hrefs, and local setLink() forwards arbitrary hrefs as well. If these anchors are later opened by the UI, schemes such as file:, javascript:, or data: can become a local file exposure or unsafe navigation vector. Validate and normalize URLs before accepting them, and allow only the schemes the editor intends to support, e.g. https/http and any explicit Jami scheme.",
+      "revId": "d302a64a9c3c12690799a2feb95ab43d5b07807d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d813c357_58ddc8f7",
+        "filename": "src/app/collabrichbinding.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-07-28T01:40:25Z",
+      "side": 1,
+      "message": "[error] Line 259: 🔴 loadContentDelta() appends the supplied content delta to the existing QTextDocument instead of replacing it. Reusing the binding/document or loading a second conversation will duplicate or mix content. Clear the document and reset shadow_ before applying the initial content delta, or make this function explicitly reject non-empty documents.",
+      "revId": "d302a64a9c3c12690799a2feb95ab43d5b07807d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
