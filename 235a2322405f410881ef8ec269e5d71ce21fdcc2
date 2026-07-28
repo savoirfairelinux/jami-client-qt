@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1c3eb3ef_c5f15f6d",
+        "filename": "src/app/yrsdocument.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 525,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-07-28T17:08:47Z",
+      "side": 1,
+      "message": "[error] Line 525: 🔴 read transactions are not committed when ytext_string() or ytransaction_state_diff_v1() returns null. In text(), a null ytext_string() skips ytransaction_commit(txn); in encodeStateAsUpdate(), a null diff does the same. Commit/destroy the transaction unconditionally before returning to avoid leaking or leaving libyrs transaction state open on allocation/error paths.",
+      "revId": "235a2322405f410881ef8ec269e5d71ce21fdcc2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
