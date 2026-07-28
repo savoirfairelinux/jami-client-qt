@@ -88,6 +88,25 @@ public:
     /// Static and free of any document, so the attachment store can ask the same
     /// question the editor asks, and so it can be verified without a clipboard.
     static QByteArray imageFromMimeData(const QMimeData* mime);
+
+    /// Same question, asked of a drop rather than of a paste. QML cannot hand
+    /// over a QMimeData, so it hands over what a drop event holds -- keys are
+    /// mime types with their bytes, plus "text" and "urls" -- and the decision
+    /// stays in one place instead of being written a second time in QML.
+    static QByteArray imageFromDropData(const QVariantMap& payload);
+
+    /// Whether a drop payload points at a file on this machine.
+    ///
+    /// This tells apart the two things a drop that is not an image can be. A
+    /// file was meant to be inserted, so failing to insert it has to be said;
+    /// its path as text would be a strange answer to the gesture. A link
+    /// dragged from a browser is text, and inserting it is exactly what was
+    /// meant -- and it arrives with a URL too, which is why the question cannot
+    /// simply be "are there URLs".
+    static bool dropCarriesLocalFile(const QVariantMap& payload);
+
+    /// Insert @p text over [start, end) as literal text, never as markup.
+    Q_INVOKABLE void insertText(int start, int end, const QString& text);
     /// Set (or, with an empty href, clear) a link over [start, end).
     Q_INVOKABLE void setLink(const QString& href, int start, int end);
     /// Remove all inline formatting over [start, end).
