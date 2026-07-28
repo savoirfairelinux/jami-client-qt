@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2938d509_3319464d",
+        "filename": "extras/build/docker/Dockerfile.client-qt-gnulinux",
+        "patchSetId": 4
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-07-28T03:40:44Z",
+      "side": 1,
+      "message": "[error] Line 139: 🔴 This Dockerfile now invokes `curl` but only installs `wget` in the preceding package list, unlike the packaging image. If the base image does not already contain curl, rebuilding this image fails before Rust is installed. Add `curl` to the apt package list in this Dockerfile as well.",
+      "revId": "86d82cf11ae59392434848a37ca0e8ae5384edb5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "45774a41_c538b479",
+        "filename": "extras/build/docker/Dockerfile.client-qt-gnulinux",
+        "patchSetId": 4
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-07-28T03:40:44Z",
+      "side": 1,
+      "message": "[error] Line 140: 🔴 Installing Rust with `--default-toolchain stable` makes this build image non-reproducible because the same Dockerfile can resolve to different Rust/Cargo versions over time. Pin the minimum tested Rust version required by `yffi` and update it deliberately.",
+      "revId": "86d82cf11ae59392434848a37ca0e8ae5384edb5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9473a153_998d21bd",
+        "filename": "extras/build/docker/Dockerfile.client-qt-gnulinux",
+        "patchSetId": 4
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-07-28T03:40:44Z",
+      "side": 1,
+      "message": "[error] Line 141: 🔴 `chmod -R a+rwX /usr/local/rustup /usr/local/cargo` makes the system Rust toolchain world-writable, allowing the unprivileged build user or build scripts to overwrite `cargo`/`rustc` for later steps. Keep the installed toolchain read/execute-only, and use a per-user writable Cargo cache if writes are needed.",
+      "revId": "86d82cf11ae59392434848a37ca0e8ae5384edb5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
