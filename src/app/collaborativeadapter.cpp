@@ -29,7 +29,18 @@
 #include <QRandomGenerator>
 #include <QSet>
 #include <QUrl>
+#include <QGuiApplication>
+#include <QClipboard>
 #include <algorithm>
+
+namespace {
+// Matches the daemon's own ceiling, so an oversized payload is refused here,
+// where it can be reported, rather than silently dropped after being read.
+constexpr qint64 MAX_ATTACHMENT_SIZE = 16 * 1024 * 1024;
+// Above this the image is displayed scaled down. The stored bytes are untouched:
+// what is scaled is the layout, not the payload.
+constexpr int MAX_DISPLAY_WIDTH = 720;
+} // namespace
 
 namespace {
 
@@ -526,13 +537,6 @@ CollaborativeAdapter::addAttachment(const QString& accountId,
                                     const QString& documentId,
                                     const QUrl& file)
 {
-    // Matches the daemon's own ceiling, so an oversized file is refused here,
-    // where it can be reported, rather than silently dropped after being read.
-    constexpr qint64 MAX_ATTACHMENT_SIZE = 16 * 1024 * 1024;
-    // Above this the image is displayed scaled down. The stored bytes are
-    // untouched: what is scaled is the layout, not the payload.
-    constexpr int MAX_DISPLAY_WIDTH = 720;
-
     const QString path = file.isLocalFile() ? file.toLocalFile() : file.toString();
     QFile f(path);
     if (!f.exists() || f.size() <= 0 || f.size() > MAX_ATTACHMENT_SIZE)
@@ -541,6 +545,28 @@ CollaborativeAdapter::addAttachment(const QString& accountId,
         return {};
     const QByteArray data = f.readAll();
     f.close();
+    return storeAttachment(accountId, convId, documentId, data);
+}
+
+QVariantMap
+CollaborativeAdapter::addAttachmentFromClipboard(const QString& accountId,
+                                                 const QString& convId,
+                                                 const QString& documentId)
+{
+    return storeAttachment(accountId,
+                           convId,
+                           documentId,
+                           CollabRichBinding::imageFromMimeData(QGuiApplication::clipboard()->mimeData()));
+}
+
+QVariantMap
+CollaborativeAdapter::storeAttachment(const QString& accountId,
+                                      const QString& convId,
+                                      const QString& documentId,
+                                      const QByteArray& data)
+{
+    if (data.isEmpty() || data.size() > MAX_ATTACHMENT_SIZE)
+        return {};
 
     // Decoded here and not only on display: a payload this editor cannot draw
     // would be stored for good and shown as a broken placeholder to everyone.
