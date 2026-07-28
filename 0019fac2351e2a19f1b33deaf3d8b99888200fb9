@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5fa279cd_294fb2fb",
+        "filename": "src/app/collabrichbinding.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 943,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-07-28T16:18:40Z",
+      "side": 1,
+      "message": "[warning] Line 943: 🟡 This can encode the full clipboard image to PNG every time `clipboardHasImage()` is queried, and the paste path then encodes/reads it again in `addAttachmentFromClipboard()`. For screenshots or large images this can make menu enabling and paste handling unnecessarily expensive. Split detection from extraction, or cache the extracted bytes for the subsequent paste.",
+      "revId": "0019fac2351e2a19f1b33deaf3d8b99888200fb9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fcfa9127_f14bbcb7",
+        "filename": "src/app/mainview/components/CollabRichEditorWindow.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 1064,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-07-28T16:18:40Z",
+      "side": 1,
+      "message": "[warning] Line 1064: 🟡 `richBinding.clipboardHasImage()` is an invokable function with no QML-notifiable dependency, so this binding is not reliably reevaluated when the clipboard changes. An image-only clipboard can leave Paste disabled until some unrelated dependency changes. Expose a `clipboardHasImage` Q_PROPERTY updated from `QClipboard::dataChanged`, or recompute `enabled` when the context menu is about to open.",
+      "revId": "0019fac2351e2a19f1b33deaf3d8b99888200fb9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
