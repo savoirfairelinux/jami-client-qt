@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "02eb909d_77ac99d9",
+        "filename": "src/app/yrsdocument.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 476,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-07-28T03:40:44Z",
+      "side": 1,
+      "message": "[error] Line 476: 🔴 applyUpdate() leaves applyingRemote/suppressEmit set if ytransaction_apply(), ytransaction_commit(), or a synchronous callback throws/terminates through the C callback boundary. Use a small scope guard to restore both flags before returning, so later local edits are not mislabeled or silently suppressed after an error path.",
+      "revId": "b9dc24630c9a7d3eebacb1b11d629818ea10efcf",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "111fcabb_d233ffa7",
+        "filename": "src/app/yrsdocument.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-07-28T03:40:44Z",
+      "side": 1,
+      "message": "[warning] Line 35: 🟡 The comment says callbacks must not call back into the same instance, but the implementation uses std::recursive_mutex, which allows same-thread reentry while a libyrs transaction is being committed. That can start nested transactions from observers and risk libyrs state corruption/abort. Prefer a non-recursive mutex plus invoking copied callbacks after the transaction/lock, or add an explicit reentrancy guard that rejects mutation from callbacks.",
+      "revId": "b9dc24630c9a7d3eebacb1b11d629818ea10efcf",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
