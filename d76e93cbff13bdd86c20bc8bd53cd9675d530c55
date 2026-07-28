@@ -17,6 +17,23 @@
       "parentUuid": "410aa70d_47fcc672",
       "revId": "d76e93cbff13bdd86c20bc8bd53cd9675d530c55",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9374e1f8_623edaec",
+        "filename": "src/app/mainview/components/CollabRichEditorWindow.qml",
+        "patchSetId": 7
+      },
+      "lineNbr": 340,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-07-28T18:43:48Z",
+      "side": 1,
+      "message": "[warning] Line 340: 🟡 After removing a selection, inserting at `editor.cursorPosition` can place the pasted image at the old cursor end rather than at the start of the replaced range. Save `const insertAt \u003d editor.selectionStart` before `editor.remove(...)` and pass that to `richBinding.insertImage(...)` so image paste replaces the selected range in the same location as text paste.",
+      "revId": "d76e93cbff13bdd86c20bc8bd53cd9675d530c55",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
