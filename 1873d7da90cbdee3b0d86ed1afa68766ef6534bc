@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6f96403c_8e340e9c",
+        "filename": "src/app/collaborativeadapter.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 541,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-07-28T16:19:00Z",
+      "side": 1,
+      "message": "[error] Line 541: 🔴 File size is capped, but decoded image size is not. A small compressed image can expand to a huge QImage and exhaust memory or hang the UI; the same applies to remote payloads decoded in CollabRichBinding::registerAttachment. Use QImageReader to inspect dimensions before decoding and enforce a pixel/allocation limit on both local import and remote registration.",
+      "revId": "1873d7da90cbdee3b0d86ed1afa68766ef6534bc",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
