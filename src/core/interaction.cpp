@@ -103,6 +103,9 @@ Info::init(const MapStringString& message,
         transferStatus = bytesProgress == 0           ? TransferStatus::TRANSFER_AWAITING_HOST
                          : bytesProgress == totalSize ? TransferStatus::TRANSFER_FINISHED
                                                       : TransferStatus::TRANSFER_ONGOING;
+    } else if (type == Type::COLLAB_DOC) {
+        // The document name is shown in the bubble; its id lives in commit["uri"].
+        body = message["displayName"];
     }
     commit = message;
 }
