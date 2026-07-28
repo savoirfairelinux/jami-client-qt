@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e69504d7_9fccd353",
+        "filename": "src/app/collabrichbinding.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 965,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-07-28T16:49:17Z",
+      "side": 1,
+      "message": "[warning] Line 965: 🟡 This rejects image paste whenever the clipboard also exposes non-empty text. Common sources such as browsers often put both `image/png` and `text/plain`/`text/html` on the clipboard when copying an image, so this can paste the URL or alt text instead of the picture. Prefer explicit image MIME data for image-copy sources, or narrow the text-wins rule to rich text selections where the image is only a rendered fallback.",
+      "revId": "29b6c5be53a98804645fa4c59b0a8875017afe69",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
