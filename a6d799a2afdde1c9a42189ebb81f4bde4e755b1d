@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "460292ee_53f02a0d",
+        "filename": "src/app/collabrichbinding.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 462,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-07-28T17:47:53Z",
+      "side": 1,
+      "message": "[error] Line 462: 🔴 This new use of QClipboard and QGuiApplication does not add their direct includes in this translation unit, so the build can fail depending on transitive Qt headers. Add #include \u003cQClipboard\u003e and #include \u003cQGuiApplication\u003e to collabrichbinding.cpp.",
+      "revId": "a6d799a2afdde1c9a42189ebb81f4bde4e755b1d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "61863f02_ed555152",
+        "filename": "src/app/collabrichbinding.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 1011,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-07-28T17:47:53Z",
+      "side": 1,
+      "message": "[warning] Line 1011: 🟡 The URL exception in textWins() also applies to decoded-image fallbacks, so copying URL text from an app that also provides a rendered bitmap can paste the bitmap instead of the URL. Limit the URL-over-text exception to explicit encoded image MIME types, and let text continue to win for hasImage()-only fallback data.",
+      "revId": "a6d799a2afdde1c9a42189ebb81f4bde4e755b1d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
