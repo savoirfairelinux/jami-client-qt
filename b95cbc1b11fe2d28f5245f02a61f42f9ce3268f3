@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "689e2d5b_bd94b264",
+        "filename": "src/app/collabrichbinding.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 510,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-07-28T17:08:46Z",
+      "side": 1,
+      "message": "[error] Line 510: 🔴 `decodeBounded()` trusts `QImageReader::size()` but never verifies the decoded `QImage` dimensions after `read()`. If a plugin reports misleading or transformed dimensions, an oversized image can still be accepted and cached. Store the result of `reader.read()`, then reject it if `width * height \u003e MAX_DECODED_PIXELS` before returning it.",
+      "revId": "b95cbc1b11fe2d28f5245f02a61f42f9ce3268f3",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
