@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ae6d9aff_ea6f02e6",
+        "filename": "extras/build/docker/Dockerfile.client-qt-gnulinux",
+        "patchSetId": 5
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-07-28T17:46:45Z",
+      "side": 1,
+      "message": "[error] Line 149: 🔴 `chmod a+rwx /usr/local/cargo` still makes the parent of the PATH entry world-writable, so an unprivileged build can rename/replace `/usr/local/cargo/bin` and inject fake `cargo`/`rustc` for later steps. Keep `/usr/local/cargo` and its `bin` read-only, and use a separate writable Cargo cache/home that is not on PATH.",
+      "revId": "38b0b53213c15b8ed169c3b20cad2f3206768039",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8b55e11c_bbc08501",
+        "filename": "extras/packaging/gnu-linux/docker/Dockerfile_ubuntu_24.04",
+        "patchSetId": 5
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-07-28T17:46:45Z",
+      "side": 1,
+      "message": "[error] Line 28: 🔴 `chmod a+rwx /usr/local/cargo` still allows any package build user to replace entries under `/usr/local/cargo`, including the `bin` directory that is first on PATH. This preserves the toolchain-tampering risk; keep the installed Cargo/Rust tree read-only and point writable Cargo state to a separate directory outside PATH.",
+      "revId": "38b0b53213c15b8ed169c3b20cad2f3206768039",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
