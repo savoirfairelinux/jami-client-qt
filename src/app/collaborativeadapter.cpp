@@ -23,8 +23,12 @@
 
 #include <QJsonDocument>
 #include <QJsonObject>
+#include <QFile>
+#include <QFileInfo>
+#include <QImage>
 #include <QRandomGenerator>
 #include <QSet>
+#include <QUrl>
 #include <algorithm>
 
 namespace {
@@ -88,6 +92,15 @@ CollaborativeAdapter::CollaborativeAdapter(LRCInstance* instance, QObject* paren
             this,
             [this](const QString& accountId, const QString& convId, const QString& documentId, const QString& peerId) {
                 Q_EMIT participantLeft(accountId, convId, documentId, peerId);
+            });
+    connect(&ConfigurationManager::instance(),
+            &ConfigurationManagerInterface::collaborativeAttachmentAdded,
+            this,
+            [this](const QString& accountId,
+                   const QString& convId,
+                   const QString& documentId,
+                   const QString& attachmentId) {
+                Q_EMIT attachmentAdded(accountId, convId, documentId, attachmentId);
             });
     connect(&ConfigurationManager::instance(),
             &ConfigurationManagerInterface::collaborativeDocumentRenamed,
@@ -505,4 +518,65 @@ CollaborativeAdapter::clearDocumentUpdated(const QString& accountId, const QStri
         updatedDocumentsByConversation_.erase(it);
     if (accountId == lrcInstance_->get_currentAccountId())
         Q_EMIT documentUpdateIndicatorChanged(convId);
+}
+
+QVariantMap
+CollaborativeAdapter::addAttachment(const QString& accountId,
+                                    const QString& convId,
+                                    const QString& documentId,
+                                    const QUrl& file)
+{
+    // Matches the daemon's own ceiling, so an oversized file is refused here,
+    // where it can be reported, rather than silently dropped after being read.
+    constexpr qint64 MAX_ATTACHMENT_SIZE = 16 * 1024 * 1024;
+    // Above this the image is displayed scaled down. The stored bytes are
+    // untouched: what is scaled is the layout, not the payload.
+    constexpr int MAX_DISPLAY_WIDTH = 720;
+
+    const QString path = file.isLocalFile() ? file.toLocalFile() : file.toString();
+    QFile f(path);
+    if (!f.exists() || f.size() <= 0 || f.size() > MAX_ATTACHMENT_SIZE)
+        return {};
+    if (!f.open(QIODevice::ReadOnly))
+        return {};
+    const QByteArray data = f.readAll();
+    f.close();
+
+    // Decoded here and not only on display: a payload this editor cannot draw
+    // would be stored for good and shown as a broken placeholder to everyone.
+    // Bounded, because the cap on the bytes says nothing about the memory they
+    // become -- and whatever is stored here every participant will decode.
+    const QImage image = CollabRichBinding::decodeBounded(data);
+    if (image.isNull())
+        return {};
+
+    const QString id = ConfigurationManager::instance().addCollaborativeAttachment(accountId, convId, documentId, data);
+    if (id.isEmpty())
+        return {};
+
+    QVariantMap result {{QStringLiteral("id"), id}};
+    if (image.width() > MAX_DISPLAY_WIDTH) {
+        // Width alone: the layout keeps the aspect ratio from the image itself.
+        result[QStringLiteral("width")] = MAX_DISPLAY_WIDTH;
+    }
+    return result;
+}
+
+bool
+CollaborativeAdapter::deliverAttachment(const QString& accountId,
+                                        const QString& convId,
+                                        const QString& documentId,
+                                        const QString& attachmentId,
+                                        CollabRichBinding* binding)
+{
+    if (!binding || attachmentId.isEmpty())
+        return false;
+    const QByteArray data = ConfigurationManager::instance().collaborativeAttachment(accountId,
+                                                                                     convId,
+                                                                                     documentId,
+                                                                                     attachmentId);
+    if (data.isEmpty())
+        return false; // not synchronized yet; attachmentAdded will say when it is
+    binding->registerAttachment(attachmentId, data);
+    return true;
 }
