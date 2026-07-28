@@ -67,6 +67,7 @@ public:
     /// Apply a list style ("bullet"/"ordered", or "" to remove) to every line
     /// touched by [start, end).
     Q_INVOKABLE void setList(const QString& style, int start, int end);
+
     /// Replace [start, end) with the clipboard's plain text (sanitized paste): rich
     /// clipboard formatting is dropped so every participant stays consistent.
     Q_INVOKABLE void pasteText(int start, int end);
@@ -104,6 +105,40 @@ public:
      */
     static QImage decodeBounded(const QByteArray& data);
 
+    /// Geometry of the image at unit @p index, in document coordinates, plus its
+    /// own pixel size and the bounds a resize has to stay within. Empty if that
+    /// unit holds no image.
+    Q_INVOKABLE QVariantMap imageInfoAt(int index) const;
+
+    /// Unit of the image drawn under a point in document coordinates, -1 if the
+    /// point is not on one.
+    Q_INVOKABLE int imageAtPoint(qreal x, qreal y) const;
+
+    /// Width of the editor on screen, in pixels, which the resize handles cannot
+    /// take an image past. Told to us rather than read from the document:
+    /// QTextDocument::textWidth() is rewritten by the TextEdit to fit its
+    /// *contents*, so it grows with the image and would let no image be made
+    /// wider than the text already is.
+    Q_PROPERTY(int viewWidth READ viewWidth WRITE setViewWidth NOTIFY viewWidthChanged)
+
+    int viewWidth() const
+    {
+        return viewWidth_;
+    }
+    void setViewWidth(int width);
+
+    /// Widest an image may be drawn.
+    Q_INVOKABLE int maxImageWidth() const;
+
+    /// Draws the image at @p index at @p width without telling anyone -- for a
+    /// resize still under the mouse. @return the width actually used (bounded),
+    /// or 0 if there is no image there.
+    Q_INVOKABLE int previewImageWidth(int index, int width);
+
+    /// Same, and sends the change to the other participants. Called once the
+    /// mouse is released: a delta per pixel would flood the swarm.
+    Q_INVOKABLE void setImageWidth(int index, int width);
+
 Q_SIGNALS:
     void textDocumentChanged();
     /// A local edit produced a Quill delta to be sent to the daemon.
@@ -111,6 +146,8 @@ Q_SIGNALS:
     /// The document refers to an attachment whose bytes are not loaded yet.
     /// Whoever can fetch them answers with registerAttachment().
     void attachmentNeeded(const QString& id);
+
+    void viewWidthChanged();
 
 private:
     QTextDocument* doc() const;
@@ -128,6 +165,8 @@ private:
     // True while applying a remote/initial delta, so contentsChange is not echoed
     // back as a local edit.
     bool applyingRemote_ {false};
+
+    int viewWidth_ {0};
     // Attachments met while applying a delta whose bytes the document does not
     // hold. Asked for once the delta is fully applied, not during.
     QSet<QString> pendingAttachments_;
