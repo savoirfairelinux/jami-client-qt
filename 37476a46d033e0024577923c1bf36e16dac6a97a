@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1df59df8_4880ebb1",
+        "filename": "src/app/collaborativeadapter.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-07-28T01:40:25Z",
+      "side": 1,
+      "message": "[error] Line 252: 🔴 Validate `index` before casting it to `uint32_t`. A negative QML-provided index becomes a huge unsigned offset and can crash/corrupt the Y-CRDT operation; reject negative values and bounds-check against the current document length before calling `remove`/`insert`.",
+      "revId": "37476a46d033e0024577923c1bf36e16dac6a97a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "44c2e681_eff9a93d",
+        "filename": "src/qtwrapper/configurationmanager_wrap.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 1052,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-07-28T01:40:25Z",
+      "side": 1,
+      "message": "[warning] Line 1052: 🟡 Guard `max` before `static_cast\u003cuint32_t\u003e(max)`. Passing `-1` from QML turns into `UINT_MAX`, which can request an unbounded history and cause excessive daemon/client work; clamp or reject negative values explicitly.",
+      "revId": "37476a46d033e0024577923c1bf36e16dac6a97a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
