@@ -19,6 +19,7 @@
 
 #include "lrcinstance.h"
 #include "qmladapterbase.h"
+#include "collabrichbinding.h"
 #include "yrsdocument.h"
 
 #include <QObject>
@@ -121,6 +122,27 @@ public:
     /// Whether @p documentId has an update that hasn't been opened yet.
     Q_INVOKABLE bool hasUnreadDocumentUpdateForDocument(const QString& convId, const QString& documentId) const;
 
+    /// Store @p file as an attachment of the document and describe how to show
+    /// it: {"id", "width", "height"}, or an empty map when the file cannot be
+    /// read, is not an image, or is too large.
+    ///
+    /// The bytes go to the document's repository, not through the real-time
+    /// path: an image is worth thousands of keystrokes, and the CRDT keeps every
+    /// byte it is ever given for good.
+    Q_INVOKABLE QVariantMap addAttachment(const QString& accountId,
+                                          const QString& convId,
+                                          const QString& documentId,
+                                          const QUrl& file);
+    /// Hand the bytes of @p attachmentId to @p binding, if this replica holds
+    /// them yet. Passing the binding rather than returning the bytes keeps them
+    /// in C++ instead of round-tripping several megabytes through QML.
+    /// @return false when the payload has not arrived; wait for attachmentAdded.
+    Q_INVOKABLE bool deliverAttachment(const QString& accountId,
+                                       const QString& convId,
+                                       const QString& documentId,
+                                       const QString& attachmentId,
+                                       CollabRichBinding* binding);
+
 Q_SIGNALS:
     // Every document signal names the account it belongs to. Editor windows are
     // top-level and outlive the selection made in the main window, and two local
@@ -142,6 +164,12 @@ Q_SIGNALS:
                        const QString& peerId,
                        int position,
                        int anchor);
+    /// The payload of an attachment arrived; an editor showing a placeholder for
+    /// it can now draw it.
+    void attachmentAdded(const QString& accountId,
+                         const QString& convId,
+                         const QString& documentId,
+                         const QString& attachmentId);
     /// A remote participant stopped editing a document.
     void participantLeft(const QString& accountId,
                          const QString& convId,

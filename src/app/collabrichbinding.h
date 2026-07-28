@@ -18,7 +18,9 @@
 #pragma once
 
 #include <QObject>
+#include <QImage>
 #include <QPointer>
+#include <QSet>
 #include <QQuickTextDocument>
 #include <QString>
 #include <QVariantMap>
@@ -75,10 +77,40 @@ public:
     /// Inline attributes currently set across [start, end), for toolbar state.
     Q_INVOKABLE QVariantMap selectionFormat(int start, int end);
 
+    /// Insert the attachment @p id as an inline image at @p position (UTF-16).
+    /// Goes through the normal local-edit path, so the delta is emitted as for
+    /// any other typing.
+    Q_INVOKABLE void insertImage(int position, const QString& id, int width = 0, int height = 0);
+    /// Make the bytes of attachment @p id available to the layout, so an image
+    /// already present in the document stops rendering as a broken placeholder.
+    void registerAttachment(const QString& id, const QByteArray& data);
+    /// Whether the document holds an image referring to attachment @p id.
+    Q_INVOKABLE bool referencesAttachment(const QString& id) const;
+
+    /**
+     * Decode @p data only once its header says what decoding will cost.
+     *
+     * A cap on the bytes says nothing about the memory they turn into: a
+     * uniform 7000x7000 PNG travels as 160 kB and decodes to 187 MB, on every
+     * replica that opens the document. The size is therefore read from the
+     * header -- which allocates no pixels -- and the image is decoded only if
+     * it fits.
+     *
+     * A format that will not state its size is refused rather than decoded to
+     * find out: knowing the cost beforehand is the entire point.
+     *
+     * @return the decoded image, or a null image if it is too large, not an
+     *         image, or of a kind this build cannot read.
+     */
+    static QImage decodeBounded(const QByteArray& data);
+
 Q_SIGNALS:
     void textDocumentChanged();
     /// A local edit produced a Quill delta to be sent to the daemon.
     void localDelta(const QString& deltaJson);
+    /// The document refers to an attachment whose bytes are not loaded yet.
+    /// Whoever can fetch them answers with registerAttachment().
+    void attachmentNeeded(const QString& id);
 
 private:
     QTextDocument* doc() const;
@@ -96,4 +128,7 @@ private:
     // True while applying a remote/initial delta, so contentsChange is not echoed
     // back as a local edit.
     bool applyingRemote_ {false};
+    // Attachments met while applying a delta whose bytes the document does not
+    // hold. Asked for once the delta is fully applied, not during.
+    QSet<QString> pendingAttachments_;
 };
