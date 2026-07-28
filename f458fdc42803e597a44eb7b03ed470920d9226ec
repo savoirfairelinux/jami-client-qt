@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "65800637_d7f8b074",
+        "filename": "src/app/collabrichbinding.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 296,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-07-28T16:19:50Z",
+      "side": 1,
+      "message": "[error] Line 296: 🔴 Remote image width attributes are applied without the bounds used for local resizing. A malformed or hostile delta with a very large `w` can make the document/scroll area unusably large; sanitize through a shared width clamp with a hard maximum before `setWidth`, for both insert and retain paths.",
+      "revId": "f458fdc42803e597a44eb7b03ed470920d9226ec",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e2f96ab3_e9c9ec42",
+        "filename": "src/app/mainview/components/CollabRichEditorWindow.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 777,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-07-28T16:19:50Z",
+      "side": 1,
+      "message": "[error] Line 777: 🔴 The previewed resize is only committed in `onReleased`. If the mouse grab is canceled or stolen after `previewImageWidth()` mutates the local document, no delta is sent and this client diverges from peers. Add `onCanceled`/grab-loss handling to either revert to `grabWidth` or commit once with `setImageWidth()`.",
+      "revId": "f458fdc42803e597a44eb7b03ed470920d9226ec",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
