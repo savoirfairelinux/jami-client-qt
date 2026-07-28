@@ -228,7 +228,15 @@ UtilsAdapter::getBestName(const QString& accountId, const QString& uid)
 QString
 UtilsAdapter::getBestNameForUri(const QString& accountId, const QString& uri)
 {
-    return lrcInstance_->getAccountInfo(accountId).contactModel->bestNameForContact(uri);
+    // Callers can outlive the account: collaborative editor windows are top-level
+    // and keep the account they were opened with. getAccountInfo throws once the
+    // account is gone, and an exception crossing the QML engine aborts.
+    try {
+        return lrcInstance_->getAccountInfo(accountId).contactModel->bestNameForContact(uri);
+    } catch (const std::out_of_range& e) {
+        C_DBG << e.what();
+        return uri;
+    }
 }
 
 QString
