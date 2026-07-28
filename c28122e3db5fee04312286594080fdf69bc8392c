@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "911215a8_3ec84fe3",
+        "filename": "src/app/collabrichbinding.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 939,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-07-28T16:48:30Z",
+      "side": 1,
+      "message": "[warning] Line 939: 🟡 `previewImageWidth()` toggles `applyingRemote_` manually and does not restore it if an early exit is added later between assignment and reset. This flag suppresses local delta generation, so leaving it true would silently drop subsequent edits. Use a small scope guard/RAII helper or `qScopeGuard` to guarantee restoration.",
+      "revId": "c28122e3db5fee04312286594080fdf69bc8392c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2dbb97ab_f55c3568",
+        "filename": "src/app/mainview/components/CollabRichEditorWindow.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 713,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-07-28T16:48:30Z",
+      "side": 1,
+      "message": "[error] Line 713: 🔴 `root.previewing` is referenced but this patch does not define that property anywhere in the file. In QML this produces a runtime reference error when clicking the editor, which can break image selection/click handling. Define the property if it is intended, or remove this guard and use an existing drag/resize state.",
+      "revId": "c28122e3db5fee04312286594080fdf69bc8392c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
