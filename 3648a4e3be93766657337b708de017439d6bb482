@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "98663028_08429bd6",
+        "filename": "src/app/collaborativeadapter.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 274,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-07-28T02:44:28Z",
+      "side": 1,
+      "message": "[warning] Line 274: 🟡 `setCursor` forwards QML-provided positions without validation. Negative or otherwise invalid cursor/anchor values get serialized and broadcast to peers, which can make remote editors render impossible selections or require defensive handling everywhere. Clamp/reject negative values before calling `setCollaborativeAwareness`, and ideally bound them to the current document length when the replica is open.",
+      "revId": "3648a4e3be93766657337b708de017439d6bb482",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c5aa5958_962f3d0b",
+        "filename": "src/app/collaborativeadapter.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 304,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-07-28T02:44:28Z",
+      "side": 1,
+      "message": "[warning] Line 304: 🟡 `applyDelta` applies QML-provided delta JSON directly. If `deltaJsonToRichOps` rejects malformed JSON or produces invalid ranges, this can throw/crash or corrupt the local replica from the UI boundary. Validate the JSON shape/result and surface/log invalid deltas instead of applying them blindly.",
+      "revId": "3648a4e3be93766657337b708de017439d6bb482",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
