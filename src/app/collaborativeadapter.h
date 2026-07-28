@@ -133,6 +133,14 @@ public:
                                           const QString& convId,
                                           const QString& documentId,
                                           const QUrl& file);
+    /// Store the picture the clipboard holds, the same way a picked file is
+    /// stored. Reads the clipboard here rather than in QML: several megabytes of
+    /// image have no reason to travel through the script engine.
+    /// @return an empty map when the clipboard holds no usable picture.
+    Q_INVOKABLE QVariantMap addAttachmentFromClipboard(const QString& accountId,
+                                                       const QString& convId,
+                                                       const QString& documentId);
+
     /// Hand the bytes of @p attachmentId to @p binding, if this replica holds
     /// them yet. Passing the binding rather than returning the bytes keeps them
     /// in C++ instead of round-tripping several megabytes through QML.
@@ -189,6 +197,13 @@ Q_SIGNALS:
     void documentUpdateIndicatorChanged(const QString& convId);
 
 private:
+    /// Validate @p data as a picture and store it with the document. Shared by
+    /// the picked-file and the pasted paths, so both refuse the same things.
+    QVariantMap storeAttachment(const QString& accountId,
+                                const QString& convId,
+                                const QString& documentId,
+                                const QByteArray& data);
+
     /// The replica of one open document, plus what the adapter needs to route its
     /// mutations back to the right editor.
     struct Replica
