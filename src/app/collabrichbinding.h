@@ -17,6 +17,7 @@
  */
 #pragma once
 
+#include <QByteArray>
 #include <QObject>
 #include <QImage>
 #include <QPointer>
@@ -26,6 +27,7 @@
 #include <QVariantMap>
 
 class QTextDocument;
+class QMimeData;
 
 /**
  * Binds a QML TextArea's QTextDocument to the collaborative rich-text CRDT,
@@ -76,6 +78,26 @@ public:
     /// Replace [start, end) with the clipboard's plain text (sanitized paste): rich
     /// clipboard formatting is dropped so every participant stays consistent.
     Q_INVOKABLE void pasteText(int start, int end);
+
+    /// Whether pasting would insert a picture rather than text, so the editor
+    /// knows which of the two paths to take.
+    ///
+    /// A property, not a plain callable: bound to the enabled state of a menu
+    /// entry, a callable is evaluated once and never again, so the entry kept
+    /// the answer given when the menu was built.
+    Q_PROPERTY(bool clipboardHasImage READ clipboardHasImage NOTIFY clipboardHasImageChanged)
+    bool clipboardHasImage() const;
+
+    /// The same question asked of any mime data, and answered without producing
+    /// a single byte of image: sizes are read from headers. Static, so it can be
+    /// verified without a clipboard.
+    static bool mimeCarriesImage(const QMimeData* mime);
+
+    /// The bytes of the image @p mime holds, empty if it holds none.
+    ///
+    /// Static and free of any document, so the attachment store can ask the same
+    /// question the editor asks, and so it can be verified without a clipboard.
+    static QByteArray imageFromMimeData(const QMimeData* mime);
     /// Set (or, with an empty href, clear) a link over [start, end).
     Q_INVOKABLE void setLink(const QString& href, int start, int end);
     /// Remove all inline formatting over [start, end).
@@ -153,8 +175,11 @@ Q_SIGNALS:
     void attachmentNeeded(const QString& id);
 
     void viewWidthChanged();
+    void clipboardHasImageChanged();
 
 private:
+    void onClipboardChanged();
+
     QTextDocument* doc() const;
     void onContentsChange(int position, int charsRemoved, int charsAdded);
     // Reconcile QTextList membership of every block from the per-character "list"
@@ -162,6 +187,11 @@ private:
     void reconcileLists();
 
     void reconcileAlignment();
+
+    // Answer to clipboardHasImage(), worked out when first asked after a change
+    // of clipboard and remembered until the next one.
+    mutable bool clipboardImage_ = false;
+    mutable bool clipboardImageKnown_ = false;
 
     QPointer<QQuickTextDocument> quickDoc_;
     // Plain-text mirror of the CRDT content. Local edits are computed by diffing
