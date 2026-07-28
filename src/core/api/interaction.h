@@ -44,6 +44,7 @@ enum class Type {
     REACTION,
     VOTE,
     UPDATE_PROFILE,
+    COLLAB_DOC,
     COUNT__
 };
 Q_ENUM_NS(Type)
@@ -78,6 +79,8 @@ to_string(const Type& type)
         return "EDITED";
     case Type::REACTION:
         return "REACTION";
+    case Type::COLLAB_DOC:
+        return "COLLAB_DOC";
     case Type::INVALID:
     case Type::COUNT__:
     default:
@@ -108,6 +111,8 @@ to_type(const QString& type)
         return interaction::Type::VOTE;
     else if (type == "application/edited-message")
         return interaction::Type::EDITED;
+    else if (type == "COLLAB_DOC" || type == "application/collab-doc+json")
+        return interaction::Type::COLLAB_DOC;
     else
         return interaction::Type::INVALID;
 }
