@@ -67,6 +67,11 @@ public:
     /// touched by [start, end).
     Q_INVOKABLE void setList(const QString& style, int start, int end);
 
+    /// Aligns the paragraphs the selection touches: "left", "center", "right" or
+    /// "justify". Left is the default and is stored as the absence of the
+    /// attribute.
+    Q_INVOKABLE void setAlign(const QString& align, int start, int end);
+
     /// Replace [start, end) with the clipboard's plain text (sanitized paste): rich
     /// clipboard formatting is dropped so every participant stays consistent.
     Q_INVOKABLE void pasteText(int start, int end);
@@ -137,6 +142,8 @@ private:
     // Reconcile QTextList membership of every block from the per-character "list"
     // attribute, grouping consecutive same-type blocks into one list.
     void reconcileLists();
+
+    void reconcileAlignment();
 
     QPointer<QQuickTextDocument> quickDoc_;
     // Plain-text mirror of the CRDT content. Local edits are computed by diffing

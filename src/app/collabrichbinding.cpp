@@ -59,6 +59,37 @@ constexpr int MIN_IMAGE_WIDTH = 24;
 // inherited by typed characters; QTextList membership is rebuilt from it.
 constexpr int LIST_PROPERTY = QTextFormat::UserProperty + 1;
 
+// Paragraph alignment, held on the characters of the line for the same reason
+// lists are: the CRDT only knows about units of text and their attributes, it
+// has no notion of a paragraph. The block format is rebuilt from it afterwards.
+// 0 left (the default, never stored), 1 centre, 2 right, 3 justified.
+constexpr int ALIGN_PROPERTY = QTextFormat::UserProperty + 2;
+
+// 0 left, 1 centre, 2 right, 3 justified -- and back.
+int
+alignTypeFromStyle(const QString& style)
+{
+    if (style == QLatin1String("center"))
+        return 1;
+    if (style == QLatin1String("right"))
+        return 2;
+    if (style == QLatin1String("justify"))
+        return 3;
+    return 0;
+}
+
+Qt::Alignment
+alignmentFromType(int type)
+{
+    if (type == 1)
+        return Qt::AlignHCenter;
+    if (type == 2)
+        return Qt::AlignRight;
+    if (type == 3)
+        return Qt::AlignJustify;
+    return Qt::AlignLeft;
+}
+
 int
 listTypeFromStyle(const QString& style)
 {
@@ -100,6 +131,17 @@ charFormatToAttrs(const QTextCharFormat& f)
             a[QStringLiteral("list")] = QStringLiteral("bullet");
         else if (t == 2)
             a[QStringLiteral("list")] = QStringLiteral("ordered");
+    }
+    // Left is the default, so it is never written: a document says what departs
+    // from the ordinary, and nothing more.
+    if (f.hasProperty(ALIGN_PROPERTY)) {
+        const int t = f.intProperty(ALIGN_PROPERTY);
+        if (t == 1)
+            a[QStringLiteral("align")] = QStringLiteral("center");
+        else if (t == 2)
+            a[QStringLiteral("align")] = QStringLiteral("right");
+        else if (t == 3)
+            a[QStringLiteral("align")] = QStringLiteral("justify");
     }
     return a;
 }
@@ -151,6 +193,8 @@ mergeFormatFromAttrs(const QJsonObject& attrs)
             f.setProperty(QTextFormat::FontSizeAdjustment, (level >= 1 && level <= 3) ? (4 - level) : 0);
         } else if (key == QLatin1String("list")) {
             f.setProperty(LIST_PROPERTY, listTypeFromStyle(v.isString() ? v.toString() : QString()));
+        } else if (key == QLatin1String("align")) {
+            f.setProperty(ALIGN_PROPERTY, alignTypeFromStyle(v.isString() ? v.toString() : QString()));
         } else if (key == QLatin1String("link")) {
             const QString href = on ? sanitizedHref(v.toString()) : QString();
             if (!href.isEmpty()) {
@@ -364,6 +408,19 @@ imageUnits(QTextDocument* d)
     return units;
 }
 
+// Alignment kind (0/1/2/3) of a block, read from its first character.
+int
+blockAlignType(const QTextBlock& blk)
+{
+    auto it = blk.begin();
+    if (it != blk.end()) {
+        const QTextCharFormat f = it.fragment().charFormat();
+        if (f.hasProperty(ALIGN_PROPERTY))
+            return f.intProperty(ALIGN_PROPERTY);
+    }
+    return 0;
+}
+
 // List kind (0/1/2) of a block, read from its first character's list attribute.
 int
 blockListType(const QTextBlock& blk)
@@ -512,6 +569,31 @@ CollabRichBinding::onContentsChange(int /*position*/, int /*charsRemoved*/, int 
         Q_EMIT localDelta(QString::fromUtf8(QJsonDocument(ops).toJson(QJsonDocument::Compact)));
 }
 
+// Puts back on each paragraph the alignment its characters carry.
+//
+// Run after reconcileLists(): building a list rewrites the block format, and
+// would undo an alignment set before it.
+void
+CollabRichBinding::reconcileAlignment()
+{
+    QTextDocument* d = doc();
+    if (!d)
+        return;
+    for (QTextBlock blk = d->begin(); blk.isValid(); blk = blk.next()) {
+        if (blk.text().isEmpty())
+            continue; // no characters, so nothing said about it: leave it alone
+        const Qt::Alignment wanted = alignmentFromType(blockAlignType(blk));
+        // Rewriting a block format for nothing would report an edit on every
+        // incoming delta, on every paragraph of the document.
+        if (blk.blockFormat().alignment() == wanted)
+            continue;
+        QTextBlockFormat bf = blk.blockFormat();
+        bf.setAlignment(wanted);
+        QTextCursor cc(blk);
+        cc.setBlockFormat(bf);
+    }
+}
+
 void
 CollabRichBinding::loadContentDelta(const QString& deltaJson)
 {
@@ -598,8 +680,10 @@ CollabRichBinding::applyRemoteDelta(const QString& deltaJson)
             }
         }
     }
-    // Rebuild list blocks from the per-character attributes just applied.
+    // Rebuild list blocks and paragraph alignment from the per-character
+    // attributes just applied.
     reconcileLists();
+    reconcileAlignment();
     applyingRemote_ = false;
     // Keep the shadow equal to the (converged) content so local diffs stay aligned.
     shadow_ = d->toPlainText();
@@ -764,6 +848,46 @@ CollabRichBinding::setList(const QString& style, int start, int end)
     c.setPosition(lineEnd, QTextCursor::KeepAnchor);
     c.mergeCharFormat(mergeFormatFromAttrs(attrs));
     reconcileLists();
+    reconcileAlignment();
+    applyingRemote_ = false;
+
+    QJsonArray ops;
+    if (lineStart > 0)
+        ops.append(QJsonObject {{QStringLiteral("retain"), lineStart}});
+    ops.append(QJsonObject {{QStringLiteral("retain"), lineEnd - lineStart}, {QStringLiteral("attributes"), attrs}});
+    Q_EMIT localDelta(QString::fromUtf8(QJsonDocument(ops).toJson(QJsonDocument::Compact)));
+}
+
+void
+CollabRichBinding::setAlign(const QString& align, int start, int end)
+{
+    QTextDocument* d = doc();
+    if (!d)
+        return;
+    // Alignment belongs to whole paragraphs, so the selection is widened to them.
+    QTextCursor a(d);
+    a.setPosition(qMax(0, start));
+    a.movePosition(QTextCursor::StartOfBlock);
+    QTextCursor b(d);
+    b.setPosition(qMax(start, end));
+    b.movePosition(QTextCursor::EndOfBlock);
+    const int lineStart = a.position();
+    const int lineEnd = b.position();
+    if (lineStart >= lineEnd)
+        return; // empty line: there is no character to hold the attribute
+
+    // The four alignments exclude one another, so this is not a toggle. Left is
+    // the default and clears the attribute rather than storing itself.
+    const int type = alignTypeFromStyle(align);
+    QJsonObject attrs;
+    attrs[QStringLiteral("align")] = type == 0 ? QJsonValue(QJsonValue::Null) : QJsonValue(align);
+
+    applyingRemote_ = true;
+    QTextCursor c(d);
+    c.setPosition(lineStart);
+    c.setPosition(lineEnd, QTextCursor::KeepAnchor);
+    c.mergeCharFormat(mergeFormatFromAttrs(attrs));
+    reconcileAlignment();
     applyingRemote_ = false;
 
     QJsonArray ops;
@@ -871,6 +995,8 @@ CollabRichBinding::selectionFormat(int start, int end)
     result[QStringLiteral("header")] = a.contains(QStringLiteral("header")) ? a.value(QStringLiteral("header")).toInt()
                                                                             : 0;
     result[QStringLiteral("list")] = a.value(QStringLiteral("list")).toString();
+    // Left is the absence of the attribute, and is reported as such.
+    result[QStringLiteral("align")] = a.value(QStringLiteral("align")).toString();
     return result;
 }
 
