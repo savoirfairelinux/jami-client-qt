@@ -32,6 +32,8 @@
 #include <QTextImageFormat>
 #include <QImage>
 #include <QUrl>
+#include <QTextLayout>
+#include <QAbstractTextDocumentLayout>
 
 namespace {
 
@@ -44,6 +46,14 @@ const QString ATTACHMENT_URL_PREFIX = QStringLiteral("collab-attachment:");
 // exactly one of these in toPlainText(), which is what keeps the shadow diff --
 // and therefore every offset sent to the CRDT -- aligned. Verified by running it.
 constexpr QChar OBJECT_REPLACEMENT = QChar(0xFFFC);
+
+// Attribute carrying an image's display width, in pixels. Only the width is
+// ever set: the layout then scales the height itself, so a resize cannot
+// distort the image and the two values can never contradict each other.
+const QString IMAGE_WIDTH_ATTR = QStringLiteral("w");
+
+// An image narrower than this cannot be grabbed again to be made larger.
+constexpr int MIN_IMAGE_WIDTH = 24;
 // Per-character property marking the list kind of the line (1 = bullet, 2 =
 // ordered). Stored on the character format so it travels with the text and is
 // inherited by typed characters; QTextList membership is rebuilt from it.
@@ -183,12 +193,49 @@ embedAt(QTextDocument* d, int index)
     const QTextImageFormat img = f.toImageFormat();
     if (!img.name().startsWith(ATTACHMENT_URL_PREFIX))
         return {};
+    // Identity only. Everything that can be changed afterwards is an attribute.
     QJsonObject ref {{QStringLiteral("id"), img.name().mid(ATTACHMENT_URL_PREFIX.size())}};
-    if (img.width() > 0)
-        ref[QStringLiteral("width")] = static_cast<int>(img.width());
-    if (img.height() > 0)
-        ref[QStringLiteral("height")] = static_cast<int>(img.height());
     return QJsonObject {{QStringLiteral("image"), ref}};
+}
+
+// The formatting attributes of the embed at unit @p index.
+QJsonObject
+imageAttrsAt(QTextDocument* d, int index)
+{
+    QTextCursor c(d);
+    c.setPosition(index + 1);
+    const QTextCharFormat f = c.charFormat();
+    if (!f.isImageFormat())
+        return {};
+    const QTextImageFormat img = f.toImageFormat();
+    QJsonObject attrs;
+    if (img.width() > 0)
+        attrs[IMAGE_WIDTH_ATTR] = static_cast<int>(img.width());
+    return attrs;
+}
+
+// Gives the image at unit @p index a display width. Applied as a whole format
+// rather than merged, because a height inherited from an older document has to
+// go: kept alongside a new width it would stretch the image out of shape.
+//
+// @return whether there was an image there to resize.
+bool
+setImageWidthAt(QTextDocument* d, int index, int width)
+{
+    QTextCursor c(d);
+    c.setPosition(index + 1);
+    const QTextCharFormat f = c.charFormat();
+    if (!f.isImageFormat())
+        return false;
+    QTextImageFormat img = f.toImageFormat();
+    if (!img.name().startsWith(ATTACHMENT_URL_PREFIX))
+        return false;
+    img.setWidth(width);
+    img.clearProperty(QTextFormat::ImageHeight);
+    c.setPosition(index);
+    c.setPosition(index + 1, QTextCursor::KeepAnchor);
+    c.setCharFormat(img);
+    return true;
 }
 
 // Whether @p id can name an attachment at all. Same shape as the daemon's own
@@ -223,8 +270,17 @@ placeholderImage()
 }
 
 // The image format an embed asks for.
+//
+// The display width lives in the attributes, not in the embed: an embed is
+// immutable in the CRDT, so resizing one would mean deleting it and inserting
+// another -- and two participants resizing at once would then each keep their
+// own copy, leaving two images where there was one. An attribute is changed in
+// place, and converges the way bold does.
+//
+// @p attrs wins over the embed, which is only read so that documents written
+// before the width moved out of it still open at the size they were given.
 QTextImageFormat
-imageFormatFromEmbed(const QJsonObject& embed)
+imageFormatFromEmbed(const QJsonObject& embed, const QJsonObject& attrs = {})
 {
     const QJsonObject ref = embed.value(QStringLiteral("image")).toObject();
     QTextImageFormat img;
@@ -234,7 +290,78 @@ imageFormatFromEmbed(const QJsonObject& embed)
         img.setWidth(w);
     if (const int h = ref.value(QStringLiteral("height")).toInt(); h > 0)
         img.setHeight(h);
+    if (const int w = attrs.value(IMAGE_WIDTH_ATTR).toInt(); w > 0) {
+        img.setWidth(w);
+        // Width alone, so the layout keeps the image's own aspect ratio. A height
+        // left over from the embed would fight it and squash the image.
+        img.clearProperty(QTextFormat::ImageHeight);
+    }
     return img;
+}
+
+// The size an image is drawn at, from its format and its own pixel size.
+QSizeF
+imageDisplaySize(QTextDocument* d, const QTextImageFormat& img)
+{
+    const QImage src = qvariant_cast<QImage>(d->resource(QTextDocument::ImageResource, QUrl(img.name())));
+    const QSizeF natural = src.isNull() ? QSizeF(0, 0) : QSizeF(src.size());
+    const qreal w = img.width();
+    const qreal h = img.height();
+    if (w > 0 && h > 0)
+        return QSizeF(w, h);
+    if (w > 0)
+        return QSizeF(w, natural.width() > 0 ? w * natural.height() / natural.width() : w);
+    if (h > 0)
+        return QSizeF(natural.height() > 0 ? h * natural.width() / natural.height() : h, h);
+    return natural;
+}
+
+// Where the image at unit @p index is drawn, in document coordinates. Null
+// rectangle if that unit is not an attachment image.
+QRectF
+imageRectAt(QTextDocument* d, int index)
+{
+    QTextCursor c(d);
+    c.setPosition(index + 1);
+    const QTextCharFormat f = c.charFormat();
+    if (!f.isImageFormat())
+        return {};
+    const QTextImageFormat img = f.toImageFormat();
+    if (!img.name().startsWith(ATTACHMENT_URL_PREFIX))
+        return {};
+    const QTextBlock blk = d->findBlock(index);
+    if (!blk.isValid() || !blk.layout())
+        return {};
+    const QTextLine line = blk.layout()->lineForTextPosition(index - blk.position());
+    if (!line.isValid())
+        return {};
+    const QRectF blockRect = d->documentLayout()->blockBoundingRect(blk);
+    const QSizeF size = imageDisplaySize(d, img);
+    const qreal left = blockRect.left() + line.cursorToX(index - blk.position());
+    // An inline image sits on the baseline, so its top is as far above the
+    // bottom of the line as it is tall.
+    const qreal top = blockRect.top() + line.y() + line.height() - size.height();
+    return QRectF(left, top, size.width(), size.height());
+}
+
+// Units holding an attachment image, in document order.
+QList<int>
+imageUnits(QTextDocument* d)
+{
+    QList<int> units;
+    for (QTextBlock blk = d->begin(); blk.isValid(); blk = blk.next()) {
+        for (auto it = blk.begin(); it != blk.end(); ++it) {
+            const QTextFragment frag = it.fragment();
+            if (!frag.isValid() || !frag.charFormat().isImageFormat())
+                continue;
+            if (!frag.charFormat().toImageFormat().name().startsWith(ATTACHMENT_URL_PREFIX))
+                continue;
+            // A fragment can gather several images sharing one format.
+            for (int u = 0; u < frag.length(); ++u)
+                units.append(frag.position() + u);
+        }
+    }
+    return units;
 }
 
 // List kind (0/1/2) of a block, read from its first character's list attribute.
@@ -358,8 +485,14 @@ CollabRichBinding::onContentsChange(int /*position*/, int /*charsRemoved*/, int 
                 // it, because a length the CRDT does not share is what makes a
                 // later edit land out of range.
                 const QJsonObject embed = embedAt(d, prefix + i);
-                ops.append(embed.isEmpty() ? QJsonObject {{QStringLiteral("insert"), QString(OBJECT_REPLACEMENT)}}
-                                           : QJsonObject {{QStringLiteral("insert"), embed}});
+                if (embed.isEmpty()) {
+                    ops.append(QJsonObject {{QStringLiteral("insert"), QString(OBJECT_REPLACEMENT)}});
+                } else {
+                    QJsonObject op {{QStringLiteral("insert"), embed}};
+                    if (const QJsonObject a = imageAttrsAt(d, prefix + i); !a.isEmpty())
+                        op[QStringLiteral("attributes")] = a;
+                    ops.append(op);
+                }
                 ++i;
                 continue;
             }
@@ -421,6 +554,7 @@ CollabRichBinding::applyRemoteDelta(const QString& deltaJson)
             index += text.size();
         } else if (op.contains(QStringLiteral("insert")) && op.value(QStringLiteral("insert")).isObject()) {
             const QJsonObject embed = op.value(QStringLiteral("insert")).toObject();
+            const QJsonObject attrs = op.value(QStringLiteral("attributes")).toObject();
             c.setPosition(qBound(0, index, docLen));
             const QString id = embed.value(QStringLiteral("image")).toObject().value(QStringLiteral("id")).toString();
             if (isAttachmentId(id)) {
@@ -431,7 +565,7 @@ CollabRichBinding::applyRemoteDelta(const QString& deltaJson)
                     d->addResource(QTextDocument::ImageResource, url, placeholderImage());
                     pendingAttachments_.insert(id);
                 }
-                c.insertImage(imageFormatFromEmbed(embed));
+                c.insertImage(imageFormatFromEmbed(embed, attrs));
             } else {
                 // An embed of a kind this editor does not render. It still has to
                 // occupy one unit, or every later offset would be off by one.
@@ -446,6 +580,13 @@ CollabRichBinding::applyRemoteDelta(const QString& deltaJson)
                 cc.setPosition(qBound(0, index, docLen));
                 cc.setPosition(qBound(0, index + n, docLen), QTextCursor::KeepAnchor);
                 cc.mergeCharFormat(mergeFormatFromAttrs(attrs));
+                // Width is set whole rather than merged, so it is applied on its
+                // own, unit by unit -- the range is one image in practice.
+                if (const int w = attrs.value(IMAGE_WIDTH_ATTR).toInt(); w > 0) {
+                    const int last = qMin(index + n, docLen);
+                    for (int u = qMax(0, index); u < last; ++u)
+                        setImageWidthAt(d, u, w);
+                }
             }
             index += n;
         } else if (op.contains(QStringLiteral("delete"))) {
@@ -457,7 +598,7 @@ CollabRichBinding::applyRemoteDelta(const QString& deltaJson)
             }
         }
     }
-    // Rebuild list blocks from the per-character list attributes just applied.
+    // Rebuild list blocks from the per-character attributes just applied.
     reconcileLists();
     applyingRemote_ = false;
     // Keep the shadow equal to the (converged) content so local diffs stay aligned.
@@ -478,10 +619,10 @@ CollabRichBinding::insertImage(int position, const QString& id, int width, int h
     if (!d || !isAttachmentId(id))
         return;
     QJsonObject ref {{QStringLiteral("id"), id}};
+    QJsonObject attrs;
     if (width > 0)
-        ref[QStringLiteral("width")] = width;
-    if (height > 0)
-        ref[QStringLiteral("height")] = height;
+        attrs[IMAGE_WIDTH_ATTR] = width;
+    Q_UNUSED(height) // the layout scales the height from the width
     // Deliberately not guarded by applyingRemote_: this is a local edit, and the
     // delta it produces is the one that tells the other participants about it.
     const QUrl url(ATTACHMENT_URL_PREFIX + id);
@@ -489,7 +630,7 @@ CollabRichBinding::insertImage(int position, const QString& id, int width, int h
         d->addResource(QTextDocument::ImageResource, url, placeholderImage());
     QTextCursor c(d);
     c.setPosition(qBound(0, position, d->characterCount() - 1));
-    c.insertImage(imageFormatFromEmbed(QJsonObject {{QStringLiteral("image"), ref}}));
+    c.insertImage(imageFormatFromEmbed(QJsonObject {{QStringLiteral("image"), ref}}, attrs));
 }
 
 void
@@ -731,4 +872,90 @@ CollabRichBinding::selectionFormat(int start, int end)
                                                                             : 0;
     result[QStringLiteral("list")] = a.value(QStringLiteral("list")).toString();
     return result;
+}
+
+QVariantMap
+CollabRichBinding::imageInfoAt(int index) const
+{
+    QTextDocument* d = doc();
+    if (!d || index < 0)
+        return {};
+    const QRectF r = imageRectAt(d, index);
+    if (r.isNull())
+        return {};
+    QTextCursor c(d);
+    c.setPosition(index + 1);
+    const QTextImageFormat img = c.charFormat().toImageFormat();
+    const QImage src = qvariant_cast<QImage>(d->resource(QTextDocument::ImageResource, QUrl(img.name())));
+    return QVariantMap {{QStringLiteral("index"), index},
+                        {QStringLiteral("x"), r.x()},
+                        {QStringLiteral("y"), r.y()},
+                        {QStringLiteral("width"), r.width()},
+                        {QStringLiteral("height"), r.height()},
+                        {QStringLiteral("naturalWidth"), src.width()},
+                        {QStringLiteral("naturalHeight"), src.height()},
+                        {QStringLiteral("minWidth"), MIN_IMAGE_WIDTH},
+                        {QStringLiteral("maxWidth"), maxImageWidth()}};
+}
+
+int
+CollabRichBinding::imageAtPoint(qreal x, qreal y) const
+{
+    QTextDocument* d = doc();
+    if (!d)
+        return -1;
+    const QPointF p(x, y);
+    // Walked in document order and answered on the first hit: images do not
+    // overlap, so there is nothing to arbitrate.
+    for (const int u : imageUnits(d)) {
+        if (imageRectAt(d, u).contains(p))
+            return u;
+    }
+    return -1;
+}
+
+void
+CollabRichBinding::setViewWidth(int width)
+{
+    if (viewWidth_ == width)
+        return;
+    viewWidth_ = width;
+    Q_EMIT viewWidthChanged();
+}
+
+int
+CollabRichBinding::maxImageWidth() const
+{
+    // Before the editor has a width, the bound is only there to keep a slip of
+    // the hand from producing something enormous.
+    return viewWidth_ > MIN_IMAGE_WIDTH ? viewWidth_ : 4096;
+}
+
+int
+CollabRichBinding::previewImageWidth(int index, int width)
+{
+    QTextDocument* d = doc();
+    if (!d || index < 0)
+        return 0;
+    const int w = qBound(MIN_IMAGE_WIDTH, width, maxImageWidth());
+    // Guarded like any other local formatting: the text does not change, so no
+    // delta is due, and none must be inferred from the layout moving.
+    applyingRemote_ = true;
+    const bool done = setImageWidthAt(d, index, w);
+    applyingRemote_ = false;
+    return done ? w : 0;
+}
+
+void
+CollabRichBinding::setImageWidth(int index, int width)
+{
+    const int w = previewImageWidth(index, width);
+    if (w <= 0)
+        return;
+    QJsonArray ops;
+    if (index > 0)
+        ops.append(QJsonObject {{QStringLiteral("retain"), index}});
+    ops.append(QJsonObject {{QStringLiteral("retain"), 1},
+                            {QStringLiteral("attributes"), QJsonObject {{IMAGE_WIDTH_ATTR, w}}}});
+    Q_EMIT localDelta(QString::fromUtf8(QJsonDocument(ops).toJson(QJsonDocument::Compact)));
 }
