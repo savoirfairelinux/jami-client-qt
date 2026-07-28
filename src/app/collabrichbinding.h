@@ -17,6 +17,7 @@
  */
 #pragma once
 
+#include <QByteArray>
 #include <QObject>
 #include <QPointer>
 #include <QSet>
@@ -25,6 +26,7 @@
 #include <QVariantMap>
 
 class QTextDocument;
+class QMimeData;
 
 /**
  * Binds a QML TextArea's QTextDocument to the collaborative rich-text CRDT,
@@ -75,6 +77,16 @@ public:
     /// Replace [start, end) with the clipboard's plain text (sanitized paste): rich
     /// clipboard formatting is dropped so every participant stays consistent.
     Q_INVOKABLE void pasteText(int start, int end);
+
+    /// Whether pasting would insert a picture rather than text, so the editor
+    /// knows which of the two paths to take.
+    Q_INVOKABLE bool clipboardHasImage() const;
+
+    /// The bytes of the image @p mime holds, empty if it holds none.
+    ///
+    /// Static and free of any document, so the attachment store can ask the same
+    /// question the editor asks, and so it can be verified without a clipboard.
+    static QByteArray imageFromMimeData(const QMimeData* mime);
     /// Set (or, with an empty href, clear) a link over [start, end).
     Q_INVOKABLE void setLink(const QString& href, int start, int end);
     /// Remove all inline formatting over [start, end).

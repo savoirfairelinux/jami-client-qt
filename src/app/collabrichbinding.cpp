@@ -32,6 +32,10 @@
 #include <QTextImageFormat>
 #include <QImage>
 #include <QUrl>
+#include <QMimeData>
+#include <QBuffer>
+#include <QFile>
+#include <QFileInfo>
 #include <QTextLayout>
 #include <QAbstractTextDocumentLayout>
 
@@ -895,6 +899,81 @@ CollabRichBinding::setAlign(const QString& align, int start, int end)
         ops.append(QJsonObject {{QStringLiteral("retain"), lineStart}});
     ops.append(QJsonObject {{QStringLiteral("retain"), lineEnd - lineStart}, {QStringLiteral("attributes"), attrs}});
     Q_EMIT localDelta(QString::fromUtf8(QJsonDocument(ops).toJson(QJsonDocument::Compact)));
+}
+
+// What the clipboard is asked for, in the order it is asked. The bytes a source
+// already holds are preferred to anything re-encoded from them: a JPEG turned
+// into a PNG would be stored several times larger for no gain, and a re-encode
+// can only lose.
+static const char* const IMAGE_MIME_TYPES[] = {"image/png", "image/jpeg", "image/webp", "image/gif", "image/bmp"};
+
+// The daemon's own ceiling. Applied before reading a file so a huge one is never
+// pulled into memory just to be refused afterwards.
+constexpr qint64 MAX_PASTED_IMAGE_SIZE = 16 * 1024 * 1024;
+
+QByteArray
+CollabRichBinding::imageFromMimeData(const QMimeData* mime)
+{
+    if (!mime)
+        return {};
+
+    // hasImage() alone would not do: it asks for a decoded image, which a source
+    // offering nothing but encoded bytes does not claim to have.
+    bool encoded = false;
+    for (const char* type : IMAGE_MIME_TYPES)
+        encoded = encoded || mime->hasFormat(QLatin1String(type));
+
+    if (encoded || mime->hasImage()) {
+        // Text wins when the clipboard carries both. A word processor puts a
+        // rendered picture of the selection next to the text it copies; pasting
+        // that picture instead of the words would surprise everyone. A copied
+        // picture comes with no text of its own.
+        if (mime->hasText() && !mime->text().trimmed().isEmpty())
+            return {};
+
+        for (const char* type : IMAGE_MIME_TYPES) {
+            const QByteArray data = mime->data(QLatin1String(type));
+            if (!data.isEmpty() && data.size() <= MAX_PASTED_IMAGE_SIZE)
+                return data;
+        }
+
+        // A source offering only a decoded image, a screenshot tool say. PNG
+        // because it is lossless and keeps transparency.
+        const QImage image = qvariant_cast<QImage>(mime->imageData());
+        if (image.isNull())
+            return {};
+        QByteArray encoded;
+        QBuffer buffer(&encoded);
+        buffer.open(QIODevice::WriteOnly);
+        if (image.save(&buffer, "PNG") && encoded.size() <= MAX_PASTED_IMAGE_SIZE)
+            return encoded;
+        return {};
+    }
+
+    // An image file copied from a file manager. Its path is also offered as
+    // text, which is why this is not subject to the rule above. Only one file,
+    // and only a local one: fetching a remote URL would make the editor emit a
+    // request because of what was put on the clipboard.
+    if (mime->hasUrls()) {
+        const QList<QUrl> urls = mime->urls();
+        if (urls.size() != 1 || !urls.first().isLocalFile())
+            return {};
+        QFile file(urls.first().toLocalFile());
+        const qint64 size = QFileInfo(file).size();
+        if (size <= 0 || size > MAX_PASTED_IMAGE_SIZE || !file.open(QIODevice::ReadOnly))
+            return {};
+        const QByteArray data = file.readAll();
+        // Read as bytes, not as a name: the suffix is not evidence. Whether it is
+        // an image is settled by decoding it.
+        return QImage::fromData(data).isNull() ? QByteArray {} : data;
+    }
+    return {};
+}
+
+bool
+CollabRichBinding::clipboardHasImage() const
+{
+    return !imageFromMimeData(QGuiApplication::clipboard()->mimeData()).isEmpty();
 }
 
 void
