@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6435a31a_0cb43519",
+        "filename": "src/app/collabrichbinding.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 350,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-07-28T03:40:45Z",
+      "side": 1,
+      "message": "[error] Line 350: 🔴 `applyingRemote_` is set back to false before calling `reconcileLists()`. Creating/removing QTextList membership can emit `contentsChange`, so a remote delta that changes list formatting may be echoed as a local edit and sent back to the CRDT. Keep `applyingRemote_` true until after `reconcileLists()` completes, preferably with a small scoped guard so all remote-side document mutations are suppressed consistently.",
+      "revId": "3fd953055bdfe453d8890f0bb428db1bf81111ec",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e5e75b9b_ed08d95e",
+        "filename": "src/app/collabrichbinding.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 493,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-07-28T03:40:45Z",
+      "side": 1,
+      "message": "[error] Line 493: 🔴 `pasteText()` mutates the document with `applyingRemote_ \u003d\u003d false`, so replacing a selection emits a delete delta before the insert happens, then a second insert delta. That allows peers to observe an intermediate state and can interleave incorrectly with concurrent edits. Wrap the remove+insert in `applyingRemote_`, then emit one explicit delta containing retain/delete/insert for the whole paste operation, or otherwise ensure the replacement is sent atomically.",
+      "revId": "3fd953055bdfe453d8890f0bb428db1bf81111ec",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
