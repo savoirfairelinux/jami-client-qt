@@ -29,10 +29,33 @@
 #include <QColor>
 #include <QGuiApplication>
 #include <QClipboard>
+#include <QTextImageFormat>
+#include <QImage>
+#include <QImageReader>
+#include <QBuffer>
+#include <QUrl>
 
 namespace {
 
 const QColor LINK_COLOR(0x1a, 0x73, 0xe8);
+// Resource URL under which an attachment's bytes are registered with the
+// document. The id is the git oid of the content, so the URL is stable across
+// participants and two identical images share one entry.
+const QString ATTACHMENT_URL_PREFIX = QStringLiteral("collab-attachment:");
+// The character a QTextDocument shows for an inline object. One image occupies
+// exactly one of these in toPlainText(), which is what keeps the shadow diff --
+// and therefore every offset sent to the CRDT -- aligned. Verified by running it.
+constexpr QChar OBJECT_REPLACEMENT = QChar(0xFFFC);
+// Largest image this editor will decode, in pixels. The bytes are already
+// capped, but nothing followed what they become: a 160 kB PNG of a single
+// colour decodes to 187 MB of memory, on every replica that opens the document.
+// That is measured, not supposed. The ceiling is deliberately generous -- it
+// takes any photograph a camera produces -- because what matters here is that
+// there is one at all.
+constexpr qint64 MAX_DECODED_PIXELS = 32LL * 1024 * 1024;
+// Widest an image may ever be drawn, whoever asked. A width arriving from a
+// peer is not a request this replica has to honour.
+constexpr int MAX_IMAGE_WIDTH = 4096;
 // Per-character property marking the list kind of the line (1 = bullet, 2 =
 // ordered). Stored on the character format so it travels with the text and is
 // inherited by typed characters; QTextList membership is rebuilt from it.
@@ -158,6 +181,77 @@ charAttrsAt(QTextDocument* d, int index)
     return charFormatToAttrs(c.charFormat());
 }
 
+// The embed the character at @p index stands for, as the object a delta carries,
+// or an empty object if that character is not an inline image this binding put
+// there.
+QJsonObject
+embedAt(QTextDocument* d, int index)
+{
+    QTextCursor c(d);
+    c.setPosition(index + 1);
+    const QTextCharFormat f = c.charFormat();
+    if (!f.isImageFormat())
+        return {};
+    const QTextImageFormat img = f.toImageFormat();
+    if (!img.name().startsWith(ATTACHMENT_URL_PREFIX))
+        return {};
+    QJsonObject ref {{QStringLiteral("id"), img.name().mid(ATTACHMENT_URL_PREFIX.size())}};
+    if (img.width() > 0)
+        ref[QStringLiteral("width")] = static_cast<int>(img.width());
+    if (img.height() > 0)
+        ref[QStringLiteral("height")] = static_cast<int>(img.height());
+    return QJsonObject {{QStringLiteral("image"), ref}};
+}
+
+// Whether @p id can name an attachment at all. Same shape as the daemon's own
+// check: an attachment id is the hexadecimal git oid of its content. Anything
+// else is refused before it is ever turned into a URL.
+bool
+isAttachmentId(const QString& id)
+{
+    if (id.size() != 40)
+        return false;
+    for (const QChar c : id)
+        if (!isxdigit(c.toLatin1()))
+            return false;
+    return true;
+}
+
+// Drawn in place of an image whose bytes have not arrived yet.
+//
+// Registered as soon as the reference is met, and not merely left missing: an
+// unresolved resource sends the layout looking for it, network included. There
+// is nothing useful at the other end of a collab-attachment: URL, and an editor
+// must not emit a request because of what a peer wrote in a document.
+QImage
+placeholderImage()
+{
+    static const QImage img = [] {
+        QImage i(160, 120, QImage::Format_ARGB32);
+        i.fill(QColor(0xE0, 0xE0, 0xE0));
+        return i;
+    }();
+    return img;
+}
+
+// The image format an embed asks for.
+QTextImageFormat
+imageFormatFromEmbed(const QJsonObject& embed)
+{
+    const QJsonObject ref = embed.value(QStringLiteral("image")).toObject();
+    QTextImageFormat img;
+    img.setName(ATTACHMENT_URL_PREFIX + ref.value(QStringLiteral("id")).toString());
+
+    // Bounded, both of them: these numbers were written by whoever produced the
+    // embed. A width of two billion is not a request this replica has to honour,
+    // it is a way to make the document unusable for everyone who opens it.
+    if (const int w = ref.value(QStringLiteral("width")).toInt(); w > 0)
+        img.setWidth(qMin(w, MAX_IMAGE_WIDTH));
+    if (const int h = ref.value(QStringLiteral("height")).toInt(); h > 0)
+        img.setHeight(qMin(h, MAX_IMAGE_WIDTH));
+    return img;
+}
+
 // List kind (0/1/2) of a block, read from its first character's list attribute.
 int
 blockListType(const QTextBlock& blk)
@@ -273,9 +367,20 @@ CollabRichBinding::onContentsChange(int /*position*/, int /*charsRemoved*/, int 
         // Group consecutive characters sharing the same inline attributes into runs.
         int i = 0;
         while (i < text.size()) {
+            if (text.at(i) == OBJECT_REPLACEMENT) {
+                // An inline object. It counts as exactly one unit either way: if
+                // we cannot name it we still send one character rather than drop
+                // it, because a length the CRDT does not share is what makes a
+                // later edit land out of range.
+                const QJsonObject embed = embedAt(d, prefix + i);
+                ops.append(embed.isEmpty() ? QJsonObject {{QStringLiteral("insert"), QString(OBJECT_REPLACEMENT)}}
+                                           : QJsonObject {{QStringLiteral("insert"), embed}});
+                ++i;
+                continue;
+            }
             const QJsonObject a = charAttrsAt(d, prefix + i);
             int j = i + 1;
-            while (j < text.size() && charAttrsAt(d, prefix + j) == a)
+            while (j < text.size() && text.at(j) != OBJECT_REPLACEMENT && charAttrsAt(d, prefix + j) == a)
                 ++j;
             QJsonObject op {{QStringLiteral("insert"), text.mid(i, j - i)}};
             if (!a.isEmpty())
@@ -329,6 +434,25 @@ CollabRichBinding::applyRemoteDelta(const QString& deltaJson)
             c.setPosition(qBound(0, index, docLen));
             c.insertText(text, mergeFormatFromAttrs(attrs));
             index += text.size();
+        } else if (op.contains(QStringLiteral("insert")) && op.value(QStringLiteral("insert")).isObject()) {
+            const QJsonObject embed = op.value(QStringLiteral("insert")).toObject();
+            c.setPosition(qBound(0, index, docLen));
+            const QString id = embed.value(QStringLiteral("image")).toObject().value(QStringLiteral("id")).toString();
+            if (isAttachmentId(id)) {
+                const QUrl url(ATTACHMENT_URL_PREFIX + id);
+                if (!d->resource(QTextDocument::ImageResource, url).isValid()) {
+                    // Put there before the image is, so the layout never goes
+                    // looking for a resource that is missing.
+                    d->addResource(QTextDocument::ImageResource, url, placeholderImage());
+                    pendingAttachments_.insert(id);
+                }
+                c.insertImage(imageFormatFromEmbed(embed));
+            } else {
+                // An embed of a kind this editor does not render. It still has to
+                // occupy one unit, or every later offset would be off by one.
+                c.insertText(QString(OBJECT_REPLACEMENT));
+            }
+            index += 1;
         } else if (op.contains(QStringLiteral("retain"))) {
             const int n = op.value(QStringLiteral("retain")).toInt();
             const QJsonObject attrs = op.value(QStringLiteral("attributes")).toObject();
@@ -353,6 +477,94 @@ CollabRichBinding::applyRemoteDelta(const QString& deltaJson)
     applyingRemote_ = false;
     // Keep the shadow equal to the (converged) content so local diffs stay aligned.
     shadow_ = d->toPlainText();
+
+    // Asked for after the document is consistent, never from inside the loop: a
+    // handler that answered straight away would edit a half-applied document.
+    const auto wanted = pendingAttachments_;
+    pendingAttachments_.clear();
+    for (const auto& id : wanted)
+        Q_EMIT attachmentNeeded(id);
+}
+
+void
+CollabRichBinding::insertImage(int position, const QString& id, int width, int height)
+{
+    QTextDocument* d = doc();
+    if (!d || !isAttachmentId(id))
+        return;
+    QJsonObject ref {{QStringLiteral("id"), id}};
+    if (width > 0)
+        ref[QStringLiteral("width")] = width;
+    if (height > 0)
+        ref[QStringLiteral("height")] = height;
+    // Deliberately not guarded by applyingRemote_: this is a local edit, and the
+    // delta it produces is the one that tells the other participants about it.
+    const QUrl url(ATTACHMENT_URL_PREFIX + id);
+    if (!d->resource(QTextDocument::ImageResource, url).isValid())
+        d->addResource(QTextDocument::ImageResource, url, placeholderImage());
+    QTextCursor c(d);
+    c.setPosition(qBound(0, position, d->characterCount() - 1));
+    c.insertImage(imageFormatFromEmbed(QJsonObject {{QStringLiteral("image"), ref}}));
+}
+
+QImage
+CollabRichBinding::decodeBounded(const QByteArray& data)
+{
+    if (data.isEmpty())
+        return {};
+    QBuffer buffer;
+    buffer.setData(data);
+    if (!buffer.open(QIODevice::ReadOnly))
+        return {};
+    QImageReader reader(&buffer);
+    // From the content, never from a name: a suffix is not evidence of anything.
+    const QSize size = reader.size();
+    if (!size.isValid() || size.isEmpty())
+        return {};
+    if (qint64(size.width()) * qint64(size.height()) > MAX_DECODED_PIXELS)
+        return {};
+    return reader.read();
+}
+
+void
+CollabRichBinding::registerAttachment(const QString& id, const QByteArray& data)
+{
+    QTextDocument* d = doc();
+    if (!d || !isAttachmentId(id))
+        return;
+    // Bounded: these bytes come from a peer, and an image is decoded on every
+    // replica that opens the document, not only on the one that inserted it.
+    const QImage image = decodeBounded(data);
+    if (image.isNull())
+        return; // not something this editor can draw; leave the placeholder
+    d->addResource(QTextDocument::ImageResource, QUrl(ATTACHMENT_URL_PREFIX + id), image);
+
+    // The layout measured this image while it was still the placeholder, so it
+    // has to measure it again. markContentsDirty() alone does not do it: it
+    // records the dirty range but only the end of an edit hands it to the
+    // layout, so the editor kept showing the grey box until the next keystroke.
+    // An empty edit block is that end of an edit, without changing the text --
+    // so no delta is produced and the shadow stays valid.
+    d->markContentsDirty(0, d->characterCount());
+    QTextCursor c(d);
+    c.beginEditBlock();
+    c.endEditBlock();
+}
+
+bool
+CollabRichBinding::referencesAttachment(const QString& id) const
+{
+    QTextDocument* d = doc();
+    if (!d || id.isEmpty())
+        return false;
+    const QString url = ATTACHMENT_URL_PREFIX + id;
+    for (QTextBlock blk = d->begin(); blk.isValid(); blk = blk.next())
+        for (auto it = blk.begin(); it != blk.end(); ++it) {
+            const QTextCharFormat f = it.fragment().charFormat();
+            if (f.isImageFormat() && f.toImageFormat().name() == url)
+                return true;
+        }
+    return false;
 }
 
 void

@@ -38,6 +38,8 @@ Window {
     property string accountId: ""
     property string conversationId: ""
     property string documentId: ""
+    // Non-empty while a failed image insertion is being reported.
+    property string attachmentError: ""
     property string documentName: ""
     property string peerName: ""
 
@@ -183,10 +185,48 @@ Window {
                 root.upsertCursor(peerId, pos);
         }
 
+        function onAttachmentAdded(accId, convId, docId, attachmentId) {
+            if (accId === root.accountId && convId === root.conversationId && docId === root.documentId && richBinding.referencesAttachment(attachmentId))
+                CollaborativeAdapter.deliverAttachment(accId, convId, docId, attachmentId, richBinding);
+        }
+
         function onParticipantLeft(accId, convId, docId, peerId) {
             if (accId === root.accountId && convId === root.conversationId && docId === root.documentId)
                 root.removeCursor(peerId);
         }
+    }
+
+    // Store the picked file with the document, then place it where the caret is.
+    // The bytes are registered before the image exists in the document so the
+    // layout measures it on the first pass instead of drawing a broken box.
+    // The picker is built on demand, never declared here: JamiFileDialog counts
+    // its instances from Component.onCompleted, and the main window veils itself
+    // while that count is above zero. A picker standing by in this window would
+    // hold the main window hostage for as long as the document stays open.
+    function pickImage() {
+        if (typeof viewCoordinator === "undefined")
+            return;
+        var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/JamiFileDialog.qml", {
+                "title": qsTr("Insert image"),
+                "mode": JamiFileDialog.Mode.OpenFile,
+                "nameFilters": [qsTr("Images") + " (*.png *.jpg *.jpeg *.gif *.bmp *.webp)"]
+            }, true);
+        dlg.fileAccepted.connect(function (file) {
+                root.insertImageFromFile(file);
+            });
+    }
+
+    function insertImageFromFile(file) {
+        const info = CollaborativeAdapter.addAttachment(root.accountId, root.conversationId, root.documentId, file);
+        if (!info || !info.id) {
+            root.attachmentError = qsTr("This image could not be added. It has to be an image of at most 16 MB.");
+            attachmentErrorTimer.restart();
+            return;
+        }
+        root.attachmentError = "";
+        CollaborativeAdapter.deliverAttachment(root.accountId, root.conversationId, root.documentId, info.id, richBinding);
+        richBinding.insertImage(editor.cursorPosition, info.id, info.width !== undefined ? info.width : 0, 0);
+        editor.forceActiveFocus();
     }
 
     // Bridges the editor's QTextDocument to the collaborative CRDT.
@@ -196,6 +236,18 @@ Window {
         onLocalDelta: function (deltaJson) {
             CollaborativeAdapter.applyDelta(root.accountId, root.conversationId, root.documentId, deltaJson);
         }
+        // The document refers to an image whose bytes are not loaded. They are
+        // there whenever the reference came from this replica or the repository
+        // has already synchronized; otherwise onAttachmentAdded picks it up.
+        onAttachmentNeeded: function (attachmentId) {
+            CollaborativeAdapter.deliverAttachment(root.accountId, root.conversationId, root.documentId, attachmentId, richBinding);
+        }
+    }
+
+    Timer {
+        id: attachmentErrorTimer
+        interval: 5000
+        onTriggered: root.attachmentError = ""
     }
 
     ColumnLayout {
@@ -396,6 +448,13 @@ Window {
             }
             FormatButton {
                 enabled: !root.previewing
+                glyph: "🖼"
+                ToolTip.visible: hovered
+                ToolTip.text: qsTr("Insert image")
+                onClicked: root.pickImage()
+            }
+            FormatButton {
+                enabled: !root.previewing
                 glyph: "⌫"
                 ToolTip.visible: hovered
                 ToolTip.text: qsTr("Clear formatting")
@@ -454,6 +513,16 @@ Window {
                         historyPanel.clearPreview();
                 }
             }
+        }
+
+        // Why an image insertion did nothing. Silence would look like a bug.
+        Text {
+            Layout.fillWidth: true
+            visible: root.attachmentError !== ""
+            text: root.attachmentError
+            font.pointSize: JamiTheme.smallFontSize
+            color: JamiTheme.redColor
+            wrapMode: Text.WordWrap
         }
 
         // Banner shown while reviewing a past version.
