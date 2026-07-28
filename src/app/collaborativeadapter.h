@@ -141,6 +141,15 @@ public:
                                                        const QString& convId,
                                                        const QString& documentId);
 
+    /// Store the picture a drop carries. @p payload is what QML could read of
+    /// the drop event; the decision of what counts as a picture is the one taken
+    /// for a paste.
+    /// @return an empty map when the drop carries no usable picture.
+    Q_INVOKABLE QVariantMap addAttachmentFromDrop(const QString& accountId,
+                                                  const QString& convId,
+                                                  const QString& documentId,
+                                                  const QVariantMap& payload);
+
     /// Hand the bytes of @p attachmentId to @p binding, if this replica holds
     /// them yet. Passing the binding rather than returning the bytes keeps them
     /// in C++ instead of round-tripping several megabytes through QML.
