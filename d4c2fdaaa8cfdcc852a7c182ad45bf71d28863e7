@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fa9eb8b7_be061e6e",
+        "filename": "src/app/yrsdocument.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-07-28T17:25:09Z",
+      "side": 1,
+      "message": "[warning] Line 130: 🟡 `ychunks_destroy(chunks, n)` is skipped if future code adds an early exit, and this function already has several allocation-returning FFI calls. Please wrap `chunks` in an RAII helper or at least ensure every path destroys it; the same pattern would make the ownership boundary safer for the new chunk traversal.",
+      "revId": "d4c2fdaaa8cfdcc852a7c182ad45bf71d28863e7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cc8f5130_2f07ecf1",
+        "filename": "src/app/yrsdocument.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-07-28T17:25:09Z",
+      "side": 1,
+      "message": "[warning] Line 237: 🟡 Dropping malformed embed ops silently can make callers believe an operation was applied when it was not. Please surface this as a failed/invalid delta consistently with existing error handling, or exclude malformed embeds during parsing so `applyDelta`/serialization do not lose user content without any signal.",
+      "revId": "d4c2fdaaa8cfdcc852a7c182ad45bf71d28863e7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
