@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d29e7fea_4420d0c4",
+        "filename": "src/app/commoncomponents/CollabDocListPopup.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-07-28T01:40:25Z",
+      "side": 1,
+      "message": "[error] Line 127: 🔴 The collaborative document name comes from conversation data and is displayed with the default AutoText mode. Force `textFormat: Text.PlainText` so markup in a document title cannot alter rendering or trigger rich-text resource handling.",
+      "revId": "31b2a60c10a820fff696504a92bf8862e886d24f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "82d36efe_5345853f",
+        "filename": "src/app/commoncomponents/CollabDocMessageDelegate.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-07-28T01:40:25Z",
+      "side": 1,
+      "message": "[error] Line 96: 🔴 User-controlled document names are rendered with QML Text\u0027s default AutoText mode, so names containing rich-text markup can be interpreted instead of displayed literally. Set `textFormat: Text.PlainText` for the document name (and other user-controlled labels) before merge.",
+      "revId": "31b2a60c10a820fff696504a92bf8862e886d24f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6e5f8a6d_cd966daa",
+        "filename": "src/app/commoncomponents/CollabNewDocPopup.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-07-28T01:40:25Z",
+      "side": 1,
+      "message": "[warning] Line 36: 🟡 Document names are accepted without any length limit before being stored/sent. Add a reasonable maximum length, matching existing message/profile-name constraints if available, to avoid oversized commits and UI layout/performance issues from extremely long names.",
+      "revId": "31b2a60c10a820fff696504a92bf8862e886d24f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
