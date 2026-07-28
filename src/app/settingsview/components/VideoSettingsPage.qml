@@ -158,7 +158,7 @@ SettingsPageBase {
                 filters: ValueFilter {
                     roleName: "DeviceName"
                     value: VideoDevices.defaultName
-                    invert: true
+                    inverted: true
                     enabled: deviceSourceModel.rowCount() > 1
                 }
             }
@@ -195,7 +195,7 @@ SettingsPageBase {
                 filters: ValueFilter {
                     roleName: "Resolution"
                     value: VideoDevices.defaultRes
-                    invert: true
+                    inverted: true
                     enabled: resSourceModel.rowCount() > 1
                 }
             }
@@ -226,7 +226,7 @@ SettingsPageBase {
                 filters: ValueFilter {
                     roleName: "FPS"
                     value: VideoDevices.defaultFps
-                    invert: true
+                    inverted: true
                     enabled: fpsSourceModel.rowCount() > 1
                 }
             }
