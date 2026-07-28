@@ -1,0 +1,22 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0c684a46_e3e578be",
+        "filename": "src/app/collabrichbinding.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 982,
+      "author": {
+        "id": 617
+      },
+      "writtenOn": "2026-07-28T18:43:26Z",
+      "side": 1,
+      "message": "Right, and wider than reported. Measured before touching anything, by asking the question the user actually cares about -- does the menu promise what the paste delivers -- expressed as `mimeCarriesImage(m) \u003d\u003d !decodeBounded(imageFromMimeData(m)).isNull()`, since `decodeBounded()` is exactly what `storeAttachment()` requires before anything is stored. Six of the new checks failed on the old code:\n\n* empty encoded payload (an advertised X11 selection target that fails to convert -- the ordinary case, not a corner one);\n* encoded payload above MAX_PASTED_IMAGE_SIZE;\n* encoded payload that is not decodable at all;\n* a decompression bomb: a 40-byte PNG header announcing 8000x8000, which passes the byte cap and blows the pixel cap. `imageFromMimeData()` returned those bytes happily; only `storeAttachment()` rejected them, i.e. after the error dialog was already the outcome.\n\nThe consequence is worse than a wrong menu state: `pasteFromClipboard()` in CollabRichEditorWindow.qml takes the picture branch on `clipboardHasImage`, and when it yields nothing the user gets an error **and** loses the paste -- the text is never pasted, because the branch was already chosen.\n\nThe last two failures were not in the report and are a genuine paste bug, independent of any menu:\n\n* an advertised-but-empty `image/png` sitting next to a real local image file made the paste fail outright. `imageFromMimeData()` entered the encoded branch on `carriesEncodedImage()` and returned `{}` from inside it, so `soleLocalFile()` was never reached. Copy a picture from a file manager that also advertises an image target it cannot deliver, and pasting it was impossible.\n\nRather than mirror the checks into the probe -- two copies of one rule, free to drift again -- the two paths now walk a single cascade, `imageSource()`, returning which of the three sources the paste will use: encoded bytes, decoded picture, single local file. `mimeCarriesImage()` is now `imageSource(mime) !\u003d None`, and `imageFromMimeData()` switches on the same answer. The fallbacks are what the fix makes real: a source that fails at one step now falls through to the next instead of dying inside a branch.\n\nDeciding stays header-only, so the reason the probe exists in the first place survives (measured on this machine, 200 iterations, `ci-scripts/mesure-sonde.cpp`):\n\n| clipboard | mimeCarriesImage() |\n|---|---|\n| 4K PNG offered as bytes (0.5 MiB) | **0.013 ms** |\n| 4K screenshot offered decoded | 0.000 ms |\n| plain text | 0.000 ms |\n| advertised type, no content | 0.000 ms |\n| *same answer via the paste path* | *191.967 ms* |\n\nSo validating the payload costs 13 microseconds, against the 192 ms it would cost to answer by trying the paste.\n\nOne residue is irreducible and is now stated in the code rather than papered over: a header that parses over a body that does not. Only decoding settles that, and decoding is the cost the probe exists to avoid. It cannot be reached by an oversized, empty, undecodable or bomb payload -- those are all settled from the header.\n\nverify-richimage goes from 113 to 124 checks (262 across the ten verifiers), the new ones written as the invariant itself, so the two paths cannot drift apart again without a red check.",
+      "parentUuid": "410aa70d_47fcc672",
+      "revId": "d76e93cbff13bdd86c20bc8bd53cd9675d530c55",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
