@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2667b519_a2807fd4",
+        "filename": "src/app/yrsdocument.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-07-28T01:40:18Z",
+      "side": 1,
+      "message": "[error] Line 76: 🔴 youtput_read_string() returns an allocated C string that must be released with ystring_destroy(). This path leaks every string-valued formatting attribute; copy it into QString/std::string, then call ystring_destroy(s).",
+      "revId": "cf75d0cb13b3d417b05a004f3a40afd62fad4486",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2f67198d_6e62ab5b",
+        "filename": "src/app/yrsdocument.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-07-28T01:40:18Z",
+      "side": 1,
+      "message": "[error] Line 228: 🔴 The inserted string returned by youtput_read_string(delta[i].insert) is never freed. Remote/local text-change notifications will leak memory on every insertion; destroy it with ystring_destroy(str) after copying.",
+      "revId": "cf75d0cb13b3d417b05a004f3a40afd62fad4486",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "70c92d31_ba69b151",
+        "filename": "src/app/yrsdocument.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 276,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-07-28T01:40:18Z",
+      "side": 1,
+      "message": "[error] Line 276: 🔴 insert() forwards the caller-provided index directly to ytext_insert(), but the surrounding code notes that yrs aborts the process on out-of-range offsets. Clamp or validate index against ytext_len() in this method, as applyDelta() already does, so stale UI offsets cannot crash the client.",
+      "revId": "cf75d0cb13b3d417b05a004f3a40afd62fad4486",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d00501f6_746434aa",
+        "filename": "src/app/yrsdocument.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 328,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-07-28T01:40:18Z",
+      "side": 1,
+      "message": "[error] Line 328: 🔴 The chunk string returned by youtput_read_string(\u0026chunks[i].data) is not released. contentDelta() leaks one allocation per text chunk; free each non-null string with ystring_destroy(s) after inserting it into the JSON object.",
+      "revId": "cf75d0cb13b3d417b05a004f3a40afd62fad4486",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "654b52b4_487967b8",
+        "filename": "src/app/yrsdocument.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 422,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-07-28T01:40:18Z",
+      "side": 1,
+      "message": "[error] Line 422: 🔴 remove() forwards index/length directly to ytext_remove_range(), which can abort on out-of-range values. Clamp index and length to the live document length, or return an explicit failure, to protect against UI/CRDT desync and malformed caller input.",
+      "revId": "cf75d0cb13b3d417b05a004f3a40afd62fad4486",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
