@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "01b30c0a_84f601c0",
+        "filename": "src/app/mainview/components/CollabEditorWindow.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 516,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-07-28T02:44:29Z",
+      "side": 1,
+      "message": "[warning] Line 516: 🟡 Selection anchors are not preserved for backward selections. Sending `editor.selectionStart` as the anchor works only when the caret is at `selectionEnd`; if the user selects text right-to-left, both `cursorPosition` and `selectionStart` can be the same value, so peers receive a collapsed/incorrect selection. Send the opposite endpoint, e.g. `editor.cursorPosition \u003d\u003d\u003d editor.selectionStart ? editor.selectionEnd : editor.selectionStart`.",
+      "revId": "5a44e3048cdbf9a2c1f59199e8fd2374609a32e9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "525e437c_b3f447b5",
+        "filename": "src/app/mainview/components/CollabHistoryPanel.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-07-28T02:44:29Z",
+      "side": 1,
+      "message": "[warning] Line 57: 🟡 The history panel fetches the full history every time it opens or refreshes. If `limit \u003d 0` means unbounded, a long-lived document can make this window slow or memory-heavy. Request a bounded page initially and add incremental loading/pagination if more entries are available.",
+      "revId": "5a44e3048cdbf9a2c1f59199e8fd2374609a32e9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
