@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cee53882_e2ff81c0",
+        "filename": "src/app/collabrichbinding.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 537,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-07-28T16:49:55Z",
+      "side": 1,
+      "message": "[error] Line 537: 🔴 Each attachment is decoded and cached as a full QImage, and there is no per-document aggregate budget. A peer can insert many images that each pass MAX_DECODED_PIXELS and force the editor to retain hundreds of MB or more on the UI side. Add a cumulative decoded-pixel/memory limit per document, or cache scaled display images/thumbnails and leave further images as placeholders once the budget is exceeded.",
+      "revId": "a6ac38f569981eef9e19ba530da01a0b2c5dfd84",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
