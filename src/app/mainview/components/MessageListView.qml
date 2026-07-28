@@ -264,6 +264,17 @@ ListView {
                 }
             }
         }
+
+        DelegateChoice {
+            roleValue: Interaction.Type.COLLAB_DOC
+
+            CollabDocMessageDelegate {
+                convContext: root.convContext
+                Component.onCompleted: {
+                    computeChatview(this, index);
+                }
+            }
+        }
     }
 
     onAtYBeginningChanged: loadMoreMsgsIfNeeded()
