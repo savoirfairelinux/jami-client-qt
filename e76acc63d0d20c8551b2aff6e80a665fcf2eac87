@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c3cd6171_56c50d47",
+        "filename": "src/app/mainview/components/CollabRichEditorWindow.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 370,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-07-28T16:48:26Z",
+      "side": 1,
+      "message": "[error] Line 370: 🔴 `dropCarriesLocalFile` is called from QML, but the C++ declaration is only a public static method and is not exposed to the Qt meta-object system. This will fail at runtime with the property not being a function when a non-image file is dropped. Make it QML-callable, e.g. add an instance `Q_INVOKABLE` wrapper or move this decision behind an existing invokable.",
+      "revId": "e76acc63d0d20c8551b2aff6e80a665fcf2eac87",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
