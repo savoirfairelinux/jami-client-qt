@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "03975328_3a2bf669",
+        "filename": "src/app/mainview/components/CollabRichEditorWindow.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 370,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-07-28T16:18:56Z",
+      "side": 1,
+      "message": "[error] Line 370: 🔴 This regresses normal URL/text drops: any drop with `hasUrls` that is not accepted as an image returns with an image-size error before the `hasText` fallback runs. Dragging a link or URL text into the editor will no longer insert text. Only suppress text insertion for local file drops, or fall back to `drop.text` when the URL drop is not an image.",
+      "revId": "996a1848bccaa6233f329df3aa614c154dbc6955",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
