@@ -318,6 +318,30 @@ Window {
         editor.forceActiveFocus();
     }
 
+    // Pasting inserts whatever the clipboard holds: a picture if there is one,
+    // sanitized plain text otherwise.
+    function pasteFromClipboard() {
+        if (root.previewing)
+            return;
+        if (!richBinding.clipboardHasImage()) {
+            richBinding.pasteText(editor.selectionStart, editor.selectionEnd);
+            return;
+        }
+        const info = CollaborativeAdapter.addAttachmentFromClipboard(root.accountId, root.conversationId, root.documentId);
+        if (!info || !info.id) {
+            root.attachmentError = qsTr("This image could not be added. It has to be an image of at most 16 MB.");
+            attachmentErrorTimer.restart();
+            return;
+        }
+        // A paste replaces the selection, as it does for text.
+        if (editor.selectionStart !== editor.selectionEnd)
+            editor.remove(editor.selectionStart, editor.selectionEnd);
+        root.attachmentError = "";
+        CollaborativeAdapter.deliverAttachment(root.accountId, root.conversationId, root.documentId, info.id, richBinding);
+        richBinding.insertImage(editor.cursorPosition, info.id, info.width !== undefined ? info.width : 0, 0);
+        editor.forceActiveFocus();
+    }
+
     // Bridges the editor's QTextDocument to the collaborative CRDT.
     CollabRichBinding {
         id: richBinding
@@ -745,12 +769,13 @@ Window {
                         onContentHeightChanged: root.refreshImageGeom()
                         onWidthChanged: root.refreshImageGeom()
 
-                        // Intercept paste so it inserts sanitized plain text (rich
-                        // clipboard styling would otherwise render only locally and diverge
-                        // from what peers receive).
+                        // Intercept paste: a picture is stored with the document and
+                        // referenced, and text is inserted sanitized (rich clipboard
+                        // styling would otherwise render only locally and diverge from
+                        // what peers receive).
                         Keys.onPressed: function (event) {
                             if (event.matches(StandardKey.Paste)) {
-                                richBinding.pasteText(editor.selectionStart, editor.selectionEnd);
+                                root.pasteFromClipboard();
                                 event.accepted = true;
                             }
                         }
@@ -1052,8 +1077,10 @@ Window {
         }
         MenuItem {
             text: qsTr("Paste")
-            enabled: editor.canPaste
-            onTriggered: richBinding.pasteText(editor.selectionStart, editor.selectionEnd)
+            // canPaste only knows about text, and a clipboard holding just a
+            // picture would leave the entry greyed out.
+            enabled: editor.canPaste || richBinding.clipboardHasImage()
+            onTriggered: root.pasteFromClipboard()
         }
         MenuItem {
             text: qsTr("Delete")
