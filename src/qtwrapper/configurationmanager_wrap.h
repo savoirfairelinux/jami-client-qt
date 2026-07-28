@@ -239,6 +239,16 @@ public:
                                                           QString(documentId.c_str()),
                                                           QString(name.c_str()));
             }),
+            exportable_callback<ConfigurationSignal::CollaborativeAttachmentAdded>(
+                [this](const std::string& account_id,
+                       const std::string& convId,
+                       const std::string& documentId,
+                       const std::string& attachmentId) {
+                    Q_EMIT this->collaborativeAttachmentAdded(QString(account_id.c_str()),
+                                                              QString(convId.c_str()),
+                                                              QString(documentId.c_str()),
+                                                              QString(attachmentId.c_str()));
+                }),
             exportable_callback<ConfigurationSignal::UserSearchEnded>(
                 [this](const std::string& account_id,
                        int status,
@@ -1097,6 +1107,28 @@ public Q_SLOTS: // METHODS
                                           documentId.toStdString(),
                                           base64Update.toStdString());
     }
+    QString addCollaborativeAttachment(const QString& accountId,
+                                       const QString& conversationId,
+                                       const QString& documentId,
+                                       const QByteArray& data)
+    {
+        const std::vector<uint8_t> bytes(data.constBegin(), data.constEnd());
+        return QString::fromStdString(libjami::addCollaborativeAttachment(accountId.toStdString(),
+                                                                          conversationId.toStdString(),
+                                                                          documentId.toStdString(),
+                                                                          bytes));
+    }
+    QByteArray collaborativeAttachment(const QString& accountId,
+                                       const QString& conversationId,
+                                       const QString& documentId,
+                                       const QString& attachmentId)
+    {
+        const auto bytes = libjami::collaborativeAttachment(accountId.toStdString(),
+                                                            conversationId.toStdString(),
+                                                            documentId.toStdString(),
+                                                            attachmentId.toStdString());
+        return QByteArray(reinterpret_cast<const char*>(bytes.data()), static_cast<qsizetype>(bytes.size()));
+    }
     void setCollaborativeAwareness(const QString& accountId,
                                    const QString& conversationId,
                                    const QString& documentId,
@@ -1356,6 +1388,10 @@ Q_SIGNALS: // SIGNALS
                                       const QString& convId,
                                       const QString& documentId,
                                       const QString& name);
+    void collaborativeAttachmentAdded(const QString& accountId,
+                                      const QString& convId,
+                                      const QString& documentId,
+                                      const QString& attachmentId);
     void userSearchEnded(const QString& accountId, int status, const QString& query, VectorMapStringString results);
     // swarm
     void conversationLoaded(uint32_t requestId,
