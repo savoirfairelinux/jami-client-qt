@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "42e16f61_dcdeebb2",
+        "filename": "src/app/yrsdocument.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-07-28T17:25:08Z",
+      "side": 1,
+      "message": "[error] Line 175: 🔴 deltaJsonToRichOps() accepts any JSON number because isDouble()/toInt() silently coerces fractional and out-of-range values; e.g. 1.5 becomes 2 and 4294967296 may be truncated before reaching applyDelta(). Validate that retain/delete are finite integers in [0, UINT32_MAX] before casting, otherwise reject/skip the op.",
+      "revId": "8c1705bedceb9f796d8203442e86c5c54bb4cda1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
