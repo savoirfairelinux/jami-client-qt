@@ -86,7 +86,22 @@ public:
         uint32_t len {0};  ///< retained/deleted length, or UTF-16 length of @c text
         std::string text;  ///< inserted text (Insert only)
         std::string attrs; ///< JSON object of formatting attributes (may be empty)
+        /// Embedded content inserted instead of text: a JSON object, following
+        /// the Quill convention of an object-valued "insert". What it describes
+        /// is between the clients -- an image reference, a formula, anything --
+        /// exactly as the daemon does not know what an update contains.
+        ///
+        /// An embed occupies @b one unit of the document, in the CRDT as in the
+        /// editors: Qt already represents an inline object by a single U+FFFC
+        /// character, so every offset here keeps its meaning.
+        std::string embed;
     };
+
+    /// The character standing for an embed in a plain-text view of the document.
+    /// Qt's QTextDocument uses it for inline objects, so a text editor and a
+    /// rich editor sharing one replica agree on every offset without converting
+    /// anything.
+    static constexpr char16_t EMBED_PLACEHOLDER {0xFFFC};
 
     /// Serialize a rich-text op list as a Quill-style delta JSON string: an array
     /// of {retain|insert|delete} ops, each optionally carrying an "attributes"
