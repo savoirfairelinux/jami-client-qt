@@ -124,6 +124,40 @@ Window {
     }
 
     // Toolbar button: a small toggleable glyph button.
+    // Alignment has no letter to stand for it, and the client ships no icon for
+    // it, so it is drawn: four lines of text, set the way the paragraph would be.
+    // Justified is the one with every line full.
+    component AlignGlyph: Item {
+        id: alignGlyph
+
+        property int align: Qt.AlignLeft
+        property color lineColor: JamiTheme.textColor
+
+        implicitWidth: 16
+        implicitHeight: 17
+
+        Column {
+            anchors.centerIn: parent
+            width: 16
+            spacing: 3
+            Repeater {
+                model: [0, 1, 2, 3]
+                delegate: Rectangle {
+                    required property int index
+
+                    // Justified text is flush on both sides, save for the last line.
+                    readonly property real ratio: alignGlyph.align === Qt.AlignJustify ? (index === 3 ? 0.6 : 1.0) : (index % 2 === 0 ? 1.0 : 0.6)
+
+                    width: 16 * ratio
+                    height: 2
+                    radius: 1
+                    color: alignGlyph.lineColor
+                    x: alignGlyph.align === Qt.AlignRight ? 16 - width : (alignGlyph.align === Qt.AlignHCenter ? (16 - width) / 2 : 0)
+                }
+            }
+        }
+    }
+
     component FormatButton: AbstractButton {
         id: fmtBtn
         property string glyph: ""
@@ -202,6 +236,20 @@ Window {
     // Store the picked file with the document, then place it where the caret is.
     // The bytes are registered before the image exists in the document so the
     // layout measures it on the first pass instead of drawing a broken box.
+    // Alignment of the paragraph under the caret. Left is stored as no attribute
+    // at all, so an empty answer means left.
+    readonly property string currentAlign: (root.fmt.align !== undefined && root.fmt.align !== "") ? root.fmt.align : "left"
+
+    function alignmentOf(style) {
+        if (style === "center")
+            return Qt.AlignHCenter;
+        if (style === "right")
+            return Qt.AlignRight;
+        if (style === "justify")
+            return Qt.AlignJustify;
+        return Qt.AlignLeft;
+    }
+
     // Unit holding the image the resize handles are attached to, -1 when none is
     // selected. Set by clicking an image, dropped as soon as the selection is
     // anything else -- typing, clicking away, or selecting text.
@@ -484,6 +532,39 @@ Window {
                 color: JamiTheme.tabbarBorderColor
             }
 
+            // Alignment applies to whole paragraphs, so it needs no selection: the
+            // caret is enough to say which one is meant. Opens a root-level Menu,
+            // for the same reason as the font size chooser.
+            AbstractButton {
+                id: alignButton
+
+                enabled: !root.previewing
+                Layout.preferredWidth: 46
+                Layout.preferredHeight: 30
+                ToolTip.visible: hovered
+                ToolTip.text: qsTr("Paragraph alignment")
+                background: Rectangle {
+                    radius: 6
+                    color: alignButton.hovered ? JamiTheme.hoveredButtonColor : "transparent"
+                    border.width: 1
+                    border.color: JamiTheme.tabbarBorderColor
+                }
+                contentItem: Row {
+                    spacing: 3
+                    AlignGlyph {
+                        anchors.verticalCenter: parent.verticalCenter
+                        // Shows what the paragraph under the caret is doing.
+                        align: root.alignmentOf(root.currentAlign)
+                    }
+                    Text {
+                        anchors.verticalCenter: parent.verticalCenter
+                        text: "▾"
+                        color: JamiTheme.textColor
+                        font.pointSize: JamiTheme.textFontSize
+                    }
+                }
+                onClicked: alignMenu.popup(alignButton, 0, alignButton.height)
+            }
 
             Rectangle {
                 Layout.preferredWidth: 1
@@ -978,6 +1059,45 @@ Window {
             text: qsTr("Delete")
             enabled: editor.selectedText.length > 0
             onTriggered: editor.remove(editor.selectionStart, editor.selectionEnd)
+        }
+    }
+
+    // Paragraph alignment (declared at the window root for the same reason as
+    // editorMenu: a nested/deferred popup crashes in this Window).
+    Menu {
+        id: alignMenu
+
+        Repeater {
+            model: [
+                {
+                    "style": "left",
+                    "label": qsTr("Align left")
+                },
+                {
+                    "style": "center",
+                    "label": qsTr("Centre")
+                },
+                {
+                    "style": "right",
+                    "label": qsTr("Align right")
+                },
+                {
+                    "style": "justify",
+                    "label": qsTr("Justify")
+                }
+            ]
+            delegate: MenuItem {
+                required property var modelData
+
+                text: modelData.label
+                checkable: true
+                checked: root.currentAlign === modelData.style
+                onTriggered: {
+                    richBinding.setAlign(modelData.style, editor.selectionStart, editor.selectionEnd);
+                    root.refreshFormatState();
+                    editor.forceActiveFocus();
+                }
+            }
         }
     }
 
