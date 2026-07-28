@@ -173,6 +173,9 @@ Window {
                 return;
             richBinding.applyRemoteDelta(deltaJson);
             root.refreshFormatState();
+            // A peer may have moved or resized the selected image.
+            root.dropImageSelectionUnlessHeld();
+            root.refreshImageGeom();
         }
 
         function onDocumentRenamed(accId, convId, docId, name) {
@@ -199,6 +202,44 @@ Window {
     // Store the picked file with the document, then place it where the caret is.
     // The bytes are registered before the image exists in the document so the
     // layout measures it on the first pass instead of drawing a broken box.
+    // Unit holding the image the resize handles are attached to, -1 when none is
+    // selected. Set by clicking an image, dropped as soon as the selection is
+    // anything else -- typing, clicking away, or selecting text.
+    property int selectedImage: -1
+
+    // Where that image is drawn and how far it may be dragged. Kept as plain
+    // data rather than recomputed by a binding: it also has to follow a drag in
+    // progress, which changes nothing a binding would be watching.
+    property var imageGeom: null
+
+    function refreshImageGeom() {
+        root.imageGeom = root.selectedImage >= 0 ? richBinding.imageInfoAt(root.selectedImage) : null;
+        if (root.imageGeom && !(root.imageGeom.width > 0))
+            root.imageGeom = null;
+    }
+
+    // Raised while we are the ones moving the selection: select() reports its
+    // two ends one after the other, and the half-moved state in between does not
+    // match the image -- which would drop the selection we are busy making.
+    property bool holdingImageSelection: false
+
+    function selectImageAt(unit) {
+        root.holdingImageSelection = true;
+        root.selectedImage = unit;
+        if (unit >= 0)
+            editor.select(unit, unit + 1);
+        root.holdingImageSelection = false;
+        root.refreshImageGeom();
+    }
+
+    // Dropped unless the selection is still exactly that one image.
+    function dropImageSelectionUnlessHeld() {
+        if (root.holdingImageSelection || root.selectedImage < 0)
+            return;
+        if (editor.selectionStart !== root.selectedImage || editor.selectionEnd !== root.selectedImage + 1)
+            root.selectImageAt(-1);
+    }
+
     // The picker is built on demand, never declared here: JamiFileDialog counts
     // its instances from Component.onCompleted, and the main window veils itself
     // while that count is above zero. A picker standing by in this window would
@@ -232,6 +273,12 @@ Window {
     // Bridges the editor's QTextDocument to the collaborative CRDT.
     CollabRichBinding {
         id: richBinding
+
+        // How wide an image may be dragged. Read from the editor rather than
+        // from the document: the document's own text width follows its
+        // contents, so it would shrink around a narrow document and refuse to
+        // let any image be made wider than the text already is.
+        viewWidth: editor.width - editor.leftPadding - editor.rightPadding
         textDocument: editor.textDocument
         onLocalDelta: function (deltaJson) {
             CollaborativeAdapter.applyDelta(root.accountId, root.conversationId, root.documentId, deltaJson);
@@ -437,6 +484,14 @@ Window {
                 color: JamiTheme.tabbarBorderColor
             }
 
+
+            Rectangle {
+                Layout.preferredWidth: 1
+                Layout.preferredHeight: 22
+                Layout.alignment: Qt.AlignVCenter
+                color: JamiTheme.tabbarBorderColor
+            }
+
             FormatButton {
                 enabled: !root.previewing
                 glyph: "🔗"
@@ -593,12 +648,21 @@ Window {
                             radius: 8
                         }
 
-                        onSelectionStartChanged: root.refreshFormatState()
-                        onSelectionEndChanged: root.refreshFormatState()
+                        onSelectionStartChanged: {
+                            root.refreshFormatState();
+                            root.dropImageSelectionUnlessHeld();
+                        }
+                        onSelectionEndChanged: {
+                            root.refreshFormatState();
+                            root.dropImageSelectionUnlessHeld();
+                        }
                         onCursorPositionChanged: {
                             root.refreshFormatState();
                             cursorBroadcast.restart();
                         }
+                        // The image may move when anything above it reflows.
+                        onContentHeightChanged: root.refreshImageGeom()
+                        onWidthChanged: root.refreshImageGeom()
 
                         // Intercept paste so it inserts sanitized plain text (rich
                         // clipboard styling would otherwise render only locally and diverge
@@ -615,6 +679,117 @@ Window {
                         TapHandler {
                             acceptedButtons: Qt.RightButton
                             onTapped: editorMenu.popup()
+                        }
+
+                        // Clicking an image selects it, so it can be resized. Any
+                        // other press is handed straight back to the editor:
+                        // refusing it here is what keeps selecting text, placing
+                        // the caret and dragging a selection working as before.
+                        MouseArea {
+                            anchors.fill: parent
+                            acceptedButtons: Qt.LeftButton
+                            propagateComposedEvents: true
+                            onPressed: function (mouse) {
+                                var unit = richBinding.imageAtPoint(mouse.x - editor.leftPadding,
+                                                                    mouse.y - editor.topPadding);
+                                if (unit < 0 || root.previewing) {
+                                    root.selectImageAt(-1);
+                                    mouse.accepted = false;
+                                    return;
+                                }
+                                editor.forceActiveFocus();
+                                root.selectImageAt(unit);
+                                mouse.accepted = true;
+                            }
+                        }
+
+                        // Frame and corner handles of the selected image.
+                        Item {
+                            id: imageHandles
+
+                            visible: root.imageGeom !== null && !root.previewing
+                            // Document coordinates plus the editor's padding: the
+                            // document is laid out inside it.
+                            x: (root.imageGeom ? root.imageGeom.x : 0) + editor.leftPadding
+                            y: (root.imageGeom ? root.imageGeom.y : 0) + editor.topPadding
+                            width: root.imageGeom ? root.imageGeom.width : 0
+                            height: root.imageGeom ? root.imageGeom.height : 0
+
+                            Rectangle {
+                                anchors.fill: parent
+                                color: "transparent"
+                                border.width: 1
+                                border.color: JamiTheme.buttonTintedBlue
+                            }
+
+                            Repeater {
+                                model: 4
+                                delegate: Rectangle {
+                                    // 0 top-left, 1 top-right, 2 bottom-left, 3 bottom-right
+                                    required property int index
+
+                                    readonly property bool atRight: index === 1 || index === 3
+                                    readonly property bool atBottom: index >= 2
+
+                                    width: 9
+                                    height: 9
+                                    radius: 2
+                                    color: JamiTheme.buttonTintedBlue
+                                    border.width: 1
+                                    border.color: "white"
+                                    x: atRight ? imageHandles.width - width / 2 : -width / 2
+                                    y: atBottom ? imageHandles.height - height / 2 : -height / 2
+
+                                    MouseArea {
+                                        anchors.fill: parent
+                                        // Easier to catch than the 9 px square.
+                                        anchors.margins: -6
+                                        cursorShape: (parent.atRight === parent.atBottom) ? Qt.SizeFDiagCursor : Qt.SizeBDiagCursor
+                                        preventStealing: true
+
+                                        property real grabX: 0
+                                        property real grabWidth: 0
+
+                                        onPressed: function (mouse) {
+                                            grabX = mapToItem(editor, mouse.x, mouse.y).x;
+                                            grabWidth = imageHandles.width;
+                                        }
+                                        onPositionChanged: function (mouse) {
+                                            if (!pressed || root.selectedImage < 0)
+                                                return;
+                                            var moved = mapToItem(editor, mouse.x, mouse.y).x - grabX;
+                                            // Dragging a left handle outwards means leftwards.
+                                            var wanted = grabWidth + (parent.atRight ? moved : -moved);
+                                            // Shown at once, told to the others only
+                                            // on release: a delta per pixel would
+                                            // flood the swarm for nothing.
+                                            richBinding.previewImageWidth(root.selectedImage, Math.round(wanted));
+                                            root.refreshImageGeom();
+                                        }
+                                        onReleased: {
+                                            if (root.selectedImage < 0 || !root.imageGeom)
+                                                return;
+                                            richBinding.setImageWidth(root.selectedImage, Math.round(root.imageGeom.width));
+                                            root.refreshImageGeom();
+                                        }
+                                        // A grab can be taken away -- the window
+                                        // loses focus, another item claims the
+                                        // mouse -- and then no release ever comes.
+                                        // The preview has already changed this
+                                        // document, so leaving it there would be a
+                                        // width only this replica knows about:
+                                        // silent divergence, which is the one thing
+                                        // this editor must never produce. Put it
+                                        // back where the drag started.
+                                        onCanceled: {
+                                            if (root.selectedImage < 0)
+                                                return;
+                                            richBinding.previewImageWidth(root.selectedImage, Math.round(grabWidth));
+                                            root.refreshImageGeom();
+                                        }
+                                    }
+                                }
+                            }
                         }
 
                         // Remote participants' carets, drawn over the text.
