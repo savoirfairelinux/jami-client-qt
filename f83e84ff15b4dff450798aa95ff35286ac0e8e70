@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f0ffd6b4_4760c6dd",
+        "filename": "extras/build/docker/Dockerfile.client-qt-gnulinux",
+        "patchSetId": 6
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-07-28T18:12:30Z",
+      "side": 1,
+      "message": "[error] Line 149: 🔴 `/var/cache/cargo` is world-writable while also being `CARGO_HOME`; Cargo reads config and can use binaries/wrappers from this tree, so one build user can persist config such as a registry replacement or rustc-wrapper for later builds. Use a per-user writable Cargo home, or keep `CARGO_HOME` root-owned and configure only the registry/git cache dirs as shared writable cache locations.",
+      "revId": "f83e84ff15b4dff450798aa95ff35286ac0e8e70",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aab40525_03afe3ed",
+        "filename": "extras/packaging/gnu-linux/docker/Dockerfile_ubuntu_24.04",
+        "patchSetId": 6
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-07-28T18:12:30Z",
+      "side": 1,
+      "message": "[error] Line 28: 🔴 `/var/cache/cargo` is world-writable while also being `CARGO_HOME`; Cargo home is not just cache state, it is trusted configuration/executable state. A prior package build user can create persistent Cargo config that affects later builds. Use a private per-user `CARGO_HOME`, or split shared writable cache directories from a root-owned Cargo home.",
+      "revId": "f83e84ff15b4dff450798aa95ff35286ac0e8e70",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
