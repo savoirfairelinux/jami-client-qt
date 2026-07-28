@@ -560,6 +560,15 @@ CollaborativeAdapter::addAttachmentFromClipboard(const QString& accountId,
 }
 
 QVariantMap
+CollaborativeAdapter::addAttachmentFromDrop(const QString& accountId,
+                                            const QString& convId,
+                                            const QString& documentId,
+                                            const QVariantMap& payload)
+{
+    return storeAttachment(accountId, convId, documentId, CollabRichBinding::imageFromDropData(payload));
+}
+
+QVariantMap
 CollaborativeAdapter::storeAttachment(const QString& accountId,
                                       const QString& convId,
                                       const QString& documentId,
