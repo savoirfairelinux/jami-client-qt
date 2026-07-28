@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9f47e27a_7ce237fb",
+        "filename": "src/app/commoncomponents/CollabDocMessageDelegate.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-07-28T02:44:36Z",
+      "side": 1,
+      "message": "[warning] Line 120: 🟡 The message delegate opens the collaborative editor even when `DocumentId`/commit `uri` is missing or empty. Mirror the guard used in `CollabDocListPopup.qml` so malformed or partially-synced interactions cannot open an editor for an invalid document id.",
+      "revId": "b8d283d0561d1f68d9b297a4c42db55e14294083",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
