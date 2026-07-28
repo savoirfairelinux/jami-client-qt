@@ -93,6 +93,22 @@ utf16Len(const std::string& utf8)
     return units;
 }
 
+/// Whether @p json is a JSON object yinput_json() will accept.
+///
+/// This is not belt and braces: yinput_json() parses with serde_json and
+/// unwraps the result, so handing it anything malformed panics inside Rust and
+/// takes the whole process down. Verified by running it. Every call below is
+/// therefore guarded, and the op is applied without its attributes rather than
+/// killing the client.
+bool
+isJsonObject(const std::string& json)
+{
+    if (json.empty())
+        return false;
+    const auto doc = QJsonDocument::fromJson(QByteArray::fromStdString(json));
+    return doc.isObject();
+}
+
 // Compact (no-indent) JSON serialization, used for the per-op attribute objects
 // and the whole-document delta.
 std::string
@@ -351,7 +367,7 @@ YrsDocument::applyDelta(const std::vector<RichOp>& ops)
         switch (op.kind) {
         case RichOp::Kind::Retain: {
             uint32_t n = std::min(op.len, len - index);
-            if (!op.attrs.empty() && n > 0) {
+            if (isJsonObject(op.attrs) && n > 0) {
                 YInput attr = yinput_json(op.attrs.c_str());
                 ytext_format(pimpl_->text, txn, index, n, &attr);
             }
@@ -360,7 +376,7 @@ YrsDocument::applyDelta(const std::vector<RichOp>& ops)
         }
         case RichOp::Kind::Insert: {
             if (!op.text.empty()) {
-                if (op.attrs.empty()) {
+                if (!isJsonObject(op.attrs)) {
                     ytext_insert(pimpl_->text, txn, index, op.text.c_str(), nullptr);
                 } else {
                     YInput attr = yinput_json(op.attrs.c_str());
