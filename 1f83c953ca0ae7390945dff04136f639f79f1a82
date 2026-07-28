@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2f10b722_7ab6cb90",
+        "filename": "src/app/collabrichbinding.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 596,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-07-28T16:18:39Z",
+      "side": 1,
+      "message": "[error] Line 596: 🔴 `loadContentDelta()` appears to deserialize the saved/initial CRDT contents but this patch only calls `reconcileAlignment()` after `applyRemoteDelta()`. If a document is opened with existing `align` attributes, the character property will be restored but the QTextBlock alignment will not be rebuilt, so saved aligned paragraphs render as left-aligned until another remote edit touches the document. Call `reconcileAlignment()` after loading content, after list reconciliation, just like remote deltas.",
+      "revId": "1f83c953ca0ae7390945dff04136f639f79f1a82",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
