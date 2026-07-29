@@ -45,6 +45,7 @@ class ConversationStatusModel final : public AbstractListModelBase
 {
     Q_OBJECT
     Q_PROPERTY(QString conversationId READ conversationId WRITE setConversationId NOTIFY conversationIdChanged)
+    Q_PROPERTY(QStringList responsibleMobileNodes READ responsibleMobileNodes NOTIFY responsibleMobileNodesChanged)
 
 public:
     explicit ConversationStatusModel(LRCInstance* instance, QObject* parent = nullptr);
@@ -58,8 +59,11 @@ public:
     QString conversationId() const;
     void setConversationId(const QString& conversationId);
 
+    QStringList responsibleMobileNodes() const;
+
 Q_SIGNALS:
     void conversationIdChanged();
+    void responsibleMobileNodesChanged();
 
 private:
     using Role = ConversationStatus::Role;
@@ -68,6 +72,7 @@ private:
     QVector<QString> peerIds_;
     QMap<QString, QMap<QString, QMap<QString, QVariant>>> peerData_;
     QString conversationId_;
+    QStringList responsibleMobileNodes_;
 
     void aggregateData();
     void resetData();

@@ -1087,6 +1087,7 @@ Item {
     property string swarmConnectivity: qsTr("Swarm connectivity")
     property string connectionTime: qsTr("Connection Time")
     property string searchedContact: qsTr("Searched contact")
+    property string responsibleMobileNodes: qsTr("Mobile nodes")
     property string noChannels: qsTr("No channels")
 
     // Spell checker
