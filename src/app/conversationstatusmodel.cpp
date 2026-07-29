@@ -134,6 +134,12 @@ ConversationStatusModel::conversationId() const
     return conversationId_;
 }
 
+QStringList
+ConversationStatusModel::responsibleMobileNodes() const
+{
+    return responsibleMobileNodes_;
+}
+
 void
 ConversationStatusModel::setConversationId(const QString& conversationId)
 {
@@ -168,11 +174,15 @@ ConversationStatusModel::aggregateData()
 
     peerData_ = {};
 
+    QStringList newResponsibleMobileNodes;
     QSet<QString> newPeerIds;
     for (const auto& connectionInfo : connectionInfoList_) {
         const auto& peerId = connectionInfo["id"];
         if (peerId.isEmpty())
             continue;
+
+        if (connectionInfo["mobile"] == "true" && connectionInfo["responsible"] == "true")
+            newResponsibleMobileNodes.append(connectionInfo["device"]);
 
         newPeerIds.insert(peerId);
         const auto& id = peerId;
@@ -186,6 +196,12 @@ ConversationStatusModel::aggregateData()
 
     QVector<QString> newPeerIdsVec(newPeerIds.begin(), newPeerIds.end());
     std::sort(newPeerIdsVec.begin(), newPeerIdsVec.end());
+
+    newResponsibleMobileNodes.sort();
+    if (responsibleMobileNodes_ != newResponsibleMobileNodes) {
+        responsibleMobileNodes_ = newResponsibleMobileNodes;
+        Q_EMIT responsibleMobileNodesChanged();
+    }
 
     auto [added, removed] = getSetDiff(peerIds_, newPeerIdsVec);
 
@@ -222,4 +238,8 @@ ConversationStatusModel::resetData()
     peerIds_.clear();
     peerData_.clear();
     endResetModel();
+    if (!responsibleMobileNodes_.isEmpty()) {
+        responsibleMobileNodes_.clear();
+        Q_EMIT responsibleMobileNodesChanged();
+    }
 }

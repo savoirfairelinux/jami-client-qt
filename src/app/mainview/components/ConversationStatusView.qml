@@ -372,6 +372,102 @@ Item {
                     }
                 }
 
+                // Mobile nodes this device is responsible for waking up
+                Item {
+                    id: responsibleNodesSection
+                    Layout.fillWidth: true
+                    Layout.leftMargin: 16
+                    Layout.rightMargin: 16
+                    Layout.preferredHeight: visible ? responsibleNodesHeader.height + responsibleNodesList.contentHeight : 0
+                    visible: responsibleNodesList.count > 0
+
+                    Item {
+                        id: responsibleNodesHeader
+                        anchors.top: parent.top
+                        anchors.left: parent.left
+                        anchors.right: parent.right
+                        height: listview.rowHeight
+
+                        Text {
+                            anchors.left: parent.left
+                            anchors.right: parent.right
+                            anchors.verticalCenter: parent.verticalCenter
+                            text: JamiStrings.responsibleMobileNodes
+                            color: JamiTheme.textColor
+                            opacity: 0.6
+                            font.weight: Font.DemiBold
+                            font.pixelSize: 12
+                            elide: Text.ElideRight
+                        }
+                    }
+
+                    ListView {
+                        id: responsibleNodesList
+                        anchors.top: responsibleNodesHeader.bottom
+                        anchors.left: parent.left
+                        anchors.right: parent.right
+                        height: contentHeight
+
+                        spacing: 0
+                        cacheBuffer: 10
+                        boundsBehavior: Flickable.StopAtBounds
+                        interactive: false
+
+                        model: ConversationStatusModel.responsibleMobileNodes
+
+                        delegate: Item {
+                            id: responsibleNodeRow
+                            width: responsibleNodesList.width
+                            height: listview.rowHeight
+
+                            Row {
+                                anchors.left: parent.left
+                                anchors.right: parent.right
+                                anchors.verticalCenter: parent.verticalCenter
+                                spacing: 6
+
+                                ResponsiveImage {
+                                    anchors.verticalCenter: parent.verticalCenter
+                                    width: 18
+                                    height: 18
+                                    source: JamiResources.phone_in_talk_24dp_svg
+                                    color: JamiTheme.textColor
+                                }
+
+                                Text {
+                                    id: responsibleNodeText
+                                    anchors.verticalCenter: parent.verticalCenter
+                                    width: parent.width - 24
+                                    text: modelData
+                                    color: responsibleNodeMouse.containsMouse ? JamiTheme.textColorHovered : JamiTheme.textColor
+                                    font.family: JamiTheme.ubuntuMonoFontFamily
+                                    font.pixelSize: 12
+                                    elide: Text.ElideMiddle
+                                }
+                            }
+
+                            MouseArea {
+                                id: responsibleNodeMouse
+                                anchors.fill: parent
+                                hoverEnabled: true
+                                cursorShape: Qt.PointingHandCursor
+                                onExited: tooltipResponsibleNode.text = modelData
+                                onClicked: {
+                                    tooltipResponsibleNode.text = modelData + " (" + JamiStrings.logsViewCopied + ")";
+                                    UtilsAdapter.setClipboardText(modelData);
+                                }
+
+                                MaterialToolTip {
+                                    id: tooltipResponsibleNode
+                                    visible: responsibleNodeMouse.containsMouse
+                                    text: modelData
+                                    toolTipFont: JamiTheme.ubuntuMonoFontFamily
+                                }
+                            }
+                        }
+                    }
+                }
+
                 // Searched contacts
                 Item {
                     id: trackedMembersSection
