@@ -33,6 +33,11 @@ Item {
     // Displayed name: starts from the announcing commit (Body) but follows live
     // renames (CRDT name field) broadcast through CollaborativeAdapter.
     property string docName: Body
+    // The announcement of a document can only ever be edited to retire it, so an
+    // edited announcement means the document is gone. Read from the message
+    // itself rather than asked of the daemon: this delegate is built for every
+    // row that scrolls by, and answering would walk the whole conversation log.
+    property bool removed: PreviousBodies !== undefined && PreviousBodies.length > 0
 
     function conversationIdOf() {
         return root.convContext ? root.convContext.id : CurrentConversation.id;
@@ -49,6 +54,10 @@ Item {
         function onDocumentRenamed(accId, convId, docId, name) {
             if (accId === CurrentAccount.id && docId === root.documentId && convId === root.conversationIdOf())
                 root.docName = name;
+        }
+        function onDocumentRemoved(accId, convId, docId) {
+            if (accId === CurrentAccount.id && docId === root.documentId && convId === root.conversationIdOf())
+                root.removed = true;
         }
     }
 
@@ -90,7 +99,7 @@ Item {
                 source: JamiResources.round_edit_24dp_svg
                 width: 28
                 height: 28
-                color: JamiTheme.textColor
+                color: root.removed ? JamiTheme.faddedFontColor : JamiTheme.textColor
             }
 
             ColumnLayout {
@@ -106,10 +115,11 @@ Item {
                     elide: Text.ElideRight
                     font.pointSize: JamiTheme.textFontSize
                     font.bold: true
-                    color: JamiTheme.textColor
+                    font.strikeout: root.removed
+                    color: root.removed ? JamiTheme.faddedFontColor : JamiTheme.textColor
                 }
                 Text {
-                    text: qsTr("Editable document")
+                    text: root.removed ? qsTr("Document removed") : qsTr("Editable document")
                     font.pointSize: JamiTheme.tinyFontSize
                     color: JamiTheme.faddedFontColor
                 }
@@ -117,6 +127,9 @@ Item {
         }
 
         MouseArea {
+            // Nothing to open any more, and the daemon would refuse: a card that
+            // still invites a click would only promise what cannot happen.
+            enabled: !root.removed
             anchors.fill: parent
             cursorShape: Qt.PointingHandCursor
             onClicked: {

@@ -244,6 +244,12 @@ public:
                                                           QString(documentId.c_str()),
                                                           QString(name.c_str()));
             }),
+            exportable_callback<ConfigurationSignal::CollaborativeDocumentRemoved>(
+                [this](const std::string& account_id, const std::string& convId, const std::string& documentId) {
+                    Q_EMIT this->collaborativeDocumentRemoved(QString(account_id.c_str()),
+                                                              QString(convId.c_str()),
+                                                              QString(documentId.c_str()));
+                }),
             exportable_callback<ConfigurationSignal::CollaborativeAttachmentAdded>(
                 [this](const std::string& account_id,
                        const std::string& convId,
@@ -1106,6 +1112,12 @@ public Q_SLOTS: // METHODS
                                             conversationId.toStdString(),
                                             documentId.toStdString());
     }
+    bool removeCollaborativeDocument(const QString& accountId, const QString& conversationId, const QString& documentId)
+    {
+        return libjami::removeCollaborativeDocument(accountId.toStdString(),
+                                                    conversationId.toStdString(),
+                                                    documentId.toStdString());
+    }
     void applyCollaborativeUpdate(const QString& accountId,
                                   const QString& conversationId,
                                   const QString& documentId,
@@ -1400,6 +1412,7 @@ Q_SIGNALS: // SIGNALS
                                       const QString& convId,
                                       const QString& documentId,
                                       const QString& name);
+    void collaborativeDocumentRemoved(const QString& accountId, const QString& convId, const QString& documentId);
     void collaborativeAttachmentAdded(const QString& accountId,
                                       const QString& convId,
                                       const QString& documentId,
