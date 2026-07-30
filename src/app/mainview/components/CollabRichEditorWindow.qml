@@ -732,37 +732,6 @@ Window {
             wrapMode: Text.WordWrap
         }
 
-        // Banner shown while reviewing a past version.
-        Rectangle {
-            Layout.fillWidth: true
-            Layout.preferredHeight: 30
-            visible: root.previewing
-            radius: 6
-            color: JamiTheme.secondaryBackgroundColor
-            border.width: 1
-            border.color: JamiTheme.buttonTintedBlue
-
-            RowLayout {
-                anchors.fill: parent
-                anchors.leftMargin: 8
-                anchors.rightMargin: 8
-                spacing: 8
-
-                Text {
-                    Layout.fillWidth: true
-                    text: qsTr("Viewing a past version — read only, without formatting")
-                    font.pointSize: JamiTheme.smallFontSize
-                    color: JamiTheme.textColor
-                    elide: Text.ElideRight
-                }
-                MaterialButton {
-                    secondary: true
-                    text: qsTr("Back to current")
-                    onClicked: historyPanel.clearPreview()
-                }
-            }
-        }
-
         RowLayout {
             Layout.fillWidth: true
             Layout.fillHeight: true
