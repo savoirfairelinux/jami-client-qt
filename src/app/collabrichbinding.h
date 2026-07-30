@@ -185,6 +185,11 @@ public:
     /// mouse is released: a delta per pixel would flood the swarm.
     Q_INVOKABLE void setImageWidth(int index, int width);
 
+    /// Puts aligned images back where they belong. Where a centred or right
+    /// aligned image sits depends on the room its paragraph has, so it has to be
+    /// worked out again whenever the editor is resized. Changes no text.
+    Q_INVOKABLE void reflowAlignedImages();
+
 Q_SIGNALS:
     void textDocumentChanged();
     /// A local edit produced a Quill delta to be sent to the daemon.

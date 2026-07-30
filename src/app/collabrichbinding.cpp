@@ -440,6 +440,60 @@ blockAlignType(const QTextBlock& blk)
     return 0;
 }
 
+// Whether a block holds an image this binding put there.
+bool
+blockHasAttachmentImage(const QTextBlock& blk)
+{
+    for (auto it = blk.begin(); it != blk.end(); ++it) {
+        const QTextFragment frag = it.fragment();
+        if (!frag.isValid() || !frag.charFormat().isImageFormat())
+            continue;
+        if (frag.charFormat().toImageFormat().name().startsWith(ATTACHMENT_URL_PREFIX))
+            return true;
+    }
+    return false;
+}
+
+// Aligns a paragraph holding an image, which Qt cannot be asked to do.
+//
+// Qt lays such a paragraph out correctly but draws the image at the left edge of
+// its line whatever the alignment says: the image node is placed from
+// QTextLine::position(), which -- unlike the glyph positions and cursorToX() --
+// leaves the alignment offset out. A centred image therefore stayed on the left
+// while the selection frame, computed from cursorToX(), sat in the right place.
+//
+// So the paragraph is laid out flush left and pushed across with a left margin
+// instead, which leaves Qt nothing to ignore: image and text are moved by the
+// very same offset. One offset can only stand for a whole paragraph while it
+// occupies a single line, so wrapped ones are left to Qt.
+void
+placeAlignedImageBlock(QTextDocument* d, const QTextBlock& blk, int type)
+{
+    QTextBlockFormat bf = blk.blockFormat();
+    qreal margin = 0;
+    // Justified is not centre or right, and a lone line is never stretched.
+    if (type == 1 || type == 2) {
+        // The line has to be measured, so it has to have been laid out.
+        d->documentLayout()->blockBoundingRect(blk);
+        const QTextLayout* layout = blk.layout();
+        if (layout && layout->lineCount() == 1) {
+            const QTextLine line = layout->lineAt(0);
+            // A margin already in place is part of the room the paragraph has.
+            const qreal room = line.width() + bf.leftMargin() - line.naturalTextWidth();
+            if (room > 0)
+                margin = type == 1 ? room / 2 : room;
+        }
+    }
+    // Sub-pixel differences are not worth a relayout, and rewriting a block
+    // format for nothing reports an edit on every paragraph of the document.
+    if (bf.alignment() == Qt::AlignLeft && qAbs(bf.leftMargin() - margin) < 0.5)
+        return;
+    bf.setAlignment(Qt::AlignLeft);
+    bf.setLeftMargin(margin);
+    QTextCursor cc(blk);
+    cc.setBlockFormat(bf);
+}
+
 // List kind (0/1/2) of a block, read from its first character's list attribute.
 int
 blockListType(const QTextBlock& blk)
@@ -604,13 +658,20 @@ CollabRichBinding::reconcileAlignment()
     for (QTextBlock blk = d->begin(); blk.isValid(); blk = blk.next()) {
         if (blk.text().isEmpty())
             continue; // no characters, so nothing said about it: leave it alone
-        const Qt::Alignment wanted = alignmentFromType(blockAlignType(blk));
+        const int type = blockAlignType(blk);
+        if (blockHasAttachmentImage(blk)) {
+            placeAlignedImageBlock(d, blk, type);
+            continue;
+        }
+        const Qt::Alignment wanted = alignmentFromType(type);
         // Rewriting a block format for nothing would report an edit on every
         // incoming delta, on every paragraph of the document.
-        if (blk.blockFormat().alignment() == wanted)
+        if (blk.blockFormat().alignment() == wanted && blk.blockFormat().leftMargin() == 0)
             continue;
         QTextBlockFormat bf = blk.blockFormat();
         bf.setAlignment(wanted);
+        // A margin left over from an image this paragraph no longer holds.
+        bf.setLeftMargin(0);
         QTextCursor cc(blk);
         cc.setBlockFormat(bf);
     }
@@ -741,6 +802,8 @@ CollabRichBinding::insertImage(int position, const QString& id, int width, int h
     QTextCursor c(d);
     c.setPosition(qBound(0, position, d->characterCount() - 1));
     c.insertImage(imageFormatFromEmbed(QJsonObject {{QStringLiteral("image"), ref}}, attrs));
+    // The paragraph it lands in may be centred or right aligned.
+    reflowAlignedImages();
 }
 
 QImage
@@ -785,6 +848,9 @@ CollabRichBinding::registerAttachment(const QString& id, const QByteArray& data)
     QTextCursor c(d);
     c.beginEditBlock();
     c.endEditBlock();
+    // It was the placeholder that was measured, so an aligned image was placed
+    // from the wrong width and has to be placed again.
+    reflowAlignedImages();
 }
 
 bool
@@ -1388,8 +1454,22 @@ CollabRichBinding::previewImageWidth(int index, int width)
     // delta is due, and none must be inferred from the layout moving.
     applyingRemote_ = true;
     const bool done = setImageWidthAt(d, index, w);
+    // A narrower image leaves more room, so a centred one has to move.
+    if (done)
+        reconcileAlignment();
     applyingRemote_ = false;
     return done ? w : 0;
+}
+
+void
+CollabRichBinding::reflowAlignedImages()
+{
+    // Nothing here changes the text, so no delta is due -- and none must be
+    // inferred from the layout moving.
+    const bool wasApplying = applyingRemote_;
+    applyingRemote_ = true;
+    reconcileAlignment();
+    applyingRemote_ = wasApplying;
 }
 
 void
