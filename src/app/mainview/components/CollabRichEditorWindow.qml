@@ -1046,7 +1046,15 @@ Window {
                                     color: pColor
                                 }
                                 Rectangle {
-                                    anchors.bottom: parent.top
+                                    id: flag
+                                    // Above the caret, except on the first line:
+                                    // there the label would be laid out at a
+                                    // negative y and clipped away, which is to
+                                    // say the peer editing the first line was
+                                    // the one peer whose name never showed.
+                                    property bool above: parent.y >= height
+                                    anchors.bottom: flag.above ? parent.top : undefined
+                                    anchors.top: flag.above ? undefined : parent.bottom
                                     anchors.left: parent.left
                                     width: flagText.implicitWidth + 6
                                     height: flagText.implicitHeight + 2
