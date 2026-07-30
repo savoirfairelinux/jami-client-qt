@@ -225,12 +225,13 @@ CollaborativeAdapter::mergeRemoteUpdate(const QString& accountId,
 QString
 CollaborativeAdapter::createDocument(const QString& convId, const QString& name)
 {
-    // Every document is a rich one; the daemon still records a kind, and would
-    // otherwise record a plain-text document nothing can open any more.
+    // What the document holds, not how it travels: the bytes on the wire are a
+    // Y-CRDT update either way. Every document this client creates is rich text,
+    // and a peer that cannot render it can say so rather than open it wrongly.
     return ConfigurationManager::instance().createCollaborativeDocument(lrcInstance_->get_currentAccountId(),
                                                                         convId,
                                                                         name,
-                                                                        QStringLiteral("rich"));
+                                                                        QStringLiteral("text/html"));
 }
 
 QString
