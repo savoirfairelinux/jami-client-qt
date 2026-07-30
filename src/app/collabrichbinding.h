@@ -134,6 +134,20 @@ public:
     /// Whether the document holds an image referring to attachment @p id.
     Q_INVOKABLE bool referencesAttachment(const QString& id) const;
 
+    /// Write the document to @p file, in the format named by its suffix: "pdf"
+    /// or "odt". Both carry the pictures, which the document holds as resources
+    /// under a collab-attachment: URL no reader outside Jami could resolve.
+    /// @p title is recorded as the document title where the format has a place
+    /// for one.
+    /// @return false when the suffix names neither format, or nothing could be
+    /// written.
+    Q_INVOKABLE bool exportToFile(const QUrl& file, const QString& title = {});
+
+    /// How many pictures are still standing in as the placeholder, their bytes
+    /// not having arrived. Exporting now would fix those grey boxes into the
+    /// file, so the caller is expected to ask before writing one.
+    Q_INVOKABLE int unresolvedImageCount() const;
+
     /**
      * Decode @p data only once its header says what decoding will cost.
      *
