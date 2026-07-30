@@ -93,7 +93,6 @@ BaseModalDialog {
                 property string docId: model.documentId || ""
                 property string docName: model.name || ""
                 property string docAuthor: model.author || ""
-                property string docKind: model.kind === "rich" ? "rich" : "text"
                 property bool docHasUpdate: model.hasUpdate === true
 
                 width: docsView.width
@@ -161,8 +160,7 @@ BaseModalDialog {
                         return;
                     }
                     appWindow.openCollabEditor(root.conversationId, docId, docName,
-                                               root.peerName !== "" ? root.peerName : CurrentConversation.title,
-                                               docKind);
+                                               root.peerName !== "" ? root.peerName : CurrentConversation.title);
                     root.close();
                 }
             }

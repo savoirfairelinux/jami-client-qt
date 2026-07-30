@@ -61,10 +61,7 @@ public:
     ~CollaborativeAdapter() = default;
 
     /// Create a new editable document in @p convId; returns its generated id.
-    /// @p kind is "text" (plain) or "rich" (WYSIWYG/HTML).
-    Q_INVOKABLE QString createDocument(const QString& convId,
-                                       const QString& name,
-                                       const QString& kind = QStringLiteral("text"));
+    Q_INVOKABLE QString createDocument(const QString& convId, const QString& name);
     /// Open a document, build the local replica from the daemon's state and return
     /// its current full text.
     Q_INVOKABLE QString openDocument(const QString& accountId, const QString& convId, const QString& documentId);
@@ -95,7 +92,7 @@ public:
     /// Whole current content of a document as a Quill delta JSON (for initial render).
     Q_INVOKABLE QString contentDelta(const QString& accountId, const QString& convId, const QString& documentId);
     /// List the editable documents shared in @p convId, most recent first. Each
-    /// entry is a map: { documentId, name, author, kind, hasUpdate, timestamp }.
+    /// entry is a map: { documentId, name, author, hasUpdate, timestamp }.
     Q_INVOKABLE QVariantList documents(const QString& convId);
     /// Checkpoints of a document, newest first. Each entry is a map:
     /// { id, author, device, timestamp, deltas }.

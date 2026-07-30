@@ -30,7 +30,6 @@ BaseModalDialog {
 
     property string conversationId: ""
     property string docName: ""
-    property string docKind: "text"
 
     function createAndOpen() {
         Qt.inputMethod.commit();
@@ -38,7 +37,7 @@ BaseModalDialog {
         var name = root.docName.trim();
         if (name.length === 0)
             return;
-        CollaborativeAdapter.createDocument(root.conversationId, name, root.docKind);
+        CollaborativeAdapter.createDocument(root.conversationId, name);
         close();
     }
 
@@ -86,47 +85,6 @@ BaseModalDialog {
             }
             onTextChanged: root.docName = text
             onAccepted: root.createAndOpen()
-        }
-
-        Label {
-            Layout.fillWidth: true
-            Layout.leftMargin: JamiTheme.preferredMarginSize
-            Layout.rightMargin: JamiTheme.preferredMarginSize
-            text: qsTr("Document type")
-            color: JamiTheme.textColor
-            font.pointSize: JamiTheme.settingsFontSize
-        }
-
-        RowLayout {
-            Layout.fillWidth: true
-            Layout.leftMargin: JamiTheme.preferredMarginSize
-            Layout.rightMargin: JamiTheme.preferredMarginSize
-            spacing: JamiTheme.preferredMarginSize
-
-            RadioButton {
-                text: qsTr("Plain text")
-                checked: root.docKind === "text"
-                onCheckedChanged: if (checked) root.docKind = "text"
-                contentItem: Text {
-                    text: parent.text
-                    leftPadding: parent.indicator.width + 6
-                    verticalAlignment: Text.AlignVCenter
-                    color: JamiTheme.textColor
-                    font.pointSize: JamiTheme.textFontSize
-                }
-            }
-            RadioButton {
-                text: qsTr("Rich text (formatting)")
-                checked: root.docKind === "rich"
-                onCheckedChanged: if (checked) root.docKind = "rich"
-                contentItem: Text {
-                    text: parent.text
-                    leftPadding: parent.indicator.width + 6
-                    verticalAlignment: Text.AlignVCenter
-                    color: JamiTheme.textColor
-                    font.pointSize: JamiTheme.textFontSize
-                }
-            }
         }
     }
 }
