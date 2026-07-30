@@ -1233,7 +1233,7 @@ void
 CollabRichBinding::setLink(const QString& href, int start, int end)
 {
     QTextDocument* d = doc();
-    if (!d || start >= end)
+    if (!d || start > end)
         return;
     const QString safe = sanitizedHref(href);
     if (!href.trimmed().isEmpty() && safe.isEmpty()) {
@@ -1241,6 +1241,19 @@ CollabRichBinding::setLink(const QString& href, int start, int end)
         // had, as a side effect of typing an address we do not accept.
         qWarning() << "Refusing a collaborative link with an unsupported scheme";
         return;
+    }
+    if (start == end) {
+        // Nothing is selected, so there is no text to turn into a link. Insert
+        // the address and link that: asking for a link with an empty selection
+        // means "put one here", not "do nothing". Clearing is a no-op instead,
+        // since an empty range carries no link to remove.
+        if (safe.isEmpty())
+            return;
+        // insertText() clamps to the document, so clamp here too and keep both
+        // ends of the new range consistent with where the text actually landed.
+        start = qBound(0, start, d->characterCount() - 1);
+        insertText(start, start, safe);
+        end = start + safe.size();
     }
     QJsonObject attrs;
     attrs[QStringLiteral("link")] = safe.isEmpty() ? QJsonValue(QJsonValue::Null) : QJsonValue(safe);
