@@ -230,6 +230,23 @@ Window {
                 root.documentName = name;
         }
 
+        function onDocumentRemoved(accId, convId, docId) {
+            if (accId !== root.accountId || convId !== root.conversationId || docId !== root.documentId)
+                return;
+            // The document is gone everywhere. Leaving the window open would let
+            // the user keep typing into something no longer backed by anything,
+            // and every keystroke would be dropped without a word. Say why before
+            // the window goes, or it just vanishes mid-sentence.
+            viewCoordinator.presentDialog(appWindow, "commoncomponents/SimpleMessageDialog.qml", {
+                    "titleText": qsTr("Document removed"),
+                    "infoText": qsTr("\"%1\" was removed by its author.").arg(root.documentName),
+                    "buttonTitles": [JamiStrings.optionOk],
+                    "buttonStyles": [SimpleMessageDialog.ButtonStyle.TintedBlue],
+                    "buttonRoles": [DialogButtonBox.AcceptRole]
+                });
+            root.close();
+        }
+
         function onCursorChanged(accId, convId, docId, peerId, clientId, pos, anchor) {
             if (accId === root.accountId && convId === root.conversationId && docId === root.documentId)
                 root.upsertCursor(clientId, peerId, pos);
