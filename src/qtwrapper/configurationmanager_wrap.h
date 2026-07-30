@@ -203,11 +203,12 @@ public:
                 [this](const std::string& account_id,
                        const std::string& convId,
                        const std::string& documentId,
-                       const std::string& base64Update) {
+                       const std::vector<uint8_t>& update) {
                     Q_EMIT this->collaborativeDocumentUpdate(QString(account_id.c_str()),
                                                              QString(convId.c_str()),
                                                              QString(documentId.c_str()),
-                                                             QString::fromStdString(base64Update));
+                                                             QByteArray(reinterpret_cast<const char*>(update.data()),
+                                                                        static_cast<qsizetype>(update.size())));
                 }),
             exportable_callback<ConfigurationSignal::CollaborativeAwarenessChanged>(
                 [this](const std::string& account_id,
@@ -1069,15 +1070,16 @@ public Q_SLOTS: // METHODS
                                                                       static_cast<uint32_t>(max)));
     }
 
-    QString collaborativeDocumentStateAt(const QString& accountId,
-                                         const QString& conversationId,
-                                         const QString& documentId,
-                                         const QString& commitId)
+    QByteArray collaborativeDocumentStateAt(const QString& accountId,
+                                            const QString& conversationId,
+                                            const QString& documentId,
+                                            const QString& commitId)
     {
-        return QString::fromStdString(libjami::collaborativeDocumentStateAt(accountId.toStdString(),
-                                                                            conversationId.toStdString(),
-                                                                            documentId.toStdString(),
-                                                                            commitId.toStdString()));
+        const auto bytes = libjami::collaborativeDocumentStateAt(accountId.toStdString(),
+                                                                 conversationId.toStdString(),
+                                                                 documentId.toStdString(),
+                                                                 commitId.toStdString());
+        return QByteArray(reinterpret_cast<const char*>(bytes.data()), static_cast<qsizetype>(bytes.size()));
     }
     QString createCollaborativeDocument(const QString& accountId,
                                         const QString& conversationId,
@@ -1089,11 +1091,14 @@ public Q_SLOTS: // METHODS
                                                                            name.toStdString(),
                                                                            kind.toStdString()));
     }
-    QString openCollaborativeDocument(const QString& accountId, const QString& conversationId, const QString& documentId)
+    QByteArray openCollaborativeDocument(const QString& accountId,
+                                         const QString& conversationId,
+                                         const QString& documentId)
     {
-        return QString::fromStdString(libjami::openCollaborativeDocument(accountId.toStdString(),
-                                                                         conversationId.toStdString(),
-                                                                         documentId.toStdString()));
+        const auto bytes = libjami::openCollaborativeDocument(accountId.toStdString(),
+                                                              conversationId.toStdString(),
+                                                              documentId.toStdString());
+        return QByteArray(reinterpret_cast<const char*>(bytes.data()), static_cast<qsizetype>(bytes.size()));
     }
     void closeCollaborativeDocument(const QString& accountId, const QString& conversationId, const QString& documentId)
     {
@@ -1104,12 +1109,12 @@ public Q_SLOTS: // METHODS
     void applyCollaborativeUpdate(const QString& accountId,
                                   const QString& conversationId,
                                   const QString& documentId,
-                                  const QString& base64Update)
+                                  const QByteArray& update)
     {
         libjami::applyCollaborativeUpdate(accountId.toStdString(),
                                           conversationId.toStdString(),
                                           documentId.toStdString(),
-                                          base64Update.toStdString());
+                                          std::vector<uint8_t>(update.constBegin(), update.constEnd()));
     }
     QString addCollaborativeAttachment(const QString& accountId,
                                        const QString& conversationId,
@@ -1159,13 +1164,14 @@ public Q_SLOTS: // METHODS
                                                                          conversationId.toStdString(),
                                                                          documentId.toStdString()));
     }
-    QString collaborativeDocumentState(const QString& accountId,
-                                       const QString& conversationId,
-                                       const QString& documentId)
+    QByteArray collaborativeDocumentState(const QString& accountId,
+                                          const QString& conversationId,
+                                          const QString& documentId)
     {
-        return QString::fromStdString(libjami::collaborativeDocumentState(accountId.toStdString(),
-                                                                          conversationId.toStdString(),
-                                                                          documentId.toStdString()));
+        const auto bytes = libjami::collaborativeDocumentState(accountId.toStdString(),
+                                                               conversationId.toStdString(),
+                                                               documentId.toStdString());
+        return QByteArray(reinterpret_cast<const char*>(bytes.data()), static_cast<qsizetype>(bytes.size()));
     }
     void sendMessage(const QString& accountId,
                      const QString& conversationId,
@@ -1378,7 +1384,7 @@ Q_SIGNALS: // SIGNALS
     void collaborativeDocumentUpdate(const QString& accountId,
                                      const QString& convId,
                                      const QString& documentId,
-                                     const QString& base64Update);
+                                     const QByteArray& update);
     void collaborativeAwarenessChanged(const QString& accountId,
                                        const QString& convId,
                                        const QString& documentId,
