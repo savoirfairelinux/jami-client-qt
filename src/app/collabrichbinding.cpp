@@ -40,6 +40,11 @@
 #include <QFileInfo>
 #include <QTextLayout>
 #include <QAbstractTextDocumentLayout>
+#include <QTextDocumentWriter>
+#include <QPdfWriter>
+#include <QPageSize>
+#include <QMarginsF>
+#include <memory>
 
 namespace {
 
@@ -512,6 +517,72 @@ placeAlignedImageBlock(QTextDocument* d, const QTextBlock& blk, int type)
     cc.setBlockFormat(bf);
 }
 
+// A copy of the document fit to leave the editor: its pictures carry their own
+// bytes and an explicit size, and the paragraphs holding them state their real
+// alignment instead of the left margin the on-screen workaround needs.
+std::unique_ptr<QTextDocument>
+preparedForExport(QTextDocument* d, qreal maxWidth)
+{
+    std::unique_ptr<QTextDocument> copy(d->clone());
+    struct Sized
+    {
+        int position;
+        QTextImageFormat format;
+    };
+    QList<Sized> sized;
+    QList<int> realigned;
+    for (QTextBlock blk = copy->begin(); blk.isValid(); blk = blk.next()) {
+        bool holdsPicture = false;
+        for (auto it = blk.begin(); it != blk.end(); ++it) {
+            const QTextFragment frag = it.fragment();
+            const QTextCharFormat cf = frag.charFormat();
+            if (!cf.isImageFormat())
+                continue;
+            QTextImageFormat img = cf.toImageFormat();
+            if (!img.name().startsWith(ATTACHMENT_URL_PREFIX))
+                continue;
+            // Read from the living document: a clone is handed no resources of
+            // its own, and the layout it inherits from the editor draws no
+            // picture once it is off screen.
+            const QImage src = qvariant_cast<QImage>(
+                d->resource(QTextDocument::ImageResource, QUrl(img.name())));
+            if (src.isNull() || src.width() <= 0 || src.height() <= 0)
+                continue;
+            holdsPicture = true;
+            copy->addResource(QTextDocument::ImageResource, QUrl(img.name()), src);
+            // Both sizes have to be stated: left without a height the ODF
+            // writer falls back on the one in raw pixels, which is taller than
+            // the page as soon as the picture is a large one.
+            qreal w = img.hasProperty(QTextFormat::ImageWidth) ? img.width() : src.width();
+            w = qBound(1.0, w, maxWidth);
+            img.setWidth(w);
+            img.setHeight(w * src.height() / src.width());
+            sized.append({frag.position(), img});
+        }
+        if (holdsPicture)
+            realigned.append(blk.position());
+    }
+    // Applied afterwards: rewriting a format under the iterators would leave
+    // them pointing at fragments that no longer exist.
+    for (const Sized& s : sized) {
+        QTextCursor cur(copy.get());
+        cur.setPosition(s.position);
+        cur.setPosition(s.position + 1, QTextCursor::KeepAnchor);
+        cur.setCharFormat(s.format);
+    }
+    for (int pos : realigned) {
+        const QTextBlock blk = copy->findBlock(pos);
+        if (!blk.isValid())
+            continue;
+        QTextBlockFormat bf = blk.blockFormat();
+        bf.setAlignment(alignmentFromType(blockAlignType(blk)));
+        bf.setLeftMargin(0);
+        QTextCursor cur(blk);
+        cur.setBlockFormat(bf);
+    }
+    return copy;
+}
+
 // List kind (0/1/2) of a block, read from its first character's list attribute.
 int
 blockListType(const QTextBlock& blk)
@@ -885,6 +956,76 @@ CollabRichBinding::referencesAttachment(const QString& id) const
                 return true;
         }
     return false;
+}
+
+int
+CollabRichBinding::unresolvedImageCount() const
+{
+    QTextDocument* d = doc();
+    if (!d)
+        return 0;
+    const QImage placeholder = placeholderImage();
+    int count = 0;
+    for (QTextBlock blk = d->begin(); blk.isValid(); blk = blk.next())
+        for (auto it = blk.begin(); it != blk.end(); ++it) {
+            const QTextCharFormat f = it.fragment().charFormat();
+            if (!f.isImageFormat())
+                continue;
+            const QString name = f.toImageFormat().name();
+            if (!name.startsWith(ATTACHMENT_URL_PREFIX))
+                continue;
+            // The placeholder is what stands in until the bytes arrive, so an
+            // image still equal to it is one this replica cannot yet draw.
+            const QImage img = qvariant_cast<QImage>(
+                d->resource(QTextDocument::ImageResource, QUrl(name)));
+            if (img.isNull() || img == placeholder)
+                ++count;
+        }
+    return count;
+}
+
+bool
+CollabRichBinding::exportToFile(const QUrl& file, const QString& title)
+{
+    QTextDocument* d = doc();
+    if (!d)
+        return false;
+    const QString path = file.isLocalFile() ? file.toLocalFile() : file.toString();
+    const QString suffix = QFileInfo(path).suffix().toLower();
+    const bool odf = suffix == QLatin1String("odt");
+    if (!odf && suffix != QLatin1String("pdf"))
+        return false;
+
+    // 640 pixels of picture width at the 96 dpi the document is measured in:
+    // A4 less our own margins, and still inside the narrower text area a word
+    // processor opens a document with.
+    const std::unique_ptr<QTextDocument> copy = preparedForExport(d, 640.0);
+
+    if (odf) {
+        QTextDocumentWriter writer(path, "ODF");
+        // ODF carries the pictures into the archive itself, so the file stands
+        // on its own once it leaves this machine.
+        return writer.write(copy.get());
+    }
+
+    // Opened here rather than left to QPdfWriter's own filename constructor,
+    // which reports nothing when the path cannot be written.
+    QFile target(path);
+    if (!target.open(QIODevice::WriteOnly))
+        return false;
+    {
+        QPdfWriter pdf(&target);
+        pdf.setPageSize(QPageSize(QPageSize::A4));
+        pdf.setPageMargins(QMarginsF(15, 15, 15, 15), QPageLayout::Millimeter);
+        if (!title.isEmpty())
+            pdf.setTitle(title);
+        copy->print(&pdf);
+    }
+    const bool written = target.size() > 0;
+    target.close();
+    if (!written)
+        QFile::remove(path);
+    return written;
 }
 
 void
