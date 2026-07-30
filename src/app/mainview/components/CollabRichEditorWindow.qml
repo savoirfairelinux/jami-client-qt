@@ -331,6 +331,55 @@ Window {
         editor.forceActiveFocus();
     }
 
+    // Writes a local copy of the document. The pictures live in the document as
+    // resources under a collab-attachment: URL, which nothing outside Jami can
+    // resolve, so only the formats that carry the bytes with them are offered.
+    function exportDocument(suffix, filterLabel) {
+        if (typeof viewCoordinator === "undefined")
+            return;
+        const missing = richBinding.unresolvedImageCount();
+        if (missing > 0) {
+            var confirmDlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/ConfirmDialog.qml", {
+                    "titleText": qsTr("Export document"),
+                    "textLabel": qsTr("%n picture(s) in this document have not arrived yet and would be exported as empty boxes.", "", missing),
+                    "confirmLabel": qsTr("Export anyway"),
+                    "rejectLabel": qsTr("Cancel")
+                });
+            confirmDlg.accepted.connect(function () {
+                    root.pickExportPath(suffix, filterLabel);
+                });
+            return;
+        }
+        root.pickExportPath(suffix, filterLabel);
+    }
+
+    function pickExportPath(suffix, filterLabel) {
+        const folder = UtilsAdapter.getDirDocument();
+        // The name is written by whoever renamed the document, this device or a
+        // peer, so it is never allowed to carry the path anywhere.
+        const base = (root.documentName !== "" ? root.documentName : qsTr("document")).replace(/[\/\\:*?"<>|]/g, "_");
+        var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/JamiFileDialog.qml", {
+                "title": qsTr("Export document"),
+                "mode": JamiFileDialog.Mode.SaveFile,
+                "folder": UtilsAdapter.urlFromLocalPath(folder),
+                // currentFile, not file: the latter only ever holds what the
+                // user finally accepted, and setting it preselects nothing.
+                "currentFile": UtilsAdapter.urlFromLocalPath(folder + "/" + base + "." + suffix),
+                "nameFilters": [filterLabel + " (*." + suffix + ")"],
+                "defaultSuffix": suffix
+            }, true);
+        dlg.fileAccepted.connect(function (file) {
+                const ok = richBinding.exportToFile(file, root.documentName);
+                viewCoordinator.presentDialog(appWindow, "commoncomponents/SimpleMessageDialog.qml", {
+                        "titleText": ok ? qsTr("Document exported") : qsTr("Export failed"),
+                        "infoText": ok ? UtilsAdapter.getAbsPath(file.toString()) : qsTr("The document could not be written there."),
+                        "buttonTitles": [JamiStrings.optionOk],
+                        "buttonStyles": [SimpleMessageDialog.ButtonStyle.TintedBlue],
+                        "buttonRoles": [DialogButtonBox.AcceptRole]
+                    });
+            });
+    }
+
     // Pasting inserts whatever the clipboard holds: a picture if there is one,
     // sanitized plain text otherwise.
     function pasteFromClipboard() {
@@ -716,6 +765,24 @@ Window {
                     font.pointSize: JamiTheme.textFontSize
                 }
                 onClicked: fontSizeMenu.popup(fontSizeButton, 0, fontSizeButton.height)
+            }
+
+            PushButton {
+                id: exportButton
+                Layout.alignment: Qt.AlignVCenter
+                preferredSize: 26
+                imageContainerWidth: 18
+                imageContainerHeight: 18
+                source: JamiResources.save_file_24dp_svg
+                toolTipText: qsTr("Export a local copy")
+                // A past version is reviewed over the live document, which is
+                // what would be written: offering the action there would export
+                // something other than what is on screen.
+                enabled: !root.previewing
+                opacity: enabled ? 1.0 : 0.4
+                normalColor: "transparent"
+                imageColor: JamiTheme.textColor
+                onClicked: exportMenu.popup(exportButton, 0, exportButton.height)
             }
 
             PushButton {
@@ -1148,6 +1215,21 @@ Window {
             text: qsTr("Delete")
             enabled: editor.selectedText.length > 0
             onTriggered: editor.remove(editor.selectionStart, editor.selectionEnd)
+        }
+    }
+
+    // Local export. Declared at the window root for the same reason as
+    // editorMenu.
+    Menu {
+        id: exportMenu
+
+        MenuItem {
+            text: qsTr("Export as PDF…")
+            onTriggered: root.exportDocument("pdf", qsTr("PDF document"))
+        }
+        MenuItem {
+            text: qsTr("Export as ODT…")
+            onTriggered: root.exportDocument("odt", qsTr("OpenDocument text"))
         }
     }
 
