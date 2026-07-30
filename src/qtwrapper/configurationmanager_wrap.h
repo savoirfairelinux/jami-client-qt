@@ -214,21 +214,25 @@ public:
                        const std::string& convId,
                        const std::string& documentId,
                        const std::string& peerId,
+                       uint64_t clientId,
                        const std::string& state) {
                     Q_EMIT this->collaborativeAwarenessChanged(QString(account_id.c_str()),
                                                                QString(convId.c_str()),
                                                                QString(documentId.c_str()),
                                                                QString(peerId.c_str()),
+                                                               clientId,
                                                                QString::fromStdString(state));
                 }),
             exportable_callback<ConfigurationSignal::CollaborativeParticipantLeft>([this](const std::string& account_id,
                                                                                           const std::string& convId,
                                                                                           const std::string& documentId,
-                                                                                          const std::string& peerId) {
+                                                                                          const std::string& peerId,
+                                                                                          uint64_t clientId) {
                 Q_EMIT this->collaborativeParticipantLeft(QString(account_id.c_str()),
                                                           QString(convId.c_str()),
                                                           QString(documentId.c_str()),
-                                                          QString(peerId.c_str()));
+                                                          QString(peerId.c_str()),
+                                                          clientId);
             }),
             exportable_callback<ConfigurationSignal::CollaborativeDocumentRenamed>([this](const std::string& account_id,
                                                                                           const std::string& convId,
@@ -1379,11 +1383,13 @@ Q_SIGNALS: // SIGNALS
                                        const QString& convId,
                                        const QString& documentId,
                                        const QString& peerId,
+                                       quint64 clientId,
                                        const QString& state);
     void collaborativeParticipantLeft(const QString& accountId,
                                       const QString& convId,
                                       const QString& documentId,
-                                      const QString& peerId);
+                                      const QString& peerId,
+                                      quint64 clientId);
     void collaborativeDocumentRenamed(const QString& accountId,
                                       const QString& convId,
                                       const QString& documentId,
