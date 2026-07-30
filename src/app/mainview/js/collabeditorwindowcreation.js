@@ -17,10 +17,9 @@
 
 // Manages independent collaborative-editor windows, one per conversation
 // document. Opening a document that already has a window simply raises it
-// instead of creating a duplicate. A document's "kind" ("rich" or "text")
-// selects the editor flavour: a WYSIWYG rich-text window or a plain-text window.
+// instead of creating a duplicate.
 
-var components = ({})
+var component = null
 // Map of conversation/document keys -> window object.
 var windows = ({})
 
@@ -31,17 +30,11 @@ function windowKey(accountId, conversationId, documentId) {
     return accountId + "::" + conversationId + "::" + documentId
 }
 
-function sourceForKind(kind) {
-    return kind === "rich" ? "../components/CollabRichEditorWindow.qml"
-                           : "../components/CollabEditorWindow.qml"
-}
-
-function openEditor(appWindow, accountId, conversationId, documentId, documentName, peerName, kind) {
+function openEditor(appWindow, accountId, conversationId, documentId, documentName, peerName) {
     if (!accountId || !conversationId || !documentId) {
         console.log("Cannot open collaborative editor: missing account, conversation or document id")
         return
     }
-    kind = (kind === "rich") ? "rich" : "text"
     // Reuse an already-open window for this document.
     var key = windowKey(accountId, conversationId, documentId)
     var existing = windows[key]
@@ -58,10 +51,9 @@ function openEditor(appWindow, accountId, conversationId, documentId, documentNa
         return
     }
 
-    var source = sourceForKind(kind)
-    if (!components[kind])
-        components[kind] = Qt.createComponent(source, Component.PreferSynchronous)
-    var component = components[kind]
+    if (!component)
+        component = Qt.createComponent("../components/CollabRichEditorWindow.qml",
+                                       Component.PreferSynchronous)
     if (component.status === Component.Error) {
         console.log("CollabEditor load error:", component.errorString())
         return

@@ -30,7 +30,6 @@ Item {
     property var convContext: CurrentConversation
     property string author: Author
     property string documentId: DocumentId
-    property string docKind: (typeof DocumentKind !== "undefined" && DocumentKind === "rich") ? "rich" : "text"
     // Displayed name: starts from the announcing commit (Body) but follows live
     // renames (CRDT name field) broadcast through CollaborativeAdapter.
     property string docName: Body
@@ -110,8 +109,7 @@ Item {
                     color: JamiTheme.textColor
                 }
                 Text {
-                    text: root.docKind === "rich" ? qsTr("Editable document · Rich text")
-                                                   : qsTr("Editable document")
+                    text: qsTr("Editable document")
                     font.pointSize: JamiTheme.tinyFontSize
                     color: JamiTheme.faddedFontColor
                 }
@@ -123,8 +121,7 @@ Item {
             cursorShape: Qt.PointingHandCursor
             onClicked: {
                 appWindow.openCollabEditor(root.conversationIdOf(), root.documentId, root.docName,
-                                           root.convContext ? root.convContext.title : CurrentConversation.title,
-                                           root.docKind);
+                                           root.convContext ? root.convContext.title : CurrentConversation.title);
             }
         }
     }
