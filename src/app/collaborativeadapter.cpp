@@ -92,18 +92,21 @@ CollaborativeAdapter::CollaborativeAdapter(LRCInstance* instance, QObject* paren
                    const QString& convId,
                    const QString& documentId,
                    const QString& peerId,
+                   quint64 clientId,
                    const QString& state) {
                 int position = 0;
                 int anchor = 0;
                 if (decodeCursor(state, position, anchor))
-                    Q_EMIT cursorChanged(accountId, convId, documentId, peerId, position, anchor);
+                    Q_EMIT cursorChanged(accountId, convId, documentId, peerId, clientId, position, anchor);
             });
     connect(&ConfigurationManager::instance(),
             &ConfigurationManagerInterface::collaborativeParticipantLeft,
             this,
-            [this](const QString& accountId, const QString& convId, const QString& documentId, const QString& peerId) {
-                Q_EMIT participantLeft(accountId, convId, documentId, peerId);
-            });
+            [this](const QString& accountId,
+                   const QString& convId,
+                   const QString& documentId,
+                   const QString& peerId,
+                   quint64 clientId) { Q_EMIT participantLeft(accountId, convId, documentId, peerId, clientId); });
     connect(&ConfigurationManager::instance(),
             &ConfigurationManagerInterface::collaborativeAttachmentAdded,
             this,
