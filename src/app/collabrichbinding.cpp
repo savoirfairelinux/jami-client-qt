@@ -236,11 +236,16 @@ mergeFormatFromAttrs(const QJsonObject& attrs)
 
 // Inline attributes of the character at @p index (charFormat() reports the format
 // of the character preceding the cursor, hence index + 1).
+//
+// Bounded because the caret is reported at the end of the document as often as
+// anywhere else: there index + 1 is one past the last valid position, which Qt
+// answers with a warning on every keystroke. The last character is what the
+// format at the end of the document is, so clamping is the answer, not a guard.
 QJsonObject
 charAttrsAt(QTextDocument* d, int index)
 {
     QTextCursor c(d);
-    c.setPosition(index + 1);
+    c.setPosition(qBound(0, index + 1, d->characterCount() - 1));
     return charFormatToAttrs(c.charFormat());
 }
 
@@ -544,8 +549,7 @@ preparedForExport(QTextDocument* d, qreal maxWidth)
             // Read from the living document: a clone is handed no resources of
             // its own, and the layout it inherits from the editor draws no
             // picture once it is off screen.
-            const QImage src = qvariant_cast<QImage>(
-                d->resource(QTextDocument::ImageResource, QUrl(img.name())));
+            const QImage src = qvariant_cast<QImage>(d->resource(QTextDocument::ImageResource, QUrl(img.name())));
             if (src.isNull() || src.width() <= 0 || src.height() <= 0)
                 continue;
             holdsPicture = true;
@@ -976,8 +980,7 @@ CollabRichBinding::unresolvedImageCount() const
                 continue;
             // The placeholder is what stands in until the bytes arrive, so an
             // image still equal to it is one this replica cannot yet draw.
-            const QImage img = qvariant_cast<QImage>(
-                d->resource(QTextDocument::ImageResource, QUrl(name)));
+            const QImage img = qvariant_cast<QImage>(d->resource(QTextDocument::ImageResource, QUrl(name)));
             if (img.isNull() || img == placeholder)
                 ++count;
         }
