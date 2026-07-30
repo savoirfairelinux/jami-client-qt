@@ -114,6 +114,19 @@ CollaborativeAdapter::CollaborativeAdapter(LRCInstance* instance, QObject* paren
                 Q_EMIT attachmentAdded(accountId, convId, documentId, attachmentId);
             });
     connect(&ConfigurationManager::instance(),
+            &ConfigurationManagerInterface::collaborativeDocumentRemoved,
+            this,
+            [this](const QString& accountId, const QString& convId, const QString& documentId) {
+                // The replica is dropped here rather than left to the editor: the
+                // document no longer exists, and holding its state would let a later
+                // edit be sent for something the swarm has retired.
+                replicas_.remove(replicaKey(accountId, convId, documentId));
+                // Its unread mark goes with it, or the conversation would keep a
+                // badge for a document nothing can ever open to clear it.
+                clearDocumentUpdated(accountId, convId, documentId);
+                Q_EMIT documentRemoved(accountId, convId, documentId);
+            });
+    connect(&ConfigurationManager::instance(),
             &ConfigurationManagerInterface::collaborativeDocumentRenamed,
             this,
             [this](const QString& accountId, const QString& convId, const QString& documentId, const QString& name) {
@@ -265,6 +278,15 @@ CollaborativeAdapter::closeDocument(const QString& accountId, const QString& con
     if (it != replicas_.end())
         replicas_.erase(it);
     ConfigurationManager::instance().closeCollaborativeDocument(accountId, convId, documentId);
+}
+
+bool
+CollaborativeAdapter::removeDocument(const QString& accountId, const QString& convId, const QString& documentId)
+{
+    // Nothing is dropped here: the daemon reports the removal back through
+    // collaborativeDocumentRemoved once it is committed, and that one signal is
+    // what every device acts on, this one included.
+    return ConfigurationManager::instance().removeCollaborativeDocument(accountId, convId, documentId);
 }
 
 void

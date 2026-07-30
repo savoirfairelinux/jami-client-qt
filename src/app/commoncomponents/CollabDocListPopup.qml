@@ -37,6 +37,22 @@ BaseModalDialog {
             docsModel.append(docs[i]);
     }
 
+    // Removing a document takes it away from everyone, on every device, and
+    // nothing brings it back: ask before, and say so plainly.
+    function confirmRemoval(docId, docName) {
+        if (docId === "")
+            return;
+        var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/ConfirmDialog.qml", {
+                "titleText": qsTr("Remove document"),
+                "textLabel": qsTr("\"%1\" will be removed for every member of this conversation. This cannot be undone.").arg(docName !== "" ? docName : qsTr("Untitled document")),
+                "confirmLabel": qsTr("Remove"),
+                "rejectLabel": qsTr("Cancel")
+            });
+        dlg.accepted.connect(function () {
+                CollaborativeAdapter.removeDocument(CurrentAccount.id, root.conversationId, docId);
+            });
+    }
+
     titleText: qsTr("Editable documents")
 
     button1.text: qsTr("Close")
@@ -55,6 +71,10 @@ BaseModalDialog {
         }
         function onDocumentUpdateIndicatorChanged(convId) {
             if (convId === root.conversationId)
+                root.refresh();
+        }
+        function onDocumentRemoved(accId, convId, docId) {
+            if (accId === CurrentAccount.id && convId === root.conversationId)
                 root.refresh();
         }
     }
@@ -151,6 +171,23 @@ BaseModalDialog {
                             font.pointSize: JamiTheme.tinyFontSize
                             color: JamiTheme.faddedFontColor
                         }
+                    }
+
+                    PushButton {
+                        Layout.alignment: Qt.AlignVCenter
+                        // Only the author may remove a document, and the daemon
+                        // refuses anyone else: offering the button to the others
+                        // would only promise something that cannot happen.
+                        visible: docAuthor !== "" && docAuthor === CurrentAccount.uri
+                        preferredSize: 24
+                        imageContainerWidth: 20
+                        imageContainerHeight: 20
+                        source: JamiResources.delete_forever_24dp_svg
+                        toolTipText: qsTr("Remove this document")
+                        normalColor: "transparent"
+                        imageColor: JamiTheme.textColor
+
+                        onClicked: root.confirmRemoval(docId, docName)
                     }
                 }
 
