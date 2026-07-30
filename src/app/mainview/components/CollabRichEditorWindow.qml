@@ -84,16 +84,27 @@ Window {
         return name && name.length > 0 ? name : peerId;
     }
 
-    function upsertCursor(peerId, pos) {
+    // Keyed on the client id alone, which the daemon guarantees is enough.
+    //
+    // It is safe as a Number: a client id is drawn in [1, 2^53-1] and the
+    // decoder refuses anything above that, so it never leaves the range
+    // JavaScript represents exactly -- the same bound yjs itself relies on to
+    // carry these ids through JSON.
+    //
+    // It is also unambiguous on its own: the daemon records the account that
+    // first announced a client id in a document and drops any later claim on it
+    // from someone else, so no two peers can share one here.
+    function upsertCursor(clientId, peerId, pos) {
         for (var i = 0; i < remoteCursorsModel.count; ++i) {
             var entry = remoteCursorsModel.get(i);
-            if (entry.peerId === peerId) {
+            if (entry.clientId === clientId) {
                 remoteCursorsModel.setProperty(i, "position", pos);
                 remoteCursorsModel.setProperty(i, "name", root.displayNameFor(peerId, entry.name));
                 return;
             }
         }
         remoteCursorsModel.append({
+            "clientId": clientId,
             "peerId": peerId,
             "name": root.displayNameFor(peerId, ""),
             "pColor": colorForPeer(peerId),
@@ -101,9 +112,11 @@ Window {
         });
     }
 
-    function removeCursor(peerId) {
+    // Keyed on the editing device, not on the person: someone editing from two
+    // devices has two cursors, and the colour they share is what says so.
+    function removeCursor(clientId) {
         for (var i = 0; i < remoteCursorsModel.count; ++i) {
-            if (remoteCursorsModel.get(i).peerId === peerId) {
+            if (remoteCursorsModel.get(i).clientId === clientId) {
                 remoteCursorsModel.remove(i);
                 return;
             }
@@ -217,9 +230,9 @@ Window {
                 root.documentName = name;
         }
 
-        function onCursorChanged(accId, convId, docId, peerId, pos, anchor) {
+        function onCursorChanged(accId, convId, docId, peerId, clientId, pos, anchor) {
             if (accId === root.accountId && convId === root.conversationId && docId === root.documentId)
-                root.upsertCursor(peerId, pos);
+                root.upsertCursor(clientId, peerId, pos);
         }
 
         function onAttachmentAdded(accId, convId, docId, attachmentId) {
@@ -227,9 +240,9 @@ Window {
                 CollaborativeAdapter.deliverAttachment(accId, convId, docId, attachmentId, richBinding);
         }
 
-        function onParticipantLeft(accId, convId, docId, peerId) {
+        function onParticipantLeft(accId, convId, docId, peerId, clientId) {
             if (accId === root.accountId && convId === root.conversationId && docId === root.documentId)
-                root.removeCursor(peerId);
+                root.removeCursor(clientId);
         }
     }
 

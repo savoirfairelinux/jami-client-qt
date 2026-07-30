@@ -172,10 +172,13 @@ Q_SIGNALS:
                          int deleteLen,
                          const QString& insert);
     /// A remote participant moved their cursor/selection in a document.
+    /// @c clientId identifies the editing device: one person can have several,
+    /// each with its own cursor.
     void cursorChanged(const QString& accountId,
                        const QString& convId,
                        const QString& documentId,
                        const QString& peerId,
+                       quint64 clientId,
                        int position,
                        int anchor);
     /// The payload of an attachment arrived; an editor showing a placeholder for
@@ -188,7 +191,8 @@ Q_SIGNALS:
     void participantLeft(const QString& accountId,
                          const QString& convId,
                          const QString& documentId,
-                         const QString& peerId);
+                         const QString& peerId,
+                         quint64 clientId);
     /// A document was renamed (locally or remotely); UIs should update the title.
     void documentRenamed(const QString& accountId,
                          const QString& convId,
