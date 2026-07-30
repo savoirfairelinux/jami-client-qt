@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ffc8de60_6c007ac2",
+        "filename": "src/app/collabrichbinding.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 1248,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-07-30T02:22:18Z",
+      "side": 1,
+      "message": "[error] Line 1248: 🔴 `insertText()` is called before `applyingRemote_` is set. If `setLink()` is applying a remote collaborative operation, this inserted URL can be observed as a local edit and echoed back or duplicated in the collaboration stream. Wrap the insertion in the same remote-application guard used for the formatting change, or use the lower-level cursor/document insertion path under `applyingRemote_`.",
+      "revId": "8e021da2851d0ad0dc85a576ec92a5e7731c27b7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
