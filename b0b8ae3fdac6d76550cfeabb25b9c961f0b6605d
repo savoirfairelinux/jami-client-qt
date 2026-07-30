@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2af247f4_00f078db",
+        "filename": "src/app/collabrichbinding.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 472,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-07-30T02:22:18Z",
+      "side": 1,
+      "message": "[error] Line 472: 🔴 For wrapped image paragraphs, this still forces `Qt::AlignLeft` even though the comment says wrapped ones are left to Qt. When `layout-\u003elineCount() !\u003d 1`, preserve `alignmentFromType(type)` and clear the synthetic margin instead of converting the block to left alignment; otherwise centered/right wrapped paragraphs containing images regress to left-aligned text.",
+      "revId": "b0b8ae3fdac6d76550cfeabb25b9c961f0b6605d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0e08f147_6ebcb7fd",
+        "filename": "src/app/mainview/components/CollabRichEditorWindow.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 820,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-07-30T02:22:18Z",
+      "side": 1,
+      "message": "[warning] Line 820: 🟡 `onWidthChanged` can fire continuously while resizing and now triggers a full-document `reconcileAlignment()` each time. Consider debouncing this via a short `Timer` or only reflowing when the editor width actually settles to avoid repeated full document relayouts on large notes.",
+      "revId": "b0b8ae3fdac6d76550cfeabb25b9c961f0b6605d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
