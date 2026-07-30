@@ -239,6 +239,24 @@ charAttrsAt(QTextDocument* d, int index)
     return charFormatToAttrs(c.charFormat());
 }
 
+// The attributes of the first character of the paragraph @p index falls in.
+//
+// Alignment, headings and lists are paragraph-wide, and every character of the
+// line carries them, so the first one answers for the whole of it. Asking at the
+// caret instead answers for the *next* paragraph whenever the caret sits at the
+// end of a line, which is exactly where it is left after typing one.
+QJsonObject
+blockAttrsAt(QTextDocument* d, int index)
+{
+    const QTextBlock blk = d->findBlock(qBound(0, index, d->characterCount() - 1));
+    if (!blk.isValid())
+        return {};
+    auto it = blk.begin();
+    if (it == blk.end())
+        return {};
+    return charFormatToAttrs(it.fragment().charFormat());
+}
+
 // The embed the character at @p index stands for, as the object a delta carries,
 // or an empty object if that character is not an inline image this binding put
 // there.
@@ -1378,11 +1396,13 @@ CollabRichBinding::selectionFormat(int start, int end)
     result[QStringLiteral("u")] = a.contains(QStringLiteral("u"));
     result[QStringLiteral("s")] = a.contains(QStringLiteral("s"));
     result[QStringLiteral("link")] = a.value(QStringLiteral("link")).toString();
-    result[QStringLiteral("header")] = a.contains(QStringLiteral("header")) ? a.value(QStringLiteral("header")).toInt()
+    // Paragraph-wide, so read from the paragraph rather than from the caret.
+    const QJsonObject p = blockAttrsAt(d, start);
+    result[QStringLiteral("header")] = p.contains(QStringLiteral("header")) ? p.value(QStringLiteral("header")).toInt()
                                                                             : 0;
-    result[QStringLiteral("list")] = a.value(QStringLiteral("list")).toString();
+    result[QStringLiteral("list")] = p.value(QStringLiteral("list")).toString();
     // Left is the absence of the attribute, and is reported as such.
-    result[QStringLiteral("align")] = a.value(QStringLiteral("align")).toString();
+    result[QStringLiteral("align")] = p.value(QStringLiteral("align")).toString();
     return result;
 }
 

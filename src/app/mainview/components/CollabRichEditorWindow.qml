@@ -1192,6 +1192,8 @@ Window {
                 }
             ]
             delegate: MenuItem {
+                id: alignItem
+
                 required property var modelData
 
                 text: modelData.label
@@ -1201,6 +1203,14 @@ Window {
                     richBinding.setAlign(modelData.style, editor.selectionStart, editor.selectionEnd);
                     root.refreshFormatState();
                     root.refreshImageGeom();
+                    // Clicking ticked this item itself, behind the binding's
+                    // back. Should the paragraph not have taken the alignment --
+                    // an empty line holds none -- nothing would move afterwards
+                    // to put that tick right, and two options would claim to be
+                    // the chosen one. Binding again says what the document says.
+                    alignItem.checked = Qt.binding(function () {
+                        return root.currentAlign === alignItem.modelData.style;
+                    });
                     editor.forceActiveFocus();
                 }
             }
