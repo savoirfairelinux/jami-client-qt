@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "24cc8f05_c79d0924",
+        "filename": "src/app/mainview/components/CollabRichEditorWindow.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-07-30T04:11:07Z",
+      "side": 1,
+      "message": "[error] Line 89: 🔴 `clientId` is a `quint64`, but QML/JavaScript numeric values can lose precision for 64-bit integers, causing distinct editing devices to compare equal or fail to match. Convert the ID to a string before storing/comparing it in the ListModel, or expose it as a string from the C++ adapter.",
+      "revId": "89f378d41fc5c4c77d29e9e3a4e324cc51f43227",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f8cc2bde_b6255a59",
+        "filename": "src/app/mainview/components/CollabRichEditorWindow.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-07-30T04:11:07Z",
+      "side": 1,
+      "message": "[warning] Line 89: 🟡 The cursor key now ignores `peerId`; if `clientId` is only unique per participant/device namespace, two peers with the same client ID will overwrite/remove each other\u0027s cursors. Key by both `peerId` and `clientId` unless the daemon contract guarantees global uniqueness.",
+      "revId": "89f378d41fc5c4c77d29e9e3a4e324cc51f43227",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
