@@ -431,7 +431,9 @@ Window {
 
     ColumnLayout {
         anchors.fill: parent
-        anchors.margins: JamiTheme.preferredMarginSize
+        // A third of the usual inset: this window is a writing surface, and the
+        // editor is meant to reach close to its edges.
+        anchors.margins: JamiTheme.preferredMarginSize / 3
         spacing: JamiTheme.preferredMarginSize
 
         // Title and formatting controls on one row: the editable document name on
