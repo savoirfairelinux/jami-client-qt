@@ -223,12 +223,14 @@ CollaborativeAdapter::mergeRemoteUpdate(const QString& accountId,
 }
 
 QString
-CollaborativeAdapter::createDocument(const QString& convId, const QString& name, const QString& kind)
+CollaborativeAdapter::createDocument(const QString& convId, const QString& name)
 {
+    // Every document is a rich one; the daemon still records a kind, and would
+    // otherwise record a plain-text document nothing can open any more.
     return ConfigurationManager::instance().createCollaborativeDocument(lrcInstance_->get_currentAccountId(),
                                                                         convId,
                                                                         name,
-                                                                        kind);
+                                                                        QStringLiteral("rich"));
 }
 
 QString
@@ -360,8 +362,6 @@ CollaborativeAdapter::documents(const QString& convId)
         entry[QStringLiteral("documentId")] = documentId;
         entry[QStringLiteral("name")] = name;
         entry[QStringLiteral("author")] = commit.value(QStringLiteral("author"));
-        const auto kind = commit.value(QStringLiteral("kind"));
-        entry[QStringLiteral("kind")] = kind == QStringLiteral("rich") ? kind : QStringLiteral("text");
         entry[QStringLiteral("hasUpdate")] = hasUnreadDocumentUpdateForDocument(convId, documentId);
         entry[QStringLiteral("timestamp")] = commit.value(QStringLiteral("timestamp")).toLongLong();
         result.append(entry);
