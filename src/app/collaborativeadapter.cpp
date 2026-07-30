@@ -78,12 +78,9 @@ CollaborativeAdapter::CollaborativeAdapter(LRCInstance* instance, QObject* paren
     connect(&ConfigurationManager::instance(),
             &ConfigurationManagerInterface::collaborativeDocumentUpdate,
             this,
-            [this](const QString& accountId,
-                   const QString& convId,
-                   const QString& documentId,
-                   const QString& base64Update) {
+            [this](const QString& accountId, const QString& convId, const QString& documentId, const QByteArray& update) {
                 markDocumentUpdated(accountId, convId, documentId);
-                mergeRemoteUpdate(accountId, convId, documentId, base64Update);
+                mergeRemoteUpdate(accountId, convId, documentId, update);
             });
     connect(&ConfigurationManager::instance(),
             &ConfigurationManagerInterface::collaborativeAwarenessChanged,
@@ -176,11 +173,12 @@ CollaborativeAdapter::createReplica(const QString& accountId, const QString& con
         auto r = weakReplica.lock();
         if (!r || !isLocal)
             return; // an update we merged is already known to the daemon
-        ConfigurationManager::instance().applyCollaborativeUpdate(
-            r->accountId,
-            r->convId,
-            r->documentId,
-            QString::fromLatin1(QByteArray(reinterpret_cast<const char*>(update.data()), update.size()).toBase64()));
+        ConfigurationManager::instance().applyCollaborativeUpdate(r->accountId,
+                                                                  r->convId,
+                                                                  r->documentId,
+                                                                  QByteArray(reinterpret_cast<const char*>(
+                                                                                 update.data()),
+                                                                             static_cast<qsizetype>(update.size())));
     });
     replica->doc->setChangeCallback(
         [this, weakReplica](const std::vector<collab::YrsDocument::TextChange>& changes, bool isLocal) {
@@ -214,12 +212,11 @@ void
 CollaborativeAdapter::mergeRemoteUpdate(const QString& accountId,
                                         const QString& convId,
                                         const QString& documentId,
-                                        const QString& base64Update)
+                                        const QByteArray& bytes)
 {
     auto replica = findReplica(accountId, convId, documentId);
     if (!replica)
         return; // not open here: the daemon holds it, we rebuild on open
-    const auto bytes = QByteArray::fromBase64(base64Update.toLatin1());
     replica->doc->applyUpdate(
         collab::YrsDocument::Bytes(reinterpret_cast<const uint8_t*>(bytes.constData()),
                                    reinterpret_cast<const uint8_t*>(bytes.constData()) + bytes.size()));
@@ -244,11 +241,10 @@ CollaborativeAdapter::openDocument(const QString& accountId, const QString& conv
     // Opening tells the daemon to join the document and hands back its whole
     // state as one update. A second view of an already open document reuses the
     // replica rather than building a divergent one.
-    const auto state = ConfigurationManager::instance().openCollaborativeDocument(accountId, convId, documentId);
+    const auto bytes = ConfigurationManager::instance().openCollaborativeDocument(accountId, convId, documentId);
     auto replica = findReplica(accountId, convId, documentId);
     if (!replica) {
         replica = createReplica(accountId, convId, documentId);
-        const auto bytes = QByteArray::fromBase64(state.toLatin1());
         if (!bytes.isEmpty())
             replica->doc->applyUpdate(collab::YrsDocument::Bytes(reinterpret_cast<const uint8_t*>(bytes.constData()),
                                                                  reinterpret_cast<const uint8_t*>(bytes.constData())
@@ -412,11 +408,10 @@ CollaborativeAdapter::textAt(const QString& accountId,
 {
     // The daemon returns the state of that checkpoint as an update; what it means
     // is ours to decide, so it is replayed into a throwaway replica and read here.
-    const auto state = ConfigurationManager::instance().collaborativeDocumentStateAt(accountId,
+    const auto bytes = ConfigurationManager::instance().collaborativeDocumentStateAt(accountId,
                                                                                      convId,
                                                                                      documentId,
                                                                                      commitId);
-    const auto bytes = QByteArray::fromBase64(state.toLatin1());
     if (bytes.isEmpty())
         return {};
     // A throwaway replica that never edits, so its id only has to be valid.
