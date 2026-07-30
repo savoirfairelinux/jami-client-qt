@@ -240,11 +240,11 @@ private:
     /// Build the replica and wire its callbacks. Its content is seeded by the
     /// caller, from the state the daemon hands back when opening.
     std::shared_ptr<Replica> createReplica(const QString& accountId, const QString& convId, const QString& documentId);
-    /// Apply a base64 update coming from the daemon to the matching replica.
+    /// Apply an update coming from the daemon to the matching replica.
     void mergeRemoteUpdate(const QString& accountId,
                            const QString& convId,
                            const QString& documentId,
-                           const QString& base64Update);
+                           const QByteArray& bytes);
 
     void markDocumentUpdated(const QString& accountId, const QString& convId, const QString& documentId);
     void clearDocumentUpdated(const QString& accountId, const QString& convId, const QString& documentId);
