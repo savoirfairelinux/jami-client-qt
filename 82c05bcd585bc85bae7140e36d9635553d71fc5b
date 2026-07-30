@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "30050384_b013dcad",
+        "filename": "src/app/mainview/js/collabeditorwindowcreation.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-07-30T02:56:42Z",
+      "side": 1,
+      "message": "[error] Line 53: 🔴 Existing collaborative documents whose stored commit kind is still `text` are now always opened with `CollabRichEditorWindow.qml`, but this patch does not migrate or reject those legacy documents. Since the daemon still records kind, older conversations can contain plain-text documents that no longer have a compatible editor. Please either keep a plain-text fallback for legacy `kind !\u003d rich` documents, or add an explicit migration path before routing them to the rich editor.",
+      "revId": "82c05bcd585bc85bae7140e36d9635553d71fc5b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
