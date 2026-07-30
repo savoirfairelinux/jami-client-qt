@@ -814,7 +814,12 @@ Window {
                         }
                         // The image may move when anything above it reflows.
                         onContentHeightChanged: root.refreshImageGeom()
-                        onWidthChanged: root.refreshImageGeom()
+                        onWidthChanged: {
+                            // An aligned image is placed from the room its
+                            // paragraph has, which is what just changed.
+                            richBinding.reflowAlignedImages();
+                            root.refreshImageGeom();
+                        }
 
                         // Intercept paste: a picture is stored with the document and
                         // referenced, and text is inserted sanitized (rich clipboard
@@ -1195,6 +1200,7 @@ Window {
                 onTriggered: {
                     richBinding.setAlign(modelData.style, editor.selectionStart, editor.selectionEnd);
                     root.refreshFormatState();
+                    root.refreshImageGeom();
                     editor.forceActiveFocus();
                 }
             }
