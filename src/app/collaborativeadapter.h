@@ -70,6 +70,9 @@ public:
     /// Remove a document from the conversation, for every member and every device.
     /// Only its author can; false means the daemon refused or could not find it.
     Q_INVOKABLE bool removeDocument(const QString& accountId, const QString& convId, const QString& documentId);
+    /// Remove a document from this device only, leaving the other members with it.
+    /// Anyone may; opening the document again fetches it back.
+    Q_INVOKABLE bool removeDocumentLocally(const QString& accountId, const QString& convId, const QString& documentId);
     /// Apply a local edit: remove @p deleteLen UTF-16 units at @p index then insert @p insert.
     Q_INVOKABLE void edit(const QString& accountId,
                           const QString& convId,
@@ -201,9 +204,10 @@ Q_SIGNALS:
                          const QString& convId,
                          const QString& documentId,
                          const QString& name);
-    /// A document was removed by its author: it is gone everywhere, so any editor
-    /// showing it must close and any list must drop it.
-    void documentRemoved(const QString& accountId, const QString& convId, const QString& documentId);
+    /// A document is no longer held here. @p everywhere true means its author
+    /// retired it for every member; false means this device alone dropped it and
+    /// it can be fetched back. Either way an editor showing it must close.
+    void documentRemoved(const QString& accountId, const QString& convId, const QString& documentId, bool everywhere);
     /// A remote rich-text edit (Quill-style delta JSON) should be applied to the editor.
     void documentDelta(const QString& accountId,
                        const QString& convId,
