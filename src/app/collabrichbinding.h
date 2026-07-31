@@ -134,13 +134,16 @@ public:
     /// Whether the document holds an image referring to attachment @p id.
     Q_INVOKABLE bool referencesAttachment(const QString& id) const;
 
-    /// Write the document to @p file, in the format named by its suffix: "pdf"
-    /// or "odt". Both carry the pictures, which the document holds as resources
-    /// under a collab-attachment: URL no reader outside Jami could resolve.
+    /// Write the document to @p file, in the format named by its suffix: "pdf",
+    /// "odt", "html", "htm", "md" or "txt". The document holds its pictures as
+    /// resources under a collab-attachment: URL no reader outside Jami could
+    /// resolve, so each format is given them in the only way it can hold them:
+    /// PDF and ODF take the bytes themselves, HTML and Markdown take them
+    /// inside the URL, and plain text is written without pictures.
     /// @p title is recorded as the document title where the format has a place
     /// for one.
-    /// @return false when the suffix names neither format, or nothing could be
-    /// written.
+    /// @return false when the suffix names none of those formats, or nothing
+    /// could be written.
     Q_INVOKABLE bool exportToFile(const QUrl& file, const QString& title = {});
 
     /// How many pictures are still standing in as the placeholder, their bytes

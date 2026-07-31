@@ -352,11 +352,14 @@ Window {
 
     // Writes a local copy of the document. The pictures live in the document as
     // resources under a collab-attachment: URL, which nothing outside Jami can
-    // resolve, so only the formats that carry the bytes with them are offered.
+    // resolve, so a format either carries their bytes with it or leaves the
+    // pictures out.
     function exportDocument(suffix, filterLabel) {
         if (typeof viewCoordinator === "undefined")
             return;
-        const missing = richBinding.unresolvedImageCount();
+        // Plain text holds no picture either way, so one that has not arrived
+        // changes nothing about what gets written.
+        const missing = suffix === "txt" ? 0 : richBinding.unresolvedImageCount();
         if (missing > 0) {
             var confirmDlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/ConfirmDialog.qml", {
                     "titleText": qsTr("Export document"),
@@ -1257,6 +1260,18 @@ Window {
         MenuItem {
             text: qsTr("Export as ODT…")
             onTriggered: root.exportDocument("odt", qsTr("OpenDocument text"))
+        }
+        MenuItem {
+            text: qsTr("Export as HTML…")
+            onTriggered: root.exportDocument("html", qsTr("HTML document"))
+        }
+        MenuItem {
+            text: qsTr("Export as Markdown…")
+            onTriggered: root.exportDocument("md", qsTr("Markdown document"))
+        }
+        MenuItem {
+            text: qsTr("Export as plain text…")
+            onTriggered: root.exportDocument("txt", qsTr("Plain text document"))
         }
     }
 
