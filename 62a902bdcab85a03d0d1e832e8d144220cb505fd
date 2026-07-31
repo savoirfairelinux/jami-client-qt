@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cb3f0853_286a545a",
+        "filename": "src/app/commoncomponents/CollabDocListPopup.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-07-31T00:34:03Z",
+      "side": 1,
+      "message": "[warning] Line 53: 🟡 The return value from `CollaborativeAdapter.removeDocument(...)` is ignored. If the daemon refuses the operation or cannot find the document, the confirmation closes with no feedback and the document remains listed. Check the boolean result and show an error dialog/toast consistent with existing UI patterns when it returns false.",
+      "revId": "62a902bdcab85a03d0d1e832e8d144220cb505fd",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
