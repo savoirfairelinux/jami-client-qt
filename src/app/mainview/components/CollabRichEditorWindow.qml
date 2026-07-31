@@ -357,7 +357,7 @@ Window {
         const missing = richBinding.unresolvedImageCount();
         if (missing > 0) {
             var confirmDlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/ConfirmDialog.qml", {
-                    "title": qsTr("Export document"),
+                    "titleText": qsTr("Export document"),
                     "textLabel": qsTr("%n picture(s) in this document have not arrived yet and would be exported as empty boxes.", "", missing),
                     "confirmLabel": qsTr("Export anyway"),
                     "rejectLabel": qsTr("Cancel")
@@ -388,7 +388,7 @@ Window {
         dlg.fileAccepted.connect(function (file) {
                 const ok = richBinding.exportToFile(file, root.documentName);
                 viewCoordinator.presentDialog(appWindow, "commoncomponents/SimpleMessageDialog.qml", {
-                        "title": ok ? qsTr("Document exported") : qsTr("Export failed"),
+                        "titleText": ok ? qsTr("Document exported") : qsTr("Export failed"),
                         "infoText": ok ? UtilsAdapter.getAbsPath(file.toString()) : qsTr("The document could not be written there."),
                         "buttonTitles": [JamiStrings.optionOk],
                         "buttonStyles": [SimpleMessageDialog.ButtonStyle.TintedBlue],
