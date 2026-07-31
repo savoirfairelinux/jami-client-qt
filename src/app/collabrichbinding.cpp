@@ -45,6 +45,8 @@
 #include <QPageSize>
 #include <QMarginsF>
 #include <memory>
+#include <optional>
+#include <algorithm>
 
 namespace {
 
@@ -522,13 +524,80 @@ placeAlignedImageBlock(QTextDocument* d, const QTextBlock& blk, int type)
     cc.setBlockFormat(bf);
 }
 
+// What becomes of the pictures of a document on its way out. PDF and ODF are
+// written by something that carries the bytes itself; HTML and Markdown write
+// a URL, so the bytes have to go into the URL for the file to stand on its
+// own; plain text has nowhere to put a picture at all.
+enum class Pictures { AsResources, Embedded, Dropped };
+
+// What writes a file of a given suffix, and what that writer can be given of
+// the pictures. PDF is written here rather than by a document writer, and is
+// named by the absence of a writer format.
+struct ExportFormat
+{
+    const char* writer = nullptr;
+    Pictures pictures = Pictures::AsResources;
+};
+
+// The format @p suffix names, or nothing when it names none of them.
+std::optional<ExportFormat>
+exportFormatFor(const QString& suffix)
+{
+    if (suffix == QLatin1String("pdf"))
+        return ExportFormat {};
+    if (suffix == QLatin1String("odt"))
+        // ODF carries the pictures into the archive itself, so the file stands
+        // on its own once it leaves this machine.
+        return ExportFormat {"ODF", Pictures::AsResources};
+    if (suffix == QLatin1String("html") || suffix == QLatin1String("htm"))
+        // The format the document is written in, and the only export that gives
+        // back what was edited rather than a rendering of it.
+        return ExportFormat {"HTML", Pictures::Embedded};
+    if (suffix == QLatin1String("md"))
+        return ExportFormat {"markdown", Pictures::Embedded};
+    if (suffix == QLatin1String("txt"))
+        return ExportFormat {"plaintext", Pictures::Dropped};
+    return {};
+}
+
+// A picture as a URL carrying its own bytes. PNG loses nothing, and is already
+// what the ODF writer puts in its archive.
+QString
+pngDataUrl(const QImage& image)
+{
+    QByteArray png;
+    QBuffer buffer(&png);
+    if (!buffer.open(QIODevice::WriteOnly) || !image.save(&buffer, "PNG"))
+        return {};
+    return QStringLiteral("data:image/png;base64,") + QString::fromLatin1(png.toBase64());
+}
+
 // A copy of the document fit to leave the editor: its pictures carry their own
 // bytes and an explicit size, and the paragraphs holding them state their real
 // alignment instead of the left margin the on-screen workaround needs.
 std::unique_ptr<QTextDocument>
-preparedForExport(QTextDocument* d, qreal maxWidth)
+preparedForExport(QTextDocument* d, qreal maxWidth, Pictures pictures)
 {
     std::unique_ptr<QTextDocument> copy(d->clone());
+    if (pictures == Pictures::Dropped) {
+        // Left in place, a picture is still one character, and the writer spells
+        // it as the object replacement character: a stray glyph in a text file.
+        // Positions are taken first and spent from the last, since removing a
+        // character moves every one after it.
+        QList<int> at;
+        for (QTextBlock blk = copy->begin(); blk.isValid(); blk = blk.next())
+            for (auto it = blk.begin(); it != blk.end(); ++it)
+                if (it.fragment().charFormat().isImageFormat())
+                    at.append(it.fragment().position());
+        std::sort(at.begin(), at.end());
+        for (auto it = at.crbegin(); it != at.crend(); ++it) {
+            QTextCursor cur(copy.get());
+            cur.setPosition(*it);
+            cur.setPosition(*it + 1, QTextCursor::KeepAnchor);
+            cur.removeSelectedText();
+        }
+        return copy;
+    }
     struct Sized
     {
         int position;
@@ -552,8 +621,19 @@ preparedForExport(QTextDocument* d, qreal maxWidth)
             const QImage src = qvariant_cast<QImage>(d->resource(QTextDocument::ImageResource, QUrl(img.name())));
             if (src.isNull() || src.width() <= 0 || src.height() <= 0)
                 continue;
+            if (pictures == Pictures::Embedded) {
+                // The name is what the writer emits as the URL, so this is
+                // where the bytes have to be put. A picture that cannot be
+                // encoded is left alone rather than written as a link only Jami
+                // could follow, the same as one whose bytes never arrived.
+                const QString url = pngDataUrl(src);
+                if (url.isEmpty())
+                    continue;
+                img.setName(url);
+            } else {
+                copy->addResource(QTextDocument::ImageResource, QUrl(img.name()), src);
+            }
             holdsPicture = true;
-            copy->addResource(QTextDocument::ImageResource, QUrl(img.name()), src);
             // Both sizes have to be stated: left without a height the ODF
             // writer falls back on the one in raw pixels, which is taller than
             // the page as soon as the picture is a large one.
@@ -995,19 +1075,18 @@ CollabRichBinding::exportToFile(const QUrl& file, const QString& title)
         return false;
     const QString path = file.isLocalFile() ? file.toLocalFile() : file.toString();
     const QString suffix = QFileInfo(path).suffix().toLower();
-    const bool odf = suffix == QLatin1String("odt");
-    if (!odf && suffix != QLatin1String("pdf"))
+
+    const std::optional<ExportFormat> format = exportFormatFor(suffix);
+    if (!format)
         return false;
 
     // 640 pixels of picture width at the 96 dpi the document is measured in:
     // A4 less our own margins, and still inside the narrower text area a word
     // processor opens a document with.
-    const std::unique_ptr<QTextDocument> copy = preparedForExport(d, 640.0);
+    const std::unique_ptr<QTextDocument> copy = preparedForExport(d, 640.0, format->pictures);
 
-    if (odf) {
-        QTextDocumentWriter writer(path, "ODF");
-        // ODF carries the pictures into the archive itself, so the file stands
-        // on its own once it leaves this machine.
+    if (format->writer) {
+        QTextDocumentWriter writer(path, format->writer);
         return writer.write(copy.get());
     }
 
@@ -1029,6 +1108,23 @@ CollabRichBinding::exportToFile(const QUrl& file, const QString& title)
     if (!written)
         QFile::remove(path);
     return written;
+}
+
+bool
+CollabRichBinding::canExportAs(const QString& suffix) const
+{
+    const std::optional<ExportFormat> format = exportFormatFor(suffix.toLower());
+    if (!format)
+        return false;
+    // PDF is written without a document writer, so it is there whenever this
+    // build is: QPdfWriter would have to be missing for it not to be.
+    if (!format->writer)
+        return true;
+    const QByteArray name(format->writer);
+    const QList<QByteArray> supported = QTextDocumentWriter::supportedDocumentFormats();
+    return std::any_of(supported.cbegin(), supported.cend(), [&name](const QByteArray& f) {
+        return f.compare(name, Qt::CaseInsensitive) == 0;
+    });
 }
 
 void
