@@ -230,16 +230,18 @@ Window {
                 root.documentName = name;
         }
 
-        function onDocumentRemoved(accId, convId, docId) {
+        function onDocumentRemoved(accId, convId, docId, everywhere) {
             if (accId !== root.accountId || convId !== root.conversationId || docId !== root.documentId)
                 return;
-            // The document is gone everywhere. Leaving the window open would let
-            // the user keep typing into something no longer backed by anything,
-            // and every keystroke would be dropped without a word. Say why before
-            // the window goes, or it just vanishes mid-sentence.
+            // The daemon no longer holds this document, whichever removal took it.
+            // Leaving the window open would let the user keep typing into
+            // something not backed by anything, and every keystroke would be
+            // dropped without a word. Say why before the window goes, or it just
+            // vanishes mid-sentence -- and say which of the two happened, since
+            // one of them can be walked back and the other cannot.
             viewCoordinator.presentDialog(appWindow, "commoncomponents/SimpleMessageDialog.qml", {
-                    "titleText": qsTr("Document removed"),
-                    "infoText": qsTr("\"%1\" was removed by its author.").arg(root.documentName),
+                    "titleText": everywhere ? qsTr("Document removed") : qsTr("Document removed from this device"),
+                    "infoText": everywhere ? qsTr("\"%1\" was removed by its author.").arg(root.documentName) : qsTr("\"%1\" is no longer on this device. Opening it again downloads it back.").arg(root.documentName),
                     "buttonTitles": [JamiStrings.optionOk],
                     "buttonStyles": [SimpleMessageDialog.ButtonStyle.TintedBlue],
                     "buttonRoles": [DialogButtonBox.AcceptRole]
