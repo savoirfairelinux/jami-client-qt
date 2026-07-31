@@ -55,8 +55,12 @@ Item {
             if (accId === CurrentAccount.id && docId === root.documentId && convId === root.conversationIdOf())
                 root.docName = name;
         }
-        function onDocumentRemoved(accId, convId, docId) {
-            if (accId === CurrentAccount.id && docId === root.documentId && convId === root.conversationIdOf())
+        function onDocumentRemoved(accId, convId, docId, everywhere) {
+            // Only a removal for every member retires the announcement. One that
+            // took the document off this device alone leaves it announced and
+            // leaves this message live: clicking it is what fetches it back.
+            if (everywhere && accId === CurrentAccount.id && docId === root.documentId
+                && convId === root.conversationIdOf())
                 root.removed = true;
         }
     }
