@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "249f375f_e0b45fb2",
+        "filename": "src/app/commoncomponents/CollabDocListPopup.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-07-31T00:34:22Z",
+      "side": 1,
+      "message": "[warning] Line 198: 🟡 Both local removal and remove-for-everyone use visually similar delete buttons, and authors now see them side by side. This makes it easy to click the wrong destructive action despite the confirmation dialog. Consider using a clearly distinct icon/menu action or labeling the remove-for-everyone action inline when both are visible.",
+      "revId": "cadcf7ad8c29d31a2cea3b8716597f853e3f38f9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
