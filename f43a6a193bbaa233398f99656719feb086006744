@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "10ce68f3_07f4a238",
+        "filename": "src/app/collabrichbinding.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 1060,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-07-31T21:45:12Z",
+      "side": 1,
+      "message": "[error] Line 1060: 🔴 Markdown support in QTextDocumentWriter is Qt-version dependent. If this project can be built against Qt versions where `markdown` is not in `QTextDocumentWriter::supportedDocumentFormats()`, the new menu item will silently fail at export time. Gate the Markdown option/export path on supported formats or use the exact supported format for the minimum Qt version.",
+      "revId": "f43a6a193bbaa233398f99656719feb086006744",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f369aa89_fc57a0af",
+        "filename": "src/app/mainview/components/CollabRichEditorWindow.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 1266,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-07-31T21:45:12Z",
+      "side": 1,
+      "message": "[error] Line 1266: 🔴 This exposes Markdown export unconditionally, but the C++ writer may not support Markdown on all supported Qt builds. Hide or disable this item unless `exportToFile` can actually write Markdown, otherwise users get a selectable export format that fails.",
+      "revId": "f43a6a193bbaa233398f99656719feb086006744",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
