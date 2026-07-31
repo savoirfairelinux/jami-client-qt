@@ -53,6 +53,23 @@ BaseModalDialog {
             });
     }
 
+    // Removing it from this device alone leaves the others with it, and opening
+    // it again brings it back: what is asked here is far less than above, and
+    // saying which one is which is the whole point of asking twice.
+    function confirmLocalRemoval(docId, docName) {
+        if (docId === "")
+            return;
+        var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/ConfirmDialog.qml", {
+                "titleText": qsTr("Remove from this device"),
+                "textLabel": qsTr("\"%1\" will be removed from this device only. The other members keep it, and opening it again downloads it back.").arg(docName !== "" ? docName : qsTr("Untitled document")),
+                "confirmLabel": qsTr("Remove"),
+                "rejectLabel": qsTr("Cancel")
+            });
+        dlg.accepted.connect(function () {
+                CollaborativeAdapter.removeDocumentLocally(CurrentAccount.id, root.conversationId, docId);
+            });
+    }
+
     titleText: qsTr("Editable documents")
 
     button1.text: qsTr("Close")
@@ -73,7 +90,7 @@ BaseModalDialog {
             if (convId === root.conversationId)
                 root.refresh();
         }
-        function onDocumentRemoved(accId, convId, docId) {
+        function onDocumentRemoved(accId, convId, docId, everywhere) {
             if (accId === CurrentAccount.id && convId === root.conversationId)
                 root.refresh();
         }
@@ -114,6 +131,7 @@ BaseModalDialog {
                 property string docName: model.name || ""
                 property string docAuthor: model.author || ""
                 property bool docHasUpdate: model.hasUpdate === true
+                property bool docStoredLocally: model.storedLocally !== false
 
                 width: docsView.width
                 height: 48
@@ -165,7 +183,13 @@ BaseModalDialog {
                         }
                         Text {
                             Layout.fillWidth: true
-                            text: UtilsAdapter.getBestNameForUri(CurrentAccount.id, docAuthor)
+                            text: {
+                                const author = UtilsAdapter.getBestNameForUri(CurrentAccount.id, docAuthor);
+                                // Said on the entry rather than by greying it out:
+                                // this one is still there to be opened, and opening
+                                // it is exactly what brings it back.
+                                return docStoredLocally ? author : qsTr("%1 - not on this device").arg(author);
+                            }
                             textFormat: Text.PlainText
                             elide: Text.ElideRight
                             font.pointSize: JamiTheme.tinyFontSize
@@ -175,9 +199,25 @@ BaseModalDialog {
 
                     PushButton {
                         Layout.alignment: Qt.AlignVCenter
-                        // Only the author may remove a document, and the daemon
-                        // refuses anyone else: offering the button to the others
-                        // would only promise something that cannot happen.
+                        // Anyone may stop holding a document, and there is nothing
+                        // to offer for one this device is not holding already.
+                        visible: docStoredLocally
+                        preferredSize: 24
+                        imageContainerWidth: 20
+                        imageContainerHeight: 20
+                        source: JamiResources.delete_24dp_svg
+                        toolTipText: qsTr("Remove from this device")
+                        normalColor: "transparent"
+                        imageColor: JamiTheme.textColor
+
+                        onClicked: root.confirmLocalRemoval(docId, docName)
+                    }
+
+                    PushButton {
+                        Layout.alignment: Qt.AlignVCenter
+                        // Only the author may remove a document for everyone, and
+                        // the daemon refuses anyone else: offering the button to
+                        // the others would only promise what cannot happen.
                         visible: docAuthor !== "" && docAuthor === CurrentAccount.uri
                         preferredSize: 24
                         imageContainerWidth: 20

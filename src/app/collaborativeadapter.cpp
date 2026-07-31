@@ -116,15 +116,15 @@ CollaborativeAdapter::CollaborativeAdapter(LRCInstance* instance, QObject* paren
     connect(&ConfigurationManager::instance(),
             &ConfigurationManagerInterface::collaborativeDocumentRemoved,
             this,
-            [this](const QString& accountId, const QString& convId, const QString& documentId) {
+            [this](const QString& accountId, const QString& convId, const QString& documentId, bool everywhere) {
                 // The replica is dropped here rather than left to the editor: the
-                // document no longer exists, and holding its state would let a later
-                // edit be sent for something the swarm has retired.
+                // daemon no longer holds the document, and keeping its state would
+                // let a later edit be sent for something that is not there.
                 replicas_.remove(replicaKey(accountId, convId, documentId));
                 // Its unread mark goes with it, or the conversation would keep a
-                // badge for a document nothing can ever open to clear it.
+                // badge for a document nothing here can open to clear it.
                 clearDocumentUpdated(accountId, convId, documentId);
-                Q_EMIT documentRemoved(accountId, convId, documentId);
+                Q_EMIT documentRemoved(accountId, convId, documentId, everywhere);
             });
     connect(&ConfigurationManager::instance(),
             &ConfigurationManagerInterface::collaborativeDocumentRenamed,
@@ -289,6 +289,14 @@ CollaborativeAdapter::removeDocument(const QString& accountId, const QString& co
     return ConfigurationManager::instance().removeCollaborativeDocument(accountId, convId, documentId);
 }
 
+bool
+CollaborativeAdapter::removeDocumentLocally(const QString& accountId, const QString& convId, const QString& documentId)
+{
+    // Same as above: what is dropped here is dropped when the daemon says so,
+    // not when the request is made, so both removals leave through one path.
+    return ConfigurationManager::instance().removeCollaborativeDocumentLocally(accountId, convId, documentId);
+}
+
 void
 CollaborativeAdapter::edit(const QString& accountId,
                            const QString& convId,
@@ -385,6 +393,10 @@ CollaborativeAdapter::documents(const QString& convId)
         entry[QStringLiteral("name")] = name;
         entry[QStringLiteral("author")] = commit.value(QStringLiteral("author"));
         entry[QStringLiteral("hasUpdate")] = hasUnreadDocumentUpdateForDocument(convId, documentId);
+        // Documents this device removed from itself stay listed: they are still
+        // in the conversation, and opening one is what fetches it back.
+        entry[QStringLiteral("storedLocally")] = commit.value(QStringLiteral("storedLocally"))
+                                                 != QStringLiteral("false");
         entry[QStringLiteral("timestamp")] = commit.value(QStringLiteral("timestamp")).toLongLong();
         result.append(entry);
     }
