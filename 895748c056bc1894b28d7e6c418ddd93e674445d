@@ -1,0 +1,40 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "247eac6f_e978ad00",
+        "filename": "src/app/collabrichbinding.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 1124,
+      "author": {
+        "id": 617
+      },
+      "writtenOn": "2026-08-01T00:51:03Z",
+      "side": 1,
+      "message": "Done in patchset 2, though by build flag rather than Qt version -- the Markdown writer exists in every Qt this client supports. exportFormatFor() is now the single table describing each format, and canExportAs() asks QTextDocumentWriter::supportedDocumentFormats() whether this build can write it. The export path and the menu read the same table, so they cannot drift apart.",
+      "parentUuid": "10ce68f3_07f4a238",
+      "revId": "895748c056bc1894b28d7e6c418ddd93e674445d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2bef3bd2_e817ab58",
+        "filename": "src/app/mainview/components/CollabRichEditorWindow.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 1276,
+      "author": {
+        "id": 617
+      },
+      "writtenOn": "2026-08-01T00:51:03Z",
+      "side": 1,
+      "message": "Done in patchset 2. The entry is bound to richBinding.canExportAs(\"md\") and collapses to zero height when the build cannot write it. The same gate is applied to ODF, HTML and plain text, since textodfwriter is a build flag on the same footing as textmarkdownwriter and ODF export predates this change.",
+      "parentUuid": "f369aa89_fc57a0af",
+      "revId": "895748c056bc1894b28d7e6c418ddd93e674445d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
