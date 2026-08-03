@@ -189,6 +189,11 @@ $choco_packages = @(
     [pscustomobject]@{pkg = "pandoc"; ver = "" }
     [pscustomobject]@{pkg = "strawberryperl"; ver = "" }
     [pscustomobject]@{pkg = "msys2"; ver = "" }
+    # yffi (Y-CRDT) contrib, built from source with cargo. Use rustup
+    # (which defaults to the MSVC-ABI toolchain when VS is present) rather
+    # than the "rust" choco package, which is GNU-ABI and incompatible with
+    # our MSVC-linked daemon build.
+    [pscustomobject]@{pkg = "rustup.install"; ver = "" }
 )
 
 install_chocolatey
