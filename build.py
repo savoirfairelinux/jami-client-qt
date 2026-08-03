@@ -99,6 +99,8 @@ ZYPPER_DEPENDENCIES = [
     'libgnutls-devel', 'msgpack-c-devel', 'msgpack-cxx-devel', 'libavcodec-devel', 'libavdevice-devel', 'pcre-devel',
     'alsa-devel', 'libpulse-devel', 'libudev-devel', 'libva-devel', 'libvdpau-devel', 'pipewire-devel',
     'libopenssl-devel', 'libavutil-devel',
+    # yffi (Y-CRDT) contrib, built from source with cargo
+    'rust', 'cargo',
 ]
 
 ZYPPER_CLIENT_DEPENDENCIES = [
@@ -129,7 +131,9 @@ DNF_DEPENDENCIES = [
     'swig', 'jsoncpp-devel',
     'patch', 'libva-devel', 'openssl-devel', 'libvdpau-devel', 'pipewire-devel', 'msgpack-devel',
     'sqlite-devel', 'pandoc', 'nasm',
-    'bzip2'
+    'bzip2',
+    # yffi (Y-CRDT) contrib, built from source with cargo
+    'rust', 'cargo'
 ]
 
 DNF_CLIENT_DEPENDENCIES = [
@@ -152,7 +156,9 @@ APT_DEPENDENCIES = [
     'libspeex-dev', 'libspeexdsp-dev', 'libswscale-dev', 'libtool',
     'libudev-dev', 'libyaml-cpp-dev', 'sip-tester', 'swig',
     'uuid-dev', 'yasm', 'libjsoncpp-dev', 'libva-dev', 'libvdpau-dev', 'libpipewire-0.3-dev', 'libmsgpack-dev',
-    'pandoc', 'nasm', 'dpkg-dev', 'libsystemd-dev'
+    'pandoc', 'nasm', 'dpkg-dev', 'libsystemd-dev',
+    # yffi (Y-CRDT) contrib, built from source with cargo
+    'rustc', 'cargo'
 ]
 
 APT_CLIENT_DEPENDENCIES = [
@@ -181,7 +187,9 @@ PACMAN_DEPENDENCIES = [
     'gcc', 'ffmpeg', 'boost', 'cppunit', 'libdbus', 'dbus-c++', 'libe-book', 'expat',
     'jack', 'opus', 'pcre', 'libpulse', 'speex', 'speexdsp', 'libtool', 'yaml-cpp',
     'swig', 'yasm', 'make', 'patch', 'pkg-config',
-    'automake', 'libva', 'libvdpau', 'openssl', 'pandoc', 'nasm', 'systemd-libs'
+    'automake', 'libva', 'libvdpau', 'openssl', 'pandoc', 'nasm', 'systemd-libs',
+    # yffi (Y-CRDT) contrib, built from source with cargo
+    'rust'
 ]
 
 PACMAN_CLIENT_DEPENDENCIES = [
@@ -198,7 +206,9 @@ PACMAN_QT_WEBENGINE = ['qt6-webengine']
 
 OSX_DEPENDENCIES = [
     'autoconf', 'cmake', 'gettext', 'pkg-config', 'qt6',
-    'libtool', 'yasm', 'nasm', 'automake', 'ninja'
+    'libtool', 'yasm', 'nasm', 'automake', 'ninja',
+    # yffi (Y-CRDT) contrib, built from source with cargo
+    'rust'
 ]
 
 OSX_DEPENDENCIES_UNLINK = [
