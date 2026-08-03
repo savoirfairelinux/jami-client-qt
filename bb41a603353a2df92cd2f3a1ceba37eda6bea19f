@@ -18,6 +18,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0b6ba155_88e98dd8",
+        "filename": "src/app/mainview/components/PeerServicesButton.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-08-03T18:51:05Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "8967885a_9b155401",
+      "revId": "bb41a603353a2df92cd2f3a1ceba37eda6bea19f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b40d21fd_6a2ad113",
@@ -31,6 +49,24 @@
       "writtenOn": "2026-07-09T15:11:27Z",
       "side": 1,
       "message": "[warning] Line 260: sharedServicesPreferredPortLabel (260) and sharedServicesPreferredPortRangeError (263) do not appear to be referenced anywhere in this patchset — the dialog only exposes a toggle (sharedServicesPreferredPortUseServicePort) plus the details popup, with no numeric port field to validate. These look like leftovers from an earlier design with a free-form port input. Either wire up the numeric input + range validation these strings imply, or remove the dead strings to avoid shipping unused translatable text.",
+      "revId": "bb41a603353a2df92cd2f3a1ceba37eda6bea19f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "352acc5f_a3ae9200",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-08-03T18:51:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b40d21fd_6a2ad113",
       "revId": "bb41a603353a2df92cd2f3a1ceba37eda6bea19f",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
@@ -52,6 +88,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5ba27da0_227f60a5",
+        "filename": "src/app/settingsview/components/SharedServiceDelegate.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-08-03T18:51:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fda17d6c_1f5ed49e",
+      "revId": "bb41a603353a2df92cd2f3a1ceba37eda6bea19f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fb75c907_2b84c3e4",
@@ -65,6 +119,24 @@
       "writtenOn": "2026-07-09T15:11:27Z",
       "side": 1,
       "message": "[info] Line 370: `parent: parent` is redundant and confusing: a Popup already defaults its parent to the item it is declared in (the NewIconButton), so this binding is a no-op that reads as self-assignment. Additionally, `visible: false` (line 377) is a declarative binding on a property that Popup manages imperatively via open()/close(); relying on open() to break the binding is fragile, and the `opacity: visible ? 1.0 : 0.0` fade-out will be skipped because close() flips visible to false instantly. Prefer removing `parent: parent` and driving open state through open()/close() only.",
+      "revId": "bb41a603353a2df92cd2f3a1ceba37eda6bea19f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a6f61d42_99473d10",
+        "filename": "src/app/settingsview/components/SharedServiceDialog.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 370,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-08-03T18:51:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fb75c907_2b84c3e4",
       "revId": "bb41a603353a2df92cd2f3a1ceba37eda6bea19f",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }

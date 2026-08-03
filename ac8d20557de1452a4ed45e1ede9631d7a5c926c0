@@ -18,6 +18,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e26f7580_eee0e1fa",
+        "filename": "src/app/mainview/components/PeerServicesButton.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-08-03T18:51:05Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "7d6124d7_e06978cb",
+      "revId": "ac8d20557de1452a4ed45e1ede9631d7a5c926c0",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e98e734b_b675e98d",
@@ -31,6 +49,24 @@
       "writtenOn": "2026-07-08T16:36:46Z",
       "side": 1,
       "message": "[info] Line 260: New strings were added (preferred port label/details/range error). Ensure these keys are added to translation templates and translators are informed. Missing translations will fall back to the source language; add a TODO to update translation files.",
+      "revId": "ac8d20557de1452a4ed45e1ede9631d7a5c926c0",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6a52be56_3a796316",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-08-03T18:51:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e98e734b_b675e98d",
       "revId": "ac8d20557de1452a4ed45e1ede9631d7a5c926c0",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
@@ -52,6 +88,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1799c0a3_fa6b1d50",
+        "filename": "src/app/settingsview/components/SharedServiceDelegate.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-08-03T18:51:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "33a06a41_ef175f3c",
+      "revId": "ac8d20557de1452a4ed45e1ede9631d7a5c926c0",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "339aec97_c131dc5a",
@@ -65,6 +119,24 @@
       "writtenOn": "2026-07-08T16:36:46Z",
       "side": 1,
       "message": "[info] Line 260: No automated tests were added for the new preferred port validation or the adapter sanitization. Please add a small unit test (C++ or JS QML test) that verifies sanitizePreferredPort rejects privileged ports and accepts 1024..65535. This reduces regression risk.",
+      "revId": "ac8d20557de1452a4ed45e1ede9631d7a5c926c0",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "61d619ef_3d2abb04",
+        "filename": "src/app/settingsview/components/SharedServiceDialog.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-08-03T18:51:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "339aec97_c131dc5a",
       "revId": "ac8d20557de1452a4ed45e1ede9631d7a5c926c0",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
@@ -86,6 +158,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "aae0f3df_11565518",
+        "filename": "src/app/sharedservicesadapter.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-08-03T18:51:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c768cdc2_5fc73865",
+      "revId": "ac8d20557de1452a4ed45e1ede9631d7a5c926c0",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2fb24d1b_0d70f319",
@@ -99,6 +189,24 @@
       "writtenOn": "2026-07-08T16:36:46Z",
       "side": 1,
       "message": "[warning] Line 670: The code stores sanitizePreferredPort(...) result into the QVariantMap as a numeric QVariant. QML consumers in this patch sometimes compare preferredPort to string values (e.g. \"0\"), which can cause inconsistent behaviour across platforms/JS engines. Please pick a single canonical type (prefer numeric) or normalize to string consistently on the C++ side.\n\nTwo options (prefer updating QML to treat the value as numeric). If instead normalizing here, store as a string:\n```suggestion\nservice[PREFERRED_PORT_KEY] \u003d QString::number(sanitizePreferredPort(service.value(PREFERRED_PORT_KEY)));\n```\nRationale: consistent cross-language typing avoids subtle bugs where JS strict comparisons against \"0\" or empty string fail.",
+      "revId": "ac8d20557de1452a4ed45e1ede9631d7a5c926c0",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "09d05562_7a6b531b",
+        "filename": "src/app/sharedservicesadapter.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 670,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-08-03T18:51:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2fb24d1b_0d70f319",
       "revId": "ac8d20557de1452a4ed45e1ede9631d7a5c926c0",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
