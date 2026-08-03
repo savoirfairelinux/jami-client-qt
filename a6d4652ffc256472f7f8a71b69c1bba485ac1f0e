@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "09d14971_c56639e3",
+        "filename": "src/app/collabrichbinding.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 1014,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-08-03T18:41:56Z",
+      "side": 1,
+      "message": "[error] Line 1014: 🔴 QPdfWriter uses a high default resolution, while the document/image sizing here is calculated in 96-DPI document pixels. Without setting the PDF writer resolution or converting dimensions, exported PDFs can render content much smaller than expected. Set `pdf.setResolution(96)` before configuring the page/margins, or convert all export layout sizes into the writer\u0027s device units.",
+      "revId": "a6d4652ffc256472f7f8a71b69c1bba485ac1f0e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
