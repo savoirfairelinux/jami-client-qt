@@ -58,22 +58,22 @@
 <context>
     <name>ConversationsAdapter</name>
     <message>
-        <location filename="../src/app/conversationsadapter.cpp" line="183"/>
+        <location filename="../src/app/conversationsadapter.cpp" line="184"/>
         <source>%1 has joined the conversation.</source>
         <translation>%1 സംഭാഷണത്തിൽ ചേർന്നിരിക്കുന്നു.</translation>
     </message>
     <message>
-        <location filename="../src/app/conversationsadapter.cpp" line="185"/>
+        <location filename="../src/app/conversationsadapter.cpp" line="186"/>
         <source>%1 has left the conversation.</source>
         <translation>%1 സംഭാഷണത്തിൽ നിന്നു പോയിരിക്കുന്നു.</translation>
     </message>
     <message>
-        <location filename="../src/app/conversationsadapter.cpp" line="202"/>
+        <location filename="../src/app/conversationsadapter.cpp" line="203"/>
         <source>%1 received a new message</source>
         <translation>%1 ന് പുതിയ സന്ദേശം ലഭിച്ചു</translation>
     </message>
     <message>
-        <location filename="../src/app/conversationsadapter.cpp" line="255"/>
+        <location filename="../src/app/conversationsadapter.cpp" line="256"/>
         <source>%1 received a new invitation</source>
         <translation>%1 യ്ക്ക്/ന് പുതിയ ക്ഷണം കിട്ടി.</translation>
     </message>

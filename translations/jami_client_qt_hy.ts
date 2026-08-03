@@ -58,22 +58,22 @@
 <context>
     <name>ConversationsAdapter</name>
     <message>
-        <location filename="../src/app/conversationsadapter.cpp" line="183"/>
+        <location filename="../src/app/conversationsadapter.cpp" line="184"/>
         <source>%1 has joined the conversation.</source>
         <translation>%1-ը միացավ զրույցին։</translation>
     </message>
     <message>
-        <location filename="../src/app/conversationsadapter.cpp" line="185"/>
+        <location filename="../src/app/conversationsadapter.cpp" line="186"/>
         <source>%1 has left the conversation.</source>
         <translation>%1-ը լքեց զրույցը։</translation>
     </message>
     <message>
-        <location filename="../src/app/conversationsadapter.cpp" line="202"/>
+        <location filename="../src/app/conversationsadapter.cpp" line="203"/>
         <source>%1 received a new message</source>
         <translation>%1 նոր հաղորդագրություն է ստացել</translation>
     </message>
     <message>
-        <location filename="../src/app/conversationsadapter.cpp" line="255"/>
+        <location filename="../src/app/conversationsadapter.cpp" line="256"/>
         <source>%1 received a new invitation</source>
         <translation>%1-ը ստացավ նոր հրավեր</translation>
     </message>

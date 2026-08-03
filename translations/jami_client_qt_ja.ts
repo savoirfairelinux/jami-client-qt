@@ -58,22 +58,22 @@
 <context>
     <name>ConversationsAdapter</name>
     <message>
-        <location filename="../src/app/conversationsadapter.cpp" line="183"/>
+        <location filename="../src/app/conversationsadapter.cpp" line="184"/>
         <source>%1 has joined the conversation.</source>
         <translation>%1 が会話に参加しました。</translation>
     </message>
     <message>
-        <location filename="../src/app/conversationsadapter.cpp" line="185"/>
+        <location filename="../src/app/conversationsadapter.cpp" line="186"/>
         <source>%1 has left the conversation.</source>
         <translation>%1 が会話から退出しました。</translation>
     </message>
     <message>
-        <location filename="../src/app/conversationsadapter.cpp" line="202"/>
+        <location filename="../src/app/conversationsadapter.cpp" line="203"/>
         <source>%1 received a new message</source>
         <translation>%1 は新しいメッセージを受け取った</translation>
     </message>
     <message>
-        <location filename="../src/app/conversationsadapter.cpp" line="255"/>
+        <location filename="../src/app/conversationsadapter.cpp" line="256"/>
         <source>%1 received a new invitation</source>
         <translation>%1 が新しい招待を受け取りました</translation>
     </message>

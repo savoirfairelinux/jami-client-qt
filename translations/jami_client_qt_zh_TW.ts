@@ -58,22 +58,22 @@
 <context>
     <name>ConversationsAdapter</name>
     <message>
-        <location filename="../src/app/conversationsadapter.cpp" line="183"/>
+        <location filename="../src/app/conversationsadapter.cpp" line="184"/>
         <source>%1 has joined the conversation.</source>
         <translation>%1已加入對話。</translation>
     </message>
     <message>
-        <location filename="../src/app/conversationsadapter.cpp" line="185"/>
+        <location filename="../src/app/conversationsadapter.cpp" line="186"/>
         <source>%1 has left the conversation.</source>
         <translation>%1已離開對話。</translation>
     </message>
     <message>
-        <location filename="../src/app/conversationsadapter.cpp" line="202"/>
+        <location filename="../src/app/conversationsadapter.cpp" line="203"/>
         <source>%1 received a new message</source>
         <translation>%1收到一個新的訊息</translation>
     </message>
     <message>
-        <location filename="../src/app/conversationsadapter.cpp" line="255"/>
+        <location filename="../src/app/conversationsadapter.cpp" line="256"/>
         <source>%1 received a new invitation</source>
         <translation>收到新邀請</translation>
     </message>
@@ -175,7 +175,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="33"/>
         <source>Edits</source>
-        <translation type="unfinished"/>
+        <translation>编辑器</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="41"/>

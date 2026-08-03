@@ -58,22 +58,22 @@
 <context>
     <name>ConversationsAdapter</name>
     <message>
-        <location filename="../src/app/conversationsadapter.cpp" line="183"/>
+        <location filename="../src/app/conversationsadapter.cpp" line="184"/>
         <source>%1 has joined the conversation.</source>
         <translation>%1 ist der Unterhaltung beigetreten.</translation>
     </message>
     <message>
-        <location filename="../src/app/conversationsadapter.cpp" line="185"/>
+        <location filename="../src/app/conversationsadapter.cpp" line="186"/>
         <source>%1 has left the conversation.</source>
         <translation>%1 hat die Unterhaltung verlassen.</translation>
     </message>
     <message>
-        <location filename="../src/app/conversationsadapter.cpp" line="202"/>
+        <location filename="../src/app/conversationsadapter.cpp" line="203"/>
         <source>%1 received a new message</source>
         <translation>%1 hat eine neue Nachricht erhalten</translation>
     </message>
     <message>
-        <location filename="../src/app/conversationsadapter.cpp" line="255"/>
+        <location filename="../src/app/conversationsadapter.cpp" line="256"/>
         <source>%1 received a new invitation</source>
         <translation>%1 hat eine neue Einladung erhalten</translation>
     </message>
@@ -175,7 +175,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="33"/>
         <source>Edits</source>
-        <translation type="unfinished"/>
+        <translation>Bearbeitungen</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="41"/>
@@ -416,7 +416,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="147"/>
         <source>Connectivity</source>
-        <translation>Konnektivität</translation>
+        <translation>Verbindung</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="148"/>
@@ -704,7 +704,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="230"/>
         <source>Copy URI</source>
-        <translation>URL kopieren</translation>
+        <translation>URI kopieren</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="231"/>
@@ -829,7 +829,7 @@ Account-ID: ```%2```</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="261"/>
         <source>URI scheme</source>
-        <translation>URL-Schema</translation>
+        <translation>URI-Schema</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="262"/>
@@ -839,7 +839,7 @@ Account-ID: ```%2```</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="264"/>
         <source>URI scheme (optional)</source>
-        <translation>URL-Schema (optional)</translation>
+        <translation>URI-Schema (optional)</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="265"/>
@@ -865,7 +865,7 @@ Account-ID: ```%2```</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="269"/>
         <source>Allowed contact URIs (comma-separated)</source>
-        <translation>Zulässige Kontakt-URLs (durch Kommas getrennt)</translation>
+        <translation>Zulässige Kontakt-URIs (durch Kommas getrennt)</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="270"/>
@@ -930,7 +930,7 @@ Account-ID: ```%2```</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="284"/>
         <source>Enter the URI scheme to use when accessing the service (e.g. http, https, etc…)</source>
-        <translation>Geben Sie das URL-Schema ein, das beim Zugriff auf den Dienst verwendet werden soll (z. B. http, https usw.)</translation>
+        <translation>Geben Sie das URI-Schema ein, das beim Zugriff auf den Dienst verwendet werden soll (z. B. http, https usw.)</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="286"/>
@@ -1110,7 +1110,7 @@ Account-ID: ```%2```</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="330"/>
         <source>Conference resolution</source>
-        <translation>Konferenz-Auflösung</translation>
+        <translation>Konferenzauflösung</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="331"/>
@@ -1370,7 +1370,7 @@ Account-ID: ```%2```</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="746"/>
         <source>Enter account password</source>
-        <translation>Kontopasswort eingeben</translation>
+        <translation>Passwort des Kontos eingeben</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="749"/>
@@ -1395,7 +1395,7 @@ Account-ID: ```%2```</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="765"/>
         <source>Enter account password to confirm the removal of this device</source>
-        <translation>Geben Sie das Kontopasswort ein, um die Entfernung dieses Geräts zu bestätigen</translation>
+        <translation>Geben Sie das Passwort des Kontos ein, um die Entfernung dieses Geräts zu bestätigen</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="790"/>
@@ -1550,7 +1550,7 @@ Account-ID: ```%2```</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1075"/>
         <source>Swarm connectivity</source>
-        <translation>Schwarm-Konnektivität</translation>
+        <translation>Schwarm-Verbindung</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1076"/>
@@ -1723,7 +1723,7 @@ Account-ID: ```%2```</translation>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="589"/>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1023"/>
         <source>Set account password</source>
-        <translation>Kontopasswort festlegen</translation>
+        <translation>Passwort des Kontos festlegen</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="592"/>
@@ -2151,7 +2151,7 @@ um die Unterhaltung zu synchronisieren …</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="139"/>
         <source>Disable secure dialog check for incoming TLS data</source>
-        <translation>Sicherheitsdialog-Prüfung für eingehende TLS-Daten deaktivieren</translation>
+        <translation>Prüfung des Sicherheitsdialogs für eingehende TLS-Daten deaktivieren</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="170"/>
@@ -2409,7 +2409,7 @@ um die Unterhaltung zu synchronisieren …</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="93"/>
         <source>The session has expired or has been revoked on this device. Please enter the account password.</source>
-        <translation>Die Sitzung ist auf diesem Gerät abgelaufen oder widerrufen worden. Bitte geben Sie das Kontopasswort ein.</translation>
+        <translation>Die Sitzung ist auf diesem Gerät abgelaufen oder widerrufen worden. Bitte geben Sie das Passwort des Kontos ein.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="94"/>
@@ -2840,7 +2840,7 @@ um die Unterhaltung zu synchronisieren …</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="576"/>
         <source>An error occurred while changing the account password.</source>
-        <translation>Beim Ändern des Kontopassworts ist ein Fehler aufgetreten.</translation>
+        <translation>Beim Ändern des Passworts des Kontos ist ein Fehler aufgetreten.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="577"/>
@@ -2850,7 +2850,7 @@ um die Unterhaltung zu synchronisieren …</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="578"/>
         <source>An error occurred while setting the account password.</source>
-        <translation>Beim Festlegen des Kontopassworts ist ein Fehler aufgetreten.</translation>
+        <translation>Beim Festlegen des Passworts des Kontos ist ein Fehler aufgetreten.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1084"/>
@@ -3203,7 +3203,7 @@ Aktivieren Sie die „Standortdienste“ in den Geräteeinstellungen, um diese F
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="608"/>
         <source>Do you want to unlink the selected device? To continue, enter account password and click Unlink.</source>
-        <translation>Möchten Sie die Verknüpfung des ausgewählten Geräts aufheben? Um fortzufahren, geben Sie das Kontopasswort ein und klicken Sie auf „Verknüpfung aufheben“.</translation>
+        <translation>Möchten Sie die Verknüpfung des ausgewählten Geräts aufheben? Um fortzufahren, geben Sie das Passwort des Kontos ein und klicken Sie auf „Verknüpfung aufheben“.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="609"/>
@@ -3315,7 +3315,7 @@ Aktivieren Sie die „Standortdienste“ in den Geräteeinstellungen, um diese F
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="713"/>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="714"/>
         <source>Keyboard shortcuts</source>
-        <translation>Tastenkombination</translation>
+        <translation>Tastenkombinationen</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="718"/>
@@ -4333,7 +4333,7 @@ Bitte bestätigen Sie den Import auf dem neuen Gerät.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="822"/>
         <source>Enter the account password to confirm the removal of this device</source>
-        <translation>Geben Sie das Kontopasswort ein, um das Entfernen dieses Geräts zu bestätigen</translation>
+        <translation>Geben Sie das Passwort des Kontos ein, um das Entfernen dieses Geräts zu bestätigen</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="828"/>
@@ -4824,7 +4824,7 @@ Bitte bestätigen Sie den Import auf dem neuen Gerät.</translation>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="222"/>
         <source>View keyboard shortcuts</source>
-        <translation>Tastenkombination anzeigen</translation>
+        <translation>Tastenkombinationen anzeigen</translation>
     </message>
 </context>
 <context>
@@ -5214,7 +5214,7 @@ Bitte bestätigen Sie den Import auf dem neuen Gerät.</translation>
     <message>
         <location filename="../src/core/callmodel.cpp" line="96"/>
         <source>Request URI Too Long</source>
-        <translation>Anfrage-URL zu lang</translation>
+        <translation>Anfrage-URI zu lang</translation>
     </message>
     <message>
         <location filename="../src/core/callmodel.cpp" line="97"/>
@@ -5224,7 +5224,7 @@ Bitte bestätigen Sie den Import auf dem neuen Gerät.</translation>
     <message>
         <location filename="../src/core/callmodel.cpp" line="98"/>
         <source>Unsupported URI Scheme</source>
-        <translation>Nicht unterstütztes URL-Schema</translation>
+        <translation>Nicht unterstütztes URI-Schema</translation>
     </message>
     <message>
         <location filename="../src/core/callmodel.cpp" line="99"/>
@@ -5707,7 +5707,7 @@ Bitte bestätigen Sie den Import auf dem neuen Gerät.</translation>
     <message>
         <location filename="../src/core/contactmodel.cpp" line="475"/>
         <source>Bad URI scheme</source>
-        <translation>Ungültiges URL-Schema</translation>
+        <translation>Ungültiges URI-Schema</translation>
     </message>
 </context>
 <context>
