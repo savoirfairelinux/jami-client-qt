@@ -16,6 +16,24 @@
       "message": "[warning] Line 25: 🟡 This test relies on globalEnv.lrcInstance having no current conversation model, but it does not arrange or assert that precondition. If the shared fixture later creates a model, the test will still pass while no longer covering the null-model guard. Explicitly set up an LRC instance with a missing current conversation model, or assert that getCurrentConversationModel() is null before invoking updateErrors.",
       "revId": "cfb7104d5d30aa393764e9f752c3d22f6decb0f2",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1903bfc5_900f9837",
+        "filename": "tests/unittests/currentconversation_unittest.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-08-05T15:37:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "81fab640_1d12775b",
+      "revId": "cfb7104d5d30aa393764e9f752c3d22f6decb0f2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
