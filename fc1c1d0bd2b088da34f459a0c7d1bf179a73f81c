@@ -18,6 +18,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8f726ed3_9955eb67",
+        "filename": "src/app/settingsview/components/PluginStoreListView.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1192
+      },
+      "writtenOn": "2026-08-05T15:25:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c97873de_2f5ee086",
+      "revId": "fc1c1d0bd2b088da34f459a0c7d1bf179a73f81c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5426c0dc_9177df4e",
