@@ -26,6 +26,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "70e10707_2862cc62",
+        "filename": "src/app/settingsview/components/PluginStoreListView.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-08-05T15:15:48Z",
+      "side": 1,
+      "message": "[warning] Line 106: 🟡 `item` can be null while the Loader is active, so this binding can throw `Cannot read property \u0027implicitHeight\u0027 of null` during creation/destruction or if loading fails. Guard it explicitly, e.g. `Layout.preferredHeight: active \u0026\u0026 item ? item.implicitHeight : 0`.",
+      "revId": "04db38d17540fd830bfb6a526f945d9a55243b6b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "afc252f5_7b4e9b45",
         "filename": "src/app/settingsview/components/PluginStoreListView.qml",
         "patchSetId": 3
