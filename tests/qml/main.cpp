@@ -64,20 +64,6 @@ class Setup : public QObject
 {
     Q_OBJECT
 
-public:
-    ~Setup()
-    {
-        if (useCache)
-            return;
-
-        QSignalSpy accountRemovedSpy(&lrcInstance_->accountModel(), &AccountModel::accountRemoved);
-        lrcInstance_->accountModel().removeAccount(aliceId);
-        lrcInstance_->accountModel().removeAccount(bobId);
-        while (accountRemovedSpy.count() != 2) {
-            accountRemovedSpy.wait();
-        }
-    }
-
 public Q_SLOTS:
 
     /*
@@ -188,8 +174,27 @@ public Q_SLOTS:
     /*
      * Called once right after the all test execution has finished. Use this
      * function to clean up before everything is destroyed.
+     *
+     * This must run the account teardown, not ~Setup(): quick_test_main_with_setup()
+     * destroys its QCoreApplication before returning to main(), where the local
+     * Setup object then goes out of scope. By that point QSignalSpy::wait() can no
+     * longer pump a real event loop ("QEventLoop: Cannot be used without
+     * QCoreApplication"), so it returns immediately without the signal ever
+     * arriving, turning `while (...) spy.wait();` into an infinite busy loop that
+     * hangs the process after the test results are printed.
      */
-    void cleanupTestCase() {}
+    void cleanupTestCase()
+    {
+        if (useCache)
+            return;
+
+        QSignalSpy accountRemovedSpy(&lrcInstance_->accountModel(), &AccountModel::accountRemoved);
+        lrcInstance_->accountModel().removeAccount(aliceId);
+        lrcInstance_->accountModel().removeAccount(bobId);
+        while (accountRemovedSpy.count() != 2) {
+            accountRemovedSpy.wait();
+        }
+    }
 
 private:
     QScopedPointer<LRCInstance> lrcInstance_;
