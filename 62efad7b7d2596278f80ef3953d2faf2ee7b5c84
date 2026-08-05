@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4fcc646d_d0641d54",
+        "filename": "src/app/webengine/GeneralWebEngineView.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-08-05T15:17:34Z",
+      "side": 1,
+      "message": "[error] Line 46: 🔴 Removing the navigation handler also removes the policy that opens clicked links via `MessagesAdapter.openUrl()` and blocks in-view navigation. If this view can render conversation or other remote content, clicked external links may now load inside the embedded WebEngineView instead of the system/browser flow, which is a behavior and security regression. Please preserve the link-click policy in C++/profile-level navigation handling or another path that does not wrap `QWebEngineNavigationRequest` in QML.",
+      "revId": "62efad7b7d2596278f80ef3953d2faf2ee7b5c84",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
