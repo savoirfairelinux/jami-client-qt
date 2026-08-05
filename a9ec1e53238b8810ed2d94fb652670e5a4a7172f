@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a39e5f20_49418a2e",
+        "filename": "tests/unittests/systemtray_unittest.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-08-05T15:20:45Z",
+      "side": 1,
+      "message": "[warning] Line 26: 🟡 This replaces the shared global system tray\u0027s existing context menu without restoring it, leaving `globalEnv.systemTray` with no menu for any later tests in the same process. Preserve the previous `contextMenu()` and restore it after the assertions, or construct an isolated `SystemTray` instance for this test.",
+      "revId": "a9ec1e53238b8810ed2d94fb652670e5a4a7172f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
