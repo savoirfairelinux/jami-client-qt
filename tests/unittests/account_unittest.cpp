@@ -182,3 +182,42 @@ TEST_F(AccountFixture, DeleteCurrentAccountRevokesAllApiTokens)
     EXPECT_EQ(globalEnv.apiTokenManager->validateToken(firstToken.rawToken), nullptr);
     EXPECT_EQ(globalEnv.apiTokenManager->validateToken(secondToken.rawToken), nullptr);
 }
+
+/*!
+ * WHEN  The AccountAdapter that called deleteCurrentAccount() is destroyed before the
+ *       asynchronous accountRemoved signal fires (e.g. a QML engine/singleton torn down
+ *       mid-teardown, as happens between QML test files).
+ * THEN  The pending one-shot callback must not run against the destroyed adapter. It
+ *       previously captured a raw `this` with no lifetime-bound context, so the callback
+ *       fired against freed memory and crashed reading apiTokenManager_.
+ */
+TEST_F(AccountFixture, DeleteCurrentAccountSurvivesAdapterDestroyedBeforeSignal)
+{
+    QSignalSpy accountAddedSpy(&globalEnv.lrcInstance->accountModel(), &AccountModel::accountAdded);
+
+    globalEnv.accountAdapter->createSIPAccount(QVariantMap());
+
+    accountAddedSpy.wait();
+    ASSERT_EQ(accountAddedSpy.count(), 1);
+
+    const auto accountId = accountAddedSpy.takeFirst().at(0).toString();
+    globalEnv.lrcInstance->set_currentAccountId(accountId);
+
+    QSignalSpy accountRemovedSpy(&globalEnv.lrcInstance->accountModel(), &AccountModel::accountRemoved);
+
+    {
+        // Scoped adapter mirrors a QML-engine-owned singleton: it outlives the call that
+        // triggers the async removal, but not the wait for the removal to complete.
+        AccountAdapter scopedAdapter(globalEnv.settingsManager.get(),
+                                     globalEnv.apiTokenManager.get(),
+                                     globalEnv.systemTray.get(),
+                                     globalEnv.lrcInstance.data());
+        scopedAdapter.deleteCurrentAccount();
+    }
+    // scopedAdapter is now destroyed; the real accountRemoved signal has not fired yet.
+
+    // This must not crash: the pending one-shot connection should have been severed
+    // when scopedAdapter was destroyed, instead of firing against freed memory.
+    ASSERT_TRUE(accountRemovedSpy.wait());
+    EXPECT_EQ(accountRemovedSpy.count(), 1);
+}

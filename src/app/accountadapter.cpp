@@ -269,6 +269,7 @@ AccountAdapter::deleteCurrentAccount()
 
     Utils::oneShotConnect(&lrcInstance_->accountModel(),
                           &lrc::api::AccountModel::accountRemoved,
+                          this,
                           [this](const QString& accountId) {
                               if (apiTokenManager_)
                                   apiTokenManager_->revokeAllTokens(accountId);
