@@ -80,8 +80,11 @@ ColumnLayout {
             }
 
             function test_side_panel_restored_after_resize() {
-                const expandedWidth = JamiTheme.mainViewMajorPaneMinWidth
-                                    + JamiTheme.mainViewMinorPaneMinWidth + 100;
+                // uut's width is capped by Layout.maximumWidth (JamiTheme.chatViewMaximumWidth),
+                // so keep expandedWidth within that bound.
+                const expandedWidth = Math.min(JamiTheme.mainViewMajorPaneMinWidth
+                                    + JamiTheme.mainViewMinorPaneMinWidth + 100,
+                                    JamiTheme.chatViewMaximumWidth);
                 const collapsedWidth = JamiTheme.mainViewMajorPaneMinWidth;
 
                 root.width = expandedWidth;

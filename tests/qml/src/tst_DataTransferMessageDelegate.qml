@@ -41,6 +41,8 @@ ListView {
             Body: "/tmp/qml-data-transfer-test.txt"
             Id: ""
             IsEmojiOnly: false
+            OriginalBody: ""
+            ParsedOriginalBody: ""
             ReplyToBody: ""
             ReplyTo: ""
             ReplyToAuthor: ""

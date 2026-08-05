@@ -165,6 +165,22 @@ TestWrapper {
             name: "Create Sip account ui flow"
             when: windowShown
 
+            // Tracks whether this run created a SIP account that still needs
+            // tearing down. Set once account creation is confirmed, cleared
+            // once it's deleted. Used by cleanup() below so a failed compare()
+            // (which aborts the test function early) can't leave behind an
+            // orphaned account that later blocks daemon/process shutdown.
+            property bool accountPendingCleanup: false
+
+            function cleanup() {
+                if (!accountPendingCleanup)
+                    return;
+                spyAccountIsRemoved.clear();
+                AccountAdapter.deleteCurrentAccount();
+                spyAccountIsRemoved.wait();
+                accountPendingCleanup = false;
+            }
+
             function test_createSipAccountUiFlow() {
                 uut.clearSignalSpy()
 
@@ -197,6 +213,7 @@ TestWrapper {
                 // Wait until the account creation is finished
                 spyAccountIsReady.wait()
                 compare(spyAccountIsReady.count, 1)
+                accountPendingCleanup = true;
 
                 // Check if paras match with setup
                 compare(CurrentAccount.username, userName)
@@ -213,6 +230,7 @@ TestWrapper {
                 // Wait until the account removal is finished
                 spyAccountIsRemoved.wait()
                 compare(spyAccountIsRemoved.count, 1)
+                accountPendingCleanup = false;
             }
         }
     }

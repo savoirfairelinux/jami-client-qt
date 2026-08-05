@@ -44,6 +44,8 @@ TestWrapper {
                 ReplyTo: ""
                 IsEmojiOnly: false
                 IsLastSent: false
+                OriginalBody: ""
+                ParsedOriginalBody: ""
                 Body: ""
                 Id: ""
                 ConfId: ""
