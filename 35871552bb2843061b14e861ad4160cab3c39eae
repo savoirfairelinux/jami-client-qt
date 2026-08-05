@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "04a23fa5_09c54dcb",
+        "filename": "tests/unittests/currentconversation_unittest.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-08-05T15:35:22Z",
+      "side": 1,
+      "message": "Fixed in patch set 2: added ASSERT_EQ(globalEnv.lrcInstance-\u003egetCurrentConversationModel(), nullptr) to explicitly assert the precondition.",
+      "revId": "35871552bb2843061b14e861ad4160cab3c39eae",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
