@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "12d9fbcf_abf4dbe6",
+        "filename": "src/app/utilsadapter.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 923,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-08-05T14:58:06Z",
+      "side": 1,
+      "message": "[error] Line 923: 🔴 `getAccountInfo(accountId)` can still throw after the membership check if the account model changes between `getAccountList()` and this lookup, or if the two APIs become inconsistent. This removes the previous exception safety and can turn a stale-id path into a crash. Keep the pre-check to avoid the expected stale lookup warning, but also retain a narrow `catch (const std::out_of_range\u0026)` around `getAccountInfo()` and return empty for that race/inconsistency case.",
+      "revId": "e47d9c7dcf1a650121dee4252d9659266f2a5749",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
