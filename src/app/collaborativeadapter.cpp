@@ -74,13 +74,16 @@ CollaborativeAdapter::CollaborativeAdapter(LRCInstance* instance, QObject* paren
 {
     // A single channel for every document type: the payload is an opaque Y-CRDT
     // update, merged into the local replica, which then reports the change in
-    // whatever form each open editor understands.
+    // whatever form each open editor understands. An empty payload is the
+    // daemon's way of saying a closed document changed -- there is nothing to
+    // merge, only an unread marker to raise.
     connect(&ConfigurationManager::instance(),
             &ConfigurationManagerInterface::collaborativeDocumentUpdate,
             this,
             [this](const QString& accountId, const QString& convId, const QString& documentId, const QByteArray& update) {
                 markDocumentUpdated(accountId, convId, documentId);
-                mergeRemoteUpdate(accountId, convId, documentId, update);
+                if (!update.isEmpty())
+                    mergeRemoteUpdate(accountId, convId, documentId, update);
             });
     connect(&ConfigurationManager::instance(),
             &ConfigurationManagerInterface::collaborativeAwarenessChanged,
