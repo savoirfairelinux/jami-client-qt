@@ -377,7 +377,7 @@ CollaborativeAdapter::documents(const QString& convId)
     const auto docs = ConfigurationManager::instance().getCollaborativeDocuments(accountId, convId);
     QSet<QString> seen;
     for (const auto& commit : docs) {
-        const auto documentId = commit.value(QStringLiteral("uri"));
+        const auto documentId = commit.value(QStringLiteral("id"));
         if (documentId.isEmpty() || seen.contains(documentId))
             continue;
         seen.insert(documentId);
