@@ -127,6 +127,24 @@ Window {
         id: remoteCursorsModel
     }
 
+    // Carries every peer's caret along with an edit that has just arrived.
+    //
+    // A peer announces where its caret is on a timer of its own, so between its
+    // edit and its next announcement the index it last gave points at what the
+    // text used to be: its caret is drawn back where it was typing a moment ago,
+    // then jumps once the announcement catches up. Moving it with the text is
+    // what keeps it still.
+    function shiftCursors(deltaJson) {
+        if (remoteCursorsModel.count === 0)
+            return;
+        var positions = [];
+        for (var i = 0; i < remoteCursorsModel.count; ++i)
+            positions.push(remoteCursorsModel.get(i).position);
+        var moved = richBinding.transformPositions(deltaJson, positions);
+        for (var j = 0; j < remoteCursorsModel.count && j < moved.length; ++j)
+            remoteCursorsModel.setProperty(j, "position", moved[j]);
+    }
+
     // Coalesce rapid local cursor moves into a single broadcast.
     Timer {
         id: cursorBroadcast
@@ -219,6 +237,7 @@ Window {
             if (accId !== root.accountId || convId !== root.conversationId || docId !== root.documentId)
                 return;
             richBinding.applyRemoteDelta(deltaJson);
+            root.shiftCursors(deltaJson);
             root.refreshFormatState();
             // A peer may have moved or resized the selected image.
             root.dropImageSelectionUnlessHeld();
@@ -1054,8 +1073,8 @@ Window {
                             model: remoteCursorsModel
                             delegate: Item {
                                 property rect caret: {
-                                    editor.text;
-                                    editor.width;
+                                    richBinding.revision; // the text moved...
+                                    editor.width;         // ...or the editor did
                                     var p = Math.max(0, Math.min(position, editor.length));
                                     return editor.positionToRectangle(p);
                                 }

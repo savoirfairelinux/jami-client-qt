@@ -680,6 +680,50 @@ blockListType(const QTextBlock& blk)
     return 0;
 }
 
+// The kind of list @p list is, in the same 1/2 terms the characters carry.
+int
+listStyleType(const QTextList* list)
+{
+    if (!list)
+        return 0;
+    const auto style = list->format().style();
+    if (style == QTextListFormat::ListDisc)
+        return 1;
+    if (style == QTextListFormat::ListDecimal)
+        return 2;
+    return 0;
+}
+
+// Where @p index lands once @p ops have been applied, in the units the CRDT
+// counts. Deletes pull it back, inserts before it push it along; an insert at
+// the index itself pushes it too, which is what puts the caret of the peer
+// typing after what it just typed.
+int
+transformedPosition(const QJsonArray& ops, int index)
+{
+    int offset = 0;
+    for (const auto& v : ops) {
+        if (offset > index)
+            break; // the rest of the delta is past it: nothing more can move it
+        const QJsonObject op = v.toObject();
+        if (op.contains(QStringLiteral("delete"))) {
+            // A delete consumes the old document without producing anything, so
+            // it pulls the index back but leaves the offset where it was.
+            const int n = qMax(0, op.value(QStringLiteral("delete")).toInt());
+            index -= qMin(n, index - offset);
+        } else if (op.contains(QStringLiteral("retain"))) {
+            offset += qMax(0, op.value(QStringLiteral("retain")).toInt());
+        } else if (op.contains(QStringLiteral("insert"))) {
+            const QJsonValue ins = op.value(QStringLiteral("insert"));
+            // An embed is one unit, whatever it holds.
+            const int n = ins.isString() ? ins.toString().size() : 1;
+            index += n;
+            offset += n;
+        }
+    }
+    return qMax(0, index);
+}
+
 } // namespace
 
 CollabRichBinding::CollabRichBinding(QObject* parent)
@@ -724,21 +768,37 @@ CollabRichBinding::reconcileLists()
         return;
     QTextList* currentList = nullptr;
     int currentType = 0;
+    // Lists already given a run of their own in this pass. A list left over from
+    // an earlier pass may still hold blocks on both sides of a line that has
+    // since left it, and handing it to the second run would let an ordered list
+    // count straight through the gap instead of starting again.
+    QSet<QTextList*> taken;
     for (QTextBlock blk = d->begin(); blk.isValid(); blk = blk.next()) {
         const int t = blockListType(blk);
+        QTextList* blkList = blk.textList();
         if (t == 0) {
-            if (QTextList* l = blk.textList())
-                l->remove(blk);
+            if (blkList)
+                blkList->remove(blk);
             currentList = nullptr;
             currentType = 0;
         } else if (currentList && currentType == t) {
-            currentList->add(blk);
+            // Rewriting a block format reaches the editor as a change to the
+            // document, which lays out and moves its caret again. A line already
+            // in the right list is left alone so an arriving keystroke costs one
+            // change, not one per line of the document.
+            if (blkList != currentList)
+                currentList->add(blk);
+        } else if (blkList && listStyleType(blkList) == t && !taken.contains(blkList)) {
+            currentList = blkList;
+            currentType = t;
+            taken.insert(blkList);
         } else {
             QTextCursor cc(blk);
             QTextListFormat lf;
             lf.setStyle(t == 1 ? QTextListFormat::ListDisc : QTextListFormat::ListDecimal);
             currentList = cc.createList(lf);
             currentType = t;
+            taken.insert(currentList);
         }
         // QTextList::remove() stamps the list's own indent onto the block it
         // drops, to keep it where it was drawn. That is the wrong answer here:
@@ -756,9 +816,27 @@ CollabRichBinding::reconcileLists()
     }
 }
 
+QVariantList
+CollabRichBinding::transformPositions(const QString& deltaJson, const QVariantList& positions) const
+{
+    const QJsonDocument jd = QJsonDocument::fromJson(deltaJson.toUtf8());
+    if (!jd.isArray())
+        return positions;
+    // Parsed once for all of them: a caret each is what a document with a few
+    // participants has.
+    const QJsonArray ops = jd.array();
+    QVariantList moved;
+    moved.reserve(positions.size());
+    for (const auto& p : positions)
+        moved.append(transformedPosition(ops, p.toInt()));
+    return moved;
+}
+
 void
 CollabRichBinding::onContentsChange(int /*position*/, int /*charsRemoved*/, int /*charsAdded*/)
 {
+    ++revision_;
+    Q_EMIT revisionChanged();
     if (applyingRemote_)
         return;
     QTextDocument* d = doc();
@@ -893,6 +971,11 @@ CollabRichBinding::applyRemoteDelta(const QString& deltaJson)
 
     applyingRemote_ = true;
     QTextCursor c(d);
+    // One edit, not one per op and one per line the reconcile touches: the
+    // editor lays out and moves its caret on every change it is told about, and
+    // being told four times for one arriving keystroke is what makes the caret
+    // jitter on the replicas that did not type it.
+    c.beginEditBlock();
     int index = 0;
     for (const auto& v : ops) {
         const int docLen = d->characterCount() - 1; // exclude the implicit final block
@@ -957,6 +1040,7 @@ CollabRichBinding::applyRemoteDelta(const QString& deltaJson)
     // attributes just applied.
     reconcileLists();
     reconcileAlignment();
+    c.endEditBlock();
     applyingRemote_ = false;
     // Keep the shadow equal to the (converged) content so local diffs stay aligned.
     shadow_ = d->toPlainText();
