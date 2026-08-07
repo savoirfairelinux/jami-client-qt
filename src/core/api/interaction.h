@@ -48,10 +48,22 @@ enum class Type {
 };
 Q_ENUM_NS(Type)
 
+// Only the types MessageListView has a delegate for. A message type this
+// version does not know reaches us as INVALID, and must be left out rather
+// than handed to the list with no delegate to draw it.
 static inline bool
 isTypeDisplayable(const Type& type)
 {
-    return type != interaction::Type::VOTE && type != interaction::Type::UPDATE_PROFILE;
+    switch (type) {
+    case Type::TEXT:
+    case Type::CALL:
+    case Type::CONTACT:
+    case Type::INITIAL:
+    case Type::DATA_TRANSFER:
+        return true;
+    default:
+        return false;
+    }
 }
 
 static inline const QString
