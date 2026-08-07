@@ -61,6 +61,26 @@ public:
     /// Apply a remote rich-text edit (Quill delta JSON) to the document.
     Q_INVOKABLE void applyRemoteDelta(const QString& deltaJson);
 
+    /// Where each of @p positions lands once @p deltaJson has been applied.
+    ///
+    /// A peer announces its caret on a timer of its own, so between its edit
+    /// arriving and its next announcement the index it last gave no longer
+    /// points at what it pointed at: its caret would be drawn back where the
+    /// text used to be until it got round to saying otherwise. Carrying the
+    /// index along with the edit is what keeps the caret still.
+    Q_INVOKABLE QVariantList transformPositions(const QString& deltaJson, const QVariantList& positions) const;
+
+    /// Bumped on every change to the document, text or formatting alike.
+    ///
+    /// For QML bindings that have to be worked out again whenever the text
+    /// moves. TextEdit offers only `text` for that, and reading it serializes
+    /// the whole document to HTML -- on every keystroke, from anybody.
+    Q_PROPERTY(int revision READ revision NOTIFY revisionChanged)
+    int revision() const
+    {
+        return revision_;
+    }
+
     /// Toggle an inline attribute ("b"/"i"/"u"/"s") over [start, end) (UTF-16).
     Q_INVOKABLE void toggleInline(const QString& attr, int start, int end);
     /// Apply a heading level (1..3, or 0 for normal) to every line touched by
@@ -223,6 +243,7 @@ Q_SIGNALS:
 
     void viewWidthChanged();
     void clipboardHasImageChanged();
+    void revisionChanged();
 
 private:
     void onClipboardChanged();
@@ -251,6 +272,8 @@ private:
     bool applyingRemote_ {false};
 
     int viewWidth_ {0};
+    // Counts changes to the document, of any kind.
+    int revision_ {0};
     // Attachments met while applying a delta whose bytes the document does not
     // hold. Asked for once the delta is fully applied, not during.
     QSet<QString> pendingAttachments_;

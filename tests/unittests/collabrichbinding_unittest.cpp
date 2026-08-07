@@ -102,3 +102,79 @@ TEST_F(CollabRichBindingFixture, LineLeavingAListIsNotLeftIndented)
 
     EXPECT_EQ(indentOf(0), 0);
 }
+
+/*!
+ * GIVEN A peer's caret, announced at an index of the document as it then was
+ * WHEN  An edit arrives before the next announcement does
+ * THEN  The caret is carried along by it, rather than left pointing at what the
+ *       text used to be
+ */
+TEST_F(CollabRichBindingFixture, ARemoteCaretIsCarriedAlongByAnArrivingEdit)
+{
+    const QVariantList carets {0, 5, 11};
+
+    // Three characters typed at 5: everything from there on moves along.
+    EXPECT_EQ(binding->transformPositions(R"([{"retain":5},{"insert":"XYZ"}])", carets), (QVariantList {0, 8, 14}));
+
+    // Three characters taken away at 5: the caret inside them collapses onto the
+    // hole, the one after it moves back by the whole three.
+    EXPECT_EQ(binding->transformPositions(R"([{"retain":4},{"delete":3}])", carets), (QVariantList {0, 4, 8}));
+
+    // A picture is one unit however many bytes it is.
+    EXPECT_EQ(binding->transformPositions(R"([{"retain":5},{"insert":{"image":{"id":"a"}}}])", carets),
+              (QVariantList {0, 6, 12}));
+
+    // Formatting moves nothing.
+    EXPECT_EQ(binding->transformPositions(R"([{"retain":11,"attributes":{"b":true}}])", carets), carets);
+
+    // A delta that is not one leaves every caret where it was.
+    EXPECT_EQ(binding->transformPositions(QStringLiteral("not json"), carets), carets);
+}
+
+/*!
+ * GIVEN A document whose lists are already what its characters say they are
+ * WHEN  A remote edit arrives that changes none of them
+ * THEN  The editor is told about the document once, not once per operation and
+ *       once per line
+ *
+ * Every change the editor is told about is a layout and a caret moved, which is
+ * what the peers who did not type see as a flicker.
+ */
+TEST_F(CollabRichBindingFixture, AnArrivingEditIsOneChangeToTheDocument)
+{
+    binding->loadContentDelta(R"([{"insert":"one","attributes":{"list":"bullet"}},{"insert":"\n"},)"
+                              R"({"insert":"two","attributes":{"list":"bullet"}},{"insert":"\n"},)"
+                              R"({"insert":"three","attributes":{"list":"bullet"}}])");
+
+    int changes = 0;
+    QObject::connect(doc, &QTextDocument::contentsChange, [&changes](int, int, int) { ++changes; });
+    binding->applyRemoteDelta(R"([{"retain":4},{"insert":"a","attributes":{"list":"bullet"}}])");
+
+    EXPECT_EQ(changes, 1);
+    EXPECT_EQ(doc->toPlainText(), QStringLiteral("one\natwo\nthree"));
+}
+
+/*!
+ * GIVEN Two bulleted runs with an ordinary line between them
+ * WHEN  The lists are reconciled
+ * THEN  They are two lists, so an ordered one starts counting again after the
+ *       gap rather than carrying on through it
+ */
+TEST_F(CollabRichBindingFixture, ARunAfterAGapIsAListOfItsOwn)
+{
+    binding->loadContentDelta(R"([{"insert":"one","attributes":{"list":"ordered"}},{"insert":"\n"},)"
+                              R"({"insert":"break"},{"insert":"\n"},)"
+                              R"({"insert":"two","attributes":{"list":"ordered"}}])");
+
+    ASSERT_EQ(doc->blockCount(), 3);
+    QTextList* first = doc->findBlockByNumber(0).textList();
+    QTextList* second = doc->findBlockByNumber(2).textList();
+    ASSERT_TRUE(first);
+    ASSERT_TRUE(second);
+    EXPECT_NE(first, second);
+    EXPECT_FALSE(doc->findBlockByNumber(1).textList());
+
+    // ...and it stays that way when a later edit reconciles them again.
+    binding->applyRemoteDelta(R"([{"retain":13},{"insert":"!","attributes":{"list":"ordered"}}])");
+    EXPECT_NE(doc->findBlockByNumber(0).textList(), doc->findBlockByNumber(2).textList());
+}
