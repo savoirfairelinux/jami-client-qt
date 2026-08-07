@@ -35,6 +35,7 @@
 #include <QBuffer>
 #include <QUrl>
 #include <QMimeData>
+#include <QScopeGuard>
 #include <QVariantMap>
 #include <QFile>
 #include <QFileInfo>
@@ -835,8 +836,14 @@ CollabRichBinding::transformPositions(const QString& deltaJson, const QVariantLi
 void
 CollabRichBinding::onContentsChange(int /*position*/, int /*charsRemoved*/, int /*charsAdded*/)
 {
-    ++revision_;
-    Q_EMIT revisionChanged();
+    // Bumped once the change has been dealt with, whichever way this returns,
+    // and never before: a binding woken by it may go on to ask the daemon what
+    // the document now holds, and the local edit has not reached it until
+    // localDelta() has been emitted and answered.
+    const auto bump = qScopeGuard([this] {
+        ++revision_;
+        Q_EMIT revisionChanged();
+    });
     if (applyingRemote_)
         return;
     QTextDocument* d = doc();

@@ -178,3 +178,28 @@ TEST_F(CollabRichBindingFixture, ARunAfterAGapIsAListOfItsOwn)
     binding->applyRemoteDelta(R"([{"retain":13},{"insert":"!","attributes":{"list":"ordered"}}])");
     EXPECT_NE(doc->findBlockByNumber(0).textList(), doc->findBlockByNumber(2).textList());
 }
+
+/*!
+ * GIVEN A local edit
+ * WHEN  It is reported
+ * THEN  The revision is bumped after the delta has gone out, never before
+ *
+ * A binding woken by the revision may go on to ask the daemon what the
+ * document now holds, and the edit has not reached it until the delta has.
+ */
+TEST_F(CollabRichBindingFixture, TheRevisionIsBumpedAfterTheDeltaHasGoneOut)
+{
+    QStringList order;
+    QObject::connect(binding.data(), &CollabRichBinding::localDelta, [&order](const QString&) {
+        order << QStringLiteral("delta");
+    });
+    QObject::connect(binding.data(), &CollabRichBinding::revisionChanged, [&order]() {
+        order << QStringLiteral("revision");
+    });
+
+    QTextCursor c(doc);
+    c.insertText(QStringLiteral("typed"));
+
+    EXPECT_EQ(order, (QStringList {QStringLiteral("delta"), QStringLiteral("revision")}));
+    EXPECT_EQ(binding->revision(), 1);
+}

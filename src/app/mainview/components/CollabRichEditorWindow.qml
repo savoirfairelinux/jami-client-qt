@@ -53,6 +53,9 @@ Window {
     property bool previewing: false
     property string previewText: ""
 
+    // Debug builds only: shows the document as the peers exchange it.
+    property bool showingRaw: false
+
     title: (documentName !== "" ? documentName : qsTr("Editable document"))
            + (peerName !== "" ? " — " + peerName : "")
            + " — " + JamiStrings.appTitle
@@ -849,6 +852,22 @@ Window {
                         historyPanel.clearPreview();
                 }
             }
+            PushButton {
+                Layout.alignment: Qt.AlignVCenter
+                preferredSize: 26
+                imageContainerWidth: 18
+                imageContainerHeight: 18
+                source: JamiResources.code_black_24dp_svg
+                toolTipText: qsTr("Show the raw document")
+                // Debug builds only: this is the wire format, and it is of
+                // interest to whoever is chasing two replicas that disagree.
+                visible: LRCInstance.debugMode()
+                checkable: true
+                checked: root.showingRaw
+                normalColor: "transparent"
+                imageColor: JamiTheme.textColor
+                onClicked: root.showingRaw = !root.showingRaw
+            }
         }
 
         // Why an image insertion did nothing. Silence would look like a bug.
@@ -1151,6 +1170,44 @@ Window {
                             font.pointSize: root.baseFontSize
                             color: JamiTheme.faddedFontColor
                             text: root.previewText
+                            background: Rectangle {
+                                color: JamiTheme.secondaryBackgroundColor
+                                border.width: 1
+                                border.color: JamiTheme.tabbarBorderColor
+                                radius: 8
+                            }
+                        }
+                    }
+                }
+
+                // What the CRDT actually holds, as a Quill delta -- the text the
+                // peers exchange, before any of it is turned into a
+                // QTextDocument. This is where a document that looks different
+                // on two machines says which of the two is wrong.
+                Rectangle {
+                    anchors.fill: parent
+                    visible: root.showingRaw
+                    color: JamiTheme.backgroundColor
+
+                    ScrollView {
+                        anchors.fill: parent
+                        clip: true
+
+                        TextArea {
+                            padding: 10
+                            readOnly: true
+                            textFormat: TextEdit.PlainText
+                            wrapMode: TextEdit.Wrap
+                            selectByMouse: true
+                            font.family: "monospace"
+                            font.pointSize: JamiTheme.smallFontSize
+                            color: JamiTheme.textColor
+                            // Asked again after every change to the document, so
+                            // it is watched live rather than sampled when opened.
+                            text: {
+                                richBinding.revision;
+                                return root.showingRaw ? CollaborativeAdapter.contentDelta(root.accountId, root.conversationId, root.documentId) : "";
+                            }
                             background: Rectangle {
                                 color: JamiTheme.secondaryBackgroundColor
                                 border.width: 1
