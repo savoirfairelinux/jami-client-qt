@@ -58,7 +58,8 @@ for ARCH in "${ARCHS[@]}"; do
         [ "$PKG" != "media-sdk" ] && [ "$PKG" != "jack" ] &&
         [ "$PKG" != "onnx" ] && [ "$PKG" != "opencv" ] &&
         [ "$PKG" != "opencv_contrib" ] && [ "$PKG" != "uuid" ] &&
-        [ "$PKG" != "webrtc-audio-processing" ] && [ "$PKG" != "liburcu" ]; then
+        [ "$PKG" != "webrtc-audio-processing" ] && [ "$PKG" != "liburcu" ] &&
+        [ "$PKG" != "icu" ]; then
         make -j"$NPROC" ."$PKG"
       fi
     done
