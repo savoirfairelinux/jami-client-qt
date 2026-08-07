@@ -740,6 +740,19 @@ CollabRichBinding::reconcileLists()
             currentList = cc.createList(lf);
             currentType = t;
         }
+        // QTextList::remove() stamps the list's own indent onto the block it
+        // drops, to keep it where it was drawn. That is the wrong answer here:
+        // the line is briefly empty between the newline and the character typed
+        // after it, so it leaves the list and rejoins it -- but only on the
+        // replicas receiving the two as separate deltas, which is every replica
+        // except the one typing. It would come back a level deeper there and
+        // nowhere else. Nesting is not offered, so the indent is the list's
+        // alone and the block asks for none.
+        if (blk.blockFormat().indent() != 0) {
+            QTextBlockFormat bf = blk.blockFormat();
+            bf.setIndent(0);
+            QTextCursor(blk).setBlockFormat(bf);
+        }
     }
 }
 
