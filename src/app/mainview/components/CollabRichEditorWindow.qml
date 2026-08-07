@@ -503,6 +503,12 @@ Window {
         viewWidth: editor.width - editor.leftPadding - editor.rightPadding
         textDocument: editor.textDocument
         onLocalDelta: function (deltaJson) {
+            // Peers' carets are indices into the shared document, so they move
+            // for what is typed here exactly as they move for what arrives:
+            // otherwise a caret stays at an index that has meanwhile come to
+            // mean somewhere else, and slides through the text as it is typed --
+            // until that peer happens to move, or forever if it does not.
+            root.shiftCursors(deltaJson);
             CollaborativeAdapter.applyDelta(root.accountId, root.conversationId, root.documentId, deltaJson);
         }
         // The document refers to an image whose bytes are not loaded. They are
