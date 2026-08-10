@@ -54,6 +54,7 @@ RUN zypper --non-interactive install -y \
         gtk3-devel \
         libappindicator3-devel \
         sqlite3-devel \
+        python3 \
         python313-html5lib \
         qrencode-devel \
         libsndfile-devel \
