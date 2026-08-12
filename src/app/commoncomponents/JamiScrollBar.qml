@@ -38,7 +38,10 @@ ScrollBar {
     topPadding: root.orientation === Qt.Vertical ? 2 : 0
     leftPadding: root.orientation === Qt.Horizontal ? 2 : 0
     bottomPadding: 2
-    rightPadding: 2
+    // ponytail: QWindowKit's Linux resize border is fixed at 8 px; keep the handle inside it.
+    rightPadding: Qt.platform.os === "linux"
+        && root.Window.window
+        && (root.Window.window.flags & Qt.FramelessWindowHint) ? 10 : 2
 
     contentItem: Rectangle {
         id: scrollBarRect
