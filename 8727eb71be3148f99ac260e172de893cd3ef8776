@@ -16,6 +16,40 @@
       "message": "rebased \u0026 added a guard in FindLibJami.cmake to avoid errors when there are multiple `find_package` CMake calls.",
       "revId": "8727eb71be3148f99ac260e172de893cd3ef8776",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d8fc73ab_d9033f65",
+        "filename": "extras/build/cmake/modules/FindLibJami.cmake",
+        "patchSetId": 10
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-08-13T03:31:44Z",
+      "side": 1,
+      "message": "[warning] Line 17: 🟡 The module documentation says `LibJami::Headers` is defined, but the implementation never creates that target. Please either add the documented target or remove this sentence to avoid consumers relying on a non-existent target.",
+      "revId": "8727eb71be3148f99ac260e172de893cd3ef8776",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1a49b184_58453df8",
+        "filename": "src/libclient/CMakeLists.txt",
+        "patchSetId": 10
+      },
+      "lineNbr": 465,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-08-13T03:31:44Z",
+      "side": 1,
+      "message": "[error] Line 465: 🔴 `src/libclient` still appears buildable as a standalone CMake project, but this file no longer calls `find_package(LibJami)` before using `LibJami::LibJami`. Configuring this directory directly will fail because the imported target is only created by the top-level project. Please keep a local guarded lookup such as `if(NOT TARGET LibJami::LibJami) find_package(LibJami REQUIRED) endif()` before any subdirectories or link calls that use the target.",
+      "revId": "8727eb71be3148f99ac260e172de893cd3ef8776",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ],
   "submitRequirementResults": []
