@@ -46,6 +46,30 @@
       },
       "revId": "f82403c54f41ffcd0056b41294769b1d90c9e8cc",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "78f3d2ec_013b825f",
+        "filename": "src/libclient/CMakeLists.txt",
+        "patchSetId": 5
+      },
+      "lineNbr": 306,
+      "author": {
+        "id": 1143
+      },
+      "writtenOn": "2026-08-13T04:15:10Z",
+      "side": 1,
+      "message": "The current revision should have resolved that problem.",
+      "parentUuid": "b8be6e8a_ff5d7d79",
+      "range": {
+        "startLine": 306,
+        "startChar": 2,
+        "endLine": 306,
+        "endChar": 19
+      },
+      "revId": "f82403c54f41ffcd0056b41294769b1d90c9e8cc",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
