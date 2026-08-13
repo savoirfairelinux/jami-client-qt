@@ -16,6 +16,24 @@
       "message": "hello, is there anything that can be done on my side to further this patch? Thank you in advance.",
       "revId": "efc4b7212945a0fa3b95e0443c3a0c87104ac346",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "616ae12f_a41ab21a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-08-13T18:52:41Z",
+      "side": 1,
+      "message": "Hello. Thanks for the patch! Unfortunately Qt decided to change the property name to `inverted` from `invert` when releasing Qt 6.11:\n- https://doc.qt.io/qt-6.10/qml-qtqml-models-filter.html\n- https://doc.qt.io/qt-6.11/qml-qtqml-models-filter.html\n\nThe original migration from the working 3rd party implementation that preceded Qt\u0027s SortFilterProxyModel had it right with `inverted`. Our 6.10 migration was followed up with a couple corrective changes:\n- https://review.jami.net/c/jami-client-qt/+/34118\n- https://review.jami.net/c/jami-client-qt/+/34119\n\nWe discussed your patch and we will move to Qt 6.11 shortly instead of applying a max Qt version, and this change can be part of the migration. We currently pin our deployments to the minimum version of 6.10.3. I will be happy to leave this confusion in the past.",
+      "parentUuid": "bf16851f_2eeaca1c",
+      "revId": "efc4b7212945a0fa3b95e0443c3a0c87104ac346",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
