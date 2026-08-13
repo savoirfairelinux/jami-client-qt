@@ -89,6 +89,12 @@ main(int argc, char* argv[])
     if (!chromiumFlags.isEmpty())
         chromiumFlags.append(' ');
     chromiumFlags.append("--disable-web-security --disable-gpu");
+#if defined(Q_OS_MACOS)
+    // Without this, the sandboxed Developer ID build crashes when opening a web
+    // view: "bootstrap_check_in org.chromium.Chromium.MachPortRendezvousServer
+    // Permission denied (1100)".
+    chromiumFlags.append(" --single-process");
+#endif
     qputenv("QTWEBENGINE_CHROMIUM_FLAGS", chromiumFlags);
     QtWebEngineQuick::initialize();
 #endif
