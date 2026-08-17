@@ -552,6 +552,8 @@ MessageListModel::dataForItem(const item_t& item, int, int role) const
     }
     case Role::IsLastSent:
         return QVariant(item.first == lastSent_);
+    case Role::DocumentId:
+        return QVariant(item.second.commit["uri"]);
     case Role::Timestamp:
         return QVariant::fromValue(item.second.timestamp);
     case Role::Duration:
