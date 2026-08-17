@@ -552,6 +552,9 @@ set(COMMON_SOURCES
   ${APP_SRC_DIR}/utils.cpp
   ${APP_SRC_DIR}/mainapplication.cpp
   ${APP_SRC_DIR}/messagesadapter.cpp
+  ${APP_SRC_DIR}/collaborativeadapter.cpp
+  ${APP_SRC_DIR}/collabrichbinding.cpp
+  ${APP_SRC_DIR}/yrsdocument.cpp
   ${APP_SRC_DIR}/positionobject.cpp
   ${APP_SRC_DIR}/positionmanager.cpp
   ${APP_SRC_DIR}/accountadapter.cpp
@@ -630,6 +633,9 @@ set(COMMON_HEADERS
   ${APP_SRC_DIR}/mainapplication.h
   ${APP_SRC_DIR}/qrimageprovider.h
   ${APP_SRC_DIR}/messagesadapter.h
+  ${APP_SRC_DIR}/collaborativeadapter.h
+  ${APP_SRC_DIR}/collabrichbinding.h
+  ${APP_SRC_DIR}/yrsdocument.h
   ${APP_SRC_DIR}/positionobject.h
   ${APP_SRC_DIR}/positionmanager.h
   ${APP_SRC_DIR}/accountadapter.h
@@ -715,6 +721,27 @@ endif()
 
 # For libavutil/avframe.
 set(LIBJAMI_CONTRIB_DIR "${DAEMON_DIR}/contrib")
+
+# The client holds its own replica of every open collaborative document, so it
+# needs the Y-CRDT engine directly. The daemon already builds it in its contrib
+# and the client is built against that same daemon, so it is taken from there
+# rather than built a second time. The triplet directory is discovered rather
+# than spelled out, since it depends on the host and on the daemon's own build.
+file(GLOB YRS_LIB_HINTS "${LIBJAMI_CONTRIB_DIR}/*/lib")
+file(GLOB YRS_INCLUDE_HINTS "${LIBJAMI_CONTRIB_DIR}/*/include")
+find_library(YRS_LIBRARY NAMES yrs libyrs HINTS ${YRS_LIB_HINTS})
+find_path(YRS_INCLUDE_DIR libyrs.h HINTS ${YRS_INCLUDE_HINTS})
+if(NOT YRS_LIBRARY OR NOT YRS_INCLUDE_DIR)
+  message(FATAL_ERROR
+    "Y-CRDT (yrs) not found under ${LIBJAMI_CONTRIB_DIR}. "
+    "Build the daemon's contrib first: make -C ${DAEMON_DIR}/contrib/native .yrs")
+endif()
+include_directories(${YRS_INCLUDE_DIR})
+list(APPEND CLIENT_LIBS ${YRS_LIBRARY})
+if(NOT MSVC)
+  # yrs is a Rust static library: these are its own dependencies (Libs.private).
+  list(APPEND CLIENT_LIBS -ldl -lm)
+endif()
 
 find_package(Vulkan)
 if(Vulkan_FOUND)

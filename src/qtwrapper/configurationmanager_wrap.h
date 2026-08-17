@@ -199,6 +199,70 @@ public:
                                                         QString(from.c_str()),
                                                         status > 0 ? true : false);
                 }),
+            exportable_callback<ConfigurationSignal::CollaborativeDocumentUpdate>(
+                [this](const std::string& account_id,
+                       const std::string& convId,
+                       const std::string& documentId,
+                       const std::vector<uint8_t>& update) {
+                    Q_EMIT this->collaborativeDocumentUpdate(QString(account_id.c_str()),
+                                                             QString(convId.c_str()),
+                                                             QString(documentId.c_str()),
+                                                             QByteArray(reinterpret_cast<const char*>(update.data()),
+                                                                        static_cast<qsizetype>(update.size())));
+                }),
+            exportable_callback<ConfigurationSignal::CollaborativeAwarenessChanged>(
+                [this](const std::string& account_id,
+                       const std::string& convId,
+                       const std::string& documentId,
+                       const std::string& peerId,
+                       uint64_t clientId,
+                       const std::string& state) {
+                    Q_EMIT this->collaborativeAwarenessChanged(QString(account_id.c_str()),
+                                                               QString(convId.c_str()),
+                                                               QString(documentId.c_str()),
+                                                               QString(peerId.c_str()),
+                                                               clientId,
+                                                               QString::fromStdString(state));
+                }),
+            exportable_callback<ConfigurationSignal::CollaborativeParticipantLeft>([this](const std::string& account_id,
+                                                                                          const std::string& convId,
+                                                                                          const std::string& documentId,
+                                                                                          const std::string& peerId,
+                                                                                          uint64_t clientId) {
+                Q_EMIT this->collaborativeParticipantLeft(QString(account_id.c_str()),
+                                                          QString(convId.c_str()),
+                                                          QString(documentId.c_str()),
+                                                          QString(peerId.c_str()),
+                                                          clientId);
+            }),
+            exportable_callback<ConfigurationSignal::CollaborativeDocumentRenamed>([this](const std::string& account_id,
+                                                                                          const std::string& convId,
+                                                                                          const std::string& documentId,
+                                                                                          const std::string& name) {
+                Q_EMIT this->collaborativeDocumentRenamed(QString(account_id.c_str()),
+                                                          QString(convId.c_str()),
+                                                          QString(documentId.c_str()),
+                                                          QString(name.c_str()));
+            }),
+            exportable_callback<ConfigurationSignal::CollaborativeDocumentRemoved>([this](const std::string& account_id,
+                                                                                          const std::string& convId,
+                                                                                          const std::string& documentId,
+                                                                                          bool everywhere) {
+                Q_EMIT this->collaborativeDocumentRemoved(QString(account_id.c_str()),
+                                                          QString(convId.c_str()),
+                                                          QString(documentId.c_str()),
+                                                          everywhere);
+            }),
+            exportable_callback<ConfigurationSignal::CollaborativeAttachmentAdded>(
+                [this](const std::string& account_id,
+                       const std::string& convId,
+                       const std::string& documentId,
+                       const std::string& attachmentId) {
+                    Q_EMIT this->collaborativeAttachmentAdded(QString(account_id.c_str()),
+                                                              QString(convId.c_str()),
+                                                              QString(documentId.c_str()),
+                                                              QString(attachmentId.c_str()));
+                }),
             exportable_callback<ConfigurationSignal::UserSearchEnded>(
                 [this](const std::string& account_id,
                        int status,
@@ -1000,6 +1064,138 @@ public Q_SLOTS: // METHODS
         auto members = libjami::getConversationMembers(accountId.toStdString(), conversationId.toStdString());
         return convertVecMap(members);
     }
+    VectorMapStringString getCollaborativeDocuments(const QString& accountId, const QString& conversationId)
+    {
+        return convertVecMap(libjami::getCollaborativeDocuments(accountId.toStdString(), conversationId.toStdString()));
+    }
+    VectorMapStringString getCollaborativeDocumentHistory(const QString& accountId,
+                                                          const QString& conversationId,
+                                                          const QString& documentId,
+                                                          int max)
+    {
+        return convertVecMap(libjami::getCollaborativeDocumentHistory(accountId.toStdString(),
+                                                                      conversationId.toStdString(),
+                                                                      documentId.toStdString(),
+                                                                      static_cast<uint32_t>(max)));
+    }
+
+    QByteArray collaborativeDocumentStateAt(const QString& accountId,
+                                            const QString& conversationId,
+                                            const QString& documentId,
+                                            const QString& commitId)
+    {
+        const auto bytes = libjami::collaborativeDocumentStateAt(accountId.toStdString(),
+                                                                 conversationId.toStdString(),
+                                                                 documentId.toStdString(),
+                                                                 commitId.toStdString());
+        return QByteArray(reinterpret_cast<const char*>(bytes.data()), static_cast<qsizetype>(bytes.size()));
+    }
+    QString createCollaborativeDocument(const QString& accountId,
+                                        const QString& conversationId,
+                                        const QString& name,
+                                        const QString& kind)
+    {
+        return QString::fromStdString(libjami::createCollaborativeDocument(accountId.toStdString(),
+                                                                           conversationId.toStdString(),
+                                                                           name.toStdString(),
+                                                                           kind.toStdString()));
+    }
+    QByteArray openCollaborativeDocument(const QString& accountId,
+                                         const QString& conversationId,
+                                         const QString& documentId)
+    {
+        const auto bytes = libjami::openCollaborativeDocument(accountId.toStdString(),
+                                                              conversationId.toStdString(),
+                                                              documentId.toStdString());
+        return QByteArray(reinterpret_cast<const char*>(bytes.data()), static_cast<qsizetype>(bytes.size()));
+    }
+    void closeCollaborativeDocument(const QString& accountId, const QString& conversationId, const QString& documentId)
+    {
+        libjami::closeCollaborativeDocument(accountId.toStdString(),
+                                            conversationId.toStdString(),
+                                            documentId.toStdString());
+    }
+    bool removeCollaborativeDocument(const QString& accountId, const QString& conversationId, const QString& documentId)
+    {
+        return libjami::removeCollaborativeDocument(accountId.toStdString(),
+                                                    conversationId.toStdString(),
+                                                    documentId.toStdString());
+    }
+    bool removeCollaborativeDocumentLocally(const QString& accountId,
+                                            const QString& conversationId,
+                                            const QString& documentId)
+    {
+        return libjami::removeCollaborativeDocumentLocally(accountId.toStdString(),
+                                                           conversationId.toStdString(),
+                                                           documentId.toStdString());
+    }
+    void applyCollaborativeUpdate(const QString& accountId,
+                                  const QString& conversationId,
+                                  const QString& documentId,
+                                  const QByteArray& update)
+    {
+        libjami::applyCollaborativeUpdate(accountId.toStdString(),
+                                          conversationId.toStdString(),
+                                          documentId.toStdString(),
+                                          std::vector<uint8_t>(update.constBegin(), update.constEnd()));
+    }
+    QString addCollaborativeAttachment(const QString& accountId,
+                                       const QString& conversationId,
+                                       const QString& documentId,
+                                       const QByteArray& data)
+    {
+        const std::vector<uint8_t> bytes(data.constBegin(), data.constEnd());
+        return QString::fromStdString(libjami::addCollaborativeAttachment(accountId.toStdString(),
+                                                                          conversationId.toStdString(),
+                                                                          documentId.toStdString(),
+                                                                          bytes));
+    }
+    QByteArray collaborativeAttachment(const QString& accountId,
+                                       const QString& conversationId,
+                                       const QString& documentId,
+                                       const QString& attachmentId)
+    {
+        const auto bytes = libjami::collaborativeAttachment(accountId.toStdString(),
+                                                            conversationId.toStdString(),
+                                                            documentId.toStdString(),
+                                                            attachmentId.toStdString());
+        return QByteArray(reinterpret_cast<const char*>(bytes.data()), static_cast<qsizetype>(bytes.size()));
+    }
+    void setCollaborativeAwareness(const QString& accountId,
+                                   const QString& conversationId,
+                                   const QString& documentId,
+                                   const QString& state)
+    {
+        libjami::setCollaborativeAwareness(accountId.toStdString(),
+                                           conversationId.toStdString(),
+                                           documentId.toStdString(),
+                                           state.toStdString());
+    }
+    void setCollaborativeDocumentName(const QString& accountId,
+                                      const QString& conversationId,
+                                      const QString& documentId,
+                                      const QString& name)
+    {
+        libjami::setCollaborativeDocumentName(accountId.toStdString(),
+                                              conversationId.toStdString(),
+                                              documentId.toStdString(),
+                                              name.toStdString());
+    }
+    QString collaborativeDocumentName(const QString& accountId, const QString& conversationId, const QString& documentId)
+    {
+        return QString::fromStdString(libjami::collaborativeDocumentName(accountId.toStdString(),
+                                                                         conversationId.toStdString(),
+                                                                         documentId.toStdString()));
+    }
+    QByteArray collaborativeDocumentState(const QString& accountId,
+                                          const QString& conversationId,
+                                          const QString& documentId)
+    {
+        const auto bytes = libjami::collaborativeDocumentState(accountId.toStdString(),
+                                                               conversationId.toStdString(),
+                                                               documentId.toStdString());
+        return QByteArray(reinterpret_cast<const char*>(bytes.data()), static_cast<qsizetype>(bytes.size()));
+    }
     void sendMessage(const QString& accountId,
                      const QString& conversationId,
                      const QString& message,
@@ -1208,6 +1404,33 @@ Q_SIGNALS: // SIGNALS
                                 const QString& convId,
                                 const QString& contactId,
                                 bool isComposing);
+    void collaborativeDocumentUpdate(const QString& accountId,
+                                     const QString& convId,
+                                     const QString& documentId,
+                                     const QByteArray& update);
+    void collaborativeAwarenessChanged(const QString& accountId,
+                                       const QString& convId,
+                                       const QString& documentId,
+                                       const QString& peerId,
+                                       quint64 clientId,
+                                       const QString& state);
+    void collaborativeParticipantLeft(const QString& accountId,
+                                      const QString& convId,
+                                      const QString& documentId,
+                                      const QString& peerId,
+                                      quint64 clientId);
+    void collaborativeDocumentRenamed(const QString& accountId,
+                                      const QString& convId,
+                                      const QString& documentId,
+                                      const QString& name);
+    void collaborativeDocumentRemoved(const QString& accountId,
+                                      const QString& convId,
+                                      const QString& documentId,
+                                      bool everywhere);
+    void collaborativeAttachmentAdded(const QString& accountId,
+                                      const QString& convId,
+                                      const QString& documentId,
+                                      const QString& attachmentId);
     void userSearchEnded(const QString& accountId, int status, const QString& query, VectorMapStringString results);
     // swarm
     void conversationLoaded(uint32_t requestId,
