@@ -21,18 +21,18 @@
 
 using namespace lrc::api::interaction;
 
-// A peer may commit a type this version of the client has never heard of, such
-// as the collaborative document one. It must not reach the message list, which
-// has no delegate for it.
+// A peer may commit a type this version of the client has never heard of.
+// It must not reach the message list, which has no delegate for it.
 TEST(InteractionType, AMessageTypeWeDoNotKnowIsNotDisplayed)
 {
-    EXPECT_EQ(to_type("application/collab-doc+json"), Type::INVALID);
+    EXPECT_EQ(to_type("application/unknown-type+json"), Type::INVALID);
     EXPECT_FALSE(isTypeDisplayable(Type::INVALID));
 }
 
 TEST(InteractionType, TheTypesTheMessageListDrawsAreDisplayed)
 {
-    for (const auto type : {Type::TEXT, Type::CALL, Type::CONTACT, Type::INITIAL, Type::DATA_TRANSFER}) {
+    for (const auto type :
+         {Type::TEXT, Type::CALL, Type::CONTACT, Type::INITIAL, Type::DATA_TRANSFER, Type::COLLAB_DOC}) {
         EXPECT_TRUE(isTypeDisplayable(type)) << to_string(type).toStdString();
     }
 }

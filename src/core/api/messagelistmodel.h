@@ -56,6 +56,7 @@ struct Info;
     X(TotalSize) \
     X(TransferName) \
     X(TID) \
+    X(DocumentId) \
     X(FileExtension) \
     X(Readers) \
     X(IsEmojiOnly) \
