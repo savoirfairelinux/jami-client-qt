@@ -135,7 +135,9 @@ Notes:
     + `--asan` add address sanitizer on the binary
     + `--debug` enable debug symbols
     + `--testing` will build the tests for both the daemon and client
-    + `--no-libwrap` will build the DBUS version.
+    + `--no-libwrap` will build the DBUS version. The client tests are not
+      built in that case, as they mock the interface provided by `qtwrapper/`,
+      which is only used by the single process build.
 
 ## Build only the client
 

@@ -22,6 +22,34 @@
 #include "networkservicemanager_dbus_interface.h"
 #include <QDBusPendingReply>
 #include "qtwrapper/conversions_wrap.hpp"
+
+/// Adapts the generated proxy to the method names used by the client, the way
+/// qtwrapper/networkservicemanager_wrap.h does in single process mode.
+class NetworkServiceManagerInterface : public NetworkServiceManagerDBusProxy
+{
+public:
+    using NetworkServiceManagerDBusProxy::NetworkServiceManagerDBusProxy;
+
+    QDBusPendingReply<VectorMapStringString> getSharedServices(const QString& accountId)
+    {
+        return getExposedServices(accountId);
+    }
+
+    QDBusPendingReply<QString> addSharedService(const QString& accountId, MapStringString service)
+    {
+        return addExposedService(accountId, service);
+    }
+
+    QDBusPendingReply<bool> updateSharedService(const QString& accountId, MapStringString service)
+    {
+        return updateExposedService(accountId, service);
+    }
+
+    QDBusPendingReply<bool> removeSharedService(const QString& accountId, const QString& serviceId)
+    {
+        return removeExposedService(accountId, serviceId);
+    }
+};
 #endif
 #include <typedefs.h>
 
