@@ -168,7 +168,7 @@
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="45"/>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="903"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="906"/>
         <source>Jami daemon (jamid) reconnection is in progress. Please wait…</source>
         <translation>Đang tiến hành kết nối lại dịch vụ Jami (jamid). Vui lòng đợi…</translation>
     </message>
@@ -279,7 +279,7 @@
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="96"/>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="567"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="570"/>
         <source>Delete account</source>
         <translation>xóa tài khoản</translation>
     </message>
@@ -691,13 +691,13 @@
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="228"/>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1160"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1163"/>
         <source>Online</source>
         <translation>Trực tuyến</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="229"/>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1161"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1164"/>
         <source>Offline</source>
         <translation>Ngoại tuyến</translation>
     </message>
@@ -760,7 +760,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="247"/>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="249"/>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="292"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="294"/>
         <source>Shared services</source>
         <translation>Dịch vụ chia sẻ</translation>
     </message>
@@ -796,7 +796,7 @@
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="255"/>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="263"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="265"/>
         <source>Custom</source>
         <translation>Tùy chỉnh</translation>
     </message>
@@ -827,1319 +827,1334 @@
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="261"/>
+        <source>Use local port as preferred port on peers</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="262"/>
+        <source>Suggest a fixed port for peers. If busy, Jami uses a random port.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="263"/>
         <source>URI scheme</source>
         <translation>Lược đồ URI</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="262"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="264"/>
         <source>Raw TCP</source>
         <translation>TCP thô</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="264"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="266"/>
         <source>URI scheme (optional)</source>
         <translation>Lược đồ URI (tùy chọn)</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="265"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="267"/>
         <source>Accessible by</source>
         <translation>Có thể truy cập bởi</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="266"/>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="278"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="268"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="280"/>
         <source>Contacts</source>
         <translation>Liên hệ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="267"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="269"/>
         <source>Anyone (public)</source>
         <translation>Bất kỳ ai (công khai)</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="268"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="270"/>
         <source>Specific contacts only</source>
         <translation>Chỉ các liên hệ cụ thể</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="269"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="271"/>
         <source>Allowed contact URIs (comma-separated)</source>
         <translation>URI liên hệ được phép (phân tách bằng dấu phẩy)</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="270"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="272"/>
         <source>Enabled</source>
         <translation>Đã bật</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="272"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="274"/>
         <source>Local endpoint: %1</source>
         <translation>Điểm cuối cục bộ: %1</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="273"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="275"/>
         <source>Directory: %1</source>
         <translation>Thư mục: %1</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="274"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="276"/>
         <source>Disabled</source>
         <translation>Khối khuyết tật</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="275"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="277"/>
         <source>Open %1</source>
         <translation>Mở %1</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="276"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="278"/>
         <source>Copy %1</source>
         <translation>Sao chép %1</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="277"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="279"/>
         <source>Public</source>
         <translation>Công khai</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="279"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="281"/>
         <source>Specific</source>
         <translation>Cụ thể</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="280"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="282"/>
         <source>Are you sure you want to delete this shared service?</source>
         <translation>Bạn có chắc chắn muốn xóa dịch vụ chia sẻ này không?</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="281"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="283"/>
         <source>Add website</source>
         <translation>Thêm trang web</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="282"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="284"/>
         <source>Custom service</source>
         <translation>Dịch vụ tùy chỉnh</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="283"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="285"/>
         <source>What&apos;s this?</source>
         <translation>Đây là gì?</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="284"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="286"/>
         <source>Enter the URI scheme to use when accessing the service (e.g. http, https, etc…)</source>
         <translation>Nhập lược đồ URI sẽ dùng khi truy cập dịch vụ (ví dụ: http, https, v.v.)</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="286"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="288"/>
         <source>Disconnect</source>
         <translation>Ngắt kết nối</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="287"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="289"/>
         <source>Open in external browser</source>
         <translation>Mở trong trình duyệt bên ngoài</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="288"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="290"/>
         <source>Device unavailable</source>
         <translation>Thiết bị không khả dụng</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="289"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="291"/>
         <source>Connection failed</source>
         <translation>Kết nối thất bại</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="293"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="295"/>
         <source>This contact does not expose any service to you.</source>
         <translation>Liên hệ này không hiển thị bất kỳ dịch vụ nào cho bạn.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="294"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="296"/>
         <source>No devices found for this contact. They may be offline.</source>
         <translation>Không tìm thấy thiết bị nào cho liên hệ này. Họ có thể đang ngoại tuyến.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="295"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="297"/>
         <source>Could not reach any of this contact&apos;s devices.</source>
         <translation>Không thể tiếp cận bất kỳ thiết bị nào của liên hệ này.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="296"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="298"/>
         <source>This contact&apos;s device did not respond in time.</source>
         <translation>Thiết bị của liên hệ này không phản hồi kịp thời.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="297"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="299"/>
         <source>Service discovery is unavailable on this account.</source>
         <translation>Khám phá dịch vụ không khả dụng trên tài khoản này.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="298"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="300"/>
         <source>Refresh</source>
         <translation>Làm mới</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="299"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="301"/>
         <source>Open local tunnel</source>
         <translation>Mở đường hầm cục bộ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="300"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="302"/>
         <source>Stop</source>
         <translation>Dừng</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="301"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="303"/>
         <source>Reachable at %1</source>
         <translation>Có thể truy cập tại %1</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="304"/>
+        <source>preferred port busy</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="307"/>
         <source>Audio</source>
         <translation>Âm thanh</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="305"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="308"/>
         <source>Notifications</source>
         <translation>Thông báo</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="306"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="309"/>
         <source>Application</source>
         <translation>Ứng dụng</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="307"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="310"/>
         <source>Language</source>
         <translation>Ngôn ngữ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="308"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="311"/>
         <source>Devices</source>
         <translation>Thiết bị</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="309"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="312"/>
         <source>Microphone</source>
         <translation>Micrô</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="310"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="313"/>
         <source>Select audio input device</source>
         <translation>Chọn thiết bị nhập âm thanh</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="311"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="314"/>
         <source>Output device</source>
         <translation>Thiết bị phát</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="312"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="315"/>
         <source>Select audio output device</source>
         <translation>Chọn thiết bị phát âm</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="313"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="316"/>
         <source>Ringtone device</source>
         <translation>Thiết bị âm thanh</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="314"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="317"/>
         <source>Select ringtone output device</source>
         <translation>Chọn thiết bị phát âm âm</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="315"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="318"/>
         <source>Audio manager</source>
         <translation>Bộ quản lý âm thanh</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="317"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="320"/>
         <source>Noise reduction</source>
         <translation>Giảm nhiễu</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="318"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="321"/>
         <source>Echo suppression</source>
         <translation>Khử tiếng vọng</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="319"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="322"/>
         <source>Voice activity detection</source>
         <translation>Phát hiện hoạt động giọng nói</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="322"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="325"/>
         <source>Video</source>
         <translation>Video</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="323"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="326"/>
         <source>Select video device</source>
         <translation>Chọn thiết bị video</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="324"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="327"/>
         <source>Device</source>
         <translation>Thiết bị</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="325"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="328"/>
         <source>Resolution</source>
         <translation>Nghị quyết</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="326"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="329"/>
         <source>Select video resolution</source>
         <translation>Chọn độ phân giải video</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="327"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="330"/>
         <source>Frames per second</source>
         <translation>Phong khung/ giây</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="328"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="331"/>
         <source>Select video frame rate (frames per second)</source>
         <translation>Chọn tốc độ khung hình video (phần khung hình mỗi giây)</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="330"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="333"/>
         <source>Conference resolution</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="331"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="334"/>
         <source>Group calls and conferences</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="334"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="337"/>
         <source>Select screen sharing frame rate (frames per second)</source>
         <translation>Chọn tốc độ khung hình chia sẻ màn hình (khung hình trên giây)</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="340"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="343"/>
         <source>Back up account here</source>
         <translation>Lưu trữ tài khoản ở đây</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="341"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="344"/>
         <source>Back up account</source>
         <translation>Tài khoản sao lưu</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="352"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="355"/>
         <source>%1 is recording</source>
         <translation>%1 đang ghi âm</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="353"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="356"/>
         <source>%1 are recording</source>
         <translation>%1 đang ghi âm</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="393"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="396"/>
         <source>Delete conversation</source>
         <translation>Xóa cuộc trò chuyện</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="419"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="422"/>
         <source>Share audio</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="421"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="424"/>
         <source>Sharing options</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="425"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="428"/>
         <source>Unavailable</source>
         <translation>Không có</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="447"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="450"/>
         <source>Call error</source>
         <translation>Lỗi cuộc gọi</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="448"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="451"/>
         <source>An error occured during the call. %1</source>
         <translation>Đã xảy ra lỗi trong cuộc gọi. %1</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="449"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="452"/>
         <source>The request was invalid or malformed.</source>
         <translation>Yêu cầu không hợp lệ hoặc không đúng định dạng.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="450"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="453"/>
         <source>Authentication is required to complete this call.</source>
         <translation>Cần xác thực để hoàn tất cuộc gọi này.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="451"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="454"/>
         <source>You don&apos;t have permission to make this call.</source>
         <translation>Bạn không có quyền thực hiện cuộc gọi này.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="452"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="455"/>
         <source>Proxy authentication credentials are required.</source>
         <translation>Cần thông tin xác thực của máy chủ proxy.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="453"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="456"/>
         <source>Please ensure that both you and your contact have a common codec enabled.</source>
         <translation>Hãy đảm bảo cả bạn và liên hệ của bạn đều đã bật một codec chung.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="454"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="457"/>
         <source>How do I change my codecs?</source>
         <translation>Làm cách nào để thay đổi codec của tôi?</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="455"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="458"/>
         <source>&lt;br&gt;&lt;b&gt;Settings &gt; Account &gt; Advanced settings &gt; Video Codecs / Audio Codecs.&lt;/b&gt;</source>
         <translation>&lt;br&gt;&lt;b&gt;Cài đặt &gt; Tài khoản &gt; Cài đặt nâng cao &gt; Codec video / Codec âm thanh.&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="463"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="466"/>
         <source>Turn off sharing</source>
         <translation>Thiết lập chia sẻ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="464"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="467"/>
         <source>Stop location sharing in this conversation (%1)</source>
         <translation>Dừng chia sẻ vị trí trong cuộc trò chuyện này (%1)</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="485"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="488"/>
         <source>Confirm Navigation</source>
         <translation>Xác nhận điều hướng</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="486"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="489"/>
         <source>You are about to navigate to an external link. Do you want to proceed?</source>
         <translation>Bạn sắp điều hướng đến một liên kết bên ngoài. Bạn có muốn tiếp tục không?</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="487"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="490"/>
         <source>Open external link?</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="490"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="493"/>
         <source>Hide chat</source>
         <translation>Cẩn trốn trò chuyện</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="499"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="502"/>
         <source>Open in new window</source>
         <translation>Mở trong cửa sổ mới</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="528"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="531"/>
         <source>You can choose a username to help others more easily find and reach you on Jami.</source>
         <translation>Bạn có thể chọn một tên người dùng để giúp người khác dễ dàng tìm và tiếp cận bạn trên Jami.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="545"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="548"/>
         <source>Your account will be created and stored locally.</source>
         <translation>Tài khoản của bạn sẽ được tạo và lưu trữ tại địa phương.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="546"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="549"/>
         <source>Choosing a username is recommended, and a chosen username CANNOT be changed later.</source>
         <translation>Chọn tên người dùng được khuyến cáo, và tên người dùng được chọn KHÔNG được thay đổi sau đó.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="557"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="560"/>
         <source>TLS</source>
         <translation>TLS</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="558"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="561"/>
         <source>UDP</source>
         <translation>UDP</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="591"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="594"/>
         <source>Please note that if you lose your password, it CANNOT be recovered!</source>
         <translation>Xin lưu ý rằng nếu bạn mất mật khẩu, nó KHÔNG được phục hồi!</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="630"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="633"/>
         <source>Dark</source>
         <translation>Đen</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="631"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="634"/>
         <source>Light</source>
         <translation>Ánh sáng</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="636"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="639"/>
         <source>Use native window frame (requires restart)</source>
         <translation>Sử dụng khung cửa sổ gốc (yêu cầu khởi động lại)</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="640"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="643"/>
         <source>Include local video in recording</source>
         <translation>Bao gồm video địa phương trong ghi âm</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="641"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="644"/>
         <source>Default settings</source>
         <translation>Cài đặt mặc định</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="642"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="645"/>
         <source>Enable local API server</source>
         <translation>Bật máy chủ API cục bộ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="643"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="646"/>
         <source>Start a local HTTP server that external applications can use to interact with Jami</source>
         <translation>Khởi động một máy chủ HTTP cục bộ mà các ứng dụng bên ngoài có thể sử dụng để tương tác với Jami</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="644"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="647"/>
         <source>Local API server</source>
         <translation>Máy chủ API cục bộ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="645"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="648"/>
         <source>API access is managed per account</source>
         <translation>Quyền truy cập API được quản lý theo từng tài khoản</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="646"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="649"/>
         <source>Configure the local server here, then open App access in the current account settings to create and revoke tokens.</source>
         <translation>Định cấu hình máy chủ cục bộ tại đây, sau đó mở Truy cập ứng dụng trong cài đặt tài khoản hiện tại để tạo và thu hồi mã thông báo.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="647"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="650"/>
         <source>Open App access</source>
         <translation>Mở Truy cập ứng dụng</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="648"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="651"/>
         <source>Server port</source>
         <translation>Cổng máy chủ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="649"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="652"/>
         <source>Server running on port %1</source>
         <translation>Máy chủ đang chạy trên cổng %1</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="650"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="653"/>
         <source>Server stopped</source>
         <translation>Máy chủ đã dừng</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="679"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="682"/>
         <source>Delete file from device</source>
         <translation>Xóa tệp khỏi thiết bị</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="687"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="690"/>
         <source>A new version of the Jami application is available. Do you want to update now? To continue, click Update.</source>
         <translation>Đã có phiên bản mới của ứng dụng Jami. Bạn có muốn cập nhật ngay bây giờ không? Để tiếp tục, hãy nhấn Cập nhật.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="688"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="691"/>
         <source>The application is up to date.</source>
         <translation>Ứng dụng đã được cập nhật.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="689"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="692"/>
         <source>An error occurred while checking for updates.</source>
         <translation>Đã xảy ra lỗi khi kiểm tra cập nhật.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="690"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="693"/>
         <source>A network error occurred while checking for updates.</source>
         <translation>Đã xảy ra lỗi mạng khi kiểm tra cập nhật.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="746"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="749"/>
         <source>Enter account password</source>
         <translation>Nhập mật khẩu tài khoản</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="749"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="752"/>
         <source>Link new device</source>
         <translation>Kết nối thiết bị mới</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="755"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="758"/>
         <source>The account was imported successfully.</source>
         <translation>Tài khoản đã được nhập thành công.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="760"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="763"/>
         <source>No video available, please check your devices.</source>
         <translation>Không có video khả dụng, vui lòng kiểm tra thiết bị của bạn.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="763"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="766"/>
         <source>Enter password</source>
         <translation>Nhập mật khẩu</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="765"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="768"/>
         <source>Enter account password to confirm the removal of this device</source>
         <translation>Nhập mật khẩu tài khoản để xác nhận việc gỡ bỏ thiết bị này</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="790"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="793"/>
         <source>There are no extensions for the platform to display in the Jami Extension Store. Please try again later.</source>
         <translation>Không có tiện ích mở rộng nào cho nền tảng này để hiển thị trong Cửa hàng Tiện ích mở rộng Jami. Vui lòng thử lại sau.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="912"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="915"/>
         <source>Discard and restart</source>
         <translation>Hủy bỏ và khởi động lại</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="914"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="917"/>
         <source>Show less</source>
         <translation>Cho thấy ít hơn</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="916"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="919"/>
         <source>Show preview</source>
         <translation>Hiển thị bản xem trước</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="917"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="920"/>
         <source>Continue editing</source>
         <translation>Tiếp tục chỉnh sửa</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="920"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="923"/>
         <source>Strikethrough</source>
         <translation>Gạch ngang</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="926"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="929"/>
         <source>Unordered list</source>
         <translation>Danh sách không có thứ tự</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="927"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="930"/>
         <source>Ordered list</source>
         <translation>Danh sách có thứ tự</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="943"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="946"/>
         <source>Show original</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="944"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="947"/>
         <source>Show modified</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="945"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="948"/>
         <source>Modified by extension</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="949"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="952"/>
         <source>Call started</source>
         <translation>Đã bắt đầu cuộc gọi</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="953"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="956"/>
         <source>Select this device</source>
         <translation>Chọn thiết bị này</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="954"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="957"/>
         <source>Select device</source>
         <translation>Chọn thiết bị</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="959"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="962"/>
         <source>Show local video</source>
         <translation>Hiển thị video cục bộ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="960"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="963"/>
         <source>Hide local video</source>
         <translation>Ẩn video cục bộ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1015"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1018"/>
         <source>Copy fingerprint</source>
         <translation>Sao chép dấu vân tay</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1016"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1019"/>
         <source>Copy username</source>
         <translation>Sao chép tên người dùng</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1027"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1030"/>
         <source>Appearance</source>
         <translation>Nhìn hình</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1044"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1047"/>
         <source>Background image</source>
         <translation>Hình nền</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1045"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1048"/>
         <source>Select background image</source>
         <translation>Chọn ảnh nền</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1046"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1049"/>
         <source>Default</source>
         <translation>Mặc định</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1051"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1054"/>
         <source>Free and private sharing. &lt;a href=&quot;https://jami.net/donate/&quot;&gt;Donate&lt;/a&gt; to expand it.</source>
         <translation>Chia sẻ tự do và riêng tư. &lt;a href=&quot;https://jami.net/donate/&quot;&gt;Quyên góp&lt;/a&gt; để mở rộng nó.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1052"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1055"/>
         <source>Donate</source>
         <translation>Ủng hộ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1054"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1057"/>
         <source>Not now</source>
         <translation>Lúc khác</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1055"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1058"/>
         <source>Enable donation campaign</source>
         <translation>Bật chiến dịch quyên góp</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1058"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1061"/>
         <source>Enter</source>
         <translation>Enter</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1059"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1062"/>
         <source>Shift+Enter</source>
         <translation>Shift+Enter</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1073"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1076"/>
         <source>Remote: %1</source>
         <translation>Từ xa: %1</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1074"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1077"/>
         <source>View</source>
         <translation>Xem</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1075"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1078"/>
         <source>Swarm connectivity</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1076"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1079"/>
         <source>Connection Time</source>
         <translation>Thời gian kết nối</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1077"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1080"/>
         <source>Searched contact</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1078"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1081"/>
         <source>No channels</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1081"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1084"/>
         <source>Check spelling while typing</source>
         <translation>Kiểm tra chính tả khi gõ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1083"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1086"/>
         <source>Text language</source>
         <translation>Ngôn ngữ văn bản</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1127"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1130"/>
         <source>Use arrows to switch between available accounts</source>
         <translation>Dùng các phím mũi tên để chuyển đổi giữa các tài khoản khả dụng</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1152"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1155"/>
         <source>Conversation list</source>
         <translation>Danh sách cuộc trò chuyện</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1153"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1156"/>
         <source>Use arrow keys to navigate through conversations.</source>
         <translation>Dùng các phím mũi tên để điều hướng qua các cuộc trò chuyện.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1154"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1157"/>
         <source>%L1 unread message.</source>
         <translation>%L1 tin nhắn chưa đọc.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1155"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1158"/>
         <source>%L1 unread messages.</source>
         <translation>%L1 tin nhắn chưa đọc.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1156"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1159"/>
         <source>Last message was %1.</source>
         <translation>Tin nhắn cuối cùng là %1.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1157"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1160"/>
         <source>Message body %1.</source>
         <translation>Nội dung tin nhắn %1.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1158"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1161"/>
         <source>Search for a conversation or a contact</source>
         <translation>Tìm kiếm cuộc trò chuyện hoặc liên hệ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1159"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1162"/>
         <source>Status %1</source>
         <translation>Trạng thái %1</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1162"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1165"/>
         <source>At least one person is online</source>
         <translation>Ít nhất một người đang trực tuyến</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1163"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1166"/>
         <source>Everyone is offline</source>
         <translation>Mọi người đều ngoại tuyến</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1164"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1167"/>
         <source>You and %1 are sharing locations with each other</source>
         <translation>Bạn và %1 đang chia sẻ vị trí cho nhau</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1165"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1168"/>
         <source>%1 is currently sharing their location</source>
         <translation>%1 hiện đang chia sẻ vị trí của họ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1166"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1169"/>
         <source>You are sharing your location to %1</source>
         <translation>Bạn đang chia sẻ vị trí của mình với %1</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1167"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1170"/>
         <source>Choose a profile picture</source>
         <translation>Chọn ảnh hồ sơ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1061"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1064"/>
         <source>Text formatting</source>
         <translation>Định dạng văn bản</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="431"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="434"/>
         <source>%1 saved to %2</source>
         <translation>%1 đã lưu vào %2</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="437"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="440"/>
         <source>Call ID</source>
         <translation>ID cuộc gọi</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="443"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="446"/>
         <source>Renderer ID</source>
         <translation>ID trình kết xuất</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="496"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="499"/>
         <source>%1 has deleted the message.</source>
         <translation>%1 đã xóa tin nhắn.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="497"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="500"/>
         <source>%1 has deleted the media.</source>
         <translation>%1 đã xóa phương tiện.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="517"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="520"/>
         <source>Enter the management server URL</source>
         <translation>Nhập URL máy chủ quản lý</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="518"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="521"/>
         <source>Management server URL</source>
         <translation>Quản lý URL máy chủ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="519"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="522"/>
         <source>Enter management server credentials</source>
         <translation>Nhập thông tin xác thực máy chủ quản lý</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="529"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="532"/>
         <source>Choose rendezvous point name</source>
         <translation>Chọn tên điểm hẹn</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="547"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="550"/>
         <source>Protecting the account with a password is optional, and if the password is lost it CANNOT be recovered later.</source>
         <translation>Bảo vệ tài khoản bằng mật khẩu là tùy chọn, và nếu mất mật khẩu thì KHÔNG THỂ khôi phục lại sau này.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="580"/>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="581"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="583"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="584"/>
         <source>Set password</source>
         <translation>Đặt mật khẩu</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="583"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="586"/>
         <source>Back up the account to a .jac file</source>
         <translation>Sao lưu tài khoản vào tệp .jac</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="587"/>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="589"/>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1023"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="590"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="592"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1026"/>
         <source>Set account password</source>
         <translation>Đặt mật khẩu tài khoản</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="592"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="595"/>
         <source>Enter nickname, surname…</source>
         <translation>Nhập biệt danh, họ…</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="792"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="795"/>
         <source>Installation error</source>
         <translation>Lỗi cài đặt</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="793"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="796"/>
         <source>An error occurred while installing the extension.</source>
         <translation>Đã xảy ra lỗi khi cài đặt tiện ích mở rộng.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="796"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="799"/>
         <source>Reset preferences</source>
         <translation>Đặt lại tùy chọn</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="797"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="800"/>
         <source>Select extension to install</source>
         <translation>Chọn tiện ích mở rộng để cài đặt</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="798"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="801"/>
         <source>Uninstall extension</source>
         <translation>Gỡ cài đặt tiện ích mở rộng</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="799"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="802"/>
         <source>Do you want to reset the preferences for the %1 extension? To continue, click Reset.</source>
         <translation>Bạn có muốn đặt lại tùy chọn cho tiện ích mở rộng %1 không? Để tiếp tục, hãy nhấn Đặt lại.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="800"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="803"/>
         <source>Do you want to uninstall the %1 extension? To continue, click Uninstall.</source>
         <translation>Bạn có muốn gỡ cài đặt tiện ích mở rộng %1 không? Để tiếp tục, hãy nhấn Gỡ cài đặt.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="801"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="804"/>
         <source>Go back to extensions list</source>
         <translation>Quay lại danh sách tiện ích mở rộng</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="802"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="805"/>
         <source>Select file</source>
         <translation>Chọn tệp</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="805"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="808"/>
         <source>Extension files (*.jpl)</source>
         <translation>Tệp tiện ích mở rộng (*.jpl)</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="810"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="813"/>
         <source>Choose extension</source>
         <translation>Chọn tiện ích mở rộng</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="825"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="828"/>
         <source>Select screen to share</source>
         <translation>Chọn màn hình để chia sẻ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="826"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="829"/>
         <source>Select window to share</source>
         <translation>Chọn cửa sổ để chia sẻ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="827"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="830"/>
         <source>All screens</source>
         <translation>Tất cả màn hình</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="846"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="849"/>
         <source>An error occurred while creating the account. Check credentials and try again.</source>
         <translation>Đã xảy ra lỗi khi tạo tài khoản. Hãy kiểm tra thông tin xác thực và thử lại.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="858"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="861"/>
         <source>Clear text</source>
         <translation>Xóa văn bản</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="860"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="863"/>
         <source>Search results</source>
         <translation>Kết quả tìm kiếm</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="863"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="866"/>
         <source>Decline invitation</source>
         <translation>Từ chối lời mời</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="864"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="867"/>
         <source>Accept invitation</source>
         <translation>Chấp nhận lời mời</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="870"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="873"/>
         <source>OK</source>
         <translation>Được rồi</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="877"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="880"/>
         <source>Leave</source>
         <translation>Đi đi</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="879"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="882"/>
         <source>Unblock</source>
         <translation>Tháo khóa</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="887"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="890"/>
         <source>Mute participant</source>
         <translation>Tắt tiếng người tham gia</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="888"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="891"/>
         <source>Unmute participant</source>
         <translation>Bật tiếng người tham gia</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="44"/>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="904"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="907"/>
         <source>An error occurred while reconnecting to the Jami daemon (jamid).
 The application will now exit.</source>
         <translation>Đã xảy ra lỗi khi kết nối lại với dịch vụ Jami (jamid).
 Ứng dụng sẽ thoát ngay bây giờ.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="511"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="514"/>
         <source>%1 is typing…</source>
         <translation>%1 đang gõ…</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="512"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="515"/>
         <source>%1 are typing…</source>
         <translation>%1 đang gõ…</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="514"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="517"/>
         <source>%1 and %2</source>
         <translation>%1 và %2</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="535"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="538"/>
         <source>Do you want to create a Jami account without a username?
 If yes, only a randomly generated 40-character identifier will be assigned to the account.</source>
         <translation>Bạn có muốn tạo tài khoản Jami mà không có tên người dùng không?
 Nếu có, chỉ một mã định danh 40 ký tự được tạo ngẫu nhiên sẽ được gán cho tài khoản.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="610"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="613"/>
         <source>A network error occurred while linking the device. Please try again later.</source>
         <translation>Đã xảy ra lỗi mạng khi liên kết thiết bị. Vui lòng thử lại sau.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="619"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="622"/>
         <source>If the account has not been backed up or added to another device, the account and registered username will be IRREVOCABLY LOST.</source>
         <translation>Nếu tài khoản chưa được sao lưu hoặc thêm vào thiết bị khác, tài khoản và tên người dùng đã đăng ký sẽ BỊ MẤT VĨNH VIỄN.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="657"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="660"/>
         <source>Web link previews</source>
         <translation>Xem trước kết nối web</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="667"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="670"/>
         <source>Accept transfer limit (MB)</source>
         <translation>Giới hạn chấp nhận truyền (MB)</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="933"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="936"/>
         <source>Don&apos;t send</source>
         <translation>Không gửi</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="947"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="950"/>
         <source>Join with audio</source>
         <translation>Tham gia bằng âm thanh</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="948"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="951"/>
         <source>Join with video</source>
         <translation>Tham gia bằng video</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="951"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="954"/>
         <source>Current host for this group conversation seems unreachable. Do you want to host the call?</source>
         <translation>Máy chủ hiện tại cho cuộc trò chuyện nhóm này có vẻ không thể truy cập được. Bạn có muốn làm máy chủ cho cuộc gọi không?</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="952"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="955"/>
         <source>Select dedicated device for hosting future calls in this group conversation. If not set, the host will be the device starting a call.</source>
         <translation>Chọn thiết bị chuyên dụng để làm máy chủ cho các cuộc gọi tương lai trong cuộc trò chuyện nhóm này. Nếu không đặt, máy chủ sẽ là thiết bị bắt đầu cuộc gọi.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="963"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="966"/>
         <source>%1 sent you a conversation invitation.</source>
         <translation>%1 đã gửi cho bạn một lời mời trò chuyện.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="964"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="967"/>
         <source>Hello,
 Do you want to join the conversation?</source>
         <translation>Xin chào,
 Bạn có muốn tham gia cuộc trò chuyện không?</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="965"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="968"/>
         <source>You have accepted
 the conversation invitation.</source>
         <translation>Bạn đã chấp nhận
 lời mời trò chuyện.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="966"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="969"/>
         <source>Waiting for %1
 to connect to synchronize the conversation…</source>
         <translation>Đang đợi %1
 kết nối để đồng bộ hóa cuộc trò chuyện…</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="971"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="974"/>
         <source>Group name</source>
         <translation>Tên nhóm</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="972"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="975"/>
         <source>Contact name</source>
         <translation>Tên liên hệ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="973"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="976"/>
         <source>Add description</source>
         <translation>Thêm mô tả</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="981"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="984"/>
         <source>Choose color</source>
         <translation>Chọn màu</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="982"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="985"/>
         <source>Color</source>
         <translation>Màu</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="976"/>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="986"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="979"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="989"/>
         <source>Conversation type</source>
         <translation>Loại hội thoại</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="991"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="994"/>
         <source>Block member</source>
         <translation>Chặn thành viên</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="992"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="995"/>
         <source>Unblock member</source>
         <translation>Bỏ chặn thành viên</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1053"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1056"/>
         <source>If you enjoy using Jami and believe in our mission, do you want to make a donation?</source>
         <translation>Nếu bạn thích sử dụng Jami và tin vào sứ mệnh của chúng tôi, bạn có muốn quyên góp không?</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1064"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1067"/>
         <source>Connected</source>
         <translation>Đã kết nối</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1065"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1068"/>
         <source>Connecting TLS</source>
         <translation>Đang kết nối TLS</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1066"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1069"/>
         <source>Connecting ICE</source>
         <translation>Đang kết nối ICE</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1067"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1070"/>
         <source>Connecting</source>
         <translation>Kết nối</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1068"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1071"/>
         <source>Waiting</source>
         <translation>Đang đợi</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1069"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1072"/>
         <source>Contact</source>
         <translation>Liên hệ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1070"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1073"/>
         <source>Connection</source>
         <translation>Kết nối</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1071"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1074"/>
         <source>Channels</source>
         <translation>Kênh</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1072"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1075"/>
         <source>Copy all data</source>
         <translation>Sao chép tất cả dữ liệu</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="707"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="710"/>
         <source>Save recordings to</source>
         <translation>- Cung cấp</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="708"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="711"/>
         <source>Save screenshots to</source>
         <translation>Lưu trữ ảnh chụp màn hình</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="852"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="855"/>
         <source>Share freely and privately with Jami</source>
         <translation>Chia sẻ tự do và riêng tư với Jami</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="882"/>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="899"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="885"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="902"/>
         <source>Add</source>
         <translation>Thêm thêm</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="908"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="911"/>
         <source>more emojis</source>
         <translation>nhiều emoji hơn</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="934"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="937"/>
         <source>Reply to</source>
         <translation>Trả lời</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="935"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="938"/>
         <source>In reply to</source>
         <translation>Trả lời</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="938"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="941"/>
         <source>Reply</source>
         <translation>Trả lời</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="623"/>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="941"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="626"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="944"/>
         <source>Edit</source>
         <translation>Đổi chỉnh</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="942"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="945"/>
         <source>Edited</source>
         <translation>Được biên tập</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="946"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="949"/>
         <source>Join call</source>
         <translation>Tham gia cuộc gọi</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="950"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="953"/>
         <source>A call is in progress. Do you want to join the call?</source>
         <translation>Có cuộc gọi đang diễn ra, anh có muốn tham gia cuộc gọi không?</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="955"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="958"/>
         <source>Remove current device</source>
         <translation>Tắt thiết bị hiện tại</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="956"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="959"/>
         <source>Host only this call</source>
         <translation>Chỉ tổ chức cuộc gọi này</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="957"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="960"/>
         <source>Host this call</source>
         <translation>Cụ thể cuộc gọi này</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="958"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="961"/>
         <source>Make me the default host for future calls</source>
         <translation>Làm cho tôi là chủ chủ mặc định cho các cuộc gọi trong tương lai</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="978"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="981"/>
         <source>Mute conversation</source>
         <translation>Cuộc trò chuyện câm lặng</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="983"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="986"/>
         <source>Default host (calls)</source>
         <translation>Host mặc định (call)</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="987"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="990"/>
         <source>None</source>
         <translation>Không có</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1000"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1003"/>
         <source>Tip</source>
         <translation>Tiền</translation>
     </message>
@@ -2174,58 +2189,58 @@ kết nối để đồng bộ hóa cuộc trò chuyện…</translation>
         <translation>Thiết lập OpenDHT</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="332"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="335"/>
         <source>Mirror local video</source>
         <translation>Video địa phương gương</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="338"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="341"/>
         <source>Why should I back-up this account?</source>
         <translation>Tại sao tôi phải sao lưu tài khoản này?</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="342"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="345"/>
         <source>Success</source>
         <translation>Thành công</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="343"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="346"/>
         <source>Error</source>
         <translation>Trận lỗi</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="345"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="348"/>
         <source>All files (*)</source>
         <translation>Tất cả các tệp (*)</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="348"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="351"/>
         <source>name</source>
         <translation>Tên</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="349"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="352"/>
         <source>Identifier</source>
         <translation>Định dạng</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="356"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="359"/>
         <source>Pause call</source>
         <translation>Tiếng gọi tạm dừng</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="357"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="360"/>
         <source>Resume call</source>
         <translation>Đặt lại cuộc gọi</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="362"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="365"/>
         <source>Details</source>
         <translation>Chi tiết</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="205"/>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="363"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="366"/>
         <source>Chat</source>
         <translation>Chuyện trò chuyện</translation>
     </message>
@@ -2261,113 +2276,113 @@ kết nối để đồng bộ hóa cuộc trò chuyện…</translation>
         <translation>Thiết lập nâng cao</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="316"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="319"/>
         <source>Sound test</source>
         <translation>Kiểm tra âm thanh</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="333"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="336"/>
         <source>Screen sharing</source>
         <translation>Chia sẻ màn hình</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="339"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="342"/>
         <source>Your account only exists on this device. If you lose your device or uninstall the application, your account will be deleted and CANNOT be recovered. You can &lt;a href=&apos;blank&apos;&gt; back up your account &lt;/a&gt; now or later (in the Account Settings).</source>
         <translation>Tài khoản của bạn chỉ tồn tại trên thiết bị này. Nếu bạn mất thiết bị hoặc gỡ cài đặt ứng dụng, tài khoản của bạn sẽ bị xóa và KHÔNG THỂ khôi phục. Bạn có thể &lt;a href=&apos;blank&apos;&gt; sao lưu tài khoản của mình &lt;/a&gt; ngay bây giờ hoặc sau này (trong Cài đặt Tài khoản).</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="364"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="367"/>
         <source>More options</source>
         <translation>Nhiều lựa chọn hơn</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="365"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="368"/>
         <source>Mosaic</source>
         <translation>Mosaic</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="368"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="371"/>
         <source>You are still muted by moderator</source>
         <translation>Anh vẫn bị người quản lý làm ngậm miệng.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="369"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="372"/>
         <source>You are muted by a moderator</source>
         <translation>Anh bị một người quản lý làm ngậm miệng.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="370"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="373"/>
         <source>Moderator</source>
         <translation>Người điều hành</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="371"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="374"/>
         <source>Host</source>
         <translation>Nhà chủ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="372"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="375"/>
         <source>Local and Moderator muted</source>
         <translation>Địa điểm và người điều hành bị câm</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="373"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="376"/>
         <source>Moderator muted</source>
         <translation>Moderator bị tắt</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="374"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="377"/>
         <source>Not muted</source>
         <translation>Không bị làm ngập</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="375"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="378"/>
         <source>On the side</source>
         <translation>Ở bên kia</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="376"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="379"/>
         <source>On the top</source>
         <translation>Trên đỉnh</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="377"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="380"/>
         <source>Hide self</source>
         <translation>Cẩn trốn</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="378"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="381"/>
         <source>Hide spectators</source>
         <translation>Cẩn trốn người xem</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="387"/>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="722"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="390"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="725"/>
         <source>Copy</source>
         <translation>Tải</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="385"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="388"/>
         <source>Share</source>
         <translation>Chia sẻ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="386"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="389"/>
         <source>Cut</source>
         <translation>Giảm</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="388"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="391"/>
         <source>Paste</source>
         <translation>Bắn</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="392"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="395"/>
         <source>Start video call</source>
         <translation>Bắt đầu cuộc gọi hình ảnh</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="391"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="394"/>
         <source>Start audio call</source>
         <translation>Bắt đầu cuộc gọi âm thanh</translation>
     </message>
@@ -2437,428 +2452,428 @@ kết nối để đồng bộ hóa cuộc trò chuyện…</translation>
         <translation>Từ chối cuộc gọi đến khi đang trong một cuộc gọi</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="382"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="385"/>
         <source>Public group</source>
         <translation>Nhóm công cộng</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="394"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="397"/>
         <source>Confirm action</source>
         <translation>Đảm nhận hành động</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="395"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="398"/>
         <source>Remove conversation</source>
         <translation>Tháo cuộc trò chuyện</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="397"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="400"/>
         <source>Leave group</source>
         <translation>Rời nhóm</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="398"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="401"/>
         <source>Are you sure you want to leave this group?</source>
         <translation>Bạn có chắc chắn muốn rời khỏi nhóm này không?</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="399"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="402"/>
         <source>Do you want to remove this contact? The existing conversation will be deleted.</source>
         <translation>Bạn có muốn xóa liên hệ này không? Cuộc trò chuyện hiện có sẽ bị xóa.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="400"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="403"/>
         <source>Do you want to block this contact?</source>
         <translation>Bạn có muốn chặn liên hệ này không?</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="401"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="404"/>
         <source>Are you sure you want to remove this conversation? The contact will not be removed.</source>
         <translation>Bạn có chắc chắn muốn xóa cuộc trò chuyện này không? Liên hệ sẽ không bị xóa.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="402"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="405"/>
         <source>Remove contact</source>
         <translation>Xóa liên lạc</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="403"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="406"/>
         <source>Block contact</source>
         <translation>Khác tiếp xúc</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="404"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="407"/>
         <source>Conversation details</source>
         <translation>Chi tiết cuộc trò chuyện</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="405"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="408"/>
         <source>Contact details</source>
         <translation>Thông tin liên lạc</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="409"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="412"/>
         <source>Show keypad</source>
         <translation>Hiển thị bàn phím số</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="410"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="413"/>
         <source>Transfer call</source>
         <translation>Tiếp tục chuyển đổi</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="411"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="414"/>
         <source>Stop recording</source>
         <translation>Ngừng ghi lại</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="412"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="415"/>
         <source>Start recording</source>
         <translation>Bắt đầu ghi lại</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="413"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="416"/>
         <source>View full screen</source>
         <translation>Xem toàn màn hình</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="414"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="417"/>
         <source>Share screen</source>
         <translation>Chia sẻ màn hình</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="415"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="418"/>
         <source>Share window</source>
         <translation>Chia sẻ cửa sổ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="416"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="419"/>
         <source>Stop sharing screen or file</source>
         <translation>Ngừng chia sẻ màn hình hoặc tệp</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="417"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="420"/>
         <source>Share screen area</source>
         <translation>Chia sẻ khu vực màn hình</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="418"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="421"/>
         <source>Share file</source>
         <translation>Chia sẻ file</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="420"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="423"/>
         <source>Select sharing method</source>
         <translation>Chọn phương pháp chia sẻ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="423"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="426"/>
         <source>Advanced information</source>
         <translation>Thông tin nâng cao</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="424"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="427"/>
         <source>No video device</source>
         <translation>Không có thiết bị video</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="426"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="429"/>
         <source>Lower hand</source>
         <translation>Tay dưới</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="427"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="430"/>
         <source>Raise hand</source>
         <translation>Giơ tay</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="428"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="431"/>
         <source>Layout settings</source>
         <translation>Cài đặt bố cục</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="429"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="432"/>
         <source>Take tile screenshot</source>
         <translation>Tạo ảnh màn hình</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="430"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="433"/>
         <source>Screenshot saved to %1</source>
         <translation>Tấm màn hình được lưu vào %1</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="434"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="437"/>
         <source>Renderers information</source>
         <translation>Thông tin cho người cung cấp</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="435"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="438"/>
         <source>Call information</source>
         <translation>Thông tin gọi</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="436"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="439"/>
         <source>Peer number</source>
         <translation>Số đồng cấp</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="438"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="441"/>
         <source>Sockets</source>
         <translation>Các ổ cắm</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="439"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="442"/>
         <source>Video codec</source>
         <translation>Video codec</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="329"/>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="440"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="332"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="443"/>
         <source>Hardware acceleration</source>
         <translation>Tốc độ cứng</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="441"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="444"/>
         <source>Video bitrate</source>
         <translation>Tốc độ bit video</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="442"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="445"/>
         <source>Audio codec</source>
         <translation>Codec âm thanh</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="444"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="447"/>
         <source>Fps</source>
         <translation>Fps</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="458"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="461"/>
         <source>Share location</source>
         <translation>Địa điểm chia sẻ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="459"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="462"/>
         <source>Stop sharing</source>
         <translation>Ngừng chia sẻ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="462"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="465"/>
         <source>Turn off location sharing</source>
         <translation>Thiết lập chia sẻ vị trí</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="465"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="468"/>
         <source>Location is shared in several conversations</source>
         <translation>Vị trí được chia sẻ trong nhiều cuộc trò chuyện</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="466"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="469"/>
         <source>Pin map to be able to share location or to turn off location in specific conversations</source>
         <translation>Bản đồ pin để có thể chia sẻ vị trí hoặc tắt vị trí trong các cuộc trò chuyện cụ thể</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="467"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="470"/>
         <source>Location is shared in several conversations, click to choose how to turn off location sharing</source>
         <translation>Vị trí được chia sẻ trong nhiều cuộc trò chuyện, nhấp chuột để chọn cách tắt chia sẻ vị trí</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="468"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="471"/>
         <source>Share location to participants of this conversation (%1)</source>
         <translation>Chia sẻ vị trí cho những người tham gia cuộc trò chuyện này (%1)</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="470"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="473"/>
         <source>Reduce</source>
         <translation>Giảm</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="471"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="474"/>
         <source>Drag</source>
         <translation>Chuyển</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="472"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="475"/>
         <source>Center</source>
         <translation>Trung tâm</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="474"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="477"/>
         <source>Unpin</source>
         <translation>Tháo ra</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="475"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="478"/>
         <source>Pin</source>
         <translation>Pin</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="476"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="479"/>
         <source>Position share duration</source>
         <translation>Thời gian chia sẻ vị trí</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="477"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="480"/>
         <source>Location sharing</source>
         <translation>Chia sẻ vị trí</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="479"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="482"/>
         <source>Unlimited</source>
         <translation>Không giới hạn</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="492"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="495"/>
         <source>Add to conversations</source>
         <translation>Thêm vào các cuộc trò chuyện</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="494"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="497"/>
         <source>The account is disabled</source>
         <translation>Tài khoản bị vô hiệu hóa</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="495"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="498"/>
         <source>No network connectivity</source>
         <translation>Không có kết nối mạng</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="505"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="508"/>
         <source>Jump to</source>
         <translation>Nhảy lên</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="506"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="509"/>
         <source>Messages</source>
         <translation>Thông điệp</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="507"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="510"/>
         <source>Files</source>
         <translation>Các tập tin</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="508"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="511"/>
         <source>Search</source>
         <translation>Tìm kiếm</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="513"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="516"/>
         <source>Several people are typing…</source>
         <translation>Nhiều người đang gõ...</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="285"/>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="520"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="287"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="523"/>
         <source>Connect</source>
         <translation>Kết nối</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="521"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="524"/>
         <source>Creating account…</source>
         <translation>Tạo tài khoản...</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="524"/>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="530"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="527"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="533"/>
         <source>Choose name</source>
         <translation>Chọn tên</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="525"/>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="526"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="528"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="529"/>
         <source>Choose username</source>
         <translation>Chọn tên người dùng</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="536"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="539"/>
         <source>- 32 characters maximum
 - Special characters allowed: dash (-)</source>
         <translation>- tối đa 32 ký tự
 - Ký tự đặc biệt được phép: dấu gạch ngang (-)</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="537"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="540"/>
         <source>Customize your profile (optional)</source>
         <translation>Tùy chỉnh hồ sơ của bạn (tùy chọn)</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="538"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="541"/>
         <source>Skip</source>
         <translation>Tháo</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="539"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="542"/>
         <source>Skip profile configuration</source>
         <translation>Bỏ qua cấu hình hồ sơ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="540"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="543"/>
         <source>Save profile</source>
         <translation>Tự lưu hồ sơ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="548"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="551"/>
         <source>Setting a profile picture and display name is optional, and can also be changed later in the settings.</source>
         <translation>Việc đặt ảnh hồ sơ và tên hiển thị là tùy chọn, và cũng có thể thay đổi sau này trong cài đặt.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="554"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="557"/>
         <source>Configure existing SIP account</source>
         <translation>Cấu hình tài khoản SIP đã có</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="559"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="562"/>
         <source>Display name</source>
         <translation>Tên hiển thị</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="564"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="567"/>
         <source>Your Jami account is registered only on this device as an archive containing the keys of your account. Access to this archive can be protected with a password.</source>
         <translation>Tài khoản Jami của bạn chỉ được đăng ký trên thiết bị này dưới dạng một kho lưu trữ chứa các khóa của tài khoản. Quyền truy cập vào kho lưu trữ này có thể được bảo vệ bằng mật khẩu.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="566"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="569"/>
         <source>This Jami account exists only on this device. The account will be lost if this device is lost or the application is uninstalled. It is recommended to make a backup of this account.</source>
         <translation>Tài khoản Jami này chỉ tồn tại trên thiết bị này. Tài khoản sẽ bị mất nếu thiết bị này bị mất hoặc ứng dụng bị gỡ cài đặt. Bạn nên sao lưu tài khoản này.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="573"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="576"/>
         <source>Backup completed successfully.</source>
         <translation>Sao lưu hoàn tất thành công.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="574"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="577"/>
         <source>An error occurred while backing up the account.</source>
         <translation>Đã xảy ra lỗi khi sao lưu tài khoản.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="575"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="578"/>
         <source>Password changed successfully.</source>
         <translation>Mật khẩu đã được thay đổi thành công.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="576"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="579"/>
         <source>An error occurred while changing the account password.</source>
         <translation>Đã xảy ra lỗi khi thay đổi mật khẩu tài khoản.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="577"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="580"/>
         <source>Password set successfully.</source>
         <translation>Mật khẩu đã được đặt thành công.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="578"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="581"/>
         <source>An error occurred while setting the account password.</source>
         <translation>Đã xảy ra lỗi khi đặt mật khẩu tài khoản.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1084"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1087"/>
         <source>Spell checker</source>
         <translation>Trình kiểm tra chính tả</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="527"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="530"/>
         <source>Confirm password</source>
         <translation>Tiếp tục xác nhận mật khẩu</translation>
     </message>
@@ -2938,87 +2953,87 @@ kết nối để đồng bộ hóa cuộc trò chuyện…</translation>
         <translation>Vị trí của TURN</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="335"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="338"/>
         <source>No camera available</source>
         <translation>Không có camera khả dụng</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="344"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="347"/>
         <source>Jami account (*.jac)</source>
         <translation>Tài khoản Jami (*.jac)</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="354"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="357"/>
         <source>Mute microphone</source>
         <translation>Tắt tiếng micrô</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="355"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="358"/>
         <source>Unmute microphone</source>
         <translation>Bật tiếng micrô</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="358"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="361"/>
         <source>Stop camera</source>
         <translation>Hình ảnh dừng</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="359"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="362"/>
         <source>Start camera</source>
         <translation>Bật camera</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="360"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="363"/>
         <source>Invite member</source>
         <translation>Mời thành viên</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="361"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="364"/>
         <source>Invite members</source>
         <translation>Mời các thành viên</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="366"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="369"/>
         <source>Participant microphone is still muted.</source>
         <translation>Micrô của người tham gia vẫn đang bị tắt tiếng.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="367"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="370"/>
         <source>Device microphone is still muted.</source>
         <translation>Micrô của thiết bị vẫn đang bị tắt tiếng.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="379"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="382"/>
         <source>Private</source>
         <translation>Riêng tư</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="380"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="383"/>
         <source>Private group (restricted invites)</source>
         <translation>Nhóm tư nhân (được mời giới hạn)</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="381"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="384"/>
         <source>Private group</source>
         <translation>Nhóm tư nhân</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="396"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="399"/>
         <source>Do you want to leave this conversation?</source>
         <translation>Bạn có muốn rời khỏi cuộc trò chuyện này không?</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="408"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="411"/>
         <source>DTMF input panel</source>
         <translation>Bảng nhập DTMF</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="422"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="425"/>
         <source>View extension</source>
         <translation>Xem tiện ích mở rộng</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="460"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="463"/>
         <source>An error occurred while sharing the device location.
 Enable “Location Services” in device settings in order to use this feature.
 The location of other members can still be received.</source>
@@ -3027,334 +3042,334 @@ Hãy bật &quot;Dịch vụ Vị trí&quot; trong cài đặt thiết bị đ�
 Vị trí của các thành viên khác vẫn có thể được nhận.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="461"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="464"/>
         <source>An error occurred while sharing the device location. Please check your Internet connection and try again.</source>
         <translation>Đã xảy ra lỗi khi chia sẻ vị trí của thiết bị. Vui lòng kiểm tra kết nối Internet của bạn và thử lại.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="478"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="481"/>
         <source>1m</source>
         <translation>1p</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="480"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="483"/>
         <source>%L1s</source>
         <translation>%L1g</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="481"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="484"/>
         <source>%L1m</source>
         <translation>%L1p</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="482"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="485"/>
         <source>%L1m %L2s</source>
         <translation>%L1p %L2g</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="483"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="486"/>
         <source>%L1h</source>
         <translation>%L1h</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="484"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="487"/>
         <source>%L1h %L2m</source>
         <translation>%L1h %L2p</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="491"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="494"/>
         <source>Show available extensions</source>
         <translation>Hiển thị các tiện ích mở rộng khả dụng</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="493"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="496"/>
         <source>A backend system error occurred: %0</source>
         <translation>Đã xảy ra lỗi hệ thống backend: %0</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="498"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="501"/>
         <source>Return to call</source>
         <translation>Quay lại cuộc gọi</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="502"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="505"/>
         <source>This conversation has ended.</source>
         <translation>Cuộc trò chuyện này đã kết thúc.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="531"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="534"/>
         <source>Invalid name</source>
         <translation>Tên không hợp lệ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="532"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="535"/>
         <source>Invalid username</source>
         <translation>Tên người dùng không hợp lệ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="533"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="536"/>
         <source>Name already taken</source>
         <translation>Tên đã được chọn</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="534"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="537"/>
         <source>Username already taken</source>
         <translation>Tên người dùng đã được lấy</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="542"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="545"/>
         <source>Good to know</source>
         <translation>Rất vui được biết.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="543"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="546"/>
         <source>Local</source>
         <translation>Địa điểm</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="544"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="547"/>
         <source>Encrypt</source>
         <translation>Mã hóa</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="551"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="554"/>
         <source>SIP account</source>
         <translation>Tài khoản SIP</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="552"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="555"/>
         <source>Proxy</source>
         <translation>Tín hiệu</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="553"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="556"/>
         <source>Server</source>
         <translation>Server</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="555"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="558"/>
         <source>Personalize account</source>
         <translation>Cần cá nhân hóa tài khoản</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="556"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="559"/>
         <source>Add SIP account</source>
         <translation>Thêm tài khoản SIP</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="562"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="565"/>
         <source>Your profile is only shared with your contacts. You can customize your profile at any time.</source>
         <translation>Hồ sơ của bạn chỉ được chia sẻ với các liên hệ của bạn. Bạn có thể tùy chỉnh hồ sơ của mình bất cứ lúc nào.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="563"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="566"/>
         <source>A chosen username can help to be found more easily on Jami. If a username is not chosen, a randomly generated 40-character identifier will be assigned to this account as a username. It is more difficult to be found and reached with this identifier.</source>
         <translation>Một tên người dùng được chọn có thể giúp bạn được tìm thấy dễ dàng hơn trên Jami. Nếu không chọn tên người dùng, một mã định danh 40 ký tự được tạo ngẫu nhiên sẽ được gán cho tài khoản này làm tên người dùng. Sẽ khó tìm thấy và liên hệ hơn với mã định danh này.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="565"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="568"/>
         <source>Backup account</source>
         <translation>Tài khoản sao lưu</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="568"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="571"/>
         <source>List of the devices that are linked to this account:</source>
         <translation>Danh sách các thiết bị được liên kết với tài khoản này:</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="569"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="572"/>
         <source>This device</source>
         <translation>Thiết bị này</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="570"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="573"/>
         <source>Other linked devices</source>
         <translation>Các thiết bị liên kết khác</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="579"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="582"/>
         <source>Change password</source>
         <translation>Thay đổi mật khẩu</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="590"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="593"/>
         <source>A Jami account is created and stored locally only on this device, as an archive containing your account keys. Access to this archive can optionally be protected with a password.</source>
         <translation>Tài khoản Jami được tạo và lưu trữ cục bộ chỉ trên thiết bị này, dưới dạng một kho lưu trữ chứa các khóa tài khoản của bạn. Quyền truy cập vào kho lưu trữ này có thể được bảo vệ bằng mật khẩu một cách tùy chọn.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="593"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="596"/>
         <source>Use this account on other devices</source>
         <translation>Sử dụng tài khoản này trên các thiết bị khác</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="594"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="597"/>
         <source>This account is created and stored locally, if you want to use it on another device you have to link the new device to this account.</source>
         <translation>Tài khoản này được tạo và lưu trữ cục bộ; nếu bạn muốn sử dụng nó trên thiết bị khác, bạn phải liên kết thiết bị mới với tài khoản này.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="605"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="608"/>
         <source>Link new device to this account</source>
         <translation>Liên kết thiết bị mới với tài khoản này</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="607"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="610"/>
         <source>Remove device</source>
         <translation>Gỡ bỏ thiết bị</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="608"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="611"/>
         <source>Do you want to unlink the selected device? To continue, enter account password and click Unlink.</source>
         <translation>Bạn có muốn hủy liên kết thiết bị đã chọn không? Để tiếp tục, hãy nhập mật khẩu tài khoản và nhấn Hủy liên kết.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="609"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="612"/>
         <source>Account PIN code is:</source>
         <translation>Mã PIN tài khoản là:</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="613"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="616"/>
         <source>Unblock contact</source>
         <translation>Bỏ chặn liên hệ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="614"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="617"/>
         <source>Blocked</source>
         <translation>Đã chặn</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="615"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="618"/>
         <source>Blocked contacts</source>
         <translation>Các liên lạc bị chặn</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="618"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="621"/>
         <source>Do you want to delete this account? To continue, click Delete.</source>
         <translation>Bạn có muốn xóa tài khoản này không? Để tiếp tục, hãy nhấn Xóa.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="624"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="627"/>
         <source>Device name:</source>
         <translation>Tên thiết bị:</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="626"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="629"/>
         <source>Device ID</source>
         <translation>ID thiết bị</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="632"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="635"/>
         <source>Select folder</source>
         <translation>Chọn thư mục</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="653"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="656"/>
         <source>Typing indicator</source>
         <translation>Chỉ số đánh máy</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="654"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="657"/>
         <source>Send and receive typing indicators showing when messages are being typed.</source>
         <translation>Gửi và nhận chỉ báo gõ phím hiển thị khi tin nhắn đang được gõ.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="655"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="658"/>
         <source>Read receipts</source>
         <translation>Hiển thị đã đọc</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="656"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="659"/>
         <source>Send and request delivery and read receipts to be sent when messages are delivered or read.</source>
         <translation>Báo hiệu nếu tin nhắn được gửi thành công hoặc đã được đọc.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="668"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="671"/>
         <source>MB, 0 = unlimited</source>
         <translation>MB, 0 = không giới hạn</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="672"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="675"/>
         <source>Incorrect password.</source>
         <translation>Sai mật khẩu.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="673"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="676"/>
         <source>A network error occurred.</source>
         <translation>Đã xảy ra lỗi mạng.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="674"/>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="698"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="677"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="701"/>
         <source>An unexpected error occurred.</source>
         <translation>Đã xảy ra lỗi không mong muốn.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="691"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="694"/>
         <source>An SSL error occurred.</source>
         <translation>Đã xảy ra lỗi SSL.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="692"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="695"/>
         <source>Installer download was canceled by user.</source>
         <translation>Việc tải xuống trình cài đặt đã bị người dùng hủy.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="694"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="697"/>
         <source>This will replace the Release version with the Beta version on this device. The latest Release version can always be downloaded from the Jami website.</source>
         <translation>Thao tác này sẽ thay thế phiên bản Phát hành bằng phiên bản Beta trên thiết bị này. Phiên bản Phát hành mới nhất luôn có thể được tải xuống từ trang web Jami.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="696"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="699"/>
         <source>An error occurred while accessing the contents.</source>
         <translation>Đã xảy ra lỗi khi truy cập nội dung.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="697"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="700"/>
         <source>Content not found.</source>
         <translation>Không tìm thấy nội dung.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="713"/>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="714"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="716"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="717"/>
         <source>Keyboard shortcuts</source>
         <translation>Phím tắt bàn phím</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="718"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="721"/>
         <source>Markdown</source>
         <translation>Markdown</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="723"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="726"/>
         <source>Submit issue</source>
         <translation>Báo lỗi</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="726"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="729"/>
         <source>Copied to clipboard.</source>
         <translation>Đã sao chép vào clipboard.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="727"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="730"/>
         <source>View logs</source>
         <translation>Xem nhật ký</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="738"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="741"/>
         <source>If the account is password protected, please fill the following field.</source>
         <translation>Nếu tài khoản được bảo vệ bằng mật khẩu, vui lòng điền vào trường sau.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="747"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="750"/>
         <source>This account is password protected, enter the password to generate PIN code.</source>
         <translation>Tài khoản này được bảo vệ bằng mật khẩu; hãy nhập mật khẩu để tạo mã PIN.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="750"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="753"/>
         <source>Connecting to the new device…</source>
         <translation>Đang kết nối đến thiết bị mới…</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="752"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="755"/>
         <source>On the new device, initiate a new account.
 Select Add account → Connect from another device.
 When ready, scan the QR code.</source>
@@ -3363,592 +3378,592 @@ Chọn Thêm tài khoản → Kết nối từ thiết bị khác.
 Khi sẵn sàng, hãy quét mã QR.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="753"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="756"/>
         <source>Alternatively, enter the authentication code manually.</source>
         <translation>Hoặc, hãy nhập mã xác thực theo cách thủ công.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="756"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="759"/>
         <source>New device connected at the following IP address. Is that you? To continue the export account operation, click Confirm.</source>
         <translation>Thiết bị mới đã kết nối tại địa chỉ IP sau. Đó có phải là bạn không? Để tiếp tục thao tác xuất tài khoản, hãy nhấn Xác nhận.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="772"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="775"/>
         <source>Select image as profile picture</source>
         <translation>Chọn ảnh làm ảnh hồ sơ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="773"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="776"/>
         <source>How do you want to set the profile picture?</source>
         <translation>Bạn muốn đặt ảnh hồ sơ như thế nào?</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="774"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="777"/>
         <source>Import profile picture from image file</source>
         <translation>Nhập ảnh hồ sơ từ tệp ảnh</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="775"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="778"/>
         <source>Remove profile picture</source>
         <translation>Gỡ bỏ ảnh hồ sơ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="777"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="780"/>
         <source>Image files (*.jpeg *.jpg *.png *.JPEG* .JPG *.PNG)</source>
         <translation>Tệp ảnh (*.jpeg *.jpg *.png *.JPEG* .JPG *.PNG)</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="778"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="781"/>
         <source>Edit profile picture</source>
         <translation>Chỉnh sửa ảnh hồ sơ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="781"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="784"/>
         <source>Auto update</source>
         <translation>Tự động cập nhật</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="782"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="785"/>
         <source>Disable all</source>
         <translation>Tắt tất cả</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="783"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="786"/>
         <source>Installed</source>
         <translation>Đã cài đặt</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="784"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="787"/>
         <source>Install</source>
         <translation>Cài đặt</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="785"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="788"/>
         <source>Installing</source>
         <translation>Thiết lập</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="786"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="789"/>
         <source>Install manually</source>
         <translation>Cài đặt theo cách thủ công</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="787"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="790"/>
         <source>Install an extension directly from your device.</source>
         <translation>Cài đặt một tiện ích mở rộng trực tiếp từ thiết bị của bạn.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="788"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="791"/>
         <source>Available</source>
         <translation>Khả dụng</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="789"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="792"/>
         <source>The Jami Extension Store is currently unavailable. Please try again later.</source>
         <translation>Cửa hàng Tiện ích mở rộng Jami hiện không khả dụng. Vui lòng thử lại sau.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="811"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="814"/>
         <source>Version %1</source>
         <translation>Phiên bản %1</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="812"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="815"/>
         <source>Last update %1</source>
         <translation>Cập nhật lần cuối %1</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="813"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="816"/>
         <source>By %1</source>
         <translation>Bởi %1</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="814"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="817"/>
         <source>Proposed by %1</source>
         <translation>Được đề xuất bởi %1</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="818"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="821"/>
         <source>More information</source>
         <translation>Thông tin thêm</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="834"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="837"/>
         <source>Share account</source>
         <translation>Chia sẻ tài khoản</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="843"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="846"/>
         <source>Connect to management server</source>
         <translation>Kết nối với máy chủ quản lý</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="844"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="847"/>
         <source>Create account from management server</source>
         <translation>Tạo tài khoản từ máy chủ quản lý</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="845"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="848"/>
         <source>Configure SIP account</source>
         <translation>Cấu hình tài khoản SIP</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="847"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="850"/>
         <source>Create rendezvous point</source>
         <translation>Tạo điểm hẹn</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="848"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="851"/>
         <source>Create Jami account</source>
         <translation>Tạo tài khoản Jami</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="889"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="892"/>
         <source>Maximize participant</source>
         <translation>Tăng cường người tham gia</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="890"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="893"/>
         <source>Minimize participant</source>
         <translation>Giảm thiểu người tham gia</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="891"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="894"/>
         <source>Disconnect participant</source>
         <translation>Ngắt kết nối người tham gia</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="910"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="913"/>
         <source>Audio message</source>
         <translation>Tin nhắn âm thanh</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="911"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="914"/>
         <source>Video message</source>
         <translation>Tin nhắn video</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="913"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="916"/>
         <source>Show more</source>
         <translation>Cho thấy nhiều hơn</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="918"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="921"/>
         <source>Bold</source>
         <translation>Đậm</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="919"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="922"/>
         <source>Italic</source>
         <translation>Nghiêng</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="921"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="924"/>
         <source>Title</source>
         <translation>Tiêu đề</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="922"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="925"/>
         <source>Heading</source>
         <translation>Đầu đề</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="923"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="926"/>
         <source>Link</source>
         <translation>Liên kết</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="924"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="927"/>
         <source>Code</source>
         <translation>Mã</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="925"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="928"/>
         <source>Quote</source>
         <translation>Quảng cáo</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="928"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="931"/>
         <source>Show formatting</source>
         <translation>Hiển thị định dạng</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="929"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="932"/>
         <source>Hide formatting</source>
         <translation>Ẩn định dạng</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="930"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="933"/>
         <source>Press Shift+Enter to insert new line</source>
         <translation>Nhấn Shift+Enter để chèn dòng mới</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="931"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="934"/>
         <source>Press Enter to insert new line</source>
         <translation>Nhấn Enter để chèn dòng mới</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="936"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="939"/>
         <source>%1 replied to</source>
         <translation>%1 đã trả lời</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="937"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="940"/>
         <source>you</source>
         <translation>bạn</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="940"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="943"/>
         <source>Send a message to %1 in order to add them as a contact</source>
         <translation>Gửi tin nhắn đến %1 để thêm họ làm liên hệ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="969"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="972"/>
         <source>%L1 members</source>
         <translation>%L1 thành viên</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="974"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="977"/>
         <source>No description</source>
         <translation>Không có mô tả</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="975"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="978"/>
         <source>Members</source>
         <translation>Thành viên</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="979"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="982"/>
         <source>Unmute conversation</source>
         <translation>Bật tiếng cuộc trò chuyện</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1088"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1091"/>
         <source>No dictionaries available.</source>
         <translation>Không có từ điển khả dụng.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1095"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1098"/>
         <source>Search or add</source>
         <translation>Tìm kiếm hoặc thêm</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1101"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1104"/>
         <source>Add comment</source>
         <translation>Thêm bình luận</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1102"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1105"/>
         <source>Share with…</source>
         <translation>Chia sẻ với…</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1105"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1108"/>
         <source>Add contact</source>
         <translation>Thêm liên hệ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1106"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1109"/>
         <source>No conversations found.</source>
         <translation>Không tìm thấy cuộc trò chuyện nào.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1107"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1110"/>
         <source>No contacts found.</source>
         <translation>Không tìm thấy liên hệ nào.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="984"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="987"/>
         <source>Select default host</source>
         <translation>Chọn máy chủ mặc định</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="985"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="988"/>
         <source>Change default host</source>
         <translation>Thay đổi máy chủ mặc định</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1011"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1014"/>
         <source>Share your Jami identifier in order to be contacted more easily!</source>
         <translation>Chia sẻ mã định danh Jami của bạn để được liên hệ dễ dàng hơn!</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1012"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1015"/>
         <source>Jami identity</source>
         <translation>Định dạng Jami</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1013"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1016"/>
         <source>Show fingerprint</source>
         <translation>Hình ảnh vân tay</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1014"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1017"/>
         <source>Hide fingerprint</source>
         <translation>Ẩn dấu vân tay</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1017"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1020"/>
         <source>Show registered name</source>
         <translation>Ghiển thị tên đăng ký</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1020"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1023"/>
         <source>Enabling your account allows you to be contacted on Jami</source>
         <translation>Việc kích hoạt tài khoản của bạn cho phép bạn được liên lạc trên Jami</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1030"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1033"/>
         <source>Experimental</source>
         <translation>Tiêu nghiệm</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1033"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1036"/>
         <source>Ringtone</source>
         <translation>Nhạc âm</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1036"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1039"/>
         <source>Rendezvous point</source>
         <translation>Điểm gặp gỡ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1039"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1042"/>
         <source>Moderation</source>
         <translation>Tự hạn chế</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1042"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1045"/>
         <source>Theme</source>
         <translation>Chủ đề</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1043"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1046"/>
         <source>Text zoom level</source>
         <translation>Tỷ lệ phóng to văn bản</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1047"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1050"/>
         <source>Blur background image</source>
         <translation>Làm mờ ảnh nền</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1048"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1051"/>
         <source>Normalize background image contrast</source>
         <translation>Chuẩn hóa độ tương phản ảnh nền</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1060"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1063"/>
         <source>Enter or Shift+Enter to insert new line</source>
         <translation>Enter hoặc Shift+Enter để chèn dòng mới</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1085"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1088"/>
         <source>Search text languages</source>
         <translation>Tìm kiếm ngôn ngữ văn bản</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1086"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1089"/>
         <source>Search for available text languages</source>
         <translation>Tìm kiếm các ngôn ngữ văn bản khả dụng</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1087"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1090"/>
         <source>No dictionary found for %1.</source>
         <translation>Không tìm thấy từ điển cho %1.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1089"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1092"/>
         <source>Dictionary manager</source>
         <translation>Trình quản lý từ điển</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1090"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1093"/>
         <source>An error occurred while downloading the %1 dictionary.</source>
         <translation>Đã xảy ra lỗi khi tải xuống từ điển %1.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1091"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1094"/>
         <source>Show installed dictionaries</source>
         <translation>Hiển thị các từ điển đã cài đặt</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1092"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1095"/>
         <source>Only show dictionaries that are currently installed</source>
         <translation>Chỉ hiển thị các từ điển hiện đang được cài đặt</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1098"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1101"/>
         <source>This conversation has no files.</source>
         <translation>Cuộc trò chuyện này không có tệp nào.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1118"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1121"/>
         <source>Call in progress</source>
         <translation>Cuộc gọi đang diễn ra</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1119"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1122"/>
         <source>Pop out</source>
         <translation>Tách ra</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1120"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1123"/>
         <source>Pop in</source>
         <translation>Ghép vào</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1121"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1124"/>
         <source>You&apos;re the only one here!</source>
         <translation>Chỉ có mình bạn ở đây!</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1124"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1127"/>
         <source>Press enter to switch to this account</source>
         <translation>Nhấn enter để chuyển sang tài khoản này</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1125"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1128"/>
         <source>Display your QR code to allow other users to scan it and add you as a contact</source>
         <translation>Hiển thị mã QR của bạn để người dùng khác có thể quét và thêm bạn làm liên hệ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1126"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1129"/>
         <source>Account list</source>
         <translation>Danh sách tài khoản</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1128"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1131"/>
         <source>Select the user interface language</source>
         <translation>Chọn ngôn ngữ giao diện người dùng</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1129"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1132"/>
         <source>Go back to the previous page</source>
         <translation>Quay lại trang trước</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1130"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1133"/>
         <source>Advice Box</source>
         <translation>Hộp Lời khuyên</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1131"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1134"/>
         <source>Back button</source>
         <translation>Nút quay lại</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1132"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1135"/>
         <source>Open the advice popup that contains information about Jami</source>
         <translation>Mở cửa sổ lời khuyên chứa thông tin về Jami</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1133"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1136"/>
         <source>More</source>
         <translation>Thêm</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1134"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1137"/>
         <source>Press to %1</source>
         <translation>Nhấn để %1</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1135"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1138"/>
         <source>Press to toggle %1 (%2)</source>
         <translation>Nhấn để bật/tắt %1 (%2)</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1136"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1139"/>
         <source>active</source>
         <translation>hoạt động</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1137"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1140"/>
         <source>inactive</source>
         <translation>không hoạt động</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1138"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1141"/>
         <source>Minimize application</source>
         <translation>Thu nhỏ ứng dụng</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1139"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1142"/>
         <source>Maximize application</source>
         <translation>Phóng to ứng dụng</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1140"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1143"/>
         <source>Close application</source>
         <translation>Đóng ứng dụng</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1141"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1144"/>
         <source>Dismiss this tip</source>
         <translation>Bỏ qua mẹo này</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1142"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1145"/>
         <source>Tips to help you use Jami more effectively</source>
         <translation>Mẹo giúp bạn sử dụng Jami hiệu quả hơn</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1143"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1146"/>
         <source>Show more messaging options</source>
         <translation>Hiển thị thêm tùy chọn nhắn tin</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1144"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1147"/>
         <source>Open a menu that allows you to send voice and video messages as well as sharing your location</source>
         <translation>Mở một menu cho phép bạn gửi tin nhắn thoại và video cũng như chia sẻ vị trí của bạn</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1145"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1148"/>
         <source>Conversation messages list. Use arrow keys to navigate through messages.</source>
         <translation>Danh sách tin nhắn cuộc trò chuyện. Sử dụng các phím mũi tên để điều hướng qua các tin nhắn.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1146"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1149"/>
         <source>Data transfer</source>
         <translation>Truyền dữ liệu</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1147"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1150"/>
         <source>Status</source>
         <translation>Trạng thái</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1148"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1151"/>
         <source>Read by</source>
         <translation>Đã đọc bởi</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1149"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1152"/>
         <source>Currently selected: %1</source>
         <translation>Hiện đang chọn: %1</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1150"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1153"/>
         <source>%1 has been selected for %2</source>
         <translation>%1 đã được chọn cho %2</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1151"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1154"/>
         <source>Available option for %1</source>
         <translation>Tùy chọn khả dụng cho %1</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="582"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="585"/>
         <source>Change current password</source>
         <translation>Thay đổi mật khẩu hiện tại</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="584"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="587"/>
         <source>Display advanced settings</source>
         <translation>hiển thị cài đặt nâng cao</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="585"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="588"/>
         <source>Hide advanced settings</source>
         <translation>Cất giấu cài đặt nâng cao</translation>
     </message>
@@ -3963,559 +3978,559 @@ Khi sẵn sàng, hãy quét mã QR.</translation>
         <translation>Tự động chấp nhận cuộc gọi</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="586"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="589"/>
         <source>Advanced account settings</source>
         <translation>Cài đặt tài khoản nâng cao</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="588"/>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1024"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="591"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1027"/>
         <source>Customize profile</source>
         <translation>Tùy chỉnh hồ sơ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="598"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="601"/>
         <source>Set username</source>
         <translation>Đặt tên người dùng</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="599"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="602"/>
         <source>Registering name</source>
         <translation>Tên đăng ký</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="602"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="605"/>
         <source>Identity</source>
         <translation>Định dạng</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="606"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="609"/>
         <source>Exporting account…</source>
         <translation>Tài khoản xuất khẩu...</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="629"/>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1082"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="632"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1085"/>
         <source>System</source>
         <translation>Hệ thống</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="633"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="636"/>
         <source>Enable notifications</source>
         <translation>Khả năng thông báo</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="638"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="641"/>
         <source>Launch at startup</source>
         <translation>Thả lên khi khởi động</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="639"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="642"/>
         <source>Choose download directory</source>
         <translation>Chọn thư mục tải xuống</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="658"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="661"/>
         <source>Preview requires downloading content from third-party servers.</source>
         <translation>Preview yêu cầu tải nội dung từ các máy chủ bên thứ ba.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="660"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="663"/>
         <source>User interface language</source>
         <translation>Ngôn ngữ giao diện người dùng</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="661"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="664"/>
         <source>Vertical view</source>
         <translation>Dạng xem dọc</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="662"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="665"/>
         <source>Horizontal view</source>
         <translation>Dạng xem ngang</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="665"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="668"/>
         <source>File transfer</source>
         <translation>Chuyển tập tin</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="666"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="669"/>
         <source>Automatically accept incoming files</source>
         <translation>Tự động chấp nhận các tệp nhập</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="671"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="674"/>
         <source>Register</source>
         <translation>Register</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="677"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="680"/>
         <source>Save file</source>
         <translation>Tự lưu tập tin</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="678"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="681"/>
         <source>Open location</source>
         <translation>Vị trí mở</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="682"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="685"/>
         <source>Install beta version</source>
         <translation>Thiết lập phiên bản beta</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="683"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="686"/>
         <source>Check for updates now</source>
         <translation>Kiểm tra các bản cập nhật ngay</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="684"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="687"/>
         <source>Enable/Disable automatic updates</source>
         <translation>Khả năng/Tắt các bản cập nhật tự động</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="685"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="688"/>
         <source>Updates</source>
         <translation>Các cập nhật</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="686"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="689"/>
         <source>Update</source>
         <translation>Cập nhật</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="695"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="698"/>
         <source>Network disconnected</source>
         <translation>Mạng kết nối bị cắt</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="701"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="704"/>
         <source>Troubleshoot</source>
         <translation>Xử lý vấn đề</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="702"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="705"/>
         <source>Open logs</source>
         <translation>Các nhật ký mở</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="703"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="706"/>
         <source>Get logs</source>
         <translation>Nhận hồ sơ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="706"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="709"/>
         <source>Quality</source>
         <translation>Chất lượng</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="710"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="713"/>
         <source>Always record calls</source>
         <translation>Luôn ghi lại các cuộc gọi</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="715"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="718"/>
         <source>Conversation</source>
         <translation>Cuộc trò chuyện</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="716"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="719"/>
         <source>Call</source>
         <translation>Gọi</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="717"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="720"/>
         <source>Settings</source>
         <translation>Cài đặt</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="721"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="724"/>
         <source>Debug</source>
         <translation>Dòng lọc</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="724"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="727"/>
         <source>Clear</source>
         <translation>Rõ ràng</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="725"/>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="872"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="728"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="875"/>
         <source>Cancel</source>
         <translation>Hủy bỏ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="730"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="733"/>
         <source>Archive</source>
         <translation>Tệp</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="731"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="734"/>
         <source>Open file</source>
         <translation>Mở file</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="734"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="737"/>
         <source>Generating account…</source>
         <translation>Tạo tài khoản...</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="735"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="738"/>
         <source>Import from archive backup</source>
         <translation>Nhập từ sao lưu lưu lưu</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="737"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="740"/>
         <source>Select archive file</source>
         <translation>Chọn tệp lưu trữ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="595"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="598"/>
         <source>Link device</source>
         <translation>Thiết bị liên kết</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="741"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="744"/>
         <source>Import</source>
         <translation>Nhập khẩu</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1006"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1009"/>
         <source>Delete message</source>
         <translation>Xóa thông báo</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1007"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1010"/>
         <source>*(Deleted Message)*</source>
         <translation>*(Tài thư bị xóa) *</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1008"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1011"/>
         <source>Edit message</source>
         <translation>chỉnh sửa thông điệp</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="473"/>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="745"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="476"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="748"/>
         <source>Close</source>
         <translation>Gần</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="709"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="712"/>
         <source>Call recording</source>
         <translation>Lập tắt cuộc gọi</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="742"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="745"/>
         <source>Enter the PIN code</source>
         <translation>Nhập mã PIN</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="748"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="751"/>
         <source>Add Device</source>
         <translation>Thêm thiết bị</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="764"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="767"/>
         <source>Enter current password</source>
         <translation>Nhập mật khẩu hiện tại</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="766"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="769"/>
         <source>Enter new password</source>
         <translation>Nhập mật khẩu mới</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="767"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="770"/>
         <source>Confirm new password</source>
         <translation>Xác nhận mật khẩu mới</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="768"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="771"/>
         <source>Change</source>
         <translation>Thay đổi</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="769"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="772"/>
         <source>Export</source>
         <translation>Xuất khẩu</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="776"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="779"/>
         <source>Take photo</source>
         <translation>Tạo ảnh</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="791"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="794"/>
         <source>Preferences</source>
         <translation>Tự ưu tiên</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="794"/>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="880"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="797"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="883"/>
         <source>Reset</source>
         <translation>Tái thiết</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="795"/>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="881"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="798"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="884"/>
         <source>Uninstall</source>
         <translation>Tháo cài đặt</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="143"/>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="803"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="806"/>
         <source>Select</source>
         <translation>Chọn</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="751"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="754"/>
         <source>The export account operation to the new device is in progress.
 Please confirm the import on the new device.</source>
         <translation>Thao tác xuất tài khoản sang thiết bị mới đang được tiến hành.
 Vui lòng xác nhận việc nhập trên thiết bị mới.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="754"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="757"/>
         <source>Enter authentication code</source>
         <translation>Nhập mã xác thực</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="757"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="760"/>
         <source>New device IP address: %1</source>
         <translation>Địa chỉ IP thiết bị mới: %1</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="758"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="761"/>
         <source>Do you want to exit?</source>
         <translation>Bạn có muốn thoát không?</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="759"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="762"/>
         <source>Exiting will cancel the import account operation.</source>
         <translation>Việc thoát sẽ hủy thao tác nhập tài khoản.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="804"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="807"/>
         <source>Choose image file</source>
         <translation>Chọn tệp hình ảnh</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="806"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="809"/>
         <source>Load/Unload</source>
         <translation>Lái/Lái ra</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="807"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="810"/>
         <source>Select An Image to %1</source>
         <translation>Chọn một hình ảnh để %1</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="808"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="811"/>
         <source>Edit preference</source>
         <translation>Edit Preference</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="809"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="812"/>
         <source>On/Off</source>
         <translation>Đóng/Tắt</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="817"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="820"/>
         <source>Information</source>
         <translation>Thông tin</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="819"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="822"/>
         <source>Profile</source>
         <translation>Tương tự</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="822"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="825"/>
         <source>Enter the account password to confirm the removal of this device</source>
         <translation>Nhập mật khẩu tài khoản để xác nhận việc xóa thiết bị này</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="828"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="831"/>
         <source>Screens</source>
         <translation>Các màn hình</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="829"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="832"/>
         <source>Windows</source>
         <translation>Chiếc cửa sổ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="830"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="833"/>
         <source>Screen %1</source>
         <translation>Màn hình %1</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="833"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="836"/>
         <source>QR code</source>
         <translation>Mã QR</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="837"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="840"/>
         <source>Link this device to an existing account</source>
         <translation>Kết nối thiết bị này với tài khoản hiện có</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="838"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="841"/>
         <source>Import from another device</source>
         <translation>Nhập khẩu từ thiết bị khác</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="839"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="842"/>
         <source>Import from an archive backup</source>
         <translation>Nhập từ kho lưu trữ sao lưu</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="840"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="843"/>
         <source>Advanced features</source>
         <translation>Các tính năng tiên tiến</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="841"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="844"/>
         <source>Show advanced features</source>
         <translation>Hiển thị các tính năng nâng cao</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="842"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="845"/>
         <source>Hide advanced features</source>
         <translation>Cất giấu các tính năng tiên tiến</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="849"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="852"/>
         <source>Create new Jami account</source>
         <translation>Tạo tài khoản Jami mới</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="850"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="853"/>
         <source>Create new SIP account</source>
         <translation>Tạo tài khoản SIP mới</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="851"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="854"/>
         <source>About Jami</source>
         <translation>Về Jami</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="853"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="856"/>
         <source>I already have an account</source>
         <translation>Tôi đã có tài khoản</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="854"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="857"/>
         <source>Use existing Jami account</source>
         <translation>Sử dụng tài khoản Jami hiện có</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="855"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="858"/>
         <source>Welcome to Jami</source>
         <translation>Chào mừng đến với Jami.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="859"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="862"/>
         <source>Conversations</source>
         <translation>Các cuộc trò chuyện</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="867"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="870"/>
         <source>Automatically check for updates</source>
         <translation>Kiểm tra tự động cho các bản cập nhật</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="271"/>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="622"/>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="871"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="273"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="625"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="874"/>
         <source>Save</source>
         <translation>- Cứu</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="873"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="876"/>
         <source>Upgrade</source>
         <translation>Tăng cấp</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="874"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="877"/>
         <source>Later</source>
         <translation>Sau đó</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="875"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="878"/>
         <source>Delete</source>
         <translation>Xóa</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="878"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="881"/>
         <source>Block</source>
         <translation>Blok</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="885"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="888"/>
         <source>Set moderator</source>
         <translation>Set moderator</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="886"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="889"/>
         <source>Unset moderator</source>
         <translation>Moderator không cài đặt</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="469"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="472"/>
         <source>Maximize</source>
         <translation>Tăng tối đa</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="892"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="895"/>
         <source>Local muted</source>
         <translation>Nằm trong khu vực</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="895"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="898"/>
         <source>Default moderators</source>
         <translation>Moderators mặc định</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="896"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="899"/>
         <source>Enable local moderators</source>
         <translation>Khả năng người điều hành địa phương</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="897"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="900"/>
         <source>Make all participants moderators</source>
         <translation>Làm cho tất cả các người tham gia là người điều hành</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="898"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="901"/>
         <source>Add default moderator</source>
         <translation>Thêm trình điều chỉnh mặc định</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="900"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="903"/>
         <source>Remove default moderator</source>
         <translation>Xóa bộ điều chỉnh mặc định</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="907"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="910"/>
         <source>Add emoji</source>
         <translation>Thêm emoji</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="909"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="912"/>
         <source>Send file</source>
         <translation>Gửi tập tin</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="932"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="935"/>
         <source>Send</source>
         <translation>Gửi đi</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="625"/>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="876"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="628"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="879"/>
         <source>Remove</source>
         <translation>Tắt</translation>
     </message>
@@ -4525,92 +4540,92 @@ Vui lòng xác nhận việc nhập trên thiết bị mới.</translation>
         <translation>Chuyển đi cuộc trò chuyện</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="634"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="637"/>
         <source>Show notifications</source>
         <translation>hiển thị thông báo</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="635"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="638"/>
         <source>Minimize on close</source>
         <translation>Giảm thiểu gần</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="637"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="640"/>
         <source>Run at system startup</source>
         <translation>Tiếp tục khi khởi động hệ thống</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="732"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="735"/>
         <source>Create account from backup</source>
         <translation>Tạo tài khoản từ sao lưu</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="733"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="736"/>
         <source>Restore account from backup</source>
         <translation>Khôi phục tài khoản từ sao lưu</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="736"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="739"/>
         <source>Import Jami account from local archive file.</source>
         <translation>Nhập vào tài khoản Jami từ tệp lưu trữ địa phương.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="939"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="942"/>
         <source>Write to %1</source>
         <translation>Tự viết cho %1</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="970"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="973"/>
         <source>Member</source>
         <translation>Thành viên</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="980"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="983"/>
         <source>Ignore all notifications from this conversation</source>
         <translation>Phớt lờ tất cả các thông báo từ cuộc trò chuyện này</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="990"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="993"/>
         <source>Go to conversation</source>
         <translation>Đi nói chuyện</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="993"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="996"/>
         <source>Administrator</source>
         <translation>Trình quản lý</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="994"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="997"/>
         <source>Invited</source>
         <translation>Được mời</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="995"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="998"/>
         <source>Remove member</source>
         <translation>Xóa thành viên</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="996"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="999"/>
         <source>To:</source>
         <translation>Để:</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="999"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1002"/>
         <source>Customize</source>
         <translation>Cải tạo</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1001"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1004"/>
         <source>Dismiss</source>
         <translation>Tháo dỡ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1002"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1005"/>
         <source>Add profile picture and nickname to complete your profile</source>
         <translation>Thêm ảnh hồ sơ và biệt danh để hoàn tất hồ sơ của bạn</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1003"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1006"/>
         <source>Your profile is only shared with your contacts</source>
         <translation>Profile của bạn chỉ được chia sẻ với các liên lạc của bạn</translation>
     </message>
@@ -4946,9 +4961,9 @@ Vui lòng xác nhận việc nhập trên thiết bị mới.</translation>
         <translation>Thỉnh cầu được nhận</translation>
     </message>
     <message>
-        <location filename="../src/core/api/interaction.h" line="275"/>
-        <location filename="../src/core/api/interaction.h" line="293"/>
-        <location filename="../src/core/api/interaction.h" line="295"/>
+        <location filename="../src/core/api/interaction.h" line="287"/>
+        <location filename="../src/core/api/interaction.h" line="305"/>
+        <location filename="../src/core/api/interaction.h" line="307"/>
         <location filename="../src/core/authority/storagehelper.cpp" line="513"/>
         <source>Contact added</source>
         <translation>Liên hệ được thêm vào</translation>
@@ -4964,99 +4979,99 @@ Vui lòng xác nhận việc nhập trên thiết bị mới.</translation>
         <translation>Đã tạo cuộc trò chuyện nhóm</translation>
     </message>
     <message>
-        <location filename="../src/core/api/interaction.h" line="277"/>
+        <location filename="../src/core/api/interaction.h" line="289"/>
         <source>%1 was invited to join the conversation.</source>
         <translation>%1 đã được mời tham gia cuộc trò chuyện.</translation>
     </message>
     <message>
-        <location filename="../src/core/api/interaction.h" line="280"/>
+        <location filename="../src/core/api/interaction.h" line="292"/>
         <source>You joined the conversation.</source>
         <translation>Bạn đã tham gia cuộc trò chuyện.</translation>
     </message>
     <message>
-        <location filename="../src/core/api/interaction.h" line="282"/>
+        <location filename="../src/core/api/interaction.h" line="294"/>
         <source>%1 has joined the conversation.</source>
         <translation>%1 đã tham gia cuộc trò chuyện.</translation>
     </message>
     <message>
-        <location filename="../src/core/api/interaction.h" line="285"/>
+        <location filename="../src/core/api/interaction.h" line="297"/>
         <source>You left the conversation.</source>
         <translation>Bạn đã rời khỏi cuộc trò chuyện.</translation>
     </message>
     <message>
-        <location filename="../src/core/api/interaction.h" line="287"/>
+        <location filename="../src/core/api/interaction.h" line="299"/>
         <source>%1 has left the conversation.</source>
         <translation>%1 đã rời khỏi cuộc trò chuyện.</translation>
     </message>
     <message>
-        <location filename="../src/core/api/interaction.h" line="289"/>
+        <location filename="../src/core/api/interaction.h" line="301"/>
         <source>%1 was blocked from the conversation.</source>
         <translation>%1 đã bị chặn khỏi cuộc trò chuyện.</translation>
     </message>
     <message>
-        <location filename="../src/core/api/interaction.h" line="291"/>
+        <location filename="../src/core/api/interaction.h" line="303"/>
         <source>%1 was unblocked from the conversation.</source>
         <translation>%1 đã được bỏ chặn khỏi cuộc trò chuyện.</translation>
     </message>
     <message>
-        <location filename="../src/core/api/interaction.h" line="312"/>
+        <location filename="../src/core/api/interaction.h" line="324"/>
         <source>%L4d %L3h %L2m %L1s</source>
         <translation>%L4n %L3h %L2p %L1g</translation>
     </message>
     <message>
-        <location filename="../src/core/api/interaction.h" line="315"/>
+        <location filename="../src/core/api/interaction.h" line="327"/>
         <source>%L3h %L2m %L1s</source>
         <translation>%L3h %L2p %L1g</translation>
     </message>
     <message>
-        <location filename="../src/core/api/interaction.h" line="317"/>
+        <location filename="../src/core/api/interaction.h" line="329"/>
         <source>%L2m %L1s</source>
         <translation>%L2p %L1g</translation>
     </message>
     <message>
-        <location filename="../src/core/api/interaction.h" line="319"/>
+        <location filename="../src/core/api/interaction.h" line="331"/>
         <source>%L1s</source>
         <translation>%L1g</translation>
     </message>
     <message>
-        <location filename="../src/core/api/interaction.h" line="335"/>
+        <location filename="../src/core/api/interaction.h" line="347"/>
         <source>Call declined</source>
         <translation>Cuộc gọi bị từ chối</translation>
     </message>
     <message>
-        <location filename="../src/core/api/interaction.h" line="337"/>
+        <location filename="../src/core/api/interaction.h" line="349"/>
         <source>Unreachable peer</source>
         <translation>Đối tác không thể truy cập</translation>
     </message>
     <message>
-        <location filename="../src/core/api/interaction.h" line="342"/>
-        <location filename="../src/core/api/interaction.h" line="348"/>
+        <location filename="../src/core/api/interaction.h" line="354"/>
+        <location filename="../src/core/api/interaction.h" line="360"/>
         <source>Outgoing call</source>
         <translation>Tiếp tục gọi</translation>
     </message>
     <message>
-        <location filename="../src/core/api/interaction.h" line="344"/>
-        <location filename="../src/core/api/interaction.h" line="354"/>
+        <location filename="../src/core/api/interaction.h" line="356"/>
+        <location filename="../src/core/api/interaction.h" line="366"/>
         <source>Incoming call</source>
         <translation>Tiếp tục gọi</translation>
     </message>
     <message>
-        <location filename="../src/core/api/interaction.h" line="350"/>
+        <location filename="../src/core/api/interaction.h" line="362"/>
         <source>Missed outgoing call</source>
         <translation>Lỡ cuộc gọi ra ngoài</translation>
     </message>
     <message>
-        <location filename="../src/core/api/interaction.h" line="356"/>
+        <location filename="../src/core/api/interaction.h" line="368"/>
         <source>Missed incoming call</source>
         <translation>Lỡ cuộc gọi tiếp nhận</translation>
     </message>
     <message>
-        <location filename="../src/core/api/interaction.h" line="469"/>
+        <location filename="../src/core/api/interaction.h" line="481"/>
         <source>Join call</source>
         <translation>Tham gia cuộc gọi</translation>
     </message>
     <message>
-        <location filename="../src/core/api/interaction.h" line="479"/>
+        <location filename="../src/core/api/interaction.h" line="491"/>
         <source>(Profile updated)</source>
         <translation>(Hồ sơ đã cập nhật)</translation>
     </message>
@@ -5283,7 +5298,7 @@ Vui lòng xác nhận việc nhập trên thiết bị mới.</translation>
         <translation>Cuộc gọi Bị từ chối</translation>
     </message>
     <message>
-        <location filename="../src/core/api/interaction.h" line="333"/>
+        <location filename="../src/core/api/interaction.h" line="345"/>
         <location filename="../src/core/callmodel.cpp" line="109"/>
         <source>Busy</source>
         <translation>- Tôi bận rộn.</translation>
@@ -5665,17 +5680,17 @@ Vui lòng xác nhận việc nhập trên thiết bị mới.</translation>
 <context>
     <name>UtilsAdapter</name>
     <message>
-        <location filename="../src/app/utilsadapter.cpp" line="396"/>
+        <location filename="../src/app/utilsadapter.cpp" line="404"/>
         <source>%1 Mbps</source>
         <translation>%1 Mb/giây</translation>
     </message>
     <message>
-        <location filename="../src/app/utilsadapter.cpp" line="396"/>
+        <location filename="../src/app/utilsadapter.cpp" line="404"/>
         <source>Default</source>
         <translation>Mặc định</translation>
     </message>
     <message>
-        <location filename="../src/app/utilsadapter.cpp" line="588"/>
+        <location filename="../src/app/utilsadapter.cpp" line="596"/>
         <source>System</source>
         <translation>Hệ thống</translation>
     </message>
