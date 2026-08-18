@@ -326,6 +326,11 @@ else()
   list(APPEND LIBCLIENT_SOURCES ${CORE_SRC_DIR}/shmrenderer.cpp)
   list(APPEND LIBCLIENT_HEADERS ${CORE_SRC_DIR}/shmrenderer.h)
 
+  # libjami's public headers are shared with the daemon and used by the client
+  # in both modes. In single process mode they come transitively from the
+  # jami-core target, which the DBus client doesn't link.
+  include_directories(${DAEMON_DIR}/src/jami)
+
   # Build DBus API
   if(DEFINED RING_XML_INTERFACES_DIR)
     set(dbus_xml_introspecs_path ${RING_XML_INTERFACES_DIR})
