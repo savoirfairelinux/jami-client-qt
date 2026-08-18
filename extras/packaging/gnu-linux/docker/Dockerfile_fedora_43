@@ -9,6 +9,7 @@ RUN dnf install -y dnf-command\(builddep\) rpmdevtools && \
 RUN dnf group install -y x-software-development
 
 RUN dnf install -y \
+    curl \
     git \
     make \
     autoconf \
@@ -82,6 +83,12 @@ RUN dnf install -y \
     python3-html5lib \
     cups-devel \
     pipewire-devel
+
+ENV RUSTUP_HOME=/usr/local/rustup \
+    CARGO_HOME=/var/cache/cargo \
+    PATH=/usr/local/cargo/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+ADD extras/scripts/install-rust-toolchain.sh /opt/install-rust-toolchain.sh
+RUN sh /opt/install-rust-toolchain.sh
 
 ADD extras/packaging/gnu-linux/scripts/install-ffmpeg-for-qt.sh /opt/install-ffmpeg-for-qt.sh
 ADD extras/packaging/gnu-linux/scripts/build-package-rpm.sh /opt/build-package-rpm.sh
