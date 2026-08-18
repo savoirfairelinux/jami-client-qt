@@ -729,6 +729,12 @@ set(LIBJAMI_CONTRIB_DIR "${DAEMON_DIR}/contrib")
 # than spelled out, since it depends on the host and on the daemon's own build.
 file(GLOB YRS_LIB_HINTS "${LIBJAMI_CONTRIB_DIR}/*/lib")
 file(GLOB YRS_INCLUDE_HINTS "${LIBJAMI_CONTRIB_DIR}/*/include")
+if(MSVC)
+  # The MSVC contrib has no triplet directory and does not install yffi, which
+  # cargo builds in place, so point at that build output as the daemon does.
+  list(APPEND YRS_LIB_HINTS "${LIBJAMI_CONTRIB_DIR}/build/yffi/target/release")
+  list(APPEND YRS_INCLUDE_HINTS "${LIBJAMI_CONTRIB_DIR}/build/yffi/tests-ffi/include")
+endif()
 find_library(YRS_LIBRARY NAMES yrs libyrs HINTS ${YRS_LIB_HINTS})
 find_path(YRS_INCLUDE_DIR libyrs.h HINTS ${YRS_INCLUDE_HINTS})
 if(NOT YRS_LIBRARY OR NOT YRS_INCLUDE_DIR)
@@ -741,6 +747,9 @@ list(APPEND CLIENT_LIBS ${YRS_LIBRARY})
 if(NOT MSVC)
   # yrs is a Rust static library: these are its own dependencies (Libs.private).
   list(APPEND CLIENT_LIBS -ldl -lm)
+else()
+  # Likewise on MSVC, where the Rust standard library calls the NT syscall stubs.
+  list(APPEND CLIENT_LIBS ntdll.lib)
 endif()
 
 find_package(Vulkan)
