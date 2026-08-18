@@ -3,6 +3,7 @@ FROM opensuse/leap:16.0
 RUN zypper --gpg-auto-import-keys refresh
 
 RUN zypper --non-interactive install -y \
+        curl \
         dnf \
         rpmdevtools \
         Mesa-dri-devel Mesa-dri \
@@ -90,6 +91,12 @@ RUN zypper --non-interactive install -y \
         cmake \
         wget \
         pipewire-devel
+
+ENV RUSTUP_HOME=/usr/local/rustup \
+    CARGO_HOME=/var/cache/cargo \
+    PATH=/usr/local/cargo/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+ADD extras/scripts/install-rust-toolchain.sh /opt/install-rust-toolchain.sh
+RUN sh /opt/install-rust-toolchain.sh
 
 ADD extras/packaging/gnu-linux/scripts/install-ffmpeg-for-qt.sh /opt/install-ffmpeg-for-qt.sh
 ADD extras/packaging/gnu-linux/scripts/build-package-rpm.sh /opt/build-package-rpm.sh

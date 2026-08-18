@@ -9,7 +9,14 @@ RUN apt-get update && \
         equivs \
         python-is-python3 \
         libdbus-1-dev \
+        curl \
         wget
+
+ENV RUSTUP_HOME=/usr/local/rustup \
+    CARGO_HOME=/var/cache/cargo \
+    PATH=/usr/local/cargo/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+ADD extras/scripts/install-rust-toolchain.sh /opt/install-rust-toolchain.sh
+RUN sh /opt/install-rust-toolchain.sh
 
 ADD extras/packaging/gnu-linux/scripts/prebuild-package-debian.sh /opt/prebuild-package-debian.sh
 
