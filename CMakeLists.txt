@@ -326,6 +326,11 @@ else()
   list(APPEND LIBCLIENT_SOURCES ${CORE_SRC_DIR}/shmrenderer.cpp)
   list(APPEND LIBCLIENT_HEADERS ${CORE_SRC_DIR}/shmrenderer.h)
 
+  # libjami's public headers are shared with the daemon and used by the client
+  # in both modes. In single process mode they come transitively from the
+  # jami-core target, which the DBus client doesn't link.
+  include_directories(${DAEMON_DIR}/src/jami)
+
   # Build DBus API
   if(DEFINED RING_XML_INTERFACES_DIR)
     set(dbus_xml_introspecs_path ${RING_XML_INTERFACES_DIR})
@@ -362,7 +367,7 @@ ${dbus_xml_introspecs_path}")
   set_source_files_properties(
     ${callmanager_xml}
     PROPERTIES
-    CLASSNAME CallManagerInterface
+    CLASSNAME CallManagerDBusProxy
     INCLUDE ${dbus_metatype_path})
 
   set(video_xml
@@ -394,7 +399,7 @@ ${dbus_xml_introspecs_path}")
   set_source_files_properties(
     ${networkservicemanager_xml}
     PROPERTIES
-    CLASSNAME NetworkServiceManagerInterface
+    CLASSNAME NetworkServiceManagerDBusProxy
     INCLUDE ${dbus_metatype_path})
 
   # Note: qt_add_dbus_interface calls are done after Qt6 component find below.
