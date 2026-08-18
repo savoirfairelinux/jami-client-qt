@@ -21,6 +21,37 @@
 #else
 #include "callmanager_dbus_interface.h"
 #include <QDBusPendingReply>
+
+/// Adapts the generated proxy to the method names used by the client, the way
+/// qtwrapper/callmanager_wrap.h does in single process mode.
+class CallManagerInterface : public CallManagerDBusProxy
+{
+public:
+    using CallManagerDBusProxy::CallManagerDBusProxy;
+
+    QDBusPendingReply<bool> end(const QString& accountId, const QString& callId)
+    {
+        return hangUp(accountId, callId);
+    }
+
+    QDBusPendingReply<bool> endConference(const QString& accountId, const QString& confId)
+    {
+        return hangUpConference(accountId, confId);
+    }
+
+    QDBusPendingReply<bool> decline(const QString& accountId, const QString& callId)
+    {
+        return refuse(accountId, callId);
+    }
+
+    QDBusPendingReply<> disconnectParticipant(const QString& accountId,
+                                              const QString& confId,
+                                              const QString& accountUri,
+                                              const QString& deviceId)
+    {
+        return hangupParticipant(accountId, confId, accountUri, deviceId);
+    }
+};
 #endif
 #include <typedefs.h>
 
