@@ -499,6 +499,8 @@ LRCInstance::onAccountRemoved(const QString& accountId)
     if (accountId != currentAccountId_)
         return;
 
+    deselectConversation();
+
     // If there are any accounts left, select the first one, otherwise clear the current account
     // and request presentation of the wizard view.
     auto accountList = accountModel().getAccountList();
