@@ -33,6 +33,7 @@ ListView {
     // Injected conversation context; defaults to the global singleton for
     // the main window.
     property var convContext: CurrentConversation
+    property string pendingScrollToId: ""
 
     ScrollBar.vertical: JamiScrollBar {
         id: verticalScrollBar
@@ -63,104 +64,81 @@ ListView {
         }
     }
 
-    function computeTimestampVisibility(item1, item1Index, item2, item2Index) {
-        if (item1 && item2) {
-            if (item1Index < item2Index) {
-                item1.showTime = item1.timestamp - item2.timestamp > JamiTheme.timestampIntervalTime;
-                item1.showDay = item1.formattedDay !== item2.formattedDay;
-            } else {
-                item2.showTime = item2.timestamp - item1.timestamp > JamiTheme.timestampIntervalTime;
-                item2.showDay = item2.formattedDay !== item1.formattedDay;
-            }
-            return true;
-        }
-        return false;
+    function modelItem(index) {
+        if (!root.model || index < 0 || index >= root.count || typeof root.model.get !== "function")
+            return null;
+        return root.model.get(index);
     }
 
-    function scrollToBottom() {
-        verticalScrollBar.position = 1 - verticalScrollBar.size;
+    function computeTimestampVisibility(item, itemIndex) {
+        if (!item)
+            return;
+        const current = modelItem(itemIndex);
+        const next = modelItem(itemIndex + 1);
+        if (!current)
+            return;
+        item.showTime = next ? current.Timestamp - next.Timestamp > JamiTheme.timestampIntervalTime
+                             : !!(convContext && convContext.allMessagesLoaded);
+        item.showDay = next ? MessagesAdapter.getFormattedDay(current.Timestamp)
+                                  !== MessagesAdapter.getFormattedDay(next.Timestamp)
+                            : !!(convContext && convContext.allMessagesLoaded);
+    }
+
+    function computeSequencing(item, itemIndex) {
+        if (!item)
+            return;
+        const current = modelItem(itemIndex);
+        const previous = modelItem(itemIndex - 1);
+        const next = modelItem(itemIndex + 1);
+        if (!current)
+            return;
+        const isFirst = !next || item.showTime || !!current.ReplyTo || next.Author !== current.Author;
+        const previousShowTime = previous
+            && previous.Timestamp - current.Timestamp > JamiTheme.timestampIntervalTime;
+        const isLast = !previous || previousShowTime || !!previous.ReplyTo || previous.Author !== current.Author;
+        if (isLast && isFirst)
+            item.seq = MsgSeq.single;
+        if (!isLast && isFirst)
+            item.seq = MsgSeq.first;
+        if (isLast && !isFirst)
+            item.seq = MsgSeq.last;
+        if (!isLast && !isFirst)
+            item.seq = MsgSeq.middle;
     }
 
     function computeChatview(item, itemIndex) {
-        if (!root)
+        if (!item)
             return;
-        var rootItem = root.itemAtIndex(0);
-        var pItem = root.itemAtIndex(itemIndex - 1);
-        var pItemIndex = itemIndex - 1;
-        var nItem = root.itemAtIndex(itemIndex + 1);
-        var nItemIndex = itemIndex + 1;
-
-        // middle insertion
-        if (pItem && nItem) {
-            computeTimestampVisibility(item, itemIndex, nItem, nItemIndex);
-            computeSequencing(item, nItem, root.itemAtIndex(itemIndex + 2));
-        }
-        // top buffer insertion = scroll up
-        if (pItem && !nItem) {
-            computeTimestampVisibility(item, itemIndex, pItem, pItemIndex);
-            computeSequencing(root.itemAtIndex(itemIndex - 2), pItem, item);
-        }
-        // bottom buffer insertion = scroll down
-        if (!pItem && nItem) {
-            computeTimestampVisibility(item, itemIndex, nItem, nItemIndex);
-            computeSequencing(item, nItem, root.itemAtIndex(itemIndex + 2));
-        }
-        // index 0 insertion = new message
-        if (itemIndex === 0) {
-            // Compute the timestamp visibility when a new message is received/sent.
-            // This needs to be done in a delayed fashion because the new message is inserted
-            // at the top of the list and the list is not yet updated.
-            Qt.callLater(() => {
-                    var fItem = root.itemAtIndex(1);
-                    if (fItem) {
-                        computeTimestampVisibility(item, 0, fItem, 1);
-                        computeSequencing(null, item, fItem);
-                        computeSequencing(item, fItem, root.itemAtIndex(2));
-                    }
-                });
-        }
-        // top element
-        if (itemIndex === root.count - 1 && convContext && convContext.allMessagesLoaded) {
-            item.showTime = true;
-            item.showDay = true;
+        // ponytail: derive layout metadata from model rows so virtualization cannot change item heights.
+        for (let i = Math.max(0, itemIndex - 1); i <= Math.min(root.count - 1, itemIndex + 1); ++i) {
+            const delegate = root.itemAtIndex(i);
+            if (delegate) {
+                computeTimestampVisibility(delegate, i);
+                computeSequencing(delegate, i);
+            }
         }
     }
 
-    function computeSequencing(pItem, item, nItem) {
-        if (root === undefined || !item)
+    function retryPendingScroll() {
+        if (!pendingScrollToId)
             return;
-        function isFirst() {
-            if (!nItem)
-                return true;
-            else {
-                if (item.showTime || item.isReply) {
-                    return true;
-                } else if (nItem.author !== item.author) {
-                    return true;
-                }
-            }
-            return false;
+        const id = pendingScrollToId;
+        const index = root.model && root.model.getDisplayIndex ? root.model.getDisplayIndex(id) : -1;
+        if (index >= 0) {
+            pendingScrollToId = "";
+            Qt.callLater(() => root.positionViewAtIndex(index, ListView.Center));
+        } else if (convContext !== CurrentConversation || !MessagesAdapter.loadMessagesUntil(id)) {
+            pendingScrollToId = "";
         }
-        function isLast() {
-            if (!pItem)
-                return true;
-            else {
-                if (pItem.showTime || pItem.isReply) {
-                    return true;
-                } else if (pItem.author !== item.author) {
-                    return true;
-                }
-            }
-            return false;
-        }
-        if (isLast() && isFirst())
-            item.seq = MsgSeq.single;
-        if (!isLast() && isFirst())
-            item.seq = MsgSeq.first;
-        if (isLast() && !isFirst())
-            item.seq = MsgSeq.last;
-        if (!isLast() && !isFirst())
-            item.seq = MsgSeq.middle;
+    }
+
+    function scrollToMessage(id) {
+        pendingScrollToId = id;
+        retryPendingScroll();
+    }
+
+    function scrollToBottom() {
+        positionViewAtBeginning();
     }
 
     Component.onCompleted: {
@@ -180,9 +158,7 @@ ListView {
     Connections {
         target: convContext
         function onScrollTo(id) {
-            // Get the filtered index from the interaction ID.
-            var idx = root.model.getDisplayIndex(id);
-            positionViewAtIndex(idx, ListView.Visible);
+            scrollToMessage(id);
         }
     }
 
@@ -203,6 +179,7 @@ ListView {
         target: convContext
         function onIdChanged() {
             currentIndex = -1;
+            pendingScrollToId = "";
         }
     }
 
@@ -303,6 +280,7 @@ ListView {
         }
 
         function onMoreMessagesLoaded(loadingRequestId) {
+            retryPendingScroll();
             // This needs to be throttled, otherwise we will continue to load more messages
             // prior to the loaded chunk being rendered and changing the contentHeight.
             chunkLoadDebounceTimer.restart();
@@ -324,6 +302,7 @@ ListView {
         }
 
         function onMoreMessagesLoaded(loadingRequestId) {
+            retryPendingScroll();
             chunkLoadDebounceTimer.restart();
         }
 

@@ -60,9 +60,16 @@ public:
 
     Q_INVOKABLE int getDisplayIndex(const QString& id)
     {
-        auto sourceRow = ((MessageListModel*) sourceModel())->indexOfMessage(id);
-        auto index = mapFromSource(sourceModel()->index(sourceRow, 0));
-        return index.row();
+        const auto source = qobject_cast<MessageListModel*>(sourceModel());
+        if (!source) {
+            return -1;
+        }
+        const auto sourceRow = source->indexOfMessage(id);
+        if (sourceRow < 0) {
+            return -1;
+        }
+        const auto index = mapFromSource(source->index(sourceRow, 0));
+        return index.isValid() ? index.row() : -1;
     };
     Q_INVOKABLE QVariantMap get(int row) const
     {
@@ -110,6 +117,7 @@ public:
 
     Q_INVOKABLE bool isDocument(const interaction::Type& type);
     Q_INVOKABLE void loadMoreMessages();
+    Q_INVOKABLE bool loadMessagesUntil(const QString& messageId);
     Q_INVOKABLE void connectConversationModel();
     Q_INVOKABLE void sendConversationRequest();
     Q_INVOKABLE void removeConversation(const QString& convUid, bool keepContact = false);

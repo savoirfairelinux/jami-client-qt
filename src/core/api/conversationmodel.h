@@ -363,6 +363,7 @@ public:
      * @return id for loading request. -1 if not loaded
      */
     int loadConversationMessages(const QString& conversationId, const int size = 1);
+    bool loadConversationMessagesUntil(const QString& conversationId, const QString& messageId);
     /**
      * accept request for conversation
      * @param conversationId conversation's id

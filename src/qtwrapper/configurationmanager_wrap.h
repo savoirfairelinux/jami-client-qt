@@ -1219,6 +1219,17 @@ public Q_SLOTS: // METHODS
                                          size);
     }
 
+    uint32_t loadSwarmUntil(const QString& accountId,
+                            const QString& conversationId,
+                            const QString& fromId,
+                            const QString& toId)
+    {
+        return libjami::loadSwarmUntil(accountId.toStdString(),
+                                       conversationId.toStdString(),
+                                       fromId.toStdString(),
+                                       toId.toStdString());
+    }
+
     void setDefaultModerator(const QString& accountId, const QString& peerURI, const bool& state)
     {
         libjami::setDefaultModerator(accountId.toStdString(), peerURI.toStdString(), state);
