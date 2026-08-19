@@ -13,7 +13,6 @@ RUN yum install -y wget && \
     rm -f uuid-c++-devel-1.6.2-55.el9.x86_64.rpm
 RUN yum install -y xorg-x11-xauth
 RUN dnf install -y \
-        curl \
         git \
         rpm-build \
         tar \
