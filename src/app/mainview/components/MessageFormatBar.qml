@@ -57,14 +57,10 @@ Rectangle {
         }
     }
     Connections {
-        target: MessagesAdapter.messageListModel
-        ignoreUnknownSignals: true
-        function onCountChanged() {
-            // documents() reads the conversation history from the daemon; a conversation
-            // that has documents keeps having them, so only rescan while none is known to
-            // avoid a git scan on every incoming message.
-            if (!messageBarRowLayout.hasEditableDocuments)
-                messageBarRowLayout.updateHasEditableDocuments();
+        target: MessagesAdapter
+        function onNewInteraction(id, type) {
+            if (type === Interaction.Type.COLLAB_DOC)
+                messageBarRowLayout.hasEditableDocuments = true;
         }
     }
 
