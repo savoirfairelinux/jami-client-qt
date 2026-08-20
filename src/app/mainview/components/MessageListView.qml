@@ -34,6 +34,8 @@ ListView {
     // the main window.
     property var convContext: CurrentConversation
     property string pendingScrollToId: ""
+    property bool pendingScrollLoadRequested: false
+    property int pendingScrollLoadCount: 0
 
     ScrollBar.vertical: JamiScrollBar {
         id: verticalScrollBar
@@ -124,16 +126,32 @@ ListView {
             return;
         const id = pendingScrollToId;
         const index = root.model && root.model.getDisplayIndex ? root.model.getDisplayIndex(id) : -1;
-        if (index >= 0) {
+        if (index >= 0 && index < root.count) {
+            root.forceLayout();
+            root.positionViewAtIndex(index, ListView.Center);
             pendingScrollToId = "";
-            Qt.callLater(() => root.positionViewAtIndex(index, ListView.Center));
-        } else if (convContext !== CurrentConversation || !MessagesAdapter.loadMessagesUntil(id)) {
+            pendingScrollLoadRequested = false;
+            pendingScrollLoadCount = 0;
+        } else if (index >= 0) {
+            Qt.callLater(retryPendingScroll);
+        } else if (convContext === CurrentConversation && !pendingScrollLoadRequested) {
+            pendingScrollLoadRequested = true;
+            pendingScrollLoadCount = root.count;
+            if (!MessagesAdapter.loadMessagesUntil(id)) {
+                pendingScrollToId = "";
+                pendingScrollLoadRequested = false;
+                pendingScrollLoadCount = 0;
+            }
+        } else if (convContext !== CurrentConversation) {
             pendingScrollToId = "";
+            pendingScrollLoadCount = 0;
         }
     }
 
     function scrollToMessage(id) {
         pendingScrollToId = id;
+        pendingScrollLoadRequested = false;
+        pendingScrollLoadCount = root.count;
         retryPendingScroll();
     }
 
@@ -180,6 +198,8 @@ ListView {
         function onIdChanged() {
             currentIndex = -1;
             pendingScrollToId = "";
+            pendingScrollLoadRequested = false;
+            pendingScrollLoadCount = 0;
         }
     }
 
@@ -255,7 +275,10 @@ ListView {
     }
 
     onAtYBeginningChanged: loadMoreMsgsIfNeeded()
-
+    onCountChanged: {
+        if (pendingScrollToId)
+            Qt.callLater(retryPendingScroll);
+    }
     Timer {
         id: chunkLoadDebounceTimer
 
@@ -263,7 +286,7 @@ ListView {
         repeat: false
         running: false
         onTriggered: {
-            if (root.contentHeight < root.height) {
+            if (root.contentHeight < root.height || root.atYBeginning) {
                 root.loadMoreMsgsIfNeeded();
             }
         }
@@ -280,6 +303,12 @@ ListView {
         }
 
         function onMoreMessagesLoaded(loadingRequestId) {
+            const madeProgress = root.count > root.pendingScrollLoadCount;
+            root.pendingScrollLoadRequested = false;
+            if (root.pendingScrollToId && !madeProgress) {
+                root.pendingScrollToId = "";
+                root.pendingScrollLoadCount = 0;
+            }
             retryPendingScroll();
             // This needs to be throttled, otherwise we will continue to load more messages
             // prior to the loaded chunk being rendered and changing the contentHeight.
@@ -302,12 +331,37 @@ ListView {
         }
 
         function onMoreMessagesLoaded(loadingRequestId) {
+            const madeProgress = root.count > root.pendingScrollLoadCount;
+            root.pendingScrollLoadRequested = false;
+            if (root.pendingScrollToId && !madeProgress) {
+                root.pendingScrollToId = "";
+                root.pendingScrollLoadCount = 0;
+            }
             retryPendingScroll();
             chunkLoadDebounceTimer.restart();
         }
 
         function onFileCopied(dest) {
             toastManager.instantiateToast(dest);
+        }
+    }
+
+    Connections {
+        target: root.model
+
+        function onRowsInserted() {
+            if (root.pendingScrollToId)
+                Qt.callLater(root.retryPendingScroll);
+        }
+
+        function onLayoutChanged() {
+            if (root.pendingScrollToId)
+                Qt.callLater(root.retryPendingScroll);
+        }
+
+        function onModelReset() {
+            if (root.pendingScrollToId)
+                Qt.callLater(root.retryPendingScroll);
         }
     }
 

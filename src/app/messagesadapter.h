@@ -68,8 +68,17 @@ public:
         if (sourceRow < 0) {
             return -1;
         }
-        const auto index = mapFromSource(source->index(sourceRow, 0));
-        return index.isValid() ? index.row() : -1;
+        if (!filterAcceptsRow(sourceRow, QModelIndex())) {
+            return -1;
+        }
+
+        auto displayIndex = 0;
+        for (auto row = source->rowCount() - 1; row > sourceRow; --row) {
+            if (filterAcceptsRow(row, QModelIndex())) {
+                ++displayIndex;
+            }
+        }
+        return displayIndex;
     };
     Q_INVOKABLE QVariantMap get(int row) const
     {
