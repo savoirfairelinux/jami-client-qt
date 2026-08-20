@@ -364,6 +364,13 @@ public:
      */
     int loadConversationMessages(const QString& conversationId, const int size = 1);
     /**
+     * load messages for conversation until a given message is loaded
+     * @param conversationId conversation's id
+     * @param messageId the message to load the history up to, included
+     * @return id for loading request. -1 if not loaded
+     */
+    int loadConversationMessagesUntil(const QString& conversationId, const QString& messageId);
+    /**
      * accept request for conversation
      * @param conversationId conversation's id
      */
