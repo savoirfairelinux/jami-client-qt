@@ -109,6 +109,7 @@ set(UNIT_TESTS_SOURCE_FILES
     ${CMAKE_SOURCE_DIR}/tests/unittests/account_unittest.cpp
     ${CMAKE_SOURCE_DIR}/tests/unittests/contact_unittest.cpp
     ${CMAKE_SOURCE_DIR}/tests/unittests/messageparser_unittest.cpp
+    ${CMAKE_SOURCE_DIR}/tests/unittests/messagesadapter_unittest.cpp
     ${CMAKE_SOURCE_DIR}/tests/unittests/interactiontype_unittest.cpp
     ${CMAKE_SOURCE_DIR}/tests/unittests/collabrichbinding_unittest.cpp
     ${CMAKE_SOURCE_DIR}/tests/unittests/paste_unittest.cpp

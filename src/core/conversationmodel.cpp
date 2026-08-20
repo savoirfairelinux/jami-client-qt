@@ -1459,7 +1459,11 @@ ConversationModel::loadConversationMessages(const QString& conversationId, const
         return -1;
     }
     auto& conversation = conversationOpt->get();
-    if (conversation.allMessagesLoaded) {
+    auto initialMessageLoaded = false;
+    conversation.interactions->forEach([&initialMessageLoaded](const QString&, interaction::Info& interaction) {
+        initialMessageLoaded |= interaction.type == interaction::Type::INITIAL;
+    });
+    if (conversation.allMessagesLoaded && initialMessageLoaded) {
         return -1;
     }
     QString lastMsgId;
@@ -1475,7 +1479,11 @@ ConversationModel::loadConversationMessagesUntil(const QString& conversationId, 
         return false;
     }
     auto& conversation = conversationOpt->get();
-    if (!conversation.isSwarm() || conversation.allMessagesLoaded
+    auto initialMessageLoaded = false;
+    conversation.interactions->forEach([&initialMessageLoaded](const QString&, interaction::Info& interaction) {
+        initialMessageLoaded |= interaction.type == interaction::Type::INITIAL;
+    });
+    if (!conversation.isSwarm() || (conversation.allMessagesLoaded && initialMessageLoaded)
         || conversation.interactions->indexOfMessage(messageId) != -1) {
         return false;
     }
