@@ -287,6 +287,101 @@ ColumnLayout {
         }
     }
     MessageListView {
+        id: settleUut
+
+        width: root.width
+        height: 300
+
+        convContext: QtObject {
+            property bool allMessagesLoaded: true
+            property string id: "settle"
+            property color color: "#00b0d0"
+            signal scrollTo(string id)
+            signal newInteraction()
+            signal moreMessagesLoaded(int loadingRequestId)
+            signal fileCopied(string dest)
+            function loadMoreMessages() {}
+        }
+
+        model: ListModel {
+            id: settleModel
+            property var getDisplayIndex: function (id) {
+                for (var i = 0; i < count; ++i) {
+                    if (get(i).Id === id)
+                        return i;
+                }
+                return -1;
+            }
+
+            Component.onCompleted: {
+                for (var i = 0; i < 80; ++i)
+                    append({Id: "row-" + i, Type: Interaction.Type.TEXT});
+            }
+        }
+
+        // Message rows differ wildly in height, so the average the view
+        // extrapolates from the handful it has built does not match the block it
+        // is positioning into.
+        delegate: Rectangle {
+            width: settleUut.width
+            height: 20 + ((index * 97) % 13) * 30
+            color: "transparent"
+        }
+
+        TestCase {
+            name: "Check a jump holds its row while the view settles"
+            when: windowShown
+
+            function rowBox(idx) {
+                const item = settleUut.itemAtIndex(idx);
+                if (item === null)
+                    return null;
+                const top = item.mapToItem(settleUut, 0, 0).y;
+                return {top: Math.round(top), bottom: Math.round(top + item.height)};
+            }
+
+            // A jump positions the row against the delegate heights the view
+            // happens to know. Real rows only reach their final height once they
+            // are built, so the geometry keeps moving after the jump has already
+            // placed the row, which is what left search results off screen until
+            // the button was pressed a second time. The jump has to hold its row.
+            function test_theJumpHoldsItsRowWhenTheViewMovesUnderneath() {
+                settleUut.convContext.scrollTo("row-70");
+                tryVerify(function () {
+                    return rowBox(70) !== null;
+                }, 2000);
+                const before = rowBox(70);
+                verify(before.top >= 0 && before.bottom <= settleUut.height,
+                       "the jump did not put the row on screen at all: " + JSON.stringify(before));
+
+                // Stand in for the geometry settling underneath the jump.
+                settleUut.contentY += 600;
+
+                tryVerify(function () {
+                    const box = rowBox(70);
+                    return box !== null && box.top >= 0 && box.bottom <= settleUut.height;
+                }, 2000, "the jumped-to row was left off screen after the view moved underneath it");
+            }
+
+            // ...but once it has settled, the view is the user's again.
+            function test_theJumpStopsHoldingTheRowOnceItHasSettled() {
+                settleUut.convContext.scrollTo("row-70");
+                tryVerify(function () {
+                    return rowBox(70) !== null;
+                }, 2000);
+                tryVerify(function () {
+                    return !settleUut.jumpSettling;
+                }, 3000, "the jump kept repositioning the view indefinitely");
+
+                const parked = settleUut.contentY + 600;
+                settleUut.contentY = parked;
+                wait(400);
+                compare(settleUut.contentY, parked);
+            }
+        }
+    }
+
+    MessageListView {
         id: prefetchUut
 
         width: root.width
@@ -379,6 +474,187 @@ ColumnLayout {
                 tryVerify(function () {
                     return !prefetchUut.footerItem.visible;
                 }, 1000);
+            }
+        }
+    }
+
+    MessageListView {
+        id: jumpUut
+
+        width: root.width
+        height: 180
+        convContext: CurrentConversation
+
+        model: ListModel {
+            id: jumpModel
+            property var getDisplayIndex: function(id) {
+                for (var i = 0; i < count; ++i) {
+                    if (get(i).Id === id)
+                        return i;
+                }
+                return -1;
+            }
+
+            Component.onCompleted: {
+                for (var i = 0; i < 200; ++i)
+                    append({Id: "message-" + i, Type: Interaction.Type.TEXT});
+            }
+        }
+
+        delegate: Rectangle {
+            width: jumpUut.width
+            height: 20 + (index % 5) * 10
+            color: "transparent"
+        }
+
+        SignalSpy {
+            id: scrollSpy
+            target: CurrentConversation
+            signalName: "scrollTo"
+        }
+
+        TestCase {
+            name: "Check jump positioning inside the loaded window"
+
+            function test_jumpToARowOutsideTheViewport() {
+                wait(100);
+                scrollSpy.clear();
+                compare(typeof jumpModel.getDisplayIndex, "function");
+                compare(jumpModel.getDisplayIndex("message-150"), 150);
+                CurrentConversation.scrollToMsg("message-150");
+                compare(scrollSpy.count, 1);
+                tryVerify(function() {
+                    return jumpUut.itemAtIndex(150) !== null;
+                }, 1000);
+                const item = jumpUut.itemAtIndex(150);
+                const center = item.mapToItem(jumpUut, 0, item.height / 2).y;
+                compare(Math.round(center), Math.round(jumpUut.height / 2));
+            }
+
+            function test_jumpHighlightsTheRow() {
+                wait(100);
+                scrollSpy.clear();
+                jumpUut.currentIndex = -1;
+                jumpUut.jumpHighlightOpacity = 0;
+                CurrentConversation.scrollToMsg("message-120");
+                // The highlight tracks the current row and fades in on arrival.
+                compare(jumpUut.currentIndex, 120);
+                tryVerify(function () {
+                    return jumpUut.jumpHighlightOpacity > 0;
+                }, 1000);
+                // ...then fades back out on its own.
+                tryVerify(function () {
+                    return jumpUut.jumpHighlightOpacity === 0;
+                }, 4000);
+            }
+        }
+    }
+
+    // The target of a jump is often older than anything loaded, so the jump has to
+    // survive a round trip: request the history, wait, then land.
+    MessageListView {
+        id: pendingJumpUut
+
+        width: root.width
+        height: 200
+
+        convContext: QtObject {
+            property bool allMessagesLoaded: false
+            property string id: "pending-jump"
+            property color color: "#00b0d0"
+            property int lastRequestId: -1
+            property int nextRequestId: 7000
+            signal scrollTo(string id)
+            signal newInteraction()
+            signal moreMessagesLoaded(int loadingRequestId)
+            signal fileCopied(string dest)
+            function loadMoreMessages() {}
+            function loadMessagesUntil(messageId) {
+                lastRequestId = nextRequestId++;
+                return lastRequestId;
+            }
+        }
+
+        model: ListModel {
+            id: pendingJumpModel
+            property var getDisplayIndex: function (id) {
+                for (var i = 0; i < count; ++i) {
+                    if (get(i).Id === id)
+                        return i;
+                }
+                return -1;
+            }
+
+            function prependOlder(from, to) {
+                for (var i = to; i >= from; --i)
+                    insert(0, {Id: "message-" + i, Type: Interaction.Type.TEXT});
+            }
+        }
+
+        delegate: Rectangle {
+            width: pendingJumpUut.width
+            height: 20 + (index % 5) * 10
+            color: "transparent"
+        }
+
+        TestCase {
+            name: "Check a jump that has to wait for history"
+
+            function init() {
+                pendingJumpModel.clear();
+                // Only the most recent hundred messages are loaded.
+                for (var i = 100; i < 200; ++i)
+                    pendingJumpModel.append({Id: "message-" + i, Type: Interaction.Type.TEXT});
+                pendingJumpUut.pendingScrollToId = "";
+                pendingJumpUut.pendingScrollToRequest = -1;
+                pendingJumpUut.currentIndex = -1;
+                wait(50);
+            }
+
+            function test_theJumpWaitsForItsHistoryThenLands() {
+                const ctx = pendingJumpUut.convContext;
+                compare(pendingJumpModel.getDisplayIndex("message-10"), -1);
+                ctx.scrollTo("message-10");
+                // Nothing to jump to yet, so the jump is parked on its request.
+                compare(pendingJumpUut.pendingScrollToId, "message-10");
+                compare(pendingJumpUut.pendingScrollToRequest, ctx.lastRequestId);
+                compare(pendingJumpUut.currentIndex, -1);
+
+                pendingJumpModel.prependOlder(0, 99);
+                ctx.moreMessagesLoaded(ctx.lastRequestId);
+                compare(pendingJumpUut.pendingScrollToId, "");
+                compare(pendingJumpUut.currentIndex, 10);
+            }
+
+            function test_anUnrelatedLoadLeavesThePendingJumpAlone() {
+                const ctx = pendingJumpUut.convContext;
+                ctx.scrollTo("message-10");
+                const request = ctx.lastRequestId;
+
+                // A page this jump did not ask for lands first, and happens to
+                // carry the target.
+                pendingJumpModel.prependOlder(0, 99);
+                ctx.moreMessagesLoaded(request + 999);
+                compare(pendingJumpUut.pendingScrollToId, "message-10");
+                compare(pendingJumpUut.currentIndex, -1);
+
+                ctx.moreMessagesLoaded(request);
+                compare(pendingJumpUut.pendingScrollToId, "");
+                compare(pendingJumpUut.currentIndex, 10);
+            }
+
+            function test_aTargetThatNeverArrivesIsNotHeldForever() {
+                const ctx = pendingJumpUut.convContext;
+                ctx.scrollTo("message-does-not-exist");
+                const request = ctx.lastRequestId;
+                compare(pendingJumpUut.pendingScrollToId, "message-does-not-exist");
+
+                // The requested history lands without the target, so it is
+                // unreachable. Holding the ID would hijack the next load.
+                ctx.moreMessagesLoaded(request);
+                compare(pendingJumpUut.pendingScrollToId, "");
+                compare(pendingJumpUut.pendingScrollToRequest, -1);
+                compare(pendingJumpUut.currentIndex, -1);
             }
         }
     }

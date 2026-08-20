@@ -110,6 +110,9 @@ public:
 
     Q_INVOKABLE bool isDocument(const interaction::Type& type);
     Q_INVOKABLE void loadMoreMessages();
+    // Returns the loading request ID, so a jump waiting on this history can tell
+    // its own batch apart from an unrelated one. -1 if nothing was requested.
+    Q_INVOKABLE int loadMessagesUntil(const QString& messageId);
     Q_INVOKABLE void connectConversationModel();
     Q_INVOKABLE void sendConversationRequest();
     Q_INVOKABLE void removeConversation(const QString& convUid, bool keepContact = false);
