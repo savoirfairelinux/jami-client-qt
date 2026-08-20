@@ -55,11 +55,11 @@ ConversationModel::slotMessageReceived(const QString& accountId,
     try {
         auto& conversation = convForUid(conversationId).get();
         if (message.type == "initial") {
-            conversation.allMessagesLoaded = true;
-            Q_EMIT conversationUpdated(conversationId);
             if (message.body.find("invited") == message.body.end()) {
                 return;
             }
+            conversation.allMessagesLoaded = true;
+            Q_EMIT conversationUpdated(conversationId);
         }
         QString msgId = message.id;
         auto msg = interaction::Info(message, owner.profileInfo.uri, accountId, conversationId);
