@@ -109,6 +109,22 @@ MessagesAdapter::loadMoreMessages()
     }
 }
 
+int
+MessagesAdapter::loadMessagesUntil(const QString& messageId)
+{
+    auto accountId = lrcInstance_->get_currentAccountId();
+    auto convId = lrcInstance_->get_selectedConvUid();
+    try {
+        const auto& convInfo = lrcInstance_->getConversationFromConvUid(convId, accountId);
+        if (convInfo.isSwarm())
+            return lrcInstance_->getCurrentConversationModel()->loadConversationMessagesUntil(convId,
+                                                                                             messageId);
+    } catch (const std::exception& e) {
+        qWarning() << e.what();
+    }
+    return -1;
+}
+
 void
 MessagesAdapter::connectConversationModel()
 {

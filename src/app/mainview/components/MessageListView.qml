@@ -34,6 +34,13 @@ ListView {
     // the main window.
     property var convContext: CurrentConversation
 
+    // The interaction ID a jump is waiting on, while its history is being fetched.
+    property string pendingScrollToId: ""
+
+    // The loading request that jump is waiting on, so an unrelated batch landing
+    // first neither completes nor discards it.
+    property int pendingScrollToRequest: -1
+
     // Older messages are fetched once the oldest loaded one comes within the offscreen
     // buffer, so the history is already there by the time the user scrolls onto it.
     readonly property bool nearBeginning: contentY - originY < displayMarginBeginning
@@ -186,7 +193,119 @@ ListView {
         function onScrollTo(id) {
             // Get the filtered index from the interaction ID.
             var idx = root.model.getDisplayIndex(id);
-            positionViewAtIndex(idx, ListView.Visible);
+            if (idx < 0) {
+                // The message is not in the loaded window yet. Ask for the history up
+                // to it and complete the jump once that request reports back.
+                root.pendingScrollToId = id;
+                root.pendingScrollToRequest = root.convContext !== CurrentConversation
+                    ? root.convContext.loadMessagesUntil(id)
+                    : MessagesAdapter.loadMessagesUntil(id);
+                return;
+            }
+            root.jumpToIndex(idx);
+        }
+    }
+
+    // Finishes a jump that was waiting on history. The batch it asked for is the
+    // only one that can satisfy it, so once that arrives the pending state is
+    // dropped either way: a target still missing from it is unreachable, and
+    // keeping the ID would hijack some later, unrelated load.
+    function completePendingJump(loadingRequestId) {
+        if (pendingScrollToId === "" || loadingRequestId !== pendingScrollToRequest)
+            return;
+        const idx = model.getDisplayIndex(pendingScrollToId);
+        pendingScrollToId = "";
+        pendingScrollToRequest = -1;
+        if (idx >= 0)
+            jumpToIndex(idx);
+    }
+
+    function jumpToIndex(idx) {
+        // Rows may have just been inserted, so lay them out before positioning on one.
+        forceLayout();
+        positionViewAtIndex(idx, ListView.Center);
+        // Drives the highlight, which ListView keeps aligned with the current row.
+        currentIndex = idx;
+        // positionViewAtIndex places the row from the delegate heights the view
+        // happens to know. After a jump most of the block has just been inserted
+        // and is not instantiated yet, so it positions against an estimate that
+        // keeps changing as the real rows are built and later pages land, sliding
+        // the target off screen again. Re-assert until the geometry stops moving.
+        jumpSettleFrames = 40;
+        jumpSettleTimer.restart();
+        jumpHighlightAnimation.restart();
+    }
+
+    // Remaining attempts to put the jumped-to row where it was asked to go.
+    property int jumpSettleFrames: 0
+
+    // True while a jump is still holding its row against a moving layout.
+    readonly property alias jumpSettling: jumpSettleTimer.running
+
+    Timer {
+        id: jumpSettleTimer
+
+        interval: 16
+        repeat: true
+
+        onTriggered: {
+            // Never fight the user: a drag wins over a jump that is still settling.
+            if (root.currentIndex < 0 || root.dragging || root.jumpSettleFrames <= 0) {
+                stop();
+                return;
+            }
+            --root.jumpSettleFrames;
+            const item = root.itemAtIndex(root.currentIndex);
+            if (item === null) {
+                root.positionViewAtIndex(root.currentIndex, ListView.Center);
+                return;
+            }
+            const top = item.mapToItem(root, 0, 0).y;
+            if (Math.abs(top + item.height / 2 - root.height / 2) <= 1) {
+                stop();
+                return;
+            }
+            const contentYBefore = root.contentY;
+            root.positionViewAtIndex(root.currentIndex, ListView.Center);
+            if (Math.abs(root.contentY - contentYBefore) < 0.5) {
+                // The view is clamped against an end, so the row cannot be centred.
+                // Settle for having all of it on screen.
+                if (top < 0 || top + item.height > root.height)
+                    root.positionViewAtIndex(root.currentIndex, ListView.Contain);
+                stop();
+            }
+        }
+    }
+
+    // Fades the row of a jumped-to message in and out so it can be picked out of
+    // the surrounding history.
+    property real jumpHighlightOpacity: 0
+
+    highlightMoveDuration: 0
+    highlightResizeDuration: 0
+    highlight: Rectangle {
+        radius: 5
+        color: root.convContext ? root.convContext.color : JamiTheme.transparentColor
+        opacity: root.jumpHighlightOpacity
+    }
+
+    SequentialAnimation {
+        id: jumpHighlightAnimation
+
+        NumberAnimation {
+            target: root
+            property: "jumpHighlightOpacity"
+            to: 0.4
+            duration: 200
+        }
+        PauseAnimation {
+            duration: 1200
+        }
+        NumberAnimation {
+            target: root
+            property: "jumpHighlightOpacity"
+            to: 0
+            duration: 600
         }
     }
 
@@ -294,6 +413,7 @@ ListView {
 
         function onMoreMessagesLoaded(loadingRequestId) {
             root.loadingMore = false;
+            root.completePendingJump(loadingRequestId);
             // This needs to be throttled, otherwise we will continue to load more messages
             // prior to the loaded chunk being rendered and changing the contentHeight.
             chunkLoadDebounceTimer.restart();
@@ -316,6 +436,7 @@ ListView {
 
         function onMoreMessagesLoaded(loadingRequestId) {
             root.loadingMore = false;
+            root.completePendingJump(loadingRequestId);
             chunkLoadDebounceTimer.restart();
         }
 
