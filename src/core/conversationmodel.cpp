@@ -1467,6 +1467,19 @@ ConversationModel::loadConversationMessages(const QString& conversationId, const
     return ConfigurationManager::instance().loadConversation(owner.id, conversationId, lastMsgId, size);
 }
 
+int
+ConversationModel::loadConversationMessagesUntil(const QString& conversationId, const QString& messageId)
+{
+    auto conversationOpt = getConversationForUid(conversationId);
+    if (!conversationOpt.has_value()) {
+        return -1;
+    }
+    auto& conversation = conversationOpt->get();
+    QString lastMsgId;
+    conversation.interactions->withLast([&lastMsgId](const QString& id, interaction::Info&) { lastMsgId = id; });
+    return ConfigurationManager::instance().loadSwarmUntil(owner.id, conversationId, lastMsgId, messageId);
+}
+
 void
 ConversationModel::acceptConversationRequest(const QString& conversationId)
 {
