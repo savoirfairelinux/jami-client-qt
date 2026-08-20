@@ -765,14 +765,17 @@ ContactModelPimpl::fillWithJamiContacts()
                 first = false;
                 uri = key;
             } else {
+                bool contactUpdated = false;
                 {
                     std::lock_guard<std::mutex> lk(contactsMtx_);
                     auto it = contacts.find(uri);
                     if (it != contacts.end()) {
                         it->presence = key == "Online" ? 1 : 0;
-                        Q_EMIT linked.contactUpdated(uri);
+                        contactUpdated = true;
                     }
                 }
+                if (contactUpdated)
+                    Q_EMIT linked.contactUpdated(uri);
                 break;
             }
         }
@@ -860,6 +863,7 @@ ContactModelPimpl::slotContactRemoved(const QString& accountId, const QString& c
     if (accountId != linked.owner.id)
         return;
 
+    bool pendingContactRemoved = false;
     {
         // Always get contactsMtx_ lock before bannedContactsMtx_.
         std::lock_guard<std::mutex> lk(contactsMtx_);
@@ -869,9 +873,7 @@ ContactModelPimpl::slotContactRemoved(const QString& accountId, const QString& c
             return;
         }
 
-        if (contact->profileInfo.type == profile::Type::PENDING) {
-            Q_EMIT behaviorController.trustRequestTreated(linked.owner.id, contactUri);
-        }
+        pendingContactRemoved = contact->profileInfo.type == profile::Type::PENDING;
 
         if (contact->profileInfo.type != profile::Type::SIP)
             PresenceManager::instance().subscribeBuddy(linked.owner.id, contactUri, false);
@@ -902,6 +904,9 @@ ContactModelPimpl::slotContactRemoved(const QString& accountId, const QString& c
             contacts.remove(contactUri);
         }
     }
+
+    if (pendingContactRemoved)
+        Q_EMIT behaviorController.trustRequestTreated(linked.owner.id, contactUri);
 
     // Update the smartlist
     linked.owner.conversationModel->refreshFilter();
