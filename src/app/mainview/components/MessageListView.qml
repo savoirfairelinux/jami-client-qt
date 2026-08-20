@@ -34,6 +34,7 @@ ListView {
     // the main window.
     property var convContext: CurrentConversation
     property string pendingScrollToId: ""
+    property int pendingScrollAttempts: 0
 
     ScrollBar.vertical: JamiScrollBar {
         id: verticalScrollBar
@@ -125,15 +126,22 @@ ListView {
         const id = pendingScrollToId;
         const index = root.model && root.model.getDisplayIndex ? root.model.getDisplayIndex(id) : -1;
         if (index >= 0) {
-            pendingScrollToId = "";
-            Qt.callLater(() => root.positionViewAtIndex(index, ListView.Center));
+            root.positionViewAtIndex(index, ListView.Center);
+            if (++pendingScrollAttempts < 10)
+                pendingScrollTimer.restart();
+            else {
+                pendingScrollToId = "";
+                pendingScrollAttempts = 0;
+            }
         } else if (convContext !== CurrentConversation || !MessagesAdapter.loadMessagesUntil(id)) {
             pendingScrollToId = "";
+            pendingScrollAttempts = 0;
         }
     }
 
     function scrollToMessage(id) {
         pendingScrollToId = id;
+        pendingScrollAttempts = 0;
         retryPendingScroll();
     }
 
@@ -180,6 +188,7 @@ ListView {
         function onIdChanged() {
             currentIndex = -1;
             pendingScrollToId = "";
+            pendingScrollAttempts = 0;
         }
     }
 
@@ -255,6 +264,10 @@ ListView {
     }
 
     onAtYBeginningChanged: loadMoreMsgsIfNeeded()
+    onContentHeightChanged: {
+        if (pendingScrollToId && pendingScrollAttempts > 0)
+            pendingScrollTimer.restart();
+    }
 
     Timer {
         id: chunkLoadDebounceTimer
@@ -309,6 +322,14 @@ ListView {
         function onFileCopied(dest) {
             toastManager.instantiateToast(dest);
         }
+    }
+
+    Timer {
+        id: pendingScrollTimer
+
+        interval: 50
+        repeat: false
+        onTriggered: retryPendingScroll()
     }
 
     ScrollToBottomButton {
