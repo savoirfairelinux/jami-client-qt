@@ -42,6 +42,9 @@ ListView {
     // nothing does not immediately trigger another one.
     property int countAtLastRequest: -1
 
+    // True while a batch of older messages is on its way.
+    property bool loadingMore: false
+
     ScrollBar.vertical: JamiScrollBar {
         id: verticalScrollBar
 
@@ -70,6 +73,7 @@ ListView {
         if (count === countAtLastRequest)
             return;
         countAtLastRequest = count;
+        loadingMore = true;
         if (convContext !== CurrentConversation)
             convContext.loadMoreMessages();
         else
@@ -217,6 +221,7 @@ ListView {
         function onIdChanged() {
             currentIndex = -1;
             countAtLastRequest = -1;
+            loadingMore = false;
         }
     }
 
@@ -313,6 +318,7 @@ ListView {
         }
 
         function onMoreMessagesLoaded(loadingRequestId) {
+            root.loadingMore = false;
             // This needs to be throttled, otherwise we will continue to load more messages
             // prior to the loaded chunk being rendered and changing the contentHeight.
             chunkLoadDebounceTimer.restart();
@@ -334,6 +340,7 @@ ListView {
         }
 
         function onMoreMessagesLoaded(loadingRequestId) {
+            root.loadingMore = false;
             chunkLoadDebounceTimer.restart();
         }
 
@@ -440,6 +447,54 @@ ListView {
 
                 font.pointSize: 8
                 color: JamiTheme.textColor
+            }
+        }
+    }
+
+    // Placeholder bubbles standing in for the batch of older messages being
+    // fetched. BottomToTop puts the footer at the top, which is where they
+    // land. Reserving the space keeps the list scrollable past the oldest
+    // loaded message instead of dead-ending against it.
+    footer: Column {
+        id: loadingSkeleton
+
+        width: root.width
+        height: root.loadingMore ? implicitHeight : 0
+        visible: height > 0
+        clip: true
+        spacing: 4
+
+        Behavior on height {
+            NumberAnimation {
+                duration: 150
+                easing.type: Easing.OutQuad
+            }
+        }
+
+        SequentialAnimation on opacity {
+            running: root.loadingMore
+            loops: Animation.Infinite
+            NumberAnimation {
+                to: 0.35
+                duration: 600
+                easing.type: Easing.InOutQuad
+            }
+            NumberAnimation {
+                to: 1
+                duration: 600
+                easing.type: Easing.InOutQuad
+            }
+        }
+
+        Repeater {
+            model: [0.55, 0.35, 0.7]
+
+            Rectangle {
+                width: Math.max(60, root.width * modelData * 0.6)
+                height: 32
+                x: JamiTheme.messageBarMarginSize
+                radius: 5
+                color: JamiTheme.messageInBgColor
             }
         }
     }

@@ -202,6 +202,37 @@ ColumnLayout {
                 prefetchUut.contentY = prefetchUut.originY;
                 compare(loadSpy.count, 1);
             }
+
+            function test_skeletonReservesRoomWhileLoading() {
+                wait(100);
+                prefetchUut.loadingMore = false;
+                wait(200);
+                verify(!prefetchUut.footerItem.visible);
+                const idleHeight = prefetchUut.footerItem.height;
+
+                // While a batch is in flight the placeholders give the list somewhere
+                // to scroll, instead of dead-ending on the oldest loaded message.
+                prefetchUut.loadingMore = true;
+                tryVerify(function () {
+                    return prefetchUut.footerItem.height > idleHeight;
+                }, 1000);
+                verify(prefetchUut.footerItem.visible);
+
+                // They must sit at the end the loading is triggered from, so the user
+                // is looking at them rather than at the opposite end of the history.
+                prefetchUut.contentY = prefetchUut.originY;
+                verify(prefetchUut.nearBeginning);
+                const top = prefetchUut.footerItem.mapToItem(prefetchUut, 0, 0).y;
+                verify(top < prefetchUut.height);
+                verify(top + prefetchUut.footerItem.height > 0);
+
+                // And they go away once the batch lands.
+                prefetchUut.convContext.moreMessagesLoaded(0);
+                compare(prefetchUut.loadingMore, false);
+                tryVerify(function () {
+                    return !prefetchUut.footerItem.visible;
+                }, 1000);
+            }
         }
     }
 }
