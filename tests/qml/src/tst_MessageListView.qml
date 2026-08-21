@@ -139,4 +139,69 @@ ColumnLayout {
             }
         }
     }
+    MessageListView {
+        id: prefetchUut
+
+        width: root.width
+        height: 180
+        convContext: QtObject {
+            property bool allMessagesLoaded: false
+            property string id: "prefetch"
+            property color color: "#00b0d0"
+            signal scrollTo(string id)
+            signal newInteraction()
+            signal moreMessagesLoaded(int loadingRequestId)
+            signal fileCopied(string dest)
+            signal loadMoreRequested()
+            function loadMoreMessages() {
+                loadMoreRequested();
+            }
+        }
+
+        model: ListModel {
+            id: prefetchModel
+            Component.onCompleted: {
+                for (var i = 0; i < 200; ++i)
+                    append({Id: "message-" + i, Type: Interaction.Type.TEXT});
+            }
+        }
+
+        delegate: Rectangle {
+            width: prefetchUut.width
+            height: 40
+            color: "transparent"
+        }
+
+        SignalSpy {
+            id: loadSpy
+            target: prefetchUut.convContext
+            signalName: "loadMoreRequested"
+        }
+
+        TestCase {
+            name: "Check offscreen history prefetch"
+
+            function test_fetchesBeforeReachingTheOldestMessage() {
+                wait(100);
+                // Park the view well away from the oldest loaded message.
+                prefetchUut.contentY = prefetchUut.originY + prefetchUut.displayMarginBeginning * 2;
+                wait(100);
+                loadSpy.clear();
+                prefetchUut.countAtLastRequest = -1;
+                verify(!prefetchUut.nearBeginning);
+                compare(loadSpy.count, 0);
+
+                // Coming within the offscreen buffer must fetch, without the user
+                // having to scroll all the way to the top.
+                prefetchUut.contentY = prefetchUut.originY + prefetchUut.displayMarginBeginning / 2;
+                verify(!prefetchUut.atYBeginning);
+                compare(loadSpy.count, 1);
+
+                // Asking again before anything new arrives would be a busy loop.
+                prefetchUut.contentY = prefetchUut.originY + prefetchUut.displayMarginBeginning * 2;
+                prefetchUut.contentY = prefetchUut.originY;
+                compare(loadSpy.count, 1);
+            }
+        }
+    }
 }

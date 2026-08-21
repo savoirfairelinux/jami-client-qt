@@ -34,6 +34,14 @@ ListView {
     // the main window.
     property var convContext: CurrentConversation
 
+    // Older messages are fetched once the oldest loaded one comes within the offscreen
+    // buffer, so the history is already there by the time the user scrolls onto it.
+    readonly property bool nearBeginning: contentY - originY < displayMarginBeginning
+
+    // Model count when history was last requested, so a request that delivers
+    // nothing does not immediately trigger another one.
+    property int countAtLastRequest: -1
+
     ScrollBar.vertical: JamiScrollBar {
         id: verticalScrollBar
 
@@ -55,12 +63,17 @@ ListView {
     }
 
     function loadMoreMsgsIfNeeded() {
-        if (convContext && atYBeginning && !convContext.allMessagesLoaded) {
-            if (convContext !== CurrentConversation)
-                convContext.loadMoreMessages();
-            else
-                MessagesAdapter.loadMoreMessages();
-        }
+        if (!convContext || !nearBeginning || convContext.allMessagesLoaded)
+            return;
+        // Wait for the previous request to actually deliver something before asking
+        // again, otherwise a request that brings nothing back turns into a busy loop.
+        if (count === countAtLastRequest)
+            return;
+        countAtLastRequest = count;
+        if (convContext !== CurrentConversation)
+            convContext.loadMoreMessages();
+        else
+            MessagesAdapter.loadMoreMessages();
     }
 
     function computeTimestampVisibility(item1, item1Index, item2, item2Index) {
@@ -203,6 +216,7 @@ ListView {
         target: convContext
         function onIdChanged() {
             currentIndex = -1;
+            countAtLastRequest = -1;
         }
     }
 
@@ -277,7 +291,7 @@ ListView {
         }
     }
 
-    onAtYBeginningChanged: loadMoreMsgsIfNeeded()
+    onNearBeginningChanged: loadMoreMsgsIfNeeded()
 
     Timer {
         id: chunkLoadDebounceTimer
@@ -285,11 +299,7 @@ ListView {
         interval: 100
         repeat: false
         running: false
-        onTriggered: {
-            if (root.contentHeight < root.height) {
-                root.loadMoreMsgsIfNeeded();
-            }
-        }
+        onTriggered: root.loadMoreMsgsIfNeeded()
     }
 
     Connections {
