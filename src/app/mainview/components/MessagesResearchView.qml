@@ -112,8 +112,6 @@ ListView {
             width: root.width
 
             TimestampInfo {
-                id: timestampItem
-
                 showDay: true
                 formattedTime: MessagesAdapter.getFormattedTime(Timestamp)
                 formattedDay: MessagesAdapter.getFormattedDay(Timestamp)
@@ -138,12 +136,41 @@ ListView {
 
                 ColumnLayout {
 
-                    Text {
-                        text: contentRow.isMe ? CurrentAccount.bestName : UtilsAdapter.getBestNameForUri(CurrentAccount.id, Author) + " :"
-                        Layout.rightMargin: 10
+                    RowLayout {
+                        Layout.fillWidth: true
                         Layout.leftMargin: 10
-                        font.pixelSize: 0
-                        color: JamiTheme.chatviewSecondaryInformationColor
+                        Layout.rightMargin: 10
+
+                        Text {
+                            text: contentRow.isMe ? CurrentAccount.bestName : UtilsAdapter.getBestNameForUri(CurrentAccount.id, Author)
+                            Layout.fillWidth: true
+                            elide: Text.ElideRight
+                            font.pixelSize: JamiTheme.usernameBlockFontSize
+                            color: JamiTheme.chatviewSecondaryInformationColor
+                        }
+
+                        Button {
+                            id: buttonJumpTo
+
+                            // Kept in the layout while hidden so the name does not
+                            // reflow as the pointer enters and leaves the result.
+                            opacity: msgHover.hovered || hovered ? 1 : 0
+                            enabled: opacity > 0
+                            implicitWidth: buttonJumpText.implicitWidth + 10
+                            implicitHeight: buttonJumpText.implicitHeight + 10
+                            background.visible: false
+                            onClicked: {
+                                CurrentConversation.scrollToMsg(Id);
+                            }
+                            Text {
+                                id: buttonJumpText
+                                text: JamiStrings.jumpTo
+                                color: buttonJumpTo.hovered ? JamiTheme.blueLinkColor : JamiTheme.chatviewSecondaryInformationColor
+                                font.underline: buttonJumpTo.hovered
+                                anchors.centerIn: parent
+                                font.pointSize: JamiTheme.jumpToFontSize
+                            }
+                        }
                     }
 
                     TextArea {
@@ -166,28 +193,6 @@ ListView {
                         Layout.alignment: Qt.AlignLeft
                     }
                 }
-            }
-        }
-        Button {
-            id: buttonJumpTo
-            visible: msgHover.hovered || hovered
-            anchors.top: msgLayout.top
-            anchors.right: msgLayout.right
-            anchors.rightMargin: 20
-            anchors.topMargin: timestampItem.height - 21
-            width: buttonJumpText.width + 10
-            height: buttonJumpText.height + 10
-            background.visible: false
-            onClicked: {
-                CurrentConversation.scrollToMsg(Id);
-            }
-            Text {
-                id: buttonJumpText
-                text: JamiStrings.jumpTo
-                color: buttonJumpTo.hovered ? JamiTheme.blueLinkColor : JamiTheme.chatviewSecondaryInformationColor
-                font.underline: buttonJumpTo.hovered
-                anchors.centerIn: parent
-                font.pointSize: JamiTheme.jumpToFontSize
             }
         }
     }
