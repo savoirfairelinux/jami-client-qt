@@ -25,7 +25,12 @@ Rectangle {
     id: root
 
     signal searchBarTextChanged(string text)
-    signal returnPressedWhileSearching
+    signal accepted(string text)
+
+    // Live filtering is fine for the local lists, but searching a conversation
+    // hits the daemon, so those views ask for the search to be submitted
+    // explicitly rather than run on every keystroke.
+    property bool requireAccept: false
 
     property alias textContent: textArea.text
     property alias placeHolderText: textArea.placeholderText
@@ -106,7 +111,16 @@ Rectangle {
             font.pointSize: JamiTheme.textFontSize
             font.kerning: true
 
-            onTextChanged: root.searchBarTextChanged(textArea.text)
+            onTextChanged: {
+                // An emptied box always reports through, so the results it
+                // produced do not linger after the query is gone.
+                if (!root.requireAccept || textArea.text.length === 0)
+                    root.searchBarTextChanged(textArea.text);
+            }
+            onAccepted: {
+                if (textArea.text.length)
+                    root.accepted(textArea.text);
+            }
             onReleased: function (event) {
                 if (event.button === Qt.RightButton)
                     lineEditContextMenu.openMenuAt(event);
@@ -117,23 +131,33 @@ Rectangle {
     PushButton {
         id: actionButton
 
+        objectName: "searchActionButton"
+
         enabled: textArea.text.length
         anchors.verticalCenter: parent.verticalCenter
         anchors.right: root.right
         anchors.rightMargin: 12
 
         hoverEnabled: textArea.text.length
-        preferredSize: textArea.text.length ? 15 : 24
+        preferredSize: showsClear ? 15 : 24
         radius: JamiTheme.primaryRadius
         opacity: textArea.activeFocus || textArea.text.length ? 1 : 0.6
 
         normalColor: root.color
         imageColor: JamiTheme.primaryForegroundColor
 
-        source: textArea.text.length ? JamiResources.clear_24dp_svg : JamiResources.baseline_search_24dp_svg
-        toolTipText: textArea.text.length ? JamiStrings.clearText : ""
+        // In accept mode the button is what submits the search, so it keeps the
+        // magnifier and the box is cleared by emptying it instead.
+        readonly property bool showsClear: textArea.text.length && !root.requireAccept
+
+        source: showsClear ? JamiResources.clear_24dp_svg : JamiResources.baseline_search_24dp_svg
+        toolTipText: showsClear ? JamiStrings.clearText : (textArea.text.length ? JamiStrings.search : "")
         onClicked: {
-            if (textArea.text.length)
+            if (!textArea.text.length)
+                return;
+            if (root.requireAccept)
+                root.accepted(textArea.text);
+            else
                 textArea.clear();
         }
 
@@ -145,12 +169,4 @@ Rectangle {
         }
     }
 
-    Keys.onPressed: function (keyEvent) {
-        if (keyEvent.key === Qt.Key_Enter || keyEvent.key === Qt.Key_Return) {
-            if (textArea.text !== "") {
-                returnPressedWhileSearching();
-                keyEvent.accepted = true;
-            }
-        }
-    }
 }
