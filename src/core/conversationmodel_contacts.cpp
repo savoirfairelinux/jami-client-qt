@@ -205,27 +205,29 @@ ConversationModel::slotSwarmLoaded(uint32_t requestId,
     auto allLoaded = false;
     try {
         auto& conversation = convForUid(conversationId).get();
+        MessageListModel::container_t batch;
+        batch.reserve(messages.size());
+        QMap<QString, int> awaitingHost;
         for (const auto& message : messages) {
             QString msgId = message.id;
             auto msg = interaction::Info(message, owner.profileInfo.uri, accountId, conversationId);
-            auto downloadFile = false;
             if (msg.type == interaction::Type::INITIAL) {
                 allLoaded = true;
             } else if (msg.type == interaction::Type::DATA_TRANSFER) {
                 QString fileId = message.body.value("fileId");
                 owner.dataTransferModel->registerTransferId(fileId, msgId);
-                downloadFile = (msg.transferStatus == interaction::TransferStatus::TRANSFER_AWAITING_HOST);
+                if (msg.transferStatus == interaction::TransferStatus::TRANSFER_AWAITING_HOST)
+                    awaitingHost.insert(msgId, QString(message.body.value("totalSize")).toInt());
             }
+            batch.append({msgId, std::move(msg)});
+        }
 
-            // If message is loaded, insert message at beginning
-            if (!conversation.interactions->insert(msgId, msg, 0)) {
-                qDebug() << Q_FUNC_INFO << "Insert failed: duplicate ID.";
-                continue;
-            }
+        const auto inserted = conversation.interactions->insertRange(std::move(batch), 0);
 
-            if (downloadFile) {
-                handleIncomingFile(conversationId, msgId, QString(message.body.value("totalSize")).toInt());
-            }
+        for (const auto& msgId : inserted) {
+            const auto it = awaitingHost.constFind(msgId);
+            if (it != awaitingHost.constEnd())
+                handleIncomingFile(conversationId, msgId, it.value());
         }
 
         conversation.lastSelfMessageId = conversation.interactions->lastSelfMessageId(owner.profileInfo.uri);
