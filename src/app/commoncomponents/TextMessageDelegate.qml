@@ -143,15 +143,23 @@ SBSMessageBase {
                 enabled: parent.selectedText.length > 0
                 acceptedButtons: Qt.RightButton
                 onTapped: function onTapped(eventPoint) {
-                    ctxMenu.openMenuAt(eventPoint.position);
+                    ctxMenuLoader.active = true;
+                    ctxMenuLoader.item.openMenuAt(eventPoint.position);
                 }
             }
 
-            LineEditContextMenu {
-                id: ctxMenu
+            // Built on first use: the menu carries half a dozen icon-loading menu
+            // items, and instantiating it with the delegate put that cost on the
+            // scroll path, once per message row.
+            Loader {
+                id: ctxMenuLoader
 
-                lineEditObj: parent
-                selectOnly: parent.readOnly
+                objectName: "textContextMenuLoader"
+                active: false
+                sourceComponent: LineEditContextMenu {
+                    lineEditObj: textEditId
+                    selectOnly: textEditId.readOnly
+                }
             }
         },
         Loader {
