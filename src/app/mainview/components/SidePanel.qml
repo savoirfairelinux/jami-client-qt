@@ -300,7 +300,7 @@ SidePanelBase {
                                 ConversationsAdapter.setFilter(text);
                             }
 
-                            onReturnPressedWhileSearching: {
+                            onAccepted: {
                                 var listView = searchResultsListView.count ? searchResultsListView :
                                                                              conversationListView;
                                 if (listView.count)
