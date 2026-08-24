@@ -22,6 +22,10 @@
 #include "api/contactmodel.h"
 
 #include <QFileInfo>
+#include <QSet>
+
+#include <algorithm>
+#include <utility>
 
 static bool
 isOnlyEmoji(const QString& text)
@@ -158,6 +162,68 @@ MessageListModel::insert(const QString& id, const interaction::Info& interaction
     }
     endInsertRows();
     return true;
+}
+
+QStringList
+MessageListModel::insertRange(container_t items, int index)
+{
+    const std::lock_guard<std::recursive_mutex> lk(mutex_);
+    if (index < 0 || index > interactions_.size() || items.isEmpty()) {
+        return {};
+    }
+
+    // One membership index for the whole batch, so a swarm load costs a single
+    // pass instead of a linear scan per message.
+    QSet<QString> known;
+    known.reserve(interactions_.size() + items.size());
+    for (const auto& item : std::as_const(interactions_)) {
+        known.insert(item.first);
+    }
+
+    container_t batch;
+    batch.reserve(items.size());
+    QStringList insertedIds;
+    insertedIds.reserve(items.size());
+    QString firstSent;
+    for (auto& item : items) {
+        if (known.contains(item.first)) {
+            continue;
+        }
+        known.insert(item.first);
+        if (firstSent.isEmpty() && item.second.sent()) {
+            firstSent = item.first;
+        }
+        insertedIds.append(item.first);
+        batch.append(std::move(item));
+    }
+    if (batch.isEmpty()) {
+        return {};
+    }
+
+    // Callers deliver newest first, while the container is ordered oldest first.
+    std::reverse(batch.begin(), batch.end());
+
+    beginInsertRows(QModelIndex(), index, index + batch.size() - 1);
+    // interaction::Info is move-only, so grow at the back and rotate into place.
+    interactions_.reserve(interactions_.size() + batch.size());
+    for (auto& item : batch) {
+        interactions_.append(std::move(item));
+    }
+    std::rotate(interactions_.begin() + index,
+                interactions_.end() - batch.size(),
+                interactions_.end());
+    // Update last sent if one of the messages is outgoing and successful. Matches
+    // the per-message path: only the first candidate can win, since inserting it
+    // leaves lastSentIdx_ no lower than index.
+    if (!firstSent.isEmpty() && index > lastSentIdx_) {
+        auto oldIdx = indexOfMessage(lastSent_);
+        lastSentIdx_ = index;
+        lastSent_ = firstSent;
+        auto modelIndex = QAbstractListModel::index(oldIdx, 0);
+        Q_EMIT dataChanged(modelIndex, modelIndex, {Role::IsLastSent});
+    }
+    endInsertRows();
+    return insertedIds;
 }
 
 bool
