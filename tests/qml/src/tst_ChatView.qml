@@ -72,6 +72,26 @@ TestWrapper {
                     CurrentConversation.title = "Name B"
                     tryCompare(titleLabel, "eText", "Name B", 1000)
                 }
+
+                /**
+                 * A conversation that cannot be found leaves CurrentConversation with default
+                 * values, among which isSwarm is false. The banner offering to migrate the
+                 * conversation to a swarm must not be shown then: there is nothing to migrate, and
+                 * its buttons have no peer to act on.
+                 */
+                function test_updateToSwarmBannerNeedsALegacyConversation() {
+                    const banner = findChild(uut, "updateToSwarmBanner")
+                    verify(banner !== null)
+                    verify(CurrentAccount.type === Profile.Type.JAMI)
+
+                    CurrentConversation.isTemporary = false
+                    CurrentConversation.isSwarm = false
+                    CurrentConversation.isLegacy = true
+                    compare(banner.visible, true, "A legacy conversation can be migrated")
+
+                    CurrentConversation.isLegacy = false
+                    compare(banner.visible, false, "An unknown conversation has nothing to migrate")
+                }
             }
         }
     }
