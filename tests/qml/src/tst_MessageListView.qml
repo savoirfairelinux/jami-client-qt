@@ -182,6 +182,88 @@ ColumnLayout {
                 compare(uut.model.count, 4)
             }
 
+            // Day separators, timestamps and bubble sequencing are derived from each
+            // row's older neighbour, which is not instantiated yet when a row is
+            // created while scrolling up. Check every computable row against the
+            // model after a scroll round trip.
+            function test_groupingSurvivesScrolling() {
+                for (var i = 0; i < 40; ++i)
+                    messageModel.append(makeTextRow(i));
+                tryVerify(function () {
+                    return uut.count === 44;
+                }, 2000);
+
+                uut.positionViewAtBeginning();
+                uut.forceLayout();
+                wait(200);
+
+                // Round trip far enough to destroy and rebuild the rows we started with.
+                uut.positionViewAtIndex(uut.count - 1, ListView.Beginning);
+                uut.forceLayout();
+                wait(200);
+                uut.positionViewAtBeginning();
+                uut.forceLayout();
+                wait(200);
+
+                var checked = 0;
+                var sawSeparator = false;
+                for (var j = 0; j < uut.count; ++j) {
+                    var item = uut.itemAtIndex(j);
+                    // Higher indices are older. The oldest instantiated row has nothing
+                    // to compare against and settles once its neighbour is created.
+                    if (item === null || item.seq === undefined || uut.itemAtIndex(j + 1) === null)
+                        continue;
+
+                    var mine = messageModel.get(j);
+                    var older = messageModel.get(j + 1);
+                    compare(item.timestamp, mine.Timestamp, "row " + j + " shows the wrong message");
+                    compare(item.showTime, mine.Timestamp - older.Timestamp > JamiTheme.timestampIntervalTime, "row " + j + " has the wrong timestamp separator");
+                    compare(item.showDay, MessagesAdapter.getFormattedDay(mine.Timestamp) !== MessagesAdapter.getFormattedDay(older.Timestamp), "row " + j + " has the wrong day separator");
+                    if (item.showDay || item.showTime)
+                        sawSeparator = true;
+                    checked++;
+                }
+                verify(checked > 0);
+                // Guard against the data accidentally producing no separators at all,
+                // which would make every assertion above pass trivially.
+                verify(sawSeparator);
+            }
+
+            function makeTextRow(i) {
+                // Newest first, matching the real (reversed) proxy: five messages per
+                // day, 30s apart, so day and time separators vary from row to row.
+                var ts = 1708000000 - (Math.floor(i / 5) * 86400 + (i % 5) * 30);
+                return {
+                    ActionUri: "",
+                    Author: (i % 7 === 0) ? "someoneelse0000000000000000000000000000" : "9cdbe0ec5f1399834f597dbfef6bf7f382000000",
+                    Body: "bulk message " + i,
+                    ConfId: "",
+                    ContactAction: "",
+                    DeviceId: "",
+                    Duration: 0,
+                    FileExtension: "",
+                    Id: "bulk" + i,
+                    Index: 100 + i,
+                    OriginalBody: "",
+                    ParsedOriginalBody: "",
+                    IsEmojiOnly: false,
+                    IsRead: true,
+                    LinkPreviewInfo: {},
+                    ParsedBody: "bulk message " + i,
+                    PreviousBodies: [],
+                    Reactions: {},
+                    Readers: [],
+                    ReplyTo: "",
+                    ReplyToAuthor: "",
+                    ReplyToBody: "",
+                    Status: 4,
+                    Timestamp: ts,
+                    TotalSize: 0,
+                    TransferName: "",
+                    Type: 2
+                };
+            }
+
             // The text context menu carries half a dozen icon-loading menu items.
             // Building it with the delegate puts that cost on the scroll path, once
             // per message row, so it must not exist until it is asked for.
