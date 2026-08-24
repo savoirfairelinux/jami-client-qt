@@ -63,8 +63,13 @@ Rectangle {
             // documents() reads the conversation history from the daemon; a conversation
             // that has documents keeps having them, so only rescan while none is known to
             // avoid a git scan on every incoming message.
-            if (!messageBarRowLayout.hasEditableDocuments)
-                messageBarRowLayout.updateHasEditableDocuments();
+            if (messageBarRowLayout.hasEditableDocuments)
+                return;
+            // countChanged is emitted from rowsInserted, so this runs inside the model's
+            // endInsertRows(). Scanning there blocks the GUI thread once per message, and
+            // history is paged in twenty at a time. Defer instead: callLater coalesces the
+            // whole batch into a single scan, once the insertions are done.
+            Qt.callLater(messageBarRowLayout.updateHasEditableDocuments);
         }
     }
 

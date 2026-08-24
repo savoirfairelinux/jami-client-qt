@@ -19,16 +19,19 @@
 #include "accountsettingsmanager.h"
 #include "connectivitymonitor.h"
 #include "mainapplication.h"
+#include "messagesadapter.h"
 #include "previewengine.h"
 #include "qmlregister.h"
 #include "systemtray.h"
 
+#include <api/messagelistmodel.h>
 #include <api/profile.h>
 #include <api/account.h>
 #include <api/conversationmodel.h>
 #include <api/contactmodel.h>
 #include <api/contact.h>
 
+#include <QElapsedTimer>
 #include <QFontDatabase>
 #include <QQmlContext>
 #include <QQmlEngine>
@@ -59,6 +62,72 @@ using namespace std::literals::chrono_literals;
 
 bool useCache = false;
 bool muteDaemon = false;
+
+// Drives the real conversation's interaction model, so QML tests exercise the
+// same signal path the client uses: MessageListModel -> FilteredMsgListModel ->
+// everything bound to it.
+class MessageListStub : public QObject
+{
+    Q_OBJECT
+
+public:
+    explicit MessageListStub(LRCInstance* lrcInstance, QObject* parent = nullptr)
+        : QObject(parent)
+        , lrcInstance_(lrcInstance)
+    {}
+
+    // Prepends `count` older messages, the way a swarm page lands, and reports how
+    // long the calling (GUI) thread was blocked doing it.
+    Q_INVOKABLE int insertOlder(int count)
+    {
+        auto* interactions = currentInteractions();
+        if (!interactions)
+            return -1;
+        QElapsedTimer timer;
+        timer.start();
+        for (int i = 0; i < count; ++i)
+            interactions->insert(QString("older-%1-%2").arg(page_).arg(i), makeInteraction(-i), 0);
+        ++page_;
+        return static_cast<int>(timer.elapsed());
+    }
+
+    Q_INVOKABLE int count()
+    {
+        auto* interactions = currentInteractions();
+        return interactions ? interactions->rowCount() : -1;
+    }
+
+private:
+    lrc::api::MessageListModel* currentInteractions()
+    {
+        try {
+            const auto& conversation = lrcInstance_->getConversationFromConvUid(
+                lrcInstance_->get_selectedConvUid());
+            return conversation.interactions.get();
+        } catch (const std::exception&) {
+            return nullptr;
+        }
+    }
+
+    static lrc::api::interaction::Info makeInteraction(int n)
+    {
+        lrc::api::interaction::Info info;
+        info.type = lrc::api::interaction::Type::TEXT;
+        info.authorUri = QString("author-%1").arg(n % 2);
+        info.body = QString("message body number %1").arg(n);
+        info.parsedBody = info.body;
+        info.timestamp = 1700000000 + n * 60;
+        info.commit["id"] = QString("%1").arg(n, 40, 16, QChar('0'));
+        info.commit["author"] = info.authorUri;
+        info.commit["body"] = info.body;
+        info.commit["timestamp"] = QString::number(info.timestamp);
+        info.commit["type"] = "text/plain";
+        return info;
+    }
+
+    LRCInstance* lrcInstance_;
+    int page_ {0};
+};
 
 class Setup : public QObject
 {
@@ -169,6 +238,9 @@ public Q_SLOTS:
                              previewEngine_.get(),
                              &screenInfo_,
                              this);
+
+        engine->rootContext()->setContextProperty("MessageListStub",
+                                                 new MessageListStub(lrcInstance_.get(), engine));
     }
 
     /*
