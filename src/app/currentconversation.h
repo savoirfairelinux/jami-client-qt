@@ -102,4 +102,5 @@ private:
     CurrentConversationMembers* membersModel_;
 
     void connectModel();
+    void clearConversationProperties();
 };

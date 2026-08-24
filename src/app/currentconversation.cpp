@@ -46,6 +46,29 @@ CurrentConversation::CurrentConversation(LRCInstance* lrcInstance, QObject* pare
 }
 
 void
+CurrentConversation::clearConversationProperties()
+{
+    set_title();
+    set_description();
+    set_botOwner();
+    set_isSwarm();
+    set_isLegacy();
+    set_isCoreDialog();
+    set_isRequest();
+    set_needsSyncing();
+    set_isBanned();
+    set_isTemporary();
+    set_isContact();
+    set_modeString();
+    set_callId();
+    set_callState(call::Status::INVALID);
+    set_hasCall(false);
+    set_inCall(false);
+    set_activeCalls({});
+    membersModel_->setMembers({}, {}, {});
+}
+
+void
 CurrentConversation::updateData()
 {
     auto convId = lrcInstance_->get_selectedConvUid();
@@ -76,7 +99,7 @@ CurrentConversation::updateData()
         QString botOwner;
         auto optConv = accInfo.conversationModel->getConversationForUid(convId);
         if (!optConv) {
-            set_botOwner();
+            clearConversationProperties();
             return;
         }
         auto& convInfo = optConv->get();
@@ -122,14 +145,14 @@ CurrentConversation::updateData()
         // is consistently determined by the peer's uri being equal to
         // the conversation id.
         auto members = accInfo.conversationModel->peersForConversation(convId);
-        set_isTemporary(isCoreDialog_ ? (convId == members.at(0) || convId == "SEARCHSIP") : false);
+        set_isTemporary(isCoreDialog_ && (convId == "SEARCHSIP" || (!members.isEmpty() && convId == members.at(0))));
 
         auto isContact {false};
         if (isCoreDialog_ && !members.isEmpty()) {
             if (members.at(0) == accInfo.profileInfo.uri)
                 botOwner = accInfo.profileInfo.botOwner;
         }
-        if (isCoreDialog_)
+        if (isCoreDialog_ && !members.isEmpty())
             try {
                 auto& contact = accInfo.contactModel->getContact(members.at(0));
                 set_isBanned(contact.isBanned);
