@@ -39,9 +39,51 @@ ColumnLayout {
     MessageListView {
         id: uut
 
+        Layout.fillWidth: true
+        Layout.fillHeight: true
+
+        convContext: QtObject {
+            property bool allMessagesLoaded: true
+            property string id: ""
+            property color color: "#00b0d0"
+            signal scrollTo(string id)
+            signal newInteraction()
+            signal moreMessagesLoaded(int loadingRequestId)
+            signal fileCopied(string fileName, string downloadDir)
+        }
+
         model: ListModel {
             id: messageModel
             Component.onCompleted: {
+                messageModel.append({
+                    ActionUri: "",
+                    Author: "9cdbe0ec5f1399834f597dbfef6bf7f382000000",
+                    Body: "a plain text message",
+                    ConfId: "",
+                    ContactAction: "",
+                    DeviceId: "",
+                    Duration: 0,
+                    FileExtension: "",
+                    Id: "b1946ac92492d2347c6235b4d2611184e1a4f5b2",
+                    Index: 3,
+                    OriginalBody: "",
+                    ParsedOriginalBody: "",
+                    IsEmojiOnly: false,
+                    IsRead: true,
+                    LinkPreviewInfo: {},
+                    ParsedBody: "a plain text message",
+                    PreviousBodies: [],
+                    Reactions: {},
+                    Readers: [],
+                    ReplyTo: "",
+                    ReplyToAuthor: "",
+                    ReplyToBody: "",
+                    Status: 4,
+                    Timestamp: 1708025460,
+                    TotalSize: 0,
+                    TransferName: "",
+                    Type: 2
+                })
                 messageModel.append({
                     ActionUri: "",
                     Author: "9cdbe0ec5f1399834f597dbfef6bf7f382000000",
@@ -134,8 +176,28 @@ ColumnLayout {
 
         TestCase {
             name: "Check fake conversation"
+            when: windowShown
+
             function test_checkFakeConversation() {
-                compare(uut.model.count, 3)
+                compare(uut.model.count, 4)
+            }
+
+            // The text context menu carries half a dozen icon-loading menu items.
+            // Building it with the delegate puts that cost on the scroll path, once
+            // per message row, so it must not exist until it is asked for.
+            function test_textContextMenuIsBuiltOnFirstUseOnly() {
+                tryVerify(function () {
+                    return uut.itemAtIndex(0) !== null;
+                }, 2000);
+                const loader = findChild(uut.itemAtIndex(0), "textContextMenuLoader");
+                verify(loader !== null);
+                compare(loader.active, false);
+                compare(loader.item, null);
+
+                // ...and it still builds when the user actually opens it.
+                loader.active = true;
+                verify(loader.item !== null);
+                loader.active = false;
             }
         }
     }
