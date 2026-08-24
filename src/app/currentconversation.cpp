@@ -46,6 +46,41 @@ CurrentConversation::CurrentConversation(LRCInstance* lrcInstance, QObject* pare
 }
 
 void
+CurrentConversation::clearConversationProperties()
+{
+    // Every conversation-scoped property is listed here, in declaration order, so that a property
+    // added later is not silently left holding the value of the previously selected conversation.
+    // errors and backendErrors are the exception: updateErrors() always runs, and clears them.
+    set_title();
+    set_description();
+    set_botOwner();
+    set_isSwarm();
+    set_isLegacy();
+    set_isCoreDialog();
+    set_isRequest();
+    set_needsSyncing();
+    set_isSip();
+    set_isBanned();
+    set_ignoreNotifications();
+    set_callId();
+    // An empty string is not a usable colour on the QML side, so fall back to the colour the
+    // conversation would be given had it no preference of its own.
+    set_color(Utils::getAvatarColor(id_).name());
+    set_rdvAccount();
+    set_rdvDevice();
+    set_callState(call::Status::INVALID);
+    set_inCall(false);
+    set_isTemporary();
+    set_isContact();
+    set_allMessagesLoaded();
+    set_modeString();
+    set_activeCalls({});
+    set_lastSelfMessageId();
+    set_hasCall(false);
+    membersModel_->setMembers({}, {}, {});
+}
+
+void
 CurrentConversation::updateData()
 {
     auto convId = lrcInstance_->get_selectedConvUid();
@@ -76,7 +111,7 @@ CurrentConversation::updateData()
         QString botOwner;
         auto optConv = accInfo.conversationModel->getConversationForUid(convId);
         if (!optConv) {
-            set_botOwner();
+            clearConversationProperties();
             return;
         }
         auto& convInfo = optConv->get();
@@ -122,22 +157,24 @@ CurrentConversation::updateData()
         // is consistently determined by the peer's uri being equal to
         // the conversation id.
         auto members = accInfo.conversationModel->peersForConversation(convId);
-        set_isTemporary(isCoreDialog_ ? (convId == members.at(0) || convId == "SEARCHSIP") : false);
+        set_isTemporary(isCoreDialog_ && (convId == "SEARCHSIP" || (!members.isEmpty() && convId == members.at(0))));
 
         auto isContact {false};
+        auto isBanned {false};
         if (isCoreDialog_ && !members.isEmpty()) {
             if (members.at(0) == accInfo.profileInfo.uri)
                 botOwner = accInfo.profileInfo.botOwner;
         }
-        if (isCoreDialog_)
+        if (isCoreDialog_ && !members.isEmpty())
             try {
                 auto& contact = accInfo.contactModel->getContact(members.at(0));
-                set_isBanned(contact.isBanned);
+                isBanned = contact.isBanned;
                 isContact = contact.profileInfo.type != profile::Type::TEMPORARY;
                 botOwner = contact.profileInfo.botOwner;
             } catch (const std::exception& e) {
                 qInfo() << "Contact not found: " << e.what();
             }
+        set_isBanned(isBanned);
         set_isContact(isContact);
         set_botOwner(botOwner);
 
