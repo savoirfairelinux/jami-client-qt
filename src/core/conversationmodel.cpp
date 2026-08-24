@@ -1617,6 +1617,8 @@ const VectorString
 ConversationModel::peersForConversationInfo(const conversation::Info& conversation) const
 {
     VectorString result {};
+    if (conversation.participants.isEmpty())
+        return result;
     switch (conversation.mode) {
     case conversation::Mode::NON_SWARM:
         return {conversation.participants[0].uri};
@@ -1633,6 +1635,17 @@ ConversationModel::peersForConversationInfo(const conversation::Info& conversati
             result.push_back(participant.uri);
     }
     return result;
+}
+
+std::optional<QString>
+ConversationModel::computeActionablePeer(const VectorString& peers, const QString& selfUri)
+{
+    for (const auto& peer : peers) {
+        if (peer.isEmpty() || peer == selfUri)
+            continue;
+        return peer;
+    }
+    return std::nullopt;
 }
 
 bool

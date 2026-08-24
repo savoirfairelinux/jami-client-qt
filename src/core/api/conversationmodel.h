@@ -32,6 +32,7 @@
 #include <functional>
 #include <memory>
 #include <deque>
+#include <optional>
 
 class QTimer;
 
@@ -439,6 +440,15 @@ public:
     int notificationsCount() const;
     void reloadHistory();
     const VectorString peersForConversation(const QString& conversationId) const;
+
+    /**
+     * Decision helper to pick the peer an action on a conversation applies to.
+     * A conversation whose only remaining participant is the account owner has no such peer.
+     * Exposed for unit tests.
+     */
+#ifndef Q_MOC_RUN
+    static std::optional<QString> computeActionablePeer(const VectorString& peers, const QString& selfUri);
+#endif
 
     // Presentation
 

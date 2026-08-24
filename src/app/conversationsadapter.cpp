@@ -517,12 +517,23 @@ ConversationsAdapter::restartConversation(const QString& convId)
     }
 
     // get the ONE_TO_ONE conv's peer uri
-    auto peerUri = accInfo.conversationModel->peersForConversation(convId).at(0);
+    const auto peer = ConversationModel::computeActionablePeer(accInfo.conversationModel->peersForConversation(convId),
+                                                               accInfo.profileInfo.uri);
+    if (!peer) {
+        // Nothing to migrate: the account owner is the only participant left.
+        return;
+    }
+    const auto peerUri = *peer;
 
     // store a copy of the original contact so we can re-add them
     // Note: we set the profile::Type to TEMPORARY to invoke a full add
     // when calling ContactModel::addContact
-    auto contactInfo = accInfo.contactModel->getContact(peerUri);
+    contact::Info contactInfo;
+    try {
+        contactInfo = accInfo.contactModel->getContact(peerUri);
+    } catch (const std::out_of_range&) {
+        return;
+    }
     contactInfo.profileInfo.type = profile::Type::TEMPORARY;
 
     Utils::oneShotConnect(accInfo.contactModel.get(),
@@ -536,8 +547,11 @@ ConversationsAdapter::restartConversation(const QString& convId)
                                   [this, peerUri, &accInfo](const QString& convId) {
                                       const auto& convInfo = lrcInstance_->getConversationFromConvUid(convId);
                                       // 3. filter for the correct contact-conversation and select it
-                                      if (!convInfo.uid.isEmpty() && convInfo.isCoreDialog()
-                                          && peerUri == accInfo.conversationModel->peersForConversation(convId).at(0)) {
+                                      const auto newPeer = ConversationModel::computeActionablePeer(
+                                          accInfo.conversationModel->peersForConversation(convId),
+                                          accInfo.profileInfo.uri);
+                                      if (!convInfo.uid.isEmpty() && convInfo.isCoreDialog() && newPeer
+                                          && peerUri == *newPeer) {
                                           lrcInstance_->selectConversation(convId);
                                       }
                                   });
