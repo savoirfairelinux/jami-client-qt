@@ -115,6 +115,7 @@ set(UNIT_TESTS_SOURCE_FILES
     ${CMAKE_SOURCE_DIR}/tests/unittests/previewengine_unittest.cpp
     ${CMAKE_SOURCE_DIR}/tests/unittests/conversationcalldisplay_unittest.cpp
     ${CMAKE_SOURCE_DIR}/tests/unittests/conversationswitch_unittest.cpp
+    ${CMAKE_SOURCE_DIR}/tests/unittests/conversationpeers_unittest.cpp
     ${CMAKE_SOURCE_DIR}/tests/unittests/apitokenmanager_unittest.cpp
     ${CMAKE_SOURCE_DIR}/tests/unittests/apiserver_unittest.cpp
     ${CMAKE_SOURCE_DIR}/tests/unittests/sharedservices_unittest.cpp
