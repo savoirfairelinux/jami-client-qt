@@ -105,6 +105,10 @@ public:
     void clear();
     void reloadHistory();
     bool insert(const QString& id, const interaction::Info& interaction, int index = -1);
+    // Inserts a whole batch as one model transaction. Items are expected newest
+    // first, ids already present are skipped, and the ids actually inserted are
+    // returned.
+    QStringList insertRange(container_t items, int index);
     bool append(const QString& id, const interaction::Info& interaction);
     bool update(const QString& id, const interaction::Info& interaction);
     bool updateStatus(const QString& id, interaction::Status newStatus, const QString& newBody = {});
