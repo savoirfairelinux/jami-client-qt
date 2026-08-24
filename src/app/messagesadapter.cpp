@@ -470,9 +470,15 @@ void
 MessagesAdapter::unbanConversation(const QString& convUid)
 {
     auto& accInfo = lrcInstance_->getCurrentAccountInfo();
+    const auto contactUri
+        = lrc::api::ConversationModel::computeActionablePeer(accInfo.conversationModel->peersForConversation(convUid),
+                                                             accInfo.profileInfo.uri);
+    if (!contactUri) {
+        // The account owner is not a contact of theirs to unban.
+        return;
+    }
     try {
-        const auto contactUri = accInfo.conversationModel->peersForConversation(convUid).at(0);
-        auto contactInfo = accInfo.contactModel->getContact(contactUri);
+        auto contactInfo = accInfo.contactModel->getContact(*contactUri);
         accInfo.contactModel->addContact(contactInfo);
     } catch (const std::out_of_range& e) {
         qDebug() << e.what();
@@ -511,16 +517,24 @@ MessagesAdapter::removeContact(const QString& convUid, bool banContact)
 {
     auto& accInfo = lrcInstance_->getCurrentAccountInfo();
 
+    const auto contactUri
+        = lrc::api::ConversationModel::computeActionablePeer(accInfo.conversationModel->peersForConversation(convUid),
+                                                             accInfo.profileInfo.uri);
+    if (!contactUri) {
+        // No one left to remove but the account owner: drop the conversation itself.
+        accInfo.conversationModel->removeConversation(convUid);
+        return;
+    }
+
     // remove the uri from the default moderators list
     // TODO: seems like this should be done in libringclient
     QStringList list = lrcInstance_->accountModel().getDefaultModerators(accInfo.id);
-    const auto contactUri = accInfo.conversationModel->peersForConversation(convUid).at(0);
-    if (!contactUri.isEmpty() && list.contains(contactUri)) {
-        lrcInstance_->accountModel().setDefaultModerator(accInfo.id, contactUri, false);
+    if (list.contains(*contactUri)) {
+        lrcInstance_->accountModel().setDefaultModerator(accInfo.id, *contactUri, false);
     }
 
     // actually remove the contact
-    accInfo.contactModel->removeContact(contactUri, banContact);
+    accInfo.contactModel->removeContact(*contactUri, banContact);
 }
 
 void
