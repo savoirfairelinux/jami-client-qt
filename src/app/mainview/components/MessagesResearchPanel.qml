@@ -51,6 +51,8 @@ Item {
                 Layout.preferredHeight: JamiTheme.searchBarPreferredHeight
                 Layout.alignment: Qt.AlignTop
 
+                requireAccept: true
+
                 onVisibleChanged: {
                     if (visible) {
                         clearText();
@@ -58,6 +60,9 @@ Item {
                     }
                 }
                 onSearchBarTextChanged: function (text) {
+                    MessagesAdapter.searchbarPrompt = text;
+                }
+                onAccepted: function (text) {
                     MessagesAdapter.searchbarPrompt = text;
                 }
             }
