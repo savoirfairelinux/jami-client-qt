@@ -602,7 +602,8 @@ Item {
                     }
 
                     UpdateToSwarm {
-                        visible: !convContext.isSwarm && !convContext.isTemporary && CurrentAccount.type === Profile.Type.JAMI
+                        objectName: "updateToSwarmBanner"
+                        visible: convContext.isLegacy && !convContext.isTemporary && CurrentAccount.type === Profile.Type.JAMI
                         Layout.fillWidth: true
                     }
 
