@@ -166,8 +166,12 @@ SBSMessageBase {
             duration: 100
         }
     }
-    Component.onCompleted: {
+    function applyTimestampVisibility() {
         bubble.timestampItem.visible = (!root.isActive || root.currentCallId === root.confId) && !isActive;
+    }
+
+    Component.onCompleted: {
+        applyTimestampVisibility();
         opacity = 1;
     }
 }

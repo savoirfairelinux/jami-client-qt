@@ -40,7 +40,7 @@ SBSMessageBase {
                 }).join(", ") : "");
     }
 
-    property bool isRemoteImage
+    property bool isRemoteImage: LinkPreviewInfo.url !== undefined && MessagesAdapter.isRemoteImage(LinkPreviewInfo.url)
     property bool isEmojiOnly: IsEmojiOnly
     property string colorUrl: UtilsAdapter.luma(bubble.color) ? JamiTheme.chatviewLinkColorLight : JamiTheme.chatviewLinkColorDark
     property string colorText: UtilsAdapter.luma(bubble.color) ? JamiTheme.chatviewTextColorLight : JamiTheme.chatviewTextColorDark
@@ -173,9 +173,6 @@ SBSMessageBase {
                 id: previewContent
 
                 spacing: 12
-                Component.onCompleted: {
-                    isRemoteImage = MessagesAdapter.isRemoteImage(LinkPreviewInfo.url);
-                }
                 HoverHandler {
                     target: previewContent
                     onHoveredChanged: {

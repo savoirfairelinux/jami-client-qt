@@ -57,7 +57,7 @@ Loader {
             sourceComponent = deletedMsgComp;
         }
     }
-    onTransferStatusChanged: {
+    function applyTransferState() {
         if (tid === "") {
             sourceComponent = deletedMsgComp;
             return;
@@ -70,6 +70,8 @@ Loader {
         }
         sourceComponent = dataTransferMsgComp;
     }
+
+    onTransferStatusChanged: applyTransferState()
 
     width: ListView.view ? ListView.view.width : 0
 

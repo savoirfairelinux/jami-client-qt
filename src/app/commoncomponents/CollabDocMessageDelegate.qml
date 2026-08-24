@@ -43,10 +43,13 @@ Item {
         return root.convContext ? root.convContext.id : CurrentConversation.id;
     }
 
-    Component.onCompleted: {
+    function applyDocName() {
         var current = CollaborativeAdapter.documentName(CurrentAccount.id, conversationIdOf(), root.documentId);
-        if (current !== "")
-            root.docName = current;
+        root.docName = current !== "" ? current : Body;
+    }
+
+    Component.onCompleted: {
+        applyDocName();
     }
 
     Connections {
@@ -65,7 +68,7 @@ Item {
         }
     }
 
-    // Properties assigned by MessageListView.computeChatview().
+    // Properties assigned by MessageListView.refreshGrouping().
     property bool showTime: false
     property bool showDay: false
     property bool isReply: false

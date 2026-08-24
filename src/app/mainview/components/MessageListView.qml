@@ -80,67 +80,67 @@ ListView {
             MessagesAdapter.loadMoreMessages();
     }
 
-    function computeTimestampVisibility(item1, item1Index, item2, item2Index) {
-        if (item1 && item2) {
-            if (item1Index < item2Index) {
-                item1.showTime = item1.timestamp - item2.timestamp > JamiTheme.timestampIntervalTime;
-                item1.showDay = item1.formattedDay !== item2.formattedDay;
-            } else {
-                item2.showTime = item2.timestamp - item1.timestamp > JamiTheme.timestampIntervalTime;
-                item2.showDay = item2.formattedDay !== item1.formattedDay;
+    // A row's day separator, timestamp and bubble sequencing all depend on its
+    // older neighbour, which is not instantiated yet when that row is created
+    // while scrolling up, and is not re-derived when a pooled row is reused.
+    // Recomputing the whole instantiated block, coalesced to once per frame,
+    // is both cheaper and correct in every case.
+    function scheduleGroupingRefresh(seedIndex) {
+        pendingGroupingSeed = seedIndex;
+        Qt.callLater(refreshGrouping);
+    }
+
+    // Lets tests confirm they actually exercised the pooling path.
+    property int reusedCount: 0
+    property int pendingGroupingSeed: -1
+
+    // A pooled row arrives carrying the previous row's grouping. Clear it so an
+    // edge-of-buffer row that has no older neighbour to compare against shows the
+    // same defaults it would have had if it were freshly created.
+    function resetGrouping(item) {
+        ++reusedCount;
+        item.showTime = false;
+        item.showDay = false;
+        item.seq = MsgSeq.single;
+    }
+
+    function refreshGrouping() {
+        var seed = pendingGroupingSeed;
+        pendingGroupingSeed = -1;
+        if (seed < 0 || itemAtIndex(seed) === null)
+            return;
+
+        // Delegates are instantiated as one contiguous block, so walking out from
+        // any live index finds all of them.
+        var lo = seed;
+        var hi = seed;
+        while (lo > 0 && itemAtIndex(lo - 1) !== null)
+            --lo;
+        while (hi < count - 1 && itemAtIndex(hi + 1) !== null)
+            ++hi;
+
+        // Higher indices are older: proxy row 0 is the newest message.
+        for (var i = lo; i <= hi; ++i) {
+            var item = itemAtIndex(i);
+            if (!item)
+                continue;
+            var older = itemAtIndex(i + 1);
+            if (older) {
+                item.showTime = item.timestamp - older.timestamp > JamiTheme.timestampIntervalTime;
+                item.showDay = item.formattedDay !== older.formattedDay;
+            } else if (i === count - 1 && convContext && convContext.allMessagesLoaded) {
+                item.showTime = true;
+                item.showDay = true;
             }
-            return true;
         }
-        return false;
+
+        // Sequencing reads the neighbours' showTime, so it needs a second pass.
+        for (var j = lo; j <= hi; ++j)
+            computeSequencing(itemAtIndex(j - 1), itemAtIndex(j), itemAtIndex(j + 1));
     }
 
     function scrollToBottom() {
         verticalScrollBar.position = 1 - verticalScrollBar.size;
-    }
-
-    function computeChatview(item, itemIndex) {
-        if (!root)
-            return;
-        var rootItem = root.itemAtIndex(0);
-        var pItem = root.itemAtIndex(itemIndex - 1);
-        var pItemIndex = itemIndex - 1;
-        var nItem = root.itemAtIndex(itemIndex + 1);
-        var nItemIndex = itemIndex + 1;
-
-        // middle insertion
-        if (pItem && nItem) {
-            computeTimestampVisibility(item, itemIndex, nItem, nItemIndex);
-            computeSequencing(item, nItem, root.itemAtIndex(itemIndex + 2));
-        }
-        // top buffer insertion = scroll up
-        if (pItem && !nItem) {
-            computeTimestampVisibility(item, itemIndex, pItem, pItemIndex);
-            computeSequencing(root.itemAtIndex(itemIndex - 2), pItem, item);
-        }
-        // bottom buffer insertion = scroll down
-        if (!pItem && nItem) {
-            computeTimestampVisibility(item, itemIndex, nItem, nItemIndex);
-            computeSequencing(item, nItem, root.itemAtIndex(itemIndex + 2));
-        }
-        // index 0 insertion = new message
-        if (itemIndex === 0) {
-            // Compute the timestamp visibility when a new message is received/sent.
-            // This needs to be done in a delayed fashion because the new message is inserted
-            // at the top of the list and the list is not yet updated.
-            Qt.callLater(() => {
-                    var fItem = root.itemAtIndex(1);
-                    if (fItem) {
-                        computeTimestampVisibility(item, 0, fItem, 1);
-                        computeSequencing(null, item, fItem);
-                        computeSequencing(item, fItem, root.itemAtIndex(2));
-                    }
-                });
-        }
-        // top element
-        if (itemIndex === root.count - 1 && convContext && convContext.allMessagesLoaded) {
-            item.showTime = true;
-            item.showDay = true;
-        }
     }
 
     function computeSequencing(pItem, item, nItem) {
@@ -208,6 +208,7 @@ ListView {
 
     // The offscreen buffer is set to a reasonable value to avoid flickering
     // when scrolling up and down in a list with items of different heights.
+    reuseItems: true
     displayMarginBeginning: 2048
     displayMarginEnd: 2048
 
@@ -235,8 +236,10 @@ ListView {
 
             TextMessageDelegate {
                 convContext: root.convContext
-                Component.onCompleted: {
-                    computeChatview(this, index);
+                Component.onCompleted: scheduleGroupingRefresh(index)
+                ListView.onReused: {
+                    resetGrouping(this);
+                    scheduleGroupingRefresh(index);
                 }
             }
         }
@@ -246,8 +249,11 @@ ListView {
 
             CallMessageDelegate {
                 convContext: root.convContext
-                Component.onCompleted: {
-                    computeChatview(this, index);
+                Component.onCompleted: scheduleGroupingRefresh(index)
+                ListView.onReused: {
+                    resetGrouping(this);
+                    scheduleGroupingRefresh(index);
+                    applyTimestampVisibility();
                 }
             }
         }
@@ -256,8 +262,10 @@ ListView {
             roleValue: Interaction.Type.CONTACT
 
             ContactMessageDelegate {
-                Component.onCompleted: {
-                    computeChatview(this, index);
+                Component.onCompleted: scheduleGroupingRefresh(index)
+                ListView.onReused: {
+                    resetGrouping(this);
+                    scheduleGroupingRefresh(index);
                 }
             }
         }
@@ -267,8 +275,10 @@ ListView {
 
             GeneratedMessageDelegate {
                 font.bold: true
-                Component.onCompleted: {
-                    computeChatview(this, index);
+                Component.onCompleted: scheduleGroupingRefresh(index)
+                ListView.onReused: {
+                    resetGrouping(this);
+                    scheduleGroupingRefresh(index);
                 }
             }
         }
@@ -278,8 +288,11 @@ ListView {
 
             DataTransferMessageDelegate {
                 convContext: root.convContext
-                Component.onCompleted: {
-                    computeChatview(this, index);
+                Component.onCompleted: scheduleGroupingRefresh(index)
+                ListView.onReused: {
+                    resetGrouping(this);
+                    scheduleGroupingRefresh(index);
+                    applyTransferState();
                 }
             }
         }
@@ -289,8 +302,11 @@ ListView {
 
             CollabDocMessageDelegate {
                 convContext: root.convContext
-                Component.onCompleted: {
-                    computeChatview(this, index);
+                Component.onCompleted: scheduleGroupingRefresh(index)
+                ListView.onReused: {
+                    resetGrouping(this);
+                    scheduleGroupingRefresh(index);
+                    applyDocName();
                 }
             }
         }
