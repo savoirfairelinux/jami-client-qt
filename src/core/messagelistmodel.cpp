@@ -381,6 +381,18 @@ MessageListModel::withLast(const InteractionCb& callback)
     return with(QString(), callback);
 }
 
+bool
+MessageListModel::withFirst(const InteractionCb& callback)
+{
+    const std::lock_guard<std::recursive_mutex> lk(mutex_);
+    if (interactions_.empty()) {
+        return false;
+    }
+    auto it = interactions_.begin();
+    callback(it->first, it->second);
+    return true;
+}
+
 std::recursive_mutex&
 MessageListModel::getMutex()
 {
