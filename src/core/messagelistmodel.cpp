@@ -203,6 +203,24 @@ MessageListModel::insertRange(container_t items, int index)
     // Callers deliver newest first, while the container is ordered oldest first.
     std::reverse(batch.begin(), batch.end());
 
+    // Place the batch at its seam in the linearized history. Callers pass the
+    // oldest end, which only holds while every load is older than everything we
+    // already have; a window loaded around a jump target, or a single reply
+    // parent, can belong anywhere. Match on linearizedParent from either end and
+    // fall back to the caller's index when the batch is detached from what we
+    // hold, which leaves plain pagination on exactly the path it had before.
+    if (auto i = indexOfMessage(batch.first().second.parentId); i != -1) {
+        index = i + 1;
+    } else {
+        const auto& newestId = batch.last().first;
+        for (int i = 0; i < interactions_.size(); ++i) {
+            if (interactions_[i].second.parentId == newestId) {
+                index = i;
+                break;
+            }
+        }
+    }
+
     beginInsertRows(QModelIndex(), index, index + batch.size() - 1);
     // interaction::Info is move-only, so grow at the back and rotate into place.
     interactions_.reserve(interactions_.size() + batch.size());

@@ -35,6 +35,9 @@ makeBatch(int first, int count)
         info.type = interaction::Type::TEXT;
         info.body = QString("body-%1").arg(i);
         info.timestamp = 1700000000 + i;
+        // Every commit points at the one before it, which is what lets a batch
+        // find where it belongs.
+        info.parentId = i > 0 ? QString("msg-%1").arg(i - 1) : QString();
         batch.append({QString("msg-%1").arg(i), std::move(info)});
     }
     return batch;
@@ -116,3 +119,52 @@ TEST(MessageListBatch, ABatchCostsOneModelTransaction)
     EXPECT_EQ(inserts.first().at(2).toInt(), 499);
 }
 
+
+// A reply parent, or the window around a jump target, is fetched on its own and
+// has nothing loaded next to it. It belongs before everything held, and must not
+// be mistaken for the page that continues the history.
+TEST(MessageListBatch, ADetachedOlderMessageLandsAtTheOldestEnd)
+{
+    MessageListModel model(nullptr);
+    model.insertRange(makeBatch(10, 5), 0);
+
+    model.insertRange(makeBatch(0, 1), 0);
+
+    ASSERT_EQ(model.rowCount(), 6);
+    EXPECT_EQ(bodyAt(model, 0).toStdString(), "body-0");
+    EXPECT_EQ(bodyAt(model, 1).toStdString(), "body-10");
+}
+
+// Once a detached message is held, the oldest end is no longer where a page of
+// history goes: it has to land against the commit it actually follows.
+TEST(MessageListBatch, APageLandsAtItsSeamNotTheOldestEnd)
+{
+    MessageListModel model(nullptr);
+    model.insertRange(makeBatch(10, 5), 0);
+    model.insertRange(makeBatch(0, 1), 0);
+
+    // Paging up from the newest range: joins msg-10, not msg-0.
+    model.insertRange(makeBatch(5, 5), 0);
+
+    ASSERT_EQ(model.rowCount(), 11);
+    EXPECT_EQ(bodyAt(model, 0).toStdString(), "body-0");
+    EXPECT_EQ(bodyAt(model, 1).toStdString(), "body-5");
+    EXPECT_EQ(bodyAt(model, 6).toStdString(), "body-10");
+}
+
+// Closing the gap has to leave one ordered history, not two ranges either side
+// of the message that was fetched on its own.
+TEST(MessageListBatch, ClosingTheGapLeavesTheHistoryOrdered)
+{
+    MessageListModel model(nullptr);
+    model.insertRange(makeBatch(10, 5), 0);
+    model.insertRange(makeBatch(0, 1), 0);
+    model.insertRange(makeBatch(5, 5), 0);
+
+    model.insertRange(makeBatch(1, 4), 0);
+
+    ASSERT_EQ(model.rowCount(), 15);
+    for (int i = 0; i < 15; ++i) {
+        EXPECT_EQ(bodyAt(model, i).toStdString(), QString("body-%1").arg(i).toStdString());
+    }
+}
