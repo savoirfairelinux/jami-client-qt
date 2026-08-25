@@ -29,6 +29,8 @@
 #include <QTimer>
 
 #include <QSortFilterProxyModel>
+
+#include <limits>
 #include <QQmlEngine>   // QML registration
 #include <QApplication> // QML registration
 
@@ -49,6 +51,8 @@ public:
     }
     bool filterAcceptsRow(int sourceRow, const QModelIndex& sourceParent) const override
     {
+        if (sourceRow < windowLo_ || sourceRow > windowHi_)
+            return false;
         auto index = sourceModel()->index(sourceRow, 0, sourceParent);
         auto type = static_cast<interaction::Type>(sourceModel()->data(index, MessageList::Role::Type).toInt());
         return interaction::isTypeDisplayable(type);
@@ -78,6 +82,64 @@ public:
     {
         return rowCount();
     }
+
+    // The rows the message list is allowed to show, as the ids bounding a
+    // contiguous run. Everything else the source holds stays loaded and
+    // addressable -- a reply parent resolves from it -- but is kept out of the
+    // list, so the row count, and with it the scrollbar, stays bounded while
+    // history accumulates. Empty ids mean show everything.
+    Q_INVOKABLE void setWindow(const QString& oldestId, const QString& newestId)
+    {
+        if (oldestId == windowOldest_ && newestId == windowNewest_)
+            return;
+        windowOldest_ = oldestId;
+        windowNewest_ = newestId;
+        refreshWindow();
+    }
+
+    Q_INVOKABLE void clearWindow()
+    {
+        setWindow({}, {});
+    }
+
+    void setSourceModel(QAbstractItemModel* model) override
+    {
+        if (sourceModel())
+            disconnect(sourceModel(), nullptr, this, nullptr);
+        QSortFilterProxyModel::setSourceModel(model);
+        if (!model)
+            return;
+        // Splicing a batch in shifts the rows the bounding ids sit at.
+        connect(model, &QAbstractItemModel::rowsInserted, this, &FilteredMsgListModel::refreshWindow);
+        connect(model, &QAbstractItemModel::rowsRemoved, this, &FilteredMsgListModel::refreshWindow);
+        connect(model, &QAbstractItemModel::modelReset, this, &FilteredMsgListModel::refreshWindow);
+        refreshWindow();
+    }
+
+private:
+    void refreshWindow()
+    {
+        auto* messages = qobject_cast<MessageListModel*>(sourceModel());
+        if (!messages)
+            return;
+        const auto lo = windowOldest_.isEmpty() ? -1 : messages->indexOfMessage(windowOldest_);
+        const auto hi = windowNewest_.isEmpty() ? -1 : messages->indexOfMessage(windowNewest_);
+        const auto newLo = lo == -1 ? 0 : lo;
+        const auto newHi = hi == -1 ? std::numeric_limits<int>::max() : hi;
+        if (newLo == windowLo_ && newHi == windowHi_)
+            return;
+        beginFilterChange();
+        windowLo_ = newLo;
+        windowHi_ = newHi;
+        endFilterChange(QSortFilterProxyModel::Direction::Rows);
+        Q_EMIT countChanged();
+    }
+
+    QString windowOldest_;
+    QString windowNewest_;
+    int windowLo_ {0};
+    int windowHi_ {std::numeric_limits<int>::max()};
+
 Q_SIGNALS:
     void countChanged();
 };
