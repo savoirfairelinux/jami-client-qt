@@ -175,6 +175,10 @@ public:
     // Returns the loading request ID, so a jump waiting on this history can tell
     // its own batch apart from an unrelated one. -1 if nothing was requested.
     Q_INVOKABLE int loadMessagesUntil(const QString& messageId);
+    // Fetches one message wherever it sits in the history, for a reply preview
+    // whose parent is too far up to have been paged in. Returns the loading
+    // request ID, or -1 if nothing was requested.
+    Q_INVOKABLE int loadMessage(const QString& messageId);
     Q_INVOKABLE void connectConversationModel();
     Q_INVOKABLE void sendConversationRequest();
     Q_INVOKABLE void removeConversation(const QString& convUid, bool keepContact = false);
