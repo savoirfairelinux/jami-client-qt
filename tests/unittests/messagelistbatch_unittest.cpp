@@ -16,6 +16,7 @@
  */
 
 #include "api/messagelistmodel.h"
+#include "messagesadapter.h"
 
 #include <gtest/gtest.h>
 
@@ -167,4 +168,61 @@ TEST(MessageListBatch, ClosingTheGapLeavesTheHistoryOrdered)
     for (int i = 0; i < 15; ++i) {
         EXPECT_EQ(bodyAt(model, i).toStdString(), QString("body-%1").arg(i).toStdString());
     }
+}
+
+// The message list draws the proxy, so what the proxy admits is what the row
+// count, and with it the scrollbar, is sized from.
+TEST(MessageListWindow, TheListShowsOnlyTheWindow)
+{
+    MessageListModel model(nullptr);
+    model.insertRange(makeBatch(0, 15), 0);
+
+    FilteredMsgListModel proxy;
+    proxy.setSourceModel(&model);
+    ASSERT_EQ(proxy.count(), 15);
+
+    proxy.setWindow("msg-10", "msg-14");
+
+    EXPECT_EQ(proxy.count(), 5);
+    // Proxy row 0 is the newest message.
+    EXPECT_EQ(proxy.data(proxy.index(0, 0), MessageList::Role::Body).toString().toStdString(),
+              "body-14");
+}
+
+// A reply parent is fetched on its own and must not appear in the timeline,
+// but the preview still has to be able to read it.
+TEST(MessageListWindow, AMessageOutsideTheWindowStaysResolvable)
+{
+    MessageListModel model(nullptr);
+    model.insertRange(makeBatch(10, 5), 0);
+
+    FilteredMsgListModel proxy;
+    proxy.setSourceModel(&model);
+    proxy.setWindow("msg-10", "msg-14");
+
+    model.insertRange(makeBatch(0, 1), 0);
+
+    EXPECT_EQ(proxy.count(), 5);
+    EXPECT_EQ(model.rowCount(), 6);
+    EXPECT_NE(model.indexOfMessage("msg-0"), -1);
+}
+
+// Splicing a batch in shifts every row after it, so a window held as row
+// numbers would silently slide onto the wrong messages.
+TEST(MessageListWindow, TheWindowFollowsItsIdsWhenABatchIsSpliced)
+{
+    MessageListModel model(nullptr);
+    model.insertRange(makeBatch(10, 5), 0);
+
+    FilteredMsgListModel proxy;
+    proxy.setSourceModel(&model);
+    proxy.setWindow("msg-10", "msg-14");
+
+    model.insertRange(makeBatch(5, 5), 0);
+
+    ASSERT_EQ(proxy.count(), 5);
+    EXPECT_EQ(proxy.data(proxy.index(0, 0), MessageList::Role::Body).toString().toStdString(),
+              "body-14");
+    EXPECT_EQ(proxy.data(proxy.index(4, 0), MessageList::Role::Body).toString().toStdString(),
+              "body-10");
 }
