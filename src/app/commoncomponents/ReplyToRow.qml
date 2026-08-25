@@ -31,6 +31,17 @@ Item {
     property int requestId: -1
     property var replyTransferName: MessagesAdapter.dataForInteraction(ReplyTo, MessageList.TransferName)
 
+    // An empty author means the parent is not loaded, as opposed to loaded and
+    // deleted. It can sit anywhere in the history, so fetch just that message
+    // rather than paging back to it.
+    function fetchParentIfMissing() {
+        if (ReplyTo === "" || ReplyToAuthor !== "" || requestId !== -1)
+            return;
+        requestId = MessagesAdapter.loadMessage(ReplyTo);
+    }
+
+    Component.onCompleted: fetchParentIfMissing()
+
     Connections {
         target: MessagesAdapter
 

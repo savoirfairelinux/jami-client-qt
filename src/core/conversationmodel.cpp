@@ -1471,6 +1471,17 @@ ConversationModel::loadConversationMessages(const QString& conversationId, const
 }
 
 int
+ConversationModel::loadConversationMessage(const QString& conversationId, const QString& messageId)
+{
+    if (messageId.isEmpty() || !getConversationForUid(conversationId).has_value()) {
+        return -1;
+    }
+    // loadConversation returns the cursor itself plus the messages before it, so
+    // asking for one is how a single message anywhere in the history is fetched.
+    return ConfigurationManager::instance().loadConversation(owner.id, conversationId, messageId, 1);
+}
+
+int
 ConversationModel::loadConversationMessagesUntil(const QString& conversationId, const QString& messageId)
 {
     auto conversationOpt = getConversationForUid(conversationId);

@@ -241,6 +241,11 @@ MessageListModel::insertRange(container_t items, int index)
         Q_EMIT dataChanged(modelIndex, modelIndex, {Role::IsLastSent});
     }
     endInsertRows();
+    // A reply resolves its preview by looking the parent up, so a reply already
+    // on screen has to be told when the message it points at arrives.
+    for (int i = index; i < index + batch.size(); ++i) {
+        updateReplies(interactions_[i]);
+    }
     return insertedIds;
 }
 
@@ -734,7 +739,9 @@ void
 MessageListModel::updateReplies(const item_t& message)
 {
     auto replyId = message.second.commit["reply-to"];
-    auto commitId = message.second.commit["id"];
+    // The pair key is the message id; commit["id"] carries the same value but
+    // only for messages that came from a swarm load.
+    const auto& commitId = message.first;
     if (!replyId.isEmpty()) {
         replyTo_[replyId].insert(commitId);
     }
