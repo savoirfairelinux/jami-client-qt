@@ -226,3 +226,33 @@ TEST(MessageListWindow, TheWindowFollowsItsIdsWhenABatchIsSpliced)
     EXPECT_EQ(proxy.data(proxy.index(4, 0), MessageList::Role::Body).toString().toStdString(),
               "body-10");
 }
+
+// A reply preview reads the parent through the model, so when the parent is
+// fetched after the reply is already on screen, the reply's row has to be
+// announced as changed or the preview stays blank.
+TEST(MessageListReply, TheReplyIsRefreshedWhenItsParentArrives)
+{
+    MessageListModel model(nullptr);
+
+    MessageListModel::container_t reply;
+    interaction::Info info;
+    info.type = interaction::Type::TEXT;
+    info.body = "the reply";
+    info.parentId = "msg-9";
+    info.commit["reply-to"] = "msg-0";
+    reply.append({QString("reply-1"), std::move(info)});
+    model.insertRange(std::move(reply), 0);
+
+    ASSERT_EQ(model.data(model.index(0, 0), MessageList::Role::ReplyToBody).toString().toStdString(),
+              "");
+
+    QSignalSpy changed(&model, &QAbstractItemModel::dataChanged);
+    model.insertRange(makeBatch(0, 1), 0);
+
+    const auto replyRow = model.indexOfMessage("reply-1");
+    EXPECT_EQ(model.data(model.index(replyRow, 0), MessageList::Role::ReplyToBody)
+                  .toString()
+                  .toStdString(),
+              "body-0");
+    ASSERT_GE(changed.count(), 1);
+}
