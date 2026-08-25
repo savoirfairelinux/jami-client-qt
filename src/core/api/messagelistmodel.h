@@ -127,6 +127,8 @@ public:
     bool with(const QString& idHint, const InteractionCb&);
     // A convenience function to access the last interaction.
     bool withLast(const InteractionCb&);
+    // A convenience function to access the first (oldest) interaction.
+    bool withFirst(const InteractionCb&);
 
     // Used when sorting conversations by timestamp, where locking multiple
     // interactions simultaneously is required.

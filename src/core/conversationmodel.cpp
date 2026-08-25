@@ -1462,9 +1462,12 @@ ConversationModel::loadConversationMessages(const QString& conversationId, const
     if (conversation.allMessagesLoaded) {
         return -1;
     }
-    QString lastMsgId;
-    conversation.interactions->withLast([&lastMsgId](const QString& id, interaction::Info&) { lastMsgId = id; });
-    return ConfigurationManager::instance().loadConversation(owner.id, conversationId, lastMsgId, size);
+    // Page with an explicit cursor: the oldest message we hold. The daemon returns
+    // that message plus the ones before it, so the reply is the same whatever the
+    // daemon already has cached and a dropped request can simply be retried.
+    QString oldestMsgId;
+    conversation.interactions->withFirst([&oldestMsgId](const QString& id, interaction::Info&) { oldestMsgId = id; });
+    return ConfigurationManager::instance().loadConversation(owner.id, conversationId, oldestMsgId, size);
 }
 
 int
