@@ -256,3 +256,64 @@ TEST(MessageListReply, TheReplyIsRefreshedWhenItsParentArrives)
               "body-0");
     ASSERT_GE(changed.count(), 1);
 }
+
+// Trimming has to reach the list as row removals. A reset would drop the view's
+// position, which is the scrollbar jump this window exists to avoid.
+TEST(MessageListWindow, TrimmingRemovesRowsRatherThanResetting)
+{
+    MessageListModel model(nullptr);
+    model.insertRange(makeBatch(0, 40), 0);
+
+    FilteredMsgListModel proxy;
+    proxy.setSourceModel(&model);
+    ASSERT_EQ(proxy.count(), 40);
+
+    QSignalSpy removed(&proxy, &QAbstractItemModel::rowsRemoved);
+    QSignalSpy reset(&proxy, &QAbstractItemModel::modelReset);
+
+    proxy.setWindow("msg-10", "msg-29");
+
+    EXPECT_EQ(proxy.count(), 20);
+    EXPECT_EQ(reset.count(), 0);
+    EXPECT_GE(removed.count(), 1);
+}
+
+// Growing the window back has to arrive as insertions, so scrolling into
+// history that was trimmed away restores it in place.
+TEST(MessageListWindow, GrowingTheWindowInsertsRows)
+{
+    MessageListModel model(nullptr);
+    model.insertRange(makeBatch(0, 40), 0);
+
+    FilteredMsgListModel proxy;
+    proxy.setSourceModel(&model);
+    proxy.setWindow("msg-10", "msg-29");
+
+    QSignalSpy inserted(&proxy, &QAbstractItemModel::rowsInserted);
+    QSignalSpy reset(&proxy, &QAbstractItemModel::modelReset);
+
+    proxy.setWindow("msg-0", "msg-29");
+
+    EXPECT_EQ(proxy.count(), 30);
+    EXPECT_EQ(reset.count(), 0);
+    EXPECT_GE(inserted.count(), 1);
+}
+
+// A jump to a message that was trimmed out of the shown run must not go back to
+// the daemon for history the client already has.
+TEST(MessageListWindow, AMessageTrimmedAwayIsRevealedNotRefetched)
+{
+    MessageListModel model(nullptr);
+    model.insertRange(makeBatch(0, 40), 0);
+
+    FilteredMsgListModel proxy;
+    proxy.setSourceModel(&model);
+    proxy.setWindow("msg-30", "msg-39");
+    ASSERT_EQ(proxy.getDisplayIndex("msg-5"), -1);
+
+    EXPECT_TRUE(proxy.showMessage("msg-5"));
+    EXPECT_NE(proxy.getDisplayIndex("msg-5"), -1);
+
+    // A message the source really does not hold still has to be fetched.
+    EXPECT_FALSE(proxy.showMessage("msg-999"));
+}

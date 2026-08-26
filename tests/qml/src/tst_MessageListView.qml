@@ -655,4 +655,150 @@ ColumnLayout {
             }
         }
     }
+
+    // Bounding the shown rows means rows get removed while the user is looking
+    // at history. Removing rows the view has laid out can shift what is on
+    // screen, which is the scrollbar jump the window exists to avoid, so trim
+    // both ends and check the visible messages do not move.
+    MessageListView {
+        id: trimUut
+
+        Layout.fillWidth: true
+        Layout.fillHeight: true
+
+        convContext: QtObject {
+            property bool allMessagesLoaded: true
+            property string id: "trim"
+            property color color: "#00b0d0"
+            signal scrollTo(string id)
+            signal newInteraction()
+            signal moreMessagesLoaded(int loadingRequestId)
+            signal fileCopied(string dest)
+            function loadMoreMessages() {}
+            function loadMessagesUntil(messageId) {
+                return -1;
+            }
+        }
+
+        model: ListModel {
+            id: trimModel
+
+            // Stands in for the proxy, which decides what the list may show. The
+            // proxy's own behaviour is covered in the C++ tests; what is checked
+            // here is the bounds the view asks for.
+            property string lastOldest: ""
+            property string lastNewest: ""
+            property int windowCalls: 0
+
+            function setWindow(oldestId, newestId) {
+                lastOldest = oldestId;
+                lastNewest = newestId;
+                ++windowCalls;
+            }
+
+            function idAt(row) {
+                return row >= 0 && row < count ? get(row).Id : "";
+            }
+        }
+
+        delegate: Rectangle {
+            width: trimUut.width
+            height: 20
+            color: "transparent"
+        }
+
+        TestCase {
+            name: "Check trimming the shown rows leaves the view put"
+            when: windowShown
+
+            function init() {
+                trimModel.clear();
+                for (var i = 0; i < 400; ++i)
+                    trimModel.append({Id: "trim-" + i, Type: Interaction.Type.TEXT});
+                wait(50);
+            }
+
+            // Row 0 is the newest and BottomToTop draws it at the bottom, so the
+            // ends being trimmed sit off both the top and the bottom.
+            function visibleIds() {
+                var ids = [];
+                for (var i = 0; i < trimModel.count; ++i) {
+                    var item = trimUut.itemAtIndex(i);
+                    if (item && item.y + item.height > trimUut.contentY
+                            && item.y < trimUut.contentY + trimUut.height) {
+                        ids.push(trimModel.get(i).Id);
+                    }
+                }
+                return ids;
+            }
+
+            function rowOf(id) {
+                return parseInt(id.substring("trim-".length));
+            }
+
+            // The run the view asks for has to stay bounded, cover what is on
+            // screen, and keep its ends clear of the viewport.
+            function test_theShownRunFollowsTheViewportAndStaysBounded() {
+                trimUut.positionViewAtIndex(200, ListView.Center);
+                trimUut.forceLayout();
+                wait(100);
+
+                trimUut.updateShownRows();
+                verify(trimModel.windowCalls > 0);
+
+                var newest = rowOf(trimModel.lastNewest);
+                var oldest = rowOf(trimModel.lastOldest);
+                verify(oldest > newest);
+                verify(oldest - newest + 1 <= trimUut.shownRowCap);
+
+                // Everything visible is inside the run, well away from its ends.
+                var ids = visibleIds();
+                verify(ids.length > 0);
+                for (var i = 0; i < ids.length; ++i) {
+                    var row = rowOf(ids[i]);
+                    verify(row >= newest + 1);
+                    verify(row <= oldest - 1);
+                }
+                verify(trimUut.rowsAreTrimmed);
+            }
+
+            // Scrolling away has to move the run with the viewport, or the user
+            // walks off the end of what is shown.
+            function test_theShownRunMovesWithTheViewport() {
+                trimUut.positionViewAtIndex(350, ListView.Center);
+                trimUut.forceLayout();
+                wait(100);
+                trimUut.updateShownRows();
+                var farNewest = rowOf(trimModel.lastNewest);
+
+                trimUut.positionViewAtIndex(50, ListView.Center);
+                trimUut.forceLayout();
+                wait(100);
+                trimUut.updateShownRows();
+                var nearNewest = rowOf(trimModel.lastNewest);
+
+                verify(nearNewest < farNewest);
+            }
+
+            function test_trimmingTheFarEndsLeavesTheViewPut() {
+                trimUut.positionViewAtIndex(200, ListView.Center);
+                trimUut.forceLayout();
+                wait(100);
+
+                var before = visibleIds();
+                verify(before.length > 0);
+
+                // Trim well clear of the viewport at both ends.
+                trimModel.remove(300, 100);
+                trimUut.forceLayout();
+                wait(100);
+                trimModel.remove(0, 100);
+                trimUut.forceLayout();
+                wait(100);
+
+                compare(trimModel.count, 200);
+                compare(visibleIds().join(","), before.join(","));
+            }
+        }
+    }
 }
