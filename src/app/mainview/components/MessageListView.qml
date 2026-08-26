@@ -81,7 +81,7 @@ ListView {
     }
 
     function updateShownRows() {
-        if (!model || !model.setWindow || count === 0)
+        if (!model || !model.setWindowAround || count === 0)
             return;
         // Nothing to bound yet, and nothing was taken away to put back.
         if (count <= shownRowCap && !rowsAreTrimmed)
@@ -101,17 +101,9 @@ ListView {
         var last = indexAt(width / 2, contentY + height - 1);
         if (first === -1 || last === -1)
             return;
-        var lo = Math.min(first, last);
-        var hi = Math.max(first, last);
 
-        // Row 0 is the newest message.
-        var newest = Math.max(0, lo - shownRowBuffer);
-        var oldest = Math.min(count - 1, hi + shownRowBuffer);
-        if (oldest - newest + 1 > shownRowCap)
-            oldest = newest + shownRowCap - 1;
-
-        rowsAreTrimmed = newest > 0 || oldest < count - 1;
-        model.setWindow(model.idAt(oldest), model.idAt(newest));
+        model.setWindowAround(Math.min(first, last), Math.max(first, last), shownRowBuffer, shownRowCap);
+        rowsAreTrimmed = model.hasHiddenRows();
     }
 
     Timer {
@@ -127,6 +119,14 @@ ListView {
     function loadMoreMsgsIfNeeded() {
         if (!convContext || !nearBeginning || convContext.allMessagesLoaded)
             return;
+        // Reaching the top of a trimmed run does not mean reaching the oldest
+        // message: the rows above were taken out of the list, not left
+        // unloaded. Put them back rather than asking for history again, or the
+        // view pages the whole conversation in without ever showing it.
+        if (model && model.hasOlderRowsHidden && model.hasOlderRowsHidden()) {
+            updateShownRows();
+            return;
+        }
         // Wait for the previous request to actually deliver something before asking
         // again, otherwise a request that brings nothing back turns into a busy loop.
         if (count === countAtLastRequest)
