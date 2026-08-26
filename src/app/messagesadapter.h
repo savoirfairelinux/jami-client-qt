@@ -107,6 +107,49 @@ public:
         setWindow({}, {});
     }
 
+    // Bounds the shown rows to a run around the rows currently on screen.
+    // The arithmetic belongs here rather than in the view because widening
+    // means taking in rows the view cannot see: it can only name rows it is
+    // already showing, so it could never ask for the ones that were trimmed.
+    Q_INVOKABLE void setWindowAround(int firstShownRow, int lastShownRow, int buffer, int cap)
+    {
+        auto* messages = qobject_cast<MessageListModel*>(sourceModel());
+        if (!messages || cap <= 0)
+            return;
+        const auto rows = messages->rowCount();
+        if (rows == 0)
+            return;
+        const auto a = mapToSource(index(qMin(firstShownRow, lastShownRow), 0)).row();
+        const auto b = mapToSource(index(qMax(firstShownRow, lastShownRow), 0)).row();
+        if (a == -1 || b == -1)
+            return;
+        const auto shownLo = qMin(a, b);
+        const auto shownHi = qMax(a, b);
+        auto lo = qMax(0, shownLo - buffer);
+        auto hi = qMin(rows - 1, shownHi + buffer);
+        if (hi - lo + 1 > cap) {
+            // Trim the older end, but never cut into what is on screen.
+            lo = qMin(qMax(lo, hi - cap + 1), shownLo);
+        }
+        windowOldest_ = idAtSourceRow(lo);
+        windowNewest_ = idAtSourceRow(hi);
+        refreshWindow();
+    }
+
+    // True while the source holds older messages the window is keeping out of
+    // the list. The view needs this to tell "trimmed" from "at the oldest
+    // message": only the latter means more history has to be fetched.
+    Q_INVOKABLE bool hasOlderRowsHidden() const
+    {
+        return windowLo_ > 0;
+    }
+
+    Q_INVOKABLE bool hasHiddenRows() const
+    {
+        auto* messages = qobject_cast<MessageListModel*>(sourceModel());
+        return messages && (windowLo_ > 0 || windowHi_ < messages->rowCount() - 1);
+    }
+
     // Widens the shown run to take in a message the source already holds, so a
     // jump to one that was trimmed away is a filter change rather than a fetch.
     // False means the message is not loaded and has to be asked for.
@@ -143,6 +186,11 @@ public:
     }
 
 private:
+    QString idAtSourceRow(int row) const
+    {
+        return sourceModel()->data(sourceModel()->index(row, 0), MessageList::Role::Id).toString();
+    }
+
     void refreshWindow()
     {
         auto* messages = qobject_cast<MessageListModel*>(sourceModel());

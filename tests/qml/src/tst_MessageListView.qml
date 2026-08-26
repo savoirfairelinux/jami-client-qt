@@ -667,14 +667,19 @@ ColumnLayout {
         Layout.fillHeight: true
 
         convContext: QtObject {
+            id: trimContext
+
             property bool allMessagesLoaded: true
+            property int loadMoreCalls: 0
             property string id: "trim"
             property color color: "#00b0d0"
             signal scrollTo(string id)
             signal newInteraction()
             signal moreMessagesLoaded(int loadingRequestId)
             signal fileCopied(string dest)
-            function loadMoreMessages() {}
+            function loadMoreMessages() {
+                ++loadMoreCalls;
+            }
             function loadMessagesUntil(messageId) {
                 return -1;
             }
@@ -690,10 +695,25 @@ ColumnLayout {
             property string lastNewest: ""
             property int windowCalls: 0
 
-            function setWindow(oldestId, newestId) {
-                lastOldest = oldestId;
-                lastNewest = newestId;
+            property int lastFirstShown: -1
+            property int lastLastShown: -1
+
+            function setWindowAround(firstShownRow, lastShownRow, buffer, cap) {
+                lastFirstShown = firstShownRow;
+                lastLastShown = lastShownRow;
+                lastNewest = idAt(firstShownRow);
+                lastOldest = idAt(lastShownRow);
                 ++windowCalls;
+            }
+
+            function hasHiddenRows() {
+                return false;
+            }
+
+            property bool olderHidden: false
+
+            function hasOlderRowsHidden() {
+                return olderHidden;
             }
 
             function idAt(row) {
@@ -736,30 +756,28 @@ ColumnLayout {
                 return parseInt(id.substring("trim-".length));
             }
 
-            // The run the view asks for has to stay bounded, cover what is on
-            // screen, and keep its ends clear of the viewport.
-            function test_theShownRunFollowsTheViewportAndStaysBounded() {
+            // The view's job is to report the rows actually on screen. Working
+            // the run out from those -- applying the buffer and the cap, and
+            // reaching past them to rows that were trimmed away -- belongs to
+            // the proxy, which is the only side that can see the whole history,
+            // and is covered by the C++ tests.
+            function test_theViewReportsTheRowsOnScreen() {
                 trimUut.positionViewAtIndex(200, ListView.Center);
                 trimUut.forceLayout();
                 wait(100);
 
                 trimUut.updateShownRows();
                 verify(trimModel.windowCalls > 0);
+                compare(trimModel.lastFirstShown <= trimModel.lastLastShown, true);
 
-                var newest = rowOf(trimModel.lastNewest);
-                var oldest = rowOf(trimModel.lastOldest);
-                verify(oldest > newest);
-                verify(oldest - newest + 1 <= trimUut.shownRowCap);
-
-                // Everything visible is inside the run, well away from its ends.
+                // Every visible row falls inside the range handed over.
                 var ids = visibleIds();
                 verify(ids.length > 0);
                 for (var i = 0; i < ids.length; ++i) {
                     var row = rowOf(ids[i]);
-                    verify(row >= newest + 1);
-                    verify(row <= oldest - 1);
+                    verify(row >= trimModel.lastFirstShown);
+                    verify(row <= trimModel.lastLastShown);
                 }
-                verify(trimUut.rowsAreTrimmed);
             }
 
             // Scrolling away has to move the run with the viewport, or the user
@@ -798,6 +816,32 @@ ColumnLayout {
 
                 compare(trimModel.count, 200);
                 compare(visibleIds().join(","), before.join(","));
+            }
+
+            // Reaching the top of a trimmed run is not reaching the oldest
+            // message. Asking the daemon for history in that state pages the
+            // whole conversation in and freezes the app, so the rows that were
+            // trimmed have to be put back instead.
+            function test_aTrimmedTopRevealsRowsRatherThanFetching() {
+                trimModel.olderHidden = true;
+                trimContext.allMessagesLoaded = false;
+                trimContext.loadMoreCalls = 0;
+
+                // Sit at the oldest row the list is showing.
+                trimUut.positionViewAtIndex(trimModel.count - 1, ListView.Beginning);
+                trimUut.forceLayout();
+                wait(100);
+                verify(trimUut.nearBeginning);
+
+                trimUut.loadMoreMsgsIfNeeded();
+
+                // Revealing the trimmed rows is the proxy's job and is covered
+                // by the C++ tests; what matters here is that no history was
+                // asked for.
+                compare(trimContext.loadMoreCalls, 0);
+
+                trimModel.olderHidden = false;
+                trimContext.allMessagesLoaded = true;
             }
 
             // A moving view is still building delegates for the rows it is
