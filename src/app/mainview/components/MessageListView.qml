@@ -56,6 +56,7 @@ ListView {
     readonly property int shownRowCap: 250
     readonly property int shownRowBuffer: 60
     property bool rowsAreTrimmed: false
+    property bool updatingShownRows: false
 
     ScrollBar.vertical: JamiScrollBar {
         id: verticalScrollBar
@@ -78,6 +79,12 @@ ListView {
     }
 
     function updateShownRows() {
+        // Changing the run relayouts the list, and a relayout can land back
+        // here before this call has finished. Re-entering would widen the run
+        // one buffer at a time, all the way through history, without ever
+        // returning to the event loop.
+        if (updatingShownRows)
+            return;
         if (!model || !model.setWindowAround || count === 0)
             return;
         // Nothing to bound yet, and nothing was taken away to put back.
@@ -94,13 +101,27 @@ ListView {
             return;
         }
 
-        var first = indexAt(width / 2, contentY);
+        // indexAt works in content coordinates and finds nothing past the ends
+        // of the content, which is where a viewport edge sits while
+        // overscrolling or over the loading header. Fall back to the middle so
+        // the run still follows the viewport instead of freezing where it was.
+        var first = indexAt(width / 2, contentY + 1);
         var last = indexAt(width / 2, contentY + height - 1);
-        if (first === -1 || last === -1)
-            return;
+        if (first === -1 || last === -1) {
+            var mid = indexAt(width / 2, contentY + height / 2);
+            if (mid === -1)
+                return;
+            first = first === -1 ? mid : first;
+            last = last === -1 ? mid : last;
+        }
 
-        model.setWindowAround(Math.min(first, last), Math.max(first, last), shownRowBuffer, shownRowCap);
-        rowsAreTrimmed = model.hasHiddenRows();
+        updatingShownRows = true;
+        try {
+            model.setWindowAround(Math.min(first, last), Math.max(first, last), shownRowBuffer, shownRowCap);
+            rowsAreTrimmed = model.hasHiddenRows();
+        } finally {
+            updatingShownRows = false;
+        }
     }
 
     Timer {
@@ -120,8 +141,10 @@ ListView {
         // message: the rows above were taken out of the list, not left
         // unloaded. Put them back rather than asking for history again, or the
         // view pages the whole conversation in without ever showing it.
+        // Widening has to be deferred: it relayouts the list, which moves the
+        // viewport, which lands back here.
         if (model && model.hasOlderRowsHidden && model.hasOlderRowsHidden()) {
-            updateShownRows();
+            shownRowsTimer.restart();
             return;
         }
         // Wait for the previous request to actually deliver something before asking
