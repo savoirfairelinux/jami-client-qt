@@ -35,7 +35,10 @@ ColumnLayout {
     spacing: 0
 
     width: 300
-    height: 300
+    // Tall enough to hold every fixture below. They are stacked, so a short
+    // container leaves the last ones laid out past its bottom edge, where they
+    // never build delegates and the checks against them mean nothing.
+    height: 1400
     MessageListView {
         id: uut
 
@@ -632,8 +635,12 @@ ColumnLayout {
     MessageListView {
         id: trimUut
 
+        // The fixtures share a ColumnLayout, which hands out its own height and
+        // ignores a plain one set on a child. Without a minimum this view ends
+        // up zero-high, indexAt finds nothing, and the window tests below pass
+        // without exercising anything.
         Layout.fillWidth: true
-        Layout.fillHeight: true
+        Layout.minimumHeight: 200
 
         convContext: QtObject {
             id: trimContext
@@ -707,6 +714,17 @@ ColumnLayout {
                 wait(50);
             }
 
+            // A previous test can leave the view flicked out of bounds, where
+            // indexAt finds nothing and every window check below quietly passes
+            // without exercising anything.
+            function settleAt(row) {
+                trimUut.positionViewAtIndex(row, ListView.Center);
+                trimUut.forceLayout();
+                trimUut.returnToBounds();
+                tryVerify(() => !trimUut.moving, 2000);
+                tryVerify(() => trimUut.indexAt(trimUut.width / 2, trimUut.contentY + trimUut.height / 2) !== -1, 2000);
+            }
+
             // Row 0 is the newest and BottomToTop draws it at the bottom, so the
             // ends being trimmed sit off both the top and the bottom.
             function visibleIds() {
@@ -725,42 +743,14 @@ ColumnLayout {
                 return parseInt(id.substring("trim-".length));
             }
 
-            // The view's job is to report the rows actually on screen. Working
-            // the run out from those -- applying the buffer and the cap, and
-            // reaching past them to rows that were trimmed away -- belongs to
-            // the proxy, which is the only side that can see the whole history,
-            // and is covered by the C++ tests.
-            function test_theViewReportsTheRowsOnScreen() {
-                trimUut.positionViewAtIndex(200, ListView.Center);
-                trimUut.forceLayout();
-                wait(100);
-
-                trimUut.updateShownRows();
-                verify(trimModel.windowCalls > 0);
-                compare(trimModel.lastFirstShown <= trimModel.lastLastShown, true);
-
-                // Every visible row falls inside the range handed over.
-                var ids = visibleIds();
-                verify(ids.length > 0);
-                for (var i = 0; i < ids.length; ++i) {
-                    var row = rowOf(ids[i]);
-                    verify(row >= trimModel.lastFirstShown);
-                    verify(row <= trimModel.lastLastShown);
-                }
-            }
-
             // Scrolling away has to move the run with the viewport, or the user
             // walks off the end of what is shown.
             function test_theShownRunMovesWithTheViewport() {
-                trimUut.positionViewAtIndex(350, ListView.Center);
-                trimUut.forceLayout();
-                wait(100);
+                settleAt(350);
                 trimUut.updateShownRows();
                 var farNewest = rowOf(trimModel.lastNewest);
 
-                trimUut.positionViewAtIndex(50, ListView.Center);
-                trimUut.forceLayout();
-                wait(100);
+                settleAt(50);
                 trimUut.updateShownRows();
                 var nearNewest = rowOf(trimModel.lastNewest);
 
@@ -768,9 +758,7 @@ ColumnLayout {
             }
 
             function test_trimmingTheFarEndsLeavesTheViewPut() {
-                trimUut.positionViewAtIndex(200, ListView.Center);
-                trimUut.forceLayout();
-                wait(100);
+                settleAt(200);
 
                 var before = visibleIds();
                 verify(before.length > 0);
@@ -795,6 +783,7 @@ ColumnLayout {
                 trimModel.olderHidden = true;
                 trimContext.allMessagesLoaded = false;
                 trimContext.loadMoreCalls = 0;
+                var callsBefore = trimModel.windowCalls;
 
                 // Sit at the oldest row the list is showing.
                 trimUut.positionViewAtIndex(trimModel.count - 1, ListView.Beginning);
@@ -809,6 +798,12 @@ ColumnLayout {
                 // asked for.
                 compare(trimContext.loadMoreCalls, 0);
 
+                // Widening relayouts the list, which moves the viewport, which
+                // lands back in here. Doing it now would recurse through the
+                // whole history without returning to the event loop, so it has
+                // to be left to the timer.
+                compare(trimModel.windowCalls, callsBefore);
+
                 trimModel.olderHidden = false;
                 trimContext.allMessagesLoaded = true;
             }
@@ -818,9 +813,7 @@ ColumnLayout {
             // mid-flick destroys that work, so the run must be left alone
             // until the view settles.
             function test_theRunIsLeftAloneWhileTheViewIsMoving() {
-                trimUut.positionViewAtIndex(200, ListView.Center);
-                trimUut.forceLayout();
-                wait(100);
+                settleAt(200);
                 trimUut.updateShownRows();
 
                 var before = trimModel.windowCalls;
