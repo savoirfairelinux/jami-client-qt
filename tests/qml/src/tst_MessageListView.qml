@@ -799,6 +799,37 @@ ColumnLayout {
                 compare(trimModel.count, 200);
                 compare(visibleIds().join(","), before.join(","));
             }
+
+            // A moving view is still building delegates for the rows it is
+            // crossing, and some of those build asynchronously. Trimming
+            // mid-flick destroys that work, so the run must be left alone
+            // until the view settles.
+            function test_theRunIsLeftAloneWhileTheViewIsMoving() {
+                trimUut.positionViewAtIndex(200, ListView.Center);
+                trimUut.forceLayout();
+                wait(100);
+                trimUut.updateShownRows();
+
+                var before = trimModel.windowCalls;
+                verify(before > 0);
+
+                trimUut.flick(0, 600);
+                verify(trimUut.moving);
+
+                // Anything asking for a redraw mid-flick has to be turned away.
+                while (trimUut.moving) {
+                    trimUut.updateShownRows();
+                    compare(trimModel.windowCalls, before);
+                    wait(16);
+                }
+
+                // Settled again, the run is redrawn.
+                trimUut.positionViewAtIndex(200, ListView.Center);
+                trimUut.forceLayout();
+                wait(100);
+                trimUut.updateShownRows();
+                verify(trimModel.windowCalls > before);
+            }
         }
     }
 }
