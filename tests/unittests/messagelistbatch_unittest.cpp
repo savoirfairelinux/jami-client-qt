@@ -227,6 +227,79 @@ TEST(MessageListWindow, TheWindowFollowsItsIdsWhenABatchIsSpliced)
               "body-10");
 }
 
+// Scrolling back to the top of a trimmed run has to put the older rows back.
+// The view can only name rows it is showing, so if the window were worked out
+// from those alone it could never reach past the oldest one, and the list would
+// page history in from the daemon forever instead of revealing what it holds.
+TEST(MessageListWindow, TheWindowWidensPastTheRowsOnScreen)
+{
+    MessageListModel model(nullptr);
+    model.insertRange(makeBatch(0, 300), 0);
+
+    FilteredMsgListModel proxy;
+    proxy.setSourceModel(&model);
+
+    // Show the newest rows only, then scroll to the top of that run.
+    proxy.setWindow("msg-250", "msg-299");
+    ASSERT_EQ(proxy.count(), 50);
+    ASSERT_TRUE(proxy.hasOlderRowsHidden());
+
+    // Loaded, but kept out of the list.
+    ASSERT_NE(model.indexOfMessage("msg-230"), -1);
+    ASSERT_EQ(proxy.getDisplayIndex("msg-230"), -1);
+
+    // Proxy row 49 is the oldest shown message, so this asks for a window
+    // around rows sitting at the very top of the run.
+    proxy.setWindowAround(45, 49, 20, 250);
+
+    // The window reached past the oldest row the view could name.
+    EXPECT_NE(proxy.getDisplayIndex("msg-230"), -1);
+}
+
+TEST(MessageListWindow, TheWindowStaysWithinItsCap)
+{
+    MessageListModel model(nullptr);
+    model.insertRange(makeBatch(0, 400), 0);
+
+    FilteredMsgListModel proxy;
+    proxy.setSourceModel(&model);
+    proxy.setWindowAround(0, 10, 60, 100);
+
+    EXPECT_LE(proxy.count(), 100);
+    EXPECT_TRUE(proxy.hasOlderRowsHidden());
+}
+
+// Capping must never cut into the rows on screen, or the view loses the
+// messages the user is looking at.
+TEST(MessageListWindow, CappingLeavesTheRowsOnScreenShown)
+{
+    MessageListModel model(nullptr);
+    model.insertRange(makeBatch(0, 400), 0);
+
+    FilteredMsgListModel proxy;
+    proxy.setSourceModel(&model);
+    // A shown span wider than the cap.
+    proxy.setWindowAround(0, 150, 60, 100);
+
+    EXPECT_NE(proxy.getDisplayIndex("msg-399"), -1);
+    EXPECT_NE(proxy.getDisplayIndex("msg-249"), -1);
+}
+
+// Once the window reaches the oldest message there is genuinely nothing left
+// to reveal, and only then may the view ask the daemon for more history.
+TEST(MessageListWindow, ReachingTheOldestMessageStopsHidingRows)
+{
+    MessageListModel model(nullptr);
+    model.insertRange(makeBatch(0, 40), 0);
+
+    FilteredMsgListModel proxy;
+    proxy.setSourceModel(&model);
+    proxy.setWindowAround(0, 39, 60, 250);
+
+    EXPECT_FALSE(proxy.hasOlderRowsHidden());
+    EXPECT_EQ(proxy.count(), 40);
+}
+
 // A reply preview reads the parent through the model, so when the parent is
 // fetched after the reply is already on screen, the reply's row has to be
 // announced as changed or the preview stays blank.
