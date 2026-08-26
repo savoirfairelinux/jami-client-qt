@@ -89,6 +89,13 @@ ListView {
         // A jump is mid-flight and owns what has to stay shown.
         if (pendingScrollToId !== "" || jumpSettleFrames > 0)
             return;
+        // A moving view is still building delegates for the rows it is
+        // crossing, and some of those build asynchronously. Taking rows away
+        // now destroys that work mid-flight, so wait until the view settles.
+        if (moving || verticalScrollBar.pressed) {
+            shownRowsTimer.restart();
+            return;
+        }
 
         var first = indexAt(width / 2, contentY);
         var last = indexAt(width / 2, contentY + height - 1);
