@@ -52,6 +52,14 @@ ListView {
     // True while a batch of older messages is on its way.
     property bool loadingMore: false
 
+    // The list draws the proxy, so the proxy's row count is what sizes the
+    // scrollbar. Keep it bounded by showing a run of rows around the viewport
+    // and leaving the rest loaded but unshown. Rows are only ever added or
+    // removed a long way from what is on screen, so the view stays put.
+    readonly property int shownRowCap: 250
+    readonly property int shownRowBuffer: 60
+    property bool rowsAreTrimmed: false
+
     ScrollBar.vertical: JamiScrollBar {
         id: verticalScrollBar
 
@@ -71,6 +79,43 @@ ListView {
         const scrollDiff = ScrollBar.vertical.position - (1.0 - ScrollBar.vertical.size);
         return Math.abs(scrollDiff) * contentHeight;
     }
+
+    function updateShownRows() {
+        if (!model || !model.setWindow || count === 0)
+            return;
+        // Nothing to bound yet, and nothing was taken away to put back.
+        if (count <= shownRowCap && !rowsAreTrimmed)
+            return;
+        // A jump is mid-flight and owns what has to stay shown.
+        if (pendingScrollToId !== "" || jumpSettleFrames > 0)
+            return;
+
+        var first = indexAt(width / 2, contentY);
+        var last = indexAt(width / 2, contentY + height - 1);
+        if (first === -1 || last === -1)
+            return;
+        var lo = Math.min(first, last);
+        var hi = Math.max(first, last);
+
+        // Row 0 is the newest message.
+        var newest = Math.max(0, lo - shownRowBuffer);
+        var oldest = Math.min(count - 1, hi + shownRowBuffer);
+        if (oldest - newest + 1 > shownRowCap)
+            oldest = newest + shownRowCap - 1;
+
+        rowsAreTrimmed = newest > 0 || oldest < count - 1;
+        model.setWindow(model.idAt(oldest), model.idAt(newest));
+    }
+
+    Timer {
+        id: shownRowsTimer
+
+        interval: 150
+        repeat: false
+        onTriggered: root.updateShownRows()
+    }
+
+    onContentYChanged: shownRowsTimer.restart()
 
     function loadMoreMsgsIfNeeded() {
         if (!convContext || !nearBeginning || convContext.allMessagesLoaded)
@@ -193,6 +238,10 @@ ListView {
         function onScrollTo(id) {
             // Get the filtered index from the interaction ID.
             var idx = root.model.getDisplayIndex(id);
+            if (idx < 0 && root.model.showMessage && root.model.showMessage(id)) {
+                // It was loaded, just not shown. Widening the run reveals it.
+                idx = root.model.getDisplayIndex(id);
+            }
             if (idx < 0) {
                 // The message is not in the loaded window yet. Ask for the history up
                 // to it and complete the jump once that request reports back.
@@ -252,6 +301,10 @@ ListView {
             // Never fight the user: a drag wins over a jump that is still settling.
             if (root.currentIndex < 0 || root.dragging || root.jumpSettleFrames <= 0) {
                 stop();
+                // The jump held the shown run open while it landed; bound it again
+                // now that the view has come to rest.
+                root.jumpSettleFrames = 0;
+                shownRowsTimer.restart();
                 return;
             }
             --root.jumpSettleFrames;
@@ -263,6 +316,8 @@ ListView {
             const top = item.mapToItem(root, 0, 0).y;
             if (Math.abs(top + item.height / 2 - root.height / 2) <= 1) {
                 stop();
+                root.jumpSettleFrames = 0;
+                shownRowsTimer.restart();
                 return;
             }
             const contentYBefore = root.contentY;

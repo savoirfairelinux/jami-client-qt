@@ -68,6 +68,11 @@ public:
         auto index = mapFromSource(sourceModel()->index(sourceRow, 0));
         return index.row();
     };
+
+    Q_INVOKABLE QString idAt(int row) const
+    {
+        return data(index(row, 0), MessageList::Role::Id).toString();
+    }
     Q_INVOKABLE QVariantMap get(int row) const
     {
         QVariantMap map;
@@ -100,6 +105,27 @@ public:
     Q_INVOKABLE void clearWindow()
     {
         setWindow({}, {});
+    }
+
+    // Widens the shown run to take in a message the source already holds, so a
+    // jump to one that was trimmed away is a filter change rather than a fetch.
+    // False means the message is not loaded and has to be asked for.
+    Q_INVOKABLE bool showMessage(const QString& id)
+    {
+        auto* messages = qobject_cast<MessageListModel*>(sourceModel());
+        if (!messages)
+            return false;
+        const auto row = messages->indexOfMessage(id);
+        if (row == -1)
+            return false;
+        if (row < windowLo_)
+            windowOldest_ = id;
+        else if (row > windowHi_)
+            windowNewest_ = id;
+        else
+            return true;
+        refreshWindow();
+        return true;
     }
 
     void setSourceModel(QAbstractItemModel* model) override
