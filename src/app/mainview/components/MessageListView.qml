@@ -196,7 +196,6 @@ ListView {
     displayMarginBeginning: 2048
     displayMarginEnd: 2048
 
-    maximumFlickVelocity: 2048
     verticalLayoutDirection: ListView.BottomToTop
     boundsBehavior: Flickable.StopAtBounds
     currentIndex: -1
