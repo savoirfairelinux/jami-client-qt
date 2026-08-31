@@ -61,7 +61,7 @@
         <location filename="../src/app/commoncomponents/CollabDocListPopup.qml" line="49"/>
         <location filename="../src/app/commoncomponents/CollabDocListPopup.qml" line="66"/>
         <source>Cancel</source>
-        <translation type="unfinished"/>
+        <translation>ਰੱਦ ਕਰੋ</translation>
     </message>
     <message>
         <location filename="../src/app/commoncomponents/CollabDocListPopup.qml" line="63"/>
@@ -187,12 +187,12 @@
     <message>
         <location filename="../src/app/commoncomponents/CollabNewDocPopup.qml" line="46"/>
         <source>Create</source>
-        <translation type="unfinished"/>
+        <translation>ਬਣਾਓ</translation>
     </message>
     <message>
         <location filename="../src/app/commoncomponents/CollabNewDocPopup.qml" line="51"/>
         <source>Cancel</source>
-        <translation type="unfinished"/>
+        <translation>ਰੱਦ ਕਰੋ</translation>
     </message>
     <message>
         <location filename="../src/app/commoncomponents/CollabNewDocPopup.qml" line="65"/>
@@ -269,7 +269,7 @@
     <message>
         <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="395"/>
         <source>Cancel</source>
-        <translation type="unfinished"/>
+        <translation>ਰੱਦ ਕਰੋ</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="409"/>
@@ -374,7 +374,7 @@
     <message>
         <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1323"/>
         <source>Copy</source>
-        <translation type="unfinished"/>
+        <translation>ਨਕਲ ਲਾਹੋ</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1328"/>
@@ -384,7 +384,7 @@
     <message>
         <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1335"/>
         <source>Delete</source>
-        <translation type="unfinished"/>
+        <translation>ਮਿਟਾਓ</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1347"/>

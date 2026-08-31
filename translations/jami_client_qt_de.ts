@@ -37,67 +37,67 @@
     <message>
         <location filename="../src/app/commoncomponents/CollabDocListPopup.qml" line="46"/>
         <source>Remove document</source>
-        <translation type="unfinished"/>
+        <translation>Dokument entfernen</translation>
     </message>
     <message>
         <location filename="../src/app/commoncomponents/CollabDocListPopup.qml" line="47"/>
         <source>&quot;%1&quot; will be removed for every member of this conversation. This cannot be undone.</source>
-        <translation type="unfinished"/>
+        <translation>„%1“ wird für jedes Mitglied dieser Unterhaltung entfernt. Dies kann nicht rückgängig gemacht werden.</translation>
     </message>
     <message>
         <location filename="../src/app/commoncomponents/CollabDocListPopup.qml" line="47"/>
         <location filename="../src/app/commoncomponents/CollabDocListPopup.qml" line="64"/>
         <location filename="../src/app/commoncomponents/CollabDocListPopup.qml" line="175"/>
         <source>Untitled document</source>
-        <translation type="unfinished"/>
+        <translation>Unbenanntes Dokument</translation>
     </message>
     <message>
         <location filename="../src/app/commoncomponents/CollabDocListPopup.qml" line="48"/>
         <location filename="../src/app/commoncomponents/CollabDocListPopup.qml" line="65"/>
         <source>Remove</source>
-        <translation type="unfinished"/>
+        <translation>Entfernen</translation>
     </message>
     <message>
         <location filename="../src/app/commoncomponents/CollabDocListPopup.qml" line="49"/>
         <location filename="../src/app/commoncomponents/CollabDocListPopup.qml" line="66"/>
         <source>Cancel</source>
-        <translation type="unfinished"/>
+        <translation>Abbrechen</translation>
     </message>
     <message>
         <location filename="../src/app/commoncomponents/CollabDocListPopup.qml" line="63"/>
         <location filename="../src/app/commoncomponents/CollabDocListPopup.qml" line="209"/>
         <source>Remove from this device</source>
-        <translation type="unfinished"/>
+        <translation>Von diesem Gerät entfernen</translation>
     </message>
     <message>
         <location filename="../src/app/commoncomponents/CollabDocListPopup.qml" line="64"/>
         <source>&quot;%1&quot; will be removed from this device only. The other members keep it, and opening it again downloads it back.</source>
-        <translation type="unfinished"/>
+        <translation>„%1“ wird nur von diesem Gerät entfernt. Die anderen Mitglieder behalten es, und beim erneuten Öffnen wird es wieder heruntergeladen.</translation>
     </message>
     <message>
         <location filename="../src/app/commoncomponents/CollabDocListPopup.qml" line="73"/>
         <source>Editable documents</source>
-        <translation type="unfinished"/>
+        <translation>Bearbeitbare Dokumente</translation>
     </message>
     <message>
         <location filename="../src/app/commoncomponents/CollabDocListPopup.qml" line="75"/>
         <source>Close</source>
-        <translation type="unfinished"/>
+        <translation>Schließen</translation>
     </message>
     <message>
         <location filename="../src/app/commoncomponents/CollabDocListPopup.qml" line="112"/>
         <source>No editable document in this conversation yet.</source>
-        <translation type="unfinished"/>
+        <translation>Noch kein bearbeitbares Dokument in dieser Unterhaltung.</translation>
     </message>
     <message>
         <location filename="../src/app/commoncomponents/CollabDocListPopup.qml" line="191"/>
         <source>%1 - not on this device</source>
-        <translation type="unfinished"/>
+        <translation>%1 – nicht auf diesem Gerät</translation>
     </message>
     <message>
         <location filename="../src/app/commoncomponents/CollabDocListPopup.qml" line="226"/>
         <source>Remove this document</source>
-        <translation type="unfinished"/>
+        <translation>Dieses Dokument entfernen</translation>
     </message>
 </context>
 <context>
@@ -106,17 +106,17 @@
         <location filename="../src/app/commoncomponents/CollabDocMessageDelegate.qml" line="80"/>
         <location filename="../src/app/commoncomponents/CollabDocMessageDelegate.qml" line="126"/>
         <source>Editable document</source>
-        <translation type="unfinished"/>
+        <translation>Bearbeitbares Dokument</translation>
     </message>
     <message>
         <location filename="../src/app/commoncomponents/CollabDocMessageDelegate.qml" line="115"/>
         <source>Untitled document</source>
-        <translation type="unfinished"/>
+        <translation>Unbenanntes Dokument</translation>
     </message>
     <message>
         <location filename="../src/app/commoncomponents/CollabDocMessageDelegate.qml" line="126"/>
         <source>Document removed</source>
-        <translation type="unfinished"/>
+        <translation>Dokument entfernt</translation>
     </message>
 </context>
 <context>
@@ -124,57 +124,57 @@
     <message>
         <location filename="../src/app/mainview/components/CollabHistoryPanel.qml" line="83"/>
         <source>Today %1</source>
-        <translation type="unfinished"/>
+        <translation>Heute %1</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/CollabHistoryPanel.qml" line="105"/>
         <source>Version history</source>
-        <translation type="unfinished"/>
+        <translation>Versionsverlauf</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/CollabHistoryPanel.qml" line="116"/>
         <source>Refresh</source>
-        <translation type="unfinished"/>
+        <translation>Aktualisieren</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/CollabHistoryPanel.qml" line="126"/>
         <source>No version saved yet. Versions are saved as you stop typing.</source>
-        <translation type="unfinished"/>
+        <translation>Noch keine Version gespeichert. Versionen werden gespeichert, sobald Sie aufhören zu tippen.</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/CollabHistoryPanel.qml" line="143"/>
         <source>Current version</source>
-        <translation type="unfinished"/>
+        <translation>Aktuelle Version</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/CollabHistoryPanel.qml" line="149"/>
         <source>Editable</source>
-        <translation type="unfinished"/>
+        <translation>Bearbeitbar</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/CollabHistoryPanel.qml" line="186"/>
         <source>Someone</source>
-        <translation type="unfinished"/>
+        <translation>Jemand</translation>
     </message>
     <message numerus="yes">
         <location filename="../src/app/mainview/components/CollabHistoryPanel.qml" line="187"/>
         <source>%n change(s)</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n Änderung(en)</numerusform><numerusform>%n Änderung(en)</numerusform></translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/CollabHistoryPanel.qml" line="202"/>
         <source>Restore this version</source>
-        <translation type="unfinished"/>
+        <translation>Diese Version wiederherstellen</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/CollabHistoryPanel.qml" line="203"/>
         <source>Brings the document back to this content for everyone. Reversible.</source>
-        <translation type="unfinished"/>
+        <translation>Stellt den Inhalt des Dokuments für alle auf diesen Stand zurück. Kann rückgängig gemacht werden.</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/CollabHistoryPanel.qml" line="223"/>
         <source>This version could not be restored.</source>
-        <translation type="unfinished"/>
+        <translation>Diese Version konnte nicht wiederhergestellt werden.</translation>
     </message>
 </context>
 <context>
@@ -182,27 +182,27 @@
     <message>
         <location filename="../src/app/commoncomponents/CollabNewDocPopup.qml" line="44"/>
         <source>New editable document</source>
-        <translation type="unfinished"/>
+        <translation>Neues bearbeitbares Dokument</translation>
     </message>
     <message>
         <location filename="../src/app/commoncomponents/CollabNewDocPopup.qml" line="46"/>
         <source>Create</source>
-        <translation type="unfinished"/>
+        <translation>Erstellen</translation>
     </message>
     <message>
         <location filename="../src/app/commoncomponents/CollabNewDocPopup.qml" line="51"/>
         <source>Cancel</source>
-        <translation type="unfinished"/>
+        <translation>Abbrechen</translation>
     </message>
     <message>
         <location filename="../src/app/commoncomponents/CollabNewDocPopup.qml" line="65"/>
         <source>Document name</source>
-        <translation type="unfinished"/>
+        <translation>Dokumentname</translation>
     </message>
     <message>
         <location filename="../src/app/commoncomponents/CollabNewDocPopup.qml" line="76"/>
         <source>Untitled document</source>
-        <translation type="unfinished"/>
+        <translation>Unbenanntes Dokument</translation>
     </message>
 </context>
 <context>
@@ -210,251 +210,251 @@
     <message>
         <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="64"/>
         <source>Editable document</source>
-        <translation type="unfinished"/>
+        <translation>Bearbeitbares Dokument</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="270"/>
         <source>Document removed</source>
-        <translation type="unfinished"/>
+        <translation>Dokument entfernt</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="270"/>
         <source>Document removed from this device</source>
-        <translation type="unfinished"/>
+        <translation>Dokument von diesem Gerät entfernt</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="271"/>
         <source>&quot;%1&quot; was removed by its author.</source>
-        <translation type="unfinished"/>
+        <translation>„%1“ wurde von seinem Autor entfernt.</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="271"/>
         <source>&quot;%1&quot; is no longer on this device. Opening it again downloads it back.</source>
-        <translation type="unfinished"/>
+        <translation>„%1“ befindet sich nicht mehr auf diesem Gerät. Beim erneuten Öffnen wird es wieder heruntergeladen.</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="358"/>
         <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="782"/>
         <source>Insert image</source>
-        <translation type="unfinished"/>
+        <translation>Bild einfügen</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="360"/>
         <source>Images</source>
-        <translation type="unfinished"/>
+        <translation>Bilder</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="370"/>
         <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="443"/>
         <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="486"/>
         <source>This image could not be added. It has to be an image of at most 16 MB.</source>
-        <translation type="unfinished"/>
+        <translation>Dieses Bild konnte nicht hinzugefügt werden. Es muss ein Bild mit einer Größe von höchstens 16 MB sein.</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="392"/>
         <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="411"/>
         <source>Export document</source>
-        <translation type="unfinished"/>
+        <translation>Dokument exportieren</translation>
     </message>
     <message numerus="yes">
         <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="393"/>
         <source>%n picture(s) in this document have not arrived yet and would be exported as empty boxes.</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n Bild(er) in diesem Dokument ist/sind noch nicht angekommen und würde(n) als leere(s) Feld(er) exportiert werden.</numerusform><numerusform>%n Bild(er) in diesem Dokument ist/sind noch nicht angekommen und würde(n) als leere(s) Feld(er) exportiert werden.</numerusform></translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="394"/>
         <source>Export anyway</source>
-        <translation type="unfinished"/>
+        <translation>Trotzdem exportieren</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="395"/>
         <source>Cancel</source>
-        <translation type="unfinished"/>
+        <translation>Abbrechen</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="409"/>
         <source>document</source>
-        <translation type="unfinished"/>
+        <translation>Dokument</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="423"/>
         <source>Document exported</source>
-        <translation type="unfinished"/>
+        <translation>Dokument exportiert</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="423"/>
         <source>Export failed</source>
-        <translation type="unfinished"/>
+        <translation>Der Export ist fehlgeschlagen</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="424"/>
         <source>The document could not be written there.</source>
-        <translation type="unfinished"/>
+        <translation>Das Dokument konnte dort nicht geschrieben werden.</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="569"/>
         <source>Untitled document</source>
-        <translation type="unfinished"/>
+        <translation>Unbenanntes Dokument</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="583"/>
         <source>Click to rename</source>
-        <translation type="unfinished"/>
+        <translation>Zum Umbenennen klicken</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="600"/>
         <source>Document name</source>
-        <translation type="unfinished"/>
+        <translation>Dokumentname</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="700"/>
         <source>Bulleted list</source>
-        <translation type="unfinished"/>
+        <translation>Aufzählungsliste</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="712"/>
         <source>Numbered list</source>
-        <translation type="unfinished"/>
+        <translation>Nummerierte Liste</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="738"/>
         <source>Paragraph alignment</source>
-        <translation type="unfinished"/>
+        <translation>Absatzausrichtung</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="789"/>
         <source>Clear formatting</source>
-        <translation type="unfinished"/>
+        <translation>Formatierung löschen</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="811"/>
         <source>Base font size</source>
-        <translation type="unfinished"/>
+        <translation>Basisschriftgröße</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="835"/>
         <source>Export a local copy</source>
-        <translation type="unfinished"/>
+        <translation>Lokale Kopie exportieren</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="852"/>
         <source>Version history</source>
-        <translation type="unfinished"/>
+        <translation>Versionsverlauf</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="869"/>
         <source>Show the raw document</source>
-        <translation type="unfinished"/>
+        <translation>Rohdokument anzeigen</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="920"/>
         <source>Start typing…</source>
-        <translation type="unfinished"/>
+        <translation>Mit dem Tippen beginnen…</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1140"/>
         <source>Someone</source>
-        <translation type="unfinished"/>
+        <translation>Jemand</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1278"/>
         <source>Link URL</source>
-        <translation type="unfinished"/>
+        <translation>Link-URL</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1294"/>
         <source>Remove</source>
-        <translation type="unfinished"/>
+        <translation>Entfernen</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1305"/>
         <source>Apply</source>
-        <translation type="unfinished"/>
+        <translation>Anwenden</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1323"/>
         <source>Copy</source>
-        <translation type="unfinished"/>
+        <translation>Kopieren</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1328"/>
         <source>Paste</source>
-        <translation type="unfinished"/>
+        <translation>Einfügen</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1335"/>
         <source>Delete</source>
-        <translation type="unfinished"/>
+        <translation>Löschen</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1347"/>
         <source>Export as PDF…</source>
-        <translation type="unfinished"/>
+        <translation>Als PDF exportieren…</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1350"/>
         <source>PDF document</source>
-        <translation type="unfinished"/>
+        <translation>PDF-Dokument</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1353"/>
         <source>Export as ODT…</source>
-        <translation type="unfinished"/>
+        <translation>Als ODT exportieren…</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1356"/>
         <source>OpenDocument text</source>
-        <translation type="unfinished"/>
+        <translation>OpenDocument-Text</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1359"/>
         <source>Export as HTML…</source>
-        <translation type="unfinished"/>
+        <translation>Als HTML exportieren… </translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1362"/>
         <source>HTML document</source>
-        <translation type="unfinished"/>
+        <translation>HTML-Dokument</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1365"/>
         <source>Export as Markdown…</source>
-        <translation type="unfinished"/>
+        <translation>Als Markdown exportieren…</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1368"/>
         <source>Markdown document</source>
-        <translation type="unfinished"/>
+        <translation>Markdown-Dokument</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1371"/>
         <source>Export as plain text…</source>
-        <translation type="unfinished"/>
+        <translation>Als reinen Text exportieren…</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1374"/>
         <source>Plain text document</source>
-        <translation type="unfinished"/>
+        <translation>Reines Textdokument</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1387"/>
         <source>Align left</source>
-        <translation type="unfinished"/>
+        <translation>Linksbündig ausrichten</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1391"/>
         <source>Centre</source>
-        <translation type="unfinished"/>
+        <translation>Zentriert</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1395"/>
         <source>Align right</source>
-        <translation type="unfinished"/>
+        <translation>Rechtsbündig</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1399"/>
         <source>Justify</source>
-        <translation type="unfinished"/>
+        <translation>Blocksatz</translation>
     </message>
 </context>
 <context>
@@ -5290,7 +5290,7 @@ Bitte bestätigen Sie den Import auf dem neuen Gerät.</translation>
     <message>
         <location filename="../src/app/mainview/components/MessageFormatBar.qml" line="585"/>
         <source>Editable documents</source>
-        <translation type="unfinished"/>
+        <translation>Bearbeitbare Dokumente</translation>
     </message>
 </context>
 <context>
@@ -5922,7 +5922,7 @@ Bitte bestätigen Sie den Import auf dem neuen Gerät.</translation>
     <message>
         <location filename="../src/app/commoncomponents/ShareMenu.qml" line="43"/>
         <source>New editable document</source>
-        <translation type="unfinished"/>
+        <translation>Neues bearbeitbares Dokument</translation>
     </message>
 </context>
 <context>

@@ -37,67 +37,67 @@
     <message>
         <location filename="../src/app/commoncomponents/CollabDocListPopup.qml" line="46"/>
         <source>Remove document</source>
-        <translation type="unfinished"/>
+        <translation>Eemalda dokument</translation>
     </message>
     <message>
         <location filename="../src/app/commoncomponents/CollabDocListPopup.qml" line="47"/>
         <source>&quot;%1&quot; will be removed for every member of this conversation. This cannot be undone.</source>
-        <translation type="unfinished"/>
+        <translation>„%1$s“ eemaldatakse selle vestluse iga osaleja juurest. Seda tegevust ei saa tagasi pöörata.</translation>
     </message>
     <message>
         <location filename="../src/app/commoncomponents/CollabDocListPopup.qml" line="47"/>
         <location filename="../src/app/commoncomponents/CollabDocListPopup.qml" line="64"/>
         <location filename="../src/app/commoncomponents/CollabDocListPopup.qml" line="175"/>
         <source>Untitled document</source>
-        <translation type="unfinished"/>
+        <translation>Ilma nimeta dokument</translation>
     </message>
     <message>
         <location filename="../src/app/commoncomponents/CollabDocListPopup.qml" line="48"/>
         <location filename="../src/app/commoncomponents/CollabDocListPopup.qml" line="65"/>
         <source>Remove</source>
-        <translation type="unfinished"/>
+        <translation>Eemalda</translation>
     </message>
     <message>
         <location filename="../src/app/commoncomponents/CollabDocListPopup.qml" line="49"/>
         <location filename="../src/app/commoncomponents/CollabDocListPopup.qml" line="66"/>
         <source>Cancel</source>
-        <translation type="unfinished"/>
+        <translation>Katkesta</translation>
     </message>
     <message>
         <location filename="../src/app/commoncomponents/CollabDocListPopup.qml" line="63"/>
         <location filename="../src/app/commoncomponents/CollabDocListPopup.qml" line="209"/>
         <source>Remove from this device</source>
-        <translation type="unfinished"/>
+        <translation>Eemalda sellest seadmest</translation>
     </message>
     <message>
         <location filename="../src/app/commoncomponents/CollabDocListPopup.qml" line="64"/>
         <source>&quot;%1&quot; will be removed from this device only. The other members keep it, and opening it again downloads it back.</source>
-        <translation type="unfinished"/>
+        <translation>„%1$s“ eemaldatakse ainult sellest seadmest. Muudele osalejatele jääb ta alles  ja avamisel laaditakse ta uuesti alla.</translation>
     </message>
     <message>
         <location filename="../src/app/commoncomponents/CollabDocListPopup.qml" line="73"/>
         <source>Editable documents</source>
-        <translation type="unfinished"/>
+        <translation>Muudetavad dokumendid</translation>
     </message>
     <message>
         <location filename="../src/app/commoncomponents/CollabDocListPopup.qml" line="75"/>
         <source>Close</source>
-        <translation type="unfinished"/>
+        <translation>Sulge</translation>
     </message>
     <message>
         <location filename="../src/app/commoncomponents/CollabDocListPopup.qml" line="112"/>
         <source>No editable document in this conversation yet.</source>
-        <translation type="unfinished"/>
+        <translation>Siia vestlusesse pole veel lisatud ühtegi muuetavat dokumenti.</translation>
     </message>
     <message>
         <location filename="../src/app/commoncomponents/CollabDocListPopup.qml" line="191"/>
         <source>%1 - not on this device</source>
-        <translation type="unfinished"/>
+        <translation>%1 - pole selles seades</translation>
     </message>
     <message>
         <location filename="../src/app/commoncomponents/CollabDocListPopup.qml" line="226"/>
         <source>Remove this document</source>
-        <translation type="unfinished"/>
+        <translation>Eemalda see dokument</translation>
     </message>
 </context>
 <context>
@@ -106,17 +106,17 @@
         <location filename="../src/app/commoncomponents/CollabDocMessageDelegate.qml" line="80"/>
         <location filename="../src/app/commoncomponents/CollabDocMessageDelegate.qml" line="126"/>
         <source>Editable document</source>
-        <translation type="unfinished"/>
+        <translation>Muudetav dokument</translation>
     </message>
     <message>
         <location filename="../src/app/commoncomponents/CollabDocMessageDelegate.qml" line="115"/>
         <source>Untitled document</source>
-        <translation type="unfinished"/>
+        <translation>Ilma nimeta dokument</translation>
     </message>
     <message>
         <location filename="../src/app/commoncomponents/CollabDocMessageDelegate.qml" line="126"/>
         <source>Document removed</source>
-        <translation type="unfinished"/>
+        <translation>Dokument on eemaldatud</translation>
     </message>
 </context>
 <context>
@@ -124,57 +124,57 @@
     <message>
         <location filename="../src/app/mainview/components/CollabHistoryPanel.qml" line="83"/>
         <source>Today %1</source>
-        <translation type="unfinished"/>
+        <translation>Täna %1</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/CollabHistoryPanel.qml" line="105"/>
         <source>Version history</source>
-        <translation type="unfinished"/>
+        <translation>Versioonide ajalugu</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/CollabHistoryPanel.qml" line="116"/>
         <source>Refresh</source>
-        <translation type="unfinished"/>
+        <translation>Laadi uuesti</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/CollabHistoryPanel.qml" line="126"/>
         <source>No version saved yet. Versions are saved as you stop typing.</source>
-        <translation type="unfinished"/>
+        <translation>Ühtegi versiooni pole veel salvestatud. Uus versioon salvestub, kui lõpetad sisestamise.</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/CollabHistoryPanel.qml" line="143"/>
         <source>Current version</source>
-        <translation type="unfinished"/>
+        <translation>Praegune versioon</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/CollabHistoryPanel.qml" line="149"/>
         <source>Editable</source>
-        <translation type="unfinished"/>
+        <translation>Muudetav</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/CollabHistoryPanel.qml" line="186"/>
         <source>Someone</source>
-        <translation type="unfinished"/>
+        <translation>Keegi</translation>
     </message>
     <message numerus="yes">
         <location filename="../src/app/mainview/components/CollabHistoryPanel.qml" line="187"/>
         <source>%n change(s)</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n muudatus</numerusform><numerusform>%n muudatust</numerusform></translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/CollabHistoryPanel.qml" line="202"/>
         <source>Restore this version</source>
-        <translation type="unfinished"/>
+        <translation>Taasta see versioon</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/CollabHistoryPanel.qml" line="203"/>
         <source>Brings the document back to this content for everyone. Reversible.</source>
-        <translation type="unfinished"/>
+        <translation>Toob dokumendi kõigile tagasi selle sisu juurde. Tagasipööratav.</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/CollabHistoryPanel.qml" line="223"/>
         <source>This version could not be restored.</source>
-        <translation type="unfinished"/>
+        <translation>Selle versiooni taastamine ei õnnestunud.</translation>
     </message>
 </context>
 <context>
@@ -182,27 +182,27 @@
     <message>
         <location filename="../src/app/commoncomponents/CollabNewDocPopup.qml" line="44"/>
         <source>New editable document</source>
-        <translation type="unfinished"/>
+        <translation>Uus muudetav dokument</translation>
     </message>
     <message>
         <location filename="../src/app/commoncomponents/CollabNewDocPopup.qml" line="46"/>
         <source>Create</source>
-        <translation type="unfinished"/>
+        <translation>Loo</translation>
     </message>
     <message>
         <location filename="../src/app/commoncomponents/CollabNewDocPopup.qml" line="51"/>
         <source>Cancel</source>
-        <translation type="unfinished"/>
+        <translation>Katkesta</translation>
     </message>
     <message>
         <location filename="../src/app/commoncomponents/CollabNewDocPopup.qml" line="65"/>
         <source>Document name</source>
-        <translation type="unfinished"/>
+        <translation>Dokumendi nimi</translation>
     </message>
     <message>
         <location filename="../src/app/commoncomponents/CollabNewDocPopup.qml" line="76"/>
         <source>Untitled document</source>
-        <translation type="unfinished"/>
+        <translation>Ilma nimeta dokument</translation>
     </message>
 </context>
 <context>
@@ -210,251 +210,251 @@
     <message>
         <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="64"/>
         <source>Editable document</source>
-        <translation type="unfinished"/>
+        <translation>Muudetav dokument</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="270"/>
         <source>Document removed</source>
-        <translation type="unfinished"/>
+        <translation>Dokument on eemaldatud</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="270"/>
         <source>Document removed from this device</source>
-        <translation type="unfinished"/>
+        <translation>Dokument on sellest seadmest eemaldatud.</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="271"/>
         <source>&quot;%1&quot; was removed by its author.</source>
-        <translation type="unfinished"/>
+        <translation>„%1“ on autori poolt eemaldatud.</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="271"/>
         <source>&quot;%1&quot; is no longer on this device. Opening it again downloads it back.</source>
-        <translation type="unfinished"/>
+        <translation>„%1“ dokumenti enam ei leidu selles seadmes. Tema uuesti avamisel laaditakse ta uuesti alla.</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="358"/>
         <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="782"/>
         <source>Insert image</source>
-        <translation type="unfinished"/>
+        <translation>Lisa pilt</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="360"/>
         <source>Images</source>
-        <translation type="unfinished"/>
+        <translation>Pildid</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="370"/>
         <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="443"/>
         <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="486"/>
         <source>This image could not be added. It has to be an image of at most 16 MB.</source>
-        <translation type="unfinished"/>
+        <translation>Pildi lisamine ei õnnestunud mahu tõttu. Pildi suurus võib olla kuni 16 MB.</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="392"/>
         <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="411"/>
         <source>Export document</source>
-        <translation type="unfinished"/>
+        <translation>Ekspordi dokument</translation>
     </message>
     <message numerus="yes">
         <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="393"/>
         <source>%n picture(s) in this document have not arrived yet and would be exported as empty boxes.</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n selle dokumendi pilt pole veel kohale jõudnud ning jäävad eksporditavast failist välja.</numerusform><numerusform>%n selle dokumendi pilti pole veel kohale jõudnud ning jäävad eksporditavast failist välja.</numerusform></translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="394"/>
         <source>Export anyway</source>
-        <translation type="unfinished"/>
+        <translation>Ekspordi ikkagi</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="395"/>
         <source>Cancel</source>
-        <translation type="unfinished"/>
+        <translation>Katkesta</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="409"/>
         <source>document</source>
-        <translation type="unfinished"/>
+        <translation>dokument</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="423"/>
         <source>Document exported</source>
-        <translation type="unfinished"/>
+        <translation>Dokument on eksporditud</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="423"/>
         <source>Export failed</source>
-        <translation type="unfinished"/>
+        <translation>Eksportimine ei õnnestunud</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="424"/>
         <source>The document could not be written there.</source>
-        <translation type="unfinished"/>
+        <translation>Dokumendi sinna kinnitamine ei õnnestunud.</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="569"/>
         <source>Untitled document</source>
-        <translation type="unfinished"/>
+        <translation>Ilma nimeta dokument</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="583"/>
         <source>Click to rename</source>
-        <translation type="unfinished"/>
+        <translation>Nime muutmiseks klõpsa</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="600"/>
         <source>Document name</source>
-        <translation type="unfinished"/>
+        <translation>Dokumendi nimi</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="700"/>
         <source>Bulleted list</source>
-        <translation type="unfinished"/>
+        <translation>Nummerdamata loend</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="712"/>
         <source>Numbered list</source>
-        <translation type="unfinished"/>
+        <translation>Nummerdatud loend</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="738"/>
         <source>Paragraph alignment</source>
-        <translation type="unfinished"/>
+        <translation>Lõigu joondumine</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="789"/>
         <source>Clear formatting</source>
-        <translation type="unfinished"/>
+        <translation>Eemalda vormindus</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="811"/>
         <source>Base font size</source>
-        <translation type="unfinished"/>
+        <translation>Kirjatüüpi lähtesuurus</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="835"/>
         <source>Export a local copy</source>
-        <translation type="unfinished"/>
+        <translation>Ekspordi kohalik koopia</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="852"/>
         <source>Version history</source>
-        <translation type="unfinished"/>
+        <translation>Versioonide ajalugu</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="869"/>
         <source>Show the raw document</source>
-        <translation type="unfinished"/>
+        <translation>Näita dokumenti oma töötlemata vormis</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="920"/>
         <source>Start typing…</source>
-        <translation type="unfinished"/>
+        <translation>Alusta kirjutamist…</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1140"/>
         <source>Someone</source>
-        <translation type="unfinished"/>
+        <translation>Keegi</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1278"/>
         <source>Link URL</source>
-        <translation type="unfinished"/>
+        <translation>Lingi võrguaadress</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1294"/>
         <source>Remove</source>
-        <translation type="unfinished"/>
+        <translation>Eemalda</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1305"/>
         <source>Apply</source>
-        <translation type="unfinished"/>
+        <translation>Rakenda</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1323"/>
         <source>Copy</source>
-        <translation type="unfinished"/>
+        <translation>Kopeeri</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1328"/>
         <source>Paste</source>
-        <translation type="unfinished"/>
+        <translation>Aseta</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1335"/>
         <source>Delete</source>
-        <translation type="unfinished"/>
+        <translation>Kustuta</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1347"/>
         <source>Export as PDF…</source>
-        <translation type="unfinished"/>
+        <translation>Ekspordi PDF-failina…</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1350"/>
         <source>PDF document</source>
-        <translation type="unfinished"/>
+        <translation>PDF-dokument</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1353"/>
         <source>Export as ODT…</source>
-        <translation type="unfinished"/>
+        <translation>Ekspordi ODT-failina…</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1356"/>
         <source>OpenDocument text</source>
-        <translation type="unfinished"/>
+        <translation>OpenDocument-tekst</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1359"/>
         <source>Export as HTML…</source>
-        <translation type="unfinished"/>
+        <translation>Ekspordi HTML-failina…</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1362"/>
         <source>HTML document</source>
-        <translation type="unfinished"/>
+        <translation>HTML-dokument</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1365"/>
         <source>Export as Markdown…</source>
-        <translation type="unfinished"/>
+        <translation>Ekspordi Markdown-vormingus failina…</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1368"/>
         <source>Markdown document</source>
-        <translation type="unfinished"/>
+        <translation>Markdown-vormingus dokument</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1371"/>
         <source>Export as plain text…</source>
-        <translation type="unfinished"/>
+        <translation>Ekspordi vormindamata tekstifailina…</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1374"/>
         <source>Plain text document</source>
-        <translation type="unfinished"/>
+        <translation>Vormindamata tekstidokument</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1387"/>
         <source>Align left</source>
-        <translation type="unfinished"/>
+        <translation>Joonda vasakule</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1391"/>
         <source>Centre</source>
-        <translation type="unfinished"/>
+        <translation>Joonda keskele</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1395"/>
         <source>Align right</source>
-        <translation type="unfinished"/>
+        <translation>Joonda paremale</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1399"/>
         <source>Justify</source>
-        <translation type="unfinished"/>
+        <translation>Joonda rööpselt</translation>
     </message>
 </context>
 <context>
@@ -5292,7 +5292,7 @@ Jätkamiseks palun kinnita importimine uues seadmes.</translation>
     <message>
         <location filename="../src/app/mainview/components/MessageFormatBar.qml" line="585"/>
         <source>Editable documents</source>
-        <translation type="unfinished"/>
+        <translation>Muudetavad dokumendid</translation>
     </message>
 </context>
 <context>
@@ -5924,7 +5924,7 @@ Jätkamiseks palun kinnita importimine uues seadmes.</translation>
     <message>
         <location filename="../src/app/commoncomponents/ShareMenu.qml" line="43"/>
         <source>New editable document</source>
-        <translation type="unfinished"/>
+        <translation>Uus muudetav dokument</translation>
     </message>
 </context>
 <context>
