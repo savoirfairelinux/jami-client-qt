@@ -38,6 +38,7 @@ ListView {
         id: verticalScrollBar
 
         attachedFlickableMoving: root.moving
+        onPressedChanged: if (!pressed) root.loadMoreMsgsIfNeeded()
     }
 
     keyNavigationEnabled: true
@@ -55,7 +56,8 @@ ListView {
     }
 
     function loadMoreMsgsIfNeeded() {
-        if (convContext && atYBeginning && !convContext.allMessagesLoaded) {
+        if (convContext && atYBeginning && !verticalScrollBar.pressed
+                && !convContext.allMessagesLoaded) {
             if (convContext !== CurrentConversation)
                 convContext.loadMoreMessages();
             else

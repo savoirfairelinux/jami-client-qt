@@ -43,13 +43,20 @@ ColumnLayout {
         Layout.fillHeight: true
 
         convContext: QtObject {
+            id: testConversation
+
             property bool allMessagesLoaded: true
+            property int loadMoreCalls: 0
             property string id: ""
             property color color: "#00b0d0"
             signal scrollTo(string id)
             signal newInteraction()
             signal moreMessagesLoaded(int loadingRequestId)
             signal fileCopied(string fileName, string downloadDir)
+
+            function loadMoreMessages() {
+                ++loadMoreCalls
+            }
         }
 
         model: ListModel {
@@ -198,6 +205,29 @@ ColumnLayout {
                 loader.active = true;
                 verify(loader.item !== null);
                 loader.active = false;
+            }
+
+            function test_scrollbarDragDefersChunkLoading() {
+                uut.positionViewAtIndex(uut.count - 1, ListView.Beginning)
+                tryVerify(function () { return uut.atYBeginning })
+
+                const scrollBar = uut.verticalScrollBar
+                const handle = scrollBar.contentItem
+                mousePress(handle, handle.width / 2, handle.height / 2)
+                tryCompare(scrollBar, "pressed", true)
+
+                testConversation.loadMoreCalls = 0
+                testConversation.allMessagesLoaded = false
+                uut.loadMoreMsgsIfNeeded()
+                const callsWhilePressed = testConversation.loadMoreCalls
+
+                mouseRelease(handle, handle.width / 2, handle.height / 2)
+                tryCompare(scrollBar, "pressed", false)
+                const callsAfterRelease = testConversation.loadMoreCalls
+                testConversation.allMessagesLoaded = true
+
+                compare(callsWhilePressed, 0)
+                compare(callsAfterRelease, 1)
             }
         }
     }
