@@ -33,9 +33,14 @@ Rectangle {
     property bool helpOpened: false
     property string alias: ""
     property bool customProfilePicture: false
+    property string errorText: ""
     property int preferredHeight: customizeProfilePage.implicitHeight
 
     signal showThisPage
+
+    function errorOccurred(errorMessage) {
+        errorText = errorMessage;
+    }
 
     color: JamiTheme.secondaryBackgroundColor
     Accessible.role: Accessible.Pane
@@ -48,6 +53,10 @@ Rectangle {
         function onMainStepChanged() {
             var currentMainStep = WizardViewStepModel.mainStep;
             if (currentMainStep === WizardViewStepModel.MainSteps.ProfileCustomization) {
+                root.alias = "";
+                root.customProfilePicture = false;
+                root.errorText = "";
+                displayNameLineEdit.modifiedTextFieldContent = "";
                 root.showThisPage();
                 displayNameLineEdit.forceActiveFocus();
             }
@@ -118,15 +127,17 @@ Rectangle {
 
                         PhotoboothView {
                             id: accountAvatar
+                            objectName: "accountAvatar"
 
                             anchors.centerIn: parent
 
                             width: avatarSize
                             height: avatarSize
-                            imageId: LRCInstance.currentAccountId
+                            imageId: "temp"
 
                             avatarSize: 56
                             editButton.visible: true
+                            newItem: true
                             visible: customProfilePicture
                         }
 
@@ -169,17 +180,14 @@ Rectangle {
                                                                         "commoncomponents/PhotoboothPopup.qml",
                                                                         {
                                                                             "parent": editImage,
-                                                                            "imageId":
-                                                                            LRCInstance.currentAccountId,
-                                                                            "newItem": false
+                                                                            "imageId": "temp",
+                                                                            "newItem": true
                                                                         });
-                                dlg.onImageTemporaryValidated.connect(function () {
-                                    accountAvatar.visible = true;
+                                dlg.onImageValidated.connect(function () {
                                     customProfilePicture = true;
                                 });
-                                dlg.onImageTemporaryRemoved.connect(function () {
+                                dlg.onImageRemoved.connect(function () {
                                     customProfilePicture = false;
-                                    accountAvatar.visible = false;
                                 });
                             }
                         }
@@ -216,6 +224,19 @@ Rectangle {
                 lineHeight: JamiTheme.wizardViewTextLineHeight
             }
 
+            Label {
+                id: errorLabel
+
+                objectName: "errorLabel"
+
+                Layout.alignment: Qt.AlignCenter
+                visible: root.errorText !== ""
+
+                text: root.errorText
+                font.pixelSize: JamiTheme.textEditError
+                color: JamiTheme.redColor
+            }
+
             NewMaterialButton {
                 id: saveProfileButton
 
@@ -230,7 +251,9 @@ Rectangle {
                 text: JamiStrings.saveProfile
 
                 onClicked: {
-                    AccountAdapter.setCurrAccDisplayName(root.alias);
+                    AccountAdapter.setCreatedAccountProfile(root.alias,
+                                                            UtilsAdapter.tempCreationImage());
+                    UtilsAdapter.setTempCreationImageFromString();
                     WizardViewStepModel.nextStep();
                 }
             }
@@ -253,6 +276,7 @@ Rectangle {
                     toolTipText: JamiStrings.skipProfile
 
                     onClicked: {
+                        UtilsAdapter.setTempCreationImageFromString();
                         WizardViewStepModel.nextStep();
                     }
                 }

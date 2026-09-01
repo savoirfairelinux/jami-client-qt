@@ -159,6 +159,92 @@ TestWrapper {
                 compare(controlPanelStackView.children[controlPanelStackView.currentIndex],
                         welcomePage)
             }
+
+            function test_profileHandlesRegistrationFailure() {
+                var profilePage = findChild(uut, "initialCustomizeProfilePage")
+                var errorLabel = findChild(profilePage, "errorLabel")
+
+                WizardViewStepModel.mainStep = WizardViewStepModel.MainSteps.ProfileCustomization
+                AccountAdapter.reportFailure()
+                compare(errorLabel.text, JamiStrings.errorCreateAccount)
+                compare(errorLabel.visible, true)
+                WizardViewStepModel.mainStep = WizardViewStepModel.MainSteps.Initial
+            }
+
+            function test_profileAvatarResetsOnReentry() {
+                var profilePage = findChild(uut, "initialCustomizeProfilePage")
+                var accountAvatar = findChild(profilePage, "accountAvatar")
+
+                WizardViewStepModel.mainStep = WizardViewStepModel.MainSteps.ProfileCustomization
+                profilePage.customProfilePicture = true
+                compare(accountAvatar.visible, true)
+                WizardViewStepModel.mainStep = WizardViewStepModel.MainSteps.Initial
+                WizardViewStepModel.mainStep = WizardViewStepModel.MainSteps.ProfileCustomization
+                compare(accountAvatar.visible, false)
+                WizardViewStepModel.mainStep = WizardViewStepModel.MainSteps.Initial
+            }
+
+        }
+
+        TestCase {
+            name: "Queue profile while account is created"
+            when: windowShown
+
+            property string createdAccountId: ""
+            property bool creationPending: false
+
+            function cleanup() {
+                if (creationPending && createdAccountId === "") {
+                    if (spyAccountIsReady.count === 0)
+                        spyAccountIsReady.wait(15000)
+                    if (spyAccountIsReady.count > 0)
+                        createdAccountId = spyAccountIsReady.signalArguments[0][0]
+                }
+
+                if (createdAccountId !== "") {
+                    LRCInstance.currentAccountId = createdAccountId
+                    spyAccountIsRemoved.clear()
+                    AccountAdapter.deleteCurrentAccount()
+                    spyAccountIsRemoved.wait()
+                }
+                createdAccountId = ""
+                creationPending = false
+            }
+
+            function test_profileIsAppliedToCreatedAccount() {
+                uut.clearSignalSpy()
+
+                var previousAccountId = CurrentAccount.id
+                var previousAlias = CurrentAccount.alias
+                var previousHasAvatar = CurrentAccount.hasAvatarSet
+                var avatar = "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk"
+                           + "+A8AAQUBAScY42YAAAAASUVORK5CYII="
+
+                creationPending = true
+                AccountAdapter.createJamiAccount({
+                                                     "alias": "initial alias",
+                                                     "archivePath": "",
+                                                     "avatar": "",
+                                                     "botOwner": "",
+                                                     "isRendezVous": false,
+                                                     "password": "",
+                                                     "registeredName": ""
+                                                 })
+                AccountAdapter.setCreatedAccountProfile("queued alias", avatar)
+
+                spyAccountIsReady.wait(15000)
+                if (spyAccountIsReady.count > 0)
+                    createdAccountId = spyAccountIsReady.signalArguments[0][0]
+                compare(spyAccountIsReady.count, 1)
+                tryCompare(CurrentAccount, "id", createdAccountId)
+                tryCompare(CurrentAccount, "alias", "queued alias")
+                tryCompare(CurrentAccount, "hasAvatarSet", true)
+
+                LRCInstance.currentAccountId = previousAccountId
+                tryCompare(CurrentAccount, "id", previousAccountId)
+                compare(CurrentAccount.alias, previousAlias)
+                compare(CurrentAccount.hasAvatarSet, previousHasAvatar)
+            }
         }
 
         TestCase {
