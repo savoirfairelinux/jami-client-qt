@@ -111,6 +111,9 @@ AccountAdapter::connectFailure()
 void
 AccountAdapter::createJamiAccount(const QVariantMap& settings)
 {
+    createdAccountId_.clear();
+    hasPendingCreatedAccountProfile_ = false;
+
     auto registeredName = settings["registeredName"].toString();
     const auto botOwner = settings["botOwner"].toString();
     const auto switchToCreatedAccount = botOwner.isEmpty();
@@ -119,6 +122,8 @@ AccountAdapter::createJamiAccount(const QVariantMap& settings)
         &lrc::api::AccountModel::accountAdded,
         [this, registeredName, settings, botOwner, switchToCreatedAccount](const QString& accountId) {
             lrcInstance_->accountModel().setAvatar(accountId, settings["avatar"].toString(), true, 1);
+            createdAccountId_ = accountId;
+            applyPendingCreatedAccountProfile();
             if (!botOwner.isEmpty()) {
                 lrcInstance_->accountModel().setBotAccount(accountId, botOwner);
             }
@@ -296,6 +301,29 @@ void
 AccountAdapter::setCurrAccDisplayName(const QString& text)
 {
     lrcInstance_->setCurrAccDisplayName(text);
+}
+
+void
+AccountAdapter::setCreatedAccountProfile(const QString& alias, const QString& avatar)
+{
+    pendingCreatedAccountAlias_ = alias;
+    pendingCreatedAccountAvatar_ = avatar;
+    hasPendingCreatedAccountProfile_ = true;
+    applyPendingCreatedAccountProfile();
+}
+
+void
+AccountAdapter::applyPendingCreatedAccountProfile()
+{
+    if (createdAccountId_.isEmpty() || !hasPendingCreatedAccountProfile_)
+        return;
+
+    lrcInstance_->accountModel().setAlias(createdAccountId_, pendingCreatedAccountAlias_);
+    lrcInstance_->accountModel().setAvatar(createdAccountId_, pendingCreatedAccountAvatar_, true, 1);
+    createdAccountId_.clear();
+    pendingCreatedAccountAlias_.clear();
+    pendingCreatedAccountAvatar_.clear();
+    hasPendingCreatedAccountProfile_ = false;
 }
 
 void

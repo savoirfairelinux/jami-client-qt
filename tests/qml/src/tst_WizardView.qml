@@ -159,6 +159,21 @@ TestWrapper {
                 compare(controlPanelStackView.children[controlPanelStackView.currentIndex],
                         welcomePage)
             }
+
+            function test_profileCanBeSavedBeforeAccountIsReady() {
+                var profilePage = findChild(uut, "initialCustomizeProfilePage")
+                var saveProfileButton = findChild(uut, "saveProfileButton")
+
+                uut.clearSignalSpy()
+                WizardViewStepModel.mainStep = WizardViewStepModel.MainSteps.ProfileCustomization
+                profilePage.alias = "queued alias"
+                var currentAlias = CurrentAccount.alias
+                compare(saveProfileButton.enabled, true)
+                saveProfileButton.clicked()
+                compare(spyCloseWizardView.count, 1)
+                compare(CurrentAccount.alias, currentAlias)
+                WizardViewStepModel.mainStep = WizardViewStepModel.MainSteps.Initial
+            }
         }
 
         TestCase {

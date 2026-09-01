@@ -72,6 +72,7 @@ public:
     Q_INVOKABLE bool savePassword(const QString& accountId, const QString& oldPassword, const QString& newPassword);
     Q_INVOKABLE bool hasVideoCall();
     Q_INVOKABLE void setCurrAccDisplayName(const QString& text);
+    Q_INVOKABLE void setCreatedAccountProfile(const QString& alias, const QString& avatar);
     Q_INVOKABLE void setCurrentAccountAvatarFile(const QString& source);
     Q_INVOKABLE void setCurrentAccountAvatarBase64(const QString& source = {});
     Q_INVOKABLE void setDefaultModerator(const QString& accountId, const QString& peerURI, const bool& state);
@@ -98,8 +99,13 @@ Q_SIGNALS:
 private:
     // Implement what to do when account creation fails.
     void connectFailure();
+    void applyPendingCreatedAccountProfile();
 
     QMetaObject::Connection registeredNameSavedConnection_;
+    QString createdAccountId_;
+    QString pendingCreatedAccountAlias_;
+    QString pendingCreatedAccountAvatar_;
+    bool hasPendingCreatedAccountProfile_ {false};
 
     // The account ID of the last used import account.
     QString importAccountId_;

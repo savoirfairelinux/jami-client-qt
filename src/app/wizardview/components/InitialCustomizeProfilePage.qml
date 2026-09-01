@@ -48,6 +48,9 @@ Rectangle {
         function onMainStepChanged() {
             var currentMainStep = WizardViewStepModel.mainStep;
             if (currentMainStep === WizardViewStepModel.MainSteps.ProfileCustomization) {
+                root.alias = "";
+                root.customProfilePicture = false;
+                displayNameLineEdit.modifiedTextFieldContent = "";
                 root.showThisPage();
                 displayNameLineEdit.forceActiveFocus();
             }
@@ -123,10 +126,11 @@ Rectangle {
 
                             width: avatarSize
                             height: avatarSize
-                            imageId: LRCInstance.currentAccountId
+                            imageId: "temp"
 
                             avatarSize: 56
                             editButton.visible: true
+                            newItem: true
                             visible: customProfilePicture
                         }
 
@@ -169,15 +173,14 @@ Rectangle {
                                                                         "commoncomponents/PhotoboothPopup.qml",
                                                                         {
                                                                             "parent": editImage,
-                                                                            "imageId":
-                                                                            LRCInstance.currentAccountId,
-                                                                            "newItem": false
+                                                                            "imageId": "temp",
+                                                                            "newItem": true
                                                                         });
-                                dlg.onImageTemporaryValidated.connect(function () {
+                                dlg.onImageValidated.connect(function () {
                                     accountAvatar.visible = true;
                                     customProfilePicture = true;
                                 });
-                                dlg.onImageTemporaryRemoved.connect(function () {
+                                dlg.onImageRemoved.connect(function () {
                                     customProfilePicture = false;
                                     accountAvatar.visible = false;
                                 });
@@ -230,7 +233,9 @@ Rectangle {
                 text: JamiStrings.saveProfile
 
                 onClicked: {
-                    AccountAdapter.setCurrAccDisplayName(root.alias);
+                    AccountAdapter.setCreatedAccountProfile(root.alias,
+                                                            UtilsAdapter.tempCreationImage());
+                    UtilsAdapter.setTempCreationImageFromString();
                     WizardViewStepModel.nextStep();
                 }
             }
@@ -253,6 +258,7 @@ Rectangle {
                     toolTipText: JamiStrings.skipProfile
 
                     onClicked: {
+                        UtilsAdapter.setTempCreationImageFromString();
                         WizardViewStepModel.nextStep();
                     }
                 }
