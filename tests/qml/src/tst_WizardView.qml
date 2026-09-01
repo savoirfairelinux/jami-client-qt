@@ -159,6 +159,70 @@ TestWrapper {
                 compare(controlPanelStackView.children[controlPanelStackView.currentIndex],
                         welcomePage)
             }
+
+            function test_profileHandlesRegistrationFailure() {
+                var profilePage = findChild(uut, "initialCustomizeProfilePage")
+                var errorLabel = findChild(profilePage, "errorLabel")
+
+                WizardViewStepModel.mainStep = WizardViewStepModel.MainSteps.ProfileCustomization
+                AccountAdapter.reportFailure()
+                compare(errorLabel.text, JamiStrings.errorCreateAccount)
+                compare(errorLabel.visible, true)
+                WizardViewStepModel.mainStep = WizardViewStepModel.MainSteps.Initial
+            }
+
+        }
+
+        TestCase {
+            name: "Queue profile while account is created"
+            when: windowShown
+
+            property string createdAccountId: ""
+
+            function cleanup() {
+                if (createdAccountId === "")
+                    return
+
+                LRCInstance.currentAccountId = createdAccountId
+                tryCompare(CurrentAccount, "id", createdAccountId)
+                spyAccountIsRemoved.clear()
+                AccountAdapter.deleteCurrentAccount()
+                spyAccountIsRemoved.wait()
+                createdAccountId = ""
+            }
+
+            function test_profileIsAppliedToCreatedAccount() {
+                uut.clearSignalSpy()
+
+                var previousAccountId = CurrentAccount.id
+                var previousAlias = CurrentAccount.alias
+                var previousHasAvatar = CurrentAccount.hasAvatarSet
+                var avatar = "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk"
+                           + "+A8AAQUBAScY42YAAAAASUVORK5CYII="
+
+                AccountAdapter.createJamiAccount({
+                                                     "alias": "initial alias",
+                                                     "archivePath": "",
+                                                     "avatar": "",
+                                                     "botOwner": "",
+                                                     "isRendezVous": false,
+                                                     "password": "",
+                                                     "registeredName": ""
+                                                 })
+                AccountAdapter.setCreatedAccountProfile("queued alias", avatar)
+
+                spyAccountIsReady.wait(15000)
+                compare(spyAccountIsReady.count, 1)
+                createdAccountId = spyAccountIsReady.signalArguments[0][0]
+                tryCompare(CurrentAccount, "id", createdAccountId)
+                tryCompare(CurrentAccount, "alias", "queued alias")
+                tryCompare(CurrentAccount, "hasAvatarSet", true)
+
+                LRCInstance.currentAccountId = previousAccountId
+                tryCompare(CurrentAccount, "id", previousAccountId)
+                compare(CurrentAccount.alias, previousAlias)
+                compare(CurrentAccount.hasAvatarSet, previousHasAvatar)
+            }
         }
 
         TestCase {
