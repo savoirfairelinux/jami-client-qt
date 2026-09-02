@@ -5,7 +5,7 @@ script_dir=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 repo_dir=$(cd "${script_dir}/../.." && pwd)
 build_dir="${JAMI_TEST_BUILD_DIR:-${repo_dir}/.build-cqfd}"
 jobs="${JAMI_TEST_JOBS:-$(nproc 2>/dev/null || echo 4)}"
-test_regex="${JAMI_TEST_REGEX:-^(Qml_Tests|Unit_Tests)$}"
+test_regex="${JAMI_TEST_REGEX:-^(Qml_Tests|Unit_Tests|BuildScript_Tests)$}"
 ctest_args=(${JAMI_CTEST_ARGS:--V})
 
 if [[ -z "${JAMI_TEST_QPA_PLATFORM:-}" ]]; then
@@ -105,6 +105,7 @@ run_ctest() {
 if [[ "${test_regex}" =~ Qml_Tests && "${test_regex}" =~ Unit_Tests ]]; then
     run_ctest "^Qml_Tests$"
     run_ctest "^Unit_Tests$"
+    run_ctest "^BuildScript_Tests$"
 else
     run_ctest "${test_regex}"
 fi

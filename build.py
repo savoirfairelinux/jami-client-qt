@@ -522,6 +522,10 @@ def clean_contribs(contribs):
     # find it.
     triplet_pattern = re.compile(r'^[a-zA-Z0-9_]+(-[a-zA-Z0-9_]+){2,3}$')
     def is_triplet(s):
+        # 'build-<triplet>' and 'native-<triplet>' match the pattern too, but
+        # they hold the build tree, not the install prefix we are looking for.
+        if s.startswith('build') or s.startswith('native'):
+            return False
         return bool(triplet_pattern.match(s))
     abi_triplet = ''
     for sub_dir in sub_dirs:
@@ -554,7 +558,11 @@ def clean_contribs(contribs):
     # Clean each contrib
     for contrib in contribs:
         print(f'Cleaning contrib: {contrib} for {abi_triplet} in {build_dir}')
-        build_dir = os.path.join(build_dir, contrib, '*')
+        # Remove the source directory itself rather than its contents: tarballs
+        # ship dotfiles, which a glob would leave behind, and the surviving
+        # directory would be taken for an already extracted tarball by the
+        # contrib makefiles, which would then skip extraction.
+        source_dir = os.path.join(build_dir, contrib)
         build_stamp = os.path.join(build_dir, f'.{contrib}*')
         tarball = os.path.join(contrib_dir, 'tarballs', f'{contrib}*.tar.*')
         bins = os.path.join(contrib_dir, abi_triplet, 'bin', contrib)
@@ -573,9 +581,9 @@ def clean_contribs(contribs):
                        f' {os.path.join(contrib_dir, abi_triplet, "include", "libsw*")}'
 
         # For a dry run:
-        #  execute_script([f'find {build_dir} {build_stamp} {tarball} {bins} {libs} {includes}'], fail=False)
+        #  execute_script([f'find {source_dir} {build_stamp} {tarball} {bins} {libs} {includes}'], fail=False)
 
-        execute_script([f'rm -rf {build_dir} {build_stamp} {tarball} {bins} {libs} {includes}'], fail=False)
+        execute_script([f'rm -rf {source_dir} {build_stamp} {tarball} {bins} {libs} {includes}'], fail=False)
 
 
 def run_run(args):

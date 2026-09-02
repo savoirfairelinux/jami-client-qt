@@ -155,6 +155,13 @@ setup_test(Qml_Tests
 setup_test(Unit_Tests
     "${UNIT_TESTS_SOURCE_FILES}" "")
 
+# build.py tests. Plain Python, so no Qt platform plugin is needed.
+# -B keeps the test run from writing __pycache__ directories into the source tree.
+add_test(NAME BuildScript_Tests
+    COMMAND ${Python3_EXECUTABLE} -B -m unittest discover
+        -s ${CMAKE_CURRENT_SOURCE_DIR}/scripts
+        -t ${CMAKE_CURRENT_SOURCE_DIR}/scripts)
+
 if(APPLE)
     add_test(NAME MacOSDeploymentTarget_Test
         COMMAND ${CMAKE_COMMAND}
