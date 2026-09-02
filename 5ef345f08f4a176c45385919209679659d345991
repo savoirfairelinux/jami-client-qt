@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fc8137df_d114ee0b",
+        "filename": "build.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 527,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-09-02T21:02:16Z",
+      "side": 1,
+      "message": "[warning] Line 527: 🟡 The exclusion is broader than the directories described in the comment: it rejects every valid-looking ABI directory whose name starts with `build` or `native`, not only `build-\u003ctriplet\u003e` and `native-\u003ctriplet\u003e`. Such a prefix is then not found and cleanup exits without cleaning it. Restrict these checks to the actual directory prefixes (for example `build-`/`native-`) and cover the case with a regression test.",
+      "revId": "5ef345f08f4a176c45385919209679659d345991",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "383d588e_d9efc97a",
+        "filename": "extras/scripts/run-tests.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-09-02T21:02:16Z",
+      "side": 1,
+      "message": "[warning] Line 8: 🟡 With `JAMI_TEST_REGEX\u003d^BuildScript_Tests$`, the later target-selection fallback builds both `qml_tests` and `unit_tests` even though this suite is plain Python and has no build target. This makes an isolated build-script test depend on unrelated Qt test targets and can fail or add substantial unnecessary work; handle `BuildScript_Tests` explicitly and skip target builds when it is the only selected suite.",
+      "revId": "5ef345f08f4a176c45385919209679659d345991",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d7ab1d3_bb0d3d4d",
+        "filename": "extras/scripts/run-tests.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-09-02T21:02:16Z",
+      "side": 1,
+      "message": "[warning] Line 108: 🟡 This unconditional invocation bypasses `JAMI_TEST_REGEX`: a caller selecting the existing `^(Qml_Tests|Unit_Tests)$` value, or any regex containing both existing suites but not `BuildScript_Tests`, will still run the new suite. Only run this command when the configured regex selects `BuildScript_Tests`, while retaining its inclusion in the default regex.",
+      "revId": "5ef345f08f4a176c45385919209679659d345991",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8622d848_326d964d",
+        "filename": "tests/CMakeLists.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-09-02T21:02:16Z",
+      "side": 1,
+      "message": "[error] Line 160: 🔴 This test is registered on Windows too, but `clean_contribs()` unconditionally exits when `platform.system() \u003d\u003d \u0027Windows\u0027` (build.py:511-513). The Windows test runner executes all CTest tests, so enabling `--tests` now makes `BuildScript_Tests` fail; guard this `add_test` with `if(NOT WIN32)` or otherwise skip this suite on Windows.",
+      "revId": "5ef345f08f4a176c45385919209679659d345991",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
