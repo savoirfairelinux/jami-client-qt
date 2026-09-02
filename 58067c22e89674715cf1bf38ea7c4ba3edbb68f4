@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "63e52a77_a27789d1",
+        "filename": "src/app/messagesadapter.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 515,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-09-02T16:13:12Z",
+      "side": 1,
+      "message": "[error] Line 515: 🔴 `unbanConversation()` still reads `peersForConversation(convUid).at(0)` and can treat the account owner\u0027s URI as the banned contact when the remote peer has left. The new helper is intended to cover all conversation actions, but this path is not using it; select an actionable peer and handle no peer without calling `getContact()`/`addContact()` for self.",
+      "revId": "58067c22e89674715cf1bf38ea7c4ba3edbb68f4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5a91f5b5_bf61d54c",
+        "filename": "src/core/conversationmodel.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 849,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-09-02T16:13:12Z",
+      "side": 1,
+      "message": "[error] Line 849: 🔴 The new helper\u0027s empty-result handling is unreachable for an actually empty peer list: `removeConversation()` returns at lines 836-840 before this code when `peersForConversationInfo()` returns `{}`. Thus `MessagesAdapter::removeContact()` can delegate here for a conversation with no participants, but the conversation is left behind. Remove/move that early return so the no-contact branch calls `ConfigurationManager::removeConversation()` for both empty and owner-only peer lists, and add a regression test for the empty-list path.",
+      "revId": "58067c22e89674715cf1bf38ea7c4ba3edbb68f4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
