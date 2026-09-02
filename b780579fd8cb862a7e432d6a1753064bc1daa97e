@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e2633e83_6977fdd9",
+        "filename": "src/app/currentconversation.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-09-02T13:41:30Z",
+      "side": 1,
+      "message": "[error] Line 49: 🔴 `clearConversationProperties()` does not reset fields populated by `updateData()`/`updateProfile()`/`updateConversationPreferences`, including `isSip`, `allMessagesLoaded`, `lastSelfMessageId`, `color`, `ignoreNotifications`, `rdvAccount`, and `rdvDevice`. After switching from a valid conversation to a missing UID, the previous conversation\u0027s state can remain visible; notably, stale `allMessagesLoaded \u003d\u003d true` can suppress `loadMoreMessages()`. Reset every conversation-scoped property here (or use one complete invalid-state reset).",
+      "revId": "b780579fd8cb862a7e432d6a1753064bc1daa97e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aae7827d_b0813566",
+        "filename": "src/app/currentconversation.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-09-02T13:41:30Z",
+      "side": 1,
+      "message": "[warning] Line 155: 🟡 The new empty-peer guard avoids the out-of-bounds access, but it also skips `set_isBanned`. A known core dialog with no peers can therefore inherit `isBanned_ \u003d\u003d true` from the previously selected conversation and incorrectly keep the chat footer disabled. Initialize `isBanned` to false before the guarded contact lookup (and on lookup failure).",
+      "revId": "b780579fd8cb862a7e432d6a1753064bc1daa97e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ccd3fd9b_bceeeca2",
+        "filename": "tests/qml/src/tst_ChatView.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-09-02T13:41:30Z",
+      "side": 1,
+      "message": "[warning] Line 87: 🟡 This test toggles `CurrentConversation.isLegacy` directly and never exercises `updateData()` with a missing conversation, so it still passes if `clearConversationProperties()` is removed or broken. Drive the actual select/remove-or-unknown-UID transition and assert that the reset makes the banner hidden.",
+      "revId": "b780579fd8cb862a7e432d6a1753064bc1daa97e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
