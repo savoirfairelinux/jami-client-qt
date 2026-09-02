@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3415d51d_8fa9068d",
+        "filename": "src/app/messagesadapter.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 519,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-09-02T04:10:18Z",
+      "side": 1,
+      "message": "[error] Line 519: 🔴 Critical: This does not actually drop the owner-only conversation. `removeConversation(convUid)` uses `keepContact\u003dfalse`; for a `ONE_TO_ONE` conversation, `isSwarm()` and `isCoreDialog()` are both true, so `ConversationModel::removeConversation` takes its `else` branch and uses `peers.front()`, which is the account owner\u0027s URI, to call `ContactModel::removeContact`. That can still target/remove the owner instead of removing the conversation. Pass `false, true` (or add a dedicated no-peer removal path) and cover this behavior with a regression test.",
+      "revId": "5ba4ce4843da032c9a89939c59b21a7b5526ef99",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
