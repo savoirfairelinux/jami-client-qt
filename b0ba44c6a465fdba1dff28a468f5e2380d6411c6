@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "17974d46_25b63bd9",
+        "filename": "src/app/accountadapter.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 321,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-09-02T04:14:37Z",
+      "side": 1,
+      "message": "[error] Line 321: 🔴 `setAlias` emits `profileUpdated` synchronously. When `registeredName` is non-empty, the connection installed at lines 148-160 treats any `profileUpdated` for this account as completion of `registerName`, emits `accountAdded`, and disconnects. If the user saves a non-empty alias/avatar after the account\u0027s initial `accountAdded` but before name registration completes, this call can therefore make the wizard switch/finish early; a later failed registration is no longer handled. Wait for `nameRegistrationEnded` for this account and only finalize on a successful status, or otherwise keep profile updates separate from registration completion.",
+      "revId": "b0ba44c6a465fdba1dff28a468f5e2380d6411c6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ecef3ca_06990720",
+        "filename": "tests/qml/src/tst_WizardView.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-09-02T04:14:37Z",
+      "side": 1,
+      "message": "[warning] Line 172: 🟡 This test never calls `createJamiAccount` or causes an `accountAdded` signal, so `createdAccountId_` remains empty and the production code only stores pending values; it does not verify that the alias/avatar is eventually applied to the emitted account ID or that another current account is left unchanged. Add a deterministic delayed-account-added scenario (and assert both profile fields on that account) to cover the regression this patch is intended to fix.",
+      "revId": "b0ba44c6a465fdba1dff28a468f5e2380d6411c6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
