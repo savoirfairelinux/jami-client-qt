@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ff2f5c21_0f6ac786",
+        "filename": "src/app/currentconversation.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-09-02T15:39:03Z",
+      "side": 1,
+      "message": "[error] Line 116: 🔴 The new reset is only called for a non-empty unknown UID. When `selectedConvUid` is cleared, the earlier `convId.isEmpty()` branch returns before `clearConversationProperties()`, leaving `isLegacy`, `isTemporary`, call/message state, and other conversation-scoped properties from the previously selected conversation. ChatView can therefore still offer migration after deselection. Apply the same complete reset in the empty-ID path (while clearing the exposed id and members), or centralize the invalid-conversation handling, and add a regression assertion for selecting an empty UID.",
+      "revId": "57e2b8b0735f30651b5d7929b9a2a72b8cfd6b7e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
