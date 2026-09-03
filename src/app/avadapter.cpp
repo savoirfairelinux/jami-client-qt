@@ -290,19 +290,20 @@ AvAdapter::shareFile(const QString& filePath)
                             .arg(libjami::Media::VideoProtocolPrefix::SEPARATOR)
                             .arg(QUrl(filePath).toLocalFile());
 
-        Utils::oneShotConnect(&lrcInstance_->avModel(),
-                              &lrc::api::AVModel::fileOpened,
-                              this,
-                              [this, callId, filePath, resource](bool hasAudio, bool hasVideo) {
-                                  lrcInstance_->avModel().setAutoRestart(resource, true);
-                                  lrcInstance_->getCurrentCallModel()
-                                      ->addMedia(callId,
-                                                 filePath,
-                                                 lrc::api::CallModel::MediaRequestType::FILESHARING,
-                                                 false,
-                                                 hasAudio);
-                                  lrcInstance_->avModel().pausePlayer(resource, false);
-                              });
+        QObject::connect(
+            &lrcInstance_->avModel(),
+            &lrc::api::AVModel::fileOpened,
+            this,
+            [this, callId, filePath, resource](bool hasAudio, bool hasVideo) {
+                lrcInstance_->avModel().setAutoRestart(resource, true);
+                lrcInstance_->getCurrentCallModel()->addMedia(callId,
+                                                              filePath,
+                                                              lrc::api::CallModel::MediaRequestType::FILESHARING,
+                                                              false,
+                                                              hasAudio);
+                lrcInstance_->avModel().pausePlayer(resource, false);
+            },
+            Qt::SingleShotConnection);
 
         lrcInstance_->avModel().createMediaPlayer(resource);
     }

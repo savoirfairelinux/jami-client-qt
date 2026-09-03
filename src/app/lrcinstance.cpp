@@ -388,9 +388,12 @@ LRCInstance::selectConversation(const QString& convId, const QString& accountId)
     // if the account is not currently selected, do that first, then
     // proceed to select the conversation
     if (!accountId.isEmpty() && accountId != get_currentAccountId()) {
-        Utils::oneShotConnect(this, &LRCInstance::currentAccountIdChanged, [this, convId] {
-            set_selectedConvUid(convId);
-        });
+        QObject::connect(
+            this,
+            &LRCInstance::currentAccountIdChanged,
+            this,
+            [this, convId] { set_selectedConvUid(convId); },
+            static_cast<Qt::ConnectionType>(Qt::DirectConnection | Qt::SingleShotConnection));
         set_currentAccountId(accountId);
         return;
     }

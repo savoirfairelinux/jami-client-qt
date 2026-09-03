@@ -27,9 +27,12 @@ FileDownloader::FileDownloader(ConnectivityMonitor* cm, QObject* parent)
 void
 FileDownloader::downloadFile(const QUrl& url, const QString& localPath)
 {
-    Utils::oneShotConnect(this, &NetworkManager::errorOccurred, this, [this, localPath]() {
-        onDownloadFileFinished({}, localPath);
-    });
+    QObject::connect(
+        this,
+        &NetworkManager::errorOccurred,
+        this,
+        [this, localPath]() { onDownloadFileFinished({}, localPath); },
+        Qt::SingleShotConnection);
 
     sendGetRequest(url, [this, localPath](const QByteArray& fileData) { onDownloadFileFinished(fileData, localPath); });
 }

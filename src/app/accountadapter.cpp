@@ -85,9 +85,10 @@ AccountAdapter::changeAccount(int row)
 void
 AccountAdapter::connectFailure()
 {
-    Utils::oneShotConnect(
+    Utils::connectSingleShotUntil(
         &lrcInstance_->accountModel(),
         &lrc::api::AccountModel::accountRemoved,
+        this,
         [this](const QString& accountId) {
             Q_UNUSED(accountId);
             Q_EMIT accountCreationFailed();
@@ -96,9 +97,10 @@ AccountAdapter::connectFailure()
         &lrcInstance_->accountModel(),
         &lrc::api::AccountModel::accountAdded);
 
-    Utils::oneShotConnect(
+    Utils::connectSingleShotUntil(
         &lrcInstance_->accountModel(),
         &lrc::api::AccountModel::invalidAccountDetected,
+        this,
         [this](const QString& accountId) {
             Q_UNUSED(accountId);
             Q_EMIT accountCreationFailed();
@@ -114,21 +116,25 @@ AccountAdapter::createJamiAccount(const QVariantMap& settings)
     auto registeredName = settings["registeredName"].toString();
     const auto botOwner = settings["botOwner"].toString();
     const auto switchToCreatedAccount = botOwner.isEmpty();
-    Utils::oneShotConnect(
+    Utils::connectSingleShotUntil(
         &lrcInstance_->accountModel(),
         &lrc::api::AccountModel::accountAdded,
+        this,
         [this, registeredName, settings, botOwner, switchToCreatedAccount](const QString& accountId) {
             lrcInstance_->accountModel().setAvatar(accountId, settings["avatar"].toString(), true, 1);
             if (!botOwner.isEmpty()) {
                 lrcInstance_->accountModel().setBotAccount(accountId, botOwner);
             }
-            Utils::oneShotConnect(&lrcInstance_->accountModel(),
-                                  &lrc::api::AccountModel::accountDetailsChanged,
-                                  [this](const QString& accountId) {
-                                      Q_UNUSED(accountId);
-                                      // For testing purpose
-                                      Q_EMIT accountConfigFinalized();
-                                  });
+            QObject::connect(
+                &lrcInstance_->accountModel(),
+                &lrc::api::AccountModel::accountDetailsChanged,
+                this,
+                [this](const QString& accountId) {
+                    Q_UNUSED(accountId);
+                    // For testing purpose
+                    Q_EMIT accountConfigFinalized();
+                },
+                static_cast<Qt::ConnectionType>(Qt::DirectConnection | Qt::SingleShotConnection));
 
             auto confProps = lrcInstance_->accountModel().getAccountConfig(accountId);
 #ifdef Q_OS_WIN
@@ -180,18 +186,22 @@ AccountAdapter::createJamiAccount(const QVariantMap& settings)
 void
 AccountAdapter::createSIPAccount(const QVariantMap& settings)
 {
-    Utils::oneShotConnect(
+    Utils::connectSingleShotUntil(
         &lrcInstance_->accountModel(),
         &lrc::api::AccountModel::accountAdded,
+        this,
         [this, settings](const QString& accountId) {
             lrcInstance_->accountModel().setAvatar(accountId, settings["avatar"].toString());
-            Utils::oneShotConnect(&lrcInstance_->accountModel(),
-                                  &lrc::api::AccountModel::accountDetailsChanged,
-                                  [this](const QString& accountId) {
-                                      Q_UNUSED(accountId);
-                                      // For testing purpose
-                                      Q_EMIT accountConfigFinalized();
-                                  });
+            QObject::connect(
+                &lrcInstance_->accountModel(),
+                &lrc::api::AccountModel::accountDetailsChanged,
+                this,
+                [this](const QString& accountId) {
+                    Q_UNUSED(accountId);
+                    // For testing purpose
+                    Q_EMIT accountConfigFinalized();
+                },
+                static_cast<Qt::ConnectionType>(Qt::DirectConnection | Qt::SingleShotConnection));
 
             auto confProps = lrcInstance_->accountModel().getAccountConfig(accountId);
             // set SIP details
@@ -226,20 +236,24 @@ AccountAdapter::createSIPAccount(const QVariantMap& settings)
 void
 AccountAdapter::createJAMSAccount(const QVariantMap& settings)
 {
-    Utils::oneShotConnect(
+    Utils::connectSingleShotUntil(
         &lrcInstance_->accountModel(),
         &lrc::api::AccountModel::accountAdded,
+        this,
         [this](const QString& accountId) {
             if (!lrcInstance_->accountModel().getAccountCount())
                 return;
 
-            Utils::oneShotConnect(&lrcInstance_->accountModel(),
-                                  &lrc::api::AccountModel::accountDetailsChanged,
-                                  [this](const QString& accountId) {
-                                      Q_UNUSED(accountId);
-                                      // For testing purpose
-                                      Q_EMIT accountConfigFinalized();
-                                  });
+            QObject::connect(
+                &lrcInstance_->accountModel(),
+                &lrc::api::AccountModel::accountDetailsChanged,
+                this,
+                [this](const QString& accountId) {
+                    Q_UNUSED(accountId);
+                    // For testing purpose
+                    Q_EMIT accountConfigFinalized();
+                },
+                static_cast<Qt::ConnectionType>(Qt::DirectConnection | Qt::SingleShotConnection));
 
             auto confProps = lrcInstance_->accountModel().getAccountConfig(accountId);
 #ifdef Q_OS_WIN
@@ -267,15 +281,17 @@ AccountAdapter::deleteCurrentAccount()
 {
     const auto currentAccountId = lrcInstance_->get_currentAccountId();
 
-    Utils::oneShotConnect(&lrcInstance_->accountModel(),
-                          &lrc::api::AccountModel::accountRemoved,
-                          this,
-                          [this](const QString& accountId) {
-                              if (apiTokenManager_)
-                                  apiTokenManager_->revokeAllTokens(accountId);
-                              Q_EMIT accountRemoved(accountId);
-                              Q_EMIT lrcInstance_->accountListChanged();
-                          });
+    QObject::connect(
+        &lrcInstance_->accountModel(),
+        &lrc::api::AccountModel::accountRemoved,
+        this,
+        [this](const QString& accountId) {
+            if (apiTokenManager_)
+                apiTokenManager_->revokeAllTokens(accountId);
+            Q_EMIT accountRemoved(accountId);
+            Q_EMIT lrcInstance_->accountListChanged();
+        },
+        Qt::SingleShotConnection);
 
     lrcInstance_->accountModel().removeAccount(currentAccountId);
 }
@@ -388,9 +404,10 @@ AccountAdapter::provideAccountAuthentication(const QString& password)
     auto wizardModel = qApp->property("WizardViewStepModel").value<WizardViewStepModel*>();
     wizardModel->set_deviceAuthState(lrc::api::account::DeviceAuthState::IN_PROGRESS);
 
-    Utils::oneShotConnect(
+    Utils::connectSingleShotUntil(
         &lrcInstance_->accountModel(),
         &lrc::api::AccountModel::accountAdded,
+        this,
         [this](const QString& accountId) {
             Q_EMIT lrcInstance_->accountListChanged();
             Q_EMIT accountAdded(accountId, lrcInstance_->accountModel().getAccountList().indexOf(accountId));

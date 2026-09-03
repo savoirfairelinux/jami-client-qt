@@ -262,22 +262,24 @@ ConversationsAdapter::onNewTrustRequest(const QString& accountId, const QString&
         // This peer is not yet a contact, so we don't have a name for it,
         // but we can attempt to look it up using the name service before
         // falling back to the bestNameForContact.
-        Utils::oneShotConnect(&NameDirectory::instance(),
-                              &NameDirectory::registeredNameFound,
-                              this,
-                              [this, accountId, peerUri, cb](NameDirectory::LookupStatus status,
-                                                             const QString& address,
-                                                             const QString& registeredName,
-                                                             const QString& requestedName) {
-                                  if (requestedName == peerUri) {
-                                      if (status == NameDirectory::LookupStatus::SUCCESS)
-                                          cb(registeredName);
-                                      else {
-                                          auto& accInfo = lrcInstance_->getAccountInfo(accountId);
-                                          cb(accInfo.contactModel->bestNameForContact(peerUri));
-                                      }
-                                  }
-                              });
+        QObject::connect(
+            &NameDirectory::instance(),
+            &NameDirectory::registeredNameFound,
+            this,
+            [this, accountId, peerUri, cb](NameDirectory::LookupStatus status,
+                                           const QString& address,
+                                           const QString& registeredName,
+                                           const QString& requestedName) {
+                if (requestedName == peerUri) {
+                    if (status == NameDirectory::LookupStatus::SUCCESS)
+                        cb(registeredName);
+                    else {
+                        auto& accInfo = lrcInstance_->getAccountInfo(accountId);
+                        cb(accInfo.contactModel->bestNameForContact(peerUri));
+                    }
+                }
+            },
+            Qt::SingleShotConnection);
         std::ignore = NameDirectory::instance().lookupAddress(accountId, peerUri);
     }
 #else
@@ -525,26 +527,31 @@ ConversationsAdapter::restartConversation(const QString& convId)
     auto contactInfo = accInfo.contactModel->getContact(peerUri);
     contactInfo.profileInfo.type = profile::Type::TEMPORARY;
 
-    Utils::oneShotConnect(accInfo.contactModel.get(),
-                          &ContactModel::contactRemoved,
-                          [this, &accInfo, contactInfo](const QString& peerUri) {
-                              // setup a callback to select another ONE_TO_ONE conversation for this peer
-                              // once the new conversation becomes ready
-                              Utils::oneShotConnect(
-                                  accInfo.conversationModel.get(),
-                                  &ConversationModel::conversationReady,
-                                  [this, peerUri, &accInfo](const QString& convId) {
-                                      const auto& convInfo = lrcInstance_->getConversationFromConvUid(convId);
-                                      // 3. filter for the correct contact-conversation and select it
-                                      if (!convInfo.uid.isEmpty() && convInfo.isCoreDialog()
-                                          && peerUri == accInfo.conversationModel->peersForConversation(convId).at(0)) {
-                                          lrcInstance_->selectConversation(convId);
-                                      }
-                                  });
+    QObject::connect(
+        accInfo.contactModel.get(),
+        &ContactModel::contactRemoved,
+        this,
+        [this, &accInfo, contactInfo](const QString& peerUri) {
+            // setup a callback to select another ONE_TO_ONE conversation for this peer
+            // once the new conversation becomes ready
+            QObject::connect(
+                accInfo.conversationModel.get(),
+                &ConversationModel::conversationReady,
+                this,
+                [this, peerUri, &accInfo](const QString& convId) {
+                    const auto& convInfo = lrcInstance_->getConversationFromConvUid(convId);
+                    // 3. filter for the correct contact-conversation and select it
+                    if (!convInfo.uid.isEmpty() && convInfo.isCoreDialog()
+                        && peerUri == accInfo.conversationModel->peersForConversation(convId).at(0)) {
+                        lrcInstance_->selectConversation(convId);
+                    }
+                },
+                static_cast<Qt::ConnectionType>(Qt::DirectConnection | Qt::SingleShotConnection));
 
-                              // 2. add the contact and await the conversationReady signal
-                              accInfo.contactModel->addContact(contactInfo);
-                          });
+            // 2. add the contact and await the conversationReady signal
+            accInfo.contactModel->addContact(contactInfo);
+        },
+        static_cast<Qt::ConnectionType>(Qt::DirectConnection | Qt::SingleShotConnection));
 
     // 1. remove the contact and await the contactRemoved signal
     accInfo.contactModel->removeContact(peerUri);
