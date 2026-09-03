@@ -19,6 +19,23 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "93dc06c7_095cdb79",
+        "filename": "src/app/accountadapter.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-09-03T17:28:34Z",
+      "side": 1,
+      "message": "[error] Line 160: 🔴 `reportFailure()` is emitted here for a failed name registration while the wizard is already on `ProfileCustomization` (the `nextStep()` path changes to that page before registration finishes). `WizardView.qml` unconditionally calls `children[i].errorOccurred(...)`, but `InitialCustomizeProfilePage.qml` has no `errorOccurred` function, so this becomes a QML TypeError and the user gets no registration error/recovery state. Add a handler for this page or route the failure back to a page that handles it, and cover the failed-registration path.",
+      "revId": "655ba20a80895dea08ae1ac557fb3e1b5bc44192",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "b13ccc09_10ffad83",
