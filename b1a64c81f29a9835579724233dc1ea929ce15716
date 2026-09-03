@@ -17,6 +17,40 @@
       "parentUuid": "93dc06c7_095cdb79",
       "revId": "b1a64c81f29a9835579724233dc1ea929ce15716",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a54cd9f_bfe6ae4c",
+        "filename": "src/app/wizardview/components/InitialCustomizeProfilePage.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-09-03T18:07:26Z",
+      "side": 1,
+      "message": "[warning] Line 57: 🟡 This reset does not reliably reset the avatar widget. `visible: customProfilePicture` establishes a binding, but the dialog callbacks assign `accountAvatar.visible` directly, which removes that binding. After one image selection, re-entering this page changes only `customProfilePicture`; `accountAvatar.visible` remains true and the cleared `temp` image can still be displayed. Remove the direct visibility assignments and rely on the binding, or explicitly restore the binding/visibility, and cover re-entry after selecting and saving/skipping a picture.",
+      "revId": "b1a64c81f29a9835579724233dc1ea929ce15716",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a611bfe_a55213a6",
+        "filename": "tests/qml/src/tst_WizardView.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-09-03T18:07:26Z",
+      "side": 1,
+      "message": "[warning] Line 183: 🟡 This cleanup only removes the account after `createdAccountId` is assigned at line 216. If creation succeeds after the 15-second wait times out, or an assertion before that assignment aborts the test, cleanup returns and leaves the newly created account behind, contaminating later tests and daemon teardown. Track cleanup as pending before starting creation and make cleanup resolve/remove the created account even when the test fails before recording its ID.",
+      "revId": "b1a64c81f29a9835579724233dc1ea929ce15716",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
