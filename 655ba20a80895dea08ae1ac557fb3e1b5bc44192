@@ -1,0 +1,40 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "65fc4099_62dc97f7",
+        "filename": "src/app/accountadapter.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-09-03T17:23:45Z",
+      "side": 1,
+      "message": "Agreed. Replaced profileUpdated with nameRegistrationEnded, filtered by the created account ID, and only emit accountAdded for SUCCESS. A synchronous registerName failure or non-success completion now reports the failure instead of finalizing the account.",
+      "parentUuid": "17974d46_25b63bd9",
+      "revId": "655ba20a80895dea08ae1ac557fb3e1b5bc44192",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b13ccc09_10ffad83",
+        "filename": "tests/qml/src/tst_WizardView.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-09-03T17:23:45Z",
+      "side": 1,
+      "message": "Agreed. Replaced the shallow test with a real asynchronous createJamiAccount flow. It queues alias and avatar before accountAdded, verifies both on the emitted account ID, and confirms the previously current account remains unchanged.",
+      "parentUuid": "4ecef3ca_06990720",
+      "revId": "655ba20a80895dea08ae1ac557fb3e1b5bc44192",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
