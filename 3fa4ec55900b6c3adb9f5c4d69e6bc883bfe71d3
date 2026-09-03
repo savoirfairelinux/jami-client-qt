@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c85d9445_3d8080c7",
+        "filename": "src/app/accountadapter.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-09-03T19:32:29Z",
+      "side": 1,
+      "message": "[warning] Line 138: 🟡 This replacement also changes the old one-shot wrapper\u0027s default `AutoConnection` behavior to `DirectConnection`; the same pattern appears in the conversation and LRC selection paths. If `accountDetailsChanged` is delivered off the adapter thread, `accountConfigFinalized` is emitted from the emitter thread. Use `Qt::SingleShotConnection` without `DirectConnection` unless same-thread delivery is guaranteed.",
+      "revId": "3fa4ec55900b6c3adb9f5c4d69e6bc883bfe71d3",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "02432d35_476ebccb",
+        "filename": "src/app/qtutils.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-09-03T19:32:29Z",
+      "side": 1,
+      "message": "[warning] Line 78: 🟡 This helper now binds callbacks to a context but unconditionally uses `DirectConnection`, bypassing the context object\u0027s thread affinity. If a sender or interrupter emits from a worker thread, the lambda can mutate models and emit UI-facing signals from that worker thread. The previous connections used the default `AutoConnection`; preserve that for callback delivery (handling cancellation separately if synchronous cancellation is required), or document/assert a same-thread precondition and add a cross-thread regression test.",
+      "revId": "3fa4ec55900b6c3adb9f5c4d69e6bc883bfe71d3",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
