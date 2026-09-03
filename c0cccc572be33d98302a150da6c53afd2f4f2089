@@ -1,0 +1,40 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "be71c6ab_5c77abf6",
+        "filename": "src/app/wizardview/components/InitialCustomizeProfilePage.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-09-03T18:17:14Z",
+      "side": 1,
+      "message": "Agreed. Removed both imperative accountAvatar.visible assignments; the callbacks now update only customProfilePicture, preserving the existing visibility binding. Added a re-entry test that selects the avatar state and verifies the widget resets when ProfileCustomization is entered again.",
+      "parentUuid": "9a54cd9f_bfe6ae4c",
+      "revId": "c0cccc572be33d98302a150da6c53afd2f4f2089",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a3845057_24cf7c1a",
+        "filename": "tests/qml/src/tst_WizardView.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-09-03T18:17:14Z",
+      "side": 1,
+      "message": "Agreed. The test now marks creation pending before starting it. Cleanup waits for accountIsReady when an earlier assertion or timeout prevented the ID assignment, recovers the emitted ID, and removes that account. The ID is also captured before the first post-wait assertion.",
+      "parentUuid": "8a611bfe_a55213a6",
+      "revId": "c0cccc572be33d98302a150da6c53afd2f4f2089",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
