@@ -1,0 +1,22 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "efd9ab52_41109919",
+        "filename": "src/app/accountadapter.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-09-03T18:04:00Z",
+      "side": 1,
+      "message": "Agreed. InitialCustomizeProfilePage now implements the wizard\u0027s existing errorOccurred contract and displays the failure inline, so reportFailure no longer calls an undefined function. Added a focused test that enters ProfileCustomization, emits the registration failure path, and verifies the visible error. Also applied the clang-format correction reported by CI.",
+      "parentUuid": "93dc06c7_095cdb79",
+      "revId": "b1a64c81f29a9835579724233dc1ea929ce15716",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
