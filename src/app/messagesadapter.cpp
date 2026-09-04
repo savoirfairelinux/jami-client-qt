@@ -470,15 +470,13 @@ void
 MessagesAdapter::unbanConversation(const QString& convUid)
 {
     auto& accInfo = lrcInstance_->getCurrentAccountInfo();
-    const auto contactUri
-        = lrc::api::ConversationModel::computeActionablePeer(accInfo.conversationModel->peersForConversation(convUid),
-                                                             accInfo.profileInfo.uri);
-    if (!contactUri) {
+    const auto contactUri = lrcInstance_->getConversationFromConvUid(convUid).remotePeerUri();
+    if (contactUri.isEmpty()) {
         // The account owner is not a contact of theirs to unban.
         return;
     }
     try {
-        auto contactInfo = accInfo.contactModel->getContact(*contactUri);
+        auto contactInfo = accInfo.contactModel->getContact(contactUri);
         accInfo.contactModel->addContact(contactInfo);
     } catch (const std::out_of_range& e) {
         qDebug() << e.what();
@@ -517,10 +515,8 @@ MessagesAdapter::removeContact(const QString& convUid, bool banContact)
 {
     auto& accInfo = lrcInstance_->getCurrentAccountInfo();
 
-    const auto contactUri
-        = lrc::api::ConversationModel::computeActionablePeer(accInfo.conversationModel->peersForConversation(convUid),
-                                                             accInfo.profileInfo.uri);
-    if (!contactUri) {
+    const auto contactUri = lrcInstance_->getConversationFromConvUid(convUid).remotePeerUri();
+    if (contactUri.isEmpty()) {
         // No one left to remove but the account owner: drop the conversation itself.
         accInfo.conversationModel->removeConversation(convUid);
         return;
@@ -529,12 +525,12 @@ MessagesAdapter::removeContact(const QString& convUid, bool banContact)
     // remove the uri from the default moderators list
     // TODO: seems like this should be done in libringclient
     QStringList list = lrcInstance_->accountModel().getDefaultModerators(accInfo.id);
-    if (list.contains(*contactUri)) {
-        lrcInstance_->accountModel().setDefaultModerator(accInfo.id, *contactUri, false);
+    if (list.contains(contactUri)) {
+        lrcInstance_->accountModel().setDefaultModerator(accInfo.id, contactUri, false);
     }
 
     // actually remove the contact
-    accInfo.contactModel->removeContact(*contactUri, banContact);
+    accInfo.contactModel->removeContact(contactUri, banContact);
 }
 
 void
