@@ -832,7 +832,6 @@ ConversationModel::removeConversation(const QString& uid, bool banned, bool keep
     // Remove contact from daemon
     // NOTE: this will also remove the conversation into the database for non-swarm and remove
     // conversation repository for one-to-one.
-    auto& peers = peersForConversationInfo(conversation);
     if (conversation.isSwarm() && !banned && (!conversation.isCoreDialog() || keepContact)) {
         if (conversation.isRequest) {
             ConfigurationManager::instance().declineConversationRequest(owner.id, uid);
@@ -840,18 +839,18 @@ ConversationModel::removeConversation(const QString& uid, bool banned, bool keep
             ConfigurationManager::instance().removeConversation(owner.id, uid);
         }
     } else {
-        const auto contactUri = computeContactToRemove(conversation, peers, owner.profileInfo.uri, banned, keepContact);
-        if (!contactUri) {
+        const auto contactUri = conversation.remotePeerUri();
+        if (contactUri.isEmpty()) {
             // No contact stands behind the conversation, only the account owner or no one at
             // all: drop the conversation itself.
             ConfigurationManager::instance().removeConversation(owner.id, uid);
             return;
         }
         try {
-            owner.contactModel->getContact(*contactUri);
-            owner.contactModel->removeContact(*contactUri, banned);
+            owner.contactModel->getContact(contactUri);
+            owner.contactModel->removeContact(contactUri, banned);
         } catch (const std::out_of_range&) {
-            qWarning() << "Contact not found: " << *contactUri;
+            qWarning() << "Contact not found: " << contactUri;
             ConfigurationManager::instance().removeConversation(owner.id, uid);
         }
     }
@@ -1621,29 +1620,6 @@ ConversationModel::peersForConversationInfo(const conversation::Info& conversati
             result.push_back(participant.uri);
     }
     return result;
-}
-
-std::optional<QString>
-ConversationModel::computeActionablePeer(const VectorString& peers, const QString& selfUri)
-{
-    for (const auto& peer : peers) {
-        if (peer.isEmpty() || peer == selfUri)
-            continue;
-        return peer;
-    }
-    return std::nullopt;
-}
-
-std::optional<QString>
-ConversationModel::computeContactToRemove(const conversation::Info& conversation,
-                                          const VectorString& peers,
-                                          const QString& selfUri,
-                                          bool banned,
-                                          bool keepContact)
-{
-    if (conversation.isSwarm() && !banned && (!conversation.isCoreDialog() || keepContact))
-        return std::nullopt;
-    return computeActionablePeer(peers, selfUri);
 }
 
 bool

@@ -517,13 +517,11 @@ ConversationsAdapter::restartConversation(const QString& convId)
     }
 
     // get the ONE_TO_ONE conv's peer uri
-    const auto peer = ConversationModel::computeActionablePeer(accInfo.conversationModel->peersForConversation(convId),
-                                                               accInfo.profileInfo.uri);
-    if (!peer) {
+    const auto peerUri = convInfo.remotePeerUri();
+    if (peerUri.isEmpty()) {
         // Nothing to migrate: the account owner is the only participant left.
         return;
     }
-    const auto peerUri = *peer;
 
     // store a copy of the original contact so we can re-add them
     // Note: we set the profile::Type to TEMPORARY to invoke a full add
@@ -547,11 +545,9 @@ ConversationsAdapter::restartConversation(const QString& convId)
                                                         const auto& convInfo = lrcInstance_->getConversationFromConvUid(
                                                             convId);
                                                         // 3. filter for the correct contact-conversation and select it
-                                                        const auto newPeer = ConversationModel::computeActionablePeer(
-                                                            accInfo.conversationModel->peersForConversation(convId),
-                                                            accInfo.profileInfo.uri);
+                                                        const auto newPeer = convInfo.remotePeerUri();
                                                         if (!convInfo.uid.isEmpty() && convInfo.isCoreDialog()
-                                                            && newPeer && peerUri == *newPeer) {
+                                                            && peerUri == newPeer) {
                                                             lrcInstance_->selectConversation(convId);
                                                         }
                                                     });
