@@ -745,16 +745,16 @@ CallModel::end(const QString& callId) const
     auto& call = pimpl_->calls[callId];
 
     if (call->status == call::Status::INCOMING_RINGING) {
-        CallManager::instance().decline(owner.id, callId);
+        CallManager::instance().refuse(owner.id, callId);
         return;
     }
 
     switch (call->type) {
     case call::Type::DIALOG:
-        CallManager::instance().end(owner.id, callId);
+        CallManager::instance().hangUp(owner.id, callId);
         break;
     case call::Type::CONFERENCE:
-        CallManager::instance().endConference(owner.id, callId);
+        CallManager::instance().hangUpConference(owner.id, callId);
         break;
     case call::Type::INVALID:
     default:
@@ -767,7 +767,7 @@ CallModel::decline(const QString& callId) const
 {
     if (!hasCall(callId))
         return;
-    CallManager::instance().decline(owner.id, callId);
+    CallManager::instance().refuse(owner.id, callId);
 }
 
 void
@@ -1506,7 +1506,7 @@ CallModel::muteStream(const QString& confId,
 void
 CallModel::disconnectParticipant(const QString& confId, const QString& accountUri, const QString& deviceId)
 {
-    CallManager::instance().disconnectParticipant(owner.id, confId, accountUri, deviceId);
+    CallManager::instance().hangupParticipant(owner.id, confId, accountUri, deviceId);
 }
 
 void
