@@ -132,6 +132,16 @@ struct Info
         return result;
     }
 
+    inline QString remotePeerUri() const
+    {
+        const auto& selfUri = account ? account->profileInfo.uri : accountUri;
+        for (const auto& participant : participants) {
+            if (!participant.uri.isEmpty() && participant.uri != selfUri)
+                return participant.uri;
+        }
+        return {};
+    }
+
     Mode mode = Mode::NON_SWARM;
     bool needsSyncing = false;
     bool isRequest = false;
