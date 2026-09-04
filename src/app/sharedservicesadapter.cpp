@@ -616,7 +616,7 @@ existingServiceMap(const QString& accountId, const QString& serviceId)
 {
     if (serviceId.isEmpty())
         return {};
-    const VectorMapStringString records = NetworkServiceManager::instance().getSharedServices(accountId);
+    const VectorMapStringString records = NetworkServiceManager::instance().getExposedServices(accountId);
     for (const auto& record : records) {
         if (record.value(ID_KEY) == serviceId)
             return mapToVariant(record);
@@ -721,7 +721,7 @@ SharedServicesAdapter::getSharedServices(const QString& accountId)
     if (id.isEmpty())
         return out;
     syncEmbeddedServers(id);
-    const VectorMapStringString records = NetworkServiceManager::instance().getSharedServices(id);
+    const VectorMapStringString records = NetworkServiceManager::instance().getExposedServices(id);
     out.reserve(records.size());
     for (const auto& m : records)
         out.append(mapToVariant(m));
@@ -740,7 +740,7 @@ SharedServicesAdapter::addSharedService(const QString& accountId, const QVariant
     if (!prepareServiceForStorage(id, serviceForStorage, replacementServer))
         return {};
 
-    const QString serviceId = NetworkServiceManager::instance().addSharedService(id, variantToMap(serviceForStorage));
+    const QString serviceId = NetworkServiceManager::instance().addExposedService(id, variantToMap(serviceForStorage));
     if (serviceId.isEmpty())
         return {};
 
@@ -767,7 +767,7 @@ SharedServicesAdapter::updateSharedService(const QString& accountId, const QVari
     if (!prepareServiceForStorage(id, serviceForStorage, replacementServer))
         return false;
 
-    const auto updated = NetworkServiceManager::instance().updateSharedService(id, variantToMap(serviceForStorage));
+    const bool updated = NetworkServiceManager::instance().updateExposedService(id, variantToMap(serviceForStorage));
     if (!updated)
         return false;
 
@@ -789,7 +789,7 @@ SharedServicesAdapter::removeSharedService(const QString& accountId, const QStri
     const auto id = resolveAccountId(accountId);
     if (id.isEmpty() || serviceId.isEmpty())
         return false;
-    const auto removed = NetworkServiceManager::instance().removeSharedService(id, serviceId);
+    const bool removed = NetworkServiceManager::instance().removeExposedService(id, serviceId);
     if (removed) {
         stopEmbeddedServer(id, serviceId);
         Q_EMIT refreshSharedServices();
@@ -923,7 +923,7 @@ SharedServicesAdapter::syncEmbeddedServers(const QString& accountId)
         return;
 
     auto& configurationManager = NetworkServiceManager::instance();
-    const VectorMapStringString records = configurationManager.getSharedServices(accountId);
+    const VectorMapStringString records = configurationManager.getExposedServices(accountId);
     QSet<QString> desiredServerKeys;
 
     for (auto record : records) {
@@ -970,7 +970,7 @@ SharedServicesAdapter::syncEmbeddedServers(const QString& accountId)
             record[LOCAL_HOST_KEY] = LOCALHOST;
             record[LOCAL_PORT_KEY] = actualPortString;
             record[SCHEME_KEY] = "http";
-            configurationManager.updateSharedService(accountId, record);
+            configurationManager.updateExposedService(accountId, record);
         }
     }
 

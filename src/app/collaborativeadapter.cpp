@@ -257,7 +257,7 @@ CollaborativeAdapter::openDocument(const QString& accountId, const QString& conv
     // Opening tells the daemon to join the document and hands back its whole
     // state as one update. A second view of an already open document reuses the
     // replica rather than building a divergent one.
-    const auto bytes = ConfigurationManager::instance().openCollaborativeDocument(accountId, convId, documentId);
+    const QByteArray bytes = ConfigurationManager::instance().openCollaborativeDocument(accountId, convId, documentId);
     auto replica = findReplica(accountId, convId, documentId);
     if (!replica) {
         replica = createReplica(accountId, convId, documentId);
@@ -377,7 +377,7 @@ CollaborativeAdapter::documents(const QString& convId)
 
     // Ask the daemon for every document in the conversation (read from its history),
     // so the list is complete regardless of which messages the UI has paged in.
-    const auto docs = ConfigurationManager::instance().getCollaborativeDocuments(accountId, convId);
+    const VectorMapStringString docs = ConfigurationManager::instance().getCollaborativeDocuments(accountId, convId);
     QSet<QString> seen;
     for (const auto& commit : docs) {
         const auto documentId = commit.value(QStringLiteral("id"));
@@ -421,10 +421,10 @@ CollaborativeAdapter::history(const QString& accountId, const QString& convId, c
     // a document that may hold thousands of checkpoints.
     if (max < 0)
         max = 0;
-    const auto entries = ConfigurationManager::instance().getCollaborativeDocumentHistory(accountId,
-                                                                                          convId,
-                                                                                          documentId,
-                                                                                          max);
+    const VectorMapStringString entries = ConfigurationManager::instance().getCollaborativeDocumentHistory(accountId,
+                                                                                                           convId,
+                                                                                                           documentId,
+                                                                                                           max);
     for (const auto& entry : entries) {
         QVariantMap item;
         item[QStringLiteral("id")] = entry.value(QStringLiteral("id"));
@@ -445,10 +445,10 @@ CollaborativeAdapter::textAt(const QString& accountId,
 {
     // The daemon returns the state of that checkpoint as an update; what it means
     // is ours to decide, so it is replayed into a throwaway replica and read here.
-    const auto bytes = ConfigurationManager::instance().collaborativeDocumentStateAt(accountId,
-                                                                                     convId,
-                                                                                     documentId,
-                                                                                     commitId);
+    const QByteArray bytes = ConfigurationManager::instance().collaborativeDocumentStateAt(accountId,
+                                                                                           convId,
+                                                                                           documentId,
+                                                                                           commitId);
     if (bytes.isEmpty())
         return {};
     // A throwaway replica that never edits, so its id only has to be valid.
