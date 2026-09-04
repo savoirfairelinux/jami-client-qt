@@ -175,11 +175,11 @@ Lrc::endCallsAndConferences()
     for (const auto& accId : accountIds) {
         QStringList conferences = CallManager::instance().getConferenceList(accId);
         for (const auto& conf : conferences) {
-            CallManager::instance().endConference(accId, conf);
+            CallManager::instance().hangUpConference(accId, conf);
         }
         QStringList calls = CallManager::instance().getCallList(accId);
         for (const auto& call : calls) {
-            CallManager::instance().end(accId, call);
+            CallManager::instance().hangUp(accId, call);
         }
     }
 }

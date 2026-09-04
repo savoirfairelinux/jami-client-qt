@@ -471,6 +471,12 @@ if (NOT JAMICORE_AS_SUBDIR)
   if(LIBJAMI_FOUND)
     include_directories(${LIBJAMI_INCLUDE_DIR})
   endif()
+else()
+  # Client sources include libjami public headers (media_const.h and friends)
+  # regardless of the IPC backend.  With libwrap those come from the jami-core
+  # target the client links against, but the D-Bus build does not link it, so
+  # add them explicitly.
+  include_directories(${DAEMON_DIR}/src/jami)
 endif()
 
 include(FindPython3)
@@ -985,34 +991,30 @@ qt_wrap_cpp(LIBCLIENT_HEADERS_MOC
   ${LIBCLIENT_HEADERS_PRIVATE})
 
 if(NOT ENABLE_LIBWRAP)
-  qt_add_dbus_interface(
-    LIBCLIENT_SOURCES
-    ${presencemanager_xml}
-    presencemanager_dbus_interface)
-  qt_add_dbus_interface(
-    LIBCLIENT_SOURCES
-    ${configurationmanager_xml}
-    configurationmanager_dbus_interface)
-  qt_add_dbus_interface(
-    LIBCLIENT_SOURCES
-    ${callmanager_xml}
-    callmanager_dbus_interface)
-  qt_add_dbus_interface(
-    LIBCLIENT_SOURCES
-    ${video_xml}
-    video_dbus_interface)
-  qt_add_dbus_interface(
-    LIBCLIENT_SOURCES
-    ${plugin_xml}
-    plugin_dbus_interface)
-  qt_add_dbus_interface(
-    LIBCLIENT_SOURCES
-    ${instance_xml}
-    instance_dbus_interface)
-  qt_add_dbus_interface(
-    LIBCLIENT_SOURCES
-    ${networkservicemanager_xml}
-    networkservicemanager_dbus_interface)
+  # ${name}_xml holds the interface description, and the generated sources are
+  # named after it.  LIBCLIENT_DBUS_SOURCES records what is generated, since
+  # qt_add_dbus_interface only marks it GENERATED in this directory and tests/
+  # builds the same sources from its own scope.
+  set(DBUS_INTERFACE_NAMES
+    presencemanager
+    configurationmanager
+    callmanager
+    video
+    plugin
+    instance
+    networkservicemanager)
+  foreach(DBUS_INTERFACE_NAME ${DBUS_INTERFACE_NAMES})
+    qt_add_dbus_interface(
+      LIBCLIENT_SOURCES
+      ${${DBUS_INTERFACE_NAME}_xml}
+      ${DBUS_INTERFACE_NAME}_dbus_interface)
+    list(APPEND LIBCLIENT_DBUS_SOURCES
+      ${CMAKE_CURRENT_BINARY_DIR}/${DBUS_INTERFACE_NAME}_dbus_interface.cpp
+      ${CMAKE_CURRENT_BINARY_DIR}/${DBUS_INTERFACE_NAME}_dbus_interface.h)
+  endforeach()
+  # The generation is driven by custom commands in this directory, so give
+  # other directories a target to depend on.
+  add_custom_target(libclient_dbus_interfaces DEPENDS ${LIBCLIENT_DBUS_SOURCES})
 endif()
 
 if (CMAKE_SYSTEM_NAME STREQUAL "Linux")

@@ -293,12 +293,12 @@ public Q_SLOTS: // METHODS
         return temp;
     }
 
-    bool end(const QString& accountId, const QString& callId)
+    bool hangUp(const QString& accountId, const QString& callId)
     {
         return libjami::hangUp(accountId.toStdString(), callId.toStdString());
     }
 
-    bool endConference(const QString& accountId, const QString& confId)
+    bool hangUpConference(const QString& accountId, const QString& confId)
     {
         return libjami::hangUpConference(accountId.toStdString(), confId.toStdString());
     }
@@ -386,7 +386,7 @@ public Q_SLOTS: // METHODS
         libjami::recordPlaybackSeek(value);
     }
 
-    bool decline(const QString& accountId, const QString& callId)
+    bool refuse(const QString& accountId, const QString& callId)
     {
         return libjami::refuse(accountId.toStdString(), callId.toStdString());
     }
@@ -501,10 +501,10 @@ public Q_SLOTS: // METHODS
                             state);
     }
 
-    void disconnectParticipant(const QString& accountId,
-                               const QString& confId,
-                               const QString& accountUri,
-                               const QString& deviceId)
+    void hangupParticipant(const QString& accountId,
+                           const QString& confId,
+                           const QString& accountUri,
+                           const QString& deviceId)
     {
         libjami::hangupParticipant(accountId.toStdString(),
                                    confId.toStdString(),
