@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "23da906a_9ee329e0",
+        "filename": "tests/CMakeLists.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-09-04T17:24:01Z",
+      "side": 1,
+      "message": "[error] Line 66: 🔴 `LIBCLIENT_DBUS_SOURCES` is only populated under `if(NOT ENABLE_LIBWRAP)` in the top-level CMakeLists.txt. With the default `ENABLE_LIBWRAP\u003dON` and `BUILD_TESTING\u003dON`, this expands to `set_source_files_properties(PROPERTIES GENERATED TRUE)`, which can make CMake treat `PROPERTIES` as a source and fail during configuration. Guard this call with the same `if(NOT ENABLE_LIBWRAP)` condition (or otherwise ensure the list is non-empty) so libwrap test builds remain configurable.",
+      "revId": "5bab1d5126d686d8c1a3855c0c66db893ce7c884",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
