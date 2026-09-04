@@ -16,6 +16,24 @@
       "message": "[error] Line 66: 🔴 `LIBCLIENT_DBUS_SOURCES` is only populated under `if(NOT ENABLE_LIBWRAP)` in the top-level CMakeLists.txt. With the default `ENABLE_LIBWRAP\u003dON` and `BUILD_TESTING\u003dON`, this expands to `set_source_files_properties(PROPERTIES GENERATED TRUE)`, which can make CMake treat `PROPERTIES` as a source and fail during configuration. Guard this call with the same `if(NOT ENABLE_LIBWRAP)` condition (or otherwise ensure the list is non-empty) so libwrap test builds remain configurable.",
       "revId": "5bab1d5126d686d8c1a3855c0c66db893ce7c884",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c47f78cf_958480f0",
+        "filename": "tests/CMakeLists.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 617
+      },
+      "writtenOn": "2026-09-04T17:49:35Z",
+      "side": 1,
+      "message": "I could not reproduce this. CMake does not shift its keyword arguments when the file list expands to nothing, so the call is a no-op rather than treating PROPERTIES as a source.\n\nMinimal case:\n\n  set(EMPTY_LIST)\n  set_source_files_properties(${EMPTY_LIST} PROPERTIES GENERATED TRUE)\n\nconfigures successfully (CMake 3.31, Ninja).\n\nOn this tree, the exact configuration described as broken also succeeds:\n\n  cmake -S . -B build -DENABLE_LIBWRAP\u003dON -DBUILD_TESTING\u003dOn\n  -- Configuring done\n  -- Generating done\n  (exit 0)\n\nThat matches the Jenkins GNU/Linux job, which builds in libwrap mode and passed.\n\nFor context, this call exists because qt_add_dbus_interface only marks the generated sources GENERATED in the top-level directory, so tests/ would otherwise look for them on disk. It is deliberately unguarded: in libwrap builds the list is empty and the call does nothing, which keeps the two modes reading the same way.",
+      "parentUuid": "23da906a_9ee329e0",
+      "revId": "5bab1d5126d686d8c1a3855c0c66db893ce7c884",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
