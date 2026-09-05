@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "498ed45b_1504de41",
+        "filename": "src/core/conversationmodel_p.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-09-05T21:02:28Z",
+      "side": 1,
+      "message": "[warning] Line 81: 🟡 The new per-conversation search/queue state is never discarded when `slotConversationRemoved()` removes a conversation. A late `messagesFound` callback can still enqueue files for the deleted conversation, and the timer can subsequently call `download()` for it. Add cancellation/discard cleanup for the request IDs and queued/in-flight attachments when a conversation or account is removed.",
+      "revId": "bf2807ffcfd0cd9c0f24cc48bdf38396b466612d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eabbb64c_e2345dad",
+        "filename": "src/core/conversationmodel_transfer.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 421,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-09-05T21:02:28Z",
+      "side": 1,
+      "message": "[error] Line 421: 🔴 `start()` has already removed this attachment from the queue when `download()` is called. Any transient daemon/D-Bus exception therefore reaches `finish()` and drops the file permanently; unlike a request the daemon accepted, no pending request exists to retry. Requeue the attachment with an appropriate retry policy, or retain explicit failed work/fallback state rather than treating every exception as terminal, otherwise the promise to download every attachment is not met.",
+      "revId": "bf2807ffcfd0cd9c0f24cc48bdf38396b466612d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9ca0cc29_8591250b",
+        "filename": "src/core/conversationmodel_transfer.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 432,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-09-05T21:02:28Z",
+      "side": 1,
+      "message": "[error] Line 432: 🔴 A stalled attachment is erased from the queue after 10 seconds even though the daemon still owns the pending request, so `hasWork()` becomes false and this removes the conversation from `attachmentSyncConversations`. If the history page arrives afterward, normal size-limited auto-accept resumes and a file above the threshold can remain awaiting host instead of being synchronized. Keep a separate per-conversation pending-sync state for stalled daemon requests, and only re-enable fallback once the attachment is truly complete or intentionally abandoned.",
+      "revId": "bf2807ffcfd0cd9c0f24cc48bdf38396b466612d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
