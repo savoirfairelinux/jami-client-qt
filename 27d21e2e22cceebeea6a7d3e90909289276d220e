@@ -1,6 +1,24 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8b0ece13_35124bfa",
+        "filename": "src/core/conversationmodel_p.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 617
+      },
+      "writtenOn": "2026-09-05T22:14:32Z",
+      "side": 1,
+      "message": "Done. slotConversationRemoved() drops the conversation from attachmentSyncConversations and calls attachmentDownloads.discard(conversationId); a late messagesFound for it is ignored since the conversation is no longer being synchronized (the request id is only forgotten on its end marker). The model, hence the queue and its timer, lives with the account. Covered by DiscardsConversation.",
+      "parentUuid": "498ed45b_1504de41",
+      "revId": "27d21e2e22cceebeea6a7d3e90909289276d220e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c067e74b_af6bc4a6",
@@ -31,6 +49,42 @@
       "writtenOn": "2026-09-05T21:38:49Z",
       "side": 1,
       "message": "[error] Line 226: 🔴 `timeout_expired` and `unjoinable_peer` are terminal transfer errors, not retained requests. Moving them to `pending_` leaves the attachment permanently pending because the daemon has already abandoned the transfer; `hasWork()` then keeps auto-accept disabled indefinitely. Call the terminal/finish path for these statuses and reserve suspension for a confirmed peer-loss retry state.",
+      "revId": "27d21e2e22cceebeea6a7d3e90909289276d220e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a1dd869e_fa2e5238",
+        "filename": "src/core/conversationmodel_transfer.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 421,
+      "author": {
+        "id": 617
+      },
+      "writtenOn": "2026-09-05T22:14:32Z",
+      "side": 1,
+      "message": "Done. A failed download() call now requeues the attachment (AttachmentDownloadQueue::requeue, maxAttempts \u003d 3) instead of finishing it; the attachment is only given up after the third failed attempt. Covered by RequeuesDownloadThatFailedToStart.",
+      "parentUuid": "eabbb64c_e2345dad",
+      "revId": "27d21e2e22cceebeea6a7d3e90909289276d220e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c5da732a_044284a4",
+        "filename": "src/core/conversationmodel_transfer.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 432,
+      "author": {
+        "id": 617
+      },
+      "writtenOn": "2026-09-05T22:14:32Z",
+      "side": 1,
+      "message": "Done. A stalled download (or one whose peer the daemon lost: transferStatusCanceled/TimeoutExpired/Unjoinable) is suspended, not finished: it frees its slot but stays pending, so hasWork() keeps the conversation in attachmentSyncConversations until the daemon reports the request over (transferStatusFinished/Error) or the user cancels it (cancelTransfer). Covered by StalledDownloadReleasesItsSlotButStaysPending and SuspendedDownloadStaysPendingUntilFinished.",
+      "parentUuid": "9ca0cc29_8591250b",
       "revId": "27d21e2e22cceebeea6a7d3e90909289276d220e",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
