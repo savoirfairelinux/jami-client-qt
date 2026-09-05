@@ -223,7 +223,9 @@ ConversationModel::slotSwarmLoaded(uint32_t requestId,
                 continue;
             }
 
-            if (downloadFile) {
+            // While the attachments of the conversation are being synchronized, they are
+            // queued by downloadAttachments; auto-accepting them here again would flood the host.
+            if (downloadFile && !d_->attachmentSyncConversations.count(conversationId)) {
                 handleIncomingFile(conversationId, msgId, QString(message.body.value("totalSize")).toInt());
             }
         }
@@ -253,6 +255,23 @@ ConversationModel::slotMessagesFound(uint32_t requestId,
                                      const QString& conversationId,
                                      const VectorMapStringString& messageIds)
 {
+    auto syncRequest = d_->attachmentSyncRequests.find(requestId);
+    if (syncRequest != d_->attachmentSyncRequests.end()) {
+        // An empty conversationId marks the end of the search.
+        if (conversationId.isEmpty()) {
+            d_->attachmentSyncRequests.erase(syncRequest);
+            // With nothing queued (no attachment, or a failed search), the
+            // history auto-accept of the conversation applies again.
+            pumpAttachmentDownloads();
+            return;
+        }
+        if (d_->attachmentSyncConversations.count(conversationId)) {
+            for (const auto& [interactionId, fileId] : attachmentsToDownload(messageIds))
+                d_->attachmentDownloads.enqueue({conversationId, interactionId, fileId});
+        }
+        pumpAttachmentDownloads();
+        return;
+    }
     QMap<QString, interaction::Info> messageDetailedInformation;
     if (requestId == d_->mediaResearchRequestId) {
         Q_FOREACH (const MapStringString& msg, messageIds) {
@@ -329,12 +348,16 @@ ConversationModel::slotConversationReady(const QString& accountId, const QString
             Q_EMIT dataChanged(_idx, _idx);
         }
         ConfigurationManager::instance().loadConversation(owner.id, conversationId, "", 0);
+        if (d_->syncAttachments)
+            downloadAttachments(conversationId);
         auto& peers = peersForConversationInfo(conversation);
         if (peers.size() == 1)
             Q_EMIT conversationReady(conversationId, peers.front());
         return;
     }
     invalidateModel();
+    if (d_->syncAttachments)
+        downloadAttachments(conversationId);
     // we use conversationReady callback only for conversation with one participant. We could use
     // participants.front()
     auto& peers = peersForConversationInfo(conversation);
@@ -349,6 +372,9 @@ ConversationModel::slotConversationRemoved(const QString& accountId, const QStri
 {
     if (accountId != owner.id)
         return;
+    // Nothing more to synchronize for it; a late search result is ignored.
+    d_->attachmentSyncConversations.erase(conversationId);
+    d_->attachmentDownloads.discard(conversationId);
     try {
         eraseConversation(conversationId);
         invalidateModel();

@@ -68,6 +68,9 @@ ConversationModel::ConversationModel(const account::Info& owner,
     d_->filteredConversations.bindSortCallback(this, &ConversationModel::sortConversation);
     d_->filteredConversations.bindFilterCallback(this, &ConversationModel::filterConversation);
 
+    d_->attachmentDownloadsTimer.setSingleShot(true);
+    connect(&d_->attachmentDownloadsTimer, &QTimer::timeout, this, &ConversationModel::pumpAttachmentDownloads);
+
     initConversationsImpl();
 
     // Contact related
@@ -1962,6 +1965,8 @@ ConversationModel::cancelTransfer(const QString& convUid, const QString& fileId)
         // d_->conversations we need peer uri
         lrc::api::datatransfer::Info info = {};
         getTransferInfo(convUid, fileId, info);
+        // The user gives up on the attachment: it is not synchronized anymore.
+        attachmentTransferEnded(owner.dataTransferModel->getFileIdFromInteractionId(fileId), false);
         // Forward cancel action to daemon (will invoke slotTransferStatusCanceled)
         owner.dataTransferModel->cancel(owner.id, convUid, fileId);
         invalidateModel();

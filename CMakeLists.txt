@@ -247,6 +247,7 @@ set(LIBCLIENT_SOURCES
   ${CORE_SRC_DIR}/conversationmodel_contacts.cpp
   ${CORE_SRC_DIR}/conversationmodel_messaging.cpp
   ${CORE_SRC_DIR}/conversationmodel_transfer.cpp
+  ${CORE_SRC_DIR}/attachmentdownloadqueue.cpp
   ${CORE_SRC_DIR}/database.cpp
   ${CORE_SRC_DIR}/authority/daemon.cpp
   ${CORE_SRC_DIR}/authority/storagehelper.cpp
@@ -288,6 +289,7 @@ set(LIBCLIENT_HEADERS
   ${CORE_SRC_DIR}/interfaces/dbuserrorhandleri.h
   ${CORE_SRC_DIR}/typedefs.h
   ${CORE_SRC_DIR}/containerview.h
+  ${CORE_SRC_DIR}/attachmentdownloadqueue.h
   ${CORE_SRC_DIR}/renderer.h
   ${CORE_SRC_DIR}/api/account.h
   ${CORE_SRC_DIR}/api/avmodel.h

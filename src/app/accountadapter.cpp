@@ -378,7 +378,7 @@ AccountAdapter::startImportAccount()
 }
 
 void
-AccountAdapter::provideAccountAuthentication(const QString& password)
+AccountAdapter::provideAccountAuthentication(const QString& password, bool syncAttachments)
 {
     if (importAccountId_.isEmpty()) {
         qWarning() << "No import account to provide password to";
@@ -387,6 +387,16 @@ AccountAdapter::provideAccountAuthentication(const QString& password)
 
     auto wizardModel = qApp->property("WizardViewStepModel").value<WizardViewStepModel*>();
     wizardModel->set_deviceAuthState(lrc::api::account::DeviceAuthState::IN_PROGRESS);
+
+    // Set before the import so that the conversations cloned from the source
+    // device get their attachments downloaded as soon as they are ready.
+    try {
+        lrcInstance_->accountModel()
+            .getAccountInfo(importAccountId_)
+            .conversationModel->setSyncAttachments(syncAttachments);
+    } catch (const std::out_of_range&) {
+        qWarning() << "Unable to set attachments synchronization on import account" << importAccountId_;
+    }
 
     Utils::oneShotConnect(
         &lrcInstance_->accountModel(),
