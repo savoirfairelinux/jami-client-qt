@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9ae6389f_c332231d",
+        "filename": "src/core/attachmentdownloadqueue.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-09-05T20:48:46Z",
+      "side": 1,
+      "message": "[warning] Line 53: 🟡 A valid zero-byte attachment has `total \u003d\u003d progress \u003d\u003d 0`, but `total \u003e 0` makes it look incomplete and holds a slot until the 10-second stall timeout. That makes syncing empty files unnecessarily slow (and contradicts the completion rule); use the transfer\u0027s terminal status or otherwise distinguish an unknown total from a completed zero-byte transfer.",
+      "revId": "9227794ed2a4fd3b299b5925aa25ed0fbb35a023",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e1a8187d_13740e3f",
+        "filename": "src/core/conversationmodel_contacts.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-09-05T20:48:46Z",
+      "side": 1,
+      "message": "[error] Line 228: 🔴 `syncAttachments` is set once for the imported account and is never cleared or scoped to a conversation whose attachment search succeeded. This disables `handleIncomingFile()` for every history page for the lifetime of the account; if the search returns 0, fails, or misses a page, those transfers remain awaiting host with no fallback download. Track an active per-conversation sync/search state (and clear it when the search completes), or retain the normal auto-accept path when no sync request is active.",
+      "revId": "9227794ed2a4fd3b299b5925aa25ed0fbb35a023",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2dc2cd59_4d27cbbc",
+        "filename": "src/core/conversationmodel_transfer.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 397,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-09-05T20:48:46Z",
+      "side": 1,
+      "message": "[error] Line 397: 🔴 `fileTransferInfo()` is a daemon/D-Bus call and can fail once a queued transfer is canceled, expires, or is removed. This timer callback has no exception handling, unlike `CallbacksHandler::slotDataTransferEvent()`, which catches failures around the same call. Handle the failure per attachment and release/remove that slot so one terminal transfer cannot propagate out of the event loop and stop the queue.",
+      "revId": "9227794ed2a4fd3b299b5925aa25ed0fbb35a023",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
