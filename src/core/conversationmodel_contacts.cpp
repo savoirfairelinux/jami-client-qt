@@ -223,7 +223,9 @@ ConversationModel::slotSwarmLoaded(uint32_t requestId,
                 continue;
             }
 
-            if (downloadFile) {
+            // While synchronizing attachments, the history files are queued by
+            // downloadAttachments; auto-accepting them here again would flood the host.
+            if (downloadFile && !d_->syncAttachments) {
                 handleIncomingFile(conversationId, msgId, QString(message.body.value("totalSize")).toInt());
             }
         }
@@ -253,6 +255,17 @@ ConversationModel::slotMessagesFound(uint32_t requestId,
                                      const QString& conversationId,
                                      const VectorMapStringString& messageIds)
 {
+    if (d_->attachmentSyncRequestIds.count(requestId)) {
+        // An empty conversationId marks the end of the search.
+        if (conversationId.isEmpty()) {
+            d_->attachmentSyncRequestIds.erase(requestId);
+            return;
+        }
+        for (const auto& [interactionId, fileId] : attachmentsToDownload(messageIds))
+            d_->attachmentDownloads.enqueue({conversationId, interactionId, fileId});
+        pumpAttachmentDownloads();
+        return;
+    }
     QMap<QString, interaction::Info> messageDetailedInformation;
     if (requestId == d_->mediaResearchRequestId) {
         Q_FOREACH (const MapStringString& msg, messageIds) {
@@ -329,12 +342,16 @@ ConversationModel::slotConversationReady(const QString& accountId, const QString
             Q_EMIT dataChanged(_idx, _idx);
         }
         ConfigurationManager::instance().loadConversation(owner.id, conversationId, "", 0);
+        if (d_->syncAttachments)
+            downloadAttachments(conversationId);
         auto& peers = peersForConversationInfo(conversation);
         if (peers.size() == 1)
             Q_EMIT conversationReady(conversationId, peers.front());
         return;
     }
     invalidateModel();
+    if (d_->syncAttachments)
+        downloadAttachments(conversationId);
     // we use conversationReady callback only for conversation with one participant. We could use
     // participants.front()
     auto& peers = peersForConversationInfo(conversation);

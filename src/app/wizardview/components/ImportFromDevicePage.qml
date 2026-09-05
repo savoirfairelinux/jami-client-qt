@@ -18,6 +18,7 @@ import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
 import QtQuick.Controls as Controls
+import QtQuick.Controls.impl
 import net.jami.Adapters 1.1
 import net.jami.Models 1.1
 import net.jami.Constants 1.1
@@ -286,6 +287,43 @@ Rectangle {
                 wrapMode: Text.WrapAtWordBoundaryOrAnywhere
             }
 
+            CheckBox {
+                id: syncAttachmentsCheckBox
+
+                objectName: "importFromDevicePageSyncAttachmentsCheckBox"
+
+                Layout.alignment: Qt.AlignHCenter
+
+                text: JamiStrings.synchronizeAttachments
+                checked: true
+
+                indicator: IconImage {
+                    anchors.verticalCenter: syncAttachmentsCheckBox.verticalCenter
+                    width: JamiTheme.iconButtonMedium
+                    height: JamiTheme.iconButtonMedium
+
+                    source: syncAttachmentsCheckBox.checked ? JamiResources.check_box_24dp_svg : JamiResources.check_box_outline_blank_24dp_svg
+                    sourceSize.width: JamiTheme.iconButtonMedium
+                    sourceSize.height: JamiTheme.iconButtonMedium
+
+                    color: syncAttachmentsCheckBox.activeFocus ? JamiTheme.tintedBlue : JamiTheme.textColor
+
+                    Behavior on color {
+                        ColorAnimation {
+                            duration: JamiTheme.shortFadeDuration
+                        }
+                    }
+                }
+
+                contentItem: Text {
+                    text: syncAttachmentsCheckBox.text
+                    color: JamiTheme.textColor
+                    font.pixelSize: JamiTheme.wizardViewDescriptionFontPixelSize
+                    verticalAlignment: Text.AlignVCenter
+                    leftPadding: syncAttachmentsCheckBox.indicator.implicitWidth + 8
+                }
+            }
+
             RowLayout {
                 Layout.alignment: Qt.AlignHCenter
                 spacing: 16
@@ -301,7 +339,7 @@ Rectangle {
                     enabled: true
 
                     onClicked: {
-                        AccountAdapter.provideAccountAuthentication(passwordField.visible ? passwordField.modifiedTextFieldContent : "");
+                        AccountAdapter.provideAccountAuthentication(passwordField.visible ? passwordField.modifiedTextFieldContent : "", syncAttachmentsCheckBox.checked);
                     }
                 }
             }

@@ -86,6 +86,7 @@ Item {
     property string importFailed: qsTr("An error occurred while importing the account.")
     property string importFromAnotherAccount: qsTr("Import from another account")
     property string connectToAccount: qsTr("Connect to account")
+    property string synchronizeAttachments: qsTr("Synchronize attachments")
     property string authenticationError: qsTr("An authentication error occurred while linking the device. Please check credentials and try again.")
 
     // AccountMigrationDialog

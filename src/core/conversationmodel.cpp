@@ -68,6 +68,9 @@ ConversationModel::ConversationModel(const account::Info& owner,
     d_->filteredConversations.bindSortCallback(this, &ConversationModel::sortConversation);
     d_->filteredConversations.bindFilterCallback(this, &ConversationModel::filterConversation);
 
+    d_->attachmentDownloadsTimer.setSingleShot(true);
+    connect(&d_->attachmentDownloadsTimer, &QTimer::timeout, this, &ConversationModel::pumpAttachmentDownloads);
+
     initConversationsImpl();
 
     // Contact related

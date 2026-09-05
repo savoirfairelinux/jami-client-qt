@@ -355,6 +355,60 @@ ConversationModel::handleIncomingFile(const QString& convId, const QString& inte
 }
 
 void
+ConversationModel::setSyncAttachments(bool enabled)
+{
+    d_->syncAttachments = enabled;
+}
+
+std::vector<std::pair<QString, QString>>
+ConversationModel::attachmentsToDownload(const VectorMapStringString& messages)
+{
+    std::vector<std::pair<QString, QString>> attachments;
+    for (const auto& message : messages) {
+        const auto interactionId = message.value("id");
+        // The daemon clears the fileId of deleted attachments.
+        const auto fileId = message.value("fileId");
+        if (interactionId.isEmpty() || fileId.isEmpty())
+            continue;
+        attachments.emplace_back(interactionId, fileId);
+    }
+    return attachments;
+}
+
+void
+ConversationModel::downloadAttachments(const QString& conversationId)
+{
+    // The attachments are queued once the search results come back in slotMessagesFound.
+    const auto requestId = ConfigurationManager::instance().searchConversation(
+        owner.id, conversationId, "", "", "", "application/data-transfer+json", 0, 0, 0, 0);
+    if (requestId != 0)
+        d_->attachmentSyncRequestIds.insert(requestId);
+}
+
+void
+ConversationModel::pumpAttachmentDownloads()
+{
+    auto& downloads = d_->attachmentDownloads;
+    const auto now = AttachmentDownloadQueue::Clock::now();
+    for (const auto& attachment : downloads.inFlight()) {
+        QString path;
+        qlonglong total = 0, progress = 0;
+        owner.dataTransferModel
+            ->fileTransferInfo(owner.id, attachment.conversationId, attachment.fileId, path, total, progress);
+        downloads.update(attachment.fileId, progress, total, now);
+    }
+    for (const auto& attachment : downloads.start(now)) {
+        owner.dataTransferModel->registerTransferId(attachment.fileId, attachment.interactionId);
+        owner.dataTransferModel->download(owner.id,
+                                          attachment.conversationId,
+                                          attachment.interactionId,
+                                          attachment.fileId);
+    }
+    if (!downloads.idle())
+        d_->attachmentDownloadsTimer.start(1000);
+}
+
+void
 ConversationModel::acceptTransferImpl(const QString& convUid, const QString& interactionId)
 {
     auto& conversation = convForUid(convUid).get();

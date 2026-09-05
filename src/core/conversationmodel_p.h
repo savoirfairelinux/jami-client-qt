@@ -20,10 +20,14 @@
 #include "api/conversationmodel.h"
 #include "api/behaviorcontroller.h"
 #include "api/datatransfer.h"
+#include "attachmentdownloadqueue.h"
 #include "containerview.h"
 #include "typedefs.h"
 
+#include <QTimer>
+
 #include <map>
+#include <set>
 
 namespace lrc {
 
@@ -72,6 +76,10 @@ struct ConversationModelPrivate
     MapStringString transfIdToDbIntId;
     uint32_t mediaResearchRequestId;
     uint32_t msgResearchRequestId;
+    bool syncAttachments {false};
+    std::set<uint32_t> attachmentSyncRequestIds;
+    AttachmentDownloadQueue attachmentDownloads;
+    QTimer attachmentDownloadsTimer;
 };
 
 } // namespace lrc
