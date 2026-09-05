@@ -32,6 +32,8 @@
 #include <functional>
 #include <memory>
 #include <deque>
+#include <utility>
+#include <vector>
 
 class QTimer;
 
@@ -345,6 +347,18 @@ public:
      * Starts a search of all medias in a conversation
      */
     void getConvMediasInfos(const QString& accountId, const QString& conversationId, const QString& text, bool isMedia);
+    /**
+     * Download every attachment, whatever its size, of each conversation that
+     * becomes ready while enabled (e.g. the conversations cloned from another
+     * device after an account import).
+     * @param enabled
+     */
+    void setSyncAttachments(bool enabled);
+    /**
+     * @param messages  data-transfer messages found by a conversation search
+     * @return the {interactionId, fileId} pairs that still have a file to download
+     */
+    static std::vector<std::pair<QString, QString>> attachmentsToDownload(const VectorMapStringString& messages);
     /**
      * @param convUid, uid of the conversation
      * @return the number of unread messages for the conversation
@@ -744,6 +758,9 @@ private:
     bool hasOneOneSwarmWith(const contact::Info& participant);
     void acceptTransferImpl(const QString& convUid, const QString& interactionId);
     void handleIncomingFile(const QString& convId, const QString& interactionId, int totalSize);
+    void downloadAttachments(const QString& conversationId);
+    void pumpAttachmentDownloads();
+    void attachmentTransferEnded(const QString& fileId);
     void addConversationRequest(const MapStringString& convRequest, bool emitToClient = false);
     void addContactRequest(const QString& contactUri);
     bool updateTransferStatus(const QString& fileId,

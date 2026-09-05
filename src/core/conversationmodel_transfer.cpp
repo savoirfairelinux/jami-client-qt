@@ -121,6 +121,7 @@ ConversationModel::slotTransferStatusCanceled(const QString& fileId, datatransfe
 {
     if (info.accountId != owner.id)
         return;
+    attachmentTransferEnded(fileId);
     bool intUpdated;
     updateTransferStatus(fileId, info, interaction::TransferStatus::TRANSFER_CANCELED, intUpdated);
 }
@@ -172,6 +173,7 @@ ConversationModel::slotTransferStatusFinished(const QString& fileId, datatransfe
 {
     if (info.accountId != owner.id)
         return;
+    attachmentTransferEnded(fileId);
     QString interactionId;
     QString conversationId;
     if (not usefulDataFromDataTransfer(fileId, info, interactionId, conversationId))
@@ -210,6 +212,7 @@ ConversationModel::slotTransferStatusError(const QString& fileId, datatransfer::
 {
     if (info.accountId != owner.id)
         return;
+    attachmentTransferEnded(fileId);
     bool intUpdated;
     updateTransferStatus(fileId, info, interaction::TransferStatus::TRANSFER_ERROR, intUpdated);
 }
@@ -219,6 +222,7 @@ ConversationModel::slotTransferStatusTimeoutExpired(const QString& fileId, datat
 {
     if (info.accountId != owner.id)
         return;
+    attachmentTransferEnded(fileId);
     bool intUpdated;
     updateTransferStatus(fileId, info, interaction::TransferStatus::TRANSFER_TIMEOUT_EXPIRED, intUpdated);
 }
@@ -228,6 +232,7 @@ ConversationModel::slotTransferStatusUnjoinable(const QString& fileId, datatrans
 {
     if (info.accountId != owner.id)
         return;
+    attachmentTransferEnded(fileId);
     bool intUpdated;
     updateTransferStatus(fileId, info, interaction::TransferStatus::TRANSFER_UNJOINABLE_PEER, intUpdated);
 }
@@ -351,6 +356,94 @@ ConversationModel::handleIncomingFile(const QString& convId, const QString& inte
                 && static_cast<unsigned>(totalSize) < owner.accountModel->autoTransferSizeThreshold * 1024 * 1024)) {
             acceptTransfer(convId, interactionId);
         }
+    }
+}
+
+void
+ConversationModel::setSyncAttachments(bool enabled)
+{
+    d_->syncAttachments = enabled;
+}
+
+std::vector<std::pair<QString, QString>>
+ConversationModel::attachmentsToDownload(const VectorMapStringString& messages)
+{
+    std::vector<std::pair<QString, QString>> attachments;
+    for (const auto& message : messages) {
+        const auto interactionId = message.value("id");
+        // The daemon clears the fileId of deleted attachments.
+        const auto fileId = message.value("fileId");
+        if (interactionId.isEmpty() || fileId.isEmpty())
+            continue;
+        attachments.emplace_back(interactionId, fileId);
+    }
+    return attachments;
+}
+
+void
+ConversationModel::downloadAttachments(const QString& conversationId)
+{
+    // The attachments are queued once the search results come back in slotMessagesFound.
+    const auto requestId = ConfigurationManager::instance().searchConversation(
+        owner.id, conversationId, "", "", "", "application/data-transfer+json", 0, 0, 0, 0);
+    if (requestId == 0)
+        return;
+    d_->attachmentSyncRequests[requestId] = conversationId;
+    d_->attachmentSyncConversations.insert(conversationId);
+}
+
+void
+ConversationModel::pumpAttachmentDownloads()
+{
+    auto& downloads = d_->attachmentDownloads;
+    const auto now = AttachmentDownloadQueue::Clock::now();
+    for (const auto& attachment : downloads.inFlight()) {
+        QString path;
+        qlonglong total = 0, progress = 0;
+        try {
+            owner.dataTransferModel
+                ->fileTransferInfo(owner.id, attachment.conversationId, attachment.fileId, path, total, progress);
+        } catch (...) {
+            // The transfer is gone (canceled, expired, removed): free its slot.
+            qWarning() << "Unable to get the transfer info of attachment" << attachment.fileId;
+            downloads.finish(attachment.fileId);
+            continue;
+        }
+        downloads.update(attachment.fileId, progress, total, now);
+    }
+    for (const auto& attachment : downloads.start(now)) {
+        try {
+            owner.dataTransferModel->registerTransferId(attachment.fileId, attachment.interactionId);
+            owner.dataTransferModel->download(owner.id,
+                                              attachment.conversationId,
+                                              attachment.interactionId,
+                                              attachment.fileId);
+        } catch (...) {
+            qWarning() << "Unable to download attachment" << attachment.fileId;
+            downloads.finish(attachment.fileId);
+        }
+    }
+    // A conversation leaves the synchronization once its attachments are listed and downloaded.
+    for (auto it = d_->attachmentSyncConversations.begin(); it != d_->attachmentSyncConversations.end();) {
+        const auto& conversationId = *it;
+        const auto searching = std::any_of(d_->attachmentSyncRequests.begin(),
+                                           d_->attachmentSyncRequests.end(),
+                                           [&](const auto& request) { return request.second == conversationId; });
+        if (!searching && !downloads.hasWork(conversationId))
+            it = d_->attachmentSyncConversations.erase(it);
+        else
+            ++it;
+    }
+    if (!downloads.idle())
+        d_->attachmentDownloadsTimer.start(1000);
+}
+
+void
+ConversationModel::attachmentTransferEnded(const QString& fileId)
+{
+    if (!d_->attachmentDownloads.idle()) {
+        d_->attachmentDownloads.finish(fileId);
+        pumpAttachmentDownloads();
     }
 }
 

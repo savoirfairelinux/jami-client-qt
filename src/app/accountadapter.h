@@ -80,7 +80,7 @@ public:
     // New import account / link device functions
     // import:  (note: Listen for: DeviceAuthStateChanged)
     Q_INVOKABLE void startImportAccount();
-    Q_INVOKABLE void provideAccountAuthentication(const QString& password = {});
+    Q_INVOKABLE void provideAccountAuthentication(const QString& password = {}, bool syncAttachments = false);
     Q_INVOKABLE QString getImportErrorMessage(QVariantMap details);
     Q_INVOKABLE void cancelImportAccount();
 

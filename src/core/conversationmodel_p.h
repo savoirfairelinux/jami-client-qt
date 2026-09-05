@@ -20,10 +20,14 @@
 #include "api/conversationmodel.h"
 #include "api/behaviorcontroller.h"
 #include "api/datatransfer.h"
+#include "attachmentdownloadqueue.h"
 #include "containerview.h"
 #include "typedefs.h"
 
+#include <QTimer>
+
 #include <map>
+#include <set>
 
 namespace lrc {
 
@@ -72,6 +76,14 @@ struct ConversationModelPrivate
     MapStringString transfIdToDbIntId;
     uint32_t mediaResearchRequestId;
     uint32_t msgResearchRequestId;
+    bool syncAttachments {false};
+    // Attachment searches in flight: request id -> conversation id.
+    std::map<uint32_t, QString> attachmentSyncRequests;
+    // Conversations whose attachments are being listed or downloaded: their
+    // history auto-accept is bypassed, the files being already queued.
+    std::set<QString> attachmentSyncConversations;
+    AttachmentDownloadQueue attachmentDownloads;
+    QTimer attachmentDownloadsTimer;
 };
 
 } // namespace lrc
