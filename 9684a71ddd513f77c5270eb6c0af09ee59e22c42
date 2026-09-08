@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2b8ff20f_ff99e39f",
+        "filename": "src/app/commoncomponents/NewMaterialTextField.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-09-08T21:08:52Z",
+      "side": 1,
+      "message": "[warning] Line 183: 🟡 The new `accepted` signal bypasses the component\u0027s `inputIsValid` check. `editingFinished` already suppresses callbacks for invalid custom state, and the existing material text field follows the same rule for Enter; emit `accepted()` only when `inputIsValid \u0026\u0026 acceptableInput` so future users cannot submit an invalid value via the keyboard.",
+      "revId": "9684a71ddd513f77c5270eb6c0af09ee59e22c42",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e14c102b_850b4d14",
+        "filename": "src/app/mainview/components/CollaborativeDocumentsButton.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-09-08T21:08:52Z",
+      "side": 1,
+      "message": "[warning] Line 20: 🟡 `ChatViewHeader` deliberately supports an injected `convContext`, but this component hard-codes the global `CurrentConversation` for its model, open action, removal actions, and title. In any header instance whose context differs from the global singleton, this can display and mutate the wrong conversation. Add a `convContext` property, pass `root.convContext`, and use it consistently (also refresh when the current account changes because `documents()` is account-scoped).",
+      "revId": "9684a71ddd513f77c5270eb6c0af09ee59e22c42",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "09881bc6_d0486a08",
+        "filename": "src/app/mainview/components/CollaborativeDocumentsButton.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-09-08T21:08:52Z",
+      "side": 1,
+      "message": "[error] Line 31: 🔴 This visibility is driven by a snapshot that is never refreshed when a document is created. The old `MessageFormatBar` handled `MessagesAdapter.newInteraction` for `Interaction.Type.COLLAB_DOC`, but this component only listens for rename/update/remove; after creating the first document, `documentsModel` stays empty and the header button remains hidden until the conversation changes. Refresh on the new-document interaction (or expose a document-added signal) before relying on `count`.",
+      "revId": "9684a71ddd513f77c5270eb6c0af09ee59e22c42",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0eaef71e_6587b221",
+        "filename": "src/app/mainview/components/CollaborativeDocumentsButton.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-09-08T21:08:52Z",
+      "side": 1,
+      "message": "[warning] Line 134: 🟡 Empty document names are rendered as an empty row here, whereas the removed list explicitly displayed `Untitled document` for this case and the new localized string already exists. Preserve that fallback (and guard undefined values) so legacy or remotely-created unnamed documents remain identifiable.",
+      "revId": "9684a71ddd513f77c5270eb6c0af09ee59e22c42",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "939ee23b_dcbc211a",
+        "filename": "src/app/mainview/components/CollaborativeDocumentsButton.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-09-08T21:08:52Z",
+      "side": 1,
+      "message": "[warning] Line 268: 🟡 The old composer action had a localized tooltip, but the replacement\u0027s closed state is an icon-only `ComboBox`; the only tooltip here is on an item inside the already-open popup. Add a localized root tooltip and accessible name so the control is discoverable on hover and by assistive technologies.",
+      "revId": "9684a71ddd513f77c5270eb6c0af09ee59e22c42",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
