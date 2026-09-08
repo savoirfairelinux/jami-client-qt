@@ -313,6 +313,11 @@ Control {
             }
         }
 
+        CollaborativeDocumentsButton {
+            QWKSetParentHitTestVisible {}
+            Layout.alignment: Qt.AlignVCenter
+        }
+
         PeerServicesButton {
             QWKSetParentHitTestVisible {}
             Layout.alignment: Qt.AlignVCenter

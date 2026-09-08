@@ -54,6 +54,7 @@ ColumnLayout {
     property bool inputIsValid: true
     property var validator: RegularExpressionValidator {}
     signal editingFinished()
+    signal accepted()
 
     // Trailing icon properties
     property color trailingIconColor: JamiTheme.textColor
@@ -71,6 +72,10 @@ ColumnLayout {
     property real supportingTextY: textFieldEditor.background.height + JamiTheme.newMaterialTextFieldSupportingTextTopPadding
     property string supportingText: ""
     property color supportingTextColor: JamiTheme.textColor
+
+    function forceTextFieldActiveFocus() {
+        textField.forceActiveFocus();
+    }
 
     // Background properties
     property color borderColor: JamiTheme.tintedBlue
@@ -174,6 +179,8 @@ ColumnLayout {
                     if (inputIsValid && root.textFieldContent !== root.modifiedTextFieldContent)
                         root.editingFinished()
                 }
+
+                onAccepted: root.accepted()
 
                 onTextChanged: root.modifiedTextFieldContent = text
 

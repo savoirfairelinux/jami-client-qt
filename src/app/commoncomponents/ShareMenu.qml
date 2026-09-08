@@ -40,7 +40,7 @@ BaseContextMenu {
 
             canTrigger: true
             iconSource: JamiResources.round_edit_24dp_svg
-            itemName: qsTr("New editable document")
+            itemName: JamiStrings.newEditableDocument
             onClicked: {
                 root.newEditableDocumentClicked();
                 root.close()

@@ -580,24 +580,6 @@ Rectangle {
                     }
                 },
                 Action {
-                    id: openCollabDocList
-                    property string iconSrc: JamiResources.round_folder_24dp_svg
-                    property string toolTip: qsTr("Editable documents")
-                    property bool show: messageBarRowLayout.hasEditableDocuments
-                    property bool needWebEngine: false
-                    property bool needVideoDevice: false
-                    property bool noSip: false
-                    onTriggered: function clickAction() {
-                        viewCoordinator.presentDialog(appWindow,
-                                                      "commoncomponents/CollabDocListPopup.qml",
-                                                      {
-                                                          "conversationId": convContext.id,
-                                                          "peerName": convContext.title
-                                                      });
-                        textAreaObj.forceActiveFocus();
-                    }
-                },
-                Action {
                     id: addEmoji
                     property string iconSrc: JamiResources.emoji_black_24dp_svg
                     property string toolTip: JamiStrings.addEmoji
