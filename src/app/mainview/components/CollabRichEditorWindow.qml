@@ -824,7 +824,7 @@ Window {
                     anchors.fill: parent
                     visible: !titleContainer.editing
                     verticalAlignment: Text.AlignVCenter
-                    text: root.documentName !== "" ? root.documentName : qsTr("Untitled document")
+                    text: root.documentName !== "" ? root.documentName : JamiStrings.untitledDocument
                     elide: Text.ElideRight
                     font.pointSize: JamiTheme.title2FontSize
                     font.bold: true
@@ -855,7 +855,7 @@ Window {
                     font.pointSize: JamiTheme.title2FontSize
                     font.bold: true
                     color: JamiTheme.textColor
-                    placeholderText: qsTr("Document name")
+                    placeholderText: JamiStrings.documentName
                     onAccepted: titleContainer.commitRename()
                     onActiveFocusChanged: {
                         if (!activeFocus && titleContainer.editing)

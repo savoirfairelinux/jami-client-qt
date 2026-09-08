@@ -503,6 +503,11 @@ Rectangle {
                 onAudioRecordMessageButtonClicked: rectangle.audioRecordMessageButtonClicked()
                 onVideoRecordMessageButtonClicked: rectangle.videoRecordMessageButtonClicked()
                 onShowMapClicked: rectangle.showMapClicked()
+                onNewEditableDocumentClicked: {
+                    viewCoordinator.presentDialog(appWindow, "commoncomponents/CollabNewDocPopup.qml", {
+                        "conversationId": convContext.id
+                    });
+                }
                 modelList: listViewMoreButton.menuMoreButton
                 y: showMoreButton.y + 31
                 x: showMoreButton.x - 3

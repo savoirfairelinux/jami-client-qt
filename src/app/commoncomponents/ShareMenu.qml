@@ -27,8 +27,27 @@ BaseContextMenu {
     signal audioRecordMessageButtonClicked
     signal videoRecordMessageButtonClicked
     signal showMapClicked
+    signal newEditableDocumentClicked
 
     property list<GeneralMenuItem> menuItems: [
+        GeneralMenuItem {
+            id: newEditableDocument
+
+            Accessible.role: Accessible.MenuItem
+            Accessible.name: itemName
+            focusPolicy: Qt.StrongFocus
+            Keys.onReturnPressed: clicked()
+
+            canTrigger: true
+            iconSource: JamiResources.round_edit_24dp_svg
+            itemName: JamiStrings.newEditableDocument
+            onClicked: {
+                root.newEditableDocumentClicked();
+                root.close()
+            }
+            KeyNavigation.tab: audioMessage
+            KeyNavigation.backtab: shareLocation
+        },
         GeneralMenuItem {
             id: audioMessage
 
@@ -46,7 +65,7 @@ BaseContextMenu {
             }
 
             KeyNavigation.tab: videoMessage
-            KeyNavigation.backtab: shareLocation
+            KeyNavigation.backtab: newEditableDocument
         },
         GeneralMenuItem {
             id: videoMessage
@@ -87,7 +106,7 @@ BaseContextMenu {
                 root.close()
             }
 
-            KeyNavigation.tab: audioMessage
+            KeyNavigation.tab: newEditableDocument
             KeyNavigation.backtab: videoMessage
         }
     ]

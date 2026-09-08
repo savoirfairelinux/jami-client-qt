@@ -313,29 +313,17 @@ Control {
             }
         }
 
+        CollaborativeDocumentsButton {
+            QWKSetParentHitTestVisible {}
+            Layout.alignment: Qt.AlignVCenter
+        }
+
         PeerServicesButton {
             QWKSetParentHitTestVisible {}
             Layout.alignment: Qt.AlignVCenter
             active: CurrentConversation.isCoreDialog && !CurrentConversation.isRequest && !CurrentConversation.needsSyncing
             accountId: CurrentAccount.id
             peerUri: active ? UtilsAdapter.getPeerUri(CurrentAccount.id, CurrentConversation.id) : ""
-        }
-
-        NewIconButton {
-            id: editableDocumentsButton
-            QWKSetParentHitTestVisible {}
-
-            Layout.alignment: Qt.AlignVCenter
-            visible: !CurrentConversation.isSip && !CurrentConversation.isRequest && !CurrentConversation.needsSyncing
-
-            iconSize: JamiTheme.iconButtonMedium
-            iconSource: JamiResources.round_folder_24dp_svg
-            toolTipText: qsTr("Editable documents")
-
-            onClicked: viewCoordinator.presentDialog(appWindow, "commoncomponents/CollabDocListPopup.qml", {
-                    "conversationId": CurrentConversation.id,
-                    "peerName": CurrentConversation.title
-                })
         }
 
         // Custom component (DNR: DO NOT REPLACE)
