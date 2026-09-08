@@ -883,6 +883,7 @@ Item {
     property string optionReset: qsTr("Reset")
     property string optionUninstall: qsTr("Uninstall")
     property string optionAdd: qsTr("Add")
+    property string optionCreate: qsTr("Create")
 
     // Conference moderation
     property string setModerator: qsTr("Set moderator")
@@ -1099,6 +1100,16 @@ Item {
 
     // Files
     property string noFilesInConversation: qsTr("This conversation has no files.")
+
+    // Collaborative documents
+    property string newEditableDocument: qsTr("New editable document")
+    property string documentName: qsTr("Document name")
+    property string untitledDocument: qsTr("Untitled document")
+    property string openDocument: qsTr("Open document")
+    property string removeDocument: qsTr("Remove document")
+    property string removeDocumentFromDevice: qsTr("Remove from this device")
+    property string confirmRemoveDocument: qsTr("\"%1\" will be removed for every member of this conversation. This cannot be undone.")
+    property string confirmRemoveDocumentFromDevice: qsTr("\"%1\" will be removed from this device only. The other members keep it, and opening it again downloads it back.")
 
     // Share message menu
     property string addAComment: qsTr("Add comment")

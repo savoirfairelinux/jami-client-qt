@@ -41,14 +41,14 @@ BaseModalDialog {
         close();
     }
 
-    titleText: qsTr("New editable document")
+    titleText: JamiStrings.newEditableDocument
 
-    button1.text: qsTr("Create")
+    button1.text: JamiStrings.optionCreate
     button1Role: DialogButtonBox.AcceptRole
     button1.enabled: root.docName.trim().length > 0
     button1.onClicked: createAndOpen()
 
-    button2.text: qsTr("Cancel")
+    button2.text: JamiStrings.optionCancel
     button2Role: DialogButtonBox.RejectRole
     button2.onClicked: close()
 
@@ -56,34 +56,20 @@ BaseModalDialog {
         width: JamiTheme.preferredDialogWidth
         spacing: JamiTheme.preferredMarginSize
 
-        Component.onCompleted: nameField.forceActiveFocus()
+        Component.onCompleted: nameField.forceTextFieldActiveFocus()
 
-        Label {
-            Layout.fillWidth: true
-            Layout.leftMargin: JamiTheme.preferredMarginSize
-            Layout.rightMargin: JamiTheme.preferredMarginSize
-            text: qsTr("Document name")
-            color: JamiTheme.textColor
-            font.pointSize: JamiTheme.settingsFontSize
-        }
-
-        TextField {
+        NewMaterialTextField {
             id: nameField
 
             Layout.fillWidth: true
             Layout.leftMargin: JamiTheme.preferredMarginSize
             Layout.rightMargin: JamiTheme.preferredMarginSize
-            placeholderText: qsTr("Untitled document")
-            color: JamiTheme.textColor
-            font.pointSize: JamiTheme.textFontSize
-            selectByMouse: true
-            background: Rectangle {
-                color: JamiTheme.secondaryBackgroundColor
-                border.width: 1
-                border.color: JamiTheme.tabbarBorderColor
-                radius: 8
-            }
-            onTextChanged: root.docName = text
+
+            leadingIconSource: JamiResources.description_24dp_svg
+            textFieldContent: ""
+            placeholderText: JamiStrings.untitledDocument
+            onModifiedTextFieldContentChanged: root.docName = modifiedTextFieldContent
+
             onAccepted: root.createAndOpen()
         }
     }

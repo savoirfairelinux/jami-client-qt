@@ -112,7 +112,7 @@ Item {
 
                 Text {
                     Layout.fillWidth: true
-                    text: root.docName !== "" ? root.docName : qsTr("Untitled document")
+                    text: root.docName !== "" ? root.docName : JamiStrings.untitledDocument
                     // The name is set by whoever created or renamed the document:
                     // it must never be interpreted as markup.
                     textFormat: Text.PlainText
