@@ -20,6 +20,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3c48950e_62e5c726",
+        "filename": "src/app/commoncomponents/SimpleMessageDialog.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-09-08T21:11:50Z",
+      "side": 1,
+      "message": "[warning] Line 68: 🟡 Removing the explicit `hoveredColor` assignments changes all three button styles to `PushButton`\u0027s default hover color, so tinted and destructive dialog buttons can lose their intended hover state. Preserve the style-specific hover colors unless this visual change is intentional and covered.",
+      "revId": "9684a71ddd513f77c5270eb6c0af09ee59e22c42",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e14c102b_850b4d14",
         "filename": "src/app/mainview/components/CollaborativeDocumentsButton.qml",
         "patchSetId": 2
@@ -54,6 +71,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "acab4308_f4784569",
+        "filename": "src/app/mainview/components/CollaborativeDocumentsButton.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-09-08T21:11:50Z",
+      "side": 1,
+      "message": "[error] Line 86: 🔴 The new icon is referenced through `JamiResources.description_24dp_svg`, but this patch does not register the added SVG in the resource/JamiResources mapping used by the application (the popup likewise references `folder_open_24dp_svg`). Add both entries to the existing resource registration; otherwise these properties can be undefined at runtime and the QML component will not load the icons.",
+      "revId": "9684a71ddd513f77c5270eb6c0af09ee59e22c42",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0eaef71e_6587b221",
         "filename": "src/app/mainview/components/CollaborativeDocumentsButton.qml",
         "patchSetId": 2
@@ -65,6 +99,23 @@
       "writtenOn": "2026-09-08T21:08:52Z",
       "side": 1,
       "message": "[warning] Line 134: 🟡 Empty document names are rendered as an empty row here, whereas the removed list explicitly displayed `Untitled document` for this case and the new localized string already exists. Preserve that fallback (and guard undefined values) so legacy or remotely-created unnamed documents remain identifiable.",
+      "revId": "9684a71ddd513f77c5270eb6c0af09ee59e22c42",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "852de2f8_1767c1dc",
+        "filename": "src/app/mainview/components/CollaborativeDocumentsButton.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-09-08T21:11:50Z",
+      "side": 1,
+      "message": "[warning] Line 248: 🟡 This click path no longer checks that `documentId` is non-empty before calling `openCollabEditor`. The deleted popup had this guard because document snapshots can contain malformed or legacy entries; skip or disable entries without an ID, and apply the same guard to destructive actions, rather than attempting operations on an invalid document.",
       "revId": "9684a71ddd513f77c5270eb6c0af09ee59e22c42",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
