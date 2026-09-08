@@ -66,12 +66,15 @@ BaseModalDialog {
 
             case SimpleMessageDialog.ButtonStyle.TintedBlue:
                 button1.color = JamiTheme.buttonTintedBlue;
+                button1.pressedColor = JamiTheme.buttonTintedBluePressed;
                 break;
             case SimpleMessageDialog.ButtonStyle.TintedBlack:
                 button1.color = JamiTheme.buttonTintedBlack;
+                button1.pressedColor = JamiTheme.buttonTintedBlackPressed;
                 break;
             case SimpleMessageDialog.ButtonStyle.TintedRed:
                 button1.color = JamiTheme.buttonTintedRed;
+                button1.pressedColor = JamiTheme.buttonTintedRedPressed;
                 break;
             }
         }

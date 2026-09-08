@@ -28,23 +28,12 @@ Menu {
     property int menuItemsPreferredHeight: 0
     property int menuSeparatorPreferredHeight: 0
 
-    property GeneralMenuSeparator menuTopBorder: GeneralMenuSeparator {
-        separatorPreferredWidth: menuPreferredWidth ? menuPreferredWidth : JamiTheme.menuItemsPreferredWidth
-        separatorPreferredHeight: menuSeparatorPreferredHeight ? menuSeparatorPreferredHeight : JamiTheme.menuBorderPreferredHeight - 1
-        separatorColor: "transparent"
-    }
-
-    property GeneralMenuSeparator menuBottomBorder: GeneralMenuSeparator {
-        separatorPreferredWidth: menuPreferredWidth ? menuPreferredWidth : JamiTheme.menuItemsPreferredWidth
-        separatorPreferredHeight: menuSeparatorPreferredHeight ? menuSeparatorPreferredHeight : JamiTheme.menuBorderPreferredHeight - 1
-        separatorColor: "transparent"
-    }
+    topPadding: JamiTheme.menuBorderPreferredHeight
+    bottomPadding: JamiTheme.menuBorderPreferredHeight
 
     property var generalMenuSeparatorList: []
 
     function loadMenuItems(menuItems) {
-        root.addItem(menuTopBorder);
-
         var visibleItems = menuItems.filter(item => item.canTrigger);
 
         // Establish the preferred width of the menu by taking the maximum width of the items
@@ -82,7 +71,6 @@ Menu {
                 root.addItem(menuSeparatorComponentObj);
             }
         }
-        root.addItem(menuBottomBorder);
     }
 
     font.pointSize: JamiTheme.menuFontSize
