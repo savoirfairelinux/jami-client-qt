@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5d5ab14b_2675c373",
+        "filename": "src/app/utils.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 511,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-09-13T17:00:21Z",
+      "side": 1,
+      "message": "[warning] Line 511: 🟡 `Role::INVITED` is not a joined/active participant, but this predicate filters only `BANNED` and `LEFT`, so pending invitees can be rendered and consume one of the four available avatar slots, displacing active members. Restrict this path to joined roles such as `ADMIN`/`MEMBER` (with any intentional request-state exception), or reuse the model\u0027s active-peer filtering, and add a regression test covering an invited participant alongside four active members.",
+      "revId": "9498149f2ebbbcf860601f1e3f78ac5ef3630146",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
