@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d5cc6511_5ac24166",
+        "filename": "src/app/utils.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 470,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-09-13T17:21:08Z",
+      "side": 1,
+      "message": "[warning] Line 470: 🟡 The slice path is clipped only to `bounds`, not to an outer ellipse. `composeGroupAvatar` therefore produces opaque rectangular corners for opaque member images (as used by the new tests), unlike the previous circular slots; apply a final circular mask or intersect each slice with an ellipse so the helper itself preserves the avatar shape.",
+      "revId": "f0dfb3b4cbb38031f5902dc63be127c9cea7d377",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
