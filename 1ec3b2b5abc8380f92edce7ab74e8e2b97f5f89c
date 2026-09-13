@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9742f1ee_524a4ec2",
+        "filename": "src/app/utils.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 496,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-09-13T17:13:35Z",
+      "side": 1,
+      "message": "[warning] Line 496: 🟡 `sizeInPixels` is the minimum dimension, but the slot coordinates are measured from `(0, 0)` and are never offset into `avatar`. For a non-square output such as 200×100, all group circles occupy only the top-left 100×100 area, leaving the rest of the image unused and producing an off-center composition. Base the slots on a centered square within the target, or normalize them against the full target rectangle, and add a non-square regression case.",
+      "revId": "1ec3b2b5abc8380f92edce7ab74e8e2b97f5f89c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "18bbb93f_73610484",
+        "filename": "tests/unittests/avatar_unittest.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-09-13T17:13:35Z",
+      "side": 1,
+      "message": "[warning] Line 78: 🟡 This assertion only checks that the center remains transparent; it would also pass if one or more of the four avatars were never drawn, or if multiple slots used the same avatar. Assert that each input color appears (ideally in the expected quadrant/circle) so the four-member rendering and mapping are actually covered.",
+      "revId": "1ec3b2b5abc8380f92edce7ab74e8e2b97f5f89c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
