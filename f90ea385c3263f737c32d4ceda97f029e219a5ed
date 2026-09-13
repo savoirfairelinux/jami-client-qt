@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dc603b47_347ded11",
+        "filename": "src/app/utils.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 435,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-09-13T17:25:46Z",
+      "side": 1,
+      "message": "[error] Line 435: 🔴 This raises `maxGroupAvatarMembers` to 6, but the change\u0027s stated behavior is to render up to four members. That changes the production layout and can make six-member groups use six very narrow slices, while the new test codifies behavior outside the requested contract. Keep the cap at 4 (and remove or revise this six-member test), unless six members is intentional and the commit requirements/design are updated accordingly.",
+      "revId": "f90ea385c3263f737c32d4ceda97f029e219a5ed",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
