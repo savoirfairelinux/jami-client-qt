@@ -106,6 +106,7 @@ set(QML_TESTS_SOURCE_FILES
 
 set(UNIT_TESTS_SOURCE_FILES
     ${CMAKE_SOURCE_DIR}/tests/unittests/main_unittest.cpp
+    ${CMAKE_SOURCE_DIR}/tests/unittests/avatar_unittest.cpp
     ${CMAKE_SOURCE_DIR}/tests/unittests/account_unittest.cpp
     ${CMAKE_SOURCE_DIR}/tests/unittests/contact_unittest.cpp
     ${CMAKE_SOURCE_DIR}/tests/unittests/currentconversation_unittest.cpp
