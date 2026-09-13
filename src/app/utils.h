@@ -75,12 +75,8 @@ bool getReplyMessageBox(QWidget* widget, const QString& title, const QString& te
 
 // Image manipulation
 constexpr static const QSize defaultAvatarSize {128, 128};
-QImage imageFromBase64String(const QString& str,
-                             bool circleCrop = true,
-                             const QSize& circleCropSize = QSize());
-QImage imageFromBase64Data(const QByteArray& data,
-                           bool circleCrop = true,
-                           const QSize& circleCropSize = QSize());
+QImage imageFromBase64String(const QString& str, bool circleCrop = true, const QSize& circleCropSize = QSize());
+QImage imageFromBase64Data(const QByteArray& data, bool circleCrop = true, const QSize& circleCropSize = QSize());
 QImage accountPhoto(LRCInstance* instance, const QString& accountId, const QSize& size = defaultAvatarSize);
 QImage contactPhoto(LRCInstance* instance,
                     const QString& contactUri,
@@ -90,6 +86,7 @@ QImage conversationAvatar(LRCInstance* instance,
                           const QString& convId,
                           const QSize& size = defaultAvatarSize,
                           const QString& accountId = {});
+QImage composeGroupAvatar(const QList<QImage>& memberAvatars, const QSize& size = defaultAvatarSize);
 QImage getCirclePhoto(const QImage& original, int sizePhoto);
 QImage halfCrop(const QImage original, bool leftSide);
 QColor getAvatarColor(const QString& canonicalUri);
