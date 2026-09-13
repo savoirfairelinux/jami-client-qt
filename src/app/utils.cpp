@@ -30,6 +30,7 @@
 #include <QMessageBox>
 #include <QObject>
 #include <QPainter>
+#include <QPainterPath>
 #include <QPropertyAnimation>
 #include <QScreen>
 #include <QDateTime>
@@ -429,13 +430,59 @@ Utils::contactPhoto(LRCInstance* instance, const QString& contactUri, const QSiz
     return Utils::scaleAndFrame(photo, size);
 }
 
+namespace {
+
+constexpr int maxGroupAvatarMembers = 4;
+
+} // namespace
+
+QImage
+Utils::composeGroupAvatar(const QList<QImage>& memberAvatars, const QSize& size)
+{
+    QImage avatar(size, QImage::Format_ARGB32_Premultiplied);
+    avatar.fill(Qt::transparent);
+    if (memberAvatars.isEmpty() || size.isEmpty())
+        return avatar;
+
+    QList<QImage> validAvatars;
+    for (const auto& memberAvatar : memberAvatars) {
+        if (!memberAvatar.isNull())
+            validAvatars.append(memberAvatar);
+    }
+    if (validAvatars.isEmpty())
+        return avatar;
+
+    const int count = qMin(static_cast<int>(validAvatars.size()), maxGroupAvatarMembers);
+    QPainter painter(&avatar);
+    painter.setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
+
+    if (count == 1) {
+        painter.drawImage(avatar.rect(), validAvatars.at(0));
+        return avatar;
+    }
+
+    const QRectF bounds(avatar.rect());
+    const QPointF center = bounds.center();
+    const qreal sliceAngle = 360.0 / count;
+    for (int i = 0; i < count; ++i) {
+        QPainterPath slice;
+        slice.moveTo(center);
+        slice.arcTo(bounds, -90.0 + i * sliceAngle, sliceAngle);
+        slice.closeSubpath();
+
+        painter.save();
+        painter.setClipPath(slice);
+        painter.drawImage(avatar.rect(), validAvatars.at(i));
+        painter.restore();
+    }
+    return avatar;
+}
+
 QImage
 Utils::conversationAvatar(LRCInstance* instance, const QString& convId, const QSize& size, const QString& accountId)
 {
     QImage avatar(size, QImage::Format_ARGB32_Premultiplied);
     avatar.fill(Qt::transparent);
-    QPainter painter(&avatar);
-    painter.setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
     try {
         auto& accInfo = instance->accountModel().getAccountInfo(accountId.isEmpty() ? instance->get_currentAccountId()
                                                                                     : accountId);
@@ -449,26 +496,47 @@ Utils::conversationAvatar(LRCInstance* instance, const QString& convId, const QS
             qWarning() << "Unable to load image from Base64 data for conversation " << convId;
         }
         // Else, generate an avatar
-        auto members = convModel->peersForConversation(convId);
-        if (members.size() < 1)
+        const auto& conversation = instance->getConversationFromConvUid(convId, accInfo.id);
+        QList<QString> members;
+        if (conversation.isCoreDialog()) {
+            for (const auto& peer : convModel->peersForConversation(convId))
+                members.append(peer);
+        } else {
+            const auto appendActiveMember = [&members](const lrc::api::member::Member& participant) {
+                if (participant.uri.isEmpty() || participant.role == lrc::api::member::Role::BANNED
+                    || participant.role == lrc::api::member::Role::LEFT) {
+                    return;
+                }
+                members.append(participant.uri);
+            };
+            for (const auto& participant : conversation.participants) {
+                if (participant.role == lrc::api::member::Role::ADMIN)
+                    appendActiveMember(participant);
+            }
+            for (const auto& participant : conversation.participants) {
+                if (participant.role != lrc::api::member::Role::ADMIN)
+                    appendActiveMember(participant);
+            }
+            if (members.isEmpty()) {
+                for (const auto& peer : convModel->peersForConversation(convId))
+                    members.append(peer);
+            }
+        }
+        if (members.isEmpty())
             return avatar;
+
         auto getPhoto = [&](const auto& uri) {
             return uri == accInfo.profileInfo.uri ? accountPhoto(instance, accountId, size)
                                                   : contactPhoto(instance, uri, size, "");
         };
-        if (members.size() == 1) {
-            // Only member in the swarm or 1:1, draw only peer's avatar
-            auto peerAvatar = getPhoto(members[0]);
-            painter.drawImage(avatar.rect(), peerAvatar);
-            return avatar;
-        }
-        // Else, combine avatars
-        auto peerAAvatar = getPhoto(members[0]);
-        auto peerBAvatar = getPhoto(members[1]);
-        peerAAvatar = Utils::halfCrop(peerAAvatar, true);
-        peerBAvatar = Utils::halfCrop(peerBAvatar, false);
-        painter.drawImage(avatar.rect(), peerAAvatar);
-        painter.drawImage(avatar.rect(), peerBAvatar);
+
+        QList<QImage> memberAvatars;
+        const auto avatarCount = qMin(static_cast<int>(members.size()), maxGroupAvatarMembers);
+        memberAvatars.reserve(avatarCount);
+        for (int i = 0; i < avatarCount; ++i)
+            memberAvatars.append(getPhoto(members.at(i)));
+
+        return Utils::composeGroupAvatar(memberAvatars, size);
     } catch (const std::exception& e) {
         C_DBG << e.what();
     }
