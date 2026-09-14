@@ -105,6 +105,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a5148e9e_b7a1b069",
+        "filename": "src/app/mainview/components/CollaborativeDocumentsButton.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2026-09-14T17:29:42Z",
+      "side": 1,
+      "message": "When I hover over this button, I see the \"Remove from this device\" tooltip as expected, but I also see the \"Open document\" tooltip. Same issue with the \"Remove document\" button.",
+      "range": {
+        "startLine": 182,
+        "startChar": 12,
+        "endLine": 188,
+        "endChar": 65
+      },
+      "revId": "9684a71ddd513f77c5270eb6c0af09ee59e22c42",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "852de2f8_1767c1dc",
         "filename": "src/app/mainview/components/CollaborativeDocumentsButton.qml",
         "patchSetId": 2
@@ -133,6 +156,29 @@
       "writtenOn": "2026-09-08T21:08:52Z",
       "side": 1,
       "message": "[warning] Line 268: 🟡 The old composer action had a localized tooltip, but the replacement\u0027s closed state is an icon-only `ComboBox`; the only tooltip here is on an item inside the already-open popup. Add a localized root tooltip and accessible name so the control is discoverable on hover and by assistive technologies.",
+      "revId": "9684a71ddd513f77c5270eb6c0af09ee59e22c42",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4e85d982_44c85f3d",
+        "filename": "src/app/mainview/components/CollaborativeDocumentsButton.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 279,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2026-09-14T17:29:42Z",
+      "side": 1,
+      "message": "This is subjective but I\u0027m not sure we really want this button to be in color, I feel like that puts too much importance on it relative to other similar UI elements (and it could potentially be misinterpreted as signalling that a document has been edited).",
+      "range": {
+        "startLine": 279,
+        "startChar": 8,
+        "endLine": 279,
+        "endChar": 116
+      },
       "revId": "9684a71ddd513f77c5270eb6c0af09ee59e22c42",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
