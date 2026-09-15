@@ -7,4 +7,13 @@
     "cmake.configureOnEdit": false,
     "editor.formatOnSave": true,
     "files.eol": "\n",
+    "git.addAICoAuthor": "off",
+    "github.copilot.chat.commitMessageGeneration.instructions": [
+        {
+            "text": "At the bottom of the commit message, add 'Co-authored-by: <model_name>'"
+        }
+    ],
+    "editor.rulers": [
+        120
+    ]
 }

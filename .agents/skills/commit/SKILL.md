@@ -12,6 +12,7 @@ One commit per logical unit of work.
 
 - Subject ≤50 chars
 - Body lines ≤72 chars, blank line between subject and body; keep the body concise and to the point
+- At the bottom of the commit message, add 'Co-authored-by: <your_model_name>'
 
 # Formatting
 CI rejects unformatted C/C++. Before committing, run clang-format once on the
