@@ -716,6 +716,8 @@ Item {
     property string keyboardShortcutTableWindowTitle: qsTr("Keyboard shortcuts")
     property string keyboardShortcuts: qsTr("Keyboard shortcuts")
     property string conversationKeyboardShortcuts: qsTr("Conversation")
+    property string quickSwitcher: qsTr("Quick Switcher")
+    property string quickSwitcherPlaceholder: qsTr("Find conversations, contacts, or settings")
     property string callKeyboardShortcuts: qsTr("Call")
     property string settings: qsTr("Settings")
     property string markdownKeyboardShortcuts: qsTr("Markdown")
@@ -860,6 +862,7 @@ Item {
     // SmartList
     property string clearText: qsTr("Clear text")
     property string conversations: qsTr("Conversations")
+    property string conversation: qsTr("Conversation")
     property string searchResults: qsTr("Search results")
 
     // SmartList context menu

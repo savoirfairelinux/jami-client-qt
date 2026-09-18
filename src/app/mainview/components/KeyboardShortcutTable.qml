@@ -41,6 +41,10 @@ Window {
                 description: qsTr("Open account list")
             }
             ListElement {
+                shortcut: "Ctrl+K"
+                description: qsTr("Quick Switcher")
+            }
+            ListElement {
                 shortcut: "Ctrl+L"
                 description: qsTr("Focus conversation list")
             }
