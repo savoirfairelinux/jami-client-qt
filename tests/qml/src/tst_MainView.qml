@@ -45,7 +45,17 @@ TestWrapper {
             name: "Test shortcuts"
             when: windowShown
 
+            property var quickSwitcher
+
+            function initTestCase() {
+                quickSwitcher = findChild(uut, "quickSwitcher")
+                verify(quickSwitcher)
+            }
+
             function test_shortcuts() {
+                keyClick(Qt.Key_K, Qt.ControlModifier)
+                tryCompare(quickSwitcher, "opened", true)
+                quickSwitcher.close()
                 keyClick(Qt.Key_M, Qt.ControlModifier)
                 settingsPageRequestedSpy.wait(1000)
                 compare(settingsPageRequestedSpy.count, 1)

@@ -25,9 +25,11 @@
 #include <namedirectory.h>
 #endif
 #include <api/contact.h>
+#include <api/contactmodel.h>
 
 #include <QApplication>
 #include <QJsonObject>
+#include <QSet>
 #include <QTimer>
 
 using namespace lrc::api;
@@ -370,6 +372,139 @@ ConversationsAdapter::onSearchResultEnded()
         // bar doesn't remain populated after a URI-initiated conversation open.
         QTimer::singleShot(0, this, [this]() { setFilter({}); });
     }
+}
+
+QVariantList
+ConversationsAdapter::quickSwitcherItems() const
+{
+    QVariantList items;
+    auto* model = lrcInstance_->getCurrentConversationModel();
+    if (!model)
+        return items;
+
+    const auto accountId = lrcInstance_->get_currentAccountId();
+    const auto accountType = lrcInstance_->getCurrentAccountInfo().profileInfo.type;
+    auto* contactModel = lrcInstance_->getCurrentContactModel();
+
+    QSet<QString> addedConvUids;
+    QSet<QString> addedPeerUris;
+
+    for (const auto& conversationRef : model->getFilteredConversations(accountType).get()) {
+        const auto& conversation = conversationRef.get();
+        if (conversation.uid.isEmpty() || conversation.isRequest)
+            continue;
+
+        const auto title = model->dataForItem(conversation, ConversationList::Role::Title).toString();
+        const auto uris = model->dataForItem(conversation, ConversationList::Role::Uris).toStringList();
+        const auto monikers = model->dataForItem(conversation, ConversationList::Role::Monikers).toStringList();
+        const auto bestId = model->dataForItem(conversation, ConversationList::Role::BestId).toString();
+        const auto isContact = conversation.isCoreDialog();
+
+        addedConvUids.insert(conversation.uid);
+        for (const auto& uri : uris)
+            addedPeerUris.insert(uri);
+
+        QString subtitle;
+        QStringList memberNames;
+        if (isContact) {
+            subtitle = bestId;
+        } else {
+            const auto peers = model->peersForConversation(conversation.uid);
+            for (const auto& peerUri : peers) {
+                QString name;
+                if (contactModel) {
+                    name = contactModel->bestNameForContact(peerUri).trimmed();
+                }
+                if (name.isEmpty()) {
+                    name = peerUri.trimmed();
+                }
+                if (!name.isEmpty() && !memberNames.contains(name)) {
+                    memberNames.append(name);
+                }
+            }
+            if (memberNames.isEmpty()) {
+                for (const auto& m : monikers) {
+                    const auto trimmed = m.trimmed();
+                    if (!trimmed.isEmpty() && !memberNames.contains(trimmed))
+                        memberNames.append(trimmed);
+                }
+            }
+            const auto count = memberNames.size();
+            if (count <= 3) {
+                subtitle = memberNames.join(", ");
+            } else {
+                subtitle = memberNames.mid(0, 3).join(", ") + ", ...";
+            }
+        }
+
+        QStringList searchTerms {bestId};
+        searchTerms.append(uris);
+        for (const auto& m : monikers) {
+            const auto trimmed = m.trimmed();
+            if (!trimmed.isEmpty())
+                searchTerms.append(trimmed);
+        }
+        searchTerms.append(memberNames);
+        searchTerms.removeAll({});
+        searchTerms.removeDuplicates();
+
+        const auto peerUri = isContact && !uris.isEmpty() ? uris.front() : QString {};
+
+        items.append(QVariantMap {
+            {"accountId", accountId},
+            {"isContact", isContact},
+            {"peerUri", peerUri},
+            {"searchTerms", searchTerms},
+            {"subtitle", subtitle},
+            {"timestamp", model->dataForItem(conversation, ConversationList::Role::LastInteractionTimeStamp)},
+            {"title", title},
+            {"uid", conversation.uid},
+        });
+    }
+
+    if (contactModel) {
+        for (const auto& contact : contactModel->getAllContacts()) {
+            if (contact.isBanned)
+                continue;
+            const auto& peerUri = contact.profileInfo.uri;
+            if (peerUri.isEmpty() || addedPeerUris.contains(peerUri))
+                continue;
+
+            auto convOpt = model->getConversationForPeerUri(peerUri);
+            QString convUid;
+            if (convOpt.has_value() && !convOpt->get().uid.isEmpty()) {
+                convUid = convOpt->get().uid;
+                if (addedConvUids.contains(convUid))
+                    continue;
+                addedConvUids.insert(convUid);
+            }
+
+            addedPeerUris.insert(peerUri);
+
+            const auto bestName = contactModel->bestNameForContact(peerUri).trimmed();
+            const auto bestId = contact.registeredName.isEmpty() ? peerUri : contact.registeredName;
+
+            QStringList searchTerms {bestId,
+                                     peerUri,
+                                     contact.profileInfo.alias.trimmed(),
+                                     contact.registeredName.trimmed()};
+            searchTerms.removeAll({});
+            searchTerms.removeDuplicates();
+
+            items.append(QVariantMap {
+                {"accountId", accountId},
+                {"isContact", true},
+                {"peerUri", peerUri},
+                {"searchTerms", searchTerms},
+                {"subtitle", bestId},
+                {"timestamp", static_cast<qint64>(contactModel->getAddedTs(peerUri))},
+                {"title", bestName.isEmpty() ? bestId : bestName},
+                {"uid", convUid},
+            });
+        }
+    }
+
+    return items;
 }
 
 void
