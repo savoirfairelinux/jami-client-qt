@@ -19,6 +19,7 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import QtQuick.Effects
+import Qt.labs.qmlmodels
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import net.jami.Enums 1.1
@@ -261,9 +262,65 @@ SidePanelBase {
 
     function updateModel() {
         if (visible) {
-            listView.model = getHeaders();
+            settingsModel.rows = getHeaders().map(function(header) {
+                return {
+                    title: String(header.title),
+                    icon: String(header.icon),
+                    pageIndex: -1,
+                    firstIndex: header.first,
+                    rows: header.children.filter(function(child) {
+                        return child.visible !== false;
+                    }).map(function(child) {
+                        return {
+                            title: String(child.title),
+                            icon: "",
+                            pageIndex: child.id,
+                            firstIndex: child.id
+                        };
+                    })
+                };
+            });
+            Qt.callLater(syncSelection);
             root.updated();
         }
+    }
+
+    function modelPageIndex(index) {
+        return settingsModel.data(index, Qt.EditRole);
+    }
+
+    function syncSelection() {
+        if (root.currentIndex < 0) {
+            settingsSelection.clearCurrentIndex();
+            return;
+        }
+        const headers = getHeaders();
+        for (let group = 0; group < headers.length; ++group) {
+            const children = headers[group].children.filter(function(child) {
+                return child.visible !== false;
+            });
+            for (let child = 0; child < children.length; ++child) {
+                if (children[child].id !== root.currentIndex)
+                    continue;
+                const index = settingsModel.index([group, child], 0);
+                settingsTree.expandToIndex(index);
+                settingsSelection.setCurrentIndex(index,
+                                                  ItemSelectionModel.ClearAndSelect);
+                settingsTree.positionViewAtIndex(index, Qt.AlignVCenter);
+                return;
+            }
+        }
+        settingsSelection.clearCurrentIndex();
+    }
+
+    function activateRow(row) {
+        const index = settingsTree.index(row, 0);
+        const pageIndex = modelPageIndex(index);
+        if (pageIndex < 0) {
+            settingsTree.toggleExpanded(row);
+            return;
+        }
+        open(pageIndex);
     }
 
     Timer {
@@ -318,6 +375,8 @@ SidePanelBase {
         root.currentIndex = index;
     }
 
+    onCurrentIndexChanged: syncSelection()
+
     ColumnLayout {
         anchors.fill: parent
         // Note that the margins should be identical to that of SidePanel
@@ -366,129 +425,66 @@ SidePanelBase {
                 anchors.leftMargin: JamiTheme.sidePanelConversationsIslandHorizontalPadding
                 anchors.rightMargin: JamiTheme.sidePanelConversationsIslandHorizontalPadding
                 anchors.topMargin: JamiQmlUtils.isMacOS26OrLater ? JamiTheme.sidePanelTopPaddingMac : 0
-                ListView {
-                    id: listView
-                    objectName: "listView"
+                TreeModel {
+                    id: settingsModel
+
+                    TableModelColumn {
+                        display: "title"
+                        decoration: "icon"
+                        edit: "pageIndex"
+                        statusTip: "firstIndex"
+                    }
+                }
+
+                TreeView {
+                    id: settingsTree
+                    objectName: "settingsTree"
 
                     Layout.fillWidth: true
                     Layout.fillHeight: true
-                    spacing: 2
                     clip: true
-                    contentHeight: contentItem.childrenRect.height
+                    model: settingsModel
+                    selectionBehavior: TableView.SelectRows
+                    selectionMode: TableView.SingleSelection
 
-                    // HACK: remove after migration to Qt 6.7+
-                    boundsBehavior: Flickable.StopAtBounds
+                    Accessible.role: Accessible.Tree
+                    Accessible.name: JamiStrings.settings
 
-                    model: getHeaders()
-                    delegate: ColumnLayout {
-                        id: col
-                        width: settingsLayout.width
-                        spacing: 0
-                        property bool isChildSelected: root.currentIndex >= modelData.first
-                                                       && root.currentIndex <= modelData.last
-
-                        PushButton {
-                            id: sectionHeader
-                            buttonText: modelData.title
-                            circled: false
-                            radius: width / 2
-
-                            alignement: Text.AlignLeft
-                            Layout.fillWidth: true
-
-                            imageContainerWidth: 30
-                            height: JamiTheme.settingsMenuHeaderButtonHeight
-
-                            buttonTextFont.pixelSize: JamiTheme.settingsDescriptionPixelSize
-                            buttonTextColor: isChildSelected ? JamiTheme.tintedBlue :
-                                                               JamiTheme.primaryForegroundColor
-                            buttonTextFont.weight: isChildSelected ? Font.Medium : Font.Normal
-                            buttonTextEnableElide: true
-
-                            normalColor: JamiTheme.globalIslandColor
-                            hoveredColor: JamiTheme.smartListHoveredColor
-                            imageColor: JamiTheme.tintedBlue
-
-                            source: modelData.icon
-
-                            onClicked: select(modelData.first)
-                            Keys.onPressed: function (keyEvent) {
-                                if (keyEvent.key === Qt.Key_Enter || keyEvent.key
-                                        === Qt.Key_Return) {
-                                    clicked();
-                                    keyEvent.accepted = true;
-                                }
-                            }
-
-                            Behavior on buttonTextColor {
-                                ColorAnimation {
-                                    duration: JamiTheme.shortFadeDuration
-                                }
-                            }
-                        }
-
-                        ListView {
-                            id: childListView
-                            Layout.fillWidth: true
-                            height: childrenRect.height
-                            clip: true
-                            visible: isChildSelected
-                            spacing: 2
-
-                            // HACK: remove after migration to Qt 6.7+
-                            boundsBehavior: Flickable.StopAtBounds
-
-                            model: modelData.children
-                            delegate: ColumnLayout {
-                                id: childCol
-                                width: childListView.width
-                                spacing: 0
-                                // In single pane mode, don't show child selection until user explicitly navigates
-                                property bool isSelected: !root.isSinglePane && root.currentIndex
-                                                          === modelData.id
-                                PushButton {
-                                    visible: modelData.visible !== undefined ? modelData.visible :
-                                                                               true
-                                    buttonText: modelData.title
-                                    circled: false
-                                    radius: width / 2
-
-                                    alignement: Text.AlignLeft
-                                    Layout.fillWidth: true
-                                    preferredLeftMargin: 54
-
-                                    imageContainerWidth: 0
-                                    height: JamiTheme.settingsMenuChildrenButtonHeight
-
-                                    buttonTextFont.pixelSize: JamiTheme.settingMenuPixelSize
-                                    buttonTextColor: isSelected ? JamiTheme.tintedBlue :
-                                                                  JamiTheme.primaryForegroundColor
-                                    buttonTextFont.weight: isSelected ? Font.Medium : Font.Normal
-                                    buttonTextEnableElide: true
-
-                                    normalColor: isSelected ? JamiTheme.smartListSelectedColor :
-                                                              JamiTheme.globalIslandColor
-                                    hoveredColor: JamiTheme.smartListHoveredColor
-
-                                    onClicked: open(modelData.id)
-
-                                    Keys.onPressed: function (keyEvent) {
-                                        if (keyEvent.key === Qt.Key_Enter || keyEvent.key
-                                                === Qt.Key_Return) {
-                                            clicked();
-                                            keyEvent.accepted = true;
-                                        }
-                                    }
-
-                                    Behavior on buttonTextColor {
-                                        ColorAnimation {
-                                            duration: JamiTheme.shortFadeDuration
-                                        }
-                                    }
-                                }
-                            }
-                        }
+                    selectionModel: ItemSelectionModel {
+                        id: settingsSelection
+                        model: settingsModel
                     }
+
+                    delegate: TreeViewDelegate {
+                        id: settingsDelegate
+                        objectName: "settingsItem-" + row
+
+                        width: settingsTree.width
+                        implicitHeight: hasChildren
+                                        ? JamiTheme.settingsMenuHeaderButtonHeight
+                                        : JamiTheme.settingsMenuChildrenButtonHeight
+                        text: model.display
+                        icon.source: model.decoration
+                        highlighted: current
+                        hoverEnabled: true
+
+                        Accessible.role: Accessible.TreeItem
+                        Accessible.name: model.display
+                        Accessible.focusable: true
+                        Accessible.focused: current
+                        Accessible.selected: current
+
+                        onClicked: {
+                            settingsSelection.setCurrentIndex(
+                                        settingsTree.index(row, 0),
+                                        ItemSelectionModel.ClearAndSelect);
+                            root.activateRow(row);
+                        }
+                        Keys.onReturnPressed: root.activateRow(row)
+                        Keys.onEnterPressed: root.activateRow(row)
+                    }
+
+                    ScrollBar.vertical: ScrollBar {}
                 }
             }
         }

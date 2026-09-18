@@ -61,6 +61,19 @@ TestWrapper {
                 spyUpdated.wait(1000)
                 compare(spyUpdated.count, 2)
             }
+
+            function test_tree_selection() {
+                uut.updateModel()
+                const tree = findChild(uut, "settingsTree")
+                verify(tree)
+
+                uut.select(14)
+
+                tryCompare(uut, "currentIndex", 14)
+                tryVerify(() => tree.selectionModel.currentIndex.valid)
+                compare(tree.model.data(tree.selectionModel.currentIndex,
+                                        Qt.EditRole), 14)
+            }
         }
 
     }
