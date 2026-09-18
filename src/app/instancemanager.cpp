@@ -208,7 +208,7 @@ InstanceManager::InstanceManager(MainApplication* mainApp)
     QCryptographicHash appData(QCryptographicHash::Sha256);
     appData.addData(QApplication::applicationName().toUtf8());
     appData.addData(QApplication::organizationDomain().toUtf8());
-    pimpl_ = std::make_unique<Impl>(appData.result(), mainApp);
+    pimpl_ = std::make_unique<Impl>(appData.result().toHex(), mainApp);
 }
 
 InstanceManager::~InstanceManager()
