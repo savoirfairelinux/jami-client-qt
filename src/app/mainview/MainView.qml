@@ -78,6 +78,54 @@ Item {
         JamiQmlUtils.mainViewRectObj = mainView;
     }
 
+    function toggleQuickSwitcher() {
+        if (quickSwitcher.opened) {
+            quickSwitcher.close();
+            return;
+        }
+        const settingsPanel = viewCoordinator
+                              ? viewCoordinator.getView("SettingsSidePanel", true)
+                              : null;
+        quickSwitcher.openSwitcher(
+                    ConversationsAdapter.quickSwitcherItems(),
+                    settingsPanel ? settingsPanel.getHeaders() : []);
+    }
+
+    QuickSwitcher {
+        id: quickSwitcher
+        objectName: "quickSwitcher"
+
+        onConversationActivated: function(uid, accountId, peerUri) {
+            if (viewCoordinator) {
+                viewCoordinator.dismiss("SettingsView");
+            }
+            if (uid && uid !== "") {
+                LRCInstance.selectConversation(uid, accountId);
+            } else if (peerUri && peerUri !== "") {
+                if (ConversationsAdapter.dialogId(peerUri) !== "") {
+                    ConversationsAdapter.openDialogConversationWith(peerUri);
+                } else {
+                    ConversationsAdapter.setFilter(peerUri);
+                }
+            }
+            if (viewCoordinator) {
+                if (LRCInstance.selectedConvUid !== "")
+                    viewCoordinator.present("ConversationView");
+                else
+                    viewCoordinator.present("WelcomePage");
+            }
+        }
+        onSettingActivated: function(index) {
+            JamiQmlUtils.requestSettingsPage(index);
+        }
+    }
+
+    Shortcut {
+        sequence: "Ctrl+K"
+        context: Qt.ApplicationShortcut
+        onActivated: mainView.toggleQuickSwitcher()
+    }
+
     WheelHandler {
         onWheel: wheel => {
             if (wheel.modifiers & Qt.ControlModifier) {

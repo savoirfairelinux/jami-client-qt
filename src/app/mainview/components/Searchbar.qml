@@ -33,6 +33,8 @@ Rectangle {
     property bool requireAccept: false
 
     property alias textContent: textArea.text
+    property alias text: textArea.text
+    property alias textField: textArea
     property alias placeHolderText: textArea.placeholderText
     property real hoverButtonRadius: JamiTheme.chatViewHeaderButtonRadius
     property string currentConversationId: CurrentConversation.id
