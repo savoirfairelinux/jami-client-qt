@@ -26,10 +26,10 @@
 #include <QSystemSemaphore>
 
 static QString
-generateKeyHash(const QString& key, const QString& salt)
+generateKeyHash(const QByteArray& key, const QString& salt)
 {
     QByteArray data;
-    data.append(key.toUtf8());
+    data.append(key);
     data.append(salt.toUtf8());
     data = QCryptographicHash::hash(data, QCryptographicHash::Sha1).toHex();
     return data;
@@ -40,12 +40,13 @@ class InstanceManager::Impl : public QObject
     Q_OBJECT
     Q_DISABLE_COPY(Impl)
 public:
-    Impl(const QString& key, MainApplication* mainApp)
+    Impl(const QByteArray& key, MainApplication* mainApp)
         : QObject(nullptr)
         , mainAppInstance_(mainApp)
         , key_(key)
-        , memLockKey_(generateKeyHash(key, "_memLockKey"))
-        , sharedmemKey_(generateKeyHash(key, "_sharedmemKey"))
+        , serverName_(QString::fromLatin1(key_.toHex()))
+        , memLockKey_(generateKeyHash(key_, "_memLockKey"))
+        , sharedmemKey_(generateKeyHash(key_, "_sharedmemKey"))
         , sharedMem_(sharedmemKey_)
         , memLock_(memLockKey_, 1)
     {}
@@ -81,10 +82,10 @@ public:
 
         // This is the primary instance,
         // listen for subsequent instances.
-        QLocalServer::removeServer(key_);
+        QLocalServer::removeServer(serverName_);
         server_ = new QLocalServer();
         server_->setSocketOptions(QLocalServer::UserAccessOption);
-        server_->listen(key_);
+        server_->listen(serverName_);
         QObject::connect(server_, &QLocalServer::newConnection, this, &Impl::handleIncomingConnection);
 
         return true;
@@ -122,7 +123,7 @@ private Q_SLOTS:
         if (!socket_)
             return false;
         if (socket_->state() == QLocalSocket::UnconnectedState || socket_->state() == QLocalSocket::ClosingState) {
-            socket_->connectToServer(key_);
+            socket_->connectToServer(serverName_);
         }
         if (socket_->state() == QLocalSocket::ConnectingState) {
             socket_->waitForConnected(connectionTimeoutMs_);
@@ -156,7 +157,8 @@ private Q_SLOTS:
 private:
     MainApplication* mainAppInstance_;
 
-    const QString key_;
+    const QByteArray key_;
+    const QString serverName_;
     const QString memLockKey_;
     const QString sharedmemKey_;
 
