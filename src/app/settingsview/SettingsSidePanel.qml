@@ -39,6 +39,9 @@ SidePanelBase {
     // In dual pane mode, SettingsView will sync this to the content index.
     property int currentIndex: -1
     property bool isSinglePane
+    readonly property bool currentSelectionIsLeaf:
+        settingsSelection.currentIndex.valid
+        && modelPageIndex(settingsSelection.currentIndex) >= 0
     readonly property real sidePanelIslandsMargin: viewCoordinator && viewCoordinator.isInSinglePaneMode ? JamiTheme.sidePanelIslandsSinglePaneModePadding : JamiTheme.sidePanelIslandsPadding
     signal updated
 
@@ -303,6 +306,7 @@ SidePanelBase {
                     icon: String(header.icon),
                     pageIndex: -1,
                     firstIndex: header.first,
+                    lastIndex: header.last,
                     searchText: String(header.title),
                     rows: header.children.filter(function(child) {
                         return child.visible !== false;
@@ -312,6 +316,7 @@ SidePanelBase {
                             icon: "",
                             pageIndex: child.id,
                             firstIndex: child.id,
+                            lastIndex: child.id,
                             searchText: settingAliases(child.id)
                         };
                     })
@@ -477,6 +482,7 @@ SidePanelBase {
                         decoration: "icon"
                         edit: "pageIndex"
                         statusTip: "firstIndex"
+                        toolTip: "lastIndex"
                         whatsThis: "searchText"
                     }
                 }
@@ -510,12 +516,15 @@ SidePanelBase {
                     placeHolderText: JamiStrings.search
 
                     onSearchBarTextChanged: function(text) {
+                        if (text.length)
+                            settingsSelection.clearCurrentIndex();
                         settingsFilter.invalidate();
                         Qt.callLater(function() {
                             if (text.length)
                                 settingsTree.expandRecursively();
                             else
                                 root.syncSelection();
+                            settingsSearch.setTextAreaFocus();
                         });
                     }
                 }
@@ -528,6 +537,12 @@ SidePanelBase {
                     Layout.fillHeight: true
                     clip: true
                     model: settingsFilter
+                    alternatingRows: false
+                    columnWidthProvider: function() {
+                        return width;
+                    }
+                    rowSpacing: 2
+                    editTriggers: TableView.NoEditTriggers
                     selectionBehavior: TableView.SelectRows
                     selectionMode: TableView.SingleSelection
 
@@ -547,25 +562,86 @@ SidePanelBase {
                         implicitHeight: hasChildren
                                         ? JamiTheme.settingsMenuHeaderButtonHeight
                                         : JamiTheme.settingsMenuChildrenButtonHeight
+                        topPadding: 0
+                        bottomPadding: 0
+                        indentation: 0
+                        leftMargin: 8
+                        rightMargin: 16
+                        spacing: 16
                         text: model.display
-                        icon.source: model.decoration
-                        highlighted: current
+                        highlighted: current && root.currentSelectionIsLeaf
                         hoverEnabled: true
+
+                        readonly property bool activeSection:
+                            hasChildren
+                            && root.currentIndex >= model.statusTip
+                            && root.currentIndex <= model.toolTip
+                        readonly property bool keyboardFocused:
+                            hasChildren && current && settingsTree.activeFocus
 
                         Accessible.role: Accessible.TreeItem
                         Accessible.name: model.display
                         Accessible.focusable: true
                         Accessible.focused: current
-                        Accessible.selected: current
+                        Accessible.selected: highlighted
 
                         onClicked: {
-                            settingsSelection.setCurrentIndex(
-                                        settingsTree.index(row, 0),
-                                        ItemSelectionModel.ClearAndSelect);
+                            if (!hasChildren) {
+                                settingsSelection.setCurrentIndex(
+                                            settingsTree.index(row, 0),
+                                            ItemSelectionModel.ClearAndSelect);
+                            }
                             root.activateRow(row);
                         }
                         Keys.onReturnPressed: root.activateRow(row)
                         Keys.onEnterPressed: root.activateRow(row)
+
+                        indicator: Item {
+                            implicitWidth: 30
+                            implicitHeight: settingsDelegate.implicitHeight
+
+                            ResponsiveImage {
+                                anchors.centerIn: parent
+                                visible: settingsDelegate.hasChildren
+                                containerWidth: 24
+                                containerHeight: 24
+                                source: settingsDelegate.model.decoration
+                                color: JamiTheme.tintedBlue
+                            }
+                        }
+
+                        contentItem: Label {
+                            text: settingsDelegate.model.display
+                            color: settingsDelegate.highlighted
+                                   || settingsDelegate.activeSection
+                                   || settingsDelegate.keyboardFocused
+                                   ? JamiTheme.tintedBlue
+                                   : JamiTheme.primaryForegroundColor
+                            elide: Text.ElideRight
+                            font.pixelSize: settingsDelegate.hasChildren
+                                            ? JamiTheme.settingsDescriptionPixelSize
+                                            : JamiTheme.settingMenuPixelSize
+                            font.weight: settingsDelegate.highlighted
+                                         || settingsDelegate.activeSection
+                                         || settingsDelegate.keyboardFocused
+                                         ? Font.Medium : Font.Normal
+                            verticalAlignment: Text.AlignVCenter
+                        }
+
+                        background: Rectangle {
+                            radius: height / 2
+                            color: settingsDelegate.highlighted
+                                   ? JamiTheme.smartListSelectedColor
+                                   : settingsDelegate.hovered
+                                     ? JamiTheme.smartListHoveredColor
+                                     : JamiTheme.globalIslandColor
+
+                            Behavior on color {
+                                ColorAnimation {
+                                    duration: JamiTheme.shortFadeDuration
+                                }
+                            }
+                        }
                     }
 
                     ScrollBar.vertical: ScrollBar {}

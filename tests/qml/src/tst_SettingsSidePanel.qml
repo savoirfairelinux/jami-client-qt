@@ -30,6 +30,9 @@ TestWrapper {
     SettingsSidePanel {
         id: uut
 
+        width: 400
+        height: 600
+
         SignalSpy {
             id: spyUpdated
 
@@ -78,6 +81,28 @@ TestWrapper {
                 tryVerify(() => tree.selectionModel.currentIndex.valid)
                 compare(tree.model.data(tree.selectionModel.currentIndex,
                                         Qt.EditRole), 14)
+                compare(uut.currentSelectionIsLeaf, true)
+            }
+
+            function test_section_header_is_not_highlighted() {
+                const tree = findChild(uut, "settingsTree")
+                verify(tree)
+
+                tree.selectionModel.setCurrentIndex(
+                            tree.index(0, 0),
+                            ItemSelectionModel.ClearAndSelect)
+
+                compare(uut.currentSelectionIsLeaf, false)
+            }
+
+            function test_tree_fills_panel_width() {
+                const tree = findChild(uut, "settingsTree")
+                verify(tree)
+
+                tree.forceLayout()
+
+                tryVerify(() => tree.columnWidth(0) > 0)
+                compare(tree.columnWidth(0), tree.width)
             }
 
             function test_search_filter() {
@@ -85,11 +110,17 @@ TestWrapper {
                 const tree = findChild(uut, "settingsTree")
                 verify(search)
                 verify(tree)
+                compare(tree.editTriggers, TableView.NoEditTriggers)
 
+                search.setTextAreaFocus()
                 search.textContent = "microphone"
 
                 tryCompare(tree, "rows", 2)
+                compare(tree.selectionModel.currentIndex.valid, false)
                 compare(tree.model.data(tree.index(1, 0), Qt.EditRole), 14)
+
+                keyClick(Qt.Key_X)
+                compare(search.textContent, "microphonex")
 
                 search.textContent = "media"
                 tryCompare(tree, "rows", 4)
