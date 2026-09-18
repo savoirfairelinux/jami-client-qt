@@ -19,6 +19,7 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import QtQuick.Effects
+import QtQml.Models
 import Qt.labs.qmlmodels
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
@@ -40,6 +41,40 @@ SidePanelBase {
     property bool isSinglePane
     readonly property real sidePanelIslandsMargin: viewCoordinator && viewCoordinator.isInSinglePaneMode ? JamiTheme.sidePanelIslandsSinglePaneModePadding : JamiTheme.sidePanelIslandsPadding
     signal updated
+
+    function settingAliases(index) {
+        switch (index) {
+        case 0: return "accounts identity username password export";
+        case 1: return "profile avatar display name";
+        case 2: return "devices link pairing";
+        case 3: return "calls ringtone forwarding voicemail";
+        case 4: return "privacy security encryption network proxy dht";
+        case 5: return "permissions access bots";
+        case 6: return "services integrations";
+        case 7: return "general notifications startup language spellcheck api";
+        case 8: return "theme colors font zoom";
+        case 9: return "messages messaging links typing";
+        case 10: return "map position";
+        case 11: return "recording calls";
+        case 12: return "logs diagnostics connectivity";
+        case 13: return "update version";
+        case 14: return "microphone speaker sound media";
+        case 15: return "camera media";
+        case 16: return "display monitor media";
+        case 17: return "plugins extensions";
+        default: return "";
+        }
+    }
+
+    function matchesSearch(title, searchText) {
+        const query = settingsSearch.textContent.trim().toLocaleLowerCase();
+        if (!query)
+            return true;
+        const haystack = (title + " " + searchText).toLocaleLowerCase();
+        return query.split(/\s+/).every(function(token) {
+            return haystack.includes(token);
+        });
+    }
 
     function getHeaders() {
         if (AppVersionManager.isUpdaterEnabled()) {
@@ -268,6 +303,7 @@ SidePanelBase {
                     icon: String(header.icon),
                     pageIndex: -1,
                     firstIndex: header.first,
+                    searchText: String(header.title),
                     rows: header.children.filter(function(child) {
                         return child.visible !== false;
                     }).map(function(child) {
@@ -275,7 +311,8 @@ SidePanelBase {
                             title: String(child.title),
                             icon: "",
                             pageIndex: child.id,
-                            firstIndex: child.id
+                            firstIndex: child.id,
+                            searchText: settingAliases(child.id)
                         };
                     })
                 };
@@ -286,7 +323,7 @@ SidePanelBase {
     }
 
     function modelPageIndex(index) {
-        return settingsModel.data(index, Qt.EditRole);
+        return settingsTree.model.data(index, Qt.EditRole);
     }
 
     function syncSelection() {
@@ -303,10 +340,17 @@ SidePanelBase {
                 if (children[child].id !== root.currentIndex)
                     continue;
                 const index = settingsModel.index([group, child], 0);
-                settingsTree.expandToIndex(index);
-                settingsSelection.setCurrentIndex(index,
+                const proxyIndex = settingsFilter.mapFromSource(index);
+                if (!proxyIndex.valid) {
+                    settingsSearch.textContent = "";
+                    settingsFilter.invalidate();
+                    Qt.callLater(syncSelection);
+                    return;
+                }
+                settingsTree.expandToIndex(proxyIndex);
+                settingsSelection.setCurrentIndex(proxyIndex,
                                                   ItemSelectionModel.ClearAndSelect);
-                settingsTree.positionViewAtIndex(index, Qt.AlignVCenter);
+                settingsTree.positionViewAtIndex(proxyIndex, Qt.AlignVCenter);
                 return;
             }
         }
@@ -433,6 +477,46 @@ SidePanelBase {
                         decoration: "icon"
                         edit: "pageIndex"
                         statusTip: "firstIndex"
+                        whatsThis: "searchText"
+                    }
+                }
+
+                SortFilterProxyModel {
+                    id: settingsFilter
+
+                    model: settingsModel
+                    autoAcceptChildRows: true
+                    recursiveFiltering: true
+
+                    filters: FunctionFilter {
+                        component RoleData: QtObject {
+                            property string display
+                            property string whatsThis
+                        }
+
+                        function filter(data: RoleData): bool {
+                            return root.matchesSearch(data.display, data.whatsThis);
+                        }
+                    }
+                }
+
+                Searchbar {
+                    id: settingsSearch
+                    objectName: "settingsSearchBar"
+
+                    Layout.fillWidth: true
+                    Layout.preferredHeight: JamiTheme.searchBarPreferredHeight
+                    Layout.topMargin: 8
+                    placeHolderText: JamiStrings.search
+
+                    onSearchBarTextChanged: function(text) {
+                        settingsFilter.invalidate();
+                        Qt.callLater(function() {
+                            if (text.length)
+                                settingsTree.expandRecursively();
+                            else
+                                root.syncSelection();
+                        });
                     }
                 }
 
@@ -443,7 +527,7 @@ SidePanelBase {
                     Layout.fillWidth: true
                     Layout.fillHeight: true
                     clip: true
-                    model: settingsModel
+                    model: settingsFilter
                     selectionBehavior: TableView.SelectRows
                     selectionMode: TableView.SingleSelection
 
@@ -452,7 +536,7 @@ SidePanelBase {
 
                     selectionModel: ItemSelectionModel {
                         id: settingsSelection
-                        model: settingsModel
+                        model: settingsFilter
                     }
 
                     delegate: TreeViewDelegate {

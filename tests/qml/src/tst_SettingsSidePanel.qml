@@ -48,6 +48,12 @@ TestWrapper {
             name: "WelcomePage to different account creation page and return back"
             when: windowShown
 
+            function init() {
+                uut.updateModel()
+                findChild(uut, "settingsSearchBar").textContent = ""
+                uut.deselect()
+            }
+
             function test_retranslate() {
                 spyUpdated.clear()
                 UtilsAdapter.setAppValue(Settings.Key.LANG, "en_EN")
@@ -63,7 +69,6 @@ TestWrapper {
             }
 
             function test_tree_selection() {
-                uut.updateModel()
                 const tree = findChild(uut, "settingsTree")
                 verify(tree)
 
@@ -73,6 +78,24 @@ TestWrapper {
                 tryVerify(() => tree.selectionModel.currentIndex.valid)
                 compare(tree.model.data(tree.selectionModel.currentIndex,
                                         Qt.EditRole), 14)
+            }
+
+            function test_search_filter() {
+                const search = findChild(uut, "settingsSearchBar")
+                const tree = findChild(uut, "settingsTree")
+                verify(search)
+                verify(tree)
+
+                search.textContent = "microphone"
+
+                tryCompare(tree, "rows", 2)
+                compare(tree.model.data(tree.index(1, 0), Qt.EditRole), 14)
+
+                search.textContent = "media"
+                tryCompare(tree, "rows", 4)
+
+                search.textContent = "not-a-setting"
+                tryCompare(tree, "rows", 0)
             }
         }
 
