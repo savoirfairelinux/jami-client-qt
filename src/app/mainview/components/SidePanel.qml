@@ -572,6 +572,41 @@ SidePanelBase {
                         }
                     }
 
+                    FeedList {
+                        Layout.fillWidth: true
+                        visible: !inNewSwarm && CurrentAccount.type !== Profile.Type.SIP
+                                 && !ConversationsAdapter.filterRequests && !contactSearchBar.textContent
+                        sectionTitle: qsTr("Followed Feeds")
+                        showCreate: false
+                        feeds: FeedAdapter.followed.filter(function(feed) { return !feed.owned; })
+                        selectedId: CurrentConversation.id
+                        onOpenRequested: function(id) { FeedAdapter.open(id); }
+                        onCatalogueRequested: viewCoordinator.presentDialog(appWindow,
+                                                                            "commoncomponents/FeedCatalogueDialog.qml",
+                                                                            {"accountId": CurrentAccount.id})
+                    }
+
+                    FeedList {
+                        Layout.fillWidth: true
+                        visible: !inNewSwarm && CurrentAccount.type !== Profile.Type.SIP
+                                 && !ConversationsAdapter.filterRequests && !contactSearchBar.textContent
+                        sectionTitle: qsTr("My Feeds")
+                        showCatalogue: false
+                        feeds: FeedAdapter.feeds.filter(function(feed) {
+                            return feed.owned && !feed.feedClosed;
+                        })
+                        selectedId: CurrentConversation.id
+                        onOpenRequested: function(id) { FeedAdapter.open(id); }
+                        onCreateRequested: viewCoordinator.presentDialog(appWindow,
+                                                                          "commoncomponents/FeedSettingsDialog.qml",
+                                                                          {"accountId": CurrentAccount.id})
+                        onManageRequested: function(id) {
+                            viewCoordinator.presentDialog(appWindow,
+                                                           "commoncomponents/FeedSettingsDialog.qml",
+                                                           {"accountId": CurrentAccount.id, "feedId": id});
+                        }
+                    }
+
                     Item {
                         Layout.fillWidth: true
                         Layout.fillHeight: true

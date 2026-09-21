@@ -32,7 +32,7 @@ namespace conversation {
 Q_NAMESPACE
 Q_CLASSINFO("RegisterEnumClassesUnscoped", "false")
 
-enum class Mode { ONE_TO_ONE, ADMIN_INVITES_ONLY, INVITES_ONLY, PUBLIC, NON_SWARM };
+enum class Mode { ONE_TO_ONE, ADMIN_INVITES_ONLY, INVITES_ONLY, PUBLIC, NON_SWARM, FEED };
 Q_ENUM_NS(Mode)
 
 static inline Mode
@@ -49,6 +49,8 @@ to_mode(const int intMode)
         return Mode::PUBLIC;
     case 4:
         return Mode::NON_SWARM;
+    case 5:
+        return Mode::FEED;
     default:
         return Mode::ONE_TO_ONE;
     }
