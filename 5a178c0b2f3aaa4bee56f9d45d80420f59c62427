@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a2864622_5ff98bfb",
+        "filename": "src/app/commoncomponents/FeedCatalogueDialog.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-09-21T16:37:17Z",
+      "side": 1,
+      "message": "[warning] Line 111: 🟡 This enables the Subscribe action whenever `available` is true, even when `feedClosed` is true. A closed Feed is permanent and should not accept new subscriptions; currently the UI offers and invokes Subscribe for that state (the daemon then has to reject it). Disable the subscribe/request path for closed entries while retaining Unsubscribe/Cancel where applicable.",
+      "revId": "5a178c0b2f3aaa4bee56f9d45d80420f59c62427",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "10ca894a_60e5b85a",
+        "filename": "src/app/mainview/components/SidePanel.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 575,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-09-21T16:37:17Z",
+      "side": 1,
+      "message": "[warning] Line 575: 🟡 When an account has no ordinary conversations but does have one or more Feeds, `isEmptyAccount` is still computed solely from `conversationListView.model.count`, so the empty-state `Item` below remains visible and shows “No conversations”/“Add a contact” underneath these newly added Feed sections. Include the visible Feed counts in the empty-state condition (or otherwise suppress that placeholder when a Feed is present) so a Feed-only account is not presented as empty.",
+      "revId": "5a178c0b2f3aaa4bee56f9d45d80420f59c62427",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
