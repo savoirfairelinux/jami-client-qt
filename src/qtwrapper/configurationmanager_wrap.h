@@ -225,6 +225,8 @@ public:
             }),
         };
         conversationsHandlers = {
+            exportable_callback<ConversationSignal::FeedsChanged>(
+                [this](const std::string& account) { Q_EMIT feedsChanged(QString::fromStdString(account)); }),
             exportable_callback<ConversationSignal::CollaborativeDocumentUpdate>(
                 [this](const std::string& account_id,
                        const std::string& convId,
@@ -1108,6 +1110,40 @@ public Q_SLOTS: // METHODS
                                                               documentId.toStdString());
         return QByteArray(reinterpret_cast<const char*>(bytes.data()), static_cast<qsizetype>(bytes.size()));
     }
+    QString createFeed(const QString& accountId, const QString& title, const QString& avatar, bool replies)
+    {
+        return QString::fromStdString(
+            libjami::createFeed(accountId.toStdString(), title.toStdString(), avatar.toStdString(), replies));
+    }
+
+    VectorMapStringString getFeeds(const QString& accountId)
+    {
+        VectorMapStringString result;
+        for (const auto& item : libjami::getFeeds(accountId.toStdString()))
+            result.push_back(convertMap(item));
+        return result;
+    }
+
+    void refreshFeeds(const QString& accountId)
+    {
+        libjami::refreshFeeds(accountId.toStdString());
+    }
+
+    bool updateFeed(const QString& accountId, const QString& id, const MapStringString& settings)
+    {
+        return libjami::updateFeed(accountId.toStdString(), id.toStdString(), convertMap(settings));
+    }
+
+    bool setFeedAccess(const QString& accountId, const QString& id, const QString& uri, bool allowed)
+    {
+        return libjami::setFeedAccess(accountId.toStdString(), id.toStdString(), uri.toStdString(), allowed);
+    }
+
+    bool subscribeFeed(const QString& accountId, const QString& id, bool subscribed)
+    {
+        return libjami::subscribeFeed(accountId.toStdString(), id.toStdString(), subscribed);
+    }
+
     void closeCollaborativeDocument(const QString& accountId, const QString& conversationId, const QString& documentId)
     {
         libjami::closeCollaborativeDocument(accountId.toStdString(),
@@ -1403,6 +1439,7 @@ Q_SIGNALS: // SIGNALS
                                 const QString& convId,
                                 const QString& contactId,
                                 bool isComposing);
+    void feedsChanged(const QString& accountId);
     void collaborativeDocumentUpdate(const QString& accountId,
                                      const QString& convId,
                                      const QString& documentId,
