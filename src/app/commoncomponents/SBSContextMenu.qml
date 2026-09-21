@@ -17,6 +17,7 @@
 import QtQuick
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
+import net.jami.Models 1.1
 import net.jami.Constants 1.1
 import "."
 import "contextmenu"
@@ -29,6 +30,13 @@ ContextMenuAutoLoader {
     property string msgId
     property string transferName
     property string transferId
+    readonly property bool canEdit: !CurrentConversation.isFeed
+                                    || (!CurrentConversation.feedClosed
+                                        && (CurrentConversation.isFeedOwner || CurrentConversation.feedReplies))
+    readonly property bool canReply: !CurrentConversation.isFeed
+                                     || (root.canEdit
+                                         && MessagesAdapter.dataForInteraction(msgId, MessageList.Author) === CurrentConversation.feedOwner
+                                         && MessagesAdapter.dataForInteraction(msgId, MessageList.ReplyTo) === "")
 
     property list<GeneralMenuItem> menuItems: [
         GeneralMenuItem {
@@ -52,6 +60,7 @@ ContextMenuAutoLoader {
         GeneralMenuItem {
             id: reply
 
+            canTrigger: root.canReply
             itemName: JamiStrings.reply
             iconSource: JamiResources.bidirectional_reply_black_24dp_svg
             onClicked: {
@@ -62,7 +71,7 @@ ContextMenuAutoLoader {
         GeneralMenuItem {
             id: edit
 
-            canTrigger: transferId === "" && isOutgoing
+            canTrigger: transferId === "" && isOutgoing && root.canEdit
             itemName: JamiStrings.edit
             iconSource: JamiResources.edit_24dp_svg
             onClicked: {
@@ -74,7 +83,7 @@ ContextMenuAutoLoader {
             id: deleteMsg
             dangerous: true
 
-            canTrigger: transferId === "" && isOutgoing
+            canTrigger: transferId === "" && isOutgoing && root.canEdit
             itemName: JamiStrings.optionDelete
             iconSource: JamiResources.delete_24dp_svg
             onClicked: {

@@ -180,8 +180,9 @@ Rectangle {
                             anchors.leftMargin: 12
 
                             visible: MessagesAdapter.replyToId !== ""
+                                     && !(rectangle.convContext.isFeed && containerContent.author === CurrentAccount.uri)
 
-                            width: JamiTheme.messageBarReplyToAvatarSize
+                            width: visible ? JamiTheme.messageBarReplyToAvatarSize : 0
                             height: JamiTheme.messageBarReplyToAvatarSize
 
                             showPresenceIndicator: false
