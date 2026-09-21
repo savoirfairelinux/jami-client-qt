@@ -39,6 +39,9 @@ BaseContextMenu {
     property string location: msgBody
     property bool closeWithoutAnimation: false
     property var emojiPicker
+    readonly property bool feedCanEdit: !CurrentConversation.isFeed
+                                        || (!CurrentConversation.feedClosed
+                                            && (CurrentConversation.isFeedOwner || CurrentConversation.feedReplies))
 
     function xPosition(width) {
         // Use the width at function scope to retrigger property evaluation.
@@ -129,7 +132,7 @@ BaseContextMenu {
             id: emojiQuickReactions
 
             modelList: getQuickEmojiListModel()
-            canTrigger: true
+            canTrigger: !CurrentConversation.isFeed
             iconSource: JamiResources.add_reaction_24dp_svg
             itemName: JamiStrings.copy
             addMenuSeparatorAfter: true
@@ -170,7 +173,7 @@ BaseContextMenu {
         GeneralMenuItem {
             id: editMessage
 
-            canTrigger: root.isOutgoing && type === Interaction.Type.TEXT
+            canTrigger: root.isOutgoing && type === Interaction.Type.TEXT && root.feedCanEdit
             iconSource: JamiResources.edit_24dp_svg
             itemName: JamiStrings.editMessage
             onClicked: {
@@ -182,6 +185,7 @@ BaseContextMenu {
             id: deleteMessage
 
             canTrigger: root.isOutgoing && (type === Interaction.Type.TEXT || type === Interaction.Type.DATA_TRANSFER)
+                        && root.feedCanEdit
             iconSource: JamiResources.delete_24dp_svg
             itemName: JamiStrings.deleteMessage
             onClicked: {

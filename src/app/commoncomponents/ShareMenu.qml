@@ -24,6 +24,7 @@ BaseContextMenu {
     id: root
 
     property var modelList
+    property bool documentCreationAllowed: true
     signal audioRecordMessageButtonClicked
     signal videoRecordMessageButtonClicked
     signal showMapClicked
@@ -38,7 +39,7 @@ BaseContextMenu {
             focusPolicy: Qt.StrongFocus
             Keys.onReturnPressed: clicked()
 
-            canTrigger: true
+            canTrigger: root.documentCreationAllowed
             iconSource: JamiResources.round_edit_24dp_svg
             itemName: qsTr("New editable document")
             onClicked: {

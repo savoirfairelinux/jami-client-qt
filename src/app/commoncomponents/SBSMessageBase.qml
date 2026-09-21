@@ -38,8 +38,11 @@ Control {
 
     // these MUST be set but we won't use the 'required' keyword yet
     property bool isOutgoing
+    readonly property bool isFeed: !!(convContext && convContext.isFeed)
+    readonly property bool alignRight: isOutgoing && !isFeed
     property bool showTime: false
     property bool showDay: false
+    readonly property bool feedDayStart: typeof FeedDayStart !== "undefined" && FeedDayStart
     property int seq
     property string author
     property string transferId
@@ -51,6 +54,7 @@ Control {
     property string id: Id
     property string hoveredLink
     property var readers: []
+    readonly property var displayReaders: isFeed ? (readers || []).filter(uri => uri !== CurrentAccount.uri) : (readers || [])
     property int timestamp: Timestamp
     readonly property real senderMargin: 64
     readonly property real avatarSize: 20
@@ -58,18 +62,27 @@ Control {
     readonly property real hPadding: JamiTheme.sbsMessageBasePreferredPadding
     property bool textHovered: false
     property alias replyAnimation: selectAnimation
+    // Delegates are sized by the view rather than by their padded content.
+    implicitWidth: 0
     width: listView.width
 
     property real textContentWidth
     property real textContentHeight
     property bool isReply: ReplyTo !== ""
+    readonly property bool threadedReply: isFeed && isReply
+                                         && (typeof IsFeedReply === "undefined" || IsFeedReply)
+    readonly property bool canReply: !convContext.isFeed
+                                     || (!convContext.feedClosed && !isReply
+                                         && author === convContext.feedOwner
+                                         && (type === Interaction.Type.TEXT || type === Interaction.Type.DATA_TRANSFER)
+                                         && (convContext.isFeedOwner || convContext.feedReplies))
     property real timeWidth: timestampItem.width
     property real editedWidth: 0
     property bool showOriginal: false
     onIdChanged: showOriginal = false
     property bool isPluginOverwrite: !!OriginalBody && Body !== OriginalBody
 
-    property real maxMsgWidth: root.width - senderMargin - 2 * hPadding - avatarBlockWidth
+    property real maxMsgWidth: Math.max(0, root.width - senderMargin - leftPadding - rightPadding - avatarBlockWidth)
     property bool bigMsg
     property bool timeUnderBubble: false
     property var type: Type
@@ -90,7 +103,7 @@ Control {
     }
 
     rightPadding: hPadding
-    leftPadding: hPadding
+    leftPadding: isFeed ? Math.min(96, width * 0.12) + (threadedReply ? Math.min(28, width * 0.04) : 0) : hPadding
 
     background: Rectangle {
         id: focusIndicator
@@ -105,8 +118,10 @@ Control {
     contentItem: ColumnLayout {
         id: mainColumnLayout
 
-        anchors.centerIn: parent
-        width: parent.width - hPadding * 2
+        anchors.left: parent.left
+        anchors.leftMargin: root.leftPadding
+        anchors.verticalCenter: parent.verticalCenter
+        width: Math.max(0, parent.width - root.leftPadding - root.rightPadding)
         spacing: 0
 
         TimestampInfo {
@@ -130,7 +145,7 @@ Control {
                 elideWidth: 200
                 elide: Qt.ElideMiddle
             }
-            visible: (seq === MsgSeq.first || seq === MsgSeq.single) && !isOutgoing && !isReply
+            visible: (seq === MsgSeq.first || seq === MsgSeq.single) && !isOutgoing && (!isReply || threadedReply)
 
             font.pointSize: JamiTheme.smallFontSize
             color: JamiTheme.chatviewSecondaryInformationColor
@@ -140,17 +155,18 @@ Control {
 
         Item {
             id: replyItem
+            objectName: "messageReplyPreview"
             property bool isSelf: ReplyToAuthor === CurrentAccount.uri
 
-            visible: root.isReply
+            visible: root.isReply && !root.threadedReply
             width: parent.width
 
             Layout.fillWidth: true
             Layout.preferredHeight: childrenRect.height
 
             Layout.topMargin: visible ? JamiTheme.sbsMessageBaseReplyTopMargin : 0
-            Layout.leftMargin: isOutgoing ? undefined : JamiTheme.sbsMessageBaseReplyMargin
-            Layout.rightMargin: !isOutgoing ? undefined : JamiTheme.sbsMessageBaseReplyMargin
+            Layout.leftMargin: alignRight ? undefined : JamiTheme.sbsMessageBaseReplyMargin
+            Layout.rightMargin: !alignRight ? undefined : JamiTheme.sbsMessageBaseReplyMargin
 
             transform: Translate {
                 y: JamiTheme.sbsMessageBaseReplyBottomMargin
@@ -164,7 +180,7 @@ Control {
                     id: replyToLayout
 
                     spacing: replyItem.isSelf ? 2 : 4
-                    Layout.alignment: isOutgoing ? Qt.AlignRight : Qt.AlignLeft
+                    Layout.alignment: alignRight ? Qt.AlignRight : Qt.AlignLeft
                     property var replyUserName: UtilsAdapter.getBestNameForUri(CurrentAccount.id,
                                                                                ReplyToAuthor)
 
@@ -232,7 +248,7 @@ Control {
 
                     Layout.preferredWidth: replyToRow.width + 2 * JamiTheme.preferredMarginSize
                     Layout.preferredHeight: replyToRow.height + 2 * JamiTheme.preferredMarginSize
-                    Layout.alignment: isOutgoing ? Qt.AlignRight : Qt.AlignLeft
+                    Layout.alignment: alignRight ? Qt.AlignRight : Qt.AlignLeft
 
                     // place actual content here
                     ReplyToRow {
@@ -275,14 +291,14 @@ Control {
                     h += 25;
                 return h;
             }
-            Layout.topMargin: ((seq === MsgSeq.first || seq === MsgSeq.single) && !root.isReply)
-                              ? 3.5 : 0
+            Layout.topMargin: root.isFeed ? (root.threadedReply ? 2 : 18)
+                                         : (((seq === MsgSeq.first || seq === MsgSeq.single) && !root.isReply) ? 3.5 : 0)
             Layout.bottomMargin: root.bigMsg ? timestampItem.timeLabel.height : 0
 
             Item {
                 id: avatarBlock
 
-                Layout.preferredWidth: isOutgoing ? 0 : avatar.width + hPadding / 3
+                Layout.preferredWidth: isOutgoing && !root.isFeed ? 0 : avatar.width + hPadding / 3
                 Layout.preferredHeight: isOutgoing ? 0 : bubble.height
                 Avatar {
                     id: avatar
@@ -312,8 +328,8 @@ Control {
                 Item {
                     id: optionButtonItem
 
-                    anchors.right: isOutgoing ? bubble.left : undefined
-                    anchors.left: !isOutgoing ? bubble.right : undefined
+                    anchors.right: alignRight ? bubble.left : undefined
+                    anchors.left: !alignRight ? bubble.right : undefined
                     width: JamiTheme.emojiPushButtonSize * 4
                     height: JamiTheme.emojiPushButtonSize
                     anchors.verticalCenter: bubble.verticalCenter
@@ -331,10 +347,10 @@ Control {
                         }
 
                         anchors.verticalCenter: parent.verticalCenter
-                        anchors.left: !isOutgoing ? optionButtonItem.left : undefined
-                        anchors.leftMargin: !isOutgoing ? 10 : 0
-                        anchors.rightMargin: isOutgoing ? 10 : 0
-                        anchors.right: isOutgoing ? optionButtonItem.right : undefined
+                        anchors.left: !alignRight ? optionButtonItem.left : undefined
+                        anchors.leftMargin: !alignRight ? 10 : 0
+                        anchors.rightMargin: alignRight ? 10 : 0
+                        anchors.right: alignRight ? optionButtonItem.right : undefined
 
                         iconSource: JamiResources.more_vert_24dp_svg
                         iconSize: JamiTheme.iconButtonMedium
@@ -371,15 +387,15 @@ Control {
                         objectName: "reply"
 
                         anchors.verticalCenter: parent.verticalCenter
-                        anchors.left: !isOutgoing ? more.right : undefined
+                        anchors.left: !alignRight ? more.right : undefined
                         anchors.rightMargin: 5
-                        anchors.right: isOutgoing ? more.left : undefined
+                        anchors.right: alignRight ? more.left : undefined
 
                         iconSize: JamiTheme.iconButtonMedium
                         iconSource: JamiResources.bidirectional_reply_black_24dp_svg
                         toolTipText: JamiStrings.reply
 
-                        visible: shouldBeVisible
+                        visible: shouldBeVisible && root.canReply
 
                         onClicked: {
                             MessagesAdapter.editId = "";
@@ -401,8 +417,8 @@ Control {
                         }
 
                         anchors.verticalCenter: parent.verticalCenter
-                        anchors.left: !isOutgoing ? reply.right : undefined
-                        anchors.right: isOutgoing ? reply.left : undefined
+                        anchors.left: !alignRight ? reply.right : undefined
+                        anchors.right: alignRight ? reply.left : undefined
                         anchors.rightMargin: 5
 
                         iconSize: JamiTheme.iconButtonMedium
@@ -448,12 +464,12 @@ Control {
                     property bool isEdited: PreviousBodies.length !== 0
                     property bool isDeleted: false
                     z: -1
-                    out: isOutgoing
+                    out: alignRight
                     type: seq
                     isReply: root.isReply
                     color: IsEmojiOnly ? "transparent" : root.getBaseColor()
                     radius: msgRadius
-                    anchors.right: isOutgoing ? parent.right : undefined
+                    anchors.right: alignRight ? parent.right : undefined
                     anchors.top: parent.top
 
                     property real timePosition: JamiTheme.emojiMargins + emojiReactions.width + 8
@@ -492,13 +508,13 @@ Control {
                         timeLabel.opacity: 0.5
 
                         anchors.bottom: parent.bottom
-                        anchors.right: IsEmojiOnly ? (isOutgoing ? parent.right : undefined) :
+                        anchors.right: IsEmojiOnly ? (alignRight ? parent.right : undefined) :
                                                      parent.right
-                        anchors.left: ((IsEmojiOnly || root.timeUnderBubble) && !isOutgoing)
+                        anchors.left: ((IsEmojiOnly || root.timeUnderBubble) && !alignRight)
                                       ? parent.left : undefined
-                        anchors.leftMargin: (IsEmojiOnly && !isOutgoing && emojiReactions.visible)
+                        anchors.leftMargin: (IsEmojiOnly && !alignRight && emojiReactions.visible)
                                             ? bubble.timePosition : 0
-                        anchors.rightMargin: IsEmojiOnly ? ((isOutgoing && emojiReactions.visible)
+                        anchors.rightMargin: IsEmojiOnly ? ((alignRight && emojiReactions.visible)
                                                             ? bubble.timePosition : 0) : (
                                                                root.timeUnderBubble ? 0 : 10)
                         timeLabel.Layout.bottomMargin: {
@@ -527,6 +543,8 @@ Control {
                         }
 
                         onDoubleClicked: {
+                            if (!root.canReply)
+                                return;
                             MessagesAdapter.editId = "";
                             MessagesAdapter.replyToId = Id;
                         }
@@ -547,7 +565,7 @@ Control {
                     borderColor: root.getBaseColor()
                     maxWidth: 2 / 3 * maxMsgWidth - JamiTheme.emojiMargins
 
-                    state: root.isOutgoing ? "anchorsRight" : (IsEmojiOnly ? "anchorsLeft" : (
+                    state: root.alignRight ? "anchorsRight" : (IsEmojiOnly ? "anchorsLeft" : (
                                                                                  emojiReactions.width
                                                                                  > bubble.width
                                                                                  - JamiTheme.emojiMargins
@@ -678,7 +696,7 @@ Control {
                     width: 12
                     height: 12
 
-                    visible: IsLastSent === true && root.readers.length === 0
+                    visible: IsLastSent === true && root.displayReaders.length === 0
                     anchors.bottom: parent.bottom
 
                     source: JamiResources.receive_24dp_svg
@@ -687,13 +705,13 @@ Control {
                 ReadStatus {
                     id: readsOne
 
-                    visible: root.readers.length === 1 && CurrentAccount.sendReadReceipt
+                    visible: root.displayReaders.length === 1 && CurrentAccount.sendReadReceipt
 
                     width: JamiTheme.avatarReadReceiptSize
                     height: JamiTheme.avatarReadReceiptSize
 
                     anchors.bottom: parent.bottom
-                    readers: root.readers
+                    readers: root.displayReaders
                 }
 
                 Component {
@@ -707,7 +725,8 @@ Control {
                     }
                 }
                 Loader {
-                    active: status.isAlone && convContext.lastSelfMessageId === Id
+                    objectName: "selfReadIconLoader"
+                    active: !root.isFeed && status.isAlone && convContext.lastSelfMessageId === Id
                     sourceComponent: selfReadIconComp
                     anchors.bottom: parent.bottom
                 }
@@ -718,9 +737,9 @@ Control {
             id: editedRow
 
             Layout.topMargin: 2
-            Layout.alignment: isOutgoing ? Qt.AlignRight : Qt.AlignLeft
-            Layout.leftMargin: isOutgoing ? 0 : avatarBlockWidth
-            Layout.rightMargin: isOutgoing ? JamiTheme.avatarReadReceiptSize : msgRadius
+            Layout.alignment: alignRight ? Qt.AlignRight : Qt.AlignLeft
+            Layout.leftMargin: alignRight ? 0 : avatarBlockWidth
+            Layout.rightMargin: alignRight ? JamiTheme.avatarReadReceiptSize : msgRadius
             spacing: 4
             visible: (bubble.isEdited || isPluginOverwrite) && !bubble.isDeleted
 
@@ -839,14 +858,14 @@ Control {
                     return readers.length > 1 && CurrentAccount.sendReadReceipt;
                 }
                 width: {
-                    if (readers.length === 0)
+                    if (!readers || readers.length === 0)
                         return 0;
                     var nbAvatars = readers.length;
                     var margin = JamiTheme.avatarReadReceiptSize / 3;
                     return nbAvatars * JamiTheme.avatarReadReceiptSize - (nbAvatars - 1) * margin;
                 }
                 height: {
-                    if (readers.length === 0)
+                    if (!readers || readers.length === 0)
                         return 0;
                     return JamiTheme.avatarReadReceiptSize;
                 }
@@ -854,7 +873,7 @@ Control {
                 anchors.right: parent.right
                 anchors.top: parent.top
                 anchors.topMargin: 1
-                readers: root.readers
+                readers: root.displayReaders
             }
         }
     }

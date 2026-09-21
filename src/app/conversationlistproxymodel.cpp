@@ -31,6 +31,8 @@ bool
 ConversationListProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex& sourceParent) const
 {
     QModelIndex index = sourceModel()->index(sourceRow, 0, sourceParent);
+    if (index.data(ConversationList::Role::Mode).toInt() == static_cast<int>(lrc::api::conversation::Mode::FEED))
+        return false;
 
     auto rx = filterRegularExpression();
     auto uriStripper = URI(rx.pattern());
