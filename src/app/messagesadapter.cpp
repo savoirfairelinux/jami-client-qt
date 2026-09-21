@@ -30,6 +30,7 @@
 #include <QClipboard>
 #include <QDesktopServices>
 #include <QDir>
+#include <QDateTime>
 #include <QFileInfo>
 #include <QImageReader>
 #include <QList>
@@ -38,6 +39,140 @@
 #include <QUrl>
 #include <QtMath>
 #include <QRegularExpression>
+
+#include <tuple>
+
+namespace {
+bool
+isFeedContent(const QModelIndex& index)
+{
+    const auto type = static_cast<interaction::Type>(index.data(MessageList::Role::Type).toInt());
+    return type == interaction::Type::TEXT || type == interaction::Type::DATA_TRANSFER;
+}
+} // namespace
+
+void
+FilteredMsgListModel::setSourceModel(QAbstractItemModel* model)
+{
+    for (const auto& connection : sourceConnections_)
+        disconnect(connection);
+    sourceConnections_.clear();
+    QSortFilterProxyModel::setSourceModel(model);
+    if (model) {
+        auto refresh = [this] {
+            if (feedMode_)
+                refreshFeedThreads();
+        };
+        sourceConnections_ = {connect(model, &QAbstractItemModel::rowsInserted, this, refresh),
+                              connect(model, &QAbstractItemModel::rowsRemoved, this, refresh),
+                              connect(model, &QAbstractItemModel::rowsMoved, this, refresh),
+                              connect(model, &QAbstractItemModel::modelReset, this, refresh),
+                              connect(model, &QAbstractItemModel::layoutChanged, this, refresh),
+                              connect(model,
+                                      &QAbstractItemModel::dataChanged,
+                                      this,
+                                      [refresh](const QModelIndex&, const QModelIndex&, const QList<int>& roles) {
+                                          if (roles.isEmpty() || roles.contains(MessageList::Role::Id)
+                                              || roles.contains(MessageList::Role::Type)
+                                              || roles.contains(MessageList::Role::ReplyTo)
+                                              || roles.contains(MessageList::Role::Timestamp))
+                                              refresh();
+                                      }),
+                              connect(model, &QObject::destroyed, this, [this] {
+                                  feedRootRows_.clear();
+                                  feedDayStarts_.clear();
+                                  hasUnloadedFeedParents_ = false;
+                                  Q_EMIT feedThreadsChanged();
+                              })};
+    }
+    refreshFeedThreads();
+}
+
+void
+FilteredMsgListModel::setFeedMode(bool enabled)
+{
+    if (feedMode_ == enabled)
+        return;
+    feedMode_ = enabled;
+    refreshFeedThreads();
+    Q_EMIT feedModeChanged();
+}
+
+void
+FilteredMsgListModel::refreshFeedThreads()
+{
+    feedRootRows_.clear();
+    feedDayStarts_.clear();
+    hasUnloadedFeedParents_ = false;
+    if (feedMode_ && sourceModel()) {
+        QDate previousDay;
+        for (int row = 0; row < sourceModel()->rowCount(); ++row) {
+            const auto item = sourceModel()->index(row, 0);
+            if (isFeedContent(item) && item.data(MessageList::Role::ReplyTo).toString().isEmpty()) {
+                const auto id = item.data(MessageList::Role::Id).toString();
+                feedRootRows_.insert(id, row);
+                const auto day = QDateTime::fromSecsSinceEpoch(item.data(MessageList::Role::Timestamp).toLongLong())
+                                     .date();
+                if (day != previousDay)
+                    feedDayStarts_.insert(id);
+                previousDay = day;
+            }
+        }
+        for (int row = 0; row < sourceModel()->rowCount(); ++row) {
+            const auto item = sourceModel()->index(row, 0);
+            const auto parent = item.data(MessageList::Role::ReplyTo).toString();
+            if (isFeedContent(item) && !parent.isEmpty() && !feedRootRows_.contains(parent)) {
+                hasUnloadedFeedParents_ = true;
+                break;
+            }
+        }
+    }
+    // Loading an older publication changes the ordering of already loaded replies.
+    invalidate();
+    if (rowCount() > 0)
+        Q_EMIT dataChanged(index(0, 0), index(rowCount() - 1, 0), {IsFeedReply, FeedDayStart});
+    Q_EMIT feedThreadsChanged();
+}
+
+bool
+FilteredMsgListModel::filterAcceptsRow(int sourceRow, const QModelIndex& sourceParent) const
+{
+    const auto item = sourceModel()->index(sourceRow, 0, sourceParent);
+    if (feedMode_)
+        return isFeedContent(item);
+    return interaction::isTypeDisplayable(static_cast<interaction::Type>(item.data(MessageList::Role::Type).toInt()));
+}
+
+bool
+FilteredMsgListModel::lessThan(const QModelIndex& left, const QModelIndex& right) const
+{
+    if (!feedMode_)
+        return left.row() > right.row();
+    auto order = [this](const QModelIndex& item) {
+        const auto parent = item.data(MessageList::Role::ReplyTo).toString();
+        return std::tuple {feedRootRows_.value(parent, item.row()), feedRootRows_.contains(parent), item.row()};
+    };
+    return order(left) > order(right);
+}
+
+QVariant
+FilteredMsgListModel::data(const QModelIndex& index, int role) const
+{
+    if (role == IsFeedReply)
+        return feedMode_ && feedRootRows_.contains(mapToSource(index).data(MessageList::Role::ReplyTo).toString());
+    if (role == FeedDayStart)
+        return feedMode_ && feedDayStarts_.contains(mapToSource(index).data(MessageList::Role::Id).toString());
+    return QSortFilterProxyModel::data(index, role);
+}
+
+QHash<int, QByteArray>
+FilteredMsgListModel::roleNames() const
+{
+    auto roles = QSortFilterProxyModel::roleNames();
+    roles.insert(IsFeedReply, "IsFeedReply");
+    roles.insert(FeedDayStart, "FeedDayStart");
+    return roles;
+}
 
 MessagesAdapter::MessagesAdapter(AppSettingsManager* settingsManager,
                                  PreviewEngine* previewEngine,
@@ -64,13 +199,7 @@ MessagesAdapter::MessagesAdapter(AppSettingsManager* settingsManager,
     connect(lrcInstance_, &LRCInstance::selectedConvUidChanged, this, [this]() {
         set_replyToId("");
         set_editId("");
-        const QString& convId = lrcInstance_->get_selectedConvUid();
-        const auto& conversation = lrcInstance_->getConversationFromConvUid(convId);
-
-        // Reset the source model for the proxy model.
-        filteredMsgListModel_->setSourceModel(conversation.interactions.get());
-
-        set_currentConvComposingList(conversationTypersUrlToName(conversation.typers));
+        updateCurrentConversation();
     });
 
     connect(messageParser_, &MessageParser::messageParsed, this, &MessagesAdapter::onMessageParsed);
@@ -110,12 +239,48 @@ MessagesAdapter::loadMoreMessages()
 }
 
 void
+MessagesAdapter::updateCurrentConversation()
+{
+    const auto* model = lrcInstance_->getCurrentConversationModel();
+    const auto selected = model ? model->getConversationForUid(lrcInstance_->get_selectedConvUid()) : std::nullopt;
+    auto* source = selected ? selected->get().interactions.get() : nullptr;
+    if (filteredMsgListModel_->sourceModel() != source)
+        filteredMsgListModel_->setSourceModel(source);
+    filteredMsgListModel_->setFeedMode(selected && selected->get().mode == conversation::Mode::FEED);
+    set_currentConvComposingList(selected ? conversationTypersUrlToName(selected->get().typers) : QList<QString> {});
+}
+
+void
+MessagesAdapter::onConversationUpdated(const QString& convId)
+{
+    if (convId == lrcInstance_->get_selectedConvUid())
+        updateCurrentConversation();
+}
+
+void
 MessagesAdapter::connectConversationModel()
 {
+    updateCurrentConversation();
     auto currentConversationModel = lrcInstance_->getCurrentConversationModel();
     if (currentConversationModel == nullptr) {
         return;
     }
+
+    connect(currentConversationModel,
+            &ConversationModel::conversationUpdated,
+            this,
+            &MessagesAdapter::onConversationUpdated,
+            Qt::UniqueConnection);
+    connect(currentConversationModel,
+            &ConversationModel::profileUpdated,
+            this,
+            &MessagesAdapter::onConversationUpdated,
+            Qt::UniqueConnection);
+    connect(currentConversationModel,
+            &ConversationModel::newConversation,
+            this,
+            &MessagesAdapter::onConversationUpdated,
+            Qt::UniqueConnection);
 
     QObject::connect(currentConversationModel,
                      &ConversationModel::newInteraction,
@@ -528,6 +693,7 @@ MessagesAdapter::onConversationMessagesLoaded(uint32_t loadingRequestId, const Q
 {
     if (convId != lrcInstance_->get_selectedConvUid())
         return;
+    updateCurrentConversation();
     Q_EMIT moreMessagesLoaded(loadingRequestId);
 }
 

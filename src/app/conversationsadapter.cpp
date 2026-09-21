@@ -174,6 +174,14 @@ ConversationsAdapter::onNewUnreadInteraction(const QString& accountId,
     if (!QApplication::focusWindow() || accountId != lrcInstance_->get_currentAccountId()
         || convUid != lrcInstance_->get_selectedConvUid()) {
         auto& accountInfo = lrcInstance_->getAccountInfo(accountId);
+        const auto conversation = accountInfo.conversationModel->getConversationForUid(convUid);
+        if (conversation && conversation->get().mode == conversation::Mode::FEED) {
+            const auto& info = conversation->get();
+            if (info.infos.value("feedClosed") == "true" || interaction.authorUri != info.infos.value("feedOwner")
+                || !interaction.commit.value("reply-to").isEmpty() || !interaction.commit.value("edit").isEmpty()
+                || (interaction.type != interaction::Type::TEXT && interaction.type != interaction::Type::DATA_TRANSFER))
+                return;
+        }
         if (interaction.authorUri == accountInfo.profileInfo.uri)
             return;
         auto from = accountInfo.contactModel->bestNameForContact(interaction.authorUri);

@@ -513,6 +513,7 @@ Rectangle {
             Component {
                 id: sharePopupComp
                 ShareMenu {
+                    documentCreationAllowed: !convContext.isFeed
                     id: sharePopup
                     onAudioRecordMessageButtonClicked: rectangle.audioRecordMessageButtonClicked(
                                                            )
@@ -526,6 +527,7 @@ Rectangle {
             }
 
             popup: ShareMenu {
+                documentCreationAllowed: !convContext.isFeed
                 id: sharePopup
                 onAudioRecordMessageButtonClicked: rectangle.audioRecordMessageButtonClicked()
                 onVideoRecordMessageButtonClicked: rectangle.videoRecordMessageButtonClicked()

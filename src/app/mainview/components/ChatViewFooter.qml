@@ -34,6 +34,11 @@ Rectangle {
     // Injected conversation context; defaults to the global singleton for
     // the main window.
     property var convContext: CurrentConversation
+    readonly property bool feedWritable: !convContext.isFeed
+                                        || (!convContext.feedClosed
+                                            && (convContext.isFeedOwner
+                                                || (convContext.feedReplies
+                                                    && (MessagesAdapter.replyToId !== "" || MessagesAdapter.editId !== ""))))
 
     function setFilePathsToSend(filePaths) {
         for (var index = 0; index < filePaths.length; ++index) {
@@ -42,10 +47,23 @@ Rectangle {
         }
     }
 
-    implicitHeight: messageBar.height + 2 * marginSize
+    implicitHeight: (feedWritable ? messageBar.height : feedHint.implicitHeight + 24) + 2 * marginSize
     height: implicitHeight
 
     color: JamiTheme.transparentColor
+
+    Label {
+        id: feedHint
+        anchors.centerIn: parent
+        width: parent.width - 24
+        horizontalAlignment: Text.AlignHCenter
+        wrapMode: Text.Wrap
+        visible: !root.feedWritable
+        color: JamiTheme.faddedLastInteractionFontColor
+        text: root.convContext.feedClosed ? qsTr("This Feed is closed.") :
+              root.convContext.feedReplies ? qsTr("Choose a publication to reply. Only the owner can publish.") :
+                                             qsTr("This Feed is read only.")
+    }
 
     function updateMessageDraft() {
         // Store the current files that have not been sent, if any. Do the same for the message draft.
@@ -120,6 +138,8 @@ Rectangle {
 
     MessageBar {
         id: messageBar
+        visible: root.feedWritable
+        enabled: root.feedWritable
         convContext: root.convContext
 
         anchors.bottom: root.bottom

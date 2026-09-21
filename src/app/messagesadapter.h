@@ -36,7 +36,10 @@ class FilteredMsgListModel final : public QSortFilterProxyModel
 {
     Q_OBJECT
     Q_PROPERTY(int count READ count NOTIFY countChanged)
+    Q_PROPERTY(bool feedMode READ feedMode WRITE setFeedMode NOTIFY feedModeChanged)
+    Q_PROPERTY(bool hasUnloadedFeedParents READ hasUnloadedFeedParents NOTIFY feedThreadsChanged)
 public:
+    enum FeedRole { IsFeedReply = MessageList::Role::FilterStatus + 1, FeedDayStart };
     explicit FilteredMsgListModel(QObject* parent = nullptr)
         : QSortFilterProxyModel(parent)
     {
@@ -47,22 +50,31 @@ public:
         connect(this, &QAbstractItemModel::modelReset, this, &FilteredMsgListModel::countChanged);
         connect(this, &QAbstractItemModel::layoutChanged, this, &FilteredMsgListModel::countChanged);
     }
-    bool filterAcceptsRow(int sourceRow, const QModelIndex& sourceParent) const override
+    void setSourceModel(QAbstractItemModel* model) override;
+    bool filterAcceptsRow(int sourceRow, const QModelIndex& sourceParent) const override;
+    bool lessThan(const QModelIndex& left, const QModelIndex& right) const override;
+    QVariant data(const QModelIndex& index, int role = Qt::DisplayRole) const override;
+    QHash<int, QByteArray> roleNames() const override;
+    bool feedMode() const
     {
-        auto index = sourceModel()->index(sourceRow, 0, sourceParent);
-        auto type = static_cast<interaction::Type>(sourceModel()->data(index, MessageList::Role::Type).toInt());
-        return interaction::isTypeDisplayable(type);
-    };
-    bool lessThan(const QModelIndex& left, const QModelIndex& right) const override
+        return feedMode_;
+    }
+    void setFeedMode(bool enabled);
+    bool hasUnloadedFeedParents() const
     {
-        return left.row() > right.row();
-    };
+        return hasUnloadedFeedParents_;
+    }
 
     Q_INVOKABLE int getDisplayIndex(const QString& id)
     {
-        auto sourceRow = ((MessageListModel*) sourceModel())->indexOfMessage(id);
-        auto index = mapFromSource(sourceModel()->index(sourceRow, 0));
-        return index.row();
+        if (!sourceModel())
+            return -1;
+        const auto matches = sourceModel()->match(sourceModel()->index(0, 0),
+                                                  MessageList::Role::Id,
+                                                  id,
+                                                  1,
+                                                  Qt::MatchExactly);
+        return matches.isEmpty() ? -1 : mapFromSource(matches.front()).row();
     };
     Q_INVOKABLE QVariantMap get(int row) const
     {
@@ -80,6 +92,16 @@ public:
     }
 Q_SIGNALS:
     void countChanged();
+    void feedModeChanged();
+    void feedThreadsChanged();
+
+private:
+    void refreshFeedThreads();
+    bool feedMode_ {false};
+    bool hasUnloadedFeedParents_ {false};
+    QHash<QString, int> feedRootRows_;
+    QSet<QString> feedDayStarts_;
+    QList<QMetaObject::Connection> sourceConnections_;
 };
 
 class MessagesAdapter final : public QmlAdapterBase
@@ -182,10 +204,12 @@ private Q_SLOTS:
     void onOriginalMessageParsed(const QString& messageId, const QString& parsed);
     void onLinkInfoReady(const QString& messageIndex, const QVariantMap& info);
     void onConversationMessagesLoaded(uint32_t requestId, const QString& convId);
+    void onConversationUpdated(const QString& convId);
     void onComposingStatusChanged(const QString& convId, const QString& contactUri, bool isComposing);
     void onMessagesFoundProcessed(const QString& accountId, const QMap<QString, interaction::Info>& messageInformation);
 
 private:
+    void updateCurrentConversation();
     QList<QString> conversationTypersUrlToName(const QSet<QString>& typersSet);
 
     AppSettingsManager* settingsManager_;

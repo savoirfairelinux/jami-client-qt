@@ -77,6 +77,11 @@ CurrentConversation::updateData()
         auto optConv = accInfo.conversationModel->getConversationForUid(convId);
         if (!optConv) {
             set_botOwner();
+            set_isFeed(false);
+            set_isFeedOwner(false);
+            set_feedReplies(false);
+            set_feedClosed(false);
+            set_feedOwner("");
             return;
         }
         auto& convInfo = optConv->get();
@@ -149,6 +154,8 @@ CurrentConversation::updateData()
             set_modeString(tr("Private group"));
         } else if (convInfo.mode == conversation::Mode::PUBLIC) {
             set_modeString(tr("Public group"));
+        } else if (convInfo.mode == conversation::Mode::FEED) {
+            set_modeString(tr("Feed"));
         }
 
         updateConversationPreferences(convId);
@@ -256,6 +263,11 @@ CurrentConversation::updateProfile(const QString& convId)
     try {
         if (auto optConv = convModel->getConversationForUid(convId)) {
             auto& convInfo = optConv->get();
+            set_isFeed(convInfo.mode == conversation::Mode::FEED);
+            set_feedOwner(convInfo.infos.value("feedOwner"));
+            set_isFeedOwner(isFeed_ && feedOwner_ == lrcInstance_->getCurrentAccountInfo().profileInfo.uri);
+            set_feedReplies(convInfo.infos.value("feedReplies") == "true");
+            set_feedClosed(convInfo.infos.value("feedClosed") == "true");
             // Now, update call information (rdvAccount/device)
             if (convInfo.infos.contains("rdvAccount")) {
                 set_rdvAccount(convInfo.infos["rdvAccount"]);

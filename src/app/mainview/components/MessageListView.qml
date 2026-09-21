@@ -33,6 +33,12 @@ ListView {
     // Injected conversation context; defaults to the global singleton for
     // the main window.
     property var convContext: CurrentConversation
+    readonly property bool loadingFeedParents: !!(convContext && convContext.isFeed
+                                                   && model && model.hasUnloadedFeedParents)
+    onLoadingFeedParentsChanged: {
+        if (loadingFeedParents)
+            chunkLoadDebounceTimer.restart();
+    }
 
     ScrollBar.vertical: JamiScrollBar {
         id: verticalScrollBar
@@ -55,7 +61,7 @@ ListView {
     }
 
     function loadMoreMsgsIfNeeded() {
-        if (convContext && atYBeginning && !convContext.allMessagesLoaded) {
+        if (convContext && (atYBeginning || loadingFeedParents) && !convContext.allMessagesLoaded) {
             if (convContext !== CurrentConversation)
                 convContext.loadMoreMessages();
             else
@@ -84,6 +90,12 @@ ListView {
     function computeChatview(item, itemIndex) {
         if (!root)
             return;
+        if (convContext && convContext.isFeed) {
+            item.showTime = true;
+            item.showDay = Qt.binding(() => item.feedDayStart);
+            item.seq = MsgSeq.single;
+            return;
+        }
         var rootItem = root.itemAtIndex(0);
         var pItem = root.itemAtIndex(itemIndex - 1);
         var pItemIndex = itemIndex - 1;
@@ -203,6 +215,7 @@ ListView {
         target: convContext
         function onIdChanged() {
             currentIndex = -1;
+            chunkLoadDebounceTimer.restart();
         }
     }
 
@@ -286,7 +299,7 @@ ListView {
         repeat: false
         running: false
         onTriggered: {
-            if (root.contentHeight < root.height) {
+            if (root.contentHeight < root.height || root.loadingFeedParents) {
                 root.loadMoreMsgsIfNeeded();
             }
         }

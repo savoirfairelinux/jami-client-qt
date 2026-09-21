@@ -80,6 +80,8 @@ Control {
     property bool detailsButtonVisibility: detailsButton.visible
 
     readonly property bool interactionButtonsVisibility: {
+        if (convContext.isFeed)
+            return false;
         if (convContext.inCall)
             return false;
         if (LRCInstance.currentAccountType === Profile.Type.SIP)
@@ -353,6 +355,14 @@ Control {
             visible: convContext.activeCalls.length === 0 && interactionButtonsVisibility && CurrentAccount.videoEnabled_Video
 
             onClicked: CallAdapter.startCall()
+        }
+
+        FeedMenuButton {
+            QWKSetParentHitTestVisible {}
+            visible: !convContext.isSip
+            coordinator: viewCoordinator
+            dialogParent: appWindow
+            feedId: convContext.isFeed ? convContext.id : ""
         }
     }
 
