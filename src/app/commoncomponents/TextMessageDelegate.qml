@@ -76,8 +76,8 @@ SBSMessageBase {
             padding: isEmojiOnly ? 5 : 10
             topPadding: bubble.isDeleted ? 6 : 10
             bottomPadding: bubble.isDeleted ? 6 : 10
-            anchors.right: isOutgoing ? parent.right : undefined
-            anchors.rightMargin: isOutgoing && !isEmojiOnly && !bigMsg ? rootDelegate.timeWidth + rootDelegate.editedWidth : 0
+            anchors.right: alignRight ? parent.right : undefined
+            anchors.rightMargin: alignRight && !isEmojiOnly && !bigMsg ? rootDelegate.timeWidth + rootDelegate.editedWidth : 0
             text: {
                 if (showOriginal && isPluginOverwrite) {
                     if (OriginalBody !== "" && ParsedOriginalBody.length === 0) {
@@ -103,11 +103,11 @@ SBSMessageBase {
 
             width: {
                 if (extraContent.active)
-                    Math.max(extraContent.width, Math.min((2 / 3) * rootDelegate.maxMsgWidth, implicitWidth - avatarBlockWidth, extraContent.minSize) - senderMargin);
+                    Math.max(extraContent.width, Math.min((isFeed ? 1 : 2 / 3) * rootDelegate.maxMsgWidth, implicitWidth - avatarBlockWidth, extraContent.minSize) - senderMargin);
                 else if (isEmojiOnly)
                     Math.min((2 / 3) * rootDelegate.maxMsgWidth, implicitWidth, innerContent.width - senderMargin - (innerContent.width - senderMargin) % (JamiTheme.chatviewEmojiSize + 2));
                 else
-                    Math.min((2 / 3) * rootDelegate.maxMsgWidth, implicitWidth + 5, innerContent.width - senderMargin + 5);
+                    Math.min((isFeed ? 1 : 2 / 3) * rootDelegate.maxMsgWidth, implicitWidth + 5, innerContent.width - senderMargin + 5);
             }
 
             wrapMode: Label.WrapAtWordBoundaryOrAnywhere
@@ -165,7 +165,7 @@ SBSMessageBase {
         Loader {
             id: extraContent
 
-            anchors.right: isOutgoing ? parent.right : undefined
+            anchors.right: alignRight ? parent.right : undefined
             property real minSize: 192
             property real maxSize: 400
             active: LinkPreviewInfo.url !== undefined
@@ -196,7 +196,8 @@ SBSMessageBase {
                     asynchronous: true
                     readonly property bool hasImage: LinkPreviewInfo.image !== null
                     property real aspectRatio: implicitWidth / implicitHeight
-                    property real adjustedWidth: Math.min(extraContent.maxSize, Math.max(extraContent.minSize, maxMsgWidth))
+                    property real adjustedWidth: rootDelegate.isFeed ? Math.max(1, Math.min(extraContent.maxSize, maxMsgWidth))
+                                                                    : Math.min(extraContent.maxSize, Math.max(extraContent.minSize, maxMsgWidth))
                     Layout.preferredWidth: adjustedWidth
                     Layout.preferredHeight: Math.ceil(adjustedWidth / aspectRatio)
                     Rectangle {
@@ -211,7 +212,7 @@ SBSMessageBase {
                                 height: msgRadius
                                 width: parent.width
                             }
-                            out: isOutgoing
+                            out: alignRight
                             type: seq
                             width: img.width
                             height: img.height

@@ -31,6 +31,8 @@ Loader {
     property var mediaInfo
     property bool showTime
     property bool showDay
+    readonly property bool feedDayStart: typeof FeedDayStart !== "undefined" && FeedDayStart
+    property bool isReply: ReplyTo !== ""
     property int timestamp: Timestamp
     property string formattedTime: MessagesAdapter.getFormattedTime(rootDelegate.timestamp)
     property string formattedDay: MessagesAdapter.getFormattedDay(rootDelegate.timestamp)
@@ -90,6 +92,7 @@ Loader {
 
             isOutgoing: Author === CurrentAccount.uri
             showTime: rootDelegate.showTime
+            showDay: rootDelegate.showDay
             seq: rootDelegate.seq
             author: Author
             readers: Readers
@@ -103,8 +106,8 @@ Loader {
                 TextEdit {
                     id: textEditId
 
-                    anchors.right: isOutgoing ? parent.right : undefined
-                    anchors.rightMargin: isOutgoing ? timeWidth : 0
+                    anchors.right: alignRight ? parent.right : undefined
+                    anchors.rightMargin: alignRight ? timeWidth : 0
                     bottomPadding: 6
                     topPadding: 6
                     leftPadding: 10
@@ -140,7 +143,10 @@ Loader {
             transferId: Id
             property var transferStats: MessagesAdapter.getTransferStats(transferId, rootDelegate.transferStatus)
             property bool canOpen: rootDelegate.transferStatus === Interaction.TransferStatus.TRANSFER_FINISHED || isOutgoing
-            property real maxMsgWidth: rootDelegate.width - senderMargin - 2 * hPadding - avatarBlockWidth - buttonsLoader.width - 24 - 6 - 24
+            property real maxMsgWidth: {
+                const available = rootDelegate.width - senderMargin - leftPadding - rightPadding - avatarBlockWidth - buttonsLoader.width - 24 - 6 - 24;
+                return isFeed ? Math.max(32, available) : available;
+            }
 
             // Timer to update the translation bar
             Loader {
@@ -158,6 +164,7 @@ Loader {
 
             isOutgoing: Author === CurrentAccount.uri
             showTime: rootDelegate.showTime
+            showDay: rootDelegate.showDay
             seq: rootDelegate.seq
             author: Author
             location: Body
@@ -172,7 +179,7 @@ Loader {
                 RowLayout {
                     id: transferItem
                     spacing: 6
-                    anchors.right: isOutgoing ? parent.right : undefined
+                    anchors.right: alignRight ? parent.right : undefined
                     HoverHandler {
                         target: parent
                         enabled: canOpen
@@ -307,7 +314,7 @@ Loader {
                     height: visible * implicitHeight
                     value: transferStats.progress / transferStats.totalSize
                     width: transferItem.width
-                    anchors.right: isOutgoing ? parent.right : undefined
+                    anchors.right: alignRight ? parent.right : undefined
                 }
             ]
         }
@@ -324,6 +331,7 @@ Loader {
             transferId: Id
             property var transferStats: MessagesAdapter.getTransferStats(transferId, rootDelegate.transferStatus)
             showTime: rootDelegate.showTime
+            showDay: rootDelegate.showDay
             seq: rootDelegate.seq
             author: Author
             location: Body
@@ -359,7 +367,7 @@ Loader {
                 Loader {
                     id: localMediaCompLoader
 
-                    anchors.right: isOutgoing ? parent.right : undefined
+                    anchors.right: alignRight ? parent.right : undefined
                     asynchronous: true
                     width: sourceComponent.width
                     height: sourceComponent.height
@@ -390,7 +398,7 @@ Loader {
                         AnimatedImage {
                             id: animatedImg
 
-                            anchors.right: isOutgoing ? parent.right : undefined
+                            anchors.right: alignRight ? parent.right : undefined
                             property real minSize: 192
                             property real maxSize: 256
                             cache: false
@@ -401,7 +409,8 @@ Loader {
                             asynchronous: true
                             source: UtilsAdapter.urlFromLocalPath(Body)
                             property real aspectRatio: implicitWidth / implicitHeight
-                            property real adjustedWidth: Math.min(maxSize, Math.max(minSize, innerContent.width - senderMargin))
+                            property real adjustedWidth: localMediaMsgItem.isFeed ? Math.max(1, Math.min(maxSize, maxMsgWidth))
+                                                                                 : Math.min(maxSize, Math.max(minSize, innerContent.width - senderMargin))
                             width: adjustedWidth
                             height: Math.ceil(adjustedWidth / aspectRatio)
                             Rectangle {
@@ -412,7 +421,7 @@ Loader {
                             layer.enabled: true
                             layer.effect: OpacityMask {
                                 maskSource: MessageBubble {
-                                    out: isOutgoing
+                                    out: alignRight
                                     type: seq
                                     width: animatedImg.width
                                     height: animatedImg.height
@@ -450,7 +459,7 @@ Loader {
                         Rectangle {
                             border.color: img.useBox ? (JamiTheme.darkTheme ? "white" : JamiTheme.blackColor) : JamiTheme.transparentColor
                             color: JamiTheme.transparentColor
-                            anchors.right: isOutgoing ? parent.right : undefined
+                            anchors.right: alignRight ? parent.right : undefined
                             border.width: 1
                             radius: msgRadius
 
@@ -477,7 +486,7 @@ Loader {
                                 }
 
                                 // Scale down the image if it's too wide or too tall.
-                                property real maxWidth: localMediaMsgItem.width - 170
+                                property real maxWidth: localMediaMsgItem.isFeed ? Math.max(1, maxMsgWidth - 20) : localMediaMsgItem.width - 170
                                 property bool xOverflow: sourceSize.width > maxWidth
                                 property bool yOverflow: sourceSize.height > JamiTheme.maxImageHeight
                                 property real scaleFactor: (xOverflow || yOverflow) ? Math.min(maxWidth / sourceSize.width, JamiTheme.maxImageHeight / sourceSize.height) : 1
@@ -490,7 +499,7 @@ Loader {
                                 layer.enabled: !useBox
                                 layer.effect: OpacityMask {
                                     maskSource: MessageBubble {
-                                        out: isOutgoing
+                                        out: alignRight
                                         type: seq
                                         width: img.width
                                         height: img.height

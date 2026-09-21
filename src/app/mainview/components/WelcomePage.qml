@@ -140,6 +140,16 @@ ListSelectionView {
         objectName: "WelcomeLayout"
 
         anchors.fill: parent
+        FeedMenuButton {
+            parent: root.parent
+            anchors.top: parent.top
+            anchors.right: parent.right
+            anchors.margins: 16
+            z: 2
+            visible: CurrentAccount.type !== Profile.Type.SIP
+            coordinator: viewNode.viewCoordinator
+            dialogParent: appWindow
+        }
         property int thresholdSize: 700
         property int thresholdHeight: 570
 

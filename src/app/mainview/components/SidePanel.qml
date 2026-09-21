@@ -33,9 +33,14 @@ SidePanelBase {
 
     readonly property var viewCoordinator: appContext ? appContext.viewCoordinator : null
     property bool inNewSwarm: viewCoordinator && viewCoordinator.currentViewName === "NewSwarmPage"
+    readonly property var followedFeeds: FeedAdapter.followed.filter(function(feed) { return !feed.owned; })
+    readonly property var ownedFeeds: FeedAdapter.feeds.filter(function(feed) { return feed.owned && !feed.feedClosed; })
+    property int conversationCount: conversationListView.model ? conversationListView.model.count : 0
+    property int feedCount: followedFeeds.length + ownedFeeds.length
     property bool isEmptyAccount: inNewSwarm
                                   ? (swarmCurrentConversationList.model && swarmCurrentConversationList.model.count === 0)
-                                  : (!ConversationsAdapter.filterRequests && conversationListView.model && conversationListView.model.count === 0)
+                                  : (!ConversationsAdapter.filterRequests && conversationListView.model
+                                     && conversationCount === 0 && feedCount === 0)
 
     property var highlighted: []
     property var highlightedMembers: []
@@ -572,7 +577,41 @@ SidePanelBase {
                         }
                     }
 
+                    FeedList {
+                        Layout.fillWidth: true
+                        visible: !inNewSwarm && CurrentAccount.type !== Profile.Type.SIP
+                                 && !ConversationsAdapter.filterRequests && !contactSearchBar.textContent
+                        sectionTitle: qsTr("Followed Feeds")
+                        showCreate: false
+                        feeds: root.followedFeeds
+                        selectedId: CurrentConversation.id
+                        onOpenRequested: function(id) { FeedAdapter.open(id); }
+                        onCatalogueRequested: viewCoordinator.presentDialog(appWindow,
+                                                                            "commoncomponents/FeedCatalogueDialog.qml",
+                                                                            {"accountId": CurrentAccount.id})
+                    }
+
+                    FeedList {
+                        Layout.fillWidth: true
+                        visible: !inNewSwarm && CurrentAccount.type !== Profile.Type.SIP
+                                 && !ConversationsAdapter.filterRequests && !contactSearchBar.textContent
+                        sectionTitle: qsTr("My Feeds")
+                        showCatalogue: false
+                        feeds: root.ownedFeeds
+                        selectedId: CurrentConversation.id
+                        onOpenRequested: function(id) { FeedAdapter.open(id); }
+                        onCreateRequested: viewCoordinator.presentDialog(appWindow,
+                                                                          "commoncomponents/FeedSettingsDialog.qml",
+                                                                          {"accountId": CurrentAccount.id})
+                        onManageRequested: function(id) {
+                            viewCoordinator.presentDialog(appWindow,
+                                                           "commoncomponents/FeedSettingsDialog.qml",
+                                                           {"accountId": CurrentAccount.id, "feedId": id});
+                        }
+                    }
+
                     Item {
+                        objectName: "emptyAccountPlaceholder"
                         Layout.fillWidth: true
                         Layout.fillHeight: true
 
