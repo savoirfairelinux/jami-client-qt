@@ -160,7 +160,7 @@ Popup {
                                 }
 
                                 onClicked: {
-                                    MessagesAdapter.removeEmojiReaction(CurrentConversation.id, emojiButton.text, emojiArray[index].commitId);
+                                    MessagesAdapter.removeReaction(CurrentConversation.id, emojiArray[index].commitId);
                                     if (emojiArray.length === 1)
                                         close();
                                 }
