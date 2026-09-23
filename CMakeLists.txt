@@ -36,6 +36,18 @@ if(APPLE AND NOT CMAKE_OSX_DEPLOYMENT_TARGET)
   endif()
 endif()
 
+option(WITH_DAEMON_SUBMODULE "Build with daemon submodule" ON)
+if(NOT WITH_DAEMON_SUBMODULE)
+  set(DAEMON_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../daemon)
+else()
+  set(DAEMON_DIR ${CMAKE_CURRENT_SOURCE_DIR}/daemon)
+endif()
+
+# Windows with vcpkg's toolchain: use the daemon's manifest and triplet.
+if(CMAKE_HOST_WIN32)
+  include(${DAEMON_DIR}/contrib/vcpkg/settings.cmake OPTIONAL)
+endif()
+
 if(APPLE)
   project(Jami)
 else()
@@ -45,7 +57,6 @@ endif()
 set(CMAKE_SCRIPTS_DIR ${PROJECT_SOURCE_DIR}/extras/build/cmake)
 include(${CMAKE_SCRIPTS_DIR}/extra_tools.cmake)
 
-option(WITH_DAEMON_SUBMODULE "Build with daemon submodule" ON)
 option(JAMICORE_AS_SUBDIR "Build Jami-core as a subdir dependency" ON)
 option(WITH_WEBENGINE "Build with WebEngine" ON)
 option(ENABLE_LIBWRAP "Enable libwrap (single process mode)" ON)
@@ -81,12 +92,6 @@ define_macro_with_value(APPSTORE)
 define_macro_with_value(ENABLE_CRASHREPORTS)
 
 # jami-core
-if(NOT WITH_DAEMON_SUBMODULE)
-  set(DAEMON_DIR ${PROJECT_SOURCE_DIR}/../daemon)
-else()
-  set(DAEMON_DIR ${PROJECT_SOURCE_DIR}/daemon)
-endif()
-
 if(JAMICORE_AS_SUBDIR)
   add_subdirectory(${DAEMON_DIR} EXCLUDE_FROM_ALL)
   set(LIBJAMI_LIB jami-core)
@@ -848,8 +853,14 @@ if(MSVC)
     "/NODEFAULTLIB:LIBCMT")
 
   # daemon
-  set(JAMID_SRC_PATH ${DAEMON_DIR}/contrib/msvc/include)
-  set(GNUTLS_LIB ${DAEMON_DIR}/contrib/msvc/lib/x64/libgnutls.lib)
+  if(VCPKG_TOOLCHAIN)
+    # src/core uses libavutil directly; jami-core brings the rest transitively.
+    pkg_search_module(avutil REQUIRED IMPORTED_TARGET libavutil)
+    set(LIBAVUTIL_LIB PkgConfig::avutil)
+  else()
+    set(JAMID_SRC_PATH ${DAEMON_DIR}/contrib/msvc/include)
+    set(GNUTLS_LIB ${DAEMON_DIR}/contrib/msvc/lib/x64/libgnutls.lib)
+  endif()
 
   include_directories(
     ${JAMID_SRC_PATH}
@@ -1154,10 +1165,11 @@ if(MSVC)
   list(APPEND CLIENT_LIBS
     ${LIBJAMI_LIB}
     ${GNUTLS_LIB}
+    ${LIBAVUTIL_LIB}
     ${QT_LIBS}
     ${WINDOWS_SYS_LIBS})
 
-  if(JAMICORE_TARGET_TYPE STREQUAL "SHARED_LIBRARY")
+  if(JAMICORE_TARGET_TYPE STREQUAL "SHARED_LIBRARY" AND NOT VCPKG_TOOLCHAIN)
     # src/core/directrenderer.cpp calls av_frame_alloc/free directly. A
     # static jami-core.lib re-exposed ffmpeg's symbols transitively; a DLL
     # doesn't, so the client needs its own link against libavutil (and
