@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b8bc4086_1fa3bb4f",
+        "filename": "src/core/conversationmodel.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 1286,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-09-23T20:44:51Z",
+      "side": 1,
+      "message": "[error] Line 1286: 🔴 `MessageFlag::Reply` creates a reply rather than an edit of the existing reaction commit. The stated removal operation therefore may leave the reaction intact while creating an empty reply. Use the same edited-message flag/path as `editMessage`, targeting `reactionId`, and cover the emitted removal operation in a test.",
+      "revId": "a70538da7e408b023d34f4502d4901f84b0d9f5e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
