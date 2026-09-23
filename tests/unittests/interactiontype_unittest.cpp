@@ -43,3 +43,17 @@ TEST(InteractionType, TheTypesTheMessageListCannotDrawAreNotDisplayed)
         EXPECT_FALSE(isTypeDisplayable(type)) << to_string(type).toStdString();
     }
 }
+
+TEST(InteractionType, AReactionCommitIsNotADisplayableMessage)
+{
+    SwarmMessage message;
+    message.id = QStringLiteral("reaction-id");
+    message.type = QStringLiteral("text/plain");
+    message.body = {{QStringLiteral("type"), QStringLiteral("text/plain")},
+                    {QStringLiteral("react-to"), QStringLiteral("parent-id")},
+                    {QStringLiteral("body"), QStringLiteral("")}};
+    const Info reaction(message, QStringLiteral("account-uri"), QStringLiteral("account-id"), QStringLiteral("conv-id"));
+
+    EXPECT_EQ(reaction.type, Type::REACTION);
+    EXPECT_FALSE(isTypeDisplayable(reaction.type));
+}

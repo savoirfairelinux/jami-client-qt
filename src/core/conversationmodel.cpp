@@ -1278,6 +1278,16 @@ ConversationModel::reactMessage(const QString& convId, const QString& emoji, con
 }
 
 void
+ConversationModel::removeReaction(const QString& convId, const QString& reactionId)
+{
+    auto conversationOpt = getConversationForUid(convId);
+    if (!conversationOpt.has_value() || reactionId.isEmpty()) {
+        return;
+    }
+    ConfigurationManager::instance().sendMessage(owner.id, convId, "", reactionId, static_cast<int>(MessageFlag::Reply));
+}
+
+void
 ConversationModel::refreshFilter()
 {
     invalidateModel();

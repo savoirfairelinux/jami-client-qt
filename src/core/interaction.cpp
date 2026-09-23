@@ -133,7 +133,8 @@ Info::Info(const SwarmMessage& msg, const QString& accountUri, const QString& ac
         body = bodyOverwriteIt.value();
     }
     parentId = msg.linearizedParent;
-    type = to_type(msg.type);
+    if (type != Type::REACTION)
+        type = to_type(msg.type);
     for (int i = 0; i < static_cast<int>(msg.editions.size()); ++i) {
         const auto& edition = msg.editions[i];
         QString edBody = edition.value("body");
