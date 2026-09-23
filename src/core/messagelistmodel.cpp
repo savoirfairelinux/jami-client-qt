@@ -372,7 +372,6 @@ MessageListModel::rmReaction(const QString& messageId, const QString& reactionId
                 updatedEmojis.append(item);
             else {
                 found = true;
-                break;
             }
         }
         if (found) {
@@ -382,6 +381,23 @@ MessageListModel::rmReaction(const QString& messageId, const QString& reactionId
             return;
         }
     }
+}
+
+QString
+MessageListModel::reactionIdFor(const QString& messageId, const QString& authorUri, const QString& body) const
+{
+    std::lock_guard<std::recursive_mutex> lk(mutex_);
+    int index = indexOfMessage(messageId);
+    if (index == -1)
+        return {};
+
+    const auto reactions = interactions_[index].second.reactions.value(authorUri).toList();
+    for (const auto& item : reactions) {
+        const auto emoji = item.value<interaction::Emoji>();
+        if (emoji.body == body)
+            return emoji.commitId;
+    }
+    return {};
 }
 
 void
