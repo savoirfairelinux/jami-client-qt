@@ -24,6 +24,7 @@
 
 #include <api/datatransfermodel.h>
 #include <api/contact.h>
+#include <api/messagelistmodel.h>
 
 #include <QApplication>
 #include <QBuffer>
@@ -191,10 +192,31 @@ void
 MessagesAdapter::removeEmojiReaction(const QString& convId, const QString& emoji, const QString& messageId)
 {
     try {
-        // check if this emoji has already been added by this author
-        editMessage(convId, "", messageId);
+        auto* model = getMsgListSourceModel();
+        if (!model) {
+            qWarning() << "Unable to find message list while removing reaction from message" << messageId;
+            return;
+        }
+        const auto reactionId = model->reactionIdFor(messageId,
+                                                     lrcInstance_->getCurrentAccountInfo().profileInfo.uri,
+                                                     emoji);
+        if (reactionId.isEmpty()) {
+            qWarning() << "Unable to find reaction to remove for message" << messageId;
+            return;
+        }
+        removeReaction(convId, reactionId);
     } catch (...) {
-        qDebug() << "Exception during removeEmojiReaction():" << messageId;
+        qWarning() << "Exception during removeEmojiReaction():" << messageId;
+    }
+}
+
+void
+MessagesAdapter::removeReaction(const QString& convId, const QString& reactionId)
+{
+    try {
+        lrcInstance_->getCurrentConversationModel()->removeReaction(convId, reactionId);
+    } catch (...) {
+        qWarning() << "Exception during removeReaction():" << reactionId;
     }
 }
 

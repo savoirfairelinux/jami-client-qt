@@ -127,6 +127,7 @@ public:
     Q_INVOKABLE void editMessage(const QString& convId, const QString& newBody, const QString& messageId = "");
     Q_INVOKABLE void addEmojiReaction(const QString& convId, const QString& emoji, const QString& messageId = "");
     Q_INVOKABLE void removeEmojiReaction(const QString& convId, const QString& emoji, const QString& messageId);
+    Q_INVOKABLE void removeReaction(const QString& convId, const QString& reactionId);
     Q_INVOKABLE void sendFile(const QString& message);
     Q_INVOKABLE void sendFileToUid(const QString& message, const QString& convUid);
     Q_INVOKABLE void acceptFile(const QString& arg);
