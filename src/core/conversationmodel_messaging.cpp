@@ -116,6 +116,9 @@ ConversationModel::slotMessageUpdated(const QString& accountId,
         QString msgId = message.id;
         auto msg = interaction::Info(message, owner.profileInfo.uri, accountId, conversationId);
 
+        if (!interaction::isTypeDisplayable(msg.type)) {
+            return;
+        }
         if (!conversation.interactions->update(msgId, msg)) {
             qDebug() << "Message not found or unable to be reparented.";
             return;
