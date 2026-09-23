@@ -132,6 +132,7 @@ public:
     void addHyperlinkInfo(const QString& messageId, const QVariantMap& info);
     void addReaction(const QString& messageId, const MapStringString& reaction);
     void rmReaction(const QString& messageId, const QString& reactionId);
+    QString reactionIdFor(const QString& messageId, const QString& authorUri, const QString& body) const;
     void setParsedMessage(const QString& messageId, const QString& parsed);
     void setParsedOriginalBody(const QString& messageId, const QString& parsed);
     void setRead(const QString& peer, const QString& messageId);

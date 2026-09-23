@@ -286,6 +286,12 @@ public:
      */
     void reactMessage(const QString& convId, const QString& emoji, const QString& messageId);
     /**
+     * Remove a reaction by its commit id
+     * @param convId        The conversation id
+     * @param reactionId    The id of the reaction
+     */
+    void removeReaction(const QString& convId, const QString& reactionId);
+    /**
      * Modify the current filter (will change the result of getFilteredConversations)
      * @param filter the new filter
      */

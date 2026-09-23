@@ -47,8 +47,8 @@ using namespace api;
 
 void
 ConversationModel::slotMessageReceived(const QString& accountId,
-                                            const QString& conversationId,
-                                            const SwarmMessage& message)
+                                       const QString& conversationId,
+                                       const SwarmMessage& message)
 {
     if (accountId != owner.id)
         return;
@@ -89,7 +89,10 @@ ConversationModel::slotMessageReceived(const QString& accountId,
         if (msg.transferStatus == interaction::TransferStatus::TRANSFER_AWAITING_HOST) {
             handleIncomingFile(conversationId, msgId, QString(message.body.value("totalSize")).toInt());
         }
-        { const auto _idx = index(indexOf(conversationId)); Q_EMIT dataChanged(_idx, _idx); }
+        {
+            const auto _idx = index(indexOf(conversationId));
+            Q_EMIT dataChanged(_idx, _idx);
+        }
         // Update status
         using namespace libjami::Account;
         for (const auto& uri : message.status.keys()) {
@@ -103,11 +106,10 @@ ConversationModel::slotMessageReceived(const QString& accountId,
     }
 }
 
-
 void
 ConversationModel::slotMessageUpdated(const QString& accountId,
-                                           const QString& conversationId,
-                                           const SwarmMessage& message)
+                                      const QString& conversationId,
+                                      const SwarmMessage& message)
 {
     if (accountId != owner.id)
         return;
@@ -116,6 +118,9 @@ ConversationModel::slotMessageUpdated(const QString& accountId,
         QString msgId = message.id;
         auto msg = interaction::Info(message, owner.profileInfo.uri, accountId, conversationId);
 
+        if (!interaction::isTypeDisplayable(msg.type)) {
+            return;
+        }
         if (!conversation.interactions->update(msgId, msg)) {
             qDebug() << "Message not found or unable to be reparented.";
             return;
@@ -123,18 +128,20 @@ ConversationModel::slotMessageUpdated(const QString& accountId,
         // The conversation is updated, so we need to notify the view.
         invalidateModel();
         Q_EMIT modelChanged();
-        { const auto _idx = index(indexOf(conversationId)); Q_EMIT dataChanged(_idx, _idx); }
+        {
+            const auto _idx = index(indexOf(conversationId));
+            Q_EMIT dataChanged(_idx, _idx);
+        }
     } catch (const std::exception& e) {
         qDebug() << "Messages received for conversation that does not exist.";
     }
 }
 
-
 void
 ConversationModel::slotReactionAdded(const QString& accountId,
-                                          const QString& conversationId,
-                                          const QString& messageId,
-                                          const MapStringString& reaction)
+                                     const QString& conversationId,
+                                     const QString& messageId,
+                                     const MapStringString& reaction)
 {
     if (accountId != owner.id) {
         return;
@@ -148,12 +155,11 @@ ConversationModel::slotReactionAdded(const QString& accountId,
     Q_EMIT reactionAdded(accountId, conversationId, messageId, reaction);
 }
 
-
 void
 ConversationModel::slotReactionRemoved(const QString& accountId,
-                                            const QString& conversationId,
-                                            const QString& messageId,
-                                            const QString& reactionId)
+                                       const QString& conversationId,
+                                       const QString& messageId,
+                                       const QString& reactionId)
 {
     if (accountId != owner.id) {
         return;
@@ -167,12 +173,11 @@ ConversationModel::slotReactionRemoved(const QString& accountId,
     Q_EMIT reactionRemoved(accountId, conversationId, messageId, reactionId);
 }
 
-
 void
 ConversationModel::slotNewAccountMessage(const QString& accountId,
-                                              const QString& peerId,
-                                              const QString& msgId,
-                                              const MapStringString& payloads)
+                                         const QString& peerId,
+                                         const QString& msgId,
+                                         const MapStringString& payloads)
 {
     if (accountId != owner.id)
         return;
@@ -187,12 +192,11 @@ ConversationModel::slotNewAccountMessage(const QString& accountId,
     }
 }
 
-
 void
 ConversationModel::slotIncomingCallMessage(const QString& accountId,
-                                                const QString& callId,
-                                                const QString& from,
-                                                const QString& body)
+                                           const QString& callId,
+                                           const QString& from,
+                                           const QString& body)
 {
     if (accountId != owner.id || !owner.callModel->hasCall(callId))
         return;
@@ -213,12 +217,11 @@ ConversationModel::slotIncomingCallMessage(const QString& accountId,
     }
 }
 
-
 void
 ConversationModel::slotComposingStatusChanged(const QString& accountId,
-                                                   const QString& convId,
-                                                   const QString& contactUri,
-                                                   bool isComposing)
+                                              const QString& convId,
+                                              const QString& contactUri,
+                                              bool isComposing)
 {
     if (accountId != owner.id)
         return;
@@ -236,11 +239,10 @@ ConversationModel::slotComposingStatusChanged(const QString& accountId,
     Q_EMIT composingStatusChanged(convId, contactUri, isComposing);
 }
 
-
 void
 ConversationModel::slotConversationProfileUpdated(const QString& accountId,
-                                                       const QString& conversationId,
-                                                       const MapStringString& profile)
+                                                  const QString& conversationId,
+                                                  const MapStringString& profile)
 {
     if (accountId != owner.id) {
         return;
@@ -253,12 +255,11 @@ ConversationModel::slotConversationProfileUpdated(const QString& accountId,
     }
 }
 
-
 QString
 ConversationModel::addIncomingMessage(const QString& peerId,
-                                           const QString& body,
-                                           const uint64_t& timestamp,
-                                           const QString& daemonId)
+                                      const QString& body,
+                                      const uint64_t& timestamp,
+                                      const QString& daemonId)
 {
     if (owner.profileInfo.type != profile::Type::SIP)
         return "";
@@ -301,18 +302,20 @@ ConversationModel::addIncomingMessage(const QString& peerId,
 
     invalidateModel();
     Q_EMIT modelChanged();
-    { const auto idx = index(conversationIdx); Q_EMIT dataChanged(idx, idx); }
+    {
+        const auto idx = index(conversationIdx);
+        Q_EMIT dataChanged(idx, idx);
+    }
 
     return msgId;
 }
 
-
 void
 ConversationModel::updateInteractionStatus(const QString& accountId,
-                                                const QString& conversationId,
-                                                const QString& peerUri,
-                                                const QString& messageId,
-                                                int status)
+                                           const QString& conversationId,
+                                           const QString& peerUri,
+                                           const QString& messageId,
+                                           int status)
 {
     if (accountId != owner.id) {
         return;
@@ -351,12 +354,10 @@ ConversationModel::updateInteractionStatus(const QString& accountId,
     }
 }
 
-
 int
 ConversationModel::getNumberOfUnreadMessagesForImpl(const QString& uid)
 {
     return storage::countUnreadFromInteractions(d_->db, uid);
 }
-
 
 } // namespace lrc
