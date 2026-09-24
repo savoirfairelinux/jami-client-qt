@@ -1,6 +1,7 @@
 [project]
 org='savoirfairelinux'
 name='jami'
+build_context='.'
 
 [build]
 distro='ci-client-qt'

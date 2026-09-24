@@ -989,6 +989,7 @@ if(ENABLE_LIBWRAP)
   add_subdirectory(${QTWRAPPER_SRC_DIR})
   if(JAMICORE_AS_SUBDIR)
     add_dependencies(qtwrapper jami-core)
+    list(APPEND CLIENT_INCLUDE_DIRS ${DAEMON_DIR}/src/jami)
   endif()
 endif()
 
