@@ -1,20 +1,19 @@
 FROM ubuntu:24.04
 
-ENV DEBIAN_FRONTEND noninteractive
-ENV QT_QUICK_BACKEND software
-ENV QT_QPA_PLATFORM offscreen
-ENV QT_OPENGL software
-ENV QSG_RHI_BACKEND software
-ENV QTWEBENGINE_CHROMIUM_FLAGS "--disable-gpu --disable-software-rasterizer --disable-dev-shm-usage"
-ENV LANG en_US.UTF-8
-ENV LC_ALL en_US.UTF-8
+ENV DEBIAN_FRONTEND=noninteractive
+ENV QT_QUICK_BACKEND=software
+ENV QT_QPA_PLATFORM=offscreen
+ENV QT_OPENGL=software
+ENV QSG_RHI_BACKEND=software
+ENV QTWEBENGINE_CHROMIUM_FLAGS="--disable-gpu --disable-software-rasterizer --disable-dev-shm-usage"
+ENV LANG=en_US.UTF-8
+ENV LC_ALL=en_US.UTF-8
 
 # Use only the custom Savoir-faire Linux Ubuntu mirror
 RUN rm -f /etc/apt/sources.list /etc/apt/sources.list.d/* /var/lib/apt/lists/* && \
     echo "deb http://gpl.savoirfairelinux.net/pub/mirrors/ubuntu noble main restricted universe multiverse" > /etc/apt/sources.list && \
     echo "deb http://gpl.savoirfairelinux.net/pub/mirrors/ubuntu noble-updates main restricted universe multiverse" >> /etc/apt/sources.list && \
-    echo "deb http://gpl.savoirfairelinux.net/pub/mirrors/ubuntu noble-security main restricted universe multiverse" >> /etc/apt/sources.list && \
-    echo "deb http://security.ubuntu.com/ubuntu noble-security main restricted universe multiverse" >> /etc/apt/sources.list
+    echo "deb http://gpl.savoirfairelinux.net/pub/mirrors/ubuntu noble-security main restricted universe multiverse" >> /etc/apt/sources.list
 
 # Locale and certificates
 RUN apt-get update && \
@@ -59,6 +58,7 @@ RUN apt-get update && apt-get install -y -o Acquire::Retries=10 \
     libclutter-gtk-1.0-dev \
     libclutter-1.0-dev \
     libglib2.0-dev \
+    libhunspell-dev \
     libnotify-dev \
     yasm \
     nasm \
