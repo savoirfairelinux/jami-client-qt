@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d700b461_55389cb5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6
+      },
+      "writtenOn": "2026-09-25T15:44:12Z",
+      "side": 1,
+      "message": "hack around an issue in pkgconfig files.\nproper fix is to make sure pkgconfig files are correct and list correct dependencies.",
+      "revId": "7b151923a69155a34d94db22a6489fd592de6c93",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5a3505d5_d5a895cd",
