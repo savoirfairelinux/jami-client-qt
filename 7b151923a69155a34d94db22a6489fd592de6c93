@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5a3505d5_d5a895cd",
+        "filename": "CMakeLists.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 1443,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-09-25T14:40:55Z",
+      "side": 1,
+      "message": "[warning] Line 1443: 🟡 `file(GLOB ...)` may match multiple `libssl.a` locations, and the first match is not guaranteed to be the one for the active toolchain/ABI when several contrib trees exist (e.g., host + target). This can silently link the wrong `libcrypto.a`. Prefer resolving from the already-selected link directories (for example `CLIENT_LINK_DIRS`) or selecting by the active triplet/toolchain path instead of first-match globbing.",
+      "revId": "7b151923a69155a34d94db22a6489fd592de6c93",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
