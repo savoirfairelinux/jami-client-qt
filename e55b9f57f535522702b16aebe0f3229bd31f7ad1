@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c27a4d5c_4718028c",
+        "filename": "CMakeLists.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 1445,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-09-25T15:51:02Z",
+      "side": 1,
+      "message": "[warning] Line 1445: 🟡 `get_directory_property(... DEFINITION CONTRIB_PATH)` is used without validating the result before the `EXISTS \"${_daemon_contrib_path}/lib/...\"` checks. If `CONTRIB_PATH` is unset/empty in a given configuration, this can degrade to probing `/lib/libssl.a` and `/lib/libcrypto.a` (or another unintended path), causing non-deterministic linking against system archives. Add an explicit guard such as `if(_daemon_contrib_path AND NOT _daemon_contrib_path MATCHES \"-NOTFOUND$\" AND EXISTS ...)` before using it.",
+      "revId": "e55b9f57f535522702b16aebe0f3229bd31f7ad1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
