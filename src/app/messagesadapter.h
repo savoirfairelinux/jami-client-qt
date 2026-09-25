@@ -32,7 +32,7 @@
 #include <QQmlEngine>   // QML registration
 #include <QApplication> // QML registration
 
-class FilteredMsgListModel final : public QSortFilterProxyModel
+class FilteredMsgListModel : public QSortFilterProxyModel
 {
     Q_OBJECT
     Q_PROPERTY(int count READ count NOTIFY countChanged)
@@ -50,8 +50,10 @@ public:
     bool filterAcceptsRow(int sourceRow, const QModelIndex& sourceParent) const override
     {
         auto index = sourceModel()->index(sourceRow, 0, sourceParent);
-        auto type = static_cast<interaction::Type>(sourceModel()->data(index, MessageList::Role::Type).toInt());
-        return interaction::isTypeDisplayable(type);
+        if (!isDisplayable(index))
+            return false;
+        // In threaded view, replies are only shown in the thread panel.
+        return !threaded_ || sourceModel()->data(index, MessageList::Role::ReplyTo).toString().isEmpty();
     };
     bool lessThan(const QModelIndex& left, const QModelIndex& right) const override
     {
@@ -78,8 +80,70 @@ public:
     {
         return rowCount();
     }
+
+    void setThreaded(bool threaded)
+    {
+        if (threaded_ == threaded)
+            return;
+        threaded_ = threaded;
+        refreshFilter();
+    }
+
 Q_SIGNALS:
     void countChanged();
+
+protected:
+    bool isDisplayable(const QModelIndex& sourceIndex) const
+    {
+        auto type = static_cast<interaction::Type>(sourceModel()->data(sourceIndex, MessageList::Role::Type).toInt());
+        return interaction::isTypeDisplayable(type);
+    }
+
+    void refreshFilter()
+    {
+#if QT_VERSION >= QT_VERSION_CHECK(6, 10, 0)
+        beginFilterChange();
+        endFilterChange(QSortFilterProxyModel::Direction::Rows);
+#else
+        invalidateFilter();
+#endif
+    }
+
+private:
+    bool threaded_ {false};
+};
+
+// Shows a thread root and all of its (transitive) replies.
+class ThreadMsgListModel final : public FilteredMsgListModel
+{
+    Q_OBJECT
+public:
+    explicit ThreadMsgListModel(QObject* parent = nullptr)
+        : FilteredMsgListModel(parent)
+    {
+        // Re-filter rows whose thread root changes as history is loaded.
+        setFilterRole(MessageList::Role::ThreadRootId);
+    }
+    bool filterAcceptsRow(int sourceRow, const QModelIndex& sourceParent) const override
+    {
+        if (rootId_.isEmpty())
+            return false;
+        auto index = sourceModel()->index(sourceRow, 0, sourceParent);
+        if (!isDisplayable(index))
+            return false;
+        return sourceModel()->data(index, MessageList::Role::ThreadRootId).toString() == rootId_;
+    };
+
+    void setRootId(const QString& rootId)
+    {
+        if (rootId_ == rootId)
+            return;
+        rootId_ = rootId;
+        refreshFilter();
+    }
+
+private:
+    QString rootId_;
 };
 
 class MessagesAdapter final : public QmlAdapterBase
@@ -88,6 +152,9 @@ class MessagesAdapter final : public QmlAdapterBase
     QML_SINGLETON
 
     QML_RO_PROPERTY(QVariant, messageListModel)
+    QML_RO_PROPERTY(QVariant, threadMessageListModel)
+    QML_PROPERTY(bool, threadedView)
+    QML_PROPERTY(QString, threadRootId)
     QML_PROPERTY(QString, replyToId)
     QML_PROPERTY(QString, editId)
     QML_RO_PROPERTY(QList<QString>, currentConvComposingList)
@@ -192,9 +259,11 @@ private:
     AppSettingsManager* settingsManager_;
     MessageParser* messageParser_;
     FilteredMsgListModel* filteredMsgListModel_;
+    ThreadMsgListModel* threadMsgListModel_;
     std::unique_ptr<MessageListModel> mediaInteractions_;
     QTimer* timestampTimer_;
     static constexpr const int loadChunkSize_ {20};
+    int threadHistoryRowCount_ {-1};
     static constexpr const int timestampUpdateIntervalMs_ {1000};
     QLocale curLocale_;
     QString dateFormatCurrentYear_;

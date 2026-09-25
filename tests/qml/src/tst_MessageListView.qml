@@ -78,6 +78,7 @@ ColumnLayout {
                     ReplyTo: "",
                     ReplyToAuthor: "",
                     ReplyToBody: "",
+                    ThreadReplyCount: 1,
                     Status: 4,
                     Timestamp: 1708025460,
                     TotalSize: 0,
@@ -180,6 +181,21 @@ ColumnLayout {
 
             function test_checkFakeConversation() {
                 compare(uut.model.count, 4)
+            }
+
+            function test_threadRepliesButtonIsTabFocusableOnlyForCurrentRow() {
+                tryVerify(function () {
+                    return uut.itemAtIndex(0) !== null;
+                }, 2000);
+                const button = findChild(uut.itemAtIndex(0), "threadRepliesButton");
+                verify(button !== null);
+
+                compare(button.activeFocusOnTab, false);
+                uut.currentIndex = 0;
+                tryCompare(button, "activeFocusOnTab", true);
+
+                uut.currentIndex = 1;
+                tryCompare(button, "activeFocusOnTab", false);
             }
 
             // The text context menu carries half a dozen icon-loading menu items.

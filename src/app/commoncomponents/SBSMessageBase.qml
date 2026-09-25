@@ -818,6 +818,80 @@ Control {
             }
         }
 
+        AbstractButton {
+            id: threadRepliesButton
+            objectName: "threadRepliesButton"
+
+            readonly property real messageLeft: msgRowlayout.x + itemRowMessage.x
+            readonly property real reactionLeft: messageLeft + emojiReactions.x
+            readonly property real reactionGap: 8
+            readonly property real reactionAlignedX: {
+                if (!emojiReactions.visible)
+                    return messageLeft + bubble.x;
+                if (emojiReactions.state !== "anchorsRight")
+                    return reactionLeft + emojiReactions.width + reactionGap;
+                return Math.min(messageLeft + bubble.x, reactionLeft - reactionGap - implicitWidth);
+            }
+            readonly property bool alignsWithReactions: !editedRow.visible
+                                                        && reactionAlignedX >= messageLeft
+                                                        && reactionAlignedX + implicitWidth
+                                                        <= messageLeft + itemRowMessage.width
+            // The reaction slot straddles the bubble's bottom edge; msgRowlayout
+            // only reserves its height when reactions exist.
+            readonly property real reactionSlotCenter: emojiReactions.emojis !== ""
+                                                       ? emojiReactions.height / 2
+                                                       : 8 - emojiReactions.height / 2
+            readonly property real reactionCenterOffset: reactionSlotCenter + implicitHeight / 2
+                                                         + (root.bigMsg ? timestampItem.timeLabel.height
+                                                                          - (bubble.height
+                                                                             - innerContent.height
+                                                                             - root.extraHeight) : 0)
+
+            Layout.alignment: alignsWithReactions ? Qt.AlignLeft : (isOutgoing ? Qt.AlignRight : Qt.AlignLeft)
+            Layout.topMargin: alignsWithReactions ? -reactionCenterOffset : 2
+            Layout.bottomMargin: alignsWithReactions ? reactionCenterOffset + 2 : 0
+            Layout.leftMargin: alignsWithReactions ? reactionAlignedX : (isOutgoing ? 0 : avatarBlockWidth + 8)
+            Layout.rightMargin: alignsWithReactions ? 0 : (isOutgoing ? JamiTheme.avatarReadReceiptSize : msgRadius)
+
+            text: ThreadReplyCount === 1 ? JamiStrings.showOneReply : JamiStrings.showReplies.arg(ThreadReplyCount)
+            padding: 0
+            focusPolicy: root.listView && root.listView.currentIndex === index ? Qt.TabFocus : Qt.NoFocus
+            hoverEnabled: true
+
+            // Only roots in the main (threaded) chat list link to their thread.
+            visible: MessagesAdapter.threadedView && !root.isReply && ThreadReplyCount > 0
+                     && root.listView && root.listView.model === MessagesAdapter.messageListModel
+
+            contentItem: Text {
+                text: threadRepliesButton.text
+
+                color: JamiTheme.textColor
+                opacity: threadRepliesButton.hovered || threadRepliesButton.activeFocus ? 1.0 : 0.8
+
+                font.pixelSize: JamiTheme.timestampFont
+                font.underline: threadRepliesButton.activeFocus
+
+                Behavior on opacity {
+                    NumberAnimation {
+                        duration: JamiTheme.shortFadeDuration
+                    }
+                }
+            }
+
+            background: Item {}
+
+            onClicked: {
+                MessagesAdapter.threadRootId = Id;
+            }
+
+            Accessible.role: Accessible.Button
+            Accessible.name: text
+
+            HoverHandler {
+                cursorShape: Qt.PointingHandCursor
+            }
+        }
+
         ListView {
             id: infoCell
 

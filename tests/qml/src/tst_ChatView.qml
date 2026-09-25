@@ -16,6 +16,7 @@
  */
 
 import QtQuick
+import QtQuick.Controls
 import QtTest
 
 import net.jami.Adapters 1.1
@@ -58,6 +59,18 @@ TestWrapper {
                     CurrentConversation.isRequest = false
                     CurrentConversation.needsSyncing = true
                     compare(chatViewFooter.visible, false)
+                }
+
+                function test_threadPanelUses420PxMinimumWidth() {
+                    const extrasPanel = findChild(uut, "conversationExtrasPanel")
+                    verify(extrasPanel !== null)
+
+                    extrasPanel.visible = true
+                    extrasPanel.currentIndex = ChatView.ConversationThreadPanel
+                    compare(extrasPanel.SplitView.minimumWidth, 420)
+
+                    extrasPanel.closePanel()
+                    compare(extrasPanel.SplitView.minimumWidth, JamiTheme.extrasPanelMinWidth)
                 }
 
                 function test_headerTitleUpdatesOnConversationTitleChange() {
