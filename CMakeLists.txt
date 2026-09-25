@@ -1440,6 +1440,16 @@ target_include_directories(${PROJECT_NAME} PRIVATE ${CLIENT_INCLUDE_DIRS})
 target_link_directories(${PROJECT_NAME} PRIVATE ${CLIENT_LINK_DIRS})
 target_link_libraries(${PROJECT_NAME} PRIVATE ${CLIENT_LIBS})
 
+if(WITH_DAEMON_SUBMODULE AND CMAKE_SYSTEM_NAME STREQUAL "Linux")
+  # Link again the libcrypto of the contribs the daemon was built with.
+  get_directory_property(_daemon_contrib_path DIRECTORY ${DAEMON_DIR} DEFINITION CONTRIB_PATH)
+  if(EXISTS "${_daemon_contrib_path}/lib/libssl.a" AND EXISTS "${_daemon_contrib_path}/lib/libcrypto.a")
+    add_library(jami_static_crypto INTERFACE)
+    target_link_libraries(jami_static_crypto INTERFACE "${_daemon_contrib_path}/lib/libcrypto.a")
+    target_link_libraries(${PROJECT_NAME} PRIVATE jami_static_crypto)
+  endif()
+endif()
+
 qt_import_qml_plugins(${PROJECT_NAME})
 qt_finalize_executable(${PROJECT_NAME})
 
