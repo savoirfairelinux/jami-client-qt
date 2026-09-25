@@ -122,6 +122,7 @@ void
 Lrc::connectivityChanged() const
 {
     ConfigurationManager::instance().connectivityChanged();
+    ConfigurationManager::instance().networkInterfaceChanged();
 }
 
 bool
