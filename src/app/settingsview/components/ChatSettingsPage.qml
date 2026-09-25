@@ -165,6 +165,23 @@ SettingsPageBase {
                     UtilsAdapter.setAppValue(Settings.Key.DisplayHyperlinkPreviews, checked);
                 }
             }
+
+            ToggleSwitch {
+                id: threadedChatViewToggleSwitch
+
+                Layout.fillWidth: true
+
+                checked: MessagesAdapter.threadedView
+
+                labelText: JamiStrings.threadedChatView
+                descText: JamiStrings.threadedChatViewDescription
+
+                tooltipText: JamiStrings.threadedChatView
+
+                onSwitchToggled: {
+                    MessagesAdapter.threadedView = checked;
+                }
+            }
         }
 
         ColumnLayout {
@@ -354,6 +371,8 @@ SettingsPageBase {
                 UtilsAdapter.setToDefault(Settings.Key.ChatViewEnterIsNewLine);
                 UtilsAdapter.setToDefault(Settings.Key.DisplayHyperlinkPreviews);
                 displayImagesCheckbox.checked = UtilsAdapter.getAppValue(Settings.DisplayHyperlinkPreviews);
+                MessagesAdapter.threadedView = UtilsAdapter.getDefault(Settings.Key.ThreadedChatView);
+                threadedChatViewToggleSwitch.checked = MessagesAdapter.threadedView;
                 if (UtilsAdapter.getAppValue(Settings.Key.ChatViewEnterIsNewLine))
                     enterButton.checked = true;
                 else
