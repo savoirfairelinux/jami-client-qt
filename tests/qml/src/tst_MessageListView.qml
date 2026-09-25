@@ -182,6 +182,21 @@ ColumnLayout {
                 compare(uut.model.count, 4)
             }
 
+            function test_threadRepliesButtonIsTabFocusableOnlyForCurrentRow() {
+                tryVerify(function () {
+                    return uut.itemAtIndex(0) !== null;
+                }, 2000);
+                const button = findChild(uut.itemAtIndex(0), "threadRepliesButton");
+                verify(button !== null);
+
+                compare(button.activeFocusOnTab, false);
+                uut.currentIndex = 0;
+                tryCompare(button, "activeFocusOnTab", true);
+
+                uut.currentIndex = 1;
+                tryCompare(button, "activeFocusOnTab", false);
+            }
+
             // The text context menu carries half a dozen icon-loading menu items.
             // Building it with the delegate puts that cost on the scroll path, once
             // per message row, so it must not exist until it is asked for.

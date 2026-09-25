@@ -48,6 +48,7 @@ MessagesAdapter::MessagesAdapter(AppSettingsManager* settingsManager,
     , settingsManager_(settingsManager)
     , messageParser_(new MessageParser(previewEngine, this))
     , filteredMsgListModel_(new FilteredMsgListModel(this))
+    , threadMsgListModel_(new ThreadMsgListModel(this))
     , mediaInteractions_(std::make_unique<MessageListModel>(nullptr))
     , timestampTimer_(new QTimer(this))
     , curLocale_(QLocale(settingsManager_->getLanguage()))
@@ -56,6 +57,23 @@ MessagesAdapter::MessagesAdapter(AppSettingsManager* settingsManager,
     updateDateFormats();
 
     set_messageListModel(QVariant::fromValue(filteredMsgListModel_));
+    set_threadMessageListModel(QVariant::fromValue(threadMsgListModel_));
+
+    set_threadedView(settingsManager_->getValue(Settings::Key::ThreadedChatView).toBool());
+    filteredMsgListModel_->setThreaded(threadedView_);
+    connect(this, &MessagesAdapter::threadedViewChanged, this, [this]() {
+        settingsManager_->setValue(Settings::Key::ThreadedChatView, threadedView_);
+        filteredMsgListModel_->setThreaded(threadedView_);
+        if (!threadedView_) {
+            set_threadRootId("");
+        } else {
+            threadHistoryRowCount_ = -1;
+            loadMoreMessages();
+        }
+    });
+    connect(this, &MessagesAdapter::threadRootIdChanged, this, [this]() {
+        threadMsgListModel_->setRootId(threadRootId_);
+    });
 
     connect(settingsManager_,
             &AppSettingsManager::reloadHistory,
@@ -65,11 +83,14 @@ MessagesAdapter::MessagesAdapter(AppSettingsManager* settingsManager,
     connect(lrcInstance_, &LRCInstance::selectedConvUidChanged, this, [this]() {
         set_replyToId("");
         set_editId("");
+        set_threadRootId("");
+        threadHistoryRowCount_ = -1;
         const QString& convId = lrcInstance_->get_selectedConvUid();
         const auto& conversation = lrcInstance_->getConversationFromConvUid(convId);
 
-        // Reset the source model for the proxy model.
+        // Reset the source model for the proxy models.
         filteredMsgListModel_->setSourceModel(conversation.interactions.get());
+        threadMsgListModel_->setSourceModel(conversation.interactions.get());
 
         set_currentConvComposingList(conversationTypersUrlToName(conversation.typers));
     });
@@ -551,6 +572,17 @@ MessagesAdapter::onConversationMessagesLoaded(uint32_t loadingRequestId, const Q
     if (convId != lrcInstance_->get_selectedConvUid())
         return;
     Q_EMIT moreMessagesLoaded(loadingRequestId);
+    // Threads are resolved client-side, so the full history is needed to find every reply.
+    // Queued because allMessagesLoaded is only updated after this signal is emitted.
+    // Stop if a chunk brought nothing new (e.g. truncated history without an initial commit).
+    if (threadedView_) {
+        const auto* model = getMsgListSourceModel();
+        const auto rowCount = model ? model->rowCount() : 0;
+        if (rowCount != threadHistoryRowCount_) {
+            threadHistoryRowCount_ = rowCount;
+            QMetaObject::invokeMethod(this, &MessagesAdapter::loadMoreMessages, Qt::QueuedConnection);
+        }
+    }
 }
 
 void

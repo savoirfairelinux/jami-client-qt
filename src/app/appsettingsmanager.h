@@ -79,7 +79,8 @@ extern const QString defaultDownloadPath;
     X(EnableAutomaticCrashReporting, false) \
     X(RaiseWhenCalled, false) \
     X(EnableApi, false) \
-    X(ApiPort, 8080)
+    X(ApiPort, 8080) \
+    X(ThreadedChatView, false)
 #if APPSTORE
 #define KEYS COMMON_KEYS
 #else

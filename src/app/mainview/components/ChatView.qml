@@ -42,7 +42,8 @@ Item {
         SwarmDetailsPanel,
         MessagesResearchPanel,
         AddMemberPanel,
-        ConversationStatusPanel
+        ConversationStatusPanel,
+        ConversationThreadPanel
     }
 
     property var mapPositions: PositionManager.mapStatus
@@ -644,11 +645,12 @@ Item {
 
                 ConversationExtrasPanel {
                     id: extrasPanel
+                    objectName: "conversationExtrasPanel"
                     property bool isMinorPane: false
 
                     SplitView.maximumWidth: root.width
-                    SplitView.minimumWidth: JamiTheme.extrasPanelMinWidth
-                    SplitView.preferredWidth: JamiTheme.extrasPanelMinWidth
+                    SplitView.minimumWidth: extrasPanel.isOpen(ChatView.ConversationThreadPanel) ? 420 : JamiTheme.extrasPanelMinWidth
+                    SplitView.preferredWidth: extrasPanel.isOpen(ChatView.ConversationThreadPanel) ? 420 : JamiTheme.extrasPanelMinWidth
                 }
             }
 

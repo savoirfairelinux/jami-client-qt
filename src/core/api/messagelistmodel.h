@@ -63,7 +63,9 @@ struct Info;
     X(IsLastSent) \
     X(Index) \
     X(OriginalBody) \
-    X(ParsedOriginalBody)
+    X(ParsedOriginalBody) \
+    X(ThreadRootId) \
+    X(ThreadReplyCount)
 
 namespace MessageList {
 Q_NAMESPACE
@@ -140,6 +142,11 @@ public:
     QString lastSelfMessageId(const QString& id) const;
     QPair<QString, time_t> getDisplayedInfoForPeer(const QString& peerId);
 
+    // Client-side threads: a thread root is the top-most ancestor reachable
+    // by following the "reply-to" links of loaded messages.
+    QString threadRootId(const QString& messageId) const;
+    int threadReplyCount(const QString& messageId) const;
+
 private:
     using Role = MessageList::Role;
 
@@ -155,7 +162,8 @@ private:
     // lastDisplayedMessageUid_, and is used to update the read status of the interaction.
     QMap<QString, QString> lastDisplayedMessageUid_; // {"peerId": "messageId"}
     QMap<QString, QStringList> messageToReaders_;    // {"messageId": ["peer1", "peer2"]}
-    QMap<QString, QSet<QString>> replyTo_;
+    QMap<QString, QSet<QString>> replyTo_;           // {"parentId": {"replyId", ...}}
+    QHash<QString, QString> replyParent_;            // {"replyId": "parentId"}
 
     QString lastSent_;
     int lastSentIdx_ {-1};
@@ -164,7 +172,8 @@ private:
     int move(iterator it, const QString& newParentId);
     QVariant data(int idx, int role = Qt::DisplayRole) const;
     QVariant dataForItem(const item_t& item, int indexRow, int role = Qt::DisplayRole) const;
-    void updateReplies(const item_t& message);
+    void updateReplies(const QString& id, const interaction::Info& interaction);
+    void emitDataChangedFor(const QString& messageId, const QList<int>& roles);
 };
 } // namespace api
 } // namespace lrc

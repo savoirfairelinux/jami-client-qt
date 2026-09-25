@@ -659,6 +659,8 @@ Item {
     property string enableReadReceiptsTooltip: qsTr("Send and request delivery and read receipts to be sent when messages are delivered or read.")
     property string displayHyperlinkPreviews: qsTr("Web link previews")
     property string displayHyperlinkPreviewsDescription: qsTr("Preview requires downloading content from third-party servers.")
+    property string threadedChatView: qsTr("Threaded view")
+    property string threadedChatViewDescription: qsTr("Hide replies from the conversation and show them in a separate panel.")
 
     property string userInterfaceLanguage: qsTr("User interface language")
     property string verticalViewOpt: qsTr("Vertical view")
@@ -942,6 +944,9 @@ Item {
     property string repliedTo: qsTr("%1 replied to")
     property string inReplyToYou: qsTr("you")
     property string reply: qsTr("Reply")
+    property string showOneReply: qsTr("Show 1 reply")
+    property string showReplies: qsTr("Show %1 replies")
+    property string thread: qsTr("Thread")
     property string writeTo: qsTr("Write to %1")
     property string writeToNewContact: qsTr("Send a message to %1 in order to add them as a contact")
     property string edit: qsTr("Edit")

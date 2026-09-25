@@ -818,6 +818,55 @@ Control {
             }
         }
 
+        AbstractButton {
+            id: threadRepliesButton
+            objectName: "threadRepliesButton"
+
+            Layout.alignment: isOutgoing ? Qt.AlignRight : Qt.AlignLeft
+            Layout.topMargin: 2
+            Layout.leftMargin: isOutgoing ? 0 : avatarBlockWidth
+            Layout.rightMargin: isOutgoing ? JamiTheme.avatarReadReceiptSize : msgRadius
+
+            text: ThreadReplyCount === 1 ? JamiStrings.showOneReply : JamiStrings.showReplies.arg(ThreadReplyCount)
+            padding: 0
+            focusPolicy: root.listView && root.listView.currentIndex === index ? Qt.TabFocus : Qt.NoFocus
+            hoverEnabled: true
+
+            // Only roots in the main (threaded) chat list link to their thread.
+            visible: MessagesAdapter.threadedView && !root.isReply && ThreadReplyCount > 0
+                     && root.listView && root.listView.model === MessagesAdapter.messageListModel
+
+
+            contentItem: Text {
+                text: threadRepliesButton.text
+
+                color: JamiTheme.textColor
+                opacity: threadRepliesButton.hovered || threadRepliesButton.activeFocus ? 1.0 : 0.8
+
+                font.pixelSize: JamiTheme.timestampFont
+                font.underline: threadRepliesButton.activeFocus
+
+                Behavior on opacity {
+                    NumberAnimation {
+                        duration: JamiTheme.shortFadeDuration
+                    }
+                }
+            }
+
+            background: Item {}
+
+            onClicked: {
+                MessagesAdapter.threadRootId = Id;
+            }
+
+            Accessible.role: Accessible.Button
+            Accessible.name: text
+
+            HoverHandler {
+                cursorShape: Qt.PointingHandCursor
+            }
+        }
+
         ListView {
             id: infoCell
 

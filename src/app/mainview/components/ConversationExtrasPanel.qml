@@ -31,6 +31,9 @@ StackLayout {
     // Best to avoid using the visible property directly.
     // Pass through the following open/close wrappers instead.
     function openPanel(panel) {
+        // The thread panel has nothing to show without a selected thread.
+        if (panel === ChatView.ConversationThreadPanel && MessagesAdapter.threadRootId === "")
+            return;
         currentIndex = panel;
         visible = true;
     }
@@ -76,6 +79,30 @@ StackLayout {
         }
     }
 
+    Connections {
+        target: MessagesAdapter
+
+        function onThreadRootIdChanged() {
+            if (MessagesAdapter.threadRootId !== "") {
+                openPanel(ChatView.ConversationThreadPanel);
+            } else if (isOpen(ChatView.ConversationThreadPanel)) {
+                // The thread was cleared (e.g. conversation switch or leaving threaded view).
+                closePanel();
+            }
+        }
+    }
+
+    // Forget the selected thread once its panel is no longer shown, so that
+    // selecting the same thread again reopens it.
+    onCurrentIndexChanged: {
+        if (visible && currentIndex !== ChatView.ConversationThreadPanel)
+            MessagesAdapter.threadRootId = "";
+    }
+    onVisibleChanged: {
+        if (!visible)
+            MessagesAdapter.threadRootId = "";
+    }
+
     Loader {
         active: root.isOpen(ChatView.SwarmDetailsPanel)
         sourceComponent: SwarmDetailsPanel {}
@@ -94,5 +121,10 @@ StackLayout {
     Loader {
         active: root.isOpen(ChatView.ConversationStatusPanel)
         sourceComponent: ConversationStatusView {}
+    }
+
+    Loader {
+        active: root.isOpen(ChatView.ConversationThreadPanel)
+        sourceComponent: ConversationThread {}
     }
 }

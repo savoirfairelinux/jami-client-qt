@@ -120,6 +120,7 @@ MessageListModel::clear()
     beginResetModel();
     interactions_.clear();
     replyTo_.clear();
+    replyParent_.clear();
     endResetModel();
 }
 
@@ -157,6 +158,7 @@ MessageListModel::insert(const QString& id, const interaction::Info& interaction
         Q_EMIT dataChanged(modelIndex, modelIndex, {Role::IsLastSent});
     }
     endInsertRows();
+    updateReplies(id, interaction);
     return true;
 }
 
@@ -179,6 +181,7 @@ MessageListModel::append(const QString& id, const interaction::Info& interaction
         Q_EMIT dataChanged(modelIndex, modelIndex, {Role::IsLastSent});
     }
     endInsertRows();
+    updateReplies(id, interaction);
     return true;
 }
 
@@ -645,28 +648,90 @@ MessageListModel::dataForItem(const item_t& item, int, int role) const
     case Role::Index:
         // For DEBUG only
         return QVariant(indexOfMessage(item.first));
+    case Role::ThreadRootId:
+        return QVariant(threadRootId(item.first));
+    case Role::ThreadReplyCount:
+        return QVariant(threadReplyCount(item.first));
     default:
         return {};
     }
 }
 
-void
-MessageListModel::updateReplies(const item_t& message)
+QString
+MessageListModel::threadRootId(const QString& messageId) const
 {
-    auto replyId = message.second.commit["reply-to"];
-    auto commitId = message.second.commit["id"];
-    if (!replyId.isEmpty()) {
-        replyTo_[replyId].insert(commitId);
+    std::lock_guard<std::recursive_mutex> lk(mutex_);
+    QSet<QString> visited {messageId};
+    auto current = messageId;
+    for (auto parent = replyParent_.value(current); !parent.isEmpty() && !visited.contains(parent);
+         parent = replyParent_.value(current)) {
+        visited.insert(parent);
+        current = parent;
+    }
+    return current;
+}
+
+int
+MessageListModel::threadReplyCount(const QString& messageId) const
+{
+    std::lock_guard<std::recursive_mutex> lk(mutex_);
+    QSet<QString> visited {messageId};
+    QList<QString> pending {messageId};
+    while (!pending.isEmpty()) {
+        const auto current = pending.takeLast();
+        for (const auto& replyId : replyTo_.value(current)) {
+            if (visited.contains(replyId))
+                continue;
+            visited.insert(replyId);
+            pending.append(replyId);
+        }
+    }
+    return visited.size() - 1;
+}
+
+void
+MessageListModel::updateReplies(const QString& id, const interaction::Info& interaction)
+{
+    // Note: assumes that the caller has locked the mutex.
+    const auto parentId = interaction.commit.value(QStringLiteral("reply-to"));
+    if (!parentId.isEmpty()) {
+        replyTo_[parentId].insert(id);
+        replyParent_[id] = parentId;
+
+        // Every ancestor gains this message (and its loaded replies) in its thread.
+        QSet<QString> visited {id};
+        for (auto ancestor = parentId; !ancestor.isEmpty() && !visited.contains(ancestor);
+             ancestor = replyParent_.value(ancestor)) {
+            visited.insert(ancestor);
+            emitDataChangedFor(ancestor, {Role::ThreadReplyCount});
+        }
     }
 
-    // Use a const reference to avoid detaching
-    const auto& replies = replyTo_[commitId];
-    for (const auto& msgId : replies) {
-        int index = indexOfMessage(msgId);
-        if (index == -1)
-            continue;
-        QModelIndex modelIndex = QAbstractListModel::index(index, 0);
-        Q_EMIT dataChanged(modelIndex, modelIndex, {Role::ReplyToAuthor, Role::ReplyToBody});
+    // Replies loaded before this message can now resolve their preview and thread root.
+    for (const auto& replyId : replyTo_.value(id)) {
+        emitDataChangedFor(replyId, {Role::ReplyToAuthor, Role::ReplyToBody});
     }
+    QSet<QString> visited {id};
+    QList<QString> pending {id};
+    while (!pending.isEmpty()) {
+        const auto current = pending.takeLast();
+        for (const auto& replyId : replyTo_.value(current)) {
+            if (visited.contains(replyId))
+                continue;
+            visited.insert(replyId);
+            pending.append(replyId);
+            emitDataChangedFor(replyId, {Role::ThreadRootId});
+        }
+    }
+}
+
+void
+MessageListModel::emitDataChangedFor(const QString& messageId, const QList<int>& roles)
+{
+    const auto index = indexOfMessage(messageId);
+    if (index == -1)
+        return;
+    const auto modelIndex = QAbstractListModel::index(index, 0);
+    Q_EMIT dataChanged(modelIndex, modelIndex, roles);
 }
 } // namespace lrc
