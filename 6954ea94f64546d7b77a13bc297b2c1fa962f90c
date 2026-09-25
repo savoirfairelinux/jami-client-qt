@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bd7988d6_daac6be4",
+        "filename": "src/core/lrc.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-09-25T14:41:31Z",
+      "side": 1,
+      "message": "[warning] Line 126: 🟡 `Lrc::connectivityChanged()` now always triggers both `connectivityChanged()` and `networkInterfaceChanged()`. That means every generic connectivity event is treated as an interface-change event, which may cause unnecessary call migration/reconfiguration churn. Gate `networkInterfaceChanged()` behind an actual interface-change signal/state check if available.",
+      "revId": "6954ea94f64546d7b77a13bc297b2c1fa962f90c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ffaf7110_bef82a3d",
+        "filename": "src/qtwrapper/configurationmanager_wrap.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 961,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-09-25T14:41:31Z",
+      "side": 1,
+      "message": "[error] Line 961: 🔴 This introduces an unconditional call to `libjami::networkInterfaceChanged()` without any compatibility guard, and CI is already failing across build targets. If the daemon/libjami version in builders doesn’t yet export this symbol, this change breaks compilation/linking. Add a version/feature guard (or wire an explicit dependency in Gerrit so this only merges with the daemon API change) before merging.",
+      "revId": "6954ea94f64546d7b77a13bc297b2c1fa962f90c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
