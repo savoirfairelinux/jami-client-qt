@@ -18,6 +18,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "15688e8a_064595d0",
+        "filename": "src/core/lrc.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 617
+      },
+      "writtenOn": "2026-09-25T15:59:35Z",
+      "side": 1,
+      "message": "Without a call in progress, networkInterfaceChanged() does nothing; during a call it moves the call to a new channel and restarts ICE, which is short. On Linux, the connectivity monitor only reports changes of NetworkManager\u0027s active connections, so this should stay rare; we can filter further if it shows up in practice.",
+      "parentUuid": "bd7988d6_daac6be4",
+      "revId": "6954ea94f64546d7b77a13bc297b2c1fa962f90c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ffaf7110_bef82a3d",
@@ -31,6 +49,24 @@
       "writtenOn": "2026-09-25T14:41:31Z",
       "side": 1,
       "message": "[error] Line 961: 🔴 This introduces an unconditional call to `libjami::networkInterfaceChanged()` without any compatibility guard, and CI is already failing across build targets. If the daemon/libjami version in builders doesn’t yet export this symbol, this change breaks compilation/linking. Add a version/feature guard (or wire an explicit dependency in Gerrit so this only merges with the daemon API change) before merging.",
+      "revId": "6954ea94f64546d7b77a13bc297b2c1fa962f90c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "236732ae_80f8f476",
+        "filename": "src/qtwrapper/configurationmanager_wrap.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 961,
+      "author": {
+        "id": 617
+      },
+      "writtenOn": "2026-09-25T15:59:35Z",
+      "side": 1,
+      "message": "This change depends on the daemon API added by https://review.jami.net/c/jami-daemon/+/36288 (same topic, ChangeIP): the daemon submodule will be bumped once it is merged, which also fixes the CI.",
+      "parentUuid": "ffaf7110_bef82a3d",
       "revId": "6954ea94f64546d7b77a13bc297b2c1fa962f90c",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
