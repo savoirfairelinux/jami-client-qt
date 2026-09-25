@@ -33,6 +33,24 @@
       "message": "[warning] Line 1443: 🟡 `file(GLOB ...)` may match multiple `libssl.a` locations, and the first match is not guaranteed to be the one for the active toolchain/ABI when several contrib trees exist (e.g., host + target). This can silently link the wrong `libcrypto.a`. Prefer resolving from the already-selected link directories (for example `CLIENT_LINK_DIRS`) or selecting by the active triplet/toolchain path instead of first-match globbing.",
       "revId": "7b151923a69155a34d94db22a6489fd592de6c93",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "46ba06e4_711c830d",
+        "filename": "CMakeLists.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 1443,
+      "author": {
+        "id": 617
+      },
+      "writtenOn": "2026-09-25T15:59:35Z",
+      "side": 1,
+      "message": "Done in patch set 2: libcrypto now comes from the CONTRIB_PATH the daemon was built with (get_directory_property), not from the first match.",
+      "parentUuid": "5a3505d5_d5a895cd",
+      "revId": "7b151923a69155a34d94db22a6489fd592de6c93",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
