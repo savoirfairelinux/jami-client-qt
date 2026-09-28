@@ -272,6 +272,7 @@ set(LIBCLIENT_SOURCES
   ${CORE_SRC_DIR}/avmodel.cpp
   ${CORE_SRC_DIR}/pluginmodel.cpp
   ${CORE_SRC_DIR}/interaction.cpp
+  ${CORE_SRC_DIR}/swarmpermissions.cpp
   ${CORE_SRC_DIR}/namedirectory.cpp
   ${CORE_SRC_DIR}/renderer.cpp)
 
@@ -303,6 +304,7 @@ set(LIBCLIENT_HEADERS
   ${CORE_SRC_DIR}/api/interaction.h
   ${CORE_SRC_DIR}/api/lrc.h
   ${CORE_SRC_DIR}/api/member.h
+  ${CORE_SRC_DIR}/api/swarmpermissions.h
   ${CORE_SRC_DIR}/api/accountmodel.h
   ${CORE_SRC_DIR}/api/callmodel.h
   ${CORE_SRC_DIR}/api/callparticipantsmodel.h
