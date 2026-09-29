@@ -154,11 +154,16 @@ ContactAdapter::contactSelected(int index)
     if (contactIndex.isValid()) {
         switch (listModeltype_) {
         case SmartListModel::Type::ADDCONVMEMBER: {
-            auto members = convModel->peersForConversation(lrcInstance_->get_selectedConvUid());
+            const auto convUid = lrcInstance_->get_selectedConvUid();
+            if (!convModel->isActionPermitted(convUid, lrc::api::permissions::Action::AddMember)) {
+                qWarning() << "Not permitted to add members to conversation" << convUid;
+                break;
+            }
+            auto members = convModel->peersForConversation(convUid);
             const auto uris = contactIndex.data(Role::Uris).toStringList();
             for (const auto& uri : uris) {
                 if (!members.contains(uri)) {
-                    convModel->addConversationMember(lrcInstance_->get_selectedConvUid(), uri);
+                    convModel->addConversationMember(convUid, uri);
                 }
             }
             break;

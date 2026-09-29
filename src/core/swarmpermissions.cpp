@@ -16,6 +16,9 @@
  ***************************************************************************/
 #include "api/swarmpermissions.h"
 
+#include "api/interaction.h"
+#include "api/messagelistmodel.h"
+
 #include <array>
 
 namespace lrc {
@@ -30,8 +33,6 @@ enum class Condition {
     None,
     // Denied when only admins may invite (conversation::Mode::ADMIN_INVITES_ONLY).
     NotAdminInvitesOnly,
-    // Banned members can read only content that existed before the ban.
-    PreBanContentOnly,
     // In one-to-one conversations, only the original peer may rejoin.
     OneToOneRejoinOnly
 };
@@ -56,28 +57,26 @@ constexpr Cell A {Rule::Allow};
 constexpr Cell ActorAuthoredOnly {Rule::AllowIfActorIsAuthor};
 constexpr Cell MemberInvite {Rule::Allow, Capability::None, Rule::Deny, Condition::NotAdminInvitesOnly};
 constexpr Cell MemberConversationProfile {Rule::Allow, Capability::MemberConversationProfileUpdate, Rule::Deny};
-constexpr Cell BannedRead {Rule::Allow, Capability::None, Rule::Deny, Condition::PreBanContentOnly};
 constexpr Cell OneToOneRejoin {Rule::Allow, Capability::None, Rule::Deny, Condition::OneToOneRejoinOnly};
 
-constexpr RoleRow DenyAll {D, D, D, D, D, D, D, D, D, D, D};
-constexpr RoleRow BannedReadOnly {D, D, BannedRead, D, D, D, D, D, D, D, D};
+constexpr RoleRow DenyAll {D, D, D, D, D, D, D, D, D, D};
 
-// Columns follow Action: SendFile, SendText, Read, Reply, React, Call,
-// EditMessage, DeleteMessage, AddMember, ChangeConversationProfile, BanUnbanMember.
+// Columns follow Action: SendFile, SendText, Reply, React, Call, EditMessage,
+// DeleteMessage, AddMember, ChangeConversationProfile, BanUnbanMember.
 // Rows follow member::Role: ADMIN, MEMBER, INVITED, BANNED, LEFT.
 constexpr ProfileTable BasicTable {{
-    {A, A, A, A, A, A, ActorAuthoredOnly, ActorAuthoredOnly, A, A, A},
-    {A, A, A, A, A, A, ActorAuthoredOnly, ActorAuthoredOnly, MemberInvite, MemberConversationProfile, D},
+    {A, A, A, A, A, ActorAuthoredOnly, ActorAuthoredOnly, A, A, A},
+    {A, A, A, A, A, ActorAuthoredOnly, ActorAuthoredOnly, MemberInvite, MemberConversationProfile, D},
     DenyAll,
-    BannedReadOnly,
+    DenyAll,
     DenyAll,
 }};
 
 constexpr ProfileTable OneToOneTable {{
-    {A, A, A, A, A, A, ActorAuthoredOnly, ActorAuthoredOnly, OneToOneRejoin, D, D},
-    {A, A, A, A, A, A, ActorAuthoredOnly, ActorAuthoredOnly, OneToOneRejoin, D, D},
+    {A, A, A, A, A, ActorAuthoredOnly, ActorAuthoredOnly, OneToOneRejoin, D, D},
+    {A, A, A, A, A, ActorAuthoredOnly, ActorAuthoredOnly, OneToOneRejoin, D, D},
     DenyAll,
-    BannedReadOnly,
+    DenyAll,
     DenyAll,
 }};
 
@@ -124,12 +123,6 @@ evaluate(std::optional<SwarmProfile> profile,
         if (*context.mode == conversation::Mode::ADMIN_INVITES_ONLY)
             return Decision::Denied;
     }
-    if (cell.condition == Condition::PreBanContentOnly) {
-        if (!context.contentExistedBeforeBan)
-            return Decision::Unknown;
-        if (!*context.contentExistedBeforeBan)
-            return Decision::Denied;
-    }
     if (cell.condition == Condition::OneToOneRejoinOnly) {
         if (!context.targetCanRejoin)
             return Decision::Unknown;
@@ -170,6 +163,42 @@ roleOf(const conversation::Info& conversation, const QString& uri)
             return participant.role;
     }
     return std::nullopt;
+}
+
+std::optional<Decision>
+evaluateFor(const conversation::Info& conversation,
+            const QString& selfUri,
+            Action action,
+            Context context,
+            const Capabilities& capabilities)
+{
+    const auto profile = profileFor(conversation);
+    if (!profile)
+        return std::nullopt;
+    if (!context.mode)
+        context.mode = conversation.mode;
+    return evaluate(profile, roleOf(conversation, selfUri), action, context, capabilities);
+}
+
+bool
+targetCanRejoin(const conversation::Info& conversation, const QString& targetUri)
+{
+    if (conversation.mode != conversation::Mode::ONE_TO_ONE)
+        return false;
+    return roleOf(conversation, targetUri) == member::Role::LEFT;
+}
+
+std::optional<bool>
+isMessageAuthoredBy(const conversation::Info& conversation, const QString& messageId, const QString& selfUri)
+{
+    // An empty id would make the lookup fall back to the last message.
+    if (messageId.isEmpty() || !conversation.interactions)
+        return std::nullopt;
+    std::optional<bool> authored;
+    conversation.interactions->with(messageId, [&](const QString&, interaction::Info& interaction) {
+        authored = interaction.authorUri.isEmpty() || interaction.authorUri == selfUri;
+    });
+    return authored;
 }
 
 } // namespace permissions

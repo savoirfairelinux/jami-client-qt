@@ -37,6 +37,8 @@ Item {
     Layout.fillHeight: true
 
     property var isAdmin: UtilsAdapter.getParticipantRole(CurrentAccount.id, CurrentConversation.id, CurrentAccount.uri) === Member.Role.ADMIN || CurrentConversation.isCoreDialog
+    // One-to-one edits only override the local contact, so they stay allowed.
+    property bool canEditProfile: CurrentConversation.isCoreDialog || CurrentConversation.canChangeConversationProfile
     property string textColor: UtilsAdapter.luma(innerRect.color) ? JamiTheme.chatviewTextColorLight : JamiTheme.chatviewTextColorDark
     property string coreDialogDisplayName: ""
     property bool coreDialogHasDisplayNameOverride: false
@@ -107,7 +109,7 @@ Item {
                     width: 180
                     height: 180
 
-                    readOnly: !isAdmin
+                    readOnly: !canEditProfile
 
                     newItem: true
                     imageId: LRCInstance.selectedConvUid
@@ -232,7 +234,7 @@ Item {
                                           ? ""
                                           : CurrentConversation.title
                         maxCharacters: JamiTheme.maximumCharacters
-                        readOnly: !isAdmin
+                        readOnly: !canEditProfile
                         toolTipText: CurrentConversation.isCoreDialog ? JamiStrings.contactName : JamiStrings.groupName
 
                         trailingIconSource: JamiResources.cancel_24dp_svg
@@ -257,7 +259,7 @@ Item {
                         maxCharacters: JamiTheme.maximumCharacters
                         textFieldFontFamily: CurrentConversation.isCoreDialog && CurrentConversation.description.length === 40 ? JamiTheme.ubuntuMonoFontFamily : JamiTheme.ubuntuFontFamily
                         textFieldFontPixelSize: JamiTheme.materialLineEditSelectedPixelSize
-                        readOnly: !isAdmin || CurrentConversation.isCoreDialog
+                        readOnly: !canEditProfile || CurrentConversation.isCoreDialog
                         toolTipText: JamiStrings.addDescription
 
                         trailingIconSource: JamiResources.cancel_24dp_svg
@@ -362,7 +364,7 @@ Item {
                     iconSource: JamiResources.add_people_24dp_svg
                     text: JamiStrings.inviteMember
 
-                    visible: !CurrentConversation.isCoreDialog
+                    visible: !CurrentConversation.isCoreDialog && CurrentConversation.canAddMember
 
                     onClicked: extrasPanel.switchToPanel(ChatView.AddMemberPanel)
                 }

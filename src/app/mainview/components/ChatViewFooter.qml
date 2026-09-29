@@ -36,6 +36,8 @@ Rectangle {
     property var convContext: CurrentConversation
 
     function setFilePathsToSend(filePaths) {
+        if (!convContext.canSendFile)
+            return;
         for (var index = 0; index < filePaths.length; ++index) {
             var path = UtilsAdapter.getAbsPath(decodeURIComponent(filePaths[index]));
             messageBar.fileContainer.filesToSendListModel.addToPending(path);
@@ -86,6 +88,8 @@ Rectangle {
         target: MessagesAdapter
 
         function onNewFilePasted(filePath) {
+            if (!convContext.canSendFile)
+                return;
             messageBar.fileContainer.filesToSendListModel.addToPending(filePath);
         }
 

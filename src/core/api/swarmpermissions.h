@@ -46,7 +46,6 @@ namespace permissions {
 enum class Action {
     SendFile,
     SendText,
-    Read,
     Reply,
     React,
     Call,
@@ -77,8 +76,6 @@ struct Context
     std::optional<bool> actorIsAuthor;
     // Needed for rules that depend on how invitations are restricted.
     std::optional<conversation::Mode> mode;
-    // For banned members: whether the content existed before the ban.
-    std::optional<bool> contentExistedBeforeBan;
     // For one-to-one AddMember: whether the original peer can rejoin.
     std::optional<bool> targetCanRejoin;
 };
@@ -110,6 +107,23 @@ isAllowed(Decision decision)
 std::optional<SwarmProfile> profileFor(const conversation::Info& conversation);
 
 std::optional<member::Role> roleOf(const conversation::Info& conversation, const QString& uri);
+
+// Evaluates an action for selfUri in the conversation, filling the mode from
+// the conversation. Returns nullopt when the policy does not apply (non-swarm),
+// so callers keep their legacy behaviour.
+std::optional<Decision> evaluateFor(const conversation::Info& conversation,
+                                    const QString& selfUri,
+                                    Action action,
+                                    Context context = {},
+                                    const Capabilities& capabilities = Capabilities::current());
+
+// One-to-one only: the target is the original peer and has left.
+bool targetCanRejoin(const conversation::Info& conversation, const QString& targetUri);
+
+// Whether selfUri wrote the message; nullopt if the message is not loaded.
+std::optional<bool> isMessageAuthoredBy(const conversation::Info& conversation,
+                                        const QString& messageId,
+                                        const QString& selfUri);
 
 } // namespace permissions
 } // namespace api

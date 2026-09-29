@@ -379,7 +379,7 @@ Control {
                         iconSource: JamiResources.bidirectional_reply_black_24dp_svg
                         toolTipText: JamiStrings.reply
 
-                        visible: shouldBeVisible
+                        visible: shouldBeVisible && CurrentConversation.canReply
 
                         onClicked: {
                             MessagesAdapter.editId = "";
@@ -527,6 +527,8 @@ Control {
                         }
 
                         onDoubleClicked: {
+                            if (!CurrentConversation.canReply)
+                                return;
                             MessagesAdapter.editId = "";
                             MessagesAdapter.replyToId = Id;
                         }

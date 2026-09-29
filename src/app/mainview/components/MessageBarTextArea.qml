@@ -221,7 +221,7 @@ JamiFlickable {
                 MessagesAdapter.onPaste();
                 keyEvent.accepted = true;
             } else if (keyEvent.matches(StandardKey.MoveToPreviousLine)) {
-                if (root.text !== "")
+                if (root.text !== "" || !CurrentConversation.canEditMessage(CurrentConversation.lastSelfMessageId))
                     return;
                 MessagesAdapter.replyToId = "";
                 MessagesAdapter.editId = CurrentConversation.lastSelfMessageId;
