@@ -356,7 +356,12 @@ CallAdapter::startAudioOnlyCall()
 {
     const auto convUid = lrcInstance_->get_selectedConvUid();
     if (!convUid.isEmpty()) {
-        lrcInstance_->getCurrentConversationModel()->startAudioOnlyCall(convUid);
+        auto* convModel = lrcInstance_->getCurrentConversationModel();
+        if (!convModel->isActionPermitted(convUid, lrc::api::permissions::Action::Call)) {
+            qWarning() << "Not permitted to call in conversation" << convUid;
+            return;
+        }
+        convModel->startAudioOnlyCall(convUid);
     }
 }
 
@@ -365,7 +370,12 @@ CallAdapter::startCall()
 {
     const auto convUid = lrcInstance_->get_selectedConvUid();
     if (!convUid.isEmpty()) {
-        lrcInstance_->getCurrentConversationModel()->startCall(convUid);
+        auto* convModel = lrcInstance_->getCurrentConversationModel();
+        if (!convModel->isActionPermitted(convUid, lrc::api::permissions::Action::Call)) {
+            qWarning() << "Not permitted to call in conversation" << convUid;
+            return;
+        }
+        convModel->startCall(convUid);
     }
 }
 

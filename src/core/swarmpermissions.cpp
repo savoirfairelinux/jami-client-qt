@@ -16,6 +16,9 @@
  ***************************************************************************/
 #include "api/swarmpermissions.h"
 
+#include "api/interaction.h"
+#include "api/messagelistmodel.h"
+
 #include <array>
 
 namespace lrc {
@@ -170,6 +173,42 @@ roleOf(const conversation::Info& conversation, const QString& uri)
             return participant.role;
     }
     return std::nullopt;
+}
+
+std::optional<Decision>
+evaluateFor(const conversation::Info& conversation,
+            const QString& selfUri,
+            Action action,
+            Context context,
+            const Capabilities& capabilities)
+{
+    const auto profile = profileFor(conversation);
+    if (!profile)
+        return std::nullopt;
+    if (!context.mode)
+        context.mode = conversation.mode;
+    return evaluate(profile, roleOf(conversation, selfUri), action, context, capabilities);
+}
+
+bool
+targetCanRejoin(const conversation::Info& conversation, const QString& targetUri)
+{
+    if (conversation.mode != conversation::Mode::ONE_TO_ONE)
+        return false;
+    return roleOf(conversation, targetUri) == member::Role::LEFT;
+}
+
+std::optional<bool>
+isMessageAuthoredBy(const conversation::Info& conversation, const QString& messageId, const QString& selfUri)
+{
+    // An empty id would make the lookup fall back to the last message.
+    if (messageId.isEmpty() || !conversation.interactions)
+        return std::nullopt;
+    std::optional<bool> authored;
+    conversation.interactions->with(messageId, [&](const QString&, interaction::Info& interaction) {
+        authored = interaction.authorUri.isEmpty() || interaction.authorUri == selfUri;
+    });
+    return authored;
 }
 
 } // namespace permissions

@@ -57,7 +57,7 @@ BaseContextMenu {
             focusPolicy: Qt.StrongFocus
             Keys.onReturnPressed: clicked()
 
-            canTrigger: true
+            canTrigger: CurrentConversation.canSendFile
             iconSource: JamiResources.message_audio_black_24dp_svg
             itemName: JamiStrings.leaveAudioMessage
             onClicked: {
@@ -77,7 +77,7 @@ BaseContextMenu {
             focusPolicy: Qt.StrongFocus
             Keys.onReturnPressed: clicked()
 
-            canTrigger: true
+            canTrigger: CurrentConversation.canSendFile
             iconSource: JamiResources.message_video_black_24dp_svg
             itemName: JamiStrings.leaveVideoMessage
             isActif: VideoDevices.listSize !== 0

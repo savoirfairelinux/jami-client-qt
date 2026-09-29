@@ -16,6 +16,8 @@
  */
 
 #include "api/swarmpermissions.h"
+#include "api/interaction.h"
+#include "api/messagelistmodel.h"
 
 #include <gtest/gtest.h>
 
@@ -318,4 +320,103 @@ TEST(SwarmPermissions, AMissingParticipantHasNoRole)
     conversation::Info conversation(QStringLiteral("conv"), nullptr);
     conversation.participants = {{QStringLiteral("alice"), Role::ADMIN}};
     EXPECT_EQ(roleOf(conversation, QStringLiteral("mallory")), std::nullopt);
+}
+
+// Evaluating an action for the local account in a conversation
+
+namespace {
+
+conversation::Info
+conversationWith(Mode mode, QVector<member::Member> participants)
+{
+    conversation::Info conversation(QStringLiteral("conv"), nullptr);
+    conversation.mode = mode;
+    conversation.participants = std::move(participants);
+    return conversation;
+}
+
+} // namespace
+
+TEST(SwarmPermissions, ThePolicyDoesNotApplyToNonSwarmConversations)
+{
+    const auto conversation = conversationWith(Mode::NON_SWARM, {{QStringLiteral("self"), Role::ADMIN}});
+    EXPECT_EQ(evaluateFor(conversation, QStringLiteral("self"), Action::SendText), std::nullopt);
+}
+
+TEST(SwarmPermissions, TheConversationModeIsUsedForTheSelfRole)
+{
+    const auto restricted = conversationWith(Mode::ADMIN_INVITES_ONLY, {{QStringLiteral("self"), Role::MEMBER}});
+    EXPECT_EQ(evaluateFor(restricted, QStringLiteral("self"), Action::AddMember), Decision::Denied);
+
+    const auto open = conversationWith(Mode::INVITES_ONLY, {{QStringLiteral("self"), Role::MEMBER}});
+    EXPECT_EQ(evaluateFor(open, QStringLiteral("self"), Action::AddMember), Decision::Allowed);
+}
+
+TEST(SwarmPermissions, ABannedSelfCanReadButNotSend)
+{
+    const auto conversation = conversationWith(Mode::INVITES_ONLY, {{QStringLiteral("self"), Role::BANNED}});
+    const auto sendDecision = evaluateFor(conversation, QStringLiteral("self"), Action::SendText);
+    ASSERT_TRUE(sendDecision);
+    EXPECT_EQ(*sendDecision, Decision::Denied);
+    EXPECT_FALSE(isAllowed(*sendDecision));
+    EXPECT_EQ(evaluateFor(conversation, QStringLiteral("self"), Action::Read, contentExistedBeforeBan()),
+              Decision::Allowed);
+}
+
+TEST(SwarmPermissions, AnAbsentSelfIsNeverAllowed)
+{
+    const auto conversation = conversationWith(Mode::INVITES_ONLY, {{QStringLiteral("alice"), Role::ADMIN}});
+    const auto decision = evaluateFor(conversation, QStringLiteral("self"), Action::SendText);
+    ASSERT_TRUE(decision);
+    EXPECT_EQ(*decision, Decision::Unknown);
+    EXPECT_FALSE(isAllowed(*decision));
+}
+
+TEST(SwarmPermissions, OnlyTheOriginalOneToOnePeerWhoLeftCanRejoin)
+{
+    const auto conversation = conversationWith(Mode::ONE_TO_ONE,
+                                               {{QStringLiteral("self"), Role::ADMIN},
+                                                {QStringLiteral("peer"), Role::LEFT}});
+    EXPECT_TRUE(targetCanRejoin(conversation, QStringLiteral("peer")));
+    EXPECT_FALSE(targetCanRejoin(conversation, QStringLiteral("stranger")));
+    EXPECT_FALSE(targetCanRejoin(conversation, QStringLiteral("self")));
+
+    const auto group = conversationWith(Mode::INVITES_ONLY, {{QStringLiteral("peer"), Role::LEFT}});
+    EXPECT_FALSE(targetCanRejoin(group, QStringLiteral("peer")));
+}
+
+TEST(SwarmPermissions, OneToOneAddMemberUsesTheTargetsRejoinEligibility)
+{
+    const auto conversation = conversationWith(Mode::ONE_TO_ONE,
+                                               {{QStringLiteral("self"), Role::ADMIN},
+                                                {QStringLiteral("peer"), Role::LEFT}});
+    Context rejoin;
+    rejoin.targetCanRejoin = targetCanRejoin(conversation, QStringLiteral("peer"));
+    EXPECT_EQ(evaluateFor(conversation, QStringLiteral("self"), Action::AddMember, rejoin), Decision::Allowed);
+
+    Context stranger;
+    stranger.targetCanRejoin = targetCanRejoin(conversation, QStringLiteral("stranger"));
+    EXPECT_EQ(evaluateFor(conversation, QStringLiteral("self"), Action::AddMember, stranger), Decision::Denied);
+}
+
+TEST(SwarmPermissions, MessageAuthorshipIsResolvedFromTheInteraction)
+{
+    auto conversation = conversationWith(Mode::INVITES_ONLY, {{QStringLiteral("self"), Role::MEMBER}});
+    interaction::Info mine;
+    mine.authorUri = QStringLiteral("self");
+    mine.type = interaction::Type::TEXT;
+    interaction::Info legacyMine;
+    legacyMine.type = interaction::Type::TEXT;
+    interaction::Info theirs;
+    theirs.authorUri = QStringLiteral("alice");
+    theirs.type = interaction::Type::TEXT;
+    conversation.interactions->append(QStringLiteral("m1"), mine);
+    conversation.interactions->append(QStringLiteral("m2"), legacyMine);
+    conversation.interactions->append(QStringLiteral("m3"), theirs);
+
+    EXPECT_EQ(isMessageAuthoredBy(conversation, QStringLiteral("m1"), QStringLiteral("self")), true);
+    EXPECT_EQ(isMessageAuthoredBy(conversation, QStringLiteral("m2"), QStringLiteral("self")), true);
+    EXPECT_EQ(isMessageAuthoredBy(conversation, QStringLiteral("m3"), QStringLiteral("self")), false);
+    EXPECT_EQ(isMessageAuthoredBy(conversation, QStringLiteral("missing"), QStringLiteral("self")), std::nullopt);
+    EXPECT_EQ(isMessageAuthoredBy(conversation, QString(), QStringLiteral("self")), std::nullopt);
 }

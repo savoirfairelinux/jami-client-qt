@@ -23,6 +23,7 @@
 #include "api/contact.h"
 #include "api/profile.h"
 #include "api/datatransfer.h"
+#include "api/swarmpermissions.h"
 #include "containerview.h"
 
 #include <QAbstractListModel>
@@ -32,6 +33,7 @@
 #include <functional>
 #include <memory>
 #include <deque>
+#include <optional>
 
 class QTimer;
 
@@ -468,12 +470,43 @@ public:
     QString avatar(const QString& conversationId) const;
 
     /**
-     * Get member's role in conversation
+     * Get member's role in conversation, without assuming one when it is unknown
      * @param conversationId
      * @param memberUri
-     * @return role
+     * @return role, or nullopt if the conversation or the member is not found
      */
-    member::Role memberRole(const QString& conversationId, const QString& memberUri) const;
+    std::optional<member::Role> memberRole(const QString& conversationId, const QString& memberUri) const;
+
+    /**
+     * Whether the local account may perform a swarm action
+     * @param conversationId
+     * @param action
+     * @param context extra information the rule needs (the mode is filled in)
+     * @return false when the conversation is unknown; otherwise true when allowed
+     *         or when the swarm policy does not apply
+     */
+    bool isActionPermitted(const QString& conversationId,
+                           permissions::Action action,
+                           const permissions::Context& context = {}) const;
+
+    /**
+     * Whether the local account may edit or delete a message
+     * @param conversationId
+     * @param messageId
+     * @param action EditMessage or DeleteMessage
+     * @return true when allowed; outside the swarm policy, only for own messages
+     */
+    bool isActionPermittedForMessage(const QString& conversationId,
+                                     const QString& messageId,
+                                     permissions::Action action) const;
+
+    /**
+     * Whether the local account may update the title, description or avatar
+     * @param conversationId
+     * @return false when the conversation is unknown; true for one-to-one contact
+     *         updates, or groups allowing ChangeConversationProfile
+     */
+    bool isProfileUpdatePermitted(const QString& conversationId) const;
 
 Q_SIGNALS:
 

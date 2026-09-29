@@ -8,7 +8,7 @@ validates operations independently.
 
 | Profile | Conversation modes |
 | --- | --- |
-| Basic | `ADMIN_INVITES_ONLY`, `INVITES_ONLY`, `PUBLIC` |
+| Basic | `INVITES_ONLY` |
 | One-to-one | `ONE_TO_ONE` |
 | None | `NON_SWARM` conversations do not use this policy |
 
@@ -49,7 +49,7 @@ cells.
 | Call | Allow | Allow |
 | Edit message | Actor-authored only | Actor-authored only |
 | Delete message | Actor-authored only | Actor-authored only |
-| Add member | Allow | Allow except in `ADMIN_INVITES_ONLY` mode |
+| Add member | Allow | Allow when the conversation mode is known |
 | Change conversation profile | Allow | Allow |
 | Ban or unban member | Allow | Deny |
 
@@ -96,12 +96,32 @@ unchanged.
 
 The client returns `Unknown` when it cannot determine a profile or role, or
 when a required condition is missing (for example, whether the actor authored
-the targeted message, the conversation mode for a member adding someone, or
+the targeted message, the conversation mode for a member adding someone,
 whether content existed before a ban, or whether a one-to-one target can
 rejoin).
 Callers must treat `Unknown` as not allowed. For a Basic member adding someone,
-the known mode is required: `ADMIN_INVITES_ONLY` denies the action, while
-`INVITES_ONLY` and `PUBLIC` allow it.
+the known mode is required; the currently used `INVITES_ONLY` mode allows it.
+
+## UI wiring
+
+`ConversationModel::isActionPermitted()` and `isActionPermittedForMessage()`
+evaluate the policy for the local account. When the policy does not apply
+(non-swarm conversations), they keep the previous behaviour. Denied actions
+are hidden in the UI, and the adapters also refuse them and log a warning.
+
+| Action | QML | Adapter guard |
+| --- | --- | --- |
+| Send text / Send file | `CurrentConversation.canSendText` / `canSendFile`: chat footer, attach and recorded-message buttons, file drop and paste | `MessagesAdapter::sendMessage*`, `sendFile*` |
+| Reply | `canReply`: reply button, double click, context menu | `MessagesAdapter::sendMessage*` when `replyToId` is set |
+| React | `canReact`: quick reactions, emoji picker, reaction removal | `MessagesAdapter::addEmojiReaction`, `removeReaction` |
+| Call | `canCall` in the header; `ConversationsAdapter.canCall()` in the conversation list menu | `CallAdapter::startCall`, `startAudioOnlyCall` |
+| Edit / Delete message | `CurrentConversation.canEditMessage()` / `canDeleteMessage()`: message menus, up-arrow edit | `MessagesAdapter::editMessage` (an empty body deletes) |
+| Add member | `canAddMember`: invite buttons | `ContactAdapter::contactSelected`, `MessagesAdapter::addConversationMember` |
+| Change conversation profile | `canChangeConversationProfile`: title, description, avatar in the details panel | `ConversationModel::isProfileUpdatePermitted()` in the title, description and avatar setters |
+| Ban or unban member | `canBanUnbanMember`: participant menu | `MessagesAdapter::removeConversationMember`, and `addConversationMember` for a banned target |
+
+One-to-one title and avatar edits only override the local contact profile, so
+they are not gated by `ChangeConversationProfile`.
 
 ## Source
 

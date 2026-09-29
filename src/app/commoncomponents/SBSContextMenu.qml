@@ -52,6 +52,7 @@ ContextMenuAutoLoader {
         GeneralMenuItem {
             id: reply
 
+            canTrigger: CurrentConversation.canReply
             itemName: JamiStrings.reply
             iconSource: JamiResources.bidirectional_reply_black_24dp_svg
             onClicked: {
@@ -62,7 +63,7 @@ ContextMenuAutoLoader {
         GeneralMenuItem {
             id: edit
 
-            canTrigger: transferId === "" && isOutgoing
+            canTrigger: transferId === "" && isOutgoing && CurrentConversation.canEditMessage(root.msgId)
             itemName: JamiStrings.edit
             iconSource: JamiResources.edit_24dp_svg
             onClicked: {
@@ -74,7 +75,7 @@ ContextMenuAutoLoader {
             id: deleteMsg
             dangerous: true
 
-            canTrigger: transferId === "" && isOutgoing
+            canTrigger: transferId === "" && isOutgoing && CurrentConversation.canDeleteMessage(root.msgId)
             itemName: JamiStrings.optionDelete
             iconSource: JamiResources.delete_24dp_svg
             onClicked: {
