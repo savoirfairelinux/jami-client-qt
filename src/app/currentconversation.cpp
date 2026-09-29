@@ -21,6 +21,7 @@
 
 #include <api/conversationmodel.h>
 #include <api/contact.h>
+#include <api/swarmpermissions.h>
 
 CurrentConversation::CurrentConversation(LRCInstance* lrcInstance, QObject* parent)
     : QObject(parent)
@@ -55,6 +56,7 @@ CurrentConversation::updateData()
         set_id();
         set_botOwner();
         membersModel_->setMembers({}, {}, {});
+        updatePermissions(nullptr, {});
         return;
     }
 
@@ -77,10 +79,12 @@ CurrentConversation::updateData()
         auto optConv = accInfo.conversationModel->getConversationForUid(convId);
         if (!optConv) {
             set_botOwner();
+            updatePermissions(nullptr, {});
             return;
         }
         auto& convInfo = optConv->get();
         set_lastSelfMessageId(convInfo.lastSelfMessageId);
+        updatePermissions(&convInfo, accInfo.profileInfo.uri);
         QStringList uris, bannedUris;
         auto isAdmin = false;
         for (const auto& p : convInfo.participants) {
@@ -157,6 +161,58 @@ CurrentConversation::updateData()
     } catch (...) {
         qWarning() << "Error while updating current conversation data for" << convId;
     }
+}
+
+void
+CurrentConversation::updatePermissions(const conversation::Info* convInfo, const QString& selfUri)
+{
+    using namespace lrc::api::permissions;
+    auto allowed = [&](Action action) {
+        if (!convInfo)
+            return false;
+        const auto decision = evaluateFor(*convInfo, selfUri, action);
+        if (!decision)
+            return true; // No swarm policy applies; keep legacy UI behavior.
+        return isAllowed(*decision);
+    };
+    set_canSendText(allowed(Action::SendText));
+    set_canSendFile(allowed(Action::SendFile));
+    set_canReplyText(allowed(Action::ReplyText));
+    set_canReplyFile(allowed(Action::ReplyFile));
+    set_canReact(allowed(Action::React));
+    set_canCall(allowed(Action::Call));
+    set_canAddMember(allowed(Action::AddMember));
+    set_canChangeConversationProfile(allowed(Action::ChangeConversationProfile));
+    set_canBanUnbanMember(allowed(Action::BanUnbanMember));
+    set_canCreateDocument(allowed(Action::CreateCollaborativeDocument));
+}
+
+namespace {
+bool
+isMessageActionAllowed(LRCInstance* lrcInstance,
+                       const QString& convId,
+                       const QString& messageId,
+                       lrc::api::permissions::Action action)
+{
+    try {
+        auto* convModel = lrcInstance->getCurrentConversationModel();
+        return convModel && convModel->isActionPermittedForMessage(convId, messageId, action);
+    } catch (...) {
+        return false;
+    }
+}
+} // namespace
+
+bool
+CurrentConversation::canEditMessage(const QString& messageId) const
+{
+    return isMessageActionAllowed(lrcInstance_, id_, messageId, lrc::api::permissions::Action::EditMessage);
+}
+
+bool
+CurrentConversation::canDeleteMessage(const QString& messageId) const
+{
+    return isMessageActionAllowed(lrcInstance_, id_, messageId, lrc::api::permissions::Action::DeleteMessage);
 }
 
 void

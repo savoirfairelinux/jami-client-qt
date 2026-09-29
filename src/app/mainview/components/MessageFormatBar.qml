@@ -29,13 +29,15 @@ import "qrc:/js/markdownedition.js" as MDE
 
 Rectangle {
     id: messageBarRowLayout
-    Layout.preferredWidth: showTypo ? firstRow.width + secondRow.width : secondRow.width
+    objectName: "messageFormatBar"
+    Layout.preferredWidth: showTypo && canComposeText ? firstRow.width + secondRow.width : secondRow.width
     LayoutMirroring.enabled: UtilsAdapter.isRTL
     LayoutMirroring.childrenInherit: true
 
     property alias listViewTypoFirst: listViewTypoFirst
     property bool isEmojiPickerOpen
     property var convContext: CurrentConversation
+    property bool canComposeText: true
 
     // True when the current conversation has at least one editable document.
     // Recomputed when the conversation changes or its interactions change (a
@@ -70,9 +72,11 @@ Rectangle {
 
     Row {
         id: firstRow
+        objectName: "formattingRow"
 
         anchors.left: messageBarRowLayout.left
         anchors.bottom: messageBarRowLayout.bottom
+        visible: messageBarRowLayout.canComposeText
 
         Row {
             id: listViewTypo
@@ -238,6 +242,15 @@ Rectangle {
 
                         menuTypoActionsSecond: listViewTypoSecond.menuTypoActionsSecond
                     }
+
+                    Connections {
+                        target: messageBarRowLayout
+
+                        function onCanComposeTextChanged() {
+                            if (!messageBarRowLayout.canComposeText)
+                                markdownPopup.close();
+                        }
+                    }
                 }
             }
 
@@ -321,8 +334,10 @@ Rectangle {
         // Overriden NewIconButton due to icon fitting issues
         NewIconButton {
             id: typoButton
+            objectName: "typoButton"
 
             anchors.verticalCenter: parent.verticalCenter
+            visible: messageBarRowLayout.canComposeText
 
             iconSize: JamiTheme.iconButtonMedium - 4
             iconSource: JamiResources.text_edit_black_24dp_svg
@@ -382,6 +397,7 @@ Rectangle {
             property list<Action> menuMoreButton: [
                 Action {
                     id: leaveAudioMessage
+                    property bool needSendFile: true
                     property string iconSrc: JamiResources.message_audio_black_24dp_svg
                     property string toolTip: JamiStrings.leaveAudioMessage
                     property bool show: false
@@ -394,6 +410,7 @@ Rectangle {
                 },
                 Action {
                     id: leaveVideoMessage
+                    property bool needSendFile: true
                     property string iconSrc: JamiResources.message_video_black_24dp_svg
                     property string toolTip: JamiStrings.leaveVideoMessage
                     property bool show: false
@@ -459,6 +476,13 @@ Rectangle {
                             return data.menuAction.needVideoDevice === false;
                         }
                         enabled: VideoDevices.listSize === 0
+                    },
+                    FunctionFilter {
+                        column: 0
+                        function filter(data: MenuActionFilterData): bool {
+                            return data.menuAction.needSendFile !== true;
+                        }
+                        enabled: convContext && !(MessagesAdapter.replyToId ? convContext.canReplyFile : convContext.canSendFile)
                     }
                 ]
             }
@@ -518,6 +542,7 @@ Rectangle {
                 id: sharePopupComp
                 ShareMenu {
                     id: sharePopup
+                    convContext: messageBarRowLayout.convContext
                     onAudioRecordMessageButtonClicked: rectangle.audioRecordMessageButtonClicked(
                                                            )
                     onVideoRecordMessageButtonClicked: rectangle.videoRecordMessageButtonClicked(
@@ -531,10 +556,14 @@ Rectangle {
 
             popup: ShareMenu {
                 id: sharePopup
+                objectName: "chatViewShareMenu"
+                convContext: messageBarRowLayout.convContext
                 onAudioRecordMessageButtonClicked: rectangle.audioRecordMessageButtonClicked()
                 onVideoRecordMessageButtonClicked: rectangle.videoRecordMessageButtonClicked()
                 onShowMapClicked: rectangle.showMapClicked()
                 onNewEditableDocumentClicked: {
+                    if (!convContext.canCreateDocument)
+                        return;
                     viewCoordinator.presentDialog(appWindow,
                                                   "commoncomponents/CollabNewDocPopup.qml",
                                                   {
@@ -568,6 +597,7 @@ Rectangle {
             property list<Action> menuActions: [
                 Action {
                     id: sendFile
+                    property bool needSendFile: true
                     property string iconSrc: JamiResources.attached_file_24dp_svg
                     property string toolTip: JamiStrings.sendFile
                     property bool show: true
@@ -581,6 +611,7 @@ Rectangle {
                 },
                 Action {
                     id: openCollabDocList
+                    objectName: "openCollabDocList"
                     property string iconSrc: JamiResources.round_folder_24dp_svg
                     property string toolTip: qsTr("Editable documents")
                     property bool show: messageBarRowLayout.hasEditableDocuments
@@ -599,6 +630,7 @@ Rectangle {
                 },
                 Action {
                     id: addEmoji
+                    property bool needSendText: true
                     property string iconSrc: JamiResources.emoji_black_24dp_svg
                     property string toolTip: JamiStrings.addEmoji
                     property bool show: true
@@ -654,6 +686,20 @@ Rectangle {
                             return data.menuAction.needVideoDevice === false;
                         }
                         enabled: VideoDevices.listSize === 0
+                    },
+                    FunctionFilter {
+                        column: 0
+                        function filter(data: MenuActionFilterData): bool {
+                            return data.menuAction.needSendFile !== true;
+                        }
+                        enabled: convContext && !(MessagesAdapter.replyToId ? convContext.canReplyFile : convContext.canSendFile)
+                    },
+                    FunctionFilter {
+                        column: 0
+                        function filter(data: MenuActionFilterData): bool {
+                            return data.menuAction.needSendText !== true;
+                        }
+                        enabled: !messageBarRowLayout.canComposeText
                     }
                 ]
             }

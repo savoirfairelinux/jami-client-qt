@@ -88,7 +88,7 @@ Item {
     }
 
     property bool addMemberVisibility: {
-        return swarmDetailsVisibility && !convContext.isCoreDialog && !convContext.isRequest;
+        return swarmDetailsVisibility && !convContext.isCoreDialog && !convContext.isRequest && convContext.canAddMember;
     }
 
     property bool swarmDetailsVisibility: {
@@ -622,6 +622,9 @@ Item {
                             else if (convContext.isRequest)
                                 return false;
                             else if (isConversationEndedFlag)
+                                return false;
+                            else if (!convContext.canSendText && !convContext.canSendFile && !convContext.canReplyText
+                                     && !convContext.canReplyFile)
                                 return false;
                             return convContext.isSwarm || convContext.isTemporary;
                         }

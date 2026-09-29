@@ -16,6 +16,9 @@
  ***************************************************************************/
 #include "api/swarmpermissions.h"
 
+#include "api/interaction.h"
+#include "api/messagelistmodel.h"
+
 #include <array>
 
 namespace lrc {
@@ -28,8 +31,6 @@ enum class Condition {
     None,
     // Denied when only admins may invite (conversation::Mode::ADMIN_INVITES_ONLY).
     NotAdminInvitesOnly,
-    // Banned members can read only content that existed before the ban.
-    PreBanContentOnly,
     // In one-to-one conversations, only the original peer may rejoin.
     OneToOneRejoinOnly
 };
@@ -51,28 +52,25 @@ constexpr Cell Deny {Rule::Deny};
 constexpr Cell Allow {Rule::Allow};
 constexpr Cell ActorAuthoredOnly {Rule::AllowIfActorIsAuthor};
 constexpr Cell MemberInvite {Rule::Allow, Condition::NotAdminInvitesOnly};
-constexpr Cell BannedRead {Rule::Allow, Condition::PreBanContentOnly};
 constexpr Cell OneToOneRejoin {Rule::Allow, Condition::OneToOneRejoinOnly};
 
 // clang-format off
-constexpr RoleRow DenyAll {Deny, Deny, Deny, Deny, Deny, Deny, Deny, Deny, Deny, Deny, Deny, Deny, Deny};
-constexpr RoleRow BannedReadOnly {Deny, Deny, BannedRead, Deny, Deny, Deny, Deny, Deny, Deny, Deny, Deny, Deny, Deny};
+constexpr RoleRow DenyAll {Deny, Deny, Deny, Deny, Deny, Deny, Deny, Deny, Deny, Deny, Deny, Deny};
 
-// Columns follow Action: SendFile, SendText, Read, ReplyText, ReplyFile, React, Call, EditMessage, DeleteMessage, AddMember, ChangeConversationProfile, BanUnbanMember, CreateCollaborativeDocument.
-// Rows follow member::Role: ADMIN, MEMBER, INVITED, BANNED, LEFT.
+// Columns follow Action: SendFile, SendText, ReplyText, ReplyFile, React, Call, EditMessage, DeleteMessage, AddMember, ChangeConversationProfile, BanUnbanMember, CreateCollaborativeDocument.
 constexpr PolicyTable BasicTable {{
-    {Allow, Allow, Allow, Allow, Allow, Allow, Allow, ActorAuthoredOnly, ActorAuthoredOnly, Allow, Allow, Allow, Allow}, // ADMIN
-    {Allow, Allow, Allow, Allow, Allow, Allow, Allow, ActorAuthoredOnly, ActorAuthoredOnly, MemberInvite, Deny, Deny, Allow}, // MEMBER
+    {Allow, Allow, Allow, Allow, Allow, Allow, ActorAuthoredOnly, ActorAuthoredOnly, Allow, Allow, Allow, Allow}, // ADMIN
+    {Allow, Allow, Allow, Allow, Allow, Allow, ActorAuthoredOnly, ActorAuthoredOnly, MemberInvite, Deny, Deny, Allow}, // MEMBER
     DenyAll, // INVITED
-    BannedReadOnly, // BANNED
+    DenyAll, // BANNED
     DenyAll, // LEFT
 }};
 
 constexpr PolicyTable OneToOneTable {{
-    {Allow, Allow, Allow, Allow, Allow, Allow, Allow, ActorAuthoredOnly, ActorAuthoredOnly, OneToOneRejoin, Deny, Deny, Allow}, // ADMIN
-    {Allow, Allow, Allow, Allow, Allow, Allow, Allow, ActorAuthoredOnly, ActorAuthoredOnly, OneToOneRejoin, Deny, Deny, Allow}, // MEMBER
+    {Allow, Allow, Allow, Allow, Allow, Allow, ActorAuthoredOnly, ActorAuthoredOnly, OneToOneRejoin, Deny, Deny, Allow}, // ADMIN
+    {Allow, Allow, Allow, Allow, Allow, Allow, ActorAuthoredOnly, ActorAuthoredOnly, OneToOneRejoin, Deny, Deny, Allow}, // MEMBER
     DenyAll, // INVITED
-    BannedReadOnly, // BANNED
+    DenyAll, // BANNED
     DenyAll, // LEFT
 }};
 
@@ -102,12 +100,6 @@ evaluate(std::optional<Policy> policy, std::optional<member::Role> role, Action 
         if (!context.mode)
             return Decision::Unknown;
         if (*context.mode == conversation::Mode::ADMIN_INVITES_ONLY)
-            return Decision::Denied;
-    }
-    if (cell.condition == Condition::PreBanContentOnly) {
-        if (!context.contentExistedBeforeBan)
-            return Decision::Unknown;
-        if (!*context.contentExistedBeforeBan)
             return Decision::Denied;
     }
     if (cell.condition == Condition::OneToOneRejoinOnly) {
@@ -150,6 +142,38 @@ roleOf(const conversation::Info& conversation, const QString& uri)
             return participant.role;
     }
     return std::nullopt;
+}
+
+std::optional<Decision>
+evaluateFor(const conversation::Info& conversation, const QString& selfUri, Action action, Context context)
+{
+    const auto policy = policyFor(conversation);
+    if (!policy)
+        return std::nullopt;
+    if (!context.mode)
+        context.mode = conversation.mode;
+    return evaluate(policy, roleOf(conversation, selfUri), action, context);
+}
+
+bool
+targetCanRejoin(const conversation::Info& conversation, const QString& targetUri)
+{
+    if (conversation.mode != conversation::Mode::ONE_TO_ONE)
+        return false;
+    return roleOf(conversation, targetUri) == member::Role::LEFT;
+}
+
+std::optional<bool>
+isMessageAuthoredBy(const conversation::Info& conversation, const QString& messageId, const QString& selfUri)
+{
+    // An empty id would make the lookup fall back to the last message.
+    if (messageId.isEmpty() || !conversation.interactions)
+        return std::nullopt;
+    std::optional<bool> authored;
+    conversation.interactions->with(messageId, [&](const QString&, interaction::Info& interaction) {
+        authored = interaction.authorUri.isEmpty() || interaction.authorUri == selfUri;
+    });
+    return authored;
 }
 
 } // namespace permissions

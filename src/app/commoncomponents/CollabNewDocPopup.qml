@@ -30,6 +30,9 @@ BaseModalDialog {
 
     property string conversationId: ""
     property string docName: ""
+    property bool creationFailed: false
+    readonly property bool canCreateDocument: CurrentConversation.id === conversationId
+                                               && CurrentConversation.canCreateDocument
 
     function createAndOpen() {
         Qt.inputMethod.commit();
@@ -37,7 +40,15 @@ BaseModalDialog {
         var name = root.docName.trim();
         if (name.length === 0)
             return;
-        CollaborativeAdapter.createDocument(root.conversationId, name);
+        if (!root.canCreateDocument) {
+            root.creationFailed = true;
+            return;
+        }
+        if (CollaborativeAdapter.createDocument(root.conversationId, name) === "") {
+            root.creationFailed = true;
+            return;
+        }
+        root.creationFailed = false;
         close();
     }
 
@@ -45,7 +56,7 @@ BaseModalDialog {
 
     button1.text: qsTr("Create")
     button1Role: DialogButtonBox.AcceptRole
-    button1.enabled: root.docName.trim().length > 0
+    button1.enabled: root.docName.trim().length > 0 && root.canCreateDocument
     button1.onClicked: createAndOpen()
 
     button2.text: qsTr("Cancel")
@@ -83,8 +94,22 @@ BaseModalDialog {
                 border.color: JamiTheme.tabbarBorderColor
                 radius: 8
             }
-            onTextChanged: root.docName = text
+            onTextChanged: {
+                root.docName = text;
+                root.creationFailed = false;
+            }
             onAccepted: root.createAndOpen()
+        }
+
+        Label {
+            Layout.fillWidth: true
+            Layout.leftMargin: JamiTheme.preferredMarginSize
+            Layout.rightMargin: JamiTheme.preferredMarginSize
+            visible: root.creationFailed
+            text: qsTr("Could not create the collaborative document.")
+            wrapMode: Text.WordWrap
+            color: JamiTheme.redColor
+            font.pointSize: JamiTheme.settingsFontSize
         }
     }
 }
