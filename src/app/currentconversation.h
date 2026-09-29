@@ -59,6 +59,17 @@ class CurrentConversation final : public QObject
     QML_PROPERTY(QStringList, errors)
     QML_PROPERTY(QStringList, backendErrors)
     QML_PROPERTY(QString, lastSelfMessageId)
+    // Swarm permissions for the local account; true when the policy does not apply to a known conversation.
+    QML_PROPERTY(bool, canSendText)
+    QML_PROPERTY(bool, canSendFile)
+    QML_PROPERTY(bool, canReplyText)
+    QML_PROPERTY(bool, canReplyFile)
+    QML_PROPERTY(bool, canReact)
+    QML_PROPERTY(bool, canCall)
+    QML_PROPERTY(bool, canAddMember)
+    QML_PROPERTY(bool, canChangeConversationProfile)
+    QML_PROPERTY(bool, canBanUnbanMember)
+    QML_PROPERTY(bool, canCreateDocument)
     QML_RO_PROPERTY(bool, hasCall)
     QML_RO_PROPERTY(QVariant, members)
 
@@ -76,6 +87,8 @@ public:
     Q_INVOKABLE QString getPreference(const QString& key) const;
     Q_INVOKABLE MapStringString getPreferences() const;
     Q_INVOKABLE void setInfo(const QString& key, const QString& value);
+    Q_INVOKABLE bool canEditMessage(const QString& messageId) const;
+    Q_INVOKABLE bool canDeleteMessage(const QString& messageId) const;
     CurrentConversationMembers* uris() const;
 
 Q_SIGNALS:
@@ -102,4 +115,5 @@ private:
     CurrentConversationMembers* membersModel_;
 
     void connectModel();
+    void updatePermissions(const conversation::Info* convInfo, const QString& selfUri);
 };

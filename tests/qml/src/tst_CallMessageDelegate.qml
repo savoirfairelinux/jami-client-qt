@@ -77,6 +77,41 @@ TestWrapper {
     }
 
     TestCase {
+        name: "Check message action button spacing"
+
+        function test_hiddenReplyButtonLeavesNoGapBeforeShare() {
+            const previousCanReplyText = CurrentConversation.canReplyText;
+            const previousCanReplyFile = CurrentConversation.canReplyFile;
+            try {
+                CurrentConversation.canReplyText = false;
+                CurrentConversation.canReplyFile = false;
+
+                uut.currentIndex = 0;
+                const delegate = uut.currentItem;
+                delegate.shouldBeVisible = true;
+
+                const moreButton = findChild(delegate, "more");
+                const replyButton = findChild(delegate, "reply");
+                const shareButton = findChild(delegate, "share");
+                compare(moreButton.visible, true);
+                compare(replyButton.visible, false);
+                compare(shareButton.visible, true);
+
+                const gap = delegate.isOutgoing
+                    ? moreButton.x - shareButton.x - shareButton.width
+                    : shareButton.x - moreButton.x - moreButton.width;
+                compare(Math.round(gap), delegate.isOutgoing ? 5 : 0);
+            } finally {
+                CurrentConversation.canReplyText = previousCanReplyText;
+                CurrentConversation.canReplyFile = previousCanReplyFile;
+                // Recreate the delegate to restore the hover binding overwritten above.
+                uut.model = null;
+                uut.model = mockModel;
+            }
+        }
+    }
+
+    TestCase {
         name: "Check button visibility for swarm call"
         function test_checkButtonVisibilityForSwarmCall() {
             uut.currentIndex = 0

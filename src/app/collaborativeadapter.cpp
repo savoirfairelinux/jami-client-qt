@@ -19,8 +19,10 @@
 
 #include "dbus/configurationmanager.h"
 
+#include <api/swarmpermissions.h>
 #include <api/messagelistmodel.h>
 
+#include <QDebug>
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QFile>
@@ -241,6 +243,14 @@ CollaborativeAdapter::mergeRemoteUpdate(const QString& accountId,
 QString
 CollaborativeAdapter::createDocument(const QString& convId, const QString& name)
 {
+    auto* conversationModel = lrcInstance_->getCurrentAccountInfo().conversationModel.get();
+    if (!conversationModel
+        || !conversationModel->isActionPermitted(convId, lrc::api::permissions::Action::CreateCollaborativeDocument)) {
+        qWarning() << "Cannot create collaborative document in conversation" << convId
+                   << (conversationModel ? "(permission denied)" : "(conversation model unavailable)");
+        return {};
+    }
+
     // What the document holds, not how it travels: the bytes on the wire are a
     // Y-CRDT update either way. Every document this client creates is rich text,
     // and a peer that cannot render it can say so rather than open it wrongly.

@@ -23,6 +23,7 @@ import "contextmenu"
 BaseContextMenu {
     id: root
 
+    property var convContext: CurrentConversation
     property var modelList
     signal audioRecordMessageButtonClicked
     signal videoRecordMessageButtonClicked
@@ -32,13 +33,19 @@ BaseContextMenu {
     property list<GeneralMenuItem> menuItems: [
         GeneralMenuItem {
             id: newEditableDocument
+            objectName: "newEditableDocumentMenuItem"
 
             Accessible.role: Accessible.MenuItem
             Accessible.name: itemName
             focusPolicy: Qt.StrongFocus
             Keys.onReturnPressed: clicked()
 
+            readonly property bool allowed: !!(root.convContext && root.convContext.canCreateDocument)
+
             canTrigger: true
+            visible: allowed
+            height: allowed ? JamiTheme.generalMenuItemHeight : 0
+            implicitHeight: height
             iconSource: JamiResources.round_edit_24dp_svg
             itemName: qsTr("New editable document")
             onClicked: {
@@ -51,13 +58,21 @@ BaseContextMenu {
         },
         GeneralMenuItem {
             id: audioMessage
+            objectName: "audioMessageMenuItem"
 
             Accessible.role: Accessible.MenuItem
             Accessible.name: itemName
             focusPolicy: Qt.StrongFocus
             Keys.onReturnPressed: clicked()
 
+            readonly property bool allowed: !!(root.convContext
+                                               && (MessagesAdapter.replyToId ? root.convContext.canReplyFile
+                                                                             : root.convContext.canSendFile))
+
             canTrigger: true
+            visible: allowed
+            height: allowed ? JamiTheme.generalMenuItemHeight : 0
+            implicitHeight: height
             iconSource: JamiResources.message_audio_black_24dp_svg
             itemName: JamiStrings.leaveAudioMessage
             onClicked: {
@@ -70,6 +85,7 @@ BaseContextMenu {
         },
         GeneralMenuItem {
             id: videoMessage
+            objectName: "videoMessageMenuItem"
 
             Accessible.role: Accessible.MenuItem
             Accessible.name: itemName
@@ -77,7 +93,14 @@ BaseContextMenu {
             focusPolicy: Qt.StrongFocus
             Keys.onReturnPressed: clicked()
 
+            readonly property bool allowed: !!(root.convContext
+                                               && (MessagesAdapter.replyToId ? root.convContext.canReplyFile
+                                                                             : root.convContext.canSendFile))
+
             canTrigger: true
+            visible: allowed
+            height: allowed ? JamiTheme.generalMenuItemHeight : 0
+            implicitHeight: height
             iconSource: JamiResources.message_video_black_24dp_svg
             itemName: JamiStrings.leaveVideoMessage
             isActif: VideoDevices.listSize !== 0
@@ -114,5 +137,34 @@ BaseContextMenu {
 
     Component.onCompleted: {
         root.loadMenuItems(menuItems);
+        const createActionSeparator = root.generalMenuSeparatorList[0];
+        const audioMessageSeparator = root.generalMenuSeparatorList[1];
+        const videoMessageSeparator = root.generalMenuSeparatorList[2];
+
+        createActionSeparator.visible = Qt.binding(() => newEditableDocument.allowed
+                                                             && (audioMessage.allowed || videoMessage.allowed || shareLocation.visible));
+        createActionSeparator.implicitHeight = Qt.binding(() => createActionSeparator.visible
+                                                                   ? createActionSeparator.contentItem.implicitHeight
+                                                                         + createActionSeparator.topPadding
+                                                                         + createActionSeparator.bottomPadding
+                                                                   : 0);
+        createActionSeparator.height = Qt.binding(() => createActionSeparator.implicitHeight);
+
+        audioMessageSeparator.visible = Qt.binding(() => audioMessage.allowed
+                                                             && (videoMessage.allowed || shareLocation.visible));
+        audioMessageSeparator.implicitHeight = Qt.binding(() => audioMessageSeparator.visible
+                                                                   ? audioMessageSeparator.contentItem.implicitHeight
+                                                                         + audioMessageSeparator.topPadding
+                                                                         + audioMessageSeparator.bottomPadding
+                                                                   : 0);
+        audioMessageSeparator.height = Qt.binding(() => audioMessageSeparator.implicitHeight);
+
+        videoMessageSeparator.visible = Qt.binding(() => videoMessage.allowed && shareLocation.visible);
+        videoMessageSeparator.implicitHeight = Qt.binding(() => videoMessageSeparator.visible
+                                                                   ? videoMessageSeparator.contentItem.implicitHeight
+                                                                         + videoMessageSeparator.topPadding
+                                                                         + videoMessageSeparator.bottomPadding
+                                                                   : 0);
+        videoMessageSeparator.height = Qt.binding(() => videoMessageSeparator.implicitHeight);
     }
 }

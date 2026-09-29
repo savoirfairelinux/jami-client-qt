@@ -36,6 +36,7 @@ JamiFlickable {
     property alias selectionEnd: textArea.selectionEnd
     property bool showPreview: false
     property bool isShowTypo: UtilsAdapter.getAppValue(Settings.Key.ShowMardownOption)
+    property bool canComposeText: true
     property int textWidth: textArea.contentWidth
     property var language: AppSettingsManager.getValue(Settings.SpellLang)
 
@@ -56,6 +57,8 @@ JamiFlickable {
     }
 
     function pasteText() {
+        if (!canComposeText)
+            return;
         textArea.paste();
     }
 
@@ -75,7 +78,8 @@ JamiFlickable {
 
         onContextMenuRequirePaste: {
             // Intercept paste event to use C++ QMimeData
-            MessagesAdapter.onPaste();
+            if (root.canComposeText)
+                MessagesAdapter.onPaste();
         }
     }
 
@@ -86,6 +90,8 @@ JamiFlickable {
     boundsBehavior: Flickable.StopAtBounds
 
     interactive: true
+    enabled: canComposeText
+    visible: canComposeText
 
     function resetEditableText() {
         textArea.text = cachedText;
@@ -215,13 +221,17 @@ JamiFlickable {
         // eg. Enter -> Send messages
         //     Shift + Enter -> Next Line
         Keys.onPressed: function (keyEvent) {
+            if (!root.canComposeText) {
+                keyEvent.accepted = true;
+                return;
+            }
             // Update underline on each input to take into account deleted text and sent ones
             updateSpellCorrection();
             if (keyEvent.matches(StandardKey.Paste)) {
                 MessagesAdapter.onPaste();
                 keyEvent.accepted = true;
             } else if (keyEvent.matches(StandardKey.MoveToPreviousLine)) {
-                if (root.text !== "")
+                if (root.text !== "" || !CurrentConversation.canEditMessage(CurrentConversation.lastSelfMessageId))
                     return;
                 MessagesAdapter.replyToId = "";
                 MessagesAdapter.editId = CurrentConversation.lastSelfMessageId;

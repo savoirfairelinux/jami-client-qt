@@ -114,6 +114,13 @@ are hidden in the UI, and the adapters also refuse them and log a warning.
 | Change conversation profile | `canChangeConversationProfile`: title, description, avatar in the details panel | `ConversationModel::isProfileUpdatePermitted()` in the title, description and avatar setters |
 | Ban or unban member | `canBanUnbanMember`: participant menu | `MessagesAdapter::removeConversationMember`, and `addConversationMember` for a banned target |
 
+The text area and formatting controls follow the permission for the active mode:
+`canSendText` for a new message, `canReplyText` when replying, and
+`canEditMessage()` when editing. The text area and formatting controls are
+hidden when text composition is denied; paste, keyboard input and formatting
+shortcuts are also blocked. File sending remains independent and can stay
+available when text composition is denied.
+
 One-to-one title and avatar edits only override the local contact profile, so
 they are not gated by `ChangeConversationProfile`.
 

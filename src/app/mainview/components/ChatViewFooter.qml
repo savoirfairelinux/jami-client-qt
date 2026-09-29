@@ -35,7 +35,15 @@ Rectangle {
     // the main window.
     property var convContext: CurrentConversation
 
+    function pasteText() {
+        if (!messageBar.canComposeText)
+            return;
+        messageBar.textAreaObj.pasteText();
+    }
+
     function setFilePathsToSend(filePaths) {
+        if (!(MessagesAdapter.replyToId ? convContext.canReplyFile : convContext.canSendFile))
+            return;
         for (var index = 0; index < filePaths.length; ++index) {
             var path = UtilsAdapter.getAbsPath(decodeURIComponent(filePaths[index]));
             messageBar.fileContainer.filesToSendListModel.addToPending(path);
@@ -86,15 +94,17 @@ Rectangle {
         target: MessagesAdapter
 
         function onNewFilePasted(filePath) {
+            if (!(MessagesAdapter.replyToId ? convContext.canReplyFile : convContext.canSendFile))
+                return;
             messageBar.fileContainer.filesToSendListModel.addToPending(filePath);
         }
 
         function onNewTextPasted() {
-            messageBar.textAreaObj.pasteText();
+            root.pasteText();
         }
 
         function onEditIdChanged() {
-            if (MessagesAdapter.editId.length > 0) {
+            if (MessagesAdapter.editId.length > 0 && messageBar.canComposeText) {
                 var editedMessageBody = MessagesAdapter.dataForInteraction(MessagesAdapter.editId, MessageList.OriginalBody);
                 messageBar.textAreaObj.insertText(editedMessageBody);
                 messageBar.textAreaObj.forceActiveFocus();
@@ -104,7 +114,7 @@ Rectangle {
         }
 
         function onReplyToIdChanged() {
-            if (MessagesAdapter.replyToId.length > 0)
+            if (MessagesAdapter.replyToId.length > 0 && messageBar.canComposeText)
                 messageBar.textAreaObj.forceActiveFocus();
         }
     }
@@ -133,7 +143,8 @@ Rectangle {
         Connections {
             target: messageBar.emojiPicker ? messageBar.emojiPicker : null
             function onEmojiIsPicked(content) {
-                messageBar.textAreaObj.insertText(content);
+                if (messageBar.canComposeText)
+                    messageBar.textAreaObj.insertText(content);
                 messageBar.isEmojiPickerOpen = false;
             }
 
@@ -166,7 +177,7 @@ Rectangle {
             return -JamiTheme.emojiPickerHeight;
         }
 
-        sendButtonVisibility: text.trim() || messageBar.fileContainer.filesToSendCount
+        sendButtonVisibility: (canComposeText && text.trim()) || messageBar.fileContainer.filesToSendCount
 
         onEmojiButtonClicked: {
             if (emojiPicker && emojiPicker.opened) {
@@ -203,6 +214,7 @@ Rectangle {
         }
 
         onSendMessageButtonClicked: {
+            var canSendText = messageBar.canComposeText;
             // Send file messages
             var fileCounts = messageBar.fileContainer.filesToSendListModel.rowCount();
             for (var i = 0; i < fileCounts; i++) {
@@ -212,14 +224,15 @@ Rectangle {
             }
             messageBar.fileContainer.filesToSendListModel.flush();
             // Send text message
-            if (messageBar.text) {
+            if (canSendText && messageBar.text) {
                 if (MessagesAdapter.editId !== "") {
                     MessagesAdapter.editMessage(convContext.id, messageBar.text);
                 } else {
                     MessagesAdapter.sendMessageToUid(messageBar.text, convContext.id);
                 }
             }
-            messageBar.textAreaObj.clearText();
+            if (canSendText)
+                messageBar.textAreaObj.clearText();
             MessagesAdapter.replyToId = "";
         }
 

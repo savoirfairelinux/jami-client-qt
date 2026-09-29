@@ -16,6 +16,9 @@
  */
 
 #include "globaltestenvironment.h"
+#include "currentconversation.h"
+
+#include "api/swarmpermissions.h"
 
 #include <QSignalSpy>
 
@@ -35,4 +38,43 @@ TEST(CurrentConversation, DeselectsConversationBeforeAccountRemoval)
     globalEnv.lrcInstance->accountModel().removeAccount(accountId);
     ASSERT_TRUE(accountRemovedSpy.wait());
     EXPECT_TRUE(globalEnv.lrcInstance->get_selectedConvUid().isEmpty());
+}
+
+TEST(CurrentConversation, DeniesPermissionsWhenConversationInfoIsMissing)
+{
+    QSignalSpy accountAddedSpy(&globalEnv.lrcInstance->accountModel(), &AccountModel::accountAdded);
+    globalEnv.accountAdapter->createSIPAccount(QVariantMap());
+    ASSERT_TRUE(accountAddedSpy.wait());
+
+    const auto accountId = accountAddedSpy.takeFirst().at(0).toString();
+    globalEnv.lrcInstance->set_currentAccountId(accountId);
+    globalEnv.lrcInstance->set_selectedConvUid("missing-conversation-id");
+
+    auto* conversationModel = globalEnv.lrcInstance->getCurrentConversationModel();
+    ASSERT_NE(conversationModel, nullptr);
+    EXPECT_FALSE(
+        conversationModel->isActionPermitted("missing-conversation-id", lrc::api::permissions::Action::SendText));
+    EXPECT_FALSE(conversationModel->isActionPermitted("missing-conversation-id",
+                                                      lrc::api::permissions::Action::CreateCollaborativeDocument));
+    EXPECT_FALSE(conversationModel->isProfileUpdatePermitted("missing-conversation-id"));
+
+    {
+        CurrentConversation currentConversation(globalEnv.lrcInstance.data());
+        const auto canCreateDocument = currentConversation.property("canCreateDocument");
+        ASSERT_TRUE(canCreateDocument.isValid());
+        EXPECT_FALSE(canCreateDocument.toBool());
+        EXPECT_FALSE(currentConversation.property("canSendText").toBool());
+        EXPECT_FALSE(currentConversation.property("canSendFile").toBool());
+        EXPECT_FALSE(currentConversation.property("canReplyText").toBool());
+        EXPECT_FALSE(currentConversation.property("canReplyFile").toBool());
+        EXPECT_FALSE(currentConversation.property("canReact").toBool());
+        EXPECT_FALSE(currentConversation.property("canCall").toBool());
+        EXPECT_FALSE(currentConversation.property("canAddMember").toBool());
+        EXPECT_FALSE(currentConversation.property("canChangeConversationProfile").toBool());
+        EXPECT_FALSE(currentConversation.property("canBanUnbanMember").toBool());
+    }
+
+    QSignalSpy accountRemovedSpy(&globalEnv.lrcInstance->accountModel(), &AccountModel::accountRemoved);
+    globalEnv.lrcInstance->accountModel().removeAccount(accountId);
+    ASSERT_TRUE(accountRemovedSpy.wait());
 }

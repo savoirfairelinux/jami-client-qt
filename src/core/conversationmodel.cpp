@@ -28,6 +28,7 @@
 #include "api/call.h"
 #include "api/datatransfer.h"
 #include "api/datatransfermodel.h"
+#include "api/swarmpermissions.h"
 #include "callbackshandler.h"
 #include "containerview.h"
 #include "authority/storagehelper.h"
@@ -1083,18 +1084,54 @@ ConversationModel::title(const QString& conversationId) const
     return title;
 }
 
-member::Role
+std::optional<member::Role>
 ConversationModel::memberRole(const QString& conversationId, const QString& memberUri) const
 {
     auto conversationOpt = getConversationForUid(conversationId);
     if (!conversationOpt.has_value())
-        throw std::out_of_range("Member out of range");
-    auto& conversation = conversationOpt->get();
-    for (const auto& p : conversation.participants) {
-        if (p.uri == memberUri)
-            return p.role;
-    }
-    throw std::out_of_range("Member out of range");
+        return std::nullopt;
+    return permissions::roleOf(conversationOpt->get(), memberUri);
+}
+
+bool
+ConversationModel::isActionPermitted(const QString& conversationId,
+                                     permissions::Action action,
+                                     const permissions::Context& context) const
+{
+    auto conversationOpt = getConversationForUid(conversationId);
+    if (!conversationOpt.has_value())
+        return false;
+    const auto decision = permissions::evaluateFor(conversationOpt->get(), owner.profileInfo.uri, action, context);
+    if (!decision)
+        return true; // No swarm policy applies; keep legacy behavior.
+    return permissions::isAllowed(*decision);
+}
+
+bool
+ConversationModel::isActionPermittedForMessage(const QString& conversationId,
+                                               const QString& messageId,
+                                               permissions::Action action) const
+{
+    auto conversationOpt = getConversationForUid(conversationId);
+    if (!conversationOpt.has_value())
+        return false;
+    const auto& conversation = conversationOpt->get();
+    permissions::Context context;
+    context.actorIsAuthor = permissions::isMessageAuthoredBy(conversation, messageId, owner.profileInfo.uri);
+    const auto decision = permissions::evaluateFor(conversation, owner.profileInfo.uri, action, context);
+    return decision ? permissions::isAllowed(*decision) : context.actorIsAuthor.value_or(false);
+}
+
+bool
+ConversationModel::isProfileUpdatePermitted(const QString& conversationId) const
+{
+    auto conversationOpt = getConversationForUid(conversationId);
+    if (!conversationOpt.has_value())
+        return false;
+    // updateConversationInfos() only overrides the peer's contact for 1:1.
+    if (conversationOpt->get().isCoreDialog())
+        return true;
+    return isActionPermitted(conversationId, permissions::Action::ChangeConversationProfile);
 }
 
 QString

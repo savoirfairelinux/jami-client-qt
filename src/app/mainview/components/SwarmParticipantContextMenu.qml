@@ -66,7 +66,8 @@ ContextMenuAutoLoader {
             property var memberRole: UtilsAdapter.getParticipantRole(CurrentAccount.id, conversationId, participantUri)
             itemName: memberRole === Member.Role.BANNED ? JamiStrings.reinstateMember : JamiStrings.kickMember
             iconSource: JamiResources.kick_member_24dp_svg
-            canTrigger: role === Member.Role.ADMIN
+            canTrigger: memberRole !== null && memberRole !== undefined
+                        && CurrentConversation.id === conversationId && CurrentConversation.canBanUnbanMember
 
             onClicked: {
                 if (memberRole === Member.Role.BANNED) {
