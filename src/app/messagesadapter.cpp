@@ -40,6 +40,10 @@
 #include <QtMath>
 #include <QRegularExpression>
 
+namespace {
+using lrc::api::permissions::Action;
+} // namespace
+
 MessagesAdapter::MessagesAdapter(AppSettingsManager* settingsManager,
                                  PreviewEngine* previewEngine,
                                  LRCInstance* instance,
@@ -178,7 +182,14 @@ MessagesAdapter::sendMessage(const QString& message)
 {
     try {
         const auto convUid = lrcInstance_->get_selectedConvUid();
-        lrcInstance_->getCurrentConversationModel()->sendMessage(convUid, message, replyToId_);
+        auto* model = lrcInstance_->getCurrentConversationModel();
+        const auto action = replyToId_.isEmpty() ? Action::SendText : Action::Reply;
+        if (!model || !model->isActionPermitted(convUid, action)) {
+            qWarning() << "Cannot perform action" << static_cast<int>(action) << "in conversation" << convUid
+                       << (model ? "(permission denied)" : "(conversation model unavailable)");
+            return;
+        }
+        model->sendMessage(convUid, message, replyToId_);
     } catch (...) {
         qDebug() << "Exception during sendMessage:" << message;
     }
@@ -188,7 +199,14 @@ void
 MessagesAdapter::sendMessageToUid(const QString& message, const QString& convUid)
 {
     try {
-        lrcInstance_->getCurrentConversationModel()->sendMessage(convUid, message, replyToId_);
+        auto* model = lrcInstance_->getCurrentConversationModel();
+        const auto action = replyToId_.isEmpty() ? Action::SendText : Action::Reply;
+        if (!model || !model->isActionPermitted(convUid, action)) {
+            qWarning() << "Cannot perform action" << static_cast<int>(action) << "in conversation" << convUid
+                       << (model ? "(permission denied)" : "(conversation model unavailable)");
+            return;
+        }
+        model->sendMessage(convUid, message, replyToId_);
     } catch (...) {
         qDebug() << "Exception during sendMessage:" << message;
     }
@@ -203,7 +221,15 @@ MessagesAdapter::editMessage(const QString& convId, const QString& newBody, cons
             return;
         }
         set_editId("");
-        lrcInstance_->getCurrentConversationModel()->editMessage(convId, newBody, editId);
+        auto* model = lrcInstance_->getCurrentConversationModel();
+        // An empty body deletes the message.
+        const auto action = newBody.isEmpty() ? Action::DeleteMessage : Action::EditMessage;
+        if (!model || !model->isActionPermittedForMessage(convId, editId, action)) {
+            qWarning() << "Cannot modify message" << editId << "in conversation" << convId
+                       << (model ? "(permission denied)" : "(conversation model unavailable)");
+            return;
+        }
+        model->editMessage(convId, newBody, editId);
     } catch (...) {
         qDebug() << "Exception during message edition:" << messageId;
     }
@@ -235,7 +261,13 @@ void
 MessagesAdapter::removeReaction(const QString& convId, const QString& reactionId)
 {
     try {
-        lrcInstance_->getCurrentConversationModel()->removeReaction(convId, reactionId);
+        auto* model = lrcInstance_->getCurrentConversationModel();
+        if (!model || !model->isActionPermitted(convId, Action::React)) {
+            qWarning() << "Cannot react in conversation" << convId
+                       << (model ? "(permission denied)" : "(conversation model unavailable)");
+            return;
+        }
+        model->removeReaction(convId, reactionId);
     } catch (...) {
         qWarning() << "Exception during removeReaction():" << reactionId;
     }
@@ -245,7 +277,13 @@ void
 MessagesAdapter::addEmojiReaction(const QString& convId, const QString& emoji, const QString& messageId)
 {
     try {
-        lrcInstance_->getCurrentConversationModel()->reactMessage(convId, emoji, messageId);
+        auto* model = lrcInstance_->getCurrentConversationModel();
+        if (!model || !model->isActionPermitted(convId, Action::React)) {
+            qWarning() << "Cannot react in conversation" << convId
+                       << (model ? "(permission denied)" : "(conversation model unavailable)");
+            return;
+        }
+        model->reactMessage(convId, emoji, messageId);
     } catch (...) {
         qDebug() << "Exception during addEmojiReaction():" << messageId;
     }
@@ -258,7 +296,13 @@ MessagesAdapter::sendFile(const QString& message)
     QString fileName = fi.fileName();
     try {
         auto convUid = lrcInstance_->get_selectedConvUid();
-        lrcInstance_->getCurrentConversationModel()->sendFile(convUid, message, fileName, replyToId_);
+        auto* model = lrcInstance_->getCurrentConversationModel();
+        if (!model || !model->isActionPermitted(convUid, Action::SendFile)) {
+            qWarning() << "Cannot send file in conversation" << convUid
+                       << (model ? "(permission denied)" : "(conversation model unavailable)");
+            return;
+        }
+        model->sendFile(convUid, message, fileName, replyToId_);
     } catch (...) {
         qDebug() << "Exception during sendFile";
     }
@@ -270,7 +314,13 @@ MessagesAdapter::sendFileToUid(const QString& message, const QString& convUid)
     QFileInfo fi(message);
     QString fileName = fi.fileName();
     try {
-        lrcInstance_->getCurrentConversationModel()->sendFile(convUid, message, fileName, replyToId_);
+        auto* model = lrcInstance_->getCurrentConversationModel();
+        if (!model || !model->isActionPermitted(convUid, Action::SendFile)) {
+            qWarning() << "Cannot send file in conversation" << convUid
+                       << (model ? "(permission denied)" : "(conversation model unavailable)");
+            return;
+        }
+        model->sendFile(convUid, message, fileName, replyToId_);
     } catch (...) {
         qDebug() << "Exception during sendFile";
     }
@@ -539,14 +589,39 @@ void
 MessagesAdapter::removeConversationMember(const QString& convUid, const QString& memberUri)
 {
     auto& accInfo = lrcInstance_->getCurrentAccountInfo();
-    accInfo.conversationModel->removeConversationMember(convUid, memberUri);
+    auto* model = accInfo.conversationModel.get();
+    if (!model || !model->isActionPermitted(convUid, Action::BanUnbanMember)) {
+        qWarning() << "Cannot remove member from conversation" << convUid
+                   << (model ? "(permission denied)" : "(conversation model unavailable)");
+        return;
+    }
+    model->removeConversationMember(convUid, memberUri);
 }
 
 void
 MessagesAdapter::addConversationMember(const QString& convUid, const QString& memberUri)
 {
     auto& accInfo = lrcInstance_->getCurrentAccountInfo();
-    accInfo.conversationModel->addConversationMember(convUid, memberUri);
+    auto* model = accInfo.conversationModel.get();
+    if (!model) {
+        qWarning() << "Cannot check member-addition permission: no conversation model for" << convUid;
+        return;
+    }
+    // Re-adding a banned member lifts the ban.
+    const auto memberRole = model->memberRole(convUid, memberUri);
+    auto action = Action::AddMember;
+    lrc::api::permissions::Context context;
+    if (memberRole && *memberRole == member::Role::BANNED) {
+        action = Action::BanUnbanMember;
+    } else {
+        if (auto optConv = model->getConversationForUid(convUid))
+            context.targetCanRejoin = lrc::api::permissions::targetCanRejoin(optConv->get(), memberUri);
+    }
+    if (!model->isActionPermitted(convUid, action, context)) {
+        qWarning() << "Action" << static_cast<int>(action) << "not permitted in conversation" << convUid;
+        return;
+    }
+    model->addConversationMember(convUid, memberUri);
 }
 
 void

@@ -28,12 +28,14 @@
 #include <QApplication>
 #include <QBuffer>
 #include <QClipboard>
+#include <QDebug>
 #include <QFileInfo>
 #include <QRegularExpression>
 #include <QMimeData>
 #include <QMimeDatabase>
 #include <QStyleHints>
 
+#include <exception>
 #if WITH_WEBENGINE
 #include <QtWebEngineCore/QWebEngineProfile>
 #endif
@@ -663,7 +665,14 @@ UtilsAdapter::setTempCreationImageFromImage(const QImage& image, const QString& 
         file.close();
         Q_EMIT lrcInstance_->base64SwarmAvatarChanged();
     } else {
-        lrcInstance_->getCurrentConversationModel()->updateConversationInfos(imageId, {{"avatar", ba.toBase64()}});
+        auto* convModel = lrcInstance_->getCurrentConversationModel();
+        if (!convModel)
+            return;
+        if (!convModel->isProfileUpdatePermitted(imageId)) {
+            C_WARN << "Not permitted to change the avatar of conversation" << imageId;
+            return;
+        }
+        convModel->updateConversationInfos(imageId, {{"avatar", ba.toBase64()}});
     }
 }
 
@@ -692,14 +701,20 @@ UtilsAdapter::getContactBestName(const QString& accountId, const QString& uri)
     return {};
 }
 
-lrc::api::member::Role
+QVariant
 UtilsAdapter::getParticipantRole(const QString& accountId, const QString& convId, const QString& uri)
 {
     try {
-        return lrcInstance_->getAccountInfo(accountId).conversationModel->memberRole(convId, uri);
-    } catch (...) {
+        const auto role = lrcInstance_->getAccountInfo(accountId).conversationModel->memberRole(convId, uri);
+        if (!role) {
+            qWarning() << "No participant role for" << uri << "in conversation" << convId;
+            return {};
+        }
+        return QVariant::fromValue(*role);
+    } catch (const std::exception& e) {
+        qWarning() << "Unable to get participant role for" << uri << "in conversation" << convId << ":" << e.what();
+        return {};
     }
-    return lrc::api::member::Role::MEMBER;
 }
 
 bool

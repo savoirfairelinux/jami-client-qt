@@ -382,6 +382,7 @@ Rectangle {
             property list<Action> menuMoreButton: [
                 Action {
                     id: leaveAudioMessage
+                    property bool needSendFile: true
                     property string iconSrc: JamiResources.message_audio_black_24dp_svg
                     property string toolTip: JamiStrings.leaveAudioMessage
                     property bool show: false
@@ -394,6 +395,7 @@ Rectangle {
                 },
                 Action {
                     id: leaveVideoMessage
+                    property bool needSendFile: true
                     property string iconSrc: JamiResources.message_video_black_24dp_svg
                     property string toolTip: JamiStrings.leaveVideoMessage
                     property bool show: false
@@ -459,6 +461,13 @@ Rectangle {
                             return data.menuAction.needVideoDevice === false;
                         }
                         enabled: VideoDevices.listSize === 0
+                    },
+                    FunctionFilter {
+                        column: 0
+                        function filter(data: MenuActionFilterData): bool {
+                            return data.menuAction.needSendFile !== true;
+                        }
+                        enabled: convContext && !convContext.canSendFile
                     }
                 ]
             }
@@ -568,6 +577,7 @@ Rectangle {
             property list<Action> menuActions: [
                 Action {
                     id: sendFile
+                    property bool needSendFile: true
                     property string iconSrc: JamiResources.attached_file_24dp_svg
                     property string toolTip: JamiStrings.sendFile
                     property bool show: true
@@ -654,6 +664,13 @@ Rectangle {
                             return data.menuAction.needVideoDevice === false;
                         }
                         enabled: VideoDevices.listSize === 0
+                    },
+                    FunctionFilter {
+                        column: 0
+                        function filter(data: MenuActionFilterData): bool {
+                            return data.menuAction.needSendFile !== true;
+                        }
+                        enabled: convContext && !convContext.canSendFile
                     }
                 ]
             }
