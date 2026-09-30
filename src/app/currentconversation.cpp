@@ -153,6 +153,8 @@ CurrentConversation::updateData()
             set_modeString(tr("Private group"));
         } else if (convInfo.mode == conversation::Mode::PUBLIC) {
             set_modeString(tr("Public group"));
+        } else if (convInfo.mode == conversation::Mode::FEED) {
+            set_modeString(tr("Feed"));
         }
 
         updateConversationPreferences(convId);
@@ -182,6 +184,7 @@ CurrentConversation::updatePermissions(const conversation::Info* convInfo, const
     set_canReact(allowed(Action::React));
     set_canCall(allowed(Action::Call));
     set_canAddMember(allowed(Action::AddMember));
+    set_canViewMemberList(allowed(Action::ViewMemberList));
     set_canChangeConversationProfile(allowed(Action::ChangeConversationProfile));
     set_canBanUnbanMember(allowed(Action::BanUnbanMember));
     set_canCreateDocument(allowed(Action::CreateCollaborativeDocument));

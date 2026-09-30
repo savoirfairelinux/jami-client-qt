@@ -55,26 +55,34 @@ constexpr Cell MemberInvite {Rule::Allow, Condition::NotAdminInvitesOnly};
 constexpr Cell OneToOneRejoin {Rule::Allow, Condition::OneToOneRejoinOnly};
 
 // clang-format off
-constexpr RoleRow DenyAll {Deny, Deny, Deny, Deny, Deny, Deny, Deny, Deny, Deny, Deny, Deny, Deny};
+constexpr RoleRow DenyAll {Deny, Deny, Deny, Deny, Deny, Deny, Deny, Deny, Deny, Deny, Deny, Deny, Deny};
 
-// Columns follow Action: SendFile, SendText, ReplyText, ReplyFile, React, Call, EditMessage, DeleteMessage, AddMember, ChangeConversationProfile, BanUnbanMember, CreateCollaborativeDocument.
+// Columns follow Action: SendFile, SendText, ReplyText, ReplyFile, React, Call, EditMessage, DeleteMessage, AddMember, ChangeConversationProfile, BanUnbanMember, CreateCollaborativeDocument, ViewMemberList.
 constexpr PolicyTable BasicTable {{
-    {Allow, Allow, Allow, Allow, Allow, Allow, ActorAuthoredOnly, ActorAuthoredOnly, Allow, Allow, Allow, Allow}, // ADMIN
-    {Allow, Allow, Allow, Allow, Allow, Allow, ActorAuthoredOnly, ActorAuthoredOnly, MemberInvite, Deny, Deny, Allow}, // MEMBER
+    {Allow, Allow, Allow, Allow, Allow, Allow, ActorAuthoredOnly, ActorAuthoredOnly, Allow,          Allow, Allow, Allow, Allow}, // ADMIN
+    {Allow, Allow, Allow, Allow, Allow, Allow, ActorAuthoredOnly, ActorAuthoredOnly, MemberInvite,   Deny,  Deny,  Allow, Allow}, // MEMBER
     DenyAll, // INVITED
     DenyAll, // BANNED
     DenyAll, // LEFT
 }};
 
 constexpr PolicyTable OneToOneTable {{
-    {Allow, Allow, Allow, Allow, Allow, Allow, ActorAuthoredOnly, ActorAuthoredOnly, OneToOneRejoin, Deny, Deny, Allow}, // ADMIN
-    {Allow, Allow, Allow, Allow, Allow, Allow, ActorAuthoredOnly, ActorAuthoredOnly, OneToOneRejoin, Deny, Deny, Allow}, // MEMBER
+    {Allow, Allow, Allow, Allow, Allow, Allow, ActorAuthoredOnly, ActorAuthoredOnly, OneToOneRejoin, Deny, Deny, Allow, Allow}, // ADMIN
+    {Allow, Allow, Allow, Allow, Allow, Allow, ActorAuthoredOnly, ActorAuthoredOnly, OneToOneRejoin, Deny, Deny, Allow, Allow}, // MEMBER
     DenyAll, // INVITED
     DenyAll, // BANNED
     DenyAll, // LEFT
 }};
 
-constexpr std::array<const PolicyTable*, PolicyCount> Tables {&BasicTable, &OneToOneTable};
+constexpr PolicyTable FeedTable {{
+    {Allow, Allow, Allow, Allow, Allow, Deny,  ActorAuthoredOnly, ActorAuthoredOnly, Allow,          Allow, Allow, Deny,  Allow}, // ADMIN
+    {Deny,  Deny,  Allow, Allow, Allow, Deny,  ActorAuthoredOnly, ActorAuthoredOnly, Deny,           Deny,  Deny,  Deny,  Deny }, // MEMBER
+    DenyAll, // INVITED
+    DenyAll, // BANNED
+    DenyAll, // LEFT
+}};
+
+constexpr std::array<const PolicyTable*, PolicyCount> Tables {&BasicTable, &OneToOneTable, &FeedTable};
 // clang-format on
 
 } // namespace
@@ -128,6 +136,8 @@ policyFor(const conversation::Info& conversation)
     case conversation::Mode::INVITES_ONLY:
     case conversation::Mode::PUBLIC:
         return Policy::Basic;
+    case conversation::Mode::FEED:
+        return Policy::Feed;
     case conversation::Mode::NON_SWARM:
         return std::nullopt;
     }

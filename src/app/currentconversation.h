@@ -67,6 +67,7 @@ class CurrentConversation final : public QObject
     QML_PROPERTY(bool, canReact)
     QML_PROPERTY(bool, canCall)
     QML_PROPERTY(bool, canAddMember)
+    QML_PROPERTY(bool, canViewMemberList)
     QML_PROPERTY(bool, canChangeConversationProfile)
     QML_PROPERTY(bool, canBanUnbanMember)
     QML_PROPERTY(bool, canCreateDocument)

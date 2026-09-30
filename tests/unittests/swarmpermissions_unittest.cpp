@@ -92,7 +92,7 @@ TEST(SwarmPermissions, AdminsAndMembersCanUseTheConversation)
 
 TEST(SwarmPermissions, InvitedAndLeftMembersCannotDoAnything)
 {
-    for (const auto policy : {Policy::Basic, Policy::OneToOne}) {
+    for (const auto policy : {Policy::Basic, Policy::OneToOne, Policy::Feed}) {
         for (const auto role : {Role::INVITED, Role::LEFT}) {
             for (int i = 0; i < static_cast<int>(Action::COUNT__); ++i) {
                 const auto action = static_cast<Action>(i);
@@ -106,7 +106,7 @@ TEST(SwarmPermissions, InvitedAndLeftMembersCannotDoAnything)
 
 TEST(SwarmPermissions, BannedMembersCannotPerformAnyPolicyAction)
 {
-    for (const auto policy : {Policy::Basic, Policy::OneToOne}) {
+    for (const auto policy : {Policy::Basic, Policy::OneToOne, Policy::Feed}) {
         for (int i = 0; i < static_cast<int>(Action::COUNT__); ++i) {
             const auto action = static_cast<Action>(i);
             EXPECT_EQ(evaluate(policy, Role::BANNED, action), Decision::Denied) << "action " << i;
@@ -116,7 +116,7 @@ TEST(SwarmPermissions, BannedMembersCannotPerformAnyPolicyAction)
 
 TEST(SwarmPermissions, AdminsAndMembersCanOnlyEditAndDeleteMessagesTheyAuthored)
 {
-    for (const auto policy : {Policy::Basic, Policy::OneToOne}) {
+    for (const auto policy : {Policy::Basic, Policy::OneToOne, Policy::Feed}) {
         for (const auto role : {Role::ADMIN, Role::MEMBER}) {
             for (const auto action : {Action::EditMessage, Action::DeleteMessage}) {
                 EXPECT_EQ(evaluate(policy, role, action, actorAuthoredMessage()), Decision::Allowed) << roleName(role);
@@ -145,6 +145,12 @@ TEST(SwarmPermissions, CollaborativeDocumentCreationIsAllowedInBasicAndOneToOne)
         EXPECT_EQ(evaluate(Policy::Basic, role, Action::CreateCollaborativeDocument), Decision::Allowed);
         EXPECT_EQ(evaluate(Policy::OneToOne, role, Action::CreateCollaborativeDocument), Decision::Allowed);
     }
+}
+
+TEST(SwarmPermissions, FeedDeniesCollaborativeDocumentCreationForEveryRole)
+{
+    for (const auto role : {Role::ADMIN, Role::MEMBER})
+        EXPECT_EQ(evaluate(Policy::Feed, role, Action::CreateCollaborativeDocument), Decision::Denied);
 }
 
 TEST(SwarmPermissions, AdminsCanAddMembersInEveryMode)
@@ -232,6 +238,56 @@ TEST(SwarmPermissions, OnlyAllowedMeansYes)
     EXPECT_FALSE(isAllowed(Decision::Unknown));
 }
 
+TEST(SwarmPermissions, FeedAdminsCanManageAndPostButNotCall)
+{
+    for (const auto action : {Action::SendFile,
+                              Action::SendText,
+                              Action::ReplyText,
+                              Action::ReplyFile,
+                              Action::React,
+                              Action::AddMember,
+                              Action::ChangeConversationProfile,
+                              Action::BanUnbanMember}) {
+        EXPECT_EQ(evaluate(Policy::Feed, Role::ADMIN, action), Decision::Allowed)
+            << "action " << static_cast<int>(action);
+    }
+    EXPECT_EQ(evaluate(Policy::Feed, Role::ADMIN, Action::Call), Decision::Denied);
+}
+
+TEST(SwarmPermissions, FeedMembersCanReplyAndReactButCannotPostOrManage)
+{
+    for (const auto action : {Action::ReplyText, Action::ReplyFile, Action::React}) {
+        EXPECT_EQ(evaluate(Policy::Feed, Role::MEMBER, action), Decision::Allowed)
+            << "action " << static_cast<int>(action);
+    }
+    for (const auto action : {Action::SendFile,
+                              Action::SendText,
+                              Action::Call,
+                              Action::AddMember,
+                              Action::ChangeConversationProfile,
+                              Action::BanUnbanMember}) {
+        EXPECT_EQ(evaluate(Policy::Feed, Role::MEMBER, action), Decision::Denied)
+            << "action " << static_cast<int>(action);
+    }
+}
+
+TEST(SwarmPermissions, OnlyFeedAdminsCanViewTheMemberList)
+{
+    EXPECT_EQ(evaluate(Policy::Feed, Role::ADMIN, Action::ViewMemberList), Decision::Allowed);
+    EXPECT_EQ(evaluate(Policy::Feed, Role::MEMBER, Action::ViewMemberList), Decision::Denied);
+
+    for (const auto policy : {Policy::Basic, Policy::OneToOne}) {
+        for (const auto role : {Role::ADMIN, Role::MEMBER}) {
+            EXPECT_EQ(evaluate(policy, role, Action::ViewMemberList), Decision::Allowed);
+        }
+    }
+}
+
+TEST(ConversationMode, ToModeMapsFeed)
+{
+    EXPECT_EQ(conversation::to_mode(5), Mode::FEED);
+}
+
 // Mapping a conversation onto a policy
 
 TEST(SwarmPermissions, GroupSwarmsUseTheBasicPolicy)
@@ -248,6 +304,13 @@ TEST(SwarmPermissions, OneToOneSwarmsUseTheOneToOnePolicy)
     conversation::Info conversation(QStringLiteral("conv"), nullptr);
     conversation.mode = Mode::ONE_TO_ONE;
     EXPECT_EQ(policyFor(conversation), Policy::OneToOne);
+}
+
+TEST(SwarmPermissions, FeedsUseTheFeedPolicy)
+{
+    conversation::Info conversation(QStringLiteral("conv"), nullptr);
+    conversation.mode = Mode::FEED;
+    EXPECT_EQ(policyFor(conversation), Policy::Feed);
 }
 
 TEST(SwarmPermissions, NonSwarmConversationsHaveNoPolicy)
