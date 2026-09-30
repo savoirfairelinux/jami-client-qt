@@ -10,6 +10,7 @@ validates operations independently.
 | --- | --- |
 | Basic | `INVITES_ONLY` |
 | One-to-one | `ONE_TO_ONE` |
+| Feed | `FEED` |
 | None | `NON_SWARM` conversations do not use this policy |
 
 This table lists modes in current client use, not every mode the daemon
@@ -17,7 +18,7 @@ recognizes.
 
 ## Intended policy
 
-The matrices below show the intended policy. For both profiles and active roles,
+The matrices below show the intended policy. For all policies and active roles,
 messages may only be edited or deleted by the participant who authored them.
 
 ## Action definitions
@@ -34,6 +35,7 @@ messages may only be edited or deleted by the participant who authored them.
 | Edit message | Change the content of an existing conversation message. |
 | Delete message | Remove an existing message from the conversation. |
 | Add member | Invite or re-add a participant. In one-to-one conversations, only the original peer may rejoin; a third participant cannot be added. |
+| View member list | See the participants in the conversation. |
 | Change conversation profile | Update the shared profile of a group swarm, such as its title, description, or avatar in `profile.vcf`. This does not cover a participant’s personal Jami profile or the Qt client’s one-to-one peer contact profile. |
 | Ban or unban member | Block a participant from the conversation, or lift that block. |
 
@@ -55,6 +57,7 @@ cells.
 | Edit message | Actor-authored only | Actor-authored only |
 | Delete message | Actor-authored only | Actor-authored only |
 | Add member | Allow | Allow when the conversation mode is known |
+| View member list | Allow | Allow |
 | Change conversation profile | Allow | Deny |
 | Ban or unban member | Allow | Deny |
 
@@ -72,12 +75,49 @@ cells.
 | Edit message | Actor-authored only | Actor-authored only |
 | Delete message | Actor-authored only | Actor-authored only |
 | Add member | Re-add original peer only | Re-add original peer only |
+| View member list | Allow | Allow |
 | Change conversation profile | Deny | Deny |
 | Ban or unban member | Deny | Deny |
 
+### Feeds
+
+| Action | Admin | Member |
+| --- | --- | --- |
+| Send file | Allow | Deny |
+| Create collaborative document | Deny | Deny |
+| Send text | Allow | Deny |
+| Reply text | Allow | Allow |
+| Reply file | Allow | Allow |
+| React | Allow | Allow |
+| Call | Deny | Deny |
+| Edit message | Actor-authored only | Actor-authored only |
+| Delete message | Actor-authored only | Actor-authored only |
+| Add member | Allow | Deny |
+| View member list | Allow | Deny |
+| Change conversation profile | Allow | Deny |
+| Ban or unban member | Allow | Deny |
+
+### Read-only feeds
+
+| Action | Admin | Member |
+| --- | --- | --- |
+| Send file | Allow | Deny |
+| Create collaborative document | Deny | Deny |
+| Send text | Allow | Deny |
+| Reply text | Allow | Deny |
+| Reply file | Allow | Deny |
+| React | Deny | Deny |
+| Call | Deny | Deny |
+| Edit message | Actor-authored only | Deny |
+| Delete message | Actor-authored only | Deny |
+| Add member | Allow | Deny |
+| View member list | Allow | Deny |
+| Change conversation profile | Allow | Deny |
+| Ban or unban member | Allow | Deny |
+
 ## Restricted member states
 
-These rules apply in both profiles:
+These rules apply in all policies:
 
 | Role | All actions |
 | --- | --- |
@@ -87,7 +127,7 @@ These rules apply in both profiles:
 
 ## Missing context
 
-The client returns `Unknown` when it cannot determine a profile or role, or
+The client returns `Unknown` when it cannot determine a policy or role, or
 when a required condition is missing (for example, whether the actor authored
 the targeted message, the conversation mode for a member adding someone,
 or whether a one-to-one target can rejoin).
@@ -103,14 +143,15 @@ are hidden in the UI, and the adapters also refuse them and log a warning.
 
 | Action | QML | Adapter guard |
 | --- | --- | --- |
-| Send text / Send file | `CurrentConversation.canSendText` / `canSendFile`: chat footer, attach and recorded-message buttons, file drop and paste | `MessagesAdapter::sendMessage*`, `sendFile*` |
-| Reply text | `canReplyText` or `canReplyFile` enables the reply button, double click, context menu; the footer stays visible if either is allowed | `MessagesAdapter::sendMessage*` checks `ReplyText` when `replyToId` is set |
+| Send text / Send file | `CurrentConversation.canSendText` / `canSendFile`: chat footer, attach and recorded-message buttons, file drop and paste; while replying, the footer can also be shown by reply permissions | `MessagesAdapter::sendMessage*`, `sendFile*` |
+| Reply text | `canReplyText` or `canReplyFile` enables the reply button, double click, context menu; while replying, the footer stays visible if either is allowed | `MessagesAdapter::sendMessage*` checks `ReplyText` when `replyToId` is set |
 | Reply file | While replying, `canReplyFile` (instead of `canSendFile`) gates attach and recorded-message buttons, file drop and paste | `MessagesAdapter::sendFile*` checks `ReplyFile` when `replyToId` is set |
 | Create collaborative document | `CurrentConversation.canCreateDocument`: creation action in the editable-documents flow | `CollaborativeAdapter::createDocument` |
 | React | `canReact`: quick reactions, emoji picker, reaction removal | `MessagesAdapter::addEmojiReaction`, `removeReaction` |
 | Call | `canCall` in the header; `ConversationsAdapter.canCall()` in the conversation list menu | `CallAdapter::startCall`, `startAudioOnlyCall` |
 | Edit / Delete message | `CurrentConversation.canEditMessage()` / `canDeleteMessage()`: message menus, up-arrow edit | `MessagesAdapter::editMessage` (an empty body deletes) |
 | Add member | `canAddMember`: invite buttons | `ContactAdapter::contactSelected`, `MessagesAdapter::addConversationMember` |
+| View member list | `CurrentConversation.canViewMemberList`: Members tab and member grid in `SwarmDetailsPanel` | — |
 | Change conversation profile | `canChangeConversationProfile`: title, description, avatar in the details panel | `ConversationModel::isProfileUpdatePermitted()` in the title, description and avatar setters |
 | Ban or unban member | `canBanUnbanMember`: participant menu | `MessagesAdapter::removeConversationMember`, and `addConversationMember` for a banned target |
 

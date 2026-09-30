@@ -623,8 +623,8 @@ Item {
                                 return false;
                             else if (isConversationEndedFlag)
                                 return false;
-                            else if (!convContext.canSendText && !convContext.canSendFile && !convContext.canReplyText
-                                     && !convContext.canReplyFile)
+                            else if (!convContext.canSendText && !convContext.canSendFile
+                                     && !(MessagesAdapter.replyToId && (convContext.canReplyText || convContext.canReplyFile)))
                                 return false;
                             return convContext.isSwarm || convContext.isTemporary;
                         }

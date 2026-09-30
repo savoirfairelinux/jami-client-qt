@@ -15,6 +15,7 @@
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.  *
  ***************************************************************************/
 
+#include "api/conversation.h"
 #include "api/interaction.h"
 #include "dbus/configurationmanager.h"
 
@@ -86,6 +87,8 @@ Info::init(const MapStringString& message,
     } else if (type == Type::INITIAL) {
         if (message["mode"] == "0") {
             body = QObject::tr("Private conversation created");
+        } else if (message["mode"] == QString::number(static_cast<int>(conversation::Mode::FEED))) {
+            body = QObject::tr("Feed conversation created");
         } else {
             body = QObject::tr("Group conversation created");
         }

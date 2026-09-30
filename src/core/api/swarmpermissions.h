@@ -27,8 +27,8 @@
  * This decides what the UI offers; the daemon remains the authority and
  * validates every commit on its own.
  *
- * To support a new kind of swarm, add a Policy value and its table in
- * swarmpermissions.cpp.
+ * To support a new kind of swarm, add a Policy value, its table in
+ * swarmpermissions.cpp, and its mapping in policyFor().
  */
 namespace lrc {
 namespace api {
@@ -47,10 +47,11 @@ enum class Action {
     ChangeConversationProfile,
     BanUnbanMember,
     CreateCollaborativeDocument,
+    ViewMemberList,
     COUNT__
 };
 
-enum class Policy { Basic, OneToOne, COUNT__ };
+enum class Policy { Basic, OneToOne, Feed, COUNT__ };
 
 enum class Rule {
     Deny,

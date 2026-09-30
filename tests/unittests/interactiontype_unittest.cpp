@@ -15,6 +15,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+#include "api/conversation.h"
 #include "api/interaction.h"
 
 #include <gtest/gtest.h>
@@ -42,6 +43,15 @@ TEST(InteractionType, TheTypesTheMessageListCannotDrawAreNotDisplayed)
     for (const auto type : {Type::MERGE, Type::VOTE, Type::UPDATE_PROFILE, Type::COUNT__}) {
         EXPECT_FALSE(isTypeDisplayable(type)) << to_string(type).toStdString();
     }
+}
+
+TEST(InteractionInitial, FeedModeHasAFeedSpecificCreatedMessage)
+{
+    const MapStringString message {{"type", "initial"},
+                                   {"mode", QString::number(static_cast<int>(lrc::api::conversation::Mode::FEED))}};
+    const Info interaction(message, QStringLiteral("account-uri"));
+
+    EXPECT_EQ(interaction.body, QObject::tr("Feed conversation created"));
 }
 
 TEST(InteractionType, AReactionCommitIsNotADisplayableMessage)
