@@ -64,7 +64,8 @@ Window {
     title: (documentName !== "" ? documentName : qsTr("Editable document"))
            + (peerName !== "" ? " — " + peerName : "")
            + " — " + JamiStrings.appTitle
-    width: 720
+    // Wide enough for the formatting controls to fit on one line.
+    width: 840
     height: 560
     minimumWidth: 420
     minimumHeight: 320
@@ -223,6 +224,58 @@ Window {
         }
     }
 
+    // Toolbar button opening a chooser: what is chosen now, then a "▾". The menu
+    // it opens is declared at the window root, for the same reason as editorMenu.
+    component ChooserButton: AbstractButton {
+        id: chooserBtn
+
+        property string label: ""
+        // The family to show the label in, if not the control's own.
+        property string labelFamily: ""
+
+        implicitHeight: 30
+        leftPadding: 8
+        rightPadding: 6
+        ToolTip.visible: hovered
+        background: Rectangle {
+            radius: 6
+            color: chooserBtn.hovered ? JamiTheme.hoveredButtonColor : "transparent"
+            border.width: 1
+            border.color: JamiTheme.tabbarBorderColor
+        }
+        contentItem: RowLayout {
+            spacing: 3
+            Text {
+                Layout.fillWidth: true
+                text: chooserBtn.label
+                font.family: chooserBtn.labelFamily !== "" ? chooserBtn.labelFamily
+                                                           : chooserBtn.font.family
+                font.pointSize: JamiTheme.textFontSize
+                color: JamiTheme.textColor
+                elide: Text.ElideRight
+                verticalAlignment: Text.AlignVCenter
+            }
+            Text {
+                text: "▾"
+                color: JamiTheme.textColor
+                font.pointSize: JamiTheme.textFontSize
+            }
+        }
+    }
+
+    // Between two groups of toolbar controls. As tall as a button, so it lines up
+    // with them on any line of a wrapped toolbar.
+    component ToolbarSeparator: Item {
+        width: 1
+        height: 30
+        Rectangle {
+            anchors.centerIn: parent
+            width: 1
+            height: 22
+            color: JamiTheme.tabbarBorderColor
+        }
+    }
+
     Component.onCompleted: {
         // Ensure the daemon session exists, then render the current content.
         CollaborativeAdapter.openDocument(accountId, conversationId, documentId);
@@ -298,6 +351,68 @@ Window {
     // Alignment of the paragraph under the caret. Left is stored as no attribute
     // at all, so an empty answer means left.
     readonly property string currentAlign: (root.fmt.align !== undefined && root.fmt.align !== "") ? root.fmt.align : "left"
+
+    // Family of the font the selection is in, or that the caret will type in.
+    // Empty for the editor's own font, and for a font this client does not ship.
+    readonly property string currentFontFamily: root.fontFamilyOf(root.fmt.font)
+
+    function fontFamilyOf(id) {
+        if (!id)
+            return "";
+        const fonts = richBinding.fonts;
+        for (var i = 0; i < fonts.length; ++i) {
+            if (fonts[i].id === id)
+                return fonts[i].family;
+        }
+        return "";
+    }
+
+    function chooseFont(id) {
+        richBinding.setFont(id, editor.selectionStart, editor.selectionEnd);
+        root.refreshFormatState();
+        editor.forceActiveFocus();
+    }
+
+    // Heading level of the paragraph under the caret, 0 for normal text.
+    readonly property int currentHeading: root.fmt.header !== undefined ? root.fmt.header : 0
+
+    function headingLabel(level) {
+        if (level === 1)
+            return qsTr("Heading 1");
+        if (level === 2)
+            return qsTr("Heading 2");
+        if (level === 3)
+            return qsTr("Heading 3");
+        return qsTr("Normal text");
+    }
+
+    // How much larger than the text a heading is drawn: the size adjustment of
+    // the HTML <h1>..<h3> tags that headings are drawn with.
+    function headingScale(level) {
+        if (level === 1)
+            return 2.0;
+        if (level === 2)
+            return 1.5;
+        if (level === 3)
+            return 1.2;
+        return 1.0;
+    }
+
+    function chooseHeading(level) {
+        richBinding.setHeading(level, editor.selectionStart, editor.selectionEnd);
+        root.refreshFormatState();
+        editor.forceActiveFocus();
+    }
+
+    // Size of the selection, or of what the caret will type, in points. 0 when
+    // the text has none of its own and is at the base size.
+    readonly property real currentTextSize: root.fmt.size !== undefined ? root.fmt.size : 0
+
+    function chooseTextSize(size) {
+        richBinding.setFontSize(size, editor.selectionStart, editor.selectionEnd);
+        root.refreshFormatState();
+        editor.forceActiveFocus();
+    }
 
     function alignmentOf(style) {
         if (style === "center")
@@ -540,8 +655,8 @@ Window {
         anchors.margins: JamiTheme.preferredMarginSize / 3
         spacing: JamiTheme.preferredMarginSize
 
-        // Title and formatting controls on one row: the editable document name on
-        // the left (click to rename), the formatting controls on the right.
+        // The editable document name (click to rename), with what applies to the
+        // whole document on its right.
         RowLayout {
             Layout.fillWidth: true
             spacing: 4
@@ -607,224 +722,6 @@ Window {
                 }
             }
 
-            FormatButton {
-                enabled: !root.previewing
-                glyph: "B"
-                active: root.fmt.b === true
-                onClicked: {
-                    richBinding.toggleInline("b", editor.selectionStart, editor.selectionEnd);
-                    root.refreshFormatState();
-                    editor.forceActiveFocus();
-                }
-            }
-            FormatButton {
-                enabled: !root.previewing
-                glyph: "I"
-                active: root.fmt.i === true
-                onClicked: {
-                    richBinding.toggleInline("i", editor.selectionStart, editor.selectionEnd);
-                    root.refreshFormatState();
-                    editor.forceActiveFocus();
-                }
-            }
-            FormatButton {
-                enabled: !root.previewing
-                glyph: "U"
-                active: root.fmt.u === true
-                onClicked: {
-                    richBinding.toggleInline("u", editor.selectionStart, editor.selectionEnd);
-                    root.refreshFormatState();
-                    editor.forceActiveFocus();
-                }
-            }
-            FormatButton {
-                enabled: !root.previewing
-                glyph: "S"
-                active: root.fmt.s === true
-                onClicked: {
-                    richBinding.toggleInline("s", editor.selectionStart, editor.selectionEnd);
-                    root.refreshFormatState();
-                    editor.forceActiveFocus();
-                }
-            }
-
-            Rectangle {
-                Layout.preferredWidth: 1
-                Layout.preferredHeight: 22
-                Layout.alignment: Qt.AlignVCenter
-                color: JamiTheme.tabbarBorderColor
-            }
-
-            FormatButton {
-                enabled: !root.previewing
-                glyph: "H1"
-                active: root.fmt.header === 1
-                onClicked: {
-                    richBinding.setHeading(root.fmt.header === 1 ? 0 : 1, editor.selectionStart, editor.selectionEnd);
-                    root.refreshFormatState();
-                    editor.forceActiveFocus();
-                }
-            }
-            FormatButton {
-                enabled: !root.previewing
-                glyph: "H2"
-                active: root.fmt.header === 2
-                onClicked: {
-                    richBinding.setHeading(root.fmt.header === 2 ? 0 : 2, editor.selectionStart, editor.selectionEnd);
-                    root.refreshFormatState();
-                    editor.forceActiveFocus();
-                }
-            }
-            FormatButton {
-                enabled: !root.previewing
-                glyph: "H3"
-                active: root.fmt.header === 3
-                onClicked: {
-                    richBinding.setHeading(root.fmt.header === 3 ? 0 : 3, editor.selectionStart, editor.selectionEnd);
-                    root.refreshFormatState();
-                    editor.forceActiveFocus();
-                }
-            }
-
-            Rectangle {
-                Layout.preferredWidth: 1
-                Layout.preferredHeight: 22
-                Layout.alignment: Qt.AlignVCenter
-                color: JamiTheme.tabbarBorderColor
-            }
-
-            FormatButton {
-                enabled: !root.previewing
-                glyph: "•"
-                ToolTip.visible: hovered
-                ToolTip.text: qsTr("Bulleted list")
-                active: root.fmt.list === "bullet"
-                onClicked: {
-                    richBinding.setList("bullet", editor.selectionStart, editor.selectionEnd);
-                    root.refreshFormatState();
-                    editor.forceActiveFocus();
-                }
-            }
-            FormatButton {
-                enabled: !root.previewing
-                glyph: "1."
-                ToolTip.visible: hovered
-                ToolTip.text: qsTr("Numbered list")
-                active: root.fmt.list === "ordered"
-                onClicked: {
-                    richBinding.setList("ordered", editor.selectionStart, editor.selectionEnd);
-                    root.refreshFormatState();
-                    editor.forceActiveFocus();
-                }
-            }
-
-            Rectangle {
-                Layout.preferredWidth: 1
-                Layout.preferredHeight: 22
-                Layout.alignment: Qt.AlignVCenter
-                color: JamiTheme.tabbarBorderColor
-            }
-
-            // Alignment applies to whole paragraphs, so it needs no selection: the
-            // caret is enough to say which one is meant. Opens a root-level Menu,
-            // for the same reason as the font size chooser.
-            AbstractButton {
-                id: alignButton
-
-                enabled: !root.previewing
-                Layout.preferredWidth: 46
-                Layout.preferredHeight: 30
-                ToolTip.visible: hovered
-                ToolTip.text: qsTr("Paragraph alignment")
-                background: Rectangle {
-                    radius: 6
-                    color: alignButton.hovered ? JamiTheme.hoveredButtonColor : "transparent"
-                    border.width: 1
-                    border.color: JamiTheme.tabbarBorderColor
-                }
-                contentItem: Row {
-                    spacing: 3
-                    AlignGlyph {
-                        anchors.verticalCenter: parent.verticalCenter
-                        // Shows what the paragraph under the caret is doing.
-                        align: root.alignmentOf(root.currentAlign)
-                    }
-                    Text {
-                        anchors.verticalCenter: parent.verticalCenter
-                        text: "▾"
-                        color: JamiTheme.textColor
-                        font.pointSize: JamiTheme.textFontSize
-                    }
-                }
-                onClicked: alignMenu.popup(alignButton, 0, alignButton.height)
-            }
-
-            Rectangle {
-                Layout.preferredWidth: 1
-                Layout.preferredHeight: 22
-                Layout.alignment: Qt.AlignVCenter
-                color: JamiTheme.tabbarBorderColor
-            }
-
-            FormatButton {
-                enabled: !root.previewing
-                glyph: "🔗"
-                active: root.fmt.link !== undefined && root.fmt.link !== ""
-                onClicked: {
-                    linkField.text = (root.fmt.link !== undefined ? root.fmt.link : "");
-                    linkPopup.open();
-                }
-            }
-            FormatButton {
-                enabled: !root.previewing
-                glyph: "🖼"
-                ToolTip.visible: hovered
-                ToolTip.text: qsTr("Insert image")
-                onClicked: root.pickImage()
-            }
-            FormatButton {
-                enabled: !root.previewing
-                glyph: "⌫"
-                ToolTip.visible: hovered
-                ToolTip.text: qsTr("Clear formatting")
-                onClicked: {
-                    richBinding.clearFormat(editor.selectionStart, editor.selectionEnd);
-                    root.refreshFormatState();
-                    editor.forceActiveFocus();
-                }
-            }
-
-            Rectangle {
-                Layout.preferredWidth: 1
-                Layout.preferredHeight: 22
-                Layout.alignment: Qt.AlignVCenter
-                color: JamiTheme.tabbarBorderColor
-            }
-
-            // Base font size of the editor (a local view preference). Opens a
-            // root-level Menu (a ComboBox's deferred popup crashes in this Window).
-            AbstractButton {
-                id: fontSizeButton
-                Layout.preferredWidth: 56
-                Layout.preferredHeight: 30
-                ToolTip.visible: hovered
-                ToolTip.text: qsTr("Base font size")
-                background: Rectangle {
-                    radius: 6
-                    color: fontSizeButton.hovered ? JamiTheme.hoveredButtonColor : "transparent"
-                    border.width: 1
-                    border.color: JamiTheme.tabbarBorderColor
-                }
-                contentItem: Text {
-                    text: root.baseFontSize + " ▾"
-                    horizontalAlignment: Text.AlignHCenter
-                    verticalAlignment: Text.AlignVCenter
-                    color: JamiTheme.textColor
-                    font.pointSize: JamiTheme.textFontSize
-                }
-                onClicked: fontSizeMenu.popup(fontSizeButton, 0, fontSizeButton.height)
-            }
-
             PushButton {
                 id: exportButton
                 Layout.alignment: Qt.AlignVCenter
@@ -878,6 +775,203 @@ Window {
             }
         }
 
+        // The formatting controls, on a row of their own under the title, in the
+        // order they are reached for: the kind of paragraph, the typeface and its
+        // sizes, the character styles, the paragraph's layout, then what is put
+        // into the text. A window too narrow for them all wraps them onto another
+        // line rather than cutting them off.
+        Flow {
+            objectName: "formatBar"
+            Layout.fillWidth: true
+            spacing: 4
+
+            // A heading applies to whole paragraphs, so it needs no selection: the
+            // caret is enough to say which one is meant.
+            ChooserButton {
+                id: headingButton
+                objectName: "headingButton"
+
+                enabled: !root.previewing
+                width: 108
+                label: root.headingLabel(root.currentHeading)
+                ToolTip.text: qsTr("Paragraph style")
+                onClicked: headingMenu.popup(headingButton, 0, headingButton.height)
+            }
+
+            // Font of the selection, shown in itself.
+            ChooserButton {
+                id: fontButton
+                objectName: "fontButton"
+
+                enabled: !root.previewing
+                width: 132
+                label: root.currentFontFamily !== "" ? root.currentFontFamily : qsTr("Default font")
+                labelFamily: root.currentFontFamily !== "" ? root.currentFontFamily
+                                                           : editor.font.family
+                ToolTip.text: qsTr("Font")
+                onClicked: fontMenu.popup(fontButton, 0, fontButton.height)
+            }
+
+            // Base font size of the editor (a local view preference): the size of
+            // the text that has none of its own.
+            ChooserButton {
+                id: fontSizeButton
+                objectName: "baseSizeButton"
+
+                width: 76
+                label: qsTr("Base %1").arg(root.baseFontSize)
+                ToolTip.text: qsTr("Base font size")
+                onClicked: fontSizeMenu.popup(fontSizeButton, 0, fontSizeButton.height)
+            }
+
+            // Size of the selection, which every participant sees. Text without a
+            // size of its own is at the base size, which is what it shows then.
+            ChooserButton {
+                id: textSizeButton
+                objectName: "textSizeButton"
+
+                enabled: !root.previewing
+                width: 52
+                label: root.currentTextSize > 0 ? root.currentTextSize : root.baseFontSize
+                ToolTip.text: qsTr("Font size")
+                onClicked: textSizeMenu.popup(textSizeButton, 0, textSizeButton.height)
+            }
+
+            ToolbarSeparator {}
+
+            FormatButton {
+                enabled: !root.previewing
+                glyph: "B"
+                active: root.fmt.b === true
+                onClicked: {
+                    richBinding.toggleInline("b", editor.selectionStart, editor.selectionEnd);
+                    root.refreshFormatState();
+                    editor.forceActiveFocus();
+                }
+            }
+            FormatButton {
+                enabled: !root.previewing
+                glyph: "I"
+                active: root.fmt.i === true
+                onClicked: {
+                    richBinding.toggleInline("i", editor.selectionStart, editor.selectionEnd);
+                    root.refreshFormatState();
+                    editor.forceActiveFocus();
+                }
+            }
+            FormatButton {
+                enabled: !root.previewing
+                glyph: "U"
+                active: root.fmt.u === true
+                onClicked: {
+                    richBinding.toggleInline("u", editor.selectionStart, editor.selectionEnd);
+                    root.refreshFormatState();
+                    editor.forceActiveFocus();
+                }
+            }
+            FormatButton {
+                enabled: !root.previewing
+                glyph: "S"
+                active: root.fmt.s === true
+                onClicked: {
+                    richBinding.toggleInline("s", editor.selectionStart, editor.selectionEnd);
+                    root.refreshFormatState();
+                    editor.forceActiveFocus();
+                }
+            }
+
+            ToolbarSeparator {}
+
+            // Alignment applies to whole paragraphs, so it needs no selection: the
+            // caret is enough to say which one is meant. Opens a root-level Menu,
+            // for the same reason as the font size chooser.
+            AbstractButton {
+                id: alignButton
+                objectName: "alignButton"
+
+                enabled: !root.previewing
+                width: 46
+                height: 30
+                ToolTip.visible: hovered
+                ToolTip.text: qsTr("Paragraph alignment")
+                background: Rectangle {
+                    radius: 6
+                    color: alignButton.hovered ? JamiTheme.hoveredButtonColor : "transparent"
+                    border.width: 1
+                    border.color: JamiTheme.tabbarBorderColor
+                }
+                contentItem: Row {
+                    spacing: 3
+                    AlignGlyph {
+                        anchors.verticalCenter: parent.verticalCenter
+                        // Shows what the paragraph under the caret is doing.
+                        align: root.alignmentOf(root.currentAlign)
+                    }
+                    Text {
+                        anchors.verticalCenter: parent.verticalCenter
+                        text: "▾"
+                        color: JamiTheme.textColor
+                        font.pointSize: JamiTheme.textFontSize
+                    }
+                }
+                onClicked: alignMenu.popup(alignButton, 0, alignButton.height)
+            }
+            FormatButton {
+                enabled: !root.previewing
+                glyph: "•"
+                ToolTip.visible: hovered
+                ToolTip.text: qsTr("Bulleted list")
+                active: root.fmt.list === "bullet"
+                onClicked: {
+                    richBinding.setList("bullet", editor.selectionStart, editor.selectionEnd);
+                    root.refreshFormatState();
+                    editor.forceActiveFocus();
+                }
+            }
+            FormatButton {
+                enabled: !root.previewing
+                glyph: "1."
+                ToolTip.visible: hovered
+                ToolTip.text: qsTr("Numbered list")
+                active: root.fmt.list === "ordered"
+                onClicked: {
+                    richBinding.setList("ordered", editor.selectionStart, editor.selectionEnd);
+                    root.refreshFormatState();
+                    editor.forceActiveFocus();
+                }
+            }
+
+            ToolbarSeparator {}
+
+            FormatButton {
+                enabled: !root.previewing
+                glyph: "🔗"
+                active: root.fmt.link !== undefined && root.fmt.link !== ""
+                onClicked: {
+                    linkField.text = (root.fmt.link !== undefined ? root.fmt.link : "");
+                    linkPopup.open();
+                }
+            }
+            FormatButton {
+                enabled: !root.previewing
+                glyph: "🖼"
+                ToolTip.visible: hovered
+                ToolTip.text: qsTr("Insert image")
+                onClicked: root.pickImage()
+            }
+            FormatButton {
+                enabled: !root.previewing
+                glyph: "⌫"
+                ToolTip.visible: hovered
+                ToolTip.text: qsTr("Clear formatting")
+                onClicked: {
+                    richBinding.clearFormat(editor.selectionStart, editor.selectionEnd);
+                    root.refreshFormatState();
+                    editor.forceActiveFocus();
+                }
+            }
+        }
+
         // Why an image insertion did nothing. Silence would look like a bug.
         Text {
             Layout.fillWidth: true
@@ -906,6 +1000,7 @@ Window {
 
                     TextArea {
                         id: editor
+                        objectName: "collabEditor"
 
                         padding: 10
                         // Keystrokes must not reach a document the user cannot see.
@@ -934,6 +1029,7 @@ Window {
                             root.dropImageSelectionUnlessHeld();
                         }
                         onCursorPositionChanged: {
+                            richBinding.caretMoved(editor.cursorPosition);
                             root.refreshFormatState();
                             cursorBroadcast.restart();
                         }
@@ -1436,6 +1532,121 @@ Window {
                 checkable: true
                 checked: root.baseFontSize === modelData
                 onTriggered: root.baseFontSize = modelData
+            }
+        }
+    }
+
+    // Font chooser (declared at the window root for the same reason as
+    // editorMenu: a nested/deferred popup crashes in this Window). Every font
+    // is shown in itself.
+    Menu {
+        id: fontMenu
+        objectName: "fontMenu"
+
+        MenuItem {
+            id: defaultFontItem
+
+            text: qsTr("Default font")
+            font.family: editor.font.family
+            checkable: true
+            checked: root.currentFontFamily === ""
+            onTriggered: {
+                root.chooseFont("");
+                // Clicking ticked this item behind the binding's back: bind again,
+                // as the alignment chooser does.
+                defaultFontItem.checked = Qt.binding(function () {
+                    return root.currentFontFamily === "";
+                });
+            }
+        }
+        MenuSeparator {}
+        Repeater {
+            model: richBinding.fonts
+            delegate: MenuItem {
+                id: fontItem
+
+                required property var modelData
+
+                text: modelData.family
+                font.family: modelData.family
+                checkable: true
+                checked: root.fmt.font === modelData.id
+                onTriggered: {
+                    root.chooseFont(modelData.id);
+                    fontItem.checked = Qt.binding(function () {
+                        return root.fmt.font === fontItem.modelData.id;
+                    });
+                }
+            }
+        }
+    }
+
+    // Paragraph style chooser (declared at the window root for the same reason
+    // as editorMenu). Every style is shown at the size it gives.
+    Menu {
+        id: headingMenu
+        objectName: "headingMenu"
+
+        Repeater {
+            model: [0, 1, 2, 3]
+            delegate: MenuItem {
+                id: headingItem
+
+                required property int modelData
+
+                text: root.headingLabel(modelData)
+                font.pointSize: JamiTheme.textFontSize * root.headingScale(modelData)
+                checkable: true
+                checked: root.currentHeading === modelData
+                onTriggered: {
+                    root.chooseHeading(modelData);
+                    // Clicking ticked this item behind the binding's back: bind
+                    // again, as the alignment chooser does.
+                    headingItem.checked = Qt.binding(function () {
+                        return root.currentHeading === headingItem.modelData;
+                    });
+                }
+            }
+        }
+    }
+
+    // Size chooser (declared at the window root for the same reason as
+    // editorMenu). The base size takes the size off, so the text follows the
+    // base size again.
+    Menu {
+        id: textSizeMenu
+        objectName: "textSizeMenu"
+
+        MenuItem {
+            id: baseTextSizeItem
+
+            text: qsTr("Base size")
+            checkable: true
+            checked: root.currentTextSize === 0
+            onTriggered: {
+                root.chooseTextSize(0);
+                baseTextSizeItem.checked = Qt.binding(function () {
+                    return root.currentTextSize === 0;
+                });
+            }
+        }
+        MenuSeparator {}
+        Repeater {
+            model: [8, 9, 10, 11, 12, 14, 16, 18, 20, 24, 28, 36, 48, 72]
+            delegate: MenuItem {
+                id: textSizeItem
+
+                required property int modelData
+
+                text: modelData
+                checkable: true
+                checked: root.currentTextSize === modelData
+                onTriggered: {
+                    root.chooseTextSize(modelData);
+                    textSizeItem.checked = Qt.binding(function () {
+                        return root.currentTextSize === textSizeItem.modelData;
+                    });
+                }
             }
         }
     }
