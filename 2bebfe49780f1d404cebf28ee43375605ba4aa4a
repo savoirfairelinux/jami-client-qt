@@ -16,6 +16,23 @@
       "message": "[error] Line 64: 🔴 `push()` now holds `state_-\u003emutex` while calling `updateFpsTracker()` and emitting `frameUpdated()`. This is a behavioral regression from the previous code (which unlocked before notifications) and can deadlock if any direct-connected slot re-enters renderer paths that also take `state_-\u003emutex` (or blocks teardown waiting on that path). Keep the critical section limited to `parent`/`frameBufferPtr` access, then release the lock before calling into Qt signals or other parent methods; use a guarded parent handle (e.g., `QPointer`) captured under lock to avoid use-after-free.",
       "revId": "2bebfe49780f1d404cebf28ee43375605ba4aa4a",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1a695ba2_2b3d2e6e",
+        "filename": "src/core/directrenderer.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-10-01T21:49:10Z",
+      "side": 1,
+      "message": "[error] Line 78: 🔴 `~Impl()` now locks `state_-\u003emutex`, but `CallbackState::pull()` holds that same mutex while synchronously emitting `frameBufferRequested`. If a direct-connected slot tears down the renderer during that emit, destruction re-enters and deadlocks on the same mutex. Avoid taking the callback mutex in teardown (or avoid emitting while holding it); keep lock scope to internal state access and perform signal emission outside the critical section with a guarded parent handle.",
+      "revId": "2bebfe49780f1d404cebf28ee43375605ba4aa4a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
