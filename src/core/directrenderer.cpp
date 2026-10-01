@@ -21,6 +21,7 @@
 #include "videomanager_interface.h"
 
 #include <QMutex>
+#include <QPointer>
 
 namespace lrc {
 namespace video {
@@ -31,9 +32,54 @@ struct DirectRenderer::Impl : public QObject
 {
     Q_OBJECT
 public:
+    struct CallbackState
+    {
+        explicit CallbackState(DirectRenderer* renderer)
+            : parent(renderer)
+        {}
+
+        libjami::FrameBuffer pull()
+        {
+            QMutexLocker lk(&mutex);
+            if (!parent)
+                return {};
+            if (!frameBufferPtr)
+                frameBufferPtr.reset(av_frame_alloc());
+
+            // The sink needs the client-owned buffer description synchronously.
+            Q_EMIT parent->frameBufferRequested(frameBufferPtr.get());
+            if (frameBufferPtr->format == AV_PIX_FMT_NONE)
+                return {};
+
+            return std::move(frameBufferPtr);
+        }
+
+        void push(libjami::FrameBuffer buf)
+        {
+            QPointer<DirectRenderer> renderer;
+            {
+                QMutexLocker lk(&mutex);
+                if (!parent)
+                    return;
+                frameBufferPtr = std::move(buf);
+                renderer = parent;
+            }
+
+            if (renderer)
+                renderer->updateFpsTracker();
+            if (renderer)
+                Q_EMIT renderer->frameUpdated();
+        }
+
+        DirectRenderer* parent;
+        QMutex mutex;
+        libjami::FrameBuffer frameBufferPtr;
+    };
+
     Impl(DirectRenderer* parent)
         : QObject(nullptr)
         , parent_(parent)
+        , state_(std::make_shared<CallbackState>(parent))
     {
         configureTarget();
         if (!VideoManager::instance().registerSinkTarget(parent_->id(), target))
@@ -41,56 +87,35 @@ public:
     };
     ~Impl()
     {
+        {
+            QMutexLocker lk(&state_->mutex);
+            state_->parent = nullptr;
+        }
         parent_->stopRendering();
         VideoManager::instance().registerSinkTarget(parent_->id(), {});
     }
 
-    // sink target callbacks
     void configureTarget()
     {
-        using namespace std::placeholders;
-        target.pull = std::bind(&Impl::pullCallback, this);
-        target.push = std::bind(&Impl::pushCallback, this, _1);
-    };
-
-    libjami::FrameBuffer pullCallback()
-    {
-        QMutexLocker lk(&mutex);
-        if (!frameBufferPtr) {
-            frameBufferPtr.reset(av_frame_alloc());
-        }
-
-        // A response to this signal should be used to provide client
-        // allocated buffer specs via the AVFrame structure.
-        // Important: Subscription to this signal MUST be synchronous(Qt::DirectConnection).
-        Q_EMIT parent_->frameBufferRequested(frameBufferPtr.get());
-
-        if (frameBufferPtr->format == AV_PIX_FMT_NONE) {
-            return nullptr;
-        }
-
-        return std::move(frameBufferPtr);
-    };
-
-    void pushCallback(libjami::FrameBuffer buf)
-    {
-        {
-            QMutexLocker lk(&mutex);
-            frameBufferPtr = std::move(buf);
-        }
-
-        parent_->updateFpsTracker();
-        Q_EMIT parent_->frameUpdated();
+        std::weak_ptr<CallbackState> state = state_;
+        target.pull = [state] {
+            if (auto shared = state.lock())
+                return shared->pull();
+            return libjami::FrameBuffer {};
+        };
+        target.push = [state](libjami::FrameBuffer buf) {
+            if (auto shared = state.lock())
+                shared->push(std::move(buf));
+        };
     };
 
 private:
     DirectRenderer* parent_;
+    std::shared_ptr<CallbackState> state_;
 
 public:
     libjami::SinkTarget target;
     FpsTracker fpsTracker;
-    QMutex mutex;
-    libjami::FrameBuffer frameBufferPtr;
 };
 
 DirectRenderer::DirectRenderer(const QString& id, const QSize& res)
