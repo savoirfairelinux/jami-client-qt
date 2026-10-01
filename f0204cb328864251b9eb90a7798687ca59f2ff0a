@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c1a8d88_b141daff",
+        "filename": "src/app/mainview/components/CollabRichEditorWindow.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 1551,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-10-01T23:37:58Z",
+      "side": 1,
+      "message": "[warning] Line 1551: 🟡 `currentFontFamily \u003d\u003d\u003d \"\"` is used to mark **Default font** as selected, but `currentFontFamily` is also empty for unknown/unshipped font IDs. That makes the UI show/check the wrong state for documents containing unsupported fonts. Prefer checking the raw format attribute (`root.fmt.font`) for default/empty, and represent unknown IDs explicitly (e.g., fallback label like “Unavailable font”) instead of conflating them with default.",
+      "revId": "f0204cb328864251b9eb90a7798687ca59f2ff0a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a0527c42_c64c2bed",
+        "filename": "tests/qml/src/tst_CollabRichEditorWindow.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-10-01T23:37:58Z",
+      "side": 1,
+      "message": "[warning] Line 85: 🟡 The test hard-codes `menu.count \u003d\u003d\u003d 12` and specific absolute indices, which is brittle against legitimate font list evolution. Assert semantic expectations instead (default item + separator + presence/order of expected shipped fonts by id/family) so unrelated additions don’t break the suite.",
+      "revId": "f0204cb328864251b9eb90a7798687ca59f2ff0a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
