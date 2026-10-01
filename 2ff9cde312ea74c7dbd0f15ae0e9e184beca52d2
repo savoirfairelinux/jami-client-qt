@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "69bb7fbe_3d17746c",
+        "filename": "src/app/collabrichbinding.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 1987,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-10-01T23:36:47Z",
+      "side": 1,
+      "message": "[warning] Line 1987: 🟡 `clearFormat()` returns early on a collapsed selection, which leaves pending `font`/`size` choices active when they were set for “typed next” text. That conflicts with the intended behavior that clearing formatting should remove these choices as well. Handle `start \u003d\u003d end` by clearing `pendingAttrs_`/`pendingAt_` (and optionally clearing the word under caret via the same path as `setFont`/`setFontSize`) so the next typed text is unformatted.",
+      "revId": "2ff9cde312ea74c7dbd0f15ae0e9e184beca52d2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
