@@ -39,6 +39,7 @@
 #include <QVariantMap>
 #include <QFile>
 #include <QFileInfo>
+#include <QFontDatabase>
 #include <QTextLayout>
 #include <QAbstractTextDocumentLayout>
 #include <QTextDocumentWriter>
@@ -48,6 +49,8 @@
 #include <memory>
 #include <optional>
 #include <algorithm>
+#include <tuple>
+#include <utility>
 
 namespace {
 
@@ -88,6 +91,144 @@ constexpr int LIST_PROPERTY = QTextFormat::UserProperty + 1;
 // has no notion of a paragraph. The block format is rebuilt from it afterwards.
 // 0 left (the default, never stored), 1 centre, 2 right, 3 justified.
 constexpr int ALIGN_PROPERTY = QTextFormat::UserProperty + 2;
+
+// The font the document names for a character, as the id it holds. Kept apart
+// from the family the character is drawn with, so that an id this client does
+// not ship still travels with the text it is set on: an edit made here keeps
+// what a newer client chose rather than quietly dropping it.
+constexpr int FONT_PROPERTY = QTextFormat::UserProperty + 3;
+
+// The size the document gives a character, in points; absent when it gives
+// none, and the character takes the editor's base size.
+constexpr int SIZE_PROPERTY = QTextFormat::UserProperty + 4;
+
+// The heading level (1 to 3) of the line a character is on.
+//
+// What the document says is held apart from how it is drawn, for font, size
+// and heading alike, because they meet: a heading is drawn larger through the
+// font size adjustment, which Qt lets override any point size -- so a size
+// chosen inside a heading would show nothing at all. reconcileFontProperties()
+// draws each character from what the document says about it.
+constexpr int HEADER_PROPERTY = QTextFormat::UserProperty + 5;
+
+// Sizes a document may give, in points. A peer's delta can say anything, and
+// text a thousand points tall is a way to make a document unusable for whoever
+// opens it.
+constexpr qreal MIN_FONT_SIZE = 1;
+constexpr qreal MAX_FONT_SIZE = 400;
+
+// The size @p v gives, or 0 when it gives none a document may have.
+qreal
+fontSizeFromAttr(const QJsonValue& v)
+{
+    if (!v.isDouble())
+        return 0;
+    const qreal size = v.toDouble();
+    return (size >= MIN_FONT_SIZE && size <= MAX_FONT_SIZE) ? size : 0;
+}
+
+// Fonts a document may name, in the order they are offered. The id is the value
+// of the "font" attribute, and the Android and iOS clients ship the same files
+// under the same ids, so the three lists have to be kept in step. The files are
+// upstream releases left unmodified: see resources/fonts/documentfonts/README.md.
+struct DocumentFont
+{
+    const char* id;
+    const char* family;
+    const char* file; // file name, without the style suffix
+};
+
+constexpr DocumentFont DOCUMENT_FONTS[] = {
+    {"liberation-sans", "Liberation Sans", "LiberationSans"},
+    {"liberation-serif", "Liberation Serif", "LiberationSerif"},
+    {"liberation-mono", "Liberation Mono", "LiberationMono"},
+    {"carlito", "Carlito", "Carlito"},
+    {"caladea", "Caladea", "Caladea"},
+    {"gelasio", "Gelasio", "Gelasio"},
+    {"eb-garamond", "EB Garamond", "EBGaramond"},
+    {"roboto", "Roboto", "Roboto"},
+    {"open-sans", "Open Sans", "OpenSans"},
+    {"comic-neue", "Comic Neue", "ComicNeue"},
+};
+
+// A font id is a short lowercase name. A peer's delta can say anything, and
+// whatever is kept here is sent again with every character typed into it.
+constexpr int MAX_FONT_ID_LENGTH = 64;
+
+QString
+fontIdFromAttr(const QJsonValue& v)
+{
+    if (!v.isString())
+        return {};
+    const QString id = v.toString();
+    if (id.size() > MAX_FONT_ID_LENGTH)
+        return {};
+    for (const QChar c : id) {
+        if (!((c >= u'a' && c <= u'z') || (c >= u'0' && c <= u'9') || c == u'-'))
+            return {};
+    }
+    return id;
+}
+
+// Registers the shipped fonts with the application, once, and answers which of
+// them could be. A font counts only once its four styles have been read from
+// the client's own files: what the machine happens to have installed under the
+// same name is no guarantee of anything. Left to the first document opened
+// rather than done at startup: forty files are read into memory, and most
+// sessions never open one.
+const QSet<QString>&
+registeredDocumentFamilies()
+{
+    static const QSet<QString> families = [] {
+        QSet<QString> loaded;
+        for (const DocumentFont& font : DOCUMENT_FONTS) {
+            const QString family = QString::fromLatin1(font.family);
+            bool complete = true;
+            for (const char* style : {"Regular", "Bold", "Italic", "BoldItalic"}) {
+                const QString path = QStringLiteral(":/documentfonts/%1-%2.ttf")
+                                         .arg(QLatin1String(font.file), QLatin1String(style));
+                const int id = QFontDatabase::addApplicationFont(path);
+                if (id < 0 || !QFontDatabase::applicationFontFamilies(id).contains(family)) {
+                    qWarning() << "Unable to load the document font" << path;
+                    complete = false;
+                }
+            }
+            if (complete)
+                loaded.insert(family);
+        }
+        return loaded;
+    }();
+    return families;
+}
+
+// The font @p id names, if this client ships it and it could be loaded.
+const DocumentFont*
+documentFont(const QString& id)
+{
+    for (const DocumentFont& font : DOCUMENT_FONTS) {
+        if (id == QLatin1String(font.id))
+            return registeredDocumentFamilies().contains(QLatin1String(font.family)) ? &font : nullptr;
+    }
+    return nullptr;
+}
+
+// What text in the font @p id is drawn with: the font, then what the
+// application itself falls back on, so a character the font lacks -- an emoji,
+// a script it does not cover -- comes from where it comes from everywhere
+// else. Empty for an id this client does not ship.
+QStringList
+fontFamiliesFor(const QString& id)
+{
+    const DocumentFont* font = documentFont(id);
+    if (!font)
+        return {};
+    QStringList families {QString::fromLatin1(font->family)};
+    for (const QString& fallback : QGuiApplication::font().families()) {
+        if (!families.contains(fallback))
+            families.append(fallback);
+    }
+    return families;
+}
 
 // 0 left, 1 centre, 2 right, 3 justified -- and back.
 int
@@ -141,14 +282,11 @@ charFormatToAttrs(const QTextCharFormat& f)
     }
     if (f.fontStrikeOut())
         a[QStringLiteral("s")] = true;
-    // Headings are stored as a per-line character attribute rendered through the
-    // font size adjustment (H1 = +3, H2 = +2, H3 = +1), exactly as Qt renders the
+    // Headings are stored as a per-line character attribute, drawn through the
+    // font size adjustment (H1 = +3, H2 = +2, H3 = +1) exactly as Qt renders the
     // HTML <h1>..<h3> tags. This avoids the Quill trailing-newline invariant.
-    if (f.hasProperty(QTextFormat::FontSizeAdjustment)) {
-        const int adj = f.intProperty(QTextFormat::FontSizeAdjustment);
-        if (adj >= 1 && adj <= 3)
-            a[QStringLiteral("header")] = 4 - adj;
-    }
+    if (const int level = f.intProperty(HEADER_PROPERTY); level >= 1 && level <= 3)
+        a[QStringLiteral("header")] = level;
     if (f.hasProperty(LIST_PROPERTY)) {
         const int t = f.intProperty(LIST_PROPERTY);
         if (t == 1)
@@ -167,6 +305,10 @@ charFormatToAttrs(const QTextCharFormat& f)
         else if (t == 3)
             a[QStringLiteral("align")] = QStringLiteral("justify");
     }
+    if (const QString font = f.stringProperty(FONT_PROPERTY); !font.isEmpty())
+        a[QStringLiteral("font")] = font;
+    if (const qreal size = f.doubleProperty(SIZE_PROPERTY); size > 0)
+        a[QStringLiteral("size")] = size;
     return a;
 }
 
@@ -213,12 +355,28 @@ mergeFormatFromAttrs(const QJsonObject& attrs)
         else if (key == QLatin1String("header")) {
             const int level = v.isDouble() ? v.toInt() : 0;
             // Headings adjust only the font size (no bold), so they don't fight the
-            // independent "b" attribute.
-            f.setProperty(QTextFormat::FontSizeAdjustment, (level >= 1 && level <= 3) ? (4 - level) : 0);
+            // independent "b" attribute -- and not even that where the text has a
+            // size of its own, which wins.
+            const bool heading = level >= 1 && level <= 3;
+            f.setProperty(HEADER_PROPERTY, heading ? level : 0);
+            const bool sized = fontSizeFromAttr(attrs.value(QStringLiteral("size"))) > 0;
+            f.setProperty(QTextFormat::FontSizeAdjustment, (heading && !sized) ? (4 - level) : 0);
+        } else if (key == QLatin1String("size")) {
+            const qreal size = fontSizeFromAttr(v);
+            f.setProperty(SIZE_PROPERTY, size);
+            if (size > 0)
+                f.setFontPointSize(size);
         } else if (key == QLatin1String("list")) {
             f.setProperty(LIST_PROPERTY, listTypeFromStyle(v.isString() ? v.toString() : QString()));
         } else if (key == QLatin1String("align")) {
             f.setProperty(ALIGN_PROPERTY, alignTypeFromStyle(v.isString() ? v.toString() : QString()));
+        } else if (key == QLatin1String("font")) {
+            // The id is kept whether this client ships the font or not; only one
+            // it ships changes how the text is drawn.
+            const QString id = fontIdFromAttr(v);
+            f.setProperty(FONT_PROPERTY, id);
+            if (const QStringList families = fontFamiliesFor(id); !families.isEmpty())
+                f.setFontFamilies(families);
         } else if (key == QLatin1String("link")) {
             const QString href = on ? sanitizedHref(v.toString()) : QString();
             if (!href.isEmpty()) {
@@ -268,6 +426,119 @@ blockAttrsAt(QTextDocument* d, int index)
     if (it == blk.end())
         return {};
     return charFormatToAttrs(it.fragment().charFormat());
+}
+
+// Draws every character of [start, end) from what the document says about it:
+// the family from its font, the point size from its size, and a heading's size
+// only where it has no size of its own -- a size chosen by hand wins, as in a
+// word processor, and as on the clients that render the document as HTML. Run
+// over the range a merge touched: a merge sets properties but never takes one
+// away, nor can it know what else a character carries.
+//
+// The separators between paragraphs are characters of the range too, and the
+// one before a paragraph holds the format text typed into it takes once it is
+// empty: left as it was, that text would be drawn differently here only.
+void
+reconcileFontProperties(QTextDocument* d, int start, int end)
+{
+    struct Span
+    {
+        int from;
+        int to;
+        QTextCharFormat format;
+    };
+    QList<Span> spans;
+    const auto consider = [&](int from, int to, const QTextCharFormat& current) {
+        from = qMax(from, start);
+        to = qMin(to, end);
+        if (from >= to)
+            return;
+        QTextCharFormat format = current;
+        const QString font = format.stringProperty(FONT_PROPERTY);
+        if (const QStringList families = fontFamiliesFor(font); !families.isEmpty()) {
+            format.setFontFamilies(families);
+        } else {
+            format.clearProperty(QTextFormat::FontFamilies);
+            format.clearProperty(QTextFormat::FontFamily);
+        }
+        if (font.isEmpty())
+            format.clearProperty(FONT_PROPERTY);
+        const qreal size = format.doubleProperty(SIZE_PROPERTY);
+        if (size > 0) {
+            format.setFontPointSize(size);
+        } else {
+            format.clearProperty(SIZE_PROPERTY);
+            format.clearProperty(QTextFormat::FontPointSize);
+        }
+        const int level = format.intProperty(HEADER_PROPERTY);
+        if (level < 1 || level > 3)
+            format.clearProperty(HEADER_PROPERTY);
+        if (level >= 1 && level <= 3 && size <= 0)
+            format.setProperty(QTextFormat::FontSizeAdjustment, 4 - level);
+        else
+            format.clearProperty(QTextFormat::FontSizeAdjustment);
+        if (format != current)
+            spans.append({from, to, format});
+    };
+    for (QTextBlock blk = d->findBlock(start); blk.isValid() && blk.position() < end; blk = blk.next()) {
+        if (blk.position() > 0)
+            consider(blk.position() - 1, blk.position(), blk.charFormat());
+        for (auto it = blk.begin(); it != blk.end(); ++it) {
+            const QTextFragment frag = it.fragment();
+            consider(frag.position(), frag.position() + frag.length(), frag.charFormat());
+        }
+    }
+    // Applied afterwards: rewriting a format under the iterators would leave
+    // them pointing at fragments that no longer exist.
+    for (const Span& s : spans) {
+        QTextCursor c(d);
+        c.setPosition(s.from);
+        c.setPosition(s.to, QTextCursor::KeepAnchor);
+        c.setCharFormat(s.format);
+    }
+}
+
+// Formats [start, end) as @p attrs say, then draws it from the result.
+void
+formatRange(QTextDocument* d, int start, int end, const QJsonObject& attrs)
+{
+    QTextCursor c(d);
+    c.setPosition(start);
+    c.setPosition(end, QTextCursor::KeepAnchor);
+    c.mergeCharFormat(mergeFormatFromAttrs(attrs));
+    reconcileFontProperties(d, start, end);
+}
+
+// The attributes that give text the font @p id, or the editor's own when the
+// id is empty.
+QJsonObject
+fontAttrs(const QString& id)
+{
+    return QJsonObject {{QStringLiteral("font"), id.isEmpty() ? QJsonValue(QJsonValue::Null) : QJsonValue(id)}};
+}
+
+// The attributes that give text the size @p size, or the base size when it is 0.
+QJsonObject
+sizeAttrs(qreal size)
+{
+    return QJsonObject {{QStringLiteral("size"), size > 0 ? QJsonValue(size) : QJsonValue(QJsonValue::Null)}};
+}
+
+// The word the caret at @p position is inside, if it is inside one: a
+// character of the word on each side of it. At either end of a word the caret
+// is where new text goes, and a word processor leaves the word alone there.
+std::optional<std::pair<int, int>>
+wordAround(QTextDocument* d, int position)
+{
+    if (position <= 0 || !d->characterAt(position - 1).isLetterOrNumber()
+        || !d->characterAt(position).isLetterOrNumber())
+        return std::nullopt;
+    QTextCursor c(d);
+    c.setPosition(position);
+    c.select(QTextCursor::WordUnderCursor);
+    if (!c.hasSelection())
+        return std::nullopt;
+    return std::make_pair(c.selectionStart(), c.selectionEnd());
 }
 
 // The embed the character at @p index stands for, as the object a delta carries,
@@ -873,6 +1144,15 @@ CollabRichBinding::onContentsChange(int /*position*/, int /*charsRemoved*/, int 
     const int removed = oldLen - prefix - suffix;
     const int added = newLen - prefix - suffix;
 
+    // A font or a size chosen with nothing to apply it to goes to the text typed
+    // where it was chosen. Whatever else happens to the text first makes it stale.
+    if (!pendingAttrs_.isEmpty() && added > 0 && prefix == pendingAt_) {
+        applyingRemote_ = true;
+        formatRange(d, prefix, prefix + added, pendingAttrs_);
+        applyingRemote_ = false;
+    }
+    pendingAttrs_ = {};
+
     QJsonArray ops;
     if (prefix > 0)
         ops.append(QJsonObject {{QStringLiteral("retain"), prefix}});
@@ -1021,6 +1301,9 @@ CollabRichBinding::applyRemoteDelta(const QString& deltaJson)
                 cc.setPosition(qBound(0, index, docLen));
                 cc.setPosition(qBound(0, index + n, docLen), QTextCursor::KeepAnchor);
                 cc.mergeCharFormat(mergeFormatFromAttrs(attrs));
+                if (attrs.contains(QStringLiteral("font")) || attrs.contains(QStringLiteral("size"))
+                    || attrs.contains(QStringLiteral("header")))
+                    reconcileFontProperties(d, qBound(0, index, docLen), qBound(0, index + n, docLen));
                 // Width is set whole rather than merged, so it is applied on its
                 // own, unit by unit -- the range is one image in practice. The
                 // number comes from a peer, so it is bounded the same way a
@@ -1279,10 +1562,7 @@ CollabRichBinding::setHeading(int level, int start, int end)
     attrs[QStringLiteral("header")] = (level >= 1 && level <= 3) ? QJsonValue(level) : QJsonValue(QJsonValue::Null);
 
     applyingRemote_ = true;
-    QTextCursor c(d);
-    c.setPosition(lineStart);
-    c.setPosition(lineEnd, QTextCursor::KeepAnchor);
-    c.mergeCharFormat(mergeFormatFromAttrs(attrs));
+    formatRange(d, lineStart, lineEnd, attrs);
     applyingRemote_ = false;
 
     QJsonArray ops;
@@ -1703,6 +1983,9 @@ CollabRichBinding::setLink(const QString& href, int start, int end)
 void
 CollabRichBinding::clearFormat(int start, int end)
 {
+    // A font or a size chosen for what is typed next is formatting too, and
+    // the only kind there is to clear when nothing is selected.
+    pendingAttrs_ = {};
     QTextDocument* d = doc();
     if (!d || start >= end)
         return;
@@ -1710,13 +1993,12 @@ CollabRichBinding::clearFormat(int start, int end)
                        {QStringLiteral("i"), QJsonValue(QJsonValue::Null)},
                        {QStringLiteral("u"), QJsonValue(QJsonValue::Null)},
                        {QStringLiteral("s"), QJsonValue(QJsonValue::Null)},
-                       {QStringLiteral("link"), QJsonValue(QJsonValue::Null)}};
+                       {QStringLiteral("link"), QJsonValue(QJsonValue::Null)},
+                       {QStringLiteral("font"), QJsonValue(QJsonValue::Null)},
+                       {QStringLiteral("size"), QJsonValue(QJsonValue::Null)}};
 
     applyingRemote_ = true;
-    QTextCursor c(d);
-    c.setPosition(start);
-    c.setPosition(end, QTextCursor::KeepAnchor);
-    c.mergeCharFormat(mergeFormatFromAttrs(attrs));
+    formatRange(d, start, end, attrs);
     applyingRemote_ = false;
 
     QJsonArray ops;
@@ -1724,6 +2006,88 @@ CollabRichBinding::clearFormat(int start, int end)
         ops.append(QJsonObject {{QStringLiteral("retain"), start}});
     ops.append(QJsonObject {{QStringLiteral("retain"), end - start}, {QStringLiteral("attributes"), attrs}});
     Q_EMIT localDelta(QString::fromUtf8(QJsonDocument(ops).toJson(QJsonDocument::Compact)));
+}
+
+QVariantList
+CollabRichBinding::fonts() const
+{
+    QVariantList list;
+    for (const DocumentFont& font : DOCUMENT_FONTS) {
+        const QString id = QString::fromLatin1(font.id);
+        if (documentFont(id))
+            list.append(
+                QVariantMap {{QStringLiteral("id"), id}, {QStringLiteral("family"), QString::fromLatin1(font.family)}});
+    }
+    return list;
+}
+
+QString
+CollabRichBinding::fontFamily(const QString& id)
+{
+    const DocumentFont* font = documentFont(id);
+    return font ? QString::fromLatin1(font->family) : QString();
+}
+
+void
+CollabRichBinding::setFont(const QString& id, int start, int end)
+{
+    // Only a font this client ships can be chosen here: anything else would be
+    // drawn in some other typeface by whoever chose it.
+    if (!id.isEmpty() && !documentFont(id))
+        return;
+    applyCharacterChoice(fontAttrs(id), start, end);
+}
+
+void
+CollabRichBinding::setFontSize(qreal size, int start, int end)
+{
+    if (size > 0 && fontSizeFromAttr(QJsonValue(size)) <= 0)
+        return;
+    applyCharacterChoice(sizeAttrs(qMax<qreal>(0, size)), start, end);
+}
+
+void
+CollabRichBinding::applyCharacterChoice(const QJsonObject& attrs, int start, int end)
+{
+    QTextDocument* d = doc();
+    if (!d)
+        return;
+    const int last = d->characterCount() - 1;
+    start = qBound(0, start, last);
+    end = qBound(0, end, last);
+    if (start > end)
+        std::swap(start, end);
+    if (start == end) {
+        const auto word = wordAround(d, start);
+        if (!word) {
+            // Several choices can wait for the same text: a font, then a size.
+            if (pendingAt_ != start)
+                pendingAttrs_ = {};
+            for (auto it = attrs.begin(); it != attrs.end(); ++it)
+                pendingAttrs_.insert(it.key(), it.value());
+            pendingAt_ = start;
+            return;
+        }
+        std::tie(start, end) = *word;
+    }
+    pendingAttrs_ = {};
+
+    applyingRemote_ = true;
+    formatRange(d, start, end, attrs);
+    applyingRemote_ = false;
+
+    QJsonArray ops;
+    if (start > 0)
+        ops.append(QJsonObject {{QStringLiteral("retain"), start}});
+    ops.append(QJsonObject {{QStringLiteral("retain"), end - start}, {QStringLiteral("attributes"), attrs}});
+    Q_EMIT localDelta(QString::fromUtf8(QJsonDocument(ops).toJson(QJsonDocument::Compact)));
+}
+
+void
+CollabRichBinding::caretMoved(int position)
+{
+    if (position != pendingAt_)
+        pendingAttrs_ = {};
 }
 
 QVariantMap
@@ -1740,6 +2104,14 @@ CollabRichBinding::selectionFormat(int start, int end)
     result[QStringLiteral("u")] = a.contains(QStringLiteral("u"));
     result[QStringLiteral("s")] = a.contains(QStringLiteral("s"));
     result[QStringLiteral("link")] = a.value(QStringLiteral("link")).toString();
+    // A font or a size chosen for what is typed next is what the caret will type
+    // in. A size of 0 is the base size.
+    const bool pending = !pendingAttrs_.isEmpty() && start == end && start == pendingAt_;
+    const QJsonObject& typed = pending ? pendingAttrs_ : a;
+    result[QStringLiteral("font")]
+        = (typed.contains(QStringLiteral("font")) ? typed : a).value(QStringLiteral("font")).toString();
+    result[QStringLiteral("size")] = fontSizeFromAttr(
+        (typed.contains(QStringLiteral("size")) ? typed : a).value(QStringLiteral("size")));
     // Paragraph-wide, so read from the paragraph rather than from the caret.
     const QJsonObject p = blockAttrsAt(d, start);
     result[QStringLiteral("header")] = p.contains(QStringLiteral("header")) ? p.value(QStringLiteral("header")).toInt()
