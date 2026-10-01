@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "de07cf5a_713a95e0",
+        "filename": "src/core/directrenderer.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-10-01T21:48:11Z",
+      "side": 1,
+      "message": "[error] Line 64: 🔴 `push()` now holds `state_-\u003emutex` while calling `updateFpsTracker()` and emitting `frameUpdated()`. This is a behavioral regression from the previous code (which unlocked before notifications) and can deadlock if any direct-connected slot re-enters renderer paths that also take `state_-\u003emutex` (or blocks teardown waiting on that path). Keep the critical section limited to `parent`/`frameBufferPtr` access, then release the lock before calling into Qt signals or other parent methods; use a guarded parent handle (e.g., `QPointer`) captured under lock to avoid use-after-free.",
+      "revId": "2bebfe49780f1d404cebf28ee43375605ba4aa4a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
