@@ -18,6 +18,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "688c6fb0_d92de5e4",
+        "filename": "src/core/directrenderer.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1109
+      },
+      "writtenOn": "2026-10-01T21:56:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "de07cf5a_713a95e0",
+      "revId": "2bebfe49780f1d404cebf28ee43375605ba4aa4a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1a695ba2_2b3d2e6e",
@@ -31,6 +49,24 @@
       "writtenOn": "2026-10-01T21:49:10Z",
       "side": 1,
       "message": "[error] Line 78: 🔴 `~Impl()` now locks `state_-\u003emutex`, but `CallbackState::pull()` holds that same mutex while synchronously emitting `frameBufferRequested`. If a direct-connected slot tears down the renderer during that emit, destruction re-enters and deadlocks on the same mutex. Avoid taking the callback mutex in teardown (or avoid emitting while holding it); keep lock scope to internal state access and perform signal emission outside the critical section with a guarded parent handle.",
+      "revId": "2bebfe49780f1d404cebf28ee43375605ba4aa4a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a12e757b_0ddd9306",
+        "filename": "src/core/directrenderer.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1109
+      },
+      "writtenOn": "2026-10-01T21:56:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a695ba2_2b3d2e6e",
       "revId": "2bebfe49780f1d404cebf28ee43375605ba4aa4a",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
