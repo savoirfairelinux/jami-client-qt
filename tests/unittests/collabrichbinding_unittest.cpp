@@ -19,10 +19,15 @@
 
 #include "collabrichbinding.h"
 
+#include <QFontInfo>
+#include <QJsonArray>
+#include <QJsonDocument>
+#include <QJsonObject>
 #include <QQmlComponent>
 #include <QQmlEngine>
 #include <QQuickTextDocument>
 #include <QTextBlock>
+#include <QTextCursor>
 #include <QTextDocument>
 #include <QTextList>
 
@@ -42,6 +47,9 @@ public:
         binding.reset(new CollabRichBinding());
         binding->setTextDocument(quickDoc);
         doc = quickDoc->textDocument();
+        QObject::connect(binding.data(), &CollabRichBinding::localDelta, [this](const QString& delta) {
+            deltas << delta;
+        });
     }
 
     // How far left of the text the line is pushed, counting both what the block
@@ -54,11 +62,30 @@ public:
         return blk.blockFormat().indent() + listIndent;
     }
 
+    // The format of the character at @p index.
+    QTextCharFormat formatAt(int index) const
+    {
+        QTextCursor c(doc);
+        c.setPosition(index + 1);
+        return c.charFormat();
+    }
+
+    // What the editor does with a keystroke: the text takes the format of the
+    // character before it.
+    void type(int position, const QString& text)
+    {
+        QTextCursor c(doc);
+        c.setPosition(position);
+        c.insertText(text);
+    }
+
     QQmlEngine engine;
     QScopedPointer<QQmlComponent> component;
     QScopedPointer<QObject> edit;
     QScopedPointer<CollabRichBinding> binding;
     QTextDocument* doc {nullptr};
+    // Every delta the binding sent, in order.
+    QStringList deltas;
 };
 
 /*!
@@ -202,4 +229,390 @@ TEST_F(CollabRichBindingFixture, TheRevisionIsBumpedAfterTheDeltaHasGoneOut)
 
     EXPECT_EQ(order, (QStringList {QStringLiteral("delta"), QStringLiteral("revision")}));
     EXPECT_EQ(binding->revision(), 1);
+}
+
+/*!
+ * GIVEN The fonts a document may name
+ * WHEN  The editor offers them
+ * THEN  Each one has been loaded from the client's own files, under the id the
+ *       other clients know it by
+ *
+ * What the machine happens to have installed under the same name proves
+ * nothing: a document has to read the same on a machine that has none of them.
+ */
+TEST_F(CollabRichBindingFixture, EveryOfferedFontIsLoadedFromTheClient)
+{
+    const QVariantList fonts = binding->fonts();
+    QStringList ids;
+    for (const QVariant& entry : fonts) {
+        const QVariantMap font = entry.toMap();
+        ids << font.value(QStringLiteral("id")).toString();
+        EXPECT_EQ(CollabRichBinding::fontFamily(ids.last()), font.value(QStringLiteral("family")).toString());
+    }
+    EXPECT_EQ(ids,
+              (QStringList {"liberation-sans",
+                            "liberation-serif",
+                            "liberation-mono",
+                            "carlito",
+                            "caladea",
+                            "gelasio",
+                            "eb-garamond",
+                            "roboto",
+                            "open-sans",
+                            "comic-neue"}));
+    EXPECT_TRUE(CollabRichBinding::fontFamily(QStringLiteral("no-such-font")).isEmpty());
+}
+
+/*!
+ * GIVEN A document naming a font for part of its text
+ * WHEN  It is opened
+ * THEN  That part is drawn in the font, the rest in the editor's own
+ */
+TEST_F(CollabRichBindingFixture, NamedFontIsDrawnInIt)
+{
+    binding->loadContentDelta(R"([{"insert":"abc","attributes":{"font":"liberation-serif"}},{"insert":"def"}])");
+
+    EXPECT_EQ(formatAt(0).fontFamilies().toStringList().value(0), QStringLiteral("Liberation Serif"));
+    EXPECT_EQ(QFontInfo(formatAt(2).font()).family(), QStringLiteral("Liberation Serif"));
+    EXPECT_FALSE(formatAt(3).hasProperty(QTextFormat::FontFamilies));
+}
+
+/*!
+ * GIVEN Text in a font
+ * WHEN  Something is typed inside it
+ * THEN  What is typed is in the font too, and the other participants are told
+ */
+TEST_F(CollabRichBindingFixture, TextTypedInAFontIsSentInIt)
+{
+    binding->loadContentDelta(R"([{"insert":"abc","attributes":{"font":"roboto"}}])");
+    type(3, QStringLiteral("d"));
+
+    ASSERT_EQ(deltas.size(), 1);
+    EXPECT_EQ(QJsonDocument::fromJson(deltas.last().toUtf8()),
+              QJsonDocument::fromJson(R"([{"retain":3},{"insert":"d","attributes":{"font":"roboto"}}])"));
+}
+
+/*!
+ * GIVEN Text in a font
+ * WHEN  A peer's text arrives next to it, naming no font
+ * THEN  It is drawn in the editor's own font, as it is on the peer's screen
+ */
+TEST_F(CollabRichBindingFixture, ArrivingTextDoesNotTakeTheFontNextToIt)
+{
+    binding->loadContentDelta(R"([{"insert":"abc","attributes":{"font":"roboto"}}])");
+    binding->applyRemoteDelta(R"([{"retain":3},{"insert":"d"}])");
+
+    EXPECT_FALSE(formatAt(3).hasProperty(QTextFormat::FontFamilies));
+}
+
+/*!
+ * GIVEN A selection
+ * WHEN  A font is chosen for it
+ * THEN  It alone takes the font, the toolbar says so, and the change is sent
+ */
+TEST_F(CollabRichBindingFixture, ChosenFontAppliesToTheSelection)
+{
+    binding->loadContentDelta(R"([{"insert":"hello world"}])");
+    binding->setFont(QStringLiteral("carlito"), 0, 5);
+
+    ASSERT_EQ(deltas.size(), 1);
+    EXPECT_EQ(QJsonDocument::fromJson(deltas.last().toUtf8()),
+              QJsonDocument::fromJson(R"([{"retain":5,"attributes":{"font":"carlito"}}])"));
+    EXPECT_EQ(formatAt(4).fontFamilies().toStringList().value(0), QStringLiteral("Carlito"));
+    EXPECT_FALSE(formatAt(5).hasProperty(QTextFormat::FontFamilies));
+    EXPECT_EQ(binding->selectionFormat(0, 5).value(QStringLiteral("font")).toString(), QStringLiteral("carlito"));
+    EXPECT_EQ(binding->selectionFormat(6, 11).value(QStringLiteral("font")).toString(), QString());
+}
+
+/*!
+ * GIVEN Two paragraphs in a font
+ * WHEN  A peer takes the font away
+ * THEN  Both go back to the editor's own font, and so does the separator
+ *       between them: a paragraph emptied and typed into again would otherwise
+ *       come back in the old font, on this replica only
+ */
+TEST_F(CollabRichBindingFixture, RemovedFontGivesTheEditorFontBack)
+{
+    binding->loadContentDelta(R"([{"insert":"ab\ncd","attributes":{"font":"gelasio"}}])");
+    ASSERT_TRUE(doc->findBlockByNumber(1).charFormat().hasProperty(QTextFormat::FontFamilies));
+
+    binding->applyRemoteDelta(R"([{"retain":5,"attributes":{"font":null}}])");
+
+    for (int i = 0; i < 5; ++i)
+        EXPECT_FALSE(formatAt(i).hasProperty(QTextFormat::FontFamilies)) << "at " << i;
+    EXPECT_FALSE(doc->findBlockByNumber(1).charFormat().hasProperty(QTextFormat::FontFamilies));
+    type(5, QStringLiteral("e"));
+    EXPECT_EQ(QJsonDocument::fromJson(deltas.last().toUtf8()),
+              QJsonDocument::fromJson(R"([{"retain":5},{"insert":"e"}])"));
+}
+
+/*!
+ * GIVEN Text a newer client set in a font this one does not ship
+ * WHEN  It is opened, then typed into
+ * THEN  It is drawn in the editor's own font, but what is typed still names the
+ *       font, so the participants who have it keep seeing one run of text
+ */
+TEST_F(CollabRichBindingFixture, UnknownFontIsCarriedButNotDrawn)
+{
+    binding->loadContentDelta(R"([{"insert":"abc","attributes":{"font":"roboto"}}])");
+    binding->applyRemoteDelta(R"([{"retain":3,"attributes":{"font":"some-future-font"}}])");
+
+    EXPECT_FALSE(formatAt(1).hasProperty(QTextFormat::FontFamilies));
+    type(3, QStringLiteral("d"));
+    EXPECT_EQ(QJsonDocument::fromJson(deltas.last().toUtf8()),
+              QJsonDocument::fromJson(R"([{"retain":3},{"insert":"d","attributes":{"font":"some-future-font"}}])"));
+}
+
+/*!
+ * GIVEN A font attribute that is no id -- a family name, say, which is what a
+ *       peer might write instead
+ * WHEN  Text carrying it is typed into
+ * THEN  It goes no further
+ */
+TEST_F(CollabRichBindingFixture, FontThatIsNoIdGoesNoFurther)
+{
+    binding->loadContentDelta(R"([{"insert":"abc","attributes":{"font":"Liberation Sans"}}])");
+    type(3, QStringLiteral("d"));
+
+    EXPECT_EQ(QJsonDocument::fromJson(deltas.last().toUtf8()),
+              QJsonDocument::fromJson(R"([{"retain":3},{"insert":"d"}])"));
+}
+
+/*!
+ * GIVEN Text in a font and at a size
+ * WHEN  Its formatting is cleared
+ * THEN  The font and the size go with the rest
+ */
+TEST_F(CollabRichBindingFixture, ClearingFormattingRemovesTheFontAndTheSize)
+{
+    binding->loadContentDelta(R"([{"insert":"abc","attributes":{"font":"caladea","size":20,"b":true}}])");
+    binding->clearFormat(0, 3);
+
+    const QJsonObject attrs = QJsonDocument::fromJson(deltas.last().toUtf8())
+                                  .array()
+                                  .last()
+                                  .toObject()
+                                  .value(QStringLiteral("attributes"))
+                                  .toObject();
+    EXPECT_EQ(attrs.value(QStringLiteral("font")), QJsonValue(QJsonValue::Null));
+    EXPECT_EQ(attrs.value(QStringLiteral("size")), QJsonValue(QJsonValue::Null));
+    EXPECT_FALSE(formatAt(1).hasProperty(QTextFormat::FontFamilies));
+    EXPECT_FALSE(formatAt(1).hasProperty(QTextFormat::FontPointSize));
+    EXPECT_EQ(binding->selectionFormat(0, 3).value(QStringLiteral("font")).toString(), QString());
+    EXPECT_EQ(binding->selectionFormat(0, 3).value(QStringLiteral("size")).toDouble(), 0);
+}
+
+/*!
+ * GIVEN The caret inside a word, nothing selected
+ * WHEN  A font is chosen
+ * THEN  The whole word takes it, as in a word processor
+ */
+TEST_F(CollabRichBindingFixture, ChosenFontWithNothingSelectedAppliesToTheWord)
+{
+    binding->loadContentDelta(R"([{"insert":"hello world"}])");
+    binding->setFont(QStringLiteral("eb-garamond"), 8, 8);
+
+    ASSERT_EQ(deltas.size(), 1);
+    EXPECT_EQ(QJsonDocument::fromJson(deltas.last().toUtf8()),
+              QJsonDocument::fromJson(R"([{"retain":6},{"retain":5,"attributes":{"font":"eb-garamond"}}])"));
+}
+
+/*!
+ * GIVEN The caret where no word is, nothing selected
+ * WHEN  A font is chosen, then something typed there
+ * THEN  Nothing changes until then, and what is typed is in the font
+ */
+TEST_F(CollabRichBindingFixture, ChosenFontWithNothingSelectedAppliesToWhatIsTypedNext)
+{
+    binding->loadContentDelta(R"([{"insert":"hello "}])");
+    binding->setFont(QStringLiteral("comic-neue"), 6, 6);
+    EXPECT_TRUE(deltas.isEmpty());
+    EXPECT_EQ(binding->selectionFormat(6, 6).value(QStringLiteral("font")).toString(), QStringLiteral("comic-neue"));
+
+    type(6, QStringLiteral("x"));
+    EXPECT_EQ(QJsonDocument::fromJson(deltas.last().toUtf8()),
+              QJsonDocument::fromJson(R"([{"retain":6},{"insert":"x","attributes":{"font":"comic-neue"}}])"));
+    EXPECT_EQ(formatAt(6).fontFamilies().toStringList().value(0), QStringLiteral("Comic Neue"));
+
+    // ...and what is typed after it carries on in it, as with any format.
+    type(7, QStringLiteral("y"));
+    EXPECT_EQ(QJsonDocument::fromJson(deltas.last().toUtf8()),
+              QJsonDocument::fromJson(R"([{"retain":7},{"insert":"y","attributes":{"font":"comic-neue"}}])"));
+}
+
+/*!
+ * GIVEN A font chosen for what is typed next
+ * WHEN  The caret goes elsewhere before anything is typed
+ * THEN  The choice is forgotten, even once the caret comes back
+ */
+TEST_F(CollabRichBindingFixture, ChosenFontIsForgottenOnceTheCaretMoves)
+{
+    binding->loadContentDelta(R"([{"insert":"hello "}])");
+    binding->setFont(QStringLiteral("comic-neue"), 6, 6);
+    binding->caretMoved(2);
+    binding->caretMoved(6);
+
+    type(6, QStringLiteral("x"));
+    EXPECT_EQ(QJsonDocument::fromJson(deltas.last().toUtf8()),
+              QJsonDocument::fromJson(R"([{"retain":6},{"insert":"x"}])"));
+}
+
+/*!
+ * GIVEN Text in a font, the caret at its end
+ * WHEN  The editor's own font is chosen, then something typed
+ * THEN  What is typed is in the editor's font and names none
+ */
+TEST_F(CollabRichBindingFixture, ChoosingTheEditorFontEndsARun)
+{
+    binding->loadContentDelta(R"([{"insert":"ab","attributes":{"font":"liberation-mono"}}])");
+    binding->setFont(QString(), 2, 2);
+    type(2, QStringLiteral("c"));
+
+    EXPECT_EQ(QJsonDocument::fromJson(deltas.last().toUtf8()),
+              QJsonDocument::fromJson(R"([{"retain":2},{"insert":"c"}])"));
+    EXPECT_FALSE(formatAt(2).hasProperty(QTextFormat::FontFamilies));
+}
+
+/*!
+ * GIVEN A document giving part of its text a size
+ * WHEN  It is opened
+ * THEN  That part is drawn at the size, the rest at the editor's base size
+ */
+TEST_F(CollabRichBindingFixture, GivenSizeIsDrawnAtIt)
+{
+    binding->loadContentDelta(R"([{"insert":"abc","attributes":{"size":24}},{"insert":"def"}])");
+
+    EXPECT_EQ(formatAt(1).fontPointSize(), 24);
+    EXPECT_FALSE(formatAt(3).hasProperty(QTextFormat::FontPointSize));
+}
+
+/*!
+ * GIVEN Text at a size
+ * WHEN  Something is typed inside it
+ * THEN  What is typed is at the size too, and the other participants are told
+ */
+TEST_F(CollabRichBindingFixture, TextTypedAtASizeIsSentAtIt)
+{
+    binding->loadContentDelta(R"([{"insert":"abc","attributes":{"size":18}}])");
+    type(3, QStringLiteral("d"));
+
+    ASSERT_EQ(deltas.size(), 1);
+    EXPECT_EQ(QJsonDocument::fromJson(deltas.last().toUtf8()),
+              QJsonDocument::fromJson(R"([{"retain":3},{"insert":"d","attributes":{"size":18}}])"));
+}
+
+/*!
+ * GIVEN A selection
+ * WHEN  A size is chosen for it, then taken away
+ * THEN  It takes the size and the toolbar says so, then goes back to the base
+ *       size; both changes are sent
+ */
+TEST_F(CollabRichBindingFixture, ChosenSizeAppliesToTheSelection)
+{
+    binding->loadContentDelta(R"([{"insert":"hello world"}])");
+    binding->setFontSize(14, 0, 5);
+
+    ASSERT_EQ(deltas.size(), 1);
+    EXPECT_EQ(QJsonDocument::fromJson(deltas.last().toUtf8()),
+              QJsonDocument::fromJson(R"([{"retain":5,"attributes":{"size":14}}])"));
+    EXPECT_EQ(formatAt(4).fontPointSize(), 14);
+    EXPECT_FALSE(formatAt(5).hasProperty(QTextFormat::FontPointSize));
+    EXPECT_EQ(binding->selectionFormat(0, 5).value(QStringLiteral("size")).toDouble(), 14);
+    EXPECT_EQ(binding->selectionFormat(6, 11).value(QStringLiteral("size")).toDouble(), 0);
+
+    binding->setFontSize(0, 0, 5);
+    EXPECT_EQ(QJsonDocument::fromJson(deltas.last().toUtf8()),
+              QJsonDocument::fromJson(R"([{"retain":5,"attributes":{"size":null}}])"));
+    EXPECT_FALSE(formatAt(4).hasProperty(QTextFormat::FontPointSize));
+}
+
+/*!
+ * GIVEN A size no document may have, written by a peer
+ * WHEN  Text carrying it arrives, then is typed into
+ * THEN  It is neither drawn nor passed on
+ */
+TEST_F(CollabRichBindingFixture, SizeOutOfBoundsGoesNoFurther)
+{
+    binding->loadContentDelta(R"([{"insert":"abc","attributes":{"size":100000}}])");
+    EXPECT_FALSE(formatAt(1).hasProperty(QTextFormat::FontPointSize));
+
+    type(3, QStringLiteral("d"));
+    EXPECT_EQ(QJsonDocument::fromJson(deltas.last().toUtf8()),
+              QJsonDocument::fromJson(R"([{"retain":3},{"insert":"d"}])"));
+}
+
+/*!
+ * GIVEN A heading
+ * WHEN  Something is typed at its end
+ * THEN  It is part of the heading, for the other participants too
+ */
+TEST_F(CollabRichBindingFixture, TextTypedInAHeadingIsSentAsPartOfIt)
+{
+    binding->loadContentDelta(R"([{"insert":"Title","attributes":{"header":2}}])");
+    type(5, QStringLiteral("s"));
+
+    EXPECT_EQ(QJsonDocument::fromJson(deltas.last().toUtf8()),
+              QJsonDocument::fromJson(R"([{"retain":5},{"insert":"s","attributes":{"header":2}}])"));
+    EXPECT_EQ(formatAt(5).intProperty(QTextFormat::FontSizeAdjustment), 2);
+}
+
+/*!
+ * GIVEN A heading
+ * WHEN  A size is chosen for it, then taken away
+ * THEN  The chosen size wins over the heading's, as in a word processor, and
+ *       the heading's comes back once it is gone; the line stays a heading
+ *
+ * Qt lets the size adjustment a heading is drawn with override any point size:
+ * left to itself, a size chosen inside a heading would show nothing at all.
+ */
+TEST_F(CollabRichBindingFixture, ChosenSizeWinsOverAHeading)
+{
+    binding->loadContentDelta(R"([{"insert":"Title","attributes":{"header":1}}])");
+    ASSERT_EQ(formatAt(0).intProperty(QTextFormat::FontSizeAdjustment), 3);
+
+    binding->setFontSize(12, 0, 5);
+    EXPECT_EQ(formatAt(0).fontPointSize(), 12);
+    EXPECT_FALSE(formatAt(0).hasProperty(QTextFormat::FontSizeAdjustment));
+    EXPECT_EQ(binding->selectionFormat(0, 5).value(QStringLiteral("header")).toInt(), 1);
+
+    binding->setFontSize(0, 0, 5);
+    EXPECT_FALSE(formatAt(0).hasProperty(QTextFormat::FontPointSize));
+    EXPECT_EQ(formatAt(0).intProperty(QTextFormat::FontSizeAdjustment), 3);
+    EXPECT_EQ(binding->selectionFormat(0, 5).value(QStringLiteral("header")).toInt(), 1);
+}
+
+/*!
+ * GIVEN Text at a chosen size
+ * WHEN  A peer makes its line a heading
+ * THEN  The text keeps its size, and the line is a heading
+ */
+TEST_F(CollabRichBindingFixture, AHeadingDoesNotOverrideAChosenSize)
+{
+    binding->loadContentDelta(R"([{"insert":"Title","attributes":{"size":12}}])");
+    binding->applyRemoteDelta(R"([{"retain":5,"attributes":{"header":2}}])");
+
+    EXPECT_EQ(formatAt(0).fontPointSize(), 12);
+    EXPECT_FALSE(formatAt(0).hasProperty(QTextFormat::FontSizeAdjustment));
+    EXPECT_EQ(binding->selectionFormat(0, 5).value(QStringLiteral("header")).toInt(), 2);
+}
+
+/*!
+ * GIVEN The caret where no word is, nothing selected
+ * WHEN  A font then a size are chosen, then something typed there
+ * THEN  What is typed takes both
+ */
+TEST_F(CollabRichBindingFixture, AFontAndASizeChosenTogetherGoToWhatIsTypedNext)
+{
+    binding->loadContentDelta(R"([{"insert":"hello "}])");
+    binding->setFont(QStringLiteral("roboto"), 6, 6);
+    binding->setFontSize(20, 6, 6);
+    EXPECT_TRUE(deltas.isEmpty());
+    const QVariantMap fmt = binding->selectionFormat(6, 6);
+    EXPECT_EQ(fmt.value(QStringLiteral("font")).toString(), QStringLiteral("roboto"));
+    EXPECT_EQ(fmt.value(QStringLiteral("size")).toDouble(), 20);
+
+    type(6, QStringLiteral("x"));
+    EXPECT_EQ(QJsonDocument::fromJson(deltas.last().toUtf8()),
+              QJsonDocument::fromJson(R"([{"retain":6},{"insert":"x","attributes":{"font":"roboto","size":20}}])"));
+    EXPECT_EQ(formatAt(6).fontPointSize(), 20);
 }

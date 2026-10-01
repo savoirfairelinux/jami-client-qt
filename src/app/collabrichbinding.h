@@ -24,6 +24,7 @@
 #include <QSet>
 #include <QQuickTextDocument>
 #include <QString>
+#include <QJsonObject>
 #include <QVariantMap>
 
 class QTextDocument;
@@ -40,9 +41,11 @@ class QMimeData;
  *    every participant converges, formatting included.
  *
  * Inline attributes use the Quill convention: "b" (bold), "i" (italic), "u"
- * (underline), "s" (strikethrough) as booleans, and "link" as an href string. A
- * null attribute value removes the attribute. Offsets are UTF-16 code units,
- * matching QString/QTextDocument indexing and the daemon's Y_OFFSET_UTF16.
+ * (underline), "s" (strikethrough) as booleans, "link" as an href string,
+ * "font" as the id of one of the fonts every client ships (see fonts()), and
+ * "size" as a size in points. A null attribute value removes the attribute.
+ * Offsets are UTF-16 code units, matching QString/QTextDocument indexing and
+ * the daemon's Y_OFFSET_UTF16.
  */
 class CollabRichBinding : public QObject
 {
@@ -139,8 +142,35 @@ public:
     Q_INVOKABLE void insertText(int start, int end, const QString& text);
     /// Set (or, with an empty href, clear) a link over [start, end).
     Q_INVOKABLE void setLink(const QString& href, int start, int end);
-    /// Remove all inline formatting over [start, end).
+    /// Remove all inline formatting over [start, end), font included.
     Q_INVOKABLE void clearFormat(int start, int end);
+
+    /// The fonts a document may name, in the order they are offered: a list of
+    /// {"id", "family"} maps. The id is what the document holds, and the other
+    /// clients ship the same files under the same ids, so a document reads in
+    /// the same typeface on every device. The family is what to draw it with.
+    Q_PROPERTY(QVariantList fonts READ fonts CONSTANT)
+    QVariantList fonts() const;
+
+    /// The family the font @p id is drawn with, or an empty string for an id
+    /// this client does not ship. Registers the shipped fonts on first use.
+    static QString fontFamily(const QString& id);
+
+    /// Set the font of [start, end) to @p id, or back to the editor's own font
+    /// when @p id is empty. With nothing selected it applies to the word the
+    /// caret is inside, as in a word processor, and otherwise to what is typed
+    /// next at the caret.
+    Q_INVOKABLE void setFont(const QString& id, int start, int end);
+
+    /// Set the size of [start, end) to @p size points, or back to the editor's
+    /// base size when @p size is 0. A size chosen inside a heading wins over the
+    /// heading's own. Applies with nothing selected the way setFont() does.
+    Q_INVOKABLE void setFontSize(qreal size, int start, int end);
+
+    /// Forget a font or a size chosen for text not typed yet, once the caret has
+    /// left the place it was chosen at.
+    Q_INVOKABLE void caretMoved(int position);
+
     /// Inline attributes currently set across [start, end), for toolbar state.
     Q_INVOKABLE QVariantMap selectionFormat(int start, int end);
 
@@ -256,6 +286,10 @@ private:
 
     void reconcileAlignment();
 
+    // setFont() and setFontSize(): applies @p attrs to the selection, the word
+    // under the caret, or what is typed next.
+    void applyCharacterChoice(const QJsonObject& attrs, int start, int end);
+
     // Answer to clipboardHasImage(), worked out when first asked after a change
     // of clipboard and remembered until the next one.
     mutable bool clipboardImage_ = false;
@@ -277,4 +311,10 @@ private:
     // Attachments met while applying a delta whose bytes the document does not
     // hold. Asked for once the delta is fully applied, not during.
     QSet<QString> pendingAttachments_;
+
+    // A font or a size chosen with nothing to apply it to, as the attributes
+    // that set it, waiting for the text typed at pendingAt_. Empty when there
+    // is none.
+    QJsonObject pendingAttrs_;
+    int pendingAt_ {-1};
 };
