@@ -35,7 +35,8 @@ SidePanelBase {
     property bool inNewSwarm: viewCoordinator && viewCoordinator.currentViewName === "NewSwarmPage"
     property bool isEmptyAccount: inNewSwarm
                                   ? (swarmCurrentConversationList.model && swarmCurrentConversationList.model.count === 0)
-                                  : (!ConversationsAdapter.filterRequests && conversationListView.model && conversationListView.model.count === 0)
+                                  : (!ConversationsAdapter.filterRequests && !ConversationsAdapter.filterFeeds
+                                     && conversationListView.model && conversationListView.model.count === 0)
 
     // Members picked for a new group: [{ uri, convId }], where convId is the
     // conversation the member was picked from
@@ -350,8 +351,7 @@ SidePanelBase {
                         contentHeight: childrenRect.height
                         width: parent.width
 
-                        visible: ConversationsAdapter.pendingRequestCount &&
-                                 !contactSearchBar.textContent && !inNewSwarm
+                        visible: !contactSearchBar.textContent && !inNewSwarm
                     }
 
                     Label {

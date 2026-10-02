@@ -34,8 +34,10 @@ class ConversationsAdapter final : public QmlAdapterBase
     QML_SINGLETON
 
     QML_PROPERTY(bool, filterRequests)
+    QML_PROPERTY(bool, filterFeeds)
     QML_PROPERTY(int, totalUnreadMessageCount)
     QML_PROPERTY(int, pendingRequestCount)
+    QML_PROPERTY(int, feedCount)
     QML_RO_PROPERTY(QVariant, convListProxyModel)
     QML_RO_PROPERTY(QVariant, searchListProxyModel)
 

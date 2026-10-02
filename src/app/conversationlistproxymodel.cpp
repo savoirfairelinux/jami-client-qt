@@ -55,7 +55,14 @@ ConversationListProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex& s
 
     // requests
     auto isRequest = index.data(Role::IsRequest).toBool();
-    bool requestFilter = filterRequests_ ? isRequest : !isRequest;
+    auto isFeed = index.data(Role::Mode).toInt() == static_cast<int>(conversation::Mode::FEED);
+    bool categoryFilter;
+    if (filterRequests_)
+        categoryFilter = isRequest;
+    else if (filterFeeds_)
+        categoryFilter = !isRequest && isFeed;
+    else
+        categoryFilter = !isRequest && !isFeed;
 
     bool match {false};
 
@@ -80,7 +87,7 @@ ConversationListProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex& s
             }
     }
 
-    return requestFilter && match;
+    return categoryFilter && match;
 }
 
 bool
@@ -100,3 +107,12 @@ ConversationListProxyModel::setFilterRequests(bool filterRequests)
     endResetModel();
     updateSelection();
 };
+
+void
+ConversationListProxyModel::setFilterFeeds(bool filterFeeds)
+{
+    beginResetModel();
+    filterFeeds_ = filterFeeds;
+    endResetModel();
+    updateSelection();
+}

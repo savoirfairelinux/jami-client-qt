@@ -865,6 +865,7 @@ Item {
     // SmartList
     property string clearText: qsTr("Clear text")
     property string conversations: qsTr("Conversations")
+    property string feeds: qsTr("Feeds")
     property string conversation: qsTr("Conversation")
     property string searchResults: qsTr("Search results")
 

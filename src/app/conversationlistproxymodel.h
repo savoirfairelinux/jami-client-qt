@@ -36,6 +36,7 @@ public:
     bool lessThan(const QModelIndex& left, const QModelIndex& right) const override;
 
     Q_INVOKABLE void setFilterRequests(bool filterRequests);
+    Q_INVOKABLE void setFilterFeeds(bool filterFeeds);
     Q_INVOKABLE void ignoreFiltering(const QStringList& highlighted)
     {
         ignored_ = highlighted;
@@ -45,5 +46,6 @@ private:
     // This flag can be toggled when switching tabs to show the current account's
     // conversation invites.
     bool filterRequests_ {false};
+    bool filterFeeds_ {false};
     QStringList ignored_ {};
 };

@@ -26,11 +26,13 @@ TabBar {
 
     enum TabIndex {
         Conversations,
-        Requests
+        Requests,
+        Feeds
     }
 
     function selectTab(idx) {
         ConversationsAdapter.filterRequests = (idx === SidePanelTabBar.Requests);
+        ConversationsAdapter.filterFeeds = (idx === SidePanelTabBar.Feeds);
     }
 
     spacing: JamiTheme.tabBarSpacing
@@ -39,7 +41,7 @@ TabBar {
     FilterTabButton {
         id: conversationsTabButton
 
-        down: !ConversationsAdapter.filterRequests
+        down: !ConversationsAdapter.filterRequests && !ConversationsAdapter.filterFeeds
         labelText: JamiStrings.conversations
         onSelected: selectTab(SidePanelTabBar.Conversations)
         badgeCount: ConversationsAdapter.totalUnreadMessageCount
@@ -47,14 +49,26 @@ TabBar {
     }
 
     FilterTabButton {
+        id: feedsTabButton
+
+        objectName: "feedsTabButton"
+
+        down: !ConversationsAdapter.filterRequests && ConversationsAdapter.filterFeeds
+        labelText: JamiStrings.feeds
+        onSelected: selectTab(SidePanelTabBar.Feeds)
+    }
+
+    FilterTabButton {
         id: requestsTabButton
 
-        down: !conversationsTabButton.down
+        down: ConversationsAdapter.filterRequests
         labelText: JamiStrings.invitations
         onSelected: selectTab(SidePanelTabBar.Requests)
         badgeCount: ConversationsAdapter.pendingRequestCount
         acceleratorSequence: "Ctrl+R"
+        visible: ConversationsAdapter.pendingRequestCount > 0
     }
+
 
     background: Rectangle {
         anchors.fill: parent

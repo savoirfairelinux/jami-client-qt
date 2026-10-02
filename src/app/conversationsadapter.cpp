@@ -61,6 +61,7 @@ ConversationsAdapter::ConversationsAdapter(SystemTray* systemTray,
     connect(this, &ConversationsAdapter::filterRequestsChanged, [this]() {
         convModel_->setFilterRequests(filterRequests_);
     });
+    connect(this, &ConversationsAdapter::filterFeedsChanged, [this]() { convModel_->setFilterFeeds(filterFeeds_); });
 
     connect(lrcInstance_, &LRCInstance::selectedConvUidChanged, this, [this]() {
         auto convId = lrcInstance_->get_selectedConvUid();
@@ -81,6 +82,7 @@ ConversationsAdapter::ConversationsAdapter(SystemTray* systemTray,
 
             // this may be a request, so adjust that filter also
             set_filterRequests(convInfo.isRequest);
+            set_filterFeeds(!convInfo.isRequest && convInfo.mode == conversation::Mode::FEED);
 
             // reposition index in case of programmatic selection
             // currently, this may only occur for the conversation list
@@ -163,6 +165,7 @@ ConversationsAdapter::onCurrentAccountIdChanged()
     // case of programmatic selection(incoming call, notification
     // activation, etc.).
     set_filterRequests(false);
+    set_filterFeeds(false);
 }
 
 void
@@ -569,6 +572,14 @@ ConversationsAdapter::updateConversationFilterData()
     }
     set_totalUnreadMessageCount(totalUnreadMessages);
     set_pendingRequestCount(accountInfo.conversationModel->pendingRequestCount());
+    int feedCount {0};
+    for (int row = 0; row < accountInfo.conversationModel->rowCount(); ++row) {
+        const auto index = accountInfo.conversationModel->index(row, 0);
+        if (!index.data(ConversationList::IsRequest).toBool()
+            && index.data(ConversationList::Mode).toInt() == static_cast<int>(conversation::Mode::FEED))
+            ++feedCount;
+    }
+    set_feedCount(feedCount);
     systemTray_->onNotificationCountChanged(lrcInstance_->notificationsCount());
 
     if (get_pendingRequestCount() == 0 && get_filterRequests())
