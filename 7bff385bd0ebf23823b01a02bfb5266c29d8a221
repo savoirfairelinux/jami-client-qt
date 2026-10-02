@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "95a6ac9f_8e232269",
+        "filename": "tests/qml/src/tst_CollabRichEditorWindow.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-10-02T00:50:08Z",
+      "side": 1,
+      "message": "[warning] Line 89: 🟡 `verify(fonts.length \u003e 0)` still bakes in an environment assumption (that shipped-font metadata is always non-empty). This can fail on packaging/build variants while the behavior under test remains correct. Drop this assertion and keep the semantic checks (`menu.count \u003d\u003d\u003d fonts.length + 2` plus per-item mapping) so the test remains robust.",
+      "revId": "7bff385bd0ebf23823b01a02bfb5266c29d8a221",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
