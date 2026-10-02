@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9c4c9ef0_3a314166",
+        "filename": "src/app/mainview/components/SidePanel.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-10-02T21:03:22Z",
+      "side": 1,
+      "message": "[error] Line 141: 🔴 Toggling a highlighted group off removes members by URI (`filter(m \u003d\u003e !peers.includes(m.uri))`), which also drops members that were selected from other conversations. Example: select `aliceDm`, then select `group` (`alice`,`bob`), then toggle `group` off — `alice` is removed even though `aliceDm` is still selected. This breaks selection consistency between chips and rows. Fix by only removing entries owned by the toggled conversation (e.g. `m.convId \u003d\u003d\u003d convId`) or by tracking per-member selection provenance/ref-count and removing a URI only when no source conversation still selects it.",
+      "revId": "79deb92241cc440b89146e2e228099d1fdbe0200",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
