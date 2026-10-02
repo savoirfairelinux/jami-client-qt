@@ -376,7 +376,9 @@ Control {
                         anchors.right: isOutgoing ? more.left : undefined
 
                         iconSize: JamiTheme.iconButtonMedium
-                        iconSource: JamiResources.bidirectional_reply_black_24dp_svg
+                        iconSource: root.convContext.isFeedMode
+                                    ? JamiResources.comment_24dp_svg
+                                    : JamiResources.bidirectional_reply_black_24dp_svg
                         toolTipText: JamiStrings.reply
 
                         visible: shouldBeVisible && (CurrentConversation.canReplyText || CurrentConversation.canReplyFile)

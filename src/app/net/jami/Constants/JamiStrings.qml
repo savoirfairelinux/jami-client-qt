@@ -988,6 +988,8 @@ Item {
 
     property string muteConversation: qsTr("Mute conversation")
     property string unmuteConversation: qsTr("Unmute conversation")
+    property string muteFeed: qsTr("Mute Feed")
+    property string unmuteFeed: qsTr("Unmute Feed")
     property string ignoreNotificationsTooltip: qsTr("Ignore all notifications from this conversation")
     property string chooseAColor: qsTr("Choose color")
     property string color: qsTr("Color")

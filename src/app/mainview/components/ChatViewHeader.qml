@@ -99,7 +99,7 @@ Control {
     SequentialAnimation {
         id: titleFadeAnimation
         NumberAnimation {
-            targets: [botIcon, title, description, userAvatar]
+            targets: [botIcon, feedModeIcon, title, description, userAvatar]
             property: "opacity"
             to: 0
             duration: JamiTheme.longFadeDuration / 2
@@ -110,7 +110,7 @@ Control {
             }
         }
         NumberAnimation {
-            targets: [botIcon, title, description, userAvatar]
+            targets: [botIcon, feedModeIcon, title, description, userAvatar]
             property: "opacity"
             to: 1
             duration: JamiTheme.longFadeDuration / 2
@@ -260,6 +260,25 @@ Control {
                         }
 
                         visible: convContext.botOwner.length > 0
+                    }
+
+                    IconImage {
+                        id: feedModeIcon
+
+                        Layout.alignment: Qt.AlignVCenter
+
+                        source: JamiResources.rss_feed_24dp_svg
+                        sourceSize.width: JamiTheme.iconButtonSmall
+                        sourceSize.height: JamiTheme.iconButtonSmall
+
+                        color: JamiTheme.textColor
+                        opacity: visible ? 1.0 : 0.0
+                        Behavior on opacity {
+                            NumberAnimation {
+                                duration: JamiTheme.shortFadeDuration
+                            }
+                        }
+                        visible: convContext.isFeedMode
                     }
 
                     ElidedTextLabel {

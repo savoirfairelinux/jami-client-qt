@@ -36,6 +36,8 @@ class FilteredMsgListModel : public QSortFilterProxyModel
 {
     Q_OBJECT
     Q_PROPERTY(int count READ count NOTIFY countChanged)
+    Q_PROPERTY(bool hideMembershipEvents READ hideMembershipEvents WRITE setHideMembershipEvents NOTIFY
+                   hideMembershipEventsChanged)
 public:
     explicit FilteredMsgListModel(QObject* parent = nullptr)
         : QSortFilterProxyModel(parent)
@@ -81,6 +83,20 @@ public:
         return rowCount();
     }
 
+    bool hideMembershipEvents() const
+    {
+        return hideMembershipEvents_;
+    }
+
+    void setHideMembershipEvents(bool hide)
+    {
+        if (hideMembershipEvents_ == hide)
+            return;
+        hideMembershipEvents_ = hide;
+        refreshFilter();
+        Q_EMIT hideMembershipEventsChanged();
+    }
+
     void setThreaded(bool threaded)
     {
         if (threaded_ == threaded)
@@ -91,12 +107,13 @@ public:
 
 Q_SIGNALS:
     void countChanged();
+    void hideMembershipEventsChanged();
 
 protected:
     bool isDisplayable(const QModelIndex& sourceIndex) const
     {
         auto type = static_cast<interaction::Type>(sourceModel()->data(sourceIndex, MessageList::Role::Type).toInt());
-        return interaction::isTypeDisplayable(type);
+        return interaction::isTypeDisplayable(type) && (!hideMembershipEvents_ || type != interaction::Type::CONTACT);
     }
 
     void refreshFilter()
@@ -110,6 +127,7 @@ protected:
     }
 
 private:
+    bool hideMembershipEvents_ {false};
     bool threaded_ {false};
 };
 
