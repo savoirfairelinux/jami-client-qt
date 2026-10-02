@@ -476,11 +476,11 @@ Utils::conversationAvatar(LRCInstance* instance, const QString& convId, const QS
 }
 
 QImage
-Utils::tempConversationAvatar(const QSize& size)
+Utils::tempConversationAvatar(const QSize& size, AvatarFallbackKind fallbackKind)
 {
     QString img = QByteArrayFromFile(getTempSwarmAvatarPath());
     if (img.isEmpty())
-        return fallbackAvatar(QString(), QString(), size);
+        return fallbackAvatar(QString(), QString(), size, fallbackKind);
     return scaleAndFrame(imageFromBase64String(img, true, size), size);
 }
 
@@ -691,9 +691,10 @@ Utils::getAvatarColor(const QString& canonicalUri)
  * @param canonicalUri uri containing the account type prefix used to obtain the bgcolor
  * @param name the string used to acquire the letter centered in the avatar
  * @param size the dimensions of the desired image
+ * @param fallbackKind the icon used when no name is provided
  */
 QImage
-Utils::fallbackAvatar(const QString& canonicalUri, const QString& name, const QSize& size)
+Utils::fallbackAvatar(const QString& canonicalUri, const QString& name, const QSize& size, AvatarFallbackKind fallbackKind)
 {
     auto sizeToUse = size.height() >= defaultAvatarSize.height() ? size : defaultAvatarSize;
 
@@ -738,12 +739,17 @@ Utils::fallbackAvatar(const QString& canonicalUri, const QString& name, const QS
         }
     } else {
         QRect overlayRect = avatar.rect();
-        qreal margin = (0.05 * overlayRect.width());
+        qreal margin = (fallbackKind == AvatarFallbackKind::Feed ? 0.3 : 0.05) * overlayRect.width();
         overlayRect.moveLeft(overlayRect.left() + margin * 0.5);
         overlayRect.moveTop(overlayRect.top() + margin * 0.5);
         overlayRect.setWidth(overlayRect.width() - margin);
         overlayRect.setHeight(overlayRect.height() - margin);
-        painter.drawPixmap(overlayRect, QPixmap(":/images/default_avatar_overlay.svg"));
+        if (fallbackKind == AvatarFallbackKind::Feed) {
+            QSvgRenderer renderer(QStringLiteral(":/icons/feed_24dp.svg"));
+            renderer.render(&painter, overlayRect);
+        } else {
+            painter.drawPixmap(overlayRect, QPixmap(":/images/default_avatar_overlay.svg"));
+        }
     }
 
     return avatar.scaled(size, Qt::KeepAspectRatio, Qt::SmoothTransformation);

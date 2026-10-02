@@ -30,6 +30,7 @@ Item {
     id: root
 
     property alias imageId: avatar.imageId
+    property alias fallbackKind: avatar.fallbackKind
 
     property bool newItem: false
     property bool readOnly: false

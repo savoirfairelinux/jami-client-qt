@@ -17,6 +17,7 @@
 
 import QtQuick
 import QtQuick.Controls
+import QtQuick.Controls.impl
 import QtQuick.Layouts
 import QtQuick.Effects
 import net.jami.Adapters 1.1
@@ -33,7 +34,9 @@ SidePanelBase {
 
     readonly property var viewCoordinator: appContext ? appContext.viewCoordinator : null
     property bool inNewSwarm: viewCoordinator && viewCoordinator.currentViewName === "NewSwarmPage"
-    property bool isEmptyAccount: inNewSwarm
+    property bool inCreateFeed: viewCoordinator && viewCoordinator.currentViewName === "CreateFeedPage"
+    property bool inMemberSelection: inNewSwarm || inCreateFeed
+    property bool isEmptyAccount: inMemberSelection
                                   ? (swarmCurrentConversationList.model && swarmCurrentConversationList.model.count === 0)
                                   : (!ConversationsAdapter.filterRequests && conversationListView.model && conversationListView.model.count === 0)
 
@@ -44,7 +47,7 @@ SidePanelBase {
 
     readonly property real sidePanelIslandsMargin: viewCoordinator && viewCoordinator.isInSinglePaneMode ? JamiTheme.sidePanelIslandsSinglePaneModePadding : JamiTheme.sidePanelIslandsPadding
 
-    color: inNewSwarm ? JamiTheme.globalBackgroundColor : JamiTheme.transparentColor
+    color: (inNewSwarm || inCreateFeed) ? JamiTheme.globalBackgroundColor : JamiTheme.transparentColor
 
     Connections {
         target: LRCInstance
@@ -82,8 +85,11 @@ SidePanelBase {
 
         // New swarm page shouldn't be visible for SIP accounts
         function onTypeChanged() {
-            if (CurrentAccount.type === Profile.Type.SIP && inNewSwarm) {
-                viewCoordinator.dismiss("NewSwarmPage");
+            if (CurrentAccount.type === Profile.Type.SIP && inMemberSelection) {
+                if (inNewSwarm)
+                    viewCoordinator.dismiss("NewSwarmPage");
+                else
+                    closeCreateFeedView();
                 root.clearHighlighted();
             }
         }
@@ -114,6 +120,47 @@ SidePanelBase {
         } else {
             viewCoordinator.dismiss("NewSwarmPage");
         }
+    }
+
+    function openCreateFeedView() {
+        if (inCreateFeed)
+            return;
+        // Member selection needs the regular conversation list.
+        selectTab(SidePanelTabBar.Conversations);
+        viewCoordinator.present("CreateFeedPage");
+        const createFeedPage = viewCoordinator.getView("CreateFeedPage");
+        createFeedPage.members = [];
+        createFeedPage.creationFailed = false;
+        createFeedPage.removeMember.connect(removeMember);
+        createFeedPage.createFeedClicked.connect(createFeed);
+    }
+
+    function createFeed(title, description, avatar) {
+        const createFeedPage = viewCoordinator.getView("CreateFeedPage");
+        var uris = [];
+        for (var idx in createFeedPage.members) {
+            var uri = createFeedPage.members[idx].uri;
+            if (uris.indexOf(uri) === -1)
+                uris.push(uri);
+        }
+        const convuid = ConversationsAdapter.createFeed(title, description, avatar, uris);
+        if (convuid === "") {
+            createFeedPage.creationFailed = true;
+            return;
+        }
+        closeCreateFeedView();
+        root.clearHighlighted();
+        LRCInstance.selectConversation(convuid);
+    }
+
+    function closeCreateFeedView() {
+        const createFeedPage = viewCoordinator.getView("CreateFeedPage");
+        if (createFeedPage) {
+            createFeedPage.removeMember.disconnect(removeMember);
+            createFeedPage.createFeedClicked.disconnect(createFeed);
+        }
+        viewCoordinator.dismiss("CreateFeedPage");
+        selectTab(SidePanelTabBar.Conversations);
     }
 
     function clearContactSearchBar() {
@@ -162,6 +209,9 @@ SidePanelBase {
         if (inNewSwarm) {
             const newSwarmPage = viewCoordinator.getView("NewSwarmPage");
             newSwarmPage.members = highlightedMembers;
+        } else if (inCreateFeed) {
+            const createFeedPage = viewCoordinator.getView("CreateFeedPage");
+            createFeedPage.members = highlightedMembers;
         }
     }
 
@@ -288,8 +338,7 @@ SidePanelBase {
                         }
 
                         PushButton {
-                            id: actionButton
-
+                            id: sipPanelButton
                             radius: JamiTheme.primaryRadius
 
                             imageColor: JamiTheme.textColor
@@ -298,39 +347,141 @@ SidePanelBase {
 
                             preferredSize: 40
 
-                            source: {
-                                if (CurrentAccount.type === Profile.Type.SIP) {
-                                    if (sipInputPanelPopUp.shown) {
-                                        return JamiResources.round_close_24dp_svg;
-                                    } else {
-                                        return JamiResources.keypad_24dp_svg;
-                                    }
-                                } else if (inNewSwarm) {
-                                    return JamiResources.round_close_24dp_svg;
+                            visible: CurrentAccount.type === Profile.Type.SIP
+
+                            source: sipInputPanelPopUp.shown ? JamiResources.round_close_24dp_svg : JamiResources.keypad_24dp_svg
+                            toolTipText: sipInputPanelPopUp.shown ? JamiStrings.close : JamiStrings.sipInputPanel
+                            onClicked: sipInputPanelPopUp.shown = !sipInputPanelPopUp.shown;
+                        }
+
+                        Button {
+                            id: newConversationTypeButton
+
+                            objectName: "newConversationTypeButton"
+
+                            Layout.preferredWidth: 40
+                            Layout.preferredHeight: 40
+                            padding: 0
+                            visible: CurrentAccount.type !== Profile.Type.SIP
+
+                            Accessible.name: inMemberSelection ? JamiStrings.close
+                                                              : JamiStrings.newGroup + " / " + JamiStrings.createNewFeed
+
+                            onClicked: {
+                                if (inMemberSelection) {
+                                    if (inNewSwarm)
+                                        toggleCreateSwarmView();
+                                    else
+                                        closeCreateFeedView();
+
+                                    contactSearchBar.forceActiveFocus();
+                                } else if (creationPopup.visible) {
+                                    creationPopup.close();
                                 } else {
-                                    return JamiResources.create_swarm_24dp_svg;
-                                }
-                            }
-                            toolTipText: {
-                                if (CurrentAccount.type === Profile.Type.SIP) {
-                                    if (sipInputPanelPopUp.shown) {
-                                        return JamiStrings.close;
-                                    } else {
-                                        return JamiStrings.sipInputPanel;
-                                    }
-                                } else if (inNewSwarm) {
-                                    return JamiStrings.close;
-                                } else {
-                                    return JamiStrings.newGroup;
+                                    creationPopup.open();
                                 }
                             }
 
-                            onClicked: {
-                                if (CurrentAccount.type === Profile.Type.SIP) {
-                                    sipInputPanelPopUp.shown = !sipInputPanelPopUp.shown;
-                                } else {
-                                    toggleCreateSwarmView();
-                                    contactSearchBar.forceActiveFocus();
+                            contentItem: IconImage {
+                                anchors.centerIn: parent
+
+                                width: 24
+                                height: 24
+
+                                source: JamiResources.add_24dp_svg
+                                sourceSize.width: 20
+                                sourceSize.height: 20
+
+                                color: JamiTheme.textColor
+
+                                rotation: inMemberSelection ? 45 : 0
+
+                                Behavior on rotation {
+                                    NumberAnimation {
+                                        duration: JamiTheme.shortFadeDuration
+                                    }
+                                }
+                            }
+
+                            background: Rectangle {
+                                radius: height / 2
+                                color: newConversationTypeButton.down ? JamiTheme.pressedButtonColor
+                                                                 : newConversationTypeButton.hovered ? JamiTheme.hoveredButtonColor
+                                                                                                 : JamiTheme.newSwarmButtonColor
+                            }
+
+                            Popup {
+                                id: creationPopup
+
+                                focus: true
+                                closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutsideParent
+
+                                x: newConversationTypeButton.width - width
+                                y: newConversationTypeButton.height + 4
+                                width: Math.max(newConversationTypeButton.width,
+                                                options.implicitWidth + leftPadding + rightPadding)
+                                padding: 4
+
+                                opacity: opened ? 1.0 : 0.0
+                                Behavior on opacity {
+                                    NumberAnimation {
+                                        duration: JamiTheme.shortFadeDuration
+                                    }
+                                }
+
+                                contentItem: ColumnLayout {
+                                    id: options
+                                    spacing: 4
+
+                                    Repeater {
+                                        model: [
+                                            {
+                                                buttonLabel: JamiStrings.newGroup,
+                                                buttonIcon: "qrc:/icons/create_swarm_24dp.svg",
+                                                buttonAction: "createGroup"
+                                            },
+                                            {
+                                                buttonLabel: JamiStrings.createNewFeed,
+                                                buttonIcon: "qrc:/icons/create_feed_24dp.svg",
+                                                buttonAction: "createFeed"
+                                            }
+                                        ]
+
+                                        delegate: NewMaterialButton {
+                                            Layout.fillWidth: true
+
+                                            filledButton: true
+                                            text: modelData.buttonLabel
+                                            iconSource: modelData.buttonIcon
+
+                                            onClicked: {
+                                                const action = modelData.buttonAction;
+                                                creationPopup.close();
+                                                if (action === "createGroup")
+                                                    toggleCreateSwarmView();
+                                                else
+                                                    openCreateFeedView();
+
+                                                contactSearchBar.forceActiveFocus();
+                                            }
+                                        }
+                                    }
+                                }
+
+                                background: Rectangle {
+                                    color: JamiTheme.searchBarColor
+                                    radius: 20 + creationPopup.padding
+
+                                    layer.enabled: true
+                                    layer.effect: MultiEffect {
+                                        anchors.fill: parent
+                                        shadowEnabled: true
+                                        shadowBlur: JamiTheme.shadowBlur
+                                        shadowColor: JamiTheme.shadowColor
+                                        shadowHorizontalOffset: JamiTheme.shadowHorizontalOffset
+                                        shadowVerticalOffset: JamiTheme.shadowVerticalOffset
+                                        shadowOpacity: JamiTheme.shadowOpacity
+                                    }
                                 }
                             }
                         }
@@ -351,29 +502,7 @@ SidePanelBase {
                         width: parent.width
 
                         visible: ConversationsAdapter.pendingRequestCount &&
-                                 !contactSearchBar.textContent && !inNewSwarm
-                    }
-
-                    Label {
-                        Layout.fillWidth: true
-                        // Consistent height to avoid choppy movements during visibility changes
-                        Layout.preferredHeight: sidePanelTabBar.height
-                        Layout.leftMargin: 15
-                        Layout.rightMargin: 15
-                        // Hack: spacing between convList and TabBars is too large otherwise
-                        Layout.bottomMargin: -10
-                        Layout.alignment: Qt.AlignVCenter
-
-                        color: JamiTheme.textColor
-
-                        font.bold: true
-                        font.pointSize: JamiTheme.contactEventPointSize
-
-                        text: JamiStrings.newGroup
-                        horizontalAlignment: Text.AlignHCenter
-                        verticalAlignment: Text.AlignVCenter
-
-                        visible: inNewSwarm
+                                 !contactSearchBar.textContent && !inMemberSelection
                     }
 
                     DonationBanner {
@@ -412,7 +541,7 @@ SidePanelBase {
                             }
                         }
 
-                        visible: inNewSwarm && !root.isEmptyAccount
+                        visible: inMemberSelection && !root.isEmptyAccount
 
                         Timer {
                             id: locationIconTimer
@@ -442,7 +571,7 @@ SidePanelBase {
                         Layout.maximumHeight: Math.max(0, (conversationLayout.height - header.height + 10 +
                                                            (donationBanner.visible ? donationBanner.height + conversationLayout.spacing : 0)) / 2)
 
-                        visible: !inNewSwarm && contactSearchBar.textContent
+                        visible: !inMemberSelection && contactSearchBar.textContent
                         activeFocusOnTab: true
 
                         model: ConversationsAdapter.searchListProxyModel
@@ -495,7 +624,7 @@ SidePanelBase {
                         Layout.rightMargin: 32
                         Layout.alignment: Qt.AlignTop
 
-                        visible: !inNewSwarm && contactSearchBar.textContent && searchResultsListView.count === 0
+                        visible: !inMemberSelection && contactSearchBar.textContent && searchResultsListView.count === 0
 
                         color: JamiTheme.textColor
                         wrapMode: Text.WordWrap
@@ -514,7 +643,7 @@ SidePanelBase {
                         Layout.fillWidth: true
                         Layout.fillHeight: true
 
-                        visible: !inNewSwarm && !root.isEmptyAccount
+                        visible: !inMemberSelection && !root.isEmptyAccount
 
                         model: ConversationsAdapter.convListProxyModel
                         headerLabel: JamiStrings.conversations
@@ -541,8 +670,8 @@ SidePanelBase {
                             NewIconButton {
                                 Layout.alignment: Qt.AlignHCenter
 
-                                iconSource: inNewSwarm ? JamiResources.emotion_sad_line_24dp_svg :
-                                                         JamiResources.ghost_line_24dp_svg
+                                iconSource: inMemberSelection ? JamiResources.emotion_sad_line_24dp_svg :
+                                                                JamiResources.ghost_line_24dp_svg
                                 iconSize: JamiTheme.iconButtonExtraLarge
 
                                 enabled: false
@@ -551,8 +680,8 @@ SidePanelBase {
                             Text {
                                 Layout.alignment: Qt.AlignHCenter
 
-                                text: inNewSwarm ? JamiStrings.noContactsToChooseFrom :
-                                                   JamiStrings.noConversations
+                                text: inMemberSelection ? JamiStrings.noContactsToChooseFrom :
+                                                          JamiStrings.noConversations
                                 color: JamiTheme.textColor
                                 elide: Text.ElideRight
 
@@ -573,6 +702,8 @@ SidePanelBase {
                                 onClicked: {
                                     if (inNewSwarm)
                                         toggleCreateSwarmView();
+                                    else if (inCreateFeed)
+                                        closeCreateFeedView();
                                     contactSearchBar.forceActiveFocus();
                                 }
                             }
@@ -584,7 +715,7 @@ SidePanelBase {
                     id: gradientRectTop
 
                     readonly property color baseColor: JamiTheme.globalIslandColor
-                    readonly property bool shouldShow: (!inNewSwarm && !conversationListView.atYBeginning) || (inNewSwarm && !swarmCurrentConversationList.atYBeginning)
+                    readonly property bool shouldShow: (!inMemberSelection && !conversationListView.atYBeginning) || (inMemberSelection && !swarmCurrentConversationList.atYBeginning)
 
                     anchors.top: conversationLayout.top
                     anchors.topMargin: header.height + JamiTheme.sidePanelConversationsIslandTopPadding + 10 + (sidePanelTabBar.visible ? sidePanelTabBar.height : 0) + (JamiQmlUtils.isMacOS26OrLater ? JamiTheme.sidePanelTopPaddingMac : 0)
@@ -628,7 +759,7 @@ SidePanelBase {
                     id: gradientRect
 
                     readonly property color baseColor: JamiTheme.globalIslandColor
-                    readonly property bool shouldShow: (!inNewSwarm && !conversationListView.atYEnd) || (inNewSwarm && !swarmCurrentConversationList.atYEnd)
+                    readonly property bool shouldShow: (!inMemberSelection && !conversationListView.atYEnd) || (inMemberSelection && !swarmCurrentConversationList.atYEnd)
 
                     anchors.bottom: conversationLayout.bottom
                     anchors.bottomMargin: -1
@@ -694,8 +825,8 @@ SidePanelBase {
         SipInputPanel {
             id: sipInputPanelPopUp
 
-            popupX: actionButton.x - sipInputPanelPopUp.width / 2 - 10
-            popupY: actionButton.y + actionButton.height + 24
+            popupX: sipPanelButton.x - sipInputPanelPopUp.width / 2 - 10
+            popupY: sipPanelButton.y + sipPanelButton.height + 24
             shown: false
 
             onDigitPressed: {
