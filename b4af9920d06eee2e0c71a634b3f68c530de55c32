@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "036dfccb_5c671e1a",
+        "filename": "src/app/mainview/components/SidePanel.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-10-02T21:05:24Z",
+      "side": 1,
+      "message": "[error] Line 130: 🔴 `openCreateFeedView()` resets `createFeedPage.members` but does not reset `highlightedMembers`. If a user previously selected members (e.g., from group creation), those selections remain in side-panel state and can be re-applied unexpectedly when toggling members in Create Feed. Clear shared selection state when entering/leaving feed creation (e.g., call `clearHighlighted()` or set `highlightedMembers \u003d []`, consistent with `toggleCreateSwarmView()`). This avoids stale member carry-over and wrong member preselection.",
+      "revId": "b4af9920d06eee2e0c71a634b3f68c530de55c32",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
