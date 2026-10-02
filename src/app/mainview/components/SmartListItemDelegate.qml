@@ -147,6 +147,17 @@ ItemDelegate {
 
                     visible: BotOwner !== undefined && BotOwner.length > 0
                 }
+                IconImage {
+                    Layout.alignment: Qt.AlignVCenter
+
+                    source: JamiResources.rss_feed_24dp_svg
+                    sourceSize.width: JamiTheme.iconButtonSmall
+                    sourceSize.height: JamiTheme.iconButtonSmall
+
+                    color: JamiTheme.textColor
+
+                    visible: Mode === Conversation.Mode.FEED
+                }
                 // best name
                 Text {
                     Layout.fillWidth: true
