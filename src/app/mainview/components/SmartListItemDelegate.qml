@@ -147,6 +147,17 @@ ItemDelegate {
 
                     visible: BotOwner !== undefined && BotOwner.length > 0
                 }
+                IconImage {
+                    Layout.alignment: Qt.AlignVCenter
+
+                    source: JamiResources.feed_24dp_svg
+                    sourceSize.width: JamiTheme.iconButtonSmall
+                    sourceSize.height: JamiTheme.iconButtonSmall
+
+                    color: JamiTheme.textColor
+
+                    visible: Mode === Conversation.Mode.FEED
+                }
                 // best name
                 Text {
                     Layout.fillWidth: true
@@ -276,7 +287,6 @@ ItemDelegate {
                     size: 16
                     count: UnreadMessagesCount
                     animate: index === 0
-                    radius: 3
                 }
             }
         }
