@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "57338ec1_fe11f317",
+        "filename": "src/core/swarmpermissions.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-10-02T15:21:21Z",
+      "side": 1,
+      "message": "[warning] Line 79: 🟡 `Tables` is an array of raw pointers indexed by `Policy`, and `evaluate()` dereferences it unconditionally. If a new `Policy` value is added but its table is forgotten, the default-initialized pointer entry will be `nullptr`, causing a crash instead of a safe deny/unknown decision. Store tables by value (`std::array\u003cPolicyTable, PolicyCount\u003e`) or add a null-check/static_assert so policy extensions fail safely.",
+      "revId": "28bc591492bb59e555d13d3aaac76aab68b6ec25",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
