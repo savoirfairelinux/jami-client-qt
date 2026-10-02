@@ -378,8 +378,10 @@ Control {
                         anchors.right: isOutgoing ? more.left : undefined
 
                         iconSize: JamiTheme.iconButtonMedium
-                        iconSource: JamiResources.bidirectional_reply_black_24dp_svg
-                        toolTipText: JamiStrings.reply
+                        iconSource: root.convContext.isFeedMode
+                                    ? JamiResources.comment_24dp_svg
+                                    : JamiResources.bidirectional_reply_black_24dp_svg
+                        toolTipText: root.convContext.isFeedMode ? JamiStrings.comment : JamiStrings.reply
 
                         visible: shouldBeVisible && (CurrentConversation.canReplyText || CurrentConversation.canReplyFile)
 
@@ -859,6 +861,7 @@ Control {
             rootId: Id
             replyCount: model.ThreadReplyCount ?? 0
             inThread: root.listView && root.listView.model === MessagesAdapter.threadMessageListModel
+            isFeedMode: root.convContext.isFeedMode
             borderColor: root.getBaseColor()
             focusPolicy: root.listView && root.listView.currentIndex === index ? Qt.TabFocus : Qt.NoFocus
 

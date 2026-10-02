@@ -400,7 +400,9 @@ Item {
     property string removeConversation: qsTr("Remove conversation")
     property string confirmRemoveConversation: qsTr("Do you want to leave this conversation?")
     property string leaveGroup: qsTr("Leave group")
+    property string leaveFeed: qsTr("Leave feed")
     property string confirmLeaveGroup: qsTr("Are you sure you want to leave this group?")
+    property string confirmLeaveFeed: qsTr("Are you sure you want to leave this feed?")
     property string confirmRemoveContact: qsTr("Do you want to remove this contact? The existing conversation will be deleted.")
     property string confirmBlockContact: qsTr("Do you want to block this contact?")
     property string confirmRemoveOneToOneConversation: qsTr("Are you sure you want to remove this conversation? The contact will not be removed.")
@@ -669,6 +671,8 @@ Item {
     property string openThread: qsTr("Open thread")
     property string oneReply: qsTr("1 reply")
     property string replies: qsTr("%1 replies")
+    property string oneComment: qsTr("1 comment")
+    property string comments: qsTr("%1 comments")
     property string threadFindingMessage: qsTr("Loading older messages to find this message…")
     property string threadMessageUnavailable: qsTr("This message could not be found in the conversation history.")
 
@@ -955,6 +959,7 @@ Item {
     property string repliedTo: qsTr("%1 replied to")
     property string inReplyToYou: qsTr("you")
     property string reply: qsTr("Reply")
+    property string comment: qsTr("Comment")
     property string writeTo: qsTr("Write to %1")
     property string writeToNewContact: qsTr("Send a message to %1 in order to add them as a contact")
     property string edit: qsTr("Edit")
@@ -988,6 +993,7 @@ Item {
     property string members: qsTr("%L1 members")
     property string member: qsTr("Member")
     property string groupName: qsTr("Group name")
+    property string feedName: qsTr("Feed name")
     property string contactName: qsTr("Contact name")
     property string addDescription: qsTr("Add description")
     property string noDescription: qsTr("No description")
@@ -997,6 +1003,8 @@ Item {
 
     property string muteConversation: qsTr("Mute conversation")
     property string unmuteConversation: qsTr("Unmute conversation")
+    property string muteFeed: qsTr("Mute Feed")
+    property string unmuteFeed: qsTr("Unmute Feed")
     property string ignoreNotificationsTooltip: qsTr("Ignore all notifications from this conversation")
     property string chooseAColor: qsTr("Choose color")
     property string color: qsTr("Color")
@@ -1117,6 +1125,7 @@ Item {
 
     // Files
     property string noFilesInConversation: qsTr("This conversation has no files.")
+    property string noFilesInFeed: qsTr("This feed has no files.")
 
     // Collaborative documents
     property string collaborativeDocuments: qsTr("Collaborative documents")
