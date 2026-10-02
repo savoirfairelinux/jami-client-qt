@@ -408,6 +408,13 @@ public:
      */
     QString createConversation(const VectorString& participants, const MapStringString& infos = {});
     /**
+     * create a new feed conversation
+     * @param participants  conversation's participants
+     * @param infos conversation's infos
+     * @return new conversation id
+     */
+    QString createFeedConversation(const VectorString& participants, const MapStringString& infos = {});
+    /**
      * update conversation info
      * @param conversationId conversation's id
      * @param infos
@@ -753,6 +760,9 @@ private:
     void sendContactRequest(const QString& contactUri);
     void addConversationWith(const QString& convId, const QString& contactUri, bool isRequest);
     void addSwarmConversation(const QString& convId);
+    QString createConversationWithUid(const VectorString& participants,
+                                      const MapStringString& infos,
+                                      const QString& convUid);
     void addOrUpdateCallMessage(const QString& callId,
                                 const QString& from,
                                 bool incoming,
