@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "29564800_c2bf2be6",
+        "filename": "src/app/mainview/components/SwarmDetailsPanel.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-10-02T15:25:26Z",
+      "side": 1,
+      "message": "[warning] Line 183: 🟡 Feed mute tooltip logic is inverted relative to the non-feed branch and relative to the toggle action semantics. With `ignoreNotifications \u003d\u003d true`, the button click unmutes, so the tooltip should consistently be the action label (`Unmute …`) in both modes. Please align both branches to one semantic rule (prefer action-on-click) to avoid contradictory UX.",
+      "revId": "07315f3d36d1595ffa8405afbb7bafdf1414dac8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
