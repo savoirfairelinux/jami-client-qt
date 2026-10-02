@@ -20,6 +20,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f64febe5_4447af71",
+        "filename": "src/app/settingsview/components/ChatSettingsPage.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 372,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-10-02T15:28:10Z",
+      "side": 1,
+      "message": "[warning] Line 372: 🟡 `threadedChatViewToggleSwitch.checked \u003d MessagesAdapter.threadedView;` imperatively assigns a property that is already bound (`checked: MessagesAdapter.threadedView`), which removes the binding in QML. After this reset path runs, future external updates to `MessagesAdapter.threadedView` will no longer propagate to the switch. Drop this assignment and keep `checked` purely bound, or re-establish it with `Qt.binding(() \u003d\u003e MessagesAdapter.threadedView)` if imperative reset logic is required.",
+      "revId": "df4a64b9fd1b9916b0fe2c6b00d0177b20149050",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "73440a28_f01e2af3",
         "filename": "src/core/messagelistmodel.cpp",
         "patchSetId": 2
