@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1b8b41f0_979e1c10",
+        "filename": "tests/qml/src/tst_ConversationListView.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-10-02T15:33:27Z",
+      "side": 1,
+      "message": "[warning] Line 131: 🟡 The new test only validates the context-menu label change and does not cover the new feed icon visibility added in `SmartListItemDelegate.qml`. Please add a regression test that asserts the feed icon is visible for `Conversation.Mode.FEED` and hidden for other modes, so the main UI behavior introduced by this patch is protected.",
+      "revId": "ec9f505b9a704a60f464d78a1961534ebaa43eb9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
