@@ -53,6 +53,7 @@ CurrentConversation::updateData()
 
     // If the conversation is empty, clear the id and return.
     if (convId.isEmpty()) {
+        set_isFeedMode(false);
         set_id();
         set_botOwner();
         membersModel_->setMembers({}, {}, {});
@@ -78,6 +79,7 @@ CurrentConversation::updateData()
         QString botOwner;
         auto optConv = accInfo.conversationModel->getConversationForUid(convId);
         if (!optConv) {
+            set_isFeedMode(false);
             set_botOwner();
             updatePermissions(nullptr, {});
             return;
@@ -85,6 +87,7 @@ CurrentConversation::updateData()
         auto& convInfo = optConv->get();
         set_lastSelfMessageId(convInfo.lastSelfMessageId);
         updatePermissions(&convInfo, accInfo.profileInfo.uri);
+        set_isFeedMode(convInfo.mode == conversation::Mode::FEED);
         QStringList uris, bannedUris;
         auto isAdmin = false;
         for (const auto& p : convInfo.participants) {

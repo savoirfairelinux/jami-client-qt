@@ -104,6 +104,26 @@ TEST(FilteredMsgListModel, HidesRepliesOnlyInThreadedView)
     EXPECT_EQ(proxy.rowCount(), 2);
 }
 
+TEST(FilteredMsgListModel, HidesMembershipEventsWhenEnabled)
+{
+    MessageListModel model(nullptr);
+    auto memberEvent = makeTextMessage();
+    memberEvent.type = interaction::Type::CONTACT;
+    ASSERT_TRUE(model.append(QStringLiteral("member-event"), memberEvent));
+    ASSERT_TRUE(model.append(QStringLiteral("text"), makeTextMessage()));
+
+    FilteredMsgListModel proxy;
+    proxy.setSourceModel(&model);
+    EXPECT_EQ(proxy.rowCount(), 2);
+
+    ASSERT_TRUE(proxy.setProperty("hideMembershipEvents", true));
+    EXPECT_EQ(proxy.rowCount(), 1);
+    EXPECT_TRUE(proxyIds(proxy).contains(QStringLiteral("text")));
+
+    ASSERT_TRUE(proxy.setProperty("hideMembershipEvents", false));
+    EXPECT_EQ(proxy.rowCount(), 2);
+}
+
 TEST(ThreadMsgListModel, ShowsRootAndItsRepliesOnly)
 {
     MessageListModel model(nullptr);
@@ -124,6 +144,24 @@ TEST(ThreadMsgListModel, ShowsRootAndItsRepliesOnly)
 
     ASSERT_TRUE(model.append(QStringLiteral("late-reply"), makeTextMessage(QStringLiteral("nested"))));
     EXPECT_EQ(proxy.rowCount(), 4);
+}
+
+TEST(ThreadMsgListModel, HidesMembershipEventsWhenEnabled)
+{
+    MessageListModel model(nullptr);
+    auto memberEvent = makeTextMessage();
+    memberEvent.type = interaction::Type::CONTACT;
+    ASSERT_TRUE(model.append(QStringLiteral("member-event"), memberEvent));
+    ASSERT_TRUE(model.append(QStringLiteral("reply"), makeTextMessage(QStringLiteral("member-event"))));
+
+    ThreadMsgListModel proxy;
+    proxy.setSourceModel(&model);
+    proxy.setRootId(QStringLiteral("member-event"));
+    EXPECT_EQ(proxy.rowCount(), 2);
+
+    ASSERT_TRUE(proxy.setProperty("hideMembershipEvents", true));
+    EXPECT_EQ(proxy.rowCount(), 1);
+    EXPECT_TRUE(proxyIds(proxy).contains(QStringLiteral("reply")));
 }
 
 TEST(MessageListModel, FindsReactionIdForAuthorAndEmoji)

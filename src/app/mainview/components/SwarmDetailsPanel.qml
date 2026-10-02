@@ -181,7 +181,9 @@ Item {
 
                         iconSize: JamiTheme.iconButtonMedium
                         iconSource: CurrentConversation.ignoreNotifications ? JamiResources.notifications_off_24dp_svg : JamiResources.notifications_active_24dp_svg
-                        toolTipText: CurrentConversation.ignoreNotifications ? JamiStrings.muteConversation : JamiStrings.unmuteConversation
+                        toolTipText: CurrentConversation.isFeedMode
+                                      ? (CurrentConversation.ignoreNotifications ? JamiStrings.unmuteFeed : JamiStrings.muteFeed)
+                                      : (CurrentConversation.ignoreNotifications ? JamiStrings.unmuteConversation : JamiStrings.muteConversation)
 
                         onClicked: CurrentConversation.setPreference("ignoreNotifications", !CurrentConversation.ignoreNotifications)
                     }
@@ -551,7 +553,7 @@ Item {
                 RowLayout {
                     width: parent.width
 
-                    visible: !CurrentConversation.isCoreDialog
+                    visible: !CurrentConversation.isCoreDialog && !CurrentConversation.isFeedMode
 
                     Text {
                         Layout.alignment: Qt.AlignVCenter
@@ -581,7 +583,8 @@ Item {
                 RowLayout {
                     width: parent.width
 
-                    visible: !CurrentConversation.isCoreDialog && CurrentConversation.rdvAccount !== ""
+                    visible: !CurrentConversation.isCoreDialog && !CurrentConversation.isFeedMode
+                             && CurrentConversation.rdvAccount !== ""
 
                     spacing: 16
 
@@ -685,7 +688,7 @@ Item {
                     text: CurrentConversation.rdvAccount === "" ? JamiStrings.selectDefaultHost : JamiStrings.changeDefaultHost
                     color: JamiTheme.buttonTintedBlue
 
-                    visible: !CurrentConversation.isCoreDialog && root.isAdmin
+                    visible: !CurrentConversation.isCoreDialog && !CurrentConversation.isFeedMode && root.isAdmin
 
                     onClicked: {
                         viewCoordinator.presentDialog(appWindow, "mainview/components/DevicesListPopup.qml");
