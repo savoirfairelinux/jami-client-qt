@@ -37,8 +37,10 @@ SidePanelBase {
                                   ? (swarmCurrentConversationList.model && swarmCurrentConversationList.model.count === 0)
                                   : (!ConversationsAdapter.filterRequests && conversationListView.model && conversationListView.model.count === 0)
 
-    property var highlighted: []
+    // Members picked for a new group: [{ uri, convId }], where convId is the
+    // conversation the member was picked from
     property var highlightedMembers: []
+    readonly property var highlighted: Array.from(new Set(highlightedMembers.map(m => m.convId)))
 
     readonly property real sidePanelIslandsMargin: viewCoordinator && viewCoordinator.isInSinglePaneMode ? JamiTheme.sidePanelIslandsSinglePaneModePadding : JamiTheme.sidePanelIslandsPadding
 
@@ -122,62 +124,39 @@ SidePanelBase {
         sidePanelTabBar.selectTab(tabIndex);
     }
 
-    function refreshHighlighted(convId, highlightedStatus) {
-        var newH = Array.from(root.highlighted);
-        var newHm = Array.from(root.highlightedMembers);
-        if (highlightedStatus) {
-            var item = ConversationsAdapter.getConvInfoMap(convId);
-            var added = false;
-            for (var idx in item.uris) {
-                var uri = item.uris[idx];
-                if (!Array.from(newHm).find(r => r.uri === uri) && uri !== CurrentAccount.uri) {
-                    newHm.push({
-                                   "uri": uri,
-                                   "convId": convId
-                               });
-                    added = true;
-                }
-            }
-            if (!added)
-                return false;
+    function hasHighlightedMember(uri) {
+        return root.highlightedMembers.some(m => m.uri === uri);
+    }
+
+    // A conversation is highlighted when all its peers are picked as members,
+    // so the list always matches the member chips of the NewSwarmPage
+    function isHighlighted(uris) {
+        const peers = Array.from(uris).filter(uri => uri !== CurrentAccount.uri);
+        return peers.length > 0 && peers.every(hasHighlightedMember);
+    }
+
+    function toggleHighlighted(convId, uris) {
+        // Only other participants can be added as swarm members.
+        const peers = Array.from(uris).filter(uri => uri !== CurrentAccount.uri);
+        // If every peer is already selected, clicking this conversation removes them all.
+        if (isHighlighted(uris)) {
+            root.highlightedMembers = root.highlightedMembers.filter(m => !peers.includes(m.uri));
         } else {
-            newH = Array.from(newH).filter(r => r !== convId);
-            newHm = Array.from(newHm).filter(r => r.convId !== convId);
+            // Add only missing peers and record which conversation they came from.
+            const added = peers.filter(uri => !hasHighlightedMember(uri)).map(uri => ({ "uri": uri, "convId": convId }));
+            root.highlightedMembers = root.highlightedMembers.concat(added);
         }
-        newH.push(convId);
-        root.highlighted = newH;
-        root.highlightedMembers = newHm;
-        ConversationsAdapter.ignoreFiltering(root.highlighted);
-        return true;
     }
 
     function clearHighlighted() {
-        root.highlighted = [];
         root.highlightedMembers = [];
     }
 
     function removeMember(convId, member) {
-        var refreshHighlighted = true;
-        var newHm = [];
-        for (var hm in root.highlightedMembers) {
-            var m = root.highlightedMembers[hm];
-            if (m.convId === convId && m.uri === member) {
-                continue;
-            } else if (m.convId === convId) {
-                refreshHighlighted = false;
-            }
-            newHm.push(m);
-        }
-        root.highlightedMembers = newHm;
-        if (refreshHighlighted) {
-            // Remove highlighted status if necessary
-            for (var d in swarmCurrentConversationList.contentItem.children) {
-                var delegate = swarmCurrentConversationList.contentItem.children[d];
-                if (delegate.convId === convId)
-                    delegate.highlighted = false;
-            }
-        }
+        root.highlightedMembers = root.highlightedMembers.filter(m => m.uri !== member);
     }
+
+    onHighlightedChanged: ConversationsAdapter.ignoreFiltering(root.highlighted)
 
     onHighlightedMembersChanged: {
         if (inNewSwarm) {
@@ -419,43 +398,16 @@ SidePanelBase {
 
                         delegate: SmartListItemDelegate {
                             interactive: false
+                            highlighted: root.isHighlighted(Uris)
                             showLocationIconArrow: locationIconTimer.showIconArrow
 
                             onVisibleChanged: {
-                                if (!swarmCurrentConversationList.visible) {
-                                    highlighted = false;
+                                if (!swarmCurrentConversationList.visible)
                                     root.clearHighlighted();
-                                }
                             }
 
-                            Component.onCompleted: {
-                                // Note: when scrolled down, this delegate will be
-                                // destroyed from the memory. So, re-add the highlighted
-                                // status if necessary
-                                if (Array.from(root.highlighted).find(r => r === UID)) {
-                                    highlighted = true;
-                                }
-                            }
-
-                            onHighlightedChanged: function onHighlightedChanged() {
-                                if (highlighted && Array.from(root.highlighted).find(r => r === UID)) {
-                                    // Due to scrolling destruction/reconstruction
-                                    return;
-                                }
-
-                                var currentHighlighted = root.highlighted;
-
-                                if (!root.refreshHighlighted(UID, highlighted)) {
-                                    highlighted = false;
-                                    return;
-                                }
-
-                                if (highlighted) {
-                                    root.highlighted.push(UID);
-                                } else {
-                                    root.highlighted = Array.from(root.highlighted).filter(r => r !== UID);
-                                }
-
+                            onSelectionToggled: {
+                                root.toggleHighlighted(UID, Uris);
                                 root.clearContactSearchBar();
                             }
                         }

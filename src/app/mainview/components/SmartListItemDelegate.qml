@@ -44,6 +44,9 @@ ItemDelegate {
     property bool isBanned: false
     property bool showLocationIconArrow: true
 
+    // Emitted instead of selecting the conversation when not interactive
+    signal selectionToggled
+
     property int lastInteractionTimeStamp: LastInteractionTimeStamp
     property string lastInteractionFormattedDate: MessagesAdapter.getBestFormattedDate(lastInteractionTimeStamp)
     property int documentUpdateCount: CollaborativeAdapter.unreadDocumentUpdateCount(UID)
@@ -303,7 +306,7 @@ ItemDelegate {
 
     onClicked: {
         if (!interactive) {
-            highlighted = !highlighted;
+            selectionToggled();
             return;
         }
         ListView.view.model.select(index);
