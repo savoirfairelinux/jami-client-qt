@@ -40,9 +40,7 @@ public:
             return;
         }
 
-        // the first string is the item uri and the second is a uid
-        // that is used for trigger a reload of the underlying image
-        // data and can be discarded at this point
+        // Fields are type, image ID, refresh UID, and an optional fallback kind.
         auto idInfo = id_.split("_");
 
         if (idInfo.size() < 2) {
@@ -60,10 +58,14 @@ public:
         const auto& type = idInfo.at(0);
 
         if (type == "conversation") {
-            if (imageId == "temp")
-                image = Utils::tempConversationAvatar(requestedSize_);
-            else
+            if (imageId == "temp") {
+                const auto fallbackKind = idInfo.size() > 3 && idInfo.at(3) == "feed"
+                                              ? Utils::AvatarFallbackKind::Feed
+                                              : Utils::AvatarFallbackKind::Default;
+                image = Utils::tempConversationAvatar(requestedSize_, fallbackKind);
+            } else {
                 image = Utils::conversationAvatar(lrcInstance_, imageId, requestedSize_);
+            }
         } else if (type == "account") {
             image = Utils::accountPhoto(lrcInstance_, imageId, requestedSize_);
         } else if (type == "contact") {

@@ -31,7 +31,12 @@ Item {
         Conversation,
         TemporaryAccount
     }
+    enum FallbackKind {
+        Default,
+        Feed
+    }
     property int mode: Avatar.Mode.Account
+    property int fallbackKind: Avatar.FallbackKind.Default
     property alias sourceSize: image.sourceSize
 
     property string imageId
@@ -56,6 +61,7 @@ Item {
     property alias fillMode: image.fillMode
 
     onImageIdChanged: image.updateSource()
+    onFallbackKindChanged: image.updateSource()
 
     Connections {
         target: AvatarRegistry
@@ -81,6 +87,7 @@ Item {
 
     Image {
         id: image
+        objectName: "avatarImage"
 
         anchors.fill: root
 
@@ -96,7 +103,8 @@ Item {
         function updateSource() {
             if (!imageId)
                 return;
-            source = baseProviderPrefix + '/' + typePrefix + divider + imageId + divider + AvatarRegistry.getUid(imageId);
+            const fallbackSuffix = root.fallbackKind === Avatar.FallbackKind.Feed ? divider + 'feed' : '';
+            source = baseProviderPrefix + '/' + typePrefix + divider + imageId + divider + AvatarRegistry.getUid(imageId) + fallbackSuffix;
         }
     }
 

@@ -821,3 +821,24 @@ ConversationsAdapter::createSwarm(const QString& title,
         details["avatar"] = avatar;
     return convModel->createConversation(participants, details);
 }
+
+QString
+ConversationsAdapter::createFeed(const QString& title,
+                                 const QString& description,
+                                 const QString& avatar,
+                                 const VectorString& participants)
+{
+    auto convModel = lrcInstance_->getCurrentConversationModel();
+    if (!convModel) {
+        qWarning() << Q_FUNC_INFO << "Cannot create feed without a conversation model";
+        return {};
+    }
+    MapStringString details;
+    if (!title.isEmpty())
+        details["title"] = title;
+    if (!description.isEmpty())
+        details["description"] = description;
+    if (!avatar.isEmpty())
+        details["avatar"] = avatar;
+    return convModel->createFeedConversation(participants, details);
+}

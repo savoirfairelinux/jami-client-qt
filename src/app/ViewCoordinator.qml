@@ -33,6 +33,7 @@ QtObject {
         "WelcomePage": "mainview/components/WelcomePage.qml",
         "ConversationView": "mainview/ConversationView.qml",
         "NewSwarmPage": "mainview/components/NewSwarmPage.qml",
+        "CreateFeedPage": "mainview/components/CreateFeedPage.qml",
         "WizardView": "wizardview/WizardView.qml",
         "AccountMigrationView": "AccountMigrationView.qml",
         "SettingsView": "settingsview/SettingsView.qml",

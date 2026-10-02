@@ -920,7 +920,26 @@ ConversationModel::getConversationPreferences(const QString& conversationId)
 QString
 ConversationModel::createConversation(const VectorString& participants, const MapStringString& infos)
 {
-    auto convUid = ConfigurationManager::instance().startConversation(owner.id);
+    return createConversationWithUid(participants, infos, ConfigurationManager::instance().startConversation(owner.id));
+}
+
+QString
+ConversationModel::createFeedConversation(const VectorString& participants, const MapStringString& infos)
+{
+    return createConversationWithUid(participants,
+                                     infos,
+                                     ConfigurationManager::instance().startFeedConversation(owner.id));
+}
+
+QString
+ConversationModel::createConversationWithUid(const VectorString& participants,
+                                             const MapStringString& infos,
+                                             const QString& convUid)
+{
+    if (convUid.isEmpty()) {
+        qWarning() << Q_FUNC_INFO << "Failed to start conversation";
+        return {};
+    }
     addSwarmConversation(convUid);
     if (!infos.isEmpty())
         updateConversationInfos(convUid, infos);

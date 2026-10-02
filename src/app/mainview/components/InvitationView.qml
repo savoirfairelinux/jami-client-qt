@@ -73,6 +73,7 @@ Item {
 
         Text {
             id: invitationViewMiddlePhraseText
+            objectName: "invitationViewMiddlePhraseText"
 
             Layout.alignment: Qt.AlignHCenter
             Layout.topMargin: marginSize
@@ -86,7 +87,9 @@ Item {
             color: JamiTheme.textColor
             wrapMode: Text.Wrap
 
-            text: convContext.needsSyncing ? JamiStrings.invitationViewAcceptedConversation : JamiStrings.invitationViewJoinConversation
+            text: convContext.needsSyncing ? JamiStrings.invitationViewAcceptedConversation
+                  : convContext.isFeedMode ? JamiStrings.invitationViewJoinFeed.arg(convContext.title)
+                  : JamiStrings.invitationViewJoinConversation
         }
 
         Text {

@@ -31,6 +31,55 @@ TestWrapper {
         width: 300
         height: 600
 
+        QtObject {
+            id: testNewSwarmPage
+
+            property var members: []
+
+            signal removeMember(string convId, string member)
+            signal createSwarmClicked(string title, string description, string avatar)
+        }
+
+        QtObject {
+            id: testCreateFeedPage
+
+            property var members: []
+            property bool creationFailed: false
+
+            signal removeMember(string convId, string member)
+            signal createFeedClicked(string title, string description, string avatar)
+        }
+
+        QtObject {
+            id: testViewCoordinator
+
+            property string currentViewName: ""
+            property bool isInSinglePaneMode: false
+
+            function present(viewName) {
+                currentViewName = viewName;
+            }
+
+            function dismiss(viewName) {
+                if (currentViewName === viewName)
+                    currentViewName = "";
+            }
+
+            function getView(viewName) {
+                if (viewName === "NewSwarmPage")
+                    return testNewSwarmPage;
+                if (viewName === "CreateFeedPage")
+                    return testCreateFeedPage;
+                return null;
+            }
+        }
+
+        QtObject {
+            id: testAppContext
+
+            property var viewCoordinator: testViewCoordinator
+        }
+
         TestCase {
             name: "New swarm member selection"
 
@@ -42,6 +91,50 @@ TestWrapper {
 
             function init() {
                 uut.clearHighlighted();
+            }
+
+            function test_cancelingNewGroupClosesCreationView() {
+                const previousFilterRequests = ConversationsAdapter.filterRequests;
+                const previousAppContext = uut.appContext;
+
+                try {
+                    uut.appContext = testAppContext;
+                    ConversationsAdapter.filterRequests = false;
+
+                    uut.toggleCreateSwarmView();
+                    compare(uut.inNewSwarm, true);
+
+                    const closeButton = findChild(uut, "closeCreationButton");
+                    verify(closeButton);
+                    verify(closeButton.visible);
+                    mouseClick(closeButton);
+                    compare(uut.inNewSwarm, false);
+                } finally {
+                    testViewCoordinator.currentViewName = "";
+                    uut.appContext = previousAppContext;
+                    ConversationsAdapter.filterRequests = previousFilterRequests;
+                }
+            }
+
+            function test_cancelingNewFeedClosesCreationView() {
+                const previousFilterRequests = ConversationsAdapter.filterRequests;
+                const previousAppContext = uut.appContext;
+
+                try {
+                    uut.appContext = testAppContext;
+                    uut.openCreateFeedView();
+                    compare(uut.inCreateFeed, true);
+
+                    const closeButton = findChild(uut, "closeCreationButton");
+                    verify(closeButton);
+                    verify(closeButton.visible);
+                    mouseClick(closeButton);
+                    compare(uut.inCreateFeed, false);
+                } finally {
+                    testViewCoordinator.currentViewName = "";
+                    uut.appContext = previousAppContext;
+                    ConversationsAdapter.filterRequests = previousFilterRequests;
+                }
             }
 
             function memberUris() {

@@ -74,6 +74,8 @@ bool isContactValid(const QString& contactUid, const lrc::api::ConversationModel
 bool getReplyMessageBox(QWidget* widget, const QString& title, const QString& text);
 
 // Image manipulation
+enum class AvatarFallbackKind { Default, Feed };
+
 constexpr static const QSize defaultAvatarSize {128, 128};
 QImage imageFromBase64String(const QString& str,
                              bool circleCrop = true,
@@ -93,11 +95,12 @@ QImage conversationAvatar(LRCInstance* instance,
 QImage getCirclePhoto(const QImage& original, int sizePhoto);
 QImage halfCrop(const QImage original, bool leftSide);
 QColor getAvatarColor(const QString& canonicalUri);
-QImage tempConversationAvatar(const QSize& size);
+QImage tempConversationAvatar(const QSize& size, AvatarFallbackKind fallbackKind = AvatarFallbackKind::Default);
 QString getTempSwarmAvatarPath();
 QImage fallbackAvatar(const QString& canonicalUriStr,
                       const QString& letterStr = {},
-                      const QSize& size = defaultAvatarSize);
+                      const QSize& size = defaultAvatarSize,
+                      AvatarFallbackKind fallbackKind = AvatarFallbackKind::Default);
 QImage fallbackAvatar(const std::string& alias, const std::string& uri, const QSize& size = defaultAvatarSize);
 QByteArray QImageToByteArray(QImage image);
 QString byteArrayToBase64String(QByteArray byteArray);
