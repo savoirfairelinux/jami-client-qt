@@ -17,7 +17,6 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import QtQuick.Controls.impl
 
 import net.jami.Constants 1.1
 
@@ -60,40 +59,4 @@ BaseModalDialog {
         Accessible.description: {return     typeInfo.infoText + " " + description.infoText + " " + profileInfo.infoText}
     }
 
-    component InfoRow: RowLayout {
-        property alias iconSource: iconImage.source
-        property alias infoText: infoLabel.text
-
-        Layout.fillWidth: true
-
-        spacing: 8
-
-        IconImage {
-            id: iconImage
-
-            Layout.alignment: Qt.AlignVCenter
-
-            width: JamiTheme.iconButtonMedium
-            height: JamiTheme.iconButtonMedium
-
-            sourceSize.width: JamiTheme.iconButtonMedium
-            sourceSize.height: JamiTheme.iconButtonMedium
-
-            color: JamiTheme.textColor
-        }
-
-        Text {
-            id: infoLabel
-
-            Layout.fillWidth: true
-            Layout.alignment: Qt.AlignVCenter
-
-            verticalAlignment: Text.AlignVCenter
-            wrapMode: Text.WordWrap
-
-            font.pixelSize: JamiTheme.infoBoxTitleFontSize
-
-            color: JamiTheme.textColor
-        }
-    }
 }

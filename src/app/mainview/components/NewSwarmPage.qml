@@ -116,6 +116,38 @@ DualPaneView {
             objectName: "mainLayout"
             anchors.centerIn: root
 
+            spacing: JamiTheme.preferredMarginSize
+
+            RowLayout {
+                Layout.alignment: Qt.AlignCenter
+
+                spacing: 4
+
+                Text {
+                    Layout.alignment: Qt.AlignVCenter
+
+                    text: JamiStrings.newGroup
+                    color: JamiTheme.textColor
+                    horizontalAlignment: Text.AlignHCenter
+
+                    font.pixelSize: JamiTheme.settingsTitlePixelSize
+                    font.kerning: true
+                }
+
+                NewIconButton {
+                    objectName: "groupHelpButton"
+                    Layout.alignment: Qt.AlignVCenter
+
+                    iconSource: JamiResources.bidirectional_help_outline_24dp_svg
+                    iconSize: JamiTheme.iconButtonMedium
+                    toolTipText: qsTr("What is a group?")
+
+                    onClicked: viewCoordinator.presentDialog(viewNode, "commoncomponents/ConversationTypeInfoPopup.qml", {
+                        "titleText": toolTipText
+                    })
+                }
+            }
+
             PhotoboothView {
                 id: currentAccountAvatar
 
@@ -132,11 +164,10 @@ DualPaneView {
                 id: title
                 objectName: "titleLineEdit"
 
-                Layout.topMargin: JamiTheme.preferredMarginSize
                 Layout.preferredWidth: JamiTheme.preferredFieldWidth
                 Layout.maximumWidth: JamiTheme.preferredFieldWidth
 
-                leadingIconSource: JamiResources.create_swarm_24dp_svg
+                leadingIconSource: JamiResources.groups_3_24dp_svg
 
                 maxCharacters: JamiTheme.maximumCharacters
                 placeholderText: JamiStrings.groupName
@@ -149,7 +180,6 @@ DualPaneView {
                 id: description
                 objectName: "descriptionLineEdit"
 
-                Layout.topMargin: JamiTheme.preferredMarginSize
                 Layout.preferredWidth: JamiTheme.preferredFieldWidth
                 Layout.maximumWidth: JamiTheme.preferredFieldWidth
 
@@ -162,24 +192,16 @@ DualPaneView {
                 onEditingFinished: btnCreateSwarm.forceActiveFocus()
             }
 
-            MaterialButton {
+            NewMaterialButton {
                 id: btnCreateSwarm
+                objectName: "createFeedButton"
 
-                TextMetrics {
-                    id: textSize
-                    font.weight: Font.Bold
-                    font.pixelSize: JamiTheme.wizardViewButtonFontPixelSize
-                    font.capitalization: Font.AllUppercase
-                    text: btnCreateSwarm.text
-                }
+                Layout.preferredWidth: JamiTheme.preferredFieldWidth
+                Layout.maximumWidth: JamiTheme.preferredFieldWidth
+                Layout.alignment: Qt.AlignHCenter
 
-                Layout.alignment: Qt.AlignCenter
-                Layout.topMargin: JamiTheme.preferredMarginSize
-                autoAccelerator: true
-
-                preferredWidth: textSize.width + 2 * JamiTheme.buttontextWizzardPadding
-
-                primary: true
+                filledButton: true
+                iconSource: JamiResources.groups_3_24dp_svg
                 text: JamiStrings.newGroup
 
                 onClicked: createSwarmClicked(title.modifiedTextFieldContent, description.modifiedTextFieldContent, UtilsAdapter.tempCreationImage())
