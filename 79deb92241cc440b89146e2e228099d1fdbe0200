@@ -16,6 +16,40 @@
       "message": "[error] Line 141: 🔴 Toggling a highlighted group off removes members by URI (`filter(m \u003d\u003e !peers.includes(m.uri))`), which also drops members that were selected from other conversations. Example: select `aliceDm`, then select `group` (`alice`,`bob`), then toggle `group` off — `alice` is removed even though `aliceDm` is still selected. This breaks selection consistency between chips and rows. Fix by only removing entries owned by the toggled conversation (e.g. `m.convId \u003d\u003d\u003d convId`) or by tracking per-member selection provenance/ref-count and removing a URI only when no source conversation still selects it.",
       "revId": "79deb92241cc440b89146e2e228099d1fdbe0200",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b81cfc4b_bb489970",
+        "filename": "src/app/mainview/components/SmartListItemDelegate.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 307,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-10-02T21:06:26Z",
+      "side": 1,
+      "message": "[warning] Line 307: 🟡 This changes global `interactive: false` click behavior from “toggle local highlight” to “emit signal only.” Any existing non-interactive usages that don’t handle `selectionToggled` will now silently do nothing on click. Please either confirm all call sites are wired to this signal, or preserve backward compatibility (e.g., keep the old toggle as a fallback where no explicit handler is intended).",
+      "revId": "79deb92241cc440b89146e2e228099d1fdbe0200",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8ded11a5_09dae2b4",
+        "filename": "tests/qml/src/tst_SidePanel.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-10-02T21:06:26Z",
+      "side": 1,
+      "message": "[warning] Line 79: 🟡 The new tests still miss the mixed-source deselection scenario: select `aliceDm`, then select `group`, then deselect `group` — `alice` should remain selected because it was selected independently. Adding this regression test would cover the selection-provenance edge case and prevent future regressions in group/member toggle sync.",
+      "revId": "79deb92241cc440b89146e2e228099d1fdbe0200",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
