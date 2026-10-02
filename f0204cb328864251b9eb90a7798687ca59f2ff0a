@@ -18,6 +18,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8ff47733_d13c9246",
+        "filename": "src/app/mainview/components/CollabRichEditorWindow.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 1551,
+      "author": {
+        "id": 617
+      },
+      "writtenOn": "2026-10-02T00:48:20Z",
+      "side": 1,
+      "message": "Done in PS2: the toolbar now tells the editor\u0027s own font (no font attribute) apart from a font this client does not ship, which is shown as \"Unavailable font\" with no menu item checked. Regression test: test_unshippedFontIsNotShownAsTheDefault.",
+      "parentUuid": "2c1a8d88_b141daff",
+      "revId": "f0204cb328864251b9eb90a7798687ca59f2ff0a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a0527c42_c64c2bed",
@@ -31,6 +49,24 @@
       "writtenOn": "2026-10-01T23:37:58Z",
       "side": 1,
       "message": "[warning] Line 85: 🟡 The test hard-codes `menu.count \u003d\u003d\u003d 12` and specific absolute indices, which is brittle against legitimate font list evolution. Assert semantic expectations instead (default item + separator + presence/order of expected shipped fonts by id/family) so unrelated additions don’t break the suite.",
+      "revId": "f0204cb328864251b9eb90a7798687ca59f2ff0a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "342062c8_0d9c9fa7",
+        "filename": "tests/qml/src/tst_CollabRichEditorWindow.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 617
+      },
+      "writtenOn": "2026-10-02T00:48:20Z",
+      "side": 1,
+      "message": "Done in PS2: the test now compares the menu with the binding\u0027s own font list (default item, separator, then every font in order, each shown in itself), and only names Liberation Sans, the font that was asked for.",
+      "parentUuid": "a0527c42_c64c2bed",
       "revId": "f0204cb328864251b9eb90a7798687ca59f2ff0a",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
