@@ -62,6 +62,10 @@ public:
                                     const QString& description,
                                     const QString& avatar,
                                     const VectorString& participants);
+    Q_INVOKABLE QString createFeed(const QString& title,
+                                   const QString& description,
+                                   const QString& avatar,
+                                   const VectorString& participants);
     Q_INVOKABLE void setFilter(const QString& filterString);
     Q_INVOKABLE void setFilterAndSelect(const QString& filterString);
     Q_INVOKABLE void ignoreFiltering(const QVariant& hightlighted);
