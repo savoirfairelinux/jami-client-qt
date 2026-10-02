@@ -162,9 +162,11 @@ ContextMenuAutoLoader {
         },
         GeneralMenuItem {
             id: contactDetails
+            objectName: "contactDetails"
 
             canTrigger: contactType !== Profile.Type.SIP
-            itemName: isCoreDialog ? JamiStrings.contactDetails : JamiStrings.convDetails
+            itemName: isCoreDialog ? JamiStrings.contactDetails
+                                   : (mode === Conversation.Mode.FEED ? JamiStrings.feedDetails : JamiStrings.convDetails)
             iconSource: JamiResources.person_24dp_svg
             onClicked: {
                 if (isCoreDialog) {

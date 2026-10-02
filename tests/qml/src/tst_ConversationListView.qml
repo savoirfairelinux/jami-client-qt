@@ -118,4 +118,34 @@ ColumnLayout {
             }
         }
     }
+
+    ConversationSmartListContextMenu {
+        id: contextMenuUut
+    }
+
+    TestCase {
+        name: "Smartlist context menu"
+        when: windowShown
+
+        function test_detailsLabelTracksFeedMode() {
+            const previousMode = contextMenuUut.mode;
+            try {
+                contextMenuUut.mode = Conversation.Mode.INVITES_ONLY;
+                contextMenuUut.openMenu();
+                tryVerify(() => contextMenuUut.item !== null, 2000);
+
+                const detailsItem = findChild(contextMenuUut.item, "contactDetails");
+                verify(detailsItem !== null);
+                compare(detailsItem.itemName, JamiStrings.convDetails);
+
+                contextMenuUut.mode = Conversation.Mode.FEED;
+                tryCompare(detailsItem, "itemName", JamiStrings.feedDetails);
+            } finally {
+                if (contextMenuUut.item)
+                    contextMenuUut.item.close();
+                contextMenuUut.active = false;
+                contextMenuUut.mode = previousMode;
+            }
+        }
+    }
 }

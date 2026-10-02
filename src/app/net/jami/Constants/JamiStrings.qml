@@ -405,6 +405,7 @@ Item {
     property string removeContact: qsTr("Remove contact")
     property string blockContact: qsTr("Block contact")
     property string convDetails: qsTr("Conversation details")
+    property string feedDetails: qsTr("Feed details")
     property string contactDetails: qsTr("Contact details")
 
     // CallViewContextMenu
