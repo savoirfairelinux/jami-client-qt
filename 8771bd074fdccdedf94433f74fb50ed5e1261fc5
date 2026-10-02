@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "47ec0007_f63572f2",
+        "filename": "src/app/mainview/components/ConversationSmartListContextMenu.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-10-02T15:23:18Z",
+      "side": 1,
+      "message": "[error] Line 51: 🔴 `ConversationsAdapter.canCall(responsibleConvUid)` checks permissions against the *current* account model, but this menu is built with `responsibleAccountId` and can be opened for conversations from another account. In multi-account sessions this can incorrectly hide allowed calls or expose disallowed ones. Make `canCall` account-aware (e.g., `canCall(accountId, convId)`) and evaluate permissions on that account’s `conversationModel`; update both call sites here to pass `responsibleAccountId`.",
+      "revId": "8771bd074fdccdedf94433f74fb50ed5e1261fc5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
