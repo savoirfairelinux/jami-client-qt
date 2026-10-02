@@ -16,10 +16,77 @@
  */
 
 #include "api/messagelistmodel.h"
+#include "messagesadapter.h"
 
 #include <gtest/gtest.h>
 
 using namespace lrc::api;
+
+namespace {
+
+interaction::Info
+makeTextMessage(const QString& replyTo = {})
+{
+    interaction::Info message;
+    message.type = interaction::Type::TEXT;
+    message.body = QStringLiteral("body");
+    if (!replyTo.isEmpty())
+        message.commit[QStringLiteral("reply-to")] = replyTo;
+    return message;
+}
+
+QStringList
+proxyIds(const QSortFilterProxyModel& proxy)
+{
+    QStringList ids;
+    for (int row = 0; row < proxy.rowCount(); ++row)
+        ids.append(proxy.data(proxy.index(row, 0), MessageList::Id).toString());
+    return ids;
+}
+
+} // namespace
+
+TEST(FilteredMsgListModel, HidesMembershipEventsWhenEnabled)
+{
+    MessageListModel model(nullptr);
+    auto memberEvent = makeTextMessage();
+    memberEvent.type = interaction::Type::CONTACT;
+    ASSERT_TRUE(model.append(QStringLiteral("member-event"), memberEvent));
+    ASSERT_TRUE(model.append(QStringLiteral("text"), makeTextMessage()));
+
+    FilteredMsgListModel proxy;
+    proxy.setSourceModel(&model);
+    EXPECT_EQ(proxy.rowCount(), 2);
+
+    ASSERT_TRUE(proxy.setProperty("hideMembershipEvents", true));
+    EXPECT_EQ(proxy.rowCount(), 1);
+    EXPECT_TRUE(proxyIds(proxy).contains(QStringLiteral("text")));
+
+    ASSERT_TRUE(proxy.setProperty("hideMembershipEvents", false));
+    EXPECT_EQ(proxy.rowCount(), 2);
+}
+
+TEST(ThreadedMsgListModel, HidesMembershipEventsWhenEnabled)
+{
+    MessageListModel model(nullptr);
+    auto memberEvent = makeTextMessage(QStringLiteral("root"));
+    memberEvent.type = interaction::Type::CONTACT;
+    ASSERT_TRUE(model.append(QStringLiteral("root"), makeTextMessage()));
+    ASSERT_TRUE(model.append(QStringLiteral("member-event"), memberEvent));
+    ASSERT_TRUE(model.append(QStringLiteral("reply"), makeTextMessage(QStringLiteral("root"))));
+
+    FilteredMsgListModel filtered;
+    filtered.setSourceModel(&model);
+    ThreadedMsgListModel proxy;
+    proxy.setSourceModel(&filtered);
+    proxy.setThreadId(QStringLiteral("root"));
+    EXPECT_EQ(proxy.rowCount(), 3);
+
+    ASSERT_TRUE(filtered.setProperty("hideMembershipEvents", true));
+    QCoreApplication::processEvents();
+    EXPECT_EQ(proxy.rowCount(), 2);
+    EXPECT_TRUE(proxyIds(proxy).contains(QStringLiteral("reply")));
+}
 
 TEST(MessageListModel, FindsReactionIdForAuthorAndEmoji)
 {

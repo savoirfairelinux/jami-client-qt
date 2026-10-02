@@ -30,10 +30,12 @@ AbstractButton {
     property string rootId
     property int replyCount: 0
     property bool inThread: false
+    property bool isFeedMode: false
     property color borderColor: JamiTheme.chatviewBgColor
 
     visible: MessagesAdapter.threadedView && replyCount > 0 && !inThread
-    text: replyCount === 1 ? JamiStrings.oneReply : JamiStrings.replies.arg(replyCount)
+    text: isFeedMode ? (replyCount === 1 ? JamiStrings.oneComment : JamiStrings.comments.arg(replyCount))
+                     : (replyCount === 1 ? JamiStrings.oneReply : JamiStrings.replies.arg(replyCount))
     padding: 5
     hoverEnabled: true
 
@@ -51,7 +53,8 @@ AbstractButton {
             objectName: "threadRepliesIcon"
             Layout.preferredWidth: JamiTheme.iconButtonSmall
             Layout.preferredHeight: JamiTheme.iconButtonSmall
-            source: JamiResources.bidirectional_reply_black_24dp_svg
+            source: root.isFeedMode ? JamiResources.comment_24dp_svg
+                                    : JamiResources.bidirectional_reply_black_24dp_svg
             sourceSize.width: JamiTheme.iconButtonSmall
             sourceSize.height: JamiTheme.iconButtonSmall
             color: JamiTheme.chatviewTextColor

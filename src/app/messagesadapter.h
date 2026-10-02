@@ -38,6 +38,8 @@ class FilteredMsgListModel final : public QSortFilterProxyModel
 {
     Q_OBJECT
     Q_PROPERTY(int count READ count NOTIFY countChanged)
+    Q_PROPERTY(bool hideMembershipEvents READ hideMembershipEvents WRITE setHideMembershipEvents NOTIFY
+                   hideMembershipEventsChanged)
 public:
     explicit FilteredMsgListModel(QObject* parent = nullptr)
         : QSortFilterProxyModel(parent)
@@ -53,7 +55,7 @@ public:
     {
         auto index = sourceModel()->index(sourceRow, 0, sourceParent);
         auto type = static_cast<interaction::Type>(sourceModel()->data(index, MessageList::Role::Type).toInt());
-        return interaction::isTypeDisplayable(type);
+        return interaction::isTypeDisplayable(type) && (!hideMembershipEvents_ || type != interaction::Type::CONTACT);
     };
     bool lessThan(const QModelIndex& left, const QModelIndex& right) const override
     {
@@ -80,8 +82,38 @@ public:
     {
         return rowCount();
     }
+
+    bool hideMembershipEvents() const
+    {
+        return hideMembershipEvents_;
+    }
+
+    void setHideMembershipEvents(bool hide)
+    {
+        if (hideMembershipEvents_ == hide)
+            return;
+        hideMembershipEvents_ = hide;
+        refreshFilter();
+        Q_EMIT hideMembershipEventsChanged();
+    }
+
 Q_SIGNALS:
     void countChanged();
+    void hideMembershipEventsChanged();
+
+protected:
+    void refreshFilter()
+    {
+#if QT_VERSION >= QT_VERSION_CHECK(6, 10, 0)
+        beginFilterChange();
+        endFilterChange(QSortFilterProxyModel::Direction::Rows);
+#else
+        invalidateFilter();
+#endif
+    }
+
+private:
+    bool hideMembershipEvents_ {false};
 };
 
 // The one history request allowed in flight for the selected conversation.

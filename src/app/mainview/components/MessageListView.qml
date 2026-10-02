@@ -212,6 +212,12 @@ ListView {
         }
     }
 
+    Binding {
+        target: root.convContext === CurrentConversation ? MessagesAdapter.messageListModel : null
+        property: "hideMembershipEvents"
+        value: root.convContext === CurrentConversation && CurrentConversation.isFeedMode
+    }
+
     model: (convContext && convContext !== CurrentConversation) ? convContext.messageListModel : MessagesAdapter.messageListModel
     delegate: DelegateChooser {
         id: delegateChooser

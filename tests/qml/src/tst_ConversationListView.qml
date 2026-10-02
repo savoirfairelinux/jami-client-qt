@@ -118,4 +118,33 @@ ColumnLayout {
             }
         }
     }
+    ConversationSmartListContextMenu {
+        id: leaveContextMenuUut
+    }
+
+    TestCase {
+        name: "Feed leave context menu"
+        when: windowShown
+
+        function test_leaveLabelTracksFeedMode() {
+            const previousMode = leaveContextMenuUut.mode;
+            try {
+                leaveContextMenuUut.mode = Conversation.Mode.INVITES_ONLY;
+                leaveContextMenuUut.openMenu();
+                tryVerify(() => leaveContextMenuUut.item !== null, 2000);
+
+                const leaveItem = findChild(leaveContextMenuUut.item, "removeConversation");
+                verify(leaveItem !== null);
+                compare(leaveItem.itemName, JamiStrings.leaveGroup);
+
+                leaveContextMenuUut.mode = Conversation.Mode.FEED;
+                tryCompare(leaveItem, "itemName", JamiStrings.leaveFeed);
+            } finally {
+                if (leaveContextMenuUut.item)
+                    leaveContextMenuUut.item.close();
+                leaveContextMenuUut.active = false;
+                leaveContextMenuUut.mode = previousMode;
+            }
+        }
+    }
 }
