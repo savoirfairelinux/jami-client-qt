@@ -34,6 +34,7 @@ Item {
     property string incomingAudioCallFrom: qsTr("Incoming audio call from %1")
     property string incomingVideoCallFrom: qsTr("Incoming video call from %1")
     property string newGroup: qsTr("Create new group")
+    property string createNewFeed: qsTr("Create new feed")
     property string invitations: qsTr("Invitations")
     property string description: qsTr("Jami is a universal communication platform, with privacy as its foundation, that relies on a free distributed network for everyone.")
     property string updateToSwarm: qsTr("Migrating to the Swarm technology will enable synchronizing this conversation across multiple devices and improve reliability. The legacy conversation history will be cleared in the process.")
@@ -987,6 +988,7 @@ Item {
     // Invitation View
     property string invitationViewSentRequest: qsTr("%1 sent you a conversation invitation.")
     property string invitationViewJoinConversation: qsTr("Hello,\nDo you want to join the conversation?")
+    property string invitationViewJoinFeed: qsTr("You've been invited to join the %1 feed!")
     property string invitationViewAcceptedConversation: qsTr("You have accepted\nthe conversation invitation.")
     property string invitationViewWaitingForSync: qsTr("Waiting for %1\nto connect to synchronize the conversation…")
 
