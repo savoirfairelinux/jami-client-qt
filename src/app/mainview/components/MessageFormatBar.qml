@@ -720,7 +720,8 @@ Rectangle {
                     if (messageBarRowLayout.editId !== "") {
                         return JamiResources.edit_24dp_svg;
                     } else if (messageBarRowLayout.replyToId !== "") {
-                        return JamiResources.bidirectional_reply_black_24dp_svg;
+                        return convContext.isFeedMode ? JamiResources.comment_24dp_svg :
+                                                        JamiResources.bidirectional_reply_black_24dp_svg;
                     } else {
                         return JamiResources.bidirectional_send_black_24dp_svg;
                     }
