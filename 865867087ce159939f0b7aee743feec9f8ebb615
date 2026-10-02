@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8fad122e_eae48c92",
+        "filename": "src/app/mainview/components/SidePanelTabBar.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-10-02T21:04:30Z",
+      "side": 1,
+      "message": "[error] Line 27: 🔴 The tab enum order no longer matches the visual tab order (`Conversations, Requests, Feeds` vs buttons declared as `Conversations, Feeds, Requests`). This is fragile and can mis-route index-based behavior (keyboard navigation/currentIndex-driven selection) to the wrong filter. Fix by aligning enum values with declaration order or by avoiding positional coupling entirely (explicit mapping object or per-button handlers only).",
+      "revId": "865867087ce159939f0b7aee743feec9f8ebb615",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "47f62998_c17abadb",
+        "filename": "tests/qml/src/tst_SidePanelTabBar.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-10-02T21:04:30Z",
+      "side": 1,
+      "message": "[warning] Line 30: 🟡 This test does not actually validate a feed-count-dependent behavior: `feedsButton.visible` is not bound to `ConversationsAdapter.feedCount`, so setting `feedCount \u003d 0` is irrelevant and the test can pass without covering the intended regression. Prefer asserting the tab bar policy directly (e.g., feeds tab exists/visible independent of request count and search mode) and add a behavior-driven check tied to real visibility conditions.",
+      "revId": "865867087ce159939f0b7aee743feec9f8ebb615",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
