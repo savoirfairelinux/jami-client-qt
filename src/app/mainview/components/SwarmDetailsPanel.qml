@@ -181,7 +181,9 @@ Item {
 
                         iconSize: JamiTheme.iconButtonMedium
                         iconSource: CurrentConversation.ignoreNotifications ? JamiResources.notifications_off_24dp_svg : JamiResources.notifications_active_24dp_svg
-                        toolTipText: CurrentConversation.ignoreNotifications ? JamiStrings.muteConversation : JamiStrings.unmuteConversation
+                        toolTipText: CurrentConversation.isFeedMode
+                                      ? (CurrentConversation.ignoreNotifications ? JamiStrings.unmuteFeed : JamiStrings.muteFeed)
+                                      : (CurrentConversation.ignoreNotifications ? JamiStrings.unmuteConversation : JamiStrings.muteConversation)
 
                         onClicked: CurrentConversation.setPreference("ignoreNotifications", !CurrentConversation.ignoreNotifications)
                     }
@@ -241,7 +243,9 @@ Item {
 
                         Layout.fillWidth: true
 
-                        leadingIconSource: CurrentConversation.isCoreDialog ? JamiResources.person_24dp_svg : JamiResources.create_swarm_24dp_svg
+                        leadingIconSource: CurrentConversation.isCoreDialog ? JamiResources.person_24dp_svg
+                                            : CurrentConversation.isFeedMode ? JamiResources.feed_24dp_svg
+                                            : JamiResources.create_swarm_24dp_svg
 
                         placeholderText: CurrentConversation.isCoreDialog
                                          ? (root.coreDialogDisplayName !== "" ? root.coreDialogDisplayName : JamiStrings.title)
@@ -251,7 +255,9 @@ Item {
                                           : CurrentConversation.title
                         maxCharacters: JamiTheme.maximumCharacters
                         readOnly: !canEditProfile
-                        toolTipText: CurrentConversation.isCoreDialog ? JamiStrings.contactName : JamiStrings.groupName
+                        toolTipText: CurrentConversation.isCoreDialog ? JamiStrings.contactName
+                                      : CurrentConversation.isFeedMode ? JamiStrings.feedName
+                                      : JamiStrings.groupName
 
                         trailingIconSource: JamiResources.cancel_24dp_svg
                         trailingIconToolTipText: JamiStrings.clearText
@@ -501,7 +507,7 @@ Item {
                 Text {
                     anchors.fill: parent
 
-                    text: JamiStrings.noFilesInConversation
+                    text: CurrentConversation.isFeedMode ? JamiStrings.noFilesInFeed : JamiStrings.noFilesInConversation
                     color: JamiTheme.textColor
 
                     horizontalAlignment: Text.AlignHCenter
@@ -551,7 +557,7 @@ Item {
                 RowLayout {
                     width: parent.width
 
-                    visible: !CurrentConversation.isCoreDialog
+                    visible: !CurrentConversation.isCoreDialog && !CurrentConversation.isFeedMode
 
                     Text {
                         Layout.alignment: Qt.AlignVCenter
@@ -581,7 +587,8 @@ Item {
                 RowLayout {
                     width: parent.width
 
-                    visible: !CurrentConversation.isCoreDialog && CurrentConversation.rdvAccount !== ""
+                    visible: !CurrentConversation.isCoreDialog && !CurrentConversation.isFeedMode
+                             && CurrentConversation.rdvAccount !== ""
 
                     spacing: 16
 
@@ -685,7 +692,7 @@ Item {
                     text: CurrentConversation.rdvAccount === "" ? JamiStrings.selectDefaultHost : JamiStrings.changeDefaultHost
                     color: JamiTheme.buttonTintedBlue
 
-                    visible: !CurrentConversation.isCoreDialog && root.isAdmin
+                    visible: !CurrentConversation.isCoreDialog && !CurrentConversation.isFeedMode && root.isAdmin
 
                     onClicked: {
                         viewCoordinator.presentDialog(appWindow, "mainview/components/DevicesListPopup.qml");
@@ -700,13 +707,14 @@ Item {
                     outlinedButton: true
                     color: JamiTheme.buttonTintedRed
                     iconSource: JamiResources.disconnect_participant_24dp_svg
-                    text: CurrentConversation.isCoreDialog ? JamiStrings.removeConversation : JamiStrings.leaveGroup
+                    text: CurrentConversation.isCoreDialog ? JamiStrings.removeConversation
+                          : CurrentConversation.isFeedMode ? JamiStrings.leaveFeed : JamiStrings.leaveGroup
 
                     onClicked: {
                         var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/ConfirmDialog.qml", {
                                                                     "titleText": JamiStrings.confirmAction,
-                                                                    "textLabel": JamiStrings.confirmRemoveContact,
-                                                                    "confirmLabel": JamiStrings.optionRemove
+                                                                    "textLabel": CurrentConversation.isFeedMode ? JamiStrings.confirmLeaveFeed : JamiStrings.confirmRemoveContact,
+                                                                    "confirmLabel": CurrentConversation.isFeedMode ? JamiStrings.optionLeave : JamiStrings.optionRemove
                                                                 });
                         dlg.accepted.connect(function () {
                             MessagesAdapter.removeConversation(LRCInstance.selectedConvUid, true);
