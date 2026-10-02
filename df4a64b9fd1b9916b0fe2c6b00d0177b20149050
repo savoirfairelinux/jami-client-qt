@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "81b6b04f_74a96604",
+        "filename": "src/app/messagesadapter.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 575,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-10-02T15:19:37Z",
+      "side": 1,
+      "message": "[warning] Line 575: 🟡 This path auto-chains `loadMoreMessages()` until history stops growing whenever threaded mode is enabled. That forces full-history fetch for every conversation open/toggle, which can cause heavy startup latency and memory churn on large histories. Load lazily (e.g., when opening a specific thread) or add a bounded/backoff strategy instead of unconditional full prefetch.",
+      "revId": "df4a64b9fd1b9916b0fe2c6b00d0177b20149050",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "73440a28_f01e2af3",
+        "filename": "src/core/messagelistmodel.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 672,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-10-02T15:19:37Z",
+      "side": 1,
+      "message": "[warning] Line 672: 🟡 `ThreadReplyCount` is recomputed with a full DFS on every role read. In QML, this role is evaluated frequently during delegate creation/binding, so large conversations can degrade to repeated O(N) traversals and visible UI slowdown. Cache per-root/per-message reply counts (and update incrementally in `linkReply`/`updateReplies`) or memoize counts invalidated only when reply links change.",
+      "revId": "df4a64b9fd1b9916b0fe2c6b00d0177b20149050",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
