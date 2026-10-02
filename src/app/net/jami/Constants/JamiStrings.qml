@@ -398,7 +398,9 @@ Item {
     property string removeConversation: qsTr("Remove conversation")
     property string confirmRemoveConversation: qsTr("Do you want to leave this conversation?")
     property string leaveGroup: qsTr("Leave group")
+    property string leaveFeed: qsTr("Leave feed")
     property string confirmLeaveGroup: qsTr("Are you sure you want to leave this group?")
+    property string confirmLeaveFeed: qsTr("Are you sure you want to leave this feed?")
     property string confirmRemoveContact: qsTr("Do you want to remove this contact? The existing conversation will be deleted.")
     property string confirmBlockContact: qsTr("Do you want to block this contact?")
     property string confirmRemoveOneToOneConversation: qsTr("Are you sure you want to remove this conversation? The contact will not be removed.")
@@ -983,6 +985,7 @@ Item {
     property string members: qsTr("%L1 members")
     property string member: qsTr("Member")
     property string groupName: qsTr("Group name")
+    property string feedName: qsTr("Feed name")
     property string contactName: qsTr("Contact name")
     property string addDescription: qsTr("Add description")
     property string noDescription: qsTr("No description")
@@ -991,6 +994,8 @@ Item {
 
     property string muteConversation: qsTr("Mute conversation")
     property string unmuteConversation: qsTr("Unmute conversation")
+    property string muteFeed: qsTr("Mute Feed")
+    property string unmuteFeed: qsTr("Unmute Feed")
     property string ignoreNotificationsTooltip: qsTr("Ignore all notifications from this conversation")
     property string chooseAColor: qsTr("Choose color")
     property string color: qsTr("Color")
@@ -1110,6 +1115,7 @@ Item {
 
     // Files
     property string noFilesInConversation: qsTr("This conversation has no files.")
+    property string noFilesInFeed: qsTr("This feed has no files.")
 
     // Share message menu
     property string addAComment: qsTr("Add comment")

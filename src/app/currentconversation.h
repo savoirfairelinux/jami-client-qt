@@ -55,6 +55,7 @@ class CurrentConversation final : public QObject
     QML_PROPERTY(bool, isContact)
     QML_PROPERTY(bool, allMessagesLoaded)
     QML_PROPERTY(QString, modeString)
+    QML_PROPERTY(bool, isFeedMode)
     QML_PROPERTY(QVariantList, activeCalls)
     QML_PROPERTY(QStringList, errors)
     QML_PROPERTY(QStringList, backendErrors)
