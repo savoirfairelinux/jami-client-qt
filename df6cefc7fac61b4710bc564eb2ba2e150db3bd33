@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fffa921b_2b4f192a",
+        "filename": "translations/jami_client_qt_es.ts",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-10-05T06:59:26Z",
+      "side": 1,
+      "message": "[error] Line 45: 🔴 Placeholder formatting regression: the translation uses `\u0026quot;%1 \u0026quot;` (extra space inside the quoted placeholder), which renders awkwardly and inconsistently in UI text. Use `\u0026quot;%1\u0026quot;` (no embedded space). Apply the same fix at line 75 and in the parallel locale files (`jami_client_qt_es_419.ts`, `es_AR.ts`, `es_CO.ts`, `es_ES.ts`, `es_MX.ts`, `es_VE.ts`) to keep placeholder output consistent.",
+      "revId": "df6cefc7fac61b4710bc564eb2ba2e150db3bd33",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f9ad30c1_a17ac599",
+        "filename": "translations/jami_client_qt_es.ts",
+        "patchSetId": 1
+      },
+      "lineNbr": 292,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-10-05T06:59:26Z",
+      "side": 1,
+      "message": "[warning] Line 292: 🟡 Typo introduced in user-facing error text: `escrivir` should be `escribir` (`El documento no se puede escribir allí.`). The same typo appears in the other modified Spanish locale files and should be corrected there as well.",
+      "revId": "df6cefc7fac61b4710bc564eb2ba2e150db3bd33",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6ef0cc3c_d4370c1d",
+        "filename": "translations/jami_client_qt_es.ts",
+        "patchSetId": 1
+      },
+      "lineNbr": 422,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-10-05T06:59:26Z",
+      "side": 1,
+      "message": "[error] Line 422: 🔴 Incorrect terminology for export format: `Export as Markdown…` is translated as `Exportar como Anotación..`, and `Markdown document` as `Anotación de documento` (line 427). This changes product meaning and can mislead users about the actual file format. Use the established technical term (`Markdown`) consistently in both strings across all Spanish locale variants updated in this patch.",
+      "revId": "df6cefc7fac61b4710bc564eb2ba2e150db3bd33",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
