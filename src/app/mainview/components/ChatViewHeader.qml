@@ -339,7 +339,7 @@ Control {
             id: startAudioCallButton
             QWKSetParentHitTestVisible {}
 
-            visible: convContext.activeCalls.length === 0 && interactionButtonsVisibility
+            visible: convContext.activeCalls.length === 0 && interactionButtonsVisibility && convContext.canCall
 
             iconSize: JamiTheme.iconButtonMedium
             iconSource: JamiResources.start_audiocall_24dp_svg
@@ -357,6 +357,7 @@ Control {
             toolTipText: JamiStrings.startVideoCall
 
             visible: convContext.activeCalls.length === 0 && interactionButtonsVisibility && CurrentAccount.videoEnabled_Video
+                     && convContext.canCall
 
             onClicked: CallAdapter.startCall()
         }
