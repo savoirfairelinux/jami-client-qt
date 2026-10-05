@@ -23,6 +23,7 @@ import "contextmenu"
 BaseContextMenu {
     id: root
 
+    property var convContext: CurrentConversation
     property var modelList
     signal audioRecordMessageButtonClicked
     signal videoRecordMessageButtonClicked
@@ -32,6 +33,7 @@ BaseContextMenu {
     property list<GeneralMenuItem> menuItems: [
         GeneralMenuItem {
             id: newEditableDocument
+            objectName: "newEditableDocumentMenuItem"
 
             Accessible.role: Accessible.MenuItem
             Accessible.name: itemName
@@ -39,6 +41,9 @@ BaseContextMenu {
             Keys.onReturnPressed: clicked()
 
             canTrigger: true
+            visible: !!(root.convContext && root.convContext.canCreateDocument)
+            height: visible ? JamiTheme.generalMenuItemHeight : 0
+            implicitHeight: height
             iconSource: JamiResources.round_edit_24dp_svg
             itemName: JamiStrings.newEditableDocument
             onClicked: {
@@ -113,5 +118,13 @@ BaseContextMenu {
 
     Component.onCompleted: {
         root.loadMenuItems(menuItems);
+        const createActionSeparator = root.generalMenuSeparatorList[0];
+        createActionSeparator.visible = Qt.binding(() => newEditableDocument.visible);
+        createActionSeparator.implicitHeight = Qt.binding(() => createActionSeparator.visible
+                                                                   ? createActionSeparator.contentItem.implicitHeight
+                                                                         + createActionSeparator.topPadding
+                                                                         + createActionSeparator.bottomPadding
+                                                                   : 0);
+        createActionSeparator.height = Qt.binding(() => createActionSeparator.implicitHeight);
     }
 }
