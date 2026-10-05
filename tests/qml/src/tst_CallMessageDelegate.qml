@@ -77,6 +77,36 @@ TestWrapper {
     }
 
     TestCase {
+        name: "Check reply button visibility"
+
+        function test_replyButtonHiddenWhenReplyPermissionDenied() {
+            const previousCanReplyText = CurrentConversation.canReplyText;
+            const previousCanReplyFile = CurrentConversation.canReplyFile;
+            try {
+                CurrentConversation.canReplyText = false;
+                CurrentConversation.canReplyFile = false;
+
+                uut.currentIndex = 0;
+                const delegate = uut.currentItem;
+                delegate.shouldBeVisible = true;
+
+                const moreButton = findChild(delegate, "more");
+                const replyButton = findChild(delegate, "reply");
+                const shareButton = findChild(delegate, "share");
+                compare(moreButton.visible, true);
+                compare(replyButton.visible, false);
+                compare(shareButton.visible, true);
+            } finally {
+                CurrentConversation.canReplyText = previousCanReplyText;
+                CurrentConversation.canReplyFile = previousCanReplyFile;
+                // Recreate the delegate to restore the hover binding overwritten above.
+                uut.model = null;
+                uut.model = mockModel;
+            }
+        }
+    }
+
+    TestCase {
         name: "Check button visibility for swarm call"
         function test_checkButtonVisibilityForSwarmCall() {
             uut.currentIndex = 0
