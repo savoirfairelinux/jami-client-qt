@@ -48,7 +48,7 @@ ContextMenuAutoLoader {
         GeneralMenuItem {
             id: startOrJoinAudioCall
 
-            canTrigger: !readOnly && !isInCall
+            canTrigger: !readOnly && !isInCall && ConversationsAdapter.canCall(responsibleConvUid)
             itemName: nbActiveCalls > 0 ? JamiStrings.joinWithAudio : JamiStrings.startAudioCall
             iconSource: JamiResources.start_audiocall_24dp_svg
             onClicked: {
@@ -60,6 +60,7 @@ ContextMenuAutoLoader {
             id: startOrJoinVideoCall
 
             canTrigger: CurrentAccount.videoEnabled_Video && !readOnly && !isInCall
+                        && ConversationsAdapter.canCall(responsibleConvUid)
             itemName: nbActiveCalls > 0 ? JamiStrings.joinWithVideo : JamiStrings.startVideoCall
             iconSource: JamiResources.videocam_24dp_svg
             onClicked: {
