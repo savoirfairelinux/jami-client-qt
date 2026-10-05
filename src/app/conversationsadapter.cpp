@@ -689,6 +689,12 @@ void
 ConversationsAdapter::updateConversationTitle(const QString& convId, const QString& newTitle)
 {
     auto convModel = lrcInstance_->getCurrentConversationModel();
+    if (!convModel)
+        return;
+    if (!convModel->isProfileUpdatePermitted(convId)) {
+        qWarning() << "Not permitted to change the title of conversation" << convId;
+        return;
+    }
     QMap<QString, QString> details;
     details["title"] = newTitle;
     convModel->updateConversationInfos(convId, details);
@@ -715,6 +721,12 @@ void
 ConversationsAdapter::updateConversationDescription(const QString& convId, const QString& newDescription)
 {
     auto convModel = lrcInstance_->getCurrentConversationModel();
+    if (!convModel)
+        return;
+    if (!convModel->isProfileUpdatePermitted(convId)) {
+        qWarning() << "Not permitted to change the description of conversation" << convId;
+        return;
+    }
     QMap<QString, QString> details;
     details["description"] = newDescription;
     convModel->updateConversationInfos(convId, details);
