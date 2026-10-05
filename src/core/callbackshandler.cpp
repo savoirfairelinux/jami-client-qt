@@ -746,9 +746,10 @@ void
 CallbacksHandler::slotSwarmLoaded(uint32_t requestId,
                                   const QString& accountId,
                                   const QString& conversationId,
-                                  const VectorSwarmMessage& messages)
+                                  const VectorSwarmMessage& messages,
+                                  const VectorString& permissions)
 {
-    Q_EMIT swarmLoaded(requestId, accountId, conversationId, messages);
+    Q_EMIT swarmLoaded(requestId, accountId, conversationId, messages, permissions);
 }
 
 void
