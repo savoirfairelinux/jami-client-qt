@@ -77,6 +77,8 @@ public:
     Q_INVOKABLE void updateConversationDescription(const QString& convId, const QString& newDescription);
 
     Q_INVOKABLE QString dialogId(const QString& peerUri);
+    // Whether the local account may start a call in the conversation.
+    Q_INVOKABLE bool canCall(const QString& convId) const;
     Q_INVOKABLE void openDialogConversationWith(const QString& peerUri);
 Q_SIGNALS:
     void showConversation(const QString& accountId, const QString& convUid);
