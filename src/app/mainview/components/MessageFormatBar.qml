@@ -506,6 +506,7 @@ Rectangle {
 
             popup: ShareMenu {
                 id: sharePopup
+                convContext: messageBarRowLayout.convContext
                 onAudioRecordMessageButtonClicked: rectangle.audioRecordMessageButtonClicked()
                 onVideoRecordMessageButtonClicked: rectangle.videoRecordMessageButtonClicked()
                 onShowMapClicked: rectangle.showMapClicked()
