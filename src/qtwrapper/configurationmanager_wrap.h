@@ -181,11 +181,12 @@ public:
                 [this](const std::string& account_id, const std::string& uri, const bool& confirmed) {
                     Q_EMIT this->contactAdded(QString::fromUtf8(account_id), QString::fromUtf8(uri), confirmed);
                 }),
-            exportable_callback<ConfigurationSignal::ProfileReceived>([this](const std::string& accountId,
-                                                                             const std::string& peer,
-                                                                             const std::string& vCard) {
-                Q_EMIT this->profileReceived(QString::fromUtf8(accountId), QString::fromUtf8(peer), QString::fromUtf8(vCard));
-            }),
+            exportable_callback<ConfigurationSignal::ProfileReceived>(
+                [this](const std::string& accountId, const std::string& peer, const std::string& vCard) {
+                    Q_EMIT this->profileReceived(QString::fromUtf8(accountId),
+                                                 QString::fromUtf8(peer),
+                                                 QString::fromUtf8(vCard));
+                }),
             exportable_callback<ConfigurationSignal::ContactRemoved>(
                 [this](const std::string& account_id, const std::string& uri, const bool& banned) {
                     Q_EMIT this->contactRemoved(QString::fromUtf8(account_id), QString::fromUtf8(uri), banned);
@@ -293,7 +294,7 @@ public:
                        const std::string& accountId,
                        const std::string& conversationId,
                        const std::vector<libjami::SwarmMessage>& messages,
-                       const std::vector<std::string>&) {
+                       const std::vector<std::string>& permissions) {
                     VectorSwarmMessage vec;
                     for (const auto& msg : messages) {
                         vec.push_back({QString::fromUtf8(msg.id),
@@ -306,7 +307,11 @@ public:
                                        convertMap(msg.pluginData)});
                     }
 
-                    Q_EMIT swarmLoaded(id, QString::fromUtf8(accountId), QString::fromUtf8(conversationId), vec);
+                    Q_EMIT swarmLoaded(id,
+                                       QString::fromUtf8(accountId),
+                                       QString::fromUtf8(conversationId),
+                                       vec,
+                                       convertVectorString(permissions));
                 }),
             exportable_callback<ConversationSignal::MessagesFound>(
                 [this](uint32_t id,
@@ -1078,6 +1083,11 @@ public Q_SLOTS: // METHODS
         auto members = libjami::getConversationMembers(accountId.toStdString(), conversationId.toStdString());
         return convertVecMap(members);
     }
+    VectorString getConversationPermissions(const QString& accountId, const QString& conversationId)
+    {
+        return convertVectorString(
+            libjami::getConversationPermissions(accountId.toStdString(), conversationId.toStdString()));
+    }
     VectorMapStringString getCollaborativeDocuments(const QString& accountId, const QString& conversationId)
     {
         return convertVecMap(libjami::getCollaborativeDocuments(accountId.toStdString(), conversationId.toStdString()));
@@ -1454,7 +1464,8 @@ Q_SIGNALS: // SIGNALS
     void swarmLoaded(uint32_t requestId,
                      const QString& accountId,
                      const QString& conversationId,
-                     const VectorSwarmMessage& messages);
+                     const VectorSwarmMessage& messages,
+                     const VectorString& permissions);
     void swarmMessageReceived(const QString& accountId, const QString& conversationId, const SwarmMessage& message);
     void swarmMessageUpdated(const QString& accountId, const QString& conversationId, const SwarmMessage& message);
     void reactionAdded(const QString& accountId,

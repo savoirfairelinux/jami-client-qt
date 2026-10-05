@@ -353,7 +353,8 @@ Q_SIGNALS:
     void swarmLoaded(uint32_t requestId,
                      const QString& accountId,
                      const QString& conversationId,
-                     const VectorSwarmMessage& messages);
+                     const VectorSwarmMessage& messages,
+                     const VectorString& permissions);
     void messagesFound(uint32_t requestId,
                        const QString& accountId,
                        const QString& conversationId,
@@ -681,7 +682,8 @@ private Q_SLOTS:
     void slotSwarmLoaded(uint32_t requestId,
                          const QString& accountId,
                          const QString& conversationId,
-                         const VectorSwarmMessage& messages);
+                         const VectorSwarmMessage& messages,
+                         const VectorString& permissions);
     void slotMessagesFound(uint32_t requestId,
                            const QString& accountId,
                            const QString& conversationId,

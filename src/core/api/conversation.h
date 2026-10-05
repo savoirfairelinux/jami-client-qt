@@ -20,6 +20,7 @@
 #include "messagelistmodel.h"
 #include "account.h"
 #include "member.h"
+#include "swarmpermissions.h"
 #include "typedefs.h"
 
 #include <memory>
@@ -133,6 +134,8 @@ struct Info
     }
 
     Mode mode = Mode::NON_SWARM;
+    // Granted by the daemon to the local account; empty until known
+    permissions::PermissionSet permissions;
     bool needsSyncing = false;
     bool isRequest = false;
 };

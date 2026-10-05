@@ -308,6 +308,7 @@ set(LIBCLIENT_HEADERS
   ${CORE_SRC_DIR}/api/interaction.h
   ${CORE_SRC_DIR}/api/lrc.h
   ${CORE_SRC_DIR}/api/member.h
+  ${CORE_SRC_DIR}/api/swarmpermissions.h
   ${CORE_SRC_DIR}/api/accountmodel.h
   ${CORE_SRC_DIR}/api/callmodel.h
   ${CORE_SRC_DIR}/api/callparticipantsmodel.h
