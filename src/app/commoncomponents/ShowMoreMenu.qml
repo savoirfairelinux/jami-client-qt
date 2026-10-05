@@ -129,7 +129,7 @@ BaseContextMenu {
             id: emojiQuickReactions
 
             modelList: getQuickEmojiListModel()
-            canTrigger: true
+            canTrigger: CurrentConversation.canReact
             iconSource: JamiResources.add_reaction_24dp_svg
             itemName: JamiStrings.copy
             addMenuSeparatorAfter: true
@@ -170,7 +170,7 @@ BaseContextMenu {
         GeneralMenuItem {
             id: editMessage
 
-            canTrigger: root.isOutgoing && type === Interaction.Type.TEXT
+            canTrigger: root.isOutgoing && type === Interaction.Type.TEXT && CurrentConversation.canEdit
             iconSource: JamiResources.edit_24dp_svg
             itemName: JamiStrings.editMessage
             onClicked: {
@@ -182,6 +182,7 @@ BaseContextMenu {
             id: deleteMessage
 
             canTrigger: root.isOutgoing && (type === Interaction.Type.TEXT || type === Interaction.Type.DATA_TRANSFER)
+                        && CurrentConversation.canDelete
             iconSource: JamiResources.delete_24dp_svg
             itemName: JamiStrings.deleteMessage
             onClicked: {

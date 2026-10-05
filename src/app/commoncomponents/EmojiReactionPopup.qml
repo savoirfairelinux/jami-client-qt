@@ -150,6 +150,8 @@ Popup {
                                 font.pointSize: JamiTheme.emojiPopupFontsize
                                 background.visible: false
                                 padding: 0
+                                // The emoji stays listed; only removing it is gated.
+                                enabled: CurrentConversation.canReact
 
                                 Text {
                                     visible: emojiButton.hovered

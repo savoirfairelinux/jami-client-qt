@@ -54,6 +54,7 @@ BaseContextMenu {
         },
         GeneralMenuItem {
             id: audioMessage
+            objectName: "audioMessageMenuItem"
 
             Accessible.role: Accessible.MenuItem
             Accessible.name: itemName
@@ -61,6 +62,11 @@ BaseContextMenu {
             Keys.onReturnPressed: clicked()
 
             canTrigger: true
+            visible: !!(root.convContext
+                        && (MessagesAdapter.replyToId ? root.convContext.canReplyFile
+                                                      : root.convContext.canSendFile))
+            height: visible ? JamiTheme.generalMenuItemHeight : 0
+            implicitHeight: height
             iconSource: JamiResources.message_audio_black_24dp_svg
             itemName: JamiStrings.leaveAudioMessage
             onClicked: {
@@ -73,6 +79,7 @@ BaseContextMenu {
         },
         GeneralMenuItem {
             id: videoMessage
+            objectName: "videoMessageMenuItem"
 
             Accessible.role: Accessible.MenuItem
             Accessible.name: itemName
@@ -81,6 +88,11 @@ BaseContextMenu {
             Keys.onReturnPressed: clicked()
 
             canTrigger: true
+            visible: !!(root.convContext
+                        && (MessagesAdapter.replyToId ? root.convContext.canReplyFile
+                                                      : root.convContext.canSendFile))
+            height: visible ? JamiTheme.generalMenuItemHeight : 0
+            implicitHeight: height
             iconSource: JamiResources.message_video_black_24dp_svg
             itemName: JamiStrings.leaveVideoMessage
             isActif: VideoDevices.listSize !== 0
@@ -118,12 +130,33 @@ BaseContextMenu {
     Component.onCompleted: {
         root.loadMenuItems(menuItems);
         const createActionSeparator = root.generalMenuSeparatorList[0];
-        createActionSeparator.visible = Qt.binding(() => newEditableDocument.visible);
+        const audioMessageSeparator = root.generalMenuSeparatorList[1];
+        const videoMessageSeparator = root.generalMenuSeparatorList[2];
+
+        createActionSeparator.visible = Qt.binding(() => newEditableDocument.visible
+                                                             && (audioMessage.visible || videoMessage.visible || shareLocation.visible));
         createActionSeparator.implicitHeight = Qt.binding(() => createActionSeparator.visible
                                                                    ? createActionSeparator.contentItem.implicitHeight
                                                                          + createActionSeparator.topPadding
                                                                          + createActionSeparator.bottomPadding
                                                                    : 0);
         createActionSeparator.height = Qt.binding(() => createActionSeparator.implicitHeight);
+
+        audioMessageSeparator.visible = Qt.binding(() => audioMessage.visible
+                                                             && (videoMessage.visible || shareLocation.visible));
+        audioMessageSeparator.implicitHeight = Qt.binding(() => audioMessageSeparator.visible
+                                                                   ? audioMessageSeparator.contentItem.implicitHeight
+                                                                         + audioMessageSeparator.topPadding
+                                                                         + audioMessageSeparator.bottomPadding
+                                                                   : 0);
+        audioMessageSeparator.height = Qt.binding(() => audioMessageSeparator.implicitHeight);
+
+        videoMessageSeparator.visible = Qt.binding(() => videoMessage.visible && shareLocation.visible);
+        videoMessageSeparator.implicitHeight = Qt.binding(() => videoMessageSeparator.visible
+                                                                   ? videoMessageSeparator.contentItem.implicitHeight
+                                                                         + videoMessageSeparator.topPadding
+                                                                         + videoMessageSeparator.bottomPadding
+                                                                   : 0);
+        videoMessageSeparator.height = Qt.binding(() => videoMessageSeparator.implicitHeight);
     }
 }

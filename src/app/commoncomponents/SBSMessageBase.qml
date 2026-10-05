@@ -381,7 +381,7 @@ Control {
                         iconSource: JamiResources.bidirectional_reply_black_24dp_svg
                         toolTipText: JamiStrings.reply
 
-                        visible: shouldBeVisible
+                        visible: shouldBeVisible && (CurrentConversation.canReplyText || CurrentConversation.canReplyFile)
 
                         onClicked: {
                             MessagesAdapter.editId = "";
@@ -403,8 +403,8 @@ Control {
                         }
 
                         anchors.verticalCenter: parent.verticalCenter
-                        anchors.left: !isOutgoing ? reply.right : undefined
-                        anchors.right: isOutgoing ? reply.left : undefined
+                        anchors.left: !isOutgoing ? (reply.visible ? reply.right : more.right) : undefined
+                        anchors.right: isOutgoing ? (reply.visible ? reply.left : more.left) : undefined
                         anchors.rightMargin: 5
 
                         iconSize: JamiTheme.iconButtonMedium
@@ -533,6 +533,8 @@ Control {
                         }
 
                         onDoubleClicked: {
+                            if (!(CurrentConversation.canReplyText || CurrentConversation.canReplyFile))
+                                return;
                             MessagesAdapter.editId = "";
                             MessagesAdapter.replyToId = Id;
                         }

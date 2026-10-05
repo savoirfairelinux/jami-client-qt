@@ -38,6 +38,7 @@ JamiFlickable {
     // Set while this text area's paste is handled, so only its composer takes the pasted content.
     property bool pasting: false
     property bool isShowTypo: UtilsAdapter.getAppValue(Settings.Key.ShowMardownOption)
+    property bool canComposeText: true
     property int textWidth: textArea.contentWidth
     property var language: AppSettingsManager.getValue(Settings.SpellLang)
 
@@ -58,6 +59,8 @@ JamiFlickable {
     }
 
     function pasteText() {
+        if (!canComposeText)
+            return;
         textArea.paste();
     }
 
@@ -66,6 +69,8 @@ JamiFlickable {
     }
 
     function paste() {
+        if (!canComposeText)
+            return;
         pasting = true;
         MessagesAdapter.onPaste();
         pasting = false;
@@ -94,6 +99,8 @@ JamiFlickable {
     boundsBehavior: Flickable.StopAtBounds
 
     interactive: true
+    enabled: canComposeText
+    visible: canComposeText
 
     function resetEditableText() {
         textArea.text = cachedText;
@@ -223,13 +230,17 @@ JamiFlickable {
         // eg. Enter -> Send messages
         //     Shift + Enter -> Next Line
         Keys.onPressed: function (keyEvent) {
+            if (!root.canComposeText) {
+                keyEvent.accepted = true;
+                return;
+            }
             // Update underline on each input to take into account deleted text and sent ones
             updateSpellCorrection();
             if (keyEvent.matches(StandardKey.Paste)) {
                 root.paste();
                 keyEvent.accepted = true;
             } else if (keyEvent.matches(StandardKey.MoveToPreviousLine)) {
-                if (root.text !== "")
+                if (root.text !== "" || !CurrentConversation.canEdit)
                     return;
                 MessagesAdapter.replyToId = "";
                 MessagesAdapter.editId = CurrentConversation.lastSelfMessageId;
