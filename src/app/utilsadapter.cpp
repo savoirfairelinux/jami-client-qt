@@ -667,7 +667,14 @@ UtilsAdapter::setTempCreationImageFromImage(const QImage& image, const QString& 
         file.close();
         Q_EMIT lrcInstance_->base64SwarmAvatarChanged();
     } else {
-        lrcInstance_->getCurrentConversationModel()->updateConversationInfos(imageId, {{"avatar", ba.toBase64()}});
+        auto* convModel = lrcInstance_->getCurrentConversationModel();
+        if (!convModel)
+            return;
+        if (!convModel->isProfileUpdatePermitted(imageId)) {
+            C_WARN << "Not permitted to change the avatar of conversation" << imageId;
+            return;
+        }
+        convModel->updateConversationInfos(imageId, {{"avatar", ba.toBase64()}});
     }
 }
 

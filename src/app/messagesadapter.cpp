@@ -43,6 +43,10 @@
 #include <QRegularExpression>
 #include <QTemporaryFile>
 
+namespace {
+using lrc::api::permissions::Permission;
+} // namespace
+
 MessagesAdapter::MessagesAdapter(AppSettingsManager* settingsManager,
                                  PreviewEngine* previewEngine,
                                  LRCInstance* instance,
@@ -689,14 +693,33 @@ void
 MessagesAdapter::removeConversationMember(const QString& convUid, const QString& memberUri)
 {
     auto& accInfo = lrcInstance_->getCurrentAccountInfo();
-    accInfo.conversationModel->removeConversationMember(convUid, memberUri);
+    auto* model = accInfo.conversationModel.get();
+    if (!model || !model->isActionPermitted(convUid, Permission::BanUnbanMember)) {
+        qWarning() << "Cannot remove member from conversation" << convUid
+                   << (model ? "(permission denied)" : "(conversation model unavailable)");
+        return;
+    }
+    model->removeConversationMember(convUid, memberUri);
 }
 
 void
 MessagesAdapter::addConversationMember(const QString& convUid, const QString& memberUri)
 {
     auto& accInfo = lrcInstance_->getCurrentAccountInfo();
-    accInfo.conversationModel->addConversationMember(convUid, memberUri);
+    auto* model = accInfo.conversationModel.get();
+    if (!model) {
+        qWarning() << "Cannot check member-addition permission: no conversation model for" << convUid;
+        return;
+    }
+    // Re-adding a banned member lifts the ban.
+    const auto memberRole = model->memberRole(convUid, memberUri);
+    const auto action = memberRole && *memberRole == member::Role::BANNED ? Permission::BanUnbanMember
+                                                                          : Permission::AddMember;
+    if (!model->isActionPermitted(convUid, action)) {
+        qWarning() << "Action" << static_cast<int>(action) << "not permitted in conversation" << convUid;
+        return;
+    }
+    model->addConversationMember(convUid, memberUri);
 }
 
 void
