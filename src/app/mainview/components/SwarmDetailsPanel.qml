@@ -65,26 +65,42 @@ Item {
         color: JamiTheme.globalIslandColor
         radius: JamiTheme.avatarBasedRadius
 
+        readonly property string currentDetailsPage: {
+            const index = swarmDetailsPanelTabBar.currentIndex;
+            return index >= 0 && index < swarmDetailsTabModel.count ? swarmDetailsTabModel.get(index).page : "";
+        }
+
         function updateSwarmDetailsTabModel() {
+            const currentPage = currentDetailsPage;
             swarmDetailsTabModel.clear();
-            if (!CurrentConversation.isCoreDialog) {
+            if (!CurrentConversation.isCoreDialog && CurrentConversation.canViewMemberList) {
                 swarmDetailsTabModel.append({
-                                                "name": JamiStrings.members.arg(CurrentConversation.members.count)
-                                            });
-                swarmDetailsTabModel.append({
-                                                "name": JamiStrings.files
-                                            });
-            } else {
-                swarmDetailsTabModel.append({
-                                                "name": JamiStrings.files
+                                                "name": JamiStrings.members.arg(CurrentConversation.members.count),
+                                                "page": "members"
                                             });
             }
 
             swarmDetailsTabModel.append({
-                                            "name": JamiStrings.details
+                                            "name": JamiStrings.files,
+                                            "page": "files"
                                         });
-            if (swarmDetailsPanelTabBar.currentIndex >= swarmDetailsTabModel.count)
+            swarmDetailsTabModel.append({
+                                            "name": JamiStrings.details,
+                                            "page": "details"
+                                        });
+
+            let selectedIndex = -1;
+            for (let i = 0; i < swarmDetailsTabModel.count; ++i) {
+                if (swarmDetailsTabModel.get(i).page === currentPage) {
+                    selectedIndex = i;
+                    break;
+                }
+            }
+            if (selectedIndex >= 0) {
+                swarmDetailsPanelTabBar.currentIndex = selectedIndex;
+            } else if (swarmDetailsPanelTabBar.currentIndex >= swarmDetailsTabModel.count) {
                 swarmDetailsPanelTabBar.currentIndex = 0;
+            }
         }
 
         ColumnLayout {
@@ -304,11 +320,16 @@ Item {
                     root.refreshCoreDialogDisplayNameState();
                 }
 
+                function onCanViewMemberListChanged() {
+                    innerRect.updateSwarmDetailsTabModel();
+                }
+
                 function onTitleChanged() {
                     root.refreshCoreDialogDisplayNameState();
                 }
 
                 function onIsCoreDialogChanged() {
+                    innerRect.updateSwarmDetailsTabModel();
                     root.refreshCoreDialogDisplayNameState();
                 }
 
@@ -353,7 +374,7 @@ Item {
 
                 spacing: 12
 
-                visible: !CurrentConversation.isCoreDialog && swarmDetailsPanelTabBar.currentIndex === 0
+                visible: CurrentConversation.canViewMemberList && innerRect.currentDetailsPage === "members"
 
                 NewMaterialButton {
                     id: inviteMemberButton
@@ -403,7 +424,7 @@ Item {
                         columns: CurrentConversation.members.length < 3 ? CurrentConversation.members.length : 4
 
                         Repeater {
-                            model: CurrentConversation.members
+                            model: CurrentConversation.canViewMemberList ? CurrentConversation.members : null
                             delegate: GridItemDelegate {
                                 width: (scrollView.width - (membersGrid.columns - 1) * membersGrid.spacing) / membersGrid.columns
                             }
@@ -418,7 +439,7 @@ Item {
                 Layout.fillWidth: true
                 Layout.fillHeight: true
 
-                visible: CurrentConversation.isCoreDialog ? swarmDetailsPanelTabBar.currentIndex === 0 : swarmDetailsPanelTabBar.currentIndex === 1
+                visible: innerRect.currentDetailsPage === "files"
 
                 DocumentsScrollview {
                     id: documents
@@ -500,7 +521,7 @@ Item {
 
                 spacing: 16
 
-                visible: CurrentConversation.isCoreDialog ? swarmDetailsPanelTabBar.currentIndex === 1 : swarmDetailsPanelTabBar.currentIndex === 2
+                visible: innerRect.currentDetailsPage === "details"
 
                 RowLayout {
                     width: parent.width
