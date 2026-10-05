@@ -72,6 +72,39 @@ TestWrapper {
                     CurrentConversation.title = "Name B"
                     tryCompare(titleLabel, "eText", "Name B", 1000)
                 }
+
+                function test_documentButtonFollowsPermission() {
+                    const header = findChild(uut, "chatViewHeader")
+                    const button = findChild(header, "collaborativeDocumentsButton")
+                    verify(button !== null)
+
+                    const wasRequest = CurrentConversation.isRequest
+                    const neededSyncing = CurrentConversation.needsSyncing
+                    const couldCreateDocument = CurrentConversation.canCreateDocument
+                    try {
+                        CurrentConversation.isRequest = false
+                        CurrentConversation.needsSyncing = false
+                        CurrentConversation.canCreateDocument = true
+                        compare(button.visible, true)
+
+                        CurrentConversation.canCreateDocument = false
+                        compare(button.visible, false)
+
+                        CurrentConversation.canCreateDocument = true
+                        compare(button.visible, true)
+
+                        CurrentConversation.isRequest = true
+                        compare(button.visible, false)
+
+                        CurrentConversation.isRequest = false
+                        CurrentConversation.needsSyncing = true
+                        compare(button.visible, false)
+                    } finally {
+                        CurrentConversation.isRequest = wasRequest
+                        CurrentConversation.needsSyncing = neededSyncing
+                        CurrentConversation.canCreateDocument = couldCreateDocument
+                    }
+                }
             }
         }
     }
