@@ -80,3 +80,30 @@ TEST(SwarmPermissions, ANonSwarmConversationAllowsEverything)
     for (const auto& [permission, name] : PERMISSION_NAME_TABLE)
         EXPECT_TRUE(conversation.isPermitted(permission)) << name;
 }
+
+TEST(SwarmPermissions, OnlyAdminsSeeTheMembersOfAFeed)
+{
+    using lrc::api::member::Role;
+    lrc::api::conversation::Info feed("feed-id", nullptr);
+    feed.mode = lrc::api::conversation::Mode::FEED;
+    feed.accountUri = "me";
+
+    feed.participants = {{"me", Role::ADMIN}, {"follower", Role::MEMBER}};
+    EXPECT_TRUE(feed.canViewMemberList());
+
+    feed.participants = {{"owner", Role::ADMIN}, {"me", Role::MEMBER}};
+    EXPECT_FALSE(feed.canViewMemberList());
+
+    feed.participants = {{"owner", Role::ADMIN}};
+    EXPECT_FALSE(feed.canViewMemberList());
+}
+
+TEST(SwarmPermissions, EveryoneSeesTheMembersOfAGroup)
+{
+    lrc::api::conversation::Info group("group-id", nullptr);
+    group.mode = lrc::api::conversation::Mode::INVITES_ONLY;
+    group.accountUri = "me";
+    group.participants = {{"owner", lrc::api::member::Role::ADMIN}, {"me", lrc::api::member::Role::MEMBER}};
+
+    EXPECT_TRUE(group.canViewMemberList());
+}
