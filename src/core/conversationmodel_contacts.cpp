@@ -527,6 +527,7 @@ ConversationModel::addSwarmConversation(const QString& convId)
     if (details["syncing"] == "true") {
         MapStringString messageMap = {
             {"type", "initial"},
+            {"mode", QString::number(static_cast<int>(conversation.mode))},
             {"author", otherMember},
             {"timestamp", details["created"]},
             {"linearizedParent", ""},
