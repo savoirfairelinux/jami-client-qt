@@ -28,12 +28,14 @@
 #include <QApplication>
 #include <QBuffer>
 #include <QClipboard>
+#include <QDebug>
 #include <QFileInfo>
 #include <QRegularExpression>
 #include <QMimeData>
 #include <QMimeDatabase>
 #include <QStyleHints>
 
+#include <exception>
 #if WITH_WEBENGINE
 #include <QtWebEngineCore/QWebEngineProfile>
 #endif
@@ -692,14 +694,20 @@ UtilsAdapter::getContactBestName(const QString& accountId, const QString& uri)
     return {};
 }
 
-lrc::api::member::Role
+QVariant
 UtilsAdapter::getParticipantRole(const QString& accountId, const QString& convId, const QString& uri)
 {
     try {
-        return lrcInstance_->getAccountInfo(accountId).conversationModel->memberRole(convId, uri);
-    } catch (...) {
+        const auto role = lrcInstance_->getAccountInfo(accountId).conversationModel->memberRole(convId, uri);
+        if (!role) {
+            qWarning() << "No participant role for" << uri << "in conversation" << convId;
+            return {};
+        }
+        return QVariant::fromValue(*role);
+    } catch (const std::exception& e) {
+        qWarning() << "Unable to get participant role for" << uri << "in conversation" << convId << ":" << e.what();
+        return {};
     }
-    return lrc::api::member::Role::MEMBER;
 }
 
 bool
