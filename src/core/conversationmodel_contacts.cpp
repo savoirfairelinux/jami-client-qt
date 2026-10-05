@@ -198,13 +198,17 @@ void
 ConversationModel::slotSwarmLoaded(uint32_t requestId,
                                    const QString& accountId,
                                    const QString& conversationId,
-                                   const VectorSwarmMessage& messages)
+                                   const VectorSwarmMessage& messages,
+                                   const VectorString& permissions)
 {
     if (accountId != owner.id)
         return;
     auto allLoaded = false;
     try {
         auto& conversation = convForUid(conversationId).get();
+        auto loadedPermissions = permissions::fromNames(permissions);
+        const auto permissionsChanged = conversation.permissions != loadedPermissions;
+        conversation.permissions = std::move(loadedPermissions);
         for (const auto& message : messages) {
             QString msgId = message.id;
             auto msg = interaction::Info(message, owner.profileInfo.uri, accountId, conversationId);
@@ -238,10 +242,10 @@ ConversationModel::slotSwarmLoaded(uint32_t requestId,
             Q_EMIT dataChanged(idx, idx);
         }
         Q_EMIT conversationMessagesLoaded(requestId, conversationId);
-        if (allLoaded) {
+        if (allLoaded)
             conversation.allMessagesLoaded = true;
+        if (allLoaded || permissionsChanged)
             Q_EMIT conversationUpdated(conversationId);
-        }
     } catch (const std::exception& e) {
         qWarning() << e.what();
     }
@@ -321,6 +325,8 @@ ConversationModel::slotConversationReady(const QString& accountId, const QString
                                                                                                          conversationId);
         conversation.preferences = preferences;
         conversation.mode = conversation::to_mode(details["mode"].toInt());
+        conversation.permissions = permissions::fromNames(
+            ConfigurationManager::instance().getConversationPermissions(accountId, conversationId));
         conversation.isRequest = false;
         conversation.needsSyncing = false;
         Q_EMIT conversationUpdated(conversationId);
@@ -384,6 +390,8 @@ ConversationModel::slotConversationMemberEvent(const QString& accountId,
             participants.append(member::Member {member["uri"], member::to_role(member["role"])});
         }
         conversation.participants = participants;
+        conversation.permissions = permissions::fromNames(
+            ConfigurationManager::instance().getConversationPermissions(owner.id, conversationId));
         invalidateModel();
     } catch (...) {
     }
@@ -479,6 +487,8 @@ ConversationModel::addSwarmConversation(const QString& convId)
     }
     conversation.participants = participants;
     conversation.mode = mode;
+    conversation.permissions = permissions::fromNames(
+        ConfigurationManager::instance().getConversationPermissions(owner.id, convId));
     const MapStringString& preferences = ConfigurationManager::instance().getConversationPreferences(owner.id, convId);
     conversation.preferences = preferences;
     conversation.unreadMessages = ConfigurationManager::instance().countInteractions(owner.id,

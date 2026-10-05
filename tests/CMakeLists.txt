@@ -113,6 +113,7 @@ set(UNIT_TESTS_SOURCE_FILES
     ${CMAKE_SOURCE_DIR}/tests/unittests/threadedmsglistmodel_unittest.cpp
     ${CMAKE_SOURCE_DIR}/tests/unittests/messageparser_unittest.cpp
     ${CMAKE_SOURCE_DIR}/tests/unittests/interactiontype_unittest.cpp
+    ${CMAKE_SOURCE_DIR}/tests/unittests/swarmpermissions_unittest.cpp
     ${CMAKE_SOURCE_DIR}/tests/unittests/collabrichbinding_unittest.cpp
     ${CMAKE_SOURCE_DIR}/tests/unittests/paste_unittest.cpp
     ${CMAKE_SOURCE_DIR}/tests/unittests/previewengine_unittest.cpp
