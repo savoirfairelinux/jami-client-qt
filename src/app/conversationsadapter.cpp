@@ -732,6 +732,13 @@ ConversationsAdapter::updateConversationDescription(const QString& convId, const
     convModel->updateConversationInfos(convId, details);
 }
 
+bool
+ConversationsAdapter::canCall(const QString& convId) const
+{
+    auto* convModel = lrcInstance_->getCurrentConversationModel();
+    return convModel && convModel->isCallPermitted(convId);
+}
+
 QString
 ConversationsAdapter::dialogId(const QString& peerUri)
 {
