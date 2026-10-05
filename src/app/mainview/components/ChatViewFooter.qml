@@ -37,7 +37,15 @@ Rectangle {
     // The thread panel's composer: sends reply to the open thread.
     property bool inThread: false
 
+    function pasteText() {
+        if (!messageBar.canComposeText)
+            return;
+        messageBar.textAreaObj.pasteText();
+    }
+
     function setFilePathsToSend(filePaths) {
+        if (!(messageBar.replyToId || root.inThread ? convContext.canReplyFile : convContext.canSendFile))
+            return;
         for (var index = 0; index < filePaths.length; ++index) {
             var path = UtilsAdapter.getAbsPath(decodeURIComponent(filePaths[index]));
             messageBar.fileContainer.filesToSendListModel.addToPending(path);
@@ -88,13 +96,15 @@ Rectangle {
         target: MessagesAdapter
 
         function onNewFilePasted(filePath) {
-            if (messageBar.textAreaObj.pasting)
-                messageBar.fileContainer.filesToSendListModel.addToPending(filePath);
+            if (!messageBar.textAreaObj.pasting
+                    || !(messageBar.replyToId || root.inThread ? convContext.canReplyFile : convContext.canSendFile))
+                return;
+            messageBar.fileContainer.filesToSendListModel.addToPending(filePath);
         }
 
         function onNewTextPasted() {
             if (messageBar.textAreaObj.pasting)
-                messageBar.textAreaObj.pasteText();
+                root.pasteText();
         }
     }
 
@@ -103,7 +113,7 @@ Rectangle {
         target: messageBar
 
         function onEditIdChanged() {
-            if (messageBar.editId.length > 0) {
+            if (messageBar.editId.length > 0 && messageBar.canComposeText) {
                 var editedMessageBody = MessagesAdapter.dataForInteraction(messageBar.editId, MessageList.OriginalBody);
                 messageBar.textAreaObj.insertText(editedMessageBody);
                 messageBar.textAreaObj.forceActiveFocus();
@@ -113,7 +123,7 @@ Rectangle {
         }
 
         function onReplyToIdChanged() {
-            if (messageBar.replyToId.length > 0)
+            if (messageBar.replyToId.length > 0 && messageBar.canComposeText)
                 messageBar.textAreaObj.forceActiveFocus();
         }
     }
@@ -144,7 +154,8 @@ Rectangle {
         Connections {
             target: messageBar.emojiPicker ? messageBar.emojiPicker : null
             function onEmojiIsPicked(content) {
-                messageBar.textAreaObj.insertText(content);
+                if (messageBar.canComposeText)
+                    messageBar.textAreaObj.insertText(content);
                 messageBar.isEmojiPickerOpen = false;
             }
 
@@ -203,7 +214,7 @@ Rectangle {
             return -JamiTheme.emojiPickerHeight;
         }
 
-        sendButtonVisibility: text.trim() || messageBar.fileContainer.filesToSendCount
+        sendButtonVisibility: (canComposeText && text.trim()) || messageBar.fileContainer.filesToSendCount
 
         onEmojiButtonClicked: {
             if (emojiPicker && emojiPicker.opened) {
@@ -242,6 +253,7 @@ Rectangle {
         onSendMessageButtonClicked: {
             const replyThread = !root.inThread && MessagesAdapter.threadedView && messageBar.editId === ""
                                 ? MessagesAdapter.threadMessageListModel.threadRootOf(messageBar.replyToId) : "";
+            var canSendText = messageBar.canComposeText;
             // Send file messages
             var fileCounts = messageBar.fileContainer.filesToSendListModel.rowCount();
             for (var i = 0; i < fileCounts; i++) {
@@ -251,14 +263,15 @@ Rectangle {
             }
             messageBar.fileContainer.filesToSendListModel.flush();
             // Send text message
-            if (messageBar.text) {
+            if (canSendText && messageBar.text) {
                 if (messageBar.editId !== "") {
                     MessagesAdapter.editMessage(convContext.id, messageBar.text);
                 } else {
                     MessagesAdapter.sendMessageToUid(messageBar.text, convContext.id, root.inThread);
                 }
             }
-            messageBar.textAreaObj.clearText();
+            if (canSendText)
+                messageBar.textAreaObj.clearText();
             if (messageBar.replyToId !== "")
                 MessagesAdapter.replyToId = "";
             if (replyThread !== "")
