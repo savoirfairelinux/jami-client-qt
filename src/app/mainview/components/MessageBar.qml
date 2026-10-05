@@ -51,8 +51,59 @@ Rectangle {
         MessagesAdapter.threadMessageListModel.threadId;
         return MessagesAdapter.inOpenThread(id) === inThread;
     }
+    property bool canComposeText: false
 
-    property bool maximized: (showTypo || dataTransferSendContainer.visible)
+    function updateCanComposeText() {
+        if (!convContext) {
+            canComposeText = false;
+            return;
+        }
+        if (editId !== "")
+            canComposeText = convContext.canEdit;
+        else
+            canComposeText = replyToId !== "" || inThread ? convContext.canReplyText :
+                                                                convContext.canSendText;
+    }
+
+    Component.onCompleted: updateCanComposeText()
+    onConvContextChanged: updateCanComposeText()
+    onEditIdChanged: updateCanComposeText()
+    onReplyToIdChanged: updateCanComposeText()
+    onInThreadChanged: updateCanComposeText()
+
+    Connections {
+        target: rectangle.convContext
+
+        function onCanSendTextChanged() {
+            rectangle.updateCanComposeText();
+        }
+
+        function onCanReplyTextChanged() {
+            rectangle.updateCanComposeText();
+        }
+
+        function onCanEditChanged() {
+            rectangle.updateCanComposeText();
+        }
+
+        function onIdChanged() {
+            rectangle.updateCanComposeText();
+        }
+    }
+
+    Connections {
+        target: MessagesAdapter
+
+        function onEditIdChanged() {
+            rectangle.updateCanComposeText();
+        }
+
+        function onReplyToIdChanged() {
+            rectangle.updateCanComposeText();
+        }
+    }
+
+    property bool maximized: ((showTypo && canComposeText) || dataTransferSendContainer.visible)
     property int messageBarLayoutMaximumWidth: 486
 
     readonly property bool isFullScreen: typeof visibility !== "undefined" ? visibility === Window.FullScreen : false
@@ -66,11 +117,13 @@ Rectangle {
 
     onSendMessageButtonClicked: {
         messageBarTextArea.restoreVisibilityAfterSend();
-        messageBarTextArea.forceActiveFocus();
+        if (canComposeText)
+            messageBarTextArea.forceActiveFocus();
     }
 
     onShowTypoChanged: {
-        messageBarTextArea.forceActiveFocus();
+        if (canComposeText)
+            messageBarTextArea.forceActiveFocus();
     }
 
     Layout.fillWidth: true
@@ -276,6 +329,7 @@ Rectangle {
             MessageBarTextArea {
                 id: messageBarTextArea
                 objectName: "messageBarTextArea"
+                canComposeText: rectangle.canComposeText
 
                 placeholderText: convContext.isTemporary ? JamiStrings.writeToNewContact.arg(convContext.title) : JamiStrings.writeTo.arg(convContext.title)
 
@@ -293,7 +347,7 @@ Rectangle {
                 }
 
                 onSendMessagesRequired: {
-                    if (text.trim() || fileContainer.filesToSendCount) {
+                    if ((canComposeText && text.trim()) || fileContainer.filesToSendCount) {
                         sendMessageButtonClicked();
                     }
                 }
@@ -354,69 +408,70 @@ Rectangle {
                 Shortcut {
                     sequence: "Ctrl+B"
                     context: Qt.WindowShortcut
-                    enabled: messageBarTextArea.textAreaObj.activeFocus
+                    enabled: rectangle.canComposeText && messageBarTextArea.textAreaObj.activeFocus
                     onActivated: messageBarTextArea.markdownShortCut["Bold"]()
                 }
 
                 Shortcut {
                     sequence: "Ctrl+I"
                     context: Qt.WindowShortcut
-                    enabled: messageBarTextArea.textAreaObj.activeFocus
+                    enabled: rectangle.canComposeText && messageBarTextArea.textAreaObj.activeFocus
                     onActivated: messageBarTextArea.markdownShortCut["Italic"]()
                 }
 
                 Shortcut {
                     sequence: "Shift+Alt+X"
                     context: Qt.WindowShortcut
-                    enabled: messageBarTextArea.textAreaObj.activeFocus
+                    enabled: rectangle.canComposeText && messageBarTextArea.textAreaObj.activeFocus
                     onActivated: messageBarTextArea.markdownShortCut["Strikethrough"]()
                 }
 
                 Shortcut {
                     sequence: "Ctrl+Alt+H"
                     context: Qt.WindowShortcut
-                    enabled: messageBarTextArea.textAreaObj.activeFocus
+                    enabled: rectangle.canComposeText && messageBarTextArea.textAreaObj.activeFocus
                     onActivated: messageBarTextArea.markdownShortCut["Heading"]()
                 }
 
                 Shortcut {
                     sequence: "Ctrl+Alt+K"
                     context: Qt.WindowShortcut
-                    enabled: messageBarTextArea.textAreaObj.activeFocus
+                    enabled: rectangle.canComposeText && messageBarTextArea.textAreaObj.activeFocus
                     onActivated: messageBarTextArea.markdownShortCut["Link"]()
                 }
 
                 Shortcut {
                     sequence: "Ctrl+Alt+C"
                     context: Qt.WindowShortcut
-                    enabled: messageBarTextArea.textAreaObj.activeFocus
+                    enabled: rectangle.canComposeText && messageBarTextArea.textAreaObj.activeFocus
                     onActivated: messageBarTextArea.markdownShortCut["Code"]()
                 }
 
                 Shortcut {
                     sequence: "Shift+Alt+9"
                     context: Qt.WindowShortcut
-                    enabled: messageBarTextArea.textAreaObj.activeFocus
+                    enabled: rectangle.canComposeText && messageBarTextArea.textAreaObj.activeFocus
                     onActivated: messageBarTextArea.markdownShortCut["Quote"]()
                 }
 
                 Shortcut {
                     sequence: "Shift+Alt+8"
                     context: Qt.WindowShortcut
-                    enabled: messageBarTextArea.textAreaObj.activeFocus
+                    enabled: rectangle.canComposeText && messageBarTextArea.textAreaObj.activeFocus
                     onActivated: messageBarTextArea.markdownShortCut["Unordered list"]()
                 }
 
                 Shortcut {
                     sequence: "Shift+Alt+7"
                     context: Qt.WindowShortcut
-                    enabled: messageBarTextArea.textAreaObj.activeFocus
+                    enabled: rectangle.canComposeText && messageBarTextArea.textAreaObj.activeFocus
                     onActivated: messageBarTextArea.markdownShortCut["Ordered list"]()
                 }
 
                 Shortcut {
                     sequence: "Shift+Alt+T"
                     context: Qt.WindowShortcut
+                    enabled: rectangle.canComposeText
                     onActivated: {
                         showTypo = !showTypo;
                         messageBarTextArea.isShowTypo = showTypo;
@@ -427,6 +482,7 @@ Rectangle {
                 Shortcut {
                     sequence: "Shift+Alt+P"
                     context: Qt.WindowShortcut
+                    enabled: rectangle.canComposeText
                     onActivated: {
                         showPreview = !showPreview;
                         messageBarTextArea.showPreview = showPreview;
@@ -437,7 +493,7 @@ Rectangle {
             PushButton {
                 id: previewButton
 
-                visible: showTypo && messageBarTextArea.text
+                visible: canComposeText && showTypo && messageBarTextArea.text
                 anchors.top: parent.top
                 anchors.right: parent.right
                 preferredSize: JamiTheme.chatViewFooterButtonSize
@@ -483,6 +539,8 @@ Rectangle {
             convContext: rectangle.convContext
             replyToId: rectangle.replyToId
             editId: rectangle.editId
+            inThread: rectangle.inThread
+            canComposeText: rectangle.canComposeText
 
             isEmojiPickerOpen: rectangle.isEmojiPickerOpen
 
