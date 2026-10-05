@@ -292,7 +292,8 @@ public:
                 [this](uint32_t id,
                        const std::string& accountId,
                        const std::string& conversationId,
-                       const std::vector<libjami::SwarmMessage>& messages) {
+                       const std::vector<libjami::SwarmMessage>& messages,
+                       const std::vector<std::string>& permissions) {
                     VectorSwarmMessage vec;
                     for (const auto& msg : messages) {
                         vec.push_back({msg.id.c_str(),
@@ -305,7 +306,11 @@ public:
                                        convertMap(msg.pluginData)});
                     }
 
-                    Q_EMIT swarmLoaded(id, QString(accountId.c_str()), QString(conversationId.c_str()), vec);
+                    Q_EMIT swarmLoaded(id,
+                                       QString(accountId.c_str()),
+                                       QString(conversationId.c_str()),
+                                       vec,
+                                       convertVectorString(permissions));
                 }),
             exportable_callback<ConversationSignal::MessagesFound>(
                 [this](uint32_t id,
@@ -1063,6 +1068,11 @@ public Q_SLOTS: // METHODS
         auto members = libjami::getConversationMembers(accountId.toStdString(), conversationId.toStdString());
         return convertVecMap(members);
     }
+    VectorString getConversationPermissions(const QString& accountId, const QString& conversationId)
+    {
+        return convertVectorString(
+            libjami::getConversationPermissions(accountId.toStdString(), conversationId.toStdString()));
+    }
     VectorMapStringString getCollaborativeDocuments(const QString& accountId, const QString& conversationId)
     {
         return convertVecMap(libjami::getCollaborativeDocuments(accountId.toStdString(), conversationId.toStdString()));
@@ -1439,7 +1449,8 @@ Q_SIGNALS: // SIGNALS
     void swarmLoaded(uint32_t requestId,
                      const QString& accountId,
                      const QString& conversationId,
-                     const VectorSwarmMessage& messages);
+                     const VectorSwarmMessage& messages,
+                     const VectorString& permissions);
     void swarmMessageReceived(const QString& accountId, const QString& conversationId, const SwarmMessage& message);
     void swarmMessageUpdated(const QString& accountId, const QString& conversationId, const SwarmMessage& message);
     void reactionAdded(const QString& accountId,
