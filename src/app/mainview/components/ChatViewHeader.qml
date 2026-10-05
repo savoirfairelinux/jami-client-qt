@@ -314,10 +314,11 @@ Control {
         }
 
         CollaborativeDocumentsButton {
+            objectName: "collaborativeDocumentsButton"
             QWKSetParentHitTestVisible {}
             Layout.alignment: Qt.AlignVCenter
             convContext: root.convContext
-            visible: !convContext.isRequest && !convContext.needsSyncing
+            visible: !convContext.isRequest && !convContext.needsSyncing && convContext.canCreateDocument
         }
 
         PeerServicesButton {

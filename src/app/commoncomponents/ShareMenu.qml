@@ -23,12 +23,35 @@ import "contextmenu"
 BaseContextMenu {
     id: root
 
+    property var convContext: CurrentConversation
     property var modelList
     signal audioRecordMessageButtonClicked
     signal videoRecordMessageButtonClicked
     signal showMapClicked
 
     property list<GeneralMenuItem> menuItems: [
+        GeneralMenuItem {
+            id: newEditableDocument
+            objectName: "newEditableDocumentMenuItem"
+
+            Accessible.role: Accessible.MenuItem
+            Accessible.name: itemName
+            focusPolicy: Qt.StrongFocus
+            Keys.onReturnPressed: clicked()
+
+            canTrigger: true
+            visible: !!(root.convContext && root.convContext.canCreateDocument)
+            height: visible ? JamiTheme.generalMenuItemHeight : 0
+            implicitHeight: height
+            iconSource: JamiResources.round_edit_24dp_svg
+            itemName: JamiStrings.newEditableDocument
+            onClicked: {
+                root.newEditableDocumentClicked();
+                root.close()
+            }
+            KeyNavigation.tab: audioMessage
+            KeyNavigation.backtab: shareLocation
+        },
         GeneralMenuItem {
             id: audioMessage
 
@@ -94,5 +117,13 @@ BaseContextMenu {
 
     Component.onCompleted: {
         root.loadMenuItems(menuItems);
+        const createActionSeparator = root.generalMenuSeparatorList[0];
+        createActionSeparator.visible = Qt.binding(() => newEditableDocument.visible);
+        createActionSeparator.implicitHeight = Qt.binding(() => createActionSeparator.visible
+                                                                   ? createActionSeparator.contentItem.implicitHeight
+                                                                         + createActionSeparator.topPadding
+                                                                         + createActionSeparator.bottomPadding
+                                                                   : 0);
+        createActionSeparator.height = Qt.binding(() => createActionSeparator.implicitHeight);
     }
 }
