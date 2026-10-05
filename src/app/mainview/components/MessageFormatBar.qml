@@ -29,7 +29,8 @@ import "qrc:/js/markdownedition.js" as MDE
 
 Rectangle {
     id: messageBarRowLayout
-    Layout.preferredWidth: showTypo ? firstRow.width + secondRow.width : secondRow.width
+    objectName: "messageFormatBar"
+    Layout.preferredWidth: showTypo && canComposeText ? firstRow.width + secondRow.width : secondRow.width
     LayoutMirroring.enabled: UtilsAdapter.isRTL
     LayoutMirroring.childrenInherit: true
 
@@ -38,12 +39,16 @@ Rectangle {
     property var convContext: CurrentConversation
     property string replyToId: MessagesAdapter.replyToId
     property string editId: MessagesAdapter.editId
+    property bool inThread: false
+    property bool canComposeText: true
 
     Row {
         id: firstRow
+        objectName: "formattingRow"
 
         anchors.left: messageBarRowLayout.left
         anchors.bottom: messageBarRowLayout.bottom
+        visible: messageBarRowLayout.canComposeText
 
         Row {
             id: listViewTypo
@@ -213,6 +218,15 @@ Rectangle {
                         menuTypoActions: listViewTypoFirst.menuTypoActionsFirst.concat(
                                              listViewTypoSecond.menuTypoActionsSecond)
                     }
+
+                    Connections {
+                        target: messageBarRowLayout
+
+                        function onCanComposeTextChanged() {
+                            if (!messageBarRowLayout.canComposeText)
+                                markdownPopup.close();
+                        }
+                    }
                 }
             }
 
@@ -296,8 +310,10 @@ Rectangle {
         // Overriden NewIconButton due to icon fitting issues
         NewIconButton {
             id: typoButton
+            objectName: "typoButton"
 
             anchors.verticalCenter: parent.verticalCenter
+            visible: messageBarRowLayout.canComposeText
 
             iconSize: JamiTheme.iconButtonMedium - 4
             iconSource: JamiResources.text_edit_black_24dp_svg
@@ -357,6 +373,7 @@ Rectangle {
             property list<Action> menuMoreButton: [
                 Action {
                     id: leaveAudioMessage
+                    property bool needSendFile: true
                     property string iconSrc: JamiResources.message_audio_black_24dp_svg
                     property string toolTip: JamiStrings.leaveAudioMessage
                     property bool show: false
@@ -369,6 +386,7 @@ Rectangle {
                 },
                 Action {
                     id: leaveVideoMessage
+                    property bool needSendFile: true
                     property string iconSrc: JamiResources.message_video_black_24dp_svg
                     property string toolTip: JamiStrings.leaveVideoMessage
                     property bool show: false
@@ -434,6 +452,13 @@ Rectangle {
                             return menuAction.needVideoDevice === false;
                         }
                         enabled: VideoDevices.listSize === 0
+                    },
+                    FunctionFilter {
+                        column: 0
+                        function filter(data: MenuActionFilterData): bool {
+                            return data.menuAction.needSendFile !== true;
+                        }
+                        enabled: convContext && !(replyToId || inThread ? convContext.canReplyFile : convContext.canSendFile)
                     }
                 ]
             }
@@ -493,6 +518,7 @@ Rectangle {
                 id: sharePopupComp
                 ShareMenu {
                     id: sharePopup
+                    convContext: messageBarRowLayout.convContext
                     onAudioRecordMessageButtonClicked: rectangle.audioRecordMessageButtonClicked(
                                                            )
                     onVideoRecordMessageButtonClicked: rectangle.videoRecordMessageButtonClicked(
@@ -506,6 +532,7 @@ Rectangle {
 
             popup: ShareMenu {
                 id: sharePopup
+                objectName: "chatViewShareMenu"
                 convContext: messageBarRowLayout.convContext
                 onAudioRecordMessageButtonClicked: rectangle.audioRecordMessageButtonClicked()
                 onVideoRecordMessageButtonClicked: rectangle.videoRecordMessageButtonClicked()
@@ -546,6 +573,7 @@ Rectangle {
             property list<Action> menuActions: [
                 Action {
                     id: sendFile
+                    property bool needSendFile: true
                     property string iconSrc: JamiResources.attached_file_24dp_svg
                     property string toolTip: JamiStrings.sendFile
                     property bool show: true
@@ -559,6 +587,7 @@ Rectangle {
                 },
                 Action {
                     id: addEmoji
+                    property bool needSendText: true
                     property string iconSrc: JamiResources.emoji_black_24dp_svg
                     property string toolTip: JamiStrings.addEmoji
                     property bool show: true
@@ -614,6 +643,20 @@ Rectangle {
                             return menuAction.needVideoDevice === false;
                         }
                         enabled: VideoDevices.listSize === 0
+                    },
+                    FunctionFilter {
+                        column: 0
+                        function filter(data: MenuActionFilterData): bool {
+                            return data.menuAction.needSendFile !== true;
+                        }
+                        enabled: convContext && !(replyToId || inThread ? convContext.canReplyFile : convContext.canSendFile)
+                    },
+                    FunctionFilter {
+                        column: 0
+                        function filter(data: MenuActionFilterData): bool {
+                            return data.menuAction.needSendText !== true;
+                        }
+                        enabled: !messageBarRowLayout.canComposeText
                     }
                 ]
             }
