@@ -29,6 +29,7 @@
 #include <QBuffer>
 #include <QClipboard>
 #include <QDateTime>
+#include <QDebug>
 #include <QFileInfo>
 #include <QLocale>
 #include <QRegularExpression>
@@ -36,6 +37,7 @@
 #include <QMimeDatabase>
 #include <QStyleHints>
 
+#include <exception>
 #if WITH_WEBENGINE
 #include <QtWebEngineCore/QWebEngineProfile>
 #endif
@@ -707,14 +709,20 @@ UtilsAdapter::isContact(const QString& accountId, const QString& uri)
     return false;
 }
 
-lrc::api::member::Role
+QVariant
 UtilsAdapter::getParticipantRole(const QString& accountId, const QString& convId, const QString& uri)
 {
     try {
-        return lrcInstance_->getAccountInfo(accountId).conversationModel->memberRole(convId, uri);
-    } catch (...) {
+        const auto role = lrcInstance_->getAccountInfo(accountId).conversationModel->memberRole(convId, uri);
+        if (!role) {
+            qWarning() << "No participant role for" << uri << "in conversation" << convId;
+            return {};
+        }
+        return QVariant::fromValue(*role);
+    } catch (const std::exception& e) {
+        qWarning() << "Unable to get participant role for" << uri << "in conversation" << convId << ":" << e.what();
+        return {};
     }
-    return lrc::api::member::Role::MEMBER;
 }
 
 qint64

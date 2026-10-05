@@ -28,6 +28,7 @@
 #include "api/call.h"
 #include "api/datatransfer.h"
 #include "api/datatransfermodel.h"
+#include "api/swarmpermissions.h"
 #include "callbackshandler.h"
 #include "containerview.h"
 #include "authority/storagehelper.h"
@@ -1083,18 +1084,43 @@ ConversationModel::title(const QString& conversationId) const
     return title;
 }
 
-member::Role
+std::optional<member::Role>
 ConversationModel::memberRole(const QString& conversationId, const QString& memberUri) const
 {
     auto conversationOpt = getConversationForUid(conversationId);
     if (!conversationOpt.has_value())
-        throw std::out_of_range("Member out of range");
-    auto& conversation = conversationOpt->get();
-    for (const auto& p : conversation.participants) {
-        if (p.uri == memberUri)
-            return p.role;
+        return std::nullopt;
+    for (const auto& participant : conversationOpt->get().participants) {
+        if (participant.uri == memberUri)
+            return participant.role;
     }
-    throw std::out_of_range("Member out of range");
+    return std::nullopt;
+}
+
+bool
+ConversationModel::isActionPermitted(const QString& conversationId, permissions::Permission action) const
+{
+    auto conversationOpt = getConversationForUid(conversationId);
+    return conversationOpt.has_value() && conversationOpt->get().isPermitted(action);
+}
+
+bool
+ConversationModel::isProfileUpdatePermitted(const QString& conversationId) const
+{
+    auto conversationOpt = getConversationForUid(conversationId);
+    if (!conversationOpt.has_value())
+        return false;
+    // updateConversationInfos() only overrides the peer's contact for 1:1.
+    if (conversationOpt->get().isCoreDialog())
+        return true;
+    return isActionPermitted(conversationId, permissions::Permission::UpdateProfile);
+}
+
+bool
+ConversationModel::isCallPermitted(const QString& conversationId) const
+{
+    return isActionPermitted(conversationId, permissions::Permission::Call)
+           || isActionPermitted(conversationId, permissions::Permission::HostConference);
 }
 
 QString

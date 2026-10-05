@@ -21,6 +21,7 @@
 
 #include <api/conversationmodel.h>
 #include <api/contact.h>
+#include <api/swarmpermissions.h>
 
 CurrentConversation::CurrentConversation(LRCInstance* lrcInstance, QObject* parent)
     : QObject(parent)
@@ -55,6 +56,7 @@ CurrentConversation::updateData()
         set_id();
         set_botOwner();
         membersModel_->setMembers({}, {}, {});
+        updatePermissions(nullptr);
         return;
     }
 
@@ -77,10 +79,12 @@ CurrentConversation::updateData()
         auto optConv = accInfo.conversationModel->getConversationForUid(convId);
         if (!optConv) {
             set_botOwner();
+            updatePermissions(nullptr);
             return;
         }
         auto& convInfo = optConv->get();
         set_lastSelfMessageId(convInfo.lastSelfMessageId);
+        updatePermissions(&convInfo);
         QStringList uris, bannedUris;
         auto isAdmin = false;
         for (const auto& p : convInfo.participants) {
@@ -157,6 +161,28 @@ CurrentConversation::updateData()
     } catch (...) {
         qWarning() << "Error while updating current conversation data for" << convId;
     }
+}
+
+void
+CurrentConversation::updatePermissions(const conversation::Info* convInfo)
+{
+    using lrc::api::permissions::Permission;
+    const auto allows = [convInfo](Permission permission) {
+        return convInfo && convInfo->isPermitted(permission);
+    };
+    set_canSendText(allows(Permission::Text));
+    set_canSendFile(allows(Permission::File));
+    set_canReplyText(allows(Permission::TextReply));
+    set_canReplyFile(allows(Permission::FileReply));
+    set_canReact(allows(Permission::Reaction));
+    set_canEdit(allows(Permission::Edit));
+    set_canDelete(allows(Permission::Delete));
+    set_canCall(allows(Permission::Call) || allows(Permission::HostConference));
+    set_canAddMember(allows(Permission::AddMember));
+    // Matches ConversationModel::isProfileUpdatePermitted
+    set_canChangeConversationProfile((convInfo && convInfo->isCoreDialog()) || allows(Permission::UpdateProfile));
+    set_canBanUnbanMember(allows(Permission::BanUnbanMember));
+    set_canCreateDocument(allows(Permission::CreateDocument));
 }
 
 void

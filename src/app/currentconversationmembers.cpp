@@ -17,6 +17,8 @@
 
 #include "currentconversationmembers.h"
 
+#include <QDebug>
+
 #include <algorithm>
 #include <random>
 
@@ -55,9 +57,14 @@ CurrentConversationMembers::data(const QModelIndex& index, int role) const
     switch (role) {
     case Members::Role::MemberUri:
         return QVariant::fromValue(member);
-    case Members::Role::MemberRole:
-        return QVariant::fromValue(
-            lrcInstance_->getAccountInfo(accountId_).conversationModel->memberRole(convId_, member));
+    case Members::Role::MemberRole: {
+        const auto role = lrcInstance_->getAccountInfo(accountId_).conversationModel->memberRole(convId_, member);
+        if (!role) {
+            qWarning() << "Missing role for listed conversation member" << member << "in conversation" << convId_;
+            return {};
+        }
+        return QVariant::fromValue(*role);
+    }
     }
     return QVariant();
 }

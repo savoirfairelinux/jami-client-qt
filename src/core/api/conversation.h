@@ -124,6 +124,11 @@ struct Info
     {
         return isLegacy() || mode == Mode::ONE_TO_ONE;
     };
+    // Non-swarm conversations have no daemon permissions and allow everything
+    inline bool isPermitted(permissions::Permission permission) const
+    {
+        return isLegacy() || permissions.contains(permission);
+    }
 
     inline QStringList participantsUris() const
     {

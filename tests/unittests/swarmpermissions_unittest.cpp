@@ -15,6 +15,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+#include "api/conversation.h"
 #include "api/swarmpermissions.h"
 
 #include <gtest/gtest.h>
@@ -47,4 +48,35 @@ TEST(SwarmPermissions, UnknownNamesAreIgnored)
 TEST(SwarmPermissions, NoNamesGrantNothing)
 {
     EXPECT_TRUE(fromNames({}).isEmpty());
+}
+
+TEST(SwarmPermissions, ASwarmGrantsNothingUntilTheDaemonAnswers)
+{
+    lrc::api::conversation::Info conversation("swarm-id", nullptr);
+    conversation.mode = lrc::api::conversation::Mode::INVITES_ONLY;
+
+    EXPECT_FALSE(conversation.isPermitted(Permission::Text));
+    EXPECT_FALSE(conversation.isPermitted(Permission::UpdateProfile));
+}
+
+TEST(SwarmPermissions, ASwarmGrantsOnlyWhatTheDaemonSent)
+{
+    lrc::api::conversation::Info conversation("swarm-id", nullptr);
+    conversation.mode = lrc::api::conversation::Mode::INVITES_ONLY;
+    conversation.permissions = fromNames({"text", "hostConference"});
+
+    EXPECT_TRUE(conversation.isPermitted(Permission::Text));
+    EXPECT_TRUE(conversation.isPermitted(Permission::HostConference));
+    EXPECT_FALSE(conversation.isPermitted(Permission::UpdateProfile));
+    EXPECT_FALSE(conversation.isPermitted(Permission::BanUnbanMember));
+}
+
+// SIP and legacy conversations have no swarm permissions in the daemon.
+TEST(SwarmPermissions, ANonSwarmConversationAllowsEverything)
+{
+    lrc::api::conversation::Info conversation("legacy-id", nullptr);
+    conversation.mode = lrc::api::conversation::Mode::NON_SWARM;
+
+    for (const auto& [permission, name] : PERMISSION_NAME_TABLE)
+        EXPECT_TRUE(conversation.isPermitted(permission)) << name;
 }

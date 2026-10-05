@@ -23,6 +23,7 @@
 #include "api/contact.h"
 #include "api/profile.h"
 #include "api/datatransfer.h"
+#include "api/swarmpermissions.h"
 #include "containerview.h"
 
 #include <QAbstractListModel>
@@ -32,6 +33,7 @@
 #include <functional>
 #include <memory>
 #include <deque>
+#include <optional>
 
 class QTimer;
 
@@ -468,12 +470,36 @@ public:
     QString avatar(const QString& conversationId) const;
 
     /**
-     * Get member's role in conversation
+     * Get member's role in conversation, without assuming one when it is unknown
      * @param conversationId
      * @param memberUri
-     * @return role
+     * @return role, or nullopt if the conversation or the member is not found
      */
-    member::Role memberRole(const QString& conversationId, const QString& memberUri) const;
+    std::optional<member::Role> memberRole(const QString& conversationId, const QString& memberUri) const;
+
+    /**
+     * Whether the daemon permits the local account to perform a swarm action
+     * @param conversationId
+     * @param action
+     * @return false when the conversation is unknown or the daemon has not
+     * granted the permission; true for non-swarm conversations
+     */
+    bool isActionPermitted(const QString& conversationId, permissions::Permission action) const;
+
+    /**
+     * Whether the local account may update the title, description or avatar
+     * @param conversationId
+     * @return false when the conversation is unknown; true for 1:1 and
+     * non-swarm conversations; otherwise the UpdateProfile permission
+     */
+    bool isProfileUpdatePermitted(const QString& conversationId) const;
+
+    /**
+     * Whether the local account may start a call (Call or HostConference)
+     * @param conversationId
+     * @return same as isActionPermitted
+     */
+    bool isCallPermitted(const QString& conversationId) const;
 
 Q_SIGNALS:
 
