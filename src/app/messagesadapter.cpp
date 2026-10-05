@@ -258,7 +258,15 @@ MessagesAdapter::sendMessage(const QString& message)
 {
     try {
         const auto convUid = lrcInstance_->get_selectedConvUid();
-        lrcInstance_->getCurrentConversationModel()->sendMessage(convUid, message, replyTargetFor(convUid));
+        auto* model = lrcInstance_->getCurrentConversationModel();
+        const auto replyTarget = replyTargetFor(convUid);
+        const auto action = replyTarget.isEmpty() ? Permission::Text : Permission::TextReply;
+        if (!model || !model->isActionPermitted(convUid, action)) {
+            qWarning() << "Cannot perform action" << static_cast<int>(action) << "in conversation" << convUid
+                       << (model ? "(permission denied)" : "(conversation model unavailable)");
+            return;
+        }
+        model->sendMessage(convUid, message, replyTarget);
     } catch (...) {
         qDebug() << "Exception during sendMessage:" << message;
     }
@@ -268,7 +276,15 @@ void
 MessagesAdapter::sendMessageToUid(const QString& message, const QString& convUid, bool inThread)
 {
     try {
-        lrcInstance_->getCurrentConversationModel()->sendMessage(convUid, message, replyTargetFor(convUid, inThread));
+        auto* model = lrcInstance_->getCurrentConversationModel();
+        const auto replyTarget = replyTargetFor(convUid, inThread);
+        const auto action = replyTarget.isEmpty() ? Permission::Text : Permission::TextReply;
+        if (!model || !model->isActionPermitted(convUid, action)) {
+            qWarning() << "Cannot perform action" << static_cast<int>(action) << "in conversation" << convUid
+                       << (model ? "(permission denied)" : "(conversation model unavailable)");
+            return;
+        }
+        model->sendMessage(convUid, message, replyTarget);
     } catch (...) {
         qDebug() << "Exception during sendMessage:" << message;
     }
@@ -283,7 +299,15 @@ MessagesAdapter::editMessage(const QString& convId, const QString& newBody, cons
             return;
         }
         set_editId("");
-        lrcInstance_->getCurrentConversationModel()->editMessage(convId, newBody, editId);
+        auto* model = lrcInstance_->getCurrentConversationModel();
+        // An empty body deletes the message.
+        const auto action = newBody.isEmpty() ? Permission::Delete : Permission::Edit;
+        if (!model || !model->isActionPermitted(convId, action)) {
+            qWarning() << "Cannot modify message" << editId << "in conversation" << convId
+                       << (model ? "(permission denied)" : "(conversation model unavailable)");
+            return;
+        }
+        model->editMessage(convId, newBody, editId);
     } catch (...) {
         qDebug() << "Exception during message edition:" << messageId;
     }
@@ -315,7 +339,13 @@ void
 MessagesAdapter::removeReaction(const QString& convId, const QString& reactionId)
 {
     try {
-        lrcInstance_->getCurrentConversationModel()->removeReaction(convId, reactionId);
+        auto* model = lrcInstance_->getCurrentConversationModel();
+        if (!model || !model->isActionPermitted(convId, Permission::Reaction)) {
+            qWarning() << "Cannot react in conversation" << convId
+                       << (model ? "(permission denied)" : "(conversation model unavailable)");
+            return;
+        }
+        model->removeReaction(convId, reactionId);
     } catch (...) {
         qWarning() << "Exception during removeReaction():" << reactionId;
     }
@@ -325,7 +355,13 @@ void
 MessagesAdapter::addEmojiReaction(const QString& convId, const QString& emoji, const QString& messageId)
 {
     try {
-        lrcInstance_->getCurrentConversationModel()->reactMessage(convId, emoji, messageId);
+        auto* model = lrcInstance_->getCurrentConversationModel();
+        if (!model || !model->isActionPermitted(convId, Permission::Reaction)) {
+            qWarning() << "Cannot react in conversation" << convId
+                       << (model ? "(permission denied)" : "(conversation model unavailable)");
+            return;
+        }
+        model->reactMessage(convId, emoji, messageId);
     } catch (...) {
         qDebug() << "Exception during addEmojiReaction():" << messageId;
     }
@@ -338,10 +374,15 @@ MessagesAdapter::sendFile(const QString& message, bool inThread)
     QString fileName = fi.fileName();
     try {
         auto convUid = lrcInstance_->get_selectedConvUid();
-        lrcInstance_->getCurrentConversationModel()->sendFile(convUid,
-                                                              message,
-                                                              fileName,
-                                                              replyTargetFor(convUid, inThread));
+        auto* model = lrcInstance_->getCurrentConversationModel();
+        const auto replyTarget = replyTargetFor(convUid, inThread);
+        const auto action = replyTarget.isEmpty() ? Permission::File : Permission::FileReply;
+        if (!model || !model->isActionPermitted(convUid, action)) {
+            qWarning() << "Cannot send file in conversation" << convUid
+                       << (model ? "(permission denied)" : "(conversation model unavailable)");
+            return;
+        }
+        model->sendFile(convUid, message, fileName, replyTarget);
     } catch (...) {
         qDebug() << "Exception during sendFile";
     }
@@ -353,7 +394,15 @@ MessagesAdapter::sendFileToUid(const QString& message, const QString& convUid)
     QFileInfo fi(message);
     QString fileName = fi.fileName();
     try {
-        lrcInstance_->getCurrentConversationModel()->sendFile(convUid, message, fileName, replyTargetFor(convUid));
+        auto* model = lrcInstance_->getCurrentConversationModel();
+        const auto replyTarget = replyTargetFor(convUid);
+        const auto action = replyTarget.isEmpty() ? Permission::File : Permission::FileReply;
+        if (!model || !model->isActionPermitted(convUid, action)) {
+            qWarning() << "Cannot send file in conversation" << convUid
+                       << (model ? "(permission denied)" : "(conversation model unavailable)");
+            return;
+        }
+        model->sendFile(convUid, message, fileName, replyTarget);
     } catch (...) {
         qDebug() << "Exception during sendFile";
     }

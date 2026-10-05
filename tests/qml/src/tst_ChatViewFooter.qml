@@ -35,6 +35,21 @@ ColumnLayout {
     width: 300
     height: uut.implicitHeight
 
+    QtObject {
+        id: testConversation
+
+        property string id: "permission-test-conversation"
+        property string title: "Permission test"
+        property bool isTemporary: false
+        property bool isSip: false
+        property bool canSendText: true
+        property bool canReplyText: true
+        property bool canSendFile: true
+        property bool canReplyFile: true
+        property bool canCreateDocument: true
+        property bool canEdit: true
+    }
+
     ChatViewFooter {
         id: uut
 
@@ -47,11 +62,29 @@ ColumnLayout {
             name: "MessageWebViewFooter Send Message Button Visibility Test"
             when: windowShown
 
+            property bool initialShowTypo: false
+
+            function initTestCase() {
+                uut.convContext = testConversation;
+                initialShowTypo = uut.messageBar.showTypo;
+                MessagesAdapter.replyToId = "";
+                MessagesAdapter.editId = "";
+            }
+
             function cleanup() {
                 var filesToSendContainer = findChild(uut, "dataTransferSendContainer")
                 var messageBarTextArea = findChild(uut, "messageBarTextArea")
                 messageBarTextArea.clearText()
                 filesToSendContainer.filesToSendListModel.flush()
+                MessagesAdapter.replyToId = "";
+                MessagesAdapter.editId = "";
+                testConversation.canSendText = true;
+                testConversation.canReplyText = true;
+                testConversation.canSendFile = true;
+                testConversation.canReplyFile = true;
+                testConversation.canCreateDocument = true;
+                testConversation.canEdit = true;
+                uut.messageBar.showTypo = initialShowTypo;
             }
 
             function test_send_message_button_visibility() {
@@ -112,6 +145,134 @@ ColumnLayout {
                 compare(spy.count, 1)
 
                 spy.destroy()
+            }
+
+            function test_textPermissionDisablesTextInputAndFormatting() {
+                testConversation.canSendText = false;
+                testConversation.canSendFile = true;
+                uut.messageBar.showTypo = true;
+
+                var messageBarTextArea = findChild(uut, "messageBarTextArea")
+                var textArea = messageBarTextArea.textAreaObj
+                var formattingRow = findChild(uut, "formattingRow")
+                var formatToggle = findChild(uut, "typoButton")
+
+                compare(textArea.enabled, false)
+                compare(messageBarTextArea.visible, false)
+                compare(formattingRow.visible, false)
+                compare(formatToggle.visible, false)
+            }
+
+            function test_replyTextPermissionDisablesTextInput() {
+                testConversation.canSendText = true;
+                testConversation.canReplyText = false;
+                MessagesAdapter.replyToId = "permission-test-reply";
+
+                var messageBarTextArea = findChild(uut, "messageBarTextArea")
+                compare(messageBarTextArea.textAreaObj.enabled, false)
+                compare(messageBarTextArea.visible, false)
+            }
+
+            function test_editPermissionUpdatesWhileEditing() {
+                MessagesAdapter.editId = "permission-test-edit";
+                compare(uut.messageBar.editId, "permission-test-edit")
+                compare(uut.messageBar.canComposeText, true)
+
+                testConversation.canEdit = false;
+                compare(uut.messageBar.canComposeText, false)
+
+                testConversation.canEdit = true;
+                compare(uut.messageBar.canComposeText, true)
+            }
+
+            function test_textPasteIsIgnoredWithoutTextPermission() {
+                testConversation.canSendText = false;
+
+                uut.pasteText();
+
+                compare(uut.messageBar.text, "")
+            }
+
+            function test_unsendableDraftDoesNotEnableSendButton() {
+                testConversation.canSendText = false;
+                var messageBarTextArea = findChild(uut, "messageBarTextArea")
+                messageBarTextArea.insertText("draft")
+
+                var sendMessageButton = findChild(uut, "sendMessageButton")
+                compare(sendMessageButton.enabled, false)
+
+                var spy = Qt.createQmlObject('import QtTest 1.0; SignalSpy {}', uut)
+                spy.target = uut.messageBar
+                spy.signalName = "sendMessageButtonClicked"
+                messageBarTextArea.sendMessagesRequired()
+                compare(spy.count, 0)
+
+                spy.destroy()
+            }
+
+            function test_fileSendingRemainsAvailableWhenTextIsDenied() {
+                testConversation.canSendText = false;
+                testConversation.canSendFile = true;
+                var filesToSendContainer = findChild(uut, "dataTransferSendContainer")
+                filesToSendContainer.filesToSendListModel.addToPending(":/src/resources/png_test.png")
+
+                var sendMessageButton = findChild(uut, "sendMessageButton")
+                compare(sendMessageButton.enabled, true)
+            }
+
+            function test_createDocumentActionFollowsPermission() {
+                var shareMenu = findChild(uut, "chatViewShareMenu")
+                verify(shareMenu)
+                var createDocumentAction = findChild(shareMenu, "newEditableDocumentMenuItem")
+                verify(createDocumentAction)
+                compare(createDocumentAction.visible, true)
+
+                testConversation.canCreateDocument = false;
+                compare(createDocumentAction.visible, false)
+
+                testConversation.canCreateDocument = true;
+                compare(createDocumentAction.visible, true)
+            }
+
+            function test_audioVideoActionsFollowCurrentFilePermission() {
+                var shareMenu = findChild(uut, "chatViewShareMenu")
+                verify(shareMenu)
+                var audioMessage = findChild(shareMenu, "audioMessageMenuItem")
+                verify(audioMessage)
+                var videoMessage = findChild(shareMenu, "videoMessageMenuItem")
+                verify(videoMessage)
+
+                function menuContains(item) {
+                    for (var i = 0; i < shareMenu.count; ++i) {
+                        if (shareMenu.itemAt(i) === item)
+                            return true;
+                    }
+                    return false;
+                }
+
+                MessagesAdapter.replyToId = "";
+                testConversation.canSendFile = false;
+                shareMenu.open();
+                tryCompare(shareMenu, "opened", true);
+                compare(audioMessage.visible, false);
+                compare(videoMessage.visible, false);
+
+                testConversation.canSendFile = true;
+                compare(audioMessage.visible, true);
+                compare(videoMessage.visible, true);
+                verify(menuContains(audioMessage));
+                verify(menuContains(videoMessage));
+
+                MessagesAdapter.replyToId = "permission-test-reply";
+                testConversation.canReplyFile = false;
+                compare(audioMessage.visible, false);
+                compare(videoMessage.visible, false);
+
+                testConversation.canReplyFile = true;
+                compare(audioMessage.visible, true);
+                compare(videoMessage.visible, true);
+                shareMenu.close();
+                tryCompare(shareMenu, "opened", false);
             }
         }
     }
