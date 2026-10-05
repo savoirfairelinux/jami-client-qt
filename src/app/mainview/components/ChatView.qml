@@ -88,7 +88,7 @@ Item {
     }
 
     property bool addMemberVisibility: {
-        return swarmDetailsVisibility && !convContext.isCoreDialog && !convContext.isRequest;
+        return swarmDetailsVisibility && !convContext.isCoreDialog && !convContext.isRequest && convContext.canAddMember;
     }
 
     property bool swarmDetailsVisibility: {
