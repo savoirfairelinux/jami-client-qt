@@ -153,6 +153,8 @@ CurrentConversation::updateData()
             set_modeString(tr("Private group"));
         } else if (convInfo.mode == conversation::Mode::PUBLIC) {
             set_modeString(tr("Public group"));
+        } else if (convInfo.mode == conversation::Mode::FEED) {
+            set_modeString(tr("Feed"));
         }
 
         updateConversationPreferences(convId);
@@ -179,6 +181,7 @@ CurrentConversation::updatePermissions(const conversation::Info* convInfo)
     set_canDelete(allows(Permission::Delete));
     set_canCall(allows(Permission::Call) || allows(Permission::HostConference));
     set_canAddMember(allows(Permission::AddMember));
+    set_canViewMemberList(convInfo && convInfo->canViewMemberList());
     // Matches ConversationModel::isProfileUpdatePermitted
     set_canChangeConversationProfile((convInfo && convInfo->isCoreDialog()) || allows(Permission::UpdateProfile));
     set_canBanUnbanMember(allows(Permission::BanUnbanMember));

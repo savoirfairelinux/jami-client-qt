@@ -76,6 +76,7 @@ TEST(CurrentConversation, DeniesPermissionsWhenConversationInfoIsMissing)
         EXPECT_FALSE(canDelete.toBool());
         EXPECT_FALSE(currentConversation.property("canCall").toBool());
         EXPECT_FALSE(currentConversation.property("canAddMember").toBool());
+        EXPECT_FALSE(currentConversation.property("canViewMemberList").toBool());
         EXPECT_FALSE(currentConversation.property("canChangeConversationProfile").toBool());
         EXPECT_FALSE(currentConversation.property("canBanUnbanMember").toBool());
     }
