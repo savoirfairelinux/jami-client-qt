@@ -506,13 +506,19 @@ Rectangle {
 
             popup: ShareMenu {
                 id: sharePopup
+                convContext: messageBarRowLayout.convContext
                 onAudioRecordMessageButtonClicked: rectangle.audioRecordMessageButtonClicked()
                 onVideoRecordMessageButtonClicked: rectangle.videoRecordMessageButtonClicked()
                 onShowMapClicked: rectangle.showMapClicked()
                 onNewEditableDocumentClicked: {
-                    viewCoordinator.presentDialog(appWindow, "commoncomponents/CollabNewDocPopup.qml", {
-                        "conversationId": convContext.id
-                    });
+                    if (!convContext.canCreateDocument)
+                        return;
+                    viewCoordinator.presentDialog(appWindow,
+                                                  "commoncomponents/CollabNewDocPopup.qml",
+                                                  {
+                                                      "conversationId": convContext.id
+                                                  });
+                    textAreaObj.forceActiveFocus();
                 }
                 modelList: listViewMoreButton.menuMoreButton
                 y: showMoreButton.y + 31
