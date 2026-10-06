@@ -16,6 +16,24 @@
       "message": "[warning] Line 1: 🟡 This patch only updates the submodule pointer, but provides no summary of the daemon changes (notable fixes, breaking/API-impacting changes, or security-relevant updates). Add a short changelog/rationale in the commit message (or link to the daemon commit range) so reviewers can assess risk and compatibility.",
       "revId": "15f0b837d7955c57bf0791253e10c509c5cff0e0",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b292e831_16a88815",
+        "filename": "daemon",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-10-06T19:16:36Z",
+      "side": 1,
+      "message": "Keeping the repo convention: daemon bumps carry no body (none of the last 15 do). The range is 2eb8bb2d8..46fcec21c in jami-daemon; notable: webrtc-audio-processing 2.1, opendht 4.4.1.",
+      "parentUuid": "e45b4f31_ae28f1b0",
+      "revId": "15f0b837d7955c57bf0791253e10c509c5cff0e0",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
