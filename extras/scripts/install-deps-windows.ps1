@@ -219,6 +219,15 @@ else {
 install_choco_packages $choco_packages
 install_msys2_packages $msys_packages
 
+# pywinmake builds the daemon contribs; meson and ninja are needed by
+# Meson-based contribs (webrtc-audio-processing).
+write-host "Installing Python build tools" -ForegroundColor DarkCyan
+python -m pip install pywinmake==0.5.11 meson==1.12.1 ninja==1.13.0
+if ( $LASTEXITCODE -ne 0 ) {
+    write-host "Python build tools installation failed" -ForegroundColor Red
+    exit 1
+}
+
 # Install VSNASM
 download_file_to_temp 'VSNASM' "https://github.com/ShiftMediaProject/VSNASM/releases/download/0.8/VSNASM.zip" 'VSNASM.zip'
 unzip_file_from_temp 'VSNASM' 'VSNASM.zip' 'VSNASM_UNZIP'
