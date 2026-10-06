@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "71583c45_84c28431",
+        "filename": "extras/scripts/install-deps-windows.ps1",
+        "patchSetId": 1
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-10-06T18:50:31Z",
+      "side": 1,
+      "message": "[warning] Line 225: 🟡 The `pip install --upgrade pywinmake meson ninja` call installs floating latest versions, which makes Windows builds non-reproducible and can break unexpectedly when upstream releases change. Pin these tools to known-good versions (or install from a locked requirements file) so CI/dev environments remain deterministic and safer from supply-chain regressions.",
+      "revId": "70701830190eadf186ec7a4ba2da16ba6d67df20",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
