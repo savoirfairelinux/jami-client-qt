@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0fcec054_3aeebb73",
+        "filename": "daemon",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-10-06T19:38:28Z",
+      "side": 1,
+      "message": "[error] Line 1: 🔴 This submodule pointer is intentionally tied to a daemon review commit for CI experimentation (`DO NOT MERGE` / change 36414). Merging it would pin `jami-client-qt` to a transient, non-final daemon revision and risks non-reproducible or broken downstream builds. Update `daemon` to the finalized merged daemon commit (or tag) before submit.",
+      "revId": "a2a8c2faaf7d8627205077c34a5d91fb109db646",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
