@@ -337,6 +337,12 @@ def build(config_str, qt_dir, tests, build_version, enable_crash_reports,
         vs_env_vars["VCPKG_ROOT"] = vcpkg_root
         # vcpkg scrubs the environment; the yffi port needs rustup's.
         vs_env_vars["VCPKG_KEEP_ENV_VARS"] = "CARGO_HOME;RUSTUP_HOME"
+        if is_jenkins:
+            # CI caches build/; keep only vcpkg_installed, not the
+            # multi-GB per-port build trees.
+            cmake_options.append("-DVCPKG_INSTALL_OPTIONS="
+                                 "--clean-buildtrees-after-build;"
+                                 "--clean-packages-after-build")
 
     # /FS (Force Synchronous PDB writes) serialises all cl.exe PDB writes
     # through mspdbsrv.exe. Required on CI nodes where concurrent builds share
