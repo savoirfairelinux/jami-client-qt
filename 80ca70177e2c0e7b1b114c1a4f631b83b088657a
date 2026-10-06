@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aed82734_25c54ecf",
+        "filename": "build.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 711,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-10-06T18:51:32Z",
+      "side": 1,
+      "message": "[warning] Line 711: 🟡 Removing `--pywinmake` outright is a CLI compatibility break for any downstream scripts/CI that still pass this flag; those calls will now fail argument parsing before build starts. Consider keeping a temporary deprecated no-op flag (with a clear warning) for one release cycle, or explicitly documenting this breaking change in release notes/upgrade docs.",
+      "revId": "80ca70177e2c0e7b1b114c1a4f631b83b088657a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
