@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ff9e7252_fc508832",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1109
+      },
+      "writtenOn": "2026-10-06T20:37:21Z",
+      "side": 1,
+      "message": "On Linux this subscribes to changes in NetworkManager’s full  active-connections  list, not changes to the primary/default-route connection. A secondary connection can therefore initiate call recovery unnecessarily, while a route change with the same active connections is not guaranteed to initiate it. Also,  QTimer::singleShot(500, ...)  queues one callback per notification rather than debouncing them; repeated callbacks force new recovery attempts",
+      "revId": "6954ea94f64546d7b77a13bc297b2c1fa962f90c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "bd7988d6_daac6be4",
         "filename": "src/core/lrc.cpp",
         "patchSetId": 1
