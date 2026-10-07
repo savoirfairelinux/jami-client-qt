@@ -20,6 +20,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "998efe0a_9592dd91",
+        "filename": "src/app/commoncomponents/SimpleMessageDialog.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-10-07T17:59:02Z",
+      "side": 1,
+      "message": "why?",
+      "range": {
+        "startLine": 67,
+        "startChar": 0,
+        "endLine": 76,
+        "endChar": 13
+      },
+      "revId": "252ad8be45b45bf7d20399016202a137db268d5c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4b977181_783a9cf2",
         "filename": "src/app/settingsview/components/CustomizeProfilePage.qml",
         "patchSetId": 1

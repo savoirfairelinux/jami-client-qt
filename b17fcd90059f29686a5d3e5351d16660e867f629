@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1ecbf02b_a8024c44",
+        "filename": "src/app/settingsview/components/CustomizeProfilePage.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-10-07T17:59:02Z",
+      "side": 0,
+      "message": "??",
+      "range": {
+        "startLine": 48,
+        "startChar": 12,
+        "endLine": 54,
+        "endChar": 13
+      },
+      "revId": "b17fcd90059f29686a5d3e5351d16660e867f629",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
