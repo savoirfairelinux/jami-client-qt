@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2077b2fc_990e6199",
+        "filename": "CMakeLists.txt",
+        "patchSetId": 3
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-10-07T19:12:28Z",
+      "side": 1,
+      "message": "[warning] Line 43: 🟡 `contrib/vcpkg/settings.cmake` is now included unconditionally, even though this change is Windows-specific. This can unintentionally affect non-Windows configuration paths (toolchain/manifest variables) and makes cross-platform behavior harder to reason about. Please gate this include with a platform/toolchain condition (for example `if(WIN32)` and/or `if(VCPKG_TOOLCHAIN)`) so Linux/macOS builds remain isolated from Windows vcpkg setup.",
+      "revId": "3eedfada7635024be8da413ab5ed7cdad381c510",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
