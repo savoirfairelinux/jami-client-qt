@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "18823019_5760c86f",
+        "filename": "src/app/collabrichbinding.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 225
+      },
+      "writtenOn": "2026-10-07T20:09:08Z",
+      "side": 1,
+      "message": "A chosen size is stored but not drawn. Qt\u0027s QTextFormatPrivate::resolveFont (qtextformat.cpp) replaces the point size of any character that has a FontSizeAdjustment property, even 0, with default size × factor. Line 263 gives normal text an adjustment of 0 and headings always have one, so the size set here has no visible effect on that text, nor inside a heading.",
+      "revId": "5c246f66cc4bff551830f0d49f8b87ba508389e6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
