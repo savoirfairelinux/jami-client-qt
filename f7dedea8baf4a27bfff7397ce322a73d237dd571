@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b950c78c_e54beb13",
+        "filename": "extras/scripts/build-windows.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 247,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-10-07T19:13:45Z",
+      "side": 1,
+      "message": "[error] Line 247: 🔴 `git clone ... build/vcpkg` assumes the parent `build/` directory already exists. On a fresh checkout (or after cleaning), this can fail with `could not create leading directories`, breaking the new vcpkg path before CMake gets a chance to create `build/`. Create the parent explicitly (e.g., `os.makedirs(build_dir, exist_ok\u003dTrue)`) before cloning.",
+      "revId": "f7dedea8baf4a27bfff7397ce322a73d237dd571",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
