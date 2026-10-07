@@ -25,6 +25,8 @@
 #include <QTextBlock>
 #include <QTextDocument>
 #include <QTextList>
+#include <QJsonDocument>
+#include <QJsonArray>
 
 class CollabRichBindingFixture : public ::testing::Test
 {
@@ -202,4 +204,124 @@ TEST_F(CollabRichBindingFixture, TheRevisionIsBumpedAfterTheDeltaHasGoneOut)
 
     EXPECT_EQ(order, (QStringList {QStringLiteral("delta"), QStringLiteral("revision")}));
     EXPECT_EQ(binding->revision(), 1);
+}
+
+TEST_F(CollabRichBindingFixture, FontIdsAreRenderedAndReported)
+{
+    for (const auto& id : {"sans-serif", "serif", "monospace", "cursive"}) {
+        const QString fontId = QString::fromLatin1(id);
+        binding->loadContentDelta(
+            QStringLiteral("[{\"insert\":\"Report\",\"attributes\":{\"font\":\"%1\"}}]").arg(fontId));
+
+        EXPECT_EQ(binding->selectionFormat(0, 6).value(QStringLiteral("font")).toString(), fontId);
+        QTextCursor cursor(doc);
+        cursor.setPosition(1);
+        EXPECT_FALSE(cursor.charFormat().fontFamilies().toStringList().isEmpty());
+    }
+}
+
+TEST_F(CollabRichBindingFixture, SelectingAFontWritesItsPortableId)
+{
+    binding->loadContentDelta(R"([{"insert":"A report"}])");
+    QSignalSpy deltas(binding.data(), &CollabRichBinding::localDelta);
+
+    ASSERT_TRUE(QMetaObject::invokeMethod(binding.data(),
+                                          "setFont",
+                                          Q_ARG(QString, QStringLiteral("serif")),
+                                          Q_ARG(int, 2),
+                                          Q_ARG(int, 8)));
+
+    ASSERT_EQ(deltas.size(), 1);
+    EXPECT_EQ(QJsonDocument::fromJson(deltas.at(0).at(0).toString().toUtf8()),
+              QJsonDocument::fromJson(R"([{"retain":2},{"retain":6,"attributes":{"font":"serif"}}])"));
+    EXPECT_EQ(binding->selectionFormat(2, 8).value(QStringLiteral("font")).toString(), QStringLiteral("serif"));
+    EXPECT_TRUE(binding->selectionFormat(0, 1).value(QStringLiteral("font")).toString().isEmpty());
+}
+
+TEST_F(CollabRichBindingFixture, ChoosingAFontInsideAWordFormatsTheWord)
+{
+    binding->loadContentDelta(R"([{"insert":"A report today"}])");
+    QSignalSpy deltas(binding.data(), &CollabRichBinding::localDelta);
+
+    binding->setFont(QStringLiteral("cursive"), 4, 4);
+
+    ASSERT_EQ(deltas.size(), 1);
+    EXPECT_EQ(QJsonDocument::fromJson(deltas.at(0).at(0).toString().toUtf8()),
+              QJsonDocument::fromJson(R"([{"retain":2},{"retain":6,"attributes":{"font":"cursive"}}])"));
+}
+
+TEST_F(CollabRichBindingFixture, ChoosingAFontAtTheCaretFormatsTheNextText)
+{
+    QSignalSpy deltas(binding.data(), &CollabRichBinding::localDelta);
+    binding->setFont(QStringLiteral("monospace"), 0, 0);
+
+    EXPECT_TRUE(deltas.isEmpty());
+    EXPECT_EQ(binding->selectionFormat(0, 0).value(QStringLiteral("font")).toString(), QStringLiteral("monospace"));
+    ASSERT_TRUE(QMetaObject::invokeMethod(edit.data(), "insert", Q_ARG(int, 0), Q_ARG(QString, QStringLiteral("Hi"))));
+
+    ASSERT_EQ(deltas.size(), 1);
+    EXPECT_EQ(QJsonDocument::fromJson(deltas.at(0).at(0).toString().toUtf8()),
+              QJsonDocument::fromJson(R"([{"insert":"Hi","attributes":{"font":"monospace"}}])"));
+    EXPECT_EQ(binding->selectionFormat(0, 2).value(QStringLiteral("font")).toString(), QStringLiteral("monospace"));
+}
+
+TEST_F(CollabRichBindingFixture, DefaultAndClearFormattingRemoveTheFont)
+{
+    for (const bool clearAll : {false, true}) {
+        binding->loadContentDelta(R"([{"insert":"Report","attributes":{"font":"serif","b":true}}])");
+        QSignalSpy deltas(binding.data(), &CollabRichBinding::localDelta);
+        if (clearAll)
+            binding->clearFormat(0, 6);
+        else
+            binding->setFont(QString(), 0, 6);
+
+        ASSERT_EQ(deltas.size(), 1);
+        const QJsonObject attributes = QJsonDocument::fromJson(deltas.at(0).at(0).toString().toUtf8())
+                                           .array()
+                                           .at(0)
+                                           .toObject()
+                                           .value(QStringLiteral("attributes"))
+                                           .toObject();
+        EXPECT_TRUE(attributes.value(QStringLiteral("font")).isNull());
+        EXPECT_TRUE(binding->selectionFormat(0, 6).value(QStringLiteral("font")).toString().isEmpty());
+        EXPECT_EQ(binding->selectionFormat(0, 6).value(QStringLiteral("b")).toBool(), !clearAll);
+        QTextCursor cursor(doc);
+        cursor.setPosition(1);
+        EXPECT_TRUE(cursor.charFormat().fontFamilies().toStringList().isEmpty());
+    }
+}
+
+TEST_F(CollabRichBindingFixture, TypedTextKeepsAnUnknownPortableFontId)
+{
+    binding->loadContentDelta(R"([{"insert":"A","attributes":{"font":"future-font"}}])");
+    QSignalSpy deltas(binding.data(), &CollabRichBinding::localDelta);
+    QTextCursor cursor(doc);
+    cursor.setPosition(1);
+    EXPECT_EQ(cursor.charFormat().fontFamilies().toStringList(), (QStringList {QStringLiteral("future-font")}));
+    cursor.insertText(QStringLiteral("B"));
+
+    ASSERT_EQ(deltas.size(), 1);
+    EXPECT_EQ(QJsonDocument::fromJson(deltas.at(0).at(0).toString().toUtf8()),
+              QJsonDocument::fromJson(R"([{"retain":1},{"insert":"B","attributes":{"font":"future-font"}}])"));
+}
+
+TEST_F(CollabRichBindingFixture, InvalidFontIdsAreNotWrittenOrRendered)
+{
+    for (const auto& id : {"Serif", "serif; color:red", "../serif"}) {
+        const QString fontId = QString::fromLatin1(id);
+        binding->loadContentDelta(QStringLiteral("[{\"insert\":\"A\",\"attributes\":{\"font\":\"%1\"}}]").arg(fontId));
+        EXPECT_TRUE(binding->selectionFormat(0, 1).value(QStringLiteral("font")).toString().isEmpty());
+        QSignalSpy deltas(binding.data(), &CollabRichBinding::localDelta);
+        binding->setFont(fontId, 0, 1);
+        EXPECT_TRUE(deltas.isEmpty());
+    }
+}
+
+TEST_F(CollabRichBindingFixture, ARemoteEditCarriesThePendingFontWithTheCaret)
+{
+    binding->loadContentDelta(R"([{"insert":"A "}])");
+    binding->setFont(QStringLiteral("monospace"), 2, 2);
+    binding->applyRemoteDelta(R"([{"insert":"Hello "}])");
+
+    EXPECT_EQ(binding->selectionFormat(8, 8).value(QStringLiteral("font")).toString(), QStringLiteral("monospace"));
 }
