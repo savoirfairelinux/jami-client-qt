@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3363abbb_bd29eacb",
+        "filename": "src/app/commoncomponents/SimpleMessageDialog.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-10-07T17:47:45Z",
+      "side": 1,
+      "message": "[warning] Line 64: 🟡 The tinted button styles now set only the base `color` and no longer define hover/pressed state colors. This removes explicit interaction-state feedback and may regress usability/contrast. Wire the Qt 6.12 equivalent hover/pressed styling properties (or preserve prior bindings if still supported) for each tinted style.",
+      "revId": "252ad8be45b45bf7d20399016202a137db268d5c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4b977181_783a9cf2",
+        "filename": "src/app/settingsview/components/CustomizeProfilePage.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-10-07T17:47:45Z",
+      "side": 1,
+      "message": "[error] Line 43: 🔴 The `Connections` block handling `settingsView.stopBooth` was removed, and there is no replacement in this patch. That drops the explicit shutdown path for `stopBooth()`, which can leave the photobooth/camera flow active after navigation. Restore an equivalent signal connection so `stopBooth()` is always invoked when `settingsView` emits the stop event.",
+      "revId": "252ad8be45b45bf7d20399016202a137db268d5c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
