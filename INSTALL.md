@@ -258,22 +258,8 @@ Once the build has finished, you should then be able to use the Visual Studio So
 
 **Daemon**
 
-- Make sure that dependencies is built by build.py
-- On MSVC folder (daemon\MSVC):
-
-```sh
-    cmake -DCMAKE_CONFIGURATION_TYPES="ReleaseLib_win32" -DCMAKE_VS_PLATFORM_NAME="x64" -G "Visual Studio 17 2022" -A x64 -T '$(DefaultPlatformToolset)' ..
-    python winmake.py -b daemon
-```
-
-- This will generate a `.lib` file in the path of daemon\MSVC\x64\ReleaseLib_win32\bin
-
-> Note: each dependencies contrib for daemon can also be updated individually <br>
-> For example:
-
-```bash
-    python winmake.py -b opendht
-```
+- See [daemon/BUILD.md](daemon/BUILD.md#how-to-compile-on-windows). The
+  dependencies are built with vcpkg from `daemon/contrib/vcpkg`.
 
 **Jami**
 
