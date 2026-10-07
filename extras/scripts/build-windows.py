@@ -236,7 +236,8 @@ def setup_vcpkg(env_vars):
         return execute_cmd(["git", "-C", root] + list(args))
 
     user_root = os.environ.get("VCPKG_ROOT", "")
-    if not is_jenkins and os.path.isdir(os.path.join(user_root, ".git")):
+    if not is_jenkins and user_root and os.path.isdir(
+            os.path.join(user_root, ".git")):
         if git(user_root, "cat-file", "-e", baseline + "^{commit}"):
             print(f"VCPKG_ROOT ({user_root}) lacks baseline {baseline}; "
                   "run git pull there.")
