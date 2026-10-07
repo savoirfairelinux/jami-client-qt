@@ -178,6 +178,8 @@ charFormatToAttrs(const QTextCharFormat& f)
     const QString fontId = f.stringProperty(FONT_PROPERTY);
     if (!fontId.isEmpty())
         a[QStringLiteral("font")] = fontId;
+    if (f.fontPointSize() > 0)
+        a[QStringLiteral("size")] = f.fontPointSize();
     // Headings are stored as a per-line character attribute rendered through the
     // font size adjustment (H1 = +3, H2 = +2, H3 = +1), exactly as Qt renders the
     // HTML <h1>..<h3> tags. This avoids the Quill trailing-newline invariant.
@@ -251,6 +253,9 @@ mergeFormatFromAttrs(const QJsonObject& attrs)
             const QString id = documentFontId(v);
             f.setProperty(FONT_PROPERTY, id);
             f.setFontFamilies(documentFontFamilies(id));
+        } else if (key == QLatin1String("size")) {
+            if (v.isDouble() && v.toDouble() >= 1 && v.toDouble() <= 400)
+                f.setFontPointSize(v.toDouble());
         } else if (key == QLatin1String("header")) {
             const int level = v.isDouble() ? v.toInt() : 0;
             // Headings adjust only the font size (no bold), so they don't fight the
@@ -276,6 +281,35 @@ mergeFormatFromAttrs(const QJsonObject& attrs)
         }
     }
     return f;
+}
+
+void
+mergeAttrsOverSelection(QTextCursor& cursor, const QJsonObject& attrs)
+{
+    cursor.mergeCharFormat(mergeFormatFromAttrs(attrs));
+    if (!attrs.contains(QStringLiteral("size")) || !attrs.value(QStringLiteral("size")).isNull())
+        return;
+    const int end = cursor.selectionEnd();
+    int start = cursor.selectionStart();
+    while (start < end) {
+        int runEnd = start + 1;
+        const QTextBlock block = cursor.document()->findBlock(start);
+        for (auto fragment = block.begin(); fragment != block.end(); ++fragment) {
+            const QTextFragment run = fragment.fragment();
+            if (run.position() <= start && start < run.position() + run.length()) {
+                runEnd = qMin(end, run.position() + run.length());
+                break;
+            }
+        }
+        QTextCursor runCursor(cursor.document());
+        runCursor.setPosition(start + 1);
+        QTextCharFormat format = runCursor.charFormat();
+        format.clearProperty(QTextFormat::FontPointSize);
+        runCursor.setPosition(start);
+        runCursor.setPosition(runEnd, QTextCursor::KeepAnchor);
+        runCursor.setCharFormat(format);
+        start = runEnd;
+    }
 }
 
 // Inline attributes of the character at @p index (charFormat() reports the format
@@ -795,7 +829,7 @@ CollabRichBinding::setTextDocument(QQuickTextDocument* doc)
     if (auto* d = this->doc())
         disconnect(d, nullptr, this, nullptr);
     quickDoc_ = doc;
-    insertionFont_.reset();
+    insertionAttrs_ = {};
     if (auto* d = this->doc()) {
         shadow_ = d->toPlainText();
         connect(d, &QTextDocument::contentsChange, this, &CollabRichBinding::onContentsChange, Qt::UniqueConnection);
@@ -915,16 +949,16 @@ CollabRichBinding::onContentsChange(int /*position*/, int /*charsRemoved*/, int 
     const int removed = oldLen - prefix - suffix;
     const int added = newLen - prefix - suffix;
 
-    if (insertionFont_) {
-        if (prefix == insertionFontPosition_ && added > 0) {
+    if (!insertionAttrs_.isEmpty()) {
+        if (prefix == insertionFormatPosition_ && added > 0) {
             const QSignalBlocker blocker(d);
             QTextCursor cursor(d);
             cursor.setPosition(prefix);
             cursor.setPosition(prefix + added, QTextCursor::KeepAnchor);
-            cursor.mergeCharFormat(mergeFormatFromAttrs({{QStringLiteral("font"), *insertionFont_}}));
-            insertionFontPosition_ = prefix + added;
+            mergeAttrsOverSelection(cursor, insertionAttrs_);
+            insertionFormatPosition_ = prefix + added;
         } else {
-            insertionFont_.reset();
+            insertionAttrs_ = {};
         }
     }
 
@@ -1013,7 +1047,7 @@ CollabRichBinding::loadContentDelta(const QString& deltaJson)
     // would append a second copy of the content to whatever the editor already
     // shows -- which happens whenever a window is reused, or the document is
     // reloaded after a restore.
-    insertionFont_.reset();
+    insertionAttrs_ = {};
     applyingRemote_ = true;
     d->clear();
     shadow_.clear();
@@ -1032,8 +1066,8 @@ CollabRichBinding::applyRemoteDelta(const QString& deltaJson)
         return;
     const QJsonArray ops = jd.array();
 
-    if (insertionFont_)
-        insertionFontPosition_ = transformedPosition(ops, insertionFontPosition_);
+    if (!insertionAttrs_.isEmpty())
+        insertionFormatPosition_ = transformedPosition(ops, insertionFormatPosition_);
 
     applyingRemote_ = true;
     QTextCursor c(d);
@@ -1079,7 +1113,7 @@ CollabRichBinding::applyRemoteDelta(const QString& deltaJson)
                 QTextCursor cc(d);
                 cc.setPosition(qBound(0, index, docLen));
                 cc.setPosition(qBound(0, index + n, docLen), QTextCursor::KeepAnchor);
-                cc.mergeCharFormat(mergeFormatFromAttrs(attrs));
+                mergeAttrsOverSelection(cc, attrs);
                 // Width is set whole rather than merged, so it is applied on its
                 // own, unit by unit -- the range is one image in practice. The
                 // number comes from a peer, so it is bounded the same way a
@@ -1319,13 +1353,33 @@ CollabRichBinding::toggleInline(const QString& attr, int start, int end)
 void
 CollabRichBinding::setFont(const QString& id, int start, int end)
 {
+    if (!id.isEmpty() && documentFontId(id).isEmpty())
+        return;
+    setInlineAttribute(QStringLiteral("font"), id.isEmpty() ? QJsonValue(QJsonValue::Null) : QJsonValue(id), start, end);
+}
+
+void
+CollabRichBinding::setFontSize(double points, int start, int end)
+{
+    if (!qIsFinite(points) || (points != 0 && points < 1) || points > 400)
+        return;
+    setInlineAttribute(QStringLiteral("size"),
+                       points == 0 ? QJsonValue(QJsonValue::Null) : QJsonValue(points),
+                       start,
+                       end);
+}
+
+void
+CollabRichBinding::setInlineAttribute(const QString& key, const QJsonValue& value, int start, int end)
+{
     QTextDocument* d = doc();
-    if (!d || (!id.isEmpty() && documentFontId(id).isEmpty()))
+    if (!d)
         return;
     const int last = d->characterCount() - 1;
     start = qBound(0, start, last);
     end = qBound(start, end, last);
-    insertionFont_.reset();
+    if (start != end || start != insertionFormatPosition_)
+        insertionAttrs_ = {};
     if (start == end) {
         const QString text = d->toPlainText();
         if (start > 0 && start < text.size() && text.at(start - 1).isLetterOrNumber()
@@ -1335,18 +1389,19 @@ CollabRichBinding::setFont(const QString& id, int start, int end)
             while (end < text.size() && text.at(end).isLetterOrNumber())
                 ++end;
         } else {
-            insertionFont_ = id;
-            insertionFontPosition_ = start;
+            insertionAttrs_[key] = value;
+            insertionFormatPosition_ = start;
             return;
         }
     }
-    const QJsonObject attrs {{QStringLiteral("font"), id.isEmpty() ? QJsonValue(QJsonValue::Null) : QJsonValue(id)}};
+    insertionAttrs_ = {};
+    const QJsonObject attrs {{key, value}};
 
     applyingRemote_ = true;
     QTextCursor cursor(d);
     cursor.setPosition(start);
     cursor.setPosition(end, QTextCursor::KeepAnchor);
-    cursor.mergeCharFormat(mergeFormatFromAttrs(attrs));
+    mergeAttrsOverSelection(cursor, attrs);
     applyingRemote_ = false;
 
     QJsonArray ops;
@@ -1806,25 +1861,27 @@ CollabRichBinding::clearFormat(int start, int end)
     if (!d)
         return;
     if (start == end) {
-        insertionFont_ = QString();
-        insertionFontPosition_ = start;
+        insertionAttrs_ = {{QStringLiteral("font"), QJsonValue(QJsonValue::Null)},
+                           {QStringLiteral("size"), QJsonValue(QJsonValue::Null)}};
+        insertionFormatPosition_ = start;
         return;
     }
     if (start > end)
         return;
-    insertionFont_.reset();
+    insertionAttrs_ = {};
     QJsonObject attrs {{QStringLiteral("b"), QJsonValue(QJsonValue::Null)},
                        {QStringLiteral("i"), QJsonValue(QJsonValue::Null)},
                        {QStringLiteral("u"), QJsonValue(QJsonValue::Null)},
                        {QStringLiteral("s"), QJsonValue(QJsonValue::Null)},
                        {QStringLiteral("font"), QJsonValue(QJsonValue::Null)},
+                       {QStringLiteral("size"), QJsonValue(QJsonValue::Null)},
                        {QStringLiteral("link"), QJsonValue(QJsonValue::Null)}};
 
     applyingRemote_ = true;
     QTextCursor c(d);
     c.setPosition(start);
     c.setPosition(end, QTextCursor::KeepAnchor);
-    c.mergeCharFormat(mergeFormatFromAttrs(attrs));
+    mergeAttrsOverSelection(c, attrs);
     applyingRemote_ = false;
 
     QJsonArray ops;
@@ -1842,19 +1899,22 @@ CollabRichBinding::selectionFormat(int start, int end)
     if (!d)
         return result;
     // Report formatting of the character at the caret/selection start.
-    const QJsonObject a = charAttrsAt(d, start);
+    QJsonObject a = charAttrsAt(d, start);
+    if (!insertionAttrs_.isEmpty() && !applyingRemote_) {
+        if (start == end && start == insertionFormatPosition_) {
+            for (auto it = insertionAttrs_.begin(); it != insertionAttrs_.end(); ++it)
+                a[it.key()] = it.value();
+        } else {
+            insertionAttrs_ = {};
+        }
+    }
     result[QStringLiteral("b")] = a.contains(QStringLiteral("b"));
     result[QStringLiteral("i")] = a.contains(QStringLiteral("i"));
     result[QStringLiteral("u")] = a.contains(QStringLiteral("u"));
     result[QStringLiteral("s")] = a.contains(QStringLiteral("s"));
     result[QStringLiteral("link")] = a.value(QStringLiteral("link")).toString();
     result[QStringLiteral("font")] = a.value(QStringLiteral("font")).toString();
-    if (insertionFont_ && !applyingRemote_) {
-        if (start == end && start == insertionFontPosition_)
-            result[QStringLiteral("font")] = *insertionFont_;
-        else
-            insertionFont_.reset();
-    }
+    result[QStringLiteral("size")] = a.value(QStringLiteral("size")).toDouble();
     // Paragraph-wide, so read from the paragraph rather than from the caret.
     const QJsonObject p = blockAttrsAt(d, start);
     result[QStringLiteral("header")] = p.contains(QStringLiteral("header")) ? p.value(QStringLiteral("header")).toInt()

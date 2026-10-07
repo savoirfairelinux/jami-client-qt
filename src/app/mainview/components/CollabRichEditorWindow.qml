@@ -75,6 +75,7 @@ Window {
         }
     ]
     readonly property string currentFont: root.fmt.font || ""
+    readonly property real currentFontSize: root.fmt.size || root.baseFontSize
     readonly property string currentFontLabel: {
         for (var index = 0; index < fontChoices.length; ++index) {
             if (fontChoices[index].id === currentFont)
@@ -852,14 +853,16 @@ Window {
                 onClicked: fontFamilyMenu.popup(fontFamilyButton, 0, fontFamilyButton.height)
             }
 
-            // Base font size of the editor (a local view preference). Opens a
+            // Font size of the selection. Opens a
             // root-level Menu (a ComboBox's deferred popup crashes in this Window).
             AbstractButton {
                 id: fontSizeButton
+                objectName: "fontSizeButton"
                 width: 56
                 height: 30
+                enabled: !root.previewing
                 ToolTip.visible: hovered
-                ToolTip.text: qsTr("Base font size")
+                ToolTip.text: qsTr("Font size")
                 background: Rectangle {
                     radius: 6
                     color: fontSizeButton.hovered ? JamiTheme.hoveredButtonColor : "transparent"
@@ -867,7 +870,7 @@ Window {
                     border.color: JamiTheme.tabbarBorderColor
                 }
                 contentItem: Text {
-                    text: root.baseFontSize + " ▾"
+                    text: root.currentFontSize + " ▾"
                     horizontalAlignment: Text.AlignHCenter
                     verticalAlignment: Text.AlignVCenter
                     color: JamiTheme.textColor
@@ -1500,17 +1503,27 @@ Window {
         }
     }
 
-    // Base font size chooser (declared at the window root for the same reason as
+    // Font size chooser (declared at the window root for the same reason as
     // editorMenu: a nested/deferred popup crashes in this Window).
     Menu {
         id: fontSizeMenu
+        objectName: "fontSizeMenu"
         Repeater {
             model: [8, 9, 10, 11, 12, 14, 16, 18, 20, 24, 28, 32]
             delegate: MenuItem {
+                id: fontSizeItem
+                required property int modelData
                 text: modelData
                 checkable: true
-                checked: root.baseFontSize === modelData
-                onTriggered: root.baseFontSize = modelData
+                checked: root.currentFontSize === modelData
+                onTriggered: {
+                    richBinding.setFontSize(modelData, editor.selectionStart, editor.selectionEnd);
+                    root.refreshFormatState();
+                    fontSizeItem.checked = Qt.binding(function () {
+                        return root.currentFontSize === fontSizeItem.modelData;
+                    });
+                    root.focusEditor();
+                }
             }
         }
     }

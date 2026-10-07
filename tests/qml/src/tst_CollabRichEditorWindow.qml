@@ -79,6 +79,32 @@ Item {
             verify(!fontMenu.itemAt(2).checked);
         }
 
+        function test_sizePickerOnlyFormatsTheSelection() {
+            const sizeButton = findChild(editorWindow, "fontSizeButton");
+            const sizeMenu = findChild(editorWindow, "fontSizeMenu");
+            verify(sizeButton && sizeMenu);
+            const baseSize = editor.font.pointSize;
+            mouseClick(sizeButton);
+            tryCompare(sizeMenu, "opened", true);
+            mouseClick(sizeMenu.itemAt(9));
+            tryCompare(sizeMenu, "opened", false);
+            compare(binding.selectionFormat(2, 8).size, 24);
+            compare(binding.selectionFormat(0, 1).size, 0);
+            compare(editor.font.pointSize, baseSize);
+            const delta = JSON.parse(CollaborativeAdapter.contentDelta(accountId, conversationId,
+                                                                       documentId));
+            verify(delta.some(operation => operation.attributes && operation.attributes.size === 24));
+        }
+
+        function test_peerSizeUpdatesThePicker() {
+            binding.applyRemoteDelta('[{"retain":2},{"retain":6,"attributes":{"size":24}}]');
+            editorWindow.refreshFormatState();
+            compare(editorWindow.currentFontSize, 24);
+            const sizeMenu = findChild(editorWindow, "fontSizeMenu");
+            verify(sizeMenu);
+            verify(sizeMenu.itemAt(9).checked);
+        }
+
         function test_peerFontUpdatesThePicker() {
             binding.applyRemoteDelta('[{"retain":2},{"retain":6,"attributes":{"font":"cursive"}}]');
             editorWindow.refreshFormatState();
