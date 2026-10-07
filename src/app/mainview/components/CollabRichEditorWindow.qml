@@ -75,6 +75,7 @@ Window {
         }
     ]
     readonly property string currentFont: root.fmt.font || ""
+    readonly property real currentFontSize: root.fmt.size || root.baseFontSize
     readonly property string currentFontLabel: {
         for (var index = 0; index < fontChoices.length; ++index) {
             if (fontChoices[index].id === currentFont)
@@ -91,9 +92,7 @@ Window {
     // Debug builds only: shows the document as the peers exchange it.
     property bool showingRaw: false
 
-    title: (documentName !== "" ? documentName : qsTr("Editable document"))
-           + (peerName !== "" ? " — " + peerName : "")
-           + " — " + JamiStrings.appTitle
+    title: (documentName !== "" ? documentName : qsTr("Editable document")) + (peerName !== "" ? " — " + peerName : "") + " — " + JamiStrings.appTitle
     width: 720
     height: 560
     minimumWidth: 420
@@ -188,8 +187,7 @@ Window {
         id: cursorBroadcast
         interval: 120
         repeat: false
-        onTriggered: CollaborativeAdapter.setCursor(root.accountId, root.conversationId, root.documentId,
-                                                    editor.cursorPosition, editor.selectionStart)
+        onTriggered: CollaborativeAdapter.setCursor(root.accountId, root.conversationId, root.documentId, editor.cursorPosition, editor.selectionStart)
     }
 
     // Toolbar button: a small toggleable glyph button.
@@ -235,8 +233,7 @@ Window {
         implicitHeight: 30
         background: Rectangle {
             radius: 6
-            color: fmtBtn.active ? JamiTheme.tintedBlue
-                                 : (fmtBtn.hovered ? JamiTheme.hoveredButtonColor : "transparent")
+            color: fmtBtn.active ? JamiTheme.tintedBlue : (fmtBtn.hovered ? JamiTheme.hoveredButtonColor : "transparent")
             border.width: 1
             border.color: JamiTheme.tabbarBorderColor
         }
@@ -297,12 +294,12 @@ Window {
             // vanishes mid-sentence -- and say which of the two happened, since
             // one of them can be walked back and the other cannot.
             viewCoordinator.presentDialog(appWindow, "commoncomponents/SimpleMessageDialog.qml", {
-                    "titleText": everywhere ? qsTr("Document removed") : qsTr("Document removed from this device"),
-                    "infoText": everywhere ? qsTr("\"%1\" was removed by its author.").arg(root.documentName) : qsTr("\"%1\" is no longer on this device. Opening it again downloads it back.").arg(root.documentName),
-                    "buttonTitles": [JamiStrings.optionOk],
-                    "buttonStyles": [SimpleMessageDialog.ButtonStyle.TintedBlue],
-                    "buttonRoles": [DialogButtonBox.AcceptRole]
-                });
+                "titleText": everywhere ? qsTr("Document removed") : qsTr("Document removed from this device"),
+                "infoText": everywhere ? qsTr("\"%1\" was removed by its author.").arg(root.documentName) : qsTr("\"%1\" is no longer on this device. Opening it again downloads it back.").arg(root.documentName),
+                "buttonTitles": [JamiStrings.optionOk],
+                "buttonStyles": [SimpleMessageDialog.ButtonStyle.TintedBlue],
+                "buttonRoles": [DialogButtonBox.AcceptRole]
+            });
             root.close();
         }
 
@@ -385,13 +382,13 @@ Window {
         if (typeof viewCoordinator === "undefined")
             return;
         var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/JamiFileDialog.qml", {
-                "title": qsTr("Insert image"),
-                "mode": JamiFileDialog.Mode.OpenFile,
-                "nameFilters": [qsTr("Images") + " (*.png *.jpg *.jpeg *.gif *.bmp *.webp)"]
-            }, true);
+            "title": qsTr("Insert image"),
+            "mode": JamiFileDialog.Mode.OpenFile,
+            "nameFilters": [qsTr("Images") + " (*.png *.jpg *.jpeg *.gif *.bmp *.webp)"]
+        }, true);
         dlg.fileAccepted.connect(function (file) {
-                root.insertImageFromFile(file);
-            });
+            root.insertImageFromFile(file);
+        });
     }
 
     function insertImageFromFile(file) {
@@ -419,14 +416,14 @@ Window {
         const missing = suffix === "txt" ? 0 : richBinding.unresolvedImageCount();
         if (missing > 0) {
             var confirmDlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/ConfirmDialog.qml", {
-                    "titleText": qsTr("Export document"),
-                    "textLabel": qsTr("%n picture(s) in this document have not arrived yet and would be exported as empty boxes.", "", missing),
-                    "confirmLabel": qsTr("Export anyway"),
-                    "rejectLabel": qsTr("Cancel")
-                });
+                "titleText": qsTr("Export document"),
+                "textLabel": qsTr("%n picture(s) in this document have not arrived yet and would be exported as empty boxes.", "", missing),
+                "confirmLabel": qsTr("Export anyway"),
+                "rejectLabel": qsTr("Cancel")
+            });
             confirmDlg.accepted.connect(function () {
-                    root.pickExportPath(suffix, filterLabel);
-                });
+                root.pickExportPath(suffix, filterLabel);
+            });
             return;
         }
         root.pickExportPath(suffix, filterLabel);
@@ -438,25 +435,25 @@ Window {
         // peer, so it is never allowed to carry the path anywhere.
         const base = (root.documentName !== "" ? root.documentName : qsTr("document")).replace(/[\/\\:*?"<>|]/g, "_");
         var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/JamiFileDialog.qml", {
-                "title": qsTr("Export document"),
-                "mode": JamiFileDialog.Mode.SaveFile,
-                "folder": UtilsAdapter.urlFromLocalPath(folder),
-                // currentFile, not file: the latter only ever holds what the
-                // user finally accepted, and setting it preselects nothing.
-                "currentFile": UtilsAdapter.urlFromLocalPath(folder + "/" + base + "." + suffix),
-                "nameFilters": [filterLabel + " (*." + suffix + ")"],
-                "defaultSuffix": suffix
-            }, true);
+            "title": qsTr("Export document"),
+            "mode": JamiFileDialog.Mode.SaveFile,
+            "folder": UtilsAdapter.urlFromLocalPath(folder),
+            // currentFile, not file: the latter only ever holds what the
+            // user finally accepted, and setting it preselects nothing.
+            "currentFile": UtilsAdapter.urlFromLocalPath(folder + "/" + base + "." + suffix),
+            "nameFilters": [filterLabel + " (*." + suffix + ")"],
+            "defaultSuffix": suffix
+        }, true);
         dlg.fileAccepted.connect(function (file) {
-                const ok = richBinding.exportToFile(file, root.documentName);
-                viewCoordinator.presentDialog(appWindow, "commoncomponents/SimpleMessageDialog.qml", {
-                        "titleText": ok ? qsTr("Document exported") : qsTr("Export failed"),
-                        "infoText": ok ? UtilsAdapter.getAbsPath(file.toString()) : qsTr("The document could not be written there."),
-                        "buttonTitles": [JamiStrings.optionOk],
-                        "buttonStyles": [SimpleMessageDialog.ButtonStyle.TintedBlue],
-                        "buttonRoles": [DialogButtonBox.AcceptRole]
-                    });
+            const ok = richBinding.exportToFile(file, root.documentName);
+            viewCoordinator.presentDialog(appWindow, "commoncomponents/SimpleMessageDialog.qml", {
+                "titleText": ok ? qsTr("Document exported") : qsTr("Export failed"),
+                "infoText": ok ? UtilsAdapter.getAbsPath(file.toString()) : qsTr("The document could not be written there."),
+                "buttonTitles": [JamiStrings.optionOk],
+                "buttonStyles": [SimpleMessageDialog.ButtonStyle.TintedBlue],
+                "buttonRoles": [DialogButtonBox.AcceptRole]
             });
+        });
     }
 
     // Pasting inserts whatever the clipboard holds: a picture if there is one,
@@ -579,7 +576,8 @@ Window {
 
             Item {
                 id: titleContainer
-                width: formattingToolbar.width
+                implicitWidth: Math.min(240, Math.max(120, documentTitle.implicitWidth))
+                width: Math.min(implicitWidth, formattingToolbar.width)
                 height: 30
 
                 property bool editing: false
@@ -594,6 +592,7 @@ Window {
                 }
 
                 Text {
+                    id: documentTitle
                     anchors.fill: parent
                     visible: !titleContainer.editing
                     verticalAlignment: Text.AlignVCenter
@@ -852,14 +851,16 @@ Window {
                 onClicked: fontFamilyMenu.popup(fontFamilyButton, 0, fontFamilyButton.height)
             }
 
-            // Base font size of the editor (a local view preference). Opens a
+            // Font size of the selection. Opens a
             // root-level Menu (a ComboBox's deferred popup crashes in this Window).
             AbstractButton {
                 id: fontSizeButton
+                objectName: "fontSizeButton"
                 width: 56
                 height: 30
+                enabled: !root.previewing
                 ToolTip.visible: hovered
-                ToolTip.text: qsTr("Base font size")
+                ToolTip.text: qsTr("Font size")
                 background: Rectangle {
                     radius: 6
                     color: fontSizeButton.hovered ? JamiTheme.hoveredButtonColor : "transparent"
@@ -867,7 +868,7 @@ Window {
                     border.color: JamiTheme.tabbarBorderColor
                 }
                 contentItem: Text {
-                    text: root.baseFontSize + " ▾"
+                    text: root.currentFontSize + " ▾"
                     horizontalAlignment: Text.AlignHCenter
                     verticalAlignment: Text.AlignVCenter
                     color: JamiTheme.textColor
@@ -977,14 +978,17 @@ Window {
                         }
 
                         onSelectionStartChanged: {
+                            richBinding.updateSelection(editor.selectionStart, editor.selectionEnd);
                             root.refreshFormatState();
                             root.dropImageSelectionUnlessHeld();
                         }
                         onSelectionEndChanged: {
+                            richBinding.updateSelection(editor.selectionStart, editor.selectionEnd);
                             root.refreshFormatState();
                             root.dropImageSelectionUnlessHeld();
                         }
                         onCursorPositionChanged: {
+                            richBinding.updateSelection(editor.selectionStart, editor.selectionEnd);
                             root.refreshFormatState();
                             cursorBroadcast.restart();
                         }
@@ -1050,8 +1054,7 @@ Window {
                             acceptedButtons: Qt.LeftButton
                             propagateComposedEvents: true
                             onPressed: function (mouse) {
-                                var unit = richBinding.imageAtPoint(mouse.x - editor.leftPadding,
-                                                                    mouse.y - editor.topPadding);
+                                var unit = richBinding.imageAtPoint(mouse.x - editor.leftPadding, mouse.y - editor.topPadding);
                                 if (unit < 0 || root.previewing) {
                                     root.selectImageAt(-1);
                                     mouse.accepted = false;
@@ -1500,17 +1503,27 @@ Window {
         }
     }
 
-    // Base font size chooser (declared at the window root for the same reason as
+    // Font size chooser (declared at the window root for the same reason as
     // editorMenu: a nested/deferred popup crashes in this Window).
     Menu {
         id: fontSizeMenu
+        objectName: "fontSizeMenu"
         Repeater {
             model: [8, 9, 10, 11, 12, 14, 16, 18, 20, 24, 28, 32]
             delegate: MenuItem {
+                id: fontSizeItem
+                required property int modelData
                 text: modelData
                 checkable: true
-                checked: root.baseFontSize === modelData
-                onTriggered: root.baseFontSize = modelData
+                checked: root.currentFontSize === modelData
+                onTriggered: {
+                    richBinding.setFontSize(modelData, editor.selectionStart, editor.selectionEnd);
+                    root.refreshFormatState();
+                    fontSizeItem.checked = Qt.binding(function () {
+                        return root.currentFontSize === fontSizeItem.modelData;
+                    });
+                    root.focusEditor();
+                }
             }
         }
     }

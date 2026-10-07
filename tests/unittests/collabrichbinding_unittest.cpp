@@ -206,6 +206,220 @@ TEST_F(CollabRichBindingFixture, TheRevisionIsBumpedAfterTheDeltaHasGoneOut)
     EXPECT_EQ(binding->revision(), 1);
 }
 
+TEST_F(CollabRichBindingFixture, PeerFontSizesAreRenderedAndReported)
+{
+    binding->loadContentDelta(R"([{"insert":"A report","attributes":{"size":24}}])");
+    QTextCursor cursor(doc);
+    cursor.setPosition(1);
+    EXPECT_EQ(cursor.charFormat().fontPointSize(), 24);
+    EXPECT_EQ(binding->selectionFormat(0, 8).value(QStringLiteral("size")).toDouble(), 24);
+
+    binding->applyRemoteDelta(R"([{"retain":2},{"retain":6,"attributes":{"size":18}}])");
+    cursor.setPosition(3);
+    EXPECT_EQ(cursor.charFormat().fontPointSize(), 18);
+    EXPECT_EQ(binding->selectionFormat(0, 1).value(QStringLiteral("size")).toDouble(), 24);
+    EXPECT_EQ(binding->selectionFormat(2, 8).value(QStringLiteral("size")).toDouble(), 18);
+}
+
+TEST_F(CollabRichBindingFixture, SelectingAFontSizeOnlyFormatsTheSelection)
+{
+    binding->loadContentDelta(R"([{"insert":"A report today"}])");
+    const QFont baseFont = doc->defaultFont();
+    QSignalSpy deltas(binding.data(), &CollabRichBinding::localDelta);
+
+    ASSERT_TRUE(
+        QMetaObject::invokeMethod(binding.data(), "setFontSize", Q_ARG(double, 24), Q_ARG(int, 2), Q_ARG(int, 8)));
+
+    ASSERT_EQ(deltas.size(), 1);
+    EXPECT_EQ(QJsonDocument::fromJson(deltas.at(0).at(0).toString().toUtf8()),
+              QJsonDocument::fromJson(R"([{"retain":2},{"retain":6,"attributes":{"size":24}}])"));
+    EXPECT_EQ(binding->selectionFormat(2, 8).value(QStringLiteral("size")).toDouble(), 24);
+    EXPECT_EQ(binding->selectionFormat(0, 1).value(QStringLiteral("size")).toDouble(), 0);
+    EXPECT_EQ(binding->selectionFormat(9, 14).value(QStringLiteral("size")).toDouble(), 0);
+    EXPECT_EQ(doc->defaultFont(), baseFont);
+}
+
+TEST_F(CollabRichBindingFixture, ExplicitSizesOverrideHeadingsWithoutLosingTheirLevel)
+{
+    for (int level = 1; level <= 3; ++level) {
+        binding->loadContentDelta(
+            QStringLiteral("[{\"insert\":\"Report\",\"attributes\":{\"header\":%1,\"size\":24}}]").arg(level));
+        QTextCursor cursor(doc);
+        cursor.setPosition(1);
+        EXPECT_EQ(cursor.charFormat().font().pointSizeF(), 24);
+        EXPECT_EQ(binding->selectionFormat(0, 6).value(QStringLiteral("header")).toInt(), level);
+
+        binding->applyRemoteDelta(R"([{"retain":6,"attributes":{"size":18}}])");
+        EXPECT_EQ(cursor.charFormat().font().pointSizeF(), 18);
+        EXPECT_EQ(binding->selectionFormat(0, 6).value(QStringLiteral("header")).toInt(), level);
+
+        binding->applyRemoteDelta(R"([{"retain":6,"attributes":{"size":null}}])");
+        EXPECT_GT(cursor.charFormat().font().pointSizeF(), doc->defaultFont().pointSizeF());
+        EXPECT_EQ(binding->selectionFormat(0, 6).value(QStringLiteral("size")).toDouble(), 0);
+        EXPECT_EQ(binding->selectionFormat(0, 6).value(QStringLiteral("header")).toInt(), level);
+    }
+}
+
+TEST_F(CollabRichBindingFixture, SizesRenderOnCurrentAndFormerHeadings)
+{
+    binding->loadContentDelta(R"([{"insert":"A report","attributes":{"header":1}}])");
+    binding->setFontSize(24, 2, 8);
+    QTextCursor cursor(doc);
+    cursor.setPosition(3);
+    EXPECT_EQ(cursor.charFormat().font().pointSizeF(), 24);
+
+    binding->setHeading(0, 0, 8);
+    EXPECT_EQ(cursor.charFormat().font().pointSizeF(), 24);
+    cursor.setPosition(1);
+    EXPECT_EQ(cursor.charFormat().font().pointSizeF(), doc->defaultFont().pointSizeF());
+    binding->setFontSize(18, 0, 1);
+    EXPECT_EQ(cursor.charFormat().font().pointSizeF(), 18);
+
+    binding->setHeading(2, 0, 8);
+    EXPECT_EQ(cursor.charFormat().font().pointSizeF(), 18);
+    EXPECT_EQ(binding->selectionFormat(0, 8).value(QStringLiteral("header")).toInt(), 2);
+    binding->clearFormat(0, 8);
+    EXPECT_GT(cursor.charFormat().font().pointSizeF(), doc->defaultFont().pointSizeF());
+    EXPECT_EQ(binding->selectionFormat(0, 8).value(QStringLiteral("header")).toInt(), 2);
+}
+
+TEST_F(CollabRichBindingFixture, TypedTextKeepsItsHeadingAndExplicitSize)
+{
+    binding->loadContentDelta(R"([{"insert":"Title","attributes":{"header":2,"size":24,"font":"serif"}}])");
+    QSignalSpy deltas(binding.data(), &CollabRichBinding::localDelta);
+    QTextCursor cursor(doc);
+    cursor.setPosition(5);
+    cursor.insertText(QStringLiteral("s"));
+    ASSERT_EQ(deltas.size(), 1);
+    EXPECT_EQ(QJsonDocument::fromJson(deltas.at(0).at(0).toString().toUtf8()),
+              QJsonDocument::fromJson(
+                  R"([{"retain":5},{"insert":"s","attributes":{"header":2,"size":24,"font":"serif"}}])"));
+    EXPECT_EQ(cursor.charFormat().font().pointSizeF(), 24);
+
+    binding->applyRemoteDelta(R"([{"retain":6,"attributes":{"header":null}}])");
+    EXPECT_EQ(cursor.charFormat().font().pointSizeF(), 24);
+    binding->applyRemoteDelta(R"([{"retain":6,"attributes":{"header":3}}])");
+    EXPECT_EQ(cursor.charFormat().font().pointSizeF(), 24);
+    EXPECT_EQ(binding->selectionFormat(0, 6).value(QStringLiteral("header")).toInt(), 3);
+}
+
+TEST_F(CollabRichBindingFixture, RemovingSizesRestoresHeadingsAcrossParagraphSeparators)
+{
+    binding->loadContentDelta(R"([{"insert":"ab\ncd","attributes":{"header":1,"size":24,"b":true}}])");
+    binding->applyRemoteDelta(R"([{"retain":5,"attributes":{"size":null}}])");
+    QTextCursor cursor(doc);
+    for (int position = 1; position <= 5; ++position) {
+        cursor.setPosition(position);
+        EXPECT_FALSE(cursor.charFormat().hasProperty(QTextFormat::FontPointSize));
+        EXPECT_EQ(cursor.charFormat().intProperty(QTextFormat::FontSizeAdjustment), 3);
+        EXPECT_EQ(cursor.charFormat().fontWeight(), QFont::Bold);
+    }
+    EXPECT_FALSE(doc->findBlockByNumber(1).charFormat().hasProperty(QTextFormat::FontPointSize));
+    EXPECT_EQ(doc->findBlockByNumber(1).charFormat().intProperty(QTextFormat::FontSizeAdjustment), 3);
+}
+
+TEST_F(CollabRichBindingFixture, ChoosingAFontSizeAtTheCaretFormatsTheNextText)
+{
+    QSignalSpy deltas(binding.data(), &CollabRichBinding::localDelta);
+    ASSERT_TRUE(
+        QMetaObject::invokeMethod(binding.data(), "setFontSize", Q_ARG(double, 18), Q_ARG(int, 0), Q_ARG(int, 0)));
+    EXPECT_TRUE(deltas.isEmpty());
+    EXPECT_EQ(binding->selectionFormat(0, 0).value(QStringLiteral("size")).toDouble(), 18);
+    ASSERT_TRUE(QMetaObject::invokeMethod(edit.data(), "insert", Q_ARG(int, 0), Q_ARG(QString, QStringLiteral("Hi"))));
+    ASSERT_EQ(deltas.size(), 1);
+    EXPECT_EQ(QJsonDocument::fromJson(deltas.at(0).at(0).toString().toUtf8()),
+              QJsonDocument::fromJson(R"([{"insert":"Hi","attributes":{"size":18}}])"));
+}
+
+TEST_F(CollabRichBindingFixture, TypedTextRetainsPeerFontSize)
+{
+    binding->loadContentDelta(R"([{"insert":"A","attributes":{"size":18.5}}])");
+    QSignalSpy deltas(binding.data(), &CollabRichBinding::localDelta);
+    QTextCursor cursor(doc);
+    cursor.setPosition(1);
+    cursor.insertText(QStringLiteral("B"));
+    ASSERT_EQ(deltas.size(), 1);
+    EXPECT_EQ(QJsonDocument::fromJson(deltas.at(0).at(0).toString().toUtf8()),
+              QJsonDocument::fromJson(R"([{"retain":1},{"insert":"B","attributes":{"size":18.5}}])"));
+}
+
+TEST_F(CollabRichBindingFixture, ClearFormattingRemovesFontSize)
+{
+    binding->loadContentDelta(R"([{"insert":"Report","attributes":{"size":24,"b":true}}])");
+    QSignalSpy deltas(binding.data(), &CollabRichBinding::localDelta);
+    binding->clearFormat(0, 6);
+    ASSERT_EQ(deltas.size(), 1);
+    const QJsonObject attrs = QJsonDocument::fromJson(deltas.at(0).at(0).toString().toUtf8())
+                                  .array()
+                                  .at(0)
+                                  .toObject()
+                                  .value(QStringLiteral("attributes"))
+                                  .toObject();
+    EXPECT_TRUE(attrs.contains(QStringLiteral("size")));
+    EXPECT_TRUE(attrs.value(QStringLiteral("size")).isNull());
+    QTextCursor cursor(doc);
+    cursor.setPosition(1);
+    EXPECT_EQ(cursor.charFormat().fontPointSize(), 0);
+}
+
+TEST_F(CollabRichBindingFixture, RemovingPeerFontSizePreservesOtherFormatting)
+{
+    binding->loadContentDelta(R"([{"insert":"A","attributes":{"size":24,"b":true}},)"
+                              R"({"insert":"B","attributes":{"size":18,"i":true}}])");
+    binding->applyRemoteDelta(R"([{"retain":2,"attributes":{"size":null}}])");
+    QTextCursor cursor(doc);
+    cursor.setPosition(1);
+    EXPECT_FALSE(cursor.charFormat().hasProperty(QTextFormat::FontPointSize));
+    EXPECT_EQ(cursor.charFormat().fontWeight(), QFont::Bold);
+    cursor.setPosition(2);
+    EXPECT_FALSE(cursor.charFormat().hasProperty(QTextFormat::FontPointSize));
+    EXPECT_TRUE(cursor.charFormat().fontItalic());
+}
+
+TEST_F(CollabRichBindingFixture, FontSizesOutsideAndroidBoundsAreIgnored)
+{
+    for (const auto& size : {"0", "0.5", "401", "\"24\""}) {
+        binding->loadContentDelta(
+            QStringLiteral("[{\"insert\":\"A\",\"attributes\":{\"size\":%1}}]").arg(QString::fromLatin1(size)));
+        EXPECT_EQ(binding->selectionFormat(0, 1).value(QStringLiteral("size")).toDouble(), 0);
+    }
+    QSignalSpy deltas(binding.data(), &CollabRichBinding::localDelta);
+    for (const double size : {-1.0, 0.5, 401.0}) {
+        ASSERT_TRUE(
+            QMetaObject::invokeMethod(binding.data(), "setFontSize", Q_ARG(double, size), Q_ARG(int, 0), Q_ARG(int, 1)));
+    }
+    EXPECT_TRUE(deltas.isEmpty());
+}
+
+TEST_F(CollabRichBindingFixture, FontAndSizeChoicesAtTheCaretAreCombined)
+{
+    QSignalSpy deltas(binding.data(), &CollabRichBinding::localDelta);
+    binding->setFont(QStringLiteral("serif"), 0, 0);
+    ASSERT_TRUE(
+        QMetaObject::invokeMethod(binding.data(), "setFontSize", Q_ARG(double, 24), Q_ARG(int, 0), Q_ARG(int, 0)));
+    ASSERT_TRUE(QMetaObject::invokeMethod(edit.data(), "insert", Q_ARG(int, 0), Q_ARG(QString, QStringLiteral("Hi"))));
+    ASSERT_EQ(deltas.size(), 1);
+    EXPECT_EQ(QJsonDocument::fromJson(deltas.at(0).at(0).toString().toUtf8()),
+              QJsonDocument::fromJson(R"([{"insert":"Hi","attributes":{"font":"serif","size":24}}])"));
+}
+
+TEST_F(CollabRichBindingFixture, ReadingAnotherRangePreservesPendingFontAndSize)
+{
+    binding->loadContentDelta(R"([{"insert":"A "}])");
+    binding->setFont(QStringLiteral("monospace"), 2, 2);
+    binding->setFontSize(24, 2, 2);
+    EXPECT_TRUE(binding->selectionFormat(0, 1).value(QStringLiteral("font")).toString().isEmpty());
+    EXPECT_EQ(binding->selectionFormat(0, 0).value(QStringLiteral("size")).toDouble(), 0);
+    EXPECT_EQ(binding->selectionFormat(2, 2).value(QStringLiteral("font")).toString(), QStringLiteral("monospace"));
+    EXPECT_EQ(binding->selectionFormat(2, 2).value(QStringLiteral("size")).toDouble(), 24);
+
+    QSignalSpy deltas(binding.data(), &CollabRichBinding::localDelta);
+    ASSERT_TRUE(QMetaObject::invokeMethod(edit.data(), "insert", Q_ARG(int, 2), Q_ARG(QString, QStringLiteral("Hi"))));
+    ASSERT_EQ(deltas.size(), 1);
+    EXPECT_EQ(QJsonDocument::fromJson(deltas.at(0).at(0).toString().toUtf8()),
+              QJsonDocument::fromJson(R"([{"retain":2},{"insert":"Hi","attributes":{"font":"monospace","size":24}}])"));
+}
+
 TEST_F(CollabRichBindingFixture, FontIdsAreRenderedAndReported)
 {
     for (const auto& id : {"sans-serif", "serif", "monospace", "cursive"}) {
