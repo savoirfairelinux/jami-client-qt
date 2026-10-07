@@ -16,6 +16,24 @@
       "message": "[error] Line 1: 🔴 This submodule bump points to a CI-testing topic-tip commit rather than a clearly stable/merged daemon revision. Merging this risks non-curated dependency drift and harder traceability for release/debug workflows. Please retarget `daemon` to the final merged daemon commit intended for `master` (or a vetted release/tag-equivalent commit) before merge.",
       "revId": "8f3089aad76c6edac52fe78ba427e386cd61c0ca",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cf3cc087_ebb0a517",
+        "filename": "daemon",
+        "patchSetId": 4
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-10-07T20:14:21Z",
+      "side": 1,
+      "message": "See above: intentionally DO NOT MERGE, never to be submitted.",
+      "parentUuid": "fba7c324_90ea5cf7",
+      "revId": "8f3089aad76c6edac52fe78ba427e386cd61c0ca",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
