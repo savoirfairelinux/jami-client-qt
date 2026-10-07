@@ -52,6 +52,36 @@ Window {
     property var fmt: ({})
     // Editor base font size (local view preference; headings scale relative to it).
     property int baseFontSize: JamiTheme.textFontSize
+    readonly property var fontChoices: [
+        {
+            "id": "",
+            "label": qsTr("Default")
+        },
+        {
+            "id": "sans-serif",
+            "label": qsTr("Sans Serif")
+        },
+        {
+            "id": "serif",
+            "label": qsTr("Serif")
+        },
+        {
+            "id": "monospace",
+            "label": qsTr("Monospace")
+        },
+        {
+            "id": "cursive",
+            "label": qsTr("Cursive")
+        }
+    ]
+    readonly property string currentFont: root.fmt.font || ""
+    readonly property string currentFontLabel: {
+        for (var index = 0; index < fontChoices.length; ++index) {
+            if (fontChoices[index].id === currentFont)
+                return fontChoices[index].label;
+        }
+        return currentFont;
+    }
 
     // Read-only review of a past version. Only the text is replayed: character
     // formatting is not part of what a checkpoint restores.
@@ -503,6 +533,7 @@ Window {
     // Bridges the editor's QTextDocument to the collaborative CRDT.
     CollabRichBinding {
         id: richBinding
+        objectName: "collabRichBinding"
 
         // How wide an image may be dragged. Read from the editor rather than
         // from the document: the document's own text width follows its
@@ -540,16 +571,16 @@ Window {
         anchors.margins: JamiTheme.preferredMarginSize / 3
         spacing: JamiTheme.preferredMarginSize
 
-        // Title and formatting controls on one row: the editable document name on
-        // the left (click to rename), the formatting controls on the right.
-        RowLayout {
+        Flow {
+            id: formattingToolbar
+            objectName: "formattingToolbar"
             Layout.fillWidth: true
             spacing: 4
 
             Item {
                 id: titleContainer
-                Layout.fillWidth: true
-                Layout.preferredHeight: 30
+                width: formattingToolbar.width
+                height: 30
 
                 property bool editing: false
 
@@ -649,9 +680,8 @@ Window {
             }
 
             Rectangle {
-                Layout.preferredWidth: 1
-                Layout.preferredHeight: 22
-                Layout.alignment: Qt.AlignVCenter
+                width: 1
+                height: 22
                 color: JamiTheme.tabbarBorderColor
             }
 
@@ -687,9 +717,8 @@ Window {
             }
 
             Rectangle {
-                Layout.preferredWidth: 1
-                Layout.preferredHeight: 22
-                Layout.alignment: Qt.AlignVCenter
+                width: 1
+                height: 22
                 color: JamiTheme.tabbarBorderColor
             }
 
@@ -719,9 +748,8 @@ Window {
             }
 
             Rectangle {
-                Layout.preferredWidth: 1
-                Layout.preferredHeight: 22
-                Layout.alignment: Qt.AlignVCenter
+                width: 1
+                height: 22
                 color: JamiTheme.tabbarBorderColor
             }
 
@@ -732,8 +760,8 @@ Window {
                 id: alignButton
 
                 enabled: !root.previewing
-                Layout.preferredWidth: 46
-                Layout.preferredHeight: 30
+                width: 46
+                height: 30
                 ToolTip.visible: hovered
                 ToolTip.text: qsTr("Paragraph alignment")
                 background: Rectangle {
@@ -760,9 +788,8 @@ Window {
             }
 
             Rectangle {
-                Layout.preferredWidth: 1
-                Layout.preferredHeight: 22
-                Layout.alignment: Qt.AlignVCenter
+                width: 1
+                height: 22
                 color: JamiTheme.tabbarBorderColor
             }
 
@@ -795,18 +822,42 @@ Window {
             }
 
             Rectangle {
-                Layout.preferredWidth: 1
-                Layout.preferredHeight: 22
-                Layout.alignment: Qt.AlignVCenter
+                width: 1
+                height: 22
                 color: JamiTheme.tabbarBorderColor
+            }
+
+            AbstractButton {
+                id: fontFamilyButton
+                objectName: "fontFamilyButton"
+                enabled: !root.previewing
+                width: 130
+                height: 30
+                ToolTip.visible: hovered
+                ToolTip.text: qsTr("Font family")
+                background: Rectangle {
+                    radius: 6
+                    color: fontFamilyButton.hovered ? JamiTheme.hoveredButtonColor : "transparent"
+                    border.width: 1
+                    border.color: JamiTheme.tabbarBorderColor
+                }
+                contentItem: Text {
+                    text: root.currentFontLabel
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
+                    elide: Text.ElideRight
+                    color: JamiTheme.textColor
+                    font.pointSize: JamiTheme.textFontSize
+                }
+                onClicked: fontFamilyMenu.popup(fontFamilyButton, 0, fontFamilyButton.height)
             }
 
             // Base font size of the editor (a local view preference). Opens a
             // root-level Menu (a ComboBox's deferred popup crashes in this Window).
             AbstractButton {
                 id: fontSizeButton
-                Layout.preferredWidth: 56
-                Layout.preferredHeight: 30
+                width: 56
+                height: 30
                 ToolTip.visible: hovered
                 ToolTip.text: qsTr("Base font size")
                 background: Rectangle {
@@ -827,7 +878,6 @@ Window {
 
             PushButton {
                 id: exportButton
-                Layout.alignment: Qt.AlignVCenter
                 preferredSize: 26
                 imageContainerWidth: 18
                 imageContainerHeight: 18
@@ -906,6 +956,7 @@ Window {
 
                     TextArea {
                         id: editor
+                        objectName: "collabEditor"
 
                         padding: 10
                         // Keystrokes must not reach a document the user cannot see.
@@ -1420,6 +1471,30 @@ Window {
                         return root.currentAlign === alignItem.modelData.style;
                     });
                     editor.forceActiveFocus();
+                }
+            }
+        }
+    }
+
+    Menu {
+        id: fontFamilyMenu
+        objectName: "fontFamilyMenu"
+        Repeater {
+            model: root.fontChoices
+            delegate: MenuItem {
+                id: fontFamilyItem
+                required property var modelData
+                objectName: "fontFamily-" + (modelData.id || "default")
+                text: modelData.label
+                checkable: true
+                checked: root.currentFont === modelData.id
+                onTriggered: {
+                    richBinding.setFont(modelData.id, editor.selectionStart, editor.selectionEnd);
+                    root.refreshFormatState();
+                    fontFamilyItem.checked = Qt.binding(function () {
+                        return root.currentFont === fontFamilyItem.modelData.id;
+                    });
+                    root.focusEditor();
                 }
             }
         }
