@@ -206,7 +206,7 @@ set(TESTS_DIR ${PROJECT_SOURCE_DIR}/tests)
 # Here we let find_package(<PackageName>...) try to find Qt 6,
 # If it is found, find_package will succeed, and the CMake variable
 # QT_VERSION_MAJOR will be defined 6.
-set(QT6_MINVER_MINOR 10)
+set(QT6_MINVER_MINOR 12)
 if(QT6_VER AND QT6_PATH)
   find_package(QT NAMES Qt6 REQUIRED
     PATHS ${QT6_PATH} NO_DEFAULT_PATH)
@@ -217,7 +217,7 @@ endif()
 if (${QT_VERSION_MINOR} GREATER_EQUAL ${QT6_MINVER_MINOR})
   message(STATUS "Found a suitable Qt version ${QT_VERSION}")
 else()
-  message(FATAL_ERROR "Qt 6.10 or higher is required. Found ${QT_VERSION}")
+  message(FATAL_ERROR "Qt 6.12 or higher is required. Found ${QT_VERSION}")
 endif()
 
 # Feature flags (previously in libclient CMakeLists.txt)

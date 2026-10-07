@@ -45,14 +45,6 @@ SettingsPageBase {
             spacing: 40
             Layout.preferredWidth: parent.width
 
-            Connections {
-                target: settingsView
-
-                function onStopBooth() {
-                    stopBooth();
-                }
-            }
-
             PhotoboothView {
                 id: currentAccountAvatar
                 width: avatarSize

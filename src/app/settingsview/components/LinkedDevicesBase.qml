@@ -86,7 +86,7 @@ ColumnLayout {
         }
 
         model: SortFilterProxyModel {
-            model: DeviceItemListModel
+            sourceModel: DeviceItemListModel
             sorters: [
                 RoleSorter {
                     roleName: "DeviceName"
@@ -97,7 +97,7 @@ ColumnLayout {
             filters: ValueFilter {
                 roleName: "DeviceID"
                 value: CurrentAccount.deviceId
-                invert: root.inverted
+                inverted: root.inverted
             }
         }
 

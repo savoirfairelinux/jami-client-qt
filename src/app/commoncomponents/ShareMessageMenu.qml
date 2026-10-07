@@ -48,10 +48,6 @@ BaseContextMenu {
     property string fileLink: msgBody
     property int textareaMaxHeight: 350
 
-    component ConversationFilterData: QtObject {
-        property string title
-    }
-
     function xPosition(width) {
         // Use the width at function scope to retrigger property evaluation.
         const listViewWidth = listView.width;
@@ -90,19 +86,19 @@ BaseContextMenu {
     SortFilterProxyModel {
         id: shareConvProxyModel
 
-        model: ConversationsAdapter.convListProxyModel
+        sourceModel: ConversationsAdapter.convListProxyModel
         property string titleFilter
 
         filters: FunctionFilter {
             column: 0
-            function filter(data: ConversationFilterData): bool {
+            function filter(title: string): bool {
                 if (!shareConvProxyModel.titleFilter)
                     return true;
 
                 try {
-                    return new RegExp(shareConvProxyModel.titleFilter, "i").test(data.title || "");
+                    return new RegExp(shareConvProxyModel.titleFilter, "i").test(title || "");
                 } catch (e) {
-                    return (data.title || "").toLowerCase().indexOf(shareConvProxyModel.titleFilter.toLowerCase()) !== -1;
+                    return (title || "").toLowerCase().indexOf(shareConvProxyModel.titleFilter.toLowerCase()) !== -1;
                 }
             }
         }

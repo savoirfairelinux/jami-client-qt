@@ -567,7 +567,7 @@ Control {
                 interactive: false
 
                 model: SortFilterProxyModel {
-                    model: root.visible ? CallOverlayModel.primaryModel() : emptyCallControlsModel
+                    sourceModel: root.visible ? CallOverlayModel.primaryModel() : emptyCallControlsModel
                     filters: ValueFilter {
                         roleName: "Enabled"
                         value: true

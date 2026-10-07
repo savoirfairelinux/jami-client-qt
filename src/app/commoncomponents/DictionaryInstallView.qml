@@ -34,11 +34,6 @@ ColumnLayout {
 
     spacing: 8
 
-    component DictionaryFilterData: QtObject {
-        property string locale
-        property string nativeName
-    }
-
     Component.onCompleted: Qt.callLater(dictionarySearchBar.setTextAreaFocus)
 
     // Header title
@@ -139,24 +134,24 @@ ColumnLayout {
 
         model: SortFilterProxyModel {
             id: dictionaryProxyModel
-            model: SpellCheckAdapter.getDictionaryListModel()
+            sourceModel: SpellCheckAdapter.getDictionaryListModel()
 
             property string combinedFilterPattern
 
             filters: [
                 FunctionFilter {
                     column: 0
-                    function filter(data: DictionaryFilterData): bool {
+                    function filter(locale: string, nativeName: string): bool {
                         if (!dictionaryProxyModel.combinedFilterPattern)
                             return true;
 
                         try {
                             var expression = new RegExp(dictionaryProxyModel.combinedFilterPattern, "i");
-                            return expression.test(data.locale || "") || expression.test(data.nativeName || "");
+                            return expression.test(locale || "") || expression.test(nativeName || "");
                         } catch (e) {
                             var pattern = dictionaryProxyModel.combinedFilterPattern.toLowerCase();
-                            return (data.locale || "").toLowerCase().indexOf(pattern) !== -1
-                                    || (data.nativeName || "").toLowerCase().indexOf(pattern) !== -1;
+                            return (locale || "").toLowerCase().indexOf(pattern) !== -1
+                                    || (nativeName || "").toLowerCase().indexOf(pattern) !== -1;
                         }
                     }
                 },

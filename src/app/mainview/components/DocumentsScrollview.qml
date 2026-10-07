@@ -36,11 +36,6 @@ JamiListView {
     property string textFilter: ""
     property string convId: CurrentConversation.id
 
-    component MessageFilterData: QtObject {
-        property int type
-        property int status
-    }
-
     onVisibleChanged: {
         if (visible) {
             MessagesAdapter.startSearch(textFilter, true);
@@ -73,7 +68,7 @@ JamiListView {
         readonly property int transferFinishedType: Interaction.TransferStatus.TRANSFER_FINISHED
         readonly property int transferSuccesType: Interaction.Status.SUCCESS
 
-        onMessageListModelChanged: proxyModel.model = root.visible && messageListModel ? messageListModel : emptyModel
+        onMessageListModelChanged: proxyModel.sourceModel = root.visible && messageListModel ? messageListModel : emptyModel
 
         sorters: RoleSorter {
             roleName: "Timestamp"
@@ -82,10 +77,10 @@ JamiListView {
 
         filters: FunctionFilter {
             column: 0
-            function filter(data: MessageFilterData): bool {
-                return data.type === proxyModel.documentType
-                        && (data.status === proxyModel.transferFinishedType
-                            || data.status === proxyModel.transferSuccesType);
+            function filter(type: int, status: int): bool {
+                return type === proxyModel.documentType
+                        && (status === proxyModel.transferFinishedType
+                            || status === proxyModel.transferSuccesType);
             }
         }
     }

@@ -64,10 +64,6 @@ Rectangle {
         }
     }
 
-    component MenuActionFilterData: QtObject {
-        property var menuAction
-    }
-
     Row {
         id: firstRow
 
@@ -430,33 +426,33 @@ Rectangle {
             }
 
             model: SortFilterProxyModel {
-                model: listMoreButton
+                sourceModel: listMoreButton
                 filters: [
                     FunctionFilter {
                         column: 0
-                        function filter(data: MenuActionFilterData): bool {
-                            return data.menuAction.show === true;
+                        function filter(menuAction: Action): bool {
+                            return menuAction.show === true;
                         }
                         enabled: showDefault
                     },
                     FunctionFilter {
                         column: 0
-                        function filter(data: MenuActionFilterData): bool {
-                            return data.menuAction.needWebEngine === false;
+                        function filter(menuAction: Action): bool {
+                            return menuAction.needWebEngine === false;
                         }
                         enabled: !WITH_WEBENGINE
                     },
                     FunctionFilter {
                         column: 0
-                        function filter(data: MenuActionFilterData): bool {
-                            return data.menuAction.noSip === true;
+                        function filter(menuAction: Action): bool {
+                            return menuAction.noSip === true;
                         }
                         enabled: convContext && convContext.isSip
                     },
                     FunctionFilter {
                         column: 0
-                        function filter(data: MenuActionFilterData): bool {
-                            return data.menuAction.needVideoDevice === false;
+                        function filter(menuAction: Action): bool {
+                            return menuAction.needVideoDevice === false;
                         }
                         enabled: VideoDevices.listSize === 0
                     }
@@ -625,33 +621,33 @@ Rectangle {
 
             model: SortFilterProxyModel {
                 id: actionsProxyModel
-                model: listActions
+                sourceModel: listActions
                 filters: [
                     FunctionFilter {
                         column: 0
-                        function filter(data: MenuActionFilterData): bool {
-                            return data.menuAction.show === true;
+                        function filter(menuAction: Action): bool {
+                            return menuAction.show === true;
                         }
                         enabled: rectangle.showDefault
                     },
                     FunctionFilter {
                         column: 0
-                        function filter(data: MenuActionFilterData): bool {
-                            return data.menuAction.needWebEngine === false;
+                        function filter(menuAction: Action): bool {
+                            return menuAction.needWebEngine === false;
                         }
                         enabled: !WITH_WEBENGINE
                     },
                     FunctionFilter {
                         column: 0
-                        function filter(data: MenuActionFilterData): bool {
-                            return data.menuAction.noSip === true;
+                        function filter(menuAction: Action): bool {
+                            return menuAction.noSip === true;
                         }
                         enabled: convContext && convContext.isSip
                     },
                     FunctionFilter {
                         column: 0
-                        function filter(data: MenuActionFilterData): bool {
-                            return data.menuAction.needVideoDevice === false;
+                        function filter(menuAction: Action): bool {
+                            return menuAction.needVideoDevice === false;
                         }
                         enabled: VideoDevices.listSize === 0
                     }

@@ -48,7 +48,7 @@ ListView {
         property var messageListModel: MessagesAdapter.mediaMessageListModel
         readonly property int textType: Interaction.Type.TEXT
 
-        onMessageListModelChanged: proxyModel.model = root.visible && messageListModel ? messageListModel : emptyModel
+        onMessageListModelChanged: proxyModel.sourceModel = root.visible && messageListModel ? messageListModel : emptyModel
 
         filters: ValueFilter {
             roleName: "Type"

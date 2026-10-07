@@ -151,15 +151,12 @@ SettingsPageBase {
 
             comboModel: SortFilterProxyModel {
                 id: filteredDevicesModel
-                model: SortFilterProxyModel {
-                    id: deviceSourceModel
-                    model: VideoDevices.deviceSourceModel
-                }
+                sourceModel: VideoDevices.deviceSourceModel
                 filters: ValueFilter {
                     roleName: "DeviceName"
                     value: VideoDevices.defaultName
-                    invert: true
-                    enabled: deviceSourceModel.rowCount() > 1
+                    inverted: true
+                    enabled: VideoDevices.deviceSourceModel.rowCount() > 1
                 }
             }
             role: "DeviceName"
@@ -188,15 +185,12 @@ SettingsPageBase {
 
             comboModel: SortFilterProxyModel {
                 id: filteredResModel
-                model: SortFilterProxyModel {
-                    id: resSourceModel
-                    model: VideoDevices.resSourceModel
-                }
+                sourceModel: VideoDevices.resSourceModel
                 filters: ValueFilter {
                     roleName: "Resolution"
                     value: VideoDevices.defaultRes
-                    invert: true
-                    enabled: resSourceModel.rowCount() > 1
+                    inverted: true
+                    enabled: VideoDevices.resSourceModel.rowCount() > 1
                 }
             }
             role: "Resolution"
@@ -219,15 +213,12 @@ SettingsPageBase {
             currentSelectionText: VideoDevices.defaultFps.toString()
             comboModel: SortFilterProxyModel {
                 id: filteredFpsModel
-                model: SortFilterProxyModel {
-                    id: fpsSourceModel
-                    model: VideoDevices.fpsSourceModel
-                }
+                sourceModel: VideoDevices.fpsSourceModel
                 filters: ValueFilter {
                     roleName: "FPS"
                     value: VideoDevices.defaultFps
-                    invert: true
-                    enabled: fpsSourceModel.rowCount() > 1
+                    inverted: true
+                    enabled: VideoDevices.fpsSourceModel.rowCount() > 1
                 }
             }
             role: "FPS"

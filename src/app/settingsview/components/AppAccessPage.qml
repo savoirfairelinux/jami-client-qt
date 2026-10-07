@@ -328,7 +328,7 @@ SettingsPageBase {
                 interactive: count > 5
 
                 model: SortFilterProxyModel {
-                    model: AccountListModel
+                    sourceModel: AccountListModel
                     filters: ValueFilter {
                         roleName: "BotOwner"
                         value: CurrentAccount.uri

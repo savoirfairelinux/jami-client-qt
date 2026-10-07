@@ -34,7 +34,7 @@ SettingsComboBox {
     tipText: JamiStrings.textLanguage
     comboModel: SortFilterProxyModel {
         id: installedDictionariesModel
-        model: SpellCheckAdapter.getDictionaryListModel()
+        sourceModel: SpellCheckAdapter.getDictionaryListModel()
 
         // Filter to show only installed dictionaries
         filters: ValueFilter {

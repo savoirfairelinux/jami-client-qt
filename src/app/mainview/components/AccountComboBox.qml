@@ -94,11 +94,11 @@ Item {
                 valueRole: "ID"
 
                 model: SortFilterProxyModel {
-                    model: AccountListModel
+                    sourceModel: AccountListModel
                     filters: ValueFilter {
                         roleName: "ID"
                         value: LRCInstance.currentAccountId
-                        invert: true
+                        inverted: true
                     }
                 }
 

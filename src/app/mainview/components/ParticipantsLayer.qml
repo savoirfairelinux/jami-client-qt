@@ -100,7 +100,7 @@ Item {
 
     SortFilterProxyModel {
         id: genericParticipantsModel
-        model: root.visible ? CallParticipantsModel : emptyParticipantsModel
+        sourceModel: root.visible ? CallParticipantsModel : emptyParticipantsModel
         filters: [
             ValueFilter {
                 roleName: "Active"
@@ -121,7 +121,7 @@ Item {
 
     SortFilterProxyModel {
         id: activeParticipantsModel
-        model: root.visible ? CallParticipantsModel : emptyParticipantsModel
+        sourceModel: root.visible ? CallParticipantsModel : emptyParticipantsModel
         filters: ValueFilter {
             roleName: "Active"
             value: true

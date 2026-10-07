@@ -18,7 +18,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import Qt.labs.qmlmodels
+import QtQml.Models
 
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1

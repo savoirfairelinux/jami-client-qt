@@ -81,7 +81,7 @@ BaseModalDialog {
             spacing: 4
 
             model: SortFilterProxyModel {
-                model: DeviceItemListModel
+                sourceModel: DeviceItemListModel
                 sorters: [
                     RoleSorter {
                         roleName: "IsCurrent"
