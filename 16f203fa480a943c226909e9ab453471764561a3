@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "61453e05_796be2ae",
+        "filename": "src/app/collabrichbinding.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 1852,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-10-07T19:15:10Z",
+      "side": 1,
+      "message": "[warning] Line 1852: 🟡 `selectionFormat()` mutates editor state by clearing `insertionFont_` whenever it is called for any range other than the exact pending caret position. Because this method is also a read API for UI refresh, benign reads can cancel the pending “apply to next typed text” font choice. Keep `selectionFormat()` side-effect free and clear `insertionFont_` only on explicit cursor/selection state transitions.",
+      "revId": "16f203fa480a943c226909e9ab453471764561a3",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "352d3146_c4345940",
+        "filename": "src/app/mainview/components/CollabRichEditorWindow.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 583,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-10-07T19:15:10Z",
+      "side": 1,
+      "message": "[warning] Line 583: 🟡 `titleContainer.width` is bound to `formattingToolbar.width`, which makes the first `Flow` item always consume the full row; all formatting controls are therefore forced onto a second row even on wide windows. Use `implicitWidth`/content-driven width (or a `RowLayout` with wrapping only at small widths) so controls can remain on the same row when space allows.",
+      "revId": "16f203fa480a943c226909e9ab453471764561a3",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
