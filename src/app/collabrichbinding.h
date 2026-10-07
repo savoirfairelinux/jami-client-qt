@@ -20,6 +20,7 @@
 #include <QByteArray>
 #include <QObject>
 #include <QImage>
+#include <QJsonObject>
 #include <QPointer>
 #include <QSet>
 #include <QQuickTextDocument>
@@ -42,7 +43,8 @@ class QMimeData;
  *
  * Inline attributes use the Quill convention: "b" (bold), "i" (italic), "u"
  * (underline), "s" (strikethrough) as booleans, "link" as an href string, and
- * "font" as a portable family id. A null attribute value removes the attribute.
+ * "font" as a portable family id and "size" as a numeric point size.
+ * A null attribute value removes the attribute.
  * Offsets are UTF-16 code units, matching QString/QTextDocument indexing and
  * the daemon's Y_OFFSET_UTF16.
  */
@@ -86,6 +88,7 @@ public:
     /// Toggle an inline attribute ("b"/"i"/"u"/"s") over [start, end) (UTF-16).
     Q_INVOKABLE void toggleInline(const QString& attr, int start, int end);
     Q_INVOKABLE void setFont(const QString& id, int start, int end);
+    Q_INVOKABLE void setFontSize(double points, int start, int end);
     /// Apply a heading level (1..3, or 0 for normal) to every line touched by
     /// [start, end). Headings are line-level, so the whole lines are reformatted.
     Q_INVOKABLE void setHeading(int level, int start, int end);
@@ -277,8 +280,9 @@ private:
     int viewWidth_ {0};
     // Counts changes to the document, of any kind.
     int revision_ {0};
-    std::optional<QString> insertionFont_;
-    int insertionFontPosition_ {0};
+    void setInlineAttribute(const QString& key, const QJsonValue& value, int start, int end);
+    QJsonObject insertionAttrs_;
+    int insertionFormatPosition_ {0};
     // Attachments met while applying a delta whose bytes the document does not
     // hold. Asked for once the delta is fully applied, not during.
     QSet<QString> pendingAttachments_;
