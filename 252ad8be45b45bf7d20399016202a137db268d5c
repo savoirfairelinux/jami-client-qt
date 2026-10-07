@@ -18,6 +18,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b278d855_5b3a7216",
+        "filename": "src/app/commoncomponents/SimpleMessageDialog.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-10-07T18:10:59Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "3363abbb_bd29eacb",
+      "revId": "252ad8be45b45bf7d20399016202a137db268d5c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "998efe0a_9592dd91",
@@ -41,6 +59,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6b06e2a5_1cc0aba5",
+        "filename": "src/app/commoncomponents/SimpleMessageDialog.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-10-07T18:10:59Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "998efe0a_9592dd91",
+      "range": {
+        "startLine": 67,
+        "startChar": 0,
+        "endLine": 76,
+        "endChar": 13
+      },
+      "revId": "252ad8be45b45bf7d20399016202a137db268d5c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4b977181_783a9cf2",
@@ -54,6 +96,24 @@
       "writtenOn": "2026-10-07T17:47:45Z",
       "side": 1,
       "message": "[error] Line 43: 🔴 The `Connections` block handling `settingsView.stopBooth` was removed, and there is no replacement in this patch. That drops the explicit shutdown path for `stopBooth()`, which can leave the photobooth/camera flow active after navigation. Restore an equivalent signal connection so `stopBooth()` is always invoked when `settingsView` emits the stop event.",
+      "revId": "252ad8be45b45bf7d20399016202a137db268d5c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f7f3ecb7_b507ae8e",
+        "filename": "src/app/settingsview/components/CustomizeProfilePage.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-10-07T18:10:59Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "4b977181_783a9cf2",
       "revId": "252ad8be45b45bf7d20399016202a137db268d5c",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
