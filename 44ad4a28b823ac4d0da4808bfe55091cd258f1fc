@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "81d661e6_726ffa24",
+        "filename": "INSTALL.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-10-08T19:23:41Z",
+      "side": 1,
+      "message": "[warning] Line 141: 🟡 Typo in the section title: \"in in\" is duplicated (\"Building Jami Qt Client in in a Guix-managed container\"). Please fix to a single \"in\" to keep the heading clear and searchable.",
+      "revId": "44ad4a28b823ac4d0da4808bfe55091cd258f1fc",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "77da9685_fad61ee2",
+        "filename": "INSTALL.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-10-08T19:23:41Z",
+      "side": 1,
+      "message": "[warning] Line 159: 🟡 The sentence \"which will cause the ? compiler of a kit\" appears to contain an accidental `?` and reads ambiguously. Please correct the wording (likely \"the C++ compiler\" or \"the compiler\") so the warning is understandable.",
+      "revId": "44ad4a28b823ac4d0da4808bfe55091cd258f1fc",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4db818a8_a3b27bef",
+        "filename": "INSTALL.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-10-08T19:23:41Z",
+      "side": 1,
+      "message": "[warning] Line 180: 🟡 The instructions hard-switch users to `nightly/20260220.0`, which moves them off their current branch and ties the guide to a time-specific snapshot. Please make this an explicit optional workaround (with context on when to use it) and keep the default flow on current sources, to avoid stale or confusing build guidance.",
+      "revId": "44ad4a28b823ac4d0da4808bfe55091cd258f1fc",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
