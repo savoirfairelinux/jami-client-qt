@@ -137,6 +137,58 @@ Notes:
     + `--testing` will build the tests for both the daemon and client
     + `--no-libwrap` will build the DBUS version.
 
+### Building Jami Qt Client in in a Guix-managed container
+The following generates a reproducible environment to easily build from, and code on, the Jami sources.
+
+From the root of the Jami project checkout, using a recent Guix at commit c087d1d:
+
+```bash
+guix shell -CFN -E GTK_DATA_PREFIX \
+  -E QT_QPA_PLATFORM -E XAUTHORITY \
+  -E XCURSOR_PATH -E ^XDG -E WAYLAND_DISPLAY \
+  -E TARBALLS --share=$HOME --share=/run --share=/scratch \
+  --share=/dev --share=/sys \
+  qt-creator qtwayland -m manifest.scm -- qtcreator
+```
+
+> If access to a video camera (for example, a webcam) in the container is not required, then the following line can be removed:
+>    --share=/dev --share=/sys \
+
+> Beware of [this bug](https://qt-project.atlassian.net/browse/QTCREATORBUG-34152) in Qt Creator, which will cause the ? compiler of a kit to be reset to `None` if its location changed (which is quite easy to trigger when using different Guix profiles/revisions).
+
+Remove or adjust the `--share=/scratch` location where the tarballs for the daemon contribs are kept.
+Set the TARBALLS environment variable with:
+
+```bash
+export TARBALLS=/scratch/cache/jami
+```
+
+If a non-containerized version is preferred, use the following instead.
+
+```bash
+guix shell --pure -E GTK_DATA_PREFIX \
+  -E QT_QPA_PLATFORM -E XAUTHORITY \
+  -E XCURSOR_PATH -E ^XDG -E WAYLAND_DISPLAY \
+  -E TARBALLS qt-creator qtwayland -m manifest.scm -- qtcreator
+```
+
+First, ensure that the environment is clean:
+
+```bash
+git checkout nightly/20260220.0  # there seems to be a QML issue in trunk
+./build.py --clean --clean-contribs=all
+./build.py --init   # set up the submodules
+```
+
+Then open the project in Qt Creator via **File** → **Open Project**, and select the **CMakeLists.txt** file at the root of the Jami git checkout.
+
+Click the **Configure Project** button to run the initial CMake and generate the build system.
+
+To build in parallel (using multiple cores) under **Build Steps**, click the **Details** button to expand the **Build** action.
+In the **CMake arguments** field, add the `-jN` argument, where `N` is the number of CPU cores.
+
+If successful, Jami will build and run from Qt Creator, profile with Valgrind, or step execution from the Qt Creator IDE.
+
 ## Build only the client
 
 In order to use the Qt Client it is necessary to have the Qt version 6.12 or higher. If your system does not have it you can install it [from sources or download the binary installer](https://www.qt.io/download).
