@@ -16,6 +16,23 @@
       "message": "[warning] Line 143: 🟡 This section links only to external mailing-list posts. Please add a short in-repo summary of the Guix container prerequisites/commands (and keep links as references) so build instructions remain usable if external context changes and so key steps are searchable within this repository.",
       "revId": "8929ae21d9a91374bb7d29ab4345daaf961a7c62",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "07afb897_959552ae",
+        "filename": "INSTALL.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-10-08T19:08:30Z",
+      "side": 1,
+      "message": "[warning] Line 143: 🟡 The section title says \"Building Jami Qt Creator\", but this repository documents the Qt client, not Qt Creator (the IDE). Please rename it to \"Building Jami Qt Client in a Guix-managed container\" (or equivalent) to avoid confusing readers about what is being built.",
+      "revId": "8929ae21d9a91374bb7d29ab4345daaf961a7c62",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
