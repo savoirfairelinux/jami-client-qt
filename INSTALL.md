@@ -137,6 +137,12 @@ Notes:
     + `--testing` will build the tests for both the daemon and client
     + `--no-libwrap` will build the DBUS version.
 
+### Building Jami Qt Creator in a Guix-managed container
+
+Please see the following links:
+- https://lists.gnu.org/archive/html/jami/2026-03/msg00001.html
+- https://lists.gnu.org/archive/html/jami/2026-03/msg00002.html
+
 ## Build only the client
 
 In order to use the Qt Client it is necessary to have the Qt version 6.12 or higher. If your system does not have it you can install it [from sources or download the binary installer](https://www.qt.io/download).
