@@ -17,6 +17,9 @@ ENV RUSTUP_HOME=/usr/local/rustup \
 ADD extras/scripts/install-rust-toolchain.sh /opt/install-rust-toolchain.sh
 RUN sh /opt/install-rust-toolchain.sh
 
+ADD extras/packaging/gnu-linux/scripts/install-nodejs-debian.sh /opt/install-nodejs-debian.sh
+RUN /opt/install-nodejs-debian.sh 20
+
 ADD extras/packaging/gnu-linux/scripts/prebuild-package-debian.sh /opt/prebuild-package-debian.sh
 
 COPY extras/packaging/gnu-linux/rules/debian-qt/control /tmp/builddeps/debian/control
