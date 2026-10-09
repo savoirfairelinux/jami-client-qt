@@ -82,7 +82,6 @@ public:
 
     // @enum SchemeType The very first part of the URI followed by a ':'
     enum class SchemeType { SIP, SIPS, RING, NONE, COUNT__, UNRECOGNIZED };
-    Q_ENUMS(URI::SchemeType)
 
     /**
      * @enum Transport each known valid transport types
@@ -102,7 +101,6 @@ public:
         dtls,    /*!<                                                       */
         COUNT__
     };
-    Q_ENUMS(URI::Transport)
 
     /**
      * @enum Section flags associated with each logical sections of the URI
@@ -153,7 +151,6 @@ public:
         RING_USERNAME, /* Anything that starts with "ring:" and isn't followed by 40 ASCII chars */
         UNRECOGNIZED   /* Anything that doesn't fit in other categories                          */
     };
-    Q_ENUMS(URI::ProtocolHint)
 
     // Getter
     QString hostname() const;
