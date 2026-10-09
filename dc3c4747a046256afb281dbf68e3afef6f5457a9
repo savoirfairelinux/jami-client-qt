@@ -20,6 +20,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "022b2cf8_297312a7",
+        "filename": "extras/packaging/gnu-linux/scripts/install-nodejs-debian.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-10-09T16:59:26Z",
+      "side": 1,
+      "message": "[warning] Line 11: 🟡 `apt-get install` is executed before any `apt-get update` in this script. On Debian/Ubuntu base images where package lists are pruned or stale, this can fail nondeterministically (`Unable to locate package ...`). Run `apt-get update` immediately before this first install (or make the script perform update+install as one step) so the helper is self-contained and reproducible.",
+      "revId": "dc3c4747a046256afb281dbf68e3afef6f5457a9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "15c309ad_f4a816c2",
         "filename": "extras/packaging/gnu-linux/scripts/install-nodejs-debian.sh",
         "patchSetId": 1
