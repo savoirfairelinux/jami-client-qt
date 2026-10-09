@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d6a71009_7cab1d51",
+        "filename": "extras/scripts/build-windows.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-10-09T15:51:48Z",
+      "side": 1,
+      "message": "[error] Line 245: 🔴 In CI, returning early when `VCPKG_ROOT` is a valid git clone skips the Jenkins-only env setup (`VCPKG_BINARY_SOURCES` default to `clear`, `VCPKG_DISABLE_METRICS\u003d1`). This re-enables default binary caching under `%LOCALAPPDATA%`, conflicting with the stated CI isolation behavior and causing non-hermetic builds. Apply the CI env setup regardless of whether the root comes from `VCPKG_ROOT` or from `build/vcpkg` (e.g., set Jenkins vars before any return, or factor into a shared post-selection block).",
+      "revId": "6b3edcfb6afe26d9dd18fad3e6fa843d57ffd674",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
