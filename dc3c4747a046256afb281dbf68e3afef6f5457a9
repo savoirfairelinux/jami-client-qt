@@ -18,6 +18,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "895afa40_16a0c378",
+        "filename": "extras/packaging/gnu-linux/scripts/install-nodejs-debian.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-10-09T19:45:37Z",
+      "side": 1,
+      "message": "Done in patch set 2.",
+      "parentUuid": "70494843_1dbb4eee",
+      "revId": "dc3c4747a046256afb281dbf68e3afef6f5457a9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "022b2cf8_297312a7",
@@ -35,6 +53,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f75b2c9f_d969b5ce",
+        "filename": "extras/packaging/gnu-linux/scripts/install-nodejs-debian.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-10-09T19:45:37Z",
+      "side": 1,
+      "message": "Done in patch set 2.",
+      "parentUuid": "022b2cf8_297312a7",
+      "revId": "dc3c4747a046256afb281dbf68e3afef6f5457a9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "15c309ad_f4a816c2",
@@ -48,6 +84,24 @@
       "writtenOn": "2026-10-09T16:57:14Z",
       "side": 1,
       "message": "[error] Line 13: 🔴 The NodeSource GPG key is fetched and trusted immediately (`curl ... | gpg --dearmor`) without verifying a pinned fingerprint. This is a supply-chain risk for the build container: a compromised endpoint/TLS interception would let an attacker sign arbitrary packages that apt would trust. Add an explicit fingerprint check against NodeSource’s published fingerprint before writing the keyring (fail hard on mismatch).",
+      "revId": "dc3c4747a046256afb281dbf68e3afef6f5457a9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ef86c60e_d8d8c2d3",
+        "filename": "extras/packaging/gnu-linux/scripts/install-nodejs-debian.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-10-09T19:45:37Z",
+      "side": 1,
+      "message": "Done in patch set 2.",
+      "parentUuid": "15c309ad_f4a816c2",
       "revId": "dc3c4747a046256afb281dbf68e3afef6f5457a9",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
