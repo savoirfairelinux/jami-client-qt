@@ -18,12 +18,13 @@ In file included from ../../../3rdparty/chromium/base/check_op.h:17,
       |                         ^~~~~~~~
 
 This is probably due to standard library header changes in GCC 16.
+
+Refreshed for the Chromium 140 snapshot shipped with Qt 6.12.0.
 ---
  qtwebengine/src/3rdparty/chromium/base/strings/to_string.h | 1 +
  1 file changed, 1 insertion(+)
 
 diff --git a/qtwebengine/src/3rdparty/chromium/base/strings/to_string.h b/qtwebengine/src/3rdparty/chromium/base/strings/to_string.h
-index 96e61daa9e..5d097946f7 100644
 --- a/qtwebengine/src/3rdparty/chromium/base/strings/to_string.h
 +++ b/qtwebengine/src/3rdparty/chromium/base/strings/to_string.h
 @@ -6,6 +6,7 @@
@@ -31,9 +32,9 @@ index 96e61daa9e..5d097946f7 100644
  
  #include <concepts>
 +#include <cstdint>
- #include <iomanip>
- #include <ios>
  #include <memory>
+ #include <sstream>
+ #include <string>
 -- 
 2.43.0
 
