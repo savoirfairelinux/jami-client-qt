@@ -18,6 +18,8 @@ optional arguments:
   -v, --version             Show the version number and exit
   -s, --skip-build          Only do packaging or run tests, skip building
   --enable-crash-reports    Enable crash reports
+  --no-vcpkg                Build the daemon dependencies with pywinmake even
+                            if the daemon provides a vcpkg manifest
 
 positional arguments:
   {pack}
@@ -39,6 +41,7 @@ import os
 import subprocess
 import platform
 import argparse
+import json
 import multiprocessing
 import shutil
 import time
@@ -61,6 +64,8 @@ this_dir = os.path.dirname(os.path.realpath(__file__))
 # the repo root is two levels up from this script
 repo_root_dir = os.path.abspath(os.path.join(this_dir, os.pardir, os.pardir))
 build_dir = os.path.join(repo_root_dir, "build")
+daemon_dir = os.path.join(repo_root_dir, "daemon")
+vcpkg_manifest_dir = os.path.join(daemon_dir, "contrib", "vcpkg")
 
 def get_latest_toolset_version():
     """Get the latest toolset version."""
@@ -214,6 +219,56 @@ def init_submodules():
         sys.exit(1)
 
 
+def setup_vcpkg(env_vars):
+    """Return a vcpkg root usable with the daemon's manifest.
+
+    The manifest's builtin registry needs a vcpkg git clone that contains its
+    baseline commit. VCPKG_ROOT is used if it is such a clone (the copy
+    bundled with Visual Studio is not); otherwise vcpkg is cloned into the
+    build tree. On CI, binary caching is disabled unless the job provides
+    VCPKG_BINARY_SOURCES, so that nothing is written outside the workspace
+    by default.
+    """
+    config_file = os.path.join(vcpkg_manifest_dir, "vcpkg-configuration.json")
+    with open(config_file, encoding="utf-8") as file:
+        baseline = json.load(file)["default-registry"]["baseline"]
+
+    def git(root, *args):
+        return execute_cmd(["git", "-C", root] + list(args))
+
+    user_root = os.environ.get("VCPKG_ROOT", "")
+    if user_root and os.path.isdir(os.path.join(user_root, ".git")):
+        if git(user_root, "cat-file", "-e", baseline + "^{commit}"):
+            print(f"VCPKG_ROOT ({user_root}) lacks baseline {baseline}; "
+                  "run git pull there.")
+            sys.exit(1)
+        return user_root
+
+    root = os.path.join(build_dir, "vcpkg")
+    if not os.path.isdir(os.path.join(root, ".git")):
+        print(f"Cloning vcpkg into {root}...")
+        if execute_cmd(["git", "clone", "-q",
+                        "https://github.com/microsoft/vcpkg", root]):
+            sys.exit(1)
+    if (git(root, "cat-file", "-e", baseline + "^{commit}")
+            and git(root, "fetch", "-q", "origin")):
+        sys.exit(1)
+    head = subprocess.run(["git", "-C", root, "rev-parse", "HEAD"],
+                          capture_output=True, text=True,
+                          check=True).stdout.strip()
+    if head != baseline or not os.path.exists(os.path.join(root, "vcpkg.exe")):
+        if git(root, "checkout", "-q", "--detach", baseline):
+            sys.exit(1)
+        if execute_cmd([os.path.join(root, "bootstrap-vcpkg.bat"),
+                        "-disableMetrics"], True, None, root):
+            sys.exit(1)
+    if is_jenkins:
+        # The default binary cache is in %LOCALAPPDATA%.
+        env_vars.setdefault("VCPKG_BINARY_SOURCES", "clear")
+        env_vars["VCPKG_DISABLE_METRICS"] = "1"
+    return root
+
+
 def cmake_generate(options, env_vars, cmake_build_dir):
     """Generate the cmake project."""
     print("Generating cmake project...")
@@ -242,16 +297,13 @@ def cmake_build(config_str, env_vars, cmake_build_dir):
     return True
 
 
-def build(config_str, qt_dir, tests, build_version, enable_crash_reports, crash_report_url=None):
+def build(config_str, qt_dir, tests, build_version, enable_crash_reports,
+          crash_report_url=None, use_vcpkg=False):
     """Use cmake to build the project."""
     print("Building with Qt at " + qt_dir)
 
     vs_env_vars = {}
     vs_env_vars.update(get_vs_env())
-
-    # Get the daemon bin/include directories.
-    daemon_dir = os.path.join(repo_root_dir, "daemon")
-    daemon_bin_dir = os.path.join(daemon_dir, "build", "lib")
 
     # We need to update the minimum SDK version to be able to
     # build with system theme support
@@ -275,6 +327,24 @@ def build(config_str, qt_dir, tests, build_version, enable_crash_reports, crash_
     if build_version:
         cmake_options.append("-DBUILD_VERSION=" + build_version)
 
+    if use_vcpkg:
+        vcpkg_root = setup_vcpkg(vs_env_vars)
+        print("Using vcpkg at " + vcpkg_root)
+        toolchain = os.path.join(vcpkg_root, "scripts", "buildsystems",
+                                 "vcpkg.cmake")
+        cmake_options.append("-DCMAKE_TOOLCHAIN_FILE=" +
+                             toolchain.replace("\\", "/"))
+        # vcvarsall points VCPKG_ROOT at Visual Studio's bundled vcpkg.
+        vs_env_vars["VCPKG_ROOT"] = vcpkg_root
+        # vcpkg scrubs the environment; the yffi port needs rustup's.
+        vs_env_vars["VCPKG_KEEP_ENV_VARS"] = "CARGO_HOME;RUSTUP_HOME"
+        if is_jenkins:
+            # CI caches build/; keep only vcpkg_installed, not the
+            # multi-GB per-port build trees.
+            cmake_options.append("-DVCPKG_INSTALL_OPTIONS="
+                                 "--clean-buildtrees-after-build;"
+                                 "--clean-packages-after-build")
+
     # /FS (Force Synchronous PDB writes) serialises all cl.exe PDB writes
     # through mspdbsrv.exe. Required on CI nodes where concurrent builds share
     # one mspdbsrv instance; without it, parallel MSBuild processes exhaust the
@@ -296,7 +366,7 @@ def build(config_str, qt_dir, tests, build_version, enable_crash_reports, crash_
         sys.exit(1)
 
 
-def deploy_runtimes(qt_dir):
+def deploy_runtimes(qt_dir, use_vcpkg=False):
     """Deploy the dependencies to the runtime directory."""
     print("Deploying runtime dependencies")
 
@@ -305,16 +375,17 @@ def deploy_runtimes(qt_dir):
     if os.path.exists(stamp_file):
         return
 
-    daemon_dir = os.path.join(repo_root_dir, "daemon")
     ringtone_dir = os.path.join(daemon_dir, "ringtones")
     packaging_dir = os.path.join(repo_root_dir, "extras", "packaging")
 
     def install_file(src, rel_path):
         shutil.copy(os.path.join(rel_path, src), runtime_dir)
 
-    print("Copying libjami dependencies")
-    install_file("contrib/build/openssl/libcrypto-3-x64.dll", daemon_dir)
-    install_file("contrib/build/openssl/libssl-3-x64.dll", daemon_dir)
+    if not use_vcpkg:
+        # vcpkg links OpenSSL statically.
+        print("Copying libjami dependencies")
+        install_file("contrib/build/openssl/libcrypto-3-x64.dll", daemon_dir)
+        install_file("contrib/build/openssl/libssl-3-x64.dll", daemon_dir)
     # Ringtone files (ul,ogg,wav,opus files in the daemon ringtone dir).
 
     print("Copying ringtones")
@@ -360,14 +431,14 @@ def deploy_runtimes(qt_dir):
         file.write(str(time.time()))
 
 
-def run_tests(config_str, qt_dir):
+def run_tests(config_str, qt_dir, use_vcpkg=False):
     """Run tests."""
     print("Running client tests")
 
     os.environ["PATH"] += os.pathsep + os.path.join(qt_dir, 'bin')
-    daemon_dir = os.path.join(repo_root_dir, "daemon")
-    os.environ["PATH"] += os.pathsep + \
-        os.path.join(daemon_dir, "contrib", "build", "openssl")
+    if not use_vcpkg:
+        os.environ["PATH"] += os.pathsep + \
+            os.path.join(daemon_dir, "contrib", "build", "openssl")
     os.environ["QT_QPA_PLATFORM"] = "offscreen"
     os.environ["QT_QUICK_BACKEND"] = "software"
     os.environ['QT_QPA_FONTDIR'] = os.path.join(
@@ -468,6 +539,11 @@ def parse_args():
         default=False,
         help='Enable crash reporting')
     parser.add_argument(
+        '--no-vcpkg',
+        action='store_true',
+        default=False,
+        help='Use pywinmake even if the daemon provides a vcpkg manifest')
+    parser.add_argument(
         '--crash-report-url',
         help='Override the crash report submission URL',
         default=None)
@@ -517,15 +593,18 @@ def main():
         sys.exit(0)
 
     config_str = ('Release', 'Beta')[parsed_args.beta]
+    use_vcpkg = (not parsed_args.no_vcpkg and
+                 os.path.exists(os.path.join(vcpkg_manifest_dir, "vcpkg.json")))
 
     def do_build(do_tests):
         if not parsed_args.skip_build:
             build(config_str, parsed_args.qt, do_tests,
                   parsed_args.build_version,
                   parsed_args.enable_crash_reports,
-                  parsed_args.crash_report_url)
+                  parsed_args.crash_report_url,
+                  use_vcpkg)
         if not parsed_args.skip_deploy:
-            deploy_runtimes(parsed_args.qt)
+            deploy_runtimes(parsed_args.qt, use_vcpkg)
 
     if parsed_args.subcommand == "pack":
         do_build(False)
@@ -534,7 +613,7 @@ def main():
     else:
         do_build(parsed_args.tests)
         if parsed_args.tests:
-            run_tests(config_str, parsed_args.qt)
+            run_tests(config_str, parsed_args.qt, use_vcpkg)
 
     print("Done")
 
