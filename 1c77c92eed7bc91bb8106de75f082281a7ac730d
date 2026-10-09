@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "939e1a78_a96d355a",
+        "filename": "extras/packaging/gnu-linux/scripts/install-ffmpeg-for-qt.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-10-09T20:29:32Z",
+      "side": 1,
+      "message": "[warning] Line 30: 🟡 `PKG_CONFIG_PATH` is overwritten instead of extended, which can break environments that already pass required non-default pkg-config paths into this script. Preserve the existing value by prepending/appending your path, e.g. `PKG_CONFIG_PATH\u003d\"${INSTALL_DIR}/lib/pkgconfig${PKG_CONFIG_PATH:+:${PKG_CONFIG_PATH}}\" ../configure ...` so this change remains compatible with caller-provided build environments.",
+      "revId": "1c77c92eed7bc91bb8106de75f082281a7ac730d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
