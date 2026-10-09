@@ -12,6 +12,8 @@ RUN yum install -y wget && \
     yum localinstall -y uuid-c++-devel-1.6.2-55.el9.x86_64.rpm && \
     rm -f uuid-c++-devel-1.6.2-55.el9.x86_64.rpm
 RUN yum install -y xorg-x11-xauth
+# QtWebEngine 6.12 requires Node.js >= 20; the default stream is 16.
+RUN dnf module enable -y nodejs:20
 RUN dnf install -y \
         git \
         rpm-build \
