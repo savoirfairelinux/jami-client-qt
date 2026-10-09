@@ -14,14 +14,17 @@ INSTALL_DIR=/opt/libqt-jami-ffmpeg
 cd /tmp
 git clone --branch n11.1.5.3 https://github.com/FFmpeg/nv-codec-headers.git nv-codec-headers
 cd nv-codec-headers
-make -j install
+# Keep the headers out of /usr/local: the daemon's contrib would otherwise
+# pick them up and skip building its own ffnvcodec.
+make -j install PREFIX=${INSTALL_DIR}
 
 cd /tmp
 git clone --branch n9.0.1 https://git.ffmpeg.org/ffmpeg.git ffmpeg
 cd ffmpeg
 mkdir build
 cd build
-../configure --prefix=${INSTALL_DIR} --disable-doc --enable-network --enable-shared
+PKG_CONFIG_PATH=${INSTALL_DIR}/lib/pkgconfig \
+    ../configure --prefix=${INSTALL_DIR} --disable-doc --enable-network --enable-shared
 make -j install
 
 cd /tmp
