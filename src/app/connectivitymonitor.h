@@ -19,6 +19,11 @@
 
 #include <QObject>
 
+#if defined(USE_LIBNM) && !defined(Q_OS_WIN)
+struct _NMClient;
+struct _NMActiveConnection;
+#endif
+
 class ConnectivityMonitor final : public QObject
 {
     Q_OBJECT
@@ -30,8 +35,20 @@ public:
 
 Q_SIGNALS:
     void connectivityChanged();
+    // The network used by default changed, for instance from Wi-Fi to
+    // Ethernet: ongoing calls must move to it.
+    void networkChanged();
+    // The default network went away: there is nothing to move calls to.
+    void networkLost();
 
 private:
+#if defined(USE_LIBNM) && !defined(Q_OS_WIN)
+    _NMClient* nmClient_ = nullptr;
+
+    void onNetworkManagerReady(_NMClient* client);
+    void watchVpnConnection(_NMActiveConnection* connection);
+#endif
+
 #ifdef Q_OS_WIN
     void destroy();
 
