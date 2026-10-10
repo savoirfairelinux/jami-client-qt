@@ -18,6 +18,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b6989960_95725e3a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 617
+      },
+      "writtenOn": "2026-10-10T13:10:05Z",
+      "side": 1,
+      "message": "Agreed on all three points, fixed in patch set 2:\n- The monitor now has a separate networkChanged() signal, emitted on NetworkManager\u0027s notify::primary-connection only when the primary (default-route) active connection actually changes, compared by D-Bus path, which is unique to each activation. Only that signal leads to networkInterfaceChanged(): a secondary connection appearing or going away just reconnects the accounts as before, while switching between two already active connections now moves the calls. Losing the primary connection does not count, as there is nothing to move to yet.\n- The per-notification QTimer::singleShot is replaced by a single restarted 500 ms timer, so a burst of notifications reaches the daemon once (connectivityChanged(), then networkInterfaceChanged() if the primary changed).\nChecked against a python-dbusmock NetworkManager: secondary connection -\u003e connectivityChanged only; primary switch with unchanged active connections -\u003e both; 5 notifications within 200 ms -\u003e one call; primary lost or re-announced unchanged -\u003e nothing.",
+      "parentUuid": "ff9e7252_fc508832",
+      "revId": "6954ea94f64546d7b77a13bc297b2c1fa962f90c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bd7988d6_daac6be4",
@@ -53,6 +71,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1cdd6991_2d7ecc53",
+        "filename": "src/core/lrc.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 617
+      },
+      "writtenOn": "2026-10-10T13:10:05Z",
+      "side": 1,
+      "message": "Done in patch set 2: Lrc::connectivityChanged() is unchanged; a separate Lrc::networkInterfaceChanged() is only called when the primary network actually changes (see the patch set level reply).",
+      "parentUuid": "bd7988d6_daac6be4",
+      "revId": "6954ea94f64546d7b77a13bc297b2c1fa962f90c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ffaf7110_bef82a3d",
@@ -83,6 +119,24 @@
       "writtenOn": "2026-09-25T15:59:35Z",
       "side": 1,
       "message": "This change depends on the daemon API added by https://review.jami.net/c/jami-daemon/+/36288 (same topic, ChangeIP): the daemon submodule will be bumped once it is merged, which also fixes the CI.",
+      "parentUuid": "ffaf7110_bef82a3d",
+      "revId": "6954ea94f64546d7b77a13bc297b2c1fa962f90c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "53e9c796_7b8eab1b",
+        "filename": "src/qtwrapper/configurationmanager_wrap.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 961,
+      "author": {
+        "id": 617
+      },
+      "writtenOn": "2026-10-10T13:10:05Z",
+      "side": 1,
+      "message": "The daemon change is merged; this now depends on https://review.jami.net/c/jami-client-qt/+/36470, which bumps the daemon submodule to a version providing libjami::networkInterfaceChanged().",
       "parentUuid": "ffaf7110_bef82a3d",
       "revId": "6954ea94f64546d7b77a13bc297b2c1fa962f90c",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
