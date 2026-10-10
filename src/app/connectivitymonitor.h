@@ -30,6 +30,9 @@ public:
 
 Q_SIGNALS:
     void connectivityChanged();
+    // The network used by default changed, for instance from Wi-Fi to
+    // Ethernet: ongoing calls must move to it.
+    void networkChanged();
 
 private:
 #ifdef Q_OS_WIN

@@ -68,12 +68,12 @@ public:
     {
         qDebug() << "connectivity changed: " << newConnectivity;
         if (connectivityChangedCb_) {
-            connectivityChangedCb_();
+            connectivityChangedCb_(newConnectivity != NLM_CONNECTIVITY_DISCONNECTED);
         }
         return S_OK;
     };
 
-    void setOnConnectivityChangedCallBack(std::function<void()>&& cb)
+    void setOnConnectivityChangedCallBack(std::function<void(bool)>&& cb)
     {
         connectivityChangedCb_ = cb;
     };
@@ -81,7 +81,7 @@ public:
 private:
     LONG m_lRefCnt;
 
-    std::function<void()> connectivityChangedCb_;
+    std::function<void(bool)> connectivityChangedCb_;
 };
 
 ConnectivityMonitor::ConnectivityMonitor(QObject* parent)
@@ -117,7 +117,11 @@ ConnectivityMonitor::ConnectivityMonitor(QObject* parent)
     if (SUCCEEDED(hr)) {
         cookie_ = NULL;
         netEventHandler_ = new NetworkEventHandler;
-        netEventHandler_->setOnConnectivityChangedCallBack([this] { Q_EMIT connectivityChanged(); });
+        netEventHandler_->setOnConnectivityChangedCallBack([this](bool connected) {
+            Q_EMIT connectivityChanged();
+            if (connected)
+                Q_EMIT networkChanged();
+        });
         hr = pConnectPoint_->Advise((IUnknown*) netEventHandler_, &cookie_);
     } else {
         destroy();
@@ -175,11 +179,37 @@ logConnectionInfo(NMActiveConnection* connection)
 }
 
 static void
-primaryConnectionChanged(NMClient* nm, GParamSpec*, ConnectivityMonitor* cm)
+activeConnectionsChanged(NMClient* nm, GParamSpec*, ConnectivityMonitor* cm)
 {
     auto connection = nm_client_get_primary_connection(nm);
     logConnectionInfo(connection);
     Q_EMIT cm->connectivityChanged();
+}
+
+// D-Bus path of the last primary connection, unique to each activation.
+static constexpr auto PRIMARY_CONNECTION_KEY = "jami-primary-connection";
+
+static bool
+updatePrimaryConnection(NMClient* nm)
+{
+    auto connection = nm_client_get_primary_connection(nm);
+    // Losing the network is not a move to a new one: wait for the next.
+    if (not connection)
+        return false;
+    auto path = nm_object_get_path(NM_OBJECT(connection));
+    if (g_strcmp0(path, static_cast<const char*>(g_object_get_data(G_OBJECT(nm), PRIMARY_CONNECTION_KEY))) == 0)
+        return false;
+    g_object_set_data_full(G_OBJECT(nm), PRIMARY_CONNECTION_KEY, g_strdup(path), g_free);
+    return true;
+}
+
+static void
+primaryConnectionChanged(NMClient* nm, GParamSpec*, ConnectivityMonitor* cm)
+{
+    if (updatePrimaryConnection(nm)) {
+        logConnectionInfo(nm_client_get_primary_connection(nm));
+        Q_EMIT cm->networkChanged();
+    }
 }
 
 static void
@@ -193,7 +223,9 @@ nmClientCallback(G_GNUC_UNUSED GObject* source_object, GAsyncResult* result, Con
 
         auto connection = nm_client_get_primary_connection(nm_client);
         logConnectionInfo(connection);
-        g_signal_connect(nm_client, "notify::active-connections", G_CALLBACK(primaryConnectionChanged), cm);
+        updatePrimaryConnection(nm_client);
+        g_signal_connect(nm_client, "notify::active-connections", G_CALLBACK(activeConnectionsChanged), cm);
+        g_signal_connect(nm_client, "notify::primary-connection", G_CALLBACK(primaryConnectionChanged), cm);
 
     } else {
         C_WARN << "Error initializing NetworkManager client:" << error->message;

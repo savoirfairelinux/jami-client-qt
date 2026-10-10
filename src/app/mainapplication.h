@@ -124,6 +124,7 @@ private:
     ApiTokenManager* apiTokenManager_ {nullptr};
     class ApiTokenListModel* apiTokenListModel_ {nullptr};
     bool runtimeVersionCompatible_ {true};
+    bool networkChanged_ {false};
 
     ScreenInfo screenInfo_;
     QCommandLineParser parser_;
