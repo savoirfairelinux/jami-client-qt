@@ -956,6 +956,11 @@ public Q_SLOTS: // METHODS
         libjami::connectivityChanged();
     }
 
+    void networkInterfaceChanged()
+    {
+        libjami::networkInterfaceChanged();
+    }
+
     MapStringString getContactDetails(const QString& accountId, const QString& uri)
     {
         return convertMap(libjami::getContactDetails(accountId.toStdString(), uri.toStdString()));
