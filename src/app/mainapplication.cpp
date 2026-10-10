@@ -47,6 +47,8 @@
 #include <QDir>
 #include <QStandardPaths>
 
+#include <utility>
+
 #ifdef Q_OS_WIN
 #include <windows.h>
 #endif
@@ -304,9 +306,26 @@ MainApplication::init()
     }
 #endif
 
-    connect(connectivityMonitor_, &ConnectivityMonitor::connectivityChanged, this, [this] {
-        QTimer::singleShot(500, this, [&]() { lrcInstance_->connectivityChanged(); });
+    // A network change comes with several notifications: report them once
+    // they stop, and move ongoing calls only if the default network changed.
+    auto* connectivityTimer = new QTimer(this);
+    connectivityTimer->setSingleShot(true);
+    connectivityTimer->setInterval(500);
+    connect(connectivityTimer, &QTimer::timeout, this, [this] {
+        lrcInstance_->connectivityChanged();
+        if (std::exchange(networkChanged_, false))
+            lrcInstance_->networkInterfaceChanged();
     });
+    connect(connectivityMonitor_,
+            &ConnectivityMonitor::connectivityChanged,
+            connectivityTimer,
+            qOverload<>(&QTimer::start));
+    connect(connectivityMonitor_, &ConnectivityMonitor::networkChanged, this, [this, connectivityTimer] {
+        networkChanged_ = true;
+        connectivityTimer->start();
+    });
+    // Connectivity lost during the delay: there is no network to move to.
+    connect(connectivityMonitor_, &ConnectivityMonitor::networkLost, this, [this] { networkChanged_ = false; });
 
     connect(this, &QGuiApplication::focusWindowChanged, [this] {
         screenInfo_.setCurrentFocusWindow(this->focusWindow());
