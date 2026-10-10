@@ -101,6 +101,12 @@ LRCInstance::connectivityChanged()
     lrc_->connectivityChanged();
 }
 
+void
+LRCInstance::networkInterfaceChanged()
+{
+    lrc_->networkInterfaceChanged();
+}
+
 AccountModel&
 LRCInstance::accountModel()
 {

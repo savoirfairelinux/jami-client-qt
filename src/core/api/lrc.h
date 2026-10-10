@@ -72,6 +72,12 @@ public:
     void connectivityChanged() const;
 
     /**
+     * Inform the daemon that the network used by default changed, so that
+     * ongoing calls move to it
+     */
+    void networkInterfaceChanged() const;
+
+    /**
      * Test connection with daemon
      */
     static bool isConnected();
