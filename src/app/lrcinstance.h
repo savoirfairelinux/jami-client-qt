@@ -79,6 +79,7 @@ public:
     void subscribeToDebugReceived();
     bool isConnected();
     void connectivityChanged();
+    void networkInterfaceChanged();
     VectorString getActiveCalls(const QString& accountId = "");
     int notificationsCount() const;
 
