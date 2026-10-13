@@ -47,6 +47,24 @@ toHashMap(const QByteArray& content)
     return vCard;
 }
 
+QByteArray
+photo(const QByteArray& content)
+{
+    const QList<QByteArray> lines = content.split('\n');
+    for (const QByteArray& property : lines) {
+        const int separatorPos = property.indexOf(':');
+        if (separatorPos < 0)
+            continue;
+        const QByteArray name = property.left(separatorPos).split(';').first();
+        if (name.compare(Property::PHOTO, Qt::CaseInsensitive) != 0)
+            continue;
+        const QByteArray value = property.mid(separatorPos + 1);
+        if (!value.isEmpty())
+            return value;
+    }
+    return {};
+}
+
 } // namespace utils
 } // namespace vCard
 } // namespace lrc
