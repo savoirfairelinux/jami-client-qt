@@ -262,14 +262,7 @@ getAccountAvatar(const QString& accountId)
         accountId,
         "",
         QIODevice::ReadOnly,
-        [&](const QByteArray& readData, QTextStream&) {
-            QHash<QByteArray, QByteArray> vCard = lrc::vCard::utils::toHashMap(readData);
-            for (auto it = vCard.cbegin(); it != vCard.cend(); ++it)
-                if (it.key().contains("PHOTO")) {
-                    avatar = it.value();
-                    return;
-                }
-        },
+        [&](const QByteArray& readData, QTextStream&) { avatar = lrc::vCard::utils::photo(readData); },
         false);
     return avatar;
 }
@@ -306,11 +299,7 @@ getOverridenInfos(const QString& accountId, const QString& peerUri)
         [&](const QByteArray& readData, QTextStream&) {
             QHash<QByteArray, QByteArray> vCard = lrc::vCard::utils::toHashMap(readData);
             overridenAlias = vCard[vCard::Property::FORMATTED_NAME];
-            for (auto it = vCard.cbegin(); it != vCard.cend(); ++it)
-                if (it.key().contains("PHOTO")) {
-                    overridenAvatar = it.value();
-                    return;
-                }
+            overridenAvatar = lrc::vCard::utils::photo(readData);
         },
         true);
     return {overridenAlias, overridenAvatar};
@@ -342,11 +331,7 @@ buildContactFromProfile(const QString& accountId, const QString& peerUri, const 
                 if (profileInfo.alias.isEmpty())
                     profileInfo.alias = vCard[vCard::Property::FORMATTED_NAME];
                 if (profileInfo.avatar.isEmpty())
-                    for (auto it = vCard.cbegin(); it != vCard.cend(); ++it)
-                        if (it.key().contains("PHOTO")) {
-                            profileInfo.avatar = it.value();
-                            return;
-                        }
+                    profileInfo.avatar = lrc::vCard::utils::photo(readData);
             },
             false);
     }
@@ -415,11 +400,7 @@ getProfileData(const QString& accountId, const QString& peerUri)
                 if (profileData["alias"].isEmpty())
                     profileData["alias"] = vCard[vCard::Property::FORMATTED_NAME];
                 if (profileData["avatar"].isEmpty())
-                    for (auto it = vCard.cbegin(); it != vCard.cend(); ++it)
-                        if (it.key().contains("PHOTO")) {
-                            profileData["avatar"] = it.value();
-                            return;
-                        }
+                    profileData["avatar"] = lrc::vCard::utils::photo(readData);
             },
             false);
     }
@@ -456,14 +437,7 @@ avatar(const QString& accountId, const QString& peerUri)
         accountId,
         peerUri,
         QIODevice::ReadOnly,
-        [&](const QByteArray& readData, QTextStream&) {
-            QHash<QByteArray, QByteArray> vCard = lrc::vCard::utils::toHashMap(readData);
-            for (auto it = vCard.cbegin(); it != vCard.cend(); ++it)
-                if (it.key().contains("PHOTO")) {
-                    avatar = it.value();
-                    return;
-                }
-        },
+        [&](const QByteArray& readData, QTextStream&) { avatar = lrc::vCard::utils::photo(readData); },
         false);
 
     return avatar;

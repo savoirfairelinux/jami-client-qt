@@ -78,6 +78,8 @@ namespace utils {
  */
 QHash<QByteArray, QByteArray> toHashMap(const QByteArray& content);
 
+QByteArray photo(const QByteArray& content);
+
 } // namespace utils
 } // namespace vCard
 } // namespace lrc
