@@ -29,7 +29,9 @@ License:       GPLv3+
 Vendor:        Savoir-faire Linux Inc.
 URL:           https://jami.net/
 Source:        jami-libqt-%{version}.tar.xz
+Source1:       jami-libqt-qtwebengine-%{version}.tar.xz
 Patch0:        0001-qtwebengine-add-missing-header-includes-in-chromium.patch
+Patch1:        0002-qtopcua-fix-build-with-OpenSSL-4.patch
 
 %global gst 0.10
 %if 0%{?fedora} || 0%{?rhel} > 7
@@ -62,7 +64,11 @@ This package contains Qt libraries for Jami.
 
 %prep
 %setup -n qt-everywhere-src-%{version}
+# Qt WebEngine is no longer part of the Qt tarball.
+mkdir qtwebengine
+tar xf %{SOURCE1} -C qtwebengine --strip-components=1
 %patch -P 0 -p1
+%patch -P 1 -p1
 
 %build
 echo "Building Qt using %{job_count} parallel jobs"

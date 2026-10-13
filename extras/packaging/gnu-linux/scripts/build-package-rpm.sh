@@ -42,7 +42,7 @@ CMAKE_PREFIX_PATH="${QT_JAMI_PREFIX}:${CMAKE_PREFIX_PATH}"
 QT_MAJOR=6
 QT_MINOR=12
 QT_PATCH=0
-QT_RELEASE_PATCH=0
+QT_RELEASE_PATCH=2
 
 QT_MAJOR_MINOR=${QT_MAJOR}.${QT_MINOR}
 QT_MAJOR_MINOR_PATCH=${QT_MAJOR}.${QT_MINOR}.${QT_PATCH}
@@ -53,6 +53,9 @@ $QT_MAJOR_MINOR_PATCH/single/qt-everywhere-src-$QT_MAJOR_MINOR_PATCH.tar.xz
 QT_TARBALL_SHA256="98ff4f44bac6ec3e1e62ee2a4316ae0e3d15badb015d753cc0268a20db52f165"
 QT_TARBALL_FILE_NAME=$(basename "$QT_TARBALL_URL")
 CACHED_QT_TARBALL=$TARBALLS/$QT_TARBALL_FILE_NAME
+
+QT_WEBENGINE_TARBALL_FILE_NAME=$(basename "$QT_WEBENGINE_TARBALL_URL")
+CACHED_QT_WEBENGINE_TARBALL=$TARBALLS/$QT_WEBENGINE_TARBALL_FILE_NAME
 
 mkdir -p "$TARBALLS/$DISTRIBUTION"
 RPM_PATH=$TARBALLS/$DISTRIBUTION/jami-libqt-$QT_MAJOR_MINOR_PATCH-${QT_RELEASE_PATCH}.x86_64.rpm
@@ -93,7 +96,23 @@ if [ ! -f "${RPM_PATH}" ]; then
             ) 8>"${CACHED_QT_TARBALL}.lock"
         fi
 
+        if [ ! -f "$CACHED_QT_WEBENGINE_TARBALL" ]; then
+            (
+                flock 8     # block until the lock file is gone
+                test -f "$CACHED_QT_WEBENGINE_TARBALL" && exit 0 # check again
+
+                wget "$QT_WEBENGINE_TARBALL_URL"
+                if ! echo -n ${QT_WEBENGINE_TARBALL_CHECKSUM} "$QT_WEBENGINE_TARBALL_FILE_NAME" | sha256sum -c -
+                then
+                    echo "qt webengine tarball checksum mismatch; quitting"
+                    exit 1
+                fi
+                mv "$QT_WEBENGINE_TARBALL_FILE_NAME" "$CACHED_QT_WEBENGINE_TARBALL"
+            ) 8>"${CACHED_QT_WEBENGINE_TARBALL}.lock"
+        fi
+
         cp "$CACHED_QT_TARBALL" "/root/rpmbuild/SOURCES/jami-libqt-$QT_MAJOR_MINOR_PATCH.tar.xz"
+        cp "$CACHED_QT_WEBENGINE_TARBALL" "/root/rpmbuild/SOURCES/jami-libqt-qtwebengine-$QT_MAJOR_MINOR_PATCH.tar.xz"
         sed -i "s/RELEASE_VERSION/$QT_MAJOR_MINOR_PATCH/g" jami-libqt.spec
         rpmdev-bumpspec --comment="Automatic nightly release" \
                         --userstring="Jenkins <jami@lists.savoirfairelinux.net>" jami-libqt.spec

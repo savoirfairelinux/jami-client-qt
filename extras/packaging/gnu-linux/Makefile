@@ -47,7 +47,11 @@ QT_MAJOR := 6
 QT_MINOR := 12
 QT_PATCH := 0
 QT_TARBALL_CHECKSUM := 98ff4f44bac6ec3e1e62ee2a4316ae0e3d15badb015d753cc0268a20db52f165
-DEBIAN_QT_VERSION := $(QT_MAJOR).$(QT_MINOR).$(QT_PATCH)-0
+# Since Qt 6.12, Qt WebEngine is released separately with its own versioning.
+QT_WEBENGINE_VERSION := 6.140.0-rc
+QT_WEBENGINE_TARBALL_URL := https://download.qt.io/development_releases/qtwebengine/$(QT_WEBENGINE_VERSION)/qtwebengine-everywhere-src-$(QT_WEBENGINE_VERSION).tar.xz
+QT_WEBENGINE_TARBALL_CHECKSUM := 61257967afd9803a1db6403e86ea25c4efff8fad479bda365a9d81bfd709f621
+DEBIAN_QT_VERSION := $(QT_MAJOR).$(QT_MINOR).$(QT_PATCH)-2
 DEBIAN_QT_DSC_FILENAME := libqt-jami_$(DEBIAN_QT_VERSION).dsc
 QT_JAMI_PREFIX := /usr/lib/libqt-jami
 
@@ -165,6 +169,7 @@ DISTRIBUTIONS := \
 	debian_unstable \
 	ubuntu_24.04 \
 	ubuntu_26.04 \
+	ubuntu_26.10 \
 	fedora_43 \
 	fedora_44 \
 	alma_9 \
@@ -202,6 +207,9 @@ $(1)-docker-run-command := docker run \
   -e QT_MINOR="$(QT_MINOR)" \
   -e QT_PATCH="$(QT_PATCH)" \
   -e QT_TARBALL_CHECKSUM="$(QT_TARBALL_CHECKSUM)" \
+  -e QT_WEBENGINE_VERSION="$(QT_WEBENGINE_VERSION)" \
+  -e QT_WEBENGINE_TARBALL_URL="$(QT_WEBENGINE_TARBALL_URL)" \
+  -e QT_WEBENGINE_TARBALL_CHECKSUM="$(QT_WEBENGINE_TARBALL_CHECKSUM)" \
   -e FORCE_REBUILD_QT="$(FORCE_REBUILD_QT)" \
   -e SNAP_PKG_NAME="$(or $(SNAP_PKG_NAME),jami)" \
   -e TARBALLS="$(TARBALLS)" \
