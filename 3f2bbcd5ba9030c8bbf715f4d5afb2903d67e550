@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "edc3010f_ea067567",
+        "filename": "extras/packaging/gnu-linux/docker/Dockerfile_ubuntu_26.10",
+        "patchSetId": 6
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-10-13T18:08:42Z",
+      "side": 1,
+      "message": "[warning] Line 6: 🟡 Package installation should use `--no-install-recommends` and clear apt lists in the same layer to reduce image size and network/download overhead in CI. Consider: `apt-get update \u0026\u0026 apt-get install -y --no-install-recommends ... \u0026\u0026 rm -rf /var/lib/apt/lists/*`.",
+      "revId": "3f2bbcd5ba9030c8bbf715f4d5afb2903d67e550",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cdea95b5_1eb8182e",
+        "filename": "extras/packaging/gnu-linux/scripts/build-package-rpm.sh",
+        "patchSetId": 6
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-10-13T18:08:42Z",
+      "side": 1,
+      "message": "[error] Line 104: 🔴 The checksum input format passed to `sha256sum -c -` is invalid (`echo -n ${QT_WEBENGINE_TARBALL_CHECKSUM} \"$QT_WEBENGINE_TARBALL_FILE_NAME\"` produces a single separator space and no guaranteed record terminator). `sha256sum -c` expects `HASH␠␠FILENAME` (or `HASH␠*FILENAME`), so this can fail with ‘improperly formatted checksum line’ and abort RPM builds. Build the line explicitly with two spaces and a newline, e.g. `printf \u0027%s  %s\\n\u0027 \"$QT_WEBENGINE_TARBALL_CHECKSUM\" \"$QT_WEBENGINE_TARBALL_FILE_NAME\" | sha256sum -c -`.",
+      "revId": "3f2bbcd5ba9030c8bbf715f4d5afb2903d67e550",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
