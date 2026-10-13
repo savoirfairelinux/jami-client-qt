@@ -18,6 +18,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6d5fc36a_e170e13d",
+        "filename": "extras/packaging/gnu-linux/docker/Dockerfile_ubuntu_26.10",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-10-13T15:21:54Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "8766ffbb_2cd229c1",
+      "revId": "bfd7484d64b205d7bc64396e6be9609a189f054d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2fb118db_b14b9d9f",
