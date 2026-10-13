@@ -165,6 +165,7 @@ DISTRIBUTIONS := \
 	debian_unstable \
 	ubuntu_24.04 \
 	ubuntu_26.04 \
+	ubuntu_26.10 \
 	fedora_43 \
 	fedora_44 \
 	alma_9 \
