@@ -47,6 +47,15 @@ toHashMap(const QByteArray& content)
     return vCard;
 }
 
+QByteArray
+photo(const QHash<QByteArray, QByteArray>& vCard)
+{
+    for (auto it = vCard.cbegin(); it != vCard.cend(); ++it)
+        if (it.key().contains(Property::PHOTO) && !it.value().isEmpty())
+            return it.value();
+    return {};
+}
+
 } // namespace utils
 } // namespace vCard
 } // namespace lrc
