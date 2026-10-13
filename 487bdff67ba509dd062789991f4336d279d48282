@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "68333175_a32393e3",
+        "filename": "src/core/vcard.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-10-13T20:17:15Z",
+      "side": 1,
+      "message": "[error] Line 54: 🔴 `photo()` iterates a `QHash`, whose iteration order is not stable and does not preserve vCard field order. This means the implementation does not actually return the *first* PHOTO entry with data, and with multiple non-empty PHOTO entries the selected avatar can vary. Parse PHOTO entries in input order (e.g., while scanning lines in `toHashMap` or via a dedicated ordered PHOTO extractor) and return the first non-empty one.",
+      "revId": "487bdff67ba509dd062789991f4336d279d48282",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7bfcd309_f696d8f1",
+        "filename": "tests/unittests/vcard_unittest.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-10-13T20:17:15Z",
+      "side": 1,
+      "message": "[warning] Line 26: 🟡 The test does not exercise the reported regression case: the non-empty PHOTO appears before the empty one. As written, it can pass even if an empty first PHOTO still hides a later valid PHOTO. Reorder the fixture to have an empty PHOTO first and a valid PHOTO second (and ideally add a case with multiple non-empty PHOTO entries to lock expected selection behavior).",
+      "revId": "487bdff67ba509dd062789991f4336d279d48282",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
