@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8766ffbb_2cd229c1",
+        "filename": "extras/packaging/gnu-linux/docker/Dockerfile_ubuntu_26.10",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-10-13T14:43:35Z",
+      "side": 1,
+      "message": "[warning] Line 1: 🟡 `FROM ubuntu:26.10` uses a mutable tag, which makes builds non-reproducible and can silently pull changed base contents over time. Pin the image to a digest (for example `ubuntu:26.10@sha256:...`) to improve supply-chain integrity and deterministic CI results.",
+      "revId": "bfd7484d64b205d7bc64396e6be9609a189f054d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2fb118db_b14b9d9f",
+        "filename": "extras/packaging/gnu-linux/docker/Dockerfile_ubuntu_26.10",
+        "patchSetId": 2
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-10-13T14:43:35Z",
+      "side": 1,
+      "message": "[warning] Line 6: 🟡 The apt install layer doesn’t use `--no-install-recommends` and doesn’t clear apt lists after install, which increases image size and pull/build time unnecessarily. Consider `apt-get install -y --no-install-recommends ... \u0026\u0026 rm -rf /var/lib/apt/lists/*` in the same layer.",
+      "revId": "bfd7484d64b205d7bc64396e6be9609a189f054d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
