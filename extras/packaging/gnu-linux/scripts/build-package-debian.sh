@@ -81,9 +81,35 @@ ${QT_MAJOR}.${QT_MINOR}/${qt_version}/single
 
         fi
 
+        webengine_tarball_name=qtwebengine-everywhere-src-${QT_WEBENGINE_VERSION}.tar.xz
+        cached_webengine_tarball=$TARBALLS/$webengine_tarball_name
+
+        if [ ! -f "${cached_webengine_tarball}" ]; then
+            (
+                flock 8         # block until the lock file is gone
+                test -f "${cached_webengine_tarball}" && exit 0 # check again
+
+                temp_dir=$(mktemp -d)
+                cd "${temp_dir}"
+                wget "${QT_WEBENGINE_TARBALL_URL}"
+                echo -n "${QT_WEBENGINE_TARBALL_CHECKSUM}  ${webengine_tarball_name}" | sha256sum -c - || \
+                    (echo "Qt WebEngine tarball checksum mismatch; quitting" && exit 1)
+                mv "${webengine_tarball_name}" "${cached_webengine_tarball}"
+                rm -rf "${temp_dir}"
+            ) 8>"${cached_webengine_tarball}.lock"
+        fi
+
         cp "${cached_tarball}" "libqt-jami_${qt_version}.orig.tar.xz"
         tar xvf "libqt-jami_${qt_version}.orig.tar.xz"
         mv "qt-everywhere-src-${qt_version}" "libqt-jami-${qt_version}"
+
+        # Qt WebEngine is no longer part of the Qt tarball; add it as an
+        # additional upstream tarball unpacked in the qtwebengine directory.
+        cp "${cached_webengine_tarball}" "libqt-jami_${qt_version}.orig-qtwebengine.tar.xz"
+        mkdir "libqt-jami-${qt_version}/qtwebengine"
+        tar xf "libqt-jami_${qt_version}.orig-qtwebengine.tar.xz" \
+            -C "libqt-jami-${qt_version}/qtwebengine" --strip-components=1
+
         cd "libqt-jami-${qt_version}"
 
         # Extract the debian folder

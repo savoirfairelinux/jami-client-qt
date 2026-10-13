@@ -3,6 +3,19 @@
 
 # export DH_VERBOSE = 1
 
+# qtwebengine (aka chromium) takes a ton of memory per build process.
+# Cap the number of jobs based on the amount of available memory to try
+# to guard against OOM build failures (same logic as jami-libqt.spec).
+CPU_COUNT := $(shell nproc)
+# Available memory in GiB.
+AVAILABLE_MEMORY := $(shell awk '/^MemAvailable:/ {print int($$2 / 1048576)}' /proc/meminfo)
+MAX_PARALLEL_BUILDS := 4
+MEMORY_REQUIRED_PER_CORE := 2
+JOB_COUNT := $(shell n=$$(( $(AVAILABLE_MEMORY) / $(MEMORY_REQUIRED_PER_CORE) / $(MAX_PARALLEL_BUILDS) )); \
+	[ $$n -lt 1 ] && n=1; [ $$n -gt $(CPU_COUNT) ] && n=$(CPU_COUNT); echo $$n)
+# Chromium is built by a nested Ninja, which only honors NINJAFLAGS.
+export NINJAFLAGS := -j$(JOB_COUNT)
+
 %:
 	dh $@
 
@@ -16,7 +29,8 @@ override_dh_auto_configure:
 	  -- -DFFMPEG_DIR=/opt/libqt-jami-ffmpeg -DQT_DEPLOY_FFMPEG=ON
 
 override_dh_auto_build:
-	cmake --build . --parallel
+	@echo "Building Qt using $(JOB_COUNT) parallel jobs"
+	cmake --build . --parallel $(JOB_COUNT)
 
 override_dh_auto_install:
 	cmake --install . --prefix $(CURDIR)/debian/tmp/${QT_JAMI_PREFIX}
