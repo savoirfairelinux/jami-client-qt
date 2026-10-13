@@ -47,7 +47,7 @@ QT_MAJOR := 6
 QT_MINOR := 12
 QT_PATCH := 0
 QT_TARBALL_CHECKSUM := 98ff4f44bac6ec3e1e62ee2a4316ae0e3d15badb015d753cc0268a20db52f165
-DEBIAN_QT_VERSION := $(QT_MAJOR).$(QT_MINOR).$(QT_PATCH)-0
+DEBIAN_QT_VERSION := $(QT_MAJOR).$(QT_MINOR).$(QT_PATCH)-1
 DEBIAN_QT_DSC_FILENAME := libqt-jami_$(DEBIAN_QT_VERSION).dsc
 QT_JAMI_PREFIX := /usr/lib/libqt-jami
 
@@ -165,6 +165,7 @@ DISTRIBUTIONS := \
 	debian_unstable \
 	ubuntu_24.04 \
 	ubuntu_26.04 \
+	ubuntu_26.10 \
 	fedora_43 \
 	fedora_44 \
 	alma_9 \

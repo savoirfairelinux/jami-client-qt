@@ -1,0 +1,85 @@
+From 03b0af2cd3e2a3f76ee70cebc840788daa385067 Mon Sep 17 00:00:00 2001
+From: Ilyas Erdogan <ilyas.erdogan@savoirfairelinux.com>
+Date: Tue, 13 Oct 2026 11:17:48 -0400
+Subject: [PATCH] qtopcua: fix build with OpenSSL 4
+
+OpenSSL 4 makes ASN1_STRING (and therefore ASN1_TIME) an opaque type,
+which breaks the build of qtopcua on Ubuntu 26.10 (OpenSSL 4.0.3):
+
+qtopcua/src/opcua/x509/openssl_symbols.cpp:641:31: error: invalid use of incomplete type 'const ASN1_TIME' {aka 'const struct asn1_string_st'}
+  641 |     size_t lTimeLength = aTime->length;
+      |                               ^~
+
+Use the ASN1_STRING_length(), ASN1_STRING_get0_data() and
+ASN1_STRING_type() accessors instead, resolved like the other OpenSSL
+symbols. These accessors are available since OpenSSL 1.1.0.
+---
+ qtopcua/src/opcua/x509/openssl_symbols.cpp | 15 +++++++++++----
+ qtopcua/src/opcua/x509/openssl_symbols_p.h |  3 +++
+ 2 files changed, 14 insertions(+), 4 deletions(-)
+
+diff --git a/qtopcua/src/opcua/x509/openssl_symbols.cpp b/qtopcua/src/opcua/x509/openssl_symbols.cpp
+index 561807d..09b956d 100644
+--- a/qtopcua/src/opcua/x509/openssl_symbols.cpp
++++ b/qtopcua/src/opcua/x509/openssl_symbols.cpp
+@@ -175,6 +175,9 @@ DEFINEFUNC(AUTHORITY_KEYID *, AUTHORITY_KEYID_new, void, DUMMYARG, return NULL,
+ DEFINEFUNC(ASN1_INTEGER *, ASN1_INTEGER_dup, const ASN1_INTEGER *x, x, return NULL, return)
+ DEFINEFUNC4(int, X509_NAME_digest, const X509_NAME *data, data, const EVP_MD *type, type, unsigned char *md, md, unsigned int *len, len, return 0, return)
+ DEFINEFUNC(void, ASN1_INTEGER_free, ASN1_INTEGER *a, a, return, return)
++DEFINEFUNC(int, ASN1_STRING_length, const ASN1_STRING *x, x, return 0, return)
++DEFINEFUNC(const unsigned char *, ASN1_STRING_get0_data, const ASN1_STRING *x, x, return nullptr, return)
++DEFINEFUNC(int, ASN1_STRING_type, const ASN1_STRING *x, x, return 0, return)
+ DEFINEFUNC2(int, i2d_X509_REQ_bio, BIO *bp, bp, X509_REQ *req, req, return 0, return)
+ DEFINEFUNC2(int, i2d_X509_bio, BIO *bp, bp, X509 *x509, x509, return 0, return)
+ 
+@@ -614,6 +617,9 @@ bool q_resolveOpenSslSymbols()
+     RESOLVEFUNC(ASN1_INTEGER_dup)
+     RESOLVEFUNC(X509_NAME_digest)
+     RESOLVEFUNC(ASN1_INTEGER_free)
++    RESOLVEFUNC(ASN1_STRING_length)
++    RESOLVEFUNC(ASN1_STRING_get0_data)
++    RESOLVEFUNC(ASN1_STRING_type)
+     RESOLVEFUNC(i2d_X509_REQ_bio)
+     RESOLVEFUNC(i2d_X509_bio)
+ 
+@@ -638,10 +644,11 @@ bool q_resolveOpenSslSymbols()
+ //==============================================================================
+ QDateTime q_getTimeFromASN1(const ASN1_TIME *aTime)
+ {
+-    size_t lTimeLength = aTime->length;
+-    char *pString = (char *) aTime->data;
++    size_t lTimeLength = q_ASN1_STRING_length(aTime);
++    const char *pString = reinterpret_cast<const char *>(q_ASN1_STRING_get0_data(aTime));
++    const int lTimeType = q_ASN1_STRING_type(aTime);
+ 
+-    if (aTime->type == V_ASN1_UTCTIME) {
++    if (lTimeType == V_ASN1_UTCTIME) {
+ 
+         char lBuffer[24];
+         char *pBuffer = lBuffer;
+@@ -701,7 +708,7 @@ QDateTime q_getTimeFromASN1(const ASN1_TIME *aTime)
+         result = result.addSecs(lSecondsFromUCT);
+         return result;
+ 
+-    } else if (aTime->type == V_ASN1_GENERALIZEDTIME) {
++    } else if (lTimeType == V_ASN1_GENERALIZEDTIME) {
+ 
+         if (lTimeLength < 15)
+             return QDateTime(); // hopefully never triggered
+diff --git a/qtopcua/src/opcua/x509/openssl_symbols_p.h b/qtopcua/src/opcua/x509/openssl_symbols_p.h
+index 0f43b97..d4481a8 100644
+--- a/qtopcua/src/opcua/x509/openssl_symbols_p.h
++++ b/qtopcua/src/opcua/x509/openssl_symbols_p.h
+@@ -300,6 +300,9 @@ X509_NAME *q_X509_NAME_dup(X509_NAME *xn);
+ int q_X509_set_serialNumber(X509 *x, ASN1_INTEGER *serial);
+ AUTHORITY_KEYID *q_AUTHORITY_KEYID_new();
+ void q_ASN1_INTEGER_free(ASN1_INTEGER *a);
++int q_ASN1_STRING_length(const ASN1_STRING *x);
++const unsigned char *q_ASN1_STRING_get0_data(const ASN1_STRING *x);
++int q_ASN1_STRING_type(const ASN1_STRING *x);
+ int q_i2d_X509_REQ_bio(BIO *bp, X509_REQ *req);
+ int q_i2d_X509_bio(BIO *bp, X509 *x509);
+ 
+-- 
+2.53.0
+
