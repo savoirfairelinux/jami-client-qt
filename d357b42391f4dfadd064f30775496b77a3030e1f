@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "915b1031_8d48f1aa",
+        "filename": "src/core/vcard.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-10-13T20:34:52Z",
+      "side": 1,
+      "message": "[error] Line 61: 🔴 `photo()` treats `value` as non-empty without normalizing CRLF line endings. For a standards-compliant vCard line like `PHOTO;...:\\r\\n`, `value` becomes `\"\\r\"`, so this path still returns an effectively empty photo and can hide later valid PHOTO entries. Trim trailing `\\r`/whitespace (or parse with CRLF-aware normalization) before the emptiness check and before returning the value.",
+      "revId": "d357b42391f4dfadd064f30775496b77a3030e1f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5c3c11b4_a2f68dfb",
+        "filename": "tests/unittests/vcard_unittest.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-10-13T20:34:52Z",
+      "side": 1,
+      "message": "[warning] Line 21: 🟡 Add a regression case using `\\r\\n` line endings with an empty PHOTO followed by a non-empty PHOTO. Current tests only use `\\n`, so they miss the CRLF path where empty PHOTO can still be treated as non-empty.",
+      "revId": "d357b42391f4dfadd064f30775496b77a3030e1f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
