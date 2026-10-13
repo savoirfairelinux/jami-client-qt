@@ -20,6 +20,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f4f063dd_6e073f58",
+        "filename": "src/core/vcard.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-10-13T20:18:14Z",
+      "side": 1,
+      "message": "[warning] Line 54: 🟡 `photo()` uses `it.key().contains(Property::PHOTO)`, which is a case-sensitive substring match. vCard property names are case-insensitive, and substring matching can also select unrelated keys that merely contain `PHOTO`. Parse the property name token (before `;`/`:`) and compare it to `PHOTO` with case-insensitive equality to avoid false negatives and false positives.",
+      "revId": "487bdff67ba509dd062789991f4336d279d48282",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7bfcd309_f696d8f1",
         "filename": "tests/unittests/vcard_unittest.cpp",
         "patchSetId": 1
