@@ -20,6 +20,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "87f5f268_29ea5fa4",
+        "filename": "src/core/conversationmodel_messaging.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-10-14T13:14:06Z",
+      "side": 1,
+      "message": "[warning] Line 64: 🟡 This path repeatedly does linear searches (`indexOfMessage`) and also calls `moveMessage`, which does another linear lookup per message; for a large `SwarmMessagesUpdated` suffix this becomes O(k*n) on the UI thread and can cause visible stalls. Build/reuse an ID→index map for the affected range (or rebuild the tail segment once) so applying the suffix is near-linear.",
+      "revId": "b2cfd6654395df92dd8fae948ef55ef3c277dda3",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "29cb4e2a_178a475b",
         "filename": "src/core/conversationmodel_messaging.cpp",
         "patchSetId": 1
