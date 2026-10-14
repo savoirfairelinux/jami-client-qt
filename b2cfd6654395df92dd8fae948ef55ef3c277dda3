@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fa9080d8_f3b242b4",
+        "filename": "src/core/conversationmodel_messaging.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-10-14T13:11:43Z",
+      "side": 1,
+      "message": "[error] Line 57: 🔴 The new suffix handling never removes stale messages that were previously after `linearizedParent` but are absent from the incoming suffix. Per the commit contract, this suffix *replaces* the tail; keeping unmatched old items leaves an incorrect history order/content (e.g., obsolete messages remain after reordering). Before/while applying the suffix, remove existing post-parent messages not present in the incoming IDs (or rebuild that tail segment from the suffix) so the local model matches daemon state exactly.",
+      "revId": "b2cfd6654395df92dd8fae948ef55ef3c277dda3",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "29cb4e2a_178a475b",
+        "filename": "src/core/conversationmodel_messaging.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-10-14T13:11:43Z",
+      "side": 1,
+      "message": "[error] Line 69: 🔴 `allMessagesLoaded` is only set when an `initial` message is inserted (`else` branch). If that `initial` message already exists and is just moved/updated, the flag is never set, so the conversation can remain incorrectly marked as not fully loaded. Handle `message.type \u003d\u003d \"initial\"` independently of insert-vs-move (before branch split), and keep the existing invitation filtering semantics for interaction emission only.",
+      "revId": "b2cfd6654395df92dd8fae948ef55ef3c277dda3",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
