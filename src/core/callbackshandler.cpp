@@ -322,9 +322,9 @@ CallbacksHandler::CallbacksHandler(const Lrc& parent)
             &CallbacksHandler::slotMessagesFound,
             Qt::QueuedConnection);
     connect(&ConfigurationManager::instance(),
-            &ConfigurationManagerInterface::swarmMessageReceived,
+            &ConfigurationManagerInterface::swarmMessagesUpdated,
             this,
-            &CallbacksHandler::slotMessageReceived,
+            &CallbacksHandler::slotMessagesUpdated,
             Qt::QueuedConnection);
     connect(&ConfigurationManager::instance(),
             &ConfigurationManagerInterface::swarmMessageUpdated,
@@ -761,11 +761,11 @@ CallbacksHandler::slotMessagesFound(uint32_t requestId,
 }
 
 void
-CallbacksHandler::slotMessageReceived(const QString& accountId,
+CallbacksHandler::slotMessagesUpdated(const QString& accountId,
                                       const QString& conversationId,
-                                      const SwarmMessage& message)
+                                      const VectorSwarmMessage& messages)
 {
-    Q_EMIT messageReceived(accountId, conversationId, message);
+    Q_EMIT messagesUpdated(accountId, conversationId, messages);
 }
 
 void

@@ -317,19 +317,23 @@ public:
                                          QString(conversationId.c_str()),
                                          convertVecMap(messages));
                 }),
-            exportable_callback<ConversationSignal::SwarmMessageReceived>([this](const std::string& accountId,
-                                                                                 const std::string& conversationId,
-                                                                                 const libjami::SwarmMessage& message) {
-                ::SwarmMessage msg = {message.id.c_str(),
-                                      message.type.c_str(),
-                                      message.linearizedParent.c_str(),
-                                      convertMap(message.body),
-                                      convertVecMap(message.reactions),
-                                      convertVecMap(message.editions),
-                                      convertMap(message.status),
-                                      convertMap(message.pluginData)};
-                Q_EMIT swarmMessageReceived(QString(accountId.c_str()), QString(conversationId.c_str()), msg);
-            }),
+            exportable_callback<ConversationSignal::SwarmMessagesUpdated>(
+                [this](const std::string& accountId,
+                       const std::string& conversationId,
+                       const std::vector<libjami::SwarmMessage>& messages) {
+                    VectorSwarmMessage vec;
+                    for (const auto& msg : messages) {
+                        vec.push_back({msg.id.c_str(),
+                                       msg.type.c_str(),
+                                       msg.linearizedParent.c_str(),
+                                       convertMap(msg.body),
+                                       convertVecMap(msg.reactions),
+                                       convertVecMap(msg.editions),
+                                       convertMap(msg.status),
+                                       convertMap(msg.pluginData)});
+                    }
+                    Q_EMIT swarmMessagesUpdated(QString(accountId.c_str()), QString(conversationId.c_str()), vec);
+                }),
             exportable_callback<ConversationSignal::SwarmMessageUpdated>([this](const std::string& accountId,
                                                                                 const std::string& conversationId,
                                                                                 const libjami::SwarmMessage& message) {
@@ -1440,7 +1444,9 @@ Q_SIGNALS: // SIGNALS
                      const QString& accountId,
                      const QString& conversationId,
                      const VectorSwarmMessage& messages);
-    void swarmMessageReceived(const QString& accountId, const QString& conversationId, const SwarmMessage& message);
+    void swarmMessagesUpdated(const QString& accountId,
+                              const QString& conversationId,
+                              const VectorSwarmMessage& messages);
     void swarmMessageUpdated(const QString& accountId, const QString& conversationId, const SwarmMessage& message);
     void reactionAdded(const QString& accountId,
                        const QString& conversationId,

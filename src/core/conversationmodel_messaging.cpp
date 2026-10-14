@@ -46,57 +46,70 @@ using namespace authority;
 using namespace api;
 
 void
-ConversationModel::slotMessageReceived(const QString& accountId,
-                                            const QString& conversationId,
-                                            const SwarmMessage& message)
+ConversationModel::slotMessagesUpdated(const QString& accountId,
+                                       const QString& conversationId,
+                                       const VectorSwarmMessage& messages)
 {
-    if (accountId != owner.id)
+    if (accountId != owner.id || messages.empty())
         return;
     try {
         auto& conversation = convForUid(conversationId).get();
-        if (message.type == "initial") {
-            conversation.allMessagesLoaded = true;
-            Q_EMIT conversationUpdated(conversationId);
-            if (message.body.find("invited") == message.body.end()) {
-                return;
+        auto& interactions = conversation.interactions;
+        // The messages replace those after the parent of the first one, or all the loaded
+        // messages if this parent is not loaded.
+        auto position = interactions->indexOfMessage(messages.front().linearizedParent) + 1;
+        for (const auto& message : messages) {
+            QString msgId = message.id;
+            auto msg = interaction::Info(message, owner.profileInfo.uri, accountId, conversationId);
+            if (msg.type == interaction::Type::CALL)
+                msg.body = interaction::getCallInteractionString(msg.authorUri == owner.profileInfo.uri, msg);
+
+            if (interactions->moveMessage(msgId, position)) {
+                interactions->update(msgId, msg);
+                interactions->updateStatus(msgId, msg.status);
+            } else {
+                if (message.type == "initial") {
+                    conversation.allMessagesLoaded = true;
+                    Q_EMIT conversationUpdated(conversationId);
+                    if (message.body.find("invited") == message.body.end())
+                        continue;
+                }
+                if (msg.type == interaction::Type::DATA_TRANSFER)
+                    owner.dataTransferModel->registerTransferId(message.body.value("fileId"), msgId);
+                if (!interactions->insert(msgId, msg, position)) {
+                    qDebug() << Q_FUNC_INFO << "Insert failed." << msgId;
+                    continue;
+                }
+
+                auto updateUnread = msg.authorUri != owner.profileInfo.uri;
+                if (updateUnread)
+                    conversation.unreadMessages++;
+                conversation.lastSelfMessageId = interactions->lastSelfMessageId(owner.profileInfo.uri);
+                invalidateModel();
+                if (!interaction::isOutgoing(msg) && updateUnread)
+                    Q_EMIT d_->behaviorController.newUnreadInteraction(owner.id, conversationId, msgId, msg);
+                Q_EMIT newInteraction(conversationId, msgId, msg);
+                Q_EMIT modelChanged();
+                if (msg.transferStatus == interaction::TransferStatus::TRANSFER_AWAITING_HOST)
+                    handleIncomingFile(conversationId, msgId, QString(message.body.value("totalSize")).toInt());
+            }
+            position = interactions->indexOfMessage(msgId) + 1;
+
+            // The status of these messages is not sent separately.
+            using namespace libjami::Account;
+            for (const auto& uri : message.status.keys()) {
+                if (uri == owner.profileInfo.uri)
+                    continue;
+                if (message.status.value(uri) == static_cast<int>(MessageStates::DISPLAYED))
+                    interactions->setRead(uri, msgId);
             }
         }
-        QString msgId = message.id;
-        auto msg = interaction::Info(message, owner.profileInfo.uri, accountId, conversationId);
-
-        if (msg.type == interaction::Type::CALL) {
-            msg.body = interaction::getCallInteractionString(msg.authorUri == owner.profileInfo.uri, msg);
-        } else if (msg.type == interaction::Type::DATA_TRANSFER) {
-            QString fileId = message.body.value("fileId");
-            owner.dataTransferModel->registerTransferId(fileId, msgId);
-        }
-
-        if (!conversation.interactions->append(msgId, msg)) {
-            qDebug() << Q_FUNC_INFO << "Append failed: duplicate ID." << msgId;
-            return;
-        }
-
-        auto updateUnread = msg.authorUri != owner.profileInfo.uri;
-        if (updateUnread)
-            conversation.unreadMessages++;
-        conversation.lastSelfMessageId = conversation.interactions->lastSelfMessageId(owner.profileInfo.uri);
+        conversation.lastSelfMessageId = interactions->lastSelfMessageId(owner.profileInfo.uri);
         invalidateModel();
-        if (!interaction::isOutgoing(msg) && updateUnread) {
-            Q_EMIT d_->behaviorController.newUnreadInteraction(owner.id, conversationId, msgId, msg);
-        }
-        Q_EMIT newInteraction(conversationId, msgId, msg);
         Q_EMIT modelChanged();
-        if (msg.transferStatus == interaction::TransferStatus::TRANSFER_AWAITING_HOST) {
-            handleIncomingFile(conversationId, msgId, QString(message.body.value("totalSize")).toInt());
-        }
-        { const auto _idx = index(indexOf(conversationId)); Q_EMIT dataChanged(_idx, _idx); }
-        // Update status
-        using namespace libjami::Account;
-        for (const auto& uri : message.status.keys()) {
-            if (uri == owner.profileInfo.uri)
-                continue;
-            if (message.status.value(uri) == static_cast<int>(MessageStates::DISPLAYED))
-                conversation.interactions->setRead(uri, message.id);
+        {
+            const auto _idx = index(indexOf(conversationId));
+            Q_EMIT dataChanged(_idx, _idx);
         }
     } catch (const std::exception& e) {
         qDebug() << "Messages received for conversation that does not exist.";

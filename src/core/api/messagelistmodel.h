@@ -107,6 +107,7 @@ public:
     bool insert(const QString& id, const interaction::Info& interaction, int index = -1);
     bool append(const QString& id, const interaction::Info& interaction);
     bool update(const QString& id, const interaction::Info& interaction);
+    bool moveMessage(const QString& id, int index);
     bool updateStatus(const QString& id, interaction::Status newStatus, const QString& newBody = {});
     bool updateTransferStatus(const QString& id, interaction::TransferStatus newStatus, const QString& newBody = {});
     QPair<bool, bool> addOrUpdate(const QString& id, const interaction::Info& interaction);

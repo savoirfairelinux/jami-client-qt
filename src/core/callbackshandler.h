@@ -358,7 +358,7 @@ Q_SIGNALS:
                        const QString& accountId,
                        const QString& conversationId,
                        const VectorMapStringString& messages);
-    void messageReceived(const QString& accountId, const QString& conversationId, const SwarmMessage& message);
+    void messagesUpdated(const QString& accountId, const QString& conversationId, const VectorSwarmMessage& messages);
     void messageUpdated(const QString& accountId, const QString& conversationId, const SwarmMessage& message);
     void reactionAdded(const QString& accountId,
                        const QString& conversationId,
@@ -686,7 +686,9 @@ private Q_SLOTS:
                            const QString& accountId,
                            const QString& conversationId,
                            const VectorMapStringString& messages);
-    void slotMessageReceived(const QString& accountId, const QString& conversationId, const SwarmMessage& message);
+    void slotMessagesUpdated(const QString& accountId,
+                             const QString& conversationId,
+                             const VectorSwarmMessage& messages);
     void slotMessageUpdated(const QString& accountId, const QString& conversationId, const SwarmMessage& message);
     void slotReactionAdded(const QString& accountId,
                            const QString& conversationId,

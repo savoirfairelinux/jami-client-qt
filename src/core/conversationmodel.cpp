@@ -153,7 +153,7 @@ ConversationModel::ConversationModel(const account::Info& owner,
     // swarm d_->conversations
     connect(&callbacksHandler, &CallbacksHandler::swarmLoaded, this, &ConversationModel::slotSwarmLoaded);
     connect(&callbacksHandler, &CallbacksHandler::messagesFound, this, &ConversationModel::slotMessagesFound);
-    connect(&callbacksHandler, &CallbacksHandler::messageReceived, this, &ConversationModel::slotMessageReceived);
+    connect(&callbacksHandler, &CallbacksHandler::messagesUpdated, this, &ConversationModel::slotMessagesUpdated);
     connect(&callbacksHandler, &CallbacksHandler::messageUpdated, this, &ConversationModel::slotMessageUpdated);
     connect(&callbacksHandler, &CallbacksHandler::reactionAdded, this, &ConversationModel::slotReactionAdded);
     connect(&callbacksHandler, &CallbacksHandler::reactionRemoved, this, &ConversationModel::slotReactionRemoved);

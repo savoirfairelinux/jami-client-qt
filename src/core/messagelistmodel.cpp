@@ -208,10 +208,34 @@ MessageListModel::update(const QString& id, const interaction::Info& interaction
     current.previousBodies = interaction.previousBodies;
     current.parsedBody = interaction.parsedBody;
     current.parsedOriginalBody = interaction.parsedOriginalBody;
+    current.reactions = interaction.reactions;
     auto modelIndex = QAbstractListModel::index(indexOfMessage(id), 0);
     Q_EMIT dataChanged(modelIndex,
                        modelIndex,
-                       {Role::TID, Role::Body, Role::PreviousBodies, Role::ParsedBody, Role::ParsedOriginalBody});
+                       {Role::TID,
+                        Role::Body,
+                        Role::PreviousBodies,
+                        Role::ParsedBody,
+                        Role::ParsedOriginalBody,
+                        Role::Reactions});
+    return true;
+}
+
+bool
+MessageListModel::moveMessage(const QString& id, int index)
+{
+    const std::lock_guard<std::recursive_mutex> lk(mutex_);
+    auto oldIndex = indexOfMessage(id);
+    if (oldIndex < 0 || index < 0) {
+        return false;
+    }
+    index = std::min(index, static_cast<int>(interactions_.size()) - 1);
+    if (oldIndex != index) {
+        // The destination of beginMoveRows is the index before the move.
+        beginMoveRows(QModelIndex(), oldIndex, oldIndex, QModelIndex(), index > oldIndex ? index + 1 : index);
+        interactions_.move(oldIndex, index);
+        endMoveRows();
+    }
     return true;
 }
 
