@@ -81,7 +81,11 @@ pipeline {
         stage('Building Docker Image') {
             steps {
                 script {
-                    docker.build('client-validation', "-f extras/build/docker/Dockerfile.client-qt-gnulinux .")
+                    def qtVersion = sh(returnStdout: true,
+                        script: "make -s -f extras/packaging/gnu-linux/Makefile --eval='print-qt-version:; @echo \$(DEBIAN_QT_VERSION)' print-qt-version").trim()
+                    docker.build('client-validation',
+                        "--build-arg LIBQT_JAMI_VERSION=${qtVersion} " +
+                        "-f extras/build/docker/Dockerfile.client-qt-gnulinux .")
                 }
             }
         }
