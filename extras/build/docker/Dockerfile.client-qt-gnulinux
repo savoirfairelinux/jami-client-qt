@@ -35,7 +35,8 @@ RUN apt-get update && \
 # Libqt-jami
 RUN curl -s https://dl.jami.net/public-key.gpg | tee /usr/share/keyrings/jami-archive-keyring.gpg > /dev/null
 RUN sh -c "echo 'deb [signed-by=/usr/share/keyrings/jami-archive-keyring.gpg] https://dl.jami.net/internal/ubuntu_24.04/ jami main' > /etc/apt/sources.list.d/jami.list"
-RUN apt-get update && apt-get install libqt-jami -y
+# Pinned so the Docker layer is rebuilt when the package is bumped.
+RUN apt-get update && apt-get install -y libqt-jami=6.12.0-2
 
 # Build dependencies
 # ponytail: update must be in the same layer as install, otherwise Docker's
