@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6995ec0d_440dc5ab",
+        "filename": "extras/scripts/__pycache__/build-windows.cpython-314.pyc",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-10-15T21:30:09Z",
+      "side": 1,
+      "message": "[error] 🔴 This patch adds a generated `__pycache__` binary to source control. Remove this file from the change and ensure Python bytecode artifacts are ignored (typically via `.gitignore`) to keep the repo reproducible and reviewable across Python versions/platforms.",
+      "revId": "d37bc29128e0265ca4112b96ca678bcdbe1f27a4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d124179c_e41ffe0b",
+        "filename": "extras/scripts/build-windows.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-10-15T21:30:09Z",
+      "side": 1,
+      "message": "[warning] Line 225: 🟡 The cache invalidation only inspects `Qt6_DIR`, but the commit message states stale `Qt6\u003cModule\u003e_DIR` entries are also problematic. If `Qt6_DIR` is absent or unchanged while module-specific dirs are stale, the old cache may survive. Consider checking all `Qt6*_DIR:` entries and dropping the cache when any resolves outside the requested `qt_dir`.",
+      "revId": "d37bc29128e0265ca4112b96ca678bcdbe1f27a4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
