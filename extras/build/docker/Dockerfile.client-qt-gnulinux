@@ -35,7 +35,12 @@ RUN apt-get update && \
 # Libqt-jami
 RUN curl -s https://dl.jami.net/public-key.gpg | tee /usr/share/keyrings/jami-archive-keyring.gpg > /dev/null
 RUN sh -c "echo 'deb [signed-by=/usr/share/keyrings/jami-archive-keyring.gpg] https://dl.jami.net/internal/ubuntu_24.04/ jami main' > /etc/apt/sources.list.d/jami.list"
-RUN apt-get update && apt-get install libqt-jami -y
+# CI passes DEBIAN_QT_VERSION from extras/packaging/gnu-linux/Makefile so
+# this layer is rebuilt whenever the packaged Qt is bumped. Without the
+# build-arg the latest available package is installed.
+ARG LIBQT_JAMI_VERSION
+RUN apt-get update && \
+    apt-get install -y libqt-jami${LIBQT_JAMI_VERSION:+=$LIBQT_JAMI_VERSION}
 
 # Build dependencies
 # ponytail: update must be in the same layer as install, otherwise Docker's
