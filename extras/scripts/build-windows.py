@@ -214,6 +214,34 @@ def init_submodules():
         sys.exit(1)
 
 
+def drop_stale_cmake_cache(qt_dir, cmake_build_dir):
+    """
+    Remove a CMakeCache.txt generated against a different Qt.
+
+    Cached Qt6_DIR / Qt6<Module>_DIR entries take precedence over
+    CMAKE_PREFIX_PATH, so a restored build cache would silently keep
+    configuring against the old Qt.
+    """
+    cache_file = os.path.join(cmake_build_dir, "CMakeCache.txt")
+    if not os.path.exists(cache_file):
+        return
+    with open(cache_file, encoding="utf-8", errors="ignore") as cache:
+        for line in cache:
+            if not line.startswith("Qt6_DIR:"):
+                continue
+            # Qt6_DIR is <qt_dir>/lib/cmake/Qt6
+            cached_qt_dir = os.path.normpath(os.path.join(
+                line.split("=", 1)[1].strip(), "..", "..", ".."))
+            if (os.path.normcase(cached_qt_dir)
+                    != os.path.normcase(os.path.normpath(qt_dir))):
+                print(f"CMake cache was generated with Qt at {cached_qt_dir}, "
+                      "removing it")
+                os.remove(cache_file)
+                shutil.rmtree(os.path.join(cmake_build_dir, "CMakeFiles"),
+                              ignore_errors=True)
+            return
+
+
 def cmake_generate(options, env_vars, cmake_build_dir):
     """Generate the cmake project."""
     print("Generating cmake project...")
@@ -286,6 +314,7 @@ def build(config_str, qt_dir, tests, build_version, enable_crash_reports, crash_
     # Make sure the build directory exists.
     if not os.path.exists(build_dir):
         os.makedirs(build_dir)
+    drop_stale_cmake_cache(qt_dir, build_dir)
 
     if not cmake_generate(cmake_options, vs_env_vars, build_dir):
         print("Cmake generate error")
