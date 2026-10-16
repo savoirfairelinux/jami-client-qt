@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "703ab62e_646c3735",
+        "filename": "extras/packaging/gnu-linux/rules/debian-qt/patches/0001-qtwebengine-add-missing-header-includes-in-chromium.patch",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-10-16T17:46:22Z",
+      "side": 1,
+      "message": "[warning] Line 10: 🟡 The embedded patch description is Fedora/RPM-specific (\"fails on Fedora 44\") even though this file is now used in Debian packaging too. Please reword the description to be distro-neutral (e.g., GCC 16/libstdc++ header change) so future maintainers don’t misread scope or provenance.",
+      "revId": "941ca6eaf4f365d9b9f82c82524549921ab399a9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
