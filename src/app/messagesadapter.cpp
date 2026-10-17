@@ -632,6 +632,12 @@ MessagesAdapter::getMediaInfo(const QString& msg)
             {"isAudio", false},
             {"html", html.arg("video", "100%", filePath, mime.name())},
         };
+    } else if (mime.name().startsWith("video/")) {
+        // The web engine can't play it, so it's shown as a thumbnail.
+        return {
+            {"isVideo", true},
+            {"isAudio", false},
+        };
     } else {
         static const QRegularExpression aPattern("(audio/)(ogg|flac|wav|mpeg|mp3)$",
                                                  QRegularExpression::CaseInsensitiveOption);
