@@ -77,4 +77,64 @@ ListView {
             compare(buttonsLoader.iconSource, JamiResources.link_black_24dp_svg)
         }
     }
+
+    TestCase {
+        name: "Show a thumbnail for received videos"
+
+        function cleanup() {
+            if (uut.count > 1)
+                uut.model.remove(1, uut.count - 1)
+        }
+
+        // Adds a finished transfer of filePath and returns its delegate.
+        function addFinishedTransfer(filePath) {
+            uut.model.append({
+                Author: "",
+                IsLastSent: false,
+                Body: filePath,
+                Id: "",
+                IsEmojiOnly: false,
+                OriginalBody: "",
+                ParsedOriginalBody: "",
+                ReplyToBody: "",
+                ReplyTo: "",
+                ReplyToAuthor: "",
+                Reactions: "",
+                Timestamp: 0,
+                Readers: "",
+                PreviousBodies: "",
+                Value: 0,
+                Type: Interaction.Type.DATA_TRANSFER,
+                TotalSize: 4,
+                TransferName: "test",
+                TransferStatus: Interaction.TransferStatus.TRANSFER_FINISHED,
+                TID: 0
+            })
+            uut.currentIndex = uut.count - 1
+            const delegate = uut.currentItem
+            delegate.transferStatus = Interaction.TransferStatus.TRANSFER_AWAITING_HOST
+            delegate.transferStatus = Interaction.TransferStatus.TRANSFER_FINISHED
+            return delegate
+        }
+
+        function test_videoShowsAThumbnail() {
+            if (!WITH_WEBENGINE)
+                skip("Media previews require the web engine")
+            const videoPath = UtilsAdapter.getAbsPath(Qt.resolvedUrl("resources/video_test.mp4").toString())
+            const delegate = addFinishedTransfer(videoPath)
+            tryVerify(function () {
+                const playIndicator = findChild(delegate.item, "videoPlayIndicator")
+                return playIndicator !== null && playIndicator.visible
+            }, 10000, "The video thumbnail is shown with a play indicator")
+            compare(findChild(delegate.item, "buttonsLoader"), null)
+        }
+
+        function test_undecodableVideoIsShownAsAFile() {
+            const delegate = addFinishedTransfer("/tmp/qml-data-transfer-test-missing.mp4")
+            tryVerify(function () {
+                return findChild(delegate.item, "buttonsLoader") !== null
+            }, 10000, "The video is shown as a file transfer")
+            compare(findChild(delegate.item, "videoPlayIndicator"), null)
+        }
+    }
 }
