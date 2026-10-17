@@ -333,6 +333,8 @@ Loader {
             formattedDay: MessagesAdapter.getFormattedDay(rootDelegate.timestamp)
 
             property real contentWidth
+            // Videos that the web engine cannot play are shown as a still frame.
+            readonly property bool isVideoThumbnail: !!mediaInfo.isVideo && !mediaInfo.html
 
             Component.onCompleted: {
                 if (transferStats.totalSize !== undefined) {
@@ -341,7 +343,7 @@ Loader {
                 }
                 bubble.timestampItem.timeLabel.text += " - " + txt;
                 bubble.color = "transparent";
-                if (mediaInfo.isImage)
+                if (mediaInfo.isImage || isVideoThumbnail)
                     bubble.z = 1;
                 else
                     timeUnderBubble = true;
@@ -364,7 +366,7 @@ Loader {
                     width: sourceComponent.width
                     height: sourceComponent.height
                     sourceComponent: {
-                        if (mediaInfo.isImage)
+                        if (mediaInfo.isImage || localMediaMsgItem.isVideoThumbnail)
                             return imageComp;
                         if (mediaInfo.isAnimatedImage)
                             return animatedImageComp;
@@ -472,8 +474,14 @@ Loader {
                                 asynchronous: true
 
                                 Component.onCompleted: {
-                                    source = UtilsAdapter.urlFromLocalPath(Body);
-                                    localMediaMsgItem.bubble.imgSource = source;
+                                    const fileUrl = UtilsAdapter.urlFromLocalPath(Body);
+                                    source = localMediaMsgItem.isVideoThumbnail ? "image://videothumbnail/" + encodeURIComponent(Body) : fileUrl;
+                                    localMediaMsgItem.bubble.imgSource = fileUrl;
+                                }
+
+                                onStatusChanged: {
+                                    if (status === Image.Error && localMediaMsgItem.isVideoThumbnail)
+                                        rootDelegate.sourceComponent = dataTransferMsgComp;
                                 }
 
                                 // Scale down the image if it's too wide or too tall.
@@ -496,6 +504,25 @@ Loader {
                                         height: img.height
                                         radius: msgRadius
                                     }
+                                }
+                            }
+
+                            Rectangle {
+                                objectName: "videoPlayIndicator"
+
+                                visible: localMediaMsgItem.isVideoThumbnail && img.status === Image.Ready
+                                anchors.centerIn: img
+                                width: 48
+                                height: width
+                                radius: width / 2
+                                color: JamiTheme.darkGreyColorOpacityFade
+
+                                ResponsiveImage {
+                                    anchors.centerIn: parent
+                                    width: parent.width
+                                    height: parent.height
+                                    source: JamiResources.play_circle_outline_24dp_svg
+                                    color: JamiTheme.whiteColor
                                 }
                             }
                         }
