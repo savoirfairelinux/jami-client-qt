@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c3d0d5bd_34d417d6",
+        "filename": "src/app/videothumbnailprovider.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-10-17T21:26:37Z",
+      "side": 1,
+      "message": "[warning] Line 174: 🟡 Failed decodes are cached permanently in `failed_`, so a transient failure (file not yet present, backend hiccup, temporary read error) will prevent thumbnails for that path for the entire process lifetime. Consider adding expiry/invalidation (e.g., clear failed entries after a short TTL, or key failures by `(path, mtime)` and retry when file metadata changes) so recoverable states can heal.",
+      "revId": "7a49d97b35d876142b512910d9154d286fb9b755",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
