@@ -605,6 +605,7 @@ set(COMMON_SOURCES
   ${APP_SRC_DIR}/currentcall.cpp
   ${APP_SRC_DIR}/messageparser.cpp
   ${APP_SRC_DIR}/previewengine.cpp
+  ${APP_SRC_DIR}/videothumbnailprovider.cpp
   ${APP_SRC_DIR}/filedownloader.cpp
   ${APP_SRC_DIR}/pluginversionmanager.cpp
   ${APP_SRC_DIR}/connectioninfolistmodel.cpp
@@ -660,6 +661,7 @@ set(COMMON_HEADERS
   ${APP_SRC_DIR}/qmlregister.h
   ${APP_SRC_DIR}/abstractlistmodelbase.h
   ${APP_SRC_DIR}/quickimageproviderbase.h
+  ${APP_SRC_DIR}/videothumbnailprovider.h
   ${APP_SRC_DIR}/qtutils.h
   ${APP_SRC_DIR}/utilsadapter.h
   ${APP_SRC_DIR}/moderatorlistmodel.h

@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/videos">
+        <file alias="video_test.mp4">../qml/src/resources/video_test.mp4</file>
+        <file alias="video_test_rotated.mp4">../qml/src/resources/video_test_rotated.mp4</file>
+        <file alias="video_test_black_start.mp4">../qml/src/resources/video_test_black_start.mp4</file>
+        <file alias="video_test_large.mp4">../qml/src/resources/video_test_large.mp4</file>
+    </qresource>
+</RCC>

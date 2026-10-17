@@ -64,6 +64,7 @@
 #include "videoprovider.h"
 #include "qrimageprovider.h"
 #include "avatarimageprovider.h"
+#include "videothumbnailprovider.h"
 #include "avatarregistry.h"
 #include "appsettingsmanager.h"
 #include "accountsettingsmanager.h"
@@ -331,6 +332,7 @@ registerTypes(QQmlEngine* engine,
 
     engine->addImageProvider(QLatin1String("qrImage"), new QrImageProvider(lrcInstance));
     engine->addImageProvider(QLatin1String("avatarimage"), new AvatarImageProvider(lrcInstance));
+    engine->addImageProvider(QLatin1String("videothumbnail"), new VideoThumbnailProvider);
 
     // Find modules (runtime) under the root source dir.
     engine->addImportPath("qrc:/");
