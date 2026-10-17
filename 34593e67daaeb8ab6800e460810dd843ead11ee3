@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4012666f_5b7cc9a8",
+        "filename": "src/app/videothumbnailprovider.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-10-17T21:39:24Z",
+      "side": 1,
+      "message": "[warning] Line 216: 🟡 `failed_` now stores versioned keys (`path + mtime`), but old failed versions are never pruned. For files that are retried after repeated rewrites (or rotating temporary outputs), this set can grow unbounded over process lifetime. Please bound or prune failures per path/version (e.g., replace with `QHash\u003cQString, qint64\u003e` storing only latest failed mtime per path, or remove older entries for the same path when inserting a new one).",
+      "revId": "34593e67daaeb8ab6800e460810dd843ead11ee3",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
