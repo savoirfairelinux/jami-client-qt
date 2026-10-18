@@ -14,22 +14,33 @@ TestWrapper {
         property string error: ""
         property var feeds: []
         property var lastCreate: []
+        property var authorizations: []
         function clearError() { error = ""; }
         function refresh() {}
         function contacts(account) { return [{uri: "peer", name: "Alice"}]; }
-        function details(id) { return {}; }
+        function details(id) { return id === "shared" ? {id: "shared", title: "News", feedAccess: "bob"} : {}; }
+        function authorize(account, id, uri, allowed) {
+            authorizations = authorizations.concat([[id, uri, allowed]]);
+            return true;
+        }
         function createFeed(account, title, avatar, replies) {
             lastCreate = [account, title, replies];
             return "new-feed";
         }
     }
-    FeedSettingsDialog { id: settings; service: fakeService; accountId: "test" }
+    QtObject {
+        id: fakeCircles
+        property var circles: [{id: "friends", name: "Friends", members: ["jami:alice", "bob"]},
+                               {id: "empty", name: "Family", members: []}]
+    }
+    FeedSettingsDialog { id: settings; service: fakeService; circleService: fakeCircles; accountId: "test" }
     FeedCatalogueDialog { id: catalogue; service: fakeService; accountId: "test" }
     TestCase {
         name: "FeedDialogs"
         when: windowShown
         function cleanup() {
             fakeService.feeds = [];
+            fakeService.authorizations = [];
             settings.close();
             catalogue.close();
         }
@@ -62,6 +73,38 @@ TestWrapper {
             compare(fakeService.lastCreate[1], "News");
             compare(fakeService.lastCreate[2], true);
             compare(settings.feedId, "new-feed");
+        }
+        // findChild() does not walk into the dialog content Flickable.
+        function find(item, name) {
+            if (!item)
+                return null;
+            if (item.objectName === name)
+                return item;
+            const children = Array.from(item.children || []);
+            if (item.contentItem && children.indexOf(item.contentItem) < 0)
+                children.push(item.contentItem);
+            for (const child of children) {
+                const found = find(child, name);
+                if (found)
+                    return found;
+            }
+            return null;
+        }
+        function test_circle_authorizes_all_its_members() {
+            settings.feedId = "shared";
+            settings.initialized = false;
+            settings.updateDetails();
+            settings.open();
+            tryCompare(settings, "opened", true);
+            const circle = find(settings.contentItem, "feedCircle-friends");
+            verify(circle !== null);
+            verify(circle.visible);
+            // Only one member is authorized yet: the Circle is not.
+            verify(!circle.checked);
+            // A Circle without members has nothing to authorize.
+            verify(!find(settings.contentItem, "feedCircle-empty").visible);
+            mouseClick(circle);
+            compare(fakeService.authorizations, [["shared", "alice", true], ["shared", "bob", true]]);
         }
         function test_catalogue_empty() {
             catalogue.open();

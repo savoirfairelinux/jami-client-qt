@@ -559,6 +559,7 @@ set(COMMON_SOURCES
   ${APP_SRC_DIR}/messagesadapter.cpp
   ${APP_SRC_DIR}/collaborativeadapter.cpp
   ${APP_SRC_DIR}/feedadapter.cpp
+  ${APP_SRC_DIR}/circleadapter.cpp
   ${APP_SRC_DIR}/collabrichbinding.cpp
   ${APP_SRC_DIR}/yrsdocument.cpp
   ${APP_SRC_DIR}/positionobject.cpp
@@ -642,6 +643,7 @@ set(COMMON_HEADERS
   ${APP_SRC_DIR}/messagesadapter.h
   ${APP_SRC_DIR}/collaborativeadapter.h
   ${APP_SRC_DIR}/feedadapter.h
+  ${APP_SRC_DIR}/circleadapter.h
   ${APP_SRC_DIR}/collabrichbinding.h
   ${APP_SRC_DIR}/yrsdocument.h
   ${APP_SRC_DIR}/positionobject.h

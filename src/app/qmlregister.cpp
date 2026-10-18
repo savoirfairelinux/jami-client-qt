@@ -23,6 +23,7 @@
 #include "contactadapter.h"
 #include "sharedservicesadapter.h"
 #include "feedadapter.h"
+#include "circleadapter.h"
 #include "pluginadapter.h"
 #include "messagesadapter.h"
 #include "collaborativeadapter.h"
@@ -244,6 +245,7 @@ registerTypes(QQmlEngine* engine,
     QML_REGISTERSINGLETON_TYPE(NS_ADAPTERS, MessagesAdapter);
     QML_REGISTERSINGLETON_TYPE(NS_ADAPTERS, CollaborativeAdapter);
     QML_REGISTERSINGLETON_TYPE(NS_ADAPTERS, FeedAdapter);
+    QML_REGISTERSINGLETON_TYPE(NS_ADAPTERS, CircleAdapter);
     QML_REGISTERTYPE(NS_ADAPTERS, CollabRichBinding);
     QML_REGISTERSINGLETON_TYPE(NS_ADAPTERS, ConversationsAdapter);
     QML_REGISTERSINGLETON_TYPE(NS_ADAPTERS, ContactAdapter);

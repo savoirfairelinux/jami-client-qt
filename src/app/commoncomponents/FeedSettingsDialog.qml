@@ -23,6 +23,7 @@ BaseModalDialog {
     property var contactEntries: []
     property bool initialized: false
     property var service: FeedAdapter
+    property var circleService: CircleAdapter
 
     titleText: feedId === "" ? qsTr("Create a Feed") : qsTr("Manage Feed")
     button1.text: feedId === "" ? qsTr("Create") : qsTr("Save")
@@ -40,6 +41,15 @@ BaseModalDialog {
     }
     button2.text: qsTr("Close")
     button2.onClicked: root.close()
+
+    function circleMembers(circle) {
+        return (circle.members || []).map(uri => uri.replace(/^(jami|ring):/, ""));
+    }
+
+    function circleAuthorized(circle) {
+        const members = circleMembers(circle);
+        return members.length > 0 && members.every(uri => authorized.indexOf(uri) >= 0);
+    }
 
     function updateDetails() {
         if (feedId === "")
@@ -143,7 +153,7 @@ BaseModalDialog {
             text: qsTr("Only you can create publications. Subscribers may reply to a publication when replies are enabled.")
         }
         Label {
-            text: qsTr("Authorized contacts")
+            text: qsTr("Authorized Circles and contacts")
             font.bold: true
             color: JamiTheme.textColor
         }
@@ -152,7 +162,23 @@ BaseModalDialog {
             wrapMode: Text.Wrap
             color: JamiTheme.textColor
             visible: root.feedId === ""
-            text: qsTr("Create the Feed first, then choose the contacts allowed to subscribe.")
+            text: qsTr("Create the Feed first, then choose the Circles and contacts allowed to subscribe.")
+        }
+        Repeater {
+            model: root.feedId !== "" ? root.circleService.circles : []
+            delegate: CheckDelegate {
+                required property var modelData
+                objectName: "feedCircle-" + modelData.id
+                Layout.fillWidth: true
+                visible: root.circleMembers(modelData).length > 0
+                text: qsTr("Circle • %1 (%n contact(s))", "", root.circleMembers(modelData).length).arg(modelData.name)
+                checked: root.circleAuthorized(modelData)
+                onClicked: {
+                    for (const uri of root.circleMembers(modelData))
+                        root.service.authorize(root.accountId, root.feedId, uri, checked);
+                    checked = Qt.binding(() => root.circleAuthorized(modelData));
+                }
+            }
         }
         TextField {
             id: contactSearch
