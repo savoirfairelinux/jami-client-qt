@@ -25,6 +25,8 @@ ConversationListProxyModel::ConversationListProxyModel(QAbstractListModel* model
     setSortRole(ConversationList::Role::LastInteractionTimeStamp);
     sort(0, Qt::DescendingOrder);
     setFilterCaseSensitivity(Qt::CaseSensitivity::CaseInsensitive);
+    collator_.setCaseSensitivity(Qt::CaseInsensitive);
+    collator_.setNumericMode(true);
 }
 
 bool
@@ -32,6 +34,8 @@ ConversationListProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex& s
 {
     QModelIndex index = sourceModel()->index(sourceRow, 0, sourceParent);
     if (index.data(ConversationList::Role::Mode).toInt() == static_cast<int>(lrc::api::conversation::Mode::FEED))
+        return false;
+    if (!(index.data(ConversationList::Role::IsCoreDialog).toBool() ? showContacts_ : showGroups_))
         return false;
 
     auto rx = filterRegularExpression();
@@ -88,6 +92,14 @@ ConversationListProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex& s
 bool
 ConversationListProxyModel::lessThan(const QModelIndex& left, const QModelIndex& right) const
 {
+    if (sortByTitle_) {
+        using namespace ConversationList;
+        const auto order = collator_.compare(sourceModel()->data(left, Role::Title).toString(),
+                                             sourceModel()->data(right, Role::Title).toString());
+        if (order != 0)
+            return order < 0;
+        return sourceModel()->data(left, Role::UID).toString() < sourceModel()->data(right, Role::UID).toString();
+    }
     QVariant leftData = sourceModel()->data(left, sortRole());
     QVariant rightData = sourceModel()->data(right, sortRole());
     // we're assuming the sort role data type here is some integral time
@@ -102,3 +114,40 @@ ConversationListProxyModel::setFilterRequests(bool filterRequests)
     endResetModel();
     updateSelection();
 };
+
+void
+ConversationListProxyModel::setShowContacts(bool showContacts)
+{
+    if (showContacts_ == showContacts)
+        return;
+    beginFilterChange();
+    showContacts_ = showContacts;
+    endFilterChange(QSortFilterProxyModel::Direction::Rows);
+    updateSelection();
+    Q_EMIT typeFilterChanged();
+}
+
+void
+ConversationListProxyModel::setShowGroups(bool showGroups)
+{
+    if (showGroups_ == showGroups)
+        return;
+    beginFilterChange();
+    showGroups_ = showGroups;
+    endFilterChange(QSortFilterProxyModel::Direction::Rows);
+    updateSelection();
+    Q_EMIT typeFilterChanged();
+}
+
+void
+ConversationListProxyModel::setSortByTitle(bool sortByTitle)
+{
+    if (sortByTitle_ == sortByTitle)
+        return;
+    sortByTitle_ = sortByTitle;
+    // A to Z for titles, most recent first for interactions.
+    sort(0, sortByTitle ? Qt::AscendingOrder : Qt::DescendingOrder);
+    invalidate();
+    updateSelection();
+    Q_EMIT sortByTitleChanged();
+}

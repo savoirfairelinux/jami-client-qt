@@ -21,6 +21,7 @@
 
 #include <api/conversationmodel.h>
 
+#include <QCollator>
 #include <QSortFilterProxyModel>
 
 using namespace lrc::api;
@@ -29,11 +30,33 @@ using namespace lrc::api;
 class ConversationListProxyModel final : public SelectableListProxyModel
 {
     Q_OBJECT
+    // One-to-one conversations (contacts) and group conversations can be left out
+    // independently, e.g. to let the user pick only among their contacts.
+    Q_PROPERTY(bool showContacts READ showContacts WRITE setShowContacts NOTIFY typeFilterChanged)
+    Q_PROPERTY(bool showGroups READ showGroups WRITE setShowGroups NOTIFY typeFilterChanged)
+    // Sort by title, A to Z, instead of by last interaction.
+    Q_PROPERTY(bool sortByTitle READ sortByTitle WRITE setSortByTitle NOTIFY sortByTitleChanged)
 
 public:
     explicit ConversationListProxyModel(QAbstractListModel* model, QObject* parent = nullptr);
     bool filterAcceptsRow(int sourceRow, const QModelIndex& sourceParent) const override;
     bool lessThan(const QModelIndex& left, const QModelIndex& right) const override;
+
+    bool showContacts() const
+    {
+        return showContacts_;
+    }
+    void setShowContacts(bool showContacts);
+    bool showGroups() const
+    {
+        return showGroups_;
+    }
+    void setShowGroups(bool showGroups);
+    bool sortByTitle() const
+    {
+        return sortByTitle_;
+    }
+    void setSortByTitle(bool sortByTitle);
 
     Q_INVOKABLE void setFilterRequests(bool filterRequests);
     Q_INVOKABLE void ignoreFiltering(const QStringList& highlighted)
@@ -41,9 +64,17 @@ public:
         ignored_ = highlighted;
     }
 
+Q_SIGNALS:
+    void typeFilterChanged();
+    void sortByTitleChanged();
+
 private:
     // This flag can be toggled when switching tabs to show the current account's
     // conversation invites.
     bool filterRequests_ {false};
     QStringList ignored_ {};
+    bool showContacts_ {true};
+    bool showGroups_ {true};
+    bool sortByTitle_ {false};
+    QCollator collator_;
 };
