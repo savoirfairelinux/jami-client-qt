@@ -5125,6 +5125,98 @@ Veuillez confirmer l&apos;importation sur le nouvel appareil.</translation>
         <source>Your profile is only shared with your contacts</source>
         <translation>Votre profil n&apos;est partagé qu&apos;avec vos contacts</translation>
     </message>
+    <message>
+        <source>Calls</source>
+        <translation>Appels</translation>
+    </message>
+    <message>
+        <source>Documents</source>
+        <translation>Documents</translation>
+    </message>
+    <message>
+        <source>Groups</source>
+        <translation>Groupes</translation>
+    </message>
+    <message>
+        <source>Board</source>
+        <translation>Babillard</translation>
+    </message>
+    <message>
+        <source>Services</source>
+        <translation>Services</translation>
+    </message>
+    <message>
+        <source>Location</source>
+        <translation>Localisation</translation>
+    </message>
+    <message>
+        <source>Circles</source>
+        <translation>Cercles</translation>
+    </message>
+    <message>
+        <source>Show or hide the functions</source>
+        <translation>Afficher ou masquer les fonctions</translation>
+    </message>
+    <message>
+        <source>All</source>
+        <translation>Tous</translation>
+    </message>
+    <message>
+        <source>Boards</source>
+        <translation>Babillards</translation>
+    </message>
+    <message>
+        <source>Group</source>
+        <translation>Groupe</translation>
+    </message>
+    <message>
+        <source>Circle</source>
+        <translation>Cercle</translation>
+    </message>
+    <message>
+        <source>No recipient available for this action</source>
+        <translation>Aucun destinataire disponible pour cette action</translation>
+    </message>
+    <message>
+        <source>Documents shared with %1</source>
+        <translation>Documents partagés avec %1</translation>
+    </message>
+    <message>
+        <source>Share your location with %1</source>
+        <translation>Partager votre position avec %1</translation>
+    </message>
+    <message>
+        <source>Most recent first</source>
+        <translation>Les plus récents d&apos;abord</translation>
+    </message>
+    <message>
+        <source>From A to Z</source>
+        <translation>De A à Z</translation>
+    </message>
+    <message>
+        <source>No groups yet</source>
+        <translation>Aucun groupe pour l&apos;instant</translation>
+    </message>
+    <message>
+        <source>My Boards</source>
+        <translation>Mes babillards</translation>
+    </message>
+    <message>
+        <source>Followed Boards</source>
+        <translation>Babillards suivis</translation>
+    </message>
+    <message>
+        <source>My Circles</source>
+        <translation>Mes cercles</translation>
+    </message>
+    <message>
+        <source>Add the members of a Circle</source>
+        <translation>Ajouter les membres d&apos;un cercle</translation>
+    </message>
+    <message>
+        <source>Give your group a name</source>
+        <translation>Donnez un nom à votre groupe</translation>
+    </message>
 </context>
 <context>
     <name>KeyboardShortcutTable</name>
@@ -6258,6 +6350,284 @@ Veuillez confirmer l&apos;importation sur le nouvel appareil.</translation>
         <location filename="../src/core/conversationmodel.cpp" line="327"/>
         <source>(deleted message)</source>
         <translation>(message supprimé)</translation>
+    </message>
+</context>
+<context>
+    <name>CircleList</name>
+    <message>
+        <source>Circles</source>
+        <translation>Cercles</translation>
+    </message>
+    <message>
+        <source>Create a Circle</source>
+        <translation>Créer un cercle</translation>
+    </message>
+    <message numerus="yes">
+        <source>%n member(s)</source>
+        <translation><numerusform>%n membre</numerusform><numerusform>%n membres</numerusform></translation>
+    </message>
+    <message>
+        <source>No members</source>
+        <translation>Aucun membre</translation>
+    </message>
+    <message>
+        <source>Manage or broadcast to the Circle</source>
+        <translation>Gérer le cercle ou lui diffuser un message</translation>
+    </message>
+</context>
+<context>
+    <name>CircleDialog</name>
+    <message>
+        <source>Create a Circle</source>
+        <translation>Créer un cercle</translation>
+    </message>
+    <message>
+        <source>Circle: %1</source>
+        <translation>Cercle : %1</translation>
+    </message>
+    <message>
+        <source>Create</source>
+        <translation>Créer</translation>
+    </message>
+    <message>
+        <source>Save name</source>
+        <translation>Enregistrer le nom</translation>
+    </message>
+    <message>
+        <source>Close</source>
+        <translation>Fermer</translation>
+    </message>
+    <message>
+        <source>Circle name (e.g. Friends, Family, Project)</source>
+        <translation>Nom du cercle (ex. : Amis, Famille, Projet)</translation>
+    </message>
+    <message>
+        <source>Broadcast a message to the whole Circle</source>
+        <translation>Diffuser un message à tout le cercle</translation>
+    </message>
+    <message>
+        <source>Your message to the Circle members…</source>
+        <translation>Votre message aux membres du cercle…</translation>
+    </message>
+    <message>
+        <source>Broadcast</source>
+        <translation>Diffuser</translation>
+    </message>
+    <message numerus="yes">
+        <source>Message sent to %n conversation(s).</source>
+        <translation><numerusform>Message envoyé à %n conversation.</numerusform><numerusform>Message envoyé à %n conversations.</numerusform></translation>
+    </message>
+    <message>
+        <source>Circle members (contacts and groups)</source>
+        <translation>Membres du cercle (contacts et groupes)</translation>
+    </message>
+    <message>
+        <source>Group • %1</source>
+        <translation>Groupe • %1</translation>
+    </message>
+    <message>
+        <source>Delete this Circle</source>
+        <translation>Supprimer ce cercle</translation>
+    </message>
+</context>
+<context>
+    <name>CircleAdapter</name>
+    <message>
+        <source>Circle name is required</source>
+        <translation>Le nom du cercle est requis</translation>
+    </message>
+    <message>
+        <source>A circle with this name already exists</source>
+        <translation>Un cercle porte déjà ce nom</translation>
+    </message>
+    <message>
+        <source>Unable to create circle</source>
+        <translation>Impossible de créer le cercle</translation>
+    </message>
+    <message>
+        <source>Unable to rename circle</source>
+        <translation>Impossible de renommer le cercle</translation>
+    </message>
+    <message>
+        <source>Unable to delete circle</source>
+        <translation>Impossible de supprimer le cercle</translation>
+    </message>
+    <message>
+        <source>Unable to update circle members</source>
+        <translation>Impossible de mettre à jour les membres du cercle</translation>
+    </message>
+</context>
+<context>
+    <name>FeedList</name>
+    <message>
+        <source>Feeds</source>
+        <translation>Babillards</translation>
+    </message>
+    <message>
+        <source>Browse</source>
+        <translation>Parcourir</translation>
+    </message>
+    <message>
+        <source>Available Feeds</source>
+        <translation>Babillards disponibles</translation>
+    </message>
+    <message>
+        <source>Create a Feed</source>
+        <translation>Créer un babillard</translation>
+    </message>
+    <message>
+        <source>Create my first Feed</source>
+        <translation>Créer mon premier babillard</translation>
+    </message>
+    <message>
+        <source>Your Feed</source>
+        <translation>Votre babillard</translation>
+    </message>
+    <message>
+        <source>Subscribed</source>
+        <translation>Abonné</translation>
+    </message>
+    <message>
+        <source>Manage Feed</source>
+        <translation>Gérer le babillard</translation>
+    </message>
+</context>
+<context>
+    <name>FeedCatalogueDialog</name>
+    <message>
+        <source>Access withdrawn</source>
+        <translation>Accès retiré</translation>
+    </message>
+    <message>
+        <source>Available Feeds</source>
+        <translation>Babillards disponibles</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation>Annuler</translation>
+    </message>
+    <message>
+        <source>Close</source>
+        <translation>Fermer</translation>
+    </message>
+    <message>
+        <source>Closed</source>
+        <translation>Fermé</translation>
+    </message>
+    <message>
+        <source>Feeds your contacts allow you to follow. The list updates when their devices are reachable.</source>
+        <translation>Les babillards que vos contacts vous autorisent à suivre. La liste se met à jour quand leurs appareils sont joignables.</translation>
+    </message>
+    <message>
+        <source>No available Feeds yet. A contact must authorize you before you can subscribe.</source>
+        <translation>Aucun babillard disponible pour l&apos;instant. Un contact doit vous autoriser avant que vous puissiez vous abonner.</translation>
+    </message>
+    <message>
+        <source>Read only</source>
+        <translation>Lecture seule</translation>
+    </message>
+    <message>
+        <source>Refresh</source>
+        <translation>Actualiser</translation>
+    </message>
+    <message>
+        <source>Replies allowed</source>
+        <translation>Réponses permises</translation>
+    </message>
+    <message>
+        <source>Subscribe</source>
+        <translation>S&apos;abonner</translation>
+    </message>
+    <message>
+        <source>Subscription pending</source>
+        <translation>Abonnement en attente</translation>
+    </message>
+    <message>
+        <source>Unsubscribe</source>
+        <translation>Se désabonner</translation>
+    </message>
+</context>
+<context>
+    <name>FeedSettingsDialog</name>
+    <message>
+        <source>Allow subscribers to reply</source>
+        <translation>Permettre aux abonnés de répondre</translation>
+    </message>
+    <message>
+        <source>Authorization does not subscribe a contact automatically. Access changes are saved immediately.</source>
+        <translation>L&apos;autorisation n&apos;abonne pas un contact automatiquement. Les changements d&apos;accès sont enregistrés immédiatement.</translation>
+    </message>
+    <message>
+        <source>Authorized Circles and contacts</source>
+        <translation>Cercles et contacts autorisés</translation>
+    </message>
+    <message>
+        <source>Choose a Feed avatar</source>
+        <translation>Choisir l&apos;avatar du babillard</translation>
+    </message>
+    <message>
+        <source>Choose avatar</source>
+        <translation>Choisir un avatar</translation>
+    </message>
+    <message numerus="yes">
+        <source>Circle • %1 (%n contact(s))</source>
+        <translation><numerusform>Cercle • %1 (%n contact)</numerusform><numerusform>Cercle • %1 (%n contacts)</numerusform></translation>
+    </message>
+    <message>
+        <source>Close</source>
+        <translation>Fermer</translation>
+    </message>
+    <message>
+        <source>Create</source>
+        <translation>Créer</translation>
+    </message>
+    <message>
+        <source>Create a Feed</source>
+        <translation>Créer un babillard</translation>
+    </message>
+    <message>
+        <source>Create the Feed first, then choose the Circles and contacts allowed to subscribe.</source>
+        <translation>Créez d&apos;abord le babillard, puis choisissez les cercles et les contacts autorisés à s&apos;abonner.</translation>
+    </message>
+    <message>
+        <source>Delete Feed</source>
+        <translation>Supprimer le babillard</translation>
+    </message>
+    <message>
+        <source>Delete this Feed?</source>
+        <translation>Supprimer ce babillard ?</translation>
+    </message>
+    <message>
+        <source>Feed name</source>
+        <translation>Nom du babillard</translation>
+    </message>
+    <message>
+        <source>Find a contact</source>
+        <translation>Rechercher un contact</translation>
+    </message>
+    <message>
+        <source>Images (*.png *.jpg *.jpeg *.webp)</source>
+        <translation>Images (*.png *.jpg *.jpeg *.webp)</translation>
+    </message>
+    <message>
+        <source>Manage Feed</source>
+        <translation>Gérer le babillard</translation>
+    </message>
+    <message>
+        <source>Only you can create publications. Subscribers may reply to a publication when replies are enabled.</source>
+        <translation>Vous seul pouvez publier. Les abonnés peuvent répondre à une publication quand les réponses sont permises.</translation>
+    </message>
+    <message>
+        <source>Remove avatar</source>
+        <translation>Retirer l&apos;avatar</translation>
+    </message>
+    <message>
+        <source>Save</source>
+        <translation>Enregistrer</translation>
+    </message>
+    <message>
+        <source>This permanently closes the Feed for all subscribers. Copies already received cannot be erased remotely.</source>
+        <translation>Le babillard est fermé définitivement pour tous les abonnés. Les copies déjà reçues ne peuvent pas être effacées à distance.</translation>
     </message>
 </context>
 </TS>

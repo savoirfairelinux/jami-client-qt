@@ -44,6 +44,8 @@ ConversationsAdapter::ConversationsAdapter(SystemTray* systemTray,
     , convModel_(convProxyModel)
     , searchSrcModel_(new SearchResultsListModel(lrcInstance_))
     , searchModel_(searchProxyModel)
+    , contactsModel_(new ConversationListProxyModel(nullptr, this))
+    , targetsModel_(new ConversationListProxyModel(nullptr, this))
 {
     // Bind ConversationModel directly as the source for the proxy
     if (auto* model = lrcInstance_->getCurrentConversationModel()) {
@@ -51,11 +53,15 @@ ConversationsAdapter::ConversationsAdapter(SystemTray* systemTray,
             return lrcInstance_->getContentDraft(convUid, accountId)["text"].toString();
         });
         convModel_->bindSourceModel(model);
+        contactsModel_->bindSourceModel(model);
+        targetsModel_->bindSourceModel(model);
     }
     searchModel_->bindSourceModel(searchSrcModel_.get());
 
     set_convListProxyModel(QVariant::fromValue(convModel_));
     set_searchListProxyModel(QVariant::fromValue(searchModel_));
+    set_contactsListProxyModel(QVariant::fromValue(contactsModel_));
+    set_targetsListProxyModel(QVariant::fromValue(targetsModel_));
 
     // this will trigger when the invite filter tab is selected
     connect(this, &ConversationsAdapter::filterRequestsChanged, [this]() {
@@ -68,6 +74,7 @@ ConversationsAdapter::ConversationsAdapter(SystemTray* systemTray,
             // deselected
             convModel_->deselect();
             searchModel_->deselect();
+            contactsModel_->deselect();
             Q_EMIT navigateToWelcomePageRequested();
         } else {
             // selected
@@ -86,6 +93,7 @@ ConversationsAdapter::ConversationsAdapter(SystemTray* systemTray,
             // currently, this may only occur for the conversation list
             // and not the search list
             convModel_->selectSourceRow(lrcInstance_->indexOf(convId));
+            contactsModel_->selectSourceRow(lrcInstance_->indexOf(convId));
         }
     });
 
@@ -753,6 +761,8 @@ ConversationsAdapter::onCurrentAccountRemoved()
     if (lrcInstance_->get_currentAccountId().isEmpty()) {
         convModel_->bindSourceModel(nullptr);
         searchModel_->bindSourceModel(nullptr);
+        contactsModel_->bindSourceModel(nullptr);
+        targetsModel_->bindSourceModel(nullptr);
     }
 }
 
@@ -788,6 +798,8 @@ ConversationsAdapter::connectConversationModel()
         return lrcInstance_->getContentDraft(convUid, accountId)["text"].toString();
     });
     convModel_->bindSourceModel(model);
+    contactsModel_->bindSourceModel(model);
+    targetsModel_->bindSourceModel(model);
     searchSrcModel_.reset(new SearchResultsListModel(lrcInstance_));
     searchModel_->bindSourceModel(searchSrcModel_.get());
 

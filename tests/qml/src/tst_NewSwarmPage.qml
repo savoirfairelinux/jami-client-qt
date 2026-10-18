@@ -42,6 +42,12 @@ ColumnLayout {
     NewSwarmPage {
         id: uut
 
+        SignalSpy {
+            id: createSpy
+            target: uut
+            signalName: "createSwarmClicked"
+        }
+
         property QtObject viewCoordinator: QtObject {
             function getView() {
                 return sidePanelStub;
@@ -77,6 +83,24 @@ ColumnLayout {
                 compare(description.focus, false)
                 compare(description.textFieldContent, "")
 
+            }
+
+            function test_group_needs_a_name() {
+                var title = findChild(uut, "titleLineEdit")
+                var create = findChild(uut, "createSwarmButton")
+                createSpy.clear()
+
+                // As on Android, a group cannot be created without a name.
+                title.modifiedTextFieldContent = "  "
+                create.clicked()
+                compare(createSpy.count, 0)
+                compare(title.supportingText, JamiStrings.groupNameRequired)
+
+                title.modifiedTextFieldContent = "Team"
+                compare(title.supportingText, "")
+                create.clicked()
+                compare(createSpy.count, 1)
+                compare(createSpy.signalArguments[0][0], "Team")
             }
 
             function test_side_panel_restored_after_resize() {

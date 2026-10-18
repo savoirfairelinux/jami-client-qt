@@ -141,8 +141,13 @@ DualPaneView {
                 maxCharacters: JamiTheme.maximumCharacters
                 placeholderText: JamiStrings.groupName
                 textFieldContent: ""
+                supportingTextColor: JamiTheme.redColor
 
                 onEditingFinished: description.forceActiveFocus()
+                onModifiedTextFieldContentChanged: {
+                    if (modifiedTextFieldContent.trim() !== "")
+                        supportingText = "";
+                }
             }
 
             NewMaterialTextField {
@@ -164,6 +169,7 @@ DualPaneView {
 
             MaterialButton {
                 id: btnCreateSwarm
+                objectName: "createSwarmButton"
 
                 TextMetrics {
                     id: textSize
@@ -182,7 +188,14 @@ DualPaneView {
                 primary: true
                 text: JamiStrings.newGroup
 
-                onClicked: createSwarmClicked(title.modifiedTextFieldContent, description.modifiedTextFieldContent, UtilsAdapter.tempCreationImage())
+                onClicked: {
+                    // A group needs a name.
+                    if (title.modifiedTextFieldContent.trim() === "") {
+                        title.supportingText = JamiStrings.groupNameRequired;
+                        return;
+                    }
+                    createSwarmClicked(title.modifiedTextFieldContent.trim(), description.modifiedTextFieldContent, UtilsAdapter.tempCreationImage());
+                }
             }
         }
     }

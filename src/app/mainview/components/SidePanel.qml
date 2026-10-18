@@ -33,14 +33,16 @@ SidePanelBase {
 
     readonly property var viewCoordinator: appContext ? appContext.viewCoordinator : null
     property bool inNewSwarm: viewCoordinator && viewCoordinator.currentViewName === "NewSwarmPage"
-    readonly property var followedFeeds: FeedAdapter.followed.filter(function(feed) { return !feed.owned; })
-    readonly property var ownedFeeds: FeedAdapter.feeds.filter(function(feed) { return feed.owned && !feed.feedClosed; })
     property int conversationCount: conversationListView.model ? conversationListView.model.count : 0
-    property int feedCount: followedFeeds.length + ownedFeeds.length
     property bool isEmptyAccount: inNewSwarm
                                   ? (swarmCurrentConversationList.model && swarmCurrentConversationList.model.count === 0)
                                   : (!ConversationsAdapter.filterRequests && conversationListView.model
-                                     && conversationCount === 0 && feedCount === 0)
+                                     && conversationCount === 0)
+    // Opened by the Contacts function: the contacts, by date or by name, replace the conversations.
+    property bool contactsMode: false
+    // The functions panel goes with the conversation list only.
+    readonly property bool showFunctions: !inNewSwarm && !contactsMode && !ConversationsAdapter.filterRequests
+                                          && !contactSearchBar.textContent && CurrentAccount.type !== Profile.Type.SIP
 
     property var highlighted: []
     property var highlightedMembers: []
@@ -54,6 +56,7 @@ SidePanelBase {
 
         function onCurrentAccountIdChanged() {
             clearContactSearchBar();
+            root.contactsMode = false;
         }
     }
 
@@ -123,6 +126,121 @@ SidePanelBase {
         contactSearchBar.clearText();
     }
 
+    function openContacts() {
+        clearContactSearchBar();
+        ConversationsAdapter.contactsListProxyModel.setFilter("");
+        contactsMode = true;
+    }
+
+    function closeContacts() {
+        clearContactSearchBar();
+        contactsMode = false;
+    }
+
+    // Runs one of the nine functions of the functions panel.
+    function runFunction(fn) {
+        switch (fn) {
+        case FunctionsPanel.Contacts:
+            openContacts();
+            break;
+        case FunctionsPanel.Groups:
+            openGroups();
+            break;
+        case FunctionsPanel.Board:
+            openBoards();
+            break;
+        case FunctionsPanel.Services:
+            // The "Shared services" page of the account settings
+            JamiQmlUtils.requestSettingsPage(6);
+            break;
+        case FunctionsPanel.Circles:
+            openCircles();
+            break;
+        default:
+            pickTarget(fn);
+        }
+    }
+
+    // Calls, Messages, Documents and Location: first, who with.
+    function pickTarget(fn) {
+        const info = functionsPanel.functionInfo(fn);
+        const picker = viewCoordinator.presentDialog(appWindow, "mainview/components/FunctionTargetPicker.qml", {
+                                                         "fn": fn,
+                                                         "titleText": info.name,
+                                                         "accentColor": info.color
+                                                     });
+        picker.conversationPicked.connect((convId, withVideo) => useConversation(fn, convId, withVideo));
+        picker.circlePicked.connect(circleId => manageCircle(circleId));
+        picker.boardPicked.connect(feedId => FeedAdapter.open(feedId));
+    }
+
+    function useConversation(fn, convId, withVideo) {
+        LRCInstance.selectConversation(convId);
+        switch (fn) {
+        case FunctionsPanel.Calls:
+            if (withVideo)
+                CallAdapter.startCall();
+            else
+                CallAdapter.startAudioOnlyCall();
+            break;
+        case FunctionsPanel.Documents:
+            viewCoordinator.presentDialog(appWindow, "commoncomponents/CollabDocListPopup.qml", {
+                                              "conversationId": convId,
+                                              "peerName": ConversationsAdapter.getConvInfoMap(convId).title
+                                          });
+            break;
+        case FunctionsPanel.Location:
+            // The chat view of the conversation opens the map.
+            Qt.callLater(PositionManager.setMapActive, CurrentAccount.id);
+            break;
+        }
+    }
+
+    function openGroups() {
+        const dialog = viewCoordinator.presentDialog(appWindow, "mainview/components/GroupsDialog.qml");
+        dialog.groupPicked.connect(convId => LRCInstance.selectConversation(convId));
+        dialog.createGroupRequested.connect(() => {
+                                                if (!inNewSwarm)
+                                                    toggleCreateSwarmView();
+                                            });
+        dialog.leaveGroupRequested.connect(convId => {
+                                               const confirmation = viewCoordinator.presentDialog(appWindow, "commoncomponents/ConfirmDialog.qml", {
+                                                                                                      "titleText": JamiStrings.confirmAction,
+                                                                                                      "textLabel": JamiStrings.confirmLeaveGroup,
+                                                                                                      "confirmLabel": JamiStrings.optionLeave
+                                                                                                  });
+                                               confirmation.accepted.connect(() => MessagesAdapter.removeConversation(convId, true));
+                                           });
+    }
+
+    function openBoards() {
+        const dialog = viewCoordinator.presentDialog(appWindow, "mainview/components/BoardsDialog.qml");
+        dialog.boardPicked.connect(feedId => FeedAdapter.open(feedId));
+        dialog.createRequested.connect(() => viewCoordinator.presentDialog(appWindow, "commoncomponents/FeedSettingsDialog.qml", {
+                                                                                "accountId": CurrentAccount.id
+                                                                            }));
+        dialog.manageRequested.connect(feedId => viewCoordinator.presentDialog(appWindow, "commoncomponents/FeedSettingsDialog.qml", {
+                                                                                    "accountId": CurrentAccount.id,
+                                                                                    "feedId": feedId
+                                                                                }));
+        dialog.catalogueRequested.connect(() => viewCoordinator.presentDialog(appWindow, "commoncomponents/FeedCatalogueDialog.qml", {
+                                                                                   "accountId": CurrentAccount.id
+                                                                               }));
+    }
+
+    function openCircles() {
+        const dialog = viewCoordinator.presentDialog(appWindow, "mainview/components/CirclesDialog.qml");
+        dialog.createRequested.connect(() => manageCircle(""));
+        dialog.manageRequested.connect(circleId => manageCircle(circleId));
+    }
+
+    function manageCircle(circleId) {
+        viewCoordinator.presentDialog(appWindow, "commoncomponents/CircleDialog.qml", {
+                                          "accountId": CurrentAccount.id,
+                                          "circleId": circleId
+                                      });
+    }
+
     function selectTab(tabIndex) {
         sidePanelTabBar.selectTab(tabIndex);
     }
@@ -159,6 +277,22 @@ SidePanelBase {
     function clearHighlighted() {
         root.highlighted = [];
         root.highlightedMembers = [];
+    }
+
+    // Selects, for the new group, every member of a Circle: its contacts and the
+    // members of its groups. refreshHighlighted() keeps each member only once.
+    function addCircleMembers(circle) {
+        const convIds = (circle.members || []).map(uri => ConversationsAdapter.dialogId(uri.replace(/^(jami|ring):/, "")))
+                            .concat((circle.groups || []).map(uri => uri.replace(/^swarm:/, "")));
+        for (const convId of convIds) {
+            if (convId === "" || Array.from(root.highlighted).includes(convId))
+                continue;
+            const delegate = Array.from(swarmCurrentConversationList.contentItem.children).find(d => d.convId === convId);
+            if (delegate)
+                delegate.highlighted = true;
+            else
+                root.refreshHighlighted(convId, true);
+        }
     }
 
     function removeMember(convId, member) {
@@ -282,13 +416,23 @@ SidePanelBase {
                         Layout.rightMargin: 15
                         Layout.alignment: Qt.AlignTop
 
+                        NewIconButton {
+                            objectName: "closeContactsButton"
+
+                            visible: root.contactsMode
+                            iconSource: JamiResources.bidirectional_arrow_back_24dp_svg
+                            iconSize: JamiTheme.iconButtonMedium
+                            toolTipText: JamiStrings.back
+                            onClicked: root.closeContacts()
+                        }
+
                         Searchbar {
                             id: contactSearchBar
 
                             height: parent.height
                             Layout.fillWidth: true
 
-                            placeHolderText: JamiStrings.searchOrAdd
+                            placeHolderText: root.contactsMode ? JamiStrings.search : JamiStrings.searchOrAdd
 
                             Behavior on width {
                                 NumberAnimation {
@@ -298,6 +442,10 @@ SidePanelBase {
                             }
 
                             onSearchBarTextChanged: function (text) {
+                                if (root.contactsMode) {
+                                    ConversationsAdapter.contactsListProxyModel.setFilter(text);
+                                    return;
+                                }
                                 // not calling positionViewAtBeginning will cause
                                 // sort animation visual bugs
                                 conversationListView.positionViewAtBeginning();
@@ -306,7 +454,8 @@ SidePanelBase {
                             }
 
                             onAccepted: {
-                                var listView = searchResultsListView.count ? searchResultsListView :
+                                var listView = root.contactsMode ? contactsListView :
+                                               searchResultsListView.count ? searchResultsListView :
                                                                              conversationListView;
                                 if (listView.count)
                                     listView.model.select(0);
@@ -325,7 +474,9 @@ SidePanelBase {
                             preferredSize: 40
 
                             source: {
-                                if (CurrentAccount.type === Profile.Type.SIP) {
+                                if (root.contactsMode) {
+                                    return JamiResources.qr_code_24dp_svg;
+                                } else if (CurrentAccount.type === Profile.Type.SIP) {
                                     if (sipInputPanelPopUp.shown) {
                                         return JamiResources.round_close_24dp_svg;
                                     } else {
@@ -338,7 +489,9 @@ SidePanelBase {
                                 }
                             }
                             toolTipText: {
-                                if (CurrentAccount.type === Profile.Type.SIP) {
+                                if (root.contactsMode) {
+                                    return JamiStrings.shareAccount;
+                                } else if (CurrentAccount.type === Profile.Type.SIP) {
                                     if (sipInputPanelPopUp.shown) {
                                         return JamiStrings.close;
                                     } else {
@@ -352,7 +505,9 @@ SidePanelBase {
                             }
 
                             onClicked: {
-                                if (CurrentAccount.type === Profile.Type.SIP) {
+                                if (root.contactsMode) {
+                                    viewCoordinator.presentDialog(appWindow, "mainview/components/WelcomePageQrDialog.qml");
+                                } else if (CurrentAccount.type === Profile.Type.SIP) {
                                     sipInputPanelPopUp.shown = !sipInputPanelPopUp.shown;
                                 } else {
                                     toggleCreateSwarmView();
@@ -377,7 +532,23 @@ SidePanelBase {
                         width: parent.width
 
                         visible: ConversationsAdapter.pendingRequestCount &&
-                                 !contactSearchBar.textContent && !inNewSwarm
+                                 !contactSearchBar.textContent && !inNewSwarm && !root.contactsMode
+                    }
+
+                    ContactsSortBar {
+                        id: contactsSortBar
+
+                        Layout.fillWidth: true
+                        Layout.leftMargin: 15
+                        Layout.rightMargin: 15
+
+                        visible: root.contactsMode
+                    }
+
+                    Binding {
+                        target: ConversationsAdapter.contactsListProxyModel
+                        property: "sortByTitle"
+                        value: contactsSortBar.sortByTitle
                     }
 
                     Label {
@@ -402,6 +573,63 @@ SidePanelBase {
                         visible: inNewSwarm
                     }
 
+                    ColumnLayout {
+                        objectName: "newGroupCircles"
+
+                        Layout.fillWidth: true
+                        Layout.leftMargin: 15
+                        Layout.rightMargin: 15
+                        spacing: 6
+
+                        visible: inNewSwarm && newGroupCircles.count > 0
+
+                        Text {
+                            Layout.fillWidth: true
+                            text: JamiStrings.chooseFromCircles
+                            color: JamiTheme.textColor
+                            font.pointSize: JamiTheme.textFontSize
+                            wrapMode: Text.Wrap
+                        }
+
+                        Flow {
+                            Layout.fillWidth: true
+                            spacing: 6
+
+                            Repeater {
+                                id: newGroupCircles
+
+                                model: CircleAdapter.circles.filter(circle => circle.count > 0)
+
+                                delegate: AbstractButton {
+                                    id: circleChip
+
+                                    required property var modelData
+
+                                    objectName: "newGroupCircle-" + modelData.id
+                                    hoverEnabled: true
+                                    focusPolicy: Qt.TabFocus
+                                    padding: 6
+                                    leftPadding: 12
+                                    rightPadding: 12
+                                    Accessible.name: modelData.name
+
+                                    contentItem: Text {
+                                        text: circleChip.modelData.name + " (" + circleChip.modelData.count + ")"
+                                        color: "#6366F1"
+                                        font.pointSize: JamiTheme.textFontSize
+                                    }
+                                    background: Rectangle {
+                                        radius: height / 2
+                                        color: circleChip.hovered ? "#336366F1" : "#1A6366F1"
+                                        border.width: circleChip.visualFocus ? 2 : 1
+                                        border.color: "#6366F1"
+                                    }
+                                    onClicked: root.addCircleMembers(modelData)
+                                }
+                            }
+                        }
+                    }
+
                     DonationBanner {
                         id: donationBanner
 
@@ -409,7 +637,7 @@ SidePanelBase {
                         Layout.leftMargin: 15
                         Layout.rightMargin: 15
 
-                        visible: JamiQmlUtils.isDonationBannerVisible
+                        visible: JamiQmlUtils.isDonationBannerVisible && !root.contactsMode
                     }
 
                     JamiListView {
@@ -495,7 +723,7 @@ SidePanelBase {
                         Layout.maximumHeight: Math.max(0, (conversationLayout.height - header.height + 10 +
                                                            (donationBanner.visible ? donationBanner.height + conversationLayout.spacing : 0)) / 2)
 
-                        visible: !inNewSwarm && contactSearchBar.textContent
+                        visible: !inNewSwarm && !root.contactsMode && contactSearchBar.textContent
                         activeFocusOnTab: true
 
                         model: ConversationsAdapter.searchListProxyModel
@@ -548,7 +776,8 @@ SidePanelBase {
                         Layout.rightMargin: 32
                         Layout.alignment: Qt.AlignTop
 
-                        visible: !inNewSwarm && contactSearchBar.textContent && searchResultsListView.count === 0
+                        visible: !inNewSwarm && !root.contactsMode && contactSearchBar.textContent
+                                 && searchResultsListView.count === 0
 
                         color: JamiTheme.textColor
                         wrapMode: Text.WordWrap
@@ -567,7 +796,7 @@ SidePanelBase {
                         Layout.fillWidth: true
                         Layout.fillHeight: true
 
-                        visible: !inNewSwarm && !root.isEmptyAccount
+                        visible: !inNewSwarm && !root.contactsMode && !root.isEmptyAccount
 
                         model: ConversationsAdapter.convListProxyModel
                         headerLabel: JamiStrings.conversations
@@ -577,36 +806,22 @@ SidePanelBase {
                         }
                     }
 
-                    FeedList {
-                        Layout.fillWidth: true
-                        visible: !inNewSwarm && CurrentAccount.type !== Profile.Type.SIP
-                                 && !ConversationsAdapter.filterRequests && !contactSearchBar.textContent
-                        sectionTitle: qsTr("Followed Feeds")
-                        showCreate: false
-                        feeds: root.followedFeeds
-                        selectedId: CurrentConversation.id
-                        onOpenRequested: function(id) { FeedAdapter.open(id); }
-                        onCatalogueRequested: viewCoordinator.presentDialog(appWindow,
-                                                                            "commoncomponents/FeedCatalogueDialog.qml",
-                                                                            {"accountId": CurrentAccount.id})
-                    }
+                    ConversationListView {
+                        id: contactsListView
+                        objectName: "contactsListView"
 
-                    FeedList {
+                        activeFocusOnTab: true
+
                         Layout.fillWidth: true
-                        visible: !inNewSwarm && CurrentAccount.type !== Profile.Type.SIP
-                                 && !ConversationsAdapter.filterRequests && !contactSearchBar.textContent
-                        sectionTitle: qsTr("My Feeds")
-                        showCatalogue: false
-                        feeds: root.ownedFeeds
-                        selectedId: CurrentConversation.id
-                        onOpenRequested: function(id) { FeedAdapter.open(id); }
-                        onCreateRequested: viewCoordinator.presentDialog(appWindow,
-                                                                          "commoncomponents/FeedSettingsDialog.qml",
-                                                                          {"accountId": CurrentAccount.id})
-                        onManageRequested: function(id) {
-                            viewCoordinator.presentDialog(appWindow,
-                                                           "commoncomponents/FeedSettingsDialog.qml",
-                                                           {"accountId": CurrentAccount.id, "feedId": id});
+                        Layout.fillHeight: true
+
+                        visible: root.contactsMode
+
+                        model: ConversationsAdapter.contactsListProxyModel
+                        headerLabel: JamiStrings.functionContacts
+                        headerVisible: false
+                        delegate: SmartListItemDelegate {
+                            showLocationIconArrow: locationIconTimer.showIconArrow
                         }
                     }
 
@@ -615,7 +830,7 @@ SidePanelBase {
                         Layout.fillWidth: true
                         Layout.fillHeight: true
 
-                        visible: root.isEmptyAccount
+                        visible: root.isEmptyAccount && !root.contactsMode
 
                         ColumnLayout {
                             anchors.centerIn: parent
@@ -665,16 +880,33 @@ SidePanelBase {
                             }
                         }
                     }
+
+                    FunctionsPanel {
+                        id: functionsPanel
+
+                        Layout.fillWidth: true
+                        Layout.preferredHeight: implicitHeight
+
+                        visible: root.showFunctions
+                        // At most a third of the window
+                        maximumHeight: root.height / 3
+
+                        onFunctionTriggered: function (fn) {
+                            root.runFunction(fn);
+                        }
+                    }
                 }
 
                 Rectangle {
                     id: gradientRectTop
 
                     readonly property color baseColor: JamiTheme.globalIslandColor
-                    readonly property bool shouldShow: (!inNewSwarm && !conversationListView.atYBeginning) || (inNewSwarm && !swarmCurrentConversationList.atYBeginning)
+                    readonly property bool shouldShow: (!inNewSwarm && !root.contactsMode && !conversationListView.atYBeginning)
+                                                       || (root.contactsMode && !contactsListView.atYBeginning)
+                                                       || (inNewSwarm && !swarmCurrentConversationList.atYBeginning)
 
                     anchors.top: conversationLayout.top
-                    anchors.topMargin: header.height + JamiTheme.sidePanelConversationsIslandTopPadding + 10 + (sidePanelTabBar.visible ? sidePanelTabBar.height : 0) + (JamiQmlUtils.isMacOS26OrLater ? JamiTheme.sidePanelTopPaddingMac : 0)
+                    anchors.topMargin: header.height + JamiTheme.sidePanelConversationsIslandTopPadding + 10 + (sidePanelTabBar.visible ? sidePanelTabBar.height : 0) + (contactsSortBar.visible ? contactsSortBar.height : 0) + (JamiQmlUtils.isMacOS26OrLater ? JamiTheme.sidePanelTopPaddingMac : 0)
 
                     width: conversationLayout.width
                     height: JamiTheme.smartListItemHeight
@@ -715,16 +947,19 @@ SidePanelBase {
                     id: gradientRect
 
                     readonly property color baseColor: JamiTheme.globalIslandColor
-                    readonly property bool shouldShow: (!inNewSwarm && !conversationListView.atYEnd) || (inNewSwarm && !swarmCurrentConversationList.atYEnd)
+                    readonly property bool shouldShow: (!inNewSwarm && !root.contactsMode && !conversationListView.atYEnd)
+                                                       || (root.contactsMode && !contactsListView.atYEnd)
+                                                       || (inNewSwarm && !swarmCurrentConversationList.atYEnd)
 
+                    // Fades the end of the list, above the functions panel when it is there.
                     anchors.bottom: conversationLayout.bottom
-                    anchors.bottomMargin: -1
+                    anchors.bottomMargin: functionsPanel.visible ? functionsPanel.height + conversationLayout.spacing : -1
 
                     width: conversationLayout.width
                     height: JamiTheme.smartListItemHeight
 
-                    bottomRightRadius: JamiTheme.avatarBasedRadius
-                    bottomLeftRadius: JamiTheme.avatarBasedRadius
+                    bottomRightRadius: functionsPanel.visible ? 0 : JamiTheme.avatarBasedRadius
+                    bottomLeftRadius: functionsPanel.visible ? 0 : JamiTheme.avatarBasedRadius
 
                     z: conversationLayout.z + 1
 

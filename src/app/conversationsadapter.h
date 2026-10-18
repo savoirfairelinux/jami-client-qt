@@ -38,6 +38,10 @@ class ConversationsAdapter final : public QmlAdapterBase
     QML_PROPERTY(int, pendingRequestCount)
     QML_RO_PROPERTY(QVariant, convListProxyModel)
     QML_RO_PROPERTY(QVariant, searchListProxyModel)
+    // The conversations again, for the contacts list and for the pickers of
+    // the side panel functions, each with its own filter and order.
+    QML_RO_PROPERTY(QVariant, contactsListProxyModel)
+    QML_RO_PROPERTY(QVariant, targetsListProxyModel)
 
 public:
     static ConversationsAdapter* create(QQmlEngine*, QJSEngine*)
@@ -121,6 +125,8 @@ private:
     ConversationListProxyModel* convModel_;
     QScopedPointer<SearchResultsListModel> searchSrcModel_;
     SelectableListProxyModel* searchModel_;
+    ConversationListProxyModel* contactsModel_;
+    ConversationListProxyModel* targetsModel_;
 
     std::atomic_bool selectFirst_ {false};
 };
