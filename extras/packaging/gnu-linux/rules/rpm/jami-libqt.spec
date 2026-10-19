@@ -71,6 +71,9 @@ tar xf %{SOURCE1} -C qtwebengine --strip-components=1
 %patch -P 1 -p1
 
 %build
+# binutils < 2.37 (EL9) leaks an fd per link input under the GCC LTO plugin
+# and reports EMFILE as "malformed archive"; Chromium links exceed 1024.
+ulimit -n 4096
 echo "Building Qt using %{job_count} parallel jobs"
 # Chromium is built by a nested Ninja, which only honors NINJAFLAGS.
 export NINJAFLAGS="-j%{job_count}"

@@ -7,7 +7,8 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-Chromium's build fails on Fedora 44 because of unrecognized types, e.g.:
+Chromium's build fails with GCC 16 / recent libstdc++ (which no longer
+transitively include <cstdint>) because of unrecognized types, e.g.:
 
 In file included from ../../../3rdparty/chromium/base/check_op.h:17,
                  from ./../../../3rdparty/chromium/base/substring_set_matcher/matcher_string_pattern.cc:10,
