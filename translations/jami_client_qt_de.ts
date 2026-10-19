@@ -208,251 +208,311 @@
 <context>
     <name>CollabRichEditorWindow</name>
     <message>
-        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="64"/>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="95"/>
         <source>Editable document</source>
         <translation>Bearbeitbares Dokument</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="270"/>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="349"/>
         <source>Document removed</source>
         <translation>Dokument entfernt</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="270"/>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="349"/>
         <source>Document removed from this device</source>
         <translation>Dokument von diesem Gerät entfernt</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="271"/>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="350"/>
         <source>&quot;%1&quot; was removed by its author.</source>
         <translation>„%1“ wurde von seinem Autor entfernt.</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="271"/>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="350"/>
         <source>&quot;%1&quot; is no longer on this device. Opening it again downloads it back.</source>
         <translation>„%1“ befindet sich nicht mehr auf diesem Gerät. Beim erneuten Öffnen wird es wieder heruntergeladen.</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="358"/>
-        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="782"/>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="392"/>
+        <source>Heading 1</source>
+        <translation>Überschrift 1</translation>
+    </message>
+    <message>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="394"/>
+        <source>Heading 2</source>
+        <translation>Überschrift 2</translation>
+    </message>
+    <message>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="396"/>
+        <source>Heading 3</source>
+        <translation>Überschrift 3</translation>
+    </message>
+    <message>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="397"/>
+        <source>Normal text</source>
+        <translation>Normaler Text</translation>
+    </message>
+    <message>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="484"/>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="958"/>
         <source>Insert image</source>
         <translation>Bild einfügen</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="360"/>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="486"/>
         <source>Images</source>
         <translation>Bilder</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="370"/>
-        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="443"/>
-        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="486"/>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="496"/>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="569"/>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="612"/>
         <source>This image could not be added. It has to be an image of at most 16 MB.</source>
         <translation>Dieses Bild konnte nicht hinzugefügt werden. Es muss ein Bild mit einer Größe von höchstens 16 MB sein.</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="392"/>
-        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="411"/>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="518"/>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="537"/>
         <source>Export document</source>
         <translation>Dokument exportieren</translation>
     </message>
     <message numerus="yes">
-        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="393"/>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="519"/>
         <source>%n picture(s) in this document have not arrived yet and would be exported as empty boxes.</source>
         <translation><numerusform>%n Bild(er) in diesem Dokument ist/sind noch nicht angekommen und würde(n) als leere(s) Feld(er) exportiert werden.</numerusform><numerusform>%n Bild(er) in diesem Dokument ist/sind noch nicht angekommen und würde(n) als leere(s) Feld(er) exportiert werden.</numerusform></translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="394"/>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="520"/>
         <source>Export anyway</source>
         <translation>Trotzdem exportieren</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="395"/>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="521"/>
         <source>Cancel</source>
         <translation>Abbrechen</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="409"/>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="535"/>
         <source>document</source>
         <translation>Dokument</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="423"/>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="549"/>
         <source>Document exported</source>
         <translation>Dokument exportiert</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="423"/>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="549"/>
         <source>Export failed</source>
         <translation>Der Export ist fehlgeschlagen</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="424"/>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="550"/>
         <source>The document could not be written there.</source>
         <translation>Das Dokument konnte dort nicht geschrieben werden.</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="569"/>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="697"/>
         <source>Untitled document</source>
         <translation>Unbenanntes Dokument</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="583"/>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="711"/>
         <source>Click to rename</source>
         <translation>Zum Umbenennen klicken</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="600"/>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="728"/>
         <source>Document name</source>
         <translation>Dokumentname</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="700"/>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="810"/>
+        <source>Paragraph style</source>
+        <translation>Absatzformat</translation>
+    </message>
+    <message>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="822"/>
+        <source>Font family</source>
+        <translation>Schriftart</translation>
+    </message>
+    <message>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="835"/>
+        <source>Font size</source>
+        <translation>Schriftgröße</translation>
+    </message>
+    <message>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="922"/>
         <source>Bulleted list</source>
         <translation>Aufzählungsliste</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="712"/>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="934"/>
         <source>Numbered list</source>
         <translation>Nummerierte Liste</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="738"/>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1587"/>
+        <source>Base size</source>
+        <translation>Basisgröße</translation>
+    </message>
+    <message>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="895"/>
         <source>Paragraph alignment</source>
         <translation>Absatzausrichtung</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="789"/>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="58"/>
+        <source>Default</source>
+        <translation>Standard</translation>
+    </message>
+    <message>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="62"/>
+        <source>Sans Serif</source>
+        <translation>Serifenlos</translation>
+    </message>
+    <message>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="66"/>
+        <source>Serif</source>
+        <translation>Mit Serifen</translation>
+    </message>
+    <message>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="70"/>
+        <source>Monospace</source>
+        <translation>Dicktengleich</translation>
+    </message>
+    <message>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="74"/>
+        <source>Cursive</source>
+        <translation>Kursiv</translation>
+    </message>
+    <message>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="965"/>
         <source>Clear formatting</source>
         <translation>Formatierung löschen</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="811"/>
-        <source>Base font size</source>
-        <translation>Basisschriftgröße</translation>
-    </message>
-    <message>
-        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="835"/>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="744"/>
         <source>Export a local copy</source>
         <translation>Lokale Kopie exportieren</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="852"/>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="761"/>
         <source>Version history</source>
         <translation>Versionsverlauf</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="869"/>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="778"/>
         <source>Show the raw document</source>
         <translation>Rohdokument anzeigen</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="920"/>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1014"/>
         <source>Start typing…</source>
         <translation>Mit dem Tippen beginnen…</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1140"/>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1236"/>
         <source>Someone</source>
         <translation>Jemand</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1278"/>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1374"/>
         <source>Link URL</source>
         <translation>Link-URL</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1294"/>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1390"/>
         <source>Remove</source>
         <translation>Entfernen</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1305"/>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1401"/>
         <source>Apply</source>
         <translation>Anwenden</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1323"/>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1419"/>
         <source>Copy</source>
         <translation>Kopieren</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1328"/>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1424"/>
         <source>Paste</source>
         <translation>Einfügen</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1335"/>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1431"/>
         <source>Delete</source>
         <translation>Löschen</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1347"/>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1443"/>
         <source>Export as PDF…</source>
         <translation>Als PDF exportieren…</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1350"/>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1446"/>
         <source>PDF document</source>
         <translation>PDF-Dokument</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1353"/>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1449"/>
         <source>Export as ODT…</source>
         <translation>Als ODT exportieren…</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1356"/>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1452"/>
         <source>OpenDocument text</source>
         <translation>OpenDocument-Text</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1359"/>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1455"/>
         <source>Export as HTML…</source>
         <translation>Als HTML exportieren… </translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1362"/>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1458"/>
         <source>HTML document</source>
         <translation>HTML-Dokument</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1365"/>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1461"/>
         <source>Export as Markdown…</source>
         <translation>Als Markdown exportieren…</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1368"/>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1464"/>
         <source>Markdown document</source>
         <translation>Markdown-Dokument</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1371"/>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1467"/>
         <source>Export as plain text…</source>
         <translation>Als reinen Text exportieren…</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1374"/>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1470"/>
         <source>Plain text document</source>
         <translation>Reines Textdokument</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1387"/>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1483"/>
         <source>Align left</source>
         <translation>Linksbündig ausrichten</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1391"/>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1487"/>
         <source>Centre</source>
         <translation>Zentriert</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1395"/>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1491"/>
         <source>Align right</source>
         <translation>Rechtsbündig</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1399"/>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1495"/>
         <source>Justify</source>
         <translation>Blocksatz</translation>
     </message>
@@ -1810,12 +1870,12 @@ Account-ID: ```%2```</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="719"/>
         <source>Quick Switcher</source>
-        <translation type="unfinished"/>
+        <translation>Schnellwechsler</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="720"/>
         <source>Find conversations, contacts, or settings</source>
-        <translation type="unfinished"/>
+        <translation>Unterhaltungen, Kontakte oder Einstellungen finden</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="751"/>
@@ -5155,7 +5215,7 @@ Bitte bestätigen Sie den Import auf dem neuen Gerät.</translation>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="45"/>
         <source>Quick Switcher</source>
-        <translation type="unfinished"/>
+        <translation>Schnellwechsler</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="49"/>
@@ -5304,7 +5364,7 @@ Bitte bestätigen Sie den Import auf dem neuen Gerät.</translation>
 <context>
     <name>MessageFormatBar</name>
     <message>
-        <location filename="../src/app/mainview/components/MessageFormatBar.qml" line="585"/>
+        <location filename="../src/app/mainview/components/MessageFormatBar.qml" line="581"/>
         <source>Editable documents</source>
         <translation>Bearbeitbare Dokumente</translation>
     </message>
@@ -5428,7 +5488,7 @@ Bitte bestätigen Sie den Import auf dem neuen Gerät.</translation>
     <message>
         <location filename="../src/core/api/interaction.h" line="293"/>
         <source>You were invited to join the conversation.</source>
-        <translation type="unfinished"/>
+        <translation>Sie wurden eingeladen, der Unterhaltung beizutreten.</translation>
     </message>
     <message>
         <location filename="../src/core/api/interaction.h" line="295"/>

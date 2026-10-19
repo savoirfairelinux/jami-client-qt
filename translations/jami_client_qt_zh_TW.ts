@@ -208,251 +208,311 @@
 <context>
     <name>CollabRichEditorWindow</name>
     <message>
-        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="64"/>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="95"/>
         <source>Editable document</source>
         <translation>可以編輯的文件</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="270"/>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="349"/>
         <source>Document removed</source>
         <translation>文件已經移除</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="270"/>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="349"/>
         <source>Document removed from this device</source>
         <translation>文件已經自此裝置移除</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="271"/>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="350"/>
         <source>&quot;%1&quot; was removed by its author.</source>
         <translation>&quot;%1&quot; 已經被作者移除。</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="271"/>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="350"/>
         <source>&quot;%1&quot; is no longer on this device. Opening it again downloads it back.</source>
         <translation>&quot;%1&quot; 已經不在此裝置上。再次開啟將重新下載。</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="358"/>
-        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="782"/>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="392"/>
+        <source>Heading 1</source>
+        <translation>標題1</translation>
+    </message>
+    <message>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="394"/>
+        <source>Heading 2</source>
+        <translation>標題2</translation>
+    </message>
+    <message>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="396"/>
+        <source>Heading 3</source>
+        <translation>標題3</translation>
+    </message>
+    <message>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="397"/>
+        <source>Normal text</source>
+        <translation>‌正文</translation>
+    </message>
+    <message>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="484"/>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="958"/>
         <source>Insert image</source>
         <translation>插入圖片</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="360"/>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="486"/>
         <source>Images</source>
         <translation>圖片</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="370"/>
-        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="443"/>
-        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="486"/>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="496"/>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="569"/>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="612"/>
         <source>This image could not be added. It has to be an image of at most 16 MB.</source>
-        <translation>無法添加此圖片。圖片大小不得超過 16 MB。</translation>
+        <translation>無法新增此圖片。圖片大小不得超過 16 MB。</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="392"/>
-        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="411"/>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="518"/>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="537"/>
         <source>Export document</source>
         <translation>匯出文件</translation>
     </message>
     <message numerus="yes">
-        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="393"/>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="519"/>
         <source>%n picture(s) in this document have not arrived yet and would be exported as empty boxes.</source>
         <translation><numerusform>此文件中有 %n 張圖片尚未底達，匯出後將顯示為空白框。</numerusform></translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="394"/>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="520"/>
         <source>Export anyway</source>
         <translation>仍要匯出</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="395"/>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="521"/>
         <source>Cancel</source>
         <translation>取消</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="409"/>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="535"/>
         <source>document</source>
         <translation>文件</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="423"/>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="549"/>
         <source>Document exported</source>
         <translation>文件已經匯出</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="423"/>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="549"/>
         <source>Export failed</source>
         <translation>匯出失敗</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="424"/>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="550"/>
         <source>The document could not be written there.</source>
         <translation>無法將文件寫入該位置。</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="569"/>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="697"/>
         <source>Untitled document</source>
         <translation>無標題文件</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="583"/>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="711"/>
         <source>Click to rename</source>
         <translation>點按重新命名</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="600"/>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="728"/>
         <source>Document name</source>
         <translation>文件名稱</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="700"/>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="810"/>
+        <source>Paragraph style</source>
+        <translation>‌段落样式</translation>
+    </message>
+    <message>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="822"/>
+        <source>Font family</source>
+        <translation>字体系列</translation>
+    </message>
+    <message>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="835"/>
+        <source>Font size</source>
+        <translation>字型大小</translation>
+    </message>
+    <message>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="922"/>
         <source>Bulleted list</source>
         <translation>項目符號清單</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="712"/>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="934"/>
         <source>Numbered list</source>
         <translation>項目編號清單</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="738"/>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1587"/>
+        <source>Base size</source>
+        <translation>基准字号</translation>
+    </message>
+    <message>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="895"/>
         <source>Paragraph alignment</source>
         <translation>段落對齊</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="789"/>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="58"/>
+        <source>Default</source>
+        <translation>預設</translation>
+    </message>
+    <message>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="62"/>
+        <source>Sans Serif</source>
+        <translation>‌无衬线体‌</translation>
+    </message>
+    <message>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="66"/>
+        <source>Serif</source>
+        <translation>衬线体‌</translation>
+    </message>
+    <message>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="70"/>
+        <source>Monospace</source>
+        <translation>‌等宽字体‌</translation>
+    </message>
+    <message>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="74"/>
+        <source>Cursive</source>
+        <translation>草书体</translation>
+    </message>
+    <message>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="965"/>
         <source>Clear formatting</source>
         <translation>清除格式</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="811"/>
-        <source>Base font size</source>
-        <translation>基本字型大小</translation>
-    </message>
-    <message>
-        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="835"/>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="744"/>
         <source>Export a local copy</source>
         <translation>匯出本機複本</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="852"/>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="761"/>
         <source>Version history</source>
         <translation>版本歷史記錄</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="869"/>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="778"/>
         <source>Show the raw document</source>
         <translation>顯示原始文件</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="920"/>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1014"/>
         <source>Start typing…</source>
         <translation>開始輸入…</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1140"/>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1236"/>
         <source>Someone</source>
         <translation>某人</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1278"/>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1374"/>
         <source>Link URL</source>
         <translation>連結 URL</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1294"/>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1390"/>
         <source>Remove</source>
         <translation>移除</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1305"/>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1401"/>
         <source>Apply</source>
         <translation>套用</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1323"/>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1419"/>
         <source>Copy</source>
         <translation>複製</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1328"/>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1424"/>
         <source>Paste</source>
         <translation>貼上</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1335"/>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1431"/>
         <source>Delete</source>
         <translation>刪除</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1347"/>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1443"/>
         <source>Export as PDF…</source>
         <translation>匯出 PDF…</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1350"/>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1446"/>
         <source>PDF document</source>
         <translation>PDF 文件</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1353"/>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1449"/>
         <source>Export as ODT…</source>
         <translation>匯出 ODT…</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1356"/>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1452"/>
         <source>OpenDocument text</source>
         <translation>OpenDocument 文字</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1359"/>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1455"/>
         <source>Export as HTML…</source>
         <translation>匯出 HTML…</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1362"/>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1458"/>
         <source>HTML document</source>
         <translation>HTML 文件</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1365"/>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1461"/>
         <source>Export as Markdown…</source>
         <translation>匯出 Markdown…</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1368"/>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1464"/>
         <source>Markdown document</source>
         <translation>Markdown 文件</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1371"/>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1467"/>
         <source>Export as plain text…</source>
         <translation>匯出 純文字…</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1374"/>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1470"/>
         <source>Plain text document</source>
         <translation>純文字文件</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1387"/>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1483"/>
         <source>Align left</source>
         <translation>靠左對齊</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1391"/>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1487"/>
         <source>Centre</source>
         <translation>居中對齊</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1395"/>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1491"/>
         <source>Align right</source>
         <translation>靠右對齊</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1399"/>
+        <location filename="../src/app/mainview/components/CollabRichEditorWindow.qml" line="1495"/>
         <source>Justify</source>
         <translation>兩端對齊</translation>
     </message>
@@ -526,7 +586,7 @@
     <message>
         <location filename="../src/app/currentconversation.cpp" line="149"/>
         <source>Private group</source>
-        <translation>私密群組</translation>
+        <translation>私人群組</translation>
     </message>
     <message>
         <location filename="../src/app/currentconversation.cpp" line="151"/>
@@ -595,7 +655,7 @@
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="45"/>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="909"/>
         <source>Jami daemon (jamid) reconnection is in progress. Please wait…</source>
-        <translation>Jami 守護程序 (jamid) 進行重新連線。請稍候…</translation>
+        <translation>Jami 常駐程序 (jamid) 進行重新連線。請稍候…</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="33"/>
@@ -630,12 +690,12 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="70"/>
         <source>Add to conference</source>
-        <translation>添加至會議</translation>
+        <translation>新增至會議</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="71"/>
         <source>Add to conversation</source>
-        <translation>添加至交談</translation>
+        <translation>新增至交談</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="72"/>
@@ -1145,7 +1205,7 @@
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="233"/>
         <source>Add **%1** on Jami!
  Account ID: ```%2```</source>
-        <translation>在 Jami 上添加 **%1**！ 
+        <translation>在 Jami 上新增 **%1**！ 
 帳號 ID：```%2```</translation>
     </message>
     <message>
@@ -1350,7 +1410,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="283"/>
         <source>Add website</source>
-        <translation>添加網站</translation>
+        <translation>新增網站</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="284"/>
@@ -1690,7 +1750,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="548"/>
         <source>Your account will be created and stored locally.</source>
-        <translation>將會添加您的帳號並儲存在本機。</translation>
+        <translation>將會新增您的帳號並儲存在本機。</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="549"/>
@@ -1810,12 +1870,12 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="719"/>
         <source>Quick Switcher</source>
-        <translation type="unfinished"/>
+        <translation>快速切换开关</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="720"/>
         <source>Find conversations, contacts, or settings</source>
-        <translation type="unfinished"/>
+        <translation>查找会话、联系人或设置</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="751"/>
@@ -2253,7 +2313,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="851"/>
         <source>An error occurred while creating the account. Check credentials and try again.</source>
-        <translation>添加帳號時發生錯誤。檢查憑證並重試。</translation>
+        <translation>新增帳號時發生錯誤。檢查憑證並重試。</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="863"/>
@@ -2327,7 +2387,7 @@ The application will now exit.</source>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="538"/>
         <source>Do you want to create a Jami account without a username?
 If yes, only a randomly generated 40-character identifier will be assigned to the account.</source>
-        <translation>您是否要添加一個沒有使用者名稱的 Jami 帳號？
+        <translation>您是否要新增一個沒有使用者名稱的 Jami 帳號？
 如果要，將僅向帳號分配一個隨機生成的 40 個字元識別號。</translation>
     </message>
     <message>
@@ -2338,7 +2398,7 @@ If yes, only a randomly generated 40-character identifier will be assigned to th
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="622"/>
         <source>If the account has not been backed up or added to another device, the account and registered username will be IRREVOCABLY LOST.</source>
-        <translation>如果該帳號尚無備份或添加至其他裝置，則該帳號和註冊使用者名稱將永遠遺失。</translation>
+        <translation>如果該帳號尚無備份或新增至其他裝置，則該帳號和註冊使用者名稱將永遠遺失。</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="660"/>
@@ -2412,7 +2472,7 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="979"/>
         <source>Add description</source>
-        <translation>添加描述</translation>
+        <translation>新增描述</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="987"/>
@@ -2509,7 +2569,7 @@ to connect to synchronize the conversation…</source>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="888"/>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="905"/>
         <source>Add</source>
-        <translation>添加</translation>
+        <translation>新增</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="914"/>
@@ -2691,7 +2751,7 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="66"/>
         <source>Add another account</source>
-        <translation>添加其他帳號</translation>
+        <translation>新增其他帳號</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="67"/>
@@ -3159,7 +3219,7 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="495"/>
         <source>Add to conversations</source>
-        <translation>添加到交談中</translation>
+        <translation>新增到交談中</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="497"/>
@@ -3588,7 +3648,7 @@ The location of other members can still be received.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="559"/>
         <source>Add SIP account</source>
-        <translation>添加 SIP 帳號</translation>
+        <translation>新增 SIP 帳號</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="565"/>
@@ -3628,7 +3688,7 @@ The location of other members can still be received.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="593"/>
         <source>A Jami account is created and stored locally only on this device, as an archive containing your account keys. Access to this archive can optionally be protected with a password.</source>
-        <translation>添加的 Jami 帳號只儲存在本機裝置上，作為包含帳號金鑰的封存檔。可以選擇用密碼保護對該封存檔案的存取。</translation>
+        <translation>新增的 Jami 帳號只儲存在本機裝置上，作為包含帳號金鑰的封存檔。可以選擇用密碼保護對該封存檔案的存取。</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="596"/>
@@ -3638,7 +3698,7 @@ The location of other members can still be received.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="597"/>
         <source>This account is created and stored locally, if you want to use it on another device you have to link the new device to this account.</source>
-        <translation>此帳號是在本機添加和儲存的，如果要在其他裝置上使用，則必須將新裝置連結至此帳號。</translation>
+        <translation>此帳號是在本機新增和儲存的，如果要在其他裝置上使用，則必須將新裝置連結至此帳號。</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="608"/>
@@ -3808,7 +3868,7 @@ The location of other members can still be received.</source>
 Select Add account → Connect from another device.
 When ready, scan the QR code.</source>
         <translation>在新裝置上，啟用新建帳號。
-選擇添加帳號 → 自其他裝置連接。
+選擇新增帳號 → 自其他裝置連接。
 準備就緒後，掃瞄 QR code 二維條碼。</translation>
     </message>
     <message>
@@ -3939,7 +3999,7 @@ When ready, scan the QR code.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="850"/>
         <source>Configure SIP account</source>
-        <translation>添加 SIP 帳號</translation>
+        <translation>新增 SIP 帳號</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="852"/>
@@ -4049,7 +4109,7 @@ When ready, scan the QR code.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="946"/>
         <source>Send a message to %1 in order to add them as a contact</source>
-        <translation>傳送訊息至 %1，以便將其添加作為聯絡人</translation>
+        <translation>傳送訊息至 %1，以便將其新增作為聯絡人</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="975"/>
@@ -4079,12 +4139,12 @@ When ready, scan the QR code.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1101"/>
         <source>Search or add</source>
-        <translation>搜尋或添加</translation>
+        <translation>搜尋或新增</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1107"/>
         <source>Add comment</source>
-        <translation>添加評論</translation>
+        <translation>新增評論</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1108"/>
@@ -4094,7 +4154,7 @@ When ready, scan the QR code.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1111"/>
         <source>Add contact</source>
-        <translation>添加聯絡人</translation>
+        <translation>新增聯絡人</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1112"/>
@@ -4259,7 +4319,7 @@ When ready, scan the QR code.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1131"/>
         <source>Display your QR code to allow other users to scan it and add you as a contact</source>
-        <translation>顯示您的二維條碼，以便其他使用者掃瞄並添加您作為聯絡人</translation>
+        <translation>顯示您的二維條碼，以便其他使用者掃瞄並新增您作為聯絡人</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1132"/>
@@ -4664,7 +4724,7 @@ When ready, scan the QR code.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="753"/>
         <source>Add Device</source>
-        <translation>添加裝置</translation>
+        <translation>新增裝置</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="769"/>
@@ -4941,7 +5001,7 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="904"/>
         <source>Add default moderator</source>
-        <translation>添加預設主持人</translation>
+        <translation>新增預設主持人</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="906"/>
@@ -4951,7 +5011,7 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="913"/>
         <source>Add emoji</source>
-        <translation>添加表情符號</translation>
+        <translation>新增表情符號</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="915"/>
@@ -5057,7 +5117,7 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1008"/>
         <source>Add profile picture and nickname to complete your profile</source>
-        <translation>添加個人資訊圖像和別稱，以完成自己的個人資訊</translation>
+        <translation>新增個人資訊圖像和別稱，以完成自己的個人資訊</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="1009"/>
@@ -5155,7 +5215,7 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="45"/>
         <source>Quick Switcher</source>
-        <translation type="unfinished"/>
+        <translation>快速切换开关</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="49"/>
@@ -5304,7 +5364,7 @@ Please confirm the import on the new device.</source>
 <context>
     <name>MessageFormatBar</name>
     <message>
-        <location filename="../src/app/mainview/components/MessageFormatBar.qml" line="585"/>
+        <location filename="../src/app/mainview/components/MessageFormatBar.qml" line="581"/>
         <source>Editable documents</source>
         <translation>可以編輯的文件</translation>
     </message>
@@ -5413,22 +5473,22 @@ Please confirm the import on the new device.</source>
         <location filename="../src/core/api/interaction.h" line="313"/>
         <location filename="../src/core/authority/storagehelper.cpp" line="513"/>
         <source>Contact added</source>
-        <translation>聯絡人已經添加</translation>
+        <translation>聯絡人已經新增</translation>
     </message>
     <message>
         <location filename="../src/core/interaction.cpp" line="88"/>
         <source>Private conversation created</source>
-        <translation>私人交談已經添加</translation>
+        <translation>私人交談已經新增</translation>
     </message>
     <message>
         <location filename="../src/core/interaction.cpp" line="90"/>
         <source>Group conversation created</source>
-        <translation>群組交談已經添加</translation>
+        <translation>群組交談已經新增</translation>
     </message>
     <message>
         <location filename="../src/core/api/interaction.h" line="293"/>
         <source>You were invited to join the conversation.</source>
-        <translation type="unfinished"/>
+        <translation>你已被邀请加入该会话。</translation>
     </message>
     <message>
         <location filename="../src/core/api/interaction.h" line="295"/>
@@ -5899,7 +5959,7 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/app/utils.cpp" line="605"/>
         <source>This is a list of people who have made a significant investment of time, with useful results, into Jami. Any such contributors who want to be added to the list should contact us.</source>
-        <translation>這是一份為 Jami 投入大量時間，促使本軟體成就果豐碩的貢獻者名單。任何希望被添加到清單中的貢獻者，請聯絡 Jami 團隊。</translation>
+        <translation>這是一份為 Jami 投入大量時間，促使本軟體成就果豐碩的貢獻者名單。任何希望被新增到清單中的貢獻者，請聯絡 Jami 團隊。</translation>
     </message>
     <message>
         <location filename="../src/app/linkdevicemodel.cpp" line="63"/>
@@ -6051,7 +6111,7 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="107"/>
         <source>In a call, you can click on “Invite members” to add a contact to a call.</source>
-        <translation>在通話中，您可以點按〔邀請成員〕將聯絡人添加至通話中。</translation>
+        <translation>在通話中，您可以點按〔邀請成員〕將聯絡人新增至通話中。</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="110"/>
@@ -6066,12 +6126,12 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="116"/>
         <source>What information do I need to provide to create a Jami account?</source>
-        <translation>我需要提供哪些資訊來添加 Jami 帳號？</translation>
+        <translation>我需要提供哪些資訊來新增 Jami 帳號？</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="118"/>
         <source>When you create a new Jami account, you do not have to provide any private information like an email, address, or phone number.</source>
-        <translation>當您新添 Jami 帳號時，您不需要提供任何私人資訊，如電子郵件、位址或電話號碼。</translation>
+        <translation>當您新增 Jami 帳號時，您不需要提供任何私人資訊，如電子郵件、位址或電話號碼。</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="122"/>
