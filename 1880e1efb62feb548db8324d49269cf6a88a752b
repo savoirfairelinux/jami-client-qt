@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "af86da1d_512685fc",
+        "filename": "extras/packaging/gnu-linux/rules/rpm/jami-libqt.spec",
+        "patchSetId": 1
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-10-19T20:07:41Z",
+      "side": 1,
+      "message": "[warning] Line 77: 🟡 `ulimit -n 4096` can fail in environments where the hard nofile limit is below 4096, which would abort `%build` before compilation starts. Consider setting it defensively (e.g., clamp to hard limit or conditionally raise only when possible) so the workaround remains portable across stricter builders.",
+      "revId": "1880e1efb62feb548db8324d49269cf6a88a752b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
