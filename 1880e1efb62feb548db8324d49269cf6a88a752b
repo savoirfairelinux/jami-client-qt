@@ -34,6 +34,24 @@
       "parentUuid": "af86da1d_512685fc",
       "revId": "1880e1efb62feb548db8324d49269cf6a88a752b",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6b312637_7403fae7",
+        "filename": "extras/packaging/gnu-linux/rules/rpm/jami-libqt.spec",
+        "patchSetId": 1
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-10-19T20:18:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b7735a25_58698538",
+      "revId": "1880e1efb62feb548db8324d49269cf6a88a752b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
