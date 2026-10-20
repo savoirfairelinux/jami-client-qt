@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0e579753_41eaa396",
+        "filename": "extras/scripts/build-windows.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 379,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-10-20T20:42:25Z",
+      "side": 1,
+      "message": "[warning] Line 379: 🟡 The deploy stamp is mode-agnostic, but runtime dependency copying is now mode-dependent (`use_vcpkg`). If a previous run created `.deploy.stamp` in vcpkg mode, a later `--no-vcpkg` run can skip deployment and miss OpenSSL DLLs; the inverse can also leave stale artifacts. Make the stamp content include deployment mode (and invalidate when it changes), or always refresh the dependency subset when `use_vcpkg` differs from the stamped mode.",
+      "revId": "1343ba847f3be5a708105a3d55e7371b8d218568",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
