@@ -18,6 +18,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6a54c53c_1c5ec0be",
+        "filename": "extras/scripts/__pycache__/build-windows.cpython-314.pyc",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-10-20T19:27:17Z",
+      "side": 1,
+      "message": "Removed; __pycache__/ added to .gitignore.",
+      "parentUuid": "6995ec0d_440dc5ab",
+      "revId": "d37bc29128e0265ca4112b96ca678bcdbe1f27a4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d124179c_e41ffe0b",
@@ -31,6 +49,24 @@
       "writtenOn": "2026-10-15T21:30:09Z",
       "side": 1,
       "message": "[warning] Line 225: 🟡 The cache invalidation only inspects `Qt6_DIR`, but the commit message states stale `Qt6\u003cModule\u003e_DIR` entries are also problematic. If `Qt6_DIR` is absent or unchanged while module-specific dirs are stale, the old cache may survive. Consider checking all `Qt6*_DIR:` entries and dropping the cache when any resolves outside the requested `qt_dir`.",
+      "revId": "d37bc29128e0265ca4112b96ca678bcdbe1f27a4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "24f0c4a3_64fb0b2d",
+        "filename": "extras/scripts/build-windows.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-10-20T19:27:17Z",
+      "side": 1,
+      "message": "Done: now checks every Qt6*_DIR entry (prefix test against qt_dir), skipping -NOTFOUND values.",
+      "parentUuid": "d124179c_e41ffe0b",
       "revId": "d37bc29128e0265ca4112b96ca678bcdbe1f27a4",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
