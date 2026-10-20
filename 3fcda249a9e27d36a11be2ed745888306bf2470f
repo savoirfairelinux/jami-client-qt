@@ -16,6 +16,24 @@
       "message": "[warning] 🟡 Switching from contrib mode to vcpkg mode now re-runs deployment, but it does not remove contrib-only OpenSSL DLLs that may already exist in `x64/Release` (`libcrypto-3-x64.dll`, `libssl-3-x64.dll`). That can leave stale artifacts in packaged outputs and potentially mask what is actually linked at runtime. In `use_vcpkg` mode, delete those known contrib DLLs (or clean the runtime staging dir before copying) before writing the deploy stamp.",
       "revId": "3fcda249a9e27d36a11be2ed745888306bf2470f",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "365b0064_673adb29",
+        "filename": "extras/scripts/build-windows.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-10-20T21:05:06Z",
+      "side": 1,
+      "message": "Done: vcpkg mode removes contrib OpenSSL DLLs from the runtime dir.",
+      "parentUuid": "d98d17a1_f663125a",
+      "revId": "3fcda249a9e27d36a11be2ed745888306bf2470f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
