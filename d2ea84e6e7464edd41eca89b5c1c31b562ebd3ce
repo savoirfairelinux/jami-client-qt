@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "11722193_6c3a5b2a",
+        "filename": "src/app/mainapplication.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 318,
+      "author": {
+        "id": 1109
+      },
+      "writtenOn": "2026-10-20T17:58:11Z",
+      "side": 1,
+      "message": "Could we check that a replacement network is still available here? If connectivity disappears during the debounce window,  networkChanged_  remains true and this still issues a handover notification while offline",
+      "range": {
+        "startLine": 311,
+        "startChar": 2,
+        "endLine": 318,
+        "endChar": 7
+      },
+      "revId": "d2ea84e6e7464edd41eca89b5c1c31b562ebd3ce",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
