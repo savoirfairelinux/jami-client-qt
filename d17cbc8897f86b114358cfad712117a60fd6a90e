@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "350fd57b_8b4fd0f5",
+        "filename": "daemon",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-10-21T20:12:05Z",
+      "side": 1,
+      "message": "[warning] Line 1: 🟡 The change only updates the submodule SHA, but there is no linked daemon diff/changelog or compatibility note for this bump. Please add the upstream commit range (or release notes) and explicitly confirm client-facing compatibility (notably the Windows dependency path switch) so security/regression impact can be audited.",
+      "revId": "d17cbc8897f86b114358cfad712117a60fd6a90e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
