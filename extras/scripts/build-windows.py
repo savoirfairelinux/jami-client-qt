@@ -18,8 +18,6 @@ optional arguments:
   -v, --version             Show the version number and exit
   -s, --skip-build          Only do packaging or run tests, skip building
   --enable-crash-reports    Enable crash reports
-  --no-vcpkg                Build the daemon dependencies with pywinmake even
-                            if the daemon provides a vcpkg manifest
 
 positional arguments:
   {pack}
@@ -299,7 +297,7 @@ def cmake_build(config_str, env_vars, cmake_build_dir):
 
 
 def build(config_str, qt_dir, tests, build_version, enable_crash_reports,
-          crash_report_url=None, use_vcpkg=False):
+          crash_report_url=None):
     """Use cmake to build the project."""
     print("Building with Qt at " + qt_dir)
 
@@ -328,23 +326,22 @@ def build(config_str, qt_dir, tests, build_version, enable_crash_reports,
     if build_version:
         cmake_options.append("-DBUILD_VERSION=" + build_version)
 
-    if use_vcpkg:
-        vcpkg_root = setup_vcpkg(vs_env_vars)
-        print("Using vcpkg at " + vcpkg_root)
-        toolchain = os.path.join(vcpkg_root, "scripts", "buildsystems",
-                                 "vcpkg.cmake")
-        cmake_options.append("-DCMAKE_TOOLCHAIN_FILE=" +
-                             toolchain.replace("\\", "/"))
-        # vcvarsall points VCPKG_ROOT at Visual Studio's bundled vcpkg.
-        vs_env_vars["VCPKG_ROOT"] = vcpkg_root
-        # vcpkg scrubs the environment; the yffi port needs rustup's.
-        vs_env_vars["VCPKG_KEEP_ENV_VARS"] = "CARGO_HOME;RUSTUP_HOME"
-        if is_jenkins:
-            # CI caches build/; keep only vcpkg_installed, not the
-            # multi-GB per-port build trees.
-            cmake_options.append("-DVCPKG_INSTALL_OPTIONS="
-                                 "--clean-buildtrees-after-build;"
-                                 "--clean-packages-after-build")
+    vcpkg_root = setup_vcpkg(vs_env_vars)
+    print("Using vcpkg at " + vcpkg_root)
+    toolchain = os.path.join(vcpkg_root, "scripts", "buildsystems",
+                             "vcpkg.cmake")
+    cmake_options.append("-DCMAKE_TOOLCHAIN_FILE=" +
+                         toolchain.replace("\\", "/"))
+    # vcvarsall points VCPKG_ROOT at Visual Studio's bundled vcpkg.
+    vs_env_vars["VCPKG_ROOT"] = vcpkg_root
+    # vcpkg scrubs the environment; the yffi port needs rustup's.
+    vs_env_vars["VCPKG_KEEP_ENV_VARS"] = "CARGO_HOME;RUSTUP_HOME"
+    if is_jenkins:
+        # CI caches build/; keep only vcpkg_installed, not the
+        # multi-GB per-port build trees.
+        cmake_options.append("-DVCPKG_INSTALL_OPTIONS="
+                             "--clean-buildtrees-after-build;"
+                             "--clean-packages-after-build")
 
     # /FS (Force Synchronous PDB writes) serialises all cl.exe PDB writes
     # through mspdbsrv.exe. Required on CI nodes where concurrent builds share
@@ -367,14 +364,13 @@ def build(config_str, qt_dir, tests, build_version, enable_crash_reports,
         sys.exit(1)
 
 
-def deploy_runtimes(qt_dir, use_vcpkg=False):
+def deploy_runtimes(qt_dir):
     """Deploy the dependencies to the runtime directory."""
     print("Deploying runtime dependencies")
 
     runtime_dir = os.path.join(repo_root_dir, "x64", "Release")
-    # Stamp the dependency mode: switching vcpkg/contrib changes what is copied.
     stamp_file = os.path.join(runtime_dir, ".deploy.stamp")
-    stamp = "vcpkg" if use_vcpkg else "contrib"
+    stamp = "vcpkg"
     if os.path.exists(stamp_file):
         with open(stamp_file, encoding="utf-8") as file:
             if file.read() == stamp:
@@ -386,17 +382,11 @@ def deploy_runtimes(qt_dir, use_vcpkg=False):
     def install_file(src, rel_path):
         shutil.copy(os.path.join(rel_path, src), runtime_dir)
 
-    openssl_dlls = ["libcrypto-3-x64.dll", "libssl-3-x64.dll"]
-    if use_vcpkg:
-        # vcpkg links OpenSSL statically: drop DLLs left by a contrib build.
-        for dll in openssl_dlls:
-            path = os.path.join(runtime_dir, dll)
-            if os.path.exists(path):
-                os.remove(path)
-    else:
-        print("Copying libjami dependencies")
-        for dll in openssl_dlls:
-            install_file("contrib/build/openssl/" + dll, daemon_dir)
+    # OpenSSL is linked statically: drop DLLs left by an older contrib build.
+    for dll in ["libcrypto-3-x64.dll", "libssl-3-x64.dll"]:
+        path = os.path.join(runtime_dir, dll)
+        if os.path.exists(path):
+            os.remove(path)
     # Ringtone files (ul,ogg,wav,opus files in the daemon ringtone dir).
 
     print("Copying ringtones")
@@ -441,14 +431,11 @@ def deploy_runtimes(qt_dir, use_vcpkg=False):
         file.write(stamp)
 
 
-def run_tests(config_str, qt_dir, use_vcpkg=False):
+def run_tests(config_str, qt_dir):
     """Run tests."""
     print("Running client tests")
 
     os.environ["PATH"] += os.pathsep + os.path.join(qt_dir, 'bin')
-    if not use_vcpkg:
-        os.environ["PATH"] += os.pathsep + \
-            os.path.join(daemon_dir, "contrib", "build", "openssl")
     os.environ["QT_QPA_PLATFORM"] = "offscreen"
     os.environ["QT_QUICK_BACKEND"] = "software"
     os.environ['QT_QPA_FONTDIR'] = os.path.join(
@@ -549,11 +536,6 @@ def parse_args():
         default=False,
         help='Enable crash reporting')
     parser.add_argument(
-        '--no-vcpkg',
-        action='store_true',
-        default=False,
-        help='Use pywinmake even if the daemon provides a vcpkg manifest')
-    parser.add_argument(
         '--crash-report-url',
         help='Override the crash report submission URL',
         default=None)
@@ -603,18 +585,15 @@ def main():
         sys.exit(0)
 
     config_str = ('Release', 'Beta')[parsed_args.beta]
-    use_vcpkg = (not parsed_args.no_vcpkg and
-                 os.path.exists(os.path.join(vcpkg_manifest_dir, "vcpkg.json")))
 
     def do_build(do_tests):
         if not parsed_args.skip_build:
             build(config_str, parsed_args.qt, do_tests,
                   parsed_args.build_version,
                   parsed_args.enable_crash_reports,
-                  parsed_args.crash_report_url,
-                  use_vcpkg)
+                  parsed_args.crash_report_url)
         if not parsed_args.skip_deploy:
-            deploy_runtimes(parsed_args.qt, use_vcpkg)
+            deploy_runtimes(parsed_args.qt)
 
     if parsed_args.subcommand == "pack":
         do_build(False)
@@ -623,7 +602,7 @@ def main():
     else:
         do_build(parsed_args.tests)
         if parsed_args.tests:
-            run_tests(config_str, parsed_args.qt, use_vcpkg)
+            run_tests(config_str, parsed_args.qt)
 
     print("Done")
 

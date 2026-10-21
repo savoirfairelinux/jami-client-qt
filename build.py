@@ -763,10 +763,6 @@ def parse_args():
     ap.add_argument('--clean-contribs', nargs='+',
                     help='Clean the specified contribs (space separated) or \
                           "all" to clean all contribs before building.')
-    # No-op since the legacy MSVC winmake path was removed; kept so
-    # existing Windows build invocations keep working.
-    ap.add_argument('--pywinmake', action='store_true',
-                    help=argparse.SUPPRESS)
     # Allow supplying extra congifure flags to the client cmake.
     ap.add_argument('--extra-cmake-flags', type=str,
                     help='Extra flags to pass to the client cmake')
