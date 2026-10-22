@@ -121,7 +121,7 @@ Item {
     function openShareScreen() {
         if (UtilsAdapter.isWayland()) {
             viewCoordinator.presentDialog(appWindow, "mainview/components/ShareScreenWaylandDialog.qml");
-        } else if (Qt.application.screens.length === 1) {
+        } else if (Qt.application.screens.length === 1 && Qt.platform.os.toString() !== "windows") {
             AvAdapter.shareEntireScreen(0, AvAdapter.muteScreenshareAudio);
         } else {
             SelectScreenWindowCreation.presentSelectScreenWindow(appWindow, false);
