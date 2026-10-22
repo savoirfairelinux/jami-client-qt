@@ -139,7 +139,7 @@ Control {
             }
 
             text: JamiStrings.sharingOptions
-            enabled: (!CurrentCall.isSharing || AvAdapter.isSharingScreenOrWindow()) && Qt.platform.os.toString() === "linux"
+            enabled: !CurrentCall.isSharing || (Qt.platform.os.toString() === "linux" && AvAdapter.isSharingScreenOrWindow())
 
             onTriggered: {
                 shareModel.clear();
@@ -430,6 +430,7 @@ Control {
         },
         Action {
             id: shareAction
+            property bool openPopupWhenClicked: Qt.platform.os.toString() === "windows" && !CurrentCall.isSharing
             onTriggered: {
                 if (CurrentCall.isSharing)
                     root.stopSharingClicked();
