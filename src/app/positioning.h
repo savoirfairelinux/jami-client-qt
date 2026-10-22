@@ -36,10 +36,13 @@ public:
      */
     void stop();
     /**
-     * send a stop signal to other peers to tell them
-     * you stoped sharing yout position
+     * The position to send to peers, dated when it is sent
      */
-    QString convertToJson(const QGeoPositionInfo& info);
+    static QString convertToJson(const QGeoPositionInfo& info);
+    /**
+     * The message telling peers you stopped sharing your position
+     */
+    static QString stopJson();
 
 private Q_SLOTS:
     void slotError(QGeoPositionInfoSource::Error error);

@@ -193,7 +193,7 @@ PositionManager::stopSharingPosition(const QString& accountId, const QString& co
 {
     QString stopMsg;
     PositionKey key = qMakePair(accountId, convId);
-    stopMsg = "{\"type\":\"Stop\"}";
+    stopMsg = Positioning::stopJson();
     if (accountId == "") {
         sendPosition(stopMsg, false);
         stopPositionTimers();
@@ -230,7 +230,7 @@ void
 PositionManager::sendStopMessage(QString accountId, const QString convId)
 {
     QString stopMsg;
-    stopMsg = "{\"type\":\"Stop\"}";
+    stopMsg = Positioning::stopJson();
     if (accountId != "" && convId != "") {
         const auto& convInfo = lrcInstance_->getConversationFromConvUid(convId, accountId);
         Q_FOREACH (const QString& uri, convInfo.participantsUris()) {
