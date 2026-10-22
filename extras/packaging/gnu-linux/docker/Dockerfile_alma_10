@@ -65,6 +65,7 @@ RUN dnf install -y \
         nettle-devel \
         NetworkManager-libnm-devel \
         ninja-build \
+        meson \
         nodejs \
         nss-devel \
         openssl-devel \

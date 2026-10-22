@@ -95,6 +95,7 @@ RUN dnf install -y \
         perl-English \
         libxshmfence-devel \
         ninja-build \
+        meson \
         cmake \
         fmt-devel \
         python3-html5lib \
