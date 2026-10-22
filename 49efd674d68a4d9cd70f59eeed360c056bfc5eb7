@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d1129056_7795ca86",
+        "filename": "daemon",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-10-22T14:47:41Z",
+      "side": 1,
+      "message": "[warning] Line 1: 🟡 This patch only updates the daemon submodule SHA, but the review context (what changed between `277c1b5` and `d1df51c`, including security/behavioral impact) is missing. Please include a short commit-range summary (or link to the reviewed daemon change list) and explicitly note any client-facing/API-impacting changes so this bump can be audited and traced safely.",
+      "revId": "49efd674d68a4d9cd70f59eeed360c056bfc5eb7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
