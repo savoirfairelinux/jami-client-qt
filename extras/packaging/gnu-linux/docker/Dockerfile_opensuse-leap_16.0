@@ -84,6 +84,7 @@ RUN zypper --non-interactive install -y \
         xorg-* \
         vulkan-devel \
         ninja \
+        meson \
         gstreamer-devel \
         gstreamer-plugins-good \
         gstreamer-plugins-bad-devel \

@@ -19,6 +19,7 @@ BuildRequires: automake
 BuildRequires: gettext-devel
 BuildRequires: libtool
 BuildRequires: make
+BuildRequires: meson
 BuildRequires: which
 BuildRequires: yasm
 
