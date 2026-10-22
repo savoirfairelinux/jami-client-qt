@@ -17,6 +17,7 @@
 
 #include "positioning.h"
 
+#include <QDateTime>
 #include <QJsonObject>
 #include <QJsonDocument>
 
@@ -69,12 +70,25 @@ Positioning::convertToJson(const QGeoPositionInfo& info)
     jsonObj.insert("type", QJsonValue("Position"));
     jsonObj.insert("lat", QJsonValue(info.coordinate().latitude()));
     jsonObj.insert("long", QJsonValue(info.coordinate().longitude()));
-    jsonObj.insert("time", QJsonValue(info.timestamp().toMSecsSinceEpoch()));
+    // Dated when sent rather than when found: a computer that does not move keeps
+    // the position it found at startup, and peers drop a position that is no newer
+    // than the one they hold.
+    jsonObj.insert("time", QJsonValue(QDateTime::currentMSecsSinceEpoch()));
 
     QJsonDocument doc(jsonObj);
     QString strJson(doc.toJson(QJsonDocument::Compact));
 
     return strJson;
+}
+
+QString
+Positioning::stopJson()
+{
+    QJsonObject jsonObj;
+    jsonObj.insert("type", QJsonValue("Stop"));
+    // Peers ignore a location message that has no time.
+    jsonObj.insert("time", QJsonValue(QDateTime::currentMSecsSinceEpoch()));
+    return QString(QJsonDocument(jsonObj).toJson(QJsonDocument::Compact));
 }
 
 void
