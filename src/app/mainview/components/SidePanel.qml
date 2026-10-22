@@ -153,8 +153,7 @@ SidePanelBase {
             openBoards();
             break;
         case FunctionsPanel.Services:
-            // The "Shared services" page of the account settings
-            JamiQmlUtils.requestSettingsPage(6);
+            openServices();
             break;
         case FunctionsPanel.Circles:
             openCircles();
@@ -213,6 +212,21 @@ SidePanelBase {
                                                                     document.conversationTitle, document.author);
                                      });
         dialog.newDocumentRequested.connect(() => pickTarget(FunctionsPanel.Documents));
+    }
+
+    // The services the contacts offer, each opened from the list.
+    function openServices() {
+        const dialog = viewCoordinator.presentDialog(appWindow, "mainview/components/ServicesDialog.qml");
+        // The "Shared services" page of the account settings
+        dialog.ownServicesRequested.connect(() => JamiQmlUtils.requestSettingsPage(6));
+        dialog.openUrlRequested.connect(url => {
+                                            const confirmation = viewCoordinator.presentDialog(appWindow, "commoncomponents/ConfirmDialog.qml", {
+                                                                                                   "titleText": JamiStrings.openExternalLink,
+                                                                                                   "textLabel": JamiStrings.confirmNavigationDescription,
+                                                                                                   "confirmLabel": JamiStrings.open
+                                                                                               });
+                                            confirmation.accepted.connect(() => Qt.openUrlExternally(url));
+                                        });
     }
 
     function openGroups() {

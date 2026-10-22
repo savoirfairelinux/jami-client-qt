@@ -18,6 +18,8 @@
 #pragma once
 
 #include "qmladapterbase.h"
+#include "qtutils.h"
+#include "sharedserviceutils.h"
 
 #include <QObject>
 #include <QQmlEngine>
@@ -46,6 +48,12 @@ class SharedServicesAdapter final : public QmlAdapterBase
 {
     Q_OBJECT
     QML_SINGLETON
+
+    // The services the contacts of an account offer, gathered by
+    // refreshOfferedServices(): each a peerServicesReceived entry, plus
+    // peerUri and peerName.
+    QML_RO_PROPERTY(QVariantList, offeredServices)
+    QML_RO_PROPERTY(bool, loadingOfferedServices)
 
 public:
     static SharedServicesAdapter* create(QQmlEngine*, QJSEngine*);
@@ -81,6 +89,10 @@ public:
     /// response is delivered via peerServicesReceived; the returned
     /// requestId can be used by callers to correlate.
     Q_INVOKABLE quint32 queryPeerServices(const QString& accountId, const QString& peerUri);
+
+    /// Ask every contact of `accountId` (or of the current account when
+    /// empty) which services it offers, into offeredServices.
+    Q_INVOKABLE void refreshOfferedServices(const QString& accountId = {});
 
     /// Status codes for `peerServicesReceived`. Mirrors
     /// `libjami::ServiceSignal::PeerServicesStatus`.
@@ -128,6 +140,14 @@ Q_SIGNALS:
 
 private:
     struct EmbeddedServer;
+
+    void collectOfferedServices(const QString& accountId,
+                                const QString& peerUri,
+                                bool answered,
+                                const QVariantList& services);
+
+    QString offeredServicesAccountId_;
+    SharedServiceUtils::OfferedServices offeredServicesGathering_;
 
     QString resolveAccountId(const QString& accountId) const;
     QString embeddedServerKey(const QString& accountId, const QString& serviceId) const;

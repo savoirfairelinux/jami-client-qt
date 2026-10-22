@@ -17,7 +17,10 @@
 
 #pragma once
 
+#include <QMap>
 #include <QVariant>
+
+#include <algorithm>
 
 namespace SharedServiceUtils {
 
@@ -33,5 +36,63 @@ sanitizePreferredPort(const QVariant& value)
         return 0;
     return static_cast<quint16>(port);
 }
+
+/*!
+ * The services some contacts offer, gathered from their answers as they come.
+ * Each one is a service as its contact described it, plus who offers it:
+ * peerUri and peerName.
+ */
+class OfferedServices
+{
+public:
+    /// Starts over, waiting for each of these contacts (uri: name) to answer.
+    void expect(const QMap<QString, QString>& contacts)
+    {
+        waiting_ = contacts;
+        services_.clear();
+    }
+
+    /// A contact's answer, with its services if it could tell them. Returns
+    /// false when this contact's answer is not awaited.
+    bool receive(const QString& peerUri, bool answered, const QVariantList& services)
+    {
+        const auto contact = waiting_.constFind(peerUri);
+        if (contact == waiting_.constEnd())
+            return false;
+        const auto peerName = contact.value();
+        waiting_.remove(peerUri);
+        if (!answered)
+            return true;
+        for (const auto& service : services) {
+            auto offered = service.toMap();
+            offered["peerUri"] = peerUri;
+            offered["peerName"] = peerName;
+            services_.append(offered);
+        }
+        std::stable_sort(services_.begin(), services_.end(), [](const QVariant& a, const QVariant& b) {
+            const auto first = a.toMap();
+            const auto second = b.toMap();
+            const auto byPeer = first["peerName"].toString().compare(second["peerName"].toString(), Qt::CaseInsensitive);
+            if (byPeer != 0)
+                return byPeer < 0;
+            return first["name"].toString().compare(second["name"].toString(), Qt::CaseInsensitive) < 0;
+        });
+        return true;
+    }
+
+    bool waiting() const
+    {
+        return !waiting_.isEmpty();
+    }
+
+    const QVariantList& services() const
+    {
+        return services_;
+    }
+
+private:
+    QMap<QString, QString> waiting_;
+    QVariantList services_;
+};
 
 } // namespace SharedServiceUtils

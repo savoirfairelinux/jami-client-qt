@@ -669,6 +669,12 @@ SharedServicesAdapter::SharedServicesAdapter(LRCInstance* instance, QObject* par
                         services.append(service);
                     }
                 }
+                // Request 0 is an unsolicited update, not an answer
+                if (requestId != 0)
+                    collectOfferedServices(accountId,
+                                           peerId,
+                                           status == static_cast<int>(PeerServicesStatus::OK),
+                                           services);
                 Q_EMIT peerServicesReceived(requestId, accountId, peerId, status, services);
             });
 
@@ -1009,6 +1015,47 @@ SharedServicesAdapter::queryPeerServices(const QString& accountId, const QString
     if (id.isEmpty() || peerUri.isEmpty())
         return 0;
     return NetworkServiceManager::instance().queryPeerServices(id, peerUri);
+}
+
+void
+SharedServicesAdapter::refreshOfferedServices(const QString& accountId)
+{
+    const auto id = resolveAccountId(accountId);
+    QMap<QString, QString> contacts;
+    if (!id.isEmpty() && lrcInstance_) {
+        try {
+            const auto& account = lrcInstance_->getAccountInfo(id);
+            for (const auto& contact : account.contactModel->getAllContacts()) {
+                const auto& uri = contact.profileInfo.uri;
+                if (contact.isTrusted && !contact.isBanned && contact.profileInfo.type == lrc::api::profile::Type::JAMI
+                    && uri != account.profileInfo.uri)
+                    contacts.insert(uri, account.contactModel->bestNameForContact(uri));
+            }
+        } catch (const std::out_of_range&) {
+        }
+    }
+
+    offeredServicesAccountId_ = id;
+    offeredServicesGathering_.expect(contacts);
+    set_offeredServices(offeredServicesGathering_.services());
+    set_loadingOfferedServices(offeredServicesGathering_.waiting());
+    for (auto contact = contacts.cbegin(); contact != contacts.cend(); ++contact) {
+        // No answer comes for a query that could not be sent
+        if (NetworkServiceManager::instance().queryPeerServices(id, contact.key()) == 0)
+            collectOfferedServices(id, contact.key(), false, {});
+    }
+}
+
+void
+SharedServicesAdapter::collectOfferedServices(const QString& accountId,
+                                              const QString& peerUri,
+                                              bool answered,
+                                              const QVariantList& services)
+{
+    if (accountId != offeredServicesAccountId_ || !offeredServicesGathering_.receive(peerUri, answered, services))
+        return;
+    set_offeredServices(offeredServicesGathering_.services());
+    set_loadingOfferedServices(offeredServicesGathering_.waiting());
 }
 
 QString

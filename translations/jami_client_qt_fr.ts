@@ -5241,6 +5241,18 @@ Veuillez confirmer l&apos;importation sur le nouvel appareil.</translation>
         <source>No collaborative document yet</source>
         <translation>Aucun document collaboratif pour l&apos;instant</translation>
     </message>
+    <message>
+        <source>My services</source>
+        <translation>Mes services</translation>
+    </message>
+    <message>
+        <source>Offered by %1</source>
+        <translation>Offert par %1</translation>
+    </message>
+    <message>
+        <source>Your contacts offer no services</source>
+        <translation>Vos contacts n&apos;offrent aucun service</translation>
+    </message>
 </context>
 <context>
     <name>KeyboardShortcutTable</name>
