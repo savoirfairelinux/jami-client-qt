@@ -31,13 +31,17 @@ BaseModalDialog {
     property string conversationId: ""
     property string docName: ""
 
+    signal created(string documentId, string name)
+
     function createAndOpen() {
         Qt.inputMethod.commit();
         Qt.inputMethod.reset();
         var name = root.docName.trim();
         if (name.length === 0)
             return;
-        CollaborativeAdapter.createDocument(root.conversationId, name);
+        const documentId = CollaborativeAdapter.createDocument(root.conversationId, name);
+        if (documentId !== "")
+            created(documentId, name);
         close();
     }
 

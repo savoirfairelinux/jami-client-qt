@@ -5178,10 +5178,6 @@ Veuillez confirmer l&apos;importation sur le nouvel appareil.</translation>
         <translation>Aucun destinataire disponible pour cette action</translation>
     </message>
     <message>
-        <source>Documents shared with %1</source>
-        <translation>Documents partagés avec %1</translation>
-    </message>
-    <message>
         <source>Share your location with %1</source>
         <translation>Partager votre position avec %1</translation>
     </message>
@@ -5216,6 +5212,34 @@ Veuillez confirmer l&apos;importation sur le nouvel appareil.</translation>
     <message>
         <source>Give your group a name</source>
         <translation>Donnez un nom à votre groupe</translation>
+    </message>
+    <message>
+        <source>New document with %1</source>
+        <translation>Nouveau document avec %1</translation>
+    </message>
+    <message>
+        <source>New document</source>
+        <translation>Nouveau document</translation>
+    </message>
+    <message>
+        <source>Edit the document</source>
+        <translation>Modifier le document</translation>
+    </message>
+    <message>
+        <source>Created by %1</source>
+        <translation>Créé par %1</translation>
+    </message>
+    <message>
+        <source>Created by you</source>
+        <translation>Créé par vous</translation>
+    </message>
+    <message>
+        <source>Untitled document</source>
+        <translation>Document sans titre</translation>
+    </message>
+    <message>
+        <source>No collaborative document yet</source>
+        <translation>Aucun document collaboratif pour l&apos;instant</translation>
     </message>
 </context>
 <context>

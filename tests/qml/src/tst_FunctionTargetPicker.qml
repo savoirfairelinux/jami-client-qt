@@ -113,11 +113,15 @@ TestWrapper {
             compare(uut.filter, "contacts");
         }
 
-        function test_documents_are_with_anyone_first() {
+        function test_a_new_document_is_written_with_a_contact_or_a_group() {
             openFor(FunctionsPanel.Documents);
+            // A document lives in one conversation: no Circle, no Board.
+            compare(uut.filters, ["all", "contacts", "groups"]);
             compare(uut.filter, "all");
             verify(fakeConversations.showContacts);
             verify(fakeConversations.showGroups);
+            compare(uut.circles.length, 0);
+            compare(uut.boards.length, 0);
         }
 
         function test_location_is_never_shared_with_circles_nor_boards() {

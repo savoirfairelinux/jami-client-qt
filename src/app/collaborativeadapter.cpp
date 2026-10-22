@@ -28,6 +28,7 @@
 #include <QImage>
 #include <QRandomGenerator>
 #include <QSet>
+#include <QTimer>
 #include <QUrl>
 #include <QGuiApplication>
 #include <QClipboard>
@@ -410,6 +411,68 @@ CollaborativeAdapter::documents(const QString& convId)
                > b.toMap().value(QStringLiteral("timestamp")).toLongLong();
     });
     return result;
+}
+
+void
+CollaborativeAdapter::refreshAllDocuments()
+{
+    // A newer reading supersedes the one under way.
+    const auto reading = ++reading_;
+    conversationsToRead_.clear();
+    documentsRead_.clear();
+    readingAccountId_ = lrcInstance_->get_currentAccountId();
+    if (auto* model = lrcInstance_->getCurrentConversationModel()) {
+        for (const auto& conversation : model->getConversations()) {
+            // Requests are not conversations yet, and Boards hold publications, not documents.
+            if (conversation.isRequest || !conversation.isSwarm()
+                || conversation.mode == lrc::api::conversation::Mode::FEED)
+                continue;
+            conversationsToRead_.append(conversation.uid);
+        }
+    }
+    set_loadingAllDocuments(true);
+    // One conversation per turn of the event loop: reading the documents of a
+    // conversation walks its history, and the window must stay responsive.
+    QTimer::singleShot(0, this, [this, reading] { readNextConversationDocuments(reading); });
+}
+
+void
+CollaborativeAdapter::readNextConversationDocuments(quint64 reading)
+{
+    if (reading != reading_)
+        return;
+    if (readingAccountId_ != lrcInstance_->get_currentAccountId()) {
+        // What was read so far belongs to the account that was left.
+        conversationsToRead_.clear();
+        documentsRead_.clear();
+    }
+    if (conversationsToRead_.isEmpty()) {
+        std::stable_sort(documentsRead_.begin(), documentsRead_.end(), [](const QVariant& a, const QVariant& b) {
+            return a.toMap().value(QStringLiteral("timestamp")).toLongLong()
+                   > b.toMap().value(QStringLiteral("timestamp")).toLongLong();
+        });
+        set_allDocuments(documentsRead_);
+        set_loadingAllDocuments(false);
+        return;
+    }
+
+    const auto convId = conversationsToRead_.takeFirst();
+    const auto& accountInfo = lrcInstance_->getCurrentAccountInfo();
+    const auto& conversation = lrcInstance_->getConversationFromConvUid(convId);
+    if (!conversation.uid.isEmpty()) {
+        const auto title = accountInfo.conversationModel->title(convId);
+        for (const auto& item : documents(convId)) {
+            auto document = item.toMap();
+            const auto author = document.value(QStringLiteral("author")).toString();
+            document[QStringLiteral("convId")] = convId;
+            document[QStringLiteral("conversationTitle")] = title;
+            document[QStringLiteral("isCoreDialog")] = conversation.isCoreDialog();
+            document[QStringLiteral("authorIsSelf")] = !author.isEmpty() && author == accountInfo.profileInfo.uri;
+            document[QStringLiteral("authorName")] = accountInfo.contactModel->bestNameForContact(author);
+            documentsRead_.append(document);
+        }
+    }
+    QTimer::singleShot(0, this, [this, reading] { readNextConversationDocuments(reading); });
 }
 
 QVariantList

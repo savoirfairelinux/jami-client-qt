@@ -27,8 +27,8 @@ BaseModalDialog {
     signal boardPicked(string feedId)
 
     readonly property bool calling: fn === FunctionsPanel.Calls
-    // Circles have no calls nor location, Boards have no calls nor location either.
-    readonly property var filters: calling || fn === FunctionsPanel.Location
+    // Circles and Boards have no calls nor location, and a document lives in one conversation.
+    readonly property var filters: calling || fn === FunctionsPanel.Location || fn === FunctionsPanel.Documents
                                    ? ["all", "contacts", "groups"]
                                    : ["all", "contacts", "groups", "circles", "boards"]
     property string filter: calling || fn === FunctionsPanel.Messages ? "contacts" : "all"
@@ -82,7 +82,7 @@ BaseModalDialog {
     function actionName(name) {
         switch (fn) {
         case FunctionsPanel.Documents:
-            return JamiStrings.openDocumentsWith.arg(name);
+            return JamiStrings.newDocumentWith.arg(name);
         case FunctionsPanel.Location:
             return JamiStrings.shareLocationWith.arg(name);
         default:

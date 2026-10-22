@@ -50,6 +50,12 @@ class CollaborativeAdapter final : public QmlAdapterBase
 {
     Q_OBJECT
     QML_SINGLETON
+    // The documents of every conversation of the current account, most recent
+    // first, as read by refreshAllDocuments(): each documents() entry, plus the
+    // conversation it comes from ("convId", "conversationTitle", "isCoreDialog")
+    // and who wrote it ("authorName", "authorIsSelf").
+    QML_RO_PROPERTY(QVariantList, allDocuments)
+    QML_RO_PROPERTY(bool, loadingAllDocuments)
 
 public:
     static CollaborativeAdapter* create(QQmlEngine*, QJSEngine*)
@@ -100,6 +106,8 @@ public:
     /// List the editable documents shared in @p convId, most recent first. Each
     /// entry is a map: { documentId, name, author, hasUpdate, timestamp }.
     Q_INVOKABLE QVariantList documents(const QString& convId);
+    /// Read the documents of every conversation again, into allDocuments.
+    Q_INVOKABLE void refreshAllDocuments();
     /// Checkpoints of a document, newest first. Each entry is a map:
     /// { id, author, device, timestamp, deltas }.
     Q_INVOKABLE QVariantList history(const QString& accountId,
@@ -262,6 +270,12 @@ private:
     /// seen from two local accounts carries the same conversation id.
     static QString unreadKey(const QString& accountId, const QString& convId);
 
+    void readNextConversationDocuments(quint64 reading);
+
     QHash<QString, QSet<QString>> updatedDocumentsByConversation_;
+    QStringList conversationsToRead_;
+    QVariantList documentsRead_;
+    QString readingAccountId_;
+    quint64 reading_ {0};
     QHash<QString, std::shared_ptr<Replica>> replicas_;
 };

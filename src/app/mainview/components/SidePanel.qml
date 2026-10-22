@@ -143,6 +143,9 @@ SidePanelBase {
         case FunctionsPanel.Contacts:
             openContacts();
             break;
+        case FunctionsPanel.Documents:
+            openDocuments();
+            break;
         case FunctionsPanel.Groups:
             openGroups();
             break;
@@ -161,7 +164,7 @@ SidePanelBase {
         }
     }
 
-    // Calls, Messages, Documents and Location: first, who with.
+    // Calls, Messages, Location and a new document: first, who with.
     function pickTarget(fn) {
         const info = functionsPanel.functionInfo(fn);
         const picker = viewCoordinator.presentDialog(appWindow, "mainview/components/FunctionTargetPicker.qml", {
@@ -183,17 +186,33 @@ SidePanelBase {
             else
                 CallAdapter.startAudioOnlyCall();
             break;
-        case FunctionsPanel.Documents:
-            viewCoordinator.presentDialog(appWindow, "commoncomponents/CollabDocListPopup.qml", {
-                                              "conversationId": convId,
-                                              "peerName": ConversationsAdapter.getConvInfoMap(convId).title
-                                          });
+        case FunctionsPanel.Documents: {
+            // A new document, written right away.
+            const creation = viewCoordinator.presentDialog(appWindow, "commoncomponents/CollabNewDocPopup.qml", {
+                                                               "conversationId": convId
+                                                           });
+            creation.created.connect((documentId, name) => {
+                                         appWindow.openCollabEditor(convId, documentId, name,
+                                                                    ConversationsAdapter.getConvInfoMap(convId).title,
+                                                                    CurrentAccount.uri);
+                                     });
             break;
+        }
         case FunctionsPanel.Location:
             // The chat view of the conversation opens the map.
             Qt.callLater(PositionManager.setMapActive, CurrentAccount.id);
             break;
         }
+    }
+
+    // The documents of every conversation, each opening in the editor.
+    function openDocuments() {
+        const dialog = viewCoordinator.presentDialog(appWindow, "mainview/components/DocumentsDialog.qml");
+        dialog.editRequested.connect(document => {
+                                         appWindow.openCollabEditor(document.convId, document.documentId, document.name,
+                                                                    document.conversationTitle, document.author);
+                                     });
+        dialog.newDocumentRequested.connect(() => pickTarget(FunctionsPanel.Documents));
     }
 
     function openGroups() {
