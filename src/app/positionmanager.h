@@ -53,6 +53,9 @@ public:
                              QObject* parent = nullptr);
     ~PositionManager() = default;
 
+    /// Whether a contact of the account is sending its position.
+    Q_INVOKABLE bool isReceivingPositions(const QString& accountId) const;
+
 Q_SIGNALS:
     void positioningError(const QString error);
     void positionShareAdded(const QVariantMap& shareInfo);

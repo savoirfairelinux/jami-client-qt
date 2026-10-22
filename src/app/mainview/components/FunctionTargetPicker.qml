@@ -21,6 +21,7 @@ BaseModalDialog {
     property var conversations: ConversationsAdapter.targetsListProxyModel
     property var circleService: CircleAdapter
     property var feedService: FeedAdapter
+    property var positions: PositionManager
 
     signal conversationPicked(string convId, bool withVideo)
     signal circlePicked(string circleId)
@@ -93,6 +94,12 @@ BaseModalDialog {
     function pickConversation(convId, withVideo) {
         conversationPicked(convId, withVideo);
         close();
+    }
+
+    // While locating, the contacts that send their position.
+    function isSendingPosition(convId, isContact) {
+        return fn === FunctionsPanel.Location && isContact && positions.sharingUrisCount > 0
+               && positions.isConvSharingPosition(CurrentAccount.id, convId);
     }
 
     onFilterChanged: applyFilter()
@@ -172,6 +179,7 @@ BaseModalDialog {
                 name: Title
                 typeName: IsCoreDialog ? JamiStrings.contact : JamiStrings.targetGroup
                 typeIcon: IsCoreDialog ? JamiResources.person_24dp_svg : JamiResources.group_24dp_svg
+                live: root.isSendingPosition(UID, IsCoreDialog)
                 avatar: ConversationAvatar {
                     anchors.fill: parent
                     imageId: UID
@@ -275,6 +283,8 @@ BaseModalDialog {
         property string typeName
         property url typeIcon
         property alias avatar: avatarHolder.data
+        // Pulses, such as for a contact sending its position.
+        property bool live: false
 
         signal picked(bool withVideo)
 
@@ -333,6 +343,19 @@ BaseModalDialog {
                 iconSize: JamiTheme.iconButtonMedium
                 toolTipText: root.actionName(row.name)
                 onClicked: row.picked(false)
+
+                // Its icon turns to the function's color and a ring ripples from around it
+                Binding on iconColor {
+                    when: row.live
+                    value: root.accentColor
+                }
+
+                PulseRing {
+                    radius: height / 2
+                    border.color: root.accentColor
+                    startOpacity: 1
+                    running: row.live
+                }
             }
         }
 

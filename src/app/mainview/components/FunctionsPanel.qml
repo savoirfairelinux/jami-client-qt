@@ -29,6 +29,8 @@ Item {
 
     property bool expanded: true
     property real maximumHeight: 300
+    // Functions with something going on, which pulse.
+    property var pulsingFunctions: []
 
     signal functionTriggered(int fn)
 
@@ -196,6 +198,12 @@ Item {
                         Layout.preferredHeight: size
                         radius: size * 0.3
                         color: root.tinted(card.modelData.color, "26")
+
+                        PulseRing {
+                            radius: parent.radius
+                            border.color: card.modelData.color
+                            running: root.pulsingFunctions.includes(card.modelData.fn)
+                        }
 
                         ResponsiveImage {
                             anchors.centerIn: parent

@@ -923,6 +923,10 @@ SidePanelBase {
                         visible: root.showFunctions
                         // At most a third of the window
                         maximumHeight: root.height / 3
+                        // Location pulses while a contact sends its position
+                        pulsingFunctions: PositionManager.sharingUrisCount > 0
+                                          && PositionManager.isReceivingPositions(CurrentAccount.id)
+                                          ? [FunctionsPanel.Location] : []
 
                         onFunctionTriggered: function (fn) {
                             root.runFunction(fn);

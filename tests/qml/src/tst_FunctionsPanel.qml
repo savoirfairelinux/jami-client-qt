@@ -28,12 +28,24 @@ TestWrapper {
         function init() {
             uut.maximumHeight = 300;
             uut.expanded = true;
+            uut.pulsingFunctions = [];
             triggeredSpy.clear();
             tryCompare(uut, "reveal", 1);
         }
 
         function card(fn) {
             return findChild(uut, "functionCard-" + fn);
+        }
+
+        // Such as Location while a contact sends its position.
+        function test_a_live_function_pulses() {
+            const ring = fn => findChild(card(fn), "pulseRing");
+            verify(!ring(FunctionsPanel.Location).running);
+
+            uut.pulsingFunctions = [FunctionsPanel.Location];
+            verify(ring(FunctionsPanel.Location).running);
+            verify(ring(FunctionsPanel.Location).visible);
+            verify(!ring(FunctionsPanel.Messages).running);
         }
 
         function test_nine_functions_in_three_rows_within_the_height() {

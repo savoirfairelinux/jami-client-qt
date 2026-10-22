@@ -91,6 +91,13 @@ PositionManager::isConvSharingPosition(const QString& accountId, const QString& 
     return false;
 }
 
+bool
+PositionManager::isReceivingPositions(const QString& accountId) const
+{
+    const auto keys = objectListSharingUris_.keys();
+    return std::any_of(keys.cbegin(), keys.cend(), [&](const PositionKey& key) { return key.first == accountId; });
+}
+
 void
 PositionManager::loadPreviousLocations(const QString& accountId)
 {

@@ -3,7 +3,9 @@
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
+#include "globaltestenvironment.h"
 #include "positioning.h"
+#include "positionmanager.h"
 
 #include <gtest/gtest.h>
 
@@ -11,6 +13,8 @@
 #include <QGeoPositionInfo>
 #include <QJsonDocument>
 #include <QJsonObject>
+#include <QSignalSpy>
+#include <QTest>
 
 namespace {
 
@@ -48,4 +52,45 @@ TEST(Positioning, AStopIsDated)
 
     EXPECT_EQ(stop["type"].toString(), "Stop");
     EXPECT_GE(stop["time"].toInteger(), before);
+}
+
+class PositionReceptionFixture : public ::testing::Test
+{
+public:
+    void SetUp() override
+    {
+        QSignalSpy accountAddedSpy(globalEnv.accountAdapter.get(), &AccountAdapter::accountAdded);
+        globalEnv.accountAdapter->createJamiAccount(
+            {{"alias", "Walker"}, {"registeredName", ""}, {"password", ""}, {"archivePath", ""}, {"avatar", ""}});
+        ASSERT_TRUE(accountAddedSpy.wait(30000));
+        accountId = accountAddedSpy.takeFirst().at(0).toString();
+    }
+
+    void TearDown() override
+    {
+        globalEnv.lrcInstance->accountModel().removeAccount(accountId);
+        QTRY_COMPARE_WITH_TIMEOUT(globalEnv.lrcInstance->accountModel().getAccountCount(), 0, 10000);
+    }
+
+    // As the daemon passes on a location message from a contact.
+    void receive(const QString& peer, const QString& body)
+    {
+        Q_EMIT globalEnv.lrcInstance->accountModel().newPosition(accountId, peer, body, 0, "");
+    }
+
+    QString accountId;
+};
+
+TEST_F(PositionReceptionFixture, AnAccountKnowsWhileAContactSendsItsPosition)
+{
+    PositionManager positions(globalEnv.settingsManager.get(), globalEnv.systemTray.get(), globalEnv.lrcInstance.data());
+    const QString peer = QString("7").repeated(40);
+    EXPECT_FALSE(positions.isReceivingPositions(accountId));
+
+    receive(peer, R"({"type":"Position","lat":45.5,"long":-73.6,"time":1000})");
+    EXPECT_TRUE(positions.isReceivingPositions(accountId));
+    EXPECT_FALSE(positions.isReceivingPositions("another-account"));
+
+    receive(peer, R"({"type":"Stop","time":2000})");
+    EXPECT_FALSE(positions.isReceivingPositions(accountId));
 }

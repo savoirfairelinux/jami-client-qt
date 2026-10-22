@@ -39,9 +39,20 @@ TestWrapper {
                              {id: "offer", title: "Offer", owned: false, subscribed: false, avatar: ""}]
     }
 
+    QtObject {
+        id: fakePositions
+        property int sharingUrisCount: 0
+        property var sending: []
+
+        function isConvSharingPosition(accountId, convId) {
+            return sending.includes(convId);
+        }
+    }
+
     FunctionTargetPicker {
         id: uut
         conversations: fakeConversations
+        positions: fakePositions
         circleService: fakeCircles
         feedService: fakeFeeds
 
@@ -55,6 +66,8 @@ TestWrapper {
         when: windowShown
 
         function init() {
+            fakePositions.sending = [];
+            fakePositions.sharingUrisCount = 0;
             conversationSpy.clear();
             circleSpy.clear();
             boardSpy.clear();
@@ -94,6 +107,38 @@ TestWrapper {
         function waitForRows(rows) {
             const list = find(uut.contentItem, "targetList");
             tryVerify(() => list.contentHeight >= rows * find(uut.contentItem, "targetConversation-alice").height);
+        }
+
+        function pulseRing(convId) {
+            return find(find(uut.contentItem, "targetConversation-" + convId), "pulseRing");
+        }
+
+        function test_contacts_sending_their_position_pulse_when_locating() {
+            fakePositions.sending = ["alice", "team"];
+            fakePositions.sharingUrisCount = 2;
+            openFor(FunctionsPanel.Location);
+            tryVerify(() => pulseRing("alice") !== null);
+
+            verify(pulseRing("alice").running);
+            const icon = convId => find(find(uut.contentItem, "targetConversation-" + convId), "pickTarget").iconColor;
+            // The icon color changes smoothly.
+            tryVerify(() => Qt.colorEqual(icon("alice"), uut.accentColor));
+            // A group is not a contact sending its position.
+            verify(!pulseRing("team").running);
+            verify(!Qt.colorEqual(icon("team"), uut.accentColor));
+
+            fakePositions.sending = [];
+            fakePositions.sharingUrisCount = 0;
+            verify(!pulseRing("alice").running);
+        }
+
+        function test_only_locating_tells_who_sends_a_position() {
+            fakePositions.sending = ["alice"];
+            fakePositions.sharingUrisCount = 1;
+            openFor(FunctionsPanel.Messages);
+            tryVerify(() => pulseRing("alice") !== null);
+
+            verify(!pulseRing("alice").running);
         }
 
         function test_calls_are_with_contacts_first_and_never_circles_nor_boards() {
