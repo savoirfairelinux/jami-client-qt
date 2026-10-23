@@ -1,0 +1,22 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ff007a86_828049da",
+        "filename": "src/app/mainapplication.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 327,
+      "author": {
+        "id": 617
+      },
+      "writtenOn": "2026-10-23T17:31:33Z",
+      "side": 1,
+      "message": "Done in patch set 3: the monitor has a new networkLost() signal (Windows: connectivity changed to disconnected; Linux: NetworkManager has no primary connection anymore), which clears networkChanged_. If the network disappears during the debounce window, only connectivityChanged() reaches the daemon.",
+      "parentUuid": "11722193_6c3a5b2a",
+      "revId": "5cecefce26b1e899a31bc3b512c592d4b41b9dab",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
