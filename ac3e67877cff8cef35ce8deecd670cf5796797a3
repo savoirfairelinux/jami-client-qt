@@ -16,6 +16,24 @@
       "message": "[error] Line 139: 🔴 `createTemporaryObject(playIndicator.layer.effect, ...)` is using an object instance where `createTemporaryObject` expects a `Component`/URL, so this can return `null` (or fail) and make the test unreliable/failing. Read and assert the existing effect directly instead: `const shadow \u003d playIndicator.layer.effect; verify(shadow !\u003d\u003d null); ...`.",
       "revId": "ac3e67877cff8cef35ce8deecd670cf5796797a3",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "99a7011e_65089e30",
+        "filename": "tests/qml/src/tst_DataTransferMessageDelegate.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 617
+      },
+      "writtenOn": "2026-10-24T02:35:41Z",
+      "side": 1,
+      "message": "Thanks for the review. Item.layer.effect is a Component, not the instantiated DropShadow. Qt documents its type explicitly:\nhttps://doc.qt.io/qt-6/qml-qtquick-item.html#layer.effect-prop\n\nTestCase.createTemporaryObject(Component, ...) expects exactly that type, instantiates it and handles automatic cleanup:\nhttps://doc.qt.io/qt-6/qml-qttest-testcase.html#createTemporaryObject-method\n\nThe temporary instance lets this test verify the declared shadow parameters and is automatically destroyed after the test. The suggested direct assignment would leave shadow pointing to a Component, whose DropShadow-specific properties are not available.\n\nThis finding is therefore a false positive. Could you please reconsider the -1?",
+      "parentUuid": "7a649cf2_ccdf4d99",
+      "revId": "ac3e67877cff8cef35ce8deecd670cf5796797a3",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
