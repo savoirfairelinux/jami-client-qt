@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7a649cf2_ccdf4d99",
+        "filename": "tests/qml/src/tst_DataTransferMessageDelegate.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-10-24T02:08:15Z",
+      "side": 1,
+      "message": "[error] Line 139: 🔴 `createTemporaryObject(playIndicator.layer.effect, ...)` is using an object instance where `createTemporaryObject` expects a `Component`/URL, so this can return `null` (or fail) and make the test unreliable/failing. Read and assert the existing effect directly instead: `const shadow \u003d playIndicator.layer.effect; verify(shadow !\u003d\u003d null); ...`.",
+      "revId": "ac3e67877cff8cef35ce8deecd670cf5796797a3",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
