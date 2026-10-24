@@ -488,7 +488,10 @@ Loader {
                                 property real maxWidth: localMediaMsgItem.width - 170
                                 property bool xOverflow: sourceSize.width > maxWidth
                                 property bool yOverflow: sourceSize.height > JamiTheme.maxImageHeight
-                                property real scaleFactor: (xOverflow || yOverflow) ? Math.min(maxWidth / sourceSize.width, JamiTheme.maxImageHeight / sourceSize.height) : 1
+                                property real scaleFactor: {
+                                    const fitScale = (xOverflow || yOverflow) ? Math.min(maxWidth / sourceSize.width, JamiTheme.maxImageHeight / sourceSize.height) : 1;
+                                    return localMediaMsgItem.isVideoThumbnail ? fitScale / 3 : fitScale;
+                                }
                                 width: sourceSize.width * scaleFactor
                                 height: sourceSize.height * scaleFactor
 
@@ -507,22 +510,23 @@ Loader {
                                 }
                             }
 
-                            Rectangle {
+                            ResponsiveImage {
                                 objectName: "videoPlayIndicator"
 
                                 visible: localMediaMsgItem.isVideoThumbnail && img.status === Image.Ready
                                 anchors.centerIn: img
-                                width: 48
+                                width: 36
                                 height: width
-                                radius: width / 2
-                                color: JamiTheme.darkGreyColorOpacityFade
-
-                                ResponsiveImage {
-                                    anchors.centerIn: parent
-                                    width: parent.width
-                                    height: parent.height
-                                    source: JamiResources.play_circle_outline_24dp_svg
-                                    color: JamiTheme.whiteColor
+                                source: JamiResources.play_arrow_24dp_svg
+                                color: JamiTheme.whiteColor
+                                layer.enabled: true
+                                layer.effect: DropShadow {
+                                    horizontalOffset: 0
+                                    verticalOffset: 1
+                                    radius: 2
+                                    samples: 5
+                                    color: Qt.rgba(0, 0, 0, 0.2)
+                                    transparentBorder: true
                                 }
                             }
                         }

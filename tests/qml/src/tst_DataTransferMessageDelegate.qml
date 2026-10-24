@@ -82,6 +82,7 @@ ListView {
         name: "Show a thumbnail for received videos"
 
         function cleanup() {
+            uut.width = 400
             if (uut.count > 1)
                 uut.model.remove(1, uut.count - 1)
         }
@@ -127,6 +128,58 @@ ListView {
                 return playIndicator !== null && playIndicator.visible
             }, 10000, "The video thumbnail is shown with a play indicator")
             compare(findChild(delegate.item, "buttonsLoader"), null)
+            const playIndicator = findChild(delegate.item, "videoPlayIndicator")
+            compare(playIndicator.width, 36)
+            compare(playIndicator.height, 36)
+            compare(playIndicator.color, JamiTheme.whiteColor)
+            compare(playIndicator.source.toString(), "qrc:/icons/play_arrow_24dp.svg")
+            tryCompare(playIndicator, "status", Image.Ready, 10000)
+            verify(playIndicator.layer.enabled)
+            // layer.effect is a Component, not the effect itself: create an
+            // instance of it to read the shadow parameters it declares.
+            const shadow = createTemporaryObject(playIndicator.layer.effect, uut, {source: playIndicator})
+            verify(shadow !== null)
+            compare(shadow.horizontalOffset, 0)
+            compare(shadow.verticalOffset, 1)
+            compare(shadow.radius, 2)
+            compare(shadow.samples, 5)
+            compare(shadow.color, Qt.rgba(0, 0, 0, 0.2))
+            verify(shadow.transparentBorder)
+        }
+
+        function test_mediaPreviewSize_data() {
+            return [
+                {tag: "landscape", file: "video_test.mp4", isVideo: true, viewWidth: 400},
+                {tag: "landscape-wide", file: "video_test.mp4", isVideo: true, viewWidth: 1000},
+                {tag: "large", file: "video_test_large.mp4", isVideo: true, viewWidth: 400},
+                {tag: "large-wide", file: "video_test_large.mp4", isVideo: true, viewWidth: 1000},
+                {tag: "portrait", file: "video_test_rotated.mp4", isVideo: true, viewWidth: 400},
+                {tag: "portrait-wide", file: "video_test_rotated.mp4", isVideo: true, viewWidth: 1000},
+                {tag: "image", file: "png_test.png", isVideo: false, viewWidth: 400},
+                {tag: "image-wide", file: "png_test.png", isVideo: false, viewWidth: 1000}
+            ]
+        }
+
+        function test_mediaPreviewSize(data) {
+            if (!WITH_WEBENGINE)
+                skip("Media previews require the web engine")
+            uut.width = data.viewWidth
+            const filePath = UtilsAdapter.getAbsPath(Qt.resolvedUrl("resources/" + data.file).toString())
+            const delegate = addFinishedTransfer(filePath)
+            tryVerify(function () {
+                return delegate.item !== null && findChild(delegate.item, "videoPlayIndicator") !== null
+            }, 10000, "The media preview is loaded")
+            const playIndicator = findChild(delegate.item, "videoPlayIndicator")
+            const preview = playIndicator.anchors.centerIn
+            tryCompare(preview, "status", Image.Ready, 10000)
+            compare(playIndicator.visible, data.isVideo)
+            const fitScale = Math.min(1, (delegate.item.width - 170) / preview.sourceSize.width,
+                                      JamiTheme.maxImageHeight / preview.sourceSize.height)
+            const expectedScale = data.isVideo ? fitScale / 3 : fitScale
+            fuzzyCompare(preview.width, preview.sourceSize.width * expectedScale, 0.01)
+            fuzzyCompare(preview.height, preview.sourceSize.height * expectedScale, 0.01)
+            if (data.isVideo)
+                compare(playIndicator.width, 36)
         }
 
         function test_undecodableVideoIsShownAsAFile() {
