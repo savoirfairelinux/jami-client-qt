@@ -62,7 +62,14 @@ QString getContactInteractionString(const QString& authorUri, const api::interac
 
 namespace vcard {
 
-QString compressedAvatar(const QString& image);
+/**
+ * Make a JPEG thumbnail of an avatar
+ * @param image base64-encoded avatar
+ * @param maxSize if positive, maximum size of the base64-encoded thumbnail:
+ *        its quality, then its size, are lowered to fit
+ * @return base64-encoded thumbnail, empty if the avatar can't be loaded
+ */
+QString compressedAvatar(const QString& image, qsizetype maxSize = 0);
 
 /**
  * Build the vCard for a profile

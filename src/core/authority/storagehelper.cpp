@@ -132,7 +132,7 @@ prepareUri(const QString& uri, api::profile::Type type)
 namespace vcard {
 
 QString
-compressedAvatar(const QString& image)
+compressedAvatar(const QString& image, qsizetype maxSize)
 {
     QImage qimage;
     // Avoid to use all formats. Some seems bugguy, like libpbf, asking
@@ -144,20 +144,31 @@ compressedAvatar(const QString& image)
         qDebug() << "vCard image loading failed";
         return "";
     }
-    QByteArray bArray;
-    QBuffer buffer(&bArray);
-    buffer.open(QIODevice::WriteOnly);
 
     auto size = qMin(qimage.width(), qimage.height());
     auto rect = QRect((qimage.width() - size) / 2, (qimage.height() - size) / 2, size, size);
-    constexpr auto quality = 88;        // Same as android, between 80 and 90 jpeg compression changes a lot
-    constexpr auto maxSize = 16000 * 8; // Because 16*3 (rgb) = 48k, which is a valid size for the
-                                        // DHT and * 8 because typical jpeg compression
+    auto quality = 88;                    // Same as android, between 80 and 90 jpeg compression changes a lot
+    constexpr auto maxPixels = 16000 * 8; // Because 16*3 (rgb) = 48k, which is a valid size for the
+                                          // DHT and * 8 because typical jpeg compression
     // divides the size per 8
-    while (size * size > maxSize)
+    while (size * size > maxPixels)
         size /= 2;
-    qimage.copy(rect).scaled({size, size}, Qt::KeepAspectRatio).save(&buffer, "JPEG", quality);
-    auto b64Img = bArray.toBase64().trimmed();
+    const auto square = qimage.copy(rect);
+    QByteArray b64Img;
+    for (;;) {
+        QByteArray bArray;
+        QBuffer buffer(&bArray);
+        buffer.open(QIODevice::WriteOnly);
+        square.scaled({size, size}, Qt::KeepAspectRatio).save(&buffer, "JPEG", quality);
+        b64Img = bArray.toBase64().trimmed();
+        if (maxSize <= 0 || b64Img.size() <= maxSize || size <= 32)
+            break;
+        // Too big: lower the quality first, then the size
+        if (quality > 70)
+            quality -= 10;
+        else
+            size = size * 3 / 4;
+    }
     return QString::fromLocal8Bit(b64Img.constData(), b64Img.length());
 }
 
@@ -195,9 +206,12 @@ profileToVcard(const api::profile::Info& profileInfo, bool compressImage)
     vCardStr += vCard::Property::BASE64;
     vCardStr += vCard::Delimiter::SEPARATOR_TOKEN;
     if (compressImage) {
+        // Sent with contact requests in a DHT value: the daemon drops the
+        // photo of a request bigger than 16 KiB.
+        constexpr qsizetype maxAvatarSize = 12 * 1024;
         vCardStr += vCard::Property::TYPE_JPEG;
         vCardStr += ":";
-        vCardStr += compressedImage ? profileInfo.avatar : compressedAvatar(profileInfo.avatar);
+        vCardStr += compressedAvatar(profileInfo.avatar, maxAvatarSize);
     } else {
         vCardStr += compressedImage ? vCard::Property::TYPE_JPEG : vCard::Property::TYPE_PNG;
         vCardStr += ":";

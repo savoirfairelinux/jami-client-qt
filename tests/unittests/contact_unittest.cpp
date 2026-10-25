@@ -19,6 +19,10 @@
 
 #include "authority/storagehelper.h"
 
+#include <QBuffer>
+#include <QImage>
+#include <QRandomGenerator>
+
 using namespace lrc;
 
 /*!
@@ -43,8 +47,7 @@ public:
 TEST_F(ContactFixture, AddSIPContactTest)
 {
     // AccountAdded signal spy
-    QSignalSpy accountAddedSpy(&globalEnv.lrcInstance->accountModel(),
-                               &lrc::api::AccountModel::accountAdded);
+    QSignalSpy accountAddedSpy(&globalEnv.lrcInstance->accountModel(), &lrc::api::AccountModel::accountAdded);
 
     // Create SIP Acc
     globalEnv.accountAdapter->createSIPAccount(QVariantMap());
@@ -66,8 +69,7 @@ TEST_F(ContactFixture, AddSIPContactTest)
     EXPECT_GE(accountStatusChangedSpy.count(), 1);
 
     // ModelUpdated signal spy
-    QSignalSpy modelUpdatedSpy(globalEnv.lrcInstance->getCurrentContactModel(),
-                               &lrc::api::ContactModel::contactUpdated);
+    QSignalSpy modelUpdatedSpy(globalEnv.lrcInstance->getCurrentContactModel(), &lrc::api::ContactModel::contactUpdated);
 
     // Add temp contact test
     globalEnv.lrcInstance->getCurrentConversationModel()->setFilter("test");
@@ -79,14 +81,11 @@ TEST_F(ContactFixture, AddSIPContactTest)
     EXPECT_TRUE(modelUpdatedArguments.at(0).typeId() == qMetaTypeId<QString>());
 
     // Get conversation id
-    auto convId = globalEnv.lrcInstance
-                      ->getConversationFromPeerUri(modelUpdatedArguments.at(0).toString())
-                      .uid;
+    auto convId = globalEnv.lrcInstance->getConversationFromPeerUri(modelUpdatedArguments.at(0).toString()).uid;
     ASSERT_EQ(convId.isEmpty(), false);
 
     // ContactAdded signal spy
-    QSignalSpy contactAddedSpy(globalEnv.lrcInstance->getCurrentContactModel(),
-                               &lrc::api::ContactModel::contactAdded);
+    QSignalSpy contactAddedSpy(globalEnv.lrcInstance->getCurrentContactModel(), &lrc::api::ContactModel::contactAdded);
 
     globalEnv.lrcInstance->getCurrentConversationModel()->makePermanent(convId);
 
@@ -94,11 +93,9 @@ TEST_F(ContactFixture, AddSIPContactTest)
     EXPECT_EQ(contactAddedSpy.count(), 1);
 
     // Remove the account
-    QSignalSpy accountRemovedSpy(&globalEnv.lrcInstance->accountModel(),
-                                 &lrc::api::AccountModel::accountRemoved);
+    QSignalSpy accountRemovedSpy(&globalEnv.lrcInstance->accountModel(), &lrc::api::AccountModel::accountRemoved);
 
-    globalEnv.lrcInstance->accountModel().removeAccount(
-        globalEnv.lrcInstance->get_currentAccountId());
+    globalEnv.lrcInstance->accountModel().removeAccount(globalEnv.lrcInstance->get_currentAccountId());
 
     accountRemovedSpy.wait();
     EXPECT_EQ(accountRemovedSpy.count(), 1);
@@ -142,4 +139,37 @@ TEST_F(ContactFixture, ProfileDataFallsBackToBaseAliasWhenOverrideCleared)
     EXPECT_EQ(profileData["alias"], "Base Display Name");
 
     authority::storage::removeProfile(accountId, peerUri);
+}
+
+/*!
+ * WHEN  a contact request is sent with a big avatar, as a PNG or a JPEG
+ * THEN  its vCard stays under the 16 KiB a DHT value carries reliably,
+ *       with a JPEG thumbnail of the avatar
+ */
+TEST_F(ContactFixture, TrustRequestVCardFitsInDhtValue)
+{
+    // Noise does not compress: worst case for the size of the avatar
+    QImage avatar(374, 350, QImage::Format_RGB32);
+    QRandomGenerator rng(42);
+    for (int y = 0; y < avatar.height(); ++y)
+        for (int x = 0; x < avatar.width(); ++x)
+            avatar.setPixel(x, y, rng.generate());
+
+    for (const auto* format : {"PNG", "JPEG"}) {
+        QByteArray image;
+        QBuffer buffer(&image);
+        buffer.open(QIODevice::WriteOnly);
+        ASSERT_TRUE(avatar.save(&buffer, format));
+
+        api::profile::Info profile;
+        profile.uri = "529e3a6708878bf57c1aa99e563f2a26f63a41e4";
+        profile.alias = "Cyrille";
+        profile.type = api::profile::Type::JAMI;
+        profile.avatar = image.toBase64();
+
+        auto vCard = authority::storage::vcard::profileToVcard(profile, true /*compressImage*/);
+        EXPECT_LE(vCard.toUtf8().size(), 16 * 1024) << format;
+        EXPECT_TRUE(vCard.contains("FN:Cyrille")) << format;
+        EXPECT_TRUE(vCard.contains("PHOTO;ENCODING=BASE64;TYPE=JPEG:/9j/")) << format;
+    }
 }
