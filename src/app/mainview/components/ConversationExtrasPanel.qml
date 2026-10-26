@@ -31,6 +31,9 @@ StackLayout {
     // Best to avoid using the visible property directly.
     // Pass through the following open/close wrappers instead.
     function openPanel(panel) {
+        // The thread panel has nothing to show without an open thread (e.g. when restored after a call).
+        if (panel === ChatView.ThreadPanel && MessagesAdapter.threadMessageListModel.threadId === "")
+            return;
         currentIndex = panel;
         visible = true;
     }
@@ -64,6 +67,24 @@ StackLayout {
         }
     }
 
+    // The thread panel follows the open thread; closing the panel closes the thread.
+    Connections {
+        target: MessagesAdapter.threadMessageListModel
+
+        function onThreadIdChanged() {
+            if (MessagesAdapter.threadMessageListModel.threadId !== "")
+                openPanel(ChatView.ThreadPanel);
+            // Not isOpen(): the panel reads as hidden while the chat view is (e.g. in the settings).
+            else if (currentIndex === ChatView.ThreadPanel)
+                closePanel();
+        }
+    }
+
+    onCurrentIndexChanged: {
+        if (currentIndex !== ChatView.ThreadPanel)
+            MessagesAdapter.threadMessageListModel.threadId = "";
+    }
+
     Connections {
         target: CurrentConversation.members
 
@@ -94,5 +115,10 @@ StackLayout {
     Loader {
         active: root.isOpen(ChatView.ConversationStatusPanel)
         sourceComponent: ConversationStatusView {}
+    }
+
+    Loader {
+        active: root.isOpen(ChatView.ThreadPanel)
+        sourceComponent: ThreadPanel {}
     }
 }

@@ -42,7 +42,8 @@ Item {
         SwarmDetailsPanel,
         MessagesResearchPanel,
         AddMemberPanel,
-        ConversationStatusPanel
+        ConversationStatusPanel,
+        ThreadPanel
     }
 
     property var mapPositions: PositionManager.mapStatus
@@ -549,9 +550,9 @@ Item {
 
                     // If the SplitView is not wide enough to show both the chatContents
                     // and the details panel, then hide the chatContents.
-                    if (maximizePredicate && width < mainViewMinWidth + extrasPanelWidth) {
+                    if (maximizePredicate && width < mainViewMinWidth + Math.max(extrasPanel.minWidth, extrasPanelWidth)) {
                         chatContents.visible = false;
-                    } else if (minimizePredicate && width >= mainViewMinWidth + previousExtrasPanelWidth) {
+                    } else if (minimizePredicate && width >= mainViewMinWidth + Math.max(extrasPanel.minWidth, previousExtrasPanelWidth)) {
                         chatContents.visible = true;
                     }
                 }
@@ -646,11 +647,13 @@ Item {
 
                 ConversationExtrasPanel {
                     id: extrasPanel
+                    objectName: "conversationExtrasPanel"
                     property bool isMinorPane: false
+                    readonly property real minWidth: isOpen(ChatView.ThreadPanel) ? JamiTheme.threadPanelMinWidth : JamiTheme.extrasPanelMinWidth
 
                     SplitView.maximumWidth: root.width
-                    SplitView.minimumWidth: JamiTheme.extrasPanelMinWidth
-                    SplitView.preferredWidth: JamiTheme.extrasPanelMinWidth
+                    SplitView.minimumWidth: minWidth
+                    SplitView.preferredWidth: minWidth
                 }
             }
 

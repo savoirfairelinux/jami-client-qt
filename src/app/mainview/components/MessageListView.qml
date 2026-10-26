@@ -34,6 +34,9 @@ ListView {
     // the main window.
     property var convContext: CurrentConversation
 
+    // Off while one thread is shown: paging there is an explicit action.
+    property bool autoLoadHistory: true
+
     ScrollBar.vertical: JamiScrollBar {
         id: verticalScrollBar
 
@@ -55,7 +58,7 @@ ListView {
     }
 
     function loadMoreMsgsIfNeeded() {
-        if (convContext === CurrentConversation && MessagesAdapter.historyStalled)
+        if (!autoLoadHistory || (convContext === CurrentConversation && MessagesAdapter.historyStalled))
             return;
         if (convContext && atYBeginning && !convContext.allMessagesLoaded) {
             if (convContext !== CurrentConversation)

@@ -83,7 +83,8 @@ Item {
         id: bubble
 
         anchors.horizontalCenter: parent.horizontalCenter
-        anchors.verticalCenter: parent.verticalCenter
+        anchors.top: parent.top
+        anchors.topMargin: JamiTheme.preferredMarginSize
         width: Math.min(root.width - 4 * JamiTheme.preferredMarginSize, content.implicitWidth + 2 * JamiTheme.preferredMarginSize)
         height: content.implicitHeight + 2 * JamiTheme.preferredMarginSize
         radius: 12
