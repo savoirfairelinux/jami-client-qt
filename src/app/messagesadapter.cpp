@@ -62,17 +62,7 @@ MessagesAdapter::MessagesAdapter(AppSettingsManager* settingsManager,
             &lrcInstance_->accountModel(),
             &AccountModel::reloadHistory);
 
-    connect(lrcInstance_, &LRCInstance::selectedConvUidChanged, this, [this]() {
-        set_replyToId("");
-        set_editId("");
-        const QString& convId = lrcInstance_->get_selectedConvUid();
-        const auto& conversation = lrcInstance_->getConversationFromConvUid(convId);
-
-        // Reset the source model for the proxy model.
-        filteredMsgListModel_->setSourceModel(conversation.interactions.get());
-
-        set_currentConvComposingList(conversationTypersUrlToName(conversation.typers));
-    });
+    connect(lrcInstance_, &LRCInstance::selectedConvUidChanged, this, &MessagesAdapter::onSelectedConversationChanged);
 
     connect(messageParser_, &MessageParser::messageParsed, this, &MessagesAdapter::onMessageParsed);
     connect(messageParser_, &MessageParser::originalMessageParsed, this, &MessagesAdapter::onOriginalMessageParsed);
@@ -88,6 +78,25 @@ MessagesAdapter::MessagesAdapter(AppSettingsManager* settingsManager,
     connect(lrcInstance_, &LRCInstance::currentAccountIdChanged, this, &MessagesAdapter::connectConversationModel);
 
     connectConversationModel();
+    // The QML singleton can be created after a conversation was already selected.
+    if (!lrcInstance_->get_selectedConvUid().isEmpty())
+        onSelectedConversationChanged();
+}
+
+void
+MessagesAdapter::onSelectedConversationChanged()
+{
+    set_replyToId("");
+    set_editId("");
+    historyRequest_.reset();
+    set_historyStalled(false);
+    const QString& convId = lrcInstance_->get_selectedConvUid();
+    const auto& conversation = lrcInstance_->getConversationFromConvUid(convId);
+
+    // Reset the source model for the proxy model.
+    filteredMsgListModel_->setSourceModel(conversation.interactions.get());
+
+    set_currentConvComposingList(conversationTypersUrlToName(conversation.typers));
 }
 
 bool
@@ -99,12 +108,17 @@ MessagesAdapter::isDocument(const interaction::Type& type)
 void
 MessagesAdapter::loadMoreMessages()
 {
+    if (historyRequest_.pending())
+        return;
     auto accountId = lrcInstance_->get_currentAccountId();
     auto convId = lrcInstance_->get_selectedConvUid();
     try {
         const auto& convInfo = lrcInstance_->getConversationFromConvUid(convId, accountId);
-        if (convInfo.isSwarm())
-            lrcInstance_->getCurrentConversationModel()->loadConversationMessages(convId, loadChunkSize_);
+        if (convInfo.isSwarm()) {
+            auto requestId = lrcInstance_->getCurrentConversationModel()->loadConversationMessages(convId,
+                                                                                                   loadChunkSize_);
+            historyRequest_.start(accountId, convId, requestId, convInfo.interactions->rowCount());
+        }
     } catch (const std::exception& e) {
         qWarning() << e.what();
     }
@@ -550,6 +564,15 @@ MessagesAdapter::onConversationMessagesLoaded(uint32_t loadingRequestId, const Q
 {
     if (convId != lrcInstance_->get_selectedConvUid())
         return;
+    auto source = filteredMsgListModel_->sourceModel();
+    auto result = historyRequest_.finish(lrcInstance_->get_currentAccountId(),
+                                         convId,
+                                         loadingRequestId,
+                                         source ? source->rowCount() : 0);
+    if (result != HistoryRequest::Ignored) {
+        // Not "all loaded": the daemon may return nothing while another load of this conversation runs.
+        set_historyStalled(result == HistoryRequest::NoProgress);
+    }
     Q_EMIT moreMessagesLoaded(loadingRequestId);
 }
 
