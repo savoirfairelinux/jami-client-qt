@@ -1,0 +1,22 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2417323d_3061568a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 617
+      },
+      "writtenOn": "2026-10-26T21:05:37Z",
+      "side": 1,
+      "message": "Done in PS3: the added tests and comparisons are removed; only the existing visibility check remains.",
+      "parentUuid": "1e75222b_e93e01d5",
+      "revId": "fdea2123b958a62cc1f626b690b5144ed36b26b4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
