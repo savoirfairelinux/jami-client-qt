@@ -82,12 +82,52 @@ Q_SIGNALS:
     void countChanged();
 };
 
+// The one history request allowed in flight for the selected conversation.
+struct HistoryRequest
+{
+    enum Result { Ignored, Progress, NoProgress };
+
+    // requestId is ConversationModel::loadConversationMessages()'s result: -1 when all is loaded, 0 on failure.
+    bool start(const QString& accountId, const QString& convId, int requestId, int rowCount)
+    {
+        if (pending() || requestId == 0 || requestId == -1)
+            return false;
+        accountId_ = accountId;
+        convId_ = convId;
+        id_ = static_cast<uint32_t>(requestId);
+        rowCount_ = rowCount;
+        return true;
+    }
+    Result finish(const QString& accountId, const QString& convId, uint32_t requestId, int rowCount)
+    {
+        if (!pending() || requestId != id_ || convId != convId_ || accountId != accountId_)
+            return Ignored;
+        id_ = 0;
+        return rowCount > rowCount_ ? Progress : NoProgress;
+    }
+    void reset()
+    {
+        id_ = 0;
+    }
+    bool pending() const
+    {
+        return id_ != 0;
+    }
+
+private:
+    QString accountId_;
+    QString convId_;
+    uint32_t id_ {0};
+    int rowCount_ {0};
+};
+
 class MessagesAdapter final : public QmlAdapterBase
 {
     Q_OBJECT
     QML_SINGLETON
 
     QML_RO_PROPERTY(QVariant, messageListModel)
+    QML_RO_PROPERTY(bool, historyStalled)
     QML_PROPERTY(QString, replyToId)
     QML_PROPERTY(QString, editId)
     QML_RO_PROPERTY(QList<QString>, currentConvComposingList)
@@ -188,10 +228,12 @@ private Q_SLOTS:
 
 private:
     QList<QString> conversationTypersUrlToName(const QSet<QString>& typersSet);
+    void onSelectedConversationChanged();
 
     AppSettingsManager* settingsManager_;
     MessageParser* messageParser_;
     FilteredMsgListModel* filteredMsgListModel_;
+    HistoryRequest historyRequest_;
     std::unique_ptr<MessageListModel> mediaInteractions_;
     QTimer* timestampTimer_;
     static constexpr const int loadChunkSize_ {20};

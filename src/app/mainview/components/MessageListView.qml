@@ -55,6 +55,8 @@ ListView {
     }
 
     function loadMoreMsgsIfNeeded() {
+        if (convContext === CurrentConversation && MessagesAdapter.historyStalled)
+            return;
         if (convContext && atYBeginning && !convContext.allMessagesLoaded) {
             if (convContext !== CurrentConversation)
                 convContext.loadMoreMessages();
