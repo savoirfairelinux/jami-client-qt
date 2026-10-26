@@ -135,6 +135,7 @@ TestWrapper {
                 }
 
                 function cleanup() {
+                    MessagesAdapter.cancelNavigation();
                     threadModel.threadId = "";
                     MessagesAdapter.replyToId = "";
                     MessagesAdapter.threadedView = false;
@@ -337,6 +338,74 @@ TestWrapper {
                     uut.visible = true;
                     tryVerify(() => threadPanel() === null || !threadPanel().visible, 5000, "thread panel is still open");
                     verify(!findChild(uut, "conversationExtrasPanel").visible);
+                }
+
+                function messageIsShown(list, id) {
+                    const row = list ? list.model.getDisplayIndex(id) : -1;
+                    return row >= 0 && list.itemAtIndex(row) !== null;
+                }
+
+                function test_flatJumpStillScrollsWithoutThreads() {
+                    MessagesAdapter.threadedView = false;
+                    messageList().positionViewAtEnd();
+                    CurrentConversation.scrollToMsg(replyId);
+                    tryVerify(() => messageIsShown(messageList(), replyId), 5000, "flat jump target is not shown");
+                    compare(threadModel.threadId, "");
+                    compare(MessagesAdapter.navigationTarget, "");
+                }
+
+                function test_jumpToLoadedReplyOpensItsThreadPanel() {
+                    CurrentConversation.scrollToMsg(nestedReplyId);
+                    tryCompare(threadModel, "threadId", rootId);
+                    tryVerify(() => threadPanel() !== null && threadPanel().visible, 5000, "thread panel did not open");
+                    tryVerify(() => messageIsShown(threadList(), nestedReplyId), 5000, "jump target is not shown in its thread");
+                }
+
+                function test_jumpToRootKeepsOpenThread() {
+                    openThreadFromList(rootId);
+                    CurrentConversation.scrollToMsg(otherRootId);
+                    tryVerify(() => messageIsShown(messageList(), otherRootId), 5000, "root jump target is not shown in the main list");
+                    compare(threadModel.threadId, rootId);
+                }
+
+                function test_jumpWithinOpenThreadKeepsIt() {
+                    openThreadFromList(rootId);
+                    CurrentConversation.scrollToMsg(replyId);
+                    compare(threadModel.threadId, rootId);
+                    tryVerify(() => messageIsShown(threadList(), replyId), 5000, "jump target is not shown in the open thread");
+                }
+
+                function test_jumpToUnknownMessageEndsUnavailable() {
+                    CurrentConversation.scrollToMsg("missing-thread-target-" + Date.now());
+                    tryVerify(() => MessagesAdapter.navigationFailed, 60000, "unknown jump target never ended");
+                    compare(MessagesAdapter.navigationTarget, "");
+                    compare(threadModel.threadId, "");
+                    const status = findChild(uut, "threadNavigationStatus");
+                    tryVerify(() => status.visible, 5000, "unavailable status is not shown");
+                    // The row is placed by its layout's next polish.
+                    verify(waitForPolish(status.parent));
+                    mouseClick(findChild(status, "threadNavigationDismissButton"));
+                    verify(!MessagesAdapter.navigationFailed);
+                    tryVerify(() => !status.visible, 5000, "unavailable status is still shown");
+                }
+
+                function test_cancelledJumpIsNotResumed() {
+                    CurrentConversation.scrollToMsg("missing-thread-target-" + Date.now());
+                    verify(MessagesAdapter.navigationTarget !== "" || MessagesAdapter.navigationFailed);
+                    MessagesAdapter.cancelNavigation();
+                    compare(MessagesAdapter.navigationTarget, "");
+                    // Give an already-issued history request time to complete.
+                    wait(1000);
+                    compare(MessagesAdapter.navigationTarget, "");
+                    verify(!MessagesAdapter.navigationFailed);
+                }
+
+                function test_disablingThreadedViewCancelsJump() {
+                    CurrentConversation.scrollToMsg("missing-thread-target-" + Date.now());
+                    verify(MessagesAdapter.navigationTarget !== "" || MessagesAdapter.navigationFailed);
+                    MessagesAdapter.threadedView = false;
+                    compare(MessagesAdapter.navigationTarget, "");
+                    verify(!MessagesAdapter.navigationFailed);
                 }
             }
         }
