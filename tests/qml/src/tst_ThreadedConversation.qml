@@ -75,12 +75,28 @@ TestWrapper {
                     return messageId(body);
                 }
 
+                // Sends through a composer's own send action, as the send button does.
+                function sendFrom(footer, body) {
+                    footer.messageBar.text = body;
+                    footer.messageBar.sendMessageButtonClicked();
+                    tryVerify(() => messageId(body) !== "", 10000, "message was not added: " + body);
+                    return messageId(body);
+                }
+
                 function messageList() {
                     return findChild(uut, "mainMessageList");
                 }
 
+                function mainFooter() {
+                    return findChild(uut, "chatViewFooter");
+                }
+
                 function threadPanel() {
                     return findChild(uut, "threadPanel");
+                }
+
+                function threadFooter() {
+                    return findChild(threadPanel(), "threadFooter");
                 }
 
                 function threadList() {
@@ -168,6 +184,8 @@ TestWrapper {
                     // The conversation stays next to the thread.
                     compare(messageList().model, rootsModel);
                     compare(rootsModel.getDisplayIndex(replyId), -1);
+                    verify(mainFooter().visible);
+                    verify(threadFooter().visible);
                 }
 
                 function test_openThreadButtonStaysVisibleWithNormalColors() {
@@ -205,6 +223,82 @@ TestWrapper {
                     mouseClick(findChild(threadPanel(), "threadPanelCloseButton"));
                     compare(threadModel.threadId, "");
                     tryVerify(() => threadPanel() === null || !threadPanel().visible, 5000, "thread panel is still open");
+                }
+
+                function test_threadComposerSendsToRoot() {
+                    openThreadFromList(rootId);
+                    const id = sendFrom(threadFooter(), "thread composer send " + Date.now());
+                    compare(MessagesAdapter.dataForInteraction(id, MessageList.ReplyTo), rootId);
+                    const next = sendFrom(threadFooter(), "second thread composer send " + Date.now());
+                    compare(MessagesAdapter.dataForInteraction(next, MessageList.ReplyTo), rootId);
+                    compare(threadModel.threadId, rootId);
+                }
+
+                function test_mainComposerIgnoresOpenThread() {
+                    openThreadFromList(rootId);
+                    const id = sendFrom(mainFooter(), "main composer send " + Date.now());
+                    compare(MessagesAdapter.dataForInteraction(id, MessageList.ReplyTo), "");
+                }
+
+                function test_explicitReplyBelongsToThreadComposer() {
+                    openThreadFromList(rootId);
+                    MessagesAdapter.replyToId = replyId;
+                    compare(threadFooter().messageBar.replyToId, replyId);
+                    compare(mainFooter().messageBar.replyToId, "");
+                    const id = sendFrom(threadFooter(), "explicit nested reply " + Date.now());
+                    compare(MessagesAdapter.dataForInteraction(id, MessageList.ReplyTo), replyId);
+                }
+
+                function test_mainReplyIsNotTakenByThreadComposer() {
+                    openThreadFromList(rootId);
+                    MessagesAdapter.replyToId = otherRootId;
+                    compare(mainFooter().messageBar.replyToId, otherRootId);
+                    compare(threadFooter().messageBar.replyToId, "");
+                    const id = sendFrom(threadFooter(), "thread send beside main reply " + Date.now());
+                    compare(MessagesAdapter.dataForInteraction(id, MessageList.ReplyTo), rootId);
+                    compare(MessagesAdapter.replyToId, otherRootId);
+                }
+
+                function test_replyInFlatViewDoesNotOpenThread() {
+                    MessagesAdapter.threadedView = false;
+                    MessagesAdapter.replyToId = rootId;
+                    compare(threadModel.threadId, "");
+                    compare(mainFooter().messageBar.replyToId, rootId);
+                    sendFrom(mainFooter(), "flat reply " + Date.now());
+                    compare(threadModel.threadId, "");
+                }
+
+                function test_replyToExistingThreadOpensPanel_data() {
+                    return [
+                        {tag: "root", target: rootId, root: rootId},
+                        {tag: "nested reply", target: nestedReplyId, root: rootId}
+                    ];
+                }
+
+                function test_replyToExistingThreadOpensPanel(data) {
+                    MessagesAdapter.replyToId = data.target;
+                    tryCompare(threadModel, "threadId", data.root);
+                    tryVerify(() => threadPanel() !== null && threadPanel().visible);
+                    compare(mainFooter().messageBar.replyToId, "");
+                    compare(threadFooter().messageBar.replyToId, data.target);
+                }
+
+                function test_sendingFirstReplyOpensThread() {
+                    const target = send("new thread root " + Date.now());
+                    MessagesAdapter.replyToId = target;
+                    compare(threadModel.threadId, "");
+                    compare(mainFooter().messageBar.replyToId, target);
+                    const id = sendFrom(mainFooter(), "sent reply opens thread " + Date.now());
+                    compare(MessagesAdapter.dataForInteraction(id, MessageList.ReplyTo), target);
+                    tryCompare(threadModel, "threadId", target);
+                    tryVerify(() => threadPanel() !== null && threadPanel().visible);
+                }
+
+                function test_threadTargetDoesNotLeakToAnotherConversation() {
+                    openThreadFromList(rootId);
+                    compare(MessagesAdapter.replyTargetFor(CurrentConversation.id, true), rootId);
+                    compare(MessagesAdapter.replyTargetFor(CurrentConversation.id, false), "");
+                    compare(MessagesAdapter.replyTargetFor("another-conversation", true), "");
                 }
 
                 function test_disablingThreadedViewClosesThread() {
