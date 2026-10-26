@@ -152,6 +152,17 @@ Item {
         }
     }
 
+    Connections {
+        target: MessagesAdapter
+        enabled: MessagesAdapter.threadedView && convContext === CurrentConversation
+        function onReplyToIdChanged() {
+            const model = MessagesAdapter.threadMessageListModel;
+            const threadId = model.threadRootOf(MessagesAdapter.replyToId);
+            if (model.replyCountOf(threadId) > 0)
+                model.threadId = threadId;
+        }
+    }
+
     // Used externally to switch to a extras panel.
     function switchToPanel(panel, toggle = true) {
         extrasPanel.switchToPanel(panel, toggle);

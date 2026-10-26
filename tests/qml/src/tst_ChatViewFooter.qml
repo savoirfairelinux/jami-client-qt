@@ -74,6 +74,22 @@ ColumnLayout {
                 compare(sendMessageButton.enabled, false)
             }
 
+            function test_narrowComposerKeepsInlineOptionsAndShowsAllInMenu() {
+                const messageBar = uut.messageBar
+                messageBar.showTypo = true
+                tryVerify(() => messageBar.width < JamiTheme.showTypoSecondToggleWidth)
+                const inlineOptions = findChild(messageBar, "listViewTypoFirst")
+                verify(inlineOptions.visible)
+                tryVerify(() => inlineOptions.itemAtIndex(3) !== null)
+                wait(JamiTheme.longFadeDuration)
+                verify(inlineOptions.width >= inlineOptions.itemAtIndex(2).x + inlineOptions.itemAtIndex(2).width)
+                verify(inlineOptions.width <= inlineOptions.itemAtIndex(3).x)
+                const more = findChild(messageBar, "showMoreTypoButton")
+                verify(more.visible)
+                compare(more.popup.menuTypoActions.length, 9)
+                verify(more.popup.implicitWidth <= messageBar.width)
+            }
+
             // Regression: pasting a file with no text left the send button enabled but
             // pressing Enter did nothing because onSendMessagesRequired only checked text.
             function test_enter_sends_when_files_pending_and_no_text() {

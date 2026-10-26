@@ -27,7 +27,7 @@ import "../mainview/components"
 Popup {
     id: root
 
-    property list<Action> menuTypoActionsSecond
+    property list<Action> menuTypoActions
 
     implicitWidth: Math.max(implicitBackgroundWidth + leftInset + rightInset,
                             contentWidth + leftPadding + rightPadding)
@@ -46,7 +46,7 @@ Popup {
         spacing: JamiTheme.markdownPopupContentItemSpacing
 
         Repeater {
-            model: menuTypoActionsSecond
+            model: menuTypoActions
 
             delegate: NewIconButton {
                 Layout.alignment: Qt.AlignVCenter
