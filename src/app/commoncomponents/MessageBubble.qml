@@ -23,6 +23,7 @@ Rectangle {
     property bool out: true
     property int type: MsgSeq.single
     property bool isReply: false
+    property color replyBorderColor: JamiTheme.chatviewBgColor
     property alias mask: mask
 
     Rectangle {
@@ -31,7 +32,7 @@ Rectangle {
         anchors.margins: -1
         radius: 5
         color: "transparent"
-        border.color: JamiTheme.chatviewBgColor
+        border.color: root.replyBorderColor
         border.width: isReply ? 2 : 0
     }
 
