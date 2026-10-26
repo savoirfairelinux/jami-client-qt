@@ -661,6 +661,10 @@ Item {
     property string displayHyperlinkPreviewsDescription: qsTr("Preview requires downloading content from third-party servers.")
     property string threadedView: qsTr("Threaded view (experimental)")
     property string threadedViewDescription: qsTr("Show replies in threads. Open a thread to read it and reply to it.")
+    property string thread: qsTr("Thread")
+    property string openThread: qsTr("Open thread")
+    property string oneReply: qsTr("1 reply")
+    property string replies: qsTr("%1 replies")
 
     property string userInterfaceLanguage: qsTr("User interface language")
     property string verticalViewOpt: qsTr("Vertical view")

@@ -658,6 +658,7 @@ Item {
 
     // Extras panel
     property real extrasPanelMinWidth: 300
+    property real threadPanelMinWidth: 420
     property int aboutBtnSize: 24
 
     // Messages point size
