@@ -665,6 +665,8 @@ Item {
     property string openThread: qsTr("Open thread")
     property string oneReply: qsTr("1 reply")
     property string replies: qsTr("%1 replies")
+    property string threadFindingMessage: qsTr("Loading older messages to find this message…")
+    property string threadMessageUnavailable: qsTr("This message could not be found in the conversation history.")
 
     property string userInterfaceLanguage: qsTr("User interface language")
     property string verticalViewOpt: qsTr("Vertical view")
