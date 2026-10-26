@@ -584,6 +584,8 @@ Item {
                             id: loader
                             active: convContext.id !== ""
                             sourceComponent: MessageListView {
+                                objectName: "mainMessageList"
+                                model: MessagesAdapter.threadedView && convContext === CurrentConversation ? MessagesAdapter.threadedMessageListModel : (convContext !== CurrentConversation ? convContext.messageListModel : MessagesAdapter.messageListModel)
                                 DropArea {
                                     anchors.fill: parent
                                     onDropped: function (drop) {

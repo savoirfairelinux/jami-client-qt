@@ -72,6 +72,7 @@ extern const QString defaultDownloadPath;
     X(ShowMardownOption, false) \
     X(ChatViewEnterIsNewLine, false) \
     X(ShowSendOption, false) \
+    X(ThreadedView, false) \
     X(EnablePtt, false) \
     X(PttKeys, 32) \
     X(UseFramelessWindow, USE_FRAMELESS_WINDOW_DEFAULT) \
