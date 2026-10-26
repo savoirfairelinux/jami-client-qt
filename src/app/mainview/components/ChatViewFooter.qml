@@ -34,6 +34,8 @@ Rectangle {
     // Injected conversation context; defaults to the global singleton for
     // the main window.
     property var convContext: CurrentConversation
+    // The thread panel's composer: sends reply to the open thread.
+    property bool inThread: false
 
     function setFilePathsToSend(filePaths) {
         for (var index = 0; index < filePaths.length; ++index) {
@@ -86,16 +88,23 @@ Rectangle {
         target: MessagesAdapter
 
         function onNewFilePasted(filePath) {
-            messageBar.fileContainer.filesToSendListModel.addToPending(filePath);
+            if (messageBar.textAreaObj.pasting)
+                messageBar.fileContainer.filesToSendListModel.addToPending(filePath);
         }
 
         function onNewTextPasted() {
-            messageBar.textAreaObj.pasteText();
+            if (messageBar.textAreaObj.pasting)
+                messageBar.textAreaObj.pasteText();
         }
+    }
+
+    // Reply and edit state is shared; each composer reacts to the messages of its own list.
+    Connections {
+        target: messageBar
 
         function onEditIdChanged() {
-            if (MessagesAdapter.editId.length > 0) {
-                var editedMessageBody = MessagesAdapter.dataForInteraction(MessagesAdapter.editId, MessageList.OriginalBody);
+            if (messageBar.editId.length > 0) {
+                var editedMessageBody = MessagesAdapter.dataForInteraction(messageBar.editId, MessageList.OriginalBody);
                 messageBar.textAreaObj.insertText(editedMessageBody);
                 messageBar.textAreaObj.forceActiveFocus();
             } else {
@@ -104,13 +113,14 @@ Rectangle {
         }
 
         function onReplyToIdChanged() {
-            if (MessagesAdapter.replyToId.length > 0)
+            if (messageBar.replyToId.length > 0)
                 messageBar.textAreaObj.forceActiveFocus();
         }
     }
 
     RecordBox {
         id: recordBox
+        inThread: root.inThread
 
         visible: false
         parent: root
@@ -121,6 +131,7 @@ Rectangle {
     MessageBar {
         id: messageBar
         convContext: root.convContext
+        inThread: root.inThread
 
         anchors.bottom: root.bottom
         anchors.bottomMargin: marginSize
@@ -203,24 +214,29 @@ Rectangle {
         }
 
         onSendMessageButtonClicked: {
+            const replyThread = !root.inThread && MessagesAdapter.threadedView && messageBar.editId === ""
+                                ? MessagesAdapter.threadMessageListModel.threadRootOf(messageBar.replyToId) : "";
             // Send file messages
             var fileCounts = messageBar.fileContainer.filesToSendListModel.rowCount();
             for (var i = 0; i < fileCounts; i++) {
                 var currentIndex = messageBar.fileContainer.filesToSendListModel.index(i, 0);
                 var filePath = messageBar.fileContainer.filesToSendListModel.data(currentIndex, FilesToSend.FilePath);
-                MessagesAdapter.sendFile(filePath);
+                MessagesAdapter.sendFile(filePath, root.inThread);
             }
             messageBar.fileContainer.filesToSendListModel.flush();
             // Send text message
             if (messageBar.text) {
-                if (MessagesAdapter.editId !== "") {
+                if (messageBar.editId !== "") {
                     MessagesAdapter.editMessage(convContext.id, messageBar.text);
                 } else {
-                    MessagesAdapter.sendMessageToUid(messageBar.text, convContext.id);
+                    MessagesAdapter.sendMessageToUid(messageBar.text, convContext.id, root.inThread);
                 }
             }
             messageBar.textAreaObj.clearText();
-            MessagesAdapter.replyToId = "";
+            if (messageBar.replyToId !== "")
+                MessagesAdapter.replyToId = "";
+            if (replyThread !== "")
+                MessagesAdapter.threadMessageListModel.threadId = replyThread;
         }
 
         Keys.onShortcutOverride: function (keyEvent) {

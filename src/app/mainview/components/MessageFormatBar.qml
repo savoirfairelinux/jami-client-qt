@@ -36,6 +36,8 @@ Rectangle {
     property alias listViewTypoFirst: listViewTypoFirst
     property bool isEmojiPickerOpen
     property var convContext: CurrentConversation
+    property string replyToId: MessagesAdapter.replyToId
+    property string editId: MessagesAdapter.editId
 
     // True when the current conversation has at least one editable document.
     // Recomputed when the conversation changes or its interactions change (a
@@ -81,7 +83,9 @@ Rectangle {
                 objectName: "listViewTypoFirst"
 
                 visible: showTypo
-                width: visible ? contentWidth + 2 * leftMargin : 0
+                width: !visible ? 0 : showTypoSecond ? contentWidth + 2 * leftMargin
+                                                   : 3 * JamiTheme.iconButtonSmall * 1.5 + 2 * spacing
+                clip: true
 
                 Behavior on width {
                     NumberAnimation {
@@ -202,6 +206,7 @@ Rectangle {
 
                 ComboBox {
                     id: showMoreTypoButton
+                    objectName: "showMoreTypoButton"
 
                     anchors.centerIn: parent
 
@@ -232,7 +237,8 @@ Rectangle {
                         x: -parent.width * 2
                         y: 1.5 * parent.height
 
-                        menuTypoActionsSecond: listViewTypoSecond.menuTypoActionsSecond
+                        menuTypoActions: listViewTypoFirst.menuTypoActionsFirst.concat(
+                                             listViewTypoSecond.menuTypoActionsSecond)
                     }
                 }
             }
@@ -698,9 +704,9 @@ Rectangle {
 
 
                 toolTipText: {
-                    if (MessagesAdapter.editId !== "") {
+                    if (messageBarRowLayout.editId !== "") {
                         return JamiStrings.edit;
-                    } else if (MessagesAdapter.replyToId !== "") {
+                    } else if (messageBarRowLayout.replyToId !== "") {
                         return JamiStrings.reply;
                     } else {
                         return JamiStrings.send;
@@ -710,9 +716,9 @@ Rectangle {
                 mirror: UtilsAdapter.isRTL
 
                 source: {
-                    if (MessagesAdapter.editId !== "") {
+                    if (messageBarRowLayout.editId !== "") {
                         return JamiResources.edit_24dp_svg;
-                    } else if (MessagesAdapter.replyToId !== "") {
+                    } else if (messageBarRowLayout.replyToId !== "") {
                         return JamiResources.bidirectional_reply_black_24dp_svg;
                     } else {
                         return JamiResources.bidirectional_send_black_24dp_svg;
