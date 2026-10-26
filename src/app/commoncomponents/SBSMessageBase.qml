@@ -818,6 +818,47 @@ Control {
             }
         }
 
+        ThreadRepliesButton {
+            id: threadRepliesButton
+
+            readonly property real messageLeft: msgRowlayout.x + itemRowMessage.x
+            readonly property real reactionLeft: messageLeft + emojiReactions.x
+            readonly property real reactionGap: 8
+            readonly property real bubbleRight: messageLeft + bubble.x + bubble.width
+            readonly property real bubbleRightAlignedX: bubbleRight - implicitWidth
+            readonly property real reactionAlignedX: {
+                if (!emojiReactions.visible)
+                    return bubbleRightAlignedX;
+                return reactionLeft - reactionGap - implicitWidth;
+            }
+            readonly property bool alignsWithReactions: !editedRow.visible
+                                                        && reactionAlignedX >= messageLeft
+                                                        && reactionAlignedX + implicitWidth
+                                                        <= messageLeft + itemRowMessage.width
+            // The reaction slot straddles the bubble's bottom edge; msgRowlayout
+            // only reserves its height when reactions exist.
+            readonly property real reactionSlotCenter: emojiReactions.emojis !== ""
+                                                       ? emojiReactions.height / 2
+                                                       : 8 - emojiReactions.height / 2
+            readonly property real reactionCenterOffset: reactionSlotCenter + implicitHeight / 2
+                                                         + (root.bigMsg ? timestampItem.timeLabel.height
+                                                                          - (bubble.height
+                                                                             - innerContent.height
+                                                                             - root.extraHeight) : 0)
+
+            rootId: Id
+            replyCount: model.ThreadReplyCount ?? 0
+            inThread: root.listView && root.listView.model === MessagesAdapter.threadMessageListModel
+            borderColor: root.getBaseColor()
+            focusPolicy: root.listView && root.listView.currentIndex === index ? Qt.TabFocus : Qt.NoFocus
+
+            Layout.alignment: Qt.AlignLeft
+            Layout.topMargin: alignsWithReactions ? -reactionCenterOffset : 2
+            Layout.bottomMargin: alignsWithReactions ? reactionCenterOffset + 2 : 0
+            Layout.leftMargin: reactionAlignedX
+            Layout.rightMargin: 0
+        }
+
         ListView {
             id: infoCell
 
