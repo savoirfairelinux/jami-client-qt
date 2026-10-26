@@ -36,6 +36,8 @@ Popup {
     property int duration: 0
     property int state: RecordBox.States.INIT
     property bool isVideo: false
+    // Recorded from the thread panel's composer.
+    property bool inThread: false
     property bool isPhoto: false
     property bool isAudio: false
     property bool showVideo: (root.isVideo && VideoDevices.listSize !== 0)
@@ -113,8 +115,9 @@ Popup {
 
     function sendRecord() {
         if (pathRecorder !== "") {
-            MessagesAdapter.sendFile(pathRecorder);
-            MessagesAdapter.replyToId = "";
+            MessagesAdapter.sendFile(pathRecorder, inThread);
+            if (MessagesAdapter.inOpenThread(MessagesAdapter.replyToId) === inThread)
+                MessagesAdapter.replyToId = "";
         }
     }
 
