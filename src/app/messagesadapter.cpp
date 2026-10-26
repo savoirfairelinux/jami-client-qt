@@ -48,6 +48,7 @@ MessagesAdapter::MessagesAdapter(AppSettingsManager* settingsManager,
     , settingsManager_(settingsManager)
     , messageParser_(new MessageParser(previewEngine, this))
     , filteredMsgListModel_(new FilteredMsgListModel(this))
+    , threadedMsgListModel_(new ThreadedMsgListModel(this))
     , mediaInteractions_(std::make_unique<MessageListModel>(nullptr))
     , timestampTimer_(new QTimer(this))
     , curLocale_(QLocale(settingsManager_->getLanguage()))
@@ -56,6 +57,8 @@ MessagesAdapter::MessagesAdapter(AppSettingsManager* settingsManager,
     updateDateFormats();
 
     set_messageListModel(QVariant::fromValue(filteredMsgListModel_));
+    threadedMsgListModel_->setSourceModel(filteredMsgListModel_);
+    set_threadedMessageListModel(QVariant::fromValue(threadedMsgListModel_));
 
     connect(settingsManager_,
             &AppSettingsManager::reloadHistory,
@@ -97,6 +100,21 @@ MessagesAdapter::onSelectedConversationChanged()
     filteredMsgListModel_->setSourceModel(conversation.interactions.get());
 
     set_currentConvComposingList(conversationTypersUrlToName(conversation.typers));
+}
+
+bool
+MessagesAdapter::threadedView() const
+{
+    return settingsManager_->getValue(Settings::Key::ThreadedView).toBool();
+}
+
+void
+MessagesAdapter::setThreadedView(bool enabled)
+{
+    if (threadedView() == enabled)
+        return;
+    settingsManager_->setValue(Settings::Key::ThreadedView, enabled);
+    Q_EMIT threadedViewChanged();
 }
 
 bool

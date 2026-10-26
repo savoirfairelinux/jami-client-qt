@@ -28,6 +28,8 @@
 #include <QString>
 #include <QTimer>
 
+#include "threadedmsglistmodel.h"
+
 #include <QSortFilterProxyModel>
 #include <QQmlEngine>   // QML registration
 #include <QApplication> // QML registration
@@ -127,7 +129,10 @@ class MessagesAdapter final : public QmlAdapterBase
     QML_SINGLETON
 
     QML_RO_PROPERTY(QVariant, messageListModel)
+    // Thread roots for the main message list in the threaded view.
+    QML_RO_PROPERTY(QVariant, threadedMessageListModel)
     QML_RO_PROPERTY(bool, historyStalled)
+    Q_PROPERTY(bool threadedView READ threadedView WRITE setThreadedView NOTIFY threadedViewChanged)
     QML_PROPERTY(QString, replyToId)
     QML_PROPERTY(QString, editId)
     QML_RO_PROPERTY(QList<QString>, currentConvComposingList)
@@ -147,6 +152,9 @@ public:
                              LRCInstance* instance,
                              QObject* parent = nullptr);
     ~MessagesAdapter() = default;
+
+    bool threadedView() const;
+    void setThreadedView(bool enabled);
 
     Q_INVOKABLE bool isDocument(const interaction::Type& type);
     Q_INVOKABLE void loadMoreMessages();
@@ -213,6 +221,7 @@ Q_SIGNALS:
     void newFilePasted(const QString& filePath);
     void newTextPasted();
     void moreMessagesLoaded(qint32 loadingRequestId);
+    void threadedViewChanged();
     void timestampUpdated();
     void fileCopied(const QString& fileName, const QString& downloadDir);
     void messageParsed(const QString& msgId, const QString& msg);
@@ -233,6 +242,7 @@ private:
     AppSettingsManager* settingsManager_;
     MessageParser* messageParser_;
     FilteredMsgListModel* filteredMsgListModel_;
+    ThreadedMsgListModel* threadedMsgListModel_;
     HistoryRequest historyRequest_;
     std::unique_ptr<MessageListModel> mediaInteractions_;
     QTimer* timestampTimer_;
