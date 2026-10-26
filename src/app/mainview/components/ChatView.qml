@@ -152,6 +152,18 @@ Item {
         }
     }
 
+    // Search and reply-preview jumps: open the target's thread before the lists scroll to it.
+    Connections {
+        target: CurrentConversation
+        enabled: MessagesAdapter.threadedView && convContext === CurrentConversation
+        function onScrollTo(id) {
+            const before = MessagesAdapter.threadMessageListModel.threadId;
+            // Jump again once the thread panel shows the newly opened thread.
+            if (MessagesAdapter.revealMessage(id) && MessagesAdapter.threadMessageListModel.threadId !== before)
+                Qt.callLater(() => CurrentConversation.scrollToMsg(id));
+        }
+    }
+
     Connections {
         target: MessagesAdapter
         enabled: MessagesAdapter.threadedView && convContext === CurrentConversation
@@ -160,6 +172,10 @@ Item {
             const threadId = model.threadRootOf(MessagesAdapter.replyToId);
             if (model.replyCountOf(threadId) > 0)
                 model.threadId = threadId;
+        }
+
+        function onNavigationTargetLoaded(id) {
+            CurrentConversation.scrollToMsg(id);
         }
     }
 
@@ -612,6 +628,31 @@ Item {
 
                             Layout.fillWidth: true
                             Layout.fillHeight: true
+                        }
+                    }
+
+                    // Shown while a search or reply jump looks for an unloaded message, or when it was not found.
+                    RowLayout {
+                        objectName: "threadNavigationStatus"
+                        visible: MessagesAdapter.threadedView && (MessagesAdapter.navigationTarget !== "" || MessagesAdapter.navigationFailed)
+                        Layout.fillWidth: true
+                        Layout.leftMargin: JamiTheme.chatviewMargin
+                        Layout.rightMargin: JamiTheme.chatviewMargin
+                        spacing: 8
+
+                        Label {
+                            Layout.fillWidth: true
+                            wrapMode: Text.Wrap
+                            color: JamiTheme.chatviewSecondaryInformationColor
+                            text: MessagesAdapter.navigationFailed ? JamiStrings.threadMessageUnavailable : JamiStrings.threadFindingMessage
+                        }
+
+                        NewMaterialButton {
+                            objectName: "threadNavigationDismissButton"
+                            textButton: true
+                            text: MessagesAdapter.navigationFailed ? JamiStrings.dismiss : JamiStrings.cancel
+                            Accessible.name: text
+                            onClicked: MessagesAdapter.cancelNavigation()
                         }
                     }
 
