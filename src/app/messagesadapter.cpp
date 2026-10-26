@@ -95,6 +95,7 @@ MessagesAdapter::onSelectedConversationChanged()
     set_replyToId("");
     set_editId("");
     threadMsgListModel_->setThreadId({});
+    cancelNavigation();
     historyRequest_.reset();
     set_historyStalled(false);
     const QString& convId = lrcInstance_->get_selectedConvUid();
@@ -118,8 +119,10 @@ MessagesAdapter::setThreadedView(bool enabled)
     if (threadedView() == enabled)
         return;
     settingsManager_->setValue(Settings::Key::ThreadedView, enabled);
-    if (!enabled)
+    if (!enabled) {
         threadMsgListModel_->setThreadId({});
+        cancelNavigation();
+    }
     Q_EMIT threadedViewChanged();
 }
 
@@ -138,6 +141,41 @@ MessagesAdapter::inOpenThread(const QString& id) const
 {
     const auto& threadId = threadMsgListModel_->threadId();
     return !threadId.isEmpty() && threadMsgListModel_->threadRootOf(id) == threadId;
+}
+
+bool
+MessagesAdapter::revealMessage(const QString& id)
+{
+    cancelNavigation();
+    const auto root = threadMsgListModel_->threadRootOf(id);
+    if (root.isEmpty()) {
+        set_navigationTarget(id);
+        continueNavigation();
+        return false;
+    }
+    // Roots are in the main list; the open thread stays open beside it.
+    if (root != id)
+        threadMsgListModel_->setThreadId(root);
+    return true;
+}
+
+void
+MessagesAdapter::cancelNavigation()
+{
+    set_navigationTarget({});
+    set_navigationFailed(false);
+}
+
+// Requests the next history batch for the pending target, or gives up when none can be requested.
+void
+MessagesAdapter::continueNavigation()
+{
+    if (!historyRequest_.pending())
+        loadMoreMessages();
+    if (!historyRequest_.pending()) {
+        set_navigationTarget({});
+        set_navigationFailed(true);
+    }
 }
 
 bool
@@ -616,6 +654,24 @@ MessagesAdapter::onConversationMessagesLoaded(uint32_t loadingRequestId, const Q
     if (result != HistoryRequest::Ignored) {
         // Not "all loaded": the daemon may return nothing while another load of this conversation runs.
         set_historyStalled(result == HistoryRequest::NoProgress);
+        const auto target = navigationTarget_;
+        if (!target.isEmpty() && !threadMsgListModel_->threadRootOf(target).isEmpty()) {
+            // Queued so the proxy's pending refilter runs first; a cancel or new jump meanwhile wins.
+            QMetaObject::invokeMethod(
+                this,
+                [this, target] {
+                    if (navigationTarget_ != target)
+                        return;
+                    set_navigationTarget({});
+                    Q_EMIT navigationTargetLoaded(target);
+                },
+                Qt::QueuedConnection);
+        } else if (!target.isEmpty() && result == HistoryRequest::NoProgress) {
+            set_navigationTarget({});
+            set_navigationFailed(true);
+        } else if (!target.isEmpty()) {
+            continueNavigation();
+        }
     }
     Q_EMIT moreMessagesLoaded(loadingRequestId);
 }

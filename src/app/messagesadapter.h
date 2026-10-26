@@ -133,6 +133,9 @@ class MessagesAdapter final : public QmlAdapterBase
     QML_RO_PROPERTY(QVariant, threadedMessageListModel)
     QML_RO_PROPERTY(QVariant, threadMessageListModel)
     QML_RO_PROPERTY(bool, historyStalled)
+    // A jump target being paged in for the threaded view, and whether the last one was not found.
+    QML_RO_PROPERTY(QString, navigationTarget)
+    QML_RO_PROPERTY(bool, navigationFailed)
     Q_PROPERTY(bool threadedView READ threadedView WRITE setThreadedView NOTIFY threadedViewChanged)
     QML_PROPERTY(QString, replyToId)
     QML_PROPERTY(QString, editId)
@@ -161,6 +164,9 @@ public:
     Q_INVOKABLE QString replyTargetFor(const QString& convUid, bool inThread = false) const;
     // Whether id is in the thread open in the thread panel.
     Q_INVOKABLE bool inOpenThread(const QString& id) const;
+    // Opens a loaded reply's thread; pages in an unloaded target. Returns whether it is loaded.
+    Q_INVOKABLE bool revealMessage(const QString& id);
+    Q_INVOKABLE void cancelNavigation();
 
     Q_INVOKABLE bool isDocument(const interaction::Type& type);
     Q_INVOKABLE void loadMoreMessages();
@@ -223,6 +229,7 @@ public:
     inline MessageListModel* getMsgListSourceModel() const;
 
 Q_SIGNALS:
+    void navigationTargetLoaded(const QString& id);
     void newInteraction(const QString& id, int type);
     void newFilePasted(const QString& filePath);
     void newTextPasted();
@@ -244,6 +251,7 @@ private Q_SLOTS:
 private:
     QList<QString> conversationTypersUrlToName(const QSet<QString>& typersSet);
     void onSelectedConversationChanged();
+    void continueNavigation();
 
     AppSettingsManager* settingsManager_;
     MessageParser* messageParser_;
