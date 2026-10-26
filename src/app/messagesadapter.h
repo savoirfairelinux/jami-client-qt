@@ -156,6 +156,11 @@ public:
 
     bool threadedView() const;
     void setThreadedView(bool enabled);
+    // For the thread panel's composer (inThread) or the main one; only for the selected conversation.
+    // The explicit reply is used by the composer whose list shows it, else the thread composer replies to its root.
+    Q_INVOKABLE QString replyTargetFor(const QString& convUid, bool inThread = false) const;
+    // Whether id is in the thread open in the thread panel.
+    Q_INVOKABLE bool inOpenThread(const QString& id) const;
 
     Q_INVOKABLE bool isDocument(const interaction::Type& type);
     Q_INVOKABLE void loadMoreMessages();
@@ -172,12 +177,12 @@ public:
     Q_INVOKABLE void unbanContact(int index);
     Q_INVOKABLE void unbanConversation(const QString& convUid);
     Q_INVOKABLE void sendMessage(const QString& message);
-    Q_INVOKABLE void sendMessageToUid(const QString& message, const QString& convUid);
+    Q_INVOKABLE void sendMessageToUid(const QString& message, const QString& convUid, bool inThread = false);
     Q_INVOKABLE void editMessage(const QString& convId, const QString& newBody, const QString& messageId = "");
     Q_INVOKABLE void addEmojiReaction(const QString& convId, const QString& emoji, const QString& messageId = "");
     Q_INVOKABLE void removeEmojiReaction(const QString& convId, const QString& emoji, const QString& messageId);
     Q_INVOKABLE void removeReaction(const QString& convId, const QString& reactionId);
-    Q_INVOKABLE void sendFile(const QString& message);
+    Q_INVOKABLE void sendFile(const QString& message, bool inThread = false);
     Q_INVOKABLE void sendFileToUid(const QString& message, const QString& convUid);
     Q_INVOKABLE void acceptFile(const QString& arg);
     Q_INVOKABLE void cancelFile(const QString& arg);
