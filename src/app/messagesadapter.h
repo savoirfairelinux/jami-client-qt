@@ -129,8 +129,9 @@ class MessagesAdapter final : public QmlAdapterBase
     QML_SINGLETON
 
     QML_RO_PROPERTY(QVariant, messageListModel)
-    // Thread roots for the main message list in the threaded view.
+    // Thread roots for the main message list, and the thread shown in the thread panel.
     QML_RO_PROPERTY(QVariant, threadedMessageListModel)
+    QML_RO_PROPERTY(QVariant, threadMessageListModel)
     QML_RO_PROPERTY(bool, historyStalled)
     Q_PROPERTY(bool threadedView READ threadedView WRITE setThreadedView NOTIFY threadedViewChanged)
     QML_PROPERTY(QString, replyToId)
@@ -243,6 +244,7 @@ private:
     MessageParser* messageParser_;
     FilteredMsgListModel* filteredMsgListModel_;
     ThreadedMsgListModel* threadedMsgListModel_;
+    ThreadedMsgListModel* threadMsgListModel_;
     HistoryRequest historyRequest_;
     std::unique_ptr<MessageListModel> mediaInteractions_;
     QTimer* timestampTimer_;
