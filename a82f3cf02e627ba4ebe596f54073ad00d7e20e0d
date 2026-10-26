@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1e75222b_e93e01d5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-10-26T19:07:24Z",
+      "side": 1,
+      "message": "Unnecessary addition of tests and comparisons IMO. Checking the visiblity of the icon should be enough.",
+      "revId": "a82f3cf02e627ba4ebe596f54073ad00d7e20e0d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
