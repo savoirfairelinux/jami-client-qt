@@ -35,6 +35,8 @@ JamiFlickable {
     property alias selectionStart: textArea.selectionStart
     property alias selectionEnd: textArea.selectionEnd
     property bool showPreview: false
+    // Set while this text area's paste is handled, so only its composer takes the pasted content.
+    property bool pasting: false
     property bool isShowTypo: UtilsAdapter.getAppValue(Settings.Key.ShowMardownOption)
     property int textWidth: textArea.contentWidth
     property var language: AppSettingsManager.getValue(Settings.SpellLang)
@@ -63,6 +65,12 @@ JamiFlickable {
         textArea.clear();
     }
 
+    function paste() {
+        pasting = true;
+        MessagesAdapter.onPaste();
+        pasting = false;
+    }
+
     function restoreVisibilityAfterSend() {
         showPreview = false;
     }
@@ -75,7 +83,7 @@ JamiFlickable {
 
         onContextMenuRequirePaste: {
             // Intercept paste event to use C++ QMimeData
-            MessagesAdapter.onPaste();
+            root.paste();
         }
     }
 
@@ -218,7 +226,7 @@ JamiFlickable {
             // Update underline on each input to take into account deleted text and sent ones
             updateSpellCorrection();
             if (keyEvent.matches(StandardKey.Paste)) {
-                MessagesAdapter.onPaste();
+                root.paste();
                 keyEvent.accepted = true;
             } else if (keyEvent.matches(StandardKey.MoveToPreviousLine)) {
                 if (root.text !== "")
