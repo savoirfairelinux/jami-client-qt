@@ -43,7 +43,7 @@ Item {
 
         ColumnLayout {
             anchors.fill: parent
-            anchors.bottomMargin: innerRect.radius / 2
+            anchors.bottomMargin: 0
             spacing: 0
 
             RowLayout {
@@ -105,6 +105,23 @@ Item {
                 // A thread is complete once its root is loaded: replies are newer than their root.
                 autoLoadHistory: false
                 model: MessagesAdapter.threadMessageListModel
+
+                DropArea {
+                    anchors.fill: parent
+                    onDropped: drop => threadFooter.setFilePathsToSend(drop.urls)
+                }
+            }
+
+            ChatViewFooter {
+                id: threadFooter
+                objectName: "threadFooter"
+
+                inThread: true
+                // As the main composer: only where messages can be sent.
+                visible: !CurrentConversation.isBanned && !CurrentConversation.needsSyncing && !CurrentConversation.isRequest && CurrentConversation.isSwarm
+                Layout.fillWidth: true
+                Layout.preferredHeight: implicitHeight
+                Layout.maximumHeight: JamiTheme.chatViewFooterMaximumHeight
             }
         }
 
