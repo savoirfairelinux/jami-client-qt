@@ -49,6 +49,7 @@ MessagesAdapter::MessagesAdapter(AppSettingsManager* settingsManager,
     , messageParser_(new MessageParser(previewEngine, this))
     , filteredMsgListModel_(new FilteredMsgListModel(this))
     , threadedMsgListModel_(new ThreadedMsgListModel(this))
+    , threadMsgListModel_(new ThreadedMsgListModel(this))
     , mediaInteractions_(std::make_unique<MessageListModel>(nullptr))
     , timestampTimer_(new QTimer(this))
     , curLocale_(QLocale(settingsManager_->getLanguage()))
@@ -59,6 +60,8 @@ MessagesAdapter::MessagesAdapter(AppSettingsManager* settingsManager,
     set_messageListModel(QVariant::fromValue(filteredMsgListModel_));
     threadedMsgListModel_->setSourceModel(filteredMsgListModel_);
     set_threadedMessageListModel(QVariant::fromValue(threadedMsgListModel_));
+    threadMsgListModel_->setSourceModel(filteredMsgListModel_);
+    set_threadMessageListModel(QVariant::fromValue(threadMsgListModel_));
 
     connect(settingsManager_,
             &AppSettingsManager::reloadHistory,
@@ -91,6 +94,7 @@ MessagesAdapter::onSelectedConversationChanged()
 {
     set_replyToId("");
     set_editId("");
+    threadMsgListModel_->setThreadId({});
     historyRequest_.reset();
     set_historyStalled(false);
     const QString& convId = lrcInstance_->get_selectedConvUid();
@@ -114,6 +118,8 @@ MessagesAdapter::setThreadedView(bool enabled)
     if (threadedView() == enabled)
         return;
     settingsManager_->setValue(Settings::Key::ThreadedView, enabled);
+    if (!enabled)
+        threadMsgListModel_->setThreadId({});
     Q_EMIT threadedViewChanged();
 }
 
