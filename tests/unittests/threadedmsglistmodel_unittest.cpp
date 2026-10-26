@@ -224,3 +224,48 @@ TEST(ThreadedMsgListModel, LoadingLongNestedChainFromNewestToOldest)
     EXPECT_EQ(f.threaded.threadRootOf(QString::number(chainLength - 1)), QStringLiteral("0"));
     std::cout << "Loaded a " << chainLength << "-message nested chain in " << elapsed << " ms" << std::endl;
 }
+
+TEST(ThreadedHistoryRequest, OnlyOneRequestIsInFlight)
+{
+    HistoryRequest request;
+    EXPECT_TRUE(request.start("acc", "conv", 7, 10));
+    EXPECT_FALSE(request.start("acc", "conv", 8, 10));
+    EXPECT_TRUE(request.pending());
+}
+
+TEST(ThreadedHistoryRequest, StaleOrForeignCallbacksAreIgnored)
+{
+    HistoryRequest request;
+    request.start("acc", "conv", 7, 10);
+    EXPECT_EQ(request.finish("acc", "conv", 8, 30), HistoryRequest::Ignored);
+    EXPECT_EQ(request.finish("acc", "other", 7, 30), HistoryRequest::Ignored);
+    EXPECT_EQ(request.finish("other", "conv", 7, 30), HistoryRequest::Ignored);
+    EXPECT_TRUE(request.pending());
+    EXPECT_EQ(request.finish("acc", "conv", 7, 30), HistoryRequest::Progress);
+    EXPECT_FALSE(request.pending());
+    EXPECT_EQ(request.finish("acc", "conv", 7, 50), HistoryRequest::Ignored);
+}
+
+TEST(ThreadedHistoryRequest, EmptyBatchIsReportedAsNoProgress)
+{
+    HistoryRequest request;
+    request.start("acc", "conv", 7, 10);
+    EXPECT_EQ(request.finish("acc", "conv", 7, 10), HistoryRequest::NoProgress);
+}
+
+TEST(ThreadedHistoryRequest, FailedOrCompleteRequestsAreNotTracked)
+{
+    HistoryRequest request;
+    EXPECT_FALSE(request.start("acc", "conv", 0, 10));  // daemon refused
+    EXPECT_FALSE(request.start("acc", "conv", -1, 10)); // all messages already loaded
+    EXPECT_FALSE(request.pending());
+}
+
+TEST(ThreadedHistoryRequest, ResetDropsTheRequest)
+{
+    HistoryRequest request;
+    request.start("acc", "conv", 7, 10);
+    request.reset();
+    EXPECT_FALSE(request.pending());
+    EXPECT_EQ(request.finish("acc", "conv", 7, 30), HistoryRequest::Ignored);
+}
