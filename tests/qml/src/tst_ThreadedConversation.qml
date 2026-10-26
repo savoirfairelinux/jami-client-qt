@@ -210,6 +210,26 @@ TestWrapper {
                     }
                 }
 
+                function threadItem(id) {
+                    const list = threadList();
+                    list.positionViewAtIndex(threadModel.getDisplayIndex(id), ListView.Center);
+                    let item = null;
+                    tryVerify(() => (item = list.itemAtIndex(threadModel.getDisplayIndex(id))) !== null, 5000, "message is not shown in the thread");
+                    return item;
+                }
+
+                function test_directRepliesInThreadShowNoReplyPreview() {
+                    openThreadFromList(rootId);
+                    // The root is written by the user, as are its replies.
+                    verify(threadItem(rootId).isOutgoing);
+                    const direct = threadItem(replyId);
+                    verify(!direct.isReply);
+                    verify(!findChild(direct, "messageReplyPreview").visible);
+                    const nested = threadItem(nestedReplyId);
+                    verify(nested.isReply);
+                    verify(findChild(nested, "messageReplyPreview").visible);
+                }
+
                 function test_threadPanelTitleShowsConversation() {
                     openThreadFromList(rootId);
                     const title = findChild(threadPanel(), "threadPanelTitle");

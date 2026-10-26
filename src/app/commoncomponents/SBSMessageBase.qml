@@ -62,7 +62,8 @@ Control {
 
     property real textContentWidth
     property real textContentHeight
-    property bool isReply: ReplyTo !== ""
+    // Direct replies to the open thread's root read as normal messages in the thread panel.
+    property bool isReply: ReplyTo !== "" && !(MessagesAdapter.threadedView && ReplyTo === MessagesAdapter.threadMessageListModel.threadId)
     property real timeWidth: timestampItem.width
     property real editedWidth: 0
     property bool showOriginal: false
@@ -140,6 +141,7 @@ Control {
 
         Item {
             id: replyItem
+            objectName: "messageReplyPreview"
             property bool isSelf: ReplyToAuthor === CurrentAccount.uri
 
             visible: root.isReply
@@ -451,6 +453,10 @@ Control {
                     out: isOutgoing
                     type: seq
                     isReply: root.isReply
+                    replyBorderColor: root.listView && root.listView.model === MessagesAdapter.threadMessageListModel
+                                      ? JamiTheme.globalIslandColor
+                                      : JamiQmlUtils.mainViewRectObj ? JamiQmlUtils.mainViewRectObj.baseColor
+                                                                    : JamiTheme.globalBackgroundColor
                     color: IsEmojiOnly ? "transparent" : root.getBaseColor()
                     radius: msgRadius
                     anchors.right: isOutgoing ? parent.right : undefined
