@@ -659,6 +659,8 @@ Item {
     property string enableReadReceiptsTooltip: qsTr("Send and request delivery and read receipts to be sent when messages are delivered or read.")
     property string displayHyperlinkPreviews: qsTr("Web link previews")
     property string displayHyperlinkPreviewsDescription: qsTr("Preview requires downloading content from third-party servers.")
+    property string threadedView: qsTr("Threaded view (experimental)")
+    property string threadedViewDescription: qsTr("Show replies in threads. Open a thread to read it and reply to it.")
 
     property string userInterfaceLanguage: qsTr("User interface language")
     property string verticalViewOpt: qsTr("Vertical view")

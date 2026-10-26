@@ -179,15 +179,6 @@ ListView {
         }
     }
 
-    Connections {
-        target: convContext
-        function onScrollTo(id) {
-            // Get the filtered index from the interaction ID.
-            var idx = root.model.getDisplayIndex(id);
-            positionViewAtIndex(idx, ListView.Visible);
-        }
-    }
-
     topMargin: JamiTheme.qwkTitleBarHeight + JamiTheme.sidePanelIslandsPadding * 2
     spacing: 2
 
@@ -205,6 +196,16 @@ ListView {
         target: convContext
         function onIdChanged() {
             currentIndex = -1;
+        }
+    }
+
+    Connections {
+        target: convContext
+        function onScrollTo(id) {
+            // Get the filtered index from the interaction ID; it may not be in this list.
+            var idx = root.model.getDisplayIndex(id);
+            if (idx >= 0)
+                positionViewAtIndex(idx, ListView.Visible);
         }
     }
 
