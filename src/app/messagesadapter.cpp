@@ -123,6 +123,23 @@ MessagesAdapter::setThreadedView(bool enabled)
     Q_EMIT threadedViewChanged();
 }
 
+QString
+MessagesAdapter::replyTargetFor(const QString& convUid, bool inThread) const
+{
+    if (convUid != lrcInstance_->get_selectedConvUid())
+        return {};
+    if (!replyToId_.isEmpty() && inOpenThread(replyToId_) == inThread)
+        return replyToId_;
+    return inThread ? threadMsgListModel_->threadId() : QString();
+}
+
+bool
+MessagesAdapter::inOpenThread(const QString& id) const
+{
+    const auto& threadId = threadMsgListModel_->threadId();
+    return !threadId.isEmpty() && threadMsgListModel_->threadRootOf(id) == threadId;
+}
+
 bool
 MessagesAdapter::isDocument(const interaction::Type& type)
 {
@@ -195,17 +212,17 @@ MessagesAdapter::sendMessage(const QString& message)
 {
     try {
         const auto convUid = lrcInstance_->get_selectedConvUid();
-        lrcInstance_->getCurrentConversationModel()->sendMessage(convUid, message, replyToId_);
+        lrcInstance_->getCurrentConversationModel()->sendMessage(convUid, message, replyTargetFor(convUid));
     } catch (...) {
         qDebug() << "Exception during sendMessage:" << message;
     }
 }
 
 void
-MessagesAdapter::sendMessageToUid(const QString& message, const QString& convUid)
+MessagesAdapter::sendMessageToUid(const QString& message, const QString& convUid, bool inThread)
 {
     try {
-        lrcInstance_->getCurrentConversationModel()->sendMessage(convUid, message, replyToId_);
+        lrcInstance_->getCurrentConversationModel()->sendMessage(convUid, message, replyTargetFor(convUid, inThread));
     } catch (...) {
         qDebug() << "Exception during sendMessage:" << message;
     }
@@ -269,13 +286,16 @@ MessagesAdapter::addEmojiReaction(const QString& convId, const QString& emoji, c
 }
 
 void
-MessagesAdapter::sendFile(const QString& message)
+MessagesAdapter::sendFile(const QString& message, bool inThread)
 {
     QFileInfo fi(message);
     QString fileName = fi.fileName();
     try {
         auto convUid = lrcInstance_->get_selectedConvUid();
-        lrcInstance_->getCurrentConversationModel()->sendFile(convUid, message, fileName, replyToId_);
+        lrcInstance_->getCurrentConversationModel()->sendFile(convUid,
+                                                              message,
+                                                              fileName,
+                                                              replyTargetFor(convUid, inThread));
     } catch (...) {
         qDebug() << "Exception during sendFile";
     }
@@ -287,7 +307,7 @@ MessagesAdapter::sendFileToUid(const QString& message, const QString& convUid)
     QFileInfo fi(message);
     QString fileName = fi.fileName();
     try {
-        lrcInstance_->getCurrentConversationModel()->sendFile(convUid, message, fileName, replyToId_);
+        lrcInstance_->getCurrentConversationModel()->sendFile(convUid, message, fileName, replyTargetFor(convUid));
     } catch (...) {
         qDebug() << "Exception during sendFile";
     }

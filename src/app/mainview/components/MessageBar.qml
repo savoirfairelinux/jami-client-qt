@@ -41,6 +41,16 @@ Rectangle {
     property bool showPreview: false
     property bool isEmojiPickerOpen: false
     property var convContext: CurrentConversation
+    // The thread panel's composer; it only takes replies and edits of messages in the open thread.
+    property bool inThread: false
+    readonly property string replyToId: MessagesAdapter.replyToId !== "" && ownsMessage(MessagesAdapter.replyToId) ? MessagesAdapter.replyToId : ""
+    readonly property string editId: MessagesAdapter.editId !== "" && ownsMessage(MessagesAdapter.editId) ? MessagesAdapter.editId : ""
+
+    function ownsMessage(id) {
+        // Re-evaluated when the open thread changes.
+        MessagesAdapter.threadMessageListModel.threadId;
+        return MessagesAdapter.inOpenThread(id) === inThread;
+    }
 
     property bool maximized: (showTypo || dataTransferSendContainer.visible)
     property int messageBarLayoutMaximumWidth: 486
@@ -95,7 +105,7 @@ Rectangle {
         Rectangle {
             id: replyOrEditContainer
 
-            visible: MessagesAdapter.replyToId !== "" || MessagesAdapter.editId !== ""
+            visible: rectangle.replyToId !== "" || rectangle.editId !== ""
 
             Layout.fillWidth: true
             Layout.preferredHeight: 50
@@ -135,9 +145,9 @@ Rectangle {
 
                         property bool isSelf: false
                         property var author: {
-                            if (MessagesAdapter.replyToId === "")
+                            if (rectangle.replyToId === "")
                                 return "";
-                            var author = MessagesAdapter.dataForInteraction(MessagesAdapter.replyToId, MessageList.Author);
+                            var author = MessagesAdapter.dataForInteraction(rectangle.replyToId, MessageList.Author);
                             isSelf = author === "" || author === undefined;
                             if (isSelf) {
                                 containerLabelAvatar.mode = Avatar.Mode.Account;
@@ -156,9 +166,9 @@ Rectangle {
                             anchors.verticalCenter: parent.verticalCenter
 
                             text: {
-                                if (MessagesAdapter.replyToId !== "") {
+                                if (rectangle.replyToId !== "") {
                                     return JamiStrings.replyTo;
-                                } else if (MessagesAdapter.editId !== "") {
+                                } else if (rectangle.editId !== "") {
                                     return JamiStrings.editMessage;
                                 }
                                 return "";
@@ -179,7 +189,7 @@ Rectangle {
                             anchors.left: containerLabel.right
                             anchors.leftMargin: 12
 
-                            visible: MessagesAdapter.replyToId !== ""
+                            visible: rectangle.replyToId !== ""
 
                             width: JamiTheme.messageBarReplyToAvatarSize
                             height: JamiTheme.messageBarReplyToAvatarSize
@@ -228,15 +238,17 @@ Rectangle {
                         toolTipText: JamiStrings.cancel
 
                         onClicked: {
-                            if (MessagesAdapter.replyToId !== "") {
+                            if (rectangle.replyToId !== "") {
                                 MessagesAdapter.replyToId = "";
-                            } else if (MessagesAdapter.editId !== "") {
+                            } else if (rectangle.editId !== "") {
                                 MessagesAdapter.editId = "";
                             }
                         }
 
                         Shortcut {
                             sequence: "Escape"
+                            // Only the composer showing the reply or edit, so two composers don't make Escape ambiguous.
+                            enabled: replyOrEditContainer.visible
                             onActivated: closeContainerButton.click()
                         }
                     }
@@ -460,6 +472,8 @@ Rectangle {
             id: formatRow
             color: JamiTheme.transparentColor
             convContext: rectangle.convContext
+            replyToId: rectangle.replyToId
+            editId: rectangle.editId
 
             isEmojiPickerOpen: rectangle.isEmojiPickerOpen
 
