@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "57b15e17_96796d55",
+        "filename": "src/app/connectivitymonitor.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 1109
+      },
+      "writtenOn": "2026-10-27T18:42:18Z",
+      "side": 1,
+      "message": "Full-tunnel VPN changes can leave  PrimaryConnection  unchanged; NetworkManager defines it as the connection routing to the VPN endpoint. Should we be able to detect VPN/default-route changes too, so active calls are proactively migrated.(https://networkmanager.dev/docs/api/latest/gdbus-org.freedesktop.NetworkManager.html#gdbus-property-org-freedesktop-NetworkManager.PrimaryConnection)",
+      "range": {
+        "startLine": 191,
+        "startChar": 0,
+        "endLine": 218,
+        "endChar": 1
+      },
+      "revId": "aeb94d429a7b4de8ba17e846915fb0bbb5f96f82",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
