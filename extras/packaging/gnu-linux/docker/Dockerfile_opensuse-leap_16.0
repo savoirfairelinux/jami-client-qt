@@ -40,16 +40,13 @@ RUN zypper --non-interactive install -y \
         patch \
         jsoncpp-devel \
         webkit2gtk3-devel \
-        libcryptopp-devel \
         libva-devel \
-        libvdpau-devel \
         msgpack-c-devel \
         msgpack-cxx-devel \
         clutter-devel \
         libopenssl-devel \
         clutter-gtk-devel \
         libnma-devel \
-        libcryptopp-devel \
         libexpat-devel \
         libgsm-devel \
         gtk3-devel \

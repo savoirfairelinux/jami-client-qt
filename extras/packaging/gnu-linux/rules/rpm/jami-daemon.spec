@@ -49,7 +49,6 @@ BuildRequires: libXext-devel
 BuildRequires: libXfixes-devel
 BuildRequires: libuuid-devel
 BuildRequires: libva-devel
-BuildRequires: libvdpau-devel
 BuildRequires: (pcre-devel or pcre2-devel)
 BuildRequires: pipewire-devel
 BuildRequires: uuid-devel

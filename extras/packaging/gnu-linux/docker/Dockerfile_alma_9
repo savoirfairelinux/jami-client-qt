@@ -55,9 +55,7 @@ RUN dnf install -y \
         jsoncpp-devel \
         libnatpmp-devel \
         webkitgtk4-devel \
-        cryptopp-devel \
         libva-devel \
-        libvdpau-devel \
         msgpack-devel \
         NetworkManager-libnm-devel \
         openssl-devel \

@@ -39,7 +39,6 @@
     "gettext"
     "libtool"
     "libva"                             ;vaapi
-    "libvdpau"
     "nasm"
     "patch"
     "pcre"

@@ -321,7 +321,6 @@ parts:
     - wget
     - nasm # ffmpeg
     - libva-dev
-    - libvdpau-dev
     - libargon2-dev # opendht
     - libexpat1-dev
     - libjsoncpp-dev

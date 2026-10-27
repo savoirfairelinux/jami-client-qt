@@ -114,7 +114,6 @@ RUN apt-get update && apt-get install -y -o Acquire::Retries=10 \
     libnss3-dev \
     libcrypto++-dev \
     libva-dev \
-    libvdpau-dev \
     libssl-dev \
     libvulkan-dev \
     libxcomposite-dev \
