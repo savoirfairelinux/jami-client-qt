@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e278a207_b07d93eb",
+        "filename": "src/app/mainview/components/MessageBarTextArea.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-10-27T20:54:44Z",
+      "side": 1,
+      "message": "[warning] Line 67: 🟡 `pasting` is reset to `false` immediately after `MessagesAdapter.onPaste()`. If paste signals (`newTextPasted` / `newFilePasted`) are delivered asynchronously (queued connection, platform clipboard latency, or async MIME handling), both composers will see `pasting \u003d\u003d\u003d false` and ignore the paste. Make paste routing robust by correlating events to the initiating composer (e.g., pass a source token/id through `onPaste` and check it in handlers), or only clear `pasting` after the corresponding paste event is consumed.",
+      "revId": "9dce68998209c5f73a219535a6c5818455d7d9f4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
