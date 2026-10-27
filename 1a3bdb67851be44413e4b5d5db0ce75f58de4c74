@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c645100_4e454ccf",
+        "filename": "src/app/collaborativeadapter.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 454,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-10-27T00:53:39Z",
+      "side": 1,
+      "message": "[warning] Line 454: 🟡 `conversationsToRead_.takeFirst()` inside the per-conversation loop makes iteration O(n²) due to repeated front-removals on `QStringList`. For large accounts this adds avoidable overhead. Keep an index cursor, or switch to a deque/queue structure with O(1) pops from front.",
+      "revId": "1a3bdb67851be44413e4b5d5db0ce75f58de4c74",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2102b9ce_6de9b4cf",
+        "filename": "src/app/mainview/components/DocumentsDialog.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-10-27T00:53:39Z",
+      "side": 1,
+      "message": "[warning] Line 31: 🟡 The provenance string is assembled via concatenation (`author + \" · \" + date`), which is not fully localizable (word order and separators differ by language). Use a single translatable format string with placeholders (e.g., in `JamiStrings`) so translators can control full sentence structure.",
+      "revId": "1a3bdb67851be44413e4b5d5db0ce75f58de4c74",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
