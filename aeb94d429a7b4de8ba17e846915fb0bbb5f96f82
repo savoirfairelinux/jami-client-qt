@@ -22,6 +22,30 @@
       },
       "revId": "aeb94d429a7b4de8ba17e846915fb0bbb5f96f82",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2dc01f7e_db6168fe",
+        "filename": "src/app/connectivitymonitor.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 1109
+      },
+      "writtenOn": "2026-10-27T19:25:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "57b15e17_96796d55",
+      "range": {
+        "startLine": 191,
+        "startChar": 0,
+        "endLine": 218,
+        "endChar": 1
+      },
+      "revId": "aeb94d429a7b4de8ba17e846915fb0bbb5f96f82",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
