@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "16bf09a0_9ad9ede3",
+        "filename": "extras/build/docker/Dockerfile.client-qt-gnulinux",
+        "patchSetId": 1
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-10-27T16:15:34Z",
+      "side": 1,
+      "message": "[warning] Line 116: 🟡 `libcrypto++-dev` is still installed here while this change states Crypto++ build deps are no longer needed. Remove it from this Docker image as well (or narrow the commit message/scope) to keep dependency policy consistent and avoid unnecessary package surface in CI images.",
+      "revId": "5e4d70b9aaca14466372a96e2c8955b6216e2b8e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
