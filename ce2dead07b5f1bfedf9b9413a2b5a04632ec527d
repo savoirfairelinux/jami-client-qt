@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3947ad62_d611c88c",
+        "filename": "src/app/circleadapter.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-10-27T00:49:04Z",
+      "side": 1,
+      "message": "[warning] Line 25: 🟡 Built-in circle names and migration targets are hardcoded in French (`Amis`, `Famille`, etc.), which bypasses localization and can overwrite existing English defaults during migration. Keep canonical stored defaults language-neutral (or English) and localize only at presentation time (`qsTr`/UI layer), or map through translatable strings.",
+      "revId": "ce2dead07b5f1bfedf9b9413a2b5a04632ec527d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1f987de3_45ed9ed3",
+        "filename": "src/app/circleadapter.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-10-27T00:49:04Z",
+      "side": 1,
+      "message": "[warning] Line 155: 🟡 `reload()` rescans the entire metadata map for each circle id to collect members/groups, making it O(number_of_circles × metadata_entries). This will scale poorly with many circles/members. Parse metadata once into per-circle accumulators, then materialize `items` from those maps.",
+      "revId": "ce2dead07b5f1bfedf9b9413a2b5a04632ec527d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6ac383bd_82b76348",
+        "filename": "src/app/circleadapter.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-10-27T00:49:04Z",
+      "side": 1,
+      "message": "[error] Line 223: 🔴 `contactModel` is dereferenced without a null check, unlike `groups()` which guards `conversationModel`. If account initialization is partial/racy, this can crash the UI thread. Add `if (!model) return result;` before iterating contacts.",
+      "revId": "ce2dead07b5f1bfedf9b9413a2b5a04632ec527d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
