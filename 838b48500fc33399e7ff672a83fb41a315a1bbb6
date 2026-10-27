@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "36922e97_985e1967",
+        "filename": "src/app/mainview/components/FunctionTargetPicker.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-10-27T00:52:25Z",
+      "side": 1,
+      "message": "[warning] Line 42: 🟡 Board filtering is inconsistent with `FeedAdapter.followed()`: for non-owned boards, the predicate only checks `f.subscribed`, so closed/unavailable followed boards can still appear in the picker. Align this filter with the existing followed-board criteria (at least `!f.feedClosed \u0026\u0026 f.available \u0026\u0026 f.subscribed`) to avoid exposing invalid targets.",
+      "revId": "838b48500fc33399e7ff672a83fb41a315a1bbb6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "95723dec_aff9a475",
+        "filename": "src/app/mainview/components/SidePanel.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-10-27T00:52:25Z",
+      "side": 1,
+      "message": "[error] Line 131: 🔴 `openContacts()` only clears the filter, but never restricts `ConversationsAdapter.contactsListProxyModel` to contacts. Since `ConversationListProxyModel` defaults to `showGroups\u003dtrue`, the “Contacts” function can still display group conversations, which contradicts the intended behavior (contacts-only list). Set `showContacts\u003dtrue` and `showGroups\u003dfalse` when entering contacts mode (and restore defaults when leaving if needed).",
+      "revId": "838b48500fc33399e7ff672a83fb41a315a1bbb6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
