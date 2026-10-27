@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4de3fbba_1b39cf9b",
+        "filename": "src/app/messagesadapter.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-10-27T20:56:54Z",
+      "side": 1,
+      "message": "[warning] Line 146: 🟡 `revealMessage` does not validate `id` before starting navigation. If an empty ID is ever emitted (e.g., edge-case caller bug), this can trigger unnecessary history paging and surface a misleading “message unavailable” status. Add an early guard (`if (id.isEmpty()) return false;`) before `cancelNavigation()/continueNavigation()` to avoid side effects on invalid input.",
+      "revId": "a9500c4e5304cbcc233cbacd8584dcd91c87efc8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
