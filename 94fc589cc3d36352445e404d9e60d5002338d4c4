@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8b78e608_455e0eeb",
+        "filename": "src/app/messagesadapter.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 568,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-10-27T20:50:53Z",
+      "side": 1,
+      "message": "[error] Line 568: 🔴 `historyRequest_.finish(...)` is keyed with `lrcInstance_-\u003eget_currentAccountId()`, but `historyRequest_` is only reset on `selectedConvUidChanged`. If the account changes while a request is in flight (and the selected conv id remains the same), callbacks become permanently `Ignored`, `id_` never clears, and `loadMoreMessages()` is blocked by `pending()` until manual conversation reselection. Reset the in-flight state on account changes (and clear `historyStalled`) before/alongside `connectConversationModel()`, or route `currentAccountIdChanged` through a slot that does this explicitly.",
+      "revId": "94fc589cc3d36352445e404d9e60d5002338d4c4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
