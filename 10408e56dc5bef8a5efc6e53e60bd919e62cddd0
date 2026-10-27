@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2f4e71d7_b26cd4cc",
+        "filename": "src/app/sharedservicesadapter.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 672,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-10-27T00:55:44Z",
+      "side": 1,
+      "message": "[error] Line 672: 🔴 `collectOfferedServices(...)` currently accepts any `peerServicesReceived` event with `requestId !\u003d 0`, but `refreshOfferedServices()` does not track which request IDs belong to its own batch. If another feature issues `queryPeerServices()` for the same peer concurrently, an unrelated failure/success can be consumed first, remove that peer from `waiting_`, and the actual refresh response is then ignored. This can drop valid services or mark peers as done incorrectly. Track refresh-owned request IDs (e.g., map `requestId -\u003e peerUri` for the current refresh generation) and only collect responses for those IDs.",
+      "revId": "10408e56dc5bef8a5efc6e53e60bd919e62cddd0",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
