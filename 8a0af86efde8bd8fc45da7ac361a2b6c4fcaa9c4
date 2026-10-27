@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9484af74_fdf06244",
+        "filename": "src/app/threadedmsglistmodel.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-10-27T20:49:59Z",
+      "side": 1,
+      "message": "[warning] Line 52: 🟡 `setSourceModel` can clear `threadId_` via `rebuildIndex()` but then immediately sets `previousThreadId_ \u003d threadId_`, which suppresses `threadIdChanged()` for this transition. If the selected thread disappears when swapping/resetting source models, QML/UI observers may keep stale state. Capture the old `threadId_` before rebuilding and emit `threadIdChanged()` when it changes (or preserve `previousThreadId_` from pre-rebuild state so the existing refresh path emits once).",
+      "revId": "8a0af86efde8bd8fc45da7ac361a2b6c4fcaa9c4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
