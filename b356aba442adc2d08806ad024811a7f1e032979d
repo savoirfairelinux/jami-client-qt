@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "62060de2_7b835219",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 666,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-10-27T20:53:14Z",
+      "side": 1,
+      "message": "[warning] Line 666: 🟡 The reply-count strings are not plural-safe for localization. Splitting into `oneReply` and `replies` only models English singular/plural and can produce incorrect forms in languages with multiple plural categories. Use a numerus translation (`qsTr` with `%n`) and drive the button text from that single pluralized key so translators can provide correct locale rules.",
+      "revId": "b356aba442adc2d08806ad024811a7f1e032979d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
