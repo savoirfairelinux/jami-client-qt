@@ -126,7 +126,15 @@ SplitView {
 
         color: "transparent"
 
-        containmentMask: Item {
+        containmentMask: hitArea
+
+        // Qt skips a handle whose children fit in its bounds before checking
+        // the mask; a pointer-aware child outside them keeps the handle reachable.
+        Item {
+            id: hitArea
+
+            HoverHandler {}
+
             readonly property real extraHandleSize: 4
 
             // Determine direction based on LTR/RTL and major/minor pane
