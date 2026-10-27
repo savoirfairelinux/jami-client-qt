@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a273edea_9496c887",
+        "filename": "src/app/commoncomponents/SBSMessageBase.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-10-27T20:55:37Z",
+      "side": 1,
+      "message": "[warning] Line 64: 🟡 The new `isReply` binding assumes `MessagesAdapter.threadMessageListModel` is always initialized when `threadedView` is true. If initialization order changes and the model is temporarily null/undefined, QML can throw a binding error when reading `.threadId`. Consider guarding the access (for example by checking model existence first) to keep the delegate resilient during panel/model startup transitions.",
+      "revId": "abfa4b4b58c867ba0b32a18c57ad980766512a82",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
