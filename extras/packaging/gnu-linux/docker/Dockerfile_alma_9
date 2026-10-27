@@ -65,7 +65,7 @@ RUN dnf install -y \
         libnotify-devel \
         libargon2-devel \
         libsndfile-devel \
-        libdrm \
+        libdrm-devel \
         gperf \
         bison \
         clang16-devel \

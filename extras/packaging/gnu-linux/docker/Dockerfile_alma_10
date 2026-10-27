@@ -42,7 +42,7 @@ RUN dnf install -y \
         libargon2-devel \
         libcanberra-devel \
         libcurl-devel \
-        libdrm \
+        libdrm-devel \
         libnatpmp-devel \
         libnotify \
         libnotify-devel \

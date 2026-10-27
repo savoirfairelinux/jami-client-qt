@@ -47,6 +47,7 @@ BuildRequires: alsa-lib-devel
 BuildRequires: jsoncpp-devel
 BuildRequires: libXext-devel
 BuildRequires: libXfixes-devel
+BuildRequires: libdrm-devel
 BuildRequires: libuuid-devel
 BuildRequires: libva-devel
 BuildRequires: (pcre-devel or pcre2-devel)
