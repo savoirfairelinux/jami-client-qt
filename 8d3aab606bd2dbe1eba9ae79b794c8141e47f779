@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9947706d_2110e251",
+        "filename": "src/app/mainview/components/FunctionTargetPicker.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-10-27T00:58:12Z",
+      "side": 1,
+      "message": "[warning] Line 102: 🟡 `live` depends on `positions.isConvSharingPosition(...)`, which is a function call with no per-conversation notify signal. If sender A stops and sender B starts while `sharingUrisCount` stays unchanged, this binding may not reevaluate and the pulse/icon can stay on the wrong row. Add an explicit refresh trigger tied to `positionShareAdded/Removed/Updated` (or expose a notifier-backed model/property for per-conversation sharing state) and remove the count-gate as the sole invalidation mechanism.",
+      "revId": "8d3aab606bd2dbe1eba9ae79b794c8141e47f779",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bbcc05e3_94a7d942",
+        "filename": "src/app/positionmanager.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-10-27T00:58:12Z",
+      "side": 1,
+      "message": "[warning] Line 97: 🟡 `objectListSharingUris_.keys()` allocates and copies all keys on each call. This method is invoked from QML bindings, so repeated evaluations can create unnecessary allocations. Iterate the hash/map directly (`for (auto it \u003d ...; it !\u003d ...; ++it)`) and check `it.key().first` to avoid temporary container creation.",
+      "revId": "8d3aab606bd2dbe1eba9ae79b794c8141e47f779",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
