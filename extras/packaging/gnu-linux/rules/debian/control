@@ -41,7 +41,6 @@ Build-Depends: debhelper (>= 9),
                libva-dev,
                libssl-dev,
                libargon2-dev | libargon2-0-dev,
-               libdrm-dev,
                libpipewire-0.3-dev,
                meson,
 # other

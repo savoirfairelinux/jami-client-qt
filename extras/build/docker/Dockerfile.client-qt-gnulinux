@@ -88,7 +88,6 @@ RUN apt-get update && apt-get install -y -o Acquire::Retries=10 \
     libswscale-dev \
     libavdevice-dev \
     libopus-dev \
-    libdrm-dev \
     libpipewire-0.3-dev \
     libudev-dev \
     libgsm1-dev \

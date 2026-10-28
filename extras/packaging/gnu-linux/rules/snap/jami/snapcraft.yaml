@@ -309,7 +309,6 @@ parts:
     - g++
     - gettext
     - gzip
-    - libdrm-dev
     - libnotify-dev
     - libpipewire-0.3-dev
     - libspeex-dev
