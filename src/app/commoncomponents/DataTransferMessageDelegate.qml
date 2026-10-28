@@ -427,22 +427,6 @@ Loader {
                             }
 
                             Component.onCompleted: localMediaMsgItem.bubble.imgSource = source
-
-                            LinearGradient {
-                                id: gradient
-                                anchors.fill: parent
-                                start: Qt.point(0, height / 3)
-                                gradient: Gradient {
-                                    GradientStop {
-                                        position: 0.0
-                                        color: JamiTheme.transparentColor
-                                    }
-                                    GradientStop {
-                                        position: 1.0
-                                        color: JamiTheme.darkGreyColorOpacityFade
-                                    }
-                                }
-                            }
                         }
                     }
 
