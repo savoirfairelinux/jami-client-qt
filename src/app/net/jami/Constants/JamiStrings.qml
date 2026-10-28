@@ -630,6 +630,7 @@ Item {
     property string unlinkDevice: qsTr("Remove")
     property string deviceId: qsTr("Device ID")
     property string lastSync: qsTr("Last synced: %1")
+    property string neverSynced: qsTr("Never")
 
     // SystemSettings
     property string system: qsTr("System")

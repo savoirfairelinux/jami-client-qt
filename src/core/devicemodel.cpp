@@ -48,9 +48,8 @@ public Q_SLOTS:
     /**
      * Listen from CallbacksHandler to get when a device name changed or a device is added
      * @param accountId interaction receiver.
-     * @param devices A map of device IDs with corresponding labels.
      */
-    void slotKnownDevicesChanged(const QString& accountId, const MapStringString devices);
+    void slotKnownDevicesChanged(const QString& accountId);
 
     /**
      * update devices_ when a device is revoked
@@ -194,20 +193,33 @@ DeviceModelPimpl::~DeviceModelPimpl()
 }
 
 void
-DeviceModelPimpl::slotKnownDevicesChanged(const QString& accountId, const MapStringString devices)
+DeviceModelPimpl::slotKnownDevicesChanged(const QString& accountId)
 {
     if (accountId != linked.owner.id)
         return;
-    auto devicesMap = devices;
+    const auto accountDetails = ConfigurationManager::instance().getVolatileAccountDetails(accountId);
+    currentDeviceId_ = accountDetails.value(libjami::Account::ConfProperties::DEVICE_ID);
+    const auto deviceList = ConfigurationManager::instance().getDeviceList(accountId);
+    QMap<QString, Device> devicesMap;
+    for (const auto& details : deviceList) {
+        const auto id = details.value("id");
+        devicesMap.insert(id,
+                          Device {id,
+                                  details.value("label"),
+                                  id == currentDeviceId_,
+                                  details.value("lastSync").toLongLong()});
+    }
     // Update current devices
     QStringList updatedDevices;
     {
         std::lock_guard<std::mutex> lock(devicesMtx_);
         for (auto& device : devices_) {
             if (devicesMap.find(device.id) != devicesMap.end()) {
-                if (device.name != devicesMap[device.id]) {
+                const auto& updated = devicesMap[device.id];
+                if (device.name != updated.name || device.lastSync != updated.lastSync
+                    || device.isCurrent != updated.isCurrent) {
                     updatedDevices.push_back(device.id);
-                    device.name = devicesMap[device.id];
+                    device = updated;
                 }
                 devicesMap.remove(device.id);
             }
@@ -231,9 +243,7 @@ DeviceModelPimpl::slotKnownDevicesChanged(const QString& accountId, const MapStr
         while (it != devicesMap.end()) {
             auto pos = devices_.size();
             linked.beginInsertRows(QModelIndex(), pos, pos);
-            devices_.push_back(Device {/* id= */ it.key(),
-                                       /* name= */ it.value(),
-                                       /* isCurrent= */ false});
+            devices_.push_back(it.value());
             linked.endInsertRows();
             addedDevices.push_back(it.key());
             ++it;

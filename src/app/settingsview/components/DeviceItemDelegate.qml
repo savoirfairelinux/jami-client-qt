@@ -36,7 +36,8 @@ ItemDelegate {
 
     signal btnRemoveDeviceClicked
 
-    // Note that the implicitWidth and implicitHeight are defined directly in LinkedDevicesBase.qml
+    implicitHeight: Math.max(70, implicitContentHeight + topPadding + bottomPadding)
+
     padding: 12
     leftPadding: deviceImage.iconSize / 2
     rightPadding: background.radius - button.height / 2
@@ -140,13 +141,14 @@ ItemDelegate {
 
             Text {
                 id: labelLastSync
+                objectName: "labelLastSync"
 
                 Layout.alignment: Qt.AlignVCenter
                 Layout.fillWidth: true
                 Layout.leftMargin: editDeviceName.leftPadding
 
-                visible: !root.isCurrent && root.lastSync > 0
-                text: JamiStrings.lastSync.arg(UtilsAdapter.formatTimestamp(root.lastSync))
+                visible: !root.isCurrent
+                text: JamiStrings.lastSync.arg(root.lastSync > 0 ? UtilsAdapter.formatTimestamp(root.lastSync) : JamiStrings.neverSynced)
                 color: JamiTheme.faddedFontColor
                 horizontalAlignment: Text.AlignLeft
                 elide: Text.ElideRight

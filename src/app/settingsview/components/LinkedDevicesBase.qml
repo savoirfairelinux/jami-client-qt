@@ -73,9 +73,10 @@ ColumnLayout {
 
     ListView {
         id: settingsListView
+        objectName: "settingsListView"
 
         Layout.fillWidth: true
-        Layout.preferredHeight: Math.min(count, 3) * (70 + spacing)
+        Layout.preferredHeight: count > 0 ? Math.min(count, 3) * (contentHeight + spacing) / count : 0
         Layout.maximumHeight: Layout.preferredHeight
 
         spacing: JamiTheme.settingsListViewsSpacing
@@ -105,7 +106,6 @@ ColumnLayout {
             id: settingsListDelegate
 
             implicitWidth: parent.width
-            implicitHeight: 70
 
             deviceName: root.isCurrent ? DeviceName : JamiStrings.deviceName + " " + DeviceName
             deviceId: DeviceID
