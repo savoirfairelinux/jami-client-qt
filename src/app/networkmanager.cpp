@@ -80,10 +80,10 @@ NetworkManager::NetworkManager(ConnectivityMonitor* cm, QObject* parent)
 }
 
 void
-NetworkManager::sendGetRequest(const QUrl& url, std::function<void(const QByteArray&)>&& onDoneCallback)
+NetworkManager::sendGetRequest(const QUrl& url, std::function<void(const QByteArray&)>&& onDoneCallback, qint64 maxSize)
 {
     const QNetworkRequest request = QNetworkRequest(url);
-    sendGetRequest(request, std::move(onDoneCallback));
+    sendGetRequest(request, std::move(onDoneCallback), maxSize);
 }
 
 void
@@ -99,13 +99,23 @@ NetworkManager::sendGetRequest(const QUrl& url,
 }
 
 void
-NetworkManager::sendGetRequest(const QNetworkRequest& request, std::function<void(const QByteArray&)>&& onDoneCallback)
+NetworkManager::sendGetRequest(const QNetworkRequest& request,
+                               std::function<void(const QByteArray&)>&& onDoneCallback,
+                               qint64 maxSize)
 {
     auto* const reply = manager_->get(request);
+    if (maxSize > 0) {
+        QObject::connect(reply, &QNetworkReply::downloadProgress, reply, [reply, maxSize](qint64 received, qint64 total) {
+            if (received > maxSize || total > maxSize) {
+                reply->setProperty("sizeExceeded", true);
+                reply->abort();
+            }
+        });
+    }
     QObject::connect(reply, &QNetworkReply::finished, this, [reply, onDoneCallback, this]() {
         if (reply->error() == QNetworkReply::NoError) {
             onDoneCallback(reply->readAll());
-        } else {
+        } else if (!reply->property("sizeExceeded").toBool()) {
             Q_EMIT errorOccurred(GetError::NETWORK_ERROR, reply->errorString());
         }
         reply->deleteLater();

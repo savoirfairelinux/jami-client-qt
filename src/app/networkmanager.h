@@ -46,11 +46,14 @@ public:
     };
     Q_ENUM(GetError)
 
-    void sendGetRequest(const QUrl& url, std::function<void(const QByteArray&)>&& onDoneCallback);
+    // maxSize > 0 aborts the transfer (no callback) once the body exceeds it.
+    void sendGetRequest(const QUrl& url, std::function<void(const QByteArray&)>&& onDoneCallback, qint64 maxSize = 0);
     void sendGetRequest(const QUrl& url,
                         const QMap<QString, QByteArray>& header,
                         std::function<void(const QByteArray&)>&& onDoneCallback);
-    void sendGetRequest(const QNetworkRequest& request, std::function<void(const QByteArray&)>&& onDoneCallback);
+    void sendGetRequest(const QNetworkRequest& request,
+                        std::function<void(const QByteArray&)>&& onDoneCallback,
+                        qint64 maxSize = 0);
     int downloadFile(const QUrl& url,
                      int replyId,
                      std::function<void(bool, const QString&)>&& onDoneCallback,
