@@ -42,7 +42,14 @@ Popup {
     property bool isScrolling: listView ? listView.verticalScrollBar.active : false
     onIsScrollingChanged: close()
 
+    property bool loaded: false
+    property bool openWhenLoaded: false
+
     function openEmojiPicker() {
+        if (!loaded) {
+            openWhenLoaded = true;
+            return;
+        }
         root.open();
         emojiPickerWebView.runJavaScript("prepare_to_show(" + JamiTheme.darkTheme + ");");
         emojiPickerWebView.forceActiveFocus();
@@ -92,7 +99,11 @@ Popup {
                 emojiPickerWebView.runJavaScript(UtilsAdapter.qStringFromFile(":/webengine/emojipicker/emoji.js"));
                 emojiPickerWebView.runJavaScript(UtilsAdapter.qStringFromFile(":/webengine/emojipicker/emojiPickerLoader.js"));
                 emojiPickerWebView.runJavaScript("init_emoji_picker(" + JamiTheme.darkTheme + ");");
-                root.openEmojiPicker();
+                root.loaded = true;
+                if (root.openWhenLoaded) {
+                    root.openWhenLoaded = false;
+                    root.openEmojiPicker();
+                }
             }
         }
     }
