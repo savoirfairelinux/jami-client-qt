@@ -100,6 +100,11 @@ RUN dnf install -y \
         cups-devel \
         pipewire-devel
 
+# EL9's libdrm.pc lists valgrind in Requires.private, so `pkg-config --static`
+# adds libcoregrind/libvex, which no EL9 package ships. This breaks FFmpeg's
+# libdrm detection in the daemon contrib build. libdrm users don't need valgrind.
+RUN sed -i '/^Requires\.private: valgrind$/d' /usr/lib64/pkgconfig/libdrm.pc
+
 ENV RUSTUP_HOME=/usr/local/rustup \
     CARGO_HOME=/var/cache/cargo \
     PATH=/usr/local/cargo/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
