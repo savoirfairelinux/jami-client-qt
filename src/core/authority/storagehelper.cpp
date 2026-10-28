@@ -404,32 +404,20 @@ getProfileData(const QString& accountId, const QString& peerUri)
     if (!overridenAvatar.isEmpty())
         profileData["avatar"] = overridenAvatar;
 
-    // If either alias or avatar is empty, get from profile
-    if (profileData["alias"].isEmpty() || profileData["avatar"].isEmpty()) {
-        withProfile(
-            accountId,
-            peerUri,
-            QIODevice::ReadOnly,
-            [&](const QByteArray& readData, QTextStream&) {
-                QHash<QByteArray, QByteArray> vCard = lrc::vCard::utils::toHashMap(readData);
-                if (profileData["alias"].isEmpty())
-                    profileData["alias"] = vCard[vCard::Property::FORMATTED_NAME];
-                if (profileData["avatar"].isEmpty())
-                    for (auto it = vCard.cbegin(); it != vCard.cend(); ++it)
-                        if (it.key().contains("PHOTO")) {
-                            profileData["avatar"] = it.value();
-                            return;
-                        }
-            },
-            false);
-    }
-
     withProfile(
         accountId,
         peerUri,
         QIODevice::ReadOnly,
         [&](const QByteArray& readData, QTextStream&) {
             QHash<QByteArray, QByteArray> vCard = lrc::vCard::utils::toHashMap(readData);
+            if (profileData["alias"].isEmpty())
+                profileData["alias"] = vCard[vCard::Property::FORMATTED_NAME];
+            if (profileData["avatar"].isEmpty())
+                for (auto it = vCard.cbegin(); it != vCard.cend(); ++it)
+                    if (it.key().contains("PHOTO")) {
+                        profileData["avatar"] = it.value();
+                        break;
+                    }
             auto it = vCard.find(vCard::Property::RELATED_OWNER);
             if (it != vCard.end()) {
                 auto value = QString::fromUtf8(it.value());

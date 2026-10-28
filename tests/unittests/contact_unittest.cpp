@@ -19,6 +19,8 @@
 
 #include "authority/storagehelper.h"
 
+#include <QTextStream>
+
 using namespace lrc;
 
 /*!
@@ -43,8 +45,7 @@ public:
 TEST_F(ContactFixture, AddSIPContactTest)
 {
     // AccountAdded signal spy
-    QSignalSpy accountAddedSpy(&globalEnv.lrcInstance->accountModel(),
-                               &lrc::api::AccountModel::accountAdded);
+    QSignalSpy accountAddedSpy(&globalEnv.lrcInstance->accountModel(), &lrc::api::AccountModel::accountAdded);
 
     // Create SIP Acc
     globalEnv.accountAdapter->createSIPAccount(QVariantMap());
@@ -66,8 +67,7 @@ TEST_F(ContactFixture, AddSIPContactTest)
     EXPECT_GE(accountStatusChangedSpy.count(), 1);
 
     // ModelUpdated signal spy
-    QSignalSpy modelUpdatedSpy(globalEnv.lrcInstance->getCurrentContactModel(),
-                               &lrc::api::ContactModel::contactUpdated);
+    QSignalSpy modelUpdatedSpy(globalEnv.lrcInstance->getCurrentContactModel(), &lrc::api::ContactModel::contactUpdated);
 
     // Add temp contact test
     globalEnv.lrcInstance->getCurrentConversationModel()->setFilter("test");
@@ -79,14 +79,11 @@ TEST_F(ContactFixture, AddSIPContactTest)
     EXPECT_TRUE(modelUpdatedArguments.at(0).typeId() == qMetaTypeId<QString>());
 
     // Get conversation id
-    auto convId = globalEnv.lrcInstance
-                      ->getConversationFromPeerUri(modelUpdatedArguments.at(0).toString())
-                      .uid;
+    auto convId = globalEnv.lrcInstance->getConversationFromPeerUri(modelUpdatedArguments.at(0).toString()).uid;
     ASSERT_EQ(convId.isEmpty(), false);
 
     // ContactAdded signal spy
-    QSignalSpy contactAddedSpy(globalEnv.lrcInstance->getCurrentContactModel(),
-                               &lrc::api::ContactModel::contactAdded);
+    QSignalSpy contactAddedSpy(globalEnv.lrcInstance->getCurrentContactModel(), &lrc::api::ContactModel::contactAdded);
 
     globalEnv.lrcInstance->getCurrentConversationModel()->makePermanent(convId);
 
@@ -94,11 +91,9 @@ TEST_F(ContactFixture, AddSIPContactTest)
     EXPECT_EQ(contactAddedSpy.count(), 1);
 
     // Remove the account
-    QSignalSpy accountRemovedSpy(&globalEnv.lrcInstance->accountModel(),
-                                 &lrc::api::AccountModel::accountRemoved);
+    QSignalSpy accountRemovedSpy(&globalEnv.lrcInstance->accountModel(), &lrc::api::AccountModel::accountRemoved);
 
-    globalEnv.lrcInstance->accountModel().removeAccount(
-        globalEnv.lrcInstance->get_currentAccountId());
+    globalEnv.lrcInstance->accountModel().removeAccount(globalEnv.lrcInstance->get_currentAccountId());
 
     accountRemovedSpy.wait();
     EXPECT_EQ(accountRemovedSpy.count(), 1);
@@ -142,4 +137,57 @@ TEST_F(ContactFixture, ProfileDataFallsBackToBaseAliasWhenOverrideCleared)
     EXPECT_EQ(profileData["alias"], "Base Display Name");
 
     authority::storage::removeProfile(accountId, peerUri);
+}
+
+TEST_F(ContactFixture, ProfileDataReadsBaseProfileOnce)
+{
+    const QString accountId = "test_profile_read_account";
+    const QString peerUri = "profile_read_peer";
+    const QString baseFileName = QString::fromLatin1(peerUri.toUtf8().toBase64()) + ".vcf";
+    const QStringList avatars {"base-avatar", ""};
+    const QStringList overrides {"",
+                                 "FN:Custom Display Name\n",
+                                 "PHOTO;ENCODING=BASE64;TYPE=PNG:custom-avatar\n",
+                                 "FN:Custom Display Name\nPHOTO;ENCODING=BASE64;TYPE=PNG:custom-avatar\n"
+                                 "RELATED;TYPE=owner:jami:override-owner\n"};
+
+    for (const auto& avatar : avatars) {
+        for (const auto& overrideData : overrides) {
+            SCOPED_TRACE(avatar.toStdString() + ": " + overrideData.toStdString());
+            ASSERT_TRUE(
+                authority::storage::withProfile(accountId,
+                                                peerUri,
+                                                QIODevice::WriteOnly,
+                                                [&](const QByteArray&, QTextStream& stream) {
+                                                    stream << "BEGIN:VCARD\nVERSION:2.1\nFN:Base Display Name\n";
+                                                    if (!avatar.isEmpty())
+                                                        stream << "PHOTO;ENCODING=BASE64;TYPE=PNG:" << avatar << '\n';
+                                                    stream << "RELATED;TYPE=owner:" << (avatar.isEmpty() ? "" : "jami:")
+                                                           << "bot-owner\nEND:VCARD\n";
+                                                }));
+            if (!overrideData.isEmpty()) {
+                ASSERT_TRUE(authority::storage::withProfile(
+                    accountId,
+                    peerUri,
+                    QIODevice::WriteOnly,
+                    [&](const QByteArray&, QTextStream& stream) {
+                        stream << "BEGIN:VCARD\nVERSION:2.1\n" << overrideData << "END:VCARD\n";
+                    },
+                    true));
+            }
+
+            testing::internal::CaptureStderr();
+            const auto profileData = authority::storage::getProfileData(accountId, peerUri);
+            const auto messages = QString::fromStdString(testing::internal::GetCapturedStderr());
+
+            EXPECT_EQ(profileData.value("alias"),
+                      overrideData.contains("FN:") ? "Custom Display Name" : "Base Display Name");
+            EXPECT_EQ(profileData.value("avatar"), overrideData.contains("PHOTO;") ? QString("custom-avatar") : avatar);
+            EXPECT_EQ(profileData.value("botOwner"), "bot-owner");
+            EXPECT_EQ(messages.count(baseFileName), 1);
+            EXPECT_EQ(messages.count("Reading profile:"), overrideData.isEmpty() ? 1 : 2);
+
+            authority::storage::removeProfile(accountId, peerUri);
+        }
+    }
 }
