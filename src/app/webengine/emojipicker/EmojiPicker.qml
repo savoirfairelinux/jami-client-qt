@@ -28,12 +28,13 @@ Popup {
     id: root
 
     required property ListView listView
+    // Always-visible 1x1 item that hosts the web view while the popup is
+    // closed, so Chromium keeps the page live and paints the emoji grid once.
+    required property Item warmHost
     signal emojiIsPicked(string content)
 
     focus: true
     closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutsideParent
-
-    onClosed: if (messageBar) messageBar.textAreaObj.forceActiveFocus()
 
     // Close the picker when attached to a listView that receives height/scroll
     // property changes.
@@ -50,15 +51,27 @@ Popup {
             openWhenLoaded = true;
             return;
         }
+        hiding = false;
+        emojiPickerWebView.parent = root.contentItem;
         root.open();
         emojiPickerWebView.runJavaScript("prepare_to_show(" + JamiTheme.darkTheme + ");");
         emojiPickerWebView.forceActiveFocus();
     }
 
+    property bool hiding: false
     function closeEmojiPicker() {
+        hiding = true;
         emojiPickerWebView.runJavaScript("prepare_to_hide();");
         close();
     }
+
+    onClosed: {
+        emojiPickerWebView.parent = root.warmHost;
+        if (messageBar)
+            messageBar.textAreaObj.forceActiveFocus();
+    }
+
+    Component.onCompleted: emojiPickerWebView.parent = root.warmHost
     padding: 0
     visible: false
     background.visible: false
@@ -78,7 +91,10 @@ Popup {
 
         // For emojiPicker to properly close
         function emojiPickerHideFinished() {
-            root.visible = false;
+            if (root.hiding) {
+                root.hiding = false;
+                root.visible = false;
+            }
         }
     }
 
@@ -103,6 +119,8 @@ Popup {
                 if (root.openWhenLoaded) {
                     root.openWhenLoaded = false;
                     root.openEmojiPicker();
+                } else {
+                    emojiPickerWebView.runJavaScript("warm_up();");
                 }
             }
         }
