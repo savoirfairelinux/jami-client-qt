@@ -19,6 +19,20 @@ function init_emoji_picker(dark) {
     })
 }
 
+/* exported warm_up */
+// Lay out and paint the emoji grid once while hidden from the user so the
+// first real show is instant.
+function warm_up() {
+    emojiPicker.wrapper.style.display = 'block'
+    emojiPicker.wrapper.style.height = '100%'
+    emojiPicker.wrapper.style.width = '100%'
+    emojiPicker.emojiArea.reset()
+    setTimeout(() => {
+        if (!emojiPicker.pickerVisible)
+            emojiPicker.wrapper.style.display = 'none'
+    }, 1000)
+}
+
 /* exported prepare_to_show */
 function prepare_to_show(dark) {
     emojiPicker.setTheme(dark ? "dark" : "light")

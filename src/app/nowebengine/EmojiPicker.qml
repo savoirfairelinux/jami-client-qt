@@ -20,6 +20,7 @@ Rectangle {
     id: root
 
     required property ListView listView
+    property Item warmHost
 
     signal emojiIsPicked(string content)
     function openEmojiPicker() {
