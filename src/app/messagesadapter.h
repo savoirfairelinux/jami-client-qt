@@ -189,6 +189,7 @@ private:
     QList<QString> conversationTypersUrlToName(const QSet<QString>& typersSet);
 
     AppSettingsManager* settingsManager_;
+    NetworkManager* network_;
     MessageParser* messageParser_;
     FilteredMsgListModel* filteredMsgListModel_;
     std::unique_ptr<MessageListModel> mediaInteractions_;

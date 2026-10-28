@@ -30,14 +30,17 @@
 #include <QClipboard>
 #include <QDesktopServices>
 #include <QDir>
+#include <QFile>
 #include <QFileInfo>
 #include <QImageReader>
 #include <QList>
 #include <QMimeData>
+#include <QPointer>
 #include <QMimeDatabase>
 #include <QUrl>
 #include <QtMath>
 #include <QRegularExpression>
+#include <QTemporaryFile>
 
 MessagesAdapter::MessagesAdapter(AppSettingsManager* settingsManager,
                                  PreviewEngine* previewEngine,
@@ -45,6 +48,7 @@ MessagesAdapter::MessagesAdapter(AppSettingsManager* settingsManager,
                                  QObject* parent)
     : QmlAdapterBase(instance, parent)
     , settingsManager_(settingsManager)
+    , network_(previewEngine)
     , messageParser_(new MessageParser(previewEngine, this))
     , filteredMsgListModel_(new FilteredMsgListModel(this))
     , mediaInteractions_(std::make_unique<MessageListModel>(nullptr))
@@ -307,10 +311,87 @@ MessagesAdapter::cancelFile(const QString& interactionId)
     lrcInstance_->getCurrentConversationModel()->cancelTransfer(convUid, interactionId);
 }
 
+// The daemon's own ceiling on pasted images.
+constexpr qint64 MAX_PASTED_IMAGE_SIZE = 16 * 1024 * 1024;
+
+// Writes encoded image bytes to a temp file and returns its path, or an
+// empty string if the bytes are not a readable image.
+static QString
+saveEncodedImage(const QByteArray& data, const QString& ext)
+{
+    QBuffer buffer;
+    buffer.setData(data);
+    buffer.open(QIODevice::ReadOnly);
+    if (data.isEmpty() || !QImageReader(&buffer).canRead())
+        return {};
+    QTemporaryFile file(QDir::temp().filePath("img_XXXXXX." + ext));
+    file.setAutoRemove(false);
+    if (!file.open() || file.write(data) != data.size()) {
+        qWarning() << "Unable to write pasted image to" << file.fileName();
+        return {};
+    }
+    return file.fileName();
+}
+
+// The remote image a clipboard HTML fragment consists of, if that is all it
+// is. The Windows GIF picker pastes exactly that: an <img> pointing at the
+// provider's CDN, with no image bytes alongside.
+static QUrl
+soleRemoteImage(const QMimeData* mimeData)
+{
+    if (!mimeData->hasHtml() || !mimeData->text().trimmed().isEmpty())
+        return {};
+    static const QRegularExpression imgSrc("<img[^>]*\\ssrc=[\"']([^\"']+)[\"']",
+                                           QRegularExpression::CaseInsensitiveOption);
+    const auto matches = imgSrc.globalMatch(mimeData->html());
+    QUrl url;
+    int count = 0;
+    for (const auto& m : matches) {
+        if (++count > 1)
+            return {};
+        url = QUrl(m.captured(1));
+    }
+    if (url.scheme() != "https" && url.scheme() != "http")
+        return {};
+    return url;
+}
+
 void
 MessagesAdapter::onPaste()
 {
     const QMimeData* mimeData = QApplication::clipboard()->mimeData();
+
+    // Prefer the bytes the source already holds: a decoded QImage of a GIF
+    // is a single frame, and re-encoding a JPEG as PNG only loses.
+    static const struct
+    {
+        const char* mime;
+        const char* ext;
+    } encodedTypes[] = {{"image/gif", "gif"}, {"image/png", "png"}, {"image/jpeg", "jpg"}, {"image/webp", "webp"}};
+    for (const auto& t : encodedTypes) {
+        if (!mimeData->hasFormat(QLatin1String(t.mime)))
+            continue;
+        const QString path = saveEncodedImage(mimeData->data(QLatin1String(t.mime)), t.ext);
+        if (path.isEmpty())
+            continue;
+        Q_EMIT newFilePasted(path);
+        return;
+    }
+
+    if (const QUrl url = soleRemoteImage(mimeData); url.isValid()) {
+        const QString ext = QFileInfo(url.path()).suffix().toLower();
+        network_->sendGetRequest(
+            url,
+            [self = QPointer(this), ext](const QByteArray& data) {
+                if (!self)
+                    return;
+                const QString path = saveEncodedImage(data, ext.isEmpty() ? "gif" : ext);
+                if (!path.isEmpty())
+                    Q_EMIT self->newFilePasted(path);
+            },
+            MAX_PASTED_IMAGE_SIZE);
+        return;
+    }
 
     if (mimeData->hasImage()) {
         // Save temp data into a temp file.

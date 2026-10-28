@@ -55,13 +55,10 @@ FilesToSendListModel::addToPending(QString filePath)
 
     // QImageReader will treat .gz file (Jami archive) as svgz image format
     // so decideFormatFromContent is needed
-    bool isImage = false;
     QImageReader reader;
     reader.setDecideFormatFromContent(true);
     reader.setFileName(filePath);
-
-    if (!reader.read().isNull())
-        isImage = true;
+    bool isImage = reader.canRead();
 
     beginInsertRows(QModelIndex(), pendingFiles_.size(), pendingFiles_.size());
     auto item = FilesToSend::Item(filePath, fileInfo.baseName(), fileInfo.suffix(), isImage, fileInfo.size());
