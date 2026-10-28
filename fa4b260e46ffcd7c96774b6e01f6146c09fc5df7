@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1d226697_89d75992",
+        "filename": "src/app/messagesadapter.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 347,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-10-28T21:00:24Z",
+      "side": 1,
+      "message": "[warning] Line 347: 🟡 `soleRemoteImage()` is intended to accept only a single-image HTML fragment, but the multiple-match rejection depends on `url.isValid()`. If the first `\u003cimg\u003e` has an invalid URL and a later one is valid, the function will still accept it. Track whether a match was already seen (independent of URL validity) and reject on any second `\u003cimg\u003e` to enforce the “sole image” contract reliably.",
+      "revId": "fa4b260e46ffcd7c96774b6e01f6146c09fc5df7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5a2ef4e8_34d59f48",
+        "filename": "src/app/messagesadapter.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 385,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-10-28T21:00:24Z",
+      "side": 1,
+      "message": "[error] Line 385: 🔴 The `\u003c\u003d 16 MB` guard is applied **after** `sendGetRequest` has already fetched the full response into memory (`const QByteArray\u0026 data`). A crafted clipboard `\u003cimg\u003e` URL can therefore force large downloads and memory pressure despite the intended cap. Enforce the limit during transfer (abort when content-length or streamed bytes exceed 16 MB) in `NetworkManager`/request code, rather than post-download.",
+      "revId": "fa4b260e46ffcd7c96774b6e01f6146c09fc5df7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
