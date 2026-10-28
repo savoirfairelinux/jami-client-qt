@@ -142,7 +142,23 @@ Rectangle {
             }
         }
 
+        // Created up front and reused: the WebEngine picker spawns a render
+        // process and loads the emoji data, which takes seconds on Windows.
+        Component.onCompleted: Qt.callLater(createEmojiPicker)
+
         function openEmojiPicker() {
+            if (!messageBar.emojiPicker)
+                createEmojiPicker();
+            if (messageBar.emojiPicker) {
+                messageBar.emojiPicker.x = setXposition();
+                messageBar.emojiPicker.y = setYposition();
+                messageBar.emojiPicker.openEmojiPicker();
+            }
+        }
+
+        function createEmojiPicker() {
+            if (messageBar.emojiPicker)
+                return;
             var component = WITH_WEBENGINE ? Qt.createComponent("qrc:/webengine/emojipicker/EmojiPicker.qml") : Qt.createComponent("qrc:/nowebengine/EmojiPicker.qml");
             messageBar.emojiPicker = component.createObject(messageBar, {
                 "x": setXposition(),
