@@ -156,6 +156,15 @@ Rectangle {
             }
         }
 
+        Item {
+            id: emojiWarmHost
+            width: 1
+            height: 1
+            clip: true
+            anchors.left: parent.left
+            anchors.bottom: parent.bottom
+        }
+
         function createEmojiPicker() {
             if (messageBar.emojiPicker)
                 return;
@@ -163,7 +172,8 @@ Rectangle {
             messageBar.emojiPicker = component.createObject(messageBar, {
                 "x": setXposition(),
                 "y": setYposition(),
-                "listView": null
+                "listView": null,
+                "warmHost": emojiWarmHost
             });
             if (messageBar.emojiPicker === null) {
                 console.log("Error creating emojiPicker in chatViewFooter");
