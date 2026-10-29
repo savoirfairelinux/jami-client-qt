@@ -87,6 +87,24 @@
       "message": "[warning] Line 112: 🟡 Size-capped downloads are aborted via `reply-\u003eabort()`, but `finished` maps every non-`NoError` to `NETWORK_ERROR`. This turns an intentional policy reject (oversize clipboard image) into a generic network failure signal. Handle `QNetworkReply::OperationCanceledError` caused by max-size enforcement separately (ignore or emit a dedicated/canceled status) so callers and UI can distinguish policy limits from real transport errors.",
       "revId": "3c171cba9e27d84e4fb7cb8ee77d165b34d1b084",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "773467f0_8a43c6f2",
+        "filename": "src/app/networkmanager.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-10-29T17:38:40Z",
+      "side": 1,
+      "message": "Done in PS5.",
+      "parentUuid": "9fb3c22d_f240fed8",
+      "revId": "3c171cba9e27d84e4fb7cb8ee77d165b34d1b084",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
