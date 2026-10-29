@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "492c19ae_f8627935",
+        "filename": "src/core/contactmodel.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 281,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-10-29T19:25:53Z",
+      "side": 1,
+      "message": "[warning] Line 281: 🟡 `toUInt()` can silently return 0 on conversion failure/overflow, which is indistinguishable from a legitimate \"not set\" timestamp and can hide valid data. Parse with `toLongLong(\u0026ok)` (or `toULongLong(\u0026ok)`) and handle `ok \u003d\u003d false` explicitly before converting to `time_t`.",
+      "revId": "4f9a1604c8422374b487fe3e4c5c32c5a967e819",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
