@@ -16,6 +16,24 @@
       "message": "[warning] Line 194: 🟡 `cache: true` is now applied to every `AnimatedImage`, not just the remote sequential-source case described in the comment. For large/local animated previews this can retain all frames and significantly increase memory usage. Gate caching to the problematic path (for example `cache: isRemoteImage`) or otherwise restrict it to sources that cannot rewind, so normal previews keep prior memory behavior.",
       "revId": "618436e95c4bdfc79da450a533045ebacc6d1e3d",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1dee4e61_852d9252",
+        "filename": "src/app/commoncomponents/TextMessageDelegate.qml",
+        "patchSetId": 6
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-10-29T18:20:27Z",
+      "side": 1,
+      "message": "Done in PS7: cache gated on isRemoteImage.",
+      "parentUuid": "265f7ae4_40bc3aa6",
+      "revId": "618436e95c4bdfc79da450a533045ebacc6d1e3d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
