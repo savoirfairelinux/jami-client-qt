@@ -18,6 +18,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cf897d82_ac6f1df0",
+        "filename": "src/app/messagesadapter.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 394,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-10-29T17:52:33Z",
+      "side": 1,
+      "message": "Done in PS6: extension now comes from QImageReader::format(); URL suffix no longer used.",
+      "parentUuid": "9fa40ceb_b84abfbe",
+      "revId": "f339c4723c92de9a459487d5c82e68336167430e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "67b9761e_533750a6",
