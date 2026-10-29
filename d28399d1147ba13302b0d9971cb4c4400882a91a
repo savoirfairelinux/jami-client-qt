@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e3e5acde_32de9546",
+        "filename": "src/core/devicemodel.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-10-29T19:24:39Z",
+      "side": 1,
+      "message": "[warning] Line 168: 🟡 `d.value(\"lastSync\").toLongLong()` ignores parse failure and maps invalid/missing values to `0`, which is indistinguishable from a real zero-value timestamp in the UI logic. Parse with the `ok` flag and handle invalid data explicitly (e.g., log and keep a sentinel) to avoid silent data loss.",
+      "revId": "d28399d1147ba13302b0d9971cb4c4400882a91a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8e305f8c_1e8f0c89",
+        "filename": "src/core/devicemodel.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-10-29T19:24:39Z",
+      "side": 1,
+      "message": "[error] Line 172: 🔴 `LastSync` is only populated during initial construction from `getDeviceList`, but this model is also refreshed through `knownDevicesChanged` (connected here). If refresh paths still rebuild devices without `getDeviceList`, `Device::lastSync` falls back to `0` and the new UI field disappears after any device update. Update `slotKnownDevicesChanged` (and any other rebuild path) to source `lastSync` from `getDeviceList` as well, so the role remains stable over time.",
+      "revId": "d28399d1147ba13302b0d9971cb4c4400882a91a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
