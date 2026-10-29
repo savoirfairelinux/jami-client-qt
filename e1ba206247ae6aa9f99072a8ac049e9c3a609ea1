@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f44ea3a4_5311960c",
+        "filename": "src/app/conversationstatusmodel.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-10-29T19:27:58Z",
+      "side": 1,
+      "message": "[warning] Line 182: 🟡 `newResponsibleMobileNodes.append(connectionInfo[\"device\"])` can add duplicates (and potentially empty values) when the routing table has multiple entries for the same mobile node. The UI section is presented as a node list, so duplicate/blank rows are misleading. Collect into a `QSet\u003cQString\u003e` (or filter with `contains`) and skip empty device IDs before sorting/emitting.",
+      "revId": "e1ba206247ae6aa9f99072a8ac049e9c3a609ea1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
