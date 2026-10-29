@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "265f7ae4_40bc3aa6",
+        "filename": "src/app/commoncomponents/TextMessageDelegate.qml",
+        "patchSetId": 6
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-10-29T17:53:56Z",
+      "side": 1,
+      "message": "[warning] Line 194: 🟡 `cache: true` is now applied to every `AnimatedImage`, not just the remote sequential-source case described in the comment. For large/local animated previews this can retain all frames and significantly increase memory usage. Gate caching to the problematic path (for example `cache: isRemoteImage`) or otherwise restrict it to sources that cannot rewind, so normal previews keep prior memory behavior.",
+      "revId": "618436e95c4bdfc79da450a533045ebacc6d1e3d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
