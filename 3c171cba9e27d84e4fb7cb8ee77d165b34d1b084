@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "45180ef0_cef5dfd7",
+        "filename": "src/app/messagesadapter.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 326,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-10-29T15:46:23Z",
+      "side": 1,
+      "message": "[error] Line 326: 🔴 The temp-file path is deterministic (`img_\u003csha\u003e.\u003cext\u003e`) in a world-writable temp directory, then opened with `QFile::WriteOnly`. A local attacker can precreate a symlink at that predictable path and make the app overwrite an arbitrary user-writable file. Use `QTemporaryFile` (random name, opened atomically) and persist it with `setAutoRemove(false)`/`rename`, or otherwise create the file with an atomic exclusive-creation API before writing.",
+      "revId": "3c171cba9e27d84e4fb7cb8ee77d165b34d1b084",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9fb3c22d_f240fed8",
+        "filename": "src/app/networkmanager.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-10-29T15:46:23Z",
+      "side": 1,
+      "message": "[warning] Line 112: 🟡 Size-capped downloads are aborted via `reply-\u003eabort()`, but `finished` maps every non-`NoError` to `NETWORK_ERROR`. This turns an intentional policy reject (oversize clipboard image) into a generic network failure signal. Handle `QNetworkReply::OperationCanceledError` caused by max-size enforcement separately (ignore or emit a dedicated/canceled status) so callers and UI can distinguish policy limits from real transport errors.",
+      "revId": "3c171cba9e27d84e4fb7cb8ee77d165b34d1b084",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
