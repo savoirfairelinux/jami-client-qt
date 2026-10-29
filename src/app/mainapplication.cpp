@@ -601,6 +601,13 @@ MainApplication::setToolBar(QWindow* window)
 }
 
 void
+MainApplication::createNativeWindow(QWindow* window)
+{
+    if (window && !window->handle())
+        window->create();
+}
+
+void
 MainApplication::setupPipWindow(QWindow* window)
 {
 #ifdef Q_OS_MACOS
