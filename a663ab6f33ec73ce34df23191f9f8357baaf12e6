@@ -34,6 +34,24 @@
       "message": "[warning] Line 49: 🟡 `openEmojiPicker()` should reset `hiding` before reopening. If the picker is reopened before a pending `emojiPickerHideFinished()` callback from the previous close arrives, `hiding` is still `true`, and that stale callback can execute `root.visible \u003d false` and immediately hide the newly reopened popup. Set `hiding \u003d false` at the start of `openEmojiPicker()` (or guard callbacks with a close-generation token).",
       "revId": "a663ab6f33ec73ce34df23191f9f8357baaf12e6",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9874a307_c944f44b",
+        "filename": "src/app/webengine/emojipicker/EmojiPicker.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-10-29T17:38:40Z",
+      "side": 1,
+      "message": "Done in PS5: openEmojiPicker() clears hiding.",
+      "parentUuid": "1bf99b04_ce20de44",
+      "revId": "a663ab6f33ec73ce34df23191f9f8357baaf12e6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
