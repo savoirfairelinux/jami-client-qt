@@ -1,6 +1,7 @@
 import QtQuick
 import QtTest
 import net.jami.Adapters 1.1
+import net.jami.Constants 1.1
 import net.jami.Models 1.1
 import "../../../src/app/mainview/components"
 
@@ -315,6 +316,177 @@ Item {
             const ops = content();
             compare(ops[0].insert, "A report");
             compare(ops[0].attributes.header, 2);
+        }
+
+        function findToolTipFor(control) {
+            if (!control || !control.resources)
+                return null;
+            for (var i = 0; i < control.resources.length; ++i) {
+                const res = control.resources[i];
+                if (res && res.text !== undefined && res.delay !== undefined)
+                    return res;
+            }
+            return null;
+        }
+
+        function test_exportTooltipClosesWhenMouseMovesAway() {
+            const exportButton = findChild(editorWindow, "exportButton");
+            verify(exportButton);
+            const toolTip = findToolTipFor(exportButton);
+            verify(toolTip);
+            toolTip.delay = 10;
+
+            // Even after clicking the export button and dismissing its menu,
+            // hovering the button until the tooltip appears and moving away
+            // must hide the tooltip.
+            mouseClick(exportButton);
+            keyClick(Qt.Key_Escape);
+            mouseMove(editor, 100, 100);
+            tryCompare(toolTip, "visible", false);
+
+            mouseMove(exportButton, exportButton.width / 2, exportButton.height / 2);
+            tryCompare(toolTip, "visible", true);
+
+            mouseMove(editor, 100, 100);
+            tryCompare(toolTip, "visible", false);
+        }
+
+        function test_exportDialogUsesEditorWindowAsParentAndRestoresFocus() {
+            var capturedParent = null;
+            var capturedDialog = null;
+            editorWindow.dialogCoordinator = {
+                presentDialog: function (parent, path, props, singleInstance) {
+                    capturedParent = parent;
+                    capturedDialog = {
+                        path: path,
+                        props: props,
+                        fileAccepted: { connect: function () {} },
+                        accepted: { connect: function () {} },
+                        rejected: {
+                            _cb: null,
+                            connect: function (cb) { this._cb = cb; }
+                        }
+                    };
+                    return capturedDialog;
+                }
+            };
+            const exportButton = findChild(editorWindow, "exportButton");
+            verify(exportButton);
+            exportButton.forceActiveFocus();
+            editorWindow.exportDocument("pdf", "PDF document");
+            compare(capturedParent, editorWindow.contentItem);
+            verify(capturedDialog && capturedDialog.rejected._cb !== null);
+            capturedDialog.rejected._cb();
+            tryCompare(editor, "activeFocus", true);
+        }
+
+        function test_toolbarTooltipsAndListTerminology() {
+            const bar = findChild(editorWindow, "formattingToolbar");
+            verify(bar);
+            const expectedTooltips = {
+                "headingButton": "Paragraph style",
+                "fontFamilyButton": "Font family",
+                "textSizeButton": "Font size",
+                "B": JamiStrings.bold,
+                "I": JamiStrings.italic,
+                "U": "Underline",
+                "S": JamiStrings.strikethrough,
+                "alignButton": "Paragraph alignment",
+                "•": JamiStrings.unorderedList,
+                "1.": JamiStrings.orderedList,
+                "🔗": JamiStrings.link,
+                "🖼": "Insert image",
+                "⌫": "Clear formatting"
+            };
+            for (var i = 0; i < bar.children.length; ++i) {
+                const control = bar.children[i];
+                const key = control.objectName !== "" ? control.objectName : control.glyph;
+                if (!key)
+                    continue;
+                verify(control.hoverEnabled, "hoverEnabled for " + key);
+                const tt = findToolTipFor(control);
+                verify(tt !== null, "MaterialToolTip missing for " + key);
+                compare(tt.text, expectedTooltips[key]);
+                compare(tt.backGroundColor, JamiTheme.tooltipBackgroundColor);
+            }
+        }
+
+        function test_orderedListButtonStaysActiveAfterEnter() {
+            const bar = findChild(editorWindow, "formattingToolbar");
+            var orderedBtn = null;
+            for (var i = 0; i < bar.children.length; ++i) {
+                if (bar.children[i].glyph === "1.")
+                    orderedBtn = bar.children[i];
+            }
+            verify(orderedBtn);
+            editor.remove(0, editor.length);
+            editor.cursorPosition = 0;
+            editorWindow.refreshFormatState();
+
+            mouseClick(orderedBtn);
+            compare(orderedBtn.active, true);
+
+            editor.forceActiveFocus();
+            keyClick(Qt.Key_A);
+            keyClick(Qt.Key_B);
+            compare(orderedBtn.active, true);
+
+            keyClick(Qt.Key_Return);
+            compare(orderedBtn.active, true);
+        }
+
+        function test_alignmentChangesOnEmptyLine() {
+            editor.remove(0, editor.length);
+            editor.cursorPosition = 0;
+            editorWindow.refreshFormatState();
+            const alignButton = findChild(editorWindow, "alignButton");
+            const alignMenu = findChild(editorWindow, "alignMenu");
+            verify(alignButton && alignMenu);
+
+            mouseClick(alignButton);
+            tryCompare(alignMenu, "opened", true);
+            mouseClick(alignMenu.itemAt(1));
+            tryCompare(alignMenu, "opened", false);
+
+            compare(editorWindow.currentAlign, "center");
+            verify(alignMenu.itemAt(1).checked);
+            verify(!alignMenu.itemAt(0).checked);
+
+            editor.forceActiveFocus();
+            keyClick(Qt.Key_H);
+            keyClick(Qt.Key_I);
+            compare(editorWindow.currentAlign, "center");
+            compare(content()[0].attributes.align, "center");
+        }
+
+        function test_darkThemeMenusRenameFieldAndPlaceholder() {
+            const wasDark = JamiTheme.darkTheme;
+            JamiTheme.setTheme(true);
+            editorWindow.documentAuthor = "jami:author";
+            editorWindow.accountUri = "jami:author";
+
+            compare(editor.placeholderTextColor, JamiTheme.faddedFontColor);
+
+            const headingMenu = findChild(editorWindow, "headingMenu");
+            const textSizeMenu = findChild(editorWindow, "textSizeMenu");
+            verify(headingMenu && fontMenu && textSizeMenu);
+            compare(headingMenu.background.color, JamiTheme.secondaryBackgroundColor);
+            compare(fontMenu.background.color, JamiTheme.secondaryBackgroundColor);
+            compare(textSizeMenu.background.color, JamiTheme.secondaryBackgroundColor);
+            compare(headingMenu.itemAt(0).contentItem.color, JamiTheme.textColor);
+            compare(fontMenu.itemAt(0).contentItem.color, JamiTheme.textColor);
+            compare(textSizeMenu.itemAt(0).contentItem.color, JamiTheme.textColor);
+
+            const renameArea = findChild(editorWindow, "documentRenameArea");
+            const nameField = findChild(editorWindow, "documentNameField");
+            verify(renameArea && nameField);
+            waitForRendering(editorWindow.contentItem);
+            mouseClick(renameArea);
+            compare(nameField.visible, true);
+            compare(nameField.color, JamiTheme.textColor);
+            compare(nameField.background.color, JamiTheme.secondaryBackgroundColor);
+
+            JamiTheme.setTheme(wasDark);
         }
     }
 }

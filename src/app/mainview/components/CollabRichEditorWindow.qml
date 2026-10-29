@@ -229,8 +229,17 @@ Window {
         id: fmtBtn
         property string glyph: ""
         property bool active: false
+        property string toolTipText: ""
         implicitWidth: 34
         implicitHeight: 30
+        hoverEnabled: true
+        focusPolicy: Qt.NoFocus
+        MaterialToolTip {
+            parent: fmtBtn
+            text: fmtBtn.toolTipText
+            visible: fmtBtn.hovered && fmtBtn.toolTipText.length > 0
+            delay: Qt.styleHints.mousePressAndHoldInterval
+        }
         background: Rectangle {
             radius: 6
             color: fmtBtn.active ? JamiTheme.tintedBlue : (fmtBtn.hovered ? JamiTheme.hoveredButtonColor : "transparent")
@@ -258,11 +267,19 @@ Window {
         property string label: ""
         // The family to show the label in, if not the control's own.
         property string labelFamily: ""
+        property string toolTipText: ""
 
         implicitHeight: 30
         leftPadding: 8
         rightPadding: 6
-        ToolTip.visible: hovered
+        hoverEnabled: true
+        focusPolicy: Qt.NoFocus
+        MaterialToolTip {
+            parent: chooserBtn
+            text: chooserBtn.toolTipText
+            visible: chooserBtn.hovered && chooserBtn.toolTipText.length > 0
+            delay: Qt.styleHints.mousePressAndHoldInterval
+        }
         background: Rectangle {
             radius: 6
             color: chooserBtn.hovered ? JamiTheme.hoveredButtonColor : "transparent"
@@ -287,6 +304,53 @@ Window {
                 font.pointSize: JamiTheme.textFontSize
             }
         }
+    }
+
+    component EditorMenu: Menu {
+        padding: 4
+        background: Rectangle {
+            implicitWidth: 160
+            color: JamiTheme.secondaryBackgroundColor
+            border.width: 1
+            border.color: JamiTheme.tabbarBorderColor
+            radius: 6
+        }
+    }
+
+    component EditorMenuItem: MenuItem {
+        id: menuItem
+        implicitWidth: leftPadding + contentItem.implicitWidth + rightPadding
+        implicitHeight: Math.max(32, contentItem.implicitHeight + 8)
+        leftPadding: menuItem.checkable ? 26 : 10
+        rightPadding: 10
+        indicator: Text {
+            x: 8
+            anchors.verticalCenter: parent.verticalCenter
+            visible: menuItem.checkable && menuItem.checked
+            text: "✓"
+            color: JamiTheme.textColor
+            font.pointSize: JamiTheme.textFontSize
+        }
+        contentItem: Text {
+            text: menuItem.text
+            font: menuItem.font
+            color: menuItem.enabled ? JamiTheme.textColor : JamiTheme.faddedFontColor
+            verticalAlignment: Text.AlignVCenter
+            elide: Text.ElideRight
+        }
+        background: Rectangle {
+            radius: 4
+            color: (menuItem.hovered || menuItem.highlighted) ? JamiTheme.hoveredButtonColor : "transparent"
+        }
+    }
+
+    component EditorMenuSeparator: MenuSeparator {
+        padding: 4
+        contentItem: Rectangle {
+            implicitHeight: 1
+            color: JamiTheme.tabbarBorderColor
+        }
+        background: Item {}
     }
 
     // Between two groups of toolbar controls. As tall as a button, so it lines up
@@ -473,21 +537,47 @@ Window {
             root.selectImageAt(-1);
     }
 
+    property var dialogCoordinator: null
+
+    function coordinator() {
+        if (root.dialogCoordinator)
+            return root.dialogCoordinator;
+        return typeof viewCoordinator !== "undefined" ? viewCoordinator : null;
+    }
+
+    function activateEditorWindow() {
+        root.raise();
+        root.requestActivate();
+        root.focusEditor();
+        Qt.callLater(function () {
+            root.raise();
+            root.requestActivate();
+            root.focusEditor();
+        });
+    }
+
     // The picker is built on demand, never declared here: JamiFileDialog counts
     // its instances from Component.onCompleted, and the main window veils itself
     // while that count is above zero. A picker standing by in this window would
     // hold the main window hostage for as long as the document stays open.
     function pickImage() {
-        if (typeof viewCoordinator === "undefined")
+        const coord = root.coordinator();
+        if (!coord)
             return;
-        var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/JamiFileDialog.qml", {
+        var dlg = coord.presentDialog(root.contentItem, "commoncomponents/JamiFileDialog.qml", {
             "title": qsTr("Insert image"),
             "mode": JamiFileDialog.Mode.OpenFile,
             "nameFilters": [qsTr("Images") + " (*.png *.jpg *.jpeg *.gif *.bmp *.webp)"]
         }, true);
         dlg.fileAccepted.connect(function (file) {
             root.insertImageFromFile(file);
+            root.activateEditorWindow();
         });
+        if (dlg.rejected !== undefined) {
+            dlg.rejected.connect(function () {
+                root.activateEditorWindow();
+            });
+        }
     }
 
     function insertImageFromFile(file) {
@@ -508,13 +598,14 @@ Window {
     // resolve, so a format either carries their bytes with it or leaves the
     // pictures out.
     function exportDocument(suffix, filterLabel) {
-        if (typeof viewCoordinator === "undefined")
+        const coord = root.coordinator();
+        if (!coord)
             return;
         // Plain text holds no picture either way, so one that has not arrived
         // changes nothing about what gets written.
         const missing = suffix === "txt" ? 0 : richBinding.unresolvedImageCount();
         if (missing > 0) {
-            var confirmDlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/ConfirmDialog.qml", {
+            var confirmDlg = coord.presentDialog(root.contentItem, "commoncomponents/ConfirmDialog.qml", {
                 "titleText": qsTr("Export document"),
                 "textLabel": qsTr("%n picture(s) in this document have not arrived yet and would be exported as empty boxes.", "", missing),
                 "confirmLabel": qsTr("Export anyway"),
@@ -523,17 +614,25 @@ Window {
             confirmDlg.accepted.connect(function () {
                 root.pickExportPath(suffix, filterLabel);
             });
+            if (confirmDlg.rejected !== undefined) {
+                confirmDlg.rejected.connect(function () {
+                    root.activateEditorWindow();
+                });
+            }
             return;
         }
         root.pickExportPath(suffix, filterLabel);
     }
 
     function pickExportPath(suffix, filterLabel) {
+        const coord = root.coordinator();
+        if (!coord)
+            return;
         const folder = UtilsAdapter.getDirDocument();
         // The name is written by whoever renamed the document, this device or a
         // peer, so it is never allowed to carry the path anywhere.
         const base = (root.documentName !== "" ? root.documentName : qsTr("document")).replace(/[\/\\:*?"<>|]/g, "_");
-        var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/JamiFileDialog.qml", {
+        var dlg = coord.presentDialog(root.contentItem, "commoncomponents/JamiFileDialog.qml", {
             "title": qsTr("Export document"),
             "mode": JamiFileDialog.Mode.SaveFile,
             "folder": UtilsAdapter.urlFromLocalPath(folder),
@@ -543,15 +642,26 @@ Window {
             "nameFilters": [filterLabel + " (*." + suffix + ")"],
             "defaultSuffix": suffix
         }, true);
+        if (dlg.rejected !== undefined) {
+            dlg.rejected.connect(function () {
+                root.activateEditorWindow();
+            });
+        }
         dlg.fileAccepted.connect(function (file) {
             const ok = richBinding.exportToFile(file, root.documentName);
-            viewCoordinator.presentDialog(appWindow, "commoncomponents/SimpleMessageDialog.qml", {
+            var msgDlg = coord.presentDialog(root.contentItem, "commoncomponents/SimpleMessageDialog.qml", {
                 "titleText": ok ? qsTr("Document exported") : qsTr("Export failed"),
                 "infoText": ok ? UtilsAdapter.getAbsPath(file.toString()) : qsTr("The document could not be written there."),
                 "buttonTitles": [JamiStrings.optionOk],
                 "buttonStyles": [SimpleMessageDialog.ButtonStyle.TintedBlue],
                 "buttonRoles": [DialogButtonBox.AcceptRole]
             });
+            if (msgDlg && msgDlg.closed !== undefined) {
+                msgDlg.closed.connect(function () {
+                    root.activateEditorWindow();
+                });
+            }
+            root.activateEditorWindow();
         });
     }
 
@@ -701,15 +811,21 @@ Window {
                     color: JamiTheme.textColor
 
                     MouseArea {
+                        id: documentRenameArea
                         objectName: "documentRenameArea"
                         anchors.fill: parent
                         visible: root.canRename
                         enabled: root.canRename
                         cursorShape: Qt.PointingHandCursor
                         hoverEnabled: true
-                        ToolTip.visible: containsMouse
-                        ToolTip.text: qsTr("Click to rename")
+                        MaterialToolTip {
+                            parent: documentTitle
+                            text: qsTr("Click to rename")
+                            visible: documentTitle.visible && documentRenameArea.containsMouse
+                            delay: Qt.styleHints.mousePressAndHoldInterval
+                        }
                         onClicked: {
+                            root.requestActivate();
                             nameField.text = root.documentName;
                             titleContainer.editing = true;
                             nameField.forceActiveFocus();
@@ -720,23 +836,41 @@ Window {
 
                 TextField {
                     id: nameField
+                    objectName: "documentNameField"
                     anchors.fill: parent
                     visible: titleContainer.editing
                     font.pointSize: JamiTheme.title2FontSize
                     font.bold: true
                     color: JamiTheme.textColor
                     placeholderText: qsTr("Document name")
-                    onAccepted: titleContainer.commitRename()
+                    placeholderTextColor: JamiTheme.faddedFontColor
+                    selectionColor: JamiTheme.selectionBlue
+                    selectedTextColor: "white"
+                    background: Rectangle {
+                        color: JamiTheme.secondaryBackgroundColor
+                        border.width: 1
+                        border.color: nameField.activeFocus ? JamiTheme.tintedBlue : JamiTheme.tabbarBorderColor
+                        radius: 6
+                    }
+                    onAccepted: {
+                        titleContainer.commitRename();
+                        root.focusEditor();
+                    }
                     onActiveFocusChanged: {
                         if (!activeFocus && titleContainer.editing)
                             titleContainer.commitRename();
                     }
-                    Keys.onEscapePressed: titleContainer.editing = false
+                    Keys.onEscapePressed: {
+                        titleContainer.editing = false;
+                        root.focusEditor();
+                    }
                 }
             }
 
             PushButton {
                 id: exportButton
+                objectName: "exportButton"
+                focusPolicy: Qt.NoFocus
                 preferredSize: 26
                 imageContainerWidth: 18
                 imageContainerHeight: 18
@@ -754,6 +888,7 @@ Window {
 
             PushButton {
                 Layout.alignment: Qt.AlignVCenter
+                focusPolicy: Qt.NoFocus
                 preferredSize: 26
                 imageContainerWidth: 18
                 imageContainerHeight: 18
@@ -767,10 +902,12 @@ Window {
                     historyPanel.visible = !historyPanel.visible;
                     if (!historyPanel.visible)
                         historyPanel.clearPreview();
+                    root.focusEditor();
                 }
             }
             PushButton {
                 Layout.alignment: Qt.AlignVCenter
+                focusPolicy: Qt.NoFocus
                 preferredSize: 26
                 imageContainerWidth: 18
                 imageContainerHeight: 18
@@ -783,7 +920,10 @@ Window {
                 checked: root.showingRaw
                 normalColor: "transparent"
                 imageColor: JamiTheme.textColor
-                onClicked: root.showingRaw = !root.showingRaw
+                onClicked: {
+                    root.showingRaw = !root.showingRaw;
+                    root.focusEditor();
+                }
             }
         }
 
@@ -807,7 +947,7 @@ Window {
                 enabled: !root.previewing
                 width: 108
                 label: root.headingLabel(root.currentHeading)
-                ToolTip.text: qsTr("Paragraph style")
+                toolTipText: qsTr("Paragraph style")
                 onClicked: headingMenu.popup(headingButton, 0, headingButton.height)
             }
 
@@ -819,7 +959,7 @@ Window {
                 enabled: !root.previewing
                 width: 132
                 label: root.currentFontLabel
-                ToolTip.text: qsTr("Font family")
+                toolTipText: qsTr("Font family")
                 onClicked: fontFamilyMenu.popup(fontFamilyButton, 0, fontFamilyButton.height)
             }
 
@@ -832,7 +972,7 @@ Window {
                 enabled: !root.previewing
                 width: 52
                 label: root.currentTextSize > 0 ? root.currentTextSize : root.baseFontSize
-                ToolTip.text: qsTr("Font size")
+                toolTipText: qsTr("Font size")
                 onClicked: textSizeMenu.popup(textSizeButton, 0, textSizeButton.height)
             }
 
@@ -841,6 +981,7 @@ Window {
             FormatButton {
                 enabled: !root.previewing
                 glyph: "B"
+                toolTipText: JamiStrings.bold
                 active: root.fmt.b === true
                 onClicked: {
                     richBinding.toggleInline("b", editor.selectionStart, editor.selectionEnd);
@@ -851,6 +992,7 @@ Window {
             FormatButton {
                 enabled: !root.previewing
                 glyph: "I"
+                toolTipText: JamiStrings.italic
                 active: root.fmt.i === true
                 onClicked: {
                     richBinding.toggleInline("i", editor.selectionStart, editor.selectionEnd);
@@ -861,6 +1003,7 @@ Window {
             FormatButton {
                 enabled: !root.previewing
                 glyph: "U"
+                toolTipText: qsTr("Underline")
                 active: root.fmt.u === true
                 onClicked: {
                     richBinding.toggleInline("u", editor.selectionStart, editor.selectionEnd);
@@ -871,6 +1014,7 @@ Window {
             FormatButton {
                 enabled: !root.previewing
                 glyph: "S"
+                toolTipText: JamiStrings.strikethrough
                 active: root.fmt.s === true
                 onClicked: {
                     richBinding.toggleInline("s", editor.selectionStart, editor.selectionEnd);
@@ -891,8 +1035,14 @@ Window {
                 enabled: !root.previewing
                 width: 46
                 height: 30
-                ToolTip.visible: hovered
-                ToolTip.text: qsTr("Paragraph alignment")
+                hoverEnabled: true
+                focusPolicy: Qt.NoFocus
+                MaterialToolTip {
+                    parent: alignButton
+                    text: qsTr("Paragraph alignment")
+                    visible: alignButton.hovered
+                    delay: Qt.styleHints.mousePressAndHoldInterval
+                }
                 background: Rectangle {
                     radius: 6
                     color: alignButton.hovered ? JamiTheme.hoveredButtonColor : "transparent"
@@ -918,8 +1068,7 @@ Window {
             FormatButton {
                 enabled: !root.previewing
                 glyph: "•"
-                ToolTip.visible: hovered
-                ToolTip.text: qsTr("Bulleted list")
+                toolTipText: JamiStrings.unorderedList
                 active: root.fmt.list === "bullet"
                 onClicked: {
                     richBinding.setList("bullet", editor.selectionStart, editor.selectionEnd);
@@ -930,8 +1079,7 @@ Window {
             FormatButton {
                 enabled: !root.previewing
                 glyph: "1."
-                ToolTip.visible: hovered
-                ToolTip.text: qsTr("Numbered list")
+                toolTipText: JamiStrings.orderedList
                 active: root.fmt.list === "ordered"
                 onClicked: {
                     richBinding.setList("ordered", editor.selectionStart, editor.selectionEnd);
@@ -945,6 +1093,7 @@ Window {
             FormatButton {
                 enabled: !root.previewing
                 glyph: "🔗"
+                toolTipText: JamiStrings.link
                 active: root.fmt.link !== undefined && root.fmt.link !== ""
                 onClicked: {
                     linkField.text = (root.fmt.link !== undefined ? root.fmt.link : "");
@@ -954,15 +1103,13 @@ Window {
             FormatButton {
                 enabled: !root.previewing
                 glyph: "🖼"
-                ToolTip.visible: hovered
-                ToolTip.text: qsTr("Insert image")
+                toolTipText: qsTr("Insert image")
                 onClicked: root.pickImage()
             }
             FormatButton {
                 enabled: !root.previewing
                 glyph: "⌫"
-                ToolTip.visible: hovered
-                ToolTip.text: qsTr("Clear formatting")
+                toolTipText: qsTr("Clear formatting")
                 onClicked: {
                     richBinding.clearFormat(editor.selectionStart, editor.selectionEnd);
                     root.refreshFormatState();
@@ -1012,6 +1159,7 @@ Window {
                         font.pointSize: root.baseFontSize
                         color: JamiTheme.textColor
                         placeholderText: qsTr("Start typing…")
+                        placeholderTextColor: JamiTheme.faddedFontColor
                         background: Rectangle {
                             color: JamiTheme.secondaryBackgroundColor
                             border.width: 1
@@ -1379,7 +1527,16 @@ Window {
                 id: linkField
                 Layout.preferredWidth: 320
                 placeholderText: "https://"
+                placeholderTextColor: JamiTheme.faddedFontColor
                 color: JamiTheme.textColor
+                selectionColor: JamiTheme.selectionBlue
+                selectedTextColor: "white"
+                background: Rectangle {
+                    color: JamiTheme.secondaryBackgroundColor
+                    border.width: 1
+                    border.color: linkField.activeFocus ? JamiTheme.tintedBlue : JamiTheme.tabbarBorderColor
+                    radius: 6
+                }
                 onAccepted: applyLinkButton.clicked()
                 Component.onCompleted: forceActiveFocus()
             }
@@ -1387,8 +1544,22 @@ Window {
                 Layout.alignment: Qt.AlignRight
                 spacing: 6
                 Button {
+                    id: removeLinkButton
                     text: qsTr("Remove")
                     visible: root.fmt.link !== undefined && root.fmt.link !== ""
+                    contentItem: Text {
+                        text: removeLinkButton.text
+                        font: removeLinkButton.font
+                        color: JamiTheme.textColor
+                        horizontalAlignment: Text.AlignHCenter
+                        verticalAlignment: Text.AlignVCenter
+                    }
+                    background: Rectangle {
+                        radius: 6
+                        color: removeLinkButton.hovered ? JamiTheme.hoveredButtonColor : JamiTheme.secondaryBackgroundColor
+                        border.width: 1
+                        border.color: JamiTheme.tabbarBorderColor
+                    }
                     onClicked: {
                         richBinding.setLink("", linkPopup.savedStart, linkPopup.savedEnd);
                         root.refreshFormatState();
@@ -1400,6 +1571,19 @@ Window {
                     id: applyLinkButton
                     text: qsTr("Apply")
                     enabled: linkField.text.trim().length > 0
+                    contentItem: Text {
+                        text: applyLinkButton.text
+                        font: applyLinkButton.font
+                        color: applyLinkButton.enabled ? "white" : JamiTheme.faddedFontColor
+                        horizontalAlignment: Text.AlignHCenter
+                        verticalAlignment: Text.AlignVCenter
+                    }
+                    background: Rectangle {
+                        radius: 6
+                        color: applyLinkButton.enabled ? JamiTheme.tintedBlue : JamiTheme.secondaryBackgroundColor
+                        border.width: 1
+                        border.color: JamiTheme.tabbarBorderColor
+                    }
                     onClicked: {
                         richBinding.setLink(linkField.text.trim(), linkPopup.savedStart, linkPopup.savedEnd);
                         root.refreshFormatState();
@@ -1413,21 +1597,23 @@ Window {
 
     // Context menu for the editor (declared at the window root, not nested inside
     // the TextArea, to avoid a QtQuick.Templates crash on popup).
-    Menu {
+    EditorMenu {
         id: editorMenu
-        MenuItem {
+        objectName: "editorMenu"
+        onClosed: root.focusEditor()
+        EditorMenuItem {
             text: qsTr("Copy")
             enabled: editor.selectedText.length > 0
             onTriggered: editor.copy()
         }
-        MenuItem {
+        EditorMenuItem {
             text: qsTr("Paste")
             // canPaste only knows about text, and a clipboard holding just a
             // picture would leave the entry greyed out.
             enabled: editor.canPaste || richBinding.clipboardHasImage
             onTriggered: root.pasteFromClipboard()
         }
-        MenuItem {
+        EditorMenuItem {
             text: qsTr("Delete")
             enabled: editor.selectedText.length > 0
             onTriggered: editor.remove(editor.selectionStart, editor.selectionEnd)
@@ -1436,34 +1622,36 @@ Window {
 
     // Local export. Declared at the window root for the same reason as
     // editorMenu.
-    Menu {
+    EditorMenu {
         id: exportMenu
+        objectName: "exportMenu"
+        onClosed: root.focusEditor()
 
-        MenuItem {
+        EditorMenuItem {
             text: qsTr("Export as PDF…")
             visible: richBinding.canExportAs("pdf")
             height: visible ? implicitHeight : 0
             onTriggered: root.exportDocument("pdf", qsTr("PDF document"))
         }
-        MenuItem {
+        EditorMenuItem {
             text: qsTr("Export as ODT…")
             visible: richBinding.canExportAs("odt")
             height: visible ? implicitHeight : 0
             onTriggered: root.exportDocument("odt", qsTr("OpenDocument text"))
         }
-        MenuItem {
+        EditorMenuItem {
             text: qsTr("Export as HTML…")
             visible: richBinding.canExportAs("html")
             height: visible ? implicitHeight : 0
             onTriggered: root.exportDocument("html", qsTr("HTML document"))
         }
-        MenuItem {
+        EditorMenuItem {
             text: qsTr("Export as Markdown…")
             visible: richBinding.canExportAs("md")
             height: visible ? implicitHeight : 0
             onTriggered: root.exportDocument("md", qsTr("Markdown document"))
         }
-        MenuItem {
+        EditorMenuItem {
             text: qsTr("Export as plain text…")
             visible: richBinding.canExportAs("txt")
             height: visible ? implicitHeight : 0
@@ -1473,8 +1661,10 @@ Window {
 
     // Paragraph alignment (declared at the window root for the same reason as
     // editorMenu: a nested/deferred popup crashes in this Window).
-    Menu {
+    EditorMenu {
         id: alignMenu
+        objectName: "alignMenu"
+        onClosed: root.focusEditor()
 
         Repeater {
             model: [
@@ -1495,7 +1685,7 @@ Window {
                     "label": qsTr("Justify")
                 }
             ]
-            delegate: MenuItem {
+            delegate: EditorMenuItem {
                 id: alignItem
 
                 required property var modelData
@@ -1521,12 +1711,13 @@ Window {
         }
     }
 
-    Menu {
+    EditorMenu {
         id: fontFamilyMenu
         objectName: "fontFamilyMenu"
+        onClosed: root.focusEditor()
         Repeater {
             model: root.fontChoices
-            delegate: MenuItem {
+            delegate: EditorMenuItem {
                 id: fontFamilyItem
                 required property var modelData
                 objectName: "fontFamily-" + (modelData.id || "default")
@@ -1547,13 +1738,14 @@ Window {
 
     // Paragraph style chooser (declared at the window root for the same reason
     // as editorMenu). Every style is shown at the size it gives.
-    Menu {
+    EditorMenu {
         id: headingMenu
         objectName: "headingMenu"
+        onClosed: root.focusEditor()
 
         Repeater {
             model: [0, 1, 2, 3]
-            delegate: MenuItem {
+            delegate: EditorMenuItem {
                 id: headingItem
 
                 required property int modelData
@@ -1577,11 +1769,12 @@ Window {
     // Size chooser (declared at the window root for the same reason as
     // editorMenu). The base size takes the size off, so the text follows the
     // base size again.
-    Menu {
+    EditorMenu {
         id: textSizeMenu
         objectName: "textSizeMenu"
+        onClosed: root.focusEditor()
 
-        MenuItem {
+        EditorMenuItem {
             id: baseTextSizeItem
 
             text: qsTr("Base size")
@@ -1594,10 +1787,10 @@ Window {
                 });
             }
         }
-        MenuSeparator {}
+        EditorMenuSeparator {}
         Repeater {
             model: [8, 9, 10, 11, 12, 14, 16, 18, 20, 24, 28, 36, 48, 72]
-            delegate: MenuItem {
+            delegate: EditorMenuItem {
                 id: textSizeItem
 
                 required property int modelData
