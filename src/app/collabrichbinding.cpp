@@ -381,7 +381,7 @@ blockAttrsAt(QTextDocument* d, int index)
         return {};
     auto it = blk.begin();
     if (it == blk.end())
-        return {};
+        return charFormatToAttrs(blk.charFormat());
     return charFormatToAttrs(it.fragment().charFormat());
 }
 
@@ -578,11 +578,9 @@ int
 blockAlignType(const QTextBlock& blk)
 {
     auto it = blk.begin();
-    if (it != blk.end()) {
-        const QTextCharFormat f = it.fragment().charFormat();
-        if (f.hasProperty(ALIGN_PROPERTY))
-            return f.intProperty(ALIGN_PROPERTY);
-    }
+    const QTextCharFormat f = (it != blk.end()) ? it.fragment().charFormat() : blk.charFormat();
+    if (f.hasProperty(ALIGN_PROPERTY))
+        return f.intProperty(ALIGN_PROPERTY);
     return 0;
 }
 
@@ -802,11 +800,9 @@ int
 blockListType(const QTextBlock& blk)
 {
     auto it = blk.begin();
-    if (it != blk.end()) {
-        const QTextCharFormat f = it.fragment().charFormat();
-        if (f.hasProperty(LIST_PROPERTY))
-            return f.intProperty(LIST_PROPERTY);
-    }
+    const QTextCharFormat f = (it != blk.end()) ? it.fragment().charFormat() : blk.charFormat();
+    if (f.hasProperty(LIST_PROPERTY))
+        return f.intProperty(LIST_PROPERTY);
     return 0;
 }
 
@@ -1016,6 +1012,37 @@ CollabRichBinding::onContentsChange(int /*position*/, int /*charsRemoved*/, int 
         }
     }
 
+    if (added > 0) {
+        const QSignalBlocker blocker(d);
+        QTextBlock blk = d->findBlock(prefix);
+        while (blk.isValid() && blk.position() < prefix + added) {
+            const int segStart = qMax(prefix, blk.position());
+            const int segEnd = qMin(prefix + added, blk.position() + blk.length() - 1);
+            // If the block was empty before this insertion, QQuickTextEdit's
+            // cached cursor may not carry paragraph attributes set while the
+            // block had no characters; apply them from the block's charFormat.
+            if (segStart == blk.position() && segEnd == blk.position() + blk.length() - 1 && segStart < segEnd) {
+                const QTextCharFormat bf = blk.charFormat();
+                QJsonObject blockAttrs;
+                if (const int l = bf.intProperty(LIST_PROPERTY); l == 1 || l == 2)
+                    blockAttrs[QStringLiteral("list")] = l == 1 ? QStringLiteral("bullet") : QStringLiteral("ordered");
+                if (const int a = bf.intProperty(ALIGN_PROPERTY); a >= 1 && a <= 3)
+                    blockAttrs[QStringLiteral("align")] = a == 1 ? QStringLiteral("center")
+                                                                 : (a == 2 ? QStringLiteral("right")
+                                                                           : QStringLiteral("justify"));
+                if (const int h = bf.intProperty(HEADER_PROPERTY); h >= 1 && h <= 3)
+                    blockAttrs[QStringLiteral("header")] = h;
+                if (!blockAttrs.isEmpty()) {
+                    QTextCursor cursor(d);
+                    cursor.setPosition(segStart);
+                    cursor.setPosition(segEnd, QTextCursor::KeepAnchor);
+                    mergeAttrsOverSelection(cursor, blockAttrs);
+                }
+            }
+            blk = blk.next();
+        }
+    }
+
     QJsonArray ops;
     if (prefix > 0)
         ops.append(QJsonObject {{QStringLiteral("retain"), prefix}});
@@ -1070,8 +1097,6 @@ CollabRichBinding::reconcileAlignment()
     if (!d)
         return;
     for (QTextBlock blk = d->begin(); blk.isValid(); blk = blk.next()) {
-        if (blk.text().isEmpty())
-            continue; // no characters, so nothing said about it: leave it alone
         const int type = blockAlignType(blk);
         if (blockHasAttachmentImage(blk)) {
             placeAlignedImageBlock(d, blk, type);
@@ -1489,8 +1514,6 @@ CollabRichBinding::setHeading(int level, int start, int end)
     b.movePosition(QTextCursor::EndOfBlock);
     const int lineStart = a.position();
     const int lineEnd = b.position();
-    if (lineStart >= lineEnd)
-        return; // empty line: nothing to format (type some text first)
 
     QJsonObject attrs;
     attrs[QStringLiteral("header")] = (level >= 1 && level <= 3) ? QJsonValue(level) : QJsonValue(QJsonValue::Null);
@@ -1499,8 +1522,12 @@ CollabRichBinding::setHeading(int level, int start, int end)
     QTextCursor c(d);
     c.setPosition(lineStart);
     c.setPosition(lineEnd, QTextCursor::KeepAnchor);
-    mergeAttrsOverSelection(c, attrs);
+    c.mergeBlockCharFormat(mergeFormatFromAttrs(attrs));
+    if (lineStart < lineEnd)
+        mergeAttrsOverSelection(c, attrs);
     applyingRemote_ = false;
+    if (lineStart >= lineEnd)
+        return;
 
     QJsonArray ops;
     if (lineStart > 0)
@@ -1524,11 +1551,9 @@ CollabRichBinding::setList(const QString& style, int start, int end)
     b.movePosition(QTextCursor::EndOfBlock);
     const int lineStart = a.position();
     const int lineEnd = b.position();
-    if (lineStart >= lineEnd)
-        return; // empty line: nothing to mark (type some text first)
 
     // Toggle: if the first line already has this style, remove it.
-    const QString current = charAttrsAt(d, lineStart).value(QStringLiteral("list")).toString();
+    const QString current = blockAttrsAt(d, lineStart).value(QStringLiteral("list")).toString();
     const QString target = (current == style) ? QString() : style;
 
     QJsonObject attrs;
@@ -1538,10 +1563,15 @@ CollabRichBinding::setList(const QString& style, int start, int end)
     QTextCursor c(d);
     c.setPosition(lineStart);
     c.setPosition(lineEnd, QTextCursor::KeepAnchor);
-    c.mergeCharFormat(mergeFormatFromAttrs(attrs));
+    const QTextCharFormat fmt = mergeFormatFromAttrs(attrs);
+    c.mergeBlockCharFormat(fmt);
+    if (lineStart < lineEnd)
+        c.mergeCharFormat(fmt);
     reconcileLists();
     reconcileAlignment();
     applyingRemote_ = false;
+    if (lineStart >= lineEnd)
+        return;
 
     QJsonArray ops;
     if (lineStart > 0)
@@ -1565,8 +1595,6 @@ CollabRichBinding::setParagraphAttribute(const QString& key, const QJsonValue& v
     b.movePosition(QTextCursor::EndOfBlock);
     const int lineStart = a.position();
     const int lineEnd = b.position();
-    if (lineStart >= lineEnd)
-        return; // empty line: there is no character to hold the attribute
 
     const QJsonObject attrs {{key, value}};
 
@@ -1574,9 +1602,14 @@ CollabRichBinding::setParagraphAttribute(const QString& key, const QJsonValue& v
     QTextCursor c(d);
     c.setPosition(lineStart);
     c.setPosition(lineEnd, QTextCursor::KeepAnchor);
-    c.mergeCharFormat(mergeFormatFromAttrs(attrs));
+    const QTextCharFormat fmt = mergeFormatFromAttrs(attrs);
+    c.mergeBlockCharFormat(fmt);
+    if (lineStart < lineEnd)
+        c.mergeCharFormat(fmt);
     reconcileAlignment();
     applyingRemote_ = false;
+    if (lineStart >= lineEnd)
+        return;
 
     QJsonArray ops;
     if (lineStart > 0)

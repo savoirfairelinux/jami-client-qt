@@ -498,21 +498,47 @@ Window {
             root.selectImageAt(-1);
     }
 
+    property var dialogCoordinator: null
+
+    function coordinator() {
+        if (root.dialogCoordinator)
+            return root.dialogCoordinator;
+        return typeof viewCoordinator !== "undefined" ? viewCoordinator : null;
+    }
+
+    function activateEditorWindow() {
+        root.raise();
+        root.requestActivate();
+        root.focusEditor();
+        Qt.callLater(function () {
+            root.raise();
+            root.requestActivate();
+            root.focusEditor();
+        });
+    }
+
     // The picker is built on demand, never declared here: JamiFileDialog counts
     // its instances from Component.onCompleted, and the main window veils itself
     // while that count is above zero. A picker standing by in this window would
     // hold the main window hostage for as long as the document stays open.
     function pickImage() {
-        if (typeof viewCoordinator === "undefined")
+        const coord = root.coordinator();
+        if (!coord)
             return;
-        var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/JamiFileDialog.qml", {
+        var dlg = coord.presentDialog(root.contentItem, "commoncomponents/JamiFileDialog.qml", {
             "title": JamiStrings.insertImage,
             "mode": JamiFileDialog.Mode.OpenFile,
             "nameFilters": [JamiStrings.images + " (*.png *.jpg *.jpeg *.gif *.bmp *.webp)"]
         }, true);
         dlg.fileAccepted.connect(function (file) {
             root.insertImageFromFile(file);
+            root.activateEditorWindow();
         });
+        if (dlg.rejected !== undefined) {
+            dlg.rejected.connect(function () {
+                root.activateEditorWindow();
+            });
+        }
     }
 
     function insertImageFromFile(file) {
@@ -533,13 +559,14 @@ Window {
     // resolve, so a format either carries their bytes with it or leaves the
     // pictures out.
     function exportDocument(suffix, filterLabel) {
-        if (typeof viewCoordinator === "undefined")
+        const coord = root.coordinator();
+        if (!coord)
             return;
         // Plain text holds no picture either way, so one that has not arrived
         // changes nothing about what gets written.
         const missing = suffix === "txt" ? 0 : richBinding.unresolvedImageCount();
         if (missing > 0) {
-            var confirmDlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/ConfirmDialog.qml", {
+            var confirmDlg = coord.presentDialog(root.contentItem, "commoncomponents/ConfirmDialog.qml", {
                 "titleText": JamiStrings.exportDocument,
                 "textLabel": JamiStrings.missingDocumentPictures(missing),
                 "confirmLabel": JamiStrings.exportAnyway,
@@ -548,17 +575,25 @@ Window {
             confirmDlg.accepted.connect(function () {
                 root.pickExportPath(suffix, filterLabel);
             });
+            if (confirmDlg.rejected !== undefined) {
+                confirmDlg.rejected.connect(function () {
+                    root.activateEditorWindow();
+                });
+            }
             return;
         }
         root.pickExportPath(suffix, filterLabel);
     }
 
     function pickExportPath(suffix, filterLabel) {
+        const coord = root.coordinator();
+        if (!coord)
+            return;
         const folder = UtilsAdapter.getDirDocument();
         // The name is written by whoever renamed the document, this device or a
         // peer, so it is never allowed to carry the path anywhere.
         const base = (root.documentName !== "" ? root.documentName : JamiStrings.documentExportBaseName).replace(/[\/\\:*?"<>|]/g, "_");
-        var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/JamiFileDialog.qml", {
+        var dlg = coord.presentDialog(root.contentItem, "commoncomponents/JamiFileDialog.qml", {
             "title": JamiStrings.exportDocument,
             "mode": JamiFileDialog.Mode.SaveFile,
             "folder": UtilsAdapter.urlFromLocalPath(folder),
@@ -568,15 +603,27 @@ Window {
             "nameFilters": [filterLabel + " (*." + suffix + ")"],
             "defaultSuffix": suffix
         }, true);
+        if (dlg.rejected !== undefined) {
+            dlg.rejected.connect(function () {
+                root.activateEditorWindow();
+            });
+        }
         dlg.fileAccepted.connect(function (file) {
             const ok = richBinding.exportToFile(file, root.documentName);
-            viewCoordinator.presentDialog(appWindow, "commoncomponents/SimpleMessageDialog.qml", {
+            var msgDlg = coord.presentDialog(root.contentItem, "commoncomponents/SimpleMessageDialog.qml", {
                 "titleText": ok ? JamiStrings.documentExported : JamiStrings.exportFailed,
                 "infoText": ok ? UtilsAdapter.getAbsPath(file.toString()) : JamiStrings.documentExportWriteError,
                 "buttonTitles": [JamiStrings.optionOk],
                 "buttonStyles": [SimpleMessageDialog.ButtonStyle.TintedBlue],
                 "buttonRoles": [DialogButtonBox.AcceptRole]
             });
+            if (msgDlg && msgDlg.closed !== undefined) {
+                msgDlg.closed.connect(function () {
+                    root.activateEditorWindow();
+                });
+            } else {
+                root.activateEditorWindow();
+            }
         });
     }
 

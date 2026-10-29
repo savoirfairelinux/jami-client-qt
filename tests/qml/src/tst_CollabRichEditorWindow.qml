@@ -360,5 +360,64 @@ Item {
             editorWindow.refreshFormatState();
             compare(editorWindow.currentLanguage, "");
         }
+
+        function test_exportDialogUsesEditorWindowAsParentAndRestoresFocus() {
+            var capturedParent = null;
+            var capturedDialog = null;
+            editorWindow.dialogCoordinator = {
+                presentDialog: function (parent, path, props, singleInstance) {
+                    capturedParent = parent;
+                    capturedDialog = {
+                        path: path,
+                        props: props,
+                        fileAccepted: { connect: function () {} },
+                        accepted: { connect: function () {} },
+                        rejected: {
+                            _cb: null,
+                            connect: function (cb) { this._cb = cb; }
+                        }
+                    };
+                    return capturedDialog;
+                }
+            };
+            const headingButton = findChild(editorWindow, "headingButton");
+            verify(headingButton);
+            headingButton.forceActiveFocus();
+            editorWindow.exportDocument("pdf", "PDF document");
+            compare(capturedParent, editorWindow.contentItem);
+            verify(capturedDialog && capturedDialog.rejected._cb !== null);
+            capturedDialog.rejected._cb();
+            tryCompare(editor, "activeFocus", true);
+        }
+
+        function test_orderedListStaysActiveAfterEnter() {
+            editor.remove(0, editor.length);
+            editor.cursorPosition = 0;
+            binding.setList("ordered", 0, 0);
+            editorWindow.refreshFormatState();
+            compare(editorWindow.fmt.list, "ordered");
+
+            editor.forceActiveFocus();
+            keyClick(Qt.Key_A);
+            keyClick(Qt.Key_B);
+            compare(editorWindow.fmt.list, "ordered");
+
+            keyClick(Qt.Key_Return);
+            compare(editorWindow.fmt.list, "ordered");
+        }
+
+        function test_alignmentChangesOnEmptyLine() {
+            editor.remove(0, editor.length);
+            editor.cursorPosition = 0;
+            binding.setAlign("center", 0, 0);
+            editorWindow.refreshFormatState();
+            compare(editorWindow.currentAlign, "center");
+
+            editor.forceActiveFocus();
+            keyClick(Qt.Key_H);
+            keyClick(Qt.Key_I);
+            compare(editorWindow.currentAlign, "center");
+            compare(content()[0].attributes.align, "center");
+        }
     }
 }
