@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9fa40ceb_b84abfbe",
+        "filename": "src/app/messagesadapter.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 394,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-10-29T17:26:09Z",
+      "side": 1,
+      "message": "[warning] Line 394: 🟡 The fallback extension `gif` for remote clipboard images (`ext.isEmpty() ? \"gif\" : ext`) can mislabel valid non-GIF images when CDN URLs omit extensions (common with query-based endpoints). Infer the extension from decoded bytes (`QImageReader::format()`/mime) before writing the temp file, and only use URL suffix as a secondary hint.",
+      "revId": "f339c4723c92de9a459487d5c82e68336167430e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "67b9761e_533750a6",
+        "filename": "src/app/networkmanager.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-10-29T17:26:09Z",
+      "side": 1,
+      "message": "[warning] Line 116: 🟡 `OperationCanceledError` is now suppressed for **all** GET requests, not only for max-size policy aborts. This can hide real cancellations from existing callers and makes transport/policy outcomes indistinguishable. Track whether this reply was canceled by the max-size guard (e.g., a local flag/property set in the `downloadProgress` handler) and only suppress/translate cancellation in that case; otherwise keep reporting it.",
+      "revId": "f339c4723c92de9a459487d5c82e68336167430e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
