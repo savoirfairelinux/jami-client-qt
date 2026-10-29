@@ -95,15 +95,6 @@ QtObject {
                            Qt.rect(appWindow.x, appWindow.y,
                                    appWindow.width, appWindow.height);
 
-        // QWK: Account for the frameless window's offset.
-        if (appWindow.useFrameless) {
-            if (Qt.platform.os.toString() !== "osx") {
-                // Add [7, 30, 0, 0] on Windows and GNU/Linux.
-                geometry.x += 7;
-                geometry.y += 30;
-            }
-        }
-
         console.debug("Saving window: " + JSON.stringify(geometry) + " " + visibilityToSave);
 
         AppSettingsManager.setValue(Settings.WindowState, visibilityToSave)
@@ -146,6 +137,15 @@ QtObject {
         // Dimensions.
         const widthToUse = geometry.width && geometry.width > 0 ? geometry.width : defaultWidth
         const heightToUse = geometry.height && geometry.height > 0 ? geometry.height : defaultHeight
+
+        // QWK on Windows: Qt pads the pre-show geometry by the system frame
+        // when it creates the native window, and QWK then claims that frame
+        // as client area. Create the window first so the geometry below is
+        // applied to a hooked window and lands exactly.
+        if (appWindow.useFrameless && Qt.platform.os.toString() === "windows") {
+            MainApplication.createNativeWindow(appWindow)
+        }
+
         appWindow.width = widthToUse
         appWindow.height = heightToUse
         appWindow.minimumWidth = JamiTheme.mainViewMinWidth
