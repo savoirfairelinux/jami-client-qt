@@ -38,6 +38,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "c1e460e5_bcf3930c",
+        "filename": "src/app/messagesadapter.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 326,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-10-29T17:38:40Z",
+      "side": 1,
+      "message": "Done in PS5: QTemporaryFile.",
+      "parentUuid": "45180ef0_cef5dfd7",
+      "revId": "3c171cba9e27d84e4fb7cb8ee77d165b34d1b084",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "715ac37b_52756ae3",
         "filename": "src/app/networkmanager.cpp",
         "patchSetId": 3
