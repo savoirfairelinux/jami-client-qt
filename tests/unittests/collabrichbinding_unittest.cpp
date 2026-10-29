@@ -539,3 +539,64 @@ TEST_F(CollabRichBindingFixture, ARemoteEditCarriesThePendingFontWithTheCaret)
 
     EXPECT_EQ(binding->selectionFormat(8, 8).value(QStringLiteral("font")).toString(), QStringLiteral("monospace"));
 }
+
+TEST_F(CollabRichBindingFixture, OrderedListRemainsActiveOnEmptyAndNewLines)
+{
+    QSignalSpy deltas(binding.data(), &CollabRichBinding::localDelta);
+
+    // Starting an ordered list on an empty line immediately creates the list
+    // and reports it as active, before any character is typed.
+    binding->setList(QStringLiteral("ordered"), 0, 0);
+    EXPECT_TRUE(deltas.isEmpty());
+    EXPECT_EQ(binding->selectionFormat(0, 0).value(QStringLiteral("list")).toString(), QStringLiteral("ordered"));
+    ASSERT_TRUE(doc->findBlockByNumber(0).textList());
+    EXPECT_EQ(doc->findBlockByNumber(0).textList()->format().style(), QTextListFormat::ListDecimal);
+
+    // Typing on that line inherits the ordered list attribute.
+    QTextCursor cursor(doc);
+    cursor.insertText(QStringLiteral("First"));
+    ASSERT_EQ(deltas.size(), 1);
+    EXPECT_EQ(QJsonDocument::fromJson(deltas.at(0).at(0).toString().toUtf8()),
+              QJsonDocument::fromJson(R"([{"insert":"First","attributes":{"list":"ordered"}}])"));
+    EXPECT_EQ(binding->selectionFormat(5, 5).value(QStringLiteral("list")).toString(), QStringLiteral("ordered"));
+
+    // Pressing Enter creates a new empty line in the list; the ordered list
+    // format must still be reported as active on the new empty line.
+    cursor.insertBlock();
+    ASSERT_EQ(doc->blockCount(), 2);
+    EXPECT_EQ(doc->findBlockByNumber(1).textList(), doc->findBlockByNumber(0).textList());
+    EXPECT_EQ(binding->selectionFormat(cursor.position(), cursor.position()).value(QStringLiteral("list")).toString(),
+              QStringLiteral("ordered"));
+
+    // Toggling the ordered list off on the empty second line removes it from the list.
+    binding->setList(QStringLiteral("ordered"), cursor.position(), cursor.position());
+    EXPECT_FALSE(doc->findBlockByNumber(1).textList());
+    EXPECT_TRUE(binding->selectionFormat(cursor.position(), cursor.position())
+                    .value(QStringLiteral("list"))
+                    .toString()
+                    .isEmpty());
+}
+
+TEST_F(CollabRichBindingFixture, ParagraphAlignmentChangesOnEmptyLine)
+{
+    QSignalSpy deltas(binding.data(), &CollabRichBinding::localDelta);
+
+    binding->setAlign(QStringLiteral("center"), 0, 0);
+    EXPECT_TRUE(deltas.isEmpty());
+    EXPECT_EQ(doc->findBlockByNumber(0).blockFormat().alignment(), Qt::AlignHCenter);
+    EXPECT_EQ(binding->selectionFormat(0, 0).value(QStringLiteral("align")).toString(), QStringLiteral("center"));
+
+    QTextCursor cursor(doc);
+    cursor.insertText(QStringLiteral("Centered"));
+    ASSERT_EQ(deltas.size(), 1);
+    EXPECT_EQ(QJsonDocument::fromJson(deltas.at(0).at(0).toString().toUtf8()),
+              QJsonDocument::fromJson(R"([{"insert":"Centered","attributes":{"align":"center"}}])"));
+    EXPECT_EQ(doc->findBlockByNumber(0).blockFormat().alignment(), Qt::AlignHCenter);
+    EXPECT_EQ(binding->selectionFormat(8, 8).value(QStringLiteral("align")).toString(), QStringLiteral("center"));
+
+    cursor.insertBlock();
+    ASSERT_EQ(doc->blockCount(), 2);
+    EXPECT_EQ(doc->findBlockByNumber(1).blockFormat().alignment(), Qt::AlignHCenter);
+    EXPECT_EQ(binding->selectionFormat(cursor.position(), cursor.position()).value(QStringLiteral("align")).toString(),
+              QStringLiteral("center"));
+}
