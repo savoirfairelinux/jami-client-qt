@@ -87,6 +87,24 @@
       "message": "[error] Line 385: 🔴 The `\u003c\u003d 16 MB` guard is applied **after** `sendGetRequest` has already fetched the full response into memory (`const QByteArray\u0026 data`). A crafted clipboard `\u003cimg\u003e` URL can therefore force large downloads and memory pressure despite the intended cap. Enforce the limit during transfer (abort when content-length or streamed bytes exceed 16 MB) in `NetworkManager`/request code, rather than post-download.",
       "revId": "fa4b260e46ffcd7c96774b6e01f6146c09fc5df7",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cd335211_0fc73e06",
+        "filename": "src/app/messagesadapter.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 385,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-10-29T17:38:40Z",
+      "side": 1,
+      "message": "Done in PS3: sendGetRequest(maxSize) aborts from downloadProgress.",
+      "parentUuid": "5a2ef4e8_34d59f48",
+      "revId": "fa4b260e46ffcd7c96774b6e01f6146c09fc5df7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
