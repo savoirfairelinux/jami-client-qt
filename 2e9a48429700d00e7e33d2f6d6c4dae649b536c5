@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5a3d435f_0daf8f76",
+        "filename": "tests/unittests/contact_unittest.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-10-29T19:23:21Z",
+      "side": 1,
+      "message": "[warning] Line 175: 🟡 This test validates read-count behavior by parsing stderr via `testing::internal::CaptureStderr()` and string matching log text. That is brittle: unrelated logging format/verbosity changes can fail the test without any functional regression. Prefer asserting on a deterministic signal/counter (e.g., inject a read callback/counter in storage helper or mock the profile backend) instead of log output parsing.",
+      "revId": "2e9a48429700d00e7e33d2f6d6c4dae649b536c5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
