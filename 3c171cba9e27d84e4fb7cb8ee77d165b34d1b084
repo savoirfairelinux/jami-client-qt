@@ -1,6 +1,24 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a4b2ad11_835ea7ce",
+        "filename": "src/app/messagesadapter.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-10-29T17:35:53Z",
+      "side": 1,
+      "message": "Done in PS5: QTemporaryFile.",
+      "parentUuid": "45180ef0_cef5dfd7",
+      "revId": "3c171cba9e27d84e4fb7cb8ee77d165b34d1b084",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "45180ef0_cef5dfd7",
