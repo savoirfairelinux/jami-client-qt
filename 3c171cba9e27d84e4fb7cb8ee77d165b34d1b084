@@ -36,6 +36,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "715ac37b_52756ae3",
+        "filename": "src/app/networkmanager.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-10-29T17:35:54Z",
+      "side": 1,
+      "message": "Done in PS5.",
+      "parentUuid": "9fb3c22d_f240fed8",
+      "revId": "3c171cba9e27d84e4fb7cb8ee77d165b34d1b084",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9fb3c22d_f240fed8",
