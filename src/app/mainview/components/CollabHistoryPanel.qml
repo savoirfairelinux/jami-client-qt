@@ -109,6 +109,7 @@ Rectangle {
                 elide: Text.ElideRight
             }
             PushButton {
+                focusPolicy: Qt.NoFocus
                 preferredSize: 20
                 imageContainerWidth: 14
                 imageContainerHeight: 14
@@ -131,11 +132,17 @@ Rectangle {
 
         // "Current version" row: leaves the preview and returns to editing.
         ItemDelegate {
+            id: currentVersionRow
             Layout.fillWidth: true
             visible: versionsModel.count > 0
             Layout.preferredHeight: 40
             highlighted: root.selectedCommitId === ""
             onClicked: root.clearPreview()
+
+            background: Rectangle {
+                radius: 6
+                color: (currentVersionRow.highlighted || currentVersionRow.hovered) ? JamiTheme.hoveredButtonColor : "transparent"
+            }
 
             contentItem: ColumnLayout {
                 spacing: 0
@@ -164,10 +171,16 @@ Rectangle {
             ScrollBar.vertical: ScrollBar {}
 
             delegate: ItemDelegate {
+                id: versionDelegate
                 width: versionsView.width
                 height: 46
                 highlighted: root.selectedCommitId === commitId
                 onClicked: root.preview(commitId)
+
+                background: Rectangle {
+                    radius: 6
+                    color: (versionDelegate.highlighted || versionDelegate.hovered) ? JamiTheme.hoveredButtonColor : "transparent"
+                }
 
                 contentItem: ColumnLayout {
                     spacing: 0
