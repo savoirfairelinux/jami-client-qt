@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cc2dd920_ddf0e665",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-10-30T18:11:06Z",
+      "side": 1,
+      "message": "there is no more test as of PS2. update commit msg + close VE comment",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 29
+      },
+      "revId": "461d4ee66bbb5df1b2cf36c0522bcfdfaaee1cff",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
