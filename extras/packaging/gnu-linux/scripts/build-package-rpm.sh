@@ -128,6 +128,8 @@ if [ ! -f "${RPM_PATH}" ]; then
             cp /root/rpmbuild/RPMS/x86_64/jami-libqt-$QT_MAJOR_MINOR_PATCH-*.fc43.x86_64.rpm "${RPM_PATH}"
         elif [[ "${DISTRIBUTION}" == "fedora_44" ]]; then
             cp /root/rpmbuild/RPMS/x86_64/jami-libqt-$QT_MAJOR_MINOR_PATCH-*.fc44.x86_64.rpm "${RPM_PATH}"
+        elif [[ "${DISTRIBUTION}" == "fedora_45" ]]; then
+            cp /root/rpmbuild/RPMS/x86_64/jami-libqt-$QT_MAJOR_MINOR_PATCH-*.fc45.x86_64.rpm "${RPM_PATH}"
         elif [[ "${DISTRIBUTION}" == "alma_9" ]]; then
             cp /root/rpmbuild/RPMS/x86_64/jami-libqt-$QT_MAJOR_MINOR_PATCH-*.el9.x86_64.rpm "${RPM_PATH}"
         elif [[ "${DISTRIBUTION}" == "alma_10" ]]; then
@@ -137,7 +139,7 @@ if [ ! -f "${RPM_PATH}" ]; then
         fi
     ) 9>"${RPM_PATH}.lock"
 fi
-rpm --install "${RPM_PATH}"
+rpm --define '_pkgverify_level digest' --install "${RPM_PATH}"
 cp "${RPM_PATH}" /opt/output
 cd /opt/client-qt
 
@@ -148,7 +150,7 @@ rpmdev-bumpspec --comment="Automatic nightly release" \
 
 # Build the daemon and install it.
 rpmbuild --define "debug_package %{nil}" -ba jami-daemon.spec
-rpm --install /root/rpmbuild/RPMS/x86_64/jami-daemon-*
+rpm --define '_pkgverify_level digest' --install /root/rpmbuild/RPMS/x86_64/jami-daemon-*
 
 # Build the temporary transitional packages.
 rpmbuild --define "debug_package %{nil}" -ba jami-libclient.spec
