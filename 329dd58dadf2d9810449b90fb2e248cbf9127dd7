@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c8aeb843_d4bd901f",
+        "filename": "tests/qml/src/tst_CollabRichEditorWindow.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 361,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-10-30T00:06:13Z",
+      "side": 1,
+      "message": "[warning] Line 361: 🟡 `editorWindow.dialogCoordinator` is overridden with a test double but never restored. This leaks mutable global state across tests and can make later tests unexpectedly use the stubbed coordinator. Save the previous value and restore it at the end of the test (or in cleanup), e.g. `const old \u003d editorWindow.dialogCoordinator; ...; editorWindow.dialogCoordinator \u003d old;`.",
+      "revId": "329dd58dadf2d9810449b90fb2e248cbf9127dd7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
