@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1cef99e2_d1488dad",
+        "filename": "src/app/mainview/components/CollabRichEditorWindow.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 643,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-10-30T00:01:10Z",
+      "side": 1,
+      "message": "[warning] Line 643: 🟡 `root.activateEditorWindow()` is called immediately after opening the export result dialog, which can steal focus from the dialog before the user interacts with it. Restore editor focus only from the dialog close signal (`msgDlg.closed`) to keep focus behavior consistent and avoid flicker.",
+      "revId": "cd7710c46a3e3233811f7f9dd3ec5cd2e7169962",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5cb18510_67e480da",
+        "filename": "tests/qml/src/tst_CollabRichEditorWindow.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 464,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-10-30T00:01:10Z",
+      "side": 1,
+      "message": "[error] Line 464: 🔴 `fontMenu` is referenced but never defined in `test_darkThemeMenusRenameFieldAndPlaceholder` (`verify(headingMenu \u0026\u0026 fontMenu \u0026\u0026 textSizeMenu)` and subsequent `fontMenu...` reads). In QML JS this throws at runtime and makes the new test fail. Define it explicitly (e.g., `const fontMenu \u003d findChild(editorWindow, \"fontFamilyMenu\");`) before use.",
+      "revId": "cd7710c46a3e3233811f7f9dd3ec5cd2e7169962",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
