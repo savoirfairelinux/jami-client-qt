@@ -18,6 +18,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a0e698f5_3e56647b",
+        "filename": "src/app/mainview/components/CollabRichEditorWindow.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 643,
+      "author": {
+        "id": 617
+      },
+      "writtenOn": "2026-10-30T00:05:00Z",
+      "side": 1,
+      "message": "Done in PS2: `root.activateEditorWindow()` is now called only on `msgDlg.closed` (with a fallback if `msgDlg.closed` is unavailable).",
+      "parentUuid": "1cef99e2_d1488dad",
+      "revId": "cd7710c46a3e3233811f7f9dd3ec5cd2e7169962",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5cb18510_67e480da",
@@ -31,6 +49,24 @@
       "writtenOn": "2026-10-30T00:01:10Z",
       "side": 1,
       "message": "[error] Line 464: 🔴 `fontMenu` is referenced but never defined in `test_darkThemeMenusRenameFieldAndPlaceholder` (`verify(headingMenu \u0026\u0026 fontMenu \u0026\u0026 textSizeMenu)` and subsequent `fontMenu...` reads). In QML JS this throws at runtime and makes the new test fail. Define it explicitly (e.g., `const fontMenu \u003d findChild(editorWindow, \"fontFamilyMenu\");`) before use.",
+      "revId": "cd7710c46a3e3233811f7f9dd3ec5cd2e7169962",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f994b6c6_c83ddca3",
+        "filename": "tests/qml/src/tst_CollabRichEditorWindow.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 464,
+      "author": {
+        "id": 617
+      },
+      "writtenOn": "2026-10-30T00:05:00Z",
+      "side": 1,
+      "message": "Done in PS2: `root.activateEditorWindow()` is now called only on `msgDlg.closed` (with a fallback if `msgDlg.closed` is unavailable).",
+      "parentUuid": "5cb18510_67e480da",
       "revId": "cd7710c46a3e3233811f7f9dd3ec5cd2e7169962",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
