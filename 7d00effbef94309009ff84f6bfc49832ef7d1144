@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a76ad4a2_4d1788fa",
+        "filename": "src/core/authority/storagehelper.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 269,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-10-31T15:34:59Z",
+      "side": 1,
+      "message": "[warning] Line 269: 🟡 `contains(\"PHOTO\")` can match non-avatar properties (for example extension keys that merely include the substring), so the first non-empty match may still be incorrect. Prefer matching the vCard property name explicitly (e.g., `key \u003d\u003d \"PHOTO\"` or `key.startsWith(\"PHOTO;\")`) before accepting the value.",
+      "revId": "7d00effbef94309009ff84f6bfc49832ef7d1144",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
