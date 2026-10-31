@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a4d56d64_a942ec0e",
+        "filename": "src/app/instancemanager.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-10-31T09:56:15Z",
+      "side": 1,
+      "message": "[error] Line 211: 🔴 This change likely double-encodes the key for other IPC primitives. `Impl` previously received raw SHA-256 bytes, and `generateKeyHash()` already hex-encodes for shared-memory/semaphore keys (per commit message). Passing `appData.result().toHex()` into `Impl` means those paths may become hex-of-hex, changing identifiers unintentionally. Fix by keeping `Impl` input as raw digest and hex-encoding only at the QLocalServer name construction point.",
+      "revId": "81929b74ca7c8a5f04e4cba4854666b1ddfe6f31",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aaf5b429_0d1244f7",
+        "filename": "tests/unittests/instancemanager_unittest.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-10-31T09:56:15Z",
+      "side": 1,
+      "message": "[warning] Line 35: 🟡 The test mutates global `QApplication` identity and restores it only at function end; any `ASSERT_*` failure before teardown leaves process-global state altered for subsequent tests. Use RAII (e.g., scope guard) to always restore app name/domain and cleanup server socket.",
+      "revId": "81929b74ca7c8a5f04e4cba4854666b1ddfe6f31",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
