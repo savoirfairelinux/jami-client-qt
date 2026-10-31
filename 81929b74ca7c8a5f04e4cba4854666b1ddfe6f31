@@ -18,6 +18,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3be9ba36_8f31320c",
+        "filename": "src/app/instancemanager.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 1197
+      },
+      "writtenOn": "2026-10-31T14:27:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a4d56d64_a942ec0e",
+      "revId": "81929b74ca7c8a5f04e4cba4854666b1ddfe6f31",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "aaf5b429_0d1244f7",
@@ -31,6 +49,24 @@
       "writtenOn": "2026-10-31T09:56:15Z",
       "side": 1,
       "message": "[warning] Line 35: 🟡 The test mutates global `QApplication` identity and restores it only at function end; any `ASSERT_*` failure before teardown leaves process-global state altered for subsequent tests. Use RAII (e.g., scope guard) to always restore app name/domain and cleanup server socket.",
+      "revId": "81929b74ca7c8a5f04e4cba4854666b1ddfe6f31",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d61dabc8_492d41b3",
+        "filename": "tests/unittests/instancemanager_unittest.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1197
+      },
+      "writtenOn": "2026-10-31T14:27:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aaf5b429_0d1244f7",
       "revId": "81929b74ca7c8a5f04e4cba4854666b1ddfe6f31",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
