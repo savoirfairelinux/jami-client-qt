@@ -265,7 +265,7 @@ getAccountAvatar(const QString& accountId)
         [&](const QByteArray& readData, QTextStream&) {
             QHash<QByteArray, QByteArray> vCard = lrc::vCard::utils::toHashMap(readData);
             for (auto it = vCard.cbegin(); it != vCard.cend(); ++it)
-                if (it.key().contains("PHOTO")) {
+                if (it.key().contains("PHOTO") && !it.value().isEmpty()) {
                     avatar = it.value();
                     return;
                 }

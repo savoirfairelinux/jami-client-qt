@@ -16,7 +16,12 @@
  */
 
 #include "globaltestenvironment.h"
+#include "authority/storagehelper.h"
 #include "utilsadapter.h"
+
+#include <QFile>
+#include <QFileInfo>
+#include <QTemporaryDir>
 
 /*!
  * Test fixture for AccountAdapter testing
@@ -64,6 +69,44 @@ TEST_F(AccountFixture, UnknownAccountHasNoBotOwner)
                               globalEnv.lrcInstance.data());
 
     EXPECT_TRUE(utilsAdapter.getBotOwner("missing-account-id").isEmpty());
+}
+
+TEST_F(AccountFixture, AccountAvatarSkipsEmptyPhotoEntries)
+{
+    using namespace lrc::authority;
+
+    ASSERT_TRUE(QDir().mkpath(storage::getPath()));
+    QTemporaryDir profileDir(storage::getPath() + "avatar-test-XXXXXX");
+    ASSERT_TRUE(profileDir.isValid());
+    const auto accountId = QFileInfo(profileDir.path()).fileName();
+    const QByteArray photo
+        = "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAAAAAA6fptVAAAACklEQVR42mNgAAAAAgAB9HFkPgAAAABJRU5ErkJggg==";
+    const QList<QByteArray> photoKeys {"PHOTO", "PHOTO;ENCODING=BASE64;TYPE=PNG"};
+    auto populatedKeys = photoKeys;
+    populatedKeys.append(QByteArray {});
+
+    for (const auto& lineEnding : {QByteArray("\n"), QByteArray("\r\n")}) {
+        // Both value placements must work regardless of QHash iteration order.
+        for (const auto& populatedKey : populatedKeys) {
+            SCOPED_TRACE(populatedKey.constData());
+            QByteArray vcard = "BEGIN:VCARD" + lineEnding + "VERSION:2.1" + lineEnding;
+            for (const auto& key : photoKeys) {
+                vcard += key + ':';
+                if (key == populatedKey)
+                    vcard += photo;
+                vcard += lineEnding;
+            }
+            vcard += "END:VCARD" + lineEnding;
+
+            QFile file(profileDir.path() + "/profile.vcf");
+            ASSERT_TRUE(file.open(QIODevice::WriteOnly | QIODevice::Truncate));
+            ASSERT_EQ(file.write(vcard), vcard.size());
+            file.close();
+
+            const auto expected = populatedKey.isEmpty() ? QByteArray {} : photo;
+            EXPECT_EQ(storage::getAccountAvatar(accountId).toLatin1(), expected);
+        }
+    }
 }
 
 /*!
