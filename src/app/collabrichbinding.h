@@ -101,6 +101,19 @@ public:
     /// attribute.
     Q_INVOKABLE void setAlign(const QString& align, int start, int end);
 
+    /// Sets the direction ("ltr" or "rtl") of the paragraphs the selection
+    /// touches. Left-to-right is the default and is stored as the absence of the
+    /// attribute.
+    Q_INVOKABLE void setDirection(const QString& direction, int start, int end);
+
+    /// Sets the spelling language ("fr_FR", ...) of [start, end), "" for the
+    /// application's own language.
+    Q_INVOKABLE void setLanguage(const QString& language, int start, int end);
+
+    /// The text as paragraph-bound runs of one spelling language each:
+    /// {start, text, lang}, where start is a position in the document.
+    Q_INVOKABLE QVariantList languageRuns() const;
+
     /// Replace [start, end) with the clipboard's plain text (sanitized paste): rich
     /// clipboard formatting is dropped so every participant stays consistent.
     Q_INVOKABLE void pasteText(int start, int end);
@@ -262,6 +275,7 @@ private:
     void reconcileLists();
 
     void reconcileAlignment();
+    void setParagraphAttribute(const QString& key, const QJsonValue& value, int start, int end);
 
     // Answer to clipboardHasImage(), worked out when first asked after a change
     // of clipboard and remembered until the next one.
