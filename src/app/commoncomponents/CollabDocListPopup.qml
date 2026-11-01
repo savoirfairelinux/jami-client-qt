@@ -72,9 +72,18 @@ BaseModalDialog {
 
     titleText: qsTr("Editable documents")
 
-    button1.text: qsTr("Close")
-    button1Role: DialogButtonBox.RejectRole
-    button1.onClicked: close()
+    button1.text: qsTr("New editable document")
+    button1Role: DialogButtonBox.AcceptRole
+    button1.onClicked: {
+        viewCoordinator.presentDialog(appWindow, "commoncomponents/CollabNewDocPopup.qml", {
+                "conversationId": root.conversationId
+            });
+        close();
+    }
+
+    button2.text: qsTr("Close")
+    button2Role: DialogButtonBox.RejectRole
+    button2.onClicked: close()
 
     onAboutToShow: refresh()
 

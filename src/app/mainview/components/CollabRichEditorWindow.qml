@@ -18,6 +18,7 @@
 import QtQuick
 import QtQuick.Window
 import QtQuick.Controls
+import QtQuick.Controls.impl
 import QtQuick.Layouts
 import net.jami.Models 1.1
 import net.jami.Constants 1.1
@@ -227,7 +228,7 @@ Window {
 
     component FormatButton: AbstractButton {
         id: fmtBtn
-        property string glyph: ""
+        property string iconSource: ""
         property bool active: false
         implicitWidth: 34
         implicitHeight: 30
@@ -237,16 +238,12 @@ Window {
             border.width: 1
             border.color: JamiTheme.tabbarBorderColor
         }
-        contentItem: Text {
-            text: fmtBtn.glyph
-            horizontalAlignment: Text.AlignHCenter
-            verticalAlignment: Text.AlignVCenter
+        // Same icons as the chat message format bar.
+        contentItem: IconImage {
+            source: fmtBtn.iconSource
+            sourceSize.width: JamiTheme.iconButtonSmall
+            sourceSize.height: JamiTheme.iconButtonSmall
             color: fmtBtn.active ? "white" : JamiTheme.textColor
-            font.pointSize: JamiTheme.textFontSize
-            font.bold: fmtBtn.glyph === "B"
-            font.italic: fmtBtn.glyph === "I"
-            font.underline: fmtBtn.glyph === "U"
-            font.strikeout: fmtBtn.glyph === "S"
         }
     }
 
@@ -840,7 +837,7 @@ Window {
 
             FormatButton {
                 enabled: !root.previewing
-                glyph: "B"
+                iconSource: JamiResources.bold_black_24dp_svg
                 active: root.fmt.b === true
                 onClicked: {
                     richBinding.toggleInline("b", editor.selectionStart, editor.selectionEnd);
@@ -850,7 +847,7 @@ Window {
             }
             FormatButton {
                 enabled: !root.previewing
-                glyph: "I"
+                iconSource: JamiResources.italic_black_24dp_svg
                 active: root.fmt.i === true
                 onClicked: {
                     richBinding.toggleInline("i", editor.selectionStart, editor.selectionEnd);
@@ -860,7 +857,7 @@ Window {
             }
             FormatButton {
                 enabled: !root.previewing
-                glyph: "U"
+                iconSource: JamiResources.underline_black_24dp_svg
                 active: root.fmt.u === true
                 onClicked: {
                     richBinding.toggleInline("u", editor.selectionStart, editor.selectionEnd);
@@ -870,7 +867,7 @@ Window {
             }
             FormatButton {
                 enabled: !root.previewing
-                glyph: "S"
+                iconSource: JamiResources.strikethrough_s_24dp_svg
                 active: root.fmt.s === true
                 onClicked: {
                     richBinding.toggleInline("s", editor.selectionStart, editor.selectionEnd);
@@ -917,7 +914,7 @@ Window {
             }
             FormatButton {
                 enabled: !root.previewing
-                glyph: "•"
+                iconSource: JamiResources.bidirectional_bullet_point_black_24dp_svg
                 ToolTip.visible: hovered
                 ToolTip.text: qsTr("Bulleted list")
                 active: root.fmt.list === "bullet"
@@ -929,7 +926,7 @@ Window {
             }
             FormatButton {
                 enabled: !root.previewing
-                glyph: "1."
+                iconSource: JamiResources.bidirectional_bullet_number_black_24dp_svg
                 ToolTip.visible: hovered
                 ToolTip.text: qsTr("Numbered list")
                 active: root.fmt.list === "ordered"
@@ -944,7 +941,7 @@ Window {
 
             FormatButton {
                 enabled: !root.previewing
-                glyph: "🔗"
+                iconSource: JamiResources.link_web_black_24dp_svg
                 active: root.fmt.link !== undefined && root.fmt.link !== ""
                 onClicked: {
                     linkField.text = (root.fmt.link !== undefined ? root.fmt.link : "");
@@ -953,14 +950,14 @@ Window {
             }
             FormatButton {
                 enabled: !root.previewing
-                glyph: "🖼"
+                iconSource: JamiResources.add_photo_alternate_black_24dp_svg
                 ToolTip.visible: hovered
                 ToolTip.text: qsTr("Insert image")
                 onClicked: root.pickImage()
             }
             FormatButton {
                 enabled: !root.previewing
-                glyph: "⌫"
+                iconSource: JamiResources.clear_24dp_svg
                 ToolTip.visible: hovered
                 ToolTip.text: qsTr("Clear formatting")
                 onClicked: {

@@ -58,6 +58,14 @@ BaseModalDialog {
 
         Component.onCompleted: nameField.forceActiveFocus()
 
+        // The dialog is a separate window: take the focus once it is shown.
+        Connections {
+            target: root
+            function onOpened() {
+                nameField.forceActiveFocus();
+            }
+        }
+
         Label {
             Layout.fillWidth: true
             Layout.leftMargin: JamiTheme.preferredMarginSize
