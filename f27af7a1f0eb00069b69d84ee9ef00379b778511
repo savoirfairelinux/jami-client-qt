@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d9445fa_2d5d7a92",
+        "filename": "src/app/collabrichbinding.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 1269,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-01T02:33:44Z",
+      "side": 1,
+      "message": "[warning] Line 1269: 🟡 `applyRemoteDelta()` now calls `reconcileAuthorshipColors()` unconditionally, and when colors are disabled that function still scans/rewrites the entire document via `clearBackgroundBrush()`. This is O(document fragments) on every remote edit and can degrade collaborative typing on large docs. Gate reconciliation to when authorship colors are enabled, and clear backgrounds only once when transitioning from enabled → disabled.",
+      "revId": "f27af7a1f0eb00069b69d84ee9ef00379b778511",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d3f14d83_cfbebbf2",
+        "filename": "src/app/mainview/components/CollabRichEditorWindow.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 1251,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-01T02:33:44Z",
+      "side": 1,
+      "message": "[error] Line 1251: 🔴 The line-number gutter is positioned from document coordinates (`modelData.y`) but does not compensate for editor scrolling (`editor.contentY`), so numbers drift out of alignment as soon as the document scrolls. Include `editor.contentY` in the model dependencies and render with `y: modelData.y + editor.topPadding - editor.contentY` (or place the gutter inside the scrolling content item) so line numbers stay aligned with visible lines.",
+      "revId": "f27af7a1f0eb00069b69d84ee9ef00379b778511",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
