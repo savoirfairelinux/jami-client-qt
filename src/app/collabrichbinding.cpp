@@ -95,6 +95,23 @@ constexpr int ALIGN_PROPERTY = QTextFormat::UserProperty + 2;
 
 constexpr int FONT_PROPERTY = QTextFormat::UserProperty + 3;
 constexpr int HEADER_PROPERTY = QTextFormat::UserProperty + 4;
+// Paragraph direction, held on the characters of the line like the alignment:
+// 0 left-to-right (the default, never stored), 1 right-to-left.
+constexpr int DIRECTION_PROPERTY = QTextFormat::UserProperty + 5;
+// Spelling language of a run of characters, a locale such as "fr_FR". Empty
+// means the application's own language; LANGUAGE_NONE turns checking off.
+constexpr int LANGUAGE_PROPERTY = QTextFormat::UserProperty + 6;
+const QString LANGUAGE_NONE = QStringLiteral("zxx");
+
+// A language arrives from the local UI or from a peer's delta; it only ever
+// names a dictionary, so anything that is not a plain locale tag is dropped.
+QString
+documentLanguage(const QJsonValue& value)
+{
+    static const QRegularExpression pattern(QStringLiteral("\\A[A-Za-z0-9_-]{2,16}\\z"));
+    const QString lang = value.toString();
+    return pattern.match(lang).hasMatch() ? lang : QString();
+}
 
 void
 resolveFontSize(QTextCharFormat& format)
@@ -214,6 +231,10 @@ charFormatToAttrs(const QTextCharFormat& f)
         else if (t == 3)
             a[QStringLiteral("align")] = QStringLiteral("justify");
     }
+    if (f.intProperty(DIRECTION_PROPERTY) == 1)
+        a[QStringLiteral("dir")] = QStringLiteral("rtl");
+    if (const QString lang = f.stringProperty(LANGUAGE_PROPERTY); !lang.isEmpty())
+        a[QStringLiteral("lang")] = lang;
     return a;
 }
 
@@ -273,6 +294,10 @@ mergeFormatFromAttrs(const QJsonObject& attrs)
             f.setProperty(LIST_PROPERTY, listTypeFromStyle(v.isString() ? v.toString() : QString()));
         } else if (key == QLatin1String("align")) {
             f.setProperty(ALIGN_PROPERTY, alignTypeFromStyle(v.isString() ? v.toString() : QString()));
+        } else if (key == QLatin1String("dir")) {
+            f.setProperty(DIRECTION_PROPERTY, v.toString() == QLatin1String("rtl") ? 1 : 0);
+        } else if (key == QLatin1String("lang")) {
+            f.setProperty(LANGUAGE_PROPERTY, documentLanguage(v));
         } else if (key == QLatin1String("link")) {
             const QString href = on ? sanitizedHref(v.toString()) : QString();
             if (!href.isEmpty()) {
@@ -553,6 +578,20 @@ blockAlignType(const QTextBlock& blk)
         const QTextCharFormat f = it.fragment().charFormat();
         if (f.hasProperty(ALIGN_PROPERTY))
             return f.intProperty(ALIGN_PROPERTY);
+    }
+    return 0;
+}
+
+// Direction (0 left-to-right, 1 right-to-left) of a block, from the first
+// fragment carrying one so an unformatted insertion at the start does not
+// flip the paragraph.
+int
+blockDirectionType(const QTextBlock& blk)
+{
+    for (auto it = blk.begin(); it != blk.end(); ++it) {
+        const QTextCharFormat f = it.fragment().charFormat();
+        if (f.hasProperty(DIRECTION_PROPERTY))
+            return f.intProperty(DIRECTION_PROPERTY);
     }
     return 0;
 }
@@ -1035,12 +1074,15 @@ CollabRichBinding::reconcileAlignment()
             continue;
         }
         const Qt::Alignment wanted = alignmentFromType(type);
+        const Qt::LayoutDirection direction = blockDirectionType(blk) == 1 ? Qt::RightToLeft : Qt::LeftToRight;
         // Rewriting a block format for nothing would report an edit on every
         // incoming delta, on every paragraph of the document.
-        if (blk.blockFormat().alignment() == wanted && blk.blockFormat().leftMargin() == 0)
+        if (blk.blockFormat().alignment() == wanted && blk.blockFormat().leftMargin() == 0
+            && blk.blockFormat().layoutDirection() == direction)
             continue;
         QTextBlockFormat bf = blk.blockFormat();
         bf.setAlignment(wanted);
+        bf.setLayoutDirection(direction);
         // A margin left over from an image this paragraph no longer holds.
         bf.setLeftMargin(0);
         QTextCursor cc(blk);
@@ -1499,12 +1541,12 @@ CollabRichBinding::setList(const QString& style, int start, int end)
 }
 
 void
-CollabRichBinding::setAlign(const QString& align, int start, int end)
+CollabRichBinding::setParagraphAttribute(const QString& key, const QJsonValue& value, int start, int end)
 {
     QTextDocument* d = doc();
     if (!d)
         return;
-    // Alignment belongs to whole paragraphs, so the selection is widened to them.
+    // These belong to whole paragraphs, so the selection is widened to them.
     QTextCursor a(d);
     a.setPosition(qMax(0, start));
     a.movePosition(QTextCursor::StartOfBlock);
@@ -1516,11 +1558,7 @@ CollabRichBinding::setAlign(const QString& align, int start, int end)
     if (lineStart >= lineEnd)
         return; // empty line: there is no character to hold the attribute
 
-    // The four alignments exclude one another, so this is not a toggle. Left is
-    // the default and clears the attribute rather than storing itself.
-    const int type = alignTypeFromStyle(align);
-    QJsonObject attrs;
-    attrs[QStringLiteral("align")] = type == 0 ? QJsonValue(QJsonValue::Null) : QJsonValue(align);
+    const QJsonObject attrs {{key, value}};
 
     applyingRemote_ = true;
     QTextCursor c(d);
@@ -1535,6 +1573,77 @@ CollabRichBinding::setAlign(const QString& align, int start, int end)
         ops.append(QJsonObject {{QStringLiteral("retain"), lineStart}});
     ops.append(QJsonObject {{QStringLiteral("retain"), lineEnd - lineStart}, {QStringLiteral("attributes"), attrs}});
     Q_EMIT localDelta(QString::fromUtf8(QJsonDocument(ops).toJson(QJsonDocument::Compact)));
+}
+
+void
+CollabRichBinding::setAlign(const QString& align, int start, int end)
+{
+    // The four alignments exclude one another, so this is not a toggle. Left is
+    // the default and clears the attribute rather than storing itself.
+    setParagraphAttribute(QStringLiteral("align"),
+                          alignTypeFromStyle(align) == 0 ? QJsonValue(QJsonValue::Null) : QJsonValue(align),
+                          start,
+                          end);
+}
+
+void
+CollabRichBinding::setDirection(const QString& direction, int start, int end)
+{
+    // Left-to-right is the default and clears the attribute.
+    setParagraphAttribute(QStringLiteral("dir"),
+                          direction == QLatin1String("rtl") ? QJsonValue(direction) : QJsonValue(QJsonValue::Null),
+                          start,
+                          end);
+}
+
+void
+CollabRichBinding::setLanguage(const QString& language, int start, int end)
+{
+    if (!language.isEmpty() && documentLanguage(language).isEmpty())
+        return;
+    setInlineAttribute(QStringLiteral("lang"),
+                       language.isEmpty() ? QJsonValue(QJsonValue::Null) : QJsonValue(language),
+                       start,
+                       end);
+}
+
+QVariantList
+CollabRichBinding::languageRuns() const
+{
+    QVariantList runs;
+    QTextDocument* d = doc();
+    if (!d)
+        return runs;
+    // One run per stretch of a paragraph in the same language, so that a word
+    // split by bold or italic stays whole.
+    for (QTextBlock blk = d->begin(); blk.isValid(); blk = blk.next()) {
+        QString language;
+        int runStart = -1;
+        QString text;
+        const auto flush = [&] {
+            if (runStart >= 0 && !text.isEmpty())
+                runs.append(QVariantMap {{QStringLiteral("start"), runStart},
+                                         {QStringLiteral("text"), text},
+                                         {QStringLiteral("lang"), language}});
+            runStart = -1;
+            text.clear();
+        };
+        for (auto it = blk.begin(); it != blk.end(); ++it) {
+            const QTextFragment frag = it.fragment();
+            if (!frag.isValid())
+                continue;
+            const QString lang = frag.charFormat().stringProperty(LANGUAGE_PROPERTY);
+            if (runStart >= 0 && lang != language)
+                flush();
+            if (runStart < 0) {
+                runStart = frag.position();
+                language = lang;
+            }
+            text += frag.text();
+        }
+        flush();
+    }
+    return runs;
 }
 
 // What the clipboard is asked for, in the order it is asked. The bytes a source
@@ -1886,7 +1995,8 @@ CollabRichBinding::clearFormat(int start, int end)
                        {QStringLiteral("s"), QJsonValue(QJsonValue::Null)},
                        {QStringLiteral("font"), QJsonValue(QJsonValue::Null)},
                        {QStringLiteral("size"), QJsonValue(QJsonValue::Null)},
-                       {QStringLiteral("link"), QJsonValue(QJsonValue::Null)}};
+                       {QStringLiteral("link"), QJsonValue(QJsonValue::Null)},
+                       {QStringLiteral("lang"), QJsonValue(QJsonValue::Null)}};
 
     applyingRemote_ = true;
     QTextCursor c(d);
@@ -1936,6 +2046,8 @@ CollabRichBinding::selectionFormat(int start, int end) const
     result[QStringLiteral("list")] = p.value(QStringLiteral("list")).toString();
     // Left is the absence of the attribute, and is reported as such.
     result[QStringLiteral("align")] = p.value(QStringLiteral("align")).toString();
+    result[QStringLiteral("dir")] = p.value(QStringLiteral("dir")).toString();
+    result[QStringLiteral("lang")] = a.value(QStringLiteral("lang")).toString();
     return result;
 }
 
