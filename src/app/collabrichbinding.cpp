@@ -47,6 +47,7 @@
 #include <QMarginsF>
 #include <QFontDatabase>
 #include <QFontInfo>
+#include <QFontMetricsF>
 #include <QRegularExpression>
 #include <QSignalBlocker>
 #include <memory>
@@ -95,6 +96,16 @@ constexpr int ALIGN_PROPERTY = QTextFormat::UserProperty + 2;
 
 constexpr int FONT_PROPERTY = QTextFormat::UserProperty + 3;
 constexpr int HEADER_PROPERTY = QTextFormat::UserProperty + 4;
+constexpr int AUTHOR_PROPERTY = QTextFormat::UserProperty + 5;
+
+QColor
+authorHighlightColor(const QString& authorId, bool darkTheme)
+{
+    int h = 0;
+    for (const QChar ch : authorId)
+        h = (h * 31 + ch.unicode()) % 360;
+    return QColor::fromHsl(h, darkTheme ? 150 : 180, darkTheme ? 75 : 220, darkTheme ? 120 : 140);
+}
 
 void
 resolveFontSize(QTextCharFormat& format)
@@ -114,24 +125,62 @@ documentFontId(const QJsonValue& value)
     return pattern.match(id).hasMatch() ? id : QString();
 }
 
+// Qt's QFontDatabase appends a foundry tag such as " [urw]" when multiple font
+// files share a family name. External ODF readers (LibreOffice Writer) know the
+// font by its family name without that tag.
+QString
+stripFoundrySuffix(const QString& family)
+{
+    static const QRegularExpression suffix(QStringLiteral("\\s*\\[[^\\]]+\\]\\z"));
+    QString cleaned = family;
+    cleaned.remove(suffix);
+    return cleaned.trimmed();
+}
+
+QStringList
+deduplicatedFamilies(const QStringList& candidates)
+{
+    QStringList out;
+    for (const QString& f : candidates) {
+        if (!f.isEmpty() && !out.contains(f))
+            out.append(f);
+    }
+    return out;
+}
+
 QStringList
 documentFontFamilies(const QString& id)
 {
-    if (id == QLatin1String("sans-serif"))
-        return {QFontDatabase::systemFont(QFontDatabase::GeneralFont).family()};
-    if (id == QLatin1String("monospace"))
-        return {QFontDatabase::systemFont(QFontDatabase::FixedFont).family()};
-    QFont font;
-    if (id == QLatin1String("serif")) {
-        font.setFamily(QStringLiteral("serif"));
-        font.setStyleHint(QFont::Serif);
-    } else if (id == QLatin1String("cursive")) {
-        font.setFamily(QStringLiteral("cursive"));
-        font.setStyleHint(QFont::Cursive);
-    } else {
-        return id.isEmpty() ? QStringList {} : QStringList {id};
+    if (id == QLatin1String("sans-serif")) {
+        QFont font(QStringLiteral("sans-serif"));
+        font.setStyleHint(QFont::SansSerif);
+        const QString resolved = QFontInfo(font).family();
+        return deduplicatedFamilies({QStringLiteral("Liberation Sans"),
+                                     stripFoundrySuffix(resolved),
+                                     resolved,
+                                     QFontDatabase::systemFont(QFontDatabase::GeneralFont).family()});
     }
-    return {QFontInfo(font).family()};
+    if (id == QLatin1String("serif")) {
+        QFont font(QStringLiteral("serif"));
+        font.setStyleHint(QFont::Serif);
+        const QString resolved = QFontInfo(font).family();
+        return deduplicatedFamilies({QStringLiteral("Liberation Serif"), stripFoundrySuffix(resolved), resolved});
+    }
+    if (id == QLatin1String("monospace")) {
+        QFont font(QStringLiteral("monospace"));
+        font.setStyleHint(QFont::Monospace);
+        const QString resolved = QFontInfo(font).family();
+        return deduplicatedFamilies({QStringLiteral("Liberation Mono"), stripFoundrySuffix(resolved), resolved});
+    }
+    if (id == QLatin1String("cursive")) {
+        QFont font(QStringLiteral("cursive"));
+        font.setStyleHint(QFont::Cursive);
+        const QString resolved = QFontInfo(font).family();
+        const QString cleaned = stripFoundrySuffix(resolved);
+        return deduplicatedFamilies(
+            {cleaned, QStringLiteral("URW Chancery L"), QStringLiteral("Comic Sans MS"), resolved});
+    }
+    return id.isEmpty() ? QStringList {} : QStringList {id};
 }
 
 // 0 left, 1 centre, 2 right, 3 justified -- and back.
@@ -214,6 +263,9 @@ charFormatToAttrs(const QTextCharFormat& f)
         else if (t == 3)
             a[QStringLiteral("align")] = QStringLiteral("justify");
     }
+    const QString author = f.stringProperty(AUTHOR_PROPERTY);
+    if (!author.isEmpty())
+        a[QStringLiteral("author")] = author;
     return a;
 }
 
@@ -273,6 +325,8 @@ mergeFormatFromAttrs(const QJsonObject& attrs)
             f.setProperty(LIST_PROPERTY, listTypeFromStyle(v.isString() ? v.toString() : QString()));
         } else if (key == QLatin1String("align")) {
             f.setProperty(ALIGN_PROPERTY, alignTypeFromStyle(v.isString() ? v.toString() : QString()));
+        } else if (key == QLatin1String("author")) {
+            f.setProperty(AUTHOR_PROPERTY, v.isString() ? v.toString() : QString());
         } else if (key == QLatin1String("link")) {
             const QString href = on ? sanitizedHref(v.toString()) : QString();
             if (!href.isEmpty()) {
@@ -657,6 +711,26 @@ pngDataUrl(const QImage& image)
     return QStringLiteral("data:image/png;base64,") + QString::fromLatin1(png.toBase64());
 }
 
+void
+clearBackgroundBrush(QTextDocument* d)
+{
+    if (!d)
+        return;
+    for (QTextBlock blk = d->begin(); blk.isValid(); blk = blk.next()) {
+        for (auto it = blk.begin(); it != blk.end(); ++it) {
+            const QTextFragment frag = it.fragment();
+            if (!frag.isValid() || !frag.charFormat().hasProperty(QTextFormat::BackgroundBrush))
+                continue;
+            QTextCharFormat fmt = frag.charFormat();
+            fmt.clearProperty(QTextFormat::BackgroundBrush);
+            QTextCursor c(d);
+            c.setPosition(frag.position());
+            c.setPosition(frag.position() + frag.length(), QTextCursor::KeepAnchor);
+            c.setCharFormat(fmt);
+        }
+    }
+}
+
 // A copy of the document fit to leave the editor: its pictures carry their own
 // bytes and an explicit size, and the paragraphs holding them state their real
 // alignment instead of the left margin the on-screen workaround needs.
@@ -664,6 +738,7 @@ std::unique_ptr<QTextDocument>
 preparedForExport(QTextDocument* d, qreal maxWidth, Pictures pictures)
 {
     std::unique_ptr<QTextDocument> copy(d->clone());
+    clearBackgroundBrush(copy.get());
     if (pictures == Pictures::Dropped) {
         // Left in place, a picture is still one character, and the writer spells
         // it as the object replacement character: a stray glyph in a text file.
@@ -998,6 +1073,23 @@ CollabRichBinding::onContentsChange(int /*position*/, int /*charsRemoved*/, int 
             }
             blk = blk.next();
         }
+        if (!localAuthor_.isEmpty()) {
+            QTextCursor authorCursor(d);
+            authorCursor.setPosition(prefix);
+            authorCursor.setPosition(prefix + added, QTextCursor::KeepAnchor);
+            QTextCharFormat af;
+            af.setProperty(AUTHOR_PROPERTY, localAuthor_);
+            if (showAuthorshipColors_)
+                af.setBackground(authorHighlightColor(localAuthor_, darkTheme_));
+            authorCursor.mergeCharFormat(af);
+        } else if (showAuthorshipColors_) {
+            QTextCursor authorCursor(d);
+            authorCursor.setPosition(prefix);
+            authorCursor.setPosition(prefix + added, QTextCursor::KeepAnchor);
+            QTextCharFormat af;
+            af.setBackground(authorHighlightColor(QStringLiteral("local"), darkTheme_));
+            authorCursor.mergeCharFormat(af);
+        }
     }
 
     QJsonArray ops;
@@ -1176,6 +1268,9 @@ CollabRichBinding::applyRemoteDelta(const QString& deltaJson)
     // attributes just applied.
     reconcileLists();
     reconcileAlignment();
+    // Backgrounds only exist while the colors are shown: skip the full scan otherwise.
+    if (showAuthorshipColors_)
+        reconcileAuthorshipColors();
     c.endEditBlock();
     applyingRemote_ = false;
     // Keep the shadow equal to the (converged) content so local diffs stay aligned.
@@ -1832,6 +1927,33 @@ CollabRichBinding::pasteText(int start, int end)
 }
 
 void
+CollabRichBinding::copySelection(int start, int end) const
+{
+    QTextDocument* d = doc();
+    if (!d)
+        return;
+    const int s = qBound(0, qMin(start, end), d->characterCount() - 1);
+    const int e = qBound(s, qMax(start, end), d->characterCount() - 1);
+    if (s >= e)
+        return;
+    if (e - s == 1) {
+        QTextCursor c(d);
+        c.setPosition(s + 1);
+        if (c.charFormat().isImageFormat()) {
+            const QString name = c.charFormat().toImageFormat().name();
+            const QImage img = qvariant_cast<QImage>(d->resource(QTextDocument::ImageResource, QUrl(name)));
+            if (!img.isNull()) {
+                QGuiApplication::clipboard()->setImage(img);
+                return;
+            }
+        }
+    }
+    QString selected = d->toPlainText().mid(s, e - s);
+    selected.remove(OBJECT_REPLACEMENT);
+    QGuiApplication::clipboard()->setText(selected);
+}
+
+void
 CollabRichBinding::insertText(int start, int end, const QString& text)
 {
     QTextDocument* d = doc();
@@ -1839,20 +1961,133 @@ CollabRichBinding::insertText(int start, int end, const QString& text)
         return;
     if (text.isEmpty() && start == end)
         return;
-    // Literal text, never interpreted as markup. This goes through
-    // onContentsChange like a normal edit, so it syncs.
+    // Literal text, never interpreted as markup. Preserve the active character
+    // and paragraph formatting at the insertion point (clearing only links) so
+    // pasting plain text keeps the current font size, family, and block style.
     QTextCursor c(d);
     const int last = d->characterCount() - 1;
-    c.setPosition(qBound(0, qMin(start, end), last));
-    if (start != end) {
-        c.setPosition(qBound(0, qMax(start, end), last), QTextCursor::KeepAnchor);
+    const int pos = qBound(0, qMin(start, end), last);
+    const int endPos = qBound(pos, qMax(start, end), last);
+    QTextCharFormat inherited;
+    if (pos < endPos) {
+        c.setPosition(pos + 1);
+        inherited = c.charFormat();
+    } else if (pos > 0 && d->findBlock(pos).position() < pos) {
+        c.setPosition(pos);
+        inherited = c.charFormat();
+    } else {
+        inherited = d->findBlock(pos).charFormat();
+    }
+    inherited.setAnchor(false);
+    inherited.setAnchorHref(QString());
+    inherited.clearForeground();
+    if (!insertionAttrs_.isEmpty() && pos == endPos && pos == insertionFormatPosition_) {
+        const QTextCharFormat pending = mergeFormatFromAttrs(insertionAttrs_);
+        inherited.merge(pending);
+        if (insertionAttrs_.contains(QStringLiteral("size")) && insertionAttrs_.value(QStringLiteral("size")).isNull())
+            inherited.clearProperty(QTextFormat::FontPointSize);
+        resolveFontSize(inherited);
+    }
+    c.setPosition(pos);
+    if (pos != endPos) {
+        c.setPosition(endPos, QTextCursor::KeepAnchor);
         c.removeSelectedText();
     }
     if (!text.isEmpty()) {
-        QTextCharFormat plain;
-        c.setCharFormat(plain);
-        c.insertText(text, plain);
+        c.setCharFormat(inherited);
+        c.insertText(text, inherited);
     }
+}
+
+void
+CollabRichBinding::setLocalAuthor(const QString& author)
+{
+    if (localAuthor_ == author)
+        return;
+    localAuthor_ = author;
+    if (showAuthorshipColors_)
+        reconcileAuthorshipColors();
+    Q_EMIT localAuthorChanged();
+}
+
+void
+CollabRichBinding::setShowAuthorshipColors(bool show)
+{
+    if (showAuthorshipColors_ == show)
+        return;
+    showAuthorshipColors_ = show;
+    reconcileAuthorshipColors();
+    Q_EMIT showAuthorshipColorsChanged();
+}
+
+void
+CollabRichBinding::setDarkTheme(bool dark)
+{
+    if (darkTheme_ == dark)
+        return;
+    darkTheme_ = dark;
+    if (showAuthorshipColors_)
+        reconcileAuthorshipColors();
+    Q_EMIT darkThemeChanged();
+}
+
+void
+CollabRichBinding::reconcileAuthorshipColors()
+{
+    QTextDocument* d = doc();
+    if (!d)
+        return;
+    const bool wasApplying = applyingRemote_;
+    applyingRemote_ = true;
+    const QSignalBlocker blocker(d);
+    if (!showAuthorshipColors_) {
+        clearBackgroundBrush(d);
+        applyingRemote_ = wasApplying;
+        return;
+    }
+    const QString fallbackAuthor = localAuthor_.isEmpty() ? QStringLiteral("local") : localAuthor_;
+    for (QTextBlock blk = d->begin(); blk.isValid(); blk = blk.next()) {
+        for (auto it = blk.begin(); it != blk.end(); ++it) {
+            const QTextFragment frag = it.fragment();
+            if (!frag.isValid() || frag.charFormat().isImageFormat())
+                continue;
+            QString author = frag.charFormat().stringProperty(AUTHOR_PROPERTY);
+            if (author.isEmpty())
+                author = fallbackAuthor;
+            QTextCursor c(d);
+            c.setPosition(frag.position());
+            c.setPosition(frag.position() + frag.length(), QTextCursor::KeepAnchor);
+            QTextCharFormat fmt;
+            fmt.setBackground(authorHighlightColor(author, darkTheme_));
+            c.mergeCharFormat(fmt);
+        }
+    }
+    applyingRemote_ = wasApplying;
+}
+
+QVariantList
+CollabRichBinding::lineNumbers() const
+{
+    QVariantList result;
+    QTextDocument* d = doc();
+    if (!d)
+        return result;
+    const qreal fallbackHeight = QFontMetricsF(d->defaultFont()).height();
+    for (QTextBlock blk = d->begin(); blk.isValid(); blk = blk.next()) {
+        const QRectF rect = d->documentLayout()->blockBoundingRect(blk);
+        qreal lineHeight = fallbackHeight;
+        if (const QTextLayout* layout = blk.layout(); layout && layout->lineCount() > 0) {
+            const QTextLine firstLine = layout->lineAt(0);
+            if (firstLine.isValid() && firstLine.height() > 0)
+                lineHeight = firstLine.height();
+        } else if (rect.height() > 0) {
+            lineHeight = rect.height();
+        }
+        result.append(QVariantMap {{QStringLiteral("number"), blk.blockNumber() + 1},
+                                   {QStringLiteral("y"), rect.top()},
+                                   {QStringLiteral("height"), lineHeight}});
+    }
+    return result;
 }
 
 void

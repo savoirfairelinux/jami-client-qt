@@ -53,10 +53,25 @@ BaseModalDialog {
     button2.onClicked: close()
 
     popupContent: ColumnLayout {
+        id: contentColumn
         width: JamiTheme.preferredDialogWidth
         spacing: JamiTheme.preferredMarginSize
 
-        Component.onCompleted: nameField.forceActiveFocus()
+        function focusNameField() {
+            nameField.forceActiveFocus();
+            Qt.callLater(function () {
+                nameField.forceActiveFocus();
+            });
+        }
+
+        Component.onCompleted: focusNameField()
+
+        Connections {
+            target: root
+            function onOpened() {
+                contentColumn.focusNameField();
+            }
+        }
 
         Label {
             Layout.fillWidth: true
@@ -69,11 +84,13 @@ BaseModalDialog {
 
         TextField {
             id: nameField
+            objectName: "collabNewDocNameField"
 
             Layout.fillWidth: true
             Layout.leftMargin: JamiTheme.preferredMarginSize
             Layout.rightMargin: JamiTheme.preferredMarginSize
             placeholderText: qsTr("Untitled document")
+            placeholderTextColor: JamiTheme.faddedFontColor
             color: JamiTheme.textColor
             font.pointSize: JamiTheme.textFontSize
             selectByMouse: true

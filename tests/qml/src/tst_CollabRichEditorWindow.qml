@@ -39,6 +39,8 @@ Item {
                 visible: true
             });
             verify(editorWindow);
+            editorWindow.requestActivate();
+            waitForRendering(editorWindow.contentItem);
             editor = findChild(editorWindow, "collabEditor");
             binding = findChild(editorWindow, "collabRichBinding");
             fontButton = findChild(editorWindow, "fontFamilyButton");
@@ -378,6 +380,7 @@ Item {
             verify(capturedDialog && capturedDialog.rejected._cb !== null);
             capturedDialog.rejected._cb();
             tryCompare(editor, "activeFocus", true);
+            editorWindow.dialogCoordinator = null;
         }
 
         function test_toolbarTooltipsAndListTerminology() {
@@ -488,6 +491,90 @@ Item {
             compare(nameField.background.color, JamiTheme.secondaryBackgroundColor);
 
             JamiTheme.setTheme(wasDark);
+        }
+
+        function test_defaultFontSizeIs12Pt() {
+            compare(editorWindow.baseFontSize, 12);
+            compare(editor.font.pointSize, 12);
+            const sizeButton = findChild(editorWindow, "textSizeButton");
+            verify(sizeButton);
+            compare(Number(sizeButton.label), 12);
+        }
+
+        function test_ctrlBAndCtrlIToggleFormattingInEditor() {
+            editor.forceActiveFocus();
+            editor.select(2, 8);
+            editorWindow.refreshFormatState();
+            compare(editorWindow.fmt.b, false);
+            compare(editorWindow.fmt.i, false);
+
+            keyClick(Qt.Key_B, Qt.ControlModifier);
+            compare(editorWindow.fmt.b, true);
+
+            keyClick(Qt.Key_I, Qt.ControlModifier);
+            compare(editorWindow.fmt.i, true);
+        }
+
+        function test_copyAndPasteWordInListDoesNotInsertNewline() {
+            editor.remove(0, editor.length);
+            binding.insertText(0, 0, "Please add a Line numbers toggle");
+            binding.setList("bullet", 0, editor.length);
+            editor.forceActiveFocus();
+            editor.select(7, 10);
+            keyClick(Qt.Key_C, Qt.ControlModifier);
+            editor.cursorPosition = 10;
+            keyClick(Qt.Key_V, Qt.ControlModifier);
+            const ops = content();
+            compare(ops.length, 1);
+            compare(ops[0].insert, "Please addadd a Line numbers toggle");
+            compare(ops[0].attributes.list, "bullet");
+        }
+
+        function test_pastingUnformattedTextPreservesCurrentFontSize() {
+            editor.remove(0, editor.length);
+            binding.insertText(0, 0, "Visit ");
+            binding.setFontSize(12, 0, 6);
+            editor.select(0, 6);
+            binding.copySelection(0, 6);
+            editor.cursorPosition = 6;
+            binding.insertText(6, 6, "https://wiki.documentfoundation.org/Fonts");
+            compare(binding.selectionFormat(6, 47).size, 12);
+        }
+
+        function test_authorshipColorsAndLineNumbersToggles() {
+            const authorshipBtn = findChild(editorWindow, "authorshipColorsButton");
+            const lineNumbersBtn = findChild(editorWindow, "lineNumbersButton");
+            const gutter = findChild(editorWindow, "lineNumberGutter");
+            verify(authorshipBtn && lineNumbersBtn && gutter);
+            compare(authorshipBtn.toolTipText, "Authorship colors");
+            compare(lineNumbersBtn.toolTipText, "Line numbers");
+            compare(authorshipBtn.checked, false);
+            compare(lineNumbersBtn.checked, false);
+            compare(gutter.visible, false);
+
+            mouseClick(authorshipBtn);
+            compare(authorshipBtn.checked, true);
+            compare(binding.showAuthorshipColors, true);
+
+            mouseClick(lineNumbersBtn);
+            compare(lineNumbersBtn.checked, true);
+            compare(gutter.visible, true);
+            verify(editor.leftPadding > 10);
+        }
+
+        function test_newEditableDocumentPopupFocusesNameField() {
+            const comp = Qt.createComponent("../../../src/app/commoncomponents/CollabNewDocPopup.qml");
+            verify(comp.status === Component.Ready);
+            const popup = createTemporaryObject(comp, editorWindow.contentItem, {
+                conversationId: conversationId
+            });
+            verify(popup);
+            popup.open();
+            const nameField = findChild(popup, "collabNewDocNameField");
+            verify(nameField);
+            compare(nameField.placeholderText, "Untitled document");
+            tryCompare(nameField, "activeFocus", true);
+            popup.close();
         }
     }
 }

@@ -531,12 +531,16 @@ Rectangle {
                 onVideoRecordMessageButtonClicked: rectangle.videoRecordMessageButtonClicked()
                 onShowMapClicked: rectangle.showMapClicked()
                 onNewEditableDocumentClicked: {
-                    viewCoordinator.presentDialog(appWindow,
-                                                  "commoncomponents/CollabNewDocPopup.qml",
-                                                  {
-                                                      "conversationId": convContext.id
-                                                  });
-                    textAreaObj.forceActiveFocus();
+                    var dlg = viewCoordinator.presentDialog(appWindow,
+                                                            "commoncomponents/CollabNewDocPopup.qml",
+                                                            {
+                                                                "conversationId": convContext.id
+                                                            });
+                    if (dlg && dlg.closed !== undefined) {
+                        dlg.closed.connect(function () {
+                            textAreaObj.forceActiveFocus();
+                        });
+                    }
                 }
                 modelList: listViewMoreButton.menuMoreButton
                 y: showMoreButton.y + 31

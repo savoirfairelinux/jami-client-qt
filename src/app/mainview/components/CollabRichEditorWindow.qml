@@ -51,7 +51,8 @@ Window {
     // Cached formatting state of the current selection, driving the toolbar.
     property var fmt: ({})
     // Editor base font size (local view preference; headings scale relative to it).
-    property int baseFontSize: JamiTheme.textFontSize
+    property int baseFontSize: 12
+    property bool showLineNumbers: false
     readonly property var fontChoices: [
         {
             "id": "",
@@ -748,6 +749,8 @@ Window {
         // let any image be made wider than the text already is.
         viewWidth: editor.width - editor.leftPadding - editor.rightPadding
         textDocument: editor.textDocument
+        localAuthor: root.accountUri
+        darkTheme: JamiTheme.darkTheme
         onLocalDelta: function (deltaJson) {
             // Peers' carets are indices into the shared document, so they move
             // for what is typed here exactly as they move for what arrives:
@@ -865,6 +868,52 @@ Window {
                         titleContainer.editing = false;
                         root.focusEditor();
                     }
+                }
+            }
+
+            PushButton {
+                id: authorshipColorsButton
+                objectName: "authorshipColorsButton"
+                Layout.alignment: Qt.AlignVCenter
+                focusPolicy: Qt.NoFocus
+                preferredSize: 26
+                imageContainerWidth: 18
+                imageContainerHeight: 18
+                source: JamiResources.brush_black_24dp_svg
+                toolTipText: qsTr("Authorship colors")
+                checkable: true
+                checked: richBinding.showAuthorshipColors
+                normalColor: "transparent"
+                imageColor: JamiTheme.textColor
+                onClicked: {
+                    richBinding.showAuthorshipColors = !richBinding.showAuthorshipColors;
+                    authorshipColorsButton.checked = Qt.binding(function () {
+                        return richBinding.showAuthorshipColors;
+                    });
+                    root.focusEditor();
+                }
+            }
+
+            PushButton {
+                id: lineNumbersButton
+                objectName: "lineNumbersButton"
+                Layout.alignment: Qt.AlignVCenter
+                focusPolicy: Qt.NoFocus
+                preferredSize: 26
+                imageContainerWidth: 18
+                imageContainerHeight: 18
+                source: JamiResources.bidirectional_bullet_number_black_24dp_svg
+                toolTipText: qsTr("Line numbers")
+                checkable: true
+                checked: root.showLineNumbers
+                normalColor: "transparent"
+                imageColor: JamiTheme.textColor
+                onClicked: {
+                    root.showLineNumbers = !root.showLineNumbers;
+                    lineNumbersButton.checked = Qt.binding(function () {
+                        return root.showLineNumbers;
+                    });
+                    root.focusEditor();
                 }
             }
 
@@ -1149,7 +1198,10 @@ Window {
                         id: editor
                         objectName: "collabEditor"
 
-                        padding: 10
+                        topPadding: 10
+                        bottomPadding: 10
+                        rightPadding: 10
+                        leftPadding: root.showLineNumbers ? 44 : 10
                         // Keystrokes must not reach a document the user cannot see.
                         readOnly: root.previewing
                         textFormat: TextEdit.RichText
@@ -1166,6 +1218,48 @@ Window {
                             border.width: 1
                             border.color: JamiTheme.tabbarBorderColor
                             radius: 8
+                        }
+
+                        Item {
+                            id: lineNumberGutter
+                            objectName: "lineNumberGutter"
+                            visible: root.showLineNumbers
+                            x: 0
+                            y: 0
+                            width: 36
+                            height: Math.max(editor.height, editor.contentHeight + editor.topPadding + editor.bottomPadding)
+
+                            Rectangle {
+                                anchors.right: parent.right
+                                anchors.top: parent.top
+                                anchors.bottom: parent.bottom
+                                anchors.topMargin: 4
+                                anchors.bottomMargin: 4
+                                width: 1
+                                color: JamiTheme.tabbarBorderColor
+                            }
+
+                            Repeater {
+                                model: {
+                                    richBinding.revision;
+                                    editor.contentHeight;
+                                    editor.width;
+                                    return root.showLineNumbers ? richBinding.lineNumbers() : [];
+                                }
+                                delegate: Text {
+                                    required property var modelData
+                                    x: 0
+                                    y: modelData.y + editor.topPadding
+                                    width: 30
+                                    height: modelData.height
+                                    horizontalAlignment: Text.AlignRight
+                                    verticalAlignment: Text.AlignVCenter
+                                    text: modelData.number
+                                    font.family: "monospace"
+                                    font.pointSize: JamiTheme.tinyFontSize
+                                    color: JamiTheme.faddedFontColor
+                                }
+                            }
                         }
 
                         onSelectionStartChanged: {
@@ -1192,13 +1286,39 @@ Window {
                             root.refreshImageGeom();
                         }
 
-                        // Intercept paste: a picture is stored with the document and
-                        // referenced, and text is inserted sanitized (rich clipboard
-                        // styling would otherwise render only locally and diverge from
-                        // what peers receive).
+                        // Intercept copy, cut, paste, and inline formatting shortcuts:
+                        // copying through CollabRichBinding avoids Qt's list-fragment
+                        // leading newline, and pasting inserts sanitized text or an
+                        // attachment image.
                         Keys.onPressed: function (event) {
                             if (event.matches(StandardKey.Paste)) {
                                 root.pasteFromClipboard();
+                                event.accepted = true;
+                            } else if (event.matches(StandardKey.Copy)) {
+                                richBinding.copySelection(editor.selectionStart, editor.selectionEnd);
+                                event.accepted = true;
+                            } else if (event.matches(StandardKey.Cut)) {
+                                richBinding.copySelection(editor.selectionStart, editor.selectionEnd);
+                                if (!root.previewing && editor.selectionStart !== editor.selectionEnd)
+                                    editor.remove(editor.selectionStart, editor.selectionEnd);
+                                event.accepted = true;
+                            } else if (event.matches(StandardKey.Bold)) {
+                                if (!root.previewing) {
+                                    richBinding.toggleInline("b", editor.selectionStart, editor.selectionEnd);
+                                    root.refreshFormatState();
+                                }
+                                event.accepted = true;
+                            } else if (event.matches(StandardKey.Italic)) {
+                                if (!root.previewing) {
+                                    richBinding.toggleInline("i", editor.selectionStart, editor.selectionEnd);
+                                    root.refreshFormatState();
+                                }
+                                event.accepted = true;
+                            } else if (event.matches(StandardKey.Underline)) {
+                                if (!root.previewing) {
+                                    richBinding.toggleInline("u", editor.selectionStart, editor.selectionEnd);
+                                    root.refreshFormatState();
+                                }
                                 event.accepted = true;
                             }
                         }
@@ -1605,7 +1725,7 @@ Window {
         EditorMenuItem {
             text: qsTr("Copy")
             enabled: editor.selectedText.length > 0
-            onTriggered: editor.copy()
+            onTriggered: richBinding.copySelection(editor.selectionStart, editor.selectionEnd)
         }
         EditorMenuItem {
             text: qsTr("Paste")

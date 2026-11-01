@@ -105,6 +105,36 @@ public:
     /// clipboard formatting is dropped so every participant stays consistent.
     Q_INVOKABLE void pasteText(int start, int end);
 
+    /// Copy [start, end) to the system clipboard without the leading newline
+    /// QTextDocumentFragment::toPlainText() prepends to list items.
+    Q_INVOKABLE void copySelection(int start, int end) const;
+
+    Q_PROPERTY(QString localAuthor READ localAuthor WRITE setLocalAuthor NOTIFY localAuthorChanged)
+    QString localAuthor() const
+    {
+        return localAuthor_;
+    }
+    void setLocalAuthor(const QString& author);
+
+    Q_PROPERTY(bool showAuthorshipColors READ showAuthorshipColors WRITE setShowAuthorshipColors NOTIFY
+                   showAuthorshipColorsChanged)
+    bool showAuthorshipColors() const
+    {
+        return showAuthorshipColors_;
+    }
+    void setShowAuthorshipColors(bool show);
+
+    Q_PROPERTY(bool darkTheme READ darkTheme WRITE setDarkTheme NOTIFY darkThemeChanged)
+    bool darkTheme() const
+    {
+        return darkTheme_;
+    }
+    void setDarkTheme(bool dark);
+
+    /// Geometry of each paragraph's first line for the line-number gutter:
+    /// list of { "number", "y", "height" }.
+    Q_INVOKABLE QVariantList lineNumbers() const;
+
     /// Whether pasting would insert a picture rather than text, so the editor
     /// knows which of the two paths to take.
     ///
@@ -251,6 +281,9 @@ Q_SIGNALS:
     void viewWidthChanged();
     void clipboardHasImageChanged();
     void revisionChanged();
+    void localAuthorChanged();
+    void showAuthorshipColorsChanged();
+    void darkThemeChanged();
 
 private:
     void onClipboardChanged();
@@ -262,6 +295,7 @@ private:
     void reconcileLists();
 
     void reconcileAlignment();
+    void reconcileAuthorshipColors();
 
     // Answer to clipboardHasImage(), worked out when first asked after a change
     // of clipboard and remembered until the next one.
@@ -281,6 +315,9 @@ private:
     int viewWidth_ {0};
     // Counts changes to the document, of any kind.
     int revision_ {0};
+    QString localAuthor_;
+    bool showAuthorshipColors_ {false};
+    bool darkTheme_ {false};
     void setInlineAttribute(const QString& key, const QJsonValue& value, int start, int end);
     QJsonObject insertionAttrs_;
     int insertionFormatPosition_ {0};
