@@ -50,6 +50,7 @@ SpellCheckAdapter::SpellCheckAdapter(SpellCheckDictionaryListModel* dictionaryLi
             [this](const QModelIndex&, const QModelIndex&, const QList<int>& roles) {
                 if (roles.contains(SpellCheckDictionaryList::Installed)) {
                     set_installedDictionaryCount(dictionaryListModel_->getInstalledDictionaries().size());
+                    localeCheckers_.clear();
                 }
             });
 
@@ -110,6 +111,42 @@ SpellCheckAdapter::spellSuggestionsRequest(const QString& word)
         variantList.append(QVariant(suggestion));
     }
     return variantList;
+}
+
+SpellChecker*
+SpellCheckAdapter::checkerFor(const QString& locale)
+{
+    if (auto it = localeCheckers_.find(locale); it != localeCheckers_.end())
+        return it->second.get();
+    const auto path = dictionaryListModel_->pathForLocale(locale);
+    if (path.isEmpty())
+        return nullptr;
+    auto checker = std::make_unique<SpellChecker>();
+    if (!checker->replaceDictionary(path))
+        return nullptr;
+    return localeCheckers_.emplace(locale, std::move(checker)).first->second.get();
+}
+
+bool
+SpellCheckAdapter::spellIn(const QString& locale, const QString& word)
+{
+    const auto checker = checkerFor(locale);
+    return !checker || checker->spell(word);
+}
+
+QVariantList
+SpellCheckAdapter::spellSuggestionsIn(const QString& locale, const QString& word)
+{
+    QVariantList result;
+    const auto checker = checkerFor(locale);
+    if (!checker || checker->spell(word))
+        return result;
+    for (const auto& suggestion : checker->suggest(word)) {
+        if (result.size() >= SUGGESTIONS_MAX_SIZE)
+            break;
+        result.append(suggestion);
+    }
+    return result;
 }
 
 QVariantList

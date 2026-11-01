@@ -23,6 +23,7 @@ import QtQuick.Layouts
 import net.jami.Models 1.1
 import net.jami.Constants 1.1
 import net.jami.Adapters 1.1
+import net.jami.Enums 1.1
 import "../../commoncomponents"
 
 // Independent top-level window for real-time collaborative WYSIWYG (rich-text)
@@ -304,6 +305,7 @@ Window {
         CollaborativeAdapter.openDocument(accountId, conversationId, documentId);
         richBinding.loadContentDelta(CollaborativeAdapter.contentDelta(accountId, conversationId, documentId));
         refreshFormatState();
+        scheduleSpellCheck();
     }
     onClosing: CollaborativeAdapter.closeDocument(accountId, conversationId, documentId)
 
@@ -374,6 +376,137 @@ Window {
     // Alignment of the paragraph under the caret. Left is stored as no attribute
     // at all, so an empty answer means left.
     readonly property string currentAlign: (root.fmt.align !== undefined && root.fmt.align !== "") ? root.fmt.align : "left"
+
+    // Direction of the paragraph under the caret. Left-to-right is stored as no
+    // attribute at all.
+    readonly property string currentDirection: root.fmt.dir === "rtl" ? "rtl" : "ltr"
+
+    function toggleDirection() {
+        richBinding.setDirection(root.currentDirection === "rtl" ? "ltr" : "rtl", editor.selectionStart, editor.selectionEnd);
+        root.refreshFormatState();
+        editor.forceActiveFocus();
+    }
+
+    // Spelling language of the selection, or of what the caret will type: "" for
+    // the application's own, "zxx" for none.
+    readonly property string noSpellLanguage: "zxx"
+    readonly property string currentLanguage: root.fmt.lang !== undefined ? root.fmt.lang : ""
+    readonly property var spellLanguages: {
+        SpellCheckAdapter.installedDictionaryCount;
+        return SpellCheckAdapter.getInstalledDictionaries();
+    }
+    readonly property var spellLanguageChoices: {
+        var choices = [
+            {
+                "id": "",
+                "label": qsTr("Default")
+            },
+            {
+                "id": root.noSpellLanguage,
+                "label": qsTr("No spell check")
+            }
+        ];
+        var locales = Object.keys(root.spellLanguages);
+        for (var i = 0; i < locales.length; ++i)
+            choices.push({
+                    "id": locales[i],
+                    "label": root.spellLanguages[locales[i]]
+                });
+        return choices;
+    }
+
+    function languageLabel(lang) {
+        if (lang === "")
+            return qsTr("Default");
+        if (lang === root.noSpellLanguage)
+            return qsTr("No spell check");
+        return root.spellLanguages[lang] !== undefined ? root.spellLanguages[lang] : lang;
+    }
+
+    function chooseLanguage(lang) {
+        richBinding.setLanguage(lang, editor.selectionStart, editor.selectionEnd);
+        root.refreshFormatState();
+        root.scheduleSpellCheck();
+        editor.forceActiveFocus();
+    }
+
+    // Words the dictionary of their language does not know: {start, end, word,
+    // lang}, in document positions. Underlined in the editor.
+    property var misspellings: []
+    // Suggestions for the word under the context menu, and where it is.
+    property var spellSuggestions: []
+    property var spellTarget: null
+
+    function spellCheckActive() {
+        return AppSettingsManager.getValue(Settings.EnableSpellCheck) && !root.previewing;
+    }
+
+    function scheduleSpellCheck() {
+        spellTimer.restart();
+    }
+
+    function recheckSpelling() {
+        var found = [];
+        if (root.spellCheckActive()) {
+            const appLang = AppSettingsManager.getValue(Settings.SpellLang);
+            const runs = richBinding.languageRuns();
+            for (var r = 0; r < runs.length; ++r) {
+                const lang = runs[r].lang !== "" ? runs[r].lang : appLang;
+                if (lang === "" || lang === root.noSpellLanguage)
+                    continue;
+                const words = SpellCheckAdapter.findWords(runs[r].text);
+                for (var w = 0; w < words.length; ++w) {
+                    if (!SpellCheckAdapter.spellIn(lang, words[w].word))
+                        found.push({
+                                "start": runs[r].start + words[w].position,
+                                "end": runs[r].start + words[w].position + words[w].length,
+                                "word": words[w].word,
+                                "lang": lang
+                            });
+                }
+            }
+        }
+        root.misspellings = found;
+    }
+
+    function prepareSpellMenu(point) {
+        root.spellSuggestions = [];
+        root.spellTarget = null;
+        const pos = editor.positionAt(point.x, point.y);
+        for (var i = 0; i < root.misspellings.length; ++i) {
+            const m = root.misspellings[i];
+            if (pos >= m.start && pos <= m.end) {
+                root.spellTarget = m;
+                root.spellSuggestions = SpellCheckAdapter.spellSuggestionsIn(m.lang, m.word);
+                return;
+            }
+        }
+    }
+
+    Timer {
+        id: spellTimer
+        interval: 300
+        onTriggered: root.recheckSpelling()
+    }
+
+    Connections {
+        target: SpellCheckAdapter
+        function onDictionaryChanged() {
+            root.scheduleSpellCheck();
+        }
+        function onInstalledDictionaryCountChanged() {
+            root.scheduleSpellCheck();
+        }
+    }
+
+    Connections {
+        target: UtilsAdapter
+        function onEnableSpellCheckChanged() {
+            root.scheduleSpellCheck();
+        }
+    }
+
+    onPreviewingChanged: root.scheduleSpellCheck()
 
     function chooseFont(id) {
         richBinding.setFont(id, editor.selectionStart, editor.selectionEnd);
@@ -833,6 +966,18 @@ Window {
                 onClicked: textSizeMenu.popup(textSizeButton, 0, textSizeButton.height)
             }
 
+            // Language of the selection, for the spell checker.
+            ChooserButton {
+                id: languageButton
+                objectName: "languageButton"
+
+                enabled: !root.previewing
+                width: 120
+                label: root.languageLabel(root.currentLanguage)
+                ToolTip.text: qsTr("Spelling language")
+                onClicked: languageMenu.popup(languageButton, 0, languageButton.height)
+            }
+
             ToolbarSeparator {}
 
             FormatButton {
@@ -911,6 +1056,16 @@ Window {
                     }
                 }
                 onClicked: alignMenu.popup(alignButton, 0, alignButton.height)
+            }
+            FormatButton {
+                objectName: "directionButton"
+
+                enabled: !root.previewing
+                iconSource: root.currentDirection === "rtl" ? JamiResources.text_direction_rtl_24dp_svg : JamiResources.text_direction_ltr_24dp_svg
+                ToolTip.visible: hovered
+                ToolTip.text: root.currentDirection === "rtl" ? qsTr("Right-to-left: switch to left-to-right") : qsTr("Left-to-right: switch to right-to-left")
+                active: root.currentDirection === "rtl"
+                onClicked: root.toggleDirection()
             }
             FormatButton {
                 enabled: !root.previewing
@@ -1032,8 +1187,13 @@ Window {
                             cursorBroadcast.restart();
                         }
                         // The image may move when anything above it reflows.
-                        onContentHeightChanged: root.refreshImageGeom()
+                        onContentHeightChanged: {
+                            root.refreshImageGeom();
+                            root.scheduleSpellCheck();
+                        }
+                        onTextChanged: root.scheduleSpellCheck()
                         onWidthChanged: {
+                            root.scheduleSpellCheck();
                             // An aligned image is placed from the room its
                             // paragraph has, which is what just changed.
                             richBinding.reflowAlignedImages();
@@ -1077,11 +1237,30 @@ Window {
                             radius: 4
                         }
 
+                        // Red underline under the words the spell checker rejects.
+                        Repeater {
+                            model: root.misspellings
+                            delegate: Rectangle {
+                                required property var modelData
+                                readonly property rect from: editor.positionToRectangle(modelData.start)
+                                readonly property rect to: editor.positionToRectangle(modelData.end)
+
+                                x: Math.min(from.x, to.x)
+                                y: from.y + from.height - 2
+                                width: Math.max(4, Math.abs(to.x - from.x))
+                                height: 2
+                                color: JamiTheme.redColor
+                            }
+                        }
+
                         // Right-click opens the context menu (declared at window root to
                         // avoid nesting a Menu inside the TextArea/Flickable content).
                         TapHandler {
                             acceptedButtons: Qt.RightButton
-                            onTapped: editorMenu.popup()
+                            onTapped: function (eventPoint) {
+                                root.prepareSpellMenu(eventPoint.position);
+                                editorMenu.popup();
+                            }
                         }
 
                         // Clicking an image selects it, so it can be resized. Any
@@ -1408,10 +1587,50 @@ Window {
         }
     }
 
+    // Spelling language chooser (declared at the window root for the same reason
+    // as editorMenu).
+    Menu {
+        id: languageMenu
+        objectName: "languageMenu"
+        Repeater {
+            model: root.spellLanguageChoices
+            delegate: MenuItem {
+                id: languageItem
+                required property var modelData
+                objectName: "language-" + (modelData.id || "default")
+                text: modelData.label
+                checkable: true
+                checked: root.currentLanguage === modelData.id
+                onTriggered: {
+                    root.chooseLanguage(modelData.id);
+                    languageItem.checked = Qt.binding(function () {
+                        return root.currentLanguage === languageItem.modelData.id;
+                    });
+                }
+            }
+        }
+    }
+
     // Context menu for the editor (declared at the window root, not nested inside
     // the TextArea, to avoid a QtQuick.Templates crash on popup).
     Menu {
         id: editorMenu
+        Repeater {
+            model: root.spellSuggestions
+            delegate: MenuItem {
+                required property string modelData
+                text: modelData
+                font.bold: true
+                onTriggered: {
+                    richBinding.insertText(root.spellTarget.start, root.spellTarget.end, modelData);
+                    root.scheduleSpellCheck();
+                }
+            }
+        }
+        MenuSeparator {
+            visible: root.spellSuggestions.length > 0
+            height: visible ? implicitHeight : 0
+        }
         MenuItem {
             text: qsTr("Copy")
             enabled: editor.selectedText.length > 0
