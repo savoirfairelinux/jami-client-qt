@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "27c8068f_4a47f260",
+        "filename": "src/app/mainview/components/CollabRichEditorWindow.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-01T20:37:01Z",
+      "side": 1,
+      "message": "[warning] Line 19: 🟡 This imports `QtQuick.Controls.impl`, which is a private Qt module and not API-stable across Qt versions. Please replace `IconImage` with a public component (`Image`/`ToolButton` icon handling or an existing project wrapper) to avoid upgrade regressions and platform-specific breakage.",
+      "revId": "6dd973074961a9c2d86a3b3bcd74ba29c19217af",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
