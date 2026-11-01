@@ -37,33 +37,6 @@ Rectangle {
     property bool isEmojiPickerOpen
     property var convContext: CurrentConversation
 
-    // True when the current conversation has at least one editable document.
-    // Recomputed when the conversation changes or its interactions change (a
-    // created document surfaces as a COLLAB_DOC interaction).
-    property bool hasEditableDocuments: false
-    function updateHasEditableDocuments() {
-        hasEditableDocuments = convContext && convContext.id !== ""
-                               && CollaborativeAdapter.documents(convContext.id).length > 0;
-    }
-    onHasEditableDocumentsChanged: Qt.callLater(function () {
-        actionsProxyModel.invalidate();
-    })
-    Component.onCompleted: updateHasEditableDocuments()
-
-    Connections {
-        target: convContext
-        function onIdChanged() {
-            messageBarRowLayout.updateHasEditableDocuments();
-        }
-    }
-    Connections {
-        target: MessagesAdapter
-        function onNewInteraction(id, type) {
-            if (type === Interaction.Type.COLLAB_DOC)
-                messageBarRowLayout.hasEditableDocuments = true;
-        }
-    }
-
     Row {
         id: firstRow
 
@@ -530,14 +503,6 @@ Rectangle {
                 onAudioRecordMessageButtonClicked: rectangle.audioRecordMessageButtonClicked()
                 onVideoRecordMessageButtonClicked: rectangle.videoRecordMessageButtonClicked()
                 onShowMapClicked: rectangle.showMapClicked()
-                onNewEditableDocumentClicked: {
-                    viewCoordinator.presentDialog(appWindow,
-                                                  "commoncomponents/CollabNewDocPopup.qml",
-                                                  {
-                                                      "conversationId": convContext.id
-                                                  });
-                    textAreaObj.forceActiveFocus();
-                }
                 modelList: listViewMoreButton.menuMoreButton
                 y: showMoreButton.y + 31
                 x: showMoreButton.x - 3
@@ -572,24 +537,6 @@ Rectangle {
                     property bool noSip: false
                     onTriggered: function clickAction() {
                         sendFileButtonClicked();
-                        textAreaObj.forceActiveFocus();
-                    }
-                },
-                Action {
-                    id: openCollabDocList
-                    property string iconSrc: JamiResources.round_folder_24dp_svg
-                    property string toolTip: qsTr("Editable documents")
-                    property bool show: messageBarRowLayout.hasEditableDocuments
-                    property bool needWebEngine: false
-                    property bool needVideoDevice: false
-                    property bool noSip: false
-                    onTriggered: function clickAction() {
-                        viewCoordinator.presentDialog(appWindow,
-                                                      "commoncomponents/CollabDocListPopup.qml",
-                                                      {
-                                                          "conversationId": convContext.id,
-                                                          "peerName": convContext.title
-                                                      });
                         textAreaObj.forceActiveFocus();
                     }
                 },

@@ -286,13 +286,13 @@ Item {
                 const control = bar.children[i];
                 if (control.objectName !== "")
                     order.push(control.objectName);
-                else if (control.glyph !== undefined)
-                    order.push(control.glyph);
+                else if (control.iconSource !== undefined)
+                    order.push(control.iconSource.split("/").pop().replace(/(_black)?(_24dp)?\.svg$/, ""));
                 else
                     order.push("|");
             }
             const expected = "headingButton fontFamilyButton textSizeButton"
-                    + " | B I U S | alignButton • 1. | 🔗 🖼 ⌫";
+                    + " | bold italic underline strikethrough_s | alignButton bidirectional_bullet_point bidirectional_bullet_number | link_web add_photo_alternate clear";
             compare(order.join(" "), expected);
         }
 
