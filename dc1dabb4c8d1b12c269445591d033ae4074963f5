@@ -1,0 +1,40 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fb3e53c3_9bad0bdd",
+        "filename": "src/app/collabrichbinding.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 617
+      },
+      "writtenOn": "2026-11-01T15:36:39Z",
+      "side": 1,
+      "message": "Fixed in patch set 2: applyRemoteDelta() now calls reconcileAuthorshipColors() only while the authorship colors are shown. Backgrounds can only exist in that case, so nothing is left behind when they are off, and toggling them still reconciles the whole document.",
+      "parentUuid": "8d9445fa_2d5d7a92",
+      "revId": "dc1dabb4c8d1b12c269445591d033ae4074963f5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "712a4d1e_cd79024f",
+        "filename": "src/app/mainview/components/CollabRichEditorWindow.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 617
+      },
+      "writtenOn": "2026-11-01T15:36:39Z",
+      "side": 1,
+      "message": "Not changed: lineNumberGutter is a child of the TextArea, which is the scrolled content of the ScrollView, so the gutter moves with the text. Subtracting editor.contentY would shift the numbers when the document scrolls.",
+      "parentUuid": "d3f14d83_cfbebbf2",
+      "revId": "dc1dabb4c8d1b12c269445591d033ae4074963f5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
