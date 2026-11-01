@@ -23,6 +23,8 @@
 #include <QObject>
 #include <QQmlEngine>   // QML registration
 #include <QApplication> // QML registration
+#include <map>
+#include <memory>
 
 class SpellCheckDictionaryListModel;
 class AppSettingsManager;
@@ -59,6 +61,12 @@ public:
     Q_INVOKABLE bool spell(const QString& word);
     Q_INVOKABLE QVariantList findWords(const QString& text);
 
+    // Same as spell() and spellSuggestionsRequest(), against the dictionary of
+    // @p locale rather than the one chosen in the settings. A locale without an
+    // installed dictionary accepts every word and has no suggestions.
+    Q_INVOKABLE bool spellIn(const QString& locale, const QString& word);
+    Q_INVOKABLE QVariantList spellSuggestionsIn(const QString& locale, const QString& word);
+
 public Q_SLOTS:
     Q_INVOKABLE void setDictionary(const QString& locale);
 
@@ -67,7 +75,10 @@ Q_SIGNALS:
     void downloadFailed(const QString& locale);
 
 private:
+    SpellChecker* checkerFor(const QString& locale);
+
     SpellChecker spellChecker_;
+    std::map<QString, std::unique_ptr<SpellChecker>> localeCheckers_;
     SpellCheckDictionaryListModel* dictionaryListModel_ {nullptr};
     AppSettingsManager* settingsManager_ {nullptr};
 };

@@ -291,8 +291,8 @@ Item {
                 else
                     order.push("|");
             }
-            const expected = "headingButton fontFamilyButton textSizeButton"
-                    + " | bold italic underline strikethrough_s | alignButton bidirectional_bullet_point bidirectional_bullet_number | link_web add_photo_alternate clear";
+            const expected = "headingButton fontFamilyButton textSizeButton languageButton"
+                    + " | bold italic underline strikethrough_s | alignButton directionButton bidirectional_bullet_point bidirectional_bullet_number | link_web add_photo_alternate clear";
             compare(order.join(" "), expected);
         }
 
@@ -315,6 +315,50 @@ Item {
             const ops = content();
             compare(ops[0].insert, "A report");
             compare(ops[0].attributes.header, 2);
+        }
+
+        function test_directionToggleReachesTheDocument() {
+            compare(editorWindow.currentDirection, "ltr");
+            const button = findChild(editorWindow, "directionButton");
+            verify(button);
+            mouseClick(button);
+
+            compare(editorWindow.currentDirection, "rtl");
+            compare(content()[0].attributes.dir, "rtl");
+            mouseClick(button);
+            compare(editorWindow.currentDirection, "ltr");
+            verify(content()[0].attributes === undefined || content()[0].attributes.dir === undefined);
+        }
+
+        function test_peerDirectionShowsInTheToolbar() {
+            binding.applyRemoteDelta('[{"retain":8,"attributes":{"dir":"rtl"}}]');
+            editorWindow.refreshFormatState();
+            compare(editorWindow.currentDirection, "rtl");
+        }
+
+        function test_chosenLanguageReachesTheDocument() {
+            editorWindow.chooseLanguage("fr_FR");
+
+            compare(editorWindow.currentLanguage, "fr_FR");
+            const ops = content();
+            compare(ops[0].insert, "A ");
+            verify(ops[0].attributes === undefined || ops[0].attributes.lang === undefined);
+            compare(ops[1].insert, "report");
+            compare(ops[1].attributes.lang, "fr_FR");
+            const runs = binding.languageRuns();
+            compare(runs.length, 2);
+            compare(runs[1].start, 2);
+            compare(runs[1].text, "report");
+            compare(runs[1].lang, "fr_FR");
+
+            editorWindow.chooseLanguage("");
+            verify(content().every(operation => !operation.attributes || operation.attributes.lang === undefined));
+        }
+
+        function test_unsafeLanguageFromAPeerIsDropped() {
+            binding.applyRemoteDelta('[{"retain":2},{"retain":6,"attributes":{"lang":"../../etc"}}]');
+            editorWindow.refreshFormatState();
+            compare(editorWindow.currentLanguage, "");
         }
     }
 }
