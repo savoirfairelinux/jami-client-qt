@@ -341,61 +341,70 @@ Rectangle {
 
                 Shortcut {
                     sequence: "Ctrl+B"
-                    context: Qt.ApplicationShortcut
+                    context: Qt.WindowShortcut
+                    enabled: messageBarTextArea.textAreaObj.activeFocus
                     onActivated: messageBarTextArea.markdownShortCut["Bold"]()
                 }
 
                 Shortcut {
                     sequence: "Ctrl+I"
-                    context: Qt.ApplicationShortcut
+                    context: Qt.WindowShortcut
+                    enabled: messageBarTextArea.textAreaObj.activeFocus
                     onActivated: messageBarTextArea.markdownShortCut["Italic"]()
                 }
 
                 Shortcut {
                     sequence: "Shift+Alt+X"
-                    context: Qt.ApplicationShortcut
+                    context: Qt.WindowShortcut
+                    enabled: messageBarTextArea.textAreaObj.activeFocus
                     onActivated: messageBarTextArea.markdownShortCut["Strikethrough"]()
                 }
 
                 Shortcut {
                     sequence: "Ctrl+Alt+H"
-                    context: Qt.ApplicationShortcut
+                    context: Qt.WindowShortcut
+                    enabled: messageBarTextArea.textAreaObj.activeFocus
                     onActivated: messageBarTextArea.markdownShortCut["Heading"]()
                 }
 
                 Shortcut {
                     sequence: "Ctrl+Alt+K"
-                    context: Qt.ApplicationShortcut
+                    context: Qt.WindowShortcut
+                    enabled: messageBarTextArea.textAreaObj.activeFocus
                     onActivated: messageBarTextArea.markdownShortCut["Link"]()
                 }
 
                 Shortcut {
                     sequence: "Ctrl+Alt+C"
-                    context: Qt.ApplicationShortcut
+                    context: Qt.WindowShortcut
+                    enabled: messageBarTextArea.textAreaObj.activeFocus
                     onActivated: messageBarTextArea.markdownShortCut["Code"]()
                 }
 
                 Shortcut {
                     sequence: "Shift+Alt+9"
-                    context: Qt.ApplicationShortcut
+                    context: Qt.WindowShortcut
+                    enabled: messageBarTextArea.textAreaObj.activeFocus
                     onActivated: messageBarTextArea.markdownShortCut["Quote"]()
                 }
 
                 Shortcut {
                     sequence: "Shift+Alt+8"
-                    context: Qt.ApplicationShortcut
+                    context: Qt.WindowShortcut
+                    enabled: messageBarTextArea.textAreaObj.activeFocus
                     onActivated: messageBarTextArea.markdownShortCut["Unordered list"]()
                 }
 
                 Shortcut {
                     sequence: "Shift+Alt+7"
-                    context: Qt.ApplicationShortcut
+                    context: Qt.WindowShortcut
+                    enabled: messageBarTextArea.textAreaObj.activeFocus
                     onActivated: messageBarTextArea.markdownShortCut["Ordered list"]()
                 }
 
                 Shortcut {
                     sequence: "Shift+Alt+T"
-                    context: Qt.ApplicationShortcut
+                    context: Qt.WindowShortcut
                     onActivated: {
                         showTypo = !showTypo;
                         messageBarTextArea.isShowTypo = showTypo;
@@ -405,7 +414,7 @@ Rectangle {
 
                 Shortcut {
                     sequence: "Shift+Alt+P"
-                    context: Qt.ApplicationShortcut
+                    context: Qt.WindowShortcut
                     onActivated: {
                         showPreview = !showPreview;
                         messageBarTextArea.showPreview = showPreview;

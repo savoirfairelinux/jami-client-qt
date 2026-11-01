@@ -600,3 +600,91 @@ TEST_F(CollabRichBindingFixture, ParagraphAlignmentChangesOnEmptyLine)
     EXPECT_EQ(binding->selectionFormat(cursor.position(), cursor.position()).value(QStringLiteral("align")).toString(),
               QStringLiteral("center"));
 }
+
+TEST_F(CollabRichBindingFixture, PastingOrInsertingPlainTextPreservesCurrentFontSizeAndFormatting)
+{
+    binding->loadContentDelta(R"([{"insert":"Visit ","attributes":{"size":12}}])");
+    QSignalSpy deltas(binding.data(), &CollabRichBinding::localDelta);
+
+    binding->insertText(6, 6, QStringLiteral("https://wiki.documentfoundation.org/Fonts"));
+
+    ASSERT_EQ(deltas.size(), 1);
+    EXPECT_EQ(QJsonDocument::fromJson(deltas.at(0).at(0).toString().toUtf8()),
+              QJsonDocument::fromJson(
+                  R"([{"retain":6},{"insert":"https://wiki.documentfoundation.org/Fonts","attributes":{"size":12}}])"));
+    EXPECT_EQ(binding->selectionFormat(6, 47).value(QStringLiteral("size")).toDouble(), 12);
+}
+
+TEST_F(CollabRichBindingFixture, CopyingFromListItemDoesNotPrependNewline)
+{
+    binding->loadContentDelta(R"([{"insert":"Please add a Line numbers toggle","attributes":{"list":"bullet"}}])");
+    QSignalSpy deltas(binding.data(), &CollabRichBinding::localDelta);
+
+    binding->copySelection(7, 10);
+    binding->pasteText(10, 10);
+
+    ASSERT_EQ(deltas.size(), 1);
+    EXPECT_EQ(doc->toPlainText(), QStringLiteral("Please addadd a Line numbers toggle"));
+    EXPECT_EQ(QJsonDocument::fromJson(deltas.at(0).at(0).toString().toUtf8()),
+              QJsonDocument::fromJson(R"([{"retain":10},{"insert":"add","attributes":{"list":"bullet"}}])"));
+}
+
+TEST_F(CollabRichBindingFixture, PortableFontsResolveToLibreOfficeCompatibleFamilies)
+{
+    binding->loadContentDelta(R"([{"insert":"Sans","attributes":{"font":"sans-serif"}},)"
+                              R"({"insert":"Serif","attributes":{"font":"serif"}},)"
+                              R"({"insert":"Mono","attributes":{"font":"monospace"}},)"
+                              R"({"insert":"Cursive","attributes":{"font":"cursive"}}])");
+
+    QTextCursor cursor(doc);
+    cursor.setPosition(1);
+    EXPECT_EQ(cursor.charFormat().fontFamilies().toStringList().value(0), QStringLiteral("Liberation Sans"));
+
+    cursor.setPosition(6);
+    EXPECT_EQ(cursor.charFormat().fontFamilies().toStringList().value(0), QStringLiteral("Liberation Serif"));
+
+    cursor.setPosition(11);
+    EXPECT_EQ(cursor.charFormat().fontFamilies().toStringList().value(0), QStringLiteral("Liberation Mono"));
+
+    cursor.setPosition(16);
+    const QString cursivePrimary = cursor.charFormat().fontFamilies().toStringList().value(0);
+    EXPECT_FALSE(cursivePrimary.isEmpty());
+    EXPECT_FALSE(cursivePrimary.contains(QLatin1Char('[')));
+    EXPECT_FALSE(cursivePrimary.contains(QLatin1Char(']')));
+}
+
+TEST_F(CollabRichBindingFixture, AuthorshipColorsHighlightPerAuthorWhenEnabled)
+{
+    binding->setLocalAuthor(QStringLiteral("jami:alice"));
+    binding->insertText(0, 0, QStringLiteral("Hello"));
+    binding->applyRemoteDelta(R"([{"retain":5},{"insert":" world","attributes":{"author":"jami:bob"}}])");
+
+    QTextCursor cursor(doc);
+    cursor.setPosition(1);
+    EXPECT_FALSE(cursor.charFormat().hasProperty(QTextFormat::BackgroundBrush));
+
+    binding->setShowAuthorshipColors(true);
+    cursor.setPosition(1);
+    const QColor aliceColor = cursor.charFormat().background().color();
+    cursor.setPosition(7);
+    const QColor bobColor = cursor.charFormat().background().color();
+    EXPECT_TRUE(aliceColor.isValid());
+    EXPECT_GT(aliceColor.alpha(), 0);
+    EXPECT_TRUE(bobColor.isValid());
+    EXPECT_GT(bobColor.alpha(), 0);
+    EXPECT_NE(aliceColor, bobColor);
+
+    binding->setShowAuthorshipColors(false);
+    cursor.setPosition(1);
+    EXPECT_FALSE(cursor.charFormat().hasProperty(QTextFormat::BackgroundBrush));
+}
+
+TEST_F(CollabRichBindingFixture, LineNumbersMatchDocumentBlocks)
+{
+    binding->loadContentDelta(R"([{"insert":"First\nSecond\nThird"}])");
+    const QVariantList lines = binding->lineNumbers();
+    ASSERT_EQ(lines.size(), 3);
+    EXPECT_EQ(lines.at(0).toMap().value(QStringLiteral("number")).toInt(), 1);
+    EXPECT_EQ(lines.at(1).toMap().value(QStringLiteral("number")).toInt(), 2);
+    EXPECT_EQ(lines.at(2).toMap().value(QStringLiteral("number")).toInt(), 3);
+}
