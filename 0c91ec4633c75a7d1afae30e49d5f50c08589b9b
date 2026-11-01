@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4292784e_e7917edf",
+        "filename": "src/app/mainview/components/CollabRichEditorWindow.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 455,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-01T22:12:24Z",
+      "side": 1,
+      "message": "[warning] Line 455: 🟡 `prepareSpellMenu` uses `pos \u003c\u003d m.end`, but misspelling ranges are handled elsewhere as `[start, end)`. This makes a right-click exactly at the first character after a misspelled word still attach suggestions to the previous word. Use `pos \u003c m.end` to keep range semantics consistent and avoid incorrect replacements.",
+      "revId": "0c91ec4633c75a7d1afae30e49d5f50c08589b9b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
