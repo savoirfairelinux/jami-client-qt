@@ -5459,14 +5459,14 @@ Please confirm the import on the new device.</source>
         <translation>Ryšys užmegztas</translation>
     </message>
     <message>
-        <location filename="../src/core/authority/storagehelper.cpp" line="516"/>
+        <location filename="../src/core/authority/storagehelper.cpp" line="504"/>
         <source>Invitation received</source>
         <translation>Gautas pakvietimas</translation>
     </message>
     <message>
         <location filename="../src/core/api/interaction.h" line="311"/>
         <location filename="../src/core/api/interaction.h" line="313"/>
-        <location filename="../src/core/authority/storagehelper.cpp" line="513"/>
+        <location filename="../src/core/authority/storagehelper.cpp" line="501"/>
         <source>Contact added</source>
         <translation>Adresatas pridėtas</translation>
     </message>
@@ -5583,7 +5583,7 @@ Please confirm the import on the new device.</source>
         <translation>(Profilis atnaujintas)</translation>
     </message>
     <message>
-        <location filename="../src/core/authority/storagehelper.cpp" line="518"/>
+        <location filename="../src/core/authority/storagehelper.cpp" line="506"/>
         <source>Invitation accepted</source>
         <translation>Pakvietimas priimtas</translation>
     </message>
@@ -5891,17 +5891,17 @@ Please confirm the import on the new device.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="677"/>
+        <location filename="../src/app/messagesadapter.cpp" line="757"/>
         <source>Just now</source>
         <translation>Ką tik</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="728"/>
+        <location filename="../src/app/messagesadapter.cpp" line="808"/>
         <source>Today</source>
         <translation>Šiandien</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="732"/>
+        <location filename="../src/app/messagesadapter.cpp" line="812"/>
         <source>Yesterday</source>
         <translation>Vakar</translation>
     </message>

@@ -5465,14 +5465,14 @@ Please confirm the import on the new device.</source>
         <translation>প্রতিষ্ঠিত বার্তা</translation>
     </message>
     <message>
-        <location filename="../src/core/authority/storagehelper.cpp" line="516"/>
+        <location filename="../src/core/authority/storagehelper.cpp" line="504"/>
         <source>Invitation received</source>
         <translation>আমন্ত্রণ প্রাপ্তি</translation>
     </message>
     <message>
         <location filename="../src/core/api/interaction.h" line="311"/>
         <location filename="../src/core/api/interaction.h" line="313"/>
-        <location filename="../src/core/authority/storagehelper.cpp" line="513"/>
+        <location filename="../src/core/authority/storagehelper.cpp" line="501"/>
         <source>Contact added</source>
         <translation>যোগ করা হয়েছে যোগাযোগ</translation>
     </message>
@@ -5589,7 +5589,7 @@ Please confirm the import on the new device.</source>
         <translation>(প্রোফাইল আপডেট করা হয়েছে)</translation>
     </message>
     <message>
-        <location filename="../src/core/authority/storagehelper.cpp" line="518"/>
+        <location filename="../src/core/authority/storagehelper.cpp" line="506"/>
         <source>Invitation accepted</source>
         <translation>আমন্ত্রণ গ্রহণ করা হয়েছে</translation>
     </message>
@@ -5897,17 +5897,17 @@ Please confirm the import on the new device.</source>
         <translation>যে কোন জায়গায় গ্রহণযোগ্য নয়</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="677"/>
+        <location filename="../src/app/messagesadapter.cpp" line="757"/>
         <source>Just now</source>
         <translation>ঠিক এখনই</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="728"/>
+        <location filename="../src/app/messagesadapter.cpp" line="808"/>
         <source>Today</source>
         <translation>আজ</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="732"/>
+        <location filename="../src/app/messagesadapter.cpp" line="812"/>
         <source>Yesterday</source>
         <translation>গতকাল</translation>
     </message>

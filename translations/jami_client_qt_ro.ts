@@ -5465,14 +5465,14 @@ Confirmă importarea în noul aparat</translation>
         <translation>Legătură stabilită</translation>
     </message>
     <message>
-        <location filename="../src/core/authority/storagehelper.cpp" line="516"/>
+        <location filename="../src/core/authority/storagehelper.cpp" line="504"/>
         <source>Invitation received</source>
         <translation>Invitație primită</translation>
     </message>
     <message>
         <location filename="../src/core/api/interaction.h" line="311"/>
         <location filename="../src/core/api/interaction.h" line="313"/>
-        <location filename="../src/core/authority/storagehelper.cpp" line="513"/>
+        <location filename="../src/core/authority/storagehelper.cpp" line="501"/>
         <source>Contact added</source>
         <translation>Contact adăugat</translation>
     </message>
@@ -5589,7 +5589,7 @@ Confirmă importarea în noul aparat</translation>
         <translation>(Profil actualizat)</translation>
     </message>
     <message>
-        <location filename="../src/core/authority/storagehelper.cpp" line="518"/>
+        <location filename="../src/core/authority/storagehelper.cpp" line="506"/>
         <source>Invitation accepted</source>
         <translation>Invitație acceptată</translation>
     </message>
@@ -5897,17 +5897,17 @@ Confirmă importarea în noul aparat</translation>
         <translation>Nu este acceptat nicăieri</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="677"/>
+        <location filename="../src/app/messagesadapter.cpp" line="757"/>
         <source>Just now</source>
         <translation>Chiar acum</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="728"/>
+        <location filename="../src/app/messagesadapter.cpp" line="808"/>
         <source>Today</source>
         <translation>Azi</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="732"/>
+        <location filename="../src/app/messagesadapter.cpp" line="812"/>
         <source>Yesterday</source>
         <translation>Ieri</translation>
     </message>

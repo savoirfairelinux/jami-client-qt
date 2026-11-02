@@ -5465,14 +5465,14 @@ Please confirm the import on the new device.</source>
         <translation>通信を確立しました</translation>
     </message>
     <message>
-        <location filename="../src/core/authority/storagehelper.cpp" line="516"/>
+        <location filename="../src/core/authority/storagehelper.cpp" line="504"/>
         <source>Invitation received</source>
         <translation>招待を受信しました</translation>
     </message>
     <message>
         <location filename="../src/core/api/interaction.h" line="311"/>
         <location filename="../src/core/api/interaction.h" line="313"/>
-        <location filename="../src/core/authority/storagehelper.cpp" line="513"/>
+        <location filename="../src/core/authority/storagehelper.cpp" line="501"/>
         <source>Contact added</source>
         <translation>連絡先を追加しました</translation>
     </message>
@@ -5589,7 +5589,7 @@ Please confirm the import on the new device.</source>
         <translation>(プロフィールが更新されました)</translation>
     </message>
     <message>
-        <location filename="../src/core/authority/storagehelper.cpp" line="518"/>
+        <location filename="../src/core/authority/storagehelper.cpp" line="506"/>
         <source>Invitation accepted</source>
         <translation>招待を受け入れました</translation>
     </message>
@@ -5897,17 +5897,17 @@ Please confirm the import on the new device.</source>
         <translation>どこにも受け入れられない</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="677"/>
+        <location filename="../src/app/messagesadapter.cpp" line="757"/>
         <source>Just now</source>
         <translation>たった今</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="728"/>
+        <location filename="../src/app/messagesadapter.cpp" line="808"/>
         <source>Today</source>
         <translation>今日</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="732"/>
+        <location filename="../src/app/messagesadapter.cpp" line="812"/>
         <source>Yesterday</source>
         <translation>昨日</translation>
     </message>

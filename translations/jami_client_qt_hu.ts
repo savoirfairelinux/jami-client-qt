@@ -5465,14 +5465,14 @@ Kérjük, erősítse meg az importálást az új eszközön.</translation>
         <translation>A közlés létrejött</translation>
     </message>
     <message>
-        <location filename="../src/core/authority/storagehelper.cpp" line="516"/>
+        <location filename="../src/core/authority/storagehelper.cpp" line="504"/>
         <source>Invitation received</source>
         <translation>Meghívás megérkezett</translation>
     </message>
     <message>
         <location filename="../src/core/api/interaction.h" line="311"/>
         <location filename="../src/core/api/interaction.h" line="313"/>
-        <location filename="../src/core/authority/storagehelper.cpp" line="513"/>
+        <location filename="../src/core/authority/storagehelper.cpp" line="501"/>
         <source>Contact added</source>
         <translation>Kapcsolattartó hozzáadva</translation>
     </message>
@@ -5589,7 +5589,7 @@ Kérjük, erősítse meg az importálást az új eszközön.</translation>
         <translation>(Névjegy frissítve)</translation>
     </message>
     <message>
-        <location filename="../src/core/authority/storagehelper.cpp" line="518"/>
+        <location filename="../src/core/authority/storagehelper.cpp" line="506"/>
         <source>Invitation accepted</source>
         <translation>Meghívás elfogadott</translation>
     </message>
@@ -5897,17 +5897,17 @@ Kérjük, erősítse meg az importálást az új eszközön.</translation>
         <translation>Bárhol nem elfogadható</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="677"/>
+        <location filename="../src/app/messagesadapter.cpp" line="757"/>
         <source>Just now</source>
         <translation>Éppen most</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="728"/>
+        <location filename="../src/app/messagesadapter.cpp" line="808"/>
         <source>Today</source>
         <translation>Ma</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="732"/>
+        <location filename="../src/app/messagesadapter.cpp" line="812"/>
         <source>Yesterday</source>
         <translation>Tegnap</translation>
     </message>

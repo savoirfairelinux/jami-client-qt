@@ -5465,14 +5465,14 @@ Vui lòng xác nhận việc nhập trên thiết bị mới.</translation>
         <translation>Thông báo được thiết lập</translation>
     </message>
     <message>
-        <location filename="../src/core/authority/storagehelper.cpp" line="516"/>
+        <location filename="../src/core/authority/storagehelper.cpp" line="504"/>
         <source>Invitation received</source>
         <translation>Thỉnh cầu được nhận</translation>
     </message>
     <message>
         <location filename="../src/core/api/interaction.h" line="311"/>
         <location filename="../src/core/api/interaction.h" line="313"/>
-        <location filename="../src/core/authority/storagehelper.cpp" line="513"/>
+        <location filename="../src/core/authority/storagehelper.cpp" line="501"/>
         <source>Contact added</source>
         <translation>Liên hệ được thêm vào</translation>
     </message>
@@ -5589,7 +5589,7 @@ Vui lòng xác nhận việc nhập trên thiết bị mới.</translation>
         <translation>(Hồ sơ đã cập nhật)</translation>
     </message>
     <message>
-        <location filename="../src/core/authority/storagehelper.cpp" line="518"/>
+        <location filename="../src/core/authority/storagehelper.cpp" line="506"/>
         <source>Invitation accepted</source>
         <translation>Thỉnh cầu được chấp nhận</translation>
     </message>
@@ -5897,17 +5897,17 @@ Vui lòng xác nhận việc nhập trên thiết bị mới.</translation>
         <translation>Không được chấp nhận ở bất cứ đâu</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="677"/>
+        <location filename="../src/app/messagesadapter.cpp" line="757"/>
         <source>Just now</source>
         <translation>Ngay bây giờ</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="728"/>
+        <location filename="../src/app/messagesadapter.cpp" line="808"/>
         <source>Today</source>
         <translation>Ngày nay</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="732"/>
+        <location filename="../src/app/messagesadapter.cpp" line="812"/>
         <source>Yesterday</source>
         <translation>Hôm qua</translation>
     </message>

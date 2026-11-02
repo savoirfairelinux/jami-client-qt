@@ -5465,14 +5465,14 @@ Deimhnigh an iompórtáil ar an ngléas nua le do thoil.</translation>
         <translation>Teachtaireacht arna bhunú</translation>
     </message>
     <message>
-        <location filename="../src/core/authority/storagehelper.cpp" line="516"/>
+        <location filename="../src/core/authority/storagehelper.cpp" line="504"/>
         <source>Invitation received</source>
         <translation>Ag iarraidh a fháil</translation>
     </message>
     <message>
         <location filename="../src/core/api/interaction.h" line="311"/>
         <location filename="../src/core/api/interaction.h" line="313"/>
-        <location filename="../src/core/authority/storagehelper.cpp" line="513"/>
+        <location filename="../src/core/authority/storagehelper.cpp" line="501"/>
         <source>Contact added</source>
         <translation>Contaeanna a chur leis</translation>
     </message>
@@ -5589,7 +5589,7 @@ Deimhnigh an iompórtáil ar an ngléas nua le do thoil.</translation>
         <translation>(Próifíl nuashonraithe)</translation>
     </message>
     <message>
-        <location filename="../src/core/authority/storagehelper.cpp" line="518"/>
+        <location filename="../src/core/authority/storagehelper.cpp" line="506"/>
         <source>Invitation accepted</source>
         <translation>Tugtar cuireadh ar fáil</translation>
     </message>
@@ -5897,17 +5897,17 @@ Deimhnigh an iompórtáil ar an ngléas nua le do thoil.</translation>
         <translation>Ní Dhéanta I ngach áit</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="677"/>
+        <location filename="../src/app/messagesadapter.cpp" line="757"/>
         <source>Just now</source>
         <translation>Díreach anois</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="728"/>
+        <location filename="../src/app/messagesadapter.cpp" line="808"/>
         <source>Today</source>
         <translation>Sa lá atá inniu ann</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="732"/>
+        <location filename="../src/app/messagesadapter.cpp" line="812"/>
         <source>Yesterday</source>
         <translation>An-dè</translation>
     </message>

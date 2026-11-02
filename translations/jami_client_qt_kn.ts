@@ -5465,14 +5465,14 @@ Please confirm the import on the new device.</source>
         <translation>ಸ್ಥಾಪಿತ ಪ್ರಕಟಣೆ</translation>
     </message>
     <message>
-        <location filename="../src/core/authority/storagehelper.cpp" line="516"/>
+        <location filename="../src/core/authority/storagehelper.cpp" line="504"/>
         <source>Invitation received</source>
         <translation>ಸ್ವೀಕರಿಸಿದ ಆಹ್ವಾನ</translation>
     </message>
     <message>
         <location filename="../src/core/api/interaction.h" line="311"/>
         <location filename="../src/core/api/interaction.h" line="313"/>
-        <location filename="../src/core/authority/storagehelper.cpp" line="513"/>
+        <location filename="../src/core/authority/storagehelper.cpp" line="501"/>
         <source>Contact added</source>
         <translation>ಸಂಪರ್ಕ ಸೇರಿಸಲಾಗಿದೆ</translation>
     </message>
@@ -5589,7 +5589,7 @@ Please confirm the import on the new device.</source>
         <translation>(ಪ್ರೊಫೈಲ್ ನವೀಕರಿಸಲಾಗಿದೆ)</translation>
     </message>
     <message>
-        <location filename="../src/core/authority/storagehelper.cpp" line="518"/>
+        <location filename="../src/core/authority/storagehelper.cpp" line="506"/>
         <source>Invitation accepted</source>
         <translation>ಆಹ್ವಾನ ಸ್ವೀಕರಿಸಲಾಗಿದೆ</translation>
     </message>
@@ -5897,17 +5897,17 @@ Please confirm the import on the new device.</source>
         <translation>ಎಲ್ಲಿಯಾದರೂ ಸ್ವೀಕಾರಾರ್ಹವಲ್ಲ</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="677"/>
+        <location filename="../src/app/messagesadapter.cpp" line="757"/>
         <source>Just now</source>
         <translation>ಈಗಲೇ</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="728"/>
+        <location filename="../src/app/messagesadapter.cpp" line="808"/>
         <source>Today</source>
         <translation>ಇಂದು</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="732"/>
+        <location filename="../src/app/messagesadapter.cpp" line="812"/>
         <source>Yesterday</source>
         <translation>ನಿನ್ನೆ</translation>
     </message>
