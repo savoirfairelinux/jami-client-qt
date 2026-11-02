@@ -62,12 +62,19 @@ CallPipWindowManager::pipPreviewId() const
 bool
 CallPipWindowManager::convHasActiveCall(const QString& convId, const QString& accountId) const
 {
-    return !lrcInstance_->getCallIdForConversationUid(convId, accountId).isEmpty();
+    const auto callId = lrcInstance_->getCallIdForConversationUid(convId, accountId);
+    const auto* call = lrcInstance_->getCallInfo(callId, accountId);
+    return call && !lrc::api::call::isTerminating(call->status);
 }
 
 void
 CallPipWindowManager::popOutCall(const QString& convId, const QString& accountId)
 {
+    if (!convHasActiveCall(convId, accountId)) {
+        qWarning() << "CallPipWindowManager: no active call for conv" << convId;
+        return;
+    }
+
     // If this call is already in PiP, just raise the window.
     if (pipConvId_ == convId && !window_.isNull()) {
         window_->raise();

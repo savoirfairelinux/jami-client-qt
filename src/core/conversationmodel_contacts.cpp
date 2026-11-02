@@ -493,7 +493,7 @@ ConversationModel::addSwarmConversation(const QString& convId)
             conversation.confId = "";
         }
         try {
-            conversation.callId = owner.callModel->getCallFromURI(otherMember).id;
+            conversation.callId = owner.callModel->getCallFromURI(otherMember, true).id;
         } catch (...) {
             conversation.callId = "";
         }
@@ -549,7 +549,7 @@ ConversationModel::addConversationWith(const QString& convId, const QString& con
         conversation.confId = "";
     }
     try {
-        conversation.callId = owner.callModel->getCallFromURI(contactUri).id;
+        conversation.callId = owner.callModel->getCallFromURI(contactUri, true).id;
     } catch (...) {
         conversation.callId = "";
     }
