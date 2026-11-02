@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3fd37e26_5fbfa80a",
+        "filename": "src/core/conversationmodel_contacts.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 530,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-02T20:06:53Z",
+      "side": 1,
+      "message": "[warning] Line 530: 🟡 `mode` is now always serialized into the synthetic `initial` interaction, which changes fallback behavior for unknown/missing daemon mode values: they become `0` and are rendered as “Private conversation created”. Previously, missing mode fell back to the generic group message. To avoid regressions with partial/legacy metadata, only add `mode` when it is explicitly known, or make `interaction::Info::init` treat missing/invalid values as group unless the conversation type is explicitly one-to-one.",
+      "revId": "89ab7e2ec0c19beaf02207d3d5af7324e1adeb30",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
