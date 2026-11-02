@@ -16,10 +16,13 @@
  */
 
 #include "api/interaction.h"
+#include "api/messagelistmodel.h"
 
 #include <gtest/gtest.h>
 
 using namespace lrc::api::interaction;
+using lrc::api::MessageListModel;
+using Role = lrc::api::MessageList::Role;
 
 // A peer may commit a type this version of the client has never heard of.
 // It must not reach the message list, which has no delegate for it.
@@ -42,4 +45,23 @@ TEST(InteractionType, TheTypesTheMessageListCannotDrawAreNotDisplayed)
     for (const auto type : {Type::MERGE, Type::VOTE, Type::UPDATE_PROFILE, Type::COUNT__}) {
         EXPECT_FALSE(isTypeDisplayable(type)) << to_string(type).toStdString();
     }
+}
+
+TEST(MessageListModel, MovingMessageAfterLastParentDoesNotOverflow)
+{
+    MessageListModel source(nullptr);
+    Info info;
+    info.type = Type::TEXT;
+    info.body = "Content";
+    source.append("m0", info);
+    source.append("m1", info);
+    source.append("m2", info);
+
+    info.parentId = "m2";
+    EXPECT_TRUE(source.update("m0", info));
+    EXPECT_EQ(source.indexOfMessage("m1"), 0);
+    EXPECT_EQ(source.indexOfMessage("m2"), 1);
+    EXPECT_EQ(source.indexOfMessage("m0"), 2);
+    EXPECT_EQ(source.data("m2", Role::ReplyTo).toString(), QString());
+    EXPECT_EQ(source.data("m0", Role::Id).toString(), QString("m0"));
 }

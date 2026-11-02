@@ -492,15 +492,17 @@ MessageListModel::move(iterator it, const QString& newParentId)
 {
     // Note: assumes the new parent exists and that the caller has locked the mutex.
     auto oldIndex = indexOfMessage(it->first);
-    auto newIndex = indexOfMessage(newParentId) + 1;
-    if (newIndex >= 0 && oldIndex != newIndex) {
-        qDebug() << "Moving message" << it->first << "from" << oldIndex << "to" << newIndex;
-        beginMoveRows(QModelIndex(), oldIndex, oldIndex, QModelIndex(), newIndex);
-        interactions_.move(oldIndex, newIndex);
-        endMoveRows();
-        return newIndex;
+    auto parentIndex = indexOfMessage(newParentId);
+    if (oldIndex < 0 || parentIndex < 0 || oldIndex == parentIndex || oldIndex == parentIndex + 1) {
+        return -1;
     }
-    return -1;
+    auto destChild = parentIndex + 1;
+    auto targetIndex = oldIndex < parentIndex ? parentIndex : destChild;
+    qDebug() << "Moving message" << it->first << "from" << oldIndex << "to" << targetIndex;
+    beginMoveRows(QModelIndex(), oldIndex, oldIndex, QModelIndex(), destChild);
+    interactions_.move(oldIndex, targetIndex);
+    endMoveRows();
+    return targetIndex;
 }
 
 QVariant
