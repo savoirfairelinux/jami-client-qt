@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "54da83e0_5feef66c",
+        "filename": "src/core/conversationmodel_contacts.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-02T19:58:59Z",
+      "side": 1,
+      "message": "[error] Line 207: 🔴 The new `slotSwarmLoaded` parameter is named `permissions`, which collides with the `permissions` namespace used in `permissions::fromNames(permissions)`. In C++, this name hiding makes the qualified call invalid (or brittle depending on lookup), so this can fail to build. Rename the parameter (e.g. `permissionNames`) and call `lrc::api::permissions::fromNames(permissionNames)` (or keep unqualified namespace use once the collision is removed).",
+      "revId": "41aa0272752c50f2f27a566745fdb093c2401bbb",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
