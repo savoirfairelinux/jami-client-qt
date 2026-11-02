@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "622e0509_a10c4854",
+        "filename": "src/app/currentconversationmembers.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-02T20:00:18Z",
+      "side": 1,
+      "message": "[warning] Line 61: 🟡 `data()` is on a hot path for view refreshes; emitting `qWarning()` every time a member role is missing can flood logs and degrade UI performance. Prefer logging once per `(convId, member)` (or using a rate-limited category) and return the empty QVariant without repeated warnings.",
+      "revId": "8c7ba300f6052a73ebcabef92c2b95bb8f77e271",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "da695481_4958cf72",
+        "filename": "src/app/utilsadapter.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-02T20:00:18Z",
+      "side": 1,
+      "message": "[warning] Line 149: 🟡 `getParticipantRole` changed from `member::Role` to `QVariant`, which changes the QML-facing contract. Callers that compare directly against enum values can now receive an invalid variant and produce binding/runtime issues. Add/adjust QML-side handling (invalid role path) and a regression test that exercises the unknown-role case through this invokable.",
+      "revId": "8c7ba300f6052a73ebcabef92c2b95bb8f77e271",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
