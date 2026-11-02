@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "71e7733f_bbc29c5b",
+        "filename": "src/app/mainview/components/NewSwarmPage.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-02T20:10:16Z",
+      "side": 1,
+      "message": "[warning] Line 197: 🟡 The group creation button is now tagged with `objectName: \"createFeedButton\"`, which is misleading and likely to break existing UI automation/selectors for group creation. Rename it to a group-specific identifier (for example `createGroupButton`) to keep object naming semantically correct and stable.",
+      "revId": "4a7c4f75df1cb63ec2d61225b66bdb6561dda9b3",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bbeceec3_45d22aa8",
+        "filename": "tests/qml/src/tst_SidePanel.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-02T20:10:16Z",
+      "side": 1,
+      "message": "[error] Line 109: 🔴 The test looks up an object named `closeCreationButton`, but this patch does not introduce that object name in `SidePanel.qml` (the new button is `newConversationTypeButton`). As written, `findChild(...)` will return null and this test path will fail for the wrong reason. Use the actual object name, or add a stable `objectName: \"closeCreationButton\"` to the close-capable button in the side panel.",
+      "revId": "4a7c4f75df1cb63ec2d61225b66bdb6561dda9b3",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
