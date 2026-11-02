@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "93e2c01b_e8490c5d",
+        "filename": "src/app/mainview/components/SmartListItemDelegate.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-02T20:09:04Z",
+      "side": 1,
+      "message": "[warning] Line 285: 🟡 The `radius` property was removed from `BadgeNotifier` in a feature patch about feed identification. If `BadgeNotifier` does not default to the previous radius, this can silently change unread-badge shape across all conversations. Either restore `radius: 3` or document/verify that the default is intentionally equivalent to avoid unintended UI regression.",
+      "revId": "a17068738c4640185c4d5ad5928af83b9e0a794c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e7d25825_901fe211",
+        "filename": "tests/qml/src/tst_ConversationListView.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-02T20:09:04Z",
+      "side": 1,
+      "message": "[warning] Line 161: 🟡 The new test validates only the context-menu label switch, but the user-facing feature also adds feed identification in the smart-list row (`IconImage` visibility by `Mode`). Add a regression test that asserts the feed icon is shown for `Conversation.Mode.FEED` and hidden otherwise, so the main behavior is covered and protected from future regressions.",
+      "revId": "a17068738c4640185c4d5ad5928af83b9e0a794c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
