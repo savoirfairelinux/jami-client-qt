@@ -263,7 +263,9 @@ SidePanelBase {
                     RowLayout {
                         id: header
 
-                        QWKSetParentHitTestVisible {}
+                        QWKSetParentHitTestVisible {
+                            visible: Qt.platform.os !== "osx"
+                        }
 
                         width: parent.width
                         height: 40
@@ -273,12 +275,15 @@ SidePanelBase {
                             const macPadding = JamiTheme.sidePanelTopPaddingMac;
                             return JamiQmlUtils.isMacOS26OrLater ? basePadding + macPadding : basePadding;
                         }
-                        Layout.leftMargin: conversationListRect.radius - contactSearchBar.radius
-                        Layout.rightMargin: 15
+                        Layout.leftMargin: Qt.platform.os === "osx" ? JamiTheme.itemMarginHorizontal + JamiTheme.itemPadding
+                                                                   : conversationListRect.radius - contactSearchBar.radius
+                        Layout.rightMargin: Qt.platform.os === "osx" ? JamiTheme.itemMarginHorizontal + JamiTheme.itemPadding : 15
                         Layout.alignment: Qt.AlignTop
 
                         Searchbar {
                             id: contactSearchBar
+
+                            objectName: "contactSearchBar"
 
                             height: parent.height
                             Layout.fillWidth: true
