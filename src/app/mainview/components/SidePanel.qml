@@ -275,9 +275,9 @@ SidePanelBase {
                             const macPadding = JamiTheme.sidePanelTopPaddingMac;
                             return JamiQmlUtils.isMacOS26OrLater ? basePadding + macPadding : basePadding;
                         }
-                        Layout.leftMargin: Qt.platform.os === "osx" ? JamiTheme.itemMarginHorizontal + JamiTheme.itemPadding
+                        Layout.leftMargin: Qt.platform.os === "osx" ? JamiTheme.itemMarginHorizontal
                                                                    : conversationListRect.radius - contactSearchBar.radius
-                        Layout.rightMargin: Qt.platform.os === "osx" ? JamiTheme.itemMarginHorizontal + JamiTheme.itemPadding : 15
+                        Layout.rightMargin: Qt.platform.os === "osx" ? JamiTheme.itemMarginHorizontal : 15
                         Layout.alignment: Qt.AlignTop
 
                         Searchbar {
