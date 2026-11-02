@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a17a84ea_e872c614",
+        "filename": "src/app/conversationsadapter.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 737,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-02T20:02:48Z",
+      "side": 1,
+      "message": "[error] Line 737: 🔴 `canCall` checks `isCallPermitted` on `getCurrentConversationModel()`, which can be the wrong account model when the smart-list context menu is opened on a conversation from another account. This can incorrectly enable/disable call actions and is an authorization correctness bug at UI level. Pass `accountId` into `canCall` (or resolve the model from `convId`/account ownership) and use that account’s conversation model for the permission check.",
+      "revId": "67205bb00e6e152f440bb1013fbcf5b3b74d8bc0",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
