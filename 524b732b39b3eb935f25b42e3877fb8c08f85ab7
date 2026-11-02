@@ -18,6 +18,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "90cb50ab_bf951a68",
+        "filename": "extras/packaging/gnu-linux/docker/Dockerfile_fedora_45",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2026-11-02T20:02:16Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "54a77281_97a48682",
+      "revId": "524b732b39b3eb935f25b42e3877fb8c08f85ab7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b7364109_0629be01",
@@ -31,6 +49,24 @@
       "writtenOn": "2026-10-30T00:42:07Z",
       "side": 1,
       "message": "[warning] Line 126: 🟡 The distro-specific `if/elif` copy logic is growing and now duplicates Fedora handling per version (`fc43`, `fc44`, `fc45`). This is error-prone as new distro bumps require touching multiple branches. Consider deriving the RPM suffix from `DISTRIBUTION` (e.g., `fedora_(N)` -\u003e `fcN`, `alma_(N)` -\u003e `elN`) in one code path.",
+      "revId": "524b732b39b3eb935f25b42e3877fb8c08f85ab7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "84e8d8f1_d7221d66",
+        "filename": "extras/packaging/gnu-linux/scripts/build-package-rpm.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2026-11-02T20:02:16Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "b7364109_0629be01",
       "revId": "524b732b39b3eb935f25b42e3877fb8c08f85ab7",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
