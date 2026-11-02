@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8517b6f5_c77ba550",
+        "filename": "src/app/mainview/components/SwarmDetailsPanel.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 714,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-02T20:08:07Z",
+      "side": 1,
+      "message": "[warning] Line 714: 🟡 The confirm dialog fallback now uses `confirmRemoveContact`/`optionRemove` for every non-feed case, so regular group conversations still show contact-removal wording instead of leave-group wording. This is inconsistent with `ConversationSmartListContextMenu` and can mislead users about the action. Branch by mode here as well: one-to-one \u003d\u003e remove contact, feed \u003d\u003e leave feed, group \u003d\u003e leave group (`confirmLeaveGroup` + `optionLeave`).",
+      "revId": "59e37b70f5cd943f73fc2484252c352f4611e7f9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
