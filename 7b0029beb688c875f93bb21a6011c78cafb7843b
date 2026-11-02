@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b6f293ad_18b24812",
+        "filename": "src/app/commoncomponents/CollabNewDocPopup.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-02T20:04:07Z",
+      "side": 1,
+      "message": "[warning] Line 40: 🟡 This change adds new failure paths (permission denied and backend create failure) but there is no regression test coverage in this patch. Please add a test that exercises `createAndOpen()` when `canCreateDocument` is false and when `CollaborativeAdapter.createDocument(...)` returns an empty string, and asserts the error state/message is shown while the dialog stays open.",
+      "revId": "7b0029beb688c875f93bb21a6011c78cafb7843b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
