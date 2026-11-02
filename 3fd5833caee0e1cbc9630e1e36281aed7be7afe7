@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a55cef1_db3e0869",
+        "filename": "src/app/conversationsadapter.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 694,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-02T20:01:38Z",
+      "side": 1,
+      "message": "[error] Line 694: 🔴 **Core-dialog rename can regress due to mismatched permission model.** The new `isProfileUpdatePermitted(convId)` guard blocks title updates unless the conversation profile permission is granted, but the QML now explicitly allows one-to-one/core-dialog profile edits (`isCoreDialog || canChangeConversationProfile`). If core dialogs do not pass `isProfileUpdatePermitted`, users can still edit in UI but the backend rejects it. Align the backend condition with the UI rule (e.g., allow when core dialog, otherwise require profile permission), or route core-dialog edits through the contact-override path explicitly.",
+      "revId": "3fd5833caee0e1cbc9630e1e36281aed7be7afe7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a52b3fd4_9c9ae0a8",
+        "filename": "src/app/utilsadapter.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 671,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-02T20:01:38Z",
+      "side": 1,
+      "message": "[error] Line 671: 🔴 **Core-dialog avatar updates may be denied while UI allows them.** `setTempCreationImageFromImage` now requires `isProfileUpdatePermitted(imageId)` before calling `updateConversationInfos`, but `SwarmDetailsPanel` explicitly keeps core-dialog edits enabled. This can produce silent failure for one-to-one avatar changes. Use the same policy in both layers (permit core dialogs, enforce profile permission for swarm/group) to avoid UI/backend divergence.",
+      "revId": "3fd5833caee0e1cbc9630e1e36281aed7be7afe7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
