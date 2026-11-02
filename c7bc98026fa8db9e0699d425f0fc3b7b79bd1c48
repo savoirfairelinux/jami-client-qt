@@ -16,6 +16,24 @@
       "message": "[error] Line 586: 🔴 `blockDirectionType()` reads only the first fragment’s `DIRECTION_PROPERTY`. That makes paragraph direction fragile: if a paragraph is RTL but a peer/local edit inserts an unformatted fragment at the start, the whole block is reinterpreted as LTR on next reconcile. Mirror the alignment logic by scanning block fragments for the effective direction (or otherwise deriving block-level direction robustly), instead of trusting only the first fragment.",
       "revId": "c7bc98026fa8db9e0699d425f0fc3b7b79bd1c48",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0e9a53c5_827a9310",
+        "filename": "src/app/collabrichbinding.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 586,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-11-02T18:27:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "153cd23d_a60d11df",
+      "revId": "c7bc98026fa8db9e0699d425f0fc3b7b79bd1c48",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }

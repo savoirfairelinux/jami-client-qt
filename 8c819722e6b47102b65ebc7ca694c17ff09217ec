@@ -16,6 +16,24 @@
       "message": "[warning] Line 451: 🟡 `recheckSpelling()` still tokenizes and checks every word for locales that have no installed dictionary (e.g., peer-sent `lang` values not present locally). Because `spellIn()` treats missing dictionaries as \"word is correct\", this becomes wasted O(total_words) work on each recheck and can noticeably impact large documents. Short-circuit these runs before `findWords()` (for example, skip when the locale is not in `root.spellLanguages`), or add an explicit availability check in `SpellCheckAdapter` and bail out early.",
       "revId": "8c819722e6b47102b65ebc7ca694c17ff09217ec",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9d054272_f50a9666",
+        "filename": "src/app/mainview/components/CollabRichEditorWindow.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 451,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-11-02T18:27:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "78fd3d75_975900fa",
+      "revId": "8c819722e6b47102b65ebc7ca694c17ff09217ec",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
