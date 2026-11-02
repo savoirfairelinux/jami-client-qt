@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "802c6b33_ba34a020",
+        "filename": "src/app/commoncomponents/ShareMenu.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-02T21:05:35Z",
+      "side": 1,
+      "message": "[warning] Line 118: 🟡 `createActionSeparator` is assumed to be `generalMenuSeparatorList[0]`, but that index depends on which items were visible during `loadMenuItems()`. When \"New editable document\" is initially hidden, index 0 points to the separator between other actions, so this code hides the wrong separator; if only one action is visible, index 0 is undefined and this block will throw at runtime. Track the separator associated with `newEditableDocument` explicitly (or rebuild separators from current visible items) instead of hardcoding index 0.",
+      "revId": "0045f37795ef9cca5f481b1bbe8cbe87236683f2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
