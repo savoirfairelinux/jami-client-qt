@@ -126,6 +126,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fec64589_9a60021f",
+        "filename": "src/app/mainview/components/CollaborativeDocumentsButton.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-11-02T20:42:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a5148e9e_b7a1b069",
+      "range": {
+        "startLine": 182,
+        "startChar": 12,
+        "endLine": 188,
+        "endChar": 65
+      },
+      "revId": "9684a71ddd513f77c5270eb6c0af09ee59e22c42",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "852de2f8_1767c1dc",
@@ -173,6 +197,30 @@
       "writtenOn": "2026-09-14T17:29:42Z",
       "side": 1,
       "message": "This is subjective but I\u0027m not sure we really want this button to be in color, I feel like that puts too much importance on it relative to other similar UI elements (and it could potentially be misinterpreted as signalling that a document has been edited).",
+      "range": {
+        "startLine": 279,
+        "startChar": 8,
+        "endLine": 279,
+        "endChar": 116
+      },
+      "revId": "9684a71ddd513f77c5270eb6c0af09ee59e22c42",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "de89572b_5f59a4e9",
+        "filename": "src/app/mainview/components/CollaborativeDocumentsButton.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 279,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-11-02T20:42:20Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "4e85d982_44c85f3d",
       "range": {
         "startLine": 279,
         "startChar": 8,
