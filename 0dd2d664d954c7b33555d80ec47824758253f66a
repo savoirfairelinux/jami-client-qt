@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a97a9cd0_8024696f",
+        "filename": "src/app/mainview/components/CollaborativeDocumentsButton.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-02T20:41:55Z",
+      "side": 1,
+      "message": "[warning] Line 163: 🟡 The subtitle regresses behavior for remotely-stored docs: it now always shows only the author, whereas the previous UI explicitly showed `\"%1 - not on this device\"` when `storedLocally \u003d\u003d\u003d false`. That cue is important because opening the item re-downloads it. Restore the conditional subtitle based on `storedLocally` (while keeping plain-text rendering).",
+      "revId": "0dd2d664d954c7b33555d80ec47824758253f66a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
