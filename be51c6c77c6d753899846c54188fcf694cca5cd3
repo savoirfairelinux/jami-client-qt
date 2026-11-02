@@ -1,0 +1,166 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a6537de1_e2f17dff",
+        "filename": "src/app/commoncomponents/NewMaterialTextField.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-11-02T20:53:51Z",
+      "side": 1,
+      "message": "Done locally: accepted() is now emitted only when inputIsValid \u0026\u0026 acceptableInput. The fix has not been uploaded yet.",
+      "parentUuid": "2b8ff20f_ff99e39f",
+      "revId": "be51c6c77c6d753899846c54188fcf694cca5cd3",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9790789b_09a86193",
+        "filename": "src/app/commoncomponents/SimpleMessageDialog.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-11-02T20:53:51Z",
+      "side": 1,
+      "message": "Acknowledged. This no longer applies: BaseModalDialog now uses NewMaterialButton, whose hover styling derives from its assigned color rather than PushButton\u0027s default hoveredColor.",
+      "parentUuid": "3c48950e_62e5c726",
+      "revId": "be51c6c77c6d753899846c54188fcf694cca5cd3",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "42056ee3_99bf8238",
+        "filename": "src/app/mainview/components/CollaborativeDocumentsButton.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-11-02T20:53:51Z",
+      "side": 1,
+      "message": "Done locally: the header passes convContext, which is used for the document model, open/removal actions, title and colors. The snapshot also refreshes on current-account changes. The fix has not been uploaded yet.",
+      "parentUuid": "e14c102b_850b4d14",
+      "revId": "be51c6c77c6d753899846c54188fcf694cca5cd3",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "be834a6f_d715150b",
+        "filename": "src/app/mainview/components/CollaborativeDocumentsButton.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-11-02T20:53:51Z",
+      "side": 1,
+      "message": "Done locally: restored the localized not-on-this-device subtitle when storedLocally is false, preserving plain-text rendering. Locally removed documents remain listed and opening them downloads them again. The fix has not been uploaded yet.",
+      "parentUuid": "a97a9cd0_8024696f",
+      "revId": "be51c6c77c6d753899846c54188fcf694cca5cd3",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "16811f7e_ab2722e6",
+        "filename": "src/app/mainview/components/CollaborativeDocumentsButton.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-11-02T20:53:51Z",
+      "side": 1,
+      "message": "Done locally: refresh on COLLAB_DOC newInteraction, using MessagesAdapter for the singleton context and the injected context\u0027s signal otherwise. The fix has not been uploaded yet.",
+      "parentUuid": "09881bc6_d0486a08",
+      "revId": "be51c6c77c6d753899846c54188fcf694cca5cd3",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ba9db1fb_c4b599fa",
+        "filename": "src/app/mainview/components/CollaborativeDocumentsButton.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-11-02T20:53:51Z",
+      "side": 1,
+      "message": "Done locally: empty or undefined names use the localized Untitled document fallback, consistently in the row, confirmation dialogs and open action. The fix has not been uploaded yet.",
+      "parentUuid": "0eaef71e_6587b221",
+      "revId": "be51c6c77c6d753899846c54188fcf694cca5cd3",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e38962f0_cac66692",
+        "filename": "src/app/mainview/components/CollaborativeDocumentsButton.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-11-02T20:53:51Z",
+      "side": 1,
+      "message": "Acknowledged. CollaborativeAdapter::documents() already filters out empty document IDs before constructing the model, so these entries cannot reach the open/removal actions through this model. An additional QML guard would duplicate that filtering.",
+      "parentUuid": "852de2f8_1767c1dc",
+      "revId": "be51c6c77c6d753899846c54188fcf694cca5cd3",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7d9ea0c6_65fd9356",
+        "filename": "src/app/mainview/components/CollaborativeDocumentsButton.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-11-02T20:53:51Z",
+      "side": 1,
+      "message": "Acknowledged. Both icons are already registered in JamiResources.qml and resources.qrc in the current revision, so no additional resource registration is needed.",
+      "parentUuid": "acab4308_f4784569",
+      "revId": "be51c6c77c6d753899846c54188fcf694cca5cd3",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b3d3c869_6f0838c3",
+        "filename": "src/app/mainview/components/CollaborativeDocumentsButton.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-11-02T20:53:51Z",
+      "side": 1,
+      "message": "Done locally: added a localized root tooltip and Accessible.name for the closed control. The fix has not been uploaded yet.",
+      "parentUuid": "939ee23b_dcbc211a",
+      "revId": "be51c6c77c6d753899846c54188fcf694cca5cd3",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
