@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2b18c0e0_0c663bd1",
+        "filename": "src/app/lrcinstance.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 304,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-03T21:33:58Z",
+      "side": 1,
+      "message": "[warning] Line 304: 🟡 Prefer `AccountModel::hasAccount(accountId)` over `getAccountList().contains(accountId)`. This keeps account-existence checks centralized and consistent with the model API, and avoids duplicating list-search logic at call sites.",
+      "revId": "c107e4b8ab3aae43ac22ae1303b5c83ef352bec6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
