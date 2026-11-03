@@ -18,6 +18,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f8f46e1f_85c3af5f",
+        "filename": "src/app/mainview/components/CollabRichEditorWindow.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-11-03T20:31:35Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "77ea72e3_6c310202",
+      "revId": "e716192dd5cd3d331d79f9829f63c28f5c68fdae",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "15873edd_1d877bd9",
@@ -31,6 +49,24 @@
       "writtenOn": "2026-11-03T20:21:02Z",
       "side": 1,
       "message": "[error] Line 799: 🔴 The toolbar no longer provides a way to clear explicit font-size formatting back to the document base size (`setFontSize(0)`). Previously, the \"Base size\" menu item called `chooseTextSize(0)`; now `SettingSpinBox` is clamped to 8..72 and always applies a positive value. This is a functional regression because users cannot revert selected text to inherited/base size. Add an explicit reset action (e.g., \"Base size\" button/icon) that calls `root.chooseTextSize(0)`.",
+      "revId": "e716192dd5cd3d331d79f9829f63c28f5c68fdae",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2290b774_2fcef9d3",
+        "filename": "src/app/mainview/components/CollabRichEditorWindow.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 799,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-11-03T20:31:35Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "15873edd_1d877bd9",
       "revId": "e716192dd5cd3d331d79f9829f63c28f5c68fdae",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
