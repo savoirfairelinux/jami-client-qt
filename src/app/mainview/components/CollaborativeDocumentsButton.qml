@@ -29,8 +29,22 @@ ComboBox {
         return false;
     }
 
-    model: documentsModel
-    visible: root.count > 0
+    model: [{}].concat(documentsModel)
+
+    onActivated: function(index) {
+        if (!collaborativeDocumentsPopup.visible)
+            return;
+        if (index === 0) {
+            viewCoordinator.presentDialog(appWindow, "commoncomponents/CollabNewDocPopup.qml", {
+                                              "conversationId": root.conversationId
+                                          });
+        } else {
+            const document = documentsModel[index - 1];
+            appWindow.openCollabEditor(root.conversationId, document.documentId,
+                                       document.name || JamiStrings.untitledDocument,
+                                       root.convContext.title, document.author);
+        }
+    }
 
     function refresh() {
         documentsModel = CollaborativeAdapter.documents(conversationId);
@@ -86,7 +100,9 @@ ComboBox {
 
         required property var modelData
         required property int index
-        readonly property string documentName: modelData.name || JamiStrings.untitledDocument
+        readonly property bool isCreation: index === 0
+        readonly property string documentName: isCreation ? JamiStrings.newEditableDocument
+                                                         : modelData.name || JamiStrings.untitledDocument
 
         width: ListView.view.width
         implicitWidth: Math.max(implicitBackgroundWidth + leftInset + rightInset,
@@ -99,6 +115,7 @@ ComboBox {
         rightPadding: documentDelegate.background.radius - JamiTheme.iconButtonMedium / 2
 
         highlighted: root.highlightedIndex === index
+        Accessible.name: documentName
 
         contentItem: RowLayout {
             spacing: 4
@@ -112,7 +129,8 @@ ComboBox {
                 width: JamiTheme.iconButtonMedium
                 height: JamiTheme.iconButtonMedium
 
-                source: JamiResources.description_24dp_svg
+                source: documentDelegate.isCreation ? JamiResources.round_edit_24dp_svg
+                                                    : JamiResources.description_24dp_svg
 
                 sourceSize.width: JamiTheme.iconButtonMedium
                 sourceSize.height: JamiTheme.iconButtonMedium
@@ -135,7 +153,7 @@ ComboBox {
 
                     color: JamiTheme.redDotIndicatorColor
 
-                    visible: documentDelegate.modelData.hasUpdate
+                    visible: !documentDelegate.isCreation && documentDelegate.modelData.hasUpdate
 
                     SequentialAnimation on scale {
                         loops: Animation.Infinite
@@ -172,6 +190,7 @@ ComboBox {
 
                 Row {
                     width: parent.width
+                    visible: !documentDelegate.isCreation
 
                     spacing: 2
 
@@ -194,6 +213,8 @@ ComboBox {
                         width: parent.width - JamiTheme.iconButtonSmall
 
                         text: {
+                            if (documentDelegate.isCreation)
+                                return "";
                             const author = UtilsAdapter.getBestNameForUri(CurrentAccount.id, documentDelegate.modelData.author);
                             return documentDelegate.modelData.storedLocally === false
                                     ? JamiStrings.documentNotOnThisDevice.arg(author) : author;
@@ -220,7 +241,7 @@ ComboBox {
 
                 background: null
 
-                visible: documentDelegate.modelData.storedLocally !== false
+                visible: !documentDelegate.isCreation && documentDelegate.modelData.storedLocally !== false
 
                 onClicked: {
                     const accountId = CurrentAccount.id;
@@ -247,7 +268,7 @@ ComboBox {
 
                 background: null
 
-                visible: documentDelegate.modelData.author === CurrentAccount.uri
+                visible: !documentDelegate.isCreation && documentDelegate.modelData.author === CurrentAccount.uri
 
                 onClicked: {
                     const accountId = CurrentAccount.id;
@@ -279,18 +300,12 @@ ComboBox {
             }
         }
 
-        onClicked: appWindow.openCollabEditor(root.conversationId,
-                                              documentDelegate.modelData.documentId,
-                                              documentDelegate.documentName,
-                                              root.convContext.title,
-                                              documentDelegate.modelData.author);
-
         MaterialToolTip {
             parent: parent
 
             text: JamiStrings.openDocument
 
-            visible: (documentDelegate.hovered || documentDelegate.activeFocus)
+            visible: !documentDelegate.isCreation && (documentDelegate.hovered || documentDelegate.activeFocus)
                      && !removeFromDevice.hovered && !removeFromDevice.activeFocus
                      && !removeDocument.hovered && !removeDocument.activeFocus
                      && text.length > 0
@@ -319,7 +334,10 @@ ComboBox {
         sourceSize.width: JamiTheme.iconButtonMedium
         sourceSize.height: JamiTheme.iconButtonMedium
 
-        color: root.hovered ? Qt.lighter(root.convContext.color, 1.5) : Qt.darker(root.convContext.color, 1.5)
+        color: root.documentsModel.length > 0
+               ? (root.hovered ? Qt.lighter(root.convContext.color, 1.5) : Qt.darker(root.convContext.color, 1.5))
+               : (root.enabled && (root.hovered || collaborativeDocumentsPopup.opened)
+                  ? JamiTheme.textColor : JamiTheme.buttonTintedGreyHovered)
 
         Rectangle {
             id: documentUpdateIndicator
@@ -363,10 +381,19 @@ ComboBox {
         implicitHeight: JamiTheme.iconButtonMedium * 1.5
 
         radius: height / 2
-        color: root.hovered ? Qt.darker(root.convContext.color, 1.5) : Qt.lighter(root.convContext.color, 1.5)
+        color: root.documentsModel.length > 0
+               ? (root.hovered ? Qt.darker(root.convContext.color, 1.5) : Qt.lighter(root.convContext.color, 1.5))
+               : (root.down ? JamiTheme.pressedButtonColor : JamiTheme.hoveredButtonColor)
+        opacity: root.documentsModel.length > 0 || root.hovered || root.down || collaborativeDocumentsPopup.opened ? 1.0 : 0.0
 
         Behavior on color {
             ColorAnimation {
+                duration: JamiTheme.shortFadeDuration
+            }
+        }
+
+        Behavior on opacity {
+            NumberAnimation {
                 duration: JamiTheme.shortFadeDuration
             }
         }
