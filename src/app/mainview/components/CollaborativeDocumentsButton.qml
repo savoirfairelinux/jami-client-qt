@@ -21,6 +21,7 @@ ComboBox {
     property var convContext: CurrentConversation
     readonly property string conversationId: convContext.id
     property var documentsModel: []
+    property bool newDocumentHovered: false
     readonly property bool hasDocumentUpdate: {
         for (var i = 0; i < documentsModel.length; ++i) {
             if (documentsModel[i].hasUpdate === true)
@@ -30,7 +31,6 @@ ComboBox {
     }
 
     model: documentsModel
-    visible: root.count > 0
 
     function refresh() {
         documentsModel = CollaborativeAdapter.documents(conversationId);
@@ -98,7 +98,7 @@ ComboBox {
         padding: 4
         rightPadding: documentDelegate.background.radius - JamiTheme.iconButtonMedium / 2
 
-        highlighted: root.highlightedIndex === index
+        highlighted: root.highlightedIndex === index && !(index === 0 && root.newDocumentHovered)
 
         contentItem: RowLayout {
             spacing: 4
@@ -269,6 +269,7 @@ ComboBox {
             radius: height / 2
 
             color: documentDelegate.enabled && (documentDelegate.hovered || documentDelegate.activeFocus || documentDelegate.highlighted)
+                   && !(index === 0 && root.newDocumentHovered)
                    ? JamiTheme.smartListHoveredColor
                    : JamiTheme.globalIslandColor
 
@@ -319,12 +320,15 @@ ComboBox {
         sourceSize.width: JamiTheme.iconButtonMedium
         sourceSize.height: JamiTheme.iconButtonMedium
 
-        color: root.hovered ? Qt.lighter(root.convContext.color, 1.5) : Qt.darker(root.convContext.color, 1.5)
+        color: root.count > 0
+               ? (root.hovered ? Qt.lighter(root.convContext.color, 1.5) : Qt.darker(root.convContext.color, 1.5))
+               : (root.enabled && (root.hovered || collaborativeDocumentsPopup.opened)
+                  ? JamiTheme.textColor : JamiTheme.buttonTintedGreyHovered)
 
         Rectangle {
             id: documentUpdateIndicator
 
-            visible: root.hasDocumentUpdate
+            visible: root.count > 0 && root.hasDocumentUpdate
             anchors.top: parent.top
             anchors.topMargin: 4
             anchors.right: parent.right
@@ -363,10 +367,19 @@ ComboBox {
         implicitHeight: JamiTheme.iconButtonMedium * 1.5
 
         radius: height / 2
-        color: root.hovered ? Qt.darker(root.convContext.color, 1.5) : Qt.lighter(root.convContext.color, 1.5)
+        color: root.count > 0
+               ? (root.hovered ? Qt.darker(root.convContext.color, 1.5) : Qt.lighter(root.convContext.color, 1.5))
+               : (root.down ? JamiTheme.pressedButtonColor : JamiTheme.hoveredButtonColor)
+        opacity: root.count > 0 || root.hovered || root.down || collaborativeDocumentsPopup.opened ? 1.0 : 0.0
 
         Behavior on color {
             ColorAnimation {
+                duration: JamiTheme.shortFadeDuration
+            }
+        }
+
+        Behavior on opacity {
+            NumberAnimation {
                 duration: JamiTheme.shortFadeDuration
             }
         }
@@ -389,11 +402,91 @@ ComboBox {
         }
 
         contentItem: ListView {
+            id: documentListView
+
             implicitHeight: Math.min(contentHeight, 320)
 
             spacing: 8
 
             clip: true
+
+            header: Item {
+                width: documentListView.width
+                height: newEditableDocument.height + (root.count > 0 ? documentListView.spacing : 0)
+
+                ItemDelegate {
+                    id: newEditableDocument
+
+                    width: parent.width
+                    height: implicitHeight
+                    implicitHeight: Math.max(implicitBackgroundHeight + topInset + bottomInset,
+                                             implicitContentHeight + topPadding + bottomPadding,
+                                             implicitIndicatorHeight + topPadding + bottomPadding)
+
+                    padding: 4
+                    rightPadding: newEditableDocument.background.radius - JamiTheme.iconButtonMedium / 2
+
+                    Accessible.name: JamiStrings.newEditableDocument
+                    focusPolicy: Qt.StrongFocus
+                    Keys.onReturnPressed: clicked()
+                    onHoveredChanged: root.newDocumentHovered = hovered
+
+                    contentItem: RowLayout {
+                        spacing: 4
+
+                        IconImage {
+                            Layout.alignment: Qt.AlignVCenter
+                            Layout.leftMargin: 6
+                            Layout.topMargin: 6
+                            Layout.bottomMargin: 6
+
+                            width: JamiTheme.iconButtonMedium
+                            height: JamiTheme.iconButtonMedium
+
+                            source: JamiResources.round_edit_24dp_svg
+                            sourceSize.width: JamiTheme.iconButtonMedium
+                            sourceSize.height: JamiTheme.iconButtonMedium
+
+                            color: JamiTheme.textColor
+                        }
+
+                        Text {
+                            Layout.alignment: Qt.AlignVCenter
+                            Layout.fillWidth: true
+
+                            text: JamiStrings.newEditableDocument
+                            textFormat: Text.PlainText
+                            elide: Text.ElideRight
+                            color: JamiTheme.textColor
+
+                            font.pixelSize: JamiTheme.sharedServicesDelegateTitlePixelSize
+                        }
+                    }
+
+                    background: Rectangle {
+                        radius: height / 2
+
+                        color: newEditableDocument.enabled && (newEditableDocument.hovered
+                                                               || newEditableDocument.activeFocus
+                                                               || newEditableDocument.highlighted)
+                               ? JamiTheme.smartListHoveredColor
+                               : JamiTheme.globalIslandColor
+
+                        Behavior on color {
+                            ColorAnimation {
+                                duration: JamiTheme.shortFadeDuration
+                            }
+                        }
+                    }
+
+                    onClicked: {
+                        viewCoordinator.presentDialog(appWindow, "commoncomponents/CollabNewDocPopup.qml", {
+                                                            "conversationId": root.conversationId
+                                                        });
+                        collaborativeDocumentsPopup.close();
+                    }
+                }
+            }
 
             model: root.popup.visible ? root.delegateModel : null
             currentIndex: root.highlightedIndex
@@ -403,8 +496,10 @@ ComboBox {
 
         onAboutToShow: {
             root.refresh();
-            root.currentIndex = 0;
+            root.currentIndex = -1;
         }
+
+        onClosed: root.newDocumentHovered = false
 
         background: Rectangle {
             color: JamiTheme.globalIslandColor
