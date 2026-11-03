@@ -18,13 +18,14 @@
 import QtQuick
 import QtQuick.Window
 import QtQuick.Controls
-import QtQuick.Controls.impl
 import QtQuick.Layouts
 import net.jami.Models 1.1
 import net.jami.Constants 1.1
 import net.jami.Adapters 1.1
 import net.jami.Enums 1.1
 import "../../commoncomponents"
+import "../../commoncomponents/contextmenu"
+import "../../settingsview/components"
 
 // Independent top-level window for real-time collaborative WYSIWYG (rich-text)
 // editing. The user selects text with the mouse and applies formatting from the
@@ -57,23 +58,23 @@ Window {
     readonly property var fontChoices: [
         {
             "id": "",
-            "label": qsTr("Default")
+            "label": JamiStrings.defaultImage
         },
         {
             "id": "sans-serif",
-            "label": qsTr("Sans Serif")
+            "label": JamiStrings.fontSansSerif
         },
         {
             "id": "serif",
-            "label": qsTr("Serif")
+            "label": JamiStrings.fontSerif
         },
         {
             "id": "monospace",
-            "label": qsTr("Monospace")
+            "label": JamiStrings.fontMonospace
         },
         {
             "id": "cursive",
-            "label": qsTr("Cursive")
+            "label": JamiStrings.fontCursive
         }
     ]
     readonly property string currentFont: root.fmt.font || ""
@@ -94,7 +95,7 @@ Window {
     // Debug builds only: shows the document as the peers exchange it.
     property bool showingRaw: false
 
-    title: (documentName !== "" ? documentName : qsTr("Editable document")) + (peerName !== "" ? " — " + peerName : "") + " — " + JamiStrings.appTitle
+    title: (documentName !== "" ? documentName : JamiStrings.editableDocument) + (peerName !== "" ? " — " + peerName : "") + " — " + JamiStrings.appTitle
     width: 840
     height: 560
     minimumWidth: 420
@@ -192,110 +193,14 @@ Window {
         onTriggered: CollaborativeAdapter.setCursor(root.accountId, root.conversationId, root.documentId, editor.cursorPosition, editor.selectionStart)
     }
 
-    // Toolbar button: a small toggleable glyph button.
-    // Alignment has no letter to stand for it, and the client ships no icon for
-    // it, so it is drawn: four lines of text, set the way the paragraph would be.
-    // Justified is the one with every line full.
-    component AlignGlyph: Item {
-        id: alignGlyph
-
-        property int align: Qt.AlignLeft
-        property color lineColor: JamiTheme.textColor
-
-        implicitWidth: 16
-        implicitHeight: 17
-
-        Column {
-            anchors.centerIn: parent
-            width: 16
-            spacing: 3
-            Repeater {
-                model: [0, 1, 2, 3]
-                delegate: Rectangle {
-                    required property int index
-
-                    // Justified text is flush on both sides, save for the last line.
-                    readonly property real ratio: alignGlyph.align === Qt.AlignJustify ? (index === 3 ? 0.6 : 1.0) : (index % 2 === 0 ? 1.0 : 0.6)
-
-                    width: 16 * ratio
-                    height: 2
-                    radius: 1
-                    color: alignGlyph.lineColor
-                    x: alignGlyph.align === Qt.AlignRight ? 16 - width : (alignGlyph.align === Qt.AlignHCenter ? (16 - width) / 2 : 0)
-                }
-            }
-        }
-    }
-
-    component FormatButton: AbstractButton {
-        id: fmtBtn
-        property string iconSource: ""
-        property bool active: false
-        implicitWidth: 34
-        implicitHeight: 30
-        background: Rectangle {
-            radius: 6
-            color: fmtBtn.active ? JamiTheme.tintedBlue : (fmtBtn.hovered ? JamiTheme.hoveredButtonColor : "transparent")
-            border.width: 1
-            border.color: JamiTheme.tabbarBorderColor
-        }
-        // Same icons as the chat message format bar.
-        contentItem: IconImage {
-            source: fmtBtn.iconSource
-            sourceSize.width: JamiTheme.iconButtonSmall
-            sourceSize.height: JamiTheme.iconButtonSmall
-            color: fmtBtn.active ? "white" : JamiTheme.textColor
-        }
-    }
-
-    // Toolbar button opening a chooser: what is chosen now, then a "▾". The menu
-    // it opens is declared at the window root, for the same reason as editorMenu.
-    component ChooserButton: AbstractButton {
-        id: chooserBtn
-
-        property string label: ""
-        // The family to show the label in, if not the control's own.
-        property string labelFamily: ""
-
-        implicitHeight: 30
-        leftPadding: 8
-        rightPadding: 6
-        ToolTip.visible: hovered
-        background: Rectangle {
-            radius: 6
-            color: chooserBtn.hovered ? JamiTheme.hoveredButtonColor : "transparent"
-            border.width: 1
-            border.color: JamiTheme.tabbarBorderColor
-        }
-        contentItem: RowLayout {
-            spacing: 3
-            Text {
-                Layout.fillWidth: true
-                text: chooserBtn.label
-                font.family: chooserBtn.labelFamily !== "" ? chooserBtn.labelFamily
-                                                           : chooserBtn.font.family
-                font.pointSize: JamiTheme.textFontSize
-                color: JamiTheme.textColor
-                elide: Text.ElideRight
-                verticalAlignment: Text.AlignVCenter
-            }
-            Text {
-                text: "▾"
-                color: JamiTheme.textColor
-                font.pointSize: JamiTheme.textFontSize
-            }
-        }
-    }
-
-    // Between two groups of toolbar controls. As tall as a button, so it lines up
-    // with them on any line of a wrapped toolbar.
+    // Match the icon button height so dividers stay centered in the toolbar.
     component ToolbarSeparator: Item {
         width: 1
-        height: 30
+        height: JamiTheme.iconButtonMedium * 1.5
         Rectangle {
             anchors.centerIn: parent
             width: 1
-            height: 22
+            height: parent.height - 8
             color: JamiTheme.tabbarBorderColor
         }
     }
@@ -345,8 +250,8 @@ Window {
             // vanishes mid-sentence -- and say which of the two happened, since
             // one of them can be walked back and the other cannot.
             viewCoordinator.presentDialog(appWindow, "commoncomponents/SimpleMessageDialog.qml", {
-                "titleText": everywhere ? qsTr("Document removed") : qsTr("Document removed from this device"),
-                "infoText": everywhere ? qsTr("\"%1\" was removed by its author.").arg(root.documentName) : qsTr("\"%1\" is no longer on this device. Opening it again downloads it back.").arg(root.documentName),
+                "titleText": everywhere ? JamiStrings.documentRemoved : JamiStrings.documentRemovedFromDevice,
+                "infoText": everywhere ? JamiStrings.documentRemovedByAuthor.arg(root.documentName) : JamiStrings.documentRemovedLocallyInfo.arg(root.documentName),
                 "buttonTitles": [JamiStrings.optionOk],
                 "buttonStyles": [SimpleMessageDialog.ButtonStyle.TintedBlue],
                 "buttonRoles": [DialogButtonBox.AcceptRole]
@@ -399,11 +304,11 @@ Window {
         var choices = [
             {
                 "id": "",
-                "label": qsTr("Default")
+                "label": JamiStrings.defaultImage
             },
             {
                 "id": root.noSpellLanguage,
-                "label": qsTr("No spell check")
+                "label": JamiStrings.noSpellCheck
             }
         ];
         var locales = Object.keys(root.spellLanguages);
@@ -417,9 +322,9 @@ Window {
 
     function languageLabel(lang) {
         if (lang === "")
-            return qsTr("Default");
+            return JamiStrings.defaultImage;
         if (lang === root.noSpellLanguage)
-            return qsTr("No spell check");
+            return JamiStrings.noSpellCheck;
         return root.spellLanguages[lang] !== undefined ? root.spellLanguages[lang] : lang;
     }
 
@@ -519,12 +424,12 @@ Window {
 
     function headingLabel(level) {
         if (level === 1)
-            return qsTr("Heading 1");
+            return JamiStrings.heading1;
         if (level === 2)
-            return qsTr("Heading 2");
+            return JamiStrings.heading2;
         if (level === 3)
-            return qsTr("Heading 3");
-        return qsTr("Normal text");
+            return JamiStrings.heading3;
+        return JamiStrings.normalText;
     }
 
     // How much larger than the text a heading is drawn: the size adjustment of
@@ -553,16 +458,6 @@ Window {
         richBinding.setFontSize(size, editor.selectionStart, editor.selectionEnd);
         root.refreshFormatState();
         editor.forceActiveFocus();
-    }
-
-    function alignmentOf(style) {
-        if (style === "center")
-            return Qt.AlignHCenter;
-        if (style === "right")
-            return Qt.AlignRight;
-        if (style === "justify")
-            return Qt.AlignJustify;
-        return Qt.AlignLeft;
     }
 
     // Unit holding the image the resize handles are attached to, -1 when none is
@@ -611,9 +506,9 @@ Window {
         if (typeof viewCoordinator === "undefined")
             return;
         var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/JamiFileDialog.qml", {
-            "title": qsTr("Insert image"),
+            "title": JamiStrings.insertImage,
             "mode": JamiFileDialog.Mode.OpenFile,
-            "nameFilters": [qsTr("Images") + " (*.png *.jpg *.jpeg *.gif *.bmp *.webp)"]
+            "nameFilters": [JamiStrings.images + " (*.png *.jpg *.jpeg *.gif *.bmp *.webp)"]
         }, true);
         dlg.fileAccepted.connect(function (file) {
             root.insertImageFromFile(file);
@@ -623,7 +518,7 @@ Window {
     function insertImageFromFile(file) {
         const info = CollaborativeAdapter.addAttachment(root.accountId, root.conversationId, root.documentId, file);
         if (!info || !info.id) {
-            root.attachmentError = qsTr("This image could not be added. It has to be an image of at most 16 MB.");
+            root.attachmentError = JamiStrings.documentImageInsertError;
             attachmentErrorTimer.restart();
             return;
         }
@@ -645,10 +540,10 @@ Window {
         const missing = suffix === "txt" ? 0 : richBinding.unresolvedImageCount();
         if (missing > 0) {
             var confirmDlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/ConfirmDialog.qml", {
-                "titleText": qsTr("Export document"),
-                "textLabel": qsTr("%n picture(s) in this document have not arrived yet and would be exported as empty boxes.", "", missing),
-                "confirmLabel": qsTr("Export anyway"),
-                "rejectLabel": qsTr("Cancel")
+                "titleText": JamiStrings.exportDocument,
+                "textLabel": JamiStrings.missingDocumentPictures(missing),
+                "confirmLabel": JamiStrings.exportAnyway,
+                "rejectLabel": JamiStrings.optionCancel
             });
             confirmDlg.accepted.connect(function () {
                 root.pickExportPath(suffix, filterLabel);
@@ -662,9 +557,9 @@ Window {
         const folder = UtilsAdapter.getDirDocument();
         // The name is written by whoever renamed the document, this device or a
         // peer, so it is never allowed to carry the path anywhere.
-        const base = (root.documentName !== "" ? root.documentName : qsTr("document")).replace(/[\/\\:*?"<>|]/g, "_");
+        const base = (root.documentName !== "" ? root.documentName : JamiStrings.documentExportBaseName).replace(/[\/\\:*?"<>|]/g, "_");
         var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/JamiFileDialog.qml", {
-            "title": qsTr("Export document"),
+            "title": JamiStrings.exportDocument,
             "mode": JamiFileDialog.Mode.SaveFile,
             "folder": UtilsAdapter.urlFromLocalPath(folder),
             // currentFile, not file: the latter only ever holds what the
@@ -676,8 +571,8 @@ Window {
         dlg.fileAccepted.connect(function (file) {
             const ok = richBinding.exportToFile(file, root.documentName);
             viewCoordinator.presentDialog(appWindow, "commoncomponents/SimpleMessageDialog.qml", {
-                "titleText": ok ? qsTr("Document exported") : qsTr("Export failed"),
-                "infoText": ok ? UtilsAdapter.getAbsPath(file.toString()) : qsTr("The document could not be written there."),
+                "titleText": ok ? JamiStrings.documentExported : JamiStrings.exportFailed,
+                "infoText": ok ? UtilsAdapter.getAbsPath(file.toString()) : JamiStrings.documentExportWriteError,
                 "buttonTitles": [JamiStrings.optionOk],
                 "buttonStyles": [SimpleMessageDialog.ButtonStyle.TintedBlue],
                 "buttonRoles": [DialogButtonBox.AcceptRole]
@@ -696,7 +591,7 @@ Window {
         }
         const info = CollaborativeAdapter.addAttachmentFromClipboard(root.accountId, root.conversationId, root.documentId);
         if (!info || !info.id) {
-            root.attachmentError = qsTr("This image could not be added. It has to be an image of at most 16 MB.");
+            root.attachmentError = JamiStrings.documentImageInsertError;
             attachmentErrorTimer.restart();
             return;
         }
@@ -739,7 +634,7 @@ Window {
             // text would be a strange answer to the gesture. A link dragged from
             // a browser is a different matter entirely: it carries a URL too, but
             // it is text, and inserting it is what was meant.
-            root.attachmentError = qsTr("This image could not be added. It has to be an image of at most 16 MB.");
+            root.attachmentError = JamiStrings.documentImageInsertError;
             attachmentErrorTimer.restart();
             return;
         }
@@ -795,124 +690,57 @@ Window {
         // A third of the usual inset: this window is a writing surface, and the
         // editor is meant to reach close to its edges.
         anchors.margins: JamiTheme.preferredMarginSize / 3
-        spacing: JamiTheme.preferredMarginSize
+        spacing: JamiTheme.preferredMarginSize / 3
 
-        // The editable document name (click to rename), with what applies to the
-        // whole document on its right.
+        // The document name, with what applies to the whole document on its right.
         RowLayout {
             Layout.fillWidth: true
             spacing: 4
 
-            Item {
-                id: titleContainer
-                Layout.fillWidth: true
-                Layout.preferredHeight: 30
+            NewMaterialTextField {
+                id: nameField
 
-                property bool editing: false
+                Layout.fillWidth: true
+                readOnly: !root.canRename
+                textFieldContent: root.documentName
+                placeholderText: JamiStrings.documentName
+                leadingIconSource: JamiResources.description_24dp_svg
 
                 function commitRename() {
-                    var newName = nameField.text.trim();
+                    if (readOnly)
+                        return;
+                    var newName = nameField.modifiedTextFieldContent.trim();
                     if (newName !== "" && newName !== root.documentName) {
                         root.documentName = newName;
                         CollaborativeAdapter.setName(root.accountId, root.conversationId, root.documentId, newName);
                     }
-                    titleContainer.editing = false;
+                    modifiedTextFieldContent = root.documentName;
                 }
 
-                Text {
-                    id: documentTitle
-                    anchors.fill: parent
-                    visible: !titleContainer.editing
-                    verticalAlignment: Text.AlignVCenter
-                    text: root.documentName !== "" ? root.documentName : JamiStrings.untitledDocument
-                    elide: Text.ElideRight
-                    font.pointSize: JamiTheme.title2FontSize
-                    font.bold: true
-                    color: JamiTheme.textColor
-
-                    MouseArea {
-                        objectName: "documentRenameArea"
-                        anchors.fill: parent
-                        visible: root.canRename
-                        enabled: root.canRename
-                        cursorShape: Qt.PointingHandCursor
-                        hoverEnabled: true
-                        ToolTip.visible: containsMouse
-                        ToolTip.text: qsTr("Click to rename")
-                        onClicked: {
-                            nameField.text = root.documentName;
-                            titleContainer.editing = true;
-                            nameField.forceActiveFocus();
-                            nameField.selectAll();
-                        }
-                    }
+                onAccepted: {
+                    commitRename();
+                    root.focusEditor();
                 }
-
-                TextField {
-                    id: nameField
-                    anchors.fill: parent
-                    visible: titleContainer.editing
-                    font.pointSize: JamiTheme.title2FontSize
-                    font.bold: true
-                    color: JamiTheme.textColor
-                    placeholderText: JamiStrings.documentName
-                    onAccepted: titleContainer.commitRename()
-                    onActiveFocusChanged: {
-                        if (!activeFocus && titleContainer.editing)
-                            titleContainer.commitRename();
-                    }
-                    Keys.onEscapePressed: titleContainer.editing = false
+                onTextFieldActiveFocusChanged: {
+                    if (!textFieldActiveFocus)
+                        commitRename();
+                }
+                Keys.onEscapePressed: {
+                    modifiedTextFieldContent = root.documentName;
+                    root.focusEditor();
                 }
             }
 
-            PushButton {
-                id: exportButton
-                preferredSize: 26
-                imageContainerWidth: 18
-                imageContainerHeight: 18
-                source: JamiResources.save_file_24dp_svg
-                toolTipText: qsTr("Export a local copy")
-                // A past version is reviewed over the live document, which is
-                // what would be written: offering the action there would export
-                // something other than what is on screen.
-                enabled: !root.previewing
-                opacity: enabled ? 1.0 : 0.4
-                normalColor: "transparent"
-                imageColor: JamiTheme.textColor
-                onClicked: exportMenu.popup(exportButton, 0, exportButton.height)
-            }
-
-            PushButton {
+            NewIconButton {
                 Layout.alignment: Qt.AlignVCenter
-                preferredSize: 26
-                imageContainerWidth: 18
-                imageContainerHeight: 18
-                source: JamiResources.time_clock_svg
-                toolTipText: qsTr("Version history")
-                checkable: true
-                checked: historyPanel.visible
-                normalColor: "transparent"
-                imageColor: JamiTheme.textColor
-                onClicked: {
-                    historyPanel.visible = !historyPanel.visible;
-                    if (!historyPanel.visible)
-                        historyPanel.clearPreview();
-                }
-            }
-            PushButton {
-                Layout.alignment: Qt.AlignVCenter
-                preferredSize: 26
-                imageContainerWidth: 18
-                imageContainerHeight: 18
-                source: JamiResources.code_black_24dp_svg
-                toolTipText: qsTr("Show the raw document")
+                iconSize: JamiTheme.iconButtonMedium
+                iconSource: JamiResources.code_black_24dp_svg
+                toolTipText: JamiStrings.showRawDocument
                 // Debug builds only: this is the wire format, and it is of
                 // interest to whoever is chasing two replicas that disagree.
                 visible: LRCInstance.debugMode()
                 checkable: true
                 checked: root.showingRaw
-                normalColor: "transparent"
-                imageColor: JamiTheme.textColor
                 onClicked: root.showingRaw = !root.showingRaw
             }
         }
@@ -930,90 +758,108 @@ Window {
 
             // A heading applies to whole paragraphs, so it needs no selection: the
             // caret is enough to say which one is meant.
-            ChooserButton {
+            SettingParaCombobox {
                 id: headingButton
                 objectName: "headingButton"
 
                 enabled: !root.previewing
-                width: 108
-                label: root.headingLabel(root.currentHeading)
-                ToolTip.text: qsTr("Paragraph style")
-                onClicked: headingMenu.popup(headingButton, 0, headingButton.height)
+                width: 184
+                leadingIconSource: JamiResources.title_24dp_svg
+                model: [0, 1, 2, 3].map(level => ({
+                    "label": root.headingLabel(level),
+                    "level": level
+                }))
+                textRole: "label"
+                currentIndex: root.currentHeading
+                currentSelectionText: root.headingLabel(root.currentHeading)
+                tooltipText: JamiStrings.paragraphStyle
+                onActivated: root.chooseHeading(model[currentIndex].level)
             }
 
-            // Font of the selection, shown in itself.
-            ChooserButton {
+            // Font of the selection.
+            SettingParaCombobox {
                 id: fontFamilyButton
                 objectName: "fontFamilyButton"
 
                 enabled: !root.previewing
-                width: 132
-                label: root.currentFontLabel
-                ToolTip.text: qsTr("Font family")
-                onClicked: fontFamilyMenu.popup(fontFamilyButton, 0, fontFamilyButton.height)
+                width: 184
+                leadingIconSource: JamiResources.brand_family_24dp_svg
+                model: root.fontChoices
+                textRole: "label"
+                fontFamilyForIndex: index => richBinding.fontFamilyForId(root.fontChoices[index].id) || editor.font.family
+                currentIndex: root.fontChoices.findIndex(choice => choice.id === root.currentFont)
+                currentSelectionText: root.currentFontLabel
+                tooltipText: JamiStrings.fontFamily
+                onActivated: root.chooseFont(model[currentIndex].id)
             }
 
             // Size of the selection, which every participant sees. Text without a
             // size of its own is at the base size, which is what it shows then.
-            ChooserButton {
+            SettingSpinBox {
                 id: textSizeButton
                 objectName: "textSizeButton"
 
                 enabled: !root.previewing
-                width: 52
-                label: root.currentTextSize > 0 ? root.currentTextSize : root.baseFontSize
-                ToolTip.text: qsTr("Font size")
-                onClicked: textSizeMenu.popup(textSizeButton, 0, textSizeButton.height)
-            }
-
-            // Language of the selection, for the spell checker.
-            ChooserButton {
-                id: languageButton
-                objectName: "languageButton"
-
-                enabled: !root.previewing
-                width: 120
-                label: root.languageLabel(root.currentLanguage)
-                ToolTip.text: qsTr("Spelling language")
-                onClicked: languageMenu.popup(languageButton, 0, languageButton.height)
+                width: 96
+                itemWidth: 96
+                buttonWidth: 32
+                contentLeftPadding: buttonWidth
+                contentRightPadding: buttonWidth
+                backgroundColor: JamiTheme.globalBackgroundColor
+                incrementIconSource: JamiResources.add_outline_24dp_svg
+                decrementIconSource: JamiResources.remove_24dp_svg
+                bottomValue: 8
+                topValue: 72
+                step: 1
+                valueField: root.currentTextSize > 0 ? root.currentTextSize : root.baseFontSize
+                tooltipText: JamiStrings.fontSize
+                onValueModified: root.chooseTextSize(valueField)
             }
 
             ToolbarSeparator {}
 
-            FormatButton {
+            NewIconButton {
                 enabled: !root.previewing
+                iconSize: JamiTheme.iconButtonMedium
                 iconSource: JamiResources.bold_black_24dp_svg
-                active: root.fmt.b === true
+                toolTipText: JamiStrings.bold
+                checked: root.fmt.b === true
                 onClicked: {
                     richBinding.toggleInline("b", editor.selectionStart, editor.selectionEnd);
                     root.refreshFormatState();
                     editor.forceActiveFocus();
                 }
             }
-            FormatButton {
+            NewIconButton {
                 enabled: !root.previewing
+                iconSize: JamiTheme.iconButtonMedium
                 iconSource: JamiResources.italic_black_24dp_svg
-                active: root.fmt.i === true
+                toolTipText: JamiStrings.italic
+                checked: root.fmt.i === true
                 onClicked: {
                     richBinding.toggleInline("i", editor.selectionStart, editor.selectionEnd);
                     root.refreshFormatState();
                     editor.forceActiveFocus();
                 }
             }
-            FormatButton {
+            NewIconButton {
                 enabled: !root.previewing
+                iconSize: JamiTheme.iconButtonMedium
                 iconSource: JamiResources.underline_black_24dp_svg
-                active: root.fmt.u === true
+                toolTipText: JamiStrings.underline
+                checked: root.fmt.u === true
                 onClicked: {
                     richBinding.toggleInline("u", editor.selectionStart, editor.selectionEnd);
                     root.refreshFormatState();
                     editor.forceActiveFocus();
                 }
             }
-            FormatButton {
+            NewIconButton {
                 enabled: !root.previewing
+                iconSize: JamiTheme.iconButtonMedium
                 iconSource: JamiResources.strikethrough_s_24dp_svg
-                active: root.fmt.s === true
+                toolTipText: JamiStrings.strikethrough
+                checked: root.fmt.s === true
                 onClicked: {
                     richBinding.toggleInline("s", editor.selectionStart, editor.selectionEnd);
                     root.refreshFormatState();
@@ -1024,67 +870,83 @@ Window {
             ToolbarSeparator {}
 
             // Alignment applies to whole paragraphs, so it needs no selection: the
-            // caret is enough to say which one is meant. Opens a root-level Menu,
-            // for the same reason as the font size chooser.
-            AbstractButton {
-                id: alignButton
-                objectName: "alignButton"
+            // caret is enough to say which one is meant.
+            Repeater {
+                model: [
+                    {
+                        "style": "left",
+                        "label": JamiStrings.alignLeft,
+                        "icon": JamiResources.format_align_left_24dp_svg
+                    },
+                    {
+                        "style": "center",
+                        "label": JamiStrings.alignCenter,
+                        "icon": JamiResources.format_align_center_24dp_svg
+                    },
+                    {
+                        "style": "right",
+                        "label": JamiStrings.alignRight,
+                        "icon": JamiResources.format_align_right_24dp_svg
+                    },
+                    {
+                        "style": "justify",
+                        "label": JamiStrings.justify,
+                        "icon": JamiResources.format_align_justify_24dp_svg
+                    }
+                ]
+                delegate: Row {
+                    required property var modelData
 
-                enabled: !root.previewing
-                width: 46
-                height: 30
-                ToolTip.visible: hovered
-                ToolTip.text: qsTr("Paragraph alignment")
-                background: Rectangle {
-                    radius: 6
-                    color: alignButton.hovered ? JamiTheme.hoveredButtonColor : "transparent"
-                    border.width: 1
-                    border.color: JamiTheme.tabbarBorderColor
-                }
-                contentItem: Row {
-                    spacing: 3
-                    AlignGlyph {
-                        anchors.verticalCenter: parent.verticalCenter
-                        // Shows what the paragraph under the caret is doing.
-                        align: root.alignmentOf(root.currentAlign)
+                    spacing: formattingToolbar.spacing
+
+                    NewIconButton {
+                        objectName: "align-" + modelData.style
+                        enabled: !root.previewing
+                        iconSize: JamiTheme.iconButtonMedium
+                        iconSource: modelData.icon
+                        toolTipText: modelData.label
+                        checked: root.currentAlign === modelData.style
+                        onClicked: {
+                            richBinding.setAlign(modelData.style, editor.selectionStart, editor.selectionEnd);
+                            root.refreshFormatState();
+                            root.refreshImageGeom();
+                            editor.forceActiveFocus();
+                        }
                     }
-                    Text {
-                        anchors.verticalCenter: parent.verticalCenter
-                        text: "▾"
-                        color: JamiTheme.textColor
-                        font.pointSize: JamiTheme.textFontSize
+
+                    ToolbarSeparator {
+                        visible: modelData.style === "justify"
                     }
                 }
-                onClicked: alignMenu.popup(alignButton, 0, alignButton.height)
             }
-            FormatButton {
+            NewIconButton {
                 objectName: "directionButton"
 
                 enabled: !root.previewing
+                iconSize: JamiTheme.iconButtonMedium
                 iconSource: root.currentDirection === "rtl" ? JamiResources.text_direction_rtl_24dp_svg : JamiResources.text_direction_ltr_24dp_svg
-                ToolTip.visible: hovered
-                ToolTip.text: root.currentDirection === "rtl" ? qsTr("Right-to-left: switch to left-to-right") : qsTr("Left-to-right: switch to right-to-left")
-                active: root.currentDirection === "rtl"
+                toolTipText: root.currentDirection === "rtl" ? JamiStrings.switchToLeftToRight : JamiStrings.switchToRightToLeft
+                checked: root.currentDirection === "rtl"
                 onClicked: root.toggleDirection()
             }
-            FormatButton {
+            NewIconButton {
                 enabled: !root.previewing
+                iconSize: JamiTheme.iconButtonMedium
                 iconSource: JamiResources.bidirectional_bullet_point_black_24dp_svg
-                ToolTip.visible: hovered
-                ToolTip.text: qsTr("Bulleted list")
-                active: root.fmt.list === "bullet"
+                toolTipText: JamiStrings.bulletedList
+                checked: root.fmt.list === "bullet"
                 onClicked: {
                     richBinding.setList("bullet", editor.selectionStart, editor.selectionEnd);
                     root.refreshFormatState();
                     editor.forceActiveFocus();
                 }
             }
-            FormatButton {
+            NewIconButton {
                 enabled: !root.previewing
+                iconSize: JamiTheme.iconButtonMedium
                 iconSource: JamiResources.bidirectional_bullet_number_black_24dp_svg
-                ToolTip.visible: hovered
-                ToolTip.text: qsTr("Numbered list")
-                active: root.fmt.list === "ordered"
+                toolTipText: JamiStrings.numberedList
+                checked: root.fmt.list === "ordered"
                 onClicked: {
                     richBinding.setList("ordered", editor.selectionStart, editor.selectionEnd);
                     root.refreshFormatState();
@@ -1094,27 +956,28 @@ Window {
 
             ToolbarSeparator {}
 
-            FormatButton {
+            NewIconButton {
                 enabled: !root.previewing
+                iconSize: JamiTheme.iconButtonMedium
                 iconSource: JamiResources.link_web_black_24dp_svg
-                active: root.fmt.link !== undefined && root.fmt.link !== ""
+                toolTipText: JamiStrings.link
+                checked: root.fmt.link !== undefined && root.fmt.link !== ""
                 onClicked: {
-                    linkField.text = (root.fmt.link !== undefined ? root.fmt.link : "");
                     linkPopup.open();
                 }
             }
-            FormatButton {
+            NewIconButton {
                 enabled: !root.previewing
+                iconSize: JamiTheme.iconButtonMedium
                 iconSource: JamiResources.add_photo_alternate_black_24dp_svg
-                ToolTip.visible: hovered
-                ToolTip.text: qsTr("Insert image")
+                toolTipText: JamiStrings.insertImage
                 onClicked: root.pickImage()
             }
-            FormatButton {
+            NewIconButton {
                 enabled: !root.previewing
-                iconSource: JamiResources.clear_24dp_svg
-                ToolTip.visible: hovered
-                ToolTip.text: qsTr("Clear formatting")
+                iconSize: JamiTheme.iconButtonMedium
+                iconSource: JamiResources.format_clear_24dp_svg
+                toolTipText: JamiStrings.clearFormatting
                 onClicked: {
                     richBinding.clearFormat(editor.selectionStart, editor.selectionEnd);
                     root.refreshFormatState();
@@ -1136,7 +999,7 @@ Window {
         RowLayout {
             Layout.fillWidth: true
             Layout.fillHeight: true
-            spacing: JamiTheme.preferredMarginSize
+            spacing: JamiTheme.preferredMarginSize / 3
 
             // The live editor stays mounted and visible to Qt at all times: a
             // TextArea whose text changes while it is hidden comes back with a
@@ -1163,7 +1026,7 @@ Window {
                         focus: true
                         font.pointSize: root.baseFontSize
                         color: JamiTheme.textColor
-                        placeholderText: qsTr("Start typing…")
+                        placeholderText: JamiStrings.startTyping
                         background: Rectangle {
                             color: JamiTheme.secondaryBackgroundColor
                             border.width: 1
@@ -1409,7 +1272,7 @@ Window {
                                     Text {
                                         id: flagText
                                         anchors.centerIn: parent
-                                        text: name !== "" ? name : qsTr("Someone")
+                                        text: name !== "" ? name : JamiStrings.someone
                                         color: "white"
                                         font.pointSize: JamiTheme.tinyFontSize
                                     }
@@ -1520,69 +1383,127 @@ Window {
                 }
             }
         }
+
+        RowLayout {
+            Layout.fillWidth: true
+            spacing: 4
+
+            SettingParaCombobox {
+                id: languageButton
+                objectName: "languageButton"
+
+                Layout.preferredWidth: 204
+                enabled: !root.previewing
+                leadingIconSource: JamiResources.spellcheck_outline_24dp_svg
+                model: root.spellLanguageChoices.concat([{
+                    "label": JamiStrings.dictionaryManager
+                }])
+                textRole: "label"
+                currentIndex: root.spellLanguageChoices.findIndex(choice => choice.id === root.currentLanguage)
+                currentSelectionText: root.languageLabel(root.currentLanguage)
+                tooltipText: JamiStrings.spellingLanguage
+                onActivated: {
+                    if (currentIndex === root.spellLanguageChoices.length) {
+                        viewCoordinator.presentDialog(appWindow, "commoncomponents/DictionaryManagerDialog.qml");
+                        currentIndex = Qt.binding(function () {
+                            return root.spellLanguageChoices.findIndex(choice => choice.id === root.currentLanguage);
+                        });
+                    } else {
+                        root.chooseLanguage(model[currentIndex].id);
+                    }
+                }
+            }
+
+            Item {
+                Layout.fillWidth: true
+            }
+
+            NewIconButton {
+                id: exportButton
+
+                Layout.alignment: Qt.AlignVCenter
+                iconSize: JamiTheme.iconButtonMedium
+                iconSource: JamiResources.file_export_24dp_svg
+                toolTipText: JamiStrings.exportLocalCopy
+                // Export writes the live document, not the preview on screen.
+                enabled: !root.previewing
+                opacity: enabled ? 1.0 : 0.4
+                onClicked: exportMenu.popup(exportButton, 0, -exportMenu.height)
+            }
+
+            NewIconButton {
+                Layout.alignment: Qt.AlignVCenter
+                iconSize: JamiTheme.iconButtonSmall
+                iconSource: JamiResources.time_clock_svg
+                toolTipText: JamiStrings.versionHistory
+                checkable: true
+                checked: historyPanel.visible
+                onClicked: {
+                    historyPanel.visible = !historyPanel.visible;
+                    if (!historyPanel.visible)
+                        historyPanel.clearPreview();
+                }
+            }
+        }
     }
 
-    // Minimal URL entry for the link button.
-    Popup {
+    BaseModalDialog {
         id: linkPopup
         anchors.centerIn: Overlay.overlay
-        modal: true
-        focus: true
-        padding: JamiTheme.preferredMarginSize
-        background: Rectangle {
-            color: JamiTheme.backgroundColor
-            border.width: 1
-            border.color: JamiTheme.tabbarBorderColor
-            radius: 8
-        }
 
+        property string linkUrl: ""
         property int savedStart: 0
         property int savedEnd: 0
+
+        function applyLink(removeLink) {
+            Qt.inputMethod.commit();
+            Qt.inputMethod.reset();
+            const url = removeLink ? "" : linkUrl.trim();
+            if (!removeLink && url.length === 0)
+                return;
+            richBinding.setLink(url, savedStart, savedEnd);
+            root.refreshFormatState();
+            close();
+        }
+
+        titleText: JamiStrings.linkUrl
+        button1.text: JamiStrings.apply
+        button1Role: DialogButtonBox.AcceptRole
+        button1.enabled: linkUrl.trim().length > 0
+        button1.onClicked: applyLink(false)
+        button2.text: root.fmt.link !== undefined && root.fmt.link !== "" ? JamiStrings.optionRemove : ""
+        button2Role: DialogButtonBox.DestructiveRole
+        button2.onClicked: applyLink(true)
+
         onAboutToShow: {
             savedStart = editor.selectionStart;
             savedEnd = editor.selectionEnd;
+            linkUrl = root.fmt.link !== undefined ? root.fmt.link : "";
         }
+        onClosed: root.focusEditor()
 
-        ColumnLayout {
+        popupContent: ColumnLayout {
+            width: 320
             spacing: JamiTheme.preferredMarginSize
 
-            Text {
-                text: qsTr("Link URL")
-                color: JamiTheme.textColor
-                font.pointSize: JamiTheme.settingsFontSize
+            Component.onCompleted: linkField.forceTextFieldActiveFocus()
+
+            Connections {
+                target: linkPopup
+                function onOpened() {
+                    linkField.forceTextFieldActiveFocus();
+                }
             }
-            TextField {
+
+            NewMaterialTextField {
                 id: linkField
-                Layout.preferredWidth: 320
+
+                Layout.fillWidth: true
+                leadingIconSource: JamiResources.link_web_black_24dp_svg
+                textFieldContent: linkPopup.linkUrl
                 placeholderText: "https://"
-                color: JamiTheme.textColor
-                onAccepted: applyLinkButton.clicked()
-                Component.onCompleted: forceActiveFocus()
-            }
-            RowLayout {
-                Layout.alignment: Qt.AlignRight
-                spacing: 6
-                Button {
-                    text: qsTr("Remove")
-                    visible: root.fmt.link !== undefined && root.fmt.link !== ""
-                    onClicked: {
-                        richBinding.setLink("", linkPopup.savedStart, linkPopup.savedEnd);
-                        root.refreshFormatState();
-                        linkPopup.close();
-                        editor.forceActiveFocus();
-                    }
-                }
-                Button {
-                    id: applyLinkButton
-                    text: qsTr("Apply")
-                    enabled: linkField.text.trim().length > 0
-                    onClicked: {
-                        richBinding.setLink(linkField.text.trim(), linkPopup.savedStart, linkPopup.savedEnd);
-                        root.refreshFormatState();
-                        linkPopup.close();
-                        editor.forceActiveFocus();
-                    }
-                }
+                onModifiedTextFieldContentChanged: linkPopup.linkUrl = modifiedTextFieldContent
+                onAccepted: linkPopup.applyLink(false)
             }
         }
     }
@@ -1638,7 +1559,7 @@ Window {
             height: visible ? implicitHeight : 0
         }
         MenuItem {
-            text: qsTr("Spelling language…")
+            text: JamiStrings.spellingLanguageMenu
             enabled: !root.previewing
             onTriggered: Qt.callLater(function () {
                 languageMenu.popup();
@@ -1646,19 +1567,19 @@ Window {
         }
         MenuSeparator {}
         MenuItem {
-            text: qsTr("Copy")
+            text: JamiStrings.copy
             enabled: editor.selectedText.length > 0
             onTriggered: editor.copy()
         }
         MenuItem {
-            text: qsTr("Paste")
+            text: JamiStrings.paste
             // canPaste only knows about text, and a clipboard holding just a
             // picture would leave the entry greyed out.
             enabled: editor.canPaste || richBinding.clipboardHasImage
             onTriggered: root.pasteFromClipboard()
         }
         MenuItem {
-            text: qsTr("Delete")
+            text: JamiStrings.optionDelete
             enabled: editor.selectedText.length > 0
             onTriggered: editor.remove(editor.selectionStart, editor.selectionEnd)
         }
@@ -1666,182 +1587,48 @@ Window {
 
     // Local export. Declared at the window root for the same reason as
     // editorMenu.
-    Menu {
+    BaseContextMenu {
         id: exportMenu
 
-        MenuItem {
-            text: qsTr("Export as PDF…")
-            visible: richBinding.canExportAs("pdf")
-            height: visible ? implicitHeight : 0
-            onTriggered: root.exportDocument("pdf", qsTr("PDF document"))
-        }
-        MenuItem {
-            text: qsTr("Export as ODT…")
-            visible: richBinding.canExportAs("odt")
-            height: visible ? implicitHeight : 0
-            onTriggered: root.exportDocument("odt", qsTr("OpenDocument text"))
-        }
-        MenuItem {
-            text: qsTr("Export as HTML…")
-            visible: richBinding.canExportAs("html")
-            height: visible ? implicitHeight : 0
-            onTriggered: root.exportDocument("html", qsTr("HTML document"))
-        }
-        MenuItem {
-            text: qsTr("Export as Markdown…")
-            visible: richBinding.canExportAs("md")
-            height: visible ? implicitHeight : 0
-            onTriggered: root.exportDocument("md", qsTr("Markdown document"))
-        }
-        MenuItem {
-            text: qsTr("Export as plain text…")
-            visible: richBinding.canExportAs("txt")
-            height: visible ? implicitHeight : 0
-            onTriggered: root.exportDocument("txt", qsTr("Plain text document"))
-        }
+        property list<GeneralMenuItem> menuItems: [
+            GeneralMenuItem {
+                itemName: JamiStrings.exportAsPdf
+                iconSource: JamiResources.pdf_24dp_svg
+                text: itemName
+                canTrigger: richBinding.canExportAs("pdf")
+                onClicked: root.exportDocument("pdf", JamiStrings.pdfDocument)
+            },
+            GeneralMenuItem {
+                itemName: JamiStrings.exportAsOdt
+                iconSource: JamiResources.odt_24dp_svg
+                text: itemName
+                canTrigger: richBinding.canExportAs("odt")
+                onClicked: root.exportDocument("odt", JamiStrings.openDocumentText)
+            },
+            GeneralMenuItem {
+                itemName: JamiStrings.exportAsHtml
+                iconSource: JamiResources.html_24dp_svg
+                text: itemName
+                canTrigger: richBinding.canExportAs("html")
+                onClicked: root.exportDocument("html", JamiStrings.htmlDocument)
+            },
+            GeneralMenuItem {
+                itemName: JamiStrings.exportAsMarkdown
+                iconSource: JamiResources.markdown_24dp_svg
+                text: itemName
+                canTrigger: richBinding.canExportAs("md")
+                onClicked: root.exportDocument("md", JamiStrings.markdownDocument)
+            },
+            GeneralMenuItem {
+                itemName: JamiStrings.exportAsPlainText
+                iconSource: JamiResources.abc_24dp_svg
+                text: itemName
+                canTrigger: richBinding.canExportAs("txt")
+                onClicked: root.exportDocument("txt", JamiStrings.plainTextDocument)
+            }
+        ]
+
+        Component.onCompleted: loadMenuItems(menuItems)
     }
 
-    // Paragraph alignment (declared at the window root for the same reason as
-    // editorMenu: a nested/deferred popup crashes in this Window).
-    Menu {
-        id: alignMenu
-
-        Repeater {
-            model: [
-                {
-                    "style": "left",
-                    "label": qsTr("Align left")
-                },
-                {
-                    "style": "center",
-                    "label": qsTr("Centre")
-                },
-                {
-                    "style": "right",
-                    "label": qsTr("Align right")
-                },
-                {
-                    "style": "justify",
-                    "label": qsTr("Justify")
-                }
-            ]
-            delegate: MenuItem {
-                id: alignItem
-
-                required property var modelData
-
-                text: modelData.label
-                checkable: true
-                checked: root.currentAlign === modelData.style
-                onTriggered: {
-                    richBinding.setAlign(modelData.style, editor.selectionStart, editor.selectionEnd);
-                    root.refreshFormatState();
-                    root.refreshImageGeom();
-                    // Clicking ticked this item itself, behind the binding's
-                    // back. Should the paragraph not have taken the alignment --
-                    // an empty line holds none -- nothing would move afterwards
-                    // to put that tick right, and two options would claim to be
-                    // the chosen one. Binding again says what the document says.
-                    alignItem.checked = Qt.binding(function () {
-                        return root.currentAlign === alignItem.modelData.style;
-                    });
-                    editor.forceActiveFocus();
-                }
-            }
-        }
-    }
-
-    Menu {
-        id: fontFamilyMenu
-        objectName: "fontFamilyMenu"
-        Repeater {
-            model: root.fontChoices
-            delegate: MenuItem {
-                id: fontFamilyItem
-                required property var modelData
-                objectName: "fontFamily-" + (modelData.id || "default")
-                text: modelData.label
-                checkable: true
-                checked: root.currentFont === modelData.id
-                onTriggered: {
-                    richBinding.setFont(modelData.id, editor.selectionStart, editor.selectionEnd);
-                    root.refreshFormatState();
-                    fontFamilyItem.checked = Qt.binding(function () {
-                        return root.currentFont === fontFamilyItem.modelData.id;
-                    });
-                    root.focusEditor();
-                }
-            }
-        }
-    }
-
-    // Paragraph style chooser (declared at the window root for the same reason
-    // as editorMenu). Every style is shown at the size it gives.
-    Menu {
-        id: headingMenu
-        objectName: "headingMenu"
-
-        Repeater {
-            model: [0, 1, 2, 3]
-            delegate: MenuItem {
-                id: headingItem
-
-                required property int modelData
-
-                text: root.headingLabel(modelData)
-                font.pointSize: JamiTheme.textFontSize * root.headingScale(modelData)
-                checkable: true
-                checked: root.currentHeading === modelData
-                onTriggered: {
-                    root.chooseHeading(modelData);
-                    // Clicking ticked this item behind the binding's back: bind
-                    // again, as the alignment chooser does.
-                    headingItem.checked = Qt.binding(function () {
-                        return root.currentHeading === headingItem.modelData;
-                    });
-                }
-            }
-        }
-    }
-
-    // Size chooser (declared at the window root for the same reason as
-    // editorMenu). The base size takes the size off, so the text follows the
-    // base size again.
-    Menu {
-        id: textSizeMenu
-        objectName: "textSizeMenu"
-
-        MenuItem {
-            id: baseTextSizeItem
-
-            text: qsTr("Base size")
-            checkable: true
-            checked: root.currentTextSize === 0
-            onTriggered: {
-                root.chooseTextSize(0);
-                baseTextSizeItem.checked = Qt.binding(function () {
-                    return root.currentTextSize === 0;
-                });
-            }
-        }
-        MenuSeparator {}
-        Repeater {
-            model: [8, 9, 10, 11, 12, 14, 16, 18, 20, 24, 28, 36, 48, 72]
-            delegate: MenuItem {
-                id: textSizeItem
-
-                required property int modelData
-
-                text: modelData
-                checkable: true
-                checked: root.currentTextSize === modelData
-                onTriggered: {
-                    root.chooseTextSize(modelData);
-                    textSizeItem.checked = Qt.binding(function () {
-                        return root.currentTextSize === textSizeItem.modelData;
-                    });
-                }
-            }
-        }
-    }
 }

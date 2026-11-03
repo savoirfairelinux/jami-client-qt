@@ -1403,6 +1403,12 @@ CollabRichBinding::toggleInline(const QString& attr, int start, int end)
     Q_EMIT localDelta(QString::fromUtf8(QJsonDocument(ops).toJson(QJsonDocument::Compact)));
 }
 
+QString
+CollabRichBinding::fontFamilyForId(const QString& id) const
+{
+    return documentFontFamilies(id).value(0);
+}
+
 void
 CollabRichBinding::setFont(const QString& id, int start, int end)
 {
