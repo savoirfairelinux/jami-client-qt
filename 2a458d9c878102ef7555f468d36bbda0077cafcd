@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cf3b3cea_38abb472",
+        "filename": "tests/unittests/crashreportclient_unittest.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-03T21:35:52Z",
+      "side": 1,
+      "message": "[error] Line 21: 🔴 This regression test is not behavioral; it inspects source text literals (`start([this` / `start([dbPath \u003d dbPath_`) rather than validating runtime lifetime safety. It can pass while the use-after-free bug still exists (e.g., equivalent capture syntax, refactor, helper extraction) and fail on harmless formatting/refactors. Replace it with a runtime test that schedules the cleanup task, destroys the owner, and asserts cleanup completes without dereferencing freed state.",
+      "revId": "2a458d9c878102ef7555f468d36bbda0077cafcd",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
