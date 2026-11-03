@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "94335d04_2be75c71",
+        "filename": "src/app/collabrichbinding.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 322,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-03T20:54:41Z",
+      "side": 1,
+      "message": "[error] Line 322: 🔴 Resetting the font to the default option is incomplete for a collapsed selection. `resetFont` enters this path, but when `selectionStart \u003d\u003d selectionEnd` the run loop never executes, so `QTextFormat::FontFamilies` is not cleared and subsequent typing can keep the old explicit family. Please handle the zero-length selection case explicitly (clear `FontFamilies` on the cursor’s current char format before returning) so “Default” behaves consistently with and without a selection.",
+      "revId": "ee56b26527ebbbbb5228a1d054abc1829b2e810d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
