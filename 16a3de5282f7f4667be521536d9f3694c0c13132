@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b842db5d_3438daab",
+        "filename": "src/app/messagesadapter.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-03T21:31:43Z",
+      "side": 1,
+      "message": "[warning] Line 163: 🟡 `localDirectoryUrl` was added to the public API primarily to support the unit test, which expands the class surface without a product-facing need. Keep this helper private/internal (or in an anonymous-namespace/free function in the `.cpp`) and test through `openDirectory` behavior or a test-only seam; this reduces long-term API coupling and misuse risk.",
+      "revId": "16a3de5282f7f4667be521536d9f3694c0c13132",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
