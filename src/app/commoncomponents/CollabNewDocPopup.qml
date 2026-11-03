@@ -48,10 +48,6 @@ BaseModalDialog {
     button1.enabled: root.docName.trim().length > 0
     button1.onClicked: createAndOpen()
 
-    button2.text: JamiStrings.optionCancel
-    button2Role: DialogButtonBox.RejectRole
-    button2.onClicked: close()
-
     popupContent: ColumnLayout {
         width: JamiTheme.preferredDialogWidth
         spacing: JamiTheme.preferredMarginSize
@@ -74,7 +70,7 @@ BaseModalDialog {
 
             leadingIconSource: JamiResources.description_24dp_svg
             textFieldContent: ""
-            placeholderText: JamiStrings.untitledDocument
+            placeholderText: JamiStrings.documentTitle
             onModifiedTextFieldContentChanged: root.docName = modifiedTextFieldContent
 
             onAccepted: root.createAndOpen()

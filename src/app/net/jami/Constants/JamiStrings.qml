@@ -1109,6 +1109,7 @@ Item {
     property string documentNotOnThisDevice: qsTr("%1 - not on this device")
     property string newEditableDocument: qsTr("New editable document")
     property string documentName: qsTr("Document name")
+    property string documentTitle: qsTr("Document title")
     property string untitledDocument: qsTr("Untitled document")
     property string openDocument: qsTr("Open document")
     property string removeDocument: qsTr("Remove document")
