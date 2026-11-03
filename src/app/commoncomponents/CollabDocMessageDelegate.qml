@@ -77,7 +77,7 @@ Item {
     height: bubble.height + 2 * JamiTheme.preferredMarginSize
 
     Accessible.role: Accessible.Button
-    Accessible.name: qsTr("Editable document") + ": " + root.docName
+    Accessible.name: JamiStrings.editableDocument + ": " + root.docName
 
     Rectangle {
         id: bubble
@@ -123,7 +123,7 @@ Item {
                     color: root.removed ? JamiTheme.faddedFontColor : JamiTheme.textColor
                 }
                 Text {
-                    text: root.removed ? qsTr("Document removed") : qsTr("Editable document")
+                    text: root.removed ? JamiStrings.documentRemoved : JamiStrings.editableDocument
                     font.pointSize: JamiTheme.tinyFontSize
                     color: JamiTheme.faddedFontColor
                 }

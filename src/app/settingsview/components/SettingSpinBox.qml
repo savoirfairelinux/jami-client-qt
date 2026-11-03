@@ -32,15 +32,24 @@ RowLayout {
     property alias valueField: spinbox.value
     property alias tooltipText: toolTip.text
     property alias step: spinbox.stepSize
+    property alias contentLeftPadding: spinbox.leftPadding
+    property alias contentRightPadding: spinbox.rightPadding
 
     property string borderColor: JamiTheme.greyBorderColor
+    property color backgroundColor: JamiTheme.transparentColor
     property int itemWidth
+    property real buttonWidth: itemWidth / 8
+    property string leadingIconSource: ""
+    property string incrementIconSource: JamiResources.bidirectional_chevron_right_black_24dp_svg
+    property string decrementIconSource: JamiResources.bidirectional_chevron_left_black_24dp_svg
 
     signal newValue
+    signal valueModified
 
     Text {
         id: title
 
+        visible: text.length > 0
         Layout.fillWidth: true
         Layout.rightMargin: JamiTheme.preferredMarginSize
 
@@ -49,6 +58,16 @@ RowLayout {
         font.pointSize: JamiTheme.settingsFontSize
         font.kerning: true
         verticalAlignment: Text.AlignVCenter
+    }
+
+    ResponsiveImage {
+        Layout.preferredWidth: JamiTheme.iconButtonSmall
+        Layout.preferredHeight: JamiTheme.iconButtonSmall
+        containerWidth: JamiTheme.iconButtonSmall
+        containerHeight: JamiTheme.iconButtonSmall
+        source: root.leadingIconSource
+        color: JamiTheme.comboboxIconColor
+        visible: root.leadingIconSource !== ""
     }
 
     SpinBox {
@@ -65,11 +84,15 @@ RowLayout {
         LayoutMirroring.childrenInherit: true
 
         onValueChanged: newValue()
+        onValueModified: root.valueModified()
 
         Keys.onPressed: function (keyEvent) {
             if (keyEvent.key === Qt.Key_Enter || keyEvent.key === Qt.Key_Return) {
+                const previousValue = spinbox.value;
                 textInput.focus = false;
                 spinbox.value = textInput.text;
+                if (spinbox.value !== previousValue)
+                    root.valueModified();
                 keyEvent.accepted = true;
             }
         }
@@ -89,7 +112,7 @@ RowLayout {
         background: Rectangle {
             border.color: JamiTheme.spinboxBorderColor
             implicitHeight: textInput.implicitHeight + JamiTheme.buttontextHeightMargin
-            color: JamiTheme.transparentColor
+            color: root.backgroundColor
             radius: height / 2
         }
 
@@ -104,7 +127,7 @@ RowLayout {
 
         up.indicator: Rectangle {
 
-            width: root.itemWidth / 8
+            width: root.buttonWidth
             radius: 4
             anchors {
                 top: parent.top
@@ -124,13 +147,13 @@ RowLayout {
                 color: JamiTheme.tintedBlue
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.horizontalCenter: parent.horizontalCenter
-                source: JamiResources.bidirectional_chevron_right_black_24dp_svg
+                source: root.incrementIconSource
             }
         }
 
         down.indicator: Rectangle {
 
-            width: root.itemWidth / 8
+            width: root.buttonWidth
             radius: 4
             anchors {
                 top: parent.top
@@ -150,7 +173,7 @@ RowLayout {
                 color: JamiTheme.tintedBlue
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.horizontalCenter: parent.horizontalCenter
-                source: JamiResources.bidirectional_chevron_left_black_24dp_svg
+                source: root.decrementIconSource
             }
         }
     }

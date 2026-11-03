@@ -42,7 +42,7 @@ Rectangle {
     signal previewCleared
     signal restored
 
-    color: JamiTheme.secondaryBackgroundColor
+    color: JamiTheme.globalIslandColor
     radius: 8
     border.width: 1
     border.color: JamiTheme.tabbarBorderColor
@@ -80,7 +80,7 @@ Rectangle {
         var d = new Date(epoch * 1000);
         var now = new Date();
         if (d.toDateString() === now.toDateString())
-            return qsTr("Today %1").arg(d.toLocaleTimeString(Qt.locale(), Locale.ShortFormat));
+            return JamiStrings.versionHistoryToday.arg(d.toLocaleTimeString(Qt.locale(), Locale.ShortFormat));
         return d.toLocaleString(Qt.locale(), Locale.ShortFormat);
     }
 
@@ -94,7 +94,7 @@ Rectangle {
     ColumnLayout {
         anchors.fill: parent
         anchors.margins: 8
-        spacing: 6
+        spacing: 4
 
         RowLayout {
             Layout.fillWidth: true
@@ -102,20 +102,16 @@ Rectangle {
 
             Text {
                 Layout.fillWidth: true
-                text: qsTr("Version history")
+                text: JamiStrings.versionHistory
                 font.pointSize: JamiTheme.textFontSize
                 font.bold: true
                 color: JamiTheme.textColor
                 elide: Text.ElideRight
             }
-            PushButton {
-                preferredSize: 20
-                imageContainerWidth: 14
-                imageContainerHeight: 14
-                source: JamiResources.refresh_24dp_svg
-                toolTipText: qsTr("Refresh")
-                normalColor: "transparent"
-                imageColor: JamiTheme.textColor
+            NewIconButton {
+                iconSize: JamiTheme.iconButtonMedium
+                iconSource: JamiResources.refresh_24dp_svg
+                toolTipText: JamiStrings.sharedServicesRefresh
                 onClicked: root.refresh()
             }
         }
@@ -123,7 +119,7 @@ Rectangle {
         Text {
             Layout.fillWidth: true
             visible: versionsModel.count === 0
-            text: qsTr("No version saved yet. Versions are saved as you stop typing.")
+            text: JamiStrings.noDocumentVersionsSaved
             wrapMode: Text.WordWrap
             font.pointSize: JamiTheme.tinyFontSize
             color: JamiTheme.faddedFontColor
@@ -131,22 +127,33 @@ Rectangle {
 
         // "Current version" row: leaves the preview and returns to editing.
         ItemDelegate {
+            id: currentVersionItem
+
             Layout.fillWidth: true
             visible: versionsModel.count > 0
-            Layout.preferredHeight: 40
+            Layout.preferredHeight: Math.max(48, implicitContentHeight + topPadding + bottomPadding)
+            padding: 8
             highlighted: root.selectedCommitId === ""
             onClicked: root.clearPreview()
+
+            background: Rectangle {
+                radius: height / 2
+                color: currentVersionItem.highlighted ? JamiTheme.smartListSelectedColor
+                       : currentVersionItem.hovered || currentVersionItem.activeFocus ? JamiTheme.hoveredButtonColor : "transparent"
+                border.width: currentVersionItem.highlighted ? 1 : 0
+                border.color: JamiTheme.comboboxBorderColorActive
+            }
 
             contentItem: ColumnLayout {
                 spacing: 0
                 Text {
-                    text: qsTr("Current version")
+                    text: JamiStrings.currentVersion
                     font.pointSize: JamiTheme.smallFontSize
                     font.bold: true
                     color: JamiTheme.textColor
                 }
                 Text {
-                    text: qsTr("Editable")
+                    text: JamiStrings.editable
                     font.pointSize: JamiTheme.tinyFontSize
                     color: JamiTheme.faddedFontColor
                 }
@@ -160,14 +167,27 @@ Rectangle {
             Layout.fillHeight: true
             clip: true
             model: versionsModel
-            spacing: 2
-            ScrollBar.vertical: ScrollBar {}
+            spacing: 4
+            ScrollBar.vertical: JamiScrollBar {
+                attachedFlickableMoving: versionsView.moving
+            }
 
             delegate: ItemDelegate {
+                id: savedVersionItem
+
                 width: versionsView.width
-                height: 46
+                height: Math.max(48, implicitContentHeight + topPadding + bottomPadding)
+                padding: 8
                 highlighted: root.selectedCommitId === commitId
                 onClicked: root.preview(commitId)
+
+                background: Rectangle {
+                    radius: height / 2
+                    color: savedVersionItem.highlighted ? JamiTheme.smartListSelectedColor
+                           : savedVersionItem.hovered || savedVersionItem.activeFocus ? JamiTheme.hoveredButtonColor : "transparent"
+                    border.width: savedVersionItem.highlighted ? 1 : 0
+                    border.color: JamiTheme.comboboxBorderColorActive
+                }
 
                 contentItem: ColumnLayout {
                     spacing: 0
@@ -183,8 +203,8 @@ Rectangle {
                         text: {
                             var who = UtilsAdapter.getBestNameForUri(root.accountId, author);
                             if (who === "")
-                                who = qsTr("Someone");
-                            return who + " · " + qsTr("%n change(s)", "", deltas);
+                                who = JamiStrings.someone;
+                            return who + " · " + JamiStrings.documentChangeCount(deltas);
                         }
                         font.pointSize: JamiTheme.tinyFontSize
                         color: JamiTheme.faddedFontColor
@@ -194,13 +214,12 @@ Rectangle {
             }
         }
 
-        MaterialButton {
+        NewMaterialButton {
             Layout.fillWidth: true
             visible: root.selectedCommitId !== ""
-            primary: true
             iconSource: JamiResources.bidirectional_settings_backup_restore_24dp_svg
-            text: qsTr("Restore this version")
-            toolTipText: qsTr("Brings the document back to this content for everyone. Reversible.")
+            text: JamiStrings.restoreThisVersion
+            toolTipText: JamiStrings.restoreDocumentVersionTooltip
             onClicked: {
                 if (CollaborativeAdapter.restore(root.accountId, root.conversationId, root.documentId, root.selectedCommitId)) {
                     restoreError.visible = false;
@@ -220,7 +239,7 @@ Rectangle {
 
             Layout.fillWidth: true
             visible: false
-            text: qsTr("This version could not be restored.")
+            text: JamiStrings.documentVersionRestoreFailed
             font.pointSize: JamiTheme.tinyFontSize
             color: JamiTheme.redColor
             wrapMode: Text.WordWrap

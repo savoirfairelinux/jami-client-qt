@@ -281,7 +281,8 @@ mergeFormatFromAttrs(const QJsonObject& attrs)
         else if (key == QLatin1String("font")) {
             const QString id = documentFontId(v);
             f.setProperty(FONT_PROPERTY, id);
-            f.setFontFamilies(documentFontFamilies(id));
+            if (!id.isEmpty())
+                f.setFontFamilies(documentFontFamilies(id));
         } else if (key == QLatin1String("size")) {
             if (v.isDouble() && v.toDouble() >= 1 && v.toDouble() <= 400)
                 f.setFontPointSize(v.toDouble());
@@ -321,7 +322,8 @@ void
 mergeAttrsOverSelection(QTextCursor& cursor, const QJsonObject& attrs)
 {
     cursor.mergeCharFormat(mergeFormatFromAttrs(attrs));
-    if (!attrs.contains(QStringLiteral("size")) && !attrs.contains(QStringLiteral("header")))
+    const bool resetFont = attrs.contains(QStringLiteral("font")) && documentFontId(attrs.value(QStringLiteral("font"))).isEmpty();
+    if (!resetFont && !attrs.contains(QStringLiteral("size")) && !attrs.contains(QStringLiteral("header")))
         return;
     const int end = cursor.selectionEnd();
     int start = cursor.selectionStart();
@@ -338,6 +340,8 @@ mergeAttrsOverSelection(QTextCursor& cursor, const QJsonObject& attrs)
         QTextCursor runCursor(cursor.document());
         runCursor.setPosition(start + 1);
         QTextCharFormat format = runCursor.charFormat();
+        if (resetFont)
+            format.clearProperty(QTextFormat::FontFamilies);
         if (attrs.contains(QStringLiteral("size")) && attrs.value(QStringLiteral("size")).isNull())
             format.clearProperty(QTextFormat::FontPointSize);
         resolveFontSize(format);
@@ -1401,6 +1405,12 @@ CollabRichBinding::toggleInline(const QString& attr, int start, int end)
         ops.append(QJsonObject {{QStringLiteral("retain"), start}});
     ops.append(QJsonObject {{QStringLiteral("retain"), end - start}, {QStringLiteral("attributes"), attrs}});
     Q_EMIT localDelta(QString::fromUtf8(QJsonDocument(ops).toJson(QJsonDocument::Compact)));
+}
+
+QString
+CollabRichBinding::fontFamilyForId(const QString& id) const
+{
+    return documentFontFamilies(id).value(0);
 }
 
 void

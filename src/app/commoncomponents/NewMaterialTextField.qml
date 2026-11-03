@@ -48,6 +48,7 @@ ColumnLayout {
     property string modifiedTextFieldContent
     property int maxCharacters: -1
     property bool readOnly: false
+    readonly property bool textFieldActiveFocus: textField.activeFocus
     property string textFieldFontFamily: JamiTheme.ubuntuFontFamily
     property real textFieldFontPixelSize: JamiTheme.materialLineEditPixelSize
     property int echoMode: TextInput.Normal

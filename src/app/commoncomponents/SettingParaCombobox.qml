@@ -16,13 +16,17 @@
  */
 import QtQuick
 import QtQuick.Controls
+import QtQuick.Controls.impl
 import QtQuick.Effects
+import QtQuick.Layouts
 import net.jami.Constants 1.1
 
 ComboBox {
     id: root
 
     property alias tooltipText: toolTip.text
+    property string leadingIconSource: ""
+    property var fontFamilyForIndex: null
     property string placeholderText
     property string currentSelectionText: currentText
     property string comboBoxBackgroundColor: JamiTheme.editBackgroundColor
@@ -49,22 +53,14 @@ ComboBox {
 
         contentItem: Text {
             id: delegateText
-            text: {
-                if (index < 0 || !model)
-                    return '';
-
-                if (root.textRole && model[root.textRole] !== undefined) {
-                    return model[root.textRole].toString();
-                }
-
-                return model.display !== undefined ? model.display.toString() : '';
-            }
+            text: root.textAt(index)
 
             color: hovered ? JamiTheme.comboboxTextColorHovered : JamiTheme.textColor
             elide: Text.ElideRight
             verticalAlignment: Text.AlignVCenter
 
             font.pointSize: JamiTheme.settingsFontSize
+            font.family: root.fontFamilyForIndex ? root.fontFamilyForIndex(index) : root.font.family
 
             Behavior on color {
                 ColorAnimation {
@@ -116,7 +112,7 @@ ComboBox {
         }
     }
 
-    contentItem: Text {
+    contentItem: RowLayout {
         anchors.left: parent.left
         anchors.leftMargin: root.indicator.width
         anchors.right: parent.right
@@ -124,14 +120,29 @@ ComboBox {
 
         width: parent.width - root.indicator.width * 2
 
-        text: root.displayText
-        color: root.enabled ? JamiTheme.comboboxTextColor : "grey"
-        elide: Text.ElideRight
-        verticalAlignment: Text.AlignVCenter
-        horizontalAlignment: Text.AlignLeft
+        spacing: 8
 
-        font.pixelSize: JamiTheme.settingsDescriptionPixelSize
-        font.weight: Font.Medium
+        IconImage {
+            Layout.preferredWidth: JamiTheme.iconButtonSmall
+            Layout.preferredHeight: JamiTheme.iconButtonSmall
+            source: root.leadingIconSource
+            sourceSize.width: JamiTheme.iconButtonSmall
+            sourceSize.height: JamiTheme.iconButtonSmall
+            color: root.enabled ? JamiTheme.comboboxIconColor : JamiTheme.grey_
+            visible: root.leadingIconSource !== ""
+        }
+
+        Text {
+            Layout.fillWidth: true
+            text: root.displayText
+            color: root.enabled ? JamiTheme.comboboxTextColor : "grey"
+            elide: Text.ElideRight
+            verticalAlignment: Text.AlignVCenter
+            horizontalAlignment: Text.AlignLeft
+
+            font.pixelSize: JamiTheme.settingsDescriptionPixelSize
+            font.weight: Font.Medium
+        }
     }
 
     background: Rectangle {

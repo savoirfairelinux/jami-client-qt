@@ -88,6 +88,7 @@ public:
     /// Toggle an inline attribute ("b"/"i"/"u"/"s") over [start, end) (UTF-16).
     Q_INVOKABLE void toggleInline(const QString& attr, int start, int end);
     Q_INVOKABLE void setFont(const QString& id, int start, int end);
+    Q_INVOKABLE QString fontFamilyForId(const QString& id) const;
     Q_INVOKABLE void setFontSize(double points, int start, int end);
     /// Apply a heading level (1..3, or 0 for normal) to every line touched by
     /// [start, end). Headings are line-level, so the whole lines are reformatted.
