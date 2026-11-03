@@ -20,6 +20,7 @@
 #include <QJSEngine>
 #include <QQmlEngine>
 #include <QObject>
+#include <QPointer>
 
 #define NS_MODELS      "net.jami.Models"
 #define NS_ADAPTERS    "net.jami.Adapters"
@@ -46,18 +47,23 @@ class ConnectivityMonitor;
     QQmlEngine::setObjectOwnership(I, QQmlEngine::CppOwnership); \
     { using T = std::remove_reference<decltype(*I)>::type; \
     qmlRegisterSingletonType<T>(NS, MODULE_VER_MAJ, MODULE_VER_MIN, N, \
-                                [i=I](QQmlEngine*, QJSEngine*) -> QObject* { \
-                                    return i; }); }
+                                Utils::qmlSingletonFactory(I)); }
 
 #define QML_REGISTERSINGLETONTYPE_CUSTOM(NS, T, P) \
     QQmlEngine::setObjectOwnership(P, QQmlEngine::CppOwnership); \
     qmlRegisterSingletonType<T>(NS, MODULE_VER_MAJ, MODULE_VER_MIN, #T, \
-                                [p=P](QQmlEngine*, QJSEngine*) -> QObject* { \
-                                    return p; \
-                                });
+                                Utils::qmlSingletonFactory(P));
 // clang-format on
 
 namespace Utils {
+inline auto
+qmlSingletonFactory(QObject* object)
+{
+    return [object = QPointer<QObject>(object)](QQmlEngine*, QJSEngine*) -> QObject* {
+        return object.data();
+    };
+}
+
 void registerTypes(QQmlEngine* engine,
                    LRCInstance* lrcInstance,
                    SystemTray* systemTray,
@@ -67,4 +73,4 @@ void registerTypes(QQmlEngine* engine,
                    PreviewEngine* previewEngine,
                    ScreenInfo* screenInfo,
                    QObject* app);
-}
+} // namespace Utils

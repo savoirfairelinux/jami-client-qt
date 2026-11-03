@@ -118,7 +118,7 @@
 
 #define REG_QML_SINGLETON qmlRegisterSingletonType
 #define REG_MODEL NS_MODELS, MODULE_VER_MAJ, MODULE_VER_MIN
-#define CREATE(Obj) [=](QQmlEngine*, QJSEngine*) -> QObject* { return Obj; }
+#define CREATE(Obj) Utils::qmlSingletonFactory(Obj)
 
 namespace Utils {
 
@@ -212,7 +212,7 @@ registerTypes(QQmlEngine* engine,
     REG_QML_SINGLETON<WizardViewStepModel>(REG_MODEL, "WizardViewStepModel", CREATE(wizardViewStepModel));
 
     // LinkDeviceModel
-    auto linkdevicemodel = new LinkDeviceModel(lrcInstance);
+    auto linkdevicemodel = new LinkDeviceModel(lrcInstance, app);
     qApp->setProperty("LinkDeviceModel", QVariant::fromValue(linkdevicemodel));
     QQmlEngine::setObjectOwnership(linkdevicemodel, QQmlEngine::CppOwnership);
     REG_QML_SINGLETON<LinkDeviceModel>(REG_MODEL, "LinkDeviceModel", CREATE(linkdevicemodel));
