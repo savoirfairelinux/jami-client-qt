@@ -720,11 +720,11 @@ Item {
     property real macOSTopRadius: 22
 
     // Generalized shadows
-    property real shadowBlur: 1.0
+    property real shadowBlur: 0.5
     property color shadowColor: darkTheme ? "#000000" : "#77767B"
     property real shadowHorizontalOffset: 0
-    property real shadowVerticalOffset: 4
-    property real shadowOpacity: 0.4
+    property real shadowVerticalOffset: 2
+    property real shadowOpacity: darkTheme ? 0.5 : 0.08
 
     // Sip Input Panel (dialpad)
     property real sipInputPanelRadius: 30
