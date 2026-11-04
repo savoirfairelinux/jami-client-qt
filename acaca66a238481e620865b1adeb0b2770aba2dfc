@@ -19,6 +19,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "15449dd3_fa936755",
+        "filename": "src/app/crashreportclients/crashpad.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-11-04T16:01:48Z",
+      "side": 1,
+      "message": "Addressed in PS4 with CrashReportClient.UploadCleanupOutlivesClient. It calls real uploadLastReport() against a real Crashpad database, holds the global pool with semaphores, destroys the owner, records upload completion locally, then releases the cleanup worker and verifies report deletion. Completing the report only after destruction prevents destructor cleanup from producing a false pass. The test subclass overrides only private handler startup: no process, network upload, copied cleanup implementation, or source matching. This test fails with the original this capture (report remains) and passes with the copied path. Built the actual client and unit runner with ENABLE_CRASHREPORTS\u003dON; all 53 focused tests pass.",
+      "parentUuid": "1124ae80_4f26dec0",
+      "revId": "acaca66a238481e620865b1adeb0b2770aba2dfc",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1124ae80_4f26dec0",
