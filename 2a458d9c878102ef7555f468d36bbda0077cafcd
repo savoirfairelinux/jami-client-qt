@@ -1,6 +1,24 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4afae0cc_7e58d17d",
+        "filename": "tests/unittests/crashreportclient_unittest.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-11-04T15:33:48Z",
+      "side": 1,
+      "message": "Removed this non-behavioral test and JAMI_TEST_SOURCE_DIR in PS3. The lifetime fix is unchanged and now stands alone; no claim of automated shutdown-race coverage is made.",
+      "parentUuid": "cf3b3cea_38abb472",
+      "revId": "2a458d9c878102ef7555f468d36bbda0077cafcd",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cf3b3cea_38abb472",
