@@ -34,6 +34,24 @@
       "message": "[warning] Line 43: 🟡 This test uses `QStandardPaths::AppLocalDataLocation` (`.../crash_db`), which is a shared persistent location and can make the test stateful across runs (or accidentally interact with real crash data on developer machines). Make the test hermetic by enabling `QStandardPaths::setTestModeEnabled(true)` and/or using a unique temporary directory for the crash DB path so cleanup behavior is validated in isolation.",
       "revId": "16cfc67534773719fd8e1639b7ac198c7d78c297",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5d10252e_1861d10d",
+        "filename": "tests/unittests/crashreportclient_unittest.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-11-04T16:36:35Z",
+      "side": 1,
+      "message": "Resolved in PS5: Qt test mode and a UUID-specific application name isolate the database. Scoped guards remove its directory and restore the previous application name and test mode.",
+      "parentUuid": "7cd7faa9_163b076a",
+      "revId": "16cfc67534773719fd8e1639b7ac198c7d78c297",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
