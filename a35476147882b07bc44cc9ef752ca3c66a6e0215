@@ -16,6 +16,24 @@
       "message": "[warning] Line 243: 🟡 The added box-drawing characters in this comment are likely why clang-format-client-ci failed. Please replace this separator with an ASCII comment or remove it; the test name already documents the section clearly.",
       "revId": "a35476147882b07bc44cc9ef752ca3c66a6e0215",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "47183f2b_b32893bd",
+        "filename": "tests/unittests/paste_unittest.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-11-04T19:43:47Z",
+      "side": 1,
+      "message": "Removed the added separator in PS4; the test name already identifies this section.",
+      "parentUuid": "17dd8682_219c7059",
+      "revId": "a35476147882b07bc44cc9ef752ca3c66a6e0215",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
