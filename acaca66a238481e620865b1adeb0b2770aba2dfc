@@ -52,6 +52,24 @@
       "message": "[error] Line 270: 🔴 The ownership fix is good, but this change set no longer contains any regression test that exercises queued cleanup after `CrashPadClient` destruction. Without a runtime lifetime test, this UAF path can regress silently during refactors. Add a behavioral test that schedules upload/cleanup work, destroys the owner, and asserts cleanup completes safely (no dereference of freed client state).",
       "revId": "acaca66a238481e620865b1adeb0b2770aba2dfc",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fde02d56_569e9699",
+        "filename": "src/app/crashreportclients/crashpad.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-11-04T16:36:35Z",
+      "side": 1,
+      "message": "Resolved in PS5: the real cleanup worker is held until after client destruction, then must delete the locally completed report. The regression fails with the original this capture and passes with the copied database path.",
+      "parentUuid": "1124ae80_4f26dec0",
+      "revId": "acaca66a238481e620865b1adeb0b2770aba2dfc",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
