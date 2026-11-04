@@ -3,6 +3,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c3299122_9a33daec",
+        "filename": "src/app/crashreportclients/crashpad.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-11-04T15:46:22Z",
+      "side": 1,
+      "message": "Agreed: removing the source-text assertion did not provide the requested lifetime coverage. I am validating a focused regression through the real uploadLastReport() path: hold the thread pool, queue cleanup, destroy CrashPadClient, record completion in a local Crashpad database, then release the worker and assert that it deletes the report. The test substitutes a harmless local executable for the uploader so no report is submitted. The value-capture fix itself remains unchanged; I will leave this thread unresolved until the test is verified and uploaded.",
+      "parentUuid": "1124ae80_4f26dec0",
+      "revId": "acaca66a238481e620865b1adeb0b2770aba2dfc",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1124ae80_4f26dec0",
         "filename": "src/app/crashreportclients/crashpad.cpp",
         "patchSetId": 3
