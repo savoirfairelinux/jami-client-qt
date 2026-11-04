@@ -1,6 +1,24 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "998cd86e_0e793986",
+        "filename": "tests/unittests/crashreportclient_unittest.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-11-04T16:19:21Z",
+      "side": 1,
+      "message": "Addressed in PS5: the regression now enables QStandardPaths test mode and selects a UUID-specific test application name. Both the real client and the test derive the same isolated database location through the normal production path. Scoped guards remove that unique database after its handles are destroyed and restore the previous application name and test-mode setting. Crashpad-enabled native client/unit builds and all 53 focused tests pass with this isolation in place.",
+      "parentUuid": "7cd7faa9_163b076a",
+      "revId": "16cfc67534773719fd8e1639b7ac198c7d78c297",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7cd7faa9_163b076a",
