@@ -59,43 +59,43 @@ public:
         setObjectName("ConfigurationManagerInterface");
         confHandlers = {
             exportable_callback<ConfigurationSignal::VolumeChanged>([this](const std::string& device, double value) {
-                Q_EMIT this->volumeChanged(QString(device.c_str()), value);
+                Q_EMIT this->volumeChanged(QString::fromUtf8(device), value);
             }),
             exportable_callback<ConfigurationSignal::AccountsChanged>([this]() { Q_EMIT this->accountsChanged(); }),
             exportable_callback<ConfigurationSignal::AccountDetailsChanged>(
                 [this](const std::string& account_id, const std::map<std::string, std::string>& details) {
-                    Q_EMIT this->accountDetailsChanged(QString(account_id.c_str()), convertMap(details));
+                    Q_EMIT this->accountDetailsChanged(QString::fromUtf8(account_id), convertMap(details));
                 }),
             exportable_callback<ConfigurationSignal::StunStatusFailed>(
-                [this](const std::string& reason) { Q_EMIT this->stunStatusFailure(QString(reason.c_str())); }),
+                [this](const std::string& reason) { Q_EMIT this->stunStatusFailure(QString::fromUtf8(reason)); }),
             exportable_callback<ConfigurationSignal::RegistrationStateChanged>(
                 [this](const std::string& accountId,
                        const std::string& registration_state,
                        unsigned detail_code,
                        const std::string& detail_str) {
-                    Q_EMIT this->registrationStateChanged(QString(accountId.c_str()),
-                                                          QString(registration_state.c_str()),
+                    Q_EMIT this->registrationStateChanged(QString::fromUtf8(accountId),
+                                                          QString::fromUtf8(registration_state),
                                                           detail_code,
-                                                          QString(detail_str.c_str()));
+                                                          QString::fromUtf8(detail_str));
                 }),
             exportable_callback<ConfigurationSignal::VolatileDetailsChanged>(
                 [this](const std::string& accountId, const std::map<std::string, std::string>& details) {
-                    Q_EMIT this->volatileAccountDetailsChanged(QString(accountId.c_str()), convertMap(details));
+                    Q_EMIT this->volatileAccountDetailsChanged(QString::fromUtf8(accountId), convertMap(details));
                 }),
             exportable_callback<ConfigurationSignal::CertificateExpired>(
-                [this](const std::string& certId) { Q_EMIT this->certificateExpired(QString(certId.c_str())); }),
+                [this](const std::string& certId) { Q_EMIT this->certificateExpired(QString::fromUtf8(certId)); }),
             exportable_callback<ConfigurationSignal::CertificatePinned>(
-                [this](const std::string& certId) { Q_EMIT this->certificatePinned(QString(certId.c_str())); }),
+                [this](const std::string& certId) { Q_EMIT this->certificatePinned(QString::fromUtf8(certId)); }),
             exportable_callback<ConfigurationSignal::CertificatePathPinned>(
                 [this](const std::string& certPath, const std::vector<std::string>& list) {
-                    Q_EMIT this->certificatePathPinned(QString(certPath.c_str()), convertStringList(list));
+                    Q_EMIT this->certificatePathPinned(QString::fromUtf8(certPath), convertStringList(list));
                 }),
             exportable_callback<ConfigurationSignal::CertificateStateChanged>(
                 [this](const std::string& accountId, const std::string& certId, const std::string& state) {
                     QTimer::singleShot(0, [this, accountId, certId, state] {
-                        Q_EMIT this->certificateStateChanged(QString(accountId.c_str()),
-                                                             QString(certId.c_str()),
-                                                             QString(state.c_str()));
+                        Q_EMIT this->certificateStateChanged(QString::fromUtf8(accountId),
+                                                             QString::fromUtf8(certId),
+                                                             QString::fromUtf8(state));
                     });
                 }),
             exportable_callback<libjami::ConfigurationSignal::AccountMessageStatusChanged>(
@@ -104,99 +104,99 @@ public:
                        const std::string& peer,
                        const std::string message_id,
                        int state) {
-                    Q_EMIT this->accountMessageStatusChanged(QString(account_id.c_str()),
-                                                             QString(conversation_id.c_str()),
-                                                             QString(peer.c_str()),
-                                                             QString(message_id.c_str()),
+                    Q_EMIT this->accountMessageStatusChanged(QString::fromUtf8(account_id),
+                                                             QString::fromUtf8(conversation_id),
+                                                             QString::fromUtf8(peer),
+                                                             QString::fromUtf8(message_id),
                                                              state);
                 }),
             exportable_callback<libjami::ConfigurationSignal::NeedsHost>(
                 [this](const std::string& account_id, const std::string& conversation_id) {
-                    Q_EMIT this->needsHost(QString(account_id.c_str()), QString(conversation_id.c_str()));
+                    Q_EMIT this->needsHost(QString::fromUtf8(account_id), QString::fromUtf8(conversation_id));
                 }),
             exportable_callback<ConfigurationSignal::KnownDevicesChanged>(
                 [this](const std::string& accountId, const std::map<std::string, std::string>& devices) {
-                    Q_EMIT this->knownDevicesChanged(QString(accountId.c_str()), convertMap(devices));
+                    Q_EMIT this->knownDevicesChanged(QString::fromUtf8(accountId), convertMap(devices));
                 }),
             exportable_callback<ConfigurationSignal::DeviceRevocationEnded>(
                 [this](const std::string& accountId, const std::string& device, int status) {
-                    Q_EMIT this->deviceRevocationEnded(QString(accountId.c_str()), QString(device.c_str()), status);
+                    Q_EMIT this->deviceRevocationEnded(QString::fromUtf8(accountId), QString::fromUtf8(device), status);
                 }),
             exportable_callback<ConfigurationSignal::AccountProfileReceived>(
                 [this](const std::string& accountId, const std::string& displayName, const std::string& userPhoto) {
-                    Q_EMIT this->accountProfileReceived(QString(accountId.c_str()),
-                                                        QString(displayName.c_str()),
-                                                        QString(userPhoto.c_str()));
+                    Q_EMIT this->accountProfileReceived(QString::fromUtf8(accountId),
+                                                        QString::fromUtf8(displayName),
+                                                        QString::fromUtf8(userPhoto));
                 }),
             exportable_callback<ConfigurationSignal::AddDeviceStateChanged>(
                 [this](const std::string& accountId,
                        uint32_t operationId,
                        int state,
                        const std::map<std::string, std::string>& details) {
-                    Q_EMIT this->addDeviceStateChanged(QString(accountId.c_str()),
+                    Q_EMIT this->addDeviceStateChanged(QString::fromUtf8(accountId),
                                                        operationId,
                                                        state,
                                                        convertMap(details));
                 }),
             exportable_callback<ConfigurationSignal::DeviceAuthStateChanged>(
                 [this](const std::string& accountId, int state, const std::map<std::string, std::string>& details) {
-                    Q_EMIT this->deviceAuthStateChanged(QString(accountId.c_str()), state, convertMap(details));
+                    Q_EMIT this->deviceAuthStateChanged(QString::fromUtf8(accountId), state, convertMap(details));
                 }),
             exportable_callback<ConfigurationSignal::NameRegistrationEnded>(
                 [this](const std::string& accountId, int status, const std::string& name) {
-                    Q_EMIT this->nameRegistrationEnded(QString(accountId.c_str()), status, QString(name.c_str()));
+                    Q_EMIT this->nameRegistrationEnded(QString::fromUtf8(accountId), status, QString::fromUtf8(name));
                 }),
             exportable_callback<ConfigurationSignal::RegisteredNameFound>([this](const std::string& accountId,
                                                                                  const std::string& requestedName,
                                                                                  int status,
                                                                                  const std::string& address,
                                                                                  const std::string& name) {
-                Q_EMIT this->registeredNameFound(QString(accountId.c_str()),
-                                                 QString(requestedName.c_str()),
+                Q_EMIT this->registeredNameFound(QString::fromUtf8(accountId),
+                                                 QString::fromUtf8(requestedName),
                                                  status,
-                                                 QString(address.c_str()),
-                                                 QString(name.c_str()));
+                                                 QString::fromUtf8(address),
+                                                 QString::fromUtf8(name));
             }),
             exportable_callback<ConfigurationSignal::IncomingAccountMessage>(
                 [this](const std::string& account_id,
                        const std::string& from,
                        const std::string& msgId,
                        const std::map<std::string, std::string>& payloads) {
-                    Q_EMIT this->incomingAccountMessage(QString(account_id.c_str()),
-                                                        QString(from.c_str()),
-                                                        QString(msgId.c_str()),
+                    Q_EMIT this->incomingAccountMessage(QString::fromUtf8(account_id),
+                                                        QString::fromUtf8(from),
+                                                        QString::fromUtf8(msgId),
                                                         convertMap(payloads));
                 }),
             exportable_callback<ConfigurationSignal::MediaParametersChanged>([this](const std::string& account_id) {
-                Q_EMIT this->mediaParametersChanged(QString(account_id.c_str()));
+                Q_EMIT this->mediaParametersChanged(QString::fromUtf8(account_id));
             }),
             exportable_callback<AudioSignal::DeviceEvent>([this]() { Q_EMIT this->audioDeviceEvent(); }),
             exportable_callback<AudioSignal::AudioMeter>(
-                [this](const std::string& id, float level) { Q_EMIT this->audioMeter(QString(id.c_str()), level); }),
+                [this](const std::string& id, float level) { Q_EMIT this->audioMeter(QString::fromUtf8(id), level); }),
             exportable_callback<ConfigurationSignal::MigrationEnded>(
                 [this](const std::string& account_id, const std::string& result) {
-                    Q_EMIT this->migrationEnded(QString(account_id.c_str()), QString(result.c_str()));
+                    Q_EMIT this->migrationEnded(QString::fromUtf8(account_id), QString::fromUtf8(result));
                 }),
             exportable_callback<ConfigurationSignal::ContactAdded>(
                 [this](const std::string& account_id, const std::string& uri, const bool& confirmed) {
-                    Q_EMIT this->contactAdded(QString(account_id.c_str()), QString(uri.c_str()), confirmed);
+                    Q_EMIT this->contactAdded(QString::fromUtf8(account_id), QString::fromUtf8(uri), confirmed);
                 }),
             exportable_callback<ConfigurationSignal::ProfileReceived>([this](const std::string& accountId,
                                                                              const std::string& peer,
                                                                              const std::string& vCard) {
-                Q_EMIT this->profileReceived(QString(accountId.c_str()), QString(peer.c_str()), QString(vCard.c_str()));
+                Q_EMIT this->profileReceived(QString::fromUtf8(accountId), QString::fromUtf8(peer), QString::fromUtf8(vCard));
             }),
             exportable_callback<ConfigurationSignal::ContactRemoved>(
                 [this](const std::string& account_id, const std::string& uri, const bool& banned) {
-                    Q_EMIT this->contactRemoved(QString(account_id.c_str()), QString(uri.c_str()), banned);
+                    Q_EMIT this->contactRemoved(QString::fromUtf8(account_id), QString::fromUtf8(uri), banned);
                 }),
             exportable_callback<ConfigurationSignal::MessageSend>(
-                [this](const std::string& message) { Q_EMIT this->messageSend(QString(message.c_str())); }),
+                [this](const std::string& message) { Q_EMIT this->messageSend(QString::fromUtf8(message)); }),
             exportable_callback<ConfigurationSignal::ComposingStatusChanged>(
                 [this](const std::string& account_id, const std::string& convId, const std::string& from, int status) {
-                    Q_EMIT this->composingStatusChanged(QString(account_id.c_str()),
-                                                        QString(convId.c_str()),
-                                                        QString(from.c_str()),
+                    Q_EMIT this->composingStatusChanged(QString::fromUtf8(account_id),
+                                                        QString::fromUtf8(convId),
+                                                        QString::fromUtf8(from),
                                                         status > 0 ? true : false);
                 }),
             exportable_callback<ConfigurationSignal::UserSearchEnded>(
@@ -204,9 +204,9 @@ public:
                        int status,
                        const std::string& query,
                        const std::vector<std::map<std::string, std::string>>& results) {
-                    Q_EMIT this->userSearchEnded(QString(account_id.c_str()),
+                    Q_EMIT this->userSearchEnded(QString::fromUtf8(account_id),
                                                  status,
-                                                 QString(query.c_str()),
+                                                 QString::fromUtf8(query),
                                                  convertVecMap(results));
                 }),
         };
@@ -217,10 +217,10 @@ public:
                                                                               const std::string& interactionId,
                                                                               const std::string& fileId,
                                                                               const uint32_t& code) {
-                Q_EMIT this->dataTransferEvent(QString(accountId.c_str()),
-                                               QString(conversationId.c_str()),
-                                               QString(interactionId.c_str()),
-                                               QString(fileId.c_str()),
+                Q_EMIT this->dataTransferEvent(QString::fromUtf8(accountId),
+                                               QString::fromUtf8(conversationId),
+                                               QString::fromUtf8(interactionId),
+                                               QString::fromUtf8(fileId),
                                                code);
             }),
         };
@@ -230,9 +230,9 @@ public:
                        const std::string& convId,
                        const std::string& documentId,
                        const std::vector<uint8_t>& update) {
-                    Q_EMIT this->collaborativeDocumentUpdate(QString(account_id.c_str()),
-                                                             QString(convId.c_str()),
-                                                             QString(documentId.c_str()),
+                    Q_EMIT this->collaborativeDocumentUpdate(QString::fromUtf8(account_id),
+                                                             QString::fromUtf8(convId),
+                                                             QString::fromUtf8(documentId),
                                                              QByteArray(reinterpret_cast<const char*>(update.data()),
                                                                         static_cast<qsizetype>(update.size())));
                 }),
@@ -242,10 +242,10 @@ public:
                                                                                           const std::string& peerId,
                                                                                           uint64_t clientId,
                                                                                           const std::string& state) {
-                Q_EMIT this->collaborativeAwarenessChanged(QString(account_id.c_str()),
-                                                           QString(convId.c_str()),
-                                                           QString(documentId.c_str()),
-                                                           QString(peerId.c_str()),
+                Q_EMIT this->collaborativeAwarenessChanged(QString::fromUtf8(account_id),
+                                                           QString::fromUtf8(convId),
+                                                           QString::fromUtf8(documentId),
+                                                           QString::fromUtf8(peerId),
                                                            clientId,
                                                            QString::fromStdString(state));
             }),
@@ -254,28 +254,28 @@ public:
                                                                                          const std::string& documentId,
                                                                                          const std::string& peerId,
                                                                                          uint64_t clientId) {
-                Q_EMIT this->collaborativeParticipantLeft(QString(account_id.c_str()),
-                                                          QString(convId.c_str()),
-                                                          QString(documentId.c_str()),
-                                                          QString(peerId.c_str()),
+                Q_EMIT this->collaborativeParticipantLeft(QString::fromUtf8(account_id),
+                                                          QString::fromUtf8(convId),
+                                                          QString::fromUtf8(documentId),
+                                                          QString::fromUtf8(peerId),
                                                           clientId);
             }),
             exportable_callback<ConversationSignal::CollaborativeDocumentRenamed>([this](const std::string& account_id,
                                                                                          const std::string& convId,
                                                                                          const std::string& documentId,
                                                                                          const std::string& name) {
-                Q_EMIT this->collaborativeDocumentRenamed(QString(account_id.c_str()),
-                                                          QString(convId.c_str()),
-                                                          QString(documentId.c_str()),
-                                                          QString(name.c_str()));
+                Q_EMIT this->collaborativeDocumentRenamed(QString::fromUtf8(account_id),
+                                                          QString::fromUtf8(convId),
+                                                          QString::fromUtf8(documentId),
+                                                          QString::fromUtf8(name));
             }),
             exportable_callback<ConversationSignal::CollaborativeDocumentRemoved>([this](const std::string& account_id,
                                                                                          const std::string& convId,
                                                                                          const std::string& documentId,
                                                                                          bool everywhere) {
-                Q_EMIT this->collaborativeDocumentRemoved(QString(account_id.c_str()),
-                                                          QString(convId.c_str()),
-                                                          QString(documentId.c_str()),
+                Q_EMIT this->collaborativeDocumentRemoved(QString::fromUtf8(account_id),
+                                                          QString::fromUtf8(convId),
+                                                          QString::fromUtf8(documentId),
                                                           everywhere);
             }),
             exportable_callback<ConversationSignal::CollaborativeAttachmentAdded>(
@@ -283,21 +283,22 @@ public:
                        const std::string& convId,
                        const std::string& documentId,
                        const std::string& attachmentId) {
-                    Q_EMIT this->collaborativeAttachmentAdded(QString(account_id.c_str()),
-                                                              QString(convId.c_str()),
-                                                              QString(documentId.c_str()),
-                                                              QString(attachmentId.c_str()));
+                    Q_EMIT this->collaborativeAttachmentAdded(QString::fromUtf8(account_id),
+                                                              QString::fromUtf8(convId),
+                                                              QString::fromUtf8(documentId),
+                                                              QString::fromUtf8(attachmentId));
                 }),
             exportable_callback<ConversationSignal::SwarmLoaded>(
                 [this](uint32_t id,
                        const std::string& accountId,
                        const std::string& conversationId,
-                       const std::vector<libjami::SwarmMessage>& messages) {
+                       const std::vector<libjami::SwarmMessage>& messages,
+                       const std::vector<std::string>&) {
                     VectorSwarmMessage vec;
                     for (const auto& msg : messages) {
-                        vec.push_back({msg.id.c_str(),
-                                       msg.type.c_str(),
-                                       msg.linearizedParent.c_str(),
+                        vec.push_back({QString::fromUtf8(msg.id),
+                                       QString::fromUtf8(msg.type),
+                                       QString::fromUtf8(msg.linearizedParent),
                                        convertMap(msg.body),
                                        convertVecMap(msg.reactions),
                                        convertVecMap(msg.editions),
@@ -305,7 +306,7 @@ public:
                                        convertMap(msg.pluginData)});
                     }
 
-                    Q_EMIT swarmLoaded(id, QString(accountId.c_str()), QString(conversationId.c_str()), vec);
+                    Q_EMIT swarmLoaded(id, QString::fromUtf8(accountId), QString::fromUtf8(conversationId), vec);
                 }),
             exportable_callback<ConversationSignal::MessagesFound>(
                 [this](uint32_t id,
@@ -313,115 +314,115 @@ public:
                        const std::string& conversationId,
                        const std::vector<std::map<std::string, std::string>>& messages) {
                     Q_EMIT messagesFound(id,
-                                         QString(accountId.c_str()),
-                                         QString(conversationId.c_str()),
+                                         QString::fromUtf8(accountId),
+                                         QString::fromUtf8(conversationId),
                                          convertVecMap(messages));
                 }),
             exportable_callback<ConversationSignal::SwarmMessageReceived>([this](const std::string& accountId,
                                                                                  const std::string& conversationId,
                                                                                  const libjami::SwarmMessage& message) {
-                ::SwarmMessage msg = {message.id.c_str(),
-                                      message.type.c_str(),
-                                      message.linearizedParent.c_str(),
+                ::SwarmMessage msg = {QString::fromUtf8(message.id),
+                                      QString::fromUtf8(message.type),
+                                      QString::fromUtf8(message.linearizedParent),
                                       convertMap(message.body),
                                       convertVecMap(message.reactions),
                                       convertVecMap(message.editions),
                                       convertMap(message.status),
                                       convertMap(message.pluginData)};
-                Q_EMIT swarmMessageReceived(QString(accountId.c_str()), QString(conversationId.c_str()), msg);
+                Q_EMIT swarmMessageReceived(QString::fromUtf8(accountId), QString::fromUtf8(conversationId), msg);
             }),
             exportable_callback<ConversationSignal::SwarmMessageUpdated>([this](const std::string& accountId,
                                                                                 const std::string& conversationId,
                                                                                 const libjami::SwarmMessage& message) {
-                ::SwarmMessage msg = {message.id.c_str(),
-                                      message.type.c_str(),
-                                      message.linearizedParent.c_str(),
+                ::SwarmMessage msg = {QString::fromUtf8(message.id),
+                                      QString::fromUtf8(message.type),
+                                      QString::fromUtf8(message.linearizedParent),
                                       convertMap(message.body),
                                       convertVecMap(message.reactions),
                                       convertVecMap(message.editions),
                                       convertMap(message.status),
                                       convertMap(message.pluginData)};
-                Q_EMIT swarmMessageUpdated(QString(accountId.c_str()), QString(conversationId.c_str()), msg);
+                Q_EMIT swarmMessageUpdated(QString::fromUtf8(accountId), QString::fromUtf8(conversationId), msg);
             }),
             exportable_callback<ConversationSignal::ReactionAdded>(
                 [this](const std::string& accountId,
                        const std::string& conversationId,
                        const std::string& messageId,
                        const std::map<std::string, std::string>& reaction) {
-                    Q_EMIT reactionAdded(QString(accountId.c_str()),
-                                         QString(conversationId.c_str()),
-                                         QString(messageId.c_str()),
+                    Q_EMIT reactionAdded(QString::fromUtf8(accountId),
+                                         QString::fromUtf8(conversationId),
+                                         QString::fromUtf8(messageId),
                                          convertMap(reaction));
                 }),
             exportable_callback<ConversationSignal::ReactionRemoved>([this](const std::string& accountId,
                                                                             const std::string& conversationId,
                                                                             const std::string& messageId,
                                                                             const std::string& reactionId) {
-                Q_EMIT reactionRemoved(QString(accountId.c_str()),
-                                       QString(conversationId.c_str()),
-                                       QString(messageId.c_str()),
-                                       QString(reactionId.c_str()));
+                Q_EMIT reactionRemoved(QString::fromUtf8(accountId),
+                                       QString::fromUtf8(conversationId),
+                                       QString::fromUtf8(messageId),
+                                       QString::fromUtf8(reactionId));
             }),
             exportable_callback<ConversationSignal::ConversationProfileUpdated>(
                 [this](const std::string& accountId,
                        const std::string& conversationId,
                        const std::map<std::string, std::string>& profile) {
-                    Q_EMIT conversationProfileUpdated(QString(accountId.c_str()),
-                                                      QString(conversationId.c_str()),
+                    Q_EMIT conversationProfileUpdated(QString::fromUtf8(accountId),
+                                                      QString::fromUtf8(conversationId),
                                                       convertMap(profile));
                 }),
             exportable_callback<ConversationSignal::ConversationRequestReceived>(
                 [this](const std::string& accountId,
                        const std::string& conversationId,
                        const std::map<std::string, std::string>& metadata) {
-                    Q_EMIT conversationRequestReceived(QString(accountId.c_str()),
-                                                       QString(conversationId.c_str()),
+                    Q_EMIT conversationRequestReceived(QString::fromUtf8(accountId),
+                                                       QString::fromUtf8(conversationId),
                                                        convertMap(metadata));
                 }),
             exportable_callback<ConversationSignal::ConversationRequestDeclined>(
                 [this](const std::string& accountId, const std::string& conversationId) {
-                    Q_EMIT conversationRequestDeclined(QString(accountId.c_str()), QString(conversationId.c_str()));
+                    Q_EMIT conversationRequestDeclined(QString::fromUtf8(accountId), QString::fromUtf8(conversationId));
                 }),
             exportable_callback<ConversationSignal::ConversationReady>(
                 [this](const std::string& accountId, const std::string& conversationId) {
-                    Q_EMIT conversationReady(QString(accountId.c_str()), QString(conversationId.c_str()));
+                    Q_EMIT conversationReady(QString::fromUtf8(accountId), QString::fromUtf8(conversationId));
                 }),
             exportable_callback<ConversationSignal::ConversationRemoved>(
                 [this](const std::string& accountId, const std::string& conversationId) {
-                    Q_EMIT conversationRemoved(QString(accountId.c_str()), QString(conversationId.c_str()));
+                    Q_EMIT conversationRemoved(QString::fromUtf8(accountId), QString::fromUtf8(conversationId));
                 }),
             exportable_callback<ConversationSignal::ConversationPreferencesUpdated>(
                 [this](const std::string& accountId,
                        const std::string& conversationId,
                        const std::map<std::string, std::string>& preferences) {
-                    Q_EMIT conversationPreferencesUpdated(QString(accountId.c_str()),
-                                                          QString(conversationId.c_str()),
+                    Q_EMIT conversationPreferencesUpdated(QString::fromUtf8(accountId),
+                                                          QString::fromUtf8(conversationId),
                                                           convertMap(preferences));
                 }),
             exportable_callback<ConversationSignal::ConversationMemberEvent>([this](const std::string& accountId,
                                                                                     const std::string& conversationId,
                                                                                     const std::string& memberId,
                                                                                     int event) {
-                Q_EMIT conversationMemberEvent(QString(accountId.c_str()),
-                                               QString(conversationId.c_str()),
-                                               QString(memberId.c_str()),
+                Q_EMIT conversationMemberEvent(QString::fromUtf8(accountId),
+                                               QString::fromUtf8(conversationId),
+                                               QString::fromUtf8(memberId),
                                                event);
             }),
             exportable_callback<ConversationSignal::OnConversationError>([this](const std::string& accountId,
                                                                                 const std::string& conversationId,
                                                                                 int code,
                                                                                 const std::string& what) {
-                Q_EMIT onConversationError(QString(accountId.c_str()),
-                                           QString(conversationId.c_str()),
+                Q_EMIT onConversationError(QString::fromUtf8(accountId),
+                                           QString::fromUtf8(conversationId),
                                            code,
-                                           QString(what.c_str()));
+                                           QString::fromUtf8(what));
             }),
             exportable_callback<ConfigurationSignal::ActiveCallsChanged>(
                 [this](const std::string& accountId,
                        const std::string& conversationId,
                        const std::vector<std::map<std::string, std::string>>& activeCalls) {
-                    Q_EMIT activeCallsChanged(QString(accountId.c_str()),
-                                              QString(conversationId.c_str()),
+                    Q_EMIT activeCallsChanged(QString::fromUtf8(accountId),
+                                              QString::fromUtf8(conversationId),
                                               convertVecMap(activeCalls));
                 })};
     }
