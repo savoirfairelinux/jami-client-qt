@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6c17e7a2_449b718e",
+        "filename": "src/app/currentconversation.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 272,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-05T16:45:24Z",
+      "side": 1,
+      "message": "[warning] Line 272: 🟡 `convInfo.infos[\"created\"].toLongLong()` silently falls back to `0` on parse failure/overflow, which is indistinguishable from a legitimate \"not set\" value and can hide bad backend data. Parse with `toLongLong(\u0026ok)` and handle `ok \u003d\u003d false` explicitly (log + reset), so invalid values are surfaced and don’t get treated as valid state.",
+      "revId": "05416c34b0da96e0dff7892317bd892b78ba1cb6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
