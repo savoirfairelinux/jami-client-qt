@@ -86,6 +86,7 @@ public:
     }
 
     /// Toggle an inline attribute ("b"/"i"/"u"/"s") over [start, end) (UTF-16).
+    /// With no selection, apply to the current word or the next typed text.
     Q_INVOKABLE void toggleInline(const QString& attr, int start, int end);
     Q_INVOKABLE void setFont(const QString& id, int start, int end);
     Q_INVOKABLE QString fontFamilyForId(const QString& id) const;
@@ -118,6 +119,10 @@ public:
     /// Replace [start, end) with the clipboard's plain text (sanitized paste): rich
     /// clipboard formatting is dropped so every participant stays consistent.
     Q_INVOKABLE void pasteText(int start, int end);
+
+    /// Copy text without Qt's extra newline for list fragments. Returns false
+    /// for selections containing images, which need the editor's native copy.
+    Q_INVOKABLE bool copySelection(int start, int end) const;
 
     /// Whether pasting would insert a picture rather than text, so the editor
     /// knows which of the two paths to take.

@@ -27,6 +27,8 @@
 #include <QTextList>
 #include <QJsonDocument>
 #include <QJsonArray>
+#include <QClipboard>
+#include <QGuiApplication>
 
 class CollabRichBindingFixture : public ::testing::Test
 {
@@ -599,4 +601,68 @@ TEST_F(CollabRichBindingFixture, ParagraphAlignmentChangesOnEmptyLine)
     EXPECT_EQ(doc->findBlockByNumber(1).blockFormat().alignment(), Qt::AlignHCenter);
     EXPECT_EQ(binding->selectionFormat(cursor.position(), cursor.position()).value(QStringLiteral("align")).toString(),
               QStringLiteral("center"));
+}
+
+TEST_F(CollabRichBindingFixture, PlainTextInsertionPreservesDestinationFormatting)
+{
+    binding->loadContentDelta(
+        R"([{"insert":"Visit ","attributes":{"size":12,"font":"serif","list":"bullet","lang":"fr_FR","link":"https://jami.net"}}])");
+    QSignalSpy deltas(binding.data(), &CollabRichBinding::localDelta);
+
+    binding->insertText(6, 6, QStringLiteral("here"));
+
+    ASSERT_EQ(deltas.size(), 1);
+    EXPECT_EQ(
+        QJsonDocument::fromJson(deltas.at(0).at(0).toString().toUtf8()),
+        QJsonDocument::fromJson(
+            R"([{"retain":6},{"insert":"here","attributes":{"size":12,"font":"serif","list":"bullet","lang":"fr_FR"}}])"));
+}
+
+TEST_F(CollabRichBindingFixture, ReplacingTextPreservesItsFormatting)
+{
+    binding->loadContentDelta(R"([{"insert":"A "},{"insert":"report","attributes":{"b":true,"size":18}}])");
+
+    binding->insertText(2, 8, QStringLiteral("summary"));
+
+    EXPECT_EQ(doc->toPlainText(), QStringLiteral("A summary"));
+    EXPECT_TRUE(binding->selectionFormat(2, 9).value(QStringLiteral("b")).toBool());
+    EXPECT_EQ(binding->selectionFormat(2, 9).value(QStringLiteral("size")).toDouble(), 18);
+}
+
+TEST_F(CollabRichBindingFixture, PlainTextInsertionCanClearPendingFontAndSize)
+{
+    binding->loadContentDelta(R"([{"insert":"A ","attributes":{"font":"serif","size":18}}])");
+    binding->setFont(QString(), 2, 2);
+    binding->setFontSize(0, 2, 2);
+
+    binding->insertText(2, 2, QStringLiteral("plain"));
+
+    EXPECT_TRUE(binding->selectionFormat(2, 7).value(QStringLiteral("font")).toString().isEmpty());
+    EXPECT_EQ(binding->selectionFormat(2, 7).value(QStringLiteral("size")).toDouble(), 0);
+    QTextCursor cursor(doc);
+    cursor.setPosition(3);
+    EXPECT_FALSE(cursor.charFormat().hasProperty(QTextFormat::FontFamilies));
+}
+
+TEST_F(CollabRichBindingFixture, CopyingListTextKeepsOnlySelectedTextAndNewlines)
+{
+    binding->loadContentDelta(R"([{"insert":"First\nSecond","attributes":{"list":"bullet"}}])");
+
+    ASSERT_TRUE(binding->copySelection(8, 2));
+    EXPECT_EQ(QGuiApplication::clipboard()->text(), QStringLiteral("rst\nSe"));
+    ASSERT_TRUE(binding->copySelection(-5, 50));
+    EXPECT_EQ(QGuiApplication::clipboard()->text(), QStringLiteral("First\nSecond"));
+}
+
+TEST_F(CollabRichBindingFixture, ImageSelectionsFallBackToNativeCopyWithoutChangingClipboard)
+{
+    binding->loadContentDelta(
+        R"([{"insert":"A "},{"insert":{"image":{"id":"0123456789abcdef0123456789abcdef01234567"}}},{"insert":" caption"}])");
+    ASSERT_TRUE(doc->toPlainText().contains(QChar::ObjectReplacementCharacter));
+    QGuiApplication::clipboard()->setText(QStringLiteral("unchanged"));
+
+    EXPECT_FALSE(binding->copySelection(2, 3));
+    EXPECT_FALSE(binding->copySelection(0, doc->characterCount() - 1));
+    EXPECT_FALSE(binding->copySelection(0, 0));
+    EXPECT_EQ(QGuiApplication::clipboard()->text(), QStringLiteral("unchanged"));
 }
