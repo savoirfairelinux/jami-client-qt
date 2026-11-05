@@ -1070,10 +1070,15 @@ CollabRichBinding::onContentsChange(int /*position*/, int /*charsRemoved*/, int 
                 ++i;
                 continue;
             }
-            const QJsonObject a = charAttrsAt(d, prefix + i);
+            QJsonObject a = charAttrsAt(d, prefix + i);
             int j = i + 1;
             while (j < text.size() && text.at(j) != OBJECT_REPLACEMENT && charAttrsAt(d, prefix + j) == a)
                 ++j;
+            // An omitted attribute inherits the shared text's style; null clears it.
+            for (auto it = insertionAttrs_.begin(); it != insertionAttrs_.end(); ++it) {
+                if (it.value().isNull())
+                    a[it.key()] = it.value();
+            }
             QJsonObject op {{QStringLiteral("insert"), text.mid(i, j - i)}};
             if (!a.isEmpty())
                 op[QStringLiteral("attributes")] = a;
@@ -1409,27 +1414,10 @@ CollabRichBinding::canExportAs(const QString& suffix) const
 void
 CollabRichBinding::toggleInline(const QString& attr, int start, int end)
 {
-    QTextDocument* d = doc();
-    if (!d || start >= end)
+    if (!doc() || start > end)
         return;
-    // Toggle based on the first character of the selection.
-    const QJsonObject current = charAttrsAt(d, start);
-    const bool isSet = current.contains(attr);
-    QJsonObject attrs;
-    attrs[attr] = isSet ? QJsonValue(QJsonValue::Null) : QJsonValue(true);
-
-    applyingRemote_ = true;
-    QTextCursor c(d);
-    c.setPosition(start);
-    c.setPosition(end, QTextCursor::KeepAnchor);
-    c.mergeCharFormat(mergeFormatFromAttrs(attrs));
-    applyingRemote_ = false;
-
-    QJsonArray ops;
-    if (start > 0)
-        ops.append(QJsonObject {{QStringLiteral("retain"), start}});
-    ops.append(QJsonObject {{QStringLiteral("retain"), end - start}, {QStringLiteral("attributes"), attrs}});
-    Q_EMIT localDelta(QString::fromUtf8(QJsonDocument(ops).toJson(QJsonDocument::Compact)));
+    const bool isSet = selectionFormat(start, end).value(attr).toBool();
+    setInlineAttribute(attr, isSet ? QJsonValue(QJsonValue::Null) : QJsonValue(true), start, end);
 }
 
 QString
@@ -1950,6 +1938,23 @@ CollabRichBinding::pasteText(int start, int end)
     insertText(start, end, QGuiApplication::clipboard()->text());
 }
 
+bool
+CollabRichBinding::copySelection(int start, int end) const
+{
+    QTextDocument* d = doc();
+    if (!d)
+        return false;
+    const int s = qBound(0, qMin(start, end), d->characterCount() - 1);
+    const int e = qBound(s, qMax(start, end), d->characterCount() - 1);
+    if (s >= e)
+        return false;
+    const QString selected = d->toPlainText().mid(s, e - s);
+    if (selected.contains(OBJECT_REPLACEMENT))
+        return false;
+    QGuiApplication::clipboard()->setText(selected);
+    return true;
+}
+
 void
 CollabRichBinding::insertText(int start, int end, const QString& text)
 {
@@ -1958,19 +1963,36 @@ CollabRichBinding::insertText(int start, int end, const QString& text)
         return;
     if (text.isEmpty() && start == end)
         return;
-    // Literal text, never interpreted as markup. This goes through
-    // onContentsChange like a normal edit, so it syncs.
+    // Keep destination formatting, not clipboard styling or an inherited link.
     QTextCursor c(d);
     const int last = d->characterCount() - 1;
-    c.setPosition(qBound(0, qMin(start, end), last));
-    if (start != end) {
-        c.setPosition(qBound(0, qMax(start, end), last), QTextCursor::KeepAnchor);
+    const int pos = qBound(0, qMin(start, end), last);
+    const int endPos = qBound(pos, qMax(start, end), last);
+    QTextCharFormat inherited;
+    if (pos < endPos) {
+        c.setPosition(pos + 1);
+        inherited = c.charFormat();
+    } else if (pos > 0 && d->findBlock(pos).position() < pos) {
+        c.setPosition(pos);
+        inherited = c.charFormat();
+    } else {
+        inherited = d->findBlock(pos).charFormat();
+    }
+    QJsonObject attrs = charFormatToAttrs(inherited);
+    attrs.remove(QStringLiteral("link"));
+    if (!insertionAttrs_.isEmpty() && pos == endPos && pos == insertionFormatPosition_) {
+        for (auto it = insertionAttrs_.begin(); it != insertionAttrs_.end(); ++it)
+            attrs[it.key()] = it.value();
+    }
+    inherited = mergeFormatFromAttrs(attrs);
+    c.setPosition(pos);
+    if (pos != endPos) {
+        c.setPosition(endPos, QTextCursor::KeepAnchor);
         c.removeSelectedText();
     }
     if (!text.isEmpty()) {
-        QTextCharFormat plain;
-        c.setCharFormat(plain);
-        c.insertText(text, plain);
+        c.setCharFormat(inherited);
+        c.insertText(text, inherited);
     }
 }
 
@@ -2075,10 +2097,10 @@ CollabRichBinding::selectionFormat(int start, int end) const
         for (auto it = insertionAttrs_.begin(); it != insertionAttrs_.end(); ++it)
             a[it.key()] = it.value();
     }
-    result[QStringLiteral("b")] = a.contains(QStringLiteral("b"));
-    result[QStringLiteral("i")] = a.contains(QStringLiteral("i"));
-    result[QStringLiteral("u")] = a.contains(QStringLiteral("u"));
-    result[QStringLiteral("s")] = a.contains(QStringLiteral("s"));
+    result[QStringLiteral("b")] = a.value(QStringLiteral("b")).toBool();
+    result[QStringLiteral("i")] = a.value(QStringLiteral("i")).toBool();
+    result[QStringLiteral("u")] = a.value(QStringLiteral("u")).toBool();
+    result[QStringLiteral("s")] = a.value(QStringLiteral("s")).toBool();
     result[QStringLiteral("link")] = a.value(QStringLiteral("link")).toString();
     result[QStringLiteral("font")] = a.value(QStringLiteral("font")).toString();
     result[QStringLiteral("size")] = a.value(QStringLiteral("size")).toDouble();

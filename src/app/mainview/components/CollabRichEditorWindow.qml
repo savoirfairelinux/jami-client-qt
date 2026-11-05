@@ -627,6 +627,11 @@ Window {
         });
     }
 
+    function copySelection() {
+        if (!richBinding.copySelection(editor.selectionStart, editor.selectionEnd))
+            editor.copy();
+    }
+
     // Pasting inserts whatever the clipboard holds: a picture if there is one,
     // sanitized plain text otherwise.
     function pasteFromClipboard() {
@@ -870,6 +875,7 @@ Window {
                 iconSize: JamiTheme.iconButtonMedium
                 iconSource: JamiResources.bold_black_24dp_svg
                 toolTipText: JamiStrings.bold
+                toolTipShortcutKey: "Ctrl+B"
                 checked: root.fmt.b === true
                 onClicked: {
                     richBinding.toggleInline("b", editor.selectionStart, editor.selectionEnd);
@@ -882,6 +888,7 @@ Window {
                 iconSize: JamiTheme.iconButtonMedium
                 iconSource: JamiResources.italic_black_24dp_svg
                 toolTipText: JamiStrings.italic
+                toolTipShortcutKey: "Ctrl+I"
                 checked: root.fmt.i === true
                 onClicked: {
                     richBinding.toggleInline("i", editor.selectionStart, editor.selectionEnd);
@@ -894,6 +901,7 @@ Window {
                 iconSize: JamiTheme.iconButtonMedium
                 iconSource: JamiResources.underline_black_24dp_svg
                 toolTipText: JamiStrings.underline
+                toolTipShortcutKey: "Ctrl+U"
                 checked: root.fmt.u === true
                 onClicked: {
                     richBinding.toggleInline("u", editor.selectionStart, editor.selectionEnd);
@@ -906,6 +914,7 @@ Window {
                 iconSize: JamiTheme.iconButtonMedium
                 iconSource: JamiResources.strikethrough_s_24dp_svg
                 toolTipText: JamiStrings.strikethrough
+                toolTipShortcutKey: "Shift+Alt+X"
                 checked: root.fmt.s === true
                 onClicked: {
                     richBinding.toggleInline("s", editor.selectionStart, editor.selectionEnd);
@@ -1110,13 +1119,28 @@ Window {
                             root.refreshImageGeom();
                         }
 
-                        // Intercept paste: a picture is stored with the document and
-                        // referenced, and text is inserted sanitized (rich clipboard
-                        // styling would otherwise render only locally and diverge from
-                        // what peers receive).
                         Keys.onPressed: function (event) {
                             if (event.matches(StandardKey.Paste)) {
                                 root.pasteFromClipboard();
+                                event.accepted = true;
+                            } else if (event.matches(StandardKey.Copy)) {
+                                root.copySelection();
+                                event.accepted = true;
+                            } else if (event.matches(StandardKey.Cut)) {
+                                root.copySelection();
+                                if (!root.previewing)
+                                    editor.remove(editor.selectionStart, editor.selectionEnd);
+                                event.accepted = true;
+                            } else if (event.matches(StandardKey.Bold) || event.matches(StandardKey.Italic)
+                                       || event.matches(StandardKey.Underline)
+                                       || (event.key === Qt.Key_X && event.modifiers === (Qt.ShiftModifier | Qt.AltModifier))) {
+                                if (!root.previewing) {
+                                    const attr = event.matches(StandardKey.Bold) ? "b"
+                                               : event.matches(StandardKey.Italic) ? "i"
+                                               : event.matches(StandardKey.Underline) ? "u" : "s";
+                                    richBinding.toggleInline(attr, editor.selectionStart, editor.selectionEnd);
+                                    root.refreshFormatState();
+                                }
                                 event.accepted = true;
                             }
                         }
@@ -1616,7 +1640,7 @@ Window {
         MenuItem {
             text: JamiStrings.copy
             enabled: editor.selectedText.length > 0
-            onTriggered: editor.copy()
+            onTriggered: root.copySelection()
         }
         MenuItem {
             text: JamiStrings.paste

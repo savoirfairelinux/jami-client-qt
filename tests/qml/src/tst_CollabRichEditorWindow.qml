@@ -10,6 +10,11 @@ Item {
         CollabRichEditorWindow {}
     }
 
+    Component {
+        id: pasteTargetComponent
+        TextEdit { textFormat: TextEdit.RichText }
+    }
+
     TestCase {
         name: "CollabRichEditorWindow"
         when: windowShown
@@ -38,10 +43,12 @@ Item {
                 visible: true
             });
             verify(editorWindow);
+            editorWindow.requestActivate();
+            waitForRendering(editorWindow.contentItem);
             editor = findChild(editorWindow, "collabEditor");
             binding = findChild(editorWindow, "collabRichBinding");
             fontButton = findChild(editorWindow, "fontFamilyButton");
-            fontMenu = findChild(editorWindow, "fontFamilyMenu");
+            fontMenu = fontButton.popup;
             verify(editor && binding && fontButton && fontMenu);
             editor.remove(0, editor.length);
             binding.setFont("", 0, 0);
@@ -418,6 +425,103 @@ Item {
             keyClick(Qt.Key_I);
             compare(editorWindow.currentAlign, "center");
             compare(content()[0].attributes.align, "center");
+        }
+
+        function test_inlineFormattingShortcuts_data() {
+            return [
+                {tag: "bold", key: Qt.Key_B, modifiers: Qt.ControlModifier, attribute: "b", icon: "bold_black"},
+                {tag: "italic", key: Qt.Key_I, modifiers: Qt.ControlModifier, attribute: "i", icon: "italic_black"},
+                {tag: "underline", key: Qt.Key_U, modifiers: Qt.ControlModifier, attribute: "u", icon: "underline_black"},
+                {tag: "strikethrough", key: Qt.Key_X, modifiers: Qt.ShiftModifier | Qt.AltModifier, attribute: "s", icon: "strikethrough_s"}
+            ];
+        }
+
+        function test_inlineFormattingShortcuts(data) {
+            editor.forceActiveFocus();
+            keyClick(data.key, data.modifiers);
+            compare(binding.selectionFormat(2, 8)[data.attribute], true);
+            verify(content().some(op => op.attributes && op.attributes[data.attribute] === true));
+            keyClick(data.key, data.modifiers);
+            compare(binding.selectionFormat(2, 8)[data.attribute], false);
+            const toolbar = findChild(editorWindow, "formattingToolbar");
+            const button = toolbar.children.find(child => child.iconSource
+                                                  && String(child.iconSource).indexOf(data.icon) >= 0);
+            verify(button);
+            editor.remove(0, editor.length);
+            editor.cursorPosition = 0;
+            keyClick(data.key, data.modifiers);
+            compare(editorWindow.fmt[data.attribute], true);
+            keyClick(data.key, data.modifiers);
+            compare(editorWindow.fmt[data.attribute], false);
+            compare(content().length, 0);
+            mouseClick(button);
+            keyClick(Qt.Key_H);
+            compare(binding.selectionFormat(0, 1)[data.attribute], true);
+            keyClick(data.key, data.modifiers);
+            verify(!button.checked);
+            keyClick(Qt.Key_I);
+            compare(binding.selectionFormat(0, 1)[data.attribute], true);
+            compare(binding.selectionFormat(1, 2)[data.attribute], false);
+            compare(editor.getText(0, editor.length), "hi");
+            verify(content().some(op => op.insert === "h" && op.attributes
+                                 && op.attributes[data.attribute] === true), JSON.stringify(content()));
+            verify(content().some(op => op.insert === "i" && (!op.attributes
+                                 || op.attributes[data.attribute] === undefined)));
+            editor.cursorPosition = 1;
+            keyClick(data.key, data.modifiers);
+            compare(binding.selectionFormat(1, 2)[data.attribute], true);
+            mouseClick(button);
+            compare(binding.selectionFormat(0, 2)[data.attribute], false);
+            verify(content().every(op => !op.attributes || op.attributes[data.attribute] === undefined));
+        }
+
+        function test_copyAndPasteWordInListDoesNotInsertNewline() {
+            binding.setList("bullet", 0, editor.length);
+            editor.forceActiveFocus();
+            editor.select(2, 8);
+            keyClick(Qt.Key_C, Qt.ControlModifier);
+            editor.cursorPosition = editor.length;
+            keyClick(Qt.Key_V, Qt.ControlModifier);
+            compare(editor.getText(0, editor.length), "A reportreport");
+            verify(content().every(op => op.attributes && op.attributes.list === "bullet"));
+        }
+
+        function test_cutAndPasteWordInListDoesNotInsertNewline() {
+            binding.setList("bullet", 0, editor.length);
+            editor.forceActiveFocus();
+            keyClick(Qt.Key_X, Qt.ControlModifier);
+            compare(editor.getText(0, editor.length), "A ");
+            keyClick(Qt.Key_V, Qt.ControlModifier);
+            compare(editor.getText(0, editor.length), "A report");
+        }
+
+        function test_copyAndCutMixedImagesUseNativeClipboard_data() {
+            return [{tag: "copy", key: Qt.Key_C}, {tag: "cut", key: Qt.Key_X}];
+        }
+
+        function test_copyAndCutMixedImagesUseNativeClipboard(data) {
+            binding.insertImage(2, "0123456789abcdef0123456789abcdef01234567", 20, 20);
+            const original = editor.getText(0, editor.length);
+            verify(original.indexOf("\uFFFC") >= 0);
+            editor.selectAll();
+            editor.forceActiveFocus();
+            keyClick(data.key, Qt.ControlModifier);
+            const target = createTemporaryObject(pasteTargetComponent, this);
+            target.paste();
+            compare(target.getText(0, target.length), original);
+            if (data.key === Qt.Key_X)
+                compare(editor.length, 0);
+        }
+
+        function test_shortcutsDoNotChangeHistoryPreview() {
+            const original = JSON.stringify(content());
+            editorWindow.previewing = true;
+            editor.forceActiveFocus();
+            for (const key of [Qt.Key_B, Qt.Key_I, Qt.Key_U, Qt.Key_X])
+                keyClick(key, Qt.ControlModifier);
+            keyClick(Qt.Key_X, Qt.ShiftModifier | Qt.AltModifier);
+            compare(editor.getText(0, editor.length), "A report");
+            compare(JSON.stringify(content()), original);
         }
     }
 }

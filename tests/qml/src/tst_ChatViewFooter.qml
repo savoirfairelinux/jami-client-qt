@@ -74,6 +74,20 @@ ColumnLayout {
                 compare(sendMessageButton.enabled, false)
             }
 
+            function test_markdown_shortcut_only_changes_focused_chat_input() {
+                const input = findChild(uut, "messageBarTextArea").textAreaObj
+                input.text = "report"
+                input.selectAll()
+                const other = Qt.createQmlObject('import QtQuick; TextEdit { text: "other" }', uut)
+                other.forceActiveFocus()
+                keyClick(Qt.Key_B, Qt.ControlModifier)
+                compare(input.text, "report")
+                input.forceActiveFocus()
+                keyClick(Qt.Key_B, Qt.ControlModifier)
+                compare(input.text, "**report**")
+                other.destroy()
+            }
+
             // Regression: pasting a file with no text left the send button enabled but
             // pressing Enter did nothing because onSendMessagesRequired only checked text.
             function test_enter_sends_when_files_pending_and_no_text() {
