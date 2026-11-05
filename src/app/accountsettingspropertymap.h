@@ -43,7 +43,10 @@ public:
 
     void setAccountSettingProperty(const QString& key, const QVariant& value)
     {
-        updateValue(key, value);
+        // QSettings can reload booleans as strings; preserve their QML types.
+        auto typedValue = value;
+        typedValue.convert(this->value(key).metaType());
+        updateValue(key, typedValue);
     }
 
 protected:
