@@ -506,6 +506,12 @@ Window {
         return typeof viewCoordinator !== "undefined" ? viewCoordinator : null;
     }
 
+    function openDictionaryManager() {
+        const coord = root.coordinator();
+        if (coord)
+            coord.presentDialog(root.contentItem, "commoncomponents/DictionaryManagerDialog.qml");
+    }
+
     function activateEditorWindow() {
         root.raise();
         root.requestActivate();
@@ -1072,6 +1078,11 @@ Window {
                         id: editor
                         objectName: "collabEditor"
 
+                        ContextMenu.menu: editorMenu
+                        ContextMenu.onRequested: function (position) {
+                            root.prepareSpellMenu(position);
+                        }
+
                         padding: 10
                         // Keystrokes must not reach a document the user cannot see.
                         readOnly: root.previewing
@@ -1184,16 +1195,6 @@ Window {
                                 width: Math.max(4, Math.abs(to.x - from.x))
                                 height: 2
                                 color: JamiTheme.redColor
-                            }
-                        }
-
-                        // Right-click opens the context menu (declared at window root to
-                        // avoid nesting a Menu inside the TextArea/Flickable content).
-                        TapHandler {
-                            acceptedButtons: Qt.RightButton
-                            onTapped: function (eventPoint) {
-                                root.prepareSpellMenu(eventPoint.position);
-                                editorMenu.popup();
                             }
                         }
 
@@ -1475,7 +1476,7 @@ Window {
                 tooltipText: JamiStrings.spellingLanguage
                 onActivated: {
                     if (currentIndex === root.spellLanguageChoices.length) {
-                        viewCoordinator.presentDialog(appWindow, "commoncomponents/DictionaryManagerDialog.qml");
+                        root.openDictionaryManager();
                         currentIndex = Qt.binding(function () {
                             return root.spellLanguageChoices.findIndex(choice => choice.id === root.currentLanguage);
                         });
@@ -1581,79 +1582,103 @@ Window {
 
     // Spelling language chooser (declared at the window root for the same reason
     // as editorMenu).
-    Menu {
+    BaseContextMenu {
         id: languageMenu
         objectName: "languageMenu"
-        Repeater {
+        closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside
+        Instantiator {
             model: root.spellLanguageChoices
-            delegate: MenuItem {
+            delegate: GeneralMenuItem {
                 id: languageItem
                 required property var modelData
                 objectName: "language-" + (modelData.id || "default")
-                text: modelData.label
+                itemName: modelData.label
+                parentMenu: languageMenu
                 checkable: true
                 checked: root.currentLanguage === modelData.id
-                onTriggered: {
+                bold: checked
+                onClicked: {
                     root.chooseLanguage(modelData.id);
                     languageItem.checked = Qt.binding(function () {
                         return root.currentLanguage === languageItem.modelData.id;
                     });
                 }
             }
+            onObjectAdded: (index, object) => languageMenu.insertItem(index, object)
+            onObjectRemoved: (index, object) => languageMenu.removeItem(object)
         }
-        MenuSeparator {}
-        MenuItem {
+        GeneralMenuSeparator {}
+        GeneralMenuItem {
             objectName: "installDictionaries"
-            text: JamiStrings.dictionaryManager
-            onTriggered: viewCoordinator.presentDialog(appWindow, "commoncomponents/DictionaryManagerDialog.qml")
+            itemName: JamiStrings.dictionaryManager
+            iconSource: JamiResources.dictionary_24dp_svg
+            parentMenu: languageMenu
+            onClicked: root.openDictionaryManager()
         }
     }
 
     // Context menu for the editor (declared at the window root, not nested inside
     // the TextArea, to avoid a QtQuick.Templates crash on popup).
-    Menu {
+    BaseContextMenu {
         id: editorMenu
-        Repeater {
+        objectName: "editorContextMenu"
+        closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside
+
+        Instantiator {
             model: root.spellSuggestions
-            delegate: MenuItem {
+            delegate: GeneralMenuItem {
                 required property string modelData
-                text: modelData
-                font.bold: true
-                onTriggered: {
+                itemName: modelData
+                bold: true
+                isActif: !root.previewing
+                parentMenu: editorMenu
+                onClicked: {
                     richBinding.insertText(root.spellTarget.start, root.spellTarget.end, modelData);
                     root.scheduleSpellCheck();
                 }
             }
+            onObjectAdded: (index, object) => editorMenu.insertItem(index, object)
+            onObjectRemoved: (index, object) => editorMenu.removeItem(object)
         }
-        MenuSeparator {
+
+        GeneralMenuSeparator {
             visible: root.spellSuggestions.length > 0
             height: visible ? implicitHeight : 0
         }
-        MenuItem {
-            text: JamiStrings.spellingLanguageMenu
-            enabled: !root.previewing
-            onTriggered: Qt.callLater(function () {
-                languageMenu.popup();
-            })
-        }
-        MenuSeparator {}
-        MenuItem {
-            text: JamiStrings.copy
-            enabled: editor.selectedText.length > 0
-            onTriggered: root.copySelection()
-        }
-        MenuItem {
-            text: JamiStrings.paste
-            // canPaste only knows about text, and a clipboard holding just a
-            // picture would leave the entry greyed out.
-            enabled: editor.canPaste || richBinding.clipboardHasImage
-            onTriggered: root.pasteFromClipboard()
-        }
-        MenuItem {
-            text: JamiStrings.optionDelete
-            enabled: editor.selectedText.length > 0
-            onTriggered: editor.remove(editor.selectionStart, editor.selectionEnd)
-        }
+
+        property list<GeneralMenuItem> menuItems: [
+            GeneralMenuItem {
+                itemName: JamiStrings.spellingLanguageMenu
+                iconSource: JamiResources.spellcheck_24dp_svg
+                isActif: !root.previewing
+                onClicked: Qt.callLater(function () {
+                    languageMenu.popup();
+                })
+            },
+            GeneralMenuItem {
+                itemName: JamiStrings.cut
+                iconSource: JamiResources.content_cut_24dp_svg
+                isActif: !root.previewing && editor.selectedText.length > 0
+                onClicked: {
+                    root.copySelection();
+                    editor.remove(editor.selectionStart, editor.selectionEnd);
+                }
+            },
+            GeneralMenuItem {
+                itemName: JamiStrings.copy
+                iconSource: JamiResources.content_copy_24dp_svg
+                isActif: editor.selectedText.length > 0
+                onClicked: root.copySelection()
+            },
+            GeneralMenuItem {
+                itemName: JamiStrings.paste
+                iconSource: JamiResources.content_paste_24dp_svg
+                isActif: !root.previewing && (editor.canPaste || richBinding.clipboardHasImage)
+                onClicked: root.pasteFromClipboard()
+            }
+        ]
+
+        Component.onCompleted: loadMenuItems(menuItems)
     }
 
     // Local export. Declared at the window root for the same reason as
