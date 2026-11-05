@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c605eba6_eae911bd",
+        "filename": "src/app/collabrichbinding.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 1025,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-05T17:02:44Z",
+      "side": 1,
+      "message": "[error] Line 1025: 🔴 `onContentsChange()` now copies paragraph attributes from an empty block onto the first typed characters, but it only propagates `list`/`align`/`header` and omits `dir`. If the user sets RTL on an empty paragraph and then types, the inserted run has no `dir`, so `blockDirectionType()` falls back to LTR and the paragraph direction is lost. Include `dir` in `blockAttrs` here (mirroring how `align` is handled) so direction persists after typing and is emitted in the local delta.",
+      "revId": "3d40c53368d85b33a04d9acb7a1e8e4b37d2a8fd",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "41d3d46a_446d77bd",
+        "filename": "tests/unittests/collabrichbinding_unittest.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 540,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-05T17:02:44Z",
+      "side": 1,
+      "message": "[warning] Line 540: 🟡 The new regression coverage validates empty-paragraph retention for `list` and `align`, but not for `dir`, which now uses the same empty-block carry-over path. Add a companion test (set RTL on empty line → type text → press Enter) asserting `selectionFormat(...)[\"dir\"] \u003d\u003d \"rtl\"` and RTL block layout persistence, to prevent regressions in this newly introduced paragraph-direction logic.",
+      "revId": "3d40c53368d85b33a04d9acb7a1e8e4b37d2a8fd",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
