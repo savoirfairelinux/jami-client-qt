@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c96e0cb9_f8557f2e",
+        "filename": "src/app/settingsview/components/LinkedDevicesBase.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-05T16:40:09Z",
+      "side": 1,
+      "message": "[error] Line 113: 🔴 `DeviceItemDelegate` now renders `lastSync`, but this delegate binding never passes the `LastSync` model role, so every non-current device falls back to the default `0` and shows “Never”. Wire the role through (`lastSync: LastSync`) when instantiating `DeviceItemDelegate`, and keep a model-backed QML test for this path to prevent regressions.",
+      "revId": "2f6c4506db1ce02834e1ed9c7094a8db636fa92f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
