@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aace6425_5b455e15",
+        "filename": "src/app/mainview/components/CollabRichEditorWindow.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 1656,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-05T17:06:26Z",
+      "side": 1,
+      "message": "[warning] Line 1656: 🟡 `languageMenu.popup()` is called without an anchor/position after migrating to `BaseContextMenu`; this can make the submenu appear at a stale/default location (not near the context click), especially on multi-screen setups. Pass an explicit parent/position when opening (e.g., store the editor-menu click point and call `languageMenu.popup(editor, x, y)` or use an anchored overload).",
+      "revId": "35794e098cd0162ce66974200d768b766dced8f9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
