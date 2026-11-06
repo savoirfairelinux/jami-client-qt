@@ -16,6 +16,24 @@
       "message": "[error] Line 507: 🔴 `onAboutToShow` now forces `root.currentIndex \u003d -1` while the new \"New editable document\" action lives in the `ListView.header` (outside the ComboBox model). This creates a keyboard-access regression: when opening the popup (especially with an empty document list), there is no selected/focused model item and the header action is not guaranteed to be reachable/activatable via arrow+Enter navigation. Please explicitly focus `newEditableDocument` on open when appropriate, or model the creation row as a real list item so standard ComboBox/ListView keyboard navigation works reliably.",
       "revId": "85c10684bb5d9286e38be33381911c312493198b",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d386fe8f_bfc1d317",
+        "filename": "src/app/mainview/components/CollaborativeDocumentsButton.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 507,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-11-06T20:44:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c52ee666_61654475",
+      "revId": "85c10684bb5d9286e38be33381911c312493198b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
