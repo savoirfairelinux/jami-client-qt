@@ -16,6 +16,24 @@
       "message": "[warning] Line 48: 🟡 `QVariant::convert(...)` return value is ignored. If a persisted value is malformed or of an unexpected type and conversion fails, `typedValue` can remain the wrong type and still be written back, recreating the QML truthiness problem for non-empty strings. Check the conversion result and fall back to the existing typed value (or reject/log) before calling `updateValue`.",
       "revId": "ef1ab98a920b500c97f9be7dc3646dd1d3ee0789",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eac2260c_8ef36772",
+        "filename": "src/app/accountsettingspropertymap.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-11-06T21:21:04Z",
+      "side": 1,
+      "message": "Fixed. Failed conversions now leave the existing typed value unchanged instead of replacing it with a typed null. Added a regression test covering unsupported persisted values for both background flags.",
+      "parentUuid": "6c31acf6_6a314a8a",
+      "revId": "ef1ab98a920b500c97f9be7dc3646dd1d3ee0789",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
