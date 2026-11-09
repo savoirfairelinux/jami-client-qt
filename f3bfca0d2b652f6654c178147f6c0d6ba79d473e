@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0a7ed2d9_2d96d2d4",
+        "filename": "daemon",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-09T15:21:42Z",
+      "side": 1,
+      "message": "[warning] Line 1: 🟡 This change updates the daemon gitlink without any context in the commit message. Please include the corresponding daemon commit/PR summary (notably API, security, and behavior-impacting changes) so reviewers can trace and audit what is being introduced.",
+      "revId": "f3bfca0d2b652f6654c178147f6c0d6ba79d473e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
