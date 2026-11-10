@@ -83,25 +83,40 @@ BaseContextMenu {
         }
     }
 
+    ListModel {
+        id: emptyConversations
+    }
+
     SortFilterProxyModel {
         id: shareConvProxyModel
+        objectName: "shareConvProxyModel"
 
-        sourceModel: ConversationsAdapter.convListProxyModel
+        sourceModel: ConversationsAdapter.convListProxyModel.sourceModel || emptyConversations
         property string titleFilter
 
-        filters: FunctionFilter {
-            column: 0
-            function filter(title: string): bool {
-                if (!shareConvProxyModel.titleFilter)
-                    return true;
+        sorters: RoleSorter {
+            roleName: "LastInteractionTimeStamp"
+            sortOrder: Qt.DescendingOrder
+        }
 
-                try {
-                    return new RegExp(shareConvProxyModel.titleFilter, "i").test(title || "");
-                } catch (e) {
-                    return (title || "").toLowerCase().indexOf(shareConvProxyModel.titleFilter.toLowerCase()) !== -1;
+        filters: [
+            ValueFilter { roleName: "IsRequest"; value: false },
+            ValueFilter { roleName: "IsBanned"; value: false },
+            FunctionFilter {
+                column: 0
+                function filter(Title: string, Uris: var): bool {
+                    if (!Uris || Uris.length === 0)
+                        return false;
+                    if (!shareConvProxyModel.titleFilter)
+                        return true;
+                    try {
+                        return new RegExp(shareConvProxyModel.titleFilter, "i").test(Title || "");
+                    } catch (e) {
+                        return (Title || "").toLowerCase().indexOf(shareConvProxyModel.titleFilter.toLowerCase()) !== -1;
+                    }
                 }
             }
-        }
+        ]
     }
 
     contentItem: ColumnLayout {
