@@ -69,7 +69,10 @@ private:
         QSet<QVideoSink*> subscribers;
         QReadWriteLock subscribersMutex;
         bool active {false};
+        std::atomic_bool deliveryPending {false};
     };
+    void scheduleFrameDelivery(const QString& id, FrameObject& frameObject);
+    void deliverFrame(const QString& id);
     std::map<QString, FrameObject> renderers_;
     QReadWriteLock renderersMutex_;
 };
