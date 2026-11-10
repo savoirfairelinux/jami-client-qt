@@ -1,7 +1,6 @@
 pragma ComponentBehavior: Bound
 import QtQuick
 import QtQuick.Controls as Controls
-import QtQuick.Effects
 import QtQuick.Templates as T
 import net.jami.Constants 1.1
 import "../commoncomponents" as Common
@@ -26,6 +25,10 @@ T.ComboBox {
 
         width: ListView.view.width
         height: control.background.height
+        topPadding: 0
+        bottomPadding: 0
+        leftPadding: control.padding + 12 - control.popup.leftPadding
+        rightPadding: control.padding + 12 - control.popup.rightPadding
         text: control.textAt(index)
         font.weight: control.currentIndex === index ? Font.DemiBold : control.font.weight
         highlighted: control.highlightedIndex === index
@@ -107,25 +110,12 @@ T.ComboBox {
         }
 
         contentItem: ListView {
-            id: optionsList
             clip: true
             implicitHeight: contentHeight
             model: control.delegateModel
             currentIndex: control.highlightedIndex
             highlightMoveDuration: 0
             Controls.ScrollBar.vertical: Common.JamiScrollBar {}
-
-            layer.enabled: true
-            layer.effect: MultiEffect {
-                maskEnabled: true
-                maskSource: ShaderEffectSource {
-                    sourceItem: Rectangle {
-                        width: optionsList.width
-                        height: optionsList.height
-                        radius: control.background.radius
-                    }
-                }
-            }
         }
     }
 

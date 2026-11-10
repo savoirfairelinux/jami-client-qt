@@ -74,6 +74,11 @@ Item {
             JamiTheme.darkTheme = originalDarkTheme;
         }
 
+        function windowPixel(image, pixelX, pixelY) {
+            return image.pixel(Math.floor(pixelX * image.width / root.width),
+                               Math.floor(pixelY * image.height / root.height));
+        }
+
         function test_appearance_data() {
             return [
                 {tag: "standard-light", component: comboComponent, dark: false},
@@ -113,10 +118,11 @@ Item {
                 compare(option.background.color, option.hovered || option.highlighted
                     ? JamiTheme.comboboxBackgroundColorHovered : JamiTheme.globalBackgroundColor);
                 compare(option.contentItem.color, option.hovered ? JamiTheme.comboboxTextColorHovered : JamiTheme.textColor);
-                verify(combo.popup.contentItem.layer.enabled);
-                const image = grabImage(combo.popup.contentItem);
-                compare(image.pixel(0, 0), backdrop.color);
-                verify(image.pixel(Math.floor(image.width / 2), Math.floor(image.height / 2)).toString() !== backdrop.color.toString());
+                const image = grabImage(root);
+                const position = combo.popup.contentItem.mapToItem(root, 0, 0);
+                compare(windowPixel(image, position.x, position.y), backdrop.color);
+                verify(windowPixel(image, position.x + combo.popup.width / 2,
+                    position.y + combo.popup.height / 2).toString() !== backdrop.color.toString());
             JamiTheme.darkTheme = !data.dark;
                 tryCompare(combo.background, "color", JamiTheme.globalBackgroundColor);
                 tryCompare(combo.background.border, "color", JamiTheme.comboboxBorderColorActive);
@@ -134,6 +140,54 @@ Item {
                 {tag: "list-model", model: roleModel, textRole: "label", valueRole: "code", expected: "Allow", value: "allow"},
                 {tag: "integer", model: 3, textRole: "", valueRole: "", expected: "1", value: 1}
             ];
+        }
+
+        function test_hoverRendering_data() {
+            return test_appearance_data();
+        }
+
+        function test_hoverRendering(data) {
+            JamiTheme.darkTheme = data.dark;
+            const combo = createTemporaryObject(data.component, root);
+            verify(combo !== null);
+            combo.popup.open();
+            tryCompare(combo.popup, "opened", true);
+            const list = combo.popup.contentItem;
+            verify(waitForRendering(list));
+            for (let pass = 0; pass < 3; ++pass) {
+                for (let index = 0; index < combo.count; ++index) {
+                    const option = list.itemAtIndex(index);
+                    verify(option !== null);
+                    mouseMove(option, option.width / 2, option.height / 2);
+                    tryCompare(option, "hovered", true);
+                    verify(option.contentItem.height >= option.contentItem.implicitHeight,
+                           "Dropdown text must fit without vertical clipping");
+                    const fieldText = combo.contentItem.mapToItem(root,
+                        combo.mirrored ? combo.contentItem.width - combo.contentItem.rightPadding
+                                       : combo.contentItem.leftPadding, 0);
+                    const rowText = option.contentItem.mapToItem(root,
+                        combo.mirrored ? option.contentItem.width : 0, 0);
+                    compare(rowText.x, fieldText.x);
+                    verify(waitForRendering(list));
+                    const rowPosition = option.mapToItem(root, 0, 0);
+                    tryVerify(() => windowPixel(grabImage(root), rowPosition.x + option.width - option.height,
+                        rowPosition.y + option.height / 2).toString() === option.background.color.toString(),
+                        1000, "Hovered dropdown background must remain rendered");
+                    const image = grabImage(root);
+                    const textPosition = option.contentItem.mapToItem(root, 0, 0);
+                    let textPixels = 0;
+                    for (let pixelY = 0; pixelY < Math.floor(option.contentItem.height); ++pixelY) {
+                        for (let pixelX = 0; pixelX < Math.floor(option.contentItem.width); ++pixelX) {
+                            if (windowPixel(image, textPosition.x + pixelX,
+                                textPosition.y + pixelY).toString() === option.contentItem.color.toString())
+                                ++textPixels;
+                        }
+                    }
+                    verify(textPixels > 10, "Hovered dropdown text must remain rendered");
+                }
+            }
+            combo.popup.close();
+            tryCompare(combo.popup, "opened", false);
         }
 
         function test_models(data) {
