@@ -36,6 +36,7 @@ Item {
     property string newGroup: qsTr("Create new group")
     property string createNewFeed: qsTr("Create new feed")
     property string invitations: qsTr("Invitations")
+    property string pendingInvitations: qsTr("%1 pending invitations")
     property string description: qsTr("Jami is a universal communication platform, with privacy as its foundation, that relies on a free distributed network for everyone.")
     property string updateToSwarm: qsTr("Migrating to the Swarm technology will enable synchronizing this conversation across multiple devices and improve reliability. The legacy conversation history will be cleared in the process.")
     property string migrateConversation: qsTr("Migrate conversation")
@@ -880,6 +881,15 @@ Item {
     // SmartList
     property string clearText: qsTr("Clear text")
     property string conversations: qsTr("Conversations")
+    property string contacts: qsTr("Contacts")
+    property string groupConversations: qsTr("Groups")
+    property string feeds: qsTr("Feeds")
+    property string unreadItemsCount: qsTr("Unread items: %1")
+    property string noGroupConversations: qsTr("No group conversations found.")
+    property string noFeeds: qsTr("No feeds found.")
+    property string noInvitations: qsTr("No invitations found.")
+    property string showConversations: qsTr("Show conversations")
+    property string showInvitations: qsTr("Show invitations")
     property string conversation: qsTr("Conversation")
     property string searchResults: qsTr("Search results")
 
