@@ -2,9 +2,14 @@ import QtQuick
 import QtQuick.Controls.impl
 import QtQuick.Templates as T
 import net.jami.Constants 1.1
+import "../commoncomponents" as Common
 
 T.Button {
     id: root
+
+    property alias toolTipText: toolTip.text
+
+    hoverEnabled: true
 
     implicitWidth: Math.max(implicitBackgroundWidth + leftInset + rightInset, implicitContentWidth + leftPadding + rightPadding)
     implicitHeight: JamiTheme.newMaterialButtonHeight
@@ -77,4 +82,14 @@ T.Button {
         acceptedButtons: Qt.NoButton
         cursorShape: root.hovered && root.enabled ? Qt.PointingHandCursor : Qt.ArrowCursor
     }
+
+    Common.MaterialToolTip {
+        id: toolTip
+        objectName: "buttonToolTip"
+        parent: root
+        visible: root.enabled && (root.hovered || root.activeFocus) && text.length > 0
+        delay: Qt.styleHints.mousePressAndHoldInterval
+    }
+
+    Accessible.description: root.toolTipText
 }

@@ -184,6 +184,39 @@ Item {
             compare(clicks.count, 2);
         }
 
+        function test_tooltip_data() {
+            return [
+                {tag: "standard", component: buttonComponent},
+                {tag: "legacy", component: materialButtonComponent}
+            ];
+        }
+
+        function test_tooltip(data) {
+            const button = createTemporaryObject(data.component, root);
+            verify(button !== null);
+            verify("toolTipText" in button);
+            compare(button.toolTipText, "");
+            const toolTip = findChild(button, "buttonToolTip");
+            verify(toolTip !== null);
+            toolTip.delay = 0;
+            button.toolTipText = "Create a circle";
+            compare(toolTip.text, button.toolTipText);
+            compare(button.Accessible.description, button.toolTipText);
+            mouseMove(button);
+            tryCompare(toolTip, "visible", true);
+            mouseMove(root, root.width - 1, root.height - 1);
+            tryCompare(toolTip, "visible", false);
+            button.forceActiveFocus(Qt.TabFocusReason);
+            tryCompare(toolTip, "visible", true);
+            button.enabled = false;
+            tryCompare(toolTip, "visible", false);
+            button.enabled = true;
+            button.forceActiveFocus(Qt.TabFocusReason);
+            tryCompare(toolTip, "visible", true);
+            button.toolTipText = "";
+            tryCompare(toolTip, "visible", false);
+        }
+
         function test_iconButtonCompatibility() {
             const button = createTemporaryObject(iconButtonComponent, root);
             verify(button !== null);
@@ -192,6 +225,13 @@ Item {
             compare(button.contentItem.source, JamiResources.add_24dp_svg);
             compare(button.contentItem.color, JamiTheme.buttonTintedGreyHovered);
             compare(button.background.opacity, 0);
+            const inheritedToolTip = findChild(button, "buttonToolTip");
+            verify(inheritedToolTip !== null);
+            button.toolTipText = "Add a member";
+            mouseMove(button);
+            tryCompare(button, "hovered", true);
+            compare(inheritedToolTip.text, "");
+            verify(!inheritedToolTip.visible);
         }
     }
 }
