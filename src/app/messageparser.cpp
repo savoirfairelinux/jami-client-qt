@@ -21,6 +21,7 @@
 #include "htmlparser.h"
 
 #include <QRegularExpression>
+#include <QScopeGuard>
 #include <QtConcurrent>
 
 #include "md4c-html.h"
@@ -55,6 +56,9 @@ MessageParser::buildStyledHtml(QString md, const QColor& linkColor, const QColor
 
     // Parse HTML to get a list of tags and their values.
     // We are only interested in the <a> and <pre> tags.
+    // Release the tidy tree on this thread on every exit path, as its nodes
+    // reference thread-local data of the parsing thread.
+    const auto cleanup = qScopeGuard([this] { htmlParser_->clear(); });
     htmlParser_->parseHtmlString(html);
     auto tagsMap = htmlParser_->getTagsNodes({TidyTag_A, TidyTag_DEL, TidyTag_PRE});
 
