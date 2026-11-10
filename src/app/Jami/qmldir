@@ -1,0 +1,3 @@
+module Jami
+import QtQuick.Controls.Universal auto
+Button 2.0 Button.qml

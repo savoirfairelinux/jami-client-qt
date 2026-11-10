@@ -16,8 +16,7 @@
  */
 
 import QtQuick
-import QtQuick.Controls.impl
-import QtQuick.Templates as T
+import Jami as JamiStyle
 
 import net.jami.Constants 1.1
 
@@ -37,120 +36,23 @@ import net.jami.Constants 1.1
  *
  * Reference: https://m3.material.io/components/buttons/overview
  */
-T.Button {
+JamiStyle.Button {
     id: root
 
-    property bool filledButton: filledButton || (!outlinedButton && !textButton)
+    property bool filledButton: !outlinedButton && !textButton
     property bool outlinedButton: false // Outlined
     property bool textButton: false // Text
 
     property color color: JamiTheme.buttonTintedBlue
-    property string iconSource: ""
+    property alias iconSource: root.icon.source
     property string toolTipText: ""
 
     property bool validFocusReason: focusReason === Qt.TabFocusReason || focusReason === Qt.BacktabFocusReason
 
-    implicitWidth: Math.max(implicitBackgroundWidth + leftInset + rightInset, implicitContentWidth + leftPadding + rightPadding)
-    implicitHeight: JamiTheme.newMaterialButtonHeight
-
-    padding: JamiTheme.newMaterialButtonPadding
-    horizontalPadding: JamiTheme.newMaterialButtonHorizontalPadding
-    spacing: JamiTheme.newMaterialButtonSpacing
-
-    icon.source: root.iconSource
-    icon.width: JamiTheme.iconButtonMedium
-    icon.height: JamiTheme.iconButtonMedium
-    icon.color: {
-        if (root.enabled && (root.hovered || (root.activeFocus && validFocusReason))) {
-            if (root.filledButton)
-                JamiTheme.whiteColor;
-            else if (root.outlinedButton)
-                JamiTheme.whiteColor;
-            else if (root.textButton)
-                JamiTheme.whiteColor;
-        } else {
-            if (root.filledButton)
-                JamiTheme.whiteColor;
-            else if (root.outlinedButton)
-                root.color;
-            else if (root.textButton)
-                JamiTheme.textColor;
-        }
-    }
-
-
-    Behavior on icon.color {
-        ColorAnimation {
-            duration: JamiTheme.shortFadeDuration
-        }
-    }
-
-    contentItem: IconLabel {
-        spacing: root.spacing
-        mirrored: root.mirrored
-        display: root.display
-
-        icon: root.icon
-        text: root.text
-        font.pixelSize: JamiTheme.buttontextFontPixelSize
-        color: {
-            if (root.enabled && (root.hovered || (root.activeFocus && validFocusReason))) {
-                if (root.filledButton)
-                    JamiTheme.whiteColor;
-                else if (root.outlinedButton)
-                    JamiTheme.whiteColor;
-                else if (root.textButton)
-                    JamiTheme.whiteColor;
-            } else {
-                if (root.filledButton)
-                    JamiTheme.whiteColor;
-                else if (root.outlinedButton)
-                    root.color;
-                else if (root.textButton)
-                    JamiTheme.textColor;
-            }
-        }
-
-        Behavior on color {
-            ColorAnimation {
-                duration: JamiTheme.shortFadeDuration
-            }
-        }
-    }
-
-    background: Rectangle {
-        id: background
-
-        radius: height / 2
-
-        color: {
-            if (root.enabled) {
-                if (root.pressed || root.down) {
-                    Qt.rgba(root.color.r, root.color.g, root.color.b, 0.80);
-                } else if (root.hovered || (root.activeFocus && validFocusReason)) {
-                        Qt.rgba(root.color.r, root.color.g, root.color.b, 0.92);
-                } else{
-                    if (root.filledButton)
-                        root.color;
-                    else if (root.outlinedButton)
-                        JamiTheme.transparentColor;
-                    else if (root.textButton)
-                        JamiTheme.transparentColor;
-                }
-            } else {
-                Qt.rgba(root.color.r, root.color.g, root.color.b, 0.64);
-            }
-        }
-
-        border.width: root.outlinedButton ? 1.0 : 0.0
-        border.color: root.color
-
-        Behavior on color {
-            ColorAnimation {
-                duration: JamiTheme.shortFadeDuration
-            }
-        }
-    }
+    flat: !filledButton
+    palette.button: root.color
+    palette.buttonText: filledButton ? JamiTheme.whiteColor : outlinedButton ? root.color : JamiTheme.textColor
+    palette.mid: outlinedButton ? root.color : JamiTheme.transparentColor
 
     MaterialToolTip {
         id: toolTip
@@ -159,14 +61,6 @@ T.Button {
         text: toolTipText
         visible: hovered && (toolTipText.length > 0)
         delay: Qt.styleHints.mousePressAndHoldInterval
-    }
-
-    MouseArea {
-        anchors.fill: parent
-
-        // We don't want to eat clicks on the Text.
-        acceptedButtons: Qt.NoButton
-        cursorShape: (root.hovered && root.enabled) ? Qt.PointingHandCursor : Qt.ArrowCursor
     }
 
     Keys.onPressed: function (keyEvent) {
