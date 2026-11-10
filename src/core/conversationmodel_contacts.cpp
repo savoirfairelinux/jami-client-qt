@@ -290,10 +290,12 @@ ConversationModel::slotConversationReady(const QString& accountId, const QString
                 auto& conversation = convForPeerUri(member["uri"]).get();
                 // remove non swarm conversation
                 if (conversation.isLegacy()) {
-                    eraseConversation(conversation.uid);
+                    // Copy the ID, as erasing invalidates the conversation reference.
+                    const auto legacyConvId = conversation.uid;
+                    eraseConversation(legacyConvId);
                     storage::removeContactConversations(d_->db, member["uri"]);
                     invalidateModel();
-                    Q_EMIT conversationRemoved(conversation.uid);
+                    Q_EMIT conversationRemoved(legacyConvId);
                     Q_EMIT modelChanged();
                 }
             } catch (...) {
@@ -506,9 +508,11 @@ ConversationModel::addSwarmConversation(const QString& convId)
             auto& participantId = peers.front();
             auto& conv = convForPeerUri(participantId).get();
             if (conv.mode == conversation::Mode::NON_SWARM) {
-                eraseConversation(conv.uid);
+                // Copy the ID, as erasing invalidates the conversation reference.
+                const auto legacyConvId = conv.uid;
+                eraseConversation(legacyConvId);
                 invalidateModel();
-                Q_EMIT conversationRemoved(conv.uid);
+                Q_EMIT conversationRemoved(legacyConvId);
                 storage::removeContactConversations(d_->db, participantId);
             }
         } catch (...) {
