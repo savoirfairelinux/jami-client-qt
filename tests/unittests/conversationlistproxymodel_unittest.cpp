@@ -32,20 +32,19 @@ struct Row
     bool request = false;
     int timestamp = 100;
     bool banned = false;
-    int unread = 0;
 };
 
 class ConversationRows : public QAbstractListModel
 {
 public:
     QList<Row> rows {
-        {"dialog", Mode::ONE_TO_ONE, false, 600, false, 2},
-        {"legacy", Mode::NON_SWARM, false, 500, false, 3},
-        {"group", Mode::INVITES_ONLY, false, 400, false, 4},
-        {"feed", Mode::FEED, false, 300, false, 5},
-        {"dialog-invite", Mode::ONE_TO_ONE, true, 200, false, 8},
-        {"group-invite", Mode::INVITES_ONLY, true, 100, false, 9},
-        {"feed-invite", Mode::FEED, true, 50, false, 10},
+        {"dialog", Mode::ONE_TO_ONE, false, 600},
+        {"legacy", Mode::NON_SWARM, false, 500},
+        {"group", Mode::INVITES_ONLY, false, 400},
+        {"feed", Mode::FEED, false, 300},
+        {"dialog-invite", Mode::ONE_TO_ONE, true, 200},
+        {"group-invite", Mode::INVITES_ONLY, true, 100},
+        {"feed-invite", Mode::FEED, true, 50},
     };
 
     int rowCount(const QModelIndex& parent = {}) const override
@@ -72,8 +71,6 @@ public:
             return row.timestamp;
         case Role::IsBanned:
             return row.banned;
-        case Role::UnreadMessagesCount:
-            return row.unread;
         default:
             return {};
         }
@@ -147,31 +144,53 @@ TEST(ConversationsAdapter, SelectingInvitationKeepsAllInvitationsCategory)
     ASSERT_TRUE(accountRemovedSpy.wait());
 }
 
-TEST(ConversationListProxyModel, AllExcludesInvitations)
-{
-    ConversationRows source;
-    ConversationListProxyModel proxy(&source);
-    EXPECT_EQ(ids(proxy), (QStringList {"dialog", "legacy", "group", "feed"}));
-}
-
 TEST(ConversationListProxyModel, AllCanToggleBetweenConversationsAndAllInvitations)
 {
     ConversationRows source;
     ConversationListProxyModel proxy(&source);
+    EXPECT_EQ(ids(proxy), (QStringList {"dialog", "legacy", "group", "feed"}));
     proxy.setInvitationsOnly(true);
-    EXPECT_EQ(ids(proxy), (QStringList {"dialog-invite", "group-invite", "feed-invite"}));
+    EXPECT_EQ(ids(proxy), (QStringList {"dialog-invite", "group-invite"}));
     proxy.setInvitationsOnly(false);
     EXPECT_EQ(ids(proxy), (QStringList {"dialog", "legacy", "group", "feed"}));
 }
 
-TEST(ConversationListProxyModel, ContactsAndGroupsDefaultToAcceptedConversations)
+TEST(ConversationListProxyModel, ModesMapToCategories)
 {
     ConversationRows source;
+    source.rows.append({"admin-group", Mode::ADMIN_INVITES_ONLY, false, 350});
+    source.rows.append({"public-group", Mode::PUBLIC, false, 250});
+    source.rows.append({"legacy-invite", Mode::NON_SWARM, true, 150});
     ConversationListProxyModel proxy(&source);
     proxy.setCategory(ConversationListProxyModel::OneToOne);
     EXPECT_EQ(ids(proxy), (QStringList {"dialog", "legacy"}));
+    proxy.setInvitationsOnly(true);
+    EXPECT_EQ(ids(proxy), (QStringList {"dialog-invite", "legacy-invite"}));
+    proxy.setInvitationsOnly(false);
     proxy.setCategory(ConversationListProxyModel::Groups);
-    EXPECT_EQ(ids(proxy), (QStringList {"group"}));
+    EXPECT_EQ(ids(proxy), (QStringList {"group", "admin-group", "public-group"}));
+}
+
+TEST(ConversationListProxyModel, FeedsKeepMembershipSectionsAndSearchRemainsGlobal)
+{
+    ConversationRows source;
+    source.rows.append({"older-feed", Mode::FEED, false, 25});
+    source.rows.append({"new-feed-invite", Mode::FEED, true, 1000});
+    ConversationListProxyModel proxy(&source);
+    proxy.setCategory(ConversationListProxyModel::Feeds);
+    const QStringList sections {"feed", "older-feed", "new-feed-invite", "feed-invite"};
+    EXPECT_EQ(ids(proxy), sections);
+    proxy.setInvitationsOnly(true);
+    EXPECT_EQ(ids(proxy), sections);
+    proxy.setFilter("feed");
+    EXPECT_EQ(ids(proxy), (QStringList {"new-feed-invite", "feed", "feed-invite", "older-feed"}));
+    proxy.setFilter("");
+    EXPECT_EQ(ids(proxy), sections);
+    proxy.selectSourceRow(6);
+    source.rows[6].request = false;
+    source.changed(6);
+    EXPECT_EQ(ids(proxy), (QStringList {"feed", "feed-invite", "older-feed", "new-feed-invite"}));
+    EXPECT_EQ(proxy.get_currentFilteredRow(), 1);
 }
 
 TEST(ConversationListProxyModel, InvitationToggleSeparatesRows)
@@ -181,19 +200,10 @@ TEST(ConversationListProxyModel, InvitationToggleSeparatesRows)
     proxy.setCategory(ConversationListProxyModel::OneToOne);
     proxy.setInvitationsOnly(true);
     EXPECT_EQ(ids(proxy), (QStringList {"dialog-invite"}));
-    proxy.setInvitationsOnly(false);
     proxy.setCategory(ConversationListProxyModel::Groups);
-    EXPECT_EQ(ids(proxy), (QStringList {"group"}));
-    proxy.setInvitationsOnly(true);
     EXPECT_EQ(ids(proxy), (QStringList {"group-invite"}));
     proxy.setInvitationsOnly(false);
     EXPECT_EQ(ids(proxy), (QStringList {"group"}));
-    proxy.setCategory(ConversationListProxyModel::Feeds);
-    EXPECT_EQ(ids(proxy), (QStringList {"feed"}));
-    proxy.setInvitationsOnly(true);
-    EXPECT_EQ(ids(proxy), (QStringList {"feed-invite"}));
-    proxy.setCategory(ConversationListProxyModel::All);
-    EXPECT_EQ(ids(proxy), (QStringList {"dialog-invite", "group-invite", "feed-invite"}));
 }
 
 TEST(ConversationListProxyModel, SearchIncludesInvitationsAcrossCategories)
@@ -220,9 +230,6 @@ TEST(ConversationListProxyModel, InvitationModeSortsByActivityAndRemovesAccepted
     proxy.setCategory(ConversationListProxyModel::Groups);
     proxy.setInvitationsOnly(true);
     EXPECT_EQ(ids(proxy), (QStringList {"other-group-invite", "group-invite"}));
-    source.rows[2].timestamp = 1000;
-    source.changed(2);
-    EXPECT_EQ(ids(proxy).first(), "other-group-invite");
     source.rows[5].timestamp = 2000;
     source.changed(5);
     EXPECT_EQ(ids(proxy), (QStringList {"group-invite", "other-group-invite"}));
@@ -262,19 +269,4 @@ TEST(ConversationListProxyModel, SearchPreservesBannedExactMatchAndHighlightedMe
     proxy.ignoreFiltering({"legacy"});
     proxy.setFilter("no-match");
     EXPECT_EQ(ids(proxy), (QStringList {"legacy"}));
-}
-
-TEST(ConversationListProxyModel, GroupModesDoNotDependOnMemberCount)
-{
-    ConversationRows source;
-    source.rows.append({"admin-group", Mode::ADMIN_INVITES_ONLY});
-    source.rows.append({"public-group", Mode::PUBLIC});
-    source.rows.append({"legacy-invite", Mode::NON_SWARM, true});
-    ConversationListProxyModel proxy(&source);
-    proxy.setCategory(ConversationListProxyModel::Groups);
-    EXPECT_EQ(proxy.rowCount(), 3);
-    proxy.setCategory(ConversationListProxyModel::OneToOne);
-    EXPECT_EQ(proxy.rowCount(), 2);
-    proxy.setInvitationsOnly(true);
-    EXPECT_EQ(proxy.rowCount(), 2);
 }

@@ -884,6 +884,7 @@ Item {
     property string contacts: qsTr("Contacts")
     property string groupConversations: qsTr("Groups")
     property string feeds: qsTr("Feeds")
+    property string feedInvitations: qsTr("Joinable Feeds")
     property string unreadItemsCount: qsTr("Unread items: %1")
     property string noGroupConversations: qsTr("No group conversations found.")
     property string noFeeds: qsTr("No feeds found.")
