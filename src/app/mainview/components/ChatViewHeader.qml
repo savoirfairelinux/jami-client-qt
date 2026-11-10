@@ -317,6 +317,7 @@ Control {
             QWKSetParentHitTestVisible {}
             Layout.alignment: Qt.AlignVCenter
             convContext: root.convContext
+            visible: !convContext.isRequest && !convContext.needsSyncing
         }
 
         PeerServicesButton {
