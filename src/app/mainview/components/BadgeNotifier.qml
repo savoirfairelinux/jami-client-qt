@@ -27,6 +27,7 @@ Rectangle {
     property bool animate: true
     property color badgeColor: JamiTheme.filterBadgeColor
     property color badgeTextColor: JamiTheme.filterBadgeTextColor
+    property alias font: countLabel.font
 
     width: size
     height: size
