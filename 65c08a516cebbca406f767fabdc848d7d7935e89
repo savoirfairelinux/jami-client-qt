@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "54c76481_a210cca2",
+        "filename": "src/app/previewengine.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-10T18:54:48Z",
+      "side": 1,
+      "message": "[warning] Line 168: 🟡 `htmlParser_-\u003eclear()` is only executed on the success path here. If `processHTML()` has early returns after `parseHtmlString()` (e.g., parse/metadata extraction failures), the parsed tree may still be released later from a different thread, which is exactly the bug this patch addresses. Make cleanup unconditional (e.g., RAII guard or a single-exit cleanup path) so `clear()` always runs after any parse attempt on this worker thread.",
+      "revId": "65c08a516cebbca406f767fabdc848d7d7935e89",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
