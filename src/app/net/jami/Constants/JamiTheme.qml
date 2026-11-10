@@ -346,6 +346,7 @@ Item {
     property real textFontSize: calcSize(9 + fontSizeOffset)
     property real smallFontSize: calcSize(9 + fontSizeOffsetSmall)
     property real mediumFontSize: calcSize(10.5 + fontSizeOffset)
+    property real largeFontSize: calcSize(16 + fontSizeOffset)
     property real bigFontSize: calcSize(22)
     property real settingsFontSize: calcSize(11 + fontSizeOffset)
     property real buttonFontSize: calcSize(9)

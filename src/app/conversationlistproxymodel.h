@@ -31,19 +31,23 @@ class ConversationListProxyModel final : public SelectableListProxyModel
     Q_OBJECT
 
 public:
+    enum Category { All, OneToOne, Groups, Feeds };
+    Q_ENUM(Category)
+
     explicit ConversationListProxyModel(QAbstractListModel* model, QObject* parent = nullptr);
     bool filterAcceptsRow(int sourceRow, const QModelIndex& sourceParent) const override;
     bool lessThan(const QModelIndex& left, const QModelIndex& right) const override;
 
-    Q_INVOKABLE void setFilterRequests(bool filterRequests);
+    static Category categoryForMode(conversation::Mode mode);
+    void setCategory(Category category);
+    void setInvitationsOnly(bool invitationsOnly);
     Q_INVOKABLE void ignoreFiltering(const QStringList& highlighted)
     {
         ignored_ = highlighted;
     }
 
 private:
-    // This flag can be toggled when switching tabs to show the current account's
-    // conversation invites.
-    bool filterRequests_ {false};
+    Category category_ {All};
+    bool invitationsOnly_ {false};
     QStringList ignored_ {};
 };

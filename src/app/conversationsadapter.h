@@ -33,7 +33,10 @@ class ConversationsAdapter final : public QmlAdapterBase
     Q_OBJECT
     QML_SINGLETON
 
-    QML_PROPERTY(bool, filterRequests)
+    QML_PROPERTY(ConversationListProxyModel::Category, category)
+    QML_PROPERTY(bool, invitationsOnly)
+    QML_RO_PROPERTY(QVariantList, categoryBadgeCounts)
+    QML_RO_PROPERTY(QVariantList, categoryInvitationCounts)
     QML_PROPERTY(int, totalUnreadMessageCount)
     QML_PROPERTY(int, pendingRequestCount)
     QML_RO_PROPERTY(QVariant, convListProxyModel)

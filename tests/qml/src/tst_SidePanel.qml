@@ -94,17 +94,20 @@ TestWrapper {
             }
 
             function test_cancelingNewGroupClosesCreationView() {
-                const previousFilterRequests = ConversationsAdapter.filterRequests;
+                const previousCategory = ConversationsAdapter.category;
                 const previousAppContext = uut.appContext;
 
                 try {
                     uut.appContext = testAppContext;
-                    ConversationsAdapter.filterRequests = false;
+                    ConversationsAdapter.category = ConversationListProxyModel.Groups;
+                    ConversationsAdapter.invitationsOnly = true;
 
                     uut.toggleCreateSwarmView();
                     compare(uut.inNewSwarm, true);
 
-                    const closeButton = findChild(uut, "closeCreationButton");
+                    compare(ConversationsAdapter.category, ConversationListProxyModel.All);
+                    compare(ConversationsAdapter.invitationsOnly, false);
+                    const closeButton = findChild(uut, "newConversationTypeButton");
                     verify(closeButton);
                     verify(closeButton.visible);
                     mouseClick(closeButton);
@@ -112,20 +115,24 @@ TestWrapper {
                 } finally {
                     testViewCoordinator.currentViewName = "";
                     uut.appContext = previousAppContext;
-                    ConversationsAdapter.filterRequests = previousFilterRequests;
+                    ConversationsAdapter.category = previousCategory;
                 }
             }
 
             function test_cancelingNewFeedClosesCreationView() {
-                const previousFilterRequests = ConversationsAdapter.filterRequests;
+                const previousCategory = ConversationsAdapter.category;
                 const previousAppContext = uut.appContext;
 
                 try {
                     uut.appContext = testAppContext;
+                    ConversationsAdapter.category = ConversationListProxyModel.Feeds;
+                    ConversationsAdapter.invitationsOnly = true;
                     uut.openCreateFeedView();
                     compare(uut.inCreateFeed, true);
 
-                    const closeButton = findChild(uut, "closeCreationButton");
+                    compare(ConversationsAdapter.category, ConversationListProxyModel.All);
+                    compare(ConversationsAdapter.invitationsOnly, false);
+                    const closeButton = findChild(uut, "newConversationTypeButton");
                     verify(closeButton);
                     verify(closeButton.visible);
                     mouseClick(closeButton);
@@ -133,7 +140,7 @@ TestWrapper {
                 } finally {
                     testViewCoordinator.currentViewName = "";
                     uut.appContext = previousAppContext;
-                    ConversationsAdapter.filterRequests = previousFilterRequests;
+                    ConversationsAdapter.category = previousCategory;
                 }
             }
 
