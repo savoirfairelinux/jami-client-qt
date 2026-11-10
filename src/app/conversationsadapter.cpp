@@ -569,7 +569,8 @@ ConversationsAdapter::updateConversationFilterData()
         if (index.data(Role::IsRequest).toBool()) {
             badges[category]++;
             invitations[category]++;
-            invitations[ConversationListProxyModel::All]++;
+            if (category != ConversationListProxyModel::Feeds)
+                invitations[ConversationListProxyModel::All]++;
         } else {
             const auto unread = index.data(Role::UnreadMessagesCount).toInt();
             badges[category] += unread;

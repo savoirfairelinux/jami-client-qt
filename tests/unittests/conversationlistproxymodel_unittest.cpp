@@ -105,7 +105,7 @@ TEST(ConversationListProxyModel, AllCanToggleBetweenConversationsAndAllInvitatio
     ConversationRows source;
     ConversationListProxyModel proxy(&source);
     proxy.setInvitationsOnly(true);
-    EXPECT_EQ(ids(proxy), (QStringList {"dialog-invite", "group-invite", "feed-invite"}));
+    EXPECT_EQ(ids(proxy), (QStringList {"dialog-invite", "group-invite"}));
     proxy.setInvitationsOnly(false);
     EXPECT_EQ(ids(proxy), (QStringList {"dialog", "legacy", "group", "feed"}));
 }
@@ -118,6 +118,28 @@ TEST(ConversationListProxyModel, ContactsAndGroupsDefaultToAcceptedConversations
     EXPECT_EQ(ids(proxy), (QStringList {"dialog", "legacy"}));
     proxy.setCategory(ConversationListProxyModel::Groups);
     EXPECT_EQ(ids(proxy), (QStringList {"group"}));
+}
+
+TEST(ConversationListProxyModel, FeedsKeepMembershipSectionsAndSearchRemainsGlobal)
+{
+    ConversationRows source;
+    source.rows.append({"older-feed", Mode::FEED, false, 25});
+    source.rows.append({"new-feed-invite", Mode::FEED, true, 1000});
+    ConversationListProxyModel proxy(&source);
+    proxy.setCategory(ConversationListProxyModel::Feeds);
+    const QStringList sections {"feed", "older-feed", "new-feed-invite", "feed-invite"};
+    EXPECT_EQ(ids(proxy), sections);
+    proxy.setInvitationsOnly(true);
+    EXPECT_EQ(ids(proxy), sections);
+    proxy.setFilter("feed");
+    EXPECT_EQ(ids(proxy), (QStringList {"new-feed-invite", "feed", "feed-invite", "older-feed"}));
+    proxy.setFilter("");
+    EXPECT_EQ(ids(proxy), sections);
+    proxy.selectSourceRow(6);
+    source.rows[6].request = false;
+    source.changed(6);
+    EXPECT_EQ(ids(proxy), (QStringList {"feed", "feed-invite", "older-feed", "new-feed-invite"}));
+    EXPECT_EQ(proxy.get_currentFilteredRow(), 1);
 }
 
 TEST(ConversationListProxyModel, InvitationToggleSeparatesRows)
@@ -134,12 +156,14 @@ TEST(ConversationListProxyModel, InvitationToggleSeparatesRows)
     EXPECT_EQ(ids(proxy), (QStringList {"group-invite"}));
     proxy.setInvitationsOnly(false);
     EXPECT_EQ(ids(proxy), (QStringList {"group"}));
-    proxy.setCategory(ConversationListProxyModel::Feeds);
-    EXPECT_EQ(ids(proxy), (QStringList {"feed"}));
     proxy.setInvitationsOnly(true);
-    EXPECT_EQ(ids(proxy), (QStringList {"feed-invite"}));
+    proxy.setCategory(ConversationListProxyModel::Feeds);
+    EXPECT_EQ(ids(proxy), (QStringList {"feed", "feed-invite"}));
+    proxy.setInvitationsOnly(true);
+    EXPECT_EQ(ids(proxy), (QStringList {"feed", "feed-invite"}));
     proxy.setCategory(ConversationListProxyModel::All);
-    EXPECT_EQ(ids(proxy), (QStringList {"dialog-invite", "group-invite", "feed-invite"}));
+    proxy.setInvitationsOnly(true);
+    EXPECT_EQ(ids(proxy), (QStringList {"dialog-invite", "group-invite"}));
 }
 
 TEST(ConversationListProxyModel, SearchIncludesInvitationsAcrossCategories)

@@ -652,6 +652,10 @@ SidePanelBase {
                     ConversationListView {
                         id: conversationListView
 
+                        objectName: "sidebarConversationList"
+                        readonly property bool feedSections: !contactSearchBar.textContent &&
+                                                             ConversationsAdapter.category === ConversationListProxyModel.Feeds
+
                         activeFocusOnTab: true
 
                         Layout.fillWidth: true
@@ -662,6 +666,41 @@ SidePanelBase {
                         model: ConversationsAdapter.convListProxyModel
                         headerLabel: JamiStrings.conversations
                         headerVisible: contactSearchBar.textContent && model.count
+                        section.property: feedSections ? "IsRequest" : ""
+                        section.delegate: Rectangle {
+                            required property string section
+
+                            width: conversationListView.width
+                            height: sectionTitle.implicitHeight + conversationLayout.spacing
+                            color: JamiTheme.globalIslandColor
+
+                            Text {
+                                id: sectionTitle
+
+                                readonly property rect glyphBounds: titleFontMetrics.tightBoundingRect(text)
+
+                                anchors.left: parent.left
+                                anchors.leftMargin: 16
+                                anchors.top: parent.top
+
+                                text: parent.section === "true" ? JamiStrings.feedInvitations : JamiStrings.feeds
+                                font.pointSize: JamiTheme.largeFontSize
+                                font.weight: Font.Light
+                                color: JamiTheme.textColor
+                                Accessible.role: Accessible.Heading
+
+                                FontMetrics {
+                                    id: titleFontMetrics
+
+                                    font: sectionTitle.font
+                                }
+
+                                transform: Translate {
+                                    y: (sectionTitle.height - sectionTitle.glyphBounds.height) / 2 -
+                                       sectionTitle.baselineOffset - sectionTitle.glyphBounds.y
+                                }
+                            }
+                        }
                         delegate: SmartListItemDelegate {
                             showLocationIconArrow: locationIconTimer.showIconArrow
                         }
