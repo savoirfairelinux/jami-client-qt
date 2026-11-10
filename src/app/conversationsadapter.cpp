@@ -57,9 +57,12 @@ ConversationsAdapter::ConversationsAdapter(SystemTray* systemTray,
     set_convListProxyModel(QVariant::fromValue(convModel_));
     set_searchListProxyModel(QVariant::fromValue(searchModel_));
 
-    // this will trigger when the invite filter tab is selected
-    connect(this, &ConversationsAdapter::filterRequestsChanged, [this]() {
-        convModel_->setFilterRequests(filterRequests_);
+    connect(this, &ConversationsAdapter::categoryChanged, [this]() {
+        set_invitationsOnly(false);
+        convModel_->setCategory(category_);
+    });
+    connect(this, &ConversationsAdapter::invitationsOnlyChanged, [this]() {
+        convModel_->setInvitationsOnly(invitationsOnly_);
     });
 
     connect(lrcInstance_, &LRCInstance::selectedConvUidChanged, this, [this]() {
@@ -79,8 +82,12 @@ ConversationsAdapter::ConversationsAdapter(SystemTray* systemTray,
             accInfo.conversationModel->selectConversation(convInfo.uid);
             accInfo.conversationModel->clearUnreadInteractions(convInfo.uid);
 
-            // this may be a request, so adjust that filter also
-            set_filterRequests(convInfo.isRequest);
+            convModel_->deselect();
+            // Stay on All unless the invitation is hidden by its current filter.
+            if (category_ != ConversationListProxyModel::All
+                || (convInfo.isRequest && (!invitationsOnly_ || convInfo.mode == conversation::Mode::FEED)))
+                set_category(ConversationListProxyModel::categoryForMode(convInfo.mode));
+            set_invitationsOnly(convInfo.isRequest);
 
             // reposition index in case of programmatic selection
             // currently, this may only occur for the conversation list
@@ -156,13 +163,9 @@ ConversationsAdapter::onCurrentAccountIdChanged()
 {
     lrcInstance_->deselectConversation();
 
+    set_invitationsOnly(false);
+    set_category(ConversationListProxyModel::All);
     connectConversationModel();
-
-    // Always turn the requests filter off when switching account.
-    // Conversation selection will manage the filter state in the
-    // case of programmatic selection(incoming call, notification
-    // activation, etc.).
-    set_filterRequests(false);
 }
 
 void
@@ -538,16 +541,15 @@ ConversationsAdapter::onBannedStatusChanged(const QString& uri, bool banned)
     auto row = lrcInstance_->indexOf(convInfo.uid);
     const auto index = lrcInstance_->getCurrentConversationModel()->index(row, 0);
     Q_EMIT lrcInstance_->getCurrentConversationModel()->dataChanged(index, index);
+    updateConversationFilterData();
     lrcInstance_->set_selectedConvUid();
 }
 
 void
 ConversationsAdapter::updateConversation(const QString& convId)
 {
-    // a conversation request has been accepted or a contact has
-    // been added, so select the conversation and notify the UI to:
-    // - switch tabs to the conversation filter tab
-    // - clear search bar
+    // Keep the category when an invitation becomes an accepted conversation.
+    set_invitationsOnly(false);
     Q_EMIT conversationReady(convId);
     lrcInstance_->selectConversation(convId);
 }
@@ -555,9 +557,34 @@ ConversationsAdapter::updateConversation(const QString& convId)
 void
 ConversationsAdapter::updateConversationFilterData()
 {
-    // TODO: this may be further spliced to respond separately to
-    // incoming messages and invites
-    // total unread message and pending invite counts, and tab selection
+    const auto model = lrcInstance_->getCurrentConversationModel();
+    using Role = ConversationList::Role;
+    int badges[4] {};
+    int invitations[4] {};
+    for (int row = 0; model && row < model->rowCount(); ++row) {
+        const auto index = model->index(row, 0);
+        if (index.data(Role::IsBanned).toBool() || index.data(Role::Uris).toStringList().isEmpty())
+            continue;
+        const auto category = ConversationListProxyModel::categoryForMode(
+            static_cast<conversation::Mode>(index.data(Role::Mode).toInt()));
+        if (index.data(Role::IsRequest).toBool()) {
+            badges[category]++;
+            invitations[category]++;
+            invitations[ConversationListProxyModel::All]++;
+        } else {
+            const auto unread = index.data(Role::UnreadMessagesCount).toInt();
+            badges[category] += unread;
+            badges[ConversationListProxyModel::All] += unread;
+        }
+    }
+    set_categoryBadgeCounts({badges[0], badges[1], badges[2], badges[3]});
+    set_categoryInvitationCounts({invitations[0], invitations[1], invitations[2], invitations[3]});
+    if (!model) {
+        set_totalUnreadMessageCount(0);
+        set_pendingRequestCount(0);
+        return;
+    }
+
     auto& accountInfo = lrcInstance_->getCurrentAccountInfo();
     int totalUnreadMessages {0};
     if (accountInfo.profileInfo.type != profile::Type::SIP) {
@@ -570,9 +597,6 @@ ConversationsAdapter::updateConversationFilterData()
     set_totalUnreadMessageCount(totalUnreadMessages);
     set_pendingRequestCount(accountInfo.conversationModel->pendingRequestCount());
     systemTray_->onNotificationCountChanged(lrcInstance_->notificationsCount());
-
-    if (get_pendingRequestCount() == 0 && get_filterRequests())
-        set_filterRequests(false);
 }
 
 void
@@ -764,6 +788,9 @@ ConversationsAdapter::onCurrentAccountRemoved()
     if (lrcInstance_->get_currentAccountId().isEmpty()) {
         convModel_->bindSourceModel(nullptr);
         searchModel_->bindSourceModel(nullptr);
+        set_invitationsOnly(false);
+        set_category(ConversationListProxyModel::All);
+        updateConversationFilterData();
     }
 }
 
@@ -773,6 +800,7 @@ ConversationsAdapter::connectConversationModel()
     // Signal connections
     auto model = lrcInstance_->getCurrentConversationModel();
     if (!model) {
+        updateConversationFilterData();
         return;
     }
 

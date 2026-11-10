@@ -49,10 +49,6 @@ Window {
                 description: qsTr("Focus conversation list")
             }
             ListElement {
-                shortcut: "Ctrl+R"
-                description: qsTr("Requests list")
-            }
-            ListElement {
                 shortcut: "Ctrl+↑"
                 description: qsTr("Previous conversation")
             }

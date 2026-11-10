@@ -16,48 +16,197 @@
  */
 import QtQuick
 import QtQuick.Controls
+import QtQuick.Controls.impl
+import QtQuick.Layouts
+
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import "../../commoncomponents"
 
-TabBar {
-    id: tabBar
+ColumnLayout {
+    id: root
 
-    enum TabIndex {
-        Conversations,
-        Requests
+    objectName: "conversationCategoryBar"
+    spacing: 8
+
+    function selectCategory(category) {
+        ConversationsAdapter.category = category;
+        ConversationsAdapter.invitationsOnly = false;
     }
 
-    function selectTab(idx) {
-        ConversationsAdapter.filterRequests = (idx === SidePanelTabBar.Requests);
+    readonly property var categories: [
+        {name: "all", label: JamiStrings.conversations,
+            icon: JamiResources.chat_24dp_svg, selectedIcon: JamiResources.chat_filled_24dp_svg},
+        {name: "oneToOne", label: JamiStrings.contacts,
+            icon: JamiResources.person_24dp_svg, selectedIcon: JamiResources.person_filled_24dp_svg},
+        {name: "groups", label: JamiStrings.groupConversations,
+            icon: JamiResources.groups_24dp_svg, selectedIcon: JamiResources.groups_filled_24dp_svg},
+        {name: "feeds", label: JamiStrings.feeds,
+            icon: JamiResources.feed_24dp_svg, selectedIcon: JamiResources.feed_24dp_svg}
+    ]
+
+    RowLayout {
+        Layout.fillWidth: true
+        spacing: 4
+
+        Repeater {
+            model: root.categories
+
+            delegate: NewIconButton {
+                id: categoryButton
+
+                required property var modelData
+                required property int index
+                readonly property int badgeCount: ConversationsAdapter.categoryBadgeCounts[index] || 0
+
+                objectName: modelData.name + "CategoryButton"
+
+                Layout.fillWidth: true
+
+                iconSize: JamiTheme.iconButtonMedium
+                iconSource: checked ? modelData.selectedIcon : modelData.icon
+                iconColor: JamiTheme.buttonTintedBlue
+                backgroundColor: Qt.rgba(iconColor.r, iconColor.g, iconColor.b, pressed ? 0.24 : 0.12)
+                Behavior on backgroundColor {
+                    ColorAnimation {
+                        duration: JamiTheme.shortFadeDuration
+                    }
+                }
+
+                toolTipText: modelData.label
+
+                checkable: true
+                autoExclusive: true
+                checked: ConversationsAdapter.category === index
+                onClicked: root.selectCategory(index)
+
+                BadgeNotifier {
+                    objectName: categoryButton.modelData.name + "CategoryBadge"
+
+                    anchors.top: parent.top
+                    anchors.right: parent.right
+
+                    size: 20
+                    count: categoryButton.badgeCount
+                }
+
+                Accessible.role: Accessible.RadioButton
+                Accessible.checkable: true
+                Accessible.checked: checked
+                Accessible.description: JamiStrings.unreadItemsCount.arg(badgeCount)
+            }
+        }
     }
 
-    spacing: JamiTheme.tabBarSpacing
-    currentIndex: 0
 
-    FilterTabButton {
-        id: conversationsTabButton
+    RowLayout {
+        Layout.fillWidth: true
+        visible: ConversationsAdapter.category !== ConversationListProxyModel.All ||
+                 ConversationsAdapter.invitationsOnly
 
-        down: !ConversationsAdapter.filterRequests
-        labelText: JamiStrings.conversations
-        onSelected: selectTab(SidePanelTabBar.Conversations)
-        badgeCount: ConversationsAdapter.totalUnreadMessageCount
-        acceleratorSequence: "Ctrl+L"
+        NewIconButton {
+            objectName: "invitationsBackButton"
+
+            Layout.alignment: Qt.AlignVCenter
+            visible: ConversationsAdapter.invitationsOnly
+            onClicked: ConversationsAdapter.invitationsOnly = false
+
+            iconSize: JamiTheme.iconButtonSmall
+            iconSource: JamiResources.bidirectional_arrow_back_24dp_svg
+            toolTipText: JamiStrings.back
+        }
+
+        Text {
+            id: sectionTitle
+
+            objectName: "conversationSectionTitle"
+            readonly property rect glyphBounds: titleFontMetrics.tightBoundingRect(text)
+
+            Layout.fillWidth: true
+            Layout.alignment: Qt.AlignVCenter
+
+            text: ConversationsAdapter.invitationsOnly ? JamiStrings.invitations :
+                  root.categories[ConversationsAdapter.category].label
+            color: JamiTheme.textColor
+            font.pointSize: JamiTheme.largeFontSize
+            font.weight: Font.Light
+            elide: Text.ElideRight
+            Accessible.role: Accessible.Heading
+
+            FontMetrics {
+                id: titleFontMetrics
+
+                font: sectionTitle.font
+            }
+
+            transform: Translate {
+                y: (sectionTitle.height - sectionTitle.glyphBounds.height) / 2 -
+                   sectionTitle.baselineOffset - sectionTitle.glyphBounds.y
+            }
+        }
     }
 
-    FilterTabButton {
-        id: requestsTabButton
+    Control {
+        objectName: "pendingInvitationsBanner"
 
-        down: !conversationsTabButton.down
-        labelText: JamiStrings.invitations
-        onSelected: selectTab(SidePanelTabBar.Requests)
-        badgeCount: ConversationsAdapter.pendingRequestCount
-        acceleratorSequence: "Ctrl+R"
-    }
+        Layout.fillWidth: true
 
-    background: Rectangle {
-        anchors.fill: parent
-        color: JamiTheme.transparentColor
+        implicitWidth: Math.max(implicitBackgroundWidth + leftInset + rightInset,
+                                implicitContentWidth + leftPadding + rightPadding)
+        implicitHeight: Math.max(implicitBackgroundHeight + topInset + bottomInset,
+                                 implicitContentHeight + topPadding + bottomPadding)
+
+        horizontalPadding: background.radius
+        verticalPadding: 4
+
+        visible: !ConversationsAdapter.invitationsOnly &&
+                 ConversationsAdapter.categoryInvitationCounts[ConversationsAdapter.category] > 0
+
+        contentItem: Row {
+            spacing: 4
+
+            IconImage {
+                anchors.verticalCenter: parent.verticalCenter
+
+                width: JamiTheme.iconButtonMedium
+                height: JamiTheme.iconButtonMedium
+
+                source: JamiResources.mail_24dp_svg
+                sourceSize.width: JamiTheme.iconButtonMedium
+                sourceSize.height: JamiTheme.iconButtonMedium
+
+                color: JamiTheme.darkTintedBlue
+            }
+
+            Text {
+                objectName: "pendingInvitationsText"
+
+                anchors.verticalCenter: parent.verticalCenter
+
+                text: JamiStrings.pendingInvitations.arg(ConversationsAdapter.categoryInvitationCounts[ConversationsAdapter.category] || 0)
+                color: JamiTheme.textColor
+                font.pointSize: JamiTheme.mediumFontSize
+            }
+        }
+
+        background: Rectangle {
+            color: JamiTheme.buttonTintedBlue
+            opacity: parent.hovered ? 0.24 : 0.12
+
+            Behavior on opacity {
+                NumberAnimation {
+                    duration: JamiTheme.shortFadeDuration
+                }
+            }
+
+            radius: height / 2
+        }
+
+        MouseArea {
+            anchors.fill: parent
+
+            onClicked: ConversationsAdapter.invitationsOnly = !ConversationsAdapter.invitationsOnly
+        }
     }
 }
