@@ -21,6 +21,7 @@
 
 #include <QtHttpServer>
 #include <QTcpServer>
+#include <QThread>
 
 class PreviewEngineFixture : public ::testing::Test
 {
@@ -123,6 +124,39 @@ TEST_F(PreviewEngineFixture, DestroyingPreviewEngineAfterParsingReleasesParserSa
 
     previewEngine.reset();
     SUCCEED();
+}
+
+/*!
+ * WHEN  HTML is parsed and cleared on a worker thread that then exits
+ * THEN  The parsed tree is released and the parser can be destroyed on another thread
+ */
+TEST(HtmlParserTest, ClearReleasesTreeOnParsingThread)
+{
+    HtmlParser parser;
+    bool parsed = false;
+    bool foundAnchor = false;
+    bool clearedTree = false;
+
+    QScopedPointer<QThread> thread(QThread::create([&]() {
+        parsed = parser.parseHtmlString(
+            "<html><body><a id=\"anchor\" name=\"anchor\" href=\"https://jami.net\">Jami</a>"
+            "<div id=\"block\"><p name=\"para\">text</p></div></body></html>");
+        foundAnchor = parser.getFirstTagNode(TidyTag_A) != nullptr;
+        parser.clear();
+        clearedTree = parser.getFirstTagNode(TidyTag_A) == nullptr;
+    }));
+    thread->start();
+    ASSERT_TRUE(thread->wait());
+    thread.reset();
+
+    EXPECT_TRUE(parsed);
+    EXPECT_TRUE(foundAnchor);
+    EXPECT_TRUE(clearedTree);
+
+    // The parser must remain usable after being cleared.
+    ASSERT_TRUE(parser.parseHtmlString("<p id=\"again\">again</p>"));
+    EXPECT_NE(parser.getFirstTagNode(TidyTag_P), nullptr);
+    parser.clear();
 }
 
 /*!

@@ -86,6 +86,7 @@ MessageParser::buildStyledHtml(QString md, const QColor& linkColor, const QColor
         style += QString("a{color:%1;}").arg(linkColor.name());
         firstLinkHref = htmlParser_->getNodeAttr(tagsMap[TidyTag_A].first(), TidyAttr_HREF);
     }
+    htmlParser_->clear();
 
     html.prepend(QString(styleTag).arg(style));
     return {html, firstLinkHref};

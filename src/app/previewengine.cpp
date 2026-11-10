@@ -157,12 +157,14 @@ PreviewEngine::Parser::processHTML(const QString& id, const QString& link, const
     if (domain.isEmpty()) {
         domain = link;
     }
-    Q_EMIT infoReady(id,
-                     {{"title", getTitle(metaTags)},
+    QVariantMap info {{"title", getTitle(metaTags)},
                       {"description", getDescription(metaTags)},
                       {"image", getImage(metaTags)},
                       {"url", link},
-                      {"domain", domain}});
+                      {"domain", domain}};
+    // Release the tidy tree on this thread, as its nodes reference thread-local data.
+    htmlParser_->clear();
+    Q_EMIT infoReady(id, info);
 }
 
 #include "previewengine.moc"
