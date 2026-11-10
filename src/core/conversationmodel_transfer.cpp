@@ -159,10 +159,9 @@ ConversationModel::slotTransferStatusOngoing(const QString& fileId, datatransfer
     if (!intUpdated) {
         return;
     }
-    auto conversationIdx = indexOf(conversationId);
     auto* timer = new QTimer();
-    connect(timer, &QTimer::timeout, this, [this, timer, conversationIdx, interactionId] {
-        updateTransferProgress(timer, conversationIdx, interactionId);
+    connect(timer, &QTimer::timeout, this, [this, timer, conversationId, interactionId] {
+        updateTransferProgress(timer, conversationId, interactionId);
     });
     timer->start(1000);
 }
@@ -264,12 +263,14 @@ ConversationModel::updateTransferStatus(const QString& fileId,
 }
 
 void
-ConversationModel::updateTransferProgress(QTimer* timer, int conversationIdx, const QString& interactionId)
+ConversationModel::updateTransferProgress(QTimer* timer, const QString& conversationId, const QString& interactionId)
 {
     try {
         bool emitUpdated = false;
         {
-            const auto& interactions = d_->conversations[conversationIdx].interactions;
+            // Resolve the conversation on each tick, as it may have been removed
+            // or moved within the container since the timer was started.
+            const auto& interactions = convForUid(conversationId).get().interactions;
             interactions->with(interactionId, [&](const QString& id, interaction::Info& interaction) {
                 if (interaction.transferStatus == interaction::TransferStatus::TRANSFER_ONGOING) {
                     emitUpdated = true;

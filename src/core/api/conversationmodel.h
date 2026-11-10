@@ -735,7 +735,7 @@ private:
                                  int status);
     void startCallImpl(const QString& uid, bool isAudioOnly = false);
     int getNumberOfUnreadMessagesForImpl(const QString& uid);
-    void updateTransferProgress(QTimer* timer, int conversationIdx, const QString& interactionId);
+    void updateTransferProgress(QTimer* timer, const QString& conversationId, const QString& interactionId);
     bool usefulDataFromDataTransfer(const QString& fileId,
                                     const datatransfer::Info& info,
                                     QString& interactionId,
