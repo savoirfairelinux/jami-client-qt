@@ -18,6 +18,7 @@
 #include "videoprovider.h"
 #include "utils.h"
 
+#include <QPointer>
 #include <QReadLocker>
 #include <QWriteLocker>
 
@@ -214,13 +215,7 @@ VideoProvider::onFrameUpdated(const QString& id)
         videoFrame.unmap();
         it->second.frameMutex.unlock(); // locked by onFrameBufferRequested()
 
-        it->second.frameMutex.lockForRead();
-        it->second.subscribersMutex.lockForRead();
-        for (const auto& sink : std::as_const(it->second.subscribers)) {
-            sink->setVideoFrame(videoFrame);
-        }
-        it->second.subscribersMutex.unlock();
-        it->second.frameMutex.unlock();
+        scheduleFrameDelivery(id, it->second);
 
         renderersMutex_.unlock(); // locked by onFrameBufferRequested()
     } else {
@@ -248,13 +243,54 @@ VideoProvider::onFrameUpdated(const QString& id)
         videoFrame.unmap();
         it->second.frameMutex.unlock();
 
-        it->second.frameMutex.lockForRead();
-        it->second.subscribersMutex.lockForRead();
-        for (const auto& sink : std::as_const(it->second.subscribers)) {
+        scheduleFrameDelivery(id, it->second);
+    }
+}
+
+void
+VideoProvider::scheduleFrameDelivery(const QString& id, FrameObject& frameObject)
+{
+    // Frames are produced on a daemon thread, but the QVideoSinks are owned and
+    // destroyed by the GUI thread. A sink's platform backend is deleted in
+    // ~QVideoSink, before QObject::destroyed lets us unsubscribe it, so pushing
+    // frames from the producer thread can hit a half-destroyed sink. Deliver
+    // frames on this object's thread instead, coalescing pending updates so a
+    // busy GUI thread only ever receives the latest frame.
+    if (frameObject.deliveryPending.exchange(true)) {
+        return;
+    }
+    QMetaObject::invokeMethod(this, [this, id] { deliverFrame(id); }, Qt::QueuedConnection);
+}
+
+void
+VideoProvider::deliverFrame(const QString& id)
+{
+    QVideoFrame videoFrame;
+    QList<QPointer<QVideoSink>> sinks;
+    {
+        QReadLocker lock(&renderersMutex_);
+        auto it = renderers_.find(id);
+        if (it == renderers_.end()) {
+            return;
+        }
+        it->second.deliveryPending = false;
+        {
+            QReadLocker frameLock(&it->second.frameMutex);
+            videoFrame = it->second.videoFrame;
+        }
+        QReadLocker subscribersLock(&it->second.subscribersMutex);
+        for (auto* sink : std::as_const(it->second.subscribers)) {
+            sinks.append(sink);
+        }
+    }
+
+    // Sinks live on this thread and unsubscribe when destroyed, so they can't
+    // be torn down concurrently. Locks are released before notifying them so
+    // their slots may (un)subscribe without deadlocking.
+    for (const auto& sink : std::as_const(sinks)) {
+        if (sink) {
             sink->setVideoFrame(videoFrame);
         }
-        it->second.subscribersMutex.unlock();
-        it->second.frameMutex.unlock();
     }
 }
 
