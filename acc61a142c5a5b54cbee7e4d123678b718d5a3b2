@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "72d394c0_f058fce6",
+        "filename": "src/app/mainview/components/ChatViewFooter.qml",
+        "patchSetId": 7
+      },
+      "lineNbr": 264,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-10T22:39:39Z",
+      "side": 1,
+      "message": "[warning] Line 264: 🟡 The file queue is flushed unconditionally even if `MessagesAdapter.sendFile(...)` is rejected by the new permission gates (for example, permissions change between selecting files and clicking send). That can silently discard pending attachments. Add a final send-permission guard before the loop and only clear/flush the queue when file sending is still permitted (or after explicit per-file success/failure handling).",
+      "revId": "acc61a142c5a5b54cbee7e4d123678b718d5a3b2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
