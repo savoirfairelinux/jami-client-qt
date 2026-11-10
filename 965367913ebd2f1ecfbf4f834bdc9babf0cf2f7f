@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bc590011_c8d0eb59",
+        "filename": "tests/unittests/contact_unittest.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-10T19:05:11Z",
+      "side": 1,
+      "message": "[warning] Line 170: 🟡 The race window is not guaranteed: the main thread starts invalidation immediately after spawning `reader`, so this can pass without real overlap depending on scheduling. Add a startup barrier/latch (or an atomic \"started\" handshake) before entering the invalidation loop so the worker is definitely executing reads when invalidation begins.",
+      "revId": "965367913ebd2f1ecfbf4f834bdc9babf0cf2f7f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "53dde428_28988241",
+        "filename": "tests/unittests/contact_unittest.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-10T19:05:11Z",
+      "side": 1,
+      "message": "[warning] Line 178: 🟡 The test description says the cache must \"stay consistent\", but the assertions currently only validate \"no crash\". Add at least one postcondition that checks consistency after the stress loop (for example, deterministic `displayName`/profile data invariants for sampled peers) so regressions that keep running but return corrupted/stale data are caught.",
+      "revId": "965367913ebd2f1ecfbf4f834bdc9babf0cf2f7f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
