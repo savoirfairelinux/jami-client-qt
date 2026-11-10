@@ -185,11 +185,13 @@ SBSMessageBase {
                 }
                 AnimatedImage {
                     id: img
+                    objectName: "linkPreviewImage"
 
-                    // Remote sources are sequential devices QMovie can't rewind;
+                    // Both the linked image and the page's preview image are
+                    // remote, i.e. sequential devices QMovie can't rewind;
                     // Qt 6.12 then restarts the finished movie recursively and
                     // overflows the stack. Cached frames loop without rewinding.
-                    cache: isRemoteImage
+                    cache: true
                     source: isRemoteImage ? LinkPreviewInfo.url : (hasImage ? LinkPreviewInfo.image : "")
 
                     fillMode: Image.PreserveAspectCrop

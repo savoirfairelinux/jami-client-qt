@@ -11,6 +11,7 @@
         <file>src/tst_CachedImage.qml</file>
         <file>src/tst_CallMessageDelegate.qml</file>
         <file>src/tst_DataTransferMessageDelegate.qml</file>
+        <file>src/tst_TextMessageDelegate.qml</file>
         <file>src/tst_FilesToSendContainer.qml</file>
         <file>src/tst_PresenceIndicator.qml</file>
         <file>src/tst_RecordBox.qml</file>
