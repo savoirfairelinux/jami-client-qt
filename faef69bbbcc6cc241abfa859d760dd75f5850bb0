@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0c452543_757cd854",
+        "filename": "src/app/currentconversation.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-10T22:36:31Z",
+      "side": 1,
+      "message": "[warning] Line 157: 🟡 In the catch-all failure path of `updateData()`, permission properties are not reset, so `can*` flags can stay stale from a previously selected conversation and temporarily allow UI actions that should be denied. Call `updatePermissions(nullptr)` (and ideally clear other conversation-derived state consistently) inside the catch block before returning.",
+      "revId": "faef69bbbcc6cc241abfa859d760dd75f5850bb0",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
