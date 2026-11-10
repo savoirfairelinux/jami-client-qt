@@ -18,6 +18,10 @@
 #include "globaltestenvironment.h"
 
 #include "authority/storagehelper.h"
+#include "dbus/configurationmanager.h"
+
+#include <atomic>
+#include <thread>
 
 using namespace lrc;
 
@@ -142,4 +146,54 @@ TEST_F(ContactFixture, ProfileDataFallsBackToBaseAliasWhenOverrideCleared)
     EXPECT_EQ(profileData["alias"], "Base Display Name");
 
     authority::storage::removeProfile(accountId, peerUri);
+}
+
+/*!
+ * WHEN  Peer profiles are read from a worker thread (e.g. the avatar image
+ *       provider) while profileReceived notifications invalidate the cache.
+ * THEN  The profile cache must stay consistent and no crash should occur.
+ */
+TEST_F(ContactFixture, ConcurrentProfileReadAndInvalidationTest)
+{
+    QSignalSpy accountAddedSpy(&globalEnv.lrcInstance->accountModel(),
+                               &lrc::api::AccountModel::accountAdded);
+    globalEnv.accountAdapter->createSIPAccount(QVariantMap());
+    accountAddedSpy.wait();
+    ASSERT_EQ(accountAddedSpy.count(), 1);
+
+    const auto accountId = accountAddedSpy.takeFirst().at(0).toString();
+    globalEnv.lrcInstance->set_currentAccountId(accountId);
+    auto* contactModel = globalEnv.lrcInstance->getCurrentContactModel();
+    ASSERT_NE(contactModel, nullptr);
+
+    constexpr int peerCount = 64;
+    QStringList peers;
+    for (int i = 0; i < peerCount; ++i)
+        peers.append(QStringLiteral("peer%1@example.org").arg(i));
+
+    std::atomic_bool stop {false};
+    std::thread reader([&] {
+        while (!stop.load()) {
+            for (const auto& peer : peers) {
+                contactModel->avatar(peer);
+                contactModel->displayName(peer);
+            }
+        }
+    });
+
+    for (int round = 0; round < 200; ++round) {
+        for (const auto& peer : peers)
+            Q_EMIT ConfigurationManager::instance().profileReceived(accountId, peer, QString());
+        for (const auto& peer : peers)
+            contactModel->displayName(peer);
+    }
+
+    stop = true;
+    reader.join();
+
+    QSignalSpy accountRemovedSpy(&globalEnv.lrcInstance->accountModel(),
+                                 &lrc::api::AccountModel::accountRemoved);
+    globalEnv.lrcInstance->accountModel().removeAccount(accountId);
+    accountRemovedSpy.wait();
+    EXPECT_EQ(accountRemovedSpy.count(), 1);
 }
