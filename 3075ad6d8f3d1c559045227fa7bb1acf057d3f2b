@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "88c64f14_0bd26d63",
+        "filename": "src/app/conversationsadapter.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 554,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-10T22:43:10Z",
+      "side": 1,
+      "message": "[error] Line 554: 🔴 `categoryBadgeCounts[All]` does not include invitation rows, while category-specific badges do (`badges[category]++` in the request branch). This makes the “All” badge inconsistent and can under-report total items compared to sub-categories. Update the request branch to also increment `badges[ConversationListProxyModel::All]` (or consistently exclude invitations from *all* badges).",
+      "revId": "3075ad6d8f3d1c559045227fa7bb1acf057d3f2b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f78dfa65_88dd9323",
+        "filename": "src/app/mainview/components/SidePanelTabBar.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-10T22:43:10Z",
+      "side": 1,
+      "message": "[warning] Line 194: 🟡 The invitations toggle is implemented with a raw `MouseArea` on a `Control`, so it is not keyboard-activatable by default and has weak accessibility semantics compared to a button. Replace it with `AbstractButton`/`NewIconButton`-style handling (or at minimum add key handlers and accessible role/action) so keyboard and assistive-tech users can toggle invitations.",
+      "revId": "3075ad6d8f3d1c559045227fa7bb1acf057d3f2b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
