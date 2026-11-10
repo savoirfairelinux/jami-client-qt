@@ -53,9 +53,12 @@ ConversationListProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex& s
     toFilter += index.data(Role::Uris).toStringList();
     toFilter += index.data(Role::Monikers).toStringList();
 
-    // requests
-    auto isRequest = index.data(Role::IsRequest).toBool();
-    bool requestFilter = filterRequests_ ? isRequest : !isRequest;
+    const auto isRequest = index.data(Role::IsRequest).toBool();
+    const auto mode = static_cast<conversation::Mode>(index.data(Role::Mode).toInt());
+    const bool isSearching = !rx.pattern().isEmpty();
+    const bool matchesCategory = category_ == All || categoryForMode(mode) == category_;
+    const bool matchesRequestFilter = isRequest == invitationsOnly_;
+    const bool categoryMatch = isSearching || (matchesCategory && matchesRequestFilter);
 
     bool match {false};
 
@@ -80,7 +83,7 @@ ConversationListProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex& s
             }
     }
 
-    return requestFilter && match;
+    return categoryMatch && match;
 }
 
 bool
@@ -92,11 +95,37 @@ ConversationListProxyModel::lessThan(const QModelIndex& left, const QModelIndex&
     return leftData.toULongLong() < rightData.toULongLong();
 }
 
-void
-ConversationListProxyModel::setFilterRequests(bool filterRequests)
+ConversationListProxyModel::Category
+ConversationListProxyModel::categoryForMode(conversation::Mode mode)
 {
-    beginResetModel();
-    filterRequests_ = filterRequests;
-    endResetModel();
+    switch (mode) {
+    case conversation::Mode::FEED:
+        return Feeds;
+    case conversation::Mode::ONE_TO_ONE:
+    case conversation::Mode::NON_SWARM:
+        return OneToOne;
+    case conversation::Mode::ADMIN_INVITES_ONLY:
+    case conversation::Mode::INVITES_ONLY:
+    case conversation::Mode::PUBLIC:
+        return Groups;
+    }
+    return Groups;
+}
+
+void
+ConversationListProxyModel::setCategory(Category category)
+{
+    beginFilterChange();
+    category_ = category;
+    endFilterChange();
     updateSelection();
-};
+}
+
+void
+ConversationListProxyModel::setInvitationsOnly(bool invitationsOnly)
+{
+    beginFilterChange();
+    invitationsOnly_ = invitationsOnly;
+    endFilterChange();
+    updateSelection();
+}

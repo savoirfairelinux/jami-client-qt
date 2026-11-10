@@ -37,8 +37,8 @@ SidePanelBase {
     property bool inCreateFeed: viewCoordinator && viewCoordinator.currentViewName === "CreateFeedPage"
     property bool inMemberSelection: inNewSwarm || inCreateFeed
     property bool isEmptyAccount: inMemberSelection
-                                  ? (swarmCurrentConversationList.model && swarmCurrentConversationList.model.count === 0)
-                                  : (!ConversationsAdapter.filterRequests && conversationListView.model && conversationListView.model.count === 0)
+                                  ? swarmCurrentConversationList.count === 0
+                                  : (conversationListView.model && conversationListView.model.count === 0)
 
     // Members picked for a new group: [{ uri, convId }], where convId is the
     // conversation the member was picked from
@@ -61,7 +61,6 @@ SidePanelBase {
         target: ConversationsAdapter
 
         function onConversationReady() {
-            selectTab(SidePanelTabBar.Conversations);
             clearContactSearchBar();
         }
     }
@@ -97,6 +96,7 @@ SidePanelBase {
 
     function toggleCreateSwarmView() {
         if (!inNewSwarm) {
+            selectCategory(ConversationListProxyModel.All);
             viewCoordinator.present("NewSwarmPage");
             const newSwarmPage = viewCoordinator.getView("NewSwarmPage");
             newSwarmPage.removeMember.connect((convId, member) => {
@@ -126,7 +126,7 @@ SidePanelBase {
         if (inCreateFeed)
             return;
         // Member selection needs the regular conversation list.
-        selectTab(SidePanelTabBar.Conversations);
+        selectCategory(ConversationListProxyModel.All);
         viewCoordinator.present("CreateFeedPage");
         const createFeedPage = viewCoordinator.getView("CreateFeedPage");
         createFeedPage.members = [];
@@ -160,15 +160,26 @@ SidePanelBase {
             createFeedPage.createFeedClicked.disconnect(createFeed);
         }
         viewCoordinator.dismiss("CreateFeedPage");
-        selectTab(SidePanelTabBar.Conversations);
+        selectCategory(ConversationListProxyModel.All);
     }
 
     function clearContactSearchBar() {
         contactSearchBar.clearText();
     }
 
-    function selectTab(tabIndex) {
-        sidePanelTabBar.selectTab(tabIndex);
+    function selectCategory(category) {
+        sidePanelTabBar.selectCategory(category);
+    }
+
+    Shortcut {
+        sequence: "Ctrl+L"
+        context: Qt.ApplicationShortcut
+        enabled: root.visible && !inMemberSelection
+        onActivated: {
+            clearContactSearchBar();
+            selectCategory(ConversationListProxyModel.All);
+            conversationListView.forceActiveFocus();
+        }
     }
 
     function hasHighlightedMember(uri) {
@@ -496,17 +507,13 @@ SidePanelBase {
                         id: sidePanelTabBar
 
                         Layout.fillWidth: true
-                        Layout.preferredHeight: JamiTheme.tabBarHeight
+                        Layout.preferredHeight: implicitHeight
                         Layout.leftMargin: 15
                         Layout.rightMargin: 15
-                        // Hack: spacing between convList and TabBars is too large otherwise
-                        Layout.bottomMargin: -10
                         Layout.alignment: Qt.AlignTop
 
-                        contentHeight: childrenRect.height
-                        width: parent.width
-
-                        visible: ConversationsAdapter.pendingRequestCount &&
+                        spacing: conversationLayout.spacing
+                        visible: CurrentAccount.type !== Profile.Type.SIP &&
                                  !contactSearchBar.textContent && !inMemberSelection
                     }
 
@@ -523,12 +530,27 @@ SidePanelBase {
                     JamiListView {
                         id: swarmCurrentConversationList
 
+                        objectName: "memberConversationList"
                         Layout.fillWidth: true
                         Layout.fillHeight: true
 
                         activeFocusOnTab: true
 
-                        model: ConversationsAdapter.convListProxyModel
+                        model: SortFilterProxyModel {
+                            sourceModel: ConversationsAdapter.convListProxyModel
+                            filters: [
+                                ValueFilter {
+                                    roleName: "IsRequest"
+                                    value: false
+                                },
+                                ValueFilter {
+                                    roleName: "Mode"
+                                    value: Conversation.Mode.FEED
+                                    inverted: true
+                                    enabled: root.inNewSwarm
+                                }
+                            ]
+                        }
 
                         delegate: SmartListItemDelegate {
                             interactive: false
@@ -685,10 +707,15 @@ SidePanelBase {
                             Text {
                                 Layout.alignment: Qt.AlignHCenter
 
+                                Layout.maximumWidth: conversationListRect.width - 32
                                 text: inMemberSelection ? JamiStrings.noContactsToChooseFrom :
-                                                          JamiStrings.noConversations
+                                      ConversationsAdapter.category === ConversationListProxyModel.Feeds ? JamiStrings.noFeeds :
+                                      ConversationsAdapter.invitationsOnly ? JamiStrings.noInvitations :
+                                      ConversationsAdapter.category === ConversationListProxyModel.Groups ? JamiStrings.noGroupConversations :
+                                      JamiStrings.noConversations
                                 color: JamiTheme.textColor
                                 elide: Text.ElideRight
+                                wrapMode: Text.WordWrap
 
                                 horizontalAlignment: Text.AlignHCenter
                                 verticalAlignment: Text.AlignVCenter
@@ -703,6 +730,10 @@ SidePanelBase {
                                 color: JamiTheme.buttonTintedBlue
                                 iconSource: JamiResources.add_24dp_svg
                                 text: JamiStrings.addAContact
+                                visible: inMemberSelection ||
+                                         (!ConversationsAdapter.invitationsOnly &&
+                                          (ConversationsAdapter.category === ConversationListProxyModel.All ||
+                                           ConversationsAdapter.category === ConversationListProxyModel.OneToOne))
 
                                 onClicked: {
                                     if (inNewSwarm)
