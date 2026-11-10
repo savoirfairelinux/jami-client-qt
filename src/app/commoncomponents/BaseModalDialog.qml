@@ -78,7 +78,7 @@ Dialog {
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
             color: JamiTheme.textColor
-            font.bold: true
+            font.weight: Font.Light
             font.pointSize: JamiTheme.menuFontSize
 
             visible: text.length > 0
