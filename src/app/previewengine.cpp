@@ -20,6 +20,7 @@
 #include "htmlparser.h"
 
 #include <QRegularExpression>
+#include <QScopeGuard>
 #include <QThread>
 
 class PreviewEngine::Parser : public QObject
@@ -146,6 +147,9 @@ PreviewEngine::Parser::getImage(const QList<QString>& metaTags)
 void
 PreviewEngine::Parser::processHTML(const QString& id, const QString& link, const QString& data)
 {
+    // Release the tidy tree on this thread on every exit path, as its nodes
+    // reference thread-local data of the parsing thread.
+    const auto cleanup = qScopeGuard([this] { htmlParser_->clear(); });
     htmlParser_->parseHtmlString(data);
     auto tagsNodes = htmlParser_->getTagsNodes({TidyTag_META});
     auto metaTagNodes = tagsNodes[TidyTag_META];
@@ -157,12 +161,12 @@ PreviewEngine::Parser::processHTML(const QString& id, const QString& link, const
     if (domain.isEmpty()) {
         domain = link;
     }
-    Q_EMIT infoReady(id,
-                     {{"title", getTitle(metaTags)},
+    QVariantMap info {{"title", getTitle(metaTags)},
                       {"description", getDescription(metaTags)},
                       {"image", getImage(metaTags)},
                       {"url", link},
-                      {"domain", domain}});
+                      {"domain", domain}};
+    Q_EMIT infoReady(id, info);
 }
 
 #include "previewengine.moc"

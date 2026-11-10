@@ -35,15 +35,23 @@ class HtmlParser : public QObject
 public:
     HtmlParser(QObject* parent = nullptr)
         : QObject(parent)
-    {
-        doc_ = tidyCreate();
-        tidyOptSetBool(doc_, TidyQuiet, yes);
-        tidyOptSetBool(doc_, TidyShowWarnings, no);
-    }
+        , doc_(createDoc())
+    {}
 
     ~HtmlParser()
     {
         tidyRelease(doc_);
+    }
+
+    // Release the parsed DOM tree. Tidy nodes reference tag definitions stored
+    // in thread-local storage of the thread that parsed them, so this must be
+    // called on the parsing thread once the nodes are no longer needed.
+    // Otherwise, freeing the tree from another thread (e.g. when the parser is
+    // destroyed after its thread has exited) reads freed memory.
+    void clear()
+    {
+        tidyRelease(doc_);
+        doc_ = createDoc();
     }
 
     bool parseHtmlString(const QString& html)
@@ -120,6 +128,14 @@ public:
     }
 
 private:
+    static TidyDoc createDoc()
+    {
+        auto doc = tidyCreate();
+        tidyOptSetBool(doc, TidyQuiet, yes);
+        tidyOptSetBool(doc, TidyShowWarnings, no);
+        return doc;
+    }
+
     // NOLINTNEXTLINE(misc-no-recursion)
     void traverseNode(TidyNode node,
                       const QList<TidyTagId>& tags,
