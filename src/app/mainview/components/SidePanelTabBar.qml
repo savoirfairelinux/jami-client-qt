@@ -102,8 +102,9 @@ ColumnLayout {
 
     RowLayout {
         Layout.fillWidth: true
-        visible: ConversationsAdapter.category !== ConversationListProxyModel.All ||
-                 ConversationsAdapter.invitationsOnly
+        visible: ConversationsAdapter.category !== ConversationListProxyModel.Feeds &&
+                 (ConversationsAdapter.category !== ConversationListProxyModel.All ||
+                  ConversationsAdapter.invitationsOnly)
 
         NewIconButton {
             objectName: "invitationsBackButton"
@@ -161,6 +162,7 @@ ColumnLayout {
         verticalPadding: 4
 
         visible: !ConversationsAdapter.invitationsOnly &&
+                 ConversationsAdapter.category !== ConversationListProxyModel.Feeds &&
                  ConversationsAdapter.categoryInvitationCounts[ConversationsAdapter.category] > 0
 
         contentItem: Row {

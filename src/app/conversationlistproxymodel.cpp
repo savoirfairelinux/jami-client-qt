@@ -57,8 +57,10 @@ ConversationListProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex& s
     const auto mode = static_cast<conversation::Mode>(index.data(Role::Mode).toInt());
     const bool isSearching = !rx.pattern().isEmpty();
     const bool matchesCategory = category_ == All || categoryForMode(mode) == category_;
-    const bool matchesRequestFilter = isRequest == invitationsOnly_;
-    const bool categoryMatch = isSearching || (matchesCategory && matchesRequestFilter);
+    const bool matchesRequestFilter = category_ == Feeds || isRequest == invitationsOnly_;
+    const bool feedInvitationExcludedFromAll = category_ == All && isRequest && mode == conversation::Mode::FEED;
+    const bool categoryMatch = isSearching
+                               || (matchesCategory && matchesRequestFilter && !feedInvitationExcludedFromAll);
 
     bool match {false};
 
@@ -89,6 +91,11 @@ ConversationListProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex& s
 bool
 ConversationListProxyModel::lessThan(const QModelIndex& left, const QModelIndex& right) const
 {
+    const bool leftRequest = left.data(ConversationList::Role::IsRequest).toBool();
+    const bool rightRequest = right.data(ConversationList::Role::IsRequest).toBool();
+    if (category_ == Feeds && filterRegularExpression().pattern().isEmpty() && leftRequest != rightRequest)
+        return leftRequest;
+
     QVariant leftData = sourceModel()->data(left, sortRole());
     QVariant rightData = sourceModel()->data(right, sortRole());
     // we're assuming the sort role data type here is some integral time
@@ -113,11 +120,20 @@ ConversationListProxyModel::categoryForMode(conversation::Mode mode)
 }
 
 void
+ConversationListProxyModel::setFilter(const QString& filterString)
+{
+    setFilterFixedString(filterString);
+    if (category_ == Feeds)
+        invalidate();
+    updateSelection();
+}
+
+void
 ConversationListProxyModel::setCategory(Category category)
 {
-    beginFilterChange();
     category_ = category;
-    endFilterChange();
+    // invalidate() rather than a filter change: sort order depends on the category too.
+    invalidate();
     updateSelection();
 }
 

@@ -20,6 +20,7 @@ import QtTest
 
 import net.jami.Adapters 1.1
 import net.jami.Models 1.1
+import net.jami.Constants 1.1
 
 import "../../../src/app/"
 import "../../../src/app/mainview/components"
@@ -91,6 +92,33 @@ TestWrapper {
 
             function init() {
                 uut.clearHighlighted();
+            }
+
+            function test_feedSectionsOnlyApplyOutsideSearch() {
+                const previousCategory = ConversationsAdapter.category;
+                const list = findChild(uut, "sidebarConversationList");
+                verify(list);
+                try {
+                    ConversationsAdapter.category = ConversationListProxyModel.Feeds;
+                    compare(list.section.property, "IsRequest");
+                    const joinedHeader = list.section.delegate.createObject(uut, {section: "false"});
+                    const invitedHeader = list.section.delegate.createObject(uut, {section: "true"});
+                    verify(joinedHeader);
+                    verify(invitedHeader);
+                    compare(joinedHeader.children[0].text, JamiStrings.feeds);
+                    compare(invitedHeader.children[0].text, JamiStrings.feedInvitations);
+                    joinedHeader.destroy();
+                    invitedHeader.destroy();
+                    ConversationsAdapter.setFilter("feed");
+                    compare(list.section.property, "");
+                    ConversationsAdapter.setFilter("");
+                    compare(list.section.property, "IsRequest");
+                    ConversationsAdapter.category = ConversationListProxyModel.Groups;
+                    compare(list.section.property, "");
+                } finally {
+                    ConversationsAdapter.setFilter("");
+                    ConversationsAdapter.category = previousCategory;
+                }
             }
 
             function test_cancelingNewGroupClosesCreationView() {
