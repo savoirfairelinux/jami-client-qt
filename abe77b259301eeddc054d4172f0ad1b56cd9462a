@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5cd503be_2e6f59fa",
+        "filename": "tests/qml/src/tst_ShareMessageMenu.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-10T22:41:58Z",
+      "side": 1,
+      "message": "[warning] Line 82: 🟡 The new tests validate local filtering rules, but they don’t reproduce the reported regression (share recipients being affected by sidebar filters). Add a test that populates both `ConversationsAdapter.convListProxyModel` and its `sourceModel`, applies a restrictive filter on `convListProxyModel`, and asserts `ShareMessageMenu` still reads recipients from `convListProxyModel.sourceModel` (with invitation/blocked/empty exclusions). This ensures the intended decoupling is protected against regressions.",
+      "revId": "abe77b259301eeddc054d4172f0ad1b56cd9462a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
