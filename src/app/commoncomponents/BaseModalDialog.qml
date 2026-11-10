@@ -16,19 +16,18 @@
  */
 import QtQuick
 import QtQuick.Controls
-import QtQuick.Effects
 import QtQuick.Layouts
+import Jami as JamiStyle
 
 import net.jami.Constants 1.1
 import "../mainview/components"
 
-Dialog {
+JamiStyle.Dialog {
     id: root
 
     // Header
-    property alias titleText: titleText.text
+    property alias titleText: root.title
     property bool autoClose: true
-    property bool closeButtonVisible: true
 
     // Popup content
     property alias popupContent: containerSubContentLoader.sourceComponent
@@ -46,61 +45,12 @@ Dialog {
     // ADDRESS THIS
     property int maximumPopupWidth: 560
 
-    property real dialogPadding: 12
-
     anchors.centerIn: parent
-
-    implicitWidth: Math.max(implicitBackgroundWidth + leftInset + rightInset,
-                            contentWidth + leftPadding + rightPadding,
-                            implicitHeaderWidth,
-                            implicitFooterWidth)
-    implicitHeight: Math.max(implicitBackgroundHeight + topInset + bottomInset,
-                             contentHeight + topPadding + bottomPadding
-                             + (implicitHeaderHeight > 0 ? implicitHeaderHeight + spacing : 0)
-                             + (implicitFooterHeight > 0 ? implicitFooterHeight + spacing : 0))
 
     modal: true
 
     focus: true
     closePolicy: autoClose ? (Popup.CloseOnEscape | Popup.CloseOnPressOutside) : Popup.NoAutoClose
-
-    padding: 30
-
-    header: RowLayout {
-        Label {
-            id: titleText
-
-            Layout.fillWidth: true
-            Layout.alignment: Qt.AlignCenter
-            Layout.leftMargin: root.dialogPadding
-            Layout.topMargin: root.dialogPadding
-
-            horizontalAlignment: Text.AlignHCenter
-            verticalAlignment: Text.AlignVCenter
-            color: JamiTheme.textColor
-            font.bold: true
-            font.pointSize: JamiTheme.menuFontSize
-
-            visible: text.length > 0
-        }
-
-        NewIconButton {
-            id: closeButton
-            QWKSetParentHitTestVisible {}
-
-            Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
-            Layout.rightMargin: root.dialogPadding
-            Layout.topMargin: root.dialogPadding
-
-            iconSize: JamiTheme.iconButtonMedium
-            iconSource: JamiResources.round_close_24dp_svg
-            toolTipText: JamiStrings.close
-
-            visible: closeButtonVisible
-
-            onClicked: close()
-        }
-    }
 
     contentItem: JamiFlickable {
         implicitWidth: containerSubContentLoader.width + ScrollBar.vertical.width
@@ -161,35 +111,6 @@ Dialog {
         }
     }
 
-    background: Rectangle {
-        topLeftRadius: closeButton.background.radius + root.dialogPadding
-        topRightRadius: closeButton.background.radius + root.dialogPadding
-        bottomRightRadius: JamiTheme.newMaterialButtonHeight / 2 + root.dialogPadding
-        bottomLeftRadius: JamiTheme.newMaterialButtonHeight / 2 + root.dialogPadding
-
-        color: JamiTheme.globalIslandColor
-
-        layer.enabled: true
-        layer.effect: MultiEffect {
-            anchors.fill: parent
-            shadowEnabled: true
-            shadowBlur: JamiTheme.shadowBlur
-            shadowColor: JamiTheme.shadowColor
-            shadowHorizontalOffset: 3.0
-            shadowVerticalOffset: 3.0
-        }
-    }
-
-    Overlay.modal: Rectangle {
-        color: JamiTheme.transparentColor
-
-        // Color animation for overlay when pop up is shown.
-        ColorAnimation on color {
-            to: JamiTheme.popupOverlayColor
-            duration: 500
-        }
-    }
-
     enter: Transition {
         NumberAnimation {
             properties: "opacity"
@@ -198,6 +119,7 @@ Dialog {
             duration: JamiTheme.shortFadeDuration
         }
     }
+
     exit: Transition {
         NumberAnimation {
             properties: "opacity"
