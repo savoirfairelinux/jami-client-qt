@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f2fa36ad_8395783f",
+        "filename": "tests/qml/src/tst_DeviceItemDelegate.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-11-10T15:41:55Z",
+      "side": 1,
+      "message": "potentially useless assertions",
+      "range": {
+        "startLine": 65,
+        "startChar": 0,
+        "endLine": 67,
+        "endChar": 69
+      },
+      "revId": "1dad4b8a2c6b5283676cd4096abe54e8ba3c2107",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "78c711d9_8e73f8be",
+        "filename": "tests/qml/src/tst_DeviceItemDelegate.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-11-10T15:41:55Z",
+      "side": 1,
+      "message": "^",
+      "range": {
+        "startLine": 87,
+        "startChar": 0,
+        "endLine": 88,
+        "endChar": 59
+      },
+      "revId": "1dad4b8a2c6b5283676cd4096abe54e8ba3c2107",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
