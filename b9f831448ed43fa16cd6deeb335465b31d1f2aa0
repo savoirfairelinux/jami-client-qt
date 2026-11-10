@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "36a64137_6cdc833f",
+        "filename": "tests/qml/src/tst_Dialog.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-10T21:24:58Z",
+      "side": 1,
+      "message": "[error] Line 13: 🔴 `dialogComponent` instantiates `QtQuick.Controls.Dialog` instead of the new themed `Jami.Dialog`, so this test does not validate the new component and will fail on checks like `dialogTitle`/`dialogCloseButton` that are only defined in `src/app/Jami/Dialog.qml`. Import the Jami module (or `../../../src/app/Jami` with an alias) and instantiate `JamiStyle.Dialog` explicitly in this component.",
+      "revId": "b9f831448ed43fa16cd6deeb335465b31d1f2aa0",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
