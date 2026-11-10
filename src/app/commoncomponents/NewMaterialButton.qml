@@ -45,7 +45,6 @@ JamiStyle.Button {
 
     property color color: JamiTheme.buttonTintedBlue
     property alias iconSource: root.icon.source
-    property string toolTipText: ""
 
     property bool validFocusReason: focusReason === Qt.TabFocusReason || focusReason === Qt.BacktabFocusReason
 
@@ -53,15 +52,6 @@ JamiStyle.Button {
     palette.button: root.color
     palette.buttonText: filledButton ? JamiTheme.whiteColor : outlinedButton ? root.color : JamiTheme.textColor
     palette.mid: outlinedButton ? root.color : JamiTheme.transparentColor
-
-    MaterialToolTip {
-        id: toolTip
-
-        parent: root
-        text: toolTipText
-        visible: hovered && (toolTipText.length > 0)
-        delay: Qt.styleHints.mousePressAndHoldInterval
-    }
 
     Keys.onPressed: function (keyEvent) {
         if (keyEvent.key === Qt.Key_Enter || keyEvent.key === Qt.Key_Return) {
@@ -72,5 +62,4 @@ JamiStyle.Button {
 
     Accessible.role: Accessible.Button
     Accessible.name: root.text
-    Accessible.description: toolTipText
 }
