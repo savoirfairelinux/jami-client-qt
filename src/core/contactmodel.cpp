@@ -1215,8 +1215,12 @@ ContactModelPimpl::slotProfileReceived(const QString& accountId, const QString& 
         return;
     }
 
-    // Remove the URI from the cache list and notify.
-    cachedProfiles.remove(peer);
+    // Remove the URI from the cache list and notify. The cache may be read
+    // concurrently (e.g. by the avatar image provider worker threads).
+    {
+        std::lock_guard<std::mutex> lk(contactsMtx_);
+        cachedProfiles.remove(peer);
+    }
     // This signal should be listened to in order to update contact display names
     // and avatars in the client.
     Q_EMIT linked.profileUpdated(peer);
