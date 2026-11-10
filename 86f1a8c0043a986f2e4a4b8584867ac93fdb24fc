@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7cd1f553_a134953d",
+        "filename": "src/app/mainview/components/SidePanel.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-10T21:21:00Z",
+      "side": 1,
+      "message": "[warning] 🟡 The commit message says a regression test was added, but this patchset only modifies QML. Please include the corresponding test change (or link the test in a dependent patch) for the macOS avatar/search alignment and right-padding behavior, so this UI contract is protected against future regressions.",
+      "revId": "86f1a8c0043a986f2e4a4b8584867ac93fdb24fc",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
