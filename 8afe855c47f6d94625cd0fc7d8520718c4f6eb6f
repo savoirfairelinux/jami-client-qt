@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "35654eb1_bae6e4fa",
+        "filename": "src/app/commoncomponents/NewMaterialButton.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-10T21:22:44Z",
+      "side": 1,
+      "message": "[warning] Line 32: 🟡 `validFocusReason` is now unused after migrating to `JamiStyle.Button`. Please remove this dead property to avoid misleading future maintenance and to keep this component’s API/state minimal.",
+      "revId": "8afe855c47f6d94625cd0fc7d8520718c4f6eb6f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2afa6024_ef3083f9",
+        "filename": "tests/qml/src/tst_Button.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-10T21:22:44Z",
+      "side": 1,
+      "message": "[warning] Line 157: 🟡 This test hard-codes `18` for the zoomed font size. That couples the test to a specific theme constant and can create false failures if typography tokens change. Prefer asserting against `JamiTheme.buttontextFontPixelSize` (or deriving expected value from theme inputs) rather than a magic literal.",
+      "revId": "8afe855c47f6d94625cd0fc7d8520718c4f6eb6f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
