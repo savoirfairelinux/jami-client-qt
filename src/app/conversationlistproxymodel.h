@@ -39,6 +39,7 @@ public:
     bool lessThan(const QModelIndex& left, const QModelIndex& right) const override;
 
     static Category categoryForMode(conversation::Mode mode);
+    Q_INVOKABLE void setFilter(const QString& filterString);
     void setCategory(Category category);
     void setInvitationsOnly(bool invitationsOnly);
     Q_INVOKABLE void ignoreFiltering(const QStringList& highlighted)
