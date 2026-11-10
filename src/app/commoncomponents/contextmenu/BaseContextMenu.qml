@@ -16,20 +16,15 @@
  */
 import QtQuick
 import QtQuick.Controls
-import Qt5Compat.GraphicalEffects
+import Jami as JamiStyle
 import net.jami.Constants 1.1
 
-Menu {
+JamiStyle.Menu {
     id: root
-
-    closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside | Popup.CloseOnPressOutsideParent
 
     property int menuPreferredWidth: 0
     property int menuItemsPreferredHeight: 0
     property int menuSeparatorPreferredHeight: 0
-
-    topPadding: JamiTheme.menuBorderPreferredHeight
-    bottomPadding: JamiTheme.menuBorderPreferredHeight
 
     property var generalMenuSeparatorList: []
 
@@ -75,22 +70,7 @@ Menu {
 
     font.pointSize: JamiTheme.menuFontSize
 
-    background: Rectangle {
-        implicitWidth: menuPreferredWidth ? menuPreferredWidth : JamiTheme.menuItemsPreferredWidth
-
-        color: JamiTheme.globalIslandColor
-        radius: JamiTheme.baseContextMenuRadius
-        layer.enabled: true
-        layer.effect: DropShadow {
-            z: -1
-            horizontalOffset: 0.0
-            verticalOffset: 3.0
-            radius: 6
-            color: "#29000000"
-            transparentBorder: true
-            samples: radius + 1
-        }
-    }
+    background.implicitWidth: menuPreferredWidth ? menuPreferredWidth : JamiTheme.menuItemsPreferredWidth
 
     Component.onDestruction: {
         if (typeof menuItemsToLoad !== "undefined" && menuItemsToLoad)
