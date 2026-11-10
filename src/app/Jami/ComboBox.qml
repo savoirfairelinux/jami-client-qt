@@ -9,6 +9,7 @@ T.ComboBox {
     id: control
 
     hoverEnabled: true
+    padding: 4
     font.pointSize: JamiTheme.textFontSize
 
     implicitWidth: Math.max(implicitBackgroundWidth + leftInset + rightInset,
@@ -27,8 +28,8 @@ T.ComboBox {
         height: control.background.height
         topPadding: 0
         bottomPadding: 0
-        leftPadding: control.padding + 12 - control.popup.leftPadding
-        rightPadding: control.padding + 12 - control.popup.rightPadding
+        leftPadding: control.padding + 12
+        rightPadding: control.padding + 12
         text: control.textAt(index)
         font.weight: control.currentIndex === index ? Font.DemiBold : control.font.weight
         highlighted: control.highlightedIndex === index

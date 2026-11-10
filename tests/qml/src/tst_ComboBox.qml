@@ -146,6 +146,35 @@ Item {
             return test_appearance_data();
         }
 
+        function test_textPadding_data() {
+            return [
+                {tag: "standard-ltr", component: comboComponent, mirrored: false, inset: 16},
+                {tag: "standard-rtl", component: comboComponent, mirrored: true, inset: 16},
+                {tag: "legacy-ltr", component: legacyComboComponent, mirrored: false, inset: 12},
+                {tag: "legacy-rtl", component: legacyComboComponent, mirrored: true, inset: 12}
+            ];
+        }
+
+        function test_textPadding(data) {
+            const combo = createTemporaryObject(data.component, root);
+            verify(combo !== null);
+            combo.LayoutMirroring.enabled = data.mirrored;
+            combo.LayoutMirroring.childrenInherit = true;
+            const textPosition = combo.contentItem.mapToItem(combo,
+                data.mirrored ? combo.contentItem.width - combo.contentItem.rightPadding
+                              : combo.contentItem.leftPadding, 0);
+            compare(data.mirrored ? combo.width - textPosition.x : textPosition.x, data.inset);
+            combo.popup.open();
+            tryCompare(combo.popup, "opened", true);
+            verify(waitForRendering(combo.popup.contentItem));
+            const option = combo.popup.contentItem.itemAtIndex(0);
+            verify(option !== null);
+            compare(option.leftPadding, data.inset);
+            compare(option.rightPadding, data.inset);
+            combo.popup.close();
+            tryCompare(combo.popup, "opened", false);
+        }
+
         function test_hoverRendering(data) {
             JamiTheme.darkTheme = data.dark;
             const combo = createTemporaryObject(data.component, root);
@@ -167,7 +196,7 @@ Item {
                                        : combo.contentItem.leftPadding, 0);
                     const rowText = option.contentItem.mapToItem(root,
                         combo.mirrored ? option.contentItem.width : 0, 0);
-                    compare(rowText.x, fieldText.x);
+                    compare(rowText.x, fieldText.x + (combo.mirrored ? -combo.popup.rightPadding : combo.popup.leftPadding));
                     verify(waitForRendering(list));
                     const rowPosition = option.mapToItem(root, 0, 0);
                     tryVerify(() => windowPixel(grabImage(root), rowPosition.x + option.width - option.height,

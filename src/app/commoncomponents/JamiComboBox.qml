@@ -22,6 +22,8 @@ import net.jami.Constants 1.1
 JamiStyle.ComboBox {
     id: control
 
+    padding: 0
+
     // Accessibility name and description for the combobox itself
     required property string accessibilityName
     required property string accessibilityDescription
