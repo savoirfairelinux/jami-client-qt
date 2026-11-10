@@ -89,6 +89,9 @@ ColumnLayout {
 
                     size: 20
                     count: categoryButton.badgeCount
+                    badgeColor: JamiTheme.notificationRed
+                    badgeTextColor: JamiTheme.whiteColor
+                    font.weight: Font.Normal
                 }
 
                 Accessible.role: Accessible.RadioButton
