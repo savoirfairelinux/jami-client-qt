@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "77bbf48f_1b036be2",
+        "filename": "tests/qml/src/tst_ComboBox.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-10T21:26:13Z",
+      "side": 1,
+      "message": "[error] Line 259: 🔴 `combo.down` is a read-only state property on `ComboBox`; assigning `combo.down \u003d true` is invalid QML and makes this assertion path unreliable (and can fail at runtime with a read-only assignment error). Drive `down` through user interaction/state instead (e.g., open popup via click/space and assert `background.visible` while pressed/open), or assert a writable property that controls the same behavior.",
+      "revId": "4c96392ad96d4d015181386650771336fa1b5642",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
