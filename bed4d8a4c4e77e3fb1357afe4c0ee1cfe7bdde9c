@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ff6665cd_b9b1d559",
+        "filename": "src/app/commoncomponents/ShareMenu.qml",
+        "patchSetId": 7
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-10T22:37:59Z",
+      "side": 1,
+      "message": "[error] Line 49: 🔴 `onClicked` calls `root.newEditableDocumentClicked()` but this patchset does not wire that action anymore (the signal/handler path was removed in recent changes), so clicking **New editable document** now does nothing or triggers a runtime QML error instead of opening the creation dialog. Restore a valid action path by either reintroducing `signal newEditableDocumentClicked` and handling it in `MessageFormatBar.qml`, or open `CollabNewDocPopup.qml` directly from `ShareMenu` with the current conversation id.",
+      "revId": "bed4d8a4c4e77e3fb1357afe4c0ee1cfe7bdde9c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "972113d6_b714234f",
+        "filename": "src/app/commoncomponents/ShareMenu.qml",
+        "patchSetId": 7
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-10T22:37:59Z",
+      "side": 1,
+      "message": "[warning] Line 70: 🟡 Keyboard traversal skips the newly added **New editable document** entry after initial focus (`audioMessage.backtab` points to `shareLocation`, and `shareLocation.tab` points to `audioMessage`), creating a loop that excludes the new item. Update `KeyNavigation.tab/backtab` links so all visible actions remain reachable in both directions for accessibility.",
+      "revId": "bed4d8a4c4e77e3fb1357afe4c0ee1cfe7bdde9c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
