@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a832c300_4d017593",
+        "filename": "src/app/videoprovider.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-10T18:56:16Z",
+      "side": 1,
+      "message": "[warning] Line 73: 🟡 `std::atomic_bool` is introduced here without including `\u003catomic\u003e` in this header. Please add the direct include to avoid relying on transitive includes, which can break with include-order changes or different toolchains.",
+      "revId": "a6bf5252c47a4df8909b64065fa21fc755b7a0da",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
