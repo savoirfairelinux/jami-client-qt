@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "00c21509_e6ed4e9d",
+        "filename": "src/app/mainview/components/SidePanel.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 744,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-11T21:08:05Z",
+      "side": 1,
+      "message": "[warning] Line 744: 🟡 The tooltip text for the new inline invitation action is hardcoded (`\"Subscribe\"`) instead of using a translatable string (e.g., `JamiStrings.*`/`qsTr`). This will ship untranslated text in localized builds. Please move this to `JamiStrings.qml` (or wrap with `qsTr`) and reference it here.",
+      "revId": "b92687daae7af3ca14c9777268f27d7647ff180e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
