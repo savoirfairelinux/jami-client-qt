@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c7828d75_2b3e2b60",
+        "filename": "src/app/Jami/MenuItem.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-11T15:43:04Z",
+      "side": 1,
+      "message": "[warning] Line 2: 🟡 This style component imports and depends on `QtQuick.Controls.impl` internals (`MenuItemIconLabel`, `IconImage`). Those types are private Qt API and can change between Qt releases, causing upgrade fragility. Prefer public controls/types or local wrapper components in the project so styling remains stable across Qt updates.",
+      "revId": "029925e38406932b76a8c044d842f0532bf312d5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
