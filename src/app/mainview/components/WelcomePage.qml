@@ -240,22 +240,25 @@ ListSelectionView {
                 }
             }
 
-            Item {
+            RowLayout {
                 id: bottomRow
-                Layout.preferredWidth: Math.max(300, root.width)
-                Layout.preferredHeight: aboutJami.height
+                Layout.fillWidth: true
                 Layout.margins: JamiTheme.welcomePageSpacing / 2
-                Layout.alignment: Qt.AlignHCenter
+                spacing: JamiTheme.preferredMarginSize
 
-                NewMaterialButton {
+                Item {
+                    Layout.fillWidth: true
+                }
+
+                NewIconButton {
                     id: aboutJami
 
                     objectName: "aboutJami"
 
-                    anchors.horizontalCenter: parent.horizontalCenter
-
-                    textButton: true
-                    text: JamiStrings.aboutJami
+                    iconSize: JamiTheme.iconButtonMedium
+                    iconSource: JamiResources.informations_black_24dp_svg
+                    icon.color: JamiTheme.buttonTintedBlue
+                    toolTipText: JamiStrings.aboutJami
 
                     onClicked: viewCoordinator.presentDialog(appWindow, "mainview/components/AboutPopUp.qml")
                 }
@@ -263,8 +266,7 @@ ListSelectionView {
                 NewIconButton {
                     id: btnKeyboard
 
-                    anchors.right: parent.right
-                    anchors.rightMargin: JamiTheme.preferredMarginSize
+                    objectName: "keyboardShortcuts"
 
                     iconSize: JamiTheme.iconButtonMedium
                     iconSource: JamiResources.keyboard_black_24dp_svg
