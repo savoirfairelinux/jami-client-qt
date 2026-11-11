@@ -33,6 +33,24 @@
       "message": "Addressed in this patchset.",
       "revId": "7d72c8410cc8a6016b470ec3e94b97a5e89677d0",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6ddd6f83_f4c5f1cf",
+        "filename": "src/app/videoprovider.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-11-11T18:26:56Z",
+      "side": 1,
+      "message": "\u003catomic\u003e is already included directly in this header (line 34, since 9b876c19), so nothing to change.",
+      "parentUuid": "a832c300_4d017593",
+      "revId": "7d72c8410cc8a6016b470ec3e94b97a5e89677d0",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
