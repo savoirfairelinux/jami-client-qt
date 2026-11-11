@@ -19,17 +19,56 @@ import QtQuick
 import QtQuick.Controls
 
 import QtTest
+import net.jami.Constants 1.1
 
 import "../../../src/app/"
 import "../../../src/app/mainview/components"
 
 TestWrapper {
+    id: wrapper
+    width: 900
+    height: 700
+
     WelcomePage {
         id: uut
+        anchors.fill: parent
 
         TestCase {
             name: "Open 'About Jami' popup"
             when: windowShown
+
+            function init() {
+                wrapper.width = 900;
+            }
+
+            function test_aboutIconBesideShortcuts_data() {
+                const minimumWidth = uut.majorPaneMinWidth + Math.max(uut.previousMinorPaneWidth, uut.minorPaneMinWidth);
+                return [{tag: "wide", width: minimumWidth + 500}, {tag: "narrow", width: minimumWidth + 20}];
+            }
+
+            function test_aboutIconBesideShortcuts(data) {
+                wrapper.width = data.width;
+                const about = findChild(uut, "aboutJami");
+                verify(about);
+                compare(about.iconSource, JamiResources.i_informations_black_24dp_svg);
+                compare(about.toolTipText, JamiStrings.aboutJami);
+                compare(about.Accessible.name, JamiStrings.aboutJami);
+                compare(about.text, "");
+                const shortcuts = findChild(uut, "keyboardShortcuts");
+                verify(shortcuts);
+                const pane = uut.rightPaneItem;
+                tryVerify(() => pane.parent !== null);
+                tryVerify(() => {
+                    const aboutPosition = about.mapToItem(pane, 0, 0);
+                    const shortcutsPosition = shortcuts.mapToItem(pane, 0, 0);
+                    const gap = shortcutsPosition.x - aboutPosition.x - about.width;
+                    return aboutPosition.x >= 0 && gap >= 0 && gap <= JamiTheme.preferredMarginSize
+                            && shortcutsPosition.x + shortcuts.width <= pane.width
+                            && aboutPosition.y === shortcutsPosition.y;
+                });
+                compare(about.width, shortcuts.width);
+                compare(about.height, shortcuts.height);
+            }
 
             function test_openAboutPopup() {
                 var aboutJamiButton = findChild(uut, "aboutJami")
