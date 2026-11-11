@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0b3b5fbd_b27a0bc1",
+        "filename": ".agents/topics/editing-rules.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-11T15:41:12Z",
+      "side": 1,
+      "message": "[warning] Line 1: 🟡 Removing the previous scope constraints (no unrelated refactors/features) broadens allowed change surface and increases review risk. Reintroduce those boundaries here or reference the canonical file that now enforces them to avoid policy gaps.",
+      "revId": "1e0a09d78904b73eaa73eaf8b5418929d2d570c9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "72fe4c9e_c5e33bfa",
+        "filename": ".agents/topics/editing-rules.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-11T15:41:12Z",
+      "side": 1,
+      "message": "[warning] Line 6: 🟡 The new exception `(does not apply to ui tweaks or changes to ongoing work)` is too ambiguous, especially `ongoing work`, which can be interpreted broadly and effectively bypass TDD. Define objective criteria (e.g., cosmetic-only UI changes with no logic/state impact) to keep enforcement consistent.",
+      "revId": "1e0a09d78904b73eaa73eaf8b5418929d2d570c9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4aea38bf_721ca82c",
+        "filename": "AGENTS.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-11T15:41:12Z",
+      "side": 1,
+      "message": "[error] Line 3: 🔴 This patch removes the explicit requirement that bug fixes include a regression test/TDD flow. Dropping that guardrail weakens defect-prevention expectations for contributors and agents, and can let fixes merge without proving the bug is covered. Please restore a clear must-have regression-test requirement (or replace it with an equally strict, unambiguous policy).",
+      "revId": "1e0a09d78904b73eaa73eaf8b5418929d2d570c9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
