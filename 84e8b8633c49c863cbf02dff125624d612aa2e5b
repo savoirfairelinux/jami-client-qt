@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9cdc47cd_44ad9b78",
+        "filename": "src/app/conversationsadapter.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-11T21:06:42Z",
+      "side": 1,
+      "message": "[warning] Line 84: 🟡 The new selection guard is inconsistent with its own comment: in `All + invitationsOnly`, FEED invitations are still visible, but this condition still forces a jump to `Feeds` because of `|| convInfo.mode \u003d\u003d conversation::Mode::FEED`. That creates surprising navigation behavior compared to one-to-one/group invitations. Remove the FEED special-case (or adjust the surrounding logic/comment so the category only changes when the target row is actually hidden).",
+      "revId": "84e8b8633c49c863cbf02dff125624d612aa2e5b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1a368840_76e2fb4d",
+        "filename": "src/app/conversationsadapter.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 571,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-11T21:06:42Z",
+      "side": 1,
+      "message": "[warning] Line 571: 🟡 `updateConversationFilterData()` now returns early when `model \u003d\u003d nullptr` before calling `systemTray_-\u003eonNotificationCountChanged(...)`. After account removal/unbind, this can leave a stale tray badge until another notification event occurs. Call the tray update before this early return (with the current `lrcInstance_-\u003enotificationsCount()`, typically 0 here) so UI state is synchronized immediately.",
+      "revId": "84e8b8633c49c863cbf02dff125624d612aa2e5b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
