@@ -1,8 +1,10 @@
 module Jami
 import QtQuick.Controls.Universal auto
 Button 2.0 Button.qml
+CheckBox 2.0 CheckBox.qml
 Dialog 2.0 Dialog.qml
 ComboBox 2.0 ComboBox.qml
 Menu 2.0 Menu.qml
 MenuItem 2.0 MenuItem.qml
 MenuSeparator 2.0 MenuSeparator.qml
+TextField 2.0 TextField.qml

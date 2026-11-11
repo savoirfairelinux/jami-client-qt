@@ -79,6 +79,8 @@ TextField {
     }
 
     topPadding: 2
+    bottomPadding: 7
+    ContextMenu.menu: null
 
     Keys.onPressed: function (event) {
         if (event.key === Qt.Key_Enter || event.key === Qt.Key_Return) {

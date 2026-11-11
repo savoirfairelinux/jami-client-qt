@@ -152,6 +152,10 @@ ColumnLayout {
                 Layout.fillWidth: true
                 Layout.alignment: Qt.AlignVCenter
 
+                leftPadding: 0
+                rightPadding: 0
+                ContextMenu.menu: null
+
                 text: root.textFieldContent
                 placeholderText: root.placeholderText
                 placeholderTextColor: JamiTheme.textColor
