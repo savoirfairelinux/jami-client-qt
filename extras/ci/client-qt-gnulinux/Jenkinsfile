@@ -117,9 +117,12 @@ pipeline {
                                 // jami temp directory (/tmp/jami_test/) and both wipe it at
                                 // startup, so parallel execution causes a SEGFAULT when the
                                 // unit tests delete the dirs mid-run of the QML test suite.
+                                // Run both suites, but fail the step if either fails.
                                 exec_cmd("""
-                                    HOME=/tmp ctest --test-dir ${dockerTopDir}/build/tests -V -C Release -R ^Qml_Tests\$
-                                    HOME=/tmp ctest --test-dir ${dockerTopDir}/build/tests -V -C Release -R ^Unit_Tests\$
+                                    rc=0
+                                    HOME=/tmp ctest --test-dir ${dockerTopDir}/build/tests -V -C Release -R ^Qml_Tests\$ || rc=1
+                                    HOME=/tmp ctest --test-dir ${dockerTopDir}/build/tests -V -C Release -R ^Unit_Tests\$ || rc=1
+                                    exit \$rc
                                 """)
                             }
                         }
