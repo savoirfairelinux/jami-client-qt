@@ -81,8 +81,8 @@ Item {
             choose(fontButton, index);
         }
 
-        function typeTextSize(size) {
-            const sizeButton = findChild(editorWindow, "textSizeButton");
+        // The editable text field inside the size spin box.
+        function sizeInput() {
             function findInput(item) {
                 if (typeof item.selectAll === "function" && item.validator !== undefined)
                     return item;
@@ -93,11 +93,17 @@ Item {
                 }
                 return null;
             }
+            const sizeButton = findChild(editorWindow, "textSizeButton");
             verify(sizeButton);
-            const sizeInput = findInput(sizeButton);
-            verify(sizeInput);
-            sizeInput.forceActiveFocus();
-            sizeInput.selectAll();
+            const input = findInput(sizeButton);
+            verify(input);
+            return input;
+        }
+
+        function typeTextSize(size) {
+            const input = sizeInput();
+            input.forceActiveFocus();
+            input.selectAll();
             for (const digit of String(size))
                 keyClick(digit);
             keyClick(Qt.Key_Return);
@@ -130,7 +136,7 @@ Item {
             binding.applyRemoteDelta('[{"retain":2},{"retain":6,"attributes":{"size":24}}]');
             editorWindow.refreshFormatState();
             compare(editorWindow.currentFontSize, 24);
-            compare(findChild(editorWindow, "textSizeButton").valueField, 24);
+            compare(Number(sizeInput().text), 24);
         }
 
         function test_peerFontUpdatesThePicker() {
@@ -283,19 +289,25 @@ Item {
         function test_formattingControlsComeInOrder() {
             const bar = findChild(editorWindow, "formattingToolbar");
             verify(bar);
-            function names(item) {
+            // Only the toolbar's own items and the Rows its alignment Repeater
+            // creates are walked, never the internals of a control.
+            function label(item) {
+                if (item.objectName !== "")
+                    return item.objectName;
+                if (item.iconSource !== undefined)
+                    return item.iconSource.split("/").pop().replace(/(_black)?(_24dp)?\.svg$/, "");
+                return "|";
+            }
+            function names(container) {
                 var order = [];
-                for (const control of item.children) {
-                    if (!control.visible || control.width === 0)
+                for (const item of container.children) {
+                    if (!item.visible || item.width === 0)
                         continue;
-                    if (control.objectName !== "")
-                        order.push(control.objectName);
-                    else if (control.iconSource !== undefined)
-                        order.push(control.iconSource.split("/").pop().replace(/(_black)?(_24dp)?\.svg$/, ""));
-                    else if (control.children.length > 0)
-                        order = order.concat(names(control));
+                    if (container === bar && item.objectName === "" && item.iconSource === undefined
+                            && item.spacing !== undefined)
+                        order = order.concat(names(item));
                     else
-                        order.push("|");
+                        order.push(label(item));
                 }
                 return order;
             }
