@@ -18,6 +18,60 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "050d2978_3d6c4736",
+        "filename": "tests/qml/src/tst_CollabRichEditorWindow.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-11-13T17:46:20Z",
+      "side": 1,
+      "message": "Intentional: ee56b265 replaced the size menu with a spin box that has no \u0027base size\u0027 state; only Clear formatting removes the size. Nothing left to test.",
+      "parentUuid": "2840dc11_a0fc410d",
+      "revId": "e9e7e19fb6934486f1ebff1957a699d423bc1362",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "63fcf0c1_75b75c58",
+        "filename": "tests/qml/src/tst_CollabRichEditorWindow.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-11-13T17:46:20Z",
+      "side": 1,
+      "message": "Recursion stops at any item with an objectName or iconSource, so it never enters control internals; it only descends into unnamed containers (alignment Rows, ToolbarSeparator). formattingToolbar is a Flow, which has no contentChildren.",
+      "parentUuid": "d9fca91c_7c5fdf05",
+      "revId": "e9e7e19fb6934486f1ebff1957a699d423bc1362",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "236a5fd5_4672ded7",
+        "filename": "tests/qml/src/tst_CollabRichEditorWindow.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-11-13T17:46:20Z",
+      "side": 1,
+      "message": "valueField is `property alias valueField: spinbox.value` (SettingSpinBox.qml:32), so this compares the numeric value.",
+      "parentUuid": "827984f7_b59cd5c6",
+      "revId": "e9e7e19fb6934486f1ebff1957a699d423bc1362",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "827984f7_b59cd5c6",
