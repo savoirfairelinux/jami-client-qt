@@ -72,6 +72,60 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b9f68f8e_d8b0af52",
+        "filename": "tests/qml/src/tst_CollabRichEditorWindow.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-11-13T19:04:30Z",
+      "side": 1,
+      "message": "Done in PS2: only the toolbar\u0027s direct items and the alignment Repeater rows are walked.",
+      "parentUuid": "63fcf0c1_75b75c58",
+      "revId": "e9e7e19fb6934486f1ebff1957a699d423bc1362",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "29695e19_5746733a",
+        "filename": "tests/qml/src/tst_CollabRichEditorWindow.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-11-13T19:04:30Z",
+      "side": 1,
+      "message": "Done in PS2: added test_clearFormattingRestoresTheBaseSize (Clear formatting is the way back to the base size). It exposed that SettingSpinBox dropped its value binding after a typed entry, also fixed in PS2.",
+      "parentUuid": "050d2978_3d6c4736",
+      "revId": "e9e7e19fb6934486f1ebff1957a699d423bc1362",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3f574b8b_cd0fd80d",
+        "filename": "tests/qml/src/tst_CollabRichEditorWindow.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-11-13T19:04:30Z",
+      "side": 1,
+      "message": "Done in PS2: now asserts the text displayed by the spin box.",
+      "parentUuid": "236a5fd5_4672ded7",
+      "revId": "e9e7e19fb6934486f1ebff1957a699d423bc1362",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "827984f7_b59cd5c6",
