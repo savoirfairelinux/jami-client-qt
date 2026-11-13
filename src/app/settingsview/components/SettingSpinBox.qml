@@ -73,6 +73,9 @@ RowLayout {
     SpinBox {
         id: spinbox
 
+        // Let SpinBox commit typed text itself: assigning value from QML would
+        // drop any binding the user of this component placed on valueField.
+        editable: true
         wheelEnabled: true
         hoverEnabled: true
 
@@ -85,17 +88,6 @@ RowLayout {
 
         onValueChanged: newValue()
         onValueModified: root.valueModified()
-
-        Keys.onPressed: function (keyEvent) {
-            if (keyEvent.key === Qt.Key_Enter || keyEvent.key === Qt.Key_Return) {
-                const previousValue = spinbox.value;
-                textInput.focus = false;
-                spinbox.value = textInput.text;
-                if (spinbox.value !== previousValue)
-                    root.valueModified();
-                keyEvent.accepted = true;
-            }
-        }
 
         contentItem: TextInput {
             id: textInput

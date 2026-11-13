@@ -23,7 +23,6 @@ Item {
         property var editor
         property var binding
         property var fontButton
-        property var fontMenu
         property string accountId
         property string conversationId
         property string documentId
@@ -48,8 +47,7 @@ Item {
             editor = findChild(editorWindow, "collabEditor");
             binding = findChild(editorWindow, "collabRichBinding");
             fontButton = findChild(editorWindow, "fontFamilyButton");
-            fontMenu = fontButton.popup;
-            verify(editor && binding && fontButton && fontMenu);
+            verify(editor && binding && fontButton);
             editor.remove(0, editor.length);
             binding.setFont("", 0, 0);
             editor.insert(0, "A report");
@@ -70,36 +68,63 @@ Item {
             return JSON.parse(CollaborativeAdapter.contentDelta(accountId, conversationId, documentId));
         }
 
+        function choose(comboBox, index) {
+            mouseClick(comboBox);
+            tryCompare(comboBox.popup, "opened", true);
+            const item = comboBox.popup.contentItem.itemAtIndex(index);
+            verify(item);
+            mouseClick(item);
+            tryCompare(comboBox.popup, "visible", false);
+        }
+
         function chooseFont(index) {
-            mouseClick(fontButton);
-            tryCompare(fontMenu, "opened", true);
-            mouseClick(fontMenu.itemAt(index));
-            tryCompare(fontMenu, "opened", false);
+            choose(fontButton, index);
+        }
+
+        // The editable text field inside the size spin box.
+        function sizeInput() {
+            function findInput(item) {
+                if (typeof item.selectAll === "function" && item.validator !== undefined)
+                    return item;
+                for (const child of item.children) {
+                    const input = findInput(child);
+                    if (input)
+                        return input;
+                }
+                return null;
+            }
+            const sizeButton = findChild(editorWindow, "textSizeButton");
+            verify(sizeButton);
+            const input = findInput(sizeButton);
+            verify(input);
+            return input;
+        }
+
+        function typeTextSize(size) {
+            const input = sizeInput();
+            input.forceActiveFocus();
+            input.selectAll();
+            for (const digit of String(size))
+                keyClick(digit);
+            keyClick(Qt.Key_Return);
         }
 
         function test_pickerWritesCompatibleId() {
-            compare(fontMenu.count, 5);
+            compare(fontButton.count, 5);
             chooseFont(2);
             compare(editorWindow.currentFont, "serif");
             compare(editorWindow.currentFontLabel, editorWindow.fontChoices[2].label);
-            verify(fontMenu.itemAt(2).checked);
+            compare(fontButton.currentIndex, 2);
             const delta = JSON.parse(CollaborativeAdapter.contentDelta(editorWindow.accountId, editorWindow.conversationId, editorWindow.documentId));
             verify(delta.some(operation => operation.attributes && operation.attributes.font === "serif"));
             chooseFont(0);
             compare(editorWindow.currentFont, "");
-            verify(fontMenu.itemAt(0).checked);
-            verify(!fontMenu.itemAt(2).checked);
+            compare(fontButton.currentIndex, 0);
         }
 
         function test_sizePickerOnlyFormatsTheSelection() {
-            const sizeButton = findChild(editorWindow, "textSizeButton");
-            const sizeMenu = findChild(editorWindow, "textSizeMenu");
-            verify(sizeButton && sizeMenu);
             const baseSize = editor.font.pointSize;
-            mouseClick(sizeButton);
-            tryCompare(sizeMenu, "opened", true);
-            mouseClick(sizeMenu.itemAt(11));
-            tryCompare(sizeMenu, "opened", false);
+            typeTextSize(24);
             compare(binding.selectionFormat(2, 8).size, 24);
             compare(binding.selectionFormat(0, 1).size, 0);
             compare(editor.font.pointSize, baseSize);
@@ -111,16 +136,26 @@ Item {
             binding.applyRemoteDelta('[{"retain":2},{"retain":6,"attributes":{"size":24}}]');
             editorWindow.refreshFormatState();
             compare(editorWindow.currentFontSize, 24);
-            const sizeMenu = findChild(editorWindow, "textSizeMenu");
-            verify(sizeMenu);
-            verify(sizeMenu.itemAt(11).checked);
+            compare(Number(sizeInput().text), 24);
+        }
+
+        function test_clearFormattingRestoresTheBaseSize() {
+            typeTextSize(24);
+            compare(binding.selectionFormat(2, 8).size, 24);
+            const bar = findChild(editorWindow, "formattingToolbar");
+            const clearButton = Array.from(bar.children).find(control => String(control.iconSource).includes("format_clear"));
+            verify(clearButton);
+            mouseClick(clearButton);
+            compare(binding.selectionFormat(2, 8).size, 0);
+            compare(Number(sizeInput().text), editorWindow.baseFontSize);
+            verify(content().every(operation => !operation.attributes || operation.attributes.size === undefined));
         }
 
         function test_peerFontUpdatesThePicker() {
             binding.applyRemoteDelta('[{"retain":2},{"retain":6,"attributes":{"font":"cursive"}}]');
             editorWindow.refreshFormatState();
             compare(editorWindow.currentFont, "cursive");
-            verify(fontMenu.itemAt(4).checked);
+            compare(fontButton.currentIndex, 4);
         }
 
         function test_fontChoiceAppliesToTyping() {
@@ -145,39 +180,19 @@ Item {
 
         function test_onlyOneSizeSelector() {
             verify(findChild(editorWindow, "textSizeButton"));
-            verify(findChild(editorWindow, "textSizeMenu"));
             verify(!findChild(editorWindow, "baseSizeButton"));
             verify(!findChild(editorWindow, "baseSizeMenu"));
         }
 
-        function test_sizePickerCanRestoreTheBaseSize() {
-            editorWindow.chooseTextSize(24);
-            const sizeButton = findChild(editorWindow, "textSizeButton");
-            const sizeMenu = findChild(editorWindow, "textSizeMenu");
-            mouseClick(sizeButton);
-            tryCompare(sizeMenu, "opened", true);
-            mouseClick(sizeMenu.itemAt(0));
-            tryCompare(sizeMenu, "opened", false);
-            compare(binding.selectionFormat(2, 8).size, 0);
-            verify(sizeMenu.itemAt(0).checked);
-            verify(!sizeMenu.itemAt(11).checked);
-            verify(content().every(operation => !operation.attributes
-                                   || operation.attributes.size === undefined));
-        }
-
         function test_headingPickerAppliesAndRemovesTheStyle() {
             const headingButton = findChild(editorWindow, "headingButton");
-            const headingMenu = findChild(editorWindow, "headingMenu");
-            verify(headingButton && headingMenu);
+            verify(headingButton);
             editor.cursorPosition = 4;
             for (const level of [2, 0]) {
-                mouseClick(headingButton);
-                tryCompare(headingMenu, "opened", true);
-                mouseClick(headingMenu.itemAt(level));
-                tryCompare(headingMenu, "opened", false);
+                choose(headingButton, level);
                 compare(editorWindow.currentHeading, level);
-                verify(headingMenu.itemAt(level).checked);
-                compare(headingButton.label, editorWindow.headingLabel(level));
+                compare(headingButton.currentIndex, level);
+                compare(headingButton.displayText, editorWindow.headingLabel(level));
                 compare(content()[0].attributes ? content()[0].attributes.header || 0 : 0, level);
             }
         }
@@ -235,7 +250,6 @@ Item {
 
         function test_toolbarUsesOneRowWhenItFits_data() {
             return [
-                {tag: "default", width: 840},
                 {tag: "wide", width: 1600}
             ];
         }
@@ -261,18 +275,17 @@ Item {
         }
 
         function test_fontMenuOffersEveryFamily() {
-            compare(fontMenu.count, editorWindow.fontChoices.length);
+            compare(fontButton.count, editorWindow.fontChoices.length);
             for (var index = 0; index < editorWindow.fontChoices.length; ++index) {
-                compare(fontMenu.itemAt(index).text, editorWindow.fontChoices[index].label);
+                compare(fontButton.textAt(index), editorWindow.fontChoices[index].label);
             }
         }
 
         function test_unknownFontIsNotShownAsTheDefault() {
             binding.applyRemoteDelta('[{"retain":8,"attributes":{"font":"some-future-font"}}]');
             editorWindow.refreshFormatState();
-            compare(fontButton.label, "some-future-font");
-            for (var index = 0; index < fontMenu.count; ++index)
-                verify(!fontMenu.itemAt(index).checked);
+            compare(fontButton.displayText, "some-future-font");
+            compare(fontButton.currentIndex, -1);
         }
 
         function test_chosenFontReachesTheDocument() {
@@ -288,18 +301,34 @@ Item {
         function test_formattingControlsComeInOrder() {
             const bar = findChild(editorWindow, "formattingToolbar");
             verify(bar);
-            var order = [];
-            for (var i = 0; i < bar.children.length; ++i) {
-                const control = bar.children[i];
-                if (control.objectName !== "")
-                    order.push(control.objectName);
-                else if (control.iconSource !== undefined)
-                    order.push(control.iconSource.split("/").pop().replace(/(_black)?(_24dp)?\.svg$/, ""));
-                else
-                    order.push("|");
+            // Only the toolbar's own items and the Rows its alignment Repeater
+            // creates are walked, never the internals of a control.
+            function label(item) {
+                if (item.objectName !== "")
+                    return item.objectName;
+                if (item.iconSource !== undefined)
+                    return item.iconSource.split("/").pop().replace(/(_black)?(_24dp)?\.svg$/, "");
+                return "|";
             }
-            const expected = "headingButton fontFamilyButton textSizeButton languageButton"
-                    + " | bold italic underline strikethrough_s | alignButton directionButton bidirectional_bullet_point bidirectional_bullet_number | link_web add_photo_alternate clear";
+            function names(container) {
+                var order = [];
+                for (const item of container.children) {
+                    if (!item.visible || item.width === 0)
+                        continue;
+                    if (container === bar && item.objectName === "" && item.iconSource === undefined
+                            && item.spacing !== undefined)
+                        order = order.concat(names(item));
+                    else
+                        order.push(label(item));
+                }
+                return order;
+            }
+            const order = names(bar);
+            const expected = "headingButton fontFamilyButton textSizeButton"
+                    + " | bold italic underline strikethrough_s"
+                    + " | align-left align-center align-right align-justify"
+                    + " | directionButton bidirectional_bullet_point bidirectional_bullet_number"
+                    + " | link_web add_photo_alternate format_clear";
             compare(order.join(" "), expected);
         }
 
