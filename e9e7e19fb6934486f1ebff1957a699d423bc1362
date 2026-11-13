@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2840dc11_a0fc410d",
+        "filename": "tests/qml/src/tst_CollabRichEditorWindow.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-13T17:07:22Z",
+      "side": 1,
+      "message": "[warning] 🟡 The patch removes the base-size reset test without a replacement, which drops coverage for a known formatting edge case. Keep a regression test (or mark expected failure with a linked issue) so this behavior change remains explicit and trackable.",
+      "revId": "e9e7e19fb6934486f1ebff1957a699d423bc1362",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "827984f7_b59cd5c6",
+        "filename": "tests/qml/src/tst_CollabRichEditorWindow.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-13T17:07:22Z",
+      "side": 1,
+      "message": "[error] Line 132: 🔴 `compare(findChild(editorWindow, \"textSizeButton\").valueField, 24)` appears to compare a field object/alias rather than the numeric value shown by the size control. This can make the assertion meaningless or always fail depending on the control implementation. Assert against the actual numeric property (for example `value`) or the input text converted to number.",
+      "revId": "e9e7e19fb6934486f1ebff1957a699d423bc1362",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d9fca91c_7c5fdf05",
+        "filename": "tests/qml/src/tst_CollabRichEditorWindow.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 284,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-13T17:07:22Z",
+      "side": 1,
+      "message": "[warning] Line 284: 🟡 The new recursive `names(item)` traversal walks generic `children`, which includes internal implementation nodes of Qt Quick Controls. That makes this ordering test brittle across style/theme/control internals and can produce false failures. Limit traversal to explicit toolbar controls/separators (or a stable public container API like `contentChildren`) instead of recursing into all visual children.",
+      "revId": "e9e7e19fb6934486f1ebff1957a699d423bc1362",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
