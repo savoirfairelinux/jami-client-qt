@@ -139,6 +139,18 @@ Item {
             compare(Number(sizeInput().text), 24);
         }
 
+        function test_clearFormattingRestoresTheBaseSize() {
+            typeTextSize(24);
+            compare(binding.selectionFormat(2, 8).size, 24);
+            const bar = findChild(editorWindow, "formattingToolbar");
+            const clearButton = Array.from(bar.children).find(control => String(control.iconSource).includes("format_clear"));
+            verify(clearButton);
+            mouseClick(clearButton);
+            compare(binding.selectionFormat(2, 8).size, 0);
+            compare(Number(sizeInput().text), editorWindow.baseFontSize);
+            verify(content().every(operation => !operation.attributes || operation.attributes.size === undefined));
+        }
+
         function test_peerFontUpdatesThePicker() {
             binding.applyRemoteDelta('[{"retain":2},{"retain":6,"attributes":{"font":"cursive"}}]');
             editorWindow.refreshFormatState();
