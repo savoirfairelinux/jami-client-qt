@@ -21,6 +21,10 @@
     <Property Id="MSIRESTARTMANAGERCONTROL"
       Value="Disable" />
 
+    <!--Let the in-app updater pass WIXNONUILAUNCH through an elevated install.-->
+    <Property Id="WIXNONUILAUNCH"
+      Secure="yes" />
+
     <!--Icon File should be in release folder(not wix project), otherwise cannot be read-->
     <Icon Id="icon.ico"
       SourceFile="$(var.ReleaseDir)\jami.ico" />
