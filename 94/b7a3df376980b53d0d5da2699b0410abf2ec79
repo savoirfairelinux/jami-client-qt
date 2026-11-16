@@ -1,0 +1,10 @@
+Verified+1: Jenkins CI <jenkins@ring-packaging.cx>
+Code-Review+2: Andreas Traczyk <andreas.traczyk@savoirfairelinux.com>
+Code-Review+1: Virtual Reviewer <virtual-reviewer@jami.net>
+Code-Review+1: Ilyas Erdogan <ilyas.erdogan@savoirfairelinux.com>
+Submitted-by: Andreas Traczyk <andreas.traczyk@savoirfairelinux.com>
+Submitted-at: Mon, 16 Nov 2026 14:46:17 -0500
+Reviewed-on: https://review.jami.net/c/jami-client-qt/+/37141
+Comments-Total: 11
+Project: jami-client-qt
+Branch: refs/heads/master
