@@ -1,0 +1,22 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b42c612f_50ad9701",
+        "filename": "src/app/previewengine.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-11-16T17:47:25Z",
+      "side": 1,
+      "message": "Done: processHTML() now uses a qScopeGuard, so clear() runs on this thread on every exit path.",
+      "parentUuid": "54c76481_a210cca2",
+      "revId": "01cf363e66b6b2e0899fd1dc77f3c310d353b803",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
