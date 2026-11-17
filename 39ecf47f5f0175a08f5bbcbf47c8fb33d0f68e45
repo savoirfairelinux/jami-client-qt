@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "36856547_4812f227",
+        "filename": "src/app/mainview/components/SidePanelTabBar.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-17T21:05:10Z",
+      "side": 1,
+      "message": "[warning] Line 89: 🟡 The category buttons expose `Accessible.description` but not an explicit accessible name. Because these controls are icon-only, screen readers may announce them ambiguously (often as generic radio buttons). Set `Accessible.name: modelData.label` (or equivalent) on each `NewIconButton` so assistive tech can identify “Conversations/Contacts/Groups/Feeds” reliably.",
+      "revId": "39ecf47f5f0175a08f5bbcbf47c8fb33d0f68e45",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
