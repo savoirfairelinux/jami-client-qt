@@ -706,6 +706,7 @@ set(COMMON_HEADERS
   ${APP_SRC_DIR}/conversationstatusmodel.h
   ${APP_SRC_DIR}/trackedmembersmodel.h
   ${APP_SRC_DIR}/pttlistener.h
+  ${APP_SRC_DIR}/reentrancyguard.h
   ${APP_SRC_DIR}/crashreportclient.h
   ${APP_SRC_DIR}/crashreporter.h
   ${APP_SRC_DIR}/linkdevicemodel.h
@@ -833,13 +834,21 @@ if(MSVC)
     User32.lib
     Gdi32.lib
     Crypt32.lib
-    Strmiids.lib)
+    Strmiids.lib
+    Comctl32.lib)
 
   list(APPEND COMMON_SOURCES
     ${APP_SRC_DIR}/connectivitymonitor.cpp
-    ${APP_SRC_DIR}/appversionmanager.cpp)
+    ${APP_SRC_DIR}/appversionmanager.cpp
+    ${APP_SRC_DIR}/platform/windows/accessibilityrecursionguard.cpp)
+  list(APPEND COMMON_HEADERS
+    ${APP_SRC_DIR}/platform/windows/accessibilityrecursionguard.h)
   # preprocessor defines
   add_definitions(-DUNICODE -DQT_NO_DEBUG -DNDEBUG)
+  # The guard is only built (and linked against Comctl32) here, so gate its
+  # use on this define rather than Q_OS_WIN to keep other Windows toolchains
+  # linking.
+  add_definitions(-DJAMI_ACCESSIBILITY_RECURSION_GUARD)
 
   # compiler options
   add_compile_options(
