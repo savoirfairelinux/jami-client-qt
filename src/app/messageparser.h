@@ -41,7 +41,7 @@ class MessageParser final : public QObject
 public:
     // Create a new MessageParser instance. We take an instance of PreviewEngine.
     explicit MessageParser(PreviewEngine* previewEngine, QObject* parent = nullptr);
-    ~MessageParser() = default;
+    ~MessageParser();
 
     // Parse the message. This will emit the messageParsed signal when the
     // message is ready to be displayed.

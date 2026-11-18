@@ -47,6 +47,14 @@ MessageParser::MessageParser(PreviewEngine* previewEngine, QObject* parent)
     connect(previewEngine_, &PreviewEngine::infoReady, this, &MessageParser::linkInfoReady);
 }
 
+MessageParser::~MessageParser()
+{
+    // Parse tasks use htmlParser_ from the thread pool. Make sure none are
+    // pending or running before the HtmlParser child object is destroyed.
+    threadPool_->clear();
+    threadPool_->waitForDone();
+}
+
 QPair<QString, QString>
 MessageParser::buildStyledHtml(QString md, const QColor& linkColor, const QColor& backgroundColor)
 {

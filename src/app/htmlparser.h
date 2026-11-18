@@ -36,19 +36,22 @@ public:
     HtmlParser(QObject* parent = nullptr)
         : QObject(parent)
     {
-        doc_ = tidyCreate();
-        tidyOptSetBool(doc_, TidyQuiet, yes);
-        tidyOptSetBool(doc_, TidyShowWarnings, no);
+        resetDoc();
     }
 
     ~HtmlParser()
     {
-        tidyRelease(doc_);
+        releaseDoc();
     }
 
+    // Each parse uses a fresh tidy document: re-parsing into the same document
+    // can leave stale node/anchor state that later crashes in tidyRelease().
+    // Any TidyNode obtained before this call becomes invalid.
     bool parseHtmlString(const QString& html)
     {
-        return tidyParseString(doc_, html.toUtf8().data()) >= 0;
+        resetDoc();
+        const QByteArray data = html.toUtf8();
+        return tidyParseString(doc_, data.constData()) >= 0;
     }
 
     using TagNodeList = QMap<TidyTagId, QList<TidyNode>>;
@@ -120,6 +123,22 @@ public:
     }
 
 private:
+    void resetDoc()
+    {
+        releaseDoc();
+        doc_ = tidyCreate();
+        tidyOptSetBool(doc_, TidyQuiet, yes);
+        tidyOptSetBool(doc_, TidyShowWarnings, no);
+    }
+
+    void releaseDoc()
+    {
+        if (doc_) {
+            tidyRelease(doc_);
+            doc_ = nullptr;
+        }
+    }
+
     // NOLINTNEXTLINE(misc-no-recursion)
     void traverseNode(TidyNode node,
                       const QList<TidyTagId>& tags,
@@ -141,5 +160,5 @@ private:
         }
     }
 
-    TidyDoc doc_;
+    TidyDoc doc_ {nullptr};
 };

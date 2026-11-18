@@ -65,12 +65,15 @@ PreviewEngine::PreviewEngine(ConnectivityMonitor* cm, QObject* parent)
 
 PreviewEngine::~PreviewEngine()
 {
-    if (parser_) {
-        auto* parser = parser_.take();
-        parser->deleteLater();
-    }
+    // Stop feeding the parser and let any in-flight processHTML() call finish
+    // before tearing anything down. The parser (and its tidy document) must
+    // never be destroyed while the parser thread may still be using it.
+    disconnect(this, &PreviewEngine::htmlReady, nullptr, nullptr);
     parserThread_->quit();
     parserThread_->wait();
+
+    // The parser thread is stopped, so the parser can be destroyed here safely.
+    parser_.reset();
     delete parserThread_;
 }
 

@@ -145,3 +145,26 @@ TEST(HtmlParserTest, ReleasesAfterCustomElements)
                   "Test title");
     }
 }
+
+/*!
+ * WHEN  We parse several HTML strings with the same parser instance
+ * THEN  Each parse should only expose its own nodes and release safely
+ */
+TEST(HtmlParserTest, ReparsingWithSameInstanceIsSafe)
+{
+    HtmlParser parser;
+    for (int i = 0; i < 5; ++i) {
+        const auto title = QString("Title %1").arg(i);
+        ASSERT_TRUE(parser.parseHtmlString(
+            QString("<html><head><meta property=\"og:title\" content=\"%1\"></head>"
+                    "<body><a name=\"a%2\" href=\"https://jami.net\">link</a>"
+                    "<jami-preview-card data-id=\"%2\"></jami-preview-card></body></html>")
+                .arg(title)
+                .arg(i)));
+
+        auto tagsNodes = parser.getTagsNodes({TidyTag_META, TidyTag_A});
+        ASSERT_EQ(tagsNodes[TidyTag_META].size(), 1);
+        ASSERT_EQ(tagsNodes[TidyTag_A].size(), 1);
+        EXPECT_EQ(parser.getNodeAttr(tagsNodes[TidyTag_META].first(), TidyAttr_CONTENT), title);
+    }
+}
