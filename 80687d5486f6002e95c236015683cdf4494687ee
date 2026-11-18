@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56981588_14b7f8b6",
+        "filename": "src/app/conversationsadapter.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 935,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-18T20:00:13Z",
+      "side": 1,
+      "message": "[warning] Line 935: 🟡 `invitationCandidates()` builds `uris` with `push_back` but never de-duplicates newly collected targets. If the same member appears across multiple selected source conversations, `inviteToConversation()` will call `addConversationMember()` multiple times for the same URI, causing redundant requests and inflated invite counts. Build `uris` through a set (or add each accepted URI to a seen set) before returning.",
+      "revId": "80687d5486f6002e95c236015683cdf4494687ee",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "42b9ef0c_bba99194",
+        "filename": "src/app/mainview/components/InviteMembersDialog.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-18T20:00:13Z",
+      "side": 1,
+      "message": "[warning] Line 37: 🟡 `height` dereferences `parent.height` without a null guard, unlike `implicitWidth`. During creation/reparenting this can evaluate with `parent \u003d\u003d null` and produce QML runtime errors. Mirror the `implicitWidth` pattern, e.g. `height: parent ? Math.min(parent.height * 0.7, Math.max(0, parent.height - 64)) : 400`.",
+      "revId": "80687d5486f6002e95c236015683cdf4494687ee",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
