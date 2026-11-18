@@ -57,9 +57,8 @@ BaseModalDialog {
     popupContent: ColumnLayout {
         id: mainLayout
 
-        anchors.centerIn: parent
         spacing: 10
-        width: JamiTheme.preferredDialogWidth
+        width: root.availableWidth
 
         Label {
             id: informativeLabel
@@ -101,7 +100,7 @@ BaseModalDialog {
                 property string deviceId: DeviceID
                 property bool isCurrent: DeviceName
 
-                implicitWidth: devicesListView.width
+                width: ListView.view.width
                 height: 70
 
                 highlighted: CurrentConversation.rdvDevice === deviceId
@@ -170,12 +169,15 @@ BaseModalDialog {
                     ColumnLayout {
                         id: deviceInfoColumnLayout
 
+                        Layout.fillWidth: true
                         Layout.fillHeight: true
                         Layout.leftMargin: JamiTheme.preferredMarginSize
+                        Layout.rightMargin: JamiTheme.preferredMarginSize
 
                         Text {
                             id: labelDeviceName
 
+                            Layout.fillWidth: true
                             Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
 
                             elide: Text.ElideRight
@@ -186,8 +188,8 @@ BaseModalDialog {
                         Text {
                             id: labelDeviceId
 
+                            Layout.fillWidth: true
                             Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
-                            Layout.preferredWidth: root.width - 200
 
                             elide: Text.ElideRight
                             color: JamiTheme.textColor
