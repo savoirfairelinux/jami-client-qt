@@ -23,6 +23,7 @@
 
 #include <QAbstractListModel>
 #include <QObject>
+#include <QPointer>
 #include <QQmlEngine>
 #include <QSortFilterProxyModel>
 #include <QQuickItem>
@@ -41,7 +42,8 @@ Q_ENUM_NS(Role)
 
 struct Item
 {
-    QObject* itemAction;
+    // The actions are QML objects whose lifetime the model does not control.
+    QPointer<QObject> itemAction;
     bool enabled {true};
     int urgentCount {0};
 };
@@ -112,6 +114,9 @@ public:
     void setEnabled(QObject* obj, bool enabled);
     void addItem(const CallControl::Item& item);
     void clearData();
+
+private Q_SLOTS:
+    void removeDestroyedItems();
 
 private:
     QList<CallControl::Item> data_;
