@@ -34,6 +34,14 @@
 
 using namespace lrc::api;
 
+namespace {
+bool
+isActiveMember(member::Role role)
+{
+    return role == member::Role::ADMIN || role == member::Role::MEMBER || role == member::Role::INVITED;
+}
+} // namespace
+
 ConversationsAdapter::ConversationsAdapter(SystemTray* systemTray,
                                            LRCInstance* instance,
                                            ConversationListProxyModel* convProxyModel,
@@ -841,6 +849,8 @@ ConversationsAdapter::createSwarm(const QString& title,
                                   const VectorString& participants)
 {
     auto convModel = lrcInstance_->getCurrentConversationModel();
+    if (!convModel)
+        return {};
     MapStringString details;
     if (!title.isEmpty())
         details["title"] = title;
@@ -849,6 +859,51 @@ ConversationsAdapter::createSwarm(const QString& title,
     if (!avatar.isEmpty())
         details["avatar"] = avatar;
     return convModel->createConversation(participants, details);
+}
+
+QString
+ConversationsAdapter::createConversationFromConversations(const QString& title,
+                                                          const QString& description,
+                                                          const QString& avatar,
+                                                          const QStringList& conversationIds,
+                                                          bool isFeed)
+{
+    const auto participants = participantsFromConversations(conversationIds);
+    if (!participants)
+        return {};
+    return isFeed ? createFeed(title, description, avatar, *participants)
+                  : createSwarm(title, description, avatar, *participants);
+}
+
+std::optional<VectorString>
+ConversationsAdapter::participantsFromConversations(const QStringList& conversationIds) const
+{
+    const auto* model = lrcInstance_->getCurrentConversationModel();
+    if (!model)
+        return {};
+
+    VectorString participants;
+    QSet<QString> seen;
+    for (const auto& id : conversationIds) {
+        const auto conversation = model->getConversationForUid(id);
+        if (!conversation)
+            return {};
+        const auto& info = conversation->get();
+        if (info.isRequest || info.needsSyncing || info.mode == conversation::Mode::FEED || info.participants.isEmpty()
+            || model->dataForItem(info, ConversationList::Role::IsBanned).toBool())
+            return {};
+
+        for (const auto& participant : info.participants) {
+            if (!isActiveMember(participant.role))
+                continue;
+            if (participant.uri.isEmpty() || participant.uri == model->owner.profileInfo.uri
+                || seen.contains(participant.uri))
+                continue;
+            seen.insert(participant.uri);
+            participants.push_back(participant.uri);
+        }
+    }
+    return participants;
 }
 
 QString

@@ -25,6 +25,7 @@
 #include <QString>
 #include <QQmlEngine>   // QML registration
 #include <QApplication> // QML registration
+#include <optional>
 
 class SystemTray;
 
@@ -65,6 +66,11 @@ public:
                                     const QString& description,
                                     const QString& avatar,
                                     const VectorString& participants);
+    Q_INVOKABLE QString createConversationFromConversations(const QString& title,
+                                                            const QString& description,
+                                                            const QString& avatar,
+                                                            const QStringList& conversationIds,
+                                                            bool isFeed);
     Q_INVOKABLE QString createFeed(const QString& title,
                                    const QString& description,
                                    const QString& avatar,
@@ -122,6 +128,7 @@ private Q_SLOTS:
     void onBannedStatusChanged(const QString&, bool);
 
 private:
+    std::optional<VectorString> participantsFromConversations(const QStringList& conversationIds) const;
     void updateConversation(const QString&);
     void updateConversationFilterData();
 

@@ -37,8 +37,10 @@ Control {
 
     property string toolTipText: ""
     property string iconButtonToolTipText: ""
+    property string avatarId: ""
+    property real maximumWidth: -1
 
-    leftPadding: background.radius
+    leftPadding: background.radius - (avatar.height / 2)
     rightPadding: background.radius - (trailingIconButton.height / 2)
     topPadding: JamiTheme.jamiChipVerticalPadding
     bottomPadding: JamiTheme.jamiChipVerticalPadding
@@ -53,14 +55,38 @@ Control {
     }
 
     contentItem: Row {
+        id: chipContent
+
         spacing: 2
+
+        Avatar {
+            id: avatar
+
+            anchors.verticalCenter: parent.verticalCenter
+
+            width: 24
+            height: 24
+
+            visible: root.avatarId.length > 0
+            mode: Avatar.Mode.Conversation
+            imageId: root.avatarId
+            showPresenceIndicator: false
+        }
 
         Text {
             id: chipText
 
             anchors.verticalCenter: parent.verticalCenter
 
-            verticalAlignment: Text.AlignVCenter
+            width: {
+                if (root.maximumWidth < 0)
+                    return implicitWidth;
+                const avatarSpace = avatar.visible ? avatar.width + chipContent.spacing : 0;
+                const iconSpace = trailingIconButton.visible ? trailingIconButton.width + chipContent.spacing : 0;
+                return Math.max(0, Math.min(implicitWidth, root.maximumWidth - root.leftPadding
+                                            - root.rightPadding - avatarSpace - iconSpace));
+            }
+
             color: {
                 if (root.filledChip) {
                     return JamiTheme.whiteColor;
@@ -72,6 +98,11 @@ Control {
                     }
                 }
             }
+
+            elide: Text.ElideRight
+            textFormat: Text.PlainText
+            verticalAlignment: Text.AlignVCenter
+
 
             Behavior on color {
                 ColorAnimation {

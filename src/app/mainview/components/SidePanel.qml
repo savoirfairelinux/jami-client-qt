@@ -33,21 +33,12 @@ SidePanelBase {
     objectName: "SidePanel"
 
     readonly property var viewCoordinator: appContext ? appContext.viewCoordinator : null
-    property bool inNewSwarm: viewCoordinator && viewCoordinator.currentViewName === "NewSwarmPage"
-    property bool inCreateFeed: viewCoordinator && viewCoordinator.currentViewName === "CreateFeedPage"
-    property bool inMemberSelection: inNewSwarm || inCreateFeed
-    property bool isEmptyAccount: inMemberSelection
-                                  ? swarmCurrentConversationList.count === 0
-                                  : (conversationListView.model && conversationListView.model.count === 0)
-
-    // Members picked for a new group: [{ uri, convId }], where convId is the
-    // conversation the member was picked from
-    property var highlightedMembers: []
-    readonly property var highlighted: Array.from(new Set(highlightedMembers.map(m => m.convId)))
+    property var createConversationDialog: null
+    property bool isEmptyAccount: conversationListView.model && conversationListView.model.count === 0
 
     readonly property real sidePanelIslandsMargin: viewCoordinator && viewCoordinator.isInSinglePaneMode ? JamiTheme.sidePanelIslandsSinglePaneModePadding : JamiTheme.sidePanelIslandsPadding
 
-    color: (inNewSwarm || inCreateFeed) ? JamiTheme.globalBackgroundColor : JamiTheme.transparentColor
+    color: JamiTheme.transparentColor
 
     Connections {
         target: LRCInstance
@@ -79,88 +70,17 @@ SidePanelBase {
         }
     }
 
-    Connections {
-        target: CurrentAccount
-
-        // New swarm page shouldn't be visible for SIP accounts
-        function onTypeChanged() {
-            if (CurrentAccount.type === Profile.Type.SIP && inMemberSelection) {
-                if (inNewSwarm)
-                    viewCoordinator.dismiss("NewSwarmPage");
-                else
-                    closeCreateFeedView();
-                root.clearHighlighted();
-            }
-        }
-    }
-
-    function toggleCreateSwarmView() {
-        if (!inNewSwarm) {
-            selectCategory(ConversationListProxyModel.All);
-            viewCoordinator.present("NewSwarmPage");
-            const newSwarmPage = viewCoordinator.getView("NewSwarmPage");
-            newSwarmPage.removeMember.connect((convId, member) => {
-                                                  removeMember(convId, member);
-                                              });
-            newSwarmPage.createSwarmClicked.connect((title, description, avatar) => {
-                                                        var uris = [];
-                                                        for (var idx in newSwarmPage.members) {
-                                                            var uri = newSwarmPage.members[idx].uri;
-                                                            if (uris.indexOf(uri) === -1) {
-                                                                uris.push(uri);
-                                                            }
-                                                        }
-                                                        let convuid
-                                                        = ConversationsAdapter.createSwarm(title,
-                                                                                           description,
-                                                                                           avatar, uris);
-                                                        viewCoordinator.dismiss("NewSwarmPage");
-                                                        LRCInstance.selectConversation(convuid);
-                                                    });
-        } else {
-            viewCoordinator.dismiss("NewSwarmPage");
-        }
-    }
-
-    function openCreateFeedView() {
-        if (inCreateFeed)
+    function openCreateConversationDialog(isFeed) {
+        if (createConversationDialog)
             return;
-        // Member selection needs the regular conversation list.
-        selectCategory(ConversationListProxyModel.All);
-        viewCoordinator.present("CreateFeedPage");
-        const createFeedPage = viewCoordinator.getView("CreateFeedPage");
-        createFeedPage.members = [];
-        createFeedPage.creationFailed = false;
-        createFeedPage.removeMember.connect(removeMember);
-        createFeedPage.createFeedClicked.connect(createFeed);
-    }
-
-    function createFeed(title, description, avatar) {
-        const createFeedPage = viewCoordinator.getView("CreateFeedPage");
-        var uris = [];
-        for (var idx in createFeedPage.members) {
-            var uri = createFeedPage.members[idx].uri;
-            if (uris.indexOf(uri) === -1)
-                uris.push(uri);
-        }
-        const convuid = ConversationsAdapter.createFeed(title, description, avatar, uris);
-        if (convuid === "") {
-            createFeedPage.creationFailed = true;
+        createConversationDialog = viewCoordinator.presentDialog(appWindow.contentItem, "mainview/components/CreateConversationDialog.qml", {
+            "viewCoordinator": viewCoordinator,
+            "isFeed": isFeed
+        }, true);
+        if (!createConversationDialog)
             return;
-        }
-        closeCreateFeedView();
-        root.clearHighlighted();
-        LRCInstance.selectConversation(convuid);
-    }
-
-    function closeCreateFeedView() {
-        const createFeedPage = viewCoordinator.getView("CreateFeedPage");
-        if (createFeedPage) {
-            createFeedPage.removeMember.disconnect(removeMember);
-            createFeedPage.createFeedClicked.disconnect(createFeed);
-        }
-        viewCoordinator.dismiss("CreateFeedPage");
-        selectCategory(ConversationListProxyModel.All);
+        createConversationDialog.canceled.connect(() => newConversationTypeButton.forceActiveFocus());
+        createConversationDialog.closed.connect(() => root.createConversationDialog = null);
     }
 
     function clearContactSearchBar() {
@@ -174,55 +94,11 @@ SidePanelBase {
     Shortcut {
         sequence: "Ctrl+L"
         context: Qt.ApplicationShortcut
-        enabled: root.visible && !inMemberSelection
+        enabled: root.visible && !root.createConversationDialog
         onActivated: {
             clearContactSearchBar();
             selectCategory(ConversationListProxyModel.All);
             conversationListView.forceActiveFocus();
-        }
-    }
-
-    function hasHighlightedMember(uri) {
-        return root.highlightedMembers.some(m => m.uri === uri);
-    }
-
-    // A conversation is highlighted when all its peers are picked as members,
-    // so the list always matches the member chips of the NewSwarmPage
-    function isHighlighted(uris) {
-        const peers = Array.from(uris).filter(uri => uri !== CurrentAccount.uri);
-        return peers.length > 0 && peers.every(hasHighlightedMember);
-    }
-
-    function toggleHighlighted(convId, uris) {
-        // Only other participants can be added as swarm members.
-        const peers = Array.from(uris).filter(uri => uri !== CurrentAccount.uri);
-        // If every peer is already selected, clicking this conversation removes them all.
-        if (isHighlighted(uris)) {
-            root.highlightedMembers = root.highlightedMembers.filter(m => !peers.includes(m.uri));
-        } else {
-            // Add only missing peers and record which conversation they came from.
-            const added = peers.filter(uri => !hasHighlightedMember(uri)).map(uri => ({ "uri": uri, "convId": convId }));
-            root.highlightedMembers = root.highlightedMembers.concat(added);
-        }
-    }
-
-    function clearHighlighted() {
-        root.highlightedMembers = [];
-    }
-
-    function removeMember(convId, member) {
-        root.highlightedMembers = root.highlightedMembers.filter(m => m.uri !== member);
-    }
-
-    onHighlightedChanged: ConversationsAdapter.ignoreFiltering(root.highlighted)
-
-    onHighlightedMembersChanged: {
-        if (inNewSwarm) {
-            const newSwarmPage = viewCoordinator.getView("NewSwarmPage");
-            newSwarmPage.members = highlightedMembers;
-        } else if (inCreateFeed) {
-            const createFeedPage = viewCoordinator.getView("CreateFeedPage");
-            createFeedPage.members = highlightedMembers;
         }
     }
 
@@ -341,7 +217,6 @@ SidePanelBase {
                                 // not calling positionViewAtBeginning will cause
                                 // sort animation visual bugs
                                 conversationListView.positionViewAtBeginning();
-                                ConversationsAdapter.ignoreFiltering(root.highlighted);
                                 ConversationsAdapter.setFilter(text);
                             }
 
@@ -380,18 +255,10 @@ SidePanelBase {
                             padding: 0
                             visible: CurrentAccount.type !== Profile.Type.SIP
 
-                            Accessible.name: inMemberSelection ? JamiStrings.close
-                                                              : JamiStrings.newGroup + " / " + JamiStrings.createNewFeed
+                            Accessible.name: JamiStrings.newGroup + " / " + JamiStrings.createNewFeed
 
                             onClicked: {
-                                if (inMemberSelection) {
-                                    if (inNewSwarm)
-                                        toggleCreateSwarmView();
-                                    else
-                                        closeCreateFeedView();
-
-                                    contactSearchBar.forceActiveFocus();
-                                } else if (creationPopup.visible) {
+                                if (creationPopup.visible) {
                                     creationPopup.close();
                                 } else {
                                     creationPopup.open();
@@ -409,14 +276,6 @@ SidePanelBase {
                                 sourceSize.height: 20
 
                                 color: JamiTheme.textColor
-
-                                rotation: inMemberSelection ? 45 : 0
-
-                                Behavior on rotation {
-                                    NumberAnimation {
-                                        duration: JamiTheme.shortFadeDuration
-                                    }
-                                }
                             }
 
                             background: Rectangle {
@@ -454,12 +313,12 @@ SidePanelBase {
                                             {
                                                 buttonLabel: JamiStrings.newGroup,
                                                 buttonIcon: "qrc:/icons/create_swarm_24dp.svg",
-                                                buttonAction: "createGroup"
+                                                isFeed: false
                                             },
                                             {
                                                 buttonLabel: JamiStrings.createNewFeed,
                                                 buttonIcon: "qrc:/icons/create_feed_24dp.svg",
-                                                buttonAction: "createFeed"
+                                                isFeed: true
                                             }
                                         ]
 
@@ -471,14 +330,8 @@ SidePanelBase {
                                             iconSource: modelData.buttonIcon
 
                                             onClicked: {
-                                                const action = modelData.buttonAction;
                                                 creationPopup.close();
-                                                if (action === "createGroup")
-                                                    toggleCreateSwarmView();
-                                                else
-                                                    openCreateFeedView();
-
-                                                contactSearchBar.forceActiveFocus();
+                                                openCreateConversationDialog(modelData.isFeed);
                                             }
                                         }
                                     }
@@ -514,7 +367,7 @@ SidePanelBase {
 
                         spacing: conversationLayout.spacing
                         visible: CurrentAccount.type !== Profile.Type.SIP &&
-                                 !contactSearchBar.textContent && !inMemberSelection
+                                 !contactSearchBar.textContent
                     }
 
                     DonationBanner {
@@ -527,64 +380,20 @@ SidePanelBase {
                         visible: JamiQmlUtils.isDonationBannerVisible
                     }
 
-                    JamiListView {
-                        id: swarmCurrentConversationList
+                    Timer {
+                        id: locationIconTimer
 
-                        objectName: "memberConversationList"
-                        Layout.fillWidth: true
-                        Layout.fillHeight: true
+                        property bool showIconArrow: true
+                        property bool isSharingPosition:
+                            PositionManager.positionShareConvIdsCount !== 0
+                        property bool isReceivingPosition: PositionManager.sharingUrisCount
+                                                           !== 0
 
-                        activeFocusOnTab: true
-
-                        model: SortFilterProxyModel {
-                            sourceModel: ConversationsAdapter.convListProxyModel
-                            filters: [
-                                ValueFilter {
-                                    roleName: "IsRequest"
-                                    value: false
-                                },
-                                ValueFilter {
-                                    roleName: "Mode"
-                                    value: Conversation.Mode.FEED
-                                    inverted: true
-                                    enabled: root.inNewSwarm
-                                }
-                            ]
-                        }
-
-                        delegate: SmartListItemDelegate {
-                            interactive: false
-                            highlighted: root.isHighlighted(Uris)
-                            showLocationIconArrow: locationIconTimer.showIconArrow
-
-                            onVisibleChanged: {
-                                if (!swarmCurrentConversationList.visible)
-                                    root.clearHighlighted();
-                            }
-
-                            onSelectionToggled: {
-                                root.toggleHighlighted(UID, Uris);
-                                root.clearContactSearchBar();
-                            }
-                        }
-
-                        visible: inMemberSelection && !root.isEmptyAccount
-
-                        Timer {
-                            id: locationIconTimer
-
-                            property bool showIconArrow: true
-                            property bool isSharingPosition:
-                                PositionManager.positionShareConvIdsCount !== 0
-                            property bool isReceivingPosition: PositionManager.sharingUrisCount
-                                                               !== 0
-
-                            interval: 750
-                            running: isSharingPosition || isReceivingPosition
-                            repeat: true
-                            onTriggered: {
-                                showIconArrow = !showIconArrow;
-                            }
+                        interval: 750
+                        running: isSharingPosition || isReceivingPosition
+                        repeat: true
+                        onTriggered: {
+                            showIconArrow = !showIconArrow;
                         }
                     }
 
@@ -598,7 +407,7 @@ SidePanelBase {
                         Layout.maximumHeight: Math.max(0, (conversationLayout.height - header.height + 10 +
                                                            (donationBanner.visible ? donationBanner.height + conversationLayout.spacing : 0)) / 2)
 
-                        visible: !inMemberSelection && contactSearchBar.textContent
+                        visible: contactSearchBar.textContent
                         activeFocusOnTab: true
 
                         model: ConversationsAdapter.searchListProxyModel
@@ -651,7 +460,7 @@ SidePanelBase {
                         Layout.rightMargin: 32
                         Layout.alignment: Qt.AlignTop
 
-                        visible: !inMemberSelection && contactSearchBar.textContent && searchResultsListView.count === 0
+                        visible: contactSearchBar.textContent && searchResultsListView.count === 0
 
                         color: JamiTheme.textColor
                         wrapMode: Text.WordWrap
@@ -674,7 +483,7 @@ SidePanelBase {
                         Layout.fillWidth: true
                         Layout.fillHeight: true
 
-                        visible: !inMemberSelection && !root.isEmptyAccount
+                        visible: !root.isEmptyAccount
 
                         model: ConversationsAdapter.convListProxyModel
                         headerLabel: JamiStrings.conversations
@@ -757,8 +566,7 @@ SidePanelBase {
                             NewIconButton {
                                 Layout.alignment: Qt.AlignHCenter
 
-                                iconSource: inMemberSelection ? JamiResources.emotion_sad_line_24dp_svg :
-                                                                JamiResources.ghost_line_24dp_svg
+                                iconSource: JamiResources.ghost_line_24dp_svg
                                 iconSize: JamiTheme.iconButtonExtraLarge
 
                                 enabled: false
@@ -768,8 +576,7 @@ SidePanelBase {
                                 Layout.alignment: Qt.AlignHCenter
 
                                 Layout.maximumWidth: conversationListRect.width - 32
-                                text: inMemberSelection ? JamiStrings.noContactsToChooseFrom :
-                                      ConversationsAdapter.category === ConversationListProxyModel.Feeds ? JamiStrings.noFeeds :
+                                text: ConversationsAdapter.category === ConversationListProxyModel.Feeds ? JamiStrings.noFeeds :
                                       ConversationsAdapter.invitationsOnly ? JamiStrings.noInvitations :
                                       ConversationsAdapter.category === ConversationListProxyModel.Groups ? JamiStrings.noGroupConversations :
                                       JamiStrings.noConversations
@@ -790,16 +597,11 @@ SidePanelBase {
                                 color: JamiTheme.buttonTintedBlue
                                 iconSource: JamiResources.add_24dp_svg
                                 text: JamiStrings.addAContact
-                                visible: inMemberSelection ||
-                                         (!ConversationsAdapter.invitationsOnly &&
-                                          (ConversationsAdapter.category === ConversationListProxyModel.All ||
-                                           ConversationsAdapter.category === ConversationListProxyModel.OneToOne))
+                                visible: !ConversationsAdapter.invitationsOnly &&
+                                         (ConversationsAdapter.category === ConversationListProxyModel.All ||
+                                          ConversationsAdapter.category === ConversationListProxyModel.OneToOne)
 
                                 onClicked: {
-                                    if (inNewSwarm)
-                                        toggleCreateSwarmView();
-                                    else if (inCreateFeed)
-                                        closeCreateFeedView();
                                     contactSearchBar.forceActiveFocus();
                                 }
                             }
@@ -811,7 +613,7 @@ SidePanelBase {
                     id: gradientRectTop
 
                     readonly property color baseColor: JamiTheme.globalIslandColor
-                    readonly property bool shouldShow: (!inMemberSelection && !conversationListView.atYBeginning) || (inMemberSelection && !swarmCurrentConversationList.atYBeginning)
+                    readonly property bool shouldShow: !conversationListView.atYBeginning
 
                     anchors.top: conversationLayout.top
                     anchors.topMargin: header.height + JamiTheme.sidePanelConversationsIslandTopPadding + 10 + (sidePanelTabBar.visible ? sidePanelTabBar.height : 0) + (JamiQmlUtils.isMacOS26OrLater ? JamiTheme.sidePanelTopPaddingMac : 0)
@@ -855,7 +657,7 @@ SidePanelBase {
                     id: gradientRect
 
                     readonly property color baseColor: JamiTheme.globalIslandColor
-                    readonly property bool shouldShow: (!inMemberSelection && !conversationListView.atYEnd) || (inMemberSelection && !swarmCurrentConversationList.atYEnd)
+                    readonly property bool shouldShow: !conversationListView.atYEnd
 
                     anchors.bottom: conversationLayout.bottom
                     anchors.bottomMargin: -1
