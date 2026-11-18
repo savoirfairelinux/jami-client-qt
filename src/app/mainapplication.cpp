@@ -50,6 +50,8 @@
 #include <utility>
 
 #ifdef Q_OS_WIN
+#include "platform/windows/accessibilityrecursionguard.h"
+
 #include <windows.h>
 #endif
 
@@ -186,6 +188,12 @@ MainApplication::MainApplication(int& argc, char** argv)
     }
 
     parseArguments();
+
+#ifdef Q_OS_WIN
+    // Must be installed before any window is created so that every native
+    // window is protected against accessibility request recursion.
+    installEventFilter(new AccessibilityRecursionGuard(this));
+#endif
 
     // Adjust the log levels as needed (as logging categories are added).
     // Note: the following will cause detailed Qt logging and effectively spam the console
