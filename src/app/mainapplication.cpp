@@ -53,6 +53,10 @@
 #include <windows.h>
 #endif
 
+#ifdef JAMI_ACCESSIBILITY_RECURSION_GUARD
+#include "platform/windows/accessibilityrecursionguard.h"
+#endif
+
 #ifdef Q_OS_UNIX
 #include "globalinstances.h"
 #include "dbuserrorhandler.h"
@@ -186,6 +190,12 @@ MainApplication::MainApplication(int& argc, char** argv)
     }
 
     parseArguments();
+
+#ifdef JAMI_ACCESSIBILITY_RECURSION_GUARD
+    // Must be installed before any window is created so that every native
+    // window is protected against accessibility request recursion.
+    installEventFilter(new AccessibilityRecursionGuard(this));
+#endif
 
     // Adjust the log levels as needed (as logging categories are added).
     // Note: the following will cause detailed Qt logging and effectively spam the console
