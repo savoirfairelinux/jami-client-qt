@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cb501c23_b37fcb6f",
+        "filename": "src/app/conversationsadapter.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 629,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-18T16:29:44Z",
+      "side": 1,
+      "message": "[warning] Line 629: 🟡 This catch-all path can be hit repeatedly while QML polls stale conversation ids, producing noisy warning logs and avoidable runtime overhead. Consider using a categorized/rate-limited warning (or lower log level for expected teardown races) so production logs remain actionable.",
+      "revId": "35599554a41f3c199f6a3d58721259f6f24a6d62",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9b9be7b4_81d478f5",
+        "filename": "src/app/conversationsadapter.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 676,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-18T16:29:44Z",
+      "side": 1,
+      "message": "[error] Line 676: 🔴 `accountInfo.conversationModel` is dereferenced multiple times without a null check (`title`, `description`, `peersForConversation`). During account teardown, `hasAccount()` may still be true while the model pointer is already cleared, which would cause a hard crash (not an exception) and bypass the new exception-safety wrapper. Guard the pointer once after `getAccountInfo` (e.g., `if (!accountInfo.conversationModel) return {};`) and use that validated pointer for all accesses.",
+      "revId": "35599554a41f3c199f6a3d58721259f6f24a6d62",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
