@@ -47,6 +47,7 @@ BaseModalDialog {
 
     titleText: isFeed ? JamiStrings.createNewFeed : JamiStrings.newGroup
     title: titleText
+    headerLeadingButton: !detailsStep && !creating ? picker.helpButton : null
     autoClose: !creating
 
     closeButtonVisible: !creating
