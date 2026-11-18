@@ -27,6 +27,24 @@ StackLayout {
 
     // The index of the tab in the swarm details panel.
     property int detailsIndex: -1
+    property var inviteMembersDialog: null
+
+    function openInviteMembersDialog(focusItem) {
+        if (inviteMembersDialog || !CurrentConversation.canAddMember)
+            return;
+        inviteMembersDialog = viewCoordinator.presentDialog(appWindow.contentItem, "mainview/components/InviteMembersDialog.qml", {
+            "viewCoordinator": viewCoordinator,
+            "conversationId": CurrentConversation.id,
+            "isFeed": CurrentConversation.isFeedMode
+        }, true);
+        if (!inviteMembersDialog)
+            return;
+        inviteMembersDialog.closed.connect(() => {
+            root.inviteMembersDialog = null;
+            if (focusItem && focusItem.visible)
+                focusItem.forceActiveFocus();
+        });
+    }
 
     // Best to avoid using the visible property directly.
     // Pass through the following open/close wrappers instead.
@@ -85,18 +103,6 @@ StackLayout {
             MessagesAdapter.threadMessageListModel.threadId = "";
     }
 
-    Connections {
-        target: CurrentConversation.members
-
-        function onCountChanged() {
-            // Close the panel if there are 8 or more members in the
-            // conversation AND the "Add Member" panel is currently open.
-            if (CurrentConversation.members.count >= 8 && isOpen(ChatView.AddMemberPanel)) {
-                closePanel();
-            }
-        }
-    }
-
     Loader {
         active: root.isOpen(ChatView.SwarmDetailsPanel)
         sourceComponent: SwarmDetailsPanel {}
@@ -105,11 +111,6 @@ StackLayout {
     Loader {
         active: root.isOpen(ChatView.MessagesResearchPanel)
         sourceComponent: MessagesResearchPanel {}
-    }
-
-    Loader {
-        active: root.isOpen(ChatView.AddMemberPanel)
-        sourceComponent: AddMemberPanel {}
     }
 
     Loader {
