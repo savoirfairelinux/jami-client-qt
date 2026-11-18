@@ -204,6 +204,46 @@ ItemDelegate {
                     color: JamiTheme.textColor
                 }
             }
+            // Identity details shown when picking conversations
+            RowLayout {
+                id: pickerDetails
+
+                readonly property string text: {
+                    if (!IsCoreDialog)
+                        return (MemberCount === 1 ? JamiStrings.oneMember : JamiStrings.members).arg(MemberCount || 0);
+                    if (Alias && Title === Alias)
+                        return RegisteredName || URI || "";
+                    if (RegisteredName && Title === RegisteredName)
+                        return URI || "";
+                    return "";
+                }
+
+                visible: !interactive && text !== ""
+                Layout.fillWidth: true
+                Layout.minimumHeight: 20
+                Layout.alignment: Qt.AlignTop
+                spacing: 4
+
+                IconImage {
+                    Layout.alignment: Qt.AlignVCenter
+                    source: IsCoreDialog ? JamiResources.jami_id_logo_new_24dp_svg : JamiResources.groups_24dp_svg
+                    sourceSize.width: JamiTheme.iconButtonSmall
+                    sourceSize.height: JamiTheme.iconButtonSmall
+                    color: JamiTheme.textColor
+                }
+
+                Text {
+                    Layout.fillWidth: true
+                    Layout.alignment: Qt.AlignVCenter
+                    horizontalAlignment: Text.AlignLeft
+                    elide: Text.ElideMiddle
+                    text: pickerDetails.text
+                    textFormat: TextEdit.PlainText
+                    font.pointSize: JamiTheme.smallFontSize
+                    font.family: IsCoreDialog && text === URI ? JamiTheme.ubuntuMonoFontFamily : JamiTheme.ubuntuFontFamily
+                    color: JamiTheme.textColor
+                }
+            }
             Text {
                 Layout.fillWidth: true
                 Layout.minimumHeight: 20
