@@ -76,6 +76,9 @@ public:
                                    const QString& description,
                                    const QString& avatar,
                                    const VectorString& participants);
+    Q_INVOKABLE QVariantMap invitationCandidates(const QString& conversationId,
+                                                 const QStringList& sourceConversationIds) const;
+    Q_INVOKABLE bool inviteToConversation(const QString& conversationId, const QStringList& sourceConversationIds);
     Q_INVOKABLE void setFilter(const QString& filterString);
     Q_INVOKABLE void setFilterAndSelect(const QString& filterString);
     Q_INVOKABLE void ignoreFiltering(const QVariant& hightlighted);

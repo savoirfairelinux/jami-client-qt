@@ -913,6 +913,51 @@ ConversationsAdapter::participantsFromConversations(const QStringList& conversat
     return participants;
 }
 
+QVariantMap
+ConversationsAdapter::invitationCandidates(const QString& conversationId, const QStringList& sourceConversationIds) const
+{
+    const auto* model = lrcInstance_->getCurrentConversationModel();
+    if (!model)
+        return {};
+    const auto conversation = model->getConversationForUid(conversationId);
+    if (!conversation)
+        return {};
+    const auto& info = conversation->get();
+    if (info.isCoreDialog() || info.isRequest || info.needsSyncing
+        || !model->isActionPermitted(conversationId, permissions::Permission::AddMember))
+        return {};
+
+    QStringList lockedUris {model->owner.profileInfo.uri};
+    for (const auto& participant : info.participants) {
+        if (isActiveMember(participant.role) && !lockedUris.contains(participant.uri))
+            lockedUris.push_back(participant.uri);
+    }
+
+    QStringList uris;
+    const auto participants = participantsFromConversations(sourceConversationIds);
+    if (participants) {
+        for (const auto& uri : *participants) {
+            if (!lockedUris.contains(uri))
+                uris.push_back(uri);
+        }
+    }
+    return {{"lockedUris", lockedUris}, {"uris", uris}};
+}
+
+bool
+ConversationsAdapter::inviteToConversation(const QString& conversationId, const QStringList& sourceConversationIds)
+{
+    auto* model = lrcInstance_->getCurrentConversationModel();
+    if (!model)
+        return false;
+    const auto uris = invitationCandidates(conversationId, sourceConversationIds).value("uris").toStringList();
+    if (uris.isEmpty())
+        return false;
+    for (const auto& uri : uris)
+        model->addConversationMember(conversationId, uri);
+    return true;
+}
+
 QString
 ConversationsAdapter::createFeed(const QString& title,
                                  const QString& description,
