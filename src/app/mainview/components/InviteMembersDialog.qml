@@ -36,6 +36,7 @@ BaseModalDialog {
 
     titleText: JamiStrings.inviteMembers
     title: titleText
+    headerLeadingButton: !inviting ? picker.helpButton : null
     implicitWidth: Math.min(400, parent ? Math.max(0, parent.width - 64) : 400)
     height: Math.min(parent.height * 0.7, Math.max(0, parent.height - 64))
     autoClose: !inviting

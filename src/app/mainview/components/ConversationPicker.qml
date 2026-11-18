@@ -32,6 +32,19 @@ ColumnLayout {
     property var selectedConversations: []
     readonly property var selectedIds: selectedConversations.map(conversation => conversation.id)
 
+    readonly property Component helpButton: NewIconButton {
+        QWKSetParentHitTestVisible {}
+
+        objectName: "conversationTypeHelpButton"
+        iconSource: JamiResources.bidirectional_help_outline_24dp_svg
+        iconSize: JamiTheme.iconButtonMedium
+        toolTipText: root.isFeed ? qsTr("What is a feed?") : qsTr("What is a group?")
+        onClicked: root.viewCoordinator.presentDialog(root, "commoncomponents/ConversationTypeInfoPopup.qml", {
+            "titleText": toolTipText,
+            "isFeed": root.isFeed
+        })
+    }
+
     spacing: 4
 
     function focusSearch() {
@@ -90,9 +103,9 @@ ColumnLayout {
     Rectangle {
         Layout.fillWidth: true
         Layout.preferredHeight: Math.min(chipFlow.implicitHeight + 16, root.height * 0.3)
-        radius: 24
+        radius: 25
         color: JamiTheme.transparentColor
-        border.width: 2
+        border.width: 1
         border.color: JamiTheme.chatViewFooterRectangleBorderColor
         visible: root.selectedConversations.length > 0
 
@@ -109,7 +122,7 @@ ColumnLayout {
             Flow {
                 id: chipFlow
                 width: Math.max(0, parent.width - 8)
-                spacing: 6
+                spacing: 4
 
                 Repeater {
                     model: root.selectedConversations
@@ -126,29 +139,6 @@ ColumnLayout {
                     }
                 }
             }
-        }
-    }
-
-    RowLayout {
-        Layout.alignment: Qt.AlignHCenter
-        Layout.fillWidth: false
-
-        Text {
-            text: helpButton.toolTipText
-            color: JamiTheme.textColor
-            font.pointSize: JamiTheme.textFontSize
-        }
-
-        NewIconButton {
-            id: helpButton
-            objectName: "conversationTypeHelpButton"
-            iconSource: JamiResources.bidirectional_help_outline_24dp_svg
-            iconSize: JamiTheme.iconButtonMedium
-            toolTipText: root.isFeed ? qsTr("What is a feed?") : qsTr("What is a group?")
-            onClicked: root.viewCoordinator.presentDialog(root, "commoncomponents/ConversationTypeInfoPopup.qml", {
-                "titleText": toolTipText,
-                "isFeed": root.isFeed
-            })
         }
     }
 
