@@ -624,16 +624,38 @@ ConversationsAdapter::ignoreFiltering(const QVariant& hightlighted)
 QVariantMap
 ConversationsAdapter::getConvInfoMap(const QString& convId)
 {
+    // The conversation, its account or an associated call may be removed
+    // while QML is still querying it, so this must never throw.
+    try {
+        return getConvInfoMapImpl(convId);
+    } catch (const std::exception& e) {
+        qWarning() << "Unable to get conversation info for" << convId << ":" << e.what();
+    } catch (...) {
+        qWarning() << "Unable to get conversation info for" << convId;
+    }
+    return {};
+}
+
+QVariantMap
+ConversationsAdapter::getConvInfoMapImpl(const QString& convId)
+{
     const auto& convInfo = lrcInstance_->getConversationFromConvUid(convId);
     if (convInfo.participants.empty())
+        return {};
+    if (!lrcInstance_->accountModel().hasAccount(convInfo.accountId))
         return {};
     QString peerUri {};
     QString bestId {};
     const auto& accountInfo = lrcInstance_->getAccountInfo(convInfo.accountId);
+    // The account's models may already be released during account teardown.
+    const auto& convModel = accountInfo.conversationModel;
+    if (!convModel)
+        return {};
     if (convInfo.isCoreDialog()) {
         try {
-            peerUri = accountInfo.conversationModel->peersForConversation(convId).at(0);
-            bestId = accountInfo.contactModel->bestIdForContact(peerUri);
+            peerUri = convModel->peersForConversation(convId).at(0);
+            if (accountInfo.contactModel)
+                bestId = accountInfo.contactModel->bestIdForContact(peerUri);
         } catch (...) {
         }
     }
@@ -655,10 +677,10 @@ ConversationsAdapter::getConvInfoMap(const QString& convId)
     }
     return {{"convId", convId},
             {"bestId", bestId},
-            {"title", lrcInstance_->getCurrentConversationModel()->title(convId)},
-            {"description", lrcInstance_->getCurrentConversationModel()->description(convId)},
+            {"title", convModel->title(convId)},
+            {"description", convModel->description(convId)},
             {"uri", peerUri},
-            {"uris", accountInfo.conversationModel->peersForConversation(convId)},
+            {"uris", convModel->peersForConversation(convId)},
             {"isSwarm", convInfo.isSwarm()},
             {"isRequest", convInfo.isRequest},
             {"needsSyncing", convInfo.needsSyncing},
