@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8687b910_bb59cbd2",
+        "filename": "CMakeLists.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 832,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-18T16:49:05Z",
+      "side": 1,
+      "message": "[warning] Line 832: 🟡 This change is gated under `if(MSVC)` while usage is gated by `#ifdef Q_OS_WIN` in code, so non-MSVC Windows builds would reference `AccessibilityRecursionGuard` without compiling its implementation. Move the Windows guard source/header inclusion to a Windows-wide condition (e.g., `WIN32`) or gate the C++ usage the same way as CMake to keep build conditions consistent.",
+      "revId": "8fdb447f5791e8d2e8e2f0e515ffc919c76a84c0",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
