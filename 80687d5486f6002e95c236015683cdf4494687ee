@@ -36,6 +36,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f2ee0f83_ca28ce62",
+        "filename": "src/app/conversationsadapter.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 935,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-11-18T20:14:58Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "a2ac8db1_a9407c5b",
+      "revId": "80687d5486f6002e95c236015683cdf4494687ee",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "42b9ef0c_bba99194",
