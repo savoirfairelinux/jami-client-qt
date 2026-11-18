@@ -23,6 +23,7 @@
 
 #include <QAbstractListModel>
 #include <QObject>
+#include <QPointer>
 #include <QQmlEngine>
 #include <QSortFilterProxyModel>
 #include <QQuickItem>
@@ -41,7 +42,9 @@ Q_ENUM_NS(Role)
 
 struct Item
 {
-    QObject* itemAction;
+    // Guarded: the actions are QML objects that may be destroyed while
+    // the model (a singleton) outlives them.
+    QPointer<QObject> itemAction;
     bool enabled {true};
     int urgentCount {0};
 };
@@ -114,6 +117,8 @@ public:
     void clearData();
 
 private:
+    void removeDestroyedItems();
+
     QList<CallControl::Item> data_;
 };
 

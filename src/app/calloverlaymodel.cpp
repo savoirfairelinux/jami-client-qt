@@ -201,11 +201,13 @@ CallControlListModel::data(const QModelIndex& index, int role) const
         return QVariant();
 
     using namespace CallControl;
-    auto item = data_.at(index.row());
+    if (index.row() >= data_.size())
+        return QVariant();
+    const auto& item = data_.at(index.row());
 
     switch (role) {
     case CallControl::Role::ItemAction:
-        return QVariant::fromValue(item.itemAction);
+        return QVariant::fromValue(item.itemAction.data());
     case CallControl::Role::UrgentCount:
         return QVariant::fromValue(item.urgentCount);
     case CallControl::Role::Enabled:
@@ -229,7 +231,11 @@ void
 CallControlListModel::setUrgentCount(QVariant item, int count)
 {
     const auto* obj = item.value<QObject*>();
-    auto it = std::find_if(data_.cbegin(), data_.cend(), [obj](const auto& item) { return item.itemAction == obj; });
+    if (!obj)
+        return;
+    auto it = std::find_if(data_.cbegin(), data_.cend(), [obj](const auto& item) {
+        return item.itemAction.data() == obj;
+    });
     if (it != data_.cend()) {
         auto row = std::distance(data_.cbegin(), it);
         if (row >= rowCount())
@@ -243,31 +249,59 @@ CallControlListModel::setUrgentCount(QVariant item, int count)
 void
 CallControlListModel::setEnabled(QObject* obj, bool enabled)
 {
+    if (!obj)
+        return;
+    auto it = std::find_if(data_.cbegin(), data_.cend(), [obj](const auto& item) {
+        return item.itemAction.data() == obj;
+    });
+    if (it == data_.cend())
+        return;
+    auto row = std::distance(data_.cbegin(), it);
     beginResetModel();
-    auto it = std::find_if(data_.cbegin(), data_.cend(), [obj](const auto& item) { return item.itemAction == obj; });
-    if (it != data_.cend()) {
-        auto row = std::distance(data_.cbegin(), it);
-        if (row >= rowCount())
-            return;
-        data_[row].enabled = enabled;
-        auto idx = index(row, 0);
-        Q_EMIT dataChanged(idx, idx);
-    }
+    data_[row].enabled = enabled;
     endResetModel();
 }
 
 void
 CallControlListModel::addItem(const CallControl::Item& item)
 {
+    if (!item.itemAction)
+        return;
     beginResetModel();
     data_.append(item);
     endResetModel();
+    // Drop the entry as soon as the action is destroyed so that QML never
+    // receives a dangling QObject pointer through the ItemAction role.
+    connect(item.itemAction.data(),
+            &QObject::destroyed,
+            this,
+            &CallControlListModel::removeDestroyedItems,
+            Qt::UniqueConnection);
 }
 
 void
 CallControlListModel::clearData()
 {
+    beginResetModel();
+    for (const auto& item : std::as_const(data_)) {
+        if (item.itemAction)
+            disconnect(item.itemAction.data(), &QObject::destroyed, this, &CallControlListModel::removeDestroyedItems);
+    }
     data_.clear();
+    endResetModel();
+}
+
+void
+CallControlListModel::removeDestroyedItems()
+{
+    // QPointer guards are already cleared when QObject::destroyed is emitted.
+    for (auto row = data_.size() - 1; row >= 0; --row) {
+        if (data_.at(row).itemAction)
+            continue;
+        beginRemoveRows(QModelIndex(), row, row);
+        data_.removeAt(row);
+        endRemoveRows();
+    }
 }
 
 CallOverlayModel::CallOverlayModel(LRCInstance* instance, PTTListener* listener, QObject* parent)
