@@ -28,6 +28,7 @@ Control {
     // outlinedChip is enabled specifically
     property bool filledChip: !outlinedChip
     property bool outlinedChip: false
+    property bool neutralChip: false
 
     property color color: JamiTheme.tintedBlue
 
@@ -40,14 +41,14 @@ Control {
     property string avatarId: ""
     property real maximumWidth: -1
 
-    leftPadding: background.radius - (avatar.height / 2)
-    rightPadding: background.radius - (trailingIconButton.height / 2)
+    leftPadding: neutralChip ? (avatarId.length > 0 ? 4 : 8) : background.radius - (avatar.height / 2)
+    rightPadding: neutralChip ? (iconSource.length > 0 ? 4 : 8) : background.radius - (trailingIconButton.height / 2)
     topPadding: JamiTheme.jamiChipVerticalPadding
     bottomPadding: JamiTheme.jamiChipVerticalPadding
 
     activeFocusOnTab: true
 
-    scale: root.hovered || root.activeFocus ? JamiTheme.jamiChipHoveredScaleValue : 1.0
+    scale: !root.neutralChip && (root.hovered || root.activeFocus) ? JamiTheme.jamiChipHoveredScaleValue : 1.0
     Behavior on scale {
         NumberAnimation {
             duration: JamiTheme.shortFadeDuration
@@ -57,7 +58,7 @@ Control {
     contentItem: Row {
         id: chipContent
 
-        spacing: 2
+        spacing: root.neutralChip ? 4 : 2
 
         Avatar {
             id: avatar
@@ -88,6 +89,8 @@ Control {
             }
 
             color: {
+                if (root.neutralChip)
+                    return JamiTheme.textColor;
                 if (root.filledChip) {
                     return JamiTheme.whiteColor;
                 } else if (root.outlinedChip) {
@@ -116,11 +119,17 @@ Control {
 
             anchors.verticalCenter: parent.verticalCenter
 
+            width: root.neutralChip ? 24 : implicitWidth
+            height: root.neutralChip ? 24 : implicitHeight
             padding: 0
             horizontalPadding: 0
 
             icon.source: root.iconSource
             icon.color: {
+                if (root.neutralChip) {
+                    const ink = JamiTheme.textColor;
+                    return Qt.rgba(ink.r, ink.g, ink.b, hovered || activeFocus ? 0.9 : 0.6);
+                }
                 if (root.filledChip) {
                     return JamiTheme.whiteColor;
                 } else if (root.outlinedChip) {
@@ -137,7 +146,7 @@ Control {
                 }
             }
 
-            scale: trailingIconButton.hovered || trailingIconButton.activeFocus ? JamiTheme.jamiChipIconButtonHoveredScaleValue : 1.0
+            scale: !root.neutralChip && (hovered || activeFocus) ? JamiTheme.jamiChipIconButtonHoveredScaleValue : 1.0
             Behavior on scale {
                 NumberAnimation {
                     duration: JamiTheme.shortFadeDuration
@@ -168,6 +177,11 @@ Control {
         radius: height / 2
 
         color: {
+            if (root.neutralChip) {
+                const ink = JamiTheme.textColor;
+                const opacity = JamiTheme.darkTheme ? 0.16 : 0.08;
+                return Qt.rgba(ink.r, ink.g, ink.b, opacity + (root.hovered || root.activeFocus ? 0.06 : 0));
+            }
             if (root.filledChip) {
                 return root.color;
             } else if (root.outlinedChip) {
@@ -180,7 +194,7 @@ Control {
         }
 
         border.color: JamiTheme.tintedBlue
-        border.width: root.outlinedChip ? 1 : 0
+        border.width: root.outlinedChip && !root.neutralChip ? 1 : 0
 
         Behavior on color {
             ColorAnimation {

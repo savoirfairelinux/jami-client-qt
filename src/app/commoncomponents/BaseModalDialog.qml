@@ -27,6 +27,7 @@ Dialog {
 
     // Header
     property alias titleText: titleText.text
+    property alias headerLeadingButton: leadingHeaderLoader.sourceComponent
     property bool autoClose: true
     property bool closeButtonVisible: true
 
@@ -67,11 +68,14 @@ Dialog {
     padding: dialogPadding
 
     header: RowLayout {
-        Item {
-            // Balance the close button so the title stays centered.
-            visible: root.closeButtonVisible
+        Loader {
+            id: leadingHeaderLoader
+
+            visible: root.closeButtonVisible || sourceComponent !== null
             Layout.preferredWidth: closeButton.implicitWidth
+            Layout.alignment: Qt.AlignVCenter
             Layout.leftMargin: root.dialogPadding
+            Layout.topMargin: sourceComponent ? root.dialogPadding : 0
         }
 
         Label {
@@ -79,7 +83,7 @@ Dialog {
 
             Layout.fillWidth: true
             Layout.alignment: Qt.AlignCenter
-            Layout.leftMargin: root.closeButtonVisible ? 0 : root.dialogPadding
+            Layout.leftMargin: leadingHeaderLoader.visible ? 0 : root.dialogPadding
             Layout.rightMargin: Layout.leftMargin
             Layout.topMargin: root.dialogPadding
 
@@ -90,7 +94,7 @@ Dialog {
             font.weight: Font.Medium
             font.pointSize: JamiTheme.menuFontSize
 
-            visible: text.length > 0 || root.closeButtonVisible
+            visible: text.length > 0 || leadingHeaderLoader.visible
         }
 
         NewIconButton {
@@ -108,6 +112,13 @@ Dialog {
             visible: closeButtonVisible
 
             onClicked: close()
+        }
+
+        Item {
+            // Balance the leading button when there is no close button.
+            visible: !root.closeButtonVisible && root.headerLeadingButton !== null
+            Layout.preferredWidth: closeButton.implicitWidth
+            Layout.rightMargin: root.dialogPadding
         }
     }
 
