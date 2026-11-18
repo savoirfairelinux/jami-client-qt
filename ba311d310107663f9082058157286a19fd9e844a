@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "db397542_070d2eae",
+        "filename": "src/app/previewengine.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-18T16:45:24Z",
+      "side": 1,
+      "message": "[error] Line 76: 🔴 `parser_` is a `QObject` moved to `parserThread_`, but `parser_.reset()` here destroys it from the caller thread after `wait()`. That violates Qt object thread-affinity expectations and can cause undefined behavior/crashes on some platforms. Destroy the parser on its owning thread before shutdown (for example via `QMetaObject::invokeMethod(..., Qt::BlockingQueuedConnection)` to run deletion in `parserThread_`), then `quit()`/`wait()` the thread.",
+      "revId": "ba311d310107663f9082058157286a19fd9e844a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
