@@ -46,7 +46,7 @@ Dialog {
     // ADDRESS THIS
     property int maximumPopupWidth: 560
 
-    property real dialogPadding: 12
+    property real dialogPadding: 16
 
     anchors.centerIn: parent
 
@@ -64,24 +64,33 @@ Dialog {
     focus: true
     closePolicy: autoClose ? (Popup.CloseOnEscape | Popup.CloseOnPressOutside) : Popup.NoAutoClose
 
-    padding: 30
+    padding: dialogPadding
 
     header: RowLayout {
+        Item {
+            // Balance the close button so the title stays centered.
+            visible: root.closeButtonVisible
+            Layout.preferredWidth: closeButton.implicitWidth
+            Layout.leftMargin: root.dialogPadding
+        }
+
         Label {
             id: titleText
 
             Layout.fillWidth: true
             Layout.alignment: Qt.AlignCenter
-            Layout.leftMargin: root.dialogPadding
+            Layout.leftMargin: root.closeButtonVisible ? 0 : root.dialogPadding
+            Layout.rightMargin: Layout.leftMargin
             Layout.topMargin: root.dialogPadding
 
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
+            elide: Text.ElideRight
             color: JamiTheme.textColor
-            font.weight: Font.Light
+            font.weight: Font.Medium
             font.pointSize: JamiTheme.menuFontSize
 
-            visible: text.length > 0
+            visible: text.length > 0 || root.closeButtonVisible
         }
 
         NewIconButton {
@@ -111,61 +120,65 @@ Dialog {
         }
     }
 
-    footer: RowLayout {
-
-        spacing: 8
+    footer: Item {
+        implicitWidth: actions.implicitWidth + 2 * root.dialogPadding
+        implicitHeight: actions.implicitHeight + root.dialogPadding
         visible: button1.text.length > 0 || button2.text.length > 0 || button3.text.length > 0
 
-        NewMaterialButton {
-            id: leftButton
+        RowLayout {
+            id: actions
 
-            Layout.fillWidth: true
-            Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
-            Layout.leftMargin: root.dialogPadding
-            Layout.rightMargin: centerButton.visible || rightButton.visible ? 0 : root.dialogPadding
-            Layout.bottomMargin: root.dialogPadding
+            anchors.fill: parent
+            anchors.leftMargin: root.dialogPadding
+            anchors.rightMargin: root.dialogPadding
+            anchors.bottomMargin: root.dialogPadding
 
-            visible: text.length > 0
-            textButton: true
+            spacing: 8
+            uniformCellSizes: true
 
-            DialogButtonBox.buttonRole: root.button1Role
-        }
+            NewMaterialButton {
+                id: leftButton
 
-        NewMaterialButton {
-            id: centerButton
+                Layout.fillWidth: true
+                Layout.minimumWidth: implicitWidth
+                Layout.preferredHeight: 35
 
-            Layout.fillWidth: true
-            Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
-            Layout.leftMargin: leftButton.visible ? 0 : root.dialogPadding
-            Layout.rightMargin: rightButton.visible ? 0 : root.dialogPadding
-            Layout.bottomMargin: root.dialogPadding
+                visible: text.length > 0
+                textButton: true
 
-            visible: text.length > 0
-            textButton: true
+                DialogButtonBox.buttonRole: root.button1Role
+            }
 
-            DialogButtonBox.buttonRole: root.button2Role
-        }
+            NewMaterialButton {
+                id: centerButton
 
-        NewMaterialButton {
-            id: rightButton
+                Layout.fillWidth: true
+                Layout.minimumWidth: implicitWidth
+                Layout.preferredHeight: 35
 
-            Layout.fillWidth: true
-            Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
-            Layout.rightMargin: root.dialogPadding
-            Layout.bottomMargin: root.dialogPadding
+                visible: text.length > 0
+                textButton: true
 
-            visible: text.length > 0
-            textButton: true
+                DialogButtonBox.buttonRole: root.button2Role
+            }
 
-            DialogButtonBox.buttonRole: root.button3Role
+            NewMaterialButton {
+                id: rightButton
+
+                Layout.fillWidth: true
+                Layout.minimumWidth: implicitWidth
+                Layout.preferredHeight: 35
+
+                visible: text.length > 0
+                textButton: true
+
+                DialogButtonBox.buttonRole: root.button3Role
+            }
         }
     }
 
     background: Rectangle {
-        topLeftRadius: closeButton.background.radius + root.dialogPadding
-        topRightRadius: closeButton.background.radius + root.dialogPadding
-        bottomRightRadius: JamiTheme.newMaterialButtonHeight / 2 + root.dialogPadding
-        bottomLeftRadius: JamiTheme.newMaterialButtonHeight / 2 + root.dialogPadding
+        radius: 24
 
         color: JamiTheme.globalIslandColor
 
