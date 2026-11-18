@@ -35,6 +35,33 @@
 
 #include <clocale>
 
+#if WITH_WEBENGINE && defined(Q_OS_WIN)
+#include <QOperatingSystemVersion>
+#ifndef NOMINMAX
+#define NOMINMAX
+#endif
+#include <windows.h>
+
+// Qt WebEngine (Chromium) does not support Windows versions older than
+// Windows 10 and hits a fatal breakpoint while creating its default profile.
+// Detect this before initializing the WebEngine so we can exit gracefully.
+static bool
+isWebEngineSupportedWindowsVersion()
+{
+    const auto current = QOperatingSystemVersion::current();
+    if (current >= QOperatingSystemVersion::Windows10)
+        return true;
+    qCritical() << "Unsupported Windows version" << current.majorVersion() << current.minorVersion()
+                << "- Jami requires Windows 10 or later.";
+    MessageBoxW(nullptr,
+                L"Jami requires Windows 10 or later.\n\n"
+                L"Please upgrade your operating system to use this version of Jami.",
+                L"Jami - Unsupported Windows version",
+                MB_OK | MB_ICONERROR);
+    return false;
+}
+#endif
+
 #ifndef BUILD_TESTING
 int
 main(int argc, char* argv[])
@@ -73,6 +100,11 @@ main(int argc, char* argv[])
     QApplication::setHighDpiScaleFactorRoundingPolicy(Qt::HighDpiScaleFactorRoundingPolicy::PassThrough);
 
 #if WITH_WEBENGINE
+#if defined(Q_OS_WIN)
+    if (!isWebEngineSupportedWindowsVersion())
+        return 1;
+#endif
+
     // Preserve any user-provided QTWEBENGINE_CHROMIUM_FLAGS instead of
     // overwriting them, so the GPU behaviour can still be overridden from the
     // environment.
