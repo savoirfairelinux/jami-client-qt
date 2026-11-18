@@ -33,6 +33,24 @@
       "message": "[warning] Line 37: 🟡 `height` dereferences `parent.height` without a null guard, unlike `implicitWidth`. During creation/reparenting this can evaluate with `parent \u003d\u003d null` and produce QML runtime errors. Mirror the `implicitWidth` pattern, e.g. `height: parent ? Math.min(parent.height * 0.7, Math.max(0, parent.height - 64)) : 400`.",
       "revId": "80687d5486f6002e95c236015683cdf4494687ee",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4225c8b0_5c5b55aa",
+        "filename": "src/app/mainview/components/InviteMembersDialog.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-11-18T20:12:36Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "42b9ef0c_bba99194",
+      "revId": "80687d5486f6002e95c236015683cdf4494687ee",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
