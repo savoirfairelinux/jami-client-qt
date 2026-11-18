@@ -624,8 +624,25 @@ ConversationsAdapter::ignoreFiltering(const QVariant& hightlighted)
 QVariantMap
 ConversationsAdapter::getConvInfoMap(const QString& convId)
 {
+    // The conversation, its account or an associated call may be removed
+    // while QML is still querying it, so this must never throw.
+    try {
+        return getConvInfoMapImpl(convId);
+    } catch (const std::exception& e) {
+        qWarning() << "Unable to get conversation info for" << convId << ":" << e.what();
+    } catch (...) {
+        qWarning() << "Unable to get conversation info for" << convId;
+    }
+    return {};
+}
+
+QVariantMap
+ConversationsAdapter::getConvInfoMapImpl(const QString& convId)
+{
     const auto& convInfo = lrcInstance_->getConversationFromConvUid(convId);
     if (convInfo.participants.empty())
+        return {};
+    if (!lrcInstance_->accountModel().hasAccount(convInfo.accountId))
         return {};
     QString peerUri {};
     QString bestId {};
@@ -655,8 +672,8 @@ ConversationsAdapter::getConvInfoMap(const QString& convId)
     }
     return {{"convId", convId},
             {"bestId", bestId},
-            {"title", lrcInstance_->getCurrentConversationModel()->title(convId)},
-            {"description", lrcInstance_->getCurrentConversationModel()->description(convId)},
+            {"title", accountInfo.conversationModel->title(convId)},
+            {"description", accountInfo.conversationModel->description(convId)},
             {"uri", peerUri},
             {"uris", accountInfo.conversationModel->peersForConversation(convId)},
             {"isSwarm", convInfo.isSwarm()},

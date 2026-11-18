@@ -124,6 +124,7 @@ private Q_SLOTS:
 private:
     void updateConversation(const QString&);
     void updateConversationFilterData();
+    QVariantMap getConvInfoMapImpl(const QString& convId);
 
     SystemTray* systemTray_;
 
