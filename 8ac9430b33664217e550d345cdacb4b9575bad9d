@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ff654147_624d5b8a",
+        "filename": "tests/unittests/reentrancyguard_unittest.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-18T16:47:53Z",
+      "side": 1,
+      "message": "[error] Line 63: 🔴 The recursive callback captures and uses `handler` inside its own initializer (`std::function\u003cvoid()\u003e handler \u003d [\u0026] { ... handler(); };`). This pattern is compiler-sensitive and can fail or warn-as-error (notably on GCC/MSVC), which matches the failing Linux/MSVC jobs. Split declaration and assignment instead: `std::function\u003cvoid()\u003e handler; handler \u003d [\u0026] { ... handler(); };` so self-reference occurs after initialization.",
+      "revId": "8ac9430b33664217e550d345cdacb4b9575bad9d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
