@@ -29,6 +29,9 @@ BaseModalDialog {
     signal accepted
 
     titleText: JamiStrings.deleteAccount
+    width: parent ? Math.min(JamiTheme.secondaryDialogDimension,
+                             Math.max(0, parent.width - 2 * JamiTheme.preferredMarginSize))
+                  : JamiTheme.secondaryDialogDimension
 
     closeButtonVisible: false
 
@@ -61,13 +64,13 @@ BaseModalDialog {
     popupContent: ColumnLayout {
         id: deleteAccountContentColumnLayout
 
+        width: root.availableWidth
         spacing: 10
 
         Label {
             id: labelDeletion
 
             Layout.fillWidth: true
-            Layout.maximumWidth: root.width - 4 * JamiTheme.preferredMarginSize
             Layout.alignment: Qt.AlignLeft
 
             text: JamiStrings.confirmDeleteAccount
@@ -116,66 +119,45 @@ BaseModalDialog {
                     }
 
                     ColumnLayout {
-
+                        Layout.fillWidth: true
                         spacing: 10
-                        Layout.alignment: Qt.AlignLeft
 
-                        // Visible when user alias is not empty and not equal to id.
                         TextEdit {
                             id: accountAlias
 
-                            Layout.alignment: Qt.AlignLeft
+                            Layout.fillWidth: true
 
                             font.pointSize: JamiTheme.settingsFontSize
                             font.kerning: true
 
                             color: JamiTheme.textColor
-                            visible: accountDisplayName.text ? (CurrentAccount.alias === CurrentAccount.bestId ? false : true) : false
+                            visible: text.length > 0
                             selectByMouse: true
                             readOnly: true
 
-                            wrapMode: Text.NoWrap
-                            text: textMetricsAccountAliasText.elidedText
+                            wrapMode: TextEdit.Wrap
+                            text: CurrentAccount.alias
                             horizontalAlignment: Text.AlignLeft
                             verticalAlignment: Text.AlignVCenter
-
-                            TextMetrics {
-                                id: textMetricsAccountAliasText
-
-                                font: accountAlias.font
-                                text: CurrentAccount.alias
-                                elideWidth: root.width - 200
-                                elide: Qt.ElideMiddle
-                            }
                         }
 
-                        // Visible when user name is not empty or equals to id.
                         TextEdit {
                             id: accountDisplayName
 
-                            Layout.alignment: Qt.AlignLeft
+                            Layout.fillWidth: true
 
                             font.pointSize: JamiTheme.textFontSize
                             font.kerning: true
                             color: JamiTheme.faddedFontColor
 
-                            visible: text.length && text !== CurrentAccount.alias
+                            visible: text.length > 0 && text !== CurrentAccount.alias
                             readOnly: true
                             selectByMouse: true
 
-                            wrapMode: Text.NoWrap
-                            text: textMetricsAccountDisplayNameText.elidedText
+                            wrapMode: TextEdit.Wrap
+                            text: CurrentAccount.bestId
                             horizontalAlignment: Text.AlignLeft
                             verticalAlignment: Text.AlignVCenter
-
-                            TextMetrics {
-                                id: textMetricsAccountDisplayNameText
-
-                                font: accountDisplayName.font
-                                text: CurrentAccount.bestId
-                                elideWidth: root.width - 200
-                                elide: Qt.ElideMiddle
-                            }
                         }
                     }
                 }
@@ -183,7 +165,7 @@ BaseModalDialog {
                     id: identifier
 
                     Layout.fillWidth: true
-                    Layout.preferredHeight: accountId.height + 10
+                    Layout.preferredHeight: identifierLayout.implicitHeight + 10
                     Layout.margins: 12
                     Layout.topMargin: 0
 
@@ -193,15 +175,16 @@ BaseModalDialog {
                     color: JamiTheme.globalBackgroundColor
 
                     RowLayout {
+                        id: identifierLayout
+
                         anchors.fill: parent
-                        anchors.leftMargin: 4
+                        anchors.leftMargin: JamiTheme.preferredMarginSize
+                        anchors.rightMargin: JamiTheme.preferredMarginSize
 
                         spacing: 10
 
                         Text {
                             id: identifierText
-
-                            Layout.leftMargin: identifier.radius
 
                             text: JamiStrings.identifier
                             color: JamiTheme.faddedFontColor
@@ -215,14 +198,13 @@ BaseModalDialog {
 
                             Layout.alignment: Qt.AlignLeft
                             Layout.fillWidth: true
-                            Layout.rightMargin: 4
 
                             font.family: JamiTheme.ubuntuMonoFontFamily
                             font.pointSize: JamiTheme.textFontSize
                             font.kerning: true
                             color: JamiTheme.textColor
 
-                            elide: Text.ElideRight
+                            wrapMode: Text.WrapAnywhere
                             text: CurrentAccount.uri
                             horizontalAlignment: Text.AlignLeft
                             verticalAlignment: Text.AlignVCenter
@@ -237,22 +219,21 @@ BaseModalDialog {
             color: JamiTheme.warningRedRectangle
 
             Layout.fillWidth: true
-            Layout.preferredHeight: labelWarning.height + 20
+            Layout.preferredHeight: warningLayout.implicitHeight + 20
 
             radius: 8
 
             RowLayout {
                 id: warningLayout
 
-                anchors.centerIn: parent
-                anchors.margins: 15
-                width: parent.width
+                anchors.left: parent.left
+                anchors.right: parent.right
+                anchors.verticalCenter: parent.verticalCenter
+                anchors.leftMargin: JamiTheme.preferredMarginSize
+                anchors.rightMargin: JamiTheme.preferredMarginSize
 
                 Button {
                     id: warningIcon
-
-                    Layout.fillWidth: true
-                    Layout.leftMargin: 15
 
                     padding: 0
                     horizontalPadding: 0
@@ -269,8 +250,6 @@ BaseModalDialog {
                     id: labelWarning
 
                     Layout.fillWidth: true
-                    Layout.margins: 15
-
                     text: JamiStrings.deleteAccountInfo
                     color: JamiTheme.redColor
                     horizontalAlignment: Text.AlignHCenter
