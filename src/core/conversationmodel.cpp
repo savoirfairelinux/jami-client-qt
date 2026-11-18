@@ -243,6 +243,7 @@ ConversationModel::roleNames() const
     roles[Mode] = "Mode";
     roles[Uris] = "Uris";
     roles[Monikers] = "Monikers";
+    roles[MemberCount] = "MemberCount";
     roles[FilterTitle] = "title";
     return roles;
 }
@@ -357,6 +358,10 @@ ConversationModel::dataForItem(const conversation::Info& item, int role) const
         }
         return ret;
     }
+    case Role::MemberCount:
+        return static_cast<int>(std::count_if(item.participants.cbegin(), item.participants.cend(), [](const auto& p) {
+            return p.role == member::Role::ADMIN || p.role == member::Role::MEMBER;
+        }));
     case Role::Presence: {
         auto maxPresence = 0;
         for (const auto& peerUri : peersForConversation(item.uid)) {
