@@ -41,7 +41,6 @@ Item {
     enum ExtrasPanel {
         SwarmDetailsPanel,
         MessagesResearchPanel,
-        AddMemberPanel,
         ConversationStatusPanel,
         ThreadPanel
     }
@@ -390,12 +389,9 @@ Item {
                 iconSource: JamiResources.add_people_24dp_svg
                 toolTipText: JamiStrings.inviteMembers
 
-                checkable: true
-                checked: extrasPanel.isOpen(ChatView.AddMemberPanel)
-
                 visible: interactionButtonsVisibility && addMemberVisibility
 
-                onClicked: extrasPanel.switchToPanel(ChatView.AddMemberPanel)
+                onClicked: extrasPanel.openInviteMembersDialog(inviteMembersButton)
             }
 
             NewIconButton {

@@ -393,7 +393,7 @@ Item {
 
                     visible: !CurrentConversation.isCoreDialog && CurrentConversation.canAddMember
 
-                    onClicked: extrasPanel.switchToPanel(ChatView.AddMemberPanel)
+                    onClicked: extrasPanel.openInviteMembersDialog(inviteMemberButton)
                 }
 
                 JamiFlickable {

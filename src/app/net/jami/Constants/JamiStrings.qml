@@ -1034,6 +1034,7 @@ Item {
     property string removeSelectedConversation: qsTr("Remove %1 from selection")
     property string groupCreationFailed: qsTr("Unable to create the group. Check the selected conversations and try again.")
     property string feedCreationFailed: qsTr("Unable to create the feed. Check the selected conversations and try again.")
+    property string memberInvitationFailed: qsTr("Unable to invite members. Check the selected conversations and try again.")
     property string goToConversation: qsTr("Go to conversation")
     property string kickMember: qsTr("Block member")
     property string reinstateMember: qsTr("Unblock member")
