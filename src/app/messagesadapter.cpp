@@ -243,7 +243,19 @@ MessagesAdapter::connectConversationModel()
                      &MessagesAdapter::onMessagesFoundProcessed,
                      Qt::UniqueConnection);
 
-    mediaInteractions_.reset(new MessageListModel(&lrcInstance_->getCurrentAccountInfo(), this));
+    resetMediaInteractions();
+}
+
+void
+MessagesAdapter::resetMediaInteractions()
+{
+    // Publish the replacement model before destroying the previous one: QML
+    // bindings re-evaluated while the old model is being torn down must never
+    // read a dangling pointer out of mediaMessageListModel. Keeping the old
+    // model alive until then also guarantees the new one gets a distinct
+    // address, so the change notification is always emitted.
+    auto previous = std::move(mediaInteractions_);
+    mediaInteractions_ = std::make_unique<MessageListModel>(&lrcInstance_->getCurrentAccountInfo(), this);
     set_mediaMessageListModel(QVariant::fromValue(mediaInteractions_.get()));
 }
 
@@ -1035,8 +1047,7 @@ void
 MessagesAdapter::startSearch(const QString& text, bool isMedia)
 {
     auto accountId = lrcInstance_->get_currentAccountId();
-    mediaInteractions_.reset(new MessageListModel(&lrcInstance_->getCurrentAccountInfo(), this));
-    set_mediaMessageListModel(QVariant::fromValue(mediaInteractions_.get()));
+    resetMediaInteractions();
 
     if (text.isEmpty() && !isMedia)
         return;
