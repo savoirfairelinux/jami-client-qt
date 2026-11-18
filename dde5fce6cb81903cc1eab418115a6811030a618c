@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a7e52b8_684a2275",
+        "filename": "src/app/commoncomponents/JamiChip.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-18T19:59:00Z",
+      "side": 1,
+      "message": "[warning] Line 40: 🟡 `leftPadding` now always subtracts `avatar.height / 2`, even when `avatarId` is empty and the avatar is hidden. This changes spacing for every existing chip consumer, not just the new conversation-picker chips, and can cause text to start too close to the left edge. Make the padding conditional (e.g., subtract only when `avatar.visible`) or compute a dedicated `avatarOffset` that is `0` when no avatar is shown.",
+      "revId": "dde5fce6cb81903cc1eab418115a6811030a618c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "52f85e0e_239eb42d",
+        "filename": "tests/qml/resources.qrc",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-18T19:59:00Z",
+      "side": 1,
+      "message": "[warning] 🟡 `tst_SidePanelTabBar.qml` was removed from the QML test resource list without being deleted or replaced in this change. That silently drops a test suite from CI and reduces regression coverage unrelated to the feature. Re-add it unless this removal is intentional and covered by an explicit follow-up rationale/change.",
+      "revId": "dde5fce6cb81903cc1eab418115a6811030a618c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
