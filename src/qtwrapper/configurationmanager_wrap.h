@@ -998,13 +998,15 @@ public Q_SLOTS: // METHODS
         QString accountId, QString conversationId, QString fileId, QString& path, qlonglong& total, qlonglong& progress)
     {
         std::string pathstr;
+        total = 0;
+        progress = 0;
         auto result = uint32_t(libjami::fileTransferInfo(accountId.toStdString(),
                                                          conversationId.toStdString(),
                                                          fileId.toStdString(),
                                                          pathstr,
                                                          reinterpret_cast<int64_t&>(total),
                                                          reinterpret_cast<int64_t&>(progress)));
-        path = pathstr.c_str();
+        path = QString::fromStdString(pathstr);
         return result;
     }
 

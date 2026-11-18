@@ -98,7 +98,7 @@ Info::init(const MapStringString& message,
             confId = message["confId"];
     } else if (type == Type::DATA_TRANSFER) {
         QString path;
-        qlonglong bytesProgress, totalSize;
+        qlonglong bytesProgress = 0, totalSize = 0;
         ConfigurationManager::instance()
             .fileTransferInfo(accountId, conversationId, message["fileId"], path, totalSize, bytesProgress);
         QFileInfo fi(path);
