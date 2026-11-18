@@ -18,6 +18,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "09f4bf19_1f126f8d",
+        "filename": "src/app/commoncomponents/JamiChip.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-11-18T20:04:15Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "9a7e52b8_684a2275",
+      "revId": "dde5fce6cb81903cc1eab418115a6811030a618c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "52f85e0e_239eb42d",
@@ -31,6 +49,24 @@
       "writtenOn": "2026-11-18T19:59:00Z",
       "side": 1,
       "message": "[warning] 🟡 `tst_SidePanelTabBar.qml` was removed from the QML test resource list without being deleted or replaced in this change. That silently drops a test suite from CI and reduces regression coverage unrelated to the feature. Re-add it unless this removal is intentional and covered by an explicit follow-up rationale/change.",
+      "revId": "dde5fce6cb81903cc1eab418115a6811030a618c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "71648810_47495a5e",
+        "filename": "tests/qml/resources.qrc",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-11-18T20:04:15Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "52f85e0e_239eb42d",
       "revId": "dde5fce6cb81903cc1eab418115a6811030a618c",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
