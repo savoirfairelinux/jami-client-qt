@@ -295,7 +295,7 @@ SettingsPageBase {
                     model: ModeratorListModel
 
                     delegate: JamiChip {
-                        outlinedChip: true
+                        variant: JamiChip.Variant.Outlined
 
                         text: ContactName
                         iconSource: JamiResources.close_black_24dp_svg

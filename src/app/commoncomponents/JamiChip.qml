@@ -17,61 +17,83 @@
 
 import QtQuick
 import QtQuick.Controls
-import QtQuick.Controls.impl
+import QtQuick.Layouts
 
 import net.jami.Constants 1.1
 
 Control {
     id: root
 
-    // The chip will default to the filled version unless
-    // outlinedChip is enabled specifically
-    property bool filledChip: !outlinedChip
-    property bool outlinedChip: false
+    enum Variant {
+        Filled,
+        Outlined,
+        Neutral
+    }
 
+    property int variant: JamiChip.Variant.Filled
     property color color: JamiTheme.tintedBlue
 
     property alias text: chipText.text
+    property string avatarId: ""
+    property alias avatarMode: avatar.mode
     property string iconSource: ""
-    signal iconClicked
-
     property string toolTipText: ""
     property string iconButtonToolTipText: ""
+    signal iconClicked
 
-    leftPadding: background.radius
-    rightPadding: background.radius - (trailingIconButton.height / 2)
-    topPadding: JamiTheme.jamiChipVerticalPadding
-    bottomPadding: JamiTheme.jamiChipVerticalPadding
+    readonly property bool neutral: variant === JamiChip.Variant.Neutral
+    readonly property bool outlined: variant === JamiChip.Variant.Outlined
+    readonly property bool highlighted: hovered || activeFocus
+    readonly property color contentColor: {
+        if (neutral)
+            return JamiTheme.textColor;
+        if (outlined && !highlighted)
+            return color;
+        return JamiTheme.whiteColor;
+    }
+
+    function withAlpha(c, a) {
+        return Qt.rgba(c.r, c.g, c.b, a);
+    }
+
+    leftPadding: avatar.visible ? 4 : 8
+    rightPadding: trailingIconButton.visible ? 4 : 8
+    verticalPadding: JamiTheme.jamiChipVerticalPadding
 
     activeFocusOnTab: true
 
-    scale: root.hovered || root.activeFocus ? JamiTheme.jamiChipHoveredScaleValue : 1.0
+    scale: highlighted && !neutral ? JamiTheme.jamiChipHoveredScaleValue : 1.0
     Behavior on scale {
         NumberAnimation {
             duration: JamiTheme.shortFadeDuration
         }
     }
 
-    contentItem: Row {
-        spacing: 2
+    contentItem: RowLayout {
+        spacing: 4
+
+        Avatar {
+            id: avatar
+
+            mode: Avatar.Mode.Conversation
+
+            Layout.preferredWidth: 24
+            Layout.preferredHeight: 24
+
+            visible: root.avatarId !== ""
+            imageId: root.avatarId
+            showPresenceIndicator: false
+        }
 
         Text {
             id: chipText
 
-            anchors.verticalCenter: parent.verticalCenter
+            Layout.fillWidth: true
 
+            color: root.contentColor
+            elide: Text.ElideRight
+            textFormat: Text.PlainText
             verticalAlignment: Text.AlignVCenter
-            color: {
-                if (root.filledChip) {
-                    return JamiTheme.whiteColor;
-                } else if (root.outlinedChip) {
-                    if (root.hovered || root.activeFocus) {
-                        return JamiTheme.whiteColor;
-                    } else {
-                        return root.color;
-                    }
-                }
-            }
 
             Behavior on color {
                 ColorAnimation {
@@ -83,53 +105,39 @@ Control {
         Button {
             id: trailingIconButton
 
-            anchors.verticalCenter: parent.verticalCenter
+            Layout.preferredWidth: 24
+            Layout.preferredHeight: 24
 
+            visible: root.iconSource !== ""
             padding: 0
-            horizontalPadding: 0
+            background: null
 
             icon.source: root.iconSource
-            icon.color: {
-                if (root.filledChip) {
-                    return JamiTheme.whiteColor;
-                } else if (root.outlinedChip) {
-                    if (root.hovered || root.activeFocus) {
-                        return JamiTheme.whiteColor;
-                    } else {
-                        return root.color;
-                    }
-                }
-            }
+            icon.color: root.neutral ? root.withAlpha(root.contentColor, hovered || activeFocus ? 0.9 : 0.6) : root.contentColor
             Behavior on icon.color {
                 ColorAnimation {
                     duration: JamiTheme.shortFadeDuration
                 }
             }
 
-            scale: trailingIconButton.hovered || trailingIconButton.activeFocus ? JamiTheme.jamiChipIconButtonHoveredScaleValue : 1.0
+            scale: (hovered || activeFocus) && !root.neutral ? JamiTheme.jamiChipIconButtonHoveredScaleValue : 1.0
             Behavior on scale {
                 NumberAnimation {
                     duration: JamiTheme.shortFadeDuration
                 }
             }
 
-            visible: iconSource !== ""
-
-            background: null
-
             onClicked: root.iconClicked()
 
             MaterialToolTip {
-                id: iconButtonToolTipText
-
-                parent: parent
+                parent: trailingIconButton
                 text: root.iconButtonToolTipText
-                visible: (trailingIconButton.hovered || trailingIconButton.activeFocus) && (text.length > 0)
+                visible: (trailingIconButton.hovered || trailingIconButton.activeFocus) && text.length > 0
                 delay: Qt.styleHints.mousePressAndHoldInterval
             }
 
             Accessible.role: Accessible.Button
-            Accessible.name: iconButtonToolTipText.text
+            Accessible.name: root.iconButtonToolTipText
         }
     }
 
@@ -137,19 +145,15 @@ Control {
         radius: height / 2
 
         color: {
-            if (root.filledChip) {
-                return root.color;
-            } else if (root.outlinedChip) {
-                if (root.hovered || root.activeFocus) {
-                    return Qt.rgba(root.color.r, root.color.g, root.color.b, 0.92);
-                } else {
-                    return Qt.rgba(root.color.r, root.color.g, root.color.b, 0);
-                }
-            }
+            if (root.neutral)
+                return root.withAlpha(JamiTheme.textColor, (JamiTheme.darkTheme ? 0.16 : 0.08) + (root.highlighted ? 0.06 : 0));
+            if (root.outlined)
+                return root.withAlpha(root.color, root.highlighted ? 0.92 : 0);
+            return root.color;
         }
 
-        border.color: JamiTheme.tintedBlue
-        border.width: root.outlinedChip ? 1 : 0
+        border.color: root.color
+        border.width: root.outlined ? 1 : 0
 
         Behavior on color {
             ColorAnimation {
@@ -159,11 +163,9 @@ Control {
     }
 
     MaterialToolTip {
-        id: toolTip
-
         parent: root
         text: root.toolTipText
-        visible: (root.hovered || root.activeFocus) && (root.toolTipText.length > 0)
+        visible: root.highlighted && text.length > 0
         delay: Qt.styleHints.mousePressAndHoldInterval
     }
 
