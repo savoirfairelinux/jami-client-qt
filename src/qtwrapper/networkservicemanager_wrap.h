@@ -69,22 +69,22 @@ public:
 
     VectorMapStringString getSharedServices(const QString& accountId)
     {
-        return convertVecMap(libjami::getExposedServices(accountId.toStdString()));
+        return convertVecMap(libjami::getSharedServices(accountId.toStdString()));
     }
 
     QString addSharedService(const QString& accountId, MapStringString service)
     {
-        return QString::fromStdString(libjami::addExposedService(accountId.toStdString(), convertMap(service)));
+        return QString::fromStdString(libjami::addSharedService(accountId.toStdString(), convertMap(service)));
     }
 
     bool updateSharedService(const QString& accountId, MapStringString service)
     {
-        return libjami::updateExposedService(accountId.toStdString(), convertMap(service));
+        return libjami::updateSharedService(accountId.toStdString(), convertMap(service));
     }
 
     bool removeSharedService(const QString& accountId, const QString& serviceId)
     {
-        return libjami::removeExposedService(accountId.toStdString(), serviceId.toStdString());
+        return libjami::removeSharedService(accountId.toStdString(), serviceId.toStdString());
     }
 
     uint32_t queryPeerServices(const QString& accountId, const QString& peerUri)
