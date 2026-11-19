@@ -145,6 +145,20 @@ public:
      */
     bool hasDisplayNameOverride(const QString& contactUri) const;
 
+    /**
+     * Replace the tags (user-defined lists) of a contact.
+     * Tags are synchronized across the account's devices through contact metadata.
+     * @param contactUri
+     * @param tags
+     * @return true if the daemon saved the tags
+     */
+    bool setContactTags(const QString& contactUri, const QStringList& tags);
+
+    /**
+     * @return every tag used by at least one contact, sorted
+     */
+    QStringList getAllTags() const;
+
 Q_SIGNALS:
     /**
      * Connect this signal to know when a contact was updated.

@@ -26,6 +26,7 @@
 #include "api/accountmodel.h"
 #include "api/callmodel.h"
 #include "callbackshandler.h"
+#include "contacttags.h"
 #include "uri.h"
 #include "vcard.h"
 #include "typedefs.h"
@@ -120,6 +121,15 @@ public:
      * @param profileInfo
      */
     void updateCachedProfile(profile::Info& profileInfo);
+
+    QStringList loadContactTags(const QString& contactUri) const;
+
+    /**
+     * Update the cached tags of a contact and notify observers if they changed.
+     * @param contactUri
+     * @param tags normalized tags
+     */
+    void applyContactTags(const QString& contactUri, const QStringList& tags);
 
     // Base template function to get a property from the contact
     template<typename Func>
@@ -225,6 +235,16 @@ public Q_SLOTS:
      * @param vCard
      */
     void slotProfileReceived(const QString& accountId, const QString& peer, const QString& vCard);
+
+    /**
+     * Listen from daemon to know when a contact's metadata changed, locally or on another device
+     * @param accountId
+     * @param contactUri
+     * @param metadata full metadata snapshot
+     */
+    void slotContactMetadataChanged(const QString& accountId,
+                                    const QString& contactUri,
+                                    const MapStringByteArray& metadata);
 
     /**
      * Listen from daemon to know when a user search completed
@@ -636,6 +656,33 @@ ContactModel::hasDisplayNameOverride(const QString& contactUri) const
     return !profileDisplayNameFromStorage(owner.id, contactUri, true).isEmpty();
 }
 
+bool
+ContactModel::setContactTags(const QString& contactUri, const QStringList& tags)
+{
+    const auto normalized = contacttags::normalize(tags);
+    // Note: explicit type is required here for DBus build
+    const MapStringByteArray updates {{QString::fromLatin1(contacttags::METADATA_KEY), contacttags::encode(normalized)}};
+    const bool saved = ConfigurationManager::instance().setContactMetadata(owner.id, contactUri, updates);
+    if (!saved) {
+        LC_WARN << "Unable to save tags for contact" << contactUri;
+        return false;
+    }
+    pimpl_->applyContactTags(contactUri, normalized);
+    return true;
+}
+
+QStringList
+ContactModel::getAllTags() const
+{
+    QStringList tags;
+    {
+        std::lock_guard<std::mutex> lk(pimpl_->contactsMtx_);
+        for (const auto& contact : std::as_const(pimpl_->contacts))
+            tags.append(contact.tags);
+    }
+    return contacttags::normalize(tags);
+}
+
 const QString
 ContactModel::bestIdForContact(const QString& contactUri) const
 {
@@ -696,6 +743,10 @@ ContactModelPimpl::ContactModelPimpl(const ContactModel& linked,
             &ConfigurationManagerInterface::userSearchEnded,
             this,
             &ContactModelPimpl::slotUserSearchEnded);
+    connect(&ConfigurationManager::instance(),
+            &ConfigurationManagerInterface::contactMetadataChanged,
+            this,
+            &ContactModelPimpl::slotContactMetadataChanged);
 
     if (this->linked.owner.profileInfo.type == profile::Type::SIP)
         fillWithSIPContacts();
@@ -791,6 +842,42 @@ ContactModelPimpl::fillWithJamiContacts()
         }
     }
     return true;
+}
+
+QStringList
+ContactModelPimpl::loadContactTags(const QString& contactUri) const
+{
+    // Note: explicit type is required here for DBus build
+    MapStringByteArray metadata;
+    const bool loaded = ConfigurationManager::instance().getContactMetadata(linked.owner.id, contactUri, metadata);
+    if (!loaded) {
+        LC_WARN << "Unable to load metadata for contact" << contactUri;
+        return {};
+    }
+    return contacttags::fromMetadata(metadata);
+}
+
+void
+ContactModelPimpl::applyContactTags(const QString& contactUri, const QStringList& tags)
+{
+    {
+        std::lock_guard<std::mutex> lk(contactsMtx_);
+        auto it = contacts.find(contactUri);
+        if (it == contacts.end() || it->tags == tags)
+            return;
+        it->tags = tags;
+    }
+    Q_EMIT linked.contactUpdated(contactUri);
+}
+
+void
+ContactModelPimpl::slotContactMetadataChanged(const QString& accountId,
+                                              const QString& contactUri,
+                                              const MapStringByteArray& metadata)
+{
+    if (accountId != linked.owner.id)
+        return;
+    applyContactTags(contactUri, contacttags::fromMetadata(metadata));
 }
 
 void
@@ -944,6 +1031,7 @@ ContactModelPimpl::addToContacts(const QString& contactUri,
     if (type == profile::Type::JAMI) {
         ConfigurationManager::instance().lookupAddress(linked.owner.id, "", contactUri);
         PresenceManager::instance().subscribeBuddy(linked.owner.id, contactUri, !banned);
+        contactInfo.tags = loadContactTags(contactUri);
     } else {
         contactInfo.profileInfo.alias = displayName;
     }

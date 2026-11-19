@@ -19,6 +19,7 @@
 #include "profile.h"
 
 #include <QString>
+#include <QStringList>
 
 namespace lrc {
 
@@ -32,6 +33,7 @@ namespace contact {
  * @var isTrusted
  * @var presence
  * @var isBanned
+ * @var tags user-defined lists the contact belongs to
  */
 struct Info
 {
@@ -41,6 +43,7 @@ struct Info
     int presence = 0;
     bool isBanned = false;
     QString conversationId {};
+    QStringList tags {};
 };
 
 } // namespace contact

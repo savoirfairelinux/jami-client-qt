@@ -39,6 +39,7 @@ Q_DECLARE_METATYPE(VectorULongLong)
 Q_DECLARE_METATYPE(VectorString)
 Q_DECLARE_METATYPE(MapStringVectorString)
 Q_DECLARE_METATYPE(VectorVectorByte)
+Q_DECLARE_METATYPE(MapStringByteArray)
 Q_DECLARE_METATYPE(DataTransferInfo)
 Q_DECLARE_METATYPE(SwarmMessage)
 Q_DECLARE_METATYPE(uint64_t)
@@ -171,6 +172,8 @@ registerCommTypes()
     qDBusRegisterMetaType<MapStringVectorString>();
     qRegisterMetaType<VectorVectorByte>("VectorVectorByte");
     qDBusRegisterMetaType<VectorVectorByte>();
+    qRegisterMetaType<MapStringByteArray>("MapStringByteArray");
+    qDBusRegisterMetaType<MapStringByteArray>();
     qRegisterMetaType<DataTransferInfo>("DataTransferInfo");
     qDBusRegisterMetaType<DataTransferInfo>();
     qRegisterMetaType<SwarmMessage>("SwarmMessage");
