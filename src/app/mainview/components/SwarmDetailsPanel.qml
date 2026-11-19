@@ -73,7 +73,7 @@ Item {
         function updateSwarmDetailsTabModel() {
             const currentPage = currentDetailsPage;
             swarmDetailsTabModel.clear();
-            if (!CurrentConversation.isCoreDialog && CurrentConversation.canViewMemberList) {
+            if (!CurrentConversation.isCoreDialog) {
                 swarmDetailsTabModel.append({
                                                 "name": JamiStrings.members.arg(CurrentConversation.members.count),
                                                 "page": "members"
@@ -326,10 +326,6 @@ Item {
                     root.refreshCoreDialogDisplayNameState();
                 }
 
-                function onCanViewMemberListChanged() {
-                    innerRect.updateSwarmDetailsTabModel();
-                }
-
                 function onTitleChanged() {
                     root.refreshCoreDialogDisplayNameState();
                 }
@@ -380,7 +376,7 @@ Item {
 
                 spacing: 12
 
-                visible: CurrentConversation.canViewMemberList && innerRect.currentDetailsPage === "members"
+                visible: innerRect.currentDetailsPage === "members"
 
                 NewMaterialButton {
                     id: inviteMemberButton
@@ -430,7 +426,7 @@ Item {
                         columns: CurrentConversation.members.length < 3 ? CurrentConversation.members.length : 4
 
                         Repeater {
-                            model: CurrentConversation.canViewMemberList ? CurrentConversation.members : null
+                            model: CurrentConversation.members
                             delegate: GridItemDelegate {
                                 width: (scrollView.width - (membersGrid.columns - 1) * membersGrid.spacing) / membersGrid.columns
                             }

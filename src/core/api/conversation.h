@@ -131,18 +131,6 @@ struct Info
     {
         return isLegacy() || permissions.contains(permission);
     }
-    // Only admins see who follows a Feed; not a daemon permission
-    inline bool canViewMemberList() const
-    {
-        if (mode != Mode::FEED)
-            return true;
-        for (const auto& participant : participants) {
-            if (participant.uri == accountUri)
-                return participant.role == member::Role::ADMIN;
-        }
-        return false;
-    }
-
     inline QStringList participantsUris() const
     {
         QStringList result;
