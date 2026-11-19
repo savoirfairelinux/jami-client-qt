@@ -1053,6 +1053,11 @@ public Q_SLOTS: // METHODS
         auto convId = libjami::startFeedConversation(accountId.toStdString());
         return QString(convId.c_str());
     }
+    QString startFeedConversation(const QString& accountId, const MapStringString& profile, bool inviteAllContacts)
+    {
+        auto convId = libjami::startFeedConversation(accountId.toStdString(), convertMap(profile), inviteAllContacts);
+        return QString(convId.c_str());
+    }
     void acceptConversationRequest(const QString& accountId, const QString& conversationId)
     {
         libjami::acceptConversationRequest(accountId.toStdString(), conversationId.toStdString());

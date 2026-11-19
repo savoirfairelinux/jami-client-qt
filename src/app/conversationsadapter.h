@@ -70,12 +70,14 @@ public:
                                                             const QString& description,
                                                             const QString& avatar,
                                                             const QStringList& conversationIds,
-                                                            bool isFeed);
+                                                            bool isFeed,
+                                                            bool inviteAllContacts = false);
     Q_INVOKABLE int participantCountFromConversations(const QStringList& conversationIds) const;
     Q_INVOKABLE QString createFeed(const QString& title,
                                    const QString& description,
                                    const QString& avatar,
-                                   const VectorString& participants);
+                                   const VectorString& participants,
+                                   bool inviteAllContacts = false);
     Q_INVOKABLE QVariantMap invitationCandidates(const QString& conversationId,
                                                  const QStringList& sourceConversationIds) const;
     Q_INVOKABLE bool inviteToConversation(const QString& conversationId, const QStringList& sourceConversationIds);
