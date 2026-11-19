@@ -366,6 +366,15 @@ Item {
     property string startCamera: qsTr("Start camera")
     property string inviteMember: qsTr("Invite member")
     property string inviteMembers: qsTr("Invite members")
+
+    // Contact lists
+    property string addToList: qsTr("Add to list")
+    property string lists: qsTr("Lists")
+    property string createList: qsTr("Create list \"%1\"")
+    property string removeFromList: qsTr("Remove from \"%1\"")
+    property string searchOrCreateList: qsTr("Search or create a list")
+    property string noListsYet: qsTr("No lists yet. Type a name to create one.")
+    property string listsSaveFailed: qsTr("Unable to save lists. Please try again.")
     property string details: qsTr("Details")
     property string chat: qsTr("Chat")
     property string moreOptions: qsTr("More options")
