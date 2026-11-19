@@ -459,10 +459,12 @@ BaseModalDialog {
                 model: root.selectedContacts
 
                 delegate: JamiChip {
-                    filledChip: true
+                    variant: JamiChip.Variant.Neutral
 
                     text: UtilsAdapter.getBestNameForUri(CurrentAccount.id, modelData)
-                    iconSource: JamiResources.close_black_24dp_svg
+                    avatarId: modelData
+                    avatarMode: Avatar.Mode.Contact
+                    iconSource: JamiResources.cancel_24dp_svg
                     iconButtonToolTipText: JamiStrings.removeContact
 
                     onIconClicked: {
@@ -474,7 +476,7 @@ BaseModalDialog {
             }
 
             JamiChip {
-                outlinedChip: true
+                variant: JamiChip.Variant.Outlined
 
                 text: JamiStrings.addAContact
                 iconSource: JamiResources.add_24dp_svg
