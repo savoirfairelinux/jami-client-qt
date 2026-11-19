@@ -56,6 +56,7 @@ CurrentConversation::updateData()
         set_isFeedMode(false);
         set_id();
         set_botOwner();
+        set_contactTags({});
         membersModel_->setMembers({}, {}, {});
         updatePermissions(nullptr);
         return;
@@ -81,6 +82,7 @@ CurrentConversation::updateData()
         if (!optConv) {
             set_isFeedMode(false);
             set_botOwner();
+            set_contactTags({});
             updatePermissions(nullptr);
             return;
         }
@@ -132,6 +134,7 @@ CurrentConversation::updateData()
         set_isTemporary(isCoreDialog_ ? (convId == members.at(0) || convId == "SEARCHSIP") : false);
 
         auto isContact {false};
+        QStringList contactTags;
         if (isCoreDialog_ && !members.isEmpty()) {
             if (members.at(0) == accInfo.profileInfo.uri)
                 botOwner = accInfo.profileInfo.botOwner;
@@ -142,10 +145,12 @@ CurrentConversation::updateData()
                 set_isBanned(contact.isBanned);
                 isContact = contact.profileInfo.type != profile::Type::TEMPORARY;
                 botOwner = contact.profileInfo.botOwner;
+                contactTags = contact.tags;
             } catch (const std::exception& e) {
                 qInfo() << "Contact not found: " << e.what();
             }
         set_isContact(isContact);
+        set_contactTags(contactTags);
         set_botOwner(botOwner);
 
         if (convInfo.mode == conversation::Mode::ONE_TO_ONE) {

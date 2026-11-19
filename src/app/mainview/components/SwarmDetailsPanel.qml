@@ -320,6 +320,47 @@ Item {
                 }
             }
 
+            Flow {
+                id: contactListsFlow
+                objectName: "contactListsFlow"
+
+                Layout.fillWidth: true
+                Layout.leftMargin: 8
+                Layout.rightMargin: 8
+                Layout.topMargin: 4
+                spacing: 6
+                // Re-evaluated when the contact or its ban status changes.
+                visible: CurrentConversation.isCoreDialog && CurrentConversation.isContact && !CurrentConversation.isBanned && ContactAdapter.canTagContact(CurrentConversation.id)
+
+                Repeater {
+                    model: CurrentConversation.contactTags
+
+                    delegate: JamiChip {
+                        text: modelData
+                        variant: JamiChip.Variant.Filled
+                        width: Math.min(implicitWidth, contactListsFlow.width)
+                        toolTipText: text
+                        iconSource: JamiResources.cancel_24dp_svg
+                        iconButtonToolTipText: JamiStrings.removeFromList.arg(modelData)
+                        onIconClicked: ContactAdapter.setContactTags(CurrentConversation.id, CurrentConversation.contactTags.filter(tag => tag !== modelData))
+                    }
+                }
+
+                JamiChip {
+                    objectName: "addToListChip"
+                    text: JamiStrings.addToList
+                    iconSource: JamiResources.add_24dp_svg
+                    iconButtonToolTipText: text
+                    clickable: true
+                    variant: JamiChip.Variant.Outlined
+                    width: Math.min(implicitWidth, contactListsFlow.width)
+                    onClicked: viewCoordinator.presentDialog(appWindow, "mainview/components/ContactListsDialog.qml", {
+                            "conversationId": CurrentConversation.id
+                        })
+                    onIconClicked: clicked()
+                }
+            }
+
             ListModel {
                 id: swarmDetailsTabModel
             }

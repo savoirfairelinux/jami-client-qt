@@ -97,6 +97,12 @@ public:
     Q_INVOKABLE void contactSelected(int index);
     Q_INVOKABLE void removeContact(const QString& peerUri, bool banContact);
 
+    // Tags are presented to users as "lists".
+    Q_INVOKABLE bool canTagContact(const QString& convId) const;
+    Q_INVOKABLE QStringList getContactTags(const QString& convId) const;
+    Q_INVOKABLE QStringList getAllContactTags() const;
+    Q_INVOKABLE bool setContactTags(const QString& convId, const QStringList& tags);
+
     void connectSignals();
 
 Q_SIGNALS:
@@ -114,4 +120,6 @@ private:
     QStringList defaultModerators_;
 
     bool hasDifferentMembers(const VectorString& currentMembers, const VectorString& convMembers) const;
+    // URI of the Jami contact of a one-to-one conversation, or empty if it cannot be tagged.
+    QString taggableContactUri(const QString& convId) const;
 };
