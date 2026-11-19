@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4a46832b_8fbff3c4",
+        "filename": "tests/unittests/swarmpermissions_unittest.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-19T21:09:36Z",
+      "side": 1,
+      "message": "[warning] 🟡 The patch removes the feed member-visibility tests but does not add a replacement assertion for the new expected behavior (non-admin feed members can see the members list). Add a focused test at the UI/model boundary (e.g., `CurrentConversation`/QML-facing state) that verifies the members list is exposed for regular feed members, so this behavior is explicitly protected against regressions.",
+      "revId": "4a596ba89fdabd355f0329adb21abc073303a24d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
