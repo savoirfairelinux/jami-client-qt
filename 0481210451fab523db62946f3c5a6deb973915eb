@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2aa45e9e_4d942953",
+        "filename": "src/app/commoncomponents/BaseModalDialog.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-19T19:09:01Z",
+      "side": 1,
+      "message": "[error] Line 133: 🔴 `RowLayout.uniformCellSizes` is not available on older Qt 6 versions used in some CI environments, and QML compilation fails with “Cannot assign to non-existent property”. This likely explains the Linux/MSVC failures while macOS passes. Replace this with a Qt-version-safe approach (e.g., remove `uniformCellSizes` and keep equal sizing via `Layout.fillWidth` plus margins/min widths, or gate it behind a version check helper).",
+      "revId": "0481210451fab523db62946f3c5a6deb973915eb",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
