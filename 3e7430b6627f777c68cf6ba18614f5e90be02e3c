@@ -16,6 +16,24 @@
       "message": "[error] Line 120: 🔴 The new toggle is initialized with `checked: true`, which makes “Add all contacts” enabled by default. That immediately hides the search/list UI and changes feed creation behavior from explicit selection to inviting everyone unless the user opts out. This is a behavioral regression and contradicts the expected opt-in semantics (“Checking it…”). Initialize the switch to `checked: false` and keep current-selection flow as default; update the related QML tests accordingly.",
       "revId": "3e7430b6627f777c68cf6ba18614f5e90be02e3c",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bdead449_3ca6dab2",
+        "filename": "src/app/mainview/components/ConversationPicker.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-11-19T21:29:29Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "285f17ae_48cdd512",
+      "revId": "3e7430b6627f777c68cf6ba18614f5e90be02e3c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
