@@ -39,7 +39,9 @@ Control {
     property string iconSource: ""
     property string toolTipText: ""
     property string iconButtonToolTipText: ""
+    property bool clickable: false
     signal iconClicked
+    signal clicked
 
     readonly property bool neutral: variant === JamiChip.Variant.Neutral
     readonly property bool outlined: variant === JamiChip.Variant.Outlined
@@ -105,14 +107,17 @@ Control {
         Button {
             id: trailingIconButton
 
-            Layout.preferredWidth: 24
-            Layout.preferredHeight: 24
+            // Match the text line so an icon does not make the chip taller.
+            Layout.preferredWidth: chipText.implicitHeight
+            Layout.preferredHeight: chipText.implicitHeight
 
             visible: root.iconSource !== ""
             padding: 0
             background: null
 
             icon.source: root.iconSource
+            icon.width: chipText.implicitHeight
+            icon.height: chipText.implicitHeight
             icon.color: root.neutral ? root.withAlpha(root.contentColor, hovered || activeFocus ? 0.9 : 0.6) : root.contentColor
             Behavior on icon.color {
                 ColorAnimation {
@@ -169,6 +174,27 @@ Control {
         delay: Qt.styleHints.mousePressAndHoldInterval
     }
 
-    Accessible.role: Accessible.StaticText
+    TapHandler {
+        enabled: root.clickable
+        onTapped: root.clicked()
+    }
+
+    HoverHandler {
+        enabled: root.clickable
+        cursorShape: Qt.PointingHandCursor
+    }
+
+    Keys.onPressed: function (event) {
+        if (root.clickable && [Qt.Key_Space, Qt.Key_Return, Qt.Key_Enter].includes(event.key)) {
+            root.clicked();
+            event.accepted = true;
+        }
+    }
+
+    Accessible.role: root.clickable ? Accessible.Button : Accessible.StaticText
     Accessible.name: root.text
+    Accessible.onPressAction: {
+        if (root.clickable)
+            root.clicked();
+    }
 }
