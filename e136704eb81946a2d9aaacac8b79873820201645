@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "29107e47_d168fb18",
+        "filename": "src/app/conversationsadapter.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-19T19:11:04Z",
+      "side": 1,
+      "message": "[error] Line 38: 🔴 `isActiveMember()` includes `member::Role::INVITED`, so creating a new group/feed can silently include invitees who are not shown as members in the picker summary (`MemberCount` only counts ADMIN/MEMBER). This can add unexpected participants. Align both paths by excluding `INVITED` from participant extraction (or consistently surface/count invited users in the UI before creation).",
+      "revId": "e136704eb81946a2d9aaacac8b79873820201645",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56f5d07b_57343c74",
+        "filename": "src/app/mainview/components/ConversationPicker.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-19T19:11:04Z",
+      "side": 1,
+      "message": "[warning] Line 68: 🟡 The picker’s client-side filters don’t match the server-side eligibility checks in `participantsFromConversations()`: the adapter rejects conversations with `needsSyncing`, but the picker still allows selecting them. That creates a UX trap where selection looks valid but creation fails with a generic error. Add a `NeedsSyncing \u003d\u003d false` filter (or equivalent) in the picker model so uncreatable conversations are not selectable.",
+      "revId": "e136704eb81946a2d9aaacac8b79873820201645",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
