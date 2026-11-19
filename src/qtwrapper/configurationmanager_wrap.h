@@ -191,6 +191,12 @@ public:
                 [this](const std::string& account_id, const std::string& uri, const bool& banned) {
                     Q_EMIT this->contactRemoved(QString::fromUtf8(account_id), QString::fromUtf8(uri), banned);
                 }),
+            exportable_callback<ConfigurationSignal::ContactMetadataChanged>(
+                [this](const std::string& accountId, const std::string& uri, const libjami::MetadataMap& metadata) {
+                    Q_EMIT this->contactMetadataChanged(QString::fromUtf8(accountId),
+                                                        QString::fromUtf8(uri),
+                                                        convertMap(metadata));
+                }),
             exportable_callback<ConfigurationSignal::MessageSend>(
                 [this](const std::string& message) { Q_EMIT this->messageSend(QString::fromUtf8(message)); }),
             exportable_callback<ConfigurationSignal::ComposingStatusChanged>(
@@ -981,6 +987,19 @@ public Q_SLOTS: // METHODS
         return convertMap(libjami::getContactDetails(accountId.toStdString(), uri.toStdString()));
     }
 
+    bool getContactMetadata(const QString& accountId, const QString& uri, MapStringByteArray& metadata)
+    {
+        libjami::MetadataMap result;
+        const bool success = libjami::getContactMetadata(accountId.toStdString(), uri.toStdString(), result);
+        metadata = convertMap(result);
+        return success;
+    }
+
+    bool setContactMetadata(const QString& accountId, const QString& uri, const MapStringByteArray& updates)
+    {
+        return libjami::setContactMetadata(accountId.toStdString(), uri.toStdString(), convertMap(updates));
+    }
+
     void sendFile(const QString& accountId,
                   const QString& conversationId,
                   const QString& filePath,
@@ -1425,6 +1444,7 @@ Q_SIGNALS: // SIGNALS
     void migrationEnded(const QString& accountId, const QString& result);
     void contactAdded(const QString& accountId, const QString& uri, bool banned);
     void contactRemoved(const QString& accountId, const QString& uri, bool banned);
+    void contactMetadataChanged(const QString& accountId, const QString& uri, const MapStringByteArray& metadata);
     void profileReceived(const QString& accountId, const QString& peer, const QString& vCard);
     void dataTransferEvent(const QString& accountId,
                            const QString& conversationId,

@@ -102,6 +102,27 @@ convertMap(const MapStringInt& m)
     return temp;
 }
 
+inline MapStringByteArray
+convertMap(const std::map<std::string, std::vector<uint8_t>>& m)
+{
+    MapStringByteArray temp;
+    for (const auto& [key, value] : m) {
+        temp.insert(QString::fromStdString(key),
+                    QByteArray(reinterpret_cast<const char*>(value.data()), static_cast<qsizetype>(value.size())));
+    }
+    return temp;
+}
+
+inline std::map<std::string, std::vector<uint8_t>>
+convertMap(const MapStringByteArray& m)
+{
+    std::map<std::string, std::vector<uint8_t>> temp;
+    for (auto it = m.cbegin(); it != m.cend(); ++it) {
+        temp[it.key().toStdString()] = std::vector<uint8_t>(it.value().cbegin(), it.value().cend());
+    }
+    return temp;
+}
+
 inline VectorMapStringString
 convertVecMap(const std::vector<std::map<std::string, std::string>>& m)
 {
