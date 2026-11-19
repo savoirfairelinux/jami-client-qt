@@ -20,6 +20,7 @@ import QtTest
 
 import net.jami.Adapters 1.1
 import net.jami.Models 1.1
+import net.jami.Constants 1.1
 
 import "../../../src/app/mainview/components"
 
@@ -84,10 +85,47 @@ TestWrapper {
             compare(findChild(field(freshDialog, "descriptionLineEdit"), "textField").text, "");
         }
 
+        function test_allContactsAvailability_data() {
+            return [
+                {tag: "group", isFeed: false},
+                {tag: "feed", isFeed: true}
+            ];
+        }
+
+        function test_allContactsAvailability(data) {
+            const dialog = openDialog(data.isFeed);
+            compare(field(dialog, "allContactsSwitch").visible, data.isFeed);
+        }
+
+        function test_allContactsHidesSelection() {
+            const dialog = openDialog(true);
+            const picker = field(dialog, "conversationPicker");
+            const allContacts = field(dialog, "allContactsSwitch");
+            const list = field(dialog, "creationConversationList");
+            const search = field(dialog, "creationConversationSearch");
+
+            verify(picker.allContacts);
+            verify(!list.visible);
+            verify(!search.visible);
+
+            mouseClick(allContacts);
+            verify(!picker.allContacts);
+            verify(list.visible);
+            verify(search.visible);
+
+            picker.selectedConversations = [{"id": "conversation", "name": "Conversation"}];
+            mouseClick(allContacts);
+            verify(picker.allContacts);
+            compare(picker.selectedConversations.length, 0);
+            verify(!list.visible);
+            verify(!search.visible);
+        }
+
         function test_createsAndSelectsConversation_data() {
             return [
                 {tag: "group", isFeed: false, title: "Test group"},
-                {tag: "feed", isFeed: true, title: "Announcements"}
+                {tag: "feed", isFeed: true, allContacts: false, title: "Announcements"},
+                {tag: "feed with all contacts", isFeed: true, allContacts: true, title: "Everyone"}
             ];
         }
 
@@ -97,6 +135,8 @@ TestWrapper {
             const description = "Team updates";
 
             try {
+                if (data.isFeed && !data.allContacts)
+                    mouseClick(field(dialog, "allContactsSwitch"));
                 mouseClick(dialog.button3);
                 findChild(field(dialog, "titleLineEdit"), "textField").text = data.title;
                 findChild(field(dialog, "descriptionLineEdit"), "textField").text = description;

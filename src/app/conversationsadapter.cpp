@@ -866,8 +866,11 @@ ConversationsAdapter::createConversationFromConversations(const QString& title,
                                                           const QString& description,
                                                           const QString& avatar,
                                                           const QStringList& conversationIds,
-                                                          bool isFeed)
+                                                          bool isFeed,
+                                                          bool inviteAllContacts)
 {
+    if (isFeed && inviteAllContacts)
+        return createFeed(title, description, avatar, {}, true);
     const auto participants = participantsFromConversations(conversationIds);
     if (!participants)
         return {};
@@ -962,7 +965,8 @@ QString
 ConversationsAdapter::createFeed(const QString& title,
                                  const QString& description,
                                  const QString& avatar,
-                                 const VectorString& participants)
+                                 const VectorString& participants,
+                                 bool inviteAllContacts)
 {
     auto convModel = lrcInstance_->getCurrentConversationModel();
     if (!convModel) {
@@ -976,5 +980,5 @@ ConversationsAdapter::createFeed(const QString& title,
         details["description"] = description;
     if (!avatar.isEmpty())
         details["avatar"] = avatar;
-    return convModel->createFeedConversation(participants, details);
+    return convModel->createFeedConversation(participants, details, inviteAllContacts);
 }

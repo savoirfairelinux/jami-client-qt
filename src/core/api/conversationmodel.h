@@ -412,9 +412,12 @@ public:
      * create a new feed conversation
      * @param participants  conversation's participants
      * @param infos conversation's infos
+     * @param inviteAllContacts invite all current and future contacts instead of participants
      * @return new conversation id
      */
-    QString createFeedConversation(const VectorString& participants, const MapStringString& infos = {});
+    QString createFeedConversation(const VectorString& participants,
+                                   const MapStringString& infos = {},
+                                   bool inviteAllContacts = false);
     /**
      * update conversation info
      * @param conversationId conversation's id
