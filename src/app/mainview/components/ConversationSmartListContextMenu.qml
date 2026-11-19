@@ -158,6 +158,16 @@ ContextMenuAutoLoader {
             onClicked: MessagesAdapter.declineInvitation(responsibleConvUid)
         },
         GeneralMenuItem {
+            id: addToList
+
+            canTrigger: isCoreDialog && !root.isBanned && contactType === Profile.Type.JAMI && ContactAdapter.canTagContact(responsibleConvUid)
+            itemName: JamiStrings.addToList
+            iconSource: JamiResources.label_24dp_svg
+            onClicked: viewCoordinator.presentDialog(appWindow, "mainview/components/ContactListsDialog.qml", {
+                    "conversationId": responsibleConvUid
+                })
+        },
+        GeneralMenuItem {
             id: blockContact
 
             canTrigger: !isInCall && contactType !== Profile.Type.SIP && !root.isBanned && isCoreDialog && root.idText !== CurrentAccount.uri

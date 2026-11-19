@@ -247,6 +247,64 @@ ContactAdapter::removeContact(const QString& peerUri, bool banContact)
     accInfo.contactModel->removeContact(peerUri, banContact);
 }
 
+QString
+ContactAdapter::taggableContactUri(const QString& convId) const
+{
+    auto* convModel = lrcInstance_->getCurrentConversationModel();
+    auto* contactModel = lrcInstance_->getCurrentContactModel();
+    if (!convModel || !contactModel)
+        return {};
+    const auto optConv = convModel->getConversationForUid(convId);
+    if (!optConv || !optConv->get().isCoreDialog())
+        return {};
+    const auto peers = convModel->peersForConversation(convId);
+    if (peers.isEmpty() || peers.first() == contactModel->owner.profileInfo.uri)
+        return {};
+    try {
+        const auto contact = contactModel->getContact(peers.first());
+        if (contact.profileInfo.type != profile::Type::JAMI || contact.isBanned)
+            return {};
+        return contact.profileInfo.uri;
+    } catch (const std::out_of_range&) {
+        return {};
+    }
+}
+
+bool
+ContactAdapter::canTagContact(const QString& convId) const
+{
+    return !taggableContactUri(convId).isEmpty();
+}
+
+QStringList
+ContactAdapter::getContactTags(const QString& convId) const
+{
+    const auto uri = taggableContactUri(convId);
+    if (uri.isEmpty())
+        return {};
+    try {
+        return lrcInstance_->getCurrentContactModel()->getContact(uri).tags;
+    } catch (const std::out_of_range&) {
+        return {};
+    }
+}
+
+QStringList
+ContactAdapter::getAllContactTags() const
+{
+    auto* contactModel = lrcInstance_->getCurrentContactModel();
+    return contactModel ? contactModel->getAllTags() : QStringList {};
+}
+
+bool
+ContactAdapter::setContactTags(const QString& convId, const QStringList& tags)
+{
+    const auto uri = taggableContactUri(convId);
+    if (uri.isEmpty())
+        return false;
+    return lrcInstance_->getCurrentContactModel()->setContactTags(uri, tags);
+}
+
 void
 ContactAdapter::connectSignals()
 {
