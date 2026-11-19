@@ -243,6 +243,7 @@ set(LIBCLIENT_SOURCES
   ${CORE_SRC_DIR}/uri.cpp
   ${CORE_SRC_DIR}/vcard.cpp
   ${CORE_SRC_DIR}/contactmodel.cpp
+  ${CORE_SRC_DIR}/contacttags.cpp
   ${CORE_SRC_DIR}/callparticipantsmodel.cpp
   ${CORE_SRC_DIR}/callmodel.cpp
   ${CORE_SRC_DIR}/devicemodel.cpp
@@ -282,6 +283,7 @@ set(LIBCLIENT_SOURCES
 
 set(LIBCLIENT_HEADERS
   ${CORE_SRC_DIR}/uri.h
+  ${CORE_SRC_DIR}/contacttags.h
   ${CORE_SRC_DIR}/globalinstances.h
   ${CORE_SRC_DIR}/pixmapmanipulatordefault.h
   ${CORE_SRC_DIR}/dbuserrorhandlerdefault.h

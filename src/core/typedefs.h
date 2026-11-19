@@ -51,6 +51,7 @@ typedef QMap<QString, QVector<QString>> MapStringVectorString;
 typedef QMap<QString, QMap<QString, QStringList>> MapStringMapStringStringList;
 typedef QMap<QString, QStringList> MapStringStringList;
 typedef QVector<QByteArray> VectorVectorByte;
+typedef QMap<QString, QByteArray> MapStringByteArray;
 typedef uint64_t DataTransferId;
 // accountId, conversationId
 typedef QPair<QString, QString> PositionKey;
