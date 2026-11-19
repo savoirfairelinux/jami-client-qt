@@ -41,8 +41,11 @@ BaseModalDialog {
         const preferred = Math.max(400, implicitFooterWidth);
         return parent ? Math.min(preferred, Math.max(0, parent.width - 64)) : preferred;
     }
-    height: Math.min(detailsStep ? detailsLayout.implicitHeight + topPadding + bottomPadding
-                                   + implicitHeaderHeight + implicitFooterHeight + 2 * spacing : parent.height * 0.7,
+    readonly property real fittedContentHeight: detailsStep ? detailsLayout.implicitHeight
+                                                            : picker.allContacts ? picker.implicitHeight : -1
+    height: Math.min(fittedContentHeight >= 0 ? fittedContentHeight + topPadding + bottomPadding
+                                                 + implicitHeaderHeight + implicitFooterHeight + 2 * spacing
+                                              : parent.height * 0.7,
                      Math.max(0, parent.height - 64))
 
     titleText: isFeed ? JamiStrings.createNewFeed : JamiStrings.newGroup
@@ -60,7 +63,8 @@ BaseModalDialog {
                                                                             description.modifiedTextFieldContent,
                                                                             UtilsAdapter.tempCreationImage(),
                                                                             picker.selectedIds,
-                                                                            isFeed);
+                                                                            isFeed,
+                                                                            picker.allContacts);
         if (!id) {
             creating = false;
             creationFailed = true;
@@ -102,7 +106,7 @@ BaseModalDialog {
         creationFailed = false;
         picker.focusSearch();
     }
-    button3.text: detailsStep ? titleText : (participantCount > 0 ? JamiStrings.nextWithCount.arg(participantCount) : JamiStrings.next)
+    button3.text: detailsStep ? titleText : (participantCount > 0 && !picker.allContacts ? JamiStrings.nextWithCount.arg(participantCount) : JamiStrings.next)
     button3.iconSource: detailsStep ? JamiResources.add_24dp_svg : ""
     button3.textButton: false
     button3.filledButton: true
@@ -122,8 +126,10 @@ BaseModalDialog {
 
         ConversationPicker {
             id: picker
+            objectName: "conversationPicker"
             viewCoordinator: root.viewCoordinator
             isFeed: root.isFeed
+            allContactsAvailable: root.isFeed
         }
 
         JamiFlickable {

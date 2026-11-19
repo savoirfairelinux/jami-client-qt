@@ -1033,6 +1033,8 @@ Item {
     property string next: qsTr("Next")
     property string nextWithCount: qsTr("Next (%L1)")
     property string selectedConversations: qsTr("Selected conversations")
+    property string addAllContacts: qsTr("Add all contacts")
+    property string addAllContactsDescription: qsTr("Contacts you add later will also be invited.")
     property string removeSelectedConversation: qsTr("Remove %1 from selection")
     property string groupCreationFailed: qsTr("Unable to create the group. Check the selected conversations and try again.")
     property string feedCreationFailed: qsTr("Unable to create the feed. Check the selected conversations and try again.")

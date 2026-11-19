@@ -27,6 +27,8 @@ ColumnLayout {
 
     required property var viewCoordinator
     property bool isFeed: false
+    property bool allContactsAvailable: false
+    readonly property bool allContacts: allContactsAvailable && allContactsSwitch.checked
     property string excludedConversationId: ""
     property var lockedContactUris: []
     property var selectedConversations: []
@@ -48,7 +50,10 @@ ColumnLayout {
     spacing: 4
 
     function focusSearch() {
-        searchBar.setTextAreaFocus();
+        if (allContacts)
+            allContactsSwitch.forceActiveFocus();
+        else
+            searchBar.setTextAreaFocus();
     }
 
     function removeConversation(id) {
@@ -100,6 +105,45 @@ ColumnLayout {
         ]
     }
 
+    RowLayout {
+        Layout.alignment: Qt.AlignHCenter
+        visible: root.allContactsAvailable
+
+        Label {
+            text: JamiStrings.addAllContacts
+            color: JamiTheme.textColor
+
+            TapHandler {
+                onTapped: allContactsSwitch.toggle()
+            }
+        }
+
+        JamiSwitch {
+            id: allContactsSwitch
+            objectName: "allContactsSwitch"
+            checked: true
+            Accessible.role: Accessible.CheckBox
+            Accessible.name: JamiStrings.addAllContacts
+            Accessible.description: JamiStrings.addAllContactsDescription
+            onCheckedChanged: {
+                if (checked) {
+                    root.selectedConversations = [];
+                    searchBar.clearText();
+                }
+                root.focusSearch();
+            }
+        }
+    }
+
+    Label {
+        Layout.fillWidth: true
+        visible: root.allContacts
+        text: JamiStrings.addAllContactsDescription
+        color: JamiTheme.faddedLastInteractionFontColor
+        horizontalAlignment: Text.AlignHCenter
+        wrapMode: Text.WordWrap
+    }
+
     Rectangle {
         Layout.fillWidth: true
         Layout.preferredHeight: Math.min(chipFlow.implicitHeight + 16, root.height * 0.3)
@@ -107,7 +151,7 @@ ColumnLayout {
         color: JamiTheme.transparentColor
         border.width: 1
         border.color: JamiTheme.chatViewFooterRectangleBorderColor
-        visible: root.selectedConversations.length > 0
+        visible: root.selectedConversations.length > 0 && !root.allContacts
 
         JamiFlickable {
             anchors.fill: parent
@@ -148,6 +192,7 @@ ColumnLayout {
         Layout.fillWidth: true
         Layout.preferredHeight: JamiTheme.searchBarPreferredHeight
         placeHolderText: JamiStrings.search
+        visible: !root.allContacts
         onSearchBarTextChanged: function (text) {
             conversationModel.searchText = text;
             conversationModel.invalidate();
@@ -160,6 +205,7 @@ ColumnLayout {
         Layout.fillWidth: true
         Layout.fillHeight: true
         model: conversationModel
+        visible: !root.allContacts
         activeFocusOnTab: true
         Accessible.name: JamiStrings.conversations
 

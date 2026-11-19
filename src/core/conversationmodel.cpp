@@ -929,11 +929,16 @@ ConversationModel::createConversation(const VectorString& participants, const Ma
 }
 
 QString
-ConversationModel::createFeedConversation(const VectorString& participants, const MapStringString& infos)
+ConversationModel::createFeedConversation(const VectorString& participants,
+                                          const MapStringString& infos,
+                                          bool inviteAllContacts)
 {
-    return createConversationWithUid(participants,
+    // The daemon invites the contacts itself when inviteAllContacts is set.
+    return createConversationWithUid(inviteAllContacts ? VectorString {} : participants,
                                      infos,
-                                     ConfigurationManager::instance().startFeedConversation(owner.id));
+                                     ConfigurationManager::instance().startFeedConversation(owner.id,
+                                                                                            {},
+                                                                                            inviteAllContacts));
 }
 
 QString
