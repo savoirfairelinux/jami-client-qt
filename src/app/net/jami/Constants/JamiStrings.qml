@@ -1048,8 +1048,9 @@ Item {
     //: %1 is a button label such as "New group"; %L2 is the number of participants.
     property string labelWithCount: qsTr("%1 (%L2)")
     property string selectedConversations: qsTr("Selected conversations")
-    property string addAllContacts: qsTr("Add all contacts")
     property string addAllContactsDescription: qsTr("Contacts you add later can also subscribe.")
+    property string allContacts: qsTr("All contacts")
+    property string feedAudience: qsTr("Who to subscribe")
     property string removeSelectedConversation: qsTr("Remove %1 from selection")
     property string groupCreationFailed: qsTr("Unable to create the group. Check the selected conversations and try again.")
     property string feedCreationFailed: qsTr("Unable to create the feed. Check the selected conversations and try again.")
