@@ -732,13 +732,13 @@ Item {
                     iconSource: CurrentConversation.isFeedMode ? JamiResources.notification_remove_24dp_svg
                                                                : JamiResources.disconnect_participant_24dp_svg
                     text: CurrentConversation.isCoreDialog ? JamiStrings.removeConversation
-                          : CurrentConversation.isFeedMode ? JamiStrings.leaveFeed : JamiStrings.leaveGroup
+                          : CurrentConversation.isFeedMode ? JamiStrings.unsubscribeFeed : JamiStrings.leaveGroup
 
                     onClicked: {
                         var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/ConfirmDialog.qml", {
                                                                     "titleText": JamiStrings.confirmAction,
-                                                                    "textLabel": CurrentConversation.isFeedMode ? JamiStrings.confirmLeaveFeed : JamiStrings.confirmRemoveContact,
-                                                                    "confirmLabel": CurrentConversation.isFeedMode ? JamiStrings.optionLeave : JamiStrings.optionRemove
+                                                                    "textLabel": CurrentConversation.isFeedMode ? JamiStrings.confirmUnsubscribeFeed : JamiStrings.confirmRemoveContact,
+                                                                    "confirmLabel": CurrentConversation.isFeedMode ? JamiStrings.optionUnsubscribe : JamiStrings.optionRemove
                                                                 });
                         dlg.accepted.connect(function () {
                             MessagesAdapter.removeConversation(LRCInstance.selectedConvUid, true);
