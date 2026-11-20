@@ -969,6 +969,7 @@ Item {
     property string send: qsTr("Send")
     property string dontSend: qsTr("Don't send")
     property string replyTo: qsTr("Reply to")
+    property string commentOn: qsTr("Comment on")
     property string inReplyTo: qsTr("In reply to")
     property string repliedTo: qsTr("%1 replied to")
     property string inReplyToYou: qsTr("you")

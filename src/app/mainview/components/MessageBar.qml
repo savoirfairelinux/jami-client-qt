@@ -220,7 +220,7 @@ Rectangle {
 
                             text: {
                                 if (rectangle.replyToId !== "") {
-                                    return JamiStrings.replyTo;
+                                    return rectangle.convContext.isFeedMode ? JamiStrings.commentOn : JamiStrings.replyTo;
                                 } else if (rectangle.editId !== "") {
                                     return JamiStrings.editMessage;
                                 }
