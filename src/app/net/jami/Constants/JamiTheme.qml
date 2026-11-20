@@ -739,6 +739,9 @@ Item {
     property real itemMarginVertical: 2
     property real avatarRadius: JamiTheme.smartListAvatarSize / 2
     property real smartListItemHeight: 60//JamiTheme.smarListAvatarSize + JamiTheme.itemPadding * 2 + JamiTheme.itemMarginVertical * 2
+    // Share of the title line the conversation title keeps before contact list chips may use it
+    property real smartListTitleMinWidthRatio: 0.5
+    property real smartListListChipMaxWidth: 96
 
     // Side panel
     property real sidePanelIslandsSinglePaneModePadding: 8

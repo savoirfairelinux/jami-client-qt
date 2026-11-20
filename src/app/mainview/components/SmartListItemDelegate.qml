@@ -158,19 +158,47 @@ ItemDelegate {
 
                     visible: Mode === Conversation.Mode.FEED
                 }
-                // best name
-                Text {
+                // Best name followed by the contact's lists. The title keeps at least
+                // smartListTitleMinWidthRatio of the line; lists may use the rest.
+                Item {
+                    id: titleLine
+
+                    readonly property real spacing: contactListChips.visible ? 8 : 0
+                    readonly property real titleWidth: {
+                        const titleFloor = width * JamiTheme.smartListTitleMinWidthRatio;
+                        const spaceLeftByLists = width - (contactListChips.visible ? contactListChips.implicitWidth : 0) - spacing;
+                        return Math.min(titleText.implicitWidth, Math.max(titleFloor, spaceLeftByLists));
+                    }
+
                     Layout.fillWidth: true
                     Layout.minimumHeight: 20
                     Layout.alignment: Qt.AlignVCenter
-                    horizontalAlignment: Text.AlignLeft
-                    verticalAlignment: Text.AlignVCenter
-                    elide: Text.ElideMiddle
-                    text: Title === undefined ? "" : Title
-                    textFormat: TextEdit.PlainText
-                    font.pointSize: JamiTheme.mediumFontSize
-                    font.weight: UnreadMessagesCount ? Font.Bold : Font.Normal
-                    color: JamiTheme.textColor
+                    implicitHeight: Math.max(titleText.implicitHeight, contactListChips.visible ? contactListChips.implicitHeight : 0)
+
+                    Text {
+                        id: titleText
+
+                        width: titleLine.titleWidth
+                        anchors.verticalCenter: parent.verticalCenter
+                        horizontalAlignment: Text.AlignLeft
+                        verticalAlignment: Text.AlignVCenter
+                        elide: Text.ElideMiddle
+                        text: Title === undefined ? "" : Title
+                        textFormat: TextEdit.PlainText
+                        font.pointSize: JamiTheme.mediumFontSize
+                        font.weight: UnreadMessagesCount ? Font.Bold : Font.Normal
+                        color: JamiTheme.textColor
+                    }
+
+                    ContactListChips {
+                        id: contactListChips
+
+                        x: titleText.width + titleLine.spacing
+                        width: Math.max(0, titleLine.width - x)
+                        anchors.verticalCenter: parent.verticalCenter
+                        visible: lists.length > 0 && !IsBanned
+                        lists: ContactTags || []
+                    }
                 }
             }
             RowLayout {

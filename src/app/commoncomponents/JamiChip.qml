@@ -34,6 +34,7 @@ Control {
     property color color: JamiTheme.tintedBlue
 
     property alias text: chipText.text
+    property alias textFont: chipText.font
     property string avatarId: ""
     property alias avatarMode: avatar.mode
     property string iconSource: ""
