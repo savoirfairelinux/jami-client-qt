@@ -100,15 +100,16 @@ ContextMenuAutoLoader {
 
             canTrigger: !isFeedRequest && !isInCall && !root.isBanned
             itemName: mode === Conversation.Mode.ONE_TO_ONE ? JamiStrings.removeConversation
-                      : mode === Conversation.Mode.FEED ? JamiStrings.leaveFeed : JamiStrings.leaveGroup
+                      : mode === Conversation.Mode.FEED ? JamiStrings.unsubscribeFeed : JamiStrings.leaveGroup
             iconSource: mode === Conversation.Mode.FEED ? JamiResources.notification_remove_24dp_svg
                                                        : JamiResources.disconnect_participant_24dp_svg
             onClicked: {
                 var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/ConfirmDialog.qml", {
                     "titleText": JamiStrings.confirmAction,
                     "textLabel": mode === Conversation.Mode.ONE_TO_ONE ? JamiStrings.confirmRemoveOneToOneConversation
-                                 : mode === Conversation.Mode.FEED ? JamiStrings.confirmLeaveFeed : JamiStrings.confirmLeaveGroup,
-                    "confirmLabel": mode === Conversation.Mode.ONE_TO_ONE ? JamiStrings.optionRemove : JamiStrings.optionLeave
+                                 : mode === Conversation.Mode.FEED ? JamiStrings.confirmUnsubscribeFeed : JamiStrings.confirmLeaveGroup,
+                    "confirmLabel": mode === Conversation.Mode.ONE_TO_ONE ? JamiStrings.optionRemove
+                                    : mode === Conversation.Mode.FEED ? JamiStrings.optionUnsubscribe : JamiStrings.optionLeave
                 });
                 dlg.accepted.connect(function () {
                     MessagesAdapter.removeConversation(responsibleConvUid, true);

@@ -138,7 +138,7 @@ ColumnLayout {
                 compare(leaveItem.itemName, JamiStrings.leaveGroup);
 
                 leaveContextMenuUut.mode = Conversation.Mode.FEED;
-                tryCompare(leaveItem, "itemName", JamiStrings.leaveFeed);
+                tryCompare(leaveItem, "itemName", JamiStrings.unsubscribeFeed);
             } finally {
                 if (leaveContextMenuUut.item)
                     leaveContextMenuUut.item.close();
