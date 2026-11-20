@@ -18,6 +18,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2cb8f6ef_1e0c1ed0",
+        "filename": "src/app/commoncomponents/JamiChip.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-11-20T22:02:55Z",
+      "side": 1,
+      "message": "Not reproducible: verified with a QML test that clicking the trailing icon of a clickable chip emits only iconClicked, not clicked.",
+      "parentUuid": "d3a2afa5_bd0fbbf3",
+      "revId": "d08c06897ff873dadc565a7162c7a2ef6ab1face",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "70c7a24f_0a4e14c0",
@@ -31,6 +49,24 @@
       "writtenOn": "2026-11-20T21:43:15Z",
       "side": 1,
       "message": "[warning] Line 187: 🟡 `Keys.onPressed` only works when this control can receive focus, but the change does not explicitly enable tab focus for clickable chips. In common layouts this can leave Space/Enter activation unreachable from keyboard. Set focus behavior explicitly when `clickable` is true (for example `activeFocusOnTab: true` and an appropriate `focusPolicy`).",
+      "revId": "d08c06897ff873dadc565a7162c7a2ef6ab1face",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7f6ba5fc_a36fd28b",
+        "filename": "src/app/commoncomponents/JamiChip.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-11-20T22:02:55Z",
+      "side": 1,
+      "message": "Already handled: the chip sets activeFocusOnTab: true, so it is reachable with Tab and Space/Enter activate it.",
+      "parentUuid": "70c7a24f_0a4e14c0",
       "revId": "d08c06897ff873dadc565a7162c7a2ef6ab1face",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
