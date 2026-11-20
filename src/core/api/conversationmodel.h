@@ -112,6 +112,7 @@ enum Role {
     Description,
     FeedAuthor,
     FilterTitle,
+    ContactTags,
 };
 Q_ENUM_NS(Role)
 } // namespace ConversationList

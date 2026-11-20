@@ -247,6 +247,7 @@ ConversationModel::roleNames() const
     roles[Description] = "Description";
     roles[FeedAuthor] = "FeedAuthor";
     roles[FilterTitle] = "title";
+    roles[ContactTags] = "ContactTags";
     return roles;
 }
 
@@ -434,6 +435,8 @@ ConversationModel::dataForItem(const conversation::Info& item, int role) const
                 return contact.profileInfo.botOwner;
             case Role::IsBanned:
                 return contact.isBanned;
+            case Role::ContactTags:
+                return contact.tags;
             case Role::ContactType:
                 return static_cast<int>(contact.profileInfo.type);
             }
