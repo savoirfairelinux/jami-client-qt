@@ -18,6 +18,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "259e4f82_4d4de82e",
+        "filename": "src/core/contactmodel.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 876,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-11-20T22:02:55Z",
+      "side": 1,
+      "message": "Not changed: the daemon emits ContactMetadataChanged with the full contact snapshot, so the payload is the stored state. A malformed value is what persists, and loadContactTags() yields the same empty list on reload, so the cache stays consistent with storage. The client never writes tags back on receipt, so nothing is lost.",
+      "parentUuid": "48b878fb_1658258f",
+      "revId": "d464d571b22decfc406e5589b2755a2a4838ce1a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "093a51b6_6fd42114",
@@ -31,6 +49,24 @@
       "writtenOn": "2026-11-20T21:42:13Z",
       "side": 1,
       "message": "[warning] Line 1: 🟡 Coverage is limited to pure tag parsing helpers; there is no test for the `ContactModel` integration path (`contactMetadataChanged` signal + cache update). Add a unit/integration test that verifies malformed metadata updates do not erase existing contact tags and valid updates do refresh them.",
+      "revId": "d464d571b22decfc406e5589b2755a2a4838ce1a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d9d5ca4a_f81444e3",
+        "filename": "tests/unittests/contacttags_unittest.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-11-20T22:02:55Z",
+      "side": 1,
+      "message": "Not changed: the ContactModel path needs a daemon round trip; the decode/fromMetadata logic it relies on is covered here, including malformed input.",
+      "parentUuid": "093a51b6_6fd42114",
       "revId": "d464d571b22decfc406e5589b2755a2a4838ce1a",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
