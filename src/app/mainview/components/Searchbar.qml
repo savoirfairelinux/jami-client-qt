@@ -110,7 +110,7 @@ Rectangle {
 
             height: root.height - 5
 
-            font.pointSize: JamiTheme.textFontSize
+            font.pointSize: JamiTheme.mediumFontSize
             font.kerning: true
 
             onTextChanged: {
