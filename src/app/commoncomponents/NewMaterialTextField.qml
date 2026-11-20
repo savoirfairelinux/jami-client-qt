@@ -171,6 +171,9 @@ ColumnLayout {
 
                 background: null
 
+                // Only show Jami's context menu (onReleased), not Qt's default one.
+                ContextMenu.menu: null
+
                 onReleased: function (event) {
                     if (event.button === Qt.RightButton)
                         contextMenu.openMenuAt(event);
