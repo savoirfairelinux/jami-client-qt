@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0c6926d5_b3acd578",
+        "filename": "src/app/contactadapter.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 322,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-20T21:45:35Z",
+      "side": 1,
+      "message": "[warning] Line 322: 🟡 `getContactTagConversations()` appends one entry per matching contact without deduplicating by conversation id. If two contact records resolve to the same 1:1 conversation, `toggleList()` can add duplicate selected entries. Track seen conversation ids (e.g., `QSet\u003cQString\u003e`) and skip duplicates before appending.",
+      "revId": "ed998bce1b8162ca7ebd419bd29f742f09f71f23",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3b22e675_8c881dd4",
+        "filename": "src/app/mainview/components/ConversationPicker.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-20T21:45:35Z",
+      "side": 1,
+      "message": "[warning] Line 76: 🟡 `isListSelected()` calls `listConversations()`, which calls `ContactAdapter.getContactTagConversations(list)` each time the binding reevaluates. Because each chip delegate binds `selected` to this, rendering/updating N chips can trigger N full contact scans repeatedly. Cache per-list conversations (or expose a precomputed model from C++) and have `isListSelected()` read from that cache.",
+      "revId": "ed998bce1b8162ca7ebd419bd29f742f09f71f23",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "15593271_9766a16e",
+        "filename": "src/app/mainview/components/ConversationPicker.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-20T21:45:35Z",
+      "side": 1,
+      "message": "[warning] Line 248: 🟡 The wheel event is handled but not explicitly accepted. On some setups this can propagate to parent flickables and cause unintended simultaneous scrolling. Set `event.accepted \u003d true` after updating `contentX`.",
+      "revId": "ed998bce1b8162ca7ebd419bd29f742f09f71f23",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
