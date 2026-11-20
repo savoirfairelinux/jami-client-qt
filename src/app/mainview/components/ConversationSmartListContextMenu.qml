@@ -38,6 +38,8 @@ ContextMenuAutoLoader {
     // the number of ongoing calls in the current conversation (independent of whether the user has joined them)
     property int nbActiveCalls: 0
     property bool readOnly: false
+    property bool isRequest: false
+    readonly property bool isFeedRequest: isRequest && mode === Conversation.Mode.FEED
 
     // For UserProfile dialog.
     property string aliasText
@@ -46,9 +48,25 @@ ContextMenuAutoLoader {
 
     property list<GeneralMenuItem> menuItems: [
         GeneralMenuItem {
+            id: subscribeFeed
+
+            canTrigger: isFeedRequest
+            itemName: JamiStrings.subscribe
+            iconSource: JamiResources.notification_add_24dp_svg
+            onClicked: MessagesAdapter.acceptInvitation(responsibleConvUid)
+        },
+        GeneralMenuItem {
+            id: ignoreFeed
+
+            canTrigger: isFeedRequest
+            itemName: JamiStrings.ignore
+            iconSource: JamiResources.round_close_24dp_svg
+            onClicked: MessagesAdapter.declineInvitation(responsibleConvUid)
+        },
+        GeneralMenuItem {
             id: startOrJoinAudioCall
 
-            canTrigger: !readOnly && !isInCall && ConversationsAdapter.canCall(responsibleConvUid)
+            canTrigger: !isFeedRequest && !readOnly && !isInCall && ConversationsAdapter.canCall(responsibleConvUid)
             itemName: nbActiveCalls > 0 ? JamiStrings.joinWithAudio : JamiStrings.startAudioCall
             iconSource: JamiResources.start_audiocall_24dp_svg
             onClicked: {
@@ -59,7 +77,7 @@ ContextMenuAutoLoader {
         GeneralMenuItem {
             id: startOrJoinVideoCall
 
-            canTrigger: CurrentAccount.videoEnabled_Video && !readOnly && !isInCall
+            canTrigger: !isFeedRequest && CurrentAccount.videoEnabled_Video && !readOnly && !isInCall
                         && ConversationsAdapter.canCall(responsibleConvUid)
             itemName: nbActiveCalls > 0 ? JamiStrings.joinWithVideo : JamiStrings.startVideoCall
             iconSource: JamiResources.videocam_24dp_svg
@@ -80,7 +98,7 @@ ContextMenuAutoLoader {
         GeneralMenuItem {
             id: removeConversation
 
-            canTrigger: !isInCall && !root.isBanned
+            canTrigger: !isFeedRequest && !isInCall && !root.isBanned
             itemName: mode === Conversation.Mode.ONE_TO_ONE ? JamiStrings.removeConversation
                       : mode === Conversation.Mode.FEED ? JamiStrings.leaveFeed : JamiStrings.leaveGroup
             iconSource: mode === Conversation.Mode.FEED ? JamiResources.notification_remove_24dp_svg
@@ -167,7 +185,7 @@ ContextMenuAutoLoader {
             id: contactDetails
             objectName: "contactDetails"
 
-            canTrigger: contactType !== Profile.Type.SIP
+            canTrigger: !isFeedRequest && contactType !== Profile.Type.SIP
             itemName: isCoreDialog ? JamiStrings.contactDetails
                                    : (mode === Conversation.Mode.FEED ? JamiStrings.feedDetails : JamiStrings.convDetails)
             iconSource: JamiResources.person_24dp_svg

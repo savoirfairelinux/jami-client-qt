@@ -149,6 +149,38 @@ ColumnLayout {
     }
 
     ConversationSmartListContextMenu {
+        id: feedRequestContextMenuUut
+
+        mode: Conversation.Mode.FEED
+        isRequest: true
+    }
+
+    TestCase {
+        name: "Feed request context menu"
+        when: windowShown
+
+        function test_feedRequestShowsOnlySubscribeAndIgnore() {
+            try {
+                feedRequestContextMenuUut.openMenu();
+                tryVerify(() => feedRequestContextMenuUut.item !== null, 2000);
+
+                const menu = feedRequestContextMenuUut.item;
+                const itemNames = [];
+                for (let i = 0; i < menu.count; ++i) {
+                    const menuItem = menu.itemAt(i);
+                    if (menuItem.itemName !== undefined)
+                        itemNames.push(menuItem.itemName);
+                }
+                compare(itemNames, [JamiStrings.subscribe, JamiStrings.ignore]);
+            } finally {
+                if (feedRequestContextMenuUut.item)
+                    feedRequestContextMenuUut.item.close();
+                feedRequestContextMenuUut.active = false;
+            }
+        }
+    }
+
+    ConversationSmartListContextMenu {
         id: contextMenuUut
     }
 

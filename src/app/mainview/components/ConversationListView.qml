@@ -112,6 +112,7 @@ JamiListView {
             responsibleConvUid = model.dataForRow(index, ConversationList.UID);
             isBanned = model.dataForRow(index, ConversationList.IsBanned);
             mode = model.dataForRow(index, ConversationList.Mode);
+            isRequest = model.dataForRow(index, ConversationList.IsRequest);
             isCoreDialog = model.dataForRow(index, ConversationList.IsCoreDialog);
             contactType = LRCInstance.currentAccountType;
             readOnly = mode === Conversation.Mode.NON_SWARM && (model.dataForRow(index, ConversationList.ContactType) !== Profile.Type.TEMPORARY) && CurrentAccount.type !== Profile.Type.SIP;

@@ -119,6 +119,7 @@ Item {
     property color buttonTintedGreyHovered: "#777"
     property color buttonTintedGreyPressed: "#777"
     property color buttonTintedGreyInactive: darkTheme ? "#777" : "#bbb"
+    property color buttonTintedGreyStrong: darkTheme ? "#7a7a7a" : "#666"
     property color buttonTintedBlack: darkTheme ? "#fff" : "#333"
     property color buttonTintedBlackHovered: darkTheme ? "#ddd" : "#111"
     property color buttonTintedBlackPressed: darkTheme ? "#ddd" : "#000"
