@@ -95,14 +95,19 @@ TestWrapper {
         function test_allContactsAvailability(data) {
             const dialog = openDialog(data.isFeed);
             mouseClick(dialog.button3);
-            compare(field(dialog, "allContactsSwitch").visible, data.isFeed);
+            compare(field(dialog, "feedAudienceComboBox").visible, data.isFeed);
+        }
+
+        function chooseAudience(dialog, index) {
+            const audience = field(dialog, "feedAudienceComboBox");
+            audience.currentIndex = index;
+            audience.activated(index);
         }
 
         function test_allContactsHidesSelection() {
             const dialog = openDialog(true);
             mouseClick(dialog.button3);
             const picker = field(dialog, "conversationPicker");
-            const allContacts = field(dialog, "allContactsSwitch");
             const list = field(dialog, "creationConversationList");
             const search = field(dialog, "creationConversationSearch");
 
@@ -110,13 +115,13 @@ TestWrapper {
             verify(!list.visible);
             verify(!search.visible);
 
-            mouseClick(allContacts);
+            chooseAudience(dialog, 1);
             verify(!picker.allContacts);
             verify(list.visible);
             verify(search.visible);
 
             picker.selectedConversations = [{"id": "conversation", "name": "Conversation"}];
-            mouseClick(allContacts);
+            chooseAudience(dialog, 0);
             verify(picker.allContacts);
             compare(picker.selectedConversations.length, 0);
             verify(!list.visible);
@@ -141,7 +146,7 @@ TestWrapper {
                 findChild(field(dialog, "descriptionLineEdit"), "textField").text = description;
                 mouseClick(dialog.button3);
                 if (data.isFeed && !data.allContacts)
-                    mouseClick(field(dialog, "allContactsSwitch"));
+                    chooseAudience(dialog, 1);
                 mouseClick(dialog.button3);
 
                 tryVerify(() => !!LRCInstance.selectedConvUid && LRCInstance.selectedConvUid !== previousId);
@@ -157,6 +162,27 @@ TestWrapper {
                 }
             }
         }
+
+        function test_feedAudienceOptions() {
+            const dialog = openDialog(true);
+            mouseClick(dialog.button3);
+            const picker = field(dialog, "conversationPicker");
+            const audience = field(dialog, "feedAudienceComboBox");
+            const lists = field(dialog, "conversationPickerLists");
+            picker.contactLists = ["Family", "Work"];
+
+            compare(audience.count, 2);
+            compare(audience.textAt(0), JamiStrings.allContacts);
+            compare(audience.textAt(1), JamiStrings.selectContacts);
+            verify(picker.allContacts);
+            verify(!lists.visible);
+
+            chooseAudience(dialog, 1);
+            verify(!picker.allContacts);
+            verify(lists.visible);
+            compare(lists.count, 2);
+        }
+
         function test_listChipsScrollWithMouseWheel() {
             const dialog = openDialog(false);
             mouseClick(dialog.button3);
