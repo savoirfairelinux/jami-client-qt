@@ -38,8 +38,7 @@ class FilteredMsgListModel final : public QSortFilterProxyModel
 {
     Q_OBJECT
     Q_PROPERTY(int count READ count NOTIFY countChanged)
-    Q_PROPERTY(bool hideMembershipEvents READ hideMembershipEvents WRITE setHideMembershipEvents NOTIFY
-                   hideMembershipEventsChanged)
+    Q_PROPERTY(bool hideSystemEvents READ hideSystemEvents WRITE setHideSystemEvents NOTIFY hideSystemEventsChanged)
 public:
     explicit FilteredMsgListModel(QObject* parent = nullptr)
         : QSortFilterProxyModel(parent)
@@ -55,7 +54,10 @@ public:
     {
         auto index = sourceModel()->index(sourceRow, 0, sourceParent);
         auto type = static_cast<interaction::Type>(sourceModel()->data(index, MessageList::Role::Type).toInt());
-        return interaction::isTypeDisplayable(type) && (!hideMembershipEvents_ || type != interaction::Type::CONTACT);
+        if (!interaction::isTypeDisplayable(type))
+            return false;
+        // System events are membership changes and the creation notice.
+        return !hideSystemEvents_ || (type != interaction::Type::CONTACT && type != interaction::Type::INITIAL);
     };
     bool lessThan(const QModelIndex& left, const QModelIndex& right) const override
     {
@@ -83,23 +85,23 @@ public:
         return rowCount();
     }
 
-    bool hideMembershipEvents() const
+    bool hideSystemEvents() const
     {
-        return hideMembershipEvents_;
+        return hideSystemEvents_;
     }
 
-    void setHideMembershipEvents(bool hide)
+    void setHideSystemEvents(bool hide)
     {
-        if (hideMembershipEvents_ == hide)
+        if (hideSystemEvents_ == hide)
             return;
-        hideMembershipEvents_ = hide;
+        hideSystemEvents_ = hide;
         refreshFilter();
-        Q_EMIT hideMembershipEventsChanged();
+        Q_EMIT hideSystemEventsChanged();
     }
 
 Q_SIGNALS:
     void countChanged();
-    void hideMembershipEventsChanged();
+    void hideSystemEventsChanged();
 
 protected:
     void refreshFilter()
@@ -113,7 +115,7 @@ protected:
     }
 
 private:
-    bool hideMembershipEvents_ {false};
+    bool hideSystemEvents_ {false};
 };
 
 // The one history request allowed in flight for the selected conversation.
