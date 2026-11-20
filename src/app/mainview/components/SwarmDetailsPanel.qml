@@ -73,6 +73,13 @@ Item {
         function updateSwarmDetailsTabModel() {
             const currentPage = currentDetailsPage;
             swarmDetailsTabModel.clear();
+            const detailsTab = {
+                "name": JamiStrings.details,
+                "page": "details"
+            };
+            if (CurrentConversation.isFeedMode) {
+                swarmDetailsTabModel.append(detailsTab);
+            }
             if (!CurrentConversation.isCoreDialog) {
                 swarmDetailsTabModel.append({
                                                 "name": JamiStrings.members.arg(CurrentConversation.members.count),
@@ -84,10 +91,9 @@ Item {
                                             "name": JamiStrings.files,
                                             "page": "files"
                                         });
-            swarmDetailsTabModel.append({
-                                            "name": JamiStrings.details,
-                                            "page": "details"
-                                        });
+            if (!CurrentConversation.isFeedMode) {
+                swarmDetailsTabModel.append(detailsTab);
+            }
 
             let selectedIndex = -1;
             for (let i = 0; i < swarmDetailsTabModel.count; ++i) {
@@ -333,6 +339,10 @@ Item {
                 function onIsCoreDialogChanged() {
                     innerRect.updateSwarmDetailsTabModel();
                     root.refreshCoreDialogDisplayNameState();
+                }
+
+                function onIsFeedModeChanged() {
+                    innerRect.updateSwarmDetailsTabModel();
                 }
 
             }
