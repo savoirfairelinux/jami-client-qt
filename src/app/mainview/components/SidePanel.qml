@@ -609,95 +609,33 @@ SidePanelBase {
                     }
                 }
 
-                Rectangle {
+                ScrollFadeGradient {
                     id: gradientRectTop
 
-                    readonly property color baseColor: JamiTheme.globalIslandColor
-                    readonly property bool shouldShow: !conversationListView.atYBeginning
+                    flickable: conversationListView
+                    atTop: true
 
                     anchors.top: conversationLayout.top
                     anchors.topMargin: header.height + JamiTheme.sidePanelConversationsIslandTopPadding + 10 + (sidePanelTabBar.visible ? sidePanelTabBar.height : 0) + (JamiQmlUtils.isMacOS26OrLater ? JamiTheme.sidePanelTopPaddingMac : 0)
 
                     width: conversationLayout.width
-                    height: JamiTheme.smartListItemHeight
-
                     z: conversationLayout.z + 1
-
-                    gradient: Gradient {
-                        orientation: Gradient.Vertical
-                        GradientStop {
-                            position: 0.0
-                            color: Qt.rgba(gradientRect.baseColor.r, gradientRect.baseColor.g,
-                                           gradientRect.baseColor.b, 1.0)
-                        }
-                        GradientStop {
-                            position: 0.25
-                            color: Qt.rgba(gradientRect.baseColor.r, gradientRect.baseColor.g,
-                                           gradientRect.baseColor.b, 0.75)
-                        }
-                        GradientStop {
-                            position: 1.0
-                            color: Qt.rgba(gradientRect.baseColor.r, gradientRect.baseColor.g,
-                                           gradientRect.baseColor.b, 0.0)
-                        }
-                    }
-
-                    visible: opacity > 0
-                    opacity: shouldShow ? 1.0 : 0.0
-
-                    Behavior on opacity {
-                        NumberAnimation {
-                            duration: 200
-                            easing.type: Easing.InOutQuad
-                        }
-                    }
                 }
 
-                Rectangle {
+                ScrollFadeGradient {
                     id: gradientRect
 
-                    readonly property color baseColor: JamiTheme.globalIslandColor
-                    readonly property bool shouldShow: !conversationListView.atYEnd
+                    flickable: conversationListView
 
                     anchors.bottom: conversationLayout.bottom
                     anchors.bottomMargin: -1
 
                     width: conversationLayout.width
-                    height: JamiTheme.smartListItemHeight
 
                     bottomRightRadius: JamiTheme.avatarBasedRadius
                     bottomLeftRadius: JamiTheme.avatarBasedRadius
 
                     z: conversationLayout.z + 1
-
-                    gradient: Gradient {
-                        orientation: Gradient.Vertical
-                        GradientStop {
-                            position: 0.0
-                            color: Qt.rgba(gradientRect.baseColor.r, gradientRect.baseColor.g,
-                                           gradientRect.baseColor.b, 0.0)
-                        }
-                        GradientStop {
-                            position: 0.75
-                            color: Qt.rgba(gradientRect.baseColor.r, gradientRect.baseColor.g,
-                                           gradientRect.baseColor.b, 0.75)
-                        }
-                        GradientStop {
-                            position: 1.0
-                            color: Qt.rgba(gradientRect.baseColor.r, gradientRect.baseColor.g,
-                                           gradientRect.baseColor.b, 1.0)
-                        }
-                    }
-
-                    visible: opacity > 0
-                    opacity: shouldShow ? 1.0 : 0.0
-
-                    Behavior on opacity {
-                        NumberAnimation {
-                            duration: 200
-                            easing.type: Easing.InOutQuad
-                        }
-                    }
                 }
             }
 

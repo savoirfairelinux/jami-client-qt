@@ -209,6 +209,17 @@ ColumnLayout {
         activeFocusOnTab: true
         Accessible.name: JamiStrings.conversations
 
+        ScrollFadeGradient {
+            parent: conversationList
+            flickable: conversationList
+            atTop: true
+        }
+
+        ScrollFadeGradient {
+            parent: conversationList
+            flickable: conversationList
+        }
+
         delegate: SmartListItemDelegate {
             readonly property bool locked: IsCoreDialog && Array.from(Uris).some(uri => root.lockedContactUris.includes(uri))
             interactive: false
