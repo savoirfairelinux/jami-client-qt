@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec7bfb2e_7e6030ce",
+        "filename": "src/app/mainview/components/ConversationPicker.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-20T22:04:59Z",
+      "side": 1,
+      "message": "[warning] Line 257: 🟡 Caching `conversations` in a delegate property can make list membership stale while the picker stays open, because `ContactAdapter.getContactTagConversations()` has no QML-observable dependency to trigger recomputation when contacts/tags change asynchronously. This is a behavioral regression versus computing on click. Add an explicit invalidation dependency (for example, a `ContactAdapter` revision signal/property bumped on contact/tag model updates) and include it in the binding, or recompute in `onClicked` before toggling.",
+      "revId": "0ac222d66497e3db6c511cba0b7a9f09154207cb",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
