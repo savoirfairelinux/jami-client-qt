@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "27c1d608_656de6c4",
+        "filename": "src/app/mainview/components/WelcomePage.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-20T15:22:05Z",
+      "side": 1,
+      "message": "[error] Line 258: 🔴 The icon resource key used for the About button (`JamiResources.informations_black_24dp_svg`) is inconsistent with the key asserted in the new test (`JamiResources.i_informations_black_24dp_svg`). As written, either the UI or the test is referencing the wrong resource symbol. Please align both files to the same canonical resource constant (and prefer the existing project-wide key if one already exists) so the About icon renders reliably and the test validates the real behavior.",
+      "revId": "fde46981e5ab5a4ea164d6c0feaca71629a188ef",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
