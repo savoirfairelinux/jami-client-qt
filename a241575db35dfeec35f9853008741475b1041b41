@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1c92298d_a79b00e4",
+        "filename": "src/core/conversationmodel.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 346,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-20T19:57:06Z",
+      "side": 1,
+      "message": "[warning] Line 346: 🟡 `std::find_if` picks the first matching admin/member from `participants`, but participant ordering is not guaranteed to be stable. In feeds with multiple admins (or atypical request participant ordering), this can surface different authors across refreshes. Use a deterministic source for author identity (e.g., explicit creator/inviter metadata if available) or apply a stable tie-break (such as sorted URI) before selecting.",
+      "revId": "a241575db35dfeec35f9853008741475b1041b41",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
