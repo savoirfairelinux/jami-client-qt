@@ -157,5 +157,20 @@ TestWrapper {
                 }
             }
         }
+        function test_listChipsScrollWithMouseWheel() {
+            const dialog = openDialog(false);
+            mouseClick(dialog.button3);
+            const lists = field(dialog, "conversationPickerLists");
+            lists.parent.contactLists = Array.from({length: 20}, (_, i) => "Long list name " + i);
+            tryVerify(() => lists.visible && lists.contentWidth > lists.width);
+            waitForRendering(lists);
+
+            const startX = lists.contentX;
+            mouseWheel(lists, lists.width / 2, lists.height / 2, 0, -120);
+            tryVerify(() => lists.contentX > startX);
+            const scrolledX = lists.contentX;
+            mouseWheel(lists, lists.width / 2, lists.height / 2, 0, 120);
+            tryVerify(() => lists.contentX < scrolledX);
+        }
     }
 }

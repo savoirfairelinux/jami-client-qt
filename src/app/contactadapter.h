@@ -102,6 +102,8 @@ public:
     Q_INVOKABLE QStringList getContactTags(const QString& convId) const;
     Q_INVOKABLE QStringList getAllContactTags() const;
     Q_INVOKABLE bool setContactTags(const QString& convId, const QStringList& tags);
+    // One-to-one conversations of the contacts tagged with `tag`, as {id, name, uri} maps.
+    Q_INVOKABLE QVariantList getContactTagConversations(const QString& tag) const;
 
     void connectSignals();
 
