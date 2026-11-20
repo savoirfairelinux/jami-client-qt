@@ -1036,7 +1036,8 @@ Item {
 
     // CreateConversationDialog
     property string next: qsTr("Next")
-    property string nextWithCount: qsTr("Next (%L1)")
+    //: %1 is a button label such as "New group"; %L2 is the number of participants.
+    property string labelWithCount: qsTr("%1 (%L2)")
     property string selectedConversations: qsTr("Selected conversations")
     property string addAllContacts: qsTr("Add all contacts")
     property string addAllContactsDescription: qsTr("Contacts you add later will also be invited.")

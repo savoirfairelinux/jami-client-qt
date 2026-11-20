@@ -58,10 +58,6 @@ TestWrapper {
 
         function test_detailsFocusAndDraft() {
             const dialog = openDialog(false);
-            const search = field(dialog, "creationConversationSearch");
-            tryCompare(search.textField, "activeFocus", true);
-
-            mouseClick(dialog.button3);
             const title = field(dialog, "titleLineEdit");
             const description = field(dialog, "descriptionLineEdit");
             tryCompare(title, "textFieldActiveFocus", true);
@@ -70,9 +66,14 @@ TestWrapper {
             tryCompare(description, "textFieldActiveFocus", true);
             findChild(description, "textField").text = "Draft description";
 
-            mouseClick(dialog.button1);
-            tryCompare(search.textField, "activeFocus", true);
             mouseClick(dialog.button3);
+            const search = field(dialog, "creationConversationSearch");
+            tryCompare(search.textField, "activeFocus", true);
+
+            // The footer resizes for the new button labels; click Back once it has settled.
+            waitForRendering(dialog.contentItem);
+            mouseClick(dialog.button1);
+            tryCompare(title, "textFieldActiveFocus", true);
             compare(title.modifiedTextFieldContent, "Group draft");
             compare(description.modifiedTextFieldContent, "Draft description");
 
@@ -80,7 +81,6 @@ TestWrapper {
             tryCompare(dialog, "visible", false);
 
             const freshDialog = openDialog(false);
-            mouseClick(freshDialog.button3);
             compare(findChild(field(freshDialog, "titleLineEdit"), "textField").text, "");
             compare(findChild(field(freshDialog, "descriptionLineEdit"), "textField").text, "");
         }
@@ -94,11 +94,13 @@ TestWrapper {
 
         function test_allContactsAvailability(data) {
             const dialog = openDialog(data.isFeed);
+            mouseClick(dialog.button3);
             compare(field(dialog, "allContactsSwitch").visible, data.isFeed);
         }
 
         function test_allContactsHidesSelection() {
             const dialog = openDialog(true);
+            mouseClick(dialog.button3);
             const picker = field(dialog, "conversationPicker");
             const allContacts = field(dialog, "allContactsSwitch");
             const list = field(dialog, "creationConversationList");
@@ -135,11 +137,11 @@ TestWrapper {
             const description = "Team updates";
 
             try {
-                if (data.isFeed && !data.allContacts)
-                    mouseClick(field(dialog, "allContactsSwitch"));
-                mouseClick(dialog.button3);
                 findChild(field(dialog, "titleLineEdit"), "textField").text = data.title;
                 findChild(field(dialog, "descriptionLineEdit"), "textField").text = description;
+                mouseClick(dialog.button3);
+                if (data.isFeed && !data.allContacts)
+                    mouseClick(field(dialog, "allContactsSwitch"));
                 mouseClick(dialog.button3);
 
                 tryVerify(() => !!LRCInstance.selectedConvUid && LRCInstance.selectedConvUid !== previousId);
