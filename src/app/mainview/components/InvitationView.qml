@@ -39,7 +39,7 @@ Item {
         width: infoColumnLayout.width - textMarginSize
         height: visible ? contentHeight : 0
 
-        visible: !convContext.needsSyncing
+        visible: !convContext.needsSyncing && !convContext.isFeedMode
 
         horizontalAlignment: Text.AlignHCenter
         verticalAlignment: Text.AlignVCenter
@@ -87,9 +87,13 @@ Item {
             color: JamiTheme.textColor
             wrapMode: Text.Wrap
 
-            text: convContext.needsSyncing ? JamiStrings.invitationViewAcceptedConversation
-                  : convContext.isFeedMode ? JamiStrings.invitationViewJoinFeed.arg(convContext.title)
-                  : JamiStrings.invitationViewJoinConversation
+            text: {
+                if (convContext.isFeedMode)
+                    return convContext.needsSyncing ? JamiStrings.invitationViewSubscribedFeed.arg(convContext.title)
+                                                    : JamiStrings.invitationViewJoinFeed.arg(convContext.title);
+                return convContext.needsSyncing ? JamiStrings.invitationViewAcceptedConversation
+                                                : JamiStrings.invitationViewJoinConversation;
+            }
         }
 
         Text {
@@ -112,6 +116,35 @@ Item {
             text: JamiStrings.invitationViewWaitingForSync.arg(convContext.title)
         }
 
+        NewMaterialButton {
+            id: subscribeButton
+
+            Layout.alignment: Qt.AlignHCenter
+            Layout.topMargin: marginSize
+
+            visible: !convContext.needsSyncing && convContext.isFeedMode
+
+            filledButton: true
+            iconSource: JamiResources.notification_add_24dp_svg
+            text: JamiStrings.subscribe
+
+            onClicked: MessagesAdapter.acceptInvitation()
+        }
+
+        NewMaterialButton {
+            id: ignoreButton
+
+            Layout.alignment: Qt.AlignHCenter
+
+            visible: subscribeButton.visible
+
+            outlinedButton: true
+            color: JamiTheme.buttonTintedGreyStrong
+            text: JamiStrings.ignore
+
+            onClicked: MessagesAdapter.declineInvitation()
+        }
+
         RowLayout {
             id: buttonGroupRowLayout
 
@@ -120,7 +153,7 @@ Item {
 
             spacing: JamiTheme.invitationViewButtonsSpacing
 
-            visible: !convContext.needsSyncing
+            visible: !convContext.needsSyncing && !convContext.isFeedMode
 
             PushButton {
                 id: blockButton

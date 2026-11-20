@@ -999,7 +999,10 @@ Item {
     // Invitation View
     property string invitationViewSentRequest: qsTr("%1 sent you a conversation invitation.")
     property string invitationViewJoinConversation: qsTr("Hello,\nDo you want to join the conversation?")
-    property string invitationViewJoinFeed: qsTr("You've been invited to join the %1 feed!")
+    property string invitationViewJoinFeed: qsTr("Subscribe to the %1 feed to follow its posts.")
+    property string invitationViewSubscribedFeed: qsTr("You have subscribed\nto the %1 feed.")
+    property string subscribe: qsTr("Subscribe")
+    property string ignore: qsTr("Ignore")
     property string invitationViewAcceptedConversation: qsTr("You have accepted\nthe conversation invitation.")
     property string invitationViewWaitingForSync: qsTr("Waiting for %1\nto connect to synchronize the conversation…")
 
