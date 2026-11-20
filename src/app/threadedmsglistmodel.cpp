@@ -47,7 +47,8 @@ ThreadedMsgListModel::setSourceModel(QAbstractItemModel* model)
 
     QSortFilterProxyModel::setSourceModel(model);
     rebuildIndex();
-    invalidateRowsFilter();
+    beginFilterChange();
+    endFilterChange(QSortFilterProxyModel::Direction::Rows);
     regrouped_ = countsChanged_ = false;
     previousThreadId_ = threadId_;
 
@@ -61,7 +62,8 @@ ThreadedMsgListModel::setSourceModel(QAbstractItemModel* model)
                     this,
                     [this] {
                         refilterQueued_ = false;
-                        invalidateRowsFilter();
+                        beginFilterChange();
+                        endFilterChange(QSortFilterProxyModel::Direction::Rows);
                     },
                     Qt::QueuedConnection);
             }
@@ -120,7 +122,8 @@ ThreadedMsgListModel::setThreadId(const QString& threadId)
     if (threadId_ == threadId)
         return;
     threadId_ = previousThreadId_ = threadId;
-    invalidateRowsFilter();
+    beginFilterChange();
+    endFilterChange(QSortFilterProxyModel::Direction::Rows);
     Q_EMIT threadIdChanged();
 }
 
