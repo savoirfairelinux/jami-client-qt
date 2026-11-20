@@ -121,6 +121,24 @@ ColumnLayout {
                 other.destroy()
             }
 
+            // Regression: Qt's default TextArea menu (Undo, Redo, Cut...) opened on
+            // right-button press, before Jami's menu opened on release.
+            function test_rightClickOpensOnlyJamiContextMenu() {
+                const messageBarTextArea = findChild(uut, "messageBarTextArea")
+                const textArea = messageBarTextArea.textAreaObj
+                const jamiMenu = findChild(messageBarTextArea, "messageBarContextMenu")
+                verify(jamiMenu)
+
+                mousePress(textArea, textArea.width / 2, textArea.height / 2, Qt.RightButton)
+                const qtMenu = textArea.ContextMenu.menu
+                verify(!qtMenu || !qtMenu.visible, "Qt's default context menu opened")
+
+                mouseRelease(textArea, textArea.width / 2, textArea.height / 2, Qt.RightButton)
+                tryVerify(() => jamiMenu.item && jamiMenu.item.opened)
+                jamiMenu.item.close()
+                tryCompare(jamiMenu, "active", false)
+            }
+
             function test_narrowComposerKeepsInlineOptionsAndShowsAllInMenu() {
                 const messageBar = uut.messageBar
                 messageBar.showTypo = true

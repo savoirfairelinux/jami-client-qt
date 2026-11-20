@@ -82,6 +82,7 @@ JamiFlickable {
 
     LineEditContextMenu {
         id: textAreaContextMenu
+        objectName: "messageBarContextMenu"
 
         lineEditObj: textArea
         customizePaste: true
@@ -199,6 +200,10 @@ JamiFlickable {
             font.bold: true
             visible: false
         }
+
+        // Jami opens its own context menu on release (see onReleased); disable
+        // Qt's default one, which would also open (on press on Linux).
+        ContextMenu.menu: null
 
         onReleased: function (event) {
             if (event.button === Qt.RightButton) {
