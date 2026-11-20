@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4d083e5b_11af1226",
+        "filename": "src/app/contactadapter.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 288,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-20T21:44:31Z",
+      "side": 1,
+      "message": "[error] Line 288: 🔴 `getContactTags()` calls `getContact(uri)` without exception handling, but `getContact()` can throw when contact data changes concurrently (account switch/contact removal). This can crash the QML call path. Mirror `taggableContactUri()`/`CurrentConversation::updateData()` behavior by catching `std::exception` (or at least `std::out_of_range`) and returning an empty list or explicit failure.",
+      "revId": "3df7a626084a26b83d8671bb2033dd0461a46d34",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
