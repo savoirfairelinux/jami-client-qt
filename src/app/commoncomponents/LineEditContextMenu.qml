@@ -25,6 +25,7 @@ import "../mainview/components"
 
 ContextMenuAutoLoader {
     id: root
+    objectName: "lineEditContextMenu"
 
     // lineEdit (TextEdit) selection will be lost when menu is opened
     property var lineEditObj
