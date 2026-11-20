@@ -192,7 +192,7 @@ public:
     QString waitForConference_ {};
 
 private:
-    // Tracks last known participant count per conference to detect size changes in slotOnConferenceInfosUpdated.
+    // Tracks last known participant count per conference to detect size changes in slotConferenceInfosUpdated.
     std::map<QString, size_t> previousCallListSizes_;
 
     void applyFallbackConversationSwitch(const QString& confId,
@@ -272,7 +272,7 @@ public Q_SLOTS:
      * @param confId
      * @param infos
      */
-    void slotOnConferenceInfosUpdated(const QString& confId, const VectorMapStringString& infos);
+    void slotConferenceInfosUpdated(const QString& confId, const VectorMapStringString& infos);
     /**
      * Listen from CallbacksHandler when the peer start recording
      * @param callId
@@ -1120,9 +1120,9 @@ CallModelPimpl::CallModelPimpl(const CallModel& linked,
     connect(&callbacksHandler, &CallbacksHandler::conferenceRemoved, this, &CallModelPimpl::slotConferenceRemoved);
     connect(&callbacksHandler, &CallbacksHandler::voiceMailNotify, this, &CallModelPimpl::slotVoiceMailNotify);
     connect(&CallManager::instance(),
-            &CallManagerInterface::onConferenceInfosUpdated,
+            &CallManagerInterface::conferenceInfosUpdated,
             this,
-            &CallModelPimpl::slotOnConferenceInfosUpdated);
+            &CallModelPimpl::slotConferenceInfosUpdated);
     connect(&callbacksHandler,
             &CallbacksHandler::remoteRecordingChanged,
             this,
@@ -1799,7 +1799,7 @@ CallModelPimpl::slotVoiceMailNotify(const QString& accountId, int newCount, int 
 }
 
 void
-CallModelPimpl::slotOnConferenceInfosUpdated(const QString& confId, const VectorMapStringString& infos)
+CallModelPimpl::slotConferenceInfosUpdated(const QString& confId, const VectorMapStringString& infos)
 {
     auto it = calls.find(confId);
     if (it == calls.end() or not it->second)

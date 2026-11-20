@@ -167,10 +167,10 @@ public:
                     LOG_LIBJAMI_SIGNAL2("onRtcpReportReceived", QString(callId.c_str()), convertStringInt(report));
                     Q_EMIT onRtcpReportReceived(QString(callId.c_str()), convertStringInt(report));
                 }),
-            exportable_callback<CallSignal::OnConferenceInfosUpdated>(
+            exportable_callback<CallSignal::ConferenceInfosUpdated>(
                 [this](const std::string& confId, const std::vector<std::map<std::string, std::string>>& infos) {
-                    LOG_LIBJAMI_SIGNAL2("onConferenceInfosUpdated", QString(confId.c_str()), convertVecMap(infos));
-                    Q_EMIT onConferenceInfosUpdated(QString(confId.c_str()), convertVecMap(infos));
+                    LOG_LIBJAMI_SIGNAL2("conferenceInfosUpdated", QString(confId.c_str()), convertVecMap(infos));
+                    Q_EMIT conferenceInfosUpdated(QString(confId.c_str()), convertVecMap(infos));
                 }),
             exportable_callback<CallSignal::PeerHold>([this](const std::string& callId, bool state) {
                 LOG_LIBJAMI_SIGNAL2("peerHold", QString(callId.c_str()), state);
@@ -548,7 +548,7 @@ Q_SIGNALS: // SIGNALS
     void conferenceRemoved(const QString& accountId, const QString& confId);
     void recordingStateChanged(const QString& callId, bool recordingState);
     void onRtcpReportReceived(const QString& callId, MapStringInt report);
-    void onConferenceInfosUpdated(const QString& confId, VectorMapStringString infos);
+    void conferenceInfosUpdated(const QString& confId, VectorMapStringString infos);
     void audioMuted(const QString& callId, bool state);
     void videoMuted(const QString& callId, bool state);
     void peerHold(const QString& callId, bool state);
