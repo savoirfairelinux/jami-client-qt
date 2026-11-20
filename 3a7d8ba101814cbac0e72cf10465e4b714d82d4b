@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f418aa1c_dc628731",
+        "filename": "src/app/messagesadapter.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-20T19:48:42Z",
+      "side": 1,
+      "message": "[error] Line 39: 🔴 Renaming the Q_PROPERTY from `hideMembershipEvents` to `hideSystemEvents` is a runtime-facing API change for QML/meta-object users. Any remaining callers using the old property name will silently fail at runtime (`setProperty` returns false / QML binding error), which can disable filtering unexpectedly. Add a compatibility alias (deprecated `hideMembershipEvents` property forwarding to the new getter/setter/signal) or update all call sites in-tree in the same patch and verify no old-name usage remains.",
+      "revId": "3a7d8ba101814cbac0e72cf10465e4b714d82d4b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "13e0afcb_7229479e",
+        "filename": "tests/unittests/messagelistmodel_unittest.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-20T19:48:42Z",
+      "side": 1,
+      "message": "[warning] Line 67: 🟡 The new `INITIAL` filtering path is covered for `FilteredMsgListModel`, but not for the threaded path. Add a `ThreadedMsgListModel` case with an `INITIAL` event to prevent regressions where only `CONTACT` remains filtered in threaded views.",
+      "revId": "3a7d8ba101814cbac0e72cf10465e4b714d82d4b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
