@@ -617,6 +617,37 @@ Item {
                                     }
                                 }
                             }
+
+                            ColumnLayout {
+                                objectName: "emptyFeedState"
+
+                                anchors.centerIn: parent
+                                width: Math.min(parent.width - 32, implicitWidth)
+                                z: 1
+                                spacing: 16
+
+                                visible: convContext.isFeedMode && convContext.allMessagesLoaded
+                                         && loader.item !== null && loader.item.count === 0
+
+                                NewIconButton {
+                                    Layout.alignment: Qt.AlignHCenter
+
+                                    iconSource: JamiResources.dynamic_feed_24dp_svg
+                                    iconSize: JamiTheme.iconButtonExtraLarge * 2
+
+                                    enabled: false
+                                }
+
+                                Text {
+                                    Layout.alignment: Qt.AlignHCenter
+                                    Layout.fillWidth: true
+
+                                    text: convContext.canSendText ? JamiStrings.noPostsInFeedWriteFirst : JamiStrings.noPostsInFeed
+                                    color: JamiTheme.textColor
+                                    wrapMode: Text.WordWrap
+                                    horizontalAlignment: Text.AlignHCenter
+                                }
+                            }
                         }
 
                         InvitationView {

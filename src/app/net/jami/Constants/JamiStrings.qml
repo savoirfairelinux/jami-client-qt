@@ -1155,6 +1155,8 @@ Item {
     // Files
     property string noFilesInConversation: qsTr("This conversation has no files.")
     property string noFilesInFeed: qsTr("This feed has no files.")
+    property string noPostsInFeed: qsTr("There are no posts in this feed yet.")
+    property string noPostsInFeedWriteFirst: qsTr("There are no posts in this feed yet. Write your first post below.")
 
     // Collaborative documents
     property string collaborativeDocuments: qsTr("Collaborative documents")
