@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ef56eb74_2f259c1e",
+        "filename": "src/app/mainview/components/SmartListItemDelegate.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-20T21:47:36Z",
+      "side": 1,
+      "message": "[error] Line 200: 🔴 `visible: lists.length \u003e 0 \u0026\u0026 !IsBanned` references `lists`, which is not defined in this scope. In QML this causes a runtime `ReferenceError` and the binding won’t behave as intended, so contact-list chips may never appear (and logs get noisy). Use the actual model role/property, e.g. `visible: (ContactTags?.length ?? 0) \u003e 0 \u0026\u0026 !IsBanned` (or `contactListChips.lists.length \u003e 0 \u0026\u0026 !IsBanned`).",
+      "revId": "581b7c9cf8ba2aa48bbe4d356ec630ed589761f0",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
