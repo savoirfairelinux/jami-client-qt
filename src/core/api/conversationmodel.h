@@ -109,6 +109,7 @@ enum Role {
     Uris,
     Monikers,
     MemberCount,
+    Description,
     FilterTitle,
 };
 Q_ENUM_NS(Role)
