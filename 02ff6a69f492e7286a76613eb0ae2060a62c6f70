@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c5a0be8_59d4b8e6",
+        "filename": "src/app/mainview/components/SwarmDetailsPanel.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 739,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-20T19:45:42Z",
+      "side": 1,
+      "message": "[warning] Line 739: 🟡 For non-feed swarm conversations, the button text can be `Leave group` while the confirmation dialog still falls back to `confirmRemoveContact`/`optionRemove`. This is inconsistent wording and can mislead users about the action. Add an explicit group-mode branch here (e.g., `confirmLeaveGroup` + `optionLeave`) so dialog text matches the selected action.",
+      "revId": "02ff6a69f492e7286a76613eb0ae2060a62c6f70",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d12a54c1_621b8ed9",
+        "filename": "tests/qml/src/tst_ConversationListView.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-20T19:45:42Z",
+      "side": 1,
+      "message": "[warning] Line 139: 🟡 The test update only checks the menu item label (`unsubscribeFeed`). It does not assert the updated confirmation copy/actions (`confirmUnsubscribeFeed`, `optionUnsubscribe`) introduced in UI flows. Add coverage for the confirmation dialog labels to prevent wording regressions.",
+      "revId": "02ff6a69f492e7286a76613eb0ae2060a62c6f70",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
