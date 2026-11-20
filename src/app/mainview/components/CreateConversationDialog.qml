@@ -42,7 +42,7 @@ BaseModalDialog {
         return parent ? Math.min(preferred, Math.max(0, parent.width - 64)) : preferred;
     }
     readonly property real fittedPageHeight: !peopleStep ? detailsLayout.implicitHeight
-                                                         : picker.allContacts ? picker.implicitHeight : -1
+                                                         : !picker.pickingContacts ? picker.implicitHeight : -1
     readonly property real fittedContentHeight: fittedPageHeight < 0 ? -1
                                                 : fittedPageHeight + (creationFailedLabel.visible ? creationFailedLabel.implicitHeight + content.spacing : 0)
     height: Math.min(fittedContentHeight >= 0 ? fittedContentHeight + topPadding + bottomPadding

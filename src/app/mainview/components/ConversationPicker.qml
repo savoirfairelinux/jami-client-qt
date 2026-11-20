@@ -28,7 +28,8 @@ ColumnLayout {
     required property var viewCoordinator
     property bool isFeed: false
     property bool allContactsAvailable: false
-    readonly property bool allContacts: allContactsAvailable && allContactsSwitch.checked
+    readonly property bool allContacts: allContactsAvailable && audienceComboBox.currentIndex === 0
+    readonly property bool pickingContacts: !allContacts
     property string excludedConversationId: ""
     property var lockedContactUris: []
     property var selectedConversations: []
@@ -51,10 +52,10 @@ ColumnLayout {
     spacing: 4
 
     function focusSearch() {
-        if (allContacts)
-            allContactsSwitch.forceActiveFocus();
-        else
+        if (pickingContacts)
             searchBar.setTextAreaFocus();
+        else
+            audienceComboBox.forceActiveFocus();
     }
 
     function removeConversation(id) {
@@ -130,33 +131,19 @@ ColumnLayout {
         ]
     }
 
-    RowLayout {
-        Layout.alignment: Qt.AlignHCenter
+    SettingParaCombobox {
+        id: audienceComboBox
+        objectName: "feedAudienceComboBox"
+        Layout.fillWidth: true
         visible: root.allContactsAvailable
-
-        Label {
-            text: JamiStrings.addAllContacts
-            color: JamiTheme.textColor
-
-            TapHandler {
-                onTapped: allContactsSwitch.toggle()
+        tooltipText: JamiStrings.feedAudience
+        model: [JamiStrings.allContacts, JamiStrings.selectContacts]
+        onActivated: function (index) {
+            if (index === 0) {
+                root.selectedConversations = [];
+                searchBar.clearText();
             }
-        }
-
-        JamiSwitch {
-            id: allContactsSwitch
-            objectName: "allContactsSwitch"
-            checked: true
-            Accessible.role: Accessible.CheckBox
-            Accessible.name: JamiStrings.addAllContacts
-            Accessible.description: JamiStrings.addAllContactsDescription
-            onCheckedChanged: {
-                if (checked) {
-                    root.selectedConversations = [];
-                    searchBar.clearText();
-                }
-                root.focusSearch();
-            }
+            root.focusSearch();
         }
     }
 
@@ -176,7 +163,7 @@ ColumnLayout {
         color: JamiTheme.transparentColor
         border.width: 1
         border.color: JamiTheme.chatViewFooterRectangleBorderColor
-        visible: root.selectedConversations.length > 0 && !root.allContacts
+        visible: root.selectedConversations.length > 0 && root.pickingContacts
 
         JamiFlickable {
             anchors.fill: parent
@@ -217,7 +204,7 @@ ColumnLayout {
         Layout.fillWidth: true
         Layout.preferredHeight: JamiTheme.searchBarPreferredHeight
         placeHolderText: JamiStrings.search
-        visible: !root.allContacts
+        visible: root.pickingContacts
         onSearchBarTextChanged: function (text) {
             conversationModel.searchText = text;
             conversationModel.invalidate();
@@ -232,7 +219,7 @@ ColumnLayout {
         Layout.preferredHeight: contentItem.childrenRect.height + 4
         leftMargin: 2
         rightMargin: 2
-        visible: !root.allContacts && count > 0
+        visible: root.pickingContacts && count > 0
         orientation: ListView.Horizontal
         spacing: 6
         clip: true
@@ -272,7 +259,7 @@ ColumnLayout {
         Layout.fillWidth: true
         Layout.fillHeight: true
         model: conversationModel
-        visible: !root.allContacts
+        visible: root.pickingContacts
         activeFocusOnTab: true
         Accessible.name: JamiStrings.conversations
 
