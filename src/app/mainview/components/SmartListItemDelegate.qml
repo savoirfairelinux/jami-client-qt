@@ -174,7 +174,7 @@ ItemDelegate {
                 }
             }
             RowLayout {
-                visible: ContactType !== Profile.Type.TEMPORARY && !IsBanned && lastInteractionTimeStamp > 0 && interactive
+                visible: ContactType !== Profile.Type.TEMPORARY && !IsBanned && (lastInteractionTimeStamp > 0 || Mode === Conversation.Mode.FEED) && interactive
                 Layout.fillWidth: true
                 Layout.minimumHeight: 20
                 Layout.alignment: Qt.AlignTop
@@ -190,7 +190,7 @@ ItemDelegate {
                     color: JamiTheme.textColor
                 }
 
-                // last Interaction (or description for feeds)
+                // last Interaction (or author and description for feeds)
                 Text {
                     elide: Text.ElideRight
                     Layout.fillWidth: true
@@ -200,7 +200,7 @@ ItemDelegate {
                         if (Draft)
                             return Draft;
                         if (Mode === Conversation.Mode.FEED)
-                            return Description === undefined ? "" : Description;
+                            return [FeedAuthor, Description].filter(s => s).join(" · ");
                         return LastInteraction === undefined ? "" : LastInteraction;
                     }
                     textFormat: TextEdit.PlainText

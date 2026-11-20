@@ -245,6 +245,7 @@ ConversationModel::roleNames() const
     roles[Monikers] = "Monikers";
     roles[MemberCount] = "MemberCount";
     roles[Description] = "Description";
+    roles[FeedAuthor] = "FeedAuthor";
     roles[FilterTitle] = "title";
     return roles;
 }
@@ -340,6 +341,17 @@ ConversationModel::dataForItem(const conversation::Info& item, int role) const
         return static_cast<int>(item.mode);
     case Role::Description:
         return item.infos.value("description");
+    case Role::FeedAuthor: {
+        if (item.mode != conversation::Mode::FEED)
+            return {};
+        // Requests only know the inviter, stored as the non-invited member.
+        auto it = std::find_if(item.participants.cbegin(), item.participants.cend(), [&](const auto& p) {
+            return item.isRequest ? p.role == member::Role::MEMBER : p.role == member::Role::ADMIN;
+        });
+        if (it == item.participants.cend())
+            return {};
+        return owner.contactModel->bestNameForContact(it->uri);
+    }
     case Role::UID:
         return item.uid;
     case Role::AccountId:

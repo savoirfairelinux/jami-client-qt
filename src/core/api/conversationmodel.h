@@ -110,6 +110,7 @@ enum Role {
     Monikers,
     MemberCount,
     Description,
+    FeedAuthor,
     FilterTitle,
 };
 Q_ENUM_NS(Role)
