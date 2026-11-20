@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56f2b700_95ecea68",
+        "filename": "src/app/mainview/components/ConversationPicker.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-20T21:46:35Z",
+      "side": 1,
+      "message": "[warning] Line 132: 🟡 The new `SettingParaCombobox` replaces a switch that previously exposed explicit accessibility metadata (`Accessible.role/name/description`), but the new control does not set equivalent accessible labeling in this file. Please add explicit accessible name/description (or the component’s documented equivalent API) so screen readers still announce the feed audience control and purpose consistently.",
+      "revId": "c79a0dad9037f1c1b5ba0a3dde0fe7a782e3eca3",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
