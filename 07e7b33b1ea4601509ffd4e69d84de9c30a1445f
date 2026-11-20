@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3c636c88_47dd7d29",
+        "filename": "src/app/commoncomponents/MaterialLineEdit.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-20T16:49:54Z",
+      "side": 1,
+      "message": "[warning] Line 80: 🟡 `ContextMenu.menu: null` disables Qt’s built-in context-menu entry points (including keyboard-triggered context menu via Menu key / Shift+F10), while the custom menu is only opened from `onReleased` right-click. This introduces an accessibility regression for keyboard users. Add an explicit keyboard path (for example, handling `Keys.onMenuPressed` or a `Shortcut` for `StandardKey.ContextMenu`) that opens the same Jami menu at the caret/selection location, and mirror that behavior in the other text components changed in this patch.",
+      "revId": "07e7b33b1ea4601509ffd4e69d84de9c30a1445f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
