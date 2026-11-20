@@ -18,6 +18,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cbfb828c_e3a6eed9",
+        "filename": "src/app/contactadapter.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 322,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-11-20T22:02:55Z",
+      "side": 1,
+      "message": "Not changed: contacts are keyed by URI and each maps to its own one-to-one conversation, so the same conversation cannot be appended twice.",
+      "parentUuid": "0c6926d5_b3acd578",
+      "revId": "ed998bce1b8162ca7ebd419bd29f742f09f71f23",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3b22e675_8c881dd4",
@@ -35,6 +53,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "eabeddb1_d830fb68",
+        "filename": "src/app/mainview/components/ConversationPicker.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-11-20T22:02:55Z",
+      "side": 1,
+      "message": "Done: each chip now resolves its list\u0027s conversations once; selection changes only re-check the cached list.",
+      "parentUuid": "3b22e675_8c881dd4",
+      "revId": "ed998bce1b8162ca7ebd419bd29f742f09f71f23",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "15593271_9766a16e",
@@ -48,6 +84,24 @@
       "writtenOn": "2026-11-20T21:45:35Z",
       "side": 1,
       "message": "[warning] Line 248: 🟡 The wheel event is handled but not explicitly accepted. On some setups this can propagate to parent flickables and cause unintended simultaneous scrolling. Set `event.accepted \u003d true` after updating `contentX`.",
+      "revId": "ed998bce1b8162ca7ebd419bd29f742f09f71f23",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "47a64ef4_ba022327",
+        "filename": "src/app/mainview/components/ConversationPicker.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-11-20T22:02:55Z",
+      "side": 1,
+      "message": "Not changed: WheelHandler is blocking by default and accepts the event before emitting wheel, so it does not propagate.",
+      "parentUuid": "15593271_9766a16e",
       "revId": "ed998bce1b8162ca7ebd419bd29f742f09f71f23",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
