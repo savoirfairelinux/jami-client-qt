@@ -244,6 +244,7 @@ ConversationModel::roleNames() const
     roles[Uris] = "Uris";
     roles[Monikers] = "Monikers";
     roles[MemberCount] = "MemberCount";
+    roles[Description] = "Description";
     roles[FilterTitle] = "title";
     return roles;
 }
@@ -337,6 +338,8 @@ ConversationModel::dataForItem(const conversation::Info& item, int role) const
         return item.isCoreDialog();
     case Role::Mode:
         return static_cast<int>(item.mode);
+    case Role::Description:
+        return item.infos.value("description");
     case Role::UID:
         return item.uid;
     case Role::AccountId:

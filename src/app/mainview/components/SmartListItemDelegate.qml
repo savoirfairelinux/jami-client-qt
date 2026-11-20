@@ -182,6 +182,7 @@ ItemDelegate {
                 // last Interaction date
                 Text {
                     Layout.alignment: Qt.AlignVCenter
+                    visible: Mode !== Conversation.Mode.FEED
                     text: lastInteractionFormattedDate
                     textFormat: TextEdit.PlainText
                     font.pointSize: JamiTheme.smallFontSize
@@ -189,13 +190,19 @@ ItemDelegate {
                     color: JamiTheme.textColor
                 }
 
-                // last Interaction
+                // last Interaction (or description for feeds)
                 Text {
                     elide: Text.ElideRight
                     Layout.fillWidth: true
                     Layout.alignment: Qt.AlignVCenter
                     horizontalAlignment: Text.AlignLeft
-                    text: Draft ? Draft : (LastInteraction === undefined ? "" : LastInteraction)
+                    text: {
+                        if (Draft)
+                            return Draft;
+                        if (Mode === Conversation.Mode.FEED)
+                            return Description === undefined ? "" : Description;
+                        return LastInteraction === undefined ? "" : LastInteraction;
+                    }
                     textFormat: TextEdit.PlainText
                     font.pointSize: JamiTheme.smallFontSize
                     font.weight: UnreadMessagesCount ? Font.Normal : Font.Light
