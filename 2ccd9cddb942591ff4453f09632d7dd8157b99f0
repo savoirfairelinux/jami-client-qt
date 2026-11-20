@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a9b2a289_f1b554da",
+        "filename": "src/app/mainview/components/SmartListItemDelegate.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-20T19:44:38Z",
+      "side": 1,
+      "message": "[warning] Line 203: 🟡 For feeds with an empty or missing description, this now renders an empty secondary line while also hiding the timestamp, so the row can lose useful context. Consider falling back to `LastInteraction` when `Description` is empty (not just undefined), e.g. check `Description \u0026\u0026 Description.length \u003e 0` before using it.",
+      "revId": "2ccd9cddb942591ff4453f09632d7dd8157b99f0",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
