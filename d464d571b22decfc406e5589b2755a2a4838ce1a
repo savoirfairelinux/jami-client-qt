@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "48b878fb_1658258f",
+        "filename": "src/core/contactmodel.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 876,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-20T21:42:13Z",
+      "side": 1,
+      "message": "[error] Line 876: 🔴 `slotContactMetadataChanged` applies `contacttags::fromMetadata(metadata)` unconditionally; `fromMetadata` returns an empty list on malformed `tag` payloads, so any invalid metadata event clears existing tags in memory. This is user-data loss on malformed/corrupted remote input. Keep the current tags when decode fails (e.g., make parsing return a tri-state and ignore invalid values) and only overwrite when the key is absent (explicit clear) or valid.",
+      "revId": "d464d571b22decfc406e5589b2755a2a4838ce1a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "093a51b6_6fd42114",
+        "filename": "tests/unittests/contacttags_unittest.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-20T21:42:13Z",
+      "side": 1,
+      "message": "[warning] Line 1: 🟡 Coverage is limited to pure tag parsing helpers; there is no test for the `ContactModel` integration path (`contactMetadataChanged` signal + cache update). Add a unit/integration test that verifies malformed metadata updates do not erase existing contact tags and valid updates do refresh them.",
+      "revId": "d464d571b22decfc406e5589b2755a2a4838ce1a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
