@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6bae98d2_4205f9e6",
+        "filename": "src/app/mainview/components/InvitationView.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-20T19:27:36Z",
+      "side": 1,
+      "message": "[warning] Line 114: 🟡 Feed requests still reuse `invitationViewWaitingForSync` (\"synchronize the conversation\"), so after subscribing to a feed the UI shows conversation-specific wording. Add a feed-specific sync string (for example, \"synchronize the feed\") and switch on `convContext.isFeedMode` here, like you already do for the title text, to keep feed terminology consistent through the subscribe flow.",
+      "revId": "819fec22f561c72ba61574635d563ddf72d27704",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
