@@ -305,6 +305,29 @@ ContactAdapter::setContactTags(const QString& convId, const QStringList& tags)
     return lrcInstance_->getCurrentContactModel()->setContactTags(uri, tags);
 }
 
+QVariantList
+ContactAdapter::getContactTagConversations(const QString& tag) const
+{
+    auto* convModel = lrcInstance_->getCurrentConversationModel();
+    auto* contactModel = lrcInstance_->getCurrentContactModel();
+    if (!convModel || !contactModel)
+        return {};
+    QVariantList result;
+    for (const auto& contact : contactModel->getAllContacts()) {
+        if (contact.profileInfo.type != profile::Type::JAMI || contact.isBanned || !contact.tags.contains(tag))
+            continue;
+        const auto optConv = contact.conversationId.isEmpty()
+                                 ? convModel->getConversationForPeerUri(contact.profileInfo.uri)
+                                 : convModel->getConversationForUid(contact.conversationId);
+        if (!optConv || !optConv->get().isCoreDialog() || optConv->get().isRequest)
+            continue;
+        const auto& convId = optConv->get().uid;
+        result.append(
+            QVariantMap {{"id", convId}, {"name", convModel->title(convId)}, {"uri", contact.profileInfo.uri}});
+    }
+    return result;
+}
+
 void
 ContactAdapter::connectSignals()
 {

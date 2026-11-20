@@ -33,6 +33,7 @@ ColumnLayout {
     property var lockedContactUris: []
     property var selectedConversations: []
     readonly property var selectedIds: selectedConversations.map(conversation => conversation.id)
+    property var contactLists: ContactAdapter.getAllContactTags()
 
     readonly property Component helpButton: NewIconButton {
         QWKSetParentHitTestVisible {}
@@ -67,6 +68,28 @@ ColumnLayout {
         } else {
             selectedConversations = selectedConversations.concat({ "id": id, "name": name });
             searchBar.clearText();
+        }
+    }
+
+    // Conversations of a list's members that can be picked here.
+    function listConversations(list) {
+        return ContactAdapter.getContactTagConversations(list).filter(conversation => conversation.id !== excludedConversationId && !lockedContactUris.includes(conversation.uri));
+    }
+
+    function isListSelected(conversations, ids) {
+        return conversations.length > 0 && conversations.every(conversation => ids.includes(conversation.id));
+    }
+
+    // Selects every member of the list, or deselects them all if they already are.
+    function toggleList(conversations) {
+        if (isListSelected(conversations, selectedIds)) {
+            const ids = conversations.map(conversation => conversation.id);
+            selectedConversations = selectedConversations.filter(conversation => !ids.includes(conversation.id));
+        } else {
+            selectedConversations = selectedConversations.concat(conversations.filter(conversation => !selectedIds.includes(conversation.id)).map(conversation => ({
+                            "id": conversation.id,
+                            "name": conversation.name
+                        })));
         }
     }
 
@@ -196,6 +219,50 @@ ColumnLayout {
         onSearchBarTextChanged: function (text) {
             conversationModel.searchText = text;
             conversationModel.invalidate();
+        }
+    }
+
+    ListView {
+        id: contactListChips
+        objectName: "conversationPickerLists"
+        Layout.fillWidth: true
+        // Room for chips to grow when hovered without being clipped.
+        Layout.preferredHeight: contentItem.childrenRect.height + 4
+        leftMargin: 2
+        rightMargin: 2
+        visible: !root.allContacts && count > 0
+        orientation: ListView.Horizontal
+        spacing: 6
+        clip: true
+        boundsBehavior: Flickable.StopAtBounds
+        model: root.contactLists
+        Accessible.role: Accessible.List
+        Accessible.name: JamiStrings.lists
+
+        // Let a vertical mouse wheel scroll the row; touchpads already scroll it natively.
+        WheelHandler {
+            acceptedDevices: PointerDevice.Mouse
+            onWheel: function (event) {
+                const delta = event.angleDelta.y !== 0 ? event.angleDelta.y : event.angleDelta.x;
+                const minX = contactListChips.originX - contactListChips.leftMargin;
+                const maxX = Math.max(minX, contactListChips.originX + contactListChips.contentWidth + contactListChips.rightMargin - contactListChips.width);
+                contactListChips.contentX = Math.max(minX, Math.min(maxX, contactListChips.contentX - delta));
+            }
+        }
+
+        delegate: JamiChip {
+            // Resolved once per chip so selection changes do not rescan all contacts.
+            readonly property var conversations: root.listConversations(modelData)
+            readonly property bool selected: root.isListSelected(conversations, root.selectedIds)
+            objectName: "conversationPickerList_" + modelData
+            y: 2
+            text: modelData
+            toolTipText: text
+            clickable: true
+            variant: selected ? JamiChip.Variant.Filled : JamiChip.Variant.Outlined
+            Accessible.checkable: true
+            Accessible.checked: selected
+            onClicked: root.toggleList(conversations)
         }
     }
 
