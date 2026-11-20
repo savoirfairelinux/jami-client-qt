@@ -46,27 +46,29 @@ proxyIds(const QSortFilterProxyModel& proxy)
 
 } // namespace
 
-TEST(FilteredMsgListModel, HidesMembershipEventsWhenEnabled)
+TEST(FilteredMsgListModel, HidesSystemEventsWhenEnabled)
 {
     MessageListModel model(nullptr);
+    auto creationEvent = makeTextMessage();
+    creationEvent.type = interaction::Type::INITIAL;
     auto memberEvent = makeTextMessage();
     memberEvent.type = interaction::Type::CONTACT;
+    ASSERT_TRUE(model.append(QStringLiteral("creation-event"), creationEvent));
     ASSERT_TRUE(model.append(QStringLiteral("member-event"), memberEvent));
     ASSERT_TRUE(model.append(QStringLiteral("text"), makeTextMessage()));
 
     FilteredMsgListModel proxy;
     proxy.setSourceModel(&model);
-    EXPECT_EQ(proxy.rowCount(), 2);
+    EXPECT_EQ(proxy.rowCount(), 3);
 
-    ASSERT_TRUE(proxy.setProperty("hideMembershipEvents", true));
-    EXPECT_EQ(proxy.rowCount(), 1);
-    EXPECT_TRUE(proxyIds(proxy).contains(QStringLiteral("text")));
+    ASSERT_TRUE(proxy.setProperty("hideSystemEvents", true));
+    EXPECT_EQ(proxyIds(proxy), QStringList {QStringLiteral("text")});
 
-    ASSERT_TRUE(proxy.setProperty("hideMembershipEvents", false));
-    EXPECT_EQ(proxy.rowCount(), 2);
+    ASSERT_TRUE(proxy.setProperty("hideSystemEvents", false));
+    EXPECT_EQ(proxy.rowCount(), 3);
 }
 
-TEST(ThreadedMsgListModel, HidesMembershipEventsWhenEnabled)
+TEST(ThreadedMsgListModel, HidesSystemEventsWhenEnabled)
 {
     MessageListModel model(nullptr);
     auto memberEvent = makeTextMessage(QStringLiteral("root"));
@@ -82,7 +84,7 @@ TEST(ThreadedMsgListModel, HidesMembershipEventsWhenEnabled)
     proxy.setThreadId(QStringLiteral("root"));
     EXPECT_EQ(proxy.rowCount(), 3);
 
-    ASSERT_TRUE(filtered.setProperty("hideMembershipEvents", true));
+    ASSERT_TRUE(filtered.setProperty("hideSystemEvents", true));
     QCoreApplication::processEvents();
     EXPECT_EQ(proxy.rowCount(), 2);
     EXPECT_TRUE(proxyIds(proxy).contains(QStringLiteral("reply")));

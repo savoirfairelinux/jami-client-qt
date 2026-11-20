@@ -214,7 +214,7 @@ ListView {
 
     Binding {
         target: root.convContext === CurrentConversation ? MessagesAdapter.messageListModel : null
-        property: "hideMembershipEvents"
+        property: "hideSystemEvents"
         value: root.convContext === CurrentConversation && CurrentConversation.isFeedMode
     }
 
