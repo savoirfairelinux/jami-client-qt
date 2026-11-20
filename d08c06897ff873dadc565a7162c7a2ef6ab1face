@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d3a2afa5_bd0fbbf3",
+        "filename": "src/app/commoncomponents/JamiChip.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-20T21:43:15Z",
+      "side": 1,
+      "message": "[error] Line 174: 🔴 The new root `TapHandler` can fire when the trailing icon button is clicked, so `iconClicked` and `clicked` may both be emitted for a single user action. That can trigger conflicting behaviors (for example, an icon-specific action plus chip activation). Make the chip-level handler ignore taps inside `trailingIconButton` (or attach activation only to the non-icon content area).",
+      "revId": "d08c06897ff873dadc565a7162c7a2ef6ab1face",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "70c7a24f_0a4e14c0",
+        "filename": "src/app/commoncomponents/JamiChip.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-20T21:43:15Z",
+      "side": 1,
+      "message": "[warning] Line 187: 🟡 `Keys.onPressed` only works when this control can receive focus, but the change does not explicitly enable tab focus for clickable chips. In common layouts this can leave Space/Enter activation unreachable from keyboard. Set focus behavior explicitly when `clickable` is true (for example `activeFocusOnTab: true` and an appropriate `focusPolicy`).",
+      "revId": "d08c06897ff873dadc565a7162c7a2ef6ab1face",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
