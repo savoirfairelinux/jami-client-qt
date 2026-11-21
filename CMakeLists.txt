@@ -135,7 +135,7 @@ endif()
 add_fetch_content(
   TARGET QWindowKit
   URL https://github.com/atraczyk/qwindowkit.git
-  BRANCH fix-multiarch-libdir
+  BRANCH c5c7da2163dfcba144e09a905ee98f920d9d94e7
   PATCHES ${QWINDOWKIT_PATCHES}
   OPTIONS ${QWINDOWKIT_OPTIONS}
 )
