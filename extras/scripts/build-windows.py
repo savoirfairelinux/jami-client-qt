@@ -378,9 +378,10 @@ def deploy_runtimes(qt_dir):
         sys.exit(1)
     os.environ["VCINSTALLDIR"] = os.path.join(installation_dir, "VC")
     executable = os.path.join(runtime_dir, "Jami.exe")
-    execute_cmd([win_deploy_qt, "--verbose", "1", "--no-compiler-runtime",
-                 "--qmldir", qml_src_dir, "--release", executable],
-                False, cmd_dir=runtime_dir)
+    if execute_cmd([win_deploy_qt, "--verbose", "1", "--no-compiler-runtime",
+                    "--qmldir", qml_src_dir, "--release", executable],
+                   False, cmd_dir=runtime_dir):
+        sys.exit("windeployqt failed; the runtime directory is incomplete.")
 
     with open(stamp_file, "w", encoding="utf-8") as file:
         file.write(stamp)
