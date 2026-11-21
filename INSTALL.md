@@ -193,13 +193,15 @@ Run from the client repository in PowerShell (a Git worktree is fine):
 
 The image uses pinned LTSC 2025, Visual Studio 2026 Build Tools (MSVC v145),
 Windows SDK 10.0.26100.0, and Qt 6.12.0. Qt's x64 release kit is named
-`msvc2022_64`; its libraries are binary-compatible with MSVC 2026. The
+`msvc2022_64`; its libraries are binary-compatible with MSVC 2026. The image
+pins the separately released Qt WebEngine 6.140.0 for this kit. The
 container reads the committed client revision, its Git tags and pinned
 submodules, not the host's existing build tree. The daemon's manifest pins
 the vcpkg baseline. These pins make the inputs repeatable; they do not promise
 byte-identical executables or installers.
 
-The deployed app is written to `build-artifacts\windows-msvc\Jami`. Running
+The container checks that the deployed `Jami.exe --version` can start before
+exporting the app to `build-artifacts\windows-msvc\Jami`. Running
 that app on another machine requires the x64 Visual C++ redistributable.
 Pass `-ArtifactsDir <empty-directory>` for a different destination or
 `-Tests` to also run the client tests in the container. To also build the
