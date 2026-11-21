@@ -66,26 +66,36 @@ Window {
         onClicked: UtilsAdapter.isRTL = !UtilsAdapter.isRTL
     }
 
-    onActiveFocusItemChanged: {
-        focusOverlay.margin = -5;
-        if (activeFocusItem) {
-            const goodReasonToChangeFocus = activeFocusItem instanceof ItemDelegate || ((activeFocusItem.focusReason === Qt.TabFocusReason) || (activeFocusItem.focusReason === Qt.BacktabFocusReason));
+    // The active focus item can change while parts of the item tree are being
+    // torn down (e.g. a focused delegate or popup being destroyed). Reparenting
+    // the focus overlay synchronously at that moment may insert it into an
+    // item that is about to be destroyed, leaving a dangling child pointer that
+    // later crashes the scene graph when it walks the item tree during polish.
+    // Defer the update to a safe point and re-read the current focus item then.
+    onActiveFocusItemChanged: Qt.callLater(updateFocusOverlay)
+
+    function updateFocusOverlay() {
+        const item = activeFocusItem;
+        let newParent = null;
+        let newMargin = -5;
+        if (item) {
+            const goodReasonToChangeFocus = item instanceof ItemDelegate || ((item.focusReason === Qt.TabFocusReason) || (item.focusReason === Qt.BacktabFocusReason));
             if (goodReasonToChangeFocus) {
-                if (activeFocusItem.focusOnChild) {
-                    focusOverlay.parent = activeFocusItem.parent;
-                } else if (activeFocusItem.dontShowFocusState) {
-                    focusOverlay.parent = null;
-                } else {
-                    if (activeFocusItem.showFocusMargin)
-                        focusOverlay.margin = 0;
-                    focusOverlay.parent = activeFocusItem;
+                if (item.focusOnChild) {
+                    newParent = item.parent;
+                } else if (!item.dontShowFocusState) {
+                    if (item.showFocusMargin)
+                        newMargin = 0;
+                    newParent = item;
                 }
-            } else {
-                focusOverlay.parent = null;
             }
-        } else {
-            focusOverlay.parent = null;
         }
+        // Only attach the overlay to items that are still part of this window.
+        if (newParent && newParent.Window.window !== appWindow)
+            newParent = null;
+        focusOverlay.margin = newMargin;
+        if (focusOverlay.parent !== newParent)
+            focusOverlay.parent = newParent;
     }
 
     Loader {
