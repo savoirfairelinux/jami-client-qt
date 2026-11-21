@@ -67,6 +67,33 @@ class WindowsPackagingTest(unittest.TestCase):
                 self.script["generate_msi"]("1.2.3")
             self.assertEqual(destination.read_bytes(), b"new")
 
+    def test_failed_qt_deploy_leaves_no_success_stamp(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            runtime = root / "x64" / "Release"
+            runtime.mkdir(parents=True)
+            fixtures = (
+                "daemon/ringtones/01_AfroNigeria.opus",
+                "extras/packaging/wix/qt.conf",
+                "extras/packaging/wix/License.rtf",
+                "resources/images/jami.ico",
+            )
+            for fixture in fixtures:
+                path = root / fixture
+                path.parent.mkdir(parents=True, exist_ok=True)
+                path.touch()
+
+            with patch.dict(os.environ), patch.dict(self.script, {
+                "repo_root_dir": temp_dir,
+                "daemon_dir": str(root / "daemon"),
+                "get_vs_prop": lambda prop: temp_dir,
+                "execute_cmd": lambda *args, **kwargs: 1,
+            }):
+                with self.assertRaisesRegex(SystemExit, "windeployqt"):
+                    self.script["deploy_runtimes"](str(root / "qt"))
+
+            self.assertFalse((runtime / ".deploy.stamp").exists())
+
 
 if __name__ == "__main__":
     unittest.main()
