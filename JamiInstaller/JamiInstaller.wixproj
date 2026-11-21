@@ -1,87 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0"
-  DefaultTargets="Build"
-  InitialTargets="EnsureWixToolsetInstalled"
-  xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project Sdk="WixToolset.Sdk/7.0.1">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">x64</Platform>
-    <ProductVersion>3.10</ProductVersion>
-    <ProjectGuid>dbbfbc55-1c20-4d21-ae3b-6e8b14c4fe48</ProjectGuid>
-    <SchemaVersion>2.0</SchemaVersion>
-    <OutputName Condition="'$(Configuration)' == 'Release'">jami.release.$(Platform)</OutputName>
-    <OutputName Condition="'$(Configuration)' == 'Beta'">jami.beta.$(Platform)</OutputName>
+    <Configuration Condition="'$(Configuration)' == ''">Release</Configuration>
+    <OutputName>jami.release.x64</OutputName>
+    <OutputName Condition="'$(Configuration)' == 'Beta'">jami.beta.x64</OutputName>
     <OutputType>Package</OutputType>
-    <Name>JamiInstaller</Name>
     <InstallerPlatform>x64</InstallerPlatform>
-    <DefineSolutionProperties>false</DefineSolutionProperties>
+    <OutputPath>bin\$(Configuration)\</OutputPath>
+    <Cultures>en-us</Cultures>
+    <DebugType>none</DebugType>
+    <EnableDefaultItems>false</EnableDefaultItems>
+    <AppFilesPath>$(MSBuildProjectDirectory)\..\x64\Release</AppFilesPath>
   </PropertyGroup>
-  <PropertyGroup>
-    <OutputPath>bin\Release\</OutputPath>
-    <IntermediateOutputPath>obj\Release\</IntermediateOutputPath>
-    <DefineConstants>AppHarvestPath=..\x64\Release;CrtHarvestPath=$(VC_CRT_Dir)</DefineConstants>
-    <SuppressPdbOutput>True</SuppressPdbOutput>
-    <CompilerAdditionalOptions>
-    </CompilerAdditionalOptions>
-    <WixVariables>
-    </WixVariables>
-  </PropertyGroup>
+
   <ItemGroup>
     <Compile Include="Product.wxs" />
-    <Compile Include="AppComponents.wxs" />
-    <Compile Include="CrtComponents.wxs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Config.wxi" />
-    <Content Include="HarvestFilter.xslt" />
-    <Content Include="JamiInstaller.wax" />
-    <Content Include="main-banner.bmp" />
-    <Content Include="top-banner.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <WixExtension Include="WixUtilExtension">
-      <HintPath>$(WixExtDir)\WixUtilExtension.dll</HintPath>
-      <Name>WixUtilExtension</Name>
-    </WixExtension>
-    <WixExtension Include="WixUIExtension">
-      <HintPath>$(WixExtDir)\WixUIExtension.dll</HintPath>
-      <Name>WixUIExtension</Name>
-    </WixExtension>
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="Localization.wxl" />
+    <PackageReference Include="WixToolset.UI.wixext" Version="[7.0.1]" />
+    <PackageReference Include="WixToolset.Util.wixext" Version="[7.0.1]" />
+    <BindPath Include="$(AppFilesPath)" BindName="AppFiles" />
+    <BindPath Include="$(VC_CRT_Dir)" BindName="CrtFiles" />
   </ItemGroup>
-  <Import Project="$(WixTargetsPath)"
-    Condition=" '$(WixTargetsPath)' != '' " />
-  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\WiX\v3.x\Wix.targets"
-    Condition=" '$(WixTargetsPath)' == '' AND Exists('$(MSBuildExtensionsPath32)\Microsoft\WiX\v3.x\Wix.targets') " />
-  <Target Name="EnsureWixToolsetInstalled"
-    Condition=" '$(WixTargetsImported)' != 'true' ">
-    <Error Text="The WiX Toolset v3.11 (or newer) build tools must be installed to build this project. To download the WiX Toolset, see http://wixtoolset.org/releases/" />
-  </Target>
-  <Target Name="BeforeBuild">
-    <HeatDirectory Directory="..\x64\Release"
-      PreprocessorVariable="var.AppHarvestPath"
-      OutputFile="AppComponents.wxs"
-      ComponentGroupName="AppHeatGenerated"
-      DirectoryRefId="APPLICATIONFOLDER"
-      AutogenerateGuids="true"
-      ToolPath="$(WixToolPath)"
-      SuppressFragments="true"
-      SuppressRegistry="true"
-      SuppressRootDirectory="true"
-      Transforms="HarvestFilter.xslt" />
-    <HeatDirectory Directory="$(VC_CRT_Dir)"
-      PreprocessorVariable="var.CrtHarvestPath"
-      OutputFile="CrtComponents.wxs"
-      ComponentGroupName="CrtHeatGenerated"
-      DirectoryRefId="APPLICATIONFOLDER"
-      AutogenerateGuids="true"
-      ToolPath="$(WixToolPath)"
-      SuppressFragments="true"
-      SuppressRegistry="true"
-      SuppressRootDirectory="true" />
-  </Target>
-  <Target Name="AfterBuild">
+
+  <Target Name="CheckInstallerInputs" BeforeTargets="CoreCompile">
+    <Error Condition="!Exists('$(AppFilesPath)\Jami.exe') Or !Exists('$(AppFilesPath)\jami.ico') Or !Exists('$(AppFilesPath)\License.rtf')"
+      Text="Build and deploy the Windows client to x64\Release before packaging." />
+    <Error Condition="'$(VC_CRT_Dir)' == '' Or !Exists('$(VC_CRT_Dir)\vcruntime140.dll')"
+      Text="Set VC_CRT_Dir to the x64 MSVC CRT directory containing vcruntime140.dll." />
   </Target>
 </Project>

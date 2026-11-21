@@ -22,7 +22,7 @@
     - Visual Studio
     - build toolchains
     - SDKs
-    - WiX + WiX Visual Studio extension
+    - .NET SDK (for MSI packaging)
     - Qt + Qt Visual Studio extension
 #>
 

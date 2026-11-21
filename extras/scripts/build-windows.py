@@ -22,14 +22,14 @@ optional arguments:
 positional arguments:
   {pack}
 
-usage: build.py pack [-h] -m
+usage: build.py pack [-h] -m [--accept-wix-eula]
 
 required arguments:
   -m, --msi         Build MSI installer
 
 examples:
 1.  build.py --qt=C:/Qt/6.6.2/msvc2019_64  # Build the app using a specific Qt
-2.  build.py --init pack --msi             # Build the app and an MSI installer
+2.  build.py pack --msi --accept-wix-eula  # Build the app and an MSI installer
 3.  build.py --init --tests                # Build the app and run tests
 
 """
@@ -40,8 +40,8 @@ import subprocess
 import platform
 import argparse
 import json
-import multiprocessing
 import shutil
+from pathlib import Path
 
 
 # Visual Studio helpers
@@ -125,35 +125,6 @@ def get_vs_prop(prop):
         return None
 
 
-def find_ms_build():
-    """Find the latest msbuild executable."""
-    filename = "MSBuild.exe"
-    vs_path = get_vs_prop("installationPath")
-    if vs_path is None:
-        return
-    for root, _, files in os.walk(os.path.join(vs_path, "MSBuild")):
-        if filename in files:
-            return os.path.join(root, filename)
-
-
-msbuild_cmd = find_ms_build()
-
-
-def get_ms_build_args(arch, config_str, toolset=""):
-    """Get an array of msbuild command args."""
-    msbuild_args = [
-        "/nologo",
-        "/verbosity:minimal",
-        "/maxcpucount:" + str(multiprocessing.cpu_count()),
-        "/p:Platform=" + arch,
-        "/p:Configuration=" + config_str,
-        "/p:useenv=true",
-    ]
-    if toolset != "":
-        msbuild_args.append("/p:PlatformToolset=" + toolset)
-    return msbuild_args
-
-
 def get_vs_env(arch="x64", _platform="", version=""):
     """Get the vcvarsall.bat command."""
     vs_env_cmd = get_vs_env_cmd(arch, _platform, version)
@@ -181,22 +152,6 @@ def get_vs_env_cmd(arch="x64", _platform="", version=""):
         vc_env_init.extend(args)
     vc_env_init = 'call "' + " ".join(vc_env_init)
     return vc_env_init
-
-
-def build_project(msbuild_args, proj, env_vars):
-    """
-    Use msbuild to build a project.
-
-    Used specifically to build installer project and deps.
-    """
-    args = []
-    args.extend(msbuild_args)
-    args.append(proj)
-    cmd = [msbuild_cmd]
-    cmd.extend(args)
-    if execute_cmd(cmd, True, env_vars):
-        print("Failed when building ", proj)
-        sys.exit(1)
 
 
 def init_submodules():
@@ -462,26 +417,43 @@ def run_tests(config_str, qt_dir):
     sys.exit(exit_code)
 
 
+def find_crt_dir():
+    """Resolve the app-local x64 MSVC redistributable."""
+    crt_dir = os.environ.get("VC_CRT_DIR")
+    if crt_dir:
+        if (Path(crt_dir) / "vcruntime140.dll").is_file():
+            return Path(crt_dir).resolve()
+        sys.exit("VC_CRT_Dir must point to the x64 MSVC CRT directory containing vcruntime140.dll.")
+
+    vs_env = {key.upper(): value for key, value in get_vs_env().items()}
+    redist_dir = vs_env.get("VCTOOLSREDISTDIR")
+    if redist_dir:
+        candidates = [path for path in (Path(redist_dir) / "x64").glob("Microsoft.VC*.CRT")
+                      if (path / "vcruntime140.dll").is_file()]
+        if len(candidates) == 1:
+            return candidates[0].resolve()
+    sys.exit("Could not determine the x64 MSVC CRT directory. Set VC_CRT_Dir explicitly.")
+
+
 def generate_msi(version):
-    """Package MSI for Windows."""
+    """Package MSI for Windows after the caller has opted into the WiX EULA."""
     print("Generating MSI installer...")
 
-    vs_env_vars = {}
-    vs_env_vars.update(get_vs_env())
-    msbuild_args = get_ms_build_args("x64", "Release")
-    installer_dir = os.path.join(repo_root_dir, "JamiInstaller")
-    installer_project = os.path.join(installer_dir, "JamiInstaller.wixproj")
-    build_project(msbuild_args, installer_project, vs_env_vars)
-    msi_dir = os.path.join(installer_dir, "bin", "Release", "en-us")
-    msi_file_file = os.path.join(
-        msi_dir, "jami.release.x64.msi")
-    msi_version_file = os.path.join(
-        msi_dir, "jami-" + version + ".msi")
-    try:
-        os.rename(msi_file_file, msi_version_file)
-    except FileExistsError:
-        os.remove(msi_version_file)
-        os.rename(msi_file_file, msi_version_file)
+    dotnet = shutil.which("dotnet")
+    if not dotnet:
+        sys.exit("dotnet not found. Install a .NET SDK to build the WiX installer.")
+
+    installer_dir = Path(repo_root_dir) / "JamiInstaller"
+    installer_project = installer_dir / "JamiInstaller.wixproj"
+    env_vars = dict(os.environ, VC_CRT_DIR=str(find_crt_dir()))
+    # A new file in a harvest may not appear in WiX's previous build inputs.
+    cmd = [dotnet, "build", str(installer_project), "--configuration", "Release",
+           "--no-incremental", "-p:Platform=x64", "-p:AcceptEula=wix7"]
+    if execute_cmd(cmd, env_vars=env_vars):
+        sys.exit(f"Failed to build {installer_project}")
+
+    msi_dir = installer_dir / "bin" / "Release" / "en-us"
+    (msi_dir / "jami.release.x64.msi").replace(msi_dir / f"jami-{version}.msi")
 
 
 def get_version():
@@ -544,12 +516,24 @@ def parse_args():
     pack_arg_parser.add_argument(
         "-m", "--msi", action="store_true", required=True,
         help="Build MSI installer")
+    pack_arg_parser.add_argument(
+        "--accept-wix-eula", action="store_true",
+        default=os.environ.get("JAMI_ACCEPT_WIX_EULA") == "1",
+        help="Accept the WiX 7 OSMF EULA for this build "
+             "(or set JAMI_ACCEPT_WIX_EULA=1; see https://docs.firegiant.com/wix/osmf/)")
 
-    return parser.parse_args()
+    args = parser.parse_args()
+    if args.subcommand == "pack" and not args.accept_wix_eula:
+        pack_arg_parser.error(
+            "Review the WiX 7 OSMF EULA at https://docs.firegiant.com/wix/osmf/. "
+            "After meeting any applicable requirements, pass --accept-wix-eula "
+            "or set JAMI_ACCEPT_WIX_EULA=1.")
+    return args
 
 
 def main():
     """Parse options and run the appropriate command."""
+    parsed_args = parse_args()
     if not host_is_64bit:
         print("These scripts will only run on a 64-bit system for now.")
         sys.exit(1)
@@ -562,13 +546,6 @@ def main():
         if vs_version is None or int(vs_version) < 15:
             print("Visual Studio 2017 or later is required.")
             sys.exit(1)
-
-    # Quit if msbuild was not found
-    if msbuild_cmd is None:
-        print("msbuild.exe not found")
-        sys.exit(1)
-
-    parsed_args = parse_args()
 
     if not parsed_args.qt:
         parsed_args.qt = find_latest_qt_path()
