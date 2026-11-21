@@ -42,7 +42,6 @@ WebEngineView {
     settings.fullScreenSupportEnabled: isVideo
     settings.javascriptCanOpenWindows: false
     Component.onCompleted: {
-        UtilsAdapter.ensureWebEngineProfileConfigured();
         loadHtml(html, 'file:///');
     }
     layer.enabled: !isFullScreen

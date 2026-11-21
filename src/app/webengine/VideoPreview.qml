@@ -37,7 +37,6 @@ Rectangle {
         settings.fullScreenSupportEnabled: root.isVideo
         settings.javascriptCanOpenWindows: false
         Component.onCompleted: {
-            UtilsAdapter.ensureWebEngineProfileConfigured()
             objectName = JamiQmlUtils.webEngineNames.videoPreview
             loadHtml(root.html, 'file:///')
         }

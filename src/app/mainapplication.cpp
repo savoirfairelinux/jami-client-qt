@@ -49,6 +49,10 @@
 
 #include <utility>
 
+#if WITH_WEBENGINE
+#include <QtWebEngineCore/QWebEngineProfile>
+#endif
+
 #ifdef Q_OS_WIN
 #include <windows.h>
 #endif
@@ -343,6 +347,7 @@ MainApplication::init()
     // A start URI overrides --minimized (window must be visible to handle the URI).
     set_startMinimized(runOptions_[Option::StartMinimized].toBool() && runOptions_[Option::StartUri].isNull());
 
+    configureWebEngineProfile();
     initQmlLayer();
 
     // Start the local API server if enabled.
@@ -491,6 +496,29 @@ findResource(const QString& targetBasename, const QString& basePath = ":/")
 
     // No match found in this directory or its subdirectories
     return QString();
+}
+
+void
+MainApplication::configureWebEngineProfile()
+{
+#if WITH_WEBENGINE
+    // Configure the shared default profile once, before the QML layer can
+    // create any WebEngineView. Changing the cache type, cookie policy or
+    // User-Agent of a profile that already backs live web contents makes
+    // QtWebEngine rebuild its browser context, which could later trip a
+    // Chromium CHECK while constructing a new WebEngineView.
+    //
+    // The default profile is off-the-record, so it already keeps cookies and
+    // cache in memory only; we make that explicit and set the descriptive
+    // User-Agent required by the OpenStreetMap tile usage policy. We do NOT
+    // call setCachePath()/setPersistentStoragePath(): those are no-ops on an
+    // off-the-record profile.
+    if (auto* profile = QWebEngineProfile::defaultProfile()) {
+        profile->setPersistentCookiesPolicy(QWebEngineProfile::NoPersistentCookies);
+        profile->setHttpCacheType(QWebEngineProfile::NoCache);
+        profile->setHttpUserAgent(QStringLiteral("JamiDesktop/") + QCoreApplication::applicationVersion());
+    }
+#endif
 }
 
 void

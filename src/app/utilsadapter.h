@@ -177,11 +177,6 @@ public:
 #endif
     Q_INVOKABLE bool isWayland() const;
     Q_INVOKABLE bool isMacOS26OrLater() const;
-
-    // Apply common settings to the shared default WebEngine profile before a
-    // view starts loading content, including the User-Agent required by the
-    // OpenStreetMap tile usage policy.
-    Q_INVOKABLE void ensureWebEngineProfileConfigured();
 Q_SIGNALS:
     void debugMessageReceived(const QString& message);
     void changeFontSize();

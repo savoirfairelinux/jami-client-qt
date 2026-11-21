@@ -104,6 +104,7 @@ private:
     void initLrc(const QString& downloadUrl, ConnectivityMonitor* cm, bool debugMode, bool muteDaemon);
     void parseArguments();
     void setApplicationFont();
+    void configureWebEngineProfile();
     void initQmlLayer();
     void initSystray();
 
