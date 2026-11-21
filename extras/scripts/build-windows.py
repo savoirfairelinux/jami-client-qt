@@ -17,6 +17,7 @@ optional arguments:
   -i, --init                Initialize submodules
   -v, --version             Show the version number and exit
   -s, --skip-build          Only do packaging or run tests, skip building
+  --clean-deps              Remove dependency build trees after building them
   --enable-crash-reports    Enable crash reports
 
 positional arguments:
@@ -205,7 +206,8 @@ def setup_vcpkg(env_vars):
     if not os.path.isdir(os.path.join(root, ".git")):
         print(f"Cloning vcpkg into {root}...")
         os.makedirs(build_dir, exist_ok=True)
-        if execute_cmd(["git", "clone", "-q",
+        if execute_cmd(["git", "clone", "-q", "--no-tags",
+                        "--filter=blob:none", "--no-checkout",
                         "https://github.com/microsoft/vcpkg", root]):
             sys.exit(1)
     if (git(root, "cat-file", "-e", baseline + "^{commit}")
@@ -252,7 +254,7 @@ def cmake_build(config_str, env_vars, cmake_build_dir):
 
 
 def build(config_str, qt_dir, tests, build_version, enable_crash_reports,
-          crash_report_url=None):
+          crash_report_url=None, clean_deps=False):
     """Use cmake to build the project."""
     print("Building with Qt at " + qt_dir)
 
@@ -291,9 +293,8 @@ def build(config_str, qt_dir, tests, build_version, enable_crash_reports,
     vs_env_vars["VCPKG_ROOT"] = vcpkg_root
     # vcpkg scrubs the environment; the yffi port needs rustup's.
     vs_env_vars["VCPKG_KEEP_ENV_VARS"] = "CARGO_HOME;RUSTUP_HOME"
-    if is_jenkins:
-        # CI caches build/; keep only vcpkg_installed, not the
-        # multi-GB per-port build trees.
+    if is_jenkins or clean_deps:
+        # Keep installed libraries, not the multi-GB per-port build trees.
         cmake_options.append("-DVCPKG_INSTALL_OPTIONS="
                              "--clean-buildtrees-after-build;"
                              "--clean-packages-after-build")
@@ -503,6 +504,10 @@ def parse_args():
         default=False,
         help="Only do packaging or run tests, skip build step")
     parser.add_argument(
+        "--clean-deps",
+        action="store_true",
+        help="Remove dependency build trees after building them")
+    parser.add_argument(
         '--enable-crash-reports',
         action='store_true',
         default=False,
@@ -558,7 +563,8 @@ def main():
             build(config_str, parsed_args.qt, do_tests,
                   parsed_args.build_version,
                   parsed_args.enable_crash_reports,
-                  parsed_args.crash_report_url)
+                  parsed_args.crash_report_url,
+                  parsed_args.clean_deps)
         if not parsed_args.skip_deploy:
             deploy_runtimes(parsed_args.qt)
 
