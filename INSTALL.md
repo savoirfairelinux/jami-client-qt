@@ -309,9 +309,35 @@ Built client could be find in `build/Jami`
 
 ## Packaging On Native Windows
 
-- To be able to generate a msi package, first download and install [Wixtoolset](https://wixtoolset.org/releases/).
-- In Visual Studio, download WiX Toolset Visual Studio Extension.
-- Build client-qt project first, then the JamiInstaller project, msi package should be stored in JamiInstaller\bin\Release
+Install the .NET 8 SDK or later in addition to the Windows client build
+prerequisites. The installer project restores WiX 7.0.1 and its UI and Util
+extensions from NuGet. No system WiX installation or Visual Studio extension
+is needed.
+
+Review the [WiX Open Source Maintenance Fee terms](https://docs.firegiant.com/wix/osmf/)
+and satisfy any applicable sponsorship requirements before accepting the EULA.
+To accept it for one build and package the client, run:
+
+```powershell
+python extras\scripts\build-windows.py pack --msi --accept-wix-eula
+```
+
+CI can set `JAMI_ACCEPT_WIX_EULA=1` on an authorized packaging job instead of
+passing the flag. The script writes `JamiInstaller\bin\Release\en-us\jami-<git-version>.msi`.
+To repackage an existing deployment in `x64\Release`, pass `--skip-build`
+and `--skip-deploy` before `pack`. The script locates the app-local x64 CRT using
+the active MSVC redistributable directory; set `VC_CRT_Dir` explicitly to
+override it.
+
+To build just the `.wixproj`, first deploy the client and set `VC_CRT_Dir`
+to the x64 CRT directory containing `vcruntime140.dll`. After accepting the
+terms, run:
+
+```powershell
+dotnet build JamiInstaller\JamiInstaller.wixproj -c Release --no-incremental -p:Platform=x64 -p:AcceptEula=wix7
+```
+
+This produces `jami.release.x64.msi` in the same output directory.
 
 ## Testing for Client-qt on Windows
 
