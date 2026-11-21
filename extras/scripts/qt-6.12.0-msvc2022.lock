@@ -1,0 +1,18 @@
+# SHA-1 from Qt's published archive checksums, then path under qtsdkrepository/windows_x86.
+485a838bf7d37407311c3c513b8cb28374284e89 desktop/qt6_6120/qt6_6120_msvc2022_64/qt.qt6.6120.addons.qt5compat.win64_msvc2022_64/6.12.0-0-202609280346qt5compat-Windows-Windows_11_24H2-MSVC2022-Windows-Windows_11_24H2-X86_64.7z
+00421ae364e01d7eaa07154880a495d6be5b5791 desktop/qt6_6120/qt6_6120_msvc2022_64/qt.qt6.6120.addons.qthttpserver.win64_msvc2022_64/6.12.0-0-202609280346qthttpserver-Windows-Windows_11_24H2-MSVC2022-Windows-Windows_11_24H2-X86_64.7z
+5a06cd9d22d6d5e83a1ab9a1b697020e02154881 desktop/qt6_6120/qt6_6120_msvc2022_64/qt.qt6.6120.addons.qtimageformats.win64_msvc2022_64/6.12.0-0-202609280346qtimageformats-Windows-Windows_11_24H2-MSVC2022-Windows-Windows_11_24H2-X86_64.7z
+ed520d129b77ac3ef56b88d09cb4c74f559e05e3 desktop/qt6_6120/qt6_6120_msvc2022_64/qt.qt6.6120.addons.qtmultimedia.win64_msvc2022_64/6.12.0-0-202609280346qtmultimedia-Windows-Windows_11_24H2-MSVC2022-Windows-Windows_11_24H2-X86_64.7z
+5272966fff614027193cd28e3b9ea0dc65ba9dd2 desktop/qt6_6120/qt6_6120_msvc2022_64/qt.qt6.6120.addons.qtpositioning.win64_msvc2022_64/6.12.0-0-202609280346qtpositioning-Windows-Windows_11_24H2-MSVC2022-Windows-Windows_11_24H2-X86_64.7z
+77f46d4eb005256d4fe3d5547382d33102fe2acc desktop/qt6_6120/qt6_6120_msvc2022_64/qt.qt6.6120.addons.qtserialport.win64_msvc2022_64/6.12.0-0-202609280346qtserialport-Windows-Windows_11_24H2-MSVC2022-Windows-Windows_11_24H2-X86_64.7z
+800e54628c986596e60e46d526dc191c226b4c1b desktop/qt6_6120/qt6_6120_msvc2022_64/qt.qt6.6120.addons.qtshadertools.win64_msvc2022_64/6.12.0-0-202609280346qtshadertools-Windows-Windows_11_24H2-MSVC2022-Windows-Windows_11_24H2-X86_64.7z
+56f32695463b59650fd9d10cb8baf77e99e57738 desktop/qt6_6120/qt6_6120_msvc2022_64/qt.qt6.6120.addons.qtwebchannel.win64_msvc2022_64/6.12.0-0-202609280346qtwebchannel-Windows-Windows_11_24H2-MSVC2022-Windows-Windows_11_24H2-X86_64.7z
+0c0d50ce7000289e96013cbf261ed567367044b9 desktop/qt6_6120/qt6_6120_msvc2022_64/qt.qt6.6120.addons.qtwebsockets.win64_msvc2022_64/6.12.0-0-202609280346qtwebsockets-Windows-Windows_11_24H2-MSVC2022-Windows-Windows_11_24H2-X86_64.7z
+bf35f8916164c6f313af8347dd0e91efe18178f0 desktop/qt6_6120/qt6_6120_msvc2022_64/qt.qt6.6120.win64_msvc2022_64/6.12.0-0-202609280346qtbase-Windows-Windows_11_24H2-MSVC2022-Windows-Windows_11_24H2-X86_64.7z
+e1c5b24e2448539684ac59dfc1a1be4de01de1d1 desktop/qt6_6120/qt6_6120_msvc2022_64/qt.qt6.6120.win64_msvc2022_64/6.12.0-0-202609280346qtsvg-Windows-Windows_11_24H2-MSVC2022-Windows-Windows_11_24H2-X86_64.7z
+bfe26cb07fd8d497fa1384a53d82434ad45a9756 desktop/qt6_6120/qt6_6120_msvc2022_64/qt.qt6.6120.win64_msvc2022_64/6.12.0-0-202609280346qtdeclarative-Windows-Windows_11_24H2-MSVC2022-Windows-Windows_11_24H2-X86_64.7z
+879b647b61a1da35d50132e3a51ec5895b03fb95 desktop/qt6_6120/qt6_6120_msvc2022_64/qt.qt6.6120.win64_msvc2022_64/6.12.0-0-202609280346qttools-Windows-Windows_11_24H2-MSVC2022-Windows-Windows_11_24H2-X86_64.7z
+65b03166eff4d8cdbc431a9089255e95c7a91e3d desktop/qt6_6120/qt6_6120_msvc2022_64/qt.qt6.6120.win64_msvc2022_64/6.12.0-0-202609280346qttranslations-Windows-Windows_11_24H2-MSVC2022-Windows-Windows_11_24H2-X86_64.7z
+b273851c7b07204558a90432641c63b9bceb8aee desktop/qt6_6120/qt6_6120_msvc2022_64/qt.qt6.6120.win64_msvc2022_64/6.12.0-0-202609280346d3dcompiler_47-x64.7z
+8b42f0e97800d87bb449f5a2acdb7faaf7379d5d desktop/qt6_6120/qt6_6120_msvc2022_64/qt.qt6.6120.win64_msvc2022_64/6.12.0-0-202609280346opengl32sw-64-mesa_11_2_2-signed_sha256.7z
+fd776eb208f627621287173eb87ee3334d1f8c5e extensions/qtwebengine/6120/msvc2022_64/extensions.qtwebengine.6120.win64_msvc2022_64/6.12.0-0-202607081027qtwebengine-Windows-Windows_11_24H2-MSVC2022-Windows-Windows_11_24H2-X86_64.7z

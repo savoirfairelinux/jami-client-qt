@@ -179,80 +179,82 @@ make install
 
 ## Building on native Windows
 
-Only 64-bit MSVC build can be compiled.
+Only the 64-bit MSVC build is supported. A Windows build needs:
 
-**Setup Before Building:**
+- Visual Studio 2022 or later with the C++ workload (MSVC x64 tools, ATL,
+  Windows SDK)
+- Qt 6.12 for MSVC 2022 x64, with Qt WebEngine, Qt 5 Compatibility, Qt HTTP
+  Server, Qt Image Formats, Qt Multimedia, Qt Positioning, Qt Shader Tools,
+  Qt WebChannel and Qt WebSockets
+- CMake, Git, Python 3 and Rust (MSVC toolchain); the daemon's dependencies
+  are built with vcpkg, which fetches its other tools itself
+- the .NET SDK, only to build the MSI installer
 
-- Enable Virtualization in the BIOS
+`extras\scripts\install-deps-windows.ps1` installs whichever of these is
+missing, with the same pinned versions as the container image below. It leaves
+an existing Visual Studio, tool or Qt in place. Preview it, then run it (from
+an elevated prompt if Visual Studio must be installed):
 
-- Install WSL 2 and any package it might require during the Jami build process.
-
-- Download [Qt (Open Source)](https://www.qt.io/download-open-source?hsCtaTracking=9f6a2170-a938-42df-a8e2-a9f0b1d6cdce%7C6cb0de4f-9bb5-4778-ab02-bfb62735f3e5)
-
-- Using the online installer, install the following Qt 6.12 components:
-
-  - Git 2.10.2
-  - MSVC 2022 64-bit
-  - Extension :
-    - Qt WebEngine
-  - Additional Libraries
-    - Qt 5 Compatibility module
-    - Qt HTTP Server
-    - Qt Image Formats
-    - Qt Multimedia
-    - Qt Network Authorization
-    - Qt Positioning
-    - Qt Shader Tools
-    - Qt WebChannel
-    - Qt WebSockets
-
-- Download [Visual Studio](https://visualstudio.microsoft.com/) (versions 2019 or 2022). _See the SDK notes below._
-
-  |              | SDK          | Toolset                                             | MFC              |
-  | ------------ | ------------ | --------------------------------------------------- | ---------------- |
-  | Requirement: | 10.0.20348.0 | V142 (VisualStudio 2019) / V143 (VisualStudio 2022) | matching Toolset |
-
-- Install Qt Vs Tools under extensions, and configure msvc2019\_64 path under Qt Options. *See the Qt notes below.*
-
-  |                      | Qt Version |
-  | -------------------- | ---------- |
-    | Minimum requirement: | 6.12       |
-
-- Install [Python3](https://www.python.org/downloads/) for Windows
-
-- Using **Elevated Command Prompt**
-
-```sh
-    python build.py --dependencies
+```powershell
+.\extras\scripts\install-deps-windows.ps1 -WhatIf
+.\extras\scripts\install-deps-windows.ps1
 ```
 
-> Note:
->
-> 1. This command will install **chocolatey** which may require you to restart the Command Prompt to be able to use it.
-> 2. This command will install **msys2 (64 bit)** by using chocolatey command which may cause issues below: <br>
->    a. Choco may require you to restart the Command Prompt after finishing installing msys2. <br>
->    b. Only if you have already installed msys2 (64 bit) under the default installation folder, we will use the existing one.
-> 3. This command will install **strawberry perl** by using chocolatey command which may fail if you have already installed it.
-> 4. This command will install **cmake** by using chocolatey command which will not add cmake into PATH (environment variable). <br>
->
-> The issue 1, 2(a), 3 can be solved by restarting the Command Prompt under Administrator right and re-run the command. <br>
-> The issue 3 can be solved by uninstalling your current strawberry perl and re-run the command. <br>
-> The issue 4 can be solved by adding the location of the cmake.exe into PATH. <br>
+Qt is installed into `C:\Qt\6.12.0\msvc2022_64` (`-QtDir` to change it), and
+the other tools under `%LOCALAPPDATA%\Jami\build-tools` (`-ToolsDir`). The
+script prints any directory you need to add to `PATH`. `-Component` limits it
+to `VisualStudio`, `Tools` or `Qt`. Installing Qt with the Qt online installer
+instead works too.
 
-- Using a new **Non-Elevated Command Prompt**
+Then, from a new non-elevated prompt:
 
 ```bash
-    python build.py --init --qt <path-to-qt-bin-folder> (e.g. C:/Qt/6.12.0/msvc2022_64)
+    python build.py --init
+    python build.py --install --qt <path-to-qt> (e.g. C:/Qt/6.12.0/msvc2022_64)
 ```
 
-```bash
-    python build.py --install --qt <path-to-qt-bin-folder> (e.g. C:/Qt/6.12.0/msvc2022_64)
+> **CMake** Note: The build script does not specify what CMake generator should be used. CMake may pick another one, for instance Ninja if it is installed. Set the `CMAKE_GENERATOR` environment variable to `Visual Studio 17 2022` or `Visual Studio 18 2026` to choose.
+
+> **Qt** Note: If you omit the `--qt` option, the build script will try to find Qt in the default installation folder, and will take the latest version found.
+
+`extras\scripts\build-windows.py` (called by `build.py --install`) does the
+build; run it with `--help` for its options. Once the build has finished, you
+can use the Visual Studio solution in the **build** folder
+**(Configuration = Release, Platform = x64)**.
+
+## Building in a Windows container
+
+The container runs the same `build-windows.py`, in a Windows Server Core LTSC
+2025 image that `install-deps-windows.ps1` sets up with Visual Studio 2026
+Build Tools (MSVC v145), Windows SDK 10.0.26100.0 and Qt 6.12.0. Qt's
+`msvc2022_64` kit is binary-compatible with MSVC 2026. The host only needs
+Git and Docker with **Windows containers**, disk space for the image and the
+dependency builds, and network access. If the `docker` command does not reach
+the Windows engine, set `DOCKER_HOST`, for example to
+`npipe:////./pipe/docker_engine_windows`.
+
+Run from the client repository in PowerShell (a Git worktree is fine):
+
+```powershell
+.\extras\build\docker\build-client-qt-windows-msvc.ps1
 ```
-> **CMake** Note: The build script does not specify what CMake generator should be used. This means CMake will search the system for the appropriate generator, which might not always select the right one if, for instance, Ninja is installed. To resolve that, the CMAKE_GENERATOR environment variable can be used, set to "Visual Studio 16 2019" or "Visual Studio 19 2022" depending on the installed Visual Studio version.
 
-> **Qt** Note: If you omit the `--qt` option, the build script will try to find Qt in the default installation folder, and will take the latest version found. If you have appropriate Qt and SDK versions installed, you won't need to specify any additional options.
+Arguments after `--` are passed to `build-windows.py`, for example
+`-- --tests` to also run the client tests. The container builds the committed
+revision, its Git tags and pinned submodules, never the host's build tree, and
+removes its dependency build trees as it goes (`--clean-deps`).
 
-Once the build has finished, you should then be able to use the Visual Studio Solution file in client-qt **build** folder **(Configuration = Release, Platform = x64)**
+The deployed app is written to `build-artifacts\windows-msvc\Jami`; pass
+`-ArtifactsDir <empty-directory>` for a different destination. Running that
+app on another machine requires the x64 Visual C++ redistributable.
+
+The container uses Hyper-V isolation, with `-Memory 16g` and all CPUs by
+default; `-Isolation process` also works when the host can run LTSC 2025
+images. Rebuilding the image removes the previous one unless it is in use.
+
+To also build the unsigned MSI, review the WiX EULA (see
+[Packaging On Native Windows](#packaging-on-native-windows)), then pass
+`-AcceptWixEula -- pack --msi`. The MSI is written next to `Jami`.
 
 ### Build Module Individually
 
@@ -269,7 +271,7 @@ Once the build has finished, you should then be able to use the Visual Studio So
 
 ```
     python extras\scripts\build-windows.py --init
-    python extras\scripts\build-windows.py --qt <path-to-qt-bin-folder> (e.g. C:/Qt/6.12.0/msvc2019_64)
+    python extras\scripts\build-windows.py --qt <path-to-qt> (e.g. C:/Qt/6.12.0/msvc2022_64)
 ```
 
 ## Building On MacOS
@@ -310,7 +312,7 @@ Built client could be find in `build/Jami`
 ## Packaging On Native Windows
 
 Install the .NET 8 SDK or later in addition to the Windows client build
-prerequisites. The installer project restores WiX 7.0.1 and its UI and Util
+prerequisites (`install-deps-windows.ps1` installs it). The installer project restores WiX 7.0.1 and its UI and Util
 extensions from NuGet. No system WiX installation or Visual Studio extension
 is needed.
 
