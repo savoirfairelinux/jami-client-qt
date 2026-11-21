@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4c0b0789_854e6eb9",
+        "filename": "extras/build/docker/qt-6.12.0-msvc2022.lock",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-21T21:20:22Z",
+      "side": 1,
+      "message": "[warning] Line 19: 🟡 Adding an inline `# ...` comment in a `.lock` file is risky unless the lock parser explicitly ignores comment lines. If the parser expects strict `\u003chash\u003e \u003cpath\u003e` rows, this will break dependency resolution. Either keep this file comment-free or update/verify the parser to skip `#`-prefixed lines.",
+      "revId": "55e4bcc42d05e4e8eedb402c2a3943c645415627",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8af3d4fe_f102370f",
+        "filename": "extras/build/docker/smoke-test-msvc.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-21T21:20:22Z",
+      "side": 1,
+      "message": "[warning] Line 34: 🟡 `main(sys.argv[1])` assumes a positional argument and will raise `IndexError` if invoked incorrectly, producing an unhelpful traceback in CI. Add explicit argument validation (or `argparse`) and exit with a clear usage/error message.",
+      "revId": "55e4bcc42d05e4e8eedb402c2a3943c645415627",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
