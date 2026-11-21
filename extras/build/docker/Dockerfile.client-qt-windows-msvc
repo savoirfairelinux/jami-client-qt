@@ -1,0 +1,31 @@
+# escape=`
+
+# Windows Server Core LTSC 2025, November 2026 (amd64).
+FROM mcr.microsoft.com/windows/servercore:ltsc2025@sha256:a43c2d41a3d6e940dec865731e2f5db5c3e03f705f5300ef0b5817d3e01ecfb1
+
+SHELL ["powershell.exe", "-NoLogo", "-NoProfile", "-ExecutionPolicy", "Bypass", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
+
+ENV CARGO_HOME=C:\cargo `
+    RUSTUP_HOME=C:\rustup `
+    DOTNET_ROOT=C:\dotnet `
+    DOTNET_CLI_TELEMETRY_OPTOUT=1 `
+    CMAKE_GENERATOR="Visual Studio 18 2026" `
+    CMAKE_GENERATOR_PLATFORM="x64,version=10.0.26100.0" `
+    QT_DIR=C:\Qt\6.12.0\msvc2022_64 `
+    JAMI_CLEAN_DEPS=1 `
+    VCPKG_BINARY_SOURCES=clear `
+    VCPKG_DISABLE_METRICS=1
+
+ENV PATH="C:\cmake-4.2.5-windows-x86_64\bin;C:\git\cmd;C:\python;C:\cargo\bin;C:\dotnet;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0"
+
+COPY install-msvc-toolchain.ps1 C:\container\
+RUN C:\container\install-msvc-toolchain.ps1 -Component VisualStudio
+RUN C:\container\install-msvc-toolchain.ps1 -Component Tools
+
+COPY qt-6.12.0-msvc2022.lock C:\container\
+RUN C:\container\install-msvc-toolchain.ps1 -Component Qt
+# These two Qt runtime archives contain DLLs at the archive root.
+RUN Move-Item "$env:QT_DIR\d3dcompiler_47.dll", "$env:QT_DIR\opengl32sw.dll" "$env:QT_DIR\bin"
+
+COPY run-msvc-build.ps1 C:\container\
+ENTRYPOINT ["powershell.exe", "-NoLogo", "-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "C:\\container\\run-msvc-build.ps1"]

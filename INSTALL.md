@@ -177,6 +177,35 @@ If you want to install it to the path provided by `CMAKE_INSTALL_PREFIX` you can
 make install
 ```
 
+## Building in a Windows container
+
+On an x64 Windows host, switch Docker to **Windows containers**. Use a host
+that can run Windows Server Core LTSC 2025 with process isolation, or pass
+`-Isolation hyperv` if Hyper-V isolation is required. The host needs Git, disk
+space for the toolchain image and dependency builds, and network access to
+download dependencies. It does not need Visual Studio, Qt, Python or .NET.
+
+Run from the client repository in PowerShell (a Git worktree is fine):
+
+```powershell
+.\extras\build\docker\build-client-qt-windows-msvc.ps1
+```
+
+The image uses pinned LTSC 2025, Visual Studio 2026 Build Tools (MSVC v145),
+Windows SDK 10.0.26100.0, and Qt 6.12.0. Qt's x64 release kit is named
+`msvc2022_64`; its libraries are binary-compatible with MSVC 2026. The
+container reads the committed client revision, its Git tags and pinned
+submodules, not the host's existing build tree. The daemon's manifest pins
+the vcpkg baseline. These pins make the inputs repeatable; they do not promise
+byte-identical executables or installers.
+
+The deployed app is written to `build-artifacts\windows-msvc\Jami`. Running
+that app on another machine requires the x64 Visual C++ redistributable.
+Pass `-ArtifactsDir <empty-directory>` for a different destination or
+`-Tests` to also run the client tests in the container. To also build the
+unsigned MSI, review the [WiX 7 terms](https://docs.firegiant.com/wix/osmf/)
+and, if you can accept them, pass `-Msi -AcceptWixEula`.
+
 ## Building on native Windows
 
 Only 64-bit MSVC build can be compiled.
