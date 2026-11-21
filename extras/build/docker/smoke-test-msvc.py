@@ -1,4 +1,4 @@
-"""Check that the deployed Windows client reaches its command-line parser."""
+"""Check Windows desktop startup without changing a user's Jami profile."""
 
 import ctypes
 import os
@@ -13,7 +13,7 @@ SEM_NOGPFAULTERRORBOX = 0x0002
 def main(executable):
     executable = Path(executable).resolve(strict=True)
     env = dict(os.environ,
-               QT_QPA_PLATFORM="offscreen",
+               QT_QPA_PLATFORM="windows",
                QT_COMMAND_LINE_PARSER_NO_GUI_MESSAGE_BOXES="1")
     # Inherit error handling so loader failures do not open a modal dialog.
     kernel = ctypes.windll.kernel32

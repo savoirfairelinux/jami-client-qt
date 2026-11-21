@@ -35,12 +35,14 @@ if ($Tests) {
     $build += '--tests'
 }
 Invoke-Checked python $build
-Invoke-Checked python @('extras\build\docker\smoke-test-msvc.py', 'x64\Release\Jami.exe')
 if ($Msi) {
     Invoke-Checked python @('extras\scripts\build-windows.py', '--qt', $env:QT_DIR,
         '--skip-build', '--skip-deploy', 'pack', '--msi')
 }
 
+if (!(Test-Path -LiteralPath x64\Release\Jami.exe -PathType Leaf)) {
+    throw 'The build did not produce x64\Release\Jami.exe.'
+}
 Copy-Item -LiteralPath x64\Release -Destination C:\out\Jami -Recurse
 if ($Msi) {
     $installer = @(Get-ChildItem -LiteralPath JamiInstaller\bin\Release\en-us -Filter 'jami-*.msi')

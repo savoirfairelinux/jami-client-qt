@@ -200,13 +200,17 @@ submodules, not the host's existing build tree. The daemon's manifest pins
 the vcpkg baseline. These pins make the inputs repeatable; they do not promise
 byte-identical executables or installers.
 
-The container checks that the deployed `Jami.exe --version` can start before
-exporting the app to `build-artifacts\windows-msvc\Jami`. Running
+The deployed app is written to `build-artifacts\windows-msvc\Jami`. Running
 that app on another machine requires the x64 Visual C++ redistributable.
 Pass `-ArtifactsDir <empty-directory>` for a different destination or
 `-Tests` to also run the client tests in the container. To also build the
 unsigned MSI, review the [WiX 7 terms](https://docs.firegiant.com/wix/osmf/)
 and, if you can accept them, pass `-Msi -AcceptWixEula`.
+
+To check Windows desktop startup without opening Jami or accessing a profile,
+run `python .\extras\build\docker\smoke-test-msvc.py <path-to-Jami.exe>` on a
+desktop Windows host with the VC++ redistributable installed. Server Core is
+the build environment, not a supported desktop runtime.
 
 ## Building on native Windows
 
