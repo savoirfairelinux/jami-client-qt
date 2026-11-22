@@ -836,8 +836,13 @@ ConversationsAdapter::connectConversationModel()
         return lrcInstance_->getContentDraft(convUid, accountId)["text"].toString();
     });
     convModel_->bindSourceModel(model);
+    // The previous search model may still be referenced by QML through the
+    // proxy, so it must not be destroyed synchronously.
+    auto* previousSearchSrcModel = searchSrcModel_.take();
     searchSrcModel_.reset(new SearchResultsListModel(lrcInstance_));
     searchModel_->bindSourceModel(searchSrcModel_.get());
+    if (previousSearchSrcModel)
+        previousSearchSrcModel->deleteLater();
 
     updateConversationFilterData();
 }

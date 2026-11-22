@@ -286,6 +286,7 @@ private:
     QList<QString> conversationTypersUrlToName(const QSet<QString>& typersSet);
     void onSelectedConversationChanged();
     void continueNavigation();
+    void resetMediaInteractions();
 
     AppSettingsManager* settingsManager_;
     NetworkManager* network_;

@@ -72,6 +72,7 @@ Q_SIGNALS:
 
 private:
     void updateHandlersListCount();
+    void replaceHandlerListModel(std::unique_ptr<PluginHandlerListModel> model);
 
     PluginListModel* pluginListModel_;
     PluginStoreListModel* pluginStoreListModel_;

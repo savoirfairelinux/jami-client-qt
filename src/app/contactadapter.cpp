@@ -49,8 +49,13 @@ ContactAdapter::getContactSelectableModel(int type)
         defaultModerators_ = lrcInstance_->accountModel().getDefaultModerators(lrcInstance_->get_currentAccountId());
     }
 
+    // The previous model may still be referenced by QML (views, delegates,
+    // pending bindings), so it must not be destroyed synchronously.
+    auto* previousModel = smartListModel_.take();
     smartListModel_.reset(new SmartListModel(this, listModeltype_, lrcInstance_));
     selectableProxyModel_->setSourceModel(smartListModel_.get());
+    if (previousModel)
+        previousModel->deleteLater();
 
     // Adjust filter.
     switch (listModeltype_) {
