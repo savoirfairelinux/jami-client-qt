@@ -36,6 +36,26 @@
 #include <clocale>
 
 #ifndef BUILD_TESTING
+#if WITH_WEBENGINE
+// Configure the shared default profile once, before any WebEngineView exists.
+// Changing profile settings (e.g. the HTTP cache type) resets Chromium's
+// network context; doing so while web contents are alive, or right before
+// one is constructed, trips a Chromium CHECK inside WebContentsAdapter.
+static void
+configureDefaultWebEngineProfile()
+{
+    auto* profile = QQuickWebEngineProfile::defaultProfile();
+    if (!profile)
+        return;
+    // The default profile is off-the-record, so cookies and cache already
+    // stay in memory; make that explicit and set the descriptive User-Agent
+    // required by the OpenStreetMap tile usage policy.
+    profile->setPersistentCookiesPolicy(QQuickWebEngineProfile::NoPersistentCookies);
+    profile->setHttpCacheType(QQuickWebEngineProfile::NoCache);
+    profile->setHttpUserAgent(QStringLiteral("JamiDesktop/") + QCoreApplication::applicationVersion());
+}
+#endif
+
 int
 main(int argc, char* argv[])
 {
@@ -155,6 +175,10 @@ main(int argc, char* argv[])
             return 0;
         }
     }
+
+#if WITH_WEBENGINE
+    configureDefaultWebEngineProfile();
+#endif
 
     if (!app.init()) {
         return 0;
