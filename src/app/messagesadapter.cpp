@@ -243,8 +243,7 @@ MessagesAdapter::connectConversationModel()
                      &MessagesAdapter::onMessagesFoundProcessed,
                      Qt::UniqueConnection);
 
-    mediaInteractions_.reset(new MessageListModel(&lrcInstance_->getCurrentAccountInfo(), this));
-    set_mediaMessageListModel(QVariant::fromValue(mediaInteractions_.get()));
+    resetMediaInteractions();
 }
 
 void
@@ -1032,11 +1031,22 @@ MessagesAdapter::getFormattedDay(const quint64 timestamp)
 }
 
 void
+MessagesAdapter::resetMediaInteractions()
+{
+    // Publish the new model before releasing the previous one, which may still
+    // be referenced by QML, and defer its destruction to the event loop.
+    auto previousModel = std::exchange(mediaInteractions_,
+                                       std::make_unique<MessageListModel>(&lrcInstance_->getCurrentAccountInfo(), this));
+    set_mediaMessageListModel(QVariant::fromValue(mediaInteractions_.get()));
+    if (previousModel)
+        previousModel.release()->deleteLater();
+}
+
+void
 MessagesAdapter::startSearch(const QString& text, bool isMedia)
 {
     auto accountId = lrcInstance_->get_currentAccountId();
-    mediaInteractions_.reset(new MessageListModel(&lrcInstance_->getCurrentAccountInfo(), this));
-    set_mediaMessageListModel(QVariant::fromValue(mediaInteractions_.get()));
+    resetMediaInteractions();
 
     if (text.isEmpty() && !isMedia)
         return;

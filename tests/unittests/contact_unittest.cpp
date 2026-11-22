@@ -18,6 +18,9 @@
 #include "globaltestenvironment.h"
 
 #include "authority/storagehelper.h"
+#include "contactadapter.h"
+
+#include <QPointer>
 
 using namespace lrc;
 
@@ -142,4 +145,28 @@ TEST_F(ContactFixture, ProfileDataFallsBackToBaseAliasWhenOverrideCleared)
     EXPECT_EQ(profileData["alias"], "Base Display Name");
 
     authority::storage::removeProfile(accountId, peerUri);
+}
+
+/*!
+ * WHEN  The contact picker model is requested again while the previous one
+ *       may still be referenced by QML.
+ * THEN  The previous source model is only destroyed once control returns
+ *       to the event loop, never synchronously.
+ */
+TEST_F(ContactFixture, PreviousContactPickerModelIsDeletedLater)
+{
+    ContactAdapter contactAdapter(globalEnv.lrcInstance.data());
+
+    auto* proxyModel = contactAdapter.getContactSelectableModel(SmartListModel::Type::ONE_TO_ONE)
+                           .value<SelectableProxyModel*>();
+    ASSERT_NE(proxyModel, nullptr);
+    QPointer<QAbstractItemModel> previousModel = proxyModel->sourceModel();
+    ASSERT_FALSE(previousModel.isNull());
+
+    contactAdapter.getContactSelectableModel(SmartListModel::Type::ONE_TO_ONE);
+    EXPECT_FALSE(previousModel.isNull());
+    EXPECT_NE(proxyModel->sourceModel(), previousModel.data());
+
+    QCoreApplication::sendPostedEvents(nullptr, QEvent::DeferredDelete);
+    EXPECT_TRUE(previousModel.isNull());
 }

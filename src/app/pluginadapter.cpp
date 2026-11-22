@@ -159,17 +159,27 @@ PluginAdapter::cancelDownload(const QString& pluginId)
     pluginVersionManager_->cancelUpdate(pluginId);
 }
 
+void
+PluginAdapter::replaceHandlerListModel(std::unique_ptr<PluginHandlerListModel> model)
+{
+    // The previous model is usually still in use by QML (this is called from
+    // its own delegates), so it must not be destroyed synchronously.
+    auto previousModel = std::exchange(pluginHandlerListModel_, std::move(model));
+    if (previousModel)
+        previousModel.release()->deleteLater();
+}
+
 QVariant
 PluginAdapter::getMediaHandlerSelectableModel(const QString& callId)
 {
-    pluginHandlerListModel_.reset(new PluginHandlerListModel(this, callId, QString(""), lrcInstance_));
+    replaceHandlerListModel(std::make_unique<PluginHandlerListModel>(this, callId, QString(""), lrcInstance_));
     return QVariant::fromValue(pluginHandlerListModel_.get());
 }
 
 QVariant
 PluginAdapter::getChatHandlerSelectableModel(const QString& accountId, const QString& peerId)
 {
-    pluginHandlerListModel_.reset(new PluginHandlerListModel(this, accountId, peerId, lrcInstance_));
+    replaceHandlerListModel(std::make_unique<PluginHandlerListModel>(this, accountId, peerId, lrcInstance_));
     return QVariant::fromValue(pluginHandlerListModel_.get());
 }
 
