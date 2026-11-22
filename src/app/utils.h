@@ -53,6 +53,10 @@ void remove_argument(char** argv, int& argc, const std::string& arg_to_remove, s
 // Throws if Vulkan cannot be instantiated.
 void testVulkanSupport();
 
+// Returns the QTWEBENGINE_CHROMIUM_FLAGS value to use, appending the
+// platform-specific flags required by Jami to the user-provided ones.
+QByteArray webEngineChromiumFlags(const QByteArray& userFlags);
+
 // App System
 bool CreateStartupLink(const std::wstring& wstrAppName);
 void DeleteStartupLink(const std::wstring& wstrAppName);

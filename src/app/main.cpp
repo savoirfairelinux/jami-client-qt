@@ -17,6 +17,7 @@
 
 #include "mainapplication.h"
 #include "instancemanager.h"
+#include "utils.h"
 #include "version_info.h"
 #if defined(Q_OS_MACOS)
 #include <os/macos/macutils.h>
@@ -73,29 +74,7 @@ main(int argc, char* argv[])
     QApplication::setHighDpiScaleFactorRoundingPolicy(Qt::HighDpiScaleFactorRoundingPolicy::PassThrough);
 
 #if WITH_WEBENGINE
-    // Preserve any user-provided QTWEBENGINE_CHROMIUM_FLAGS instead of
-    // overwriting them, so the GPU behaviour can still be overridden from the
-    // environment.
-    //
-    // --disable-gpu works around a Qt 6.10 QtWebEngine crash: on some configs
-    // (e.g. NVIDIA on native Wayland) Chromium logs "GBM is not supported ...
-    // Fallback to Vulkan rendering in Chromium" and then intermittently crashes
-    // in its Vulkan GPU. Disabling the Chromium GPU only affects web content
-    // rendering (emoji picker, message/map webviews); the Qt Quick scene graph
-    // keeps its own GPU acceleration. Nothing narrower removes the Vulkan
-    // fallback (--disable-vulkan, --disable-features=Vulkan, --use-gl=*,
-    // QSG_RHI_BACKEND=opengl were all verified ineffective).
-    QByteArray chromiumFlags = qgetenv("QTWEBENGINE_CHROMIUM_FLAGS");
-    if (!chromiumFlags.isEmpty())
-        chromiumFlags.append(' ');
-    chromiumFlags.append("--disable-web-security --disable-gpu");
-#if defined(Q_OS_MACOS)
-    // Without this, the sandboxed Developer ID build crashes when opening a web
-    // view: "bootstrap_check_in org.chromium.Chromium.MachPortRendezvousServer
-    // Permission denied (1100)".
-    chromiumFlags.append(" --single-process");
-#endif
-    qputenv("QTWEBENGINE_CHROMIUM_FLAGS", chromiumFlags);
+    qputenv("QTWEBENGINE_CHROMIUM_FLAGS", Utils::webEngineChromiumFlags(qgetenv("QTWEBENGINE_CHROMIUM_FLAGS")));
     QtWebEngineQuick::initialize();
 #endif
 

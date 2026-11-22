@@ -76,6 +76,38 @@ Utils::remove_argument(char** argv, int& argc, const std::string& arg_to_remove,
     }
 }
 
+QByteArray
+Utils::webEngineChromiumFlags(const QByteArray& userFlags)
+{
+    // Preserve any user-provided flags instead of overwriting them, so the
+    // GPU behaviour can still be overridden from the environment.
+    QByteArray flags = userFlags;
+    if (!flags.isEmpty())
+        flags.append(' ');
+    flags.append("--disable-web-security");
+#if !defined(Q_OS_WIN)
+    // --disable-gpu works around a Qt 6.10 QtWebEngine crash: on some configs
+    // (e.g. NVIDIA on native Wayland) Chromium logs "GBM is not supported ...
+    // Fallback to Vulkan rendering in Chromium" and then intermittently crashes
+    // in its Vulkan GPU. Disabling the Chromium GPU only affects web content
+    // rendering (emoji picker, message/map webviews); the Qt Quick scene graph
+    // keeps its own GPU acceleration. Nothing narrower removes the Vulkan
+    // fallback (--disable-vulkan, --disable-features=Vulkan, --use-gl=*,
+    // QSG_RHI_BACKEND=opengl were all verified ineffective).
+    // It is not applied on Windows, where the GBM/Vulkan fallback does not
+    // exist and where forcing it makes Chromium hit a fatal check while the
+    // first WebEngineView initializes the WebEngine context.
+    flags.append(" --disable-gpu");
+#endif
+#if defined(Q_OS_MACOS)
+    // Without this, the sandboxed Developer ID build crashes when opening a web
+    // view: "bootstrap_check_in org.chromium.Chromium.MachPortRendezvousServer
+    // Permission denied (1100)".
+    flags.append(" --single-process");
+#endif
+    return flags;
+}
+
 void
 Utils::testVulkanSupport()
 {
