@@ -69,6 +69,7 @@ class UtilsAdapter final : public QmlAdapterBase
 
     QML_PROPERTY(QStringList, logList)
     QML_RO_PROPERTY(bool, isRTL)
+    Q_PROPERTY(bool showHomepageTips READ showHomepageTips NOTIFY showHomepageTipsChanged)
 public:
     static UtilsAdapter* create(QQmlEngine*, QJSEngine*)
     {
@@ -89,6 +90,7 @@ public:
     Q_INVOKABLE void setAppValue(const Settings::Key key, const QVariant& value);
     Q_INVOKABLE QVariant getDefault(const Settings::Key key);
     Q_INVOKABLE void setToDefault(const Settings::Key key);
+    bool showHomepageTips() const;
 
     Q_INVOKABLE const QString getProjectCredits();
     Q_INVOKABLE const QString getBuildIDStr();
@@ -187,6 +189,7 @@ Q_SIGNALS:
     void changeFontSize();
     void chatviewPositionChanged();
     void appThemeChanged();
+    void showHomepageTipsChanged();
     void changeLanguage();
     void donationCampaignSettingsChanged();
     void useFramelessWindowChanged();

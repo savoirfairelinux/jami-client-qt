@@ -100,6 +100,8 @@ UtilsAdapter::setAppValue(const Settings::Key key, const QVariant& value)
         Q_EMIT chatviewPositionChanged();
     else if (key == Settings::Key::AppTheme)
         Q_EMIT appThemeChanged();
+    else if (key == Settings::Key::ShowHomepageTips)
+        Q_EMIT showHomepageTipsChanged();
     else if (key == Settings::Key::UseFramelessWindow)
         Q_EMIT useFramelessWindowChanged();
     else if (key == Settings::Key::SpellLang)
@@ -126,6 +128,12 @@ void
 UtilsAdapter::setToDefault(const Settings::Key key)
 {
     setAppValue(key, settingsManager_->getDefault(key));
+}
+
+bool
+UtilsAdapter::showHomepageTips() const
+{
+    return settingsManager_->getValue(Settings::Key::ShowHomepageTips).toBool();
 }
 
 const QString

@@ -70,7 +70,7 @@ ListSelectionView {
     property string description: JamiStrings.hereIsIdentifier
 
     property bool hasLogo: true
-    property bool hasTips: true
+    readonly property bool hasTips: UtilsAdapter.showHomepageTips && (!hasCustomUi || !!uiCustomization.areTipsEnabled)
 
     property bool hasOverridenBgImage: false
     property string overridenImageUrl: ""
@@ -82,8 +82,8 @@ ListSelectionView {
     property string customLogoUrl: ""
 
     property bool hasWelcomeInfo: true
-    property bool hasBottomId: false
-    property bool hasTopId: false
+    property bool hasBottomId: !hasWelcomeInfo && !hasTips && hasLogo
+    property bool hasTopId: !hasWelcomeInfo && (!hasLogo || hasTips)
 
     property color tipBoxAndIdColor: JamiTheme.welcomeBlockColor
 
@@ -118,15 +118,12 @@ ListSelectionView {
         title = hasCustomUi && uiCustomization.title !== undefined ? uiCustomization.title : JamiStrings.welcomeToJami;
         description = hasCustomUi && uiCustomization.description !== undefined ? uiCustomization.description : JamiStrings.hereIsIdentifier;
         hasLogo = hasCustomUi ? uiCustomization.logoUrl !== "" : true;
-        hasTips = hasCustomUi ? uiCustomization.areTipsEnabled : true;
         const bgOverride = AccountSettingsManager.accountSettingsPropertyMap.backgroundUri;
         overridenImageUrl = bgOverride === undefined ? "" : bgOverride;
         hasOverridenBgImage = bgOverride !== undefined && bgOverride !== "";
         hasCustomLogo = (hasCustomUi && hasLogo && uiCustomization.logoUrl !== undefined);
         customLogoUrl = hasCustomLogo ? CurrentAccount.managerUri + uiCustomization.logoUrl : "";
         hasWelcomeInfo = hasTitle || hasDescription;
-        hasBottomId = !hasWelcomeInfo && !hasTips && hasLogo;
-        hasTopId = !hasWelcomeInfo && (!hasLogo || hasTips);
         logoSize = (hasCustomUi && uiCustomization.logoSize !== undefined) ? uiCustomization.logoSize / 100 : 1;
         tipBoxAndIdColor = (hasCustomUi && uiCustomization.tipBoxAndIdColor !== undefined) ? uiCustomization.tipBoxAndIdColor : JamiTheme.welcomeBlockColor;
         mainBoxColor = (hasCustomUi && uiCustomization.mainBoxColor !== undefined) ? uiCustomization.mainBoxColor : "transparent";
