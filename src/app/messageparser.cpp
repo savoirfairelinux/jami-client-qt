@@ -19,6 +19,7 @@
 
 #include "previewengine.h"
 #include "htmlparser.h"
+#include "utils.h"
 
 #include <QRegularExpression>
 #include <QtConcurrent>
@@ -101,8 +102,10 @@ MessageParser::parseMessage(const QString& messageId,
     threadPool_->start([this, messageId, md = msg, previewLinks, linkColor, backgroundColor]() mutable -> void {
         auto [html, firstLinkHref] = buildStyledHtml(md, linkColor, backgroundColor);
         Q_EMIT messageParsed(messageId, html);
-        if (previewLinks && !firstLinkHref.isEmpty()) {
-            Q_EMIT previewEngine_->parseLink(messageId, firstLinkHref);
+        // Peer-controlled: only fetch web links. file:// with a host is a UNC path on Windows.
+        const auto link = Utils::sanitizedHref(firstLinkHref);
+        if (previewLinks && link.startsWith("http")) { // not mailto
+            Q_EMIT previewEngine_->parseLink(messageId, link);
         }
     });
 }
@@ -175,7 +178,7 @@ QString
 MessageParser::markdownToHtml(const char* markdown)
 {
     static auto md_flags = MD_FLAG_PERMISSIVEAUTOLINKS | MD_FLAG_NOINDENTEDCODEBLOCKS | MD_FLAG_TASKLISTS
-                           | MD_FLAG_STRIKETHROUGH | MD_FLAG_UNDERLINE;
+                           | MD_FLAG_STRIKETHROUGH | MD_FLAG_UNDERLINE | MD_FLAG_NOHTML;
     const size_t data_len = strlen(markdown);
     if (data_len <= 0) {
         return QString();

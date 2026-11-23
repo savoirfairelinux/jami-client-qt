@@ -16,6 +16,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301 USA.
  */
 #include "collabrichbinding.h"
+#include "utils.h"
 
 #include <QQuickTextDocument>
 #include <QTextDocument>
@@ -238,28 +239,6 @@ charFormatToAttrs(const QTextCharFormat& f)
     return a;
 }
 
-// A link reaches us either from the local UI or from a peer's delta, as an
-// arbitrary string, and it ends up in a document that can be copied out to any
-// application. Only schemes that address a document are kept: "javascript:"
-// executes, while "file:" and "data:" address the local machine. An empty return
-// means the text stays, without the link.
-QString
-sanitizedHref(const QString& href)
-{
-    const QString trimmed = href.trimmed();
-    if (trimmed.isEmpty())
-        return {};
-    // fromUserInput() also turns "www.example.com" into a proper https URL, which
-    // is what a user typing in the link field expects.
-    const QUrl url = QUrl::fromUserInput(trimmed);
-    if (!url.isValid())
-        return {};
-    const QString scheme = url.scheme().toLower();
-    if (scheme != QLatin1String("http") && scheme != QLatin1String("https") && scheme != QLatin1String("mailto"))
-        return {};
-    return url.toString();
-}
-
 // Build a QTextCharFormat that, when *merged* over a range, sets exactly the
 // properties named in @p attrs (a true/href value applies, a null value clears).
 QTextCharFormat
@@ -300,7 +279,7 @@ mergeFormatFromAttrs(const QJsonObject& attrs)
         } else if (key == QLatin1String("lang")) {
             f.setProperty(LANGUAGE_PROPERTY, documentLanguage(v));
         } else if (key == QLatin1String("link")) {
-            const QString href = on ? sanitizedHref(v.toString()) : QString();
+            const QString href = on ? Utils::sanitizedHref(v.toString()) : QString();
             if (!href.isEmpty()) {
                 f.setAnchor(true);
                 f.setAnchorHref(href);
@@ -2002,7 +1981,7 @@ CollabRichBinding::setLink(const QString& href, int start, int end)
     QTextDocument* d = doc();
     if (!d || start > end)
         return;
-    const QString safe = sanitizedHref(href);
+    const QString safe = Utils::sanitizedHref(href);
     if (!href.trimmed().isEmpty() && safe.isEmpty()) {
         // Refuse rather than clear: clearing would drop a link the user already
         // had, as a side effect of typing an address we do not accept.

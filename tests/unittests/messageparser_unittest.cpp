@@ -17,6 +17,8 @@
 
 #include "globaltestenvironment.h"
 
+#include <QTemporaryFile>
+
 class MessageParserFixture : public ::testing::Test
 {
 public:
@@ -263,4 +265,33 @@ TEST_F(MessageParserFixture, YoutubeLinkIsParsedCorrectly)
     EXPECT_TRUE(linkInfoReadyArguments.at(1).typeId() == qMetaTypeId<QVariantMap>());
     QVariantMap linkInfo = linkInfoReadyArguments.at(1).toMap();
     EXPECT_EQ(linkInfo["url"].toString(), url);
+}
+
+/*!
+ * WHEN  A peer sends raw HTML and a link to a non-web scheme.
+ * THEN  The HTML is escaped and no link preview is fetched.
+ */
+TEST_F(MessageParserFixture, UntrustedLinksAreNotPreviewed)
+{
+    QTemporaryFile page(QDir::tempPath() + "/XXXXXX.html");
+    ASSERT_TRUE(page.open());
+    page.write("<html><head><title>local</title></head></html>");
+    page.close();
+    const auto fileUrl = QUrl::fromLocalFile(page.fileName()).toString();
+
+    QSignalSpy messageParsedSpy(globalEnv.messageParser.data(), &MessageParser::messageParsed);
+    QSignalSpy linkInfoReadySpy(globalEnv.messageParser.data(), &MessageParser::linkInfoReady);
+
+    globalEnv.messageParser->parseMessage("msgId_06",
+                                          QString("<b>x</b> [doc](%1)").arg(fileUrl),
+                                          true,
+                                          QColor::fromRgb(0, 0, 255),
+                                          QColor::fromRgb(0, 0, 255));
+
+    messageParsedSpy.wait();
+    ASSERT_EQ(messageParsedSpy.count(), 1);
+    EXPECT_TRUE(messageParsedSpy.takeFirst().at(1).toString().contains("&lt;b&gt;x&lt;/b&gt;"));
+
+    linkInfoReadySpy.wait();
+    ASSERT_EQ(linkInfoReadySpy.count(), 0);
 }
