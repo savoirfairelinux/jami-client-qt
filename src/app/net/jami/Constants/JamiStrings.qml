@@ -685,6 +685,8 @@ Item {
     property string replies: qsTr("%1 replies")
     property string oneComment: qsTr("1 comment")
     property string comments: qsTr("%1 comments")
+    property string replyingTo: qsTr("Replying to %1")
+    property string download: qsTr("Download")
     property string threadFindingMessage: qsTr("Loading older messages to find this message…")
     property string threadMessageUnavailable: qsTr("This message could not be found in the conversation history.")
 
