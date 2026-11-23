@@ -50,6 +50,7 @@ ThreadedMsgListModel::setSourceModel(QAbstractItemModel* model)
     rebuildIndex();
     endFilterChange(QSortFilterProxyModel::Direction::Rows);
     regrouped_ = countsChanged_ = false;
+    Q_EMIT threadsRegrouped();
     previousThreadId_ = threadId_;
 
     // Connected after the base class, so the proxy has applied the change before rows are refiltered.
@@ -293,8 +294,12 @@ ThreadRepliesModel::setThreads(ThreadedMsgListModel* threads)
     threads_ = threads;
     // Shares the threads' source, whose index is updated before this model filters new rows.
     setSourceModel(threads ? threads->sourceModel() : nullptr);
-    if (threads)
+    if (threads) {
         connect(threads, &ThreadedMsgListModel::threadsRegrouped, this, &ThreadRepliesModel::invalidateRowsFilter);
+        connect(threads, &QAbstractProxyModel::sourceModelChanged, this, [this] {
+            setSourceModel(threads_->sourceModel());
+        });
+    }
     Q_EMIT threadsChanged();
 }
 

@@ -319,6 +319,24 @@ TEST(ThreadRepliesModel, ClearingSourceEmptiesReplies)
     EXPECT_TRUE(f.replyIds().isEmpty());
 }
 
+TEST(ThreadRepliesModel, FollowsTheThreadsToANewSource)
+{
+    RepliesFixture f;
+    f.add("a");
+    f.add("a1", "a");
+    f.replies.setRootId("a");
+
+    MessageListModel otherSource {nullptr};
+    FilteredMsgListModel otherFiltered;
+    otherFiltered.setSourceModel(&otherSource);
+    ASSERT_TRUE(otherSource.append("a", message({})));
+    ASSERT_TRUE(otherSource.append("a2", message("a")));
+    f.threaded.setSourceModel(&otherFiltered);
+
+    EXPECT_EQ(f.replies.sourceModel(), &otherFiltered);
+    EXPECT_EQ(f.replyIds(), QStringList({"a2"}));
+}
+
 TEST(ThreadedHistoryRequest, OnlyOneRequestIsInFlight)
 {
     HistoryRequest request;
