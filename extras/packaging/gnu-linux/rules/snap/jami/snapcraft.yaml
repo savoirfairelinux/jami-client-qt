@@ -161,6 +161,14 @@ apps:
       PIPEWIRE_CONFIG_NAME: "$SNAP/usr/share/pipewire/pipewire.conf"
       PIPEWIRE_MODULE_DIR: "$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/pipewire-0.3"
       SPA_PLUGIN_DIR: "$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/spa-0.2"
+      # Enabling Chromium's sandbox requires setting the 'allow-sandbox' attribute of the
+      # 'browser-support' interface to 'true'. This is a privileged attribute, so it would
+      # prevent the interface from being auto-connected unless we request and get explicit
+      # approval from the Snap Store. See the links below for more information:
+      #   https://snapcraft.io/docs/reference/interfaces/browser-support-interface/
+      #   https://forum.snapcraft.io/t/collabora-office-browser-support-with-allow-sandbox-true/54211
+      # For now, we disable the sandbox, otherwise the Jami snap crashes on launch.
+      QTWEBENGINE_DISABLE_SANDBOX: "1"
     slots:
     - dbus-jami
     - dbus-ring
