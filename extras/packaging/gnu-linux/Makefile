@@ -176,6 +176,7 @@ DISTRIBUTIONS := \
 	alma_9 \
 	alma_10 \
 	opensuse-leap_16.0 \
+	opensuse-leap_16.1 \
 	snap
 
 IS_SHELL_INTERACTIVE := $(shell [ -t 0 ] && echo yes)
