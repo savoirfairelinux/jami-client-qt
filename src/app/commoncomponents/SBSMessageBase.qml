@@ -55,6 +55,7 @@ Control {
     readonly property real senderMargin: 64
     readonly property real avatarSize: 20
     readonly property real msgRadius: 10
+    readonly property real bubbleRadius: JamiTheme.messageBubbleRadius
     readonly property real hPadding: JamiTheme.sbsMessageBasePreferredPadding
     property bool textHovered: false
     property alias replyAnimation: selectAnimation
@@ -230,7 +231,7 @@ Control {
 
                     z: -2
                     color: replyItem.isSelf ? convContext.color : JamiTheme.messageInBgColor
-                    radius: msgRadius
+                    radius: bubbleRadius
 
                     Layout.preferredWidth: replyToRow.width + 2 * JamiTheme.preferredMarginSize
                     Layout.preferredHeight: replyToRow.height + 2 * JamiTheme.preferredMarginSize
@@ -460,7 +461,7 @@ Control {
                                       : JamiQmlUtils.mainViewRectObj ? JamiQmlUtils.mainViewRectObj.baseColor
                                                                     : JamiTheme.globalBackgroundColor
                     color: IsEmojiOnly ? "transparent" : root.getBaseColor()
-                    radius: msgRadius
+                    radius: bubbleRadius
                     anchors.right: isOutgoing ? parent.right : undefined
                     anchors.top: parent.top
 

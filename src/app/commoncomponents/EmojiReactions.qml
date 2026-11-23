@@ -94,7 +94,7 @@ Item {
         width: textEmojis.width + 10
         height: textEmojis.height + 10
         anchors.centerIn: textEmojis
-        radius: 5
+        radius: JamiTheme.messageBubbleRadius
         border.color: root.borderColor
         border.width: 1
     }

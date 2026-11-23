@@ -806,6 +806,8 @@ Item {
     // Global Island color
     property color globalIslandColor: darkTheme ? JamiTheme.backgroundColor : "#f4f0ef"
 
+    property real messageBubbleRadius: 20
+
     // Message Bar
     property real messageBarRadius: 28
     property real messageBarReplyToAvatarSize: 24

@@ -60,7 +60,7 @@ Item {
     Rectangle {
         id: maskRect
         visible: false
-        radius: 10
+        radius: JamiTheme.messageBubbleRadius
         width: button.width
         height: button.height
         Rectangle {

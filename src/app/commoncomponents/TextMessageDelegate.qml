@@ -213,14 +213,14 @@ SBSMessageBase {
                     layer.effect: OpacityMask {
                         maskSource: MessageBubble {
                             Rectangle {
-                                height: msgRadius
+                                height: bubbleRadius
                                 width: parent.width
                             }
                             out: isOutgoing
                             type: seq
                             width: img.width
                             height: img.height
-                            radius: msgRadius
+                            radius: bubbleRadius
                         }
                     }
                 }
