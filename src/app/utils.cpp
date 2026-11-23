@@ -448,6 +448,10 @@ Utils::conversationAvatar(LRCInstance* instance, const QString& convId, const QS
             }
             qWarning() << "Unable to load image from Base64 data for conversation " << convId;
         }
+        // Feeds use the first letter of their title rather than members' avatars
+        auto convInfo = convModel->getConversationForUid(convId);
+        if (convInfo && convInfo->get().mode == lrc::api::conversation::Mode::FEED)
+            return fallbackAvatar(convId, convModel->title(convId), size);
         // Else, generate an avatar
         auto members = convModel->peersForConversation(convId);
         if (members.size() < 1)
@@ -694,7 +698,10 @@ Utils::getAvatarColor(const QString& canonicalUri)
  * @param fallbackKind the icon used when no name is provided
  */
 QImage
-Utils::fallbackAvatar(const QString& canonicalUri, const QString& name, const QSize& size, AvatarFallbackKind fallbackKind)
+Utils::fallbackAvatar(const QString& canonicalUri,
+                      const QString& name,
+                      const QSize& size,
+                      AvatarFallbackKind fallbackKind)
 {
     auto sizeToUse = size.height() >= defaultAvatarSize.height() ? size : defaultAvatarSize;
 
