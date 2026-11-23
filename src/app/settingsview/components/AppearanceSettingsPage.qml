@@ -142,6 +142,14 @@ SettingsPageBase {
                 }
             }
 
+            ToggleSwitch {
+                Layout.fillWidth: true
+
+                checked: UtilsAdapter.showHomepageTips
+                labelText: JamiStrings.showHomepageTips
+                onSwitchToggled: UtilsAdapter.setAppValue(Settings.Key.ShowHomepageTips, checked)
+            }
+
             RowLayout {
                 SettingMaterialButton {
                     id: btnBackgroundImageDirSelect
@@ -326,6 +334,7 @@ SettingsPageBase {
                 zoomSpinBox.value = Math.round(UtilsAdapter.getDefault(Settings.BaseZoom) * 100.0);
                 UtilsAdapter.setToDefault(Settings.Key.AppTheme);
                 UtilsAdapter.setToDefault(Settings.Key.BaseZoom);
+                UtilsAdapter.setToDefault(Settings.Key.ShowHomepageTips);
                 AccountSettingsManager.resetToDefaults();
                 themeSettings.isComplete();
             }

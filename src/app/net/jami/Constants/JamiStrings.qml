@@ -1110,6 +1110,7 @@ Item {
 
     // Appearence
     property string theme: qsTr("Theme")
+    property string showHomepageTips: qsTr("Show homepage tips")
     property string zoomLevel: qsTr("Text zoom level")
     property string backgroundImage: qsTr("Background image")
     property string selectBackgroundImage: qsTr("Select background image")
