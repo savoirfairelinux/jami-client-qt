@@ -87,7 +87,7 @@ Item {
         anchors.topMargin: JamiTheme.preferredMarginSize
         width: Math.min(root.width - 4 * JamiTheme.preferredMarginSize, content.implicitWidth + 2 * JamiTheme.preferredMarginSize)
         height: content.implicitHeight + 2 * JamiTheme.preferredMarginSize
-        radius: 12
+        radius: JamiTheme.messageBubbleRadius
         color: JamiTheme.messageInBgColor
         border.width: 1
         border.color: JamiTheme.primaryBackgroundColor

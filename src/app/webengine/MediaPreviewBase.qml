@@ -52,7 +52,7 @@ WebEngineView {
             type: seq
             width: wev.width
             height: wev.height
-            radius: msgRadius
+            radius: bubbleRadius
         }
     }
     onFullScreenRequested: function (request) {

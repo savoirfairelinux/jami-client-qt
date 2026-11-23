@@ -25,12 +25,14 @@ Rectangle {
     property bool isReply: false
     property color replyBorderColor: JamiTheme.chatviewBgColor
     property alias mask: mask
+    // Corner radius of the sides adjacent to other messages in the same group
+    property real groupedRadius: 8
 
     Rectangle {
         id: maskReplyBorder
         anchors.fill: parent
         anchors.margins: -1
-        radius: 5
+        radius: root.radius + 1
         color: "transparent"
         border.color: root.replyBorderColor
         border.width: isReply ? 2 : 0
@@ -41,7 +43,7 @@ Rectangle {
 
         visible: type !== MsgSeq.single && !isReply
         z: -1
-        radius: 5
+        radius: root.groupedRadius
         color: root.color
         anchors {
             fill: parent
@@ -49,36 +51,6 @@ Rectangle {
             rightMargin: out ? 0 : root.width / 2
             topMargin: type === MsgSeq.first ? root.height / 2 : 0
             bottomMargin: type === MsgSeq.last ? root.height / 2 : 0
-        }
-    }
-
-    Rectangle {
-        id: maskReply
-        visible: isReply
-        z: -1
-        radius: 5
-        color: root.color
-        anchors {
-            fill: parent
-            leftMargin: out ? 0 : root.width / 2
-            rightMargin: !out ? 0 : root.width / 2
-            topMargin: 0
-            bottomMargin: root.height / 2
-        }
-    }
-
-    Rectangle {
-        id: maskReplyFirst
-        visible: isReply && type === MsgSeq.first
-        z: -2
-        radius: 5
-        color: root.color
-        anchors {
-            fill: parent
-            leftMargin: out ? root.width / 2 : 0
-            rightMargin: out ? 0 : root.width / 2
-            topMargin: root.width / 5
-            bottomMargin: 0
         }
     }
 }

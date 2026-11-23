@@ -73,7 +73,7 @@ AbstractButton {
     background: Rectangle {
         objectName: "threadRepliesBackground"
         color: JamiTheme.emojiReactBubbleBgColor
-        radius: 5
+        radius: JamiTheme.messageBubbleRadius
         border.color: root.borderColor
         border.width: 1
     }

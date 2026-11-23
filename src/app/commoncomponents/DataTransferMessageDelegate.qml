@@ -225,7 +225,8 @@ Loader {
                                 background: Rectangle {
                                     color: JamiTheme.blackColor
                                     opacity: 0.15
-                                    radius: msgRadius
+                                    // Concentric with the bubble's corner
+                                    radius: bubbleRadius - buttonsLoader.Layout.margins
                                 }
 
                                 contentItem: ResponsiveImage {
@@ -418,7 +419,7 @@ Loader {
                                     type: seq
                                     width: animatedImg.width
                                     height: animatedImg.height
-                                    radius: msgRadius
+                                    radius: bubbleRadius
                                 }
                             }
 
@@ -438,7 +439,7 @@ Loader {
                             color: JamiTheme.transparentColor
                             anchors.right: isOutgoing ? parent.right : undefined
                             border.width: 1
-                            radius: msgRadius
+                            radius: bubbleRadius
 
                             implicitWidth: img.width + (img.useBox ? 20 : 0)
                             implicitHeight: img.height + (img.useBox ? 20 : 0)
@@ -489,7 +490,7 @@ Loader {
                                         type: seq
                                         width: img.width
                                         height: img.height
-                                        radius: msgRadius
+                                        radius: bubbleRadius
                                     }
                                 }
                             }
