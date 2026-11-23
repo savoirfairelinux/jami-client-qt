@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "36f4929e_1c897935",
+        "filename": "extras/packaging/gnu-linux/rules/snap/jami/snapcraft.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-23T22:40:06Z",
+      "side": 1,
+      "message": "[error] Line 167: 🔴 `QTWEBENGINE_DISABLE_SANDBOX: \"1\"` disables QtWebEngine’s renderer sandbox for every web process in the snap, which materially lowers exploit containment for untrusted/remote content. If this is required to avoid startup crashes in snap, gate it to the minimal affected runtime/architectures and add an explicit rationale in-file (with upstream bug reference) plus a follow-up to re-enable sandboxing; otherwise prefer fixing the underlying sandbox initialization issue instead of globally disabling it.",
+      "revId": "34aba9881a7e7fa95cf598b2b880819bd81be24f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
