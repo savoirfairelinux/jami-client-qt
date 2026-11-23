@@ -19,6 +19,7 @@
 
 #include "api/messagelistmodel.h"
 
+#include <QPointer>
 #include <QSortFilterProxyModel>
 
 // Threaded projection over the displayable message list.
@@ -52,6 +53,8 @@ public:
 Q_SIGNALS:
     void countChanged();
     void threadIdChanged();
+    // Messages changed threads, e.g. a parent loaded after its replies.
+    void threadsRegrouped();
 
 private:
     QString idAt(int sourceRow) const;
@@ -73,4 +76,34 @@ private:
     bool countsChanged_ {false};
     bool refilterQueued_ {false};
     QString previousThreadId_;
+};
+
+// The loaded replies of one thread root, oldest first, grouped as in a ThreadedMsgListModel.
+// Unlike that model's open thread, any number of these can be shown at once.
+class ThreadRepliesModel : public QSortFilterProxyModel
+{
+    Q_OBJECT
+    Q_PROPERTY(int count READ count NOTIFY countChanged)
+    Q_PROPERTY(ThreadedMsgListModel* threads READ threads WRITE setThreads NOTIFY threadsChanged)
+    Q_PROPERTY(QString rootId READ rootId WRITE setRootId NOTIFY rootIdChanged)
+public:
+    explicit ThreadRepliesModel(QObject* parent = nullptr);
+
+    bool filterAcceptsRow(int sourceRow, const QModelIndex& sourceParent) const override;
+    bool lessThan(const QModelIndex& left, const QModelIndex& right) const override;
+
+    ThreadedMsgListModel* threads() const;
+    void setThreads(ThreadedMsgListModel* threads);
+    QString rootId() const;
+    void setRootId(const QString& rootId);
+    int count() const;
+
+Q_SIGNALS:
+    void countChanged();
+    void threadsChanged();
+    void rootIdChanged();
+
+private:
+    QPointer<ThreadedMsgListModel> threads_;
+    QString rootId_;
 };
