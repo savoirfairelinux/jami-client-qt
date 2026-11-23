@@ -32,6 +32,8 @@ ColumnLayout {
     property real detailsOpacity: 0.6
     property color timeColor: JamiTheme.chatviewSecondaryInformationColor
     property alias timeLabel: formattedTimeLabel
+    // Draw the time on a dark pill, for legibility over media
+    property bool pill: false
 
     spacing: 0
 
@@ -98,9 +100,19 @@ ColumnLayout {
         Layout.topMargin: 30
         Layout.bottomMargin: 30
         Layout.alignment: Qt.AlignHCenter | Qt.AlignBottom
-        color: root.timeColor
+        color: root.pill ? JamiTheme.whiteColor : root.timeColor
         visible: showTime
         Layout.preferredHeight: visible * implicitHeight
         font.pointSize: JamiTheme.smallFontSize
+        leftPadding: root.pill ? 8 : 0
+        rightPadding: root.pill ? 8 : 0
+        topPadding: root.pill ? 2 : 0
+        bottomPadding: root.pill ? 2 : 0
+
+        background: Rectangle {
+            visible: root.pill
+            color: JamiTheme.mediaTimestampPillColor
+            radius: height / 2
+        }
     }
 }

@@ -807,6 +807,7 @@ Item {
     property color globalIslandColor: darkTheme ? JamiTheme.backgroundColor : "#f4f0ef"
 
     property real messageBubbleRadius: 20
+    property color mediaTimestampPillColor: Qt.rgba(0, 0, 0, 0.5)
 
     // Message Bar
     property real messageBarRadius: 28

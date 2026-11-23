@@ -330,6 +330,7 @@ Loader {
             location: Body
             transferName: TransferName
             readers: Readers
+            timeOverMedia: mediaInfo.isImage || mediaInfo.isAnimatedImage || isVideoThumbnail
             formattedTime: MessagesAdapter.getFormattedTime(rootDelegate.timestamp)
             formattedDay: MessagesAdapter.getFormattedDay(rootDelegate.timestamp)
 
@@ -338,20 +339,22 @@ Loader {
             readonly property bool isVideoThumbnail: !!mediaInfo.isVideo && !mediaInfo.html
 
             Component.onCompleted: {
-                if (transferStats.totalSize !== undefined) {
-                    var totalSize = transferStats.totalSize !== 0 ? transferStats.totalSize : TotalSize;
-                    var txt = UtilsAdapter.humanFileSize(totalSize);
+                if (!timeOverMedia) {
+                    if (transferStats.totalSize !== undefined) {
+                        var totalSize = transferStats.totalSize !== 0 ? transferStats.totalSize : TotalSize;
+                        var txt = UtilsAdapter.humanFileSize(totalSize);
+                    }
+                    bubble.timestampItem.timeLabel.text += " - " + txt;
                 }
-                bubble.timestampItem.timeLabel.text += " - " + txt;
                 bubble.color = "transparent";
-                if (mediaInfo.isImage || isVideoThumbnail)
+                if (timeOverMedia)
                     bubble.z = 1;
                 else
                     timeUnderBubble = true;
             }
 
             onContentWidthChanged: {
-                if (bubble.timestampItem.timeLabel.width > contentWidth)
+                if (!timeOverMedia && bubble.timestampItem.timeLabel.width > contentWidth)
                     timeUnderBubble = true;
                 else {
                     bubble.timestampItem.timeLabel.opacity = 1;
@@ -441,7 +444,10 @@ Loader {
                             border.width: 1
                             radius: bubbleRadius
 
-                            implicitWidth: img.width + (img.useBox ? 20 : 0)
+                            // Fit the timestamp pill and its 10px side margins
+                            readonly property real minWidth: localMediaMsgItem.timeWidth + 20
+
+                            implicitWidth: Math.max(img.width + (img.useBox ? 20 : 0), minWidth)
                             implicitHeight: img.height + (img.useBox ? 20 : 0)
                             onWidthChanged: {
                                 localMediaMsgItem.contentWidth = width;
@@ -452,7 +458,8 @@ Loader {
 
                                 anchors.centerIn: parent
                                 cache: true
-                                fillMode: Image.PreserveAspectFit
+                                fillMode: Image.PreserveAspectCrop
+                                clip: true
                                 mipmap: true
                                 antialiasing: true
                                 autoTransform: true
@@ -477,12 +484,15 @@ Loader {
                                     const fitScale = (xOverflow || yOverflow) ? Math.min(maxWidth / sourceSize.width, JamiTheme.maxImageHeight / sourceSize.height) : 1;
                                     return localMediaMsgItem.isVideoThumbnail ? fitScale / 3 : fitScale;
                                 }
-                                width: sourceSize.width * scaleFactor
-                                height: sourceSize.height * scaleFactor
+                                readonly property real fittedWidth: sourceSize.width * scaleFactor
+                                readonly property real fittedHeight: sourceSize.height * scaleFactor
+                                // Images narrower than the timestamp pill are cropped vertically.
+                                width: useBox ? fittedWidth : Math.max(fittedWidth, parent.minWidth)
+                                height: fittedHeight
 
                                 // Add a bounding box around the image if it's small (along at least one
                                 // dimension) to ensure that it's easy for users to see it and click on it.
-                                property bool useBox: (paintedWidth < 40) || (paintedHeight < 40)
+                                property bool useBox: (fittedWidth < 40) || (fittedHeight < 40)
                                 layer.enabled: !useBox
                                 layer.effect: OpacityMask {
                                     maskSource: MessageBubble {
