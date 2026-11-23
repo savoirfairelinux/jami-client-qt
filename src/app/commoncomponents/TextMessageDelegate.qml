@@ -117,8 +117,13 @@ SBSMessageBase {
             renderType: Text.NativeRendering
             textFormat: Text.RichText
             clip: true
-            onLinkHovered: rootDelegate.hoveredLink = hoveredLink
-            onLinkActivated: Qt.openUrlExternally(new URL(hoveredLink))
+            // Links come from the peer: never hand file:, smb:, etc. to the OS.
+            onLinkHovered: rootDelegate.hoveredLink = UtilsAdapter.sanitizedHref(hoveredLink)
+            onLinkActivated: function (link) {
+                const safe = UtilsAdapter.sanitizedHref(link);
+                if (safe)
+                    Qt.openUrlExternally(safe);
+            }
             readOnly: true
             color: (ParsedBody !== "") ? getBaseColor() : (UtilsAdapter.luma(bubble.color) ? "white" : "dark")
             opacity: (ParsedBody !== "") ? 1 : 0.5

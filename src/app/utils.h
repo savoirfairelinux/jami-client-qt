@@ -113,6 +113,7 @@ QString generateUid();
 
 // Misc
 QString humanFileSize(qint64 fileSize);
+QString sanitizedHref(const QString& href);
 QString getDebugFilePath();
 
 // Convert a MapStringString to a QVariantMap
