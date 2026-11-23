@@ -226,6 +226,18 @@ ListSelectionView {
                 focus: true
             }
 
+            NewMaterialButton {
+                objectName: "disableHomepageTipsButton"
+                Layout.alignment: Qt.AlignHCenter
+                visible: loader_tipsRow.item !== null && loader_tipsRow.item.visibleTipBoxCount > 0
+                implicitHeight: 28
+                verticalPadding: 2
+                textButton: true
+                text: JamiStrings.disableTips
+
+                onClicked: UtilsAdapter.setAppValue(Settings.Key.ShowHomepageTips, false)
+            }
+
             Connections {
                 target: CurrentAccount
                 function onIdChanged() {
