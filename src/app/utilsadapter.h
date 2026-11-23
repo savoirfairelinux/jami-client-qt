@@ -171,6 +171,7 @@ public:
     Q_INVOKABLE QString getStandardTempLocation();
     Q_INVOKABLE QString getMimeNameForUrl(const QUrl& fileUrl) const;
     Q_INVOKABLE QUrl urlFromLocalPath(const QString& filePath) const;
+    Q_INVOKABLE QString sanitizedHref(const QString& href) const;
 
     Q_INVOKABLE QString getBotOwner(const QString& accountId) const;
 

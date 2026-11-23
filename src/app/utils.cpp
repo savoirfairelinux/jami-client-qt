@@ -890,6 +890,28 @@ Utils::scaleAndFrame(const QImage photo, const QSize& size)
     return photo.scaled(size, Qt::KeepAspectRatio, Qt::SmoothTransformation);
 }
 
+// A link reaches us either from the local UI or from a peer (chat message, collab delta), as an
+// arbitrary string, and it ends up in a document that can be copied out to any
+// application. Only schemes that address a document are kept: "javascript:"
+// executes, while "file:" and "data:" address the local machine. An empty return
+// means the text stays, without the link.
+QString
+Utils::sanitizedHref(const QString& href)
+{
+    const QString trimmed = href.trimmed();
+    if (trimmed.isEmpty())
+        return {};
+    // fromUserInput() also turns "www.example.com" into a proper https URL, which
+    // is what a user typing in the link field expects.
+    const QUrl url = QUrl::fromUserInput(trimmed);
+    if (!url.isValid())
+        return {};
+    const QString scheme = url.scheme().toLower();
+    if (scheme != QLatin1String("http") && scheme != QLatin1String("https") && scheme != QLatin1String("mailto"))
+        return {};
+    return url.toString();
+}
+
 QString
 Utils::humanFileSize(qint64 fileSize)
 {

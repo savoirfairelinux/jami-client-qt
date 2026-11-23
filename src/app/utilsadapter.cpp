@@ -988,6 +988,12 @@ UtilsAdapter::urlFromLocalPath(const QString& filePath) const
 }
 
 QString
+UtilsAdapter::sanitizedHref(const QString& href) const
+{
+    return Utils::sanitizedHref(href);
+}
+
+QString
 UtilsAdapter::getBotOwner(const QString& accountId) const
 {
     if (!lrcInstance_->accountModel().hasAccount(accountId))
