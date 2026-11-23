@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "feb0f862_c0f76e82",
+        "filename": "src/app/commoncomponents/FeedTextContent.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-23T22:03:05Z",
+      "side": 1,
+      "message": "[warning] Line 72: 🟡 `onLinkActivated: link \u003d\u003e Qt.openUrlExternally(new URL(link))` can throw at runtime for links that are not valid absolute URLs in JS `URL` semantics, breaking link activation. Open the string directly (`Qt.openUrlExternally(link)`) or validate/normalize first and handle invalid values explicitly.",
+      "revId": "381e89e891df1b6500184b6b21c2b7d5ed431552",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "13695c72_6fe080a3",
+        "filename": "src/app/mainview/components/FeedListView.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-23T22:03:05Z",
+      "side": 1,
+      "message": "[warning] Line 114: 🟡 This binding writes `MessagesAdapter.messageListModel.hideSystemEvents \u003d true` from inside the feed view, which can leak a global side effect after leaving feed mode (system events stay hidden in regular chat until something else resets it). Scope this change to feed mode lifecycle (`when:`/explicit restore on teardown) or move it to a feed-specific model path so normal chat state is not mutated persistently.",
+      "revId": "381e89e891df1b6500184b6b21c2b7d5ed431552",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
