@@ -33,6 +33,5 @@
         <file>src/tst_ShareMessageMenu.qml</file>
         <file>src/tst_LocationSharing.qml</file>
         <file>src/tst_NewMaterialTextField.qml</file>
-        <file>src/tst_TextFieldContextMenu.qml</file>
     </qresource>
 </RCC>
