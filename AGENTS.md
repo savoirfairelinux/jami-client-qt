@@ -1,6 +1,7 @@
 # General rules
 - Use the relevant skill or topic file before starting work
 - No linting in any workflow
+- Commit eagerly
 
 # Skills
 - Commit / stage changes: .agents/skills/commit
