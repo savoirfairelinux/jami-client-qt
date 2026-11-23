@@ -661,6 +661,16 @@ Item {
     // Extras panel
     property real extrasPanelMinWidth: 300
     property real threadPanelMinWidth: 420
+
+    // Feed
+    property real feedPostMaxWidth: 640
+    property real feedPostPadding: 16
+    property real feedPostSpacing: 12
+    property real feedPostRadius: 16
+    property real feedPostAvatarSize: 36
+    property real feedCommentAvatarSize: 24
+    property color feedPostBgColor: darkTheme ? "#262626" : whiteColor
+    property color feedPostBorderColor: darkTheme ? "#3a3a3a" : "#e2e2e2"
     property int aboutBtnSize: 24
 
     // Messages point size

@@ -154,7 +154,7 @@ Item {
     // Search and reply-preview jumps: open the target's thread before the lists scroll to it.
     Connections {
         target: CurrentConversation
-        enabled: MessagesAdapter.threadedView && convContext === CurrentConversation
+        enabled: MessagesAdapter.threadedView && convContext === CurrentConversation && !convContext.isFeedMode
         function onScrollTo(id) {
             const before = MessagesAdapter.threadMessageListModel.threadId;
             // Jump again once the thread panel shows the newly opened thread.
@@ -165,7 +165,7 @@ Item {
 
     Connections {
         target: MessagesAdapter
-        enabled: MessagesAdapter.threadedView && convContext === CurrentConversation
+        enabled: MessagesAdapter.threadedView && convContext === CurrentConversation && !convContext.isFeedMode
         function onReplyToIdChanged() {
             const model = MessagesAdapter.threadMessageListModel;
             const threadId = model.threadRootOf(MessagesAdapter.replyToId);
@@ -607,13 +607,32 @@ Item {
                         Loader {
                             id: loader
                             active: convContext.id !== ""
-                            sourceComponent: MessageListView {
-                                objectName: "mainMessageList"
-                                model: MessagesAdapter.threadedView && convContext === CurrentConversation ? MessagesAdapter.threadedMessageListModel : (convContext !== CurrentConversation ? convContext.messageListModel : MessagesAdapter.messageListModel)
-                                DropArea {
-                                    anchors.fill: parent
-                                    onDropped: function (drop) {
-                                        chatViewFooter.setFilePathsToSend(drop.urls);
+                            sourceComponent: convContext === CurrentConversation && convContext.isFeedMode ? feedList : messageList
+
+                            Component {
+                                id: feedList
+
+                                FeedListView {
+                                    DropArea {
+                                        anchors.fill: parent
+                                        onDropped: function (drop) {
+                                            chatViewFooter.setFilePathsToSend(drop.urls);
+                                        }
+                                    }
+                                }
+                            }
+
+                            Component {
+                                id: messageList
+
+                                MessageListView {
+                                    objectName: "mainMessageList"
+                                    model: MessagesAdapter.threadedView && convContext === CurrentConversation ? MessagesAdapter.threadedMessageListModel : (convContext !== CurrentConversation ? convContext.messageListModel : MessagesAdapter.messageListModel)
+                                    DropArea {
+                                        anchors.fill: parent
+                                        onDropped: function (drop) {
+                                            chatViewFooter.setFilePathsToSend(drop.urls);
+                                        }
                                     }
                                 }
                             }

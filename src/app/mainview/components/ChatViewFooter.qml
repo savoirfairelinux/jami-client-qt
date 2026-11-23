@@ -251,7 +251,7 @@ Rectangle {
         }
 
         onSendMessageButtonClicked: {
-            const replyThread = !root.inThread && MessagesAdapter.threadedView && messageBar.editId === ""
+            const replyThread = !root.inThread && MessagesAdapter.threadedView && !convContext.isFeedMode && messageBar.editId === ""
                                 ? MessagesAdapter.threadMessageListModel.threadRootOf(messageBar.replyToId) : "";
             var canSendText = messageBar.canComposeText;
             // Send file messages
