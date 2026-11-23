@@ -76,8 +76,9 @@ FocusScope {
 
     property real minimumHeight: 150
     property real maximumHeight: 250
+    readonly property real dismissButtonSpace: loader_btnClose.visible ? loader_btnClose.height + loader_btnClose.anchors.bottomMargin : 0
 
-    height: Math.max(minimumHeight, Math.min(maximumHeight, tipColumnLayout.implicitHeight + 2 * JamiTheme.preferredMarginSize))
+    height: Math.max(minimumHeight, Math.min(maximumHeight, tipColumnLayout.implicitHeight + 2 * JamiTheme.preferredMarginSize + dismissButtonSpace))
 
     signal ignoreClicked
 
@@ -149,7 +150,7 @@ FocusScope {
                 active: type === "tip"
                 sourceComponent: InformativeTipBox {
                     Accessible.role: Accessible.Link
-                    maxHeight: root.maximumHeight
+                    maxHeight: root.maximumHeight - root.dismissButtonSpace
                     textColor: root.textColor
                     iconColor: root.iconColor
                 }
@@ -189,29 +190,16 @@ FocusScope {
     Loader {
         id: loader_btnClose
         active: type === "tip"
-        sourceComponent: component_btnClose
+        visible: active && root.opened
         anchors.margins: 8
-        anchors.bottom: root.top
-        anchors.horizontalCenter: root.horizontalCenter
-    }
-
-    Component {
-        id: component_btnClose
-        PushButton {
-            id: btnClose
+        anchors.bottom: parent.bottom
+        anchors.right: parent.right
+        sourceComponent: PushButton {
+            objectName: "dismissTipButton"
             Accessible.role: Accessible.Button
             Accessible.name: JamiStrings.dismissTip
 
-            width: 20
-            height: 20
-            imageContainerWidth: 20
-            imageContainerHeight: 20
-
-            radius: 5
-
-            visible: opened
-            circled: true
-
+            preferredSize: 20
             imageColor: root.iconColor
             normalColor: "transparent"
             toolTipText: JamiStrings.dismiss

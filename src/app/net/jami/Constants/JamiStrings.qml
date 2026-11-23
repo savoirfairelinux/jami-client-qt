@@ -1297,6 +1297,7 @@ Item {
     property string maximize: qsTr("Maximize application")
     property string closeApplication: qsTr("Close application")
     property string dismissTip: qsTr("Dismiss this tip")
+    property string disableTips: qsTr("Disable tips")
     property string tipDescription: qsTr("Tips to help you use Jami more effectively")
     property string showMoreMessagingOptions: qsTr("Show more messaging options")
     property string showMoreMessagingOptionsDescription: qsTr("Open a menu that allows you to send voice and video messages as well as sharing your location")

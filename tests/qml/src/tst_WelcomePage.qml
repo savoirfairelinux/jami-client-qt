@@ -29,6 +29,12 @@ TestWrapper {
     WelcomePage {
         id: uut
 
+        Item {
+            id: welcomePaneHost
+            width: 900
+            height: 700
+        }
+
         TestCase {
             name: "Open 'About Jami' popup"
             when: windowShown
@@ -51,10 +57,14 @@ TestWrapper {
             property var previousCustomization
             property Item previousPaneParent
 
-            Item {
-                id: welcomePaneHost
-                width: 900
-                height: 700
+            Component {
+                id: tipsRowComponent
+
+                TipsRow {
+                    width: welcomePaneHost.width
+                    y: 200
+                    z: 1
+                }
             }
 
             function init() {
@@ -73,16 +83,40 @@ TestWrapper {
 
             function test_disableAndRestoreTips() {
                 const tipsRow = findChild(uut.rightPaneItem, "loader_tipsRow");
+                const disableButton = findChild(uut.rightPaneItem, "disableHomepageTipsButton");
                 verify(tipsRow);
+                verify(disableButton);
 
                 UtilsAdapter.setToDefault(Settings.Key.ShowHomepageTips);
                 tryVerify(() => tipsRow.item !== null);
+                tryCompare(disableButton, "visible", true);
 
-                UtilsAdapter.setAppValue(Settings.Key.ShowHomepageTips, false);
+                mouseClick(disableButton);
                 tryCompare(tipsRow, "item", null);
+                compare(disableButton.visible, false);
+                compare(UtilsAdapter.getAppValue(Settings.Key.ShowHomepageTips), false);
 
                 UtilsAdapter.setToDefault(Settings.Key.ShowHomepageTips);
                 tryVerify(() => tipsRow.item !== null);
+                tryCompare(disableButton, "visible", true);
+            }
+
+            function test_dismissTipWithMouse() {
+                const tipsRow = createTemporaryObject(tipsRowComponent, welcomePaneHost);
+                verify(tipsRow);
+                const row = tipsRow.contentItem.children.find(item =>
+                    item.children.some(child => child.type === "tip"));
+                verify(row);
+                const tip = row.children.find(item => item.type === "tip");
+                verify(tip);
+                const count = tipsRow.visibleTipBoxCount;
+                tip.forceActiveFocus();
+                tryCompare(tip, "opened", true);
+                const deleteButton = findChild(tip, "dismissTipButton");
+                verify(deleteButton);
+                mouseClick(deleteButton);
+                tryCompare(tip, "visible", false);
+                compare(tipsRow.visibleTipBoxCount, count - 1);
             }
 
             function test_customizationCanStillDisableTips() {
