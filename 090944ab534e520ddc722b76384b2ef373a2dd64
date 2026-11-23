@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e2de5bab_dcea2c00",
+        "filename": "src/app/commoncomponents/DataTransferMessageDelegate.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-23T18:51:47Z",
+      "side": 1,
+      "message": "[warning] Line 228: 🟡 `radius: bubbleRadius - buttonsLoader.Layout.margins` can become negative if margins are increased (theme/layout changes), which can collapse corner rendering unexpectedly. Clamp the value, e.g. `Math.max(0, bubbleRadius - buttonsLoader.Layout.margins)`, to keep rendering stable.",
+      "revId": "090944ab534e520ddc722b76384b2ef373a2dd64",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7e1ee23f_c1d250c7",
+        "filename": "src/app/commoncomponents/MessageBubble.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-23T18:51:47Z",
+      "side": 1,
+      "message": "[warning] Line 28: 🟡 `groupedRadius` is introduced as a hardcoded `8` while outer radius was centralized in `JamiTheme`. To keep web/desktop parity maintainable and avoid another magic number drift, move grouped radius to theme (for example `JamiTheme.messageBubbleGroupedRadius`) and reference it here.",
+      "revId": "090944ab534e520ddc722b76384b2ef373a2dd64",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
