@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b4666372_dd8b2fd0",
+        "filename": "src/app/threadedmsglistmodel.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 290,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-23T22:04:05Z",
+      "side": 1,
+      "message": "[error] Line 290: 🔴 `ThreadRepliesModel::setThreads()` only copies `threads-\u003esourceModel()` once. If `ThreadedMsgListModel` later switches to a different source model (common when changing conversations), this proxy keeps filtering the old source and can show stale/empty data. Track source-model changes from `threads` (e.g., connect to `QAbstractProxyModel::sourceModelChanged` or an equivalent forwarding signal) and call `setSourceModel(...)` again when it changes.",
+      "revId": "53c77565dd347412d3a2c582dabd85103bfdcf28",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
