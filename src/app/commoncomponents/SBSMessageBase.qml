@@ -74,6 +74,7 @@ Control {
     property real maxMsgWidth: root.width - senderMargin - 2 * hPadding - avatarBlockWidth
     property bool bigMsg
     property bool timeUnderBubble: false
+    property bool timeOverMedia: false
     property var type: Type
     property var shouldBeVisible: msgRowlayout.msgHovered || root.activeFocus || reply.activeFocus
                                   || more.activeFocus || share.activeFocus
@@ -498,7 +499,8 @@ Control {
                                                                              UtilsAdapter.luma(
                                                                                  bubble.color)
                                                                              ? "white" : "dark")
-                        timeLabel.opacity: 0.5
+                        pill: root.timeOverMedia
+                        timeLabel.opacity: pill ? 1 : 0.5
 
                         anchors.bottom: parent.bottom
                         anchors.right: IsEmojiOnly ? (isOutgoing ? parent.right : undefined) :
