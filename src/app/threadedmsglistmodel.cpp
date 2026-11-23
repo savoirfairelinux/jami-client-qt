@@ -69,11 +69,14 @@ ThreadedMsgListModel::setSourceModel(QAbstractItemModel* model)
             }
             if (countsChanged_ && rowCount())
                 Q_EMIT dataChanged(index(0, 0), index(rowCount() - 1, 0), {ThreadReplyCount});
+            const auto regrouped = regrouped_;
             regrouped_ = countsChanged_ = false;
             if (previousThreadId_ != threadId_) {
                 previousThreadId_ = threadId_;
                 Q_EMIT threadIdChanged();
             }
+            if (regrouped)
+                Q_EMIT threadsRegrouped();
         };
         connect(model, &QAbstractItemModel::rowsInserted, this, refresh);
         connect(model, &QAbstractItemModel::rowsRemoved, this, refresh);
@@ -246,4 +249,73 @@ ThreadedMsgListModel::merge(const QString& childId, const QString& parentId)
     rootOf_.remove(child);
     rootOf_[parent] = root;
     countsChanged_ = true;
+}
+
+ThreadRepliesModel::ThreadRepliesModel(QObject* parent)
+    : QSortFilterProxyModel(parent)
+{
+    sort(0);
+    connect(this, &QAbstractItemModel::rowsInserted, this, &ThreadRepliesModel::countChanged);
+    connect(this, &QAbstractItemModel::rowsRemoved, this, &ThreadRepliesModel::countChanged);
+    connect(this, &QAbstractItemModel::modelReset, this, &ThreadRepliesModel::countChanged);
+    connect(this, &QAbstractItemModel::layoutChanged, this, &ThreadRepliesModel::countChanged);
+}
+
+bool
+ThreadRepliesModel::filterAcceptsRow(int sourceRow, const QModelIndex& sourceParent) const
+{
+    if (!threads_ || rootId_.isEmpty())
+        return false;
+    const auto id = sourceModel()->index(sourceRow, 0, sourceParent).data(MessageList::Id).toString();
+    return id != rootId_ && threads_->threadRootOf(id) == rootId_;
+}
+
+bool
+ThreadRepliesModel::lessThan(const QModelIndex& left, const QModelIndex& right) const
+{
+    // The source lists the newest message first.
+    return left.row() > right.row();
+}
+
+ThreadedMsgListModel*
+ThreadRepliesModel::threads() const
+{
+    return threads_;
+}
+
+void
+ThreadRepliesModel::setThreads(ThreadedMsgListModel* threads)
+{
+    if (threads_ == threads)
+        return;
+    if (threads_)
+        disconnect(threads_, nullptr, this, nullptr);
+    threads_ = threads;
+    // Shares the threads' source, whose index is updated before this model filters new rows.
+    setSourceModel(threads ? threads->sourceModel() : nullptr);
+    if (threads)
+        connect(threads, &ThreadedMsgListModel::threadsRegrouped, this, &ThreadRepliesModel::invalidateRowsFilter);
+    Q_EMIT threadsChanged();
+}
+
+QString
+ThreadRepliesModel::rootId() const
+{
+    return rootId_;
+}
+
+void
+ThreadRepliesModel::setRootId(const QString& rootId)
+{
+    if (rootId_ == rootId)
+        return;
+    rootId_ = rootId;
+    invalidateRowsFilter();
+    Q_EMIT rootIdChanged();
+}
+
+int
+ThreadRepliesModel::count() const
+{
+    return rowCount();
 }

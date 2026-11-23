@@ -225,6 +225,100 @@ TEST(ThreadedMsgListModel, LoadingLongNestedChainFromNewestToOldest)
     std::cout << "Loaded a " << chainLength << "-message nested chain in " << elapsed << " ms" << std::endl;
 }
 
+namespace {
+
+struct RepliesFixture : ThreadedFixture
+{
+    ThreadRepliesModel replies;
+
+    RepliesFixture()
+    {
+        replies.setThreads(&threaded);
+    }
+
+    // Shown ids, in display order, once pending regrouping has been applied.
+    QStringList replyIds() const
+    {
+        QCoreApplication::processEvents();
+        QStringList result;
+        for (int row = 0; row < replies.rowCount(); ++row)
+            result << replies.index(row, 0).data(MessageList::Id).toString();
+        return result;
+    }
+};
+
+} // namespace
+
+TEST(ThreadRepliesModel, ShowsLoadedRepliesOfItsRootOldestFirst)
+{
+    RepliesFixture f;
+    f.add("a");
+    f.add("b");
+    f.add("a1", "a");
+    f.add("b1", "b");
+    f.add("a2", "a1");
+    f.replies.setRootId("a");
+
+    EXPECT_EQ(f.replyIds(), QStringList({"a1", "a2"}));
+    EXPECT_EQ(f.replies.count(), 2);
+}
+
+TEST(ThreadRepliesModel, NewReplyIsAppended)
+{
+    RepliesFixture f;
+    f.add("a");
+    f.add("a1", "a");
+    f.replies.setRootId("a");
+
+    QSignalSpy countSpy(&f.replies, &ThreadRepliesModel::countChanged);
+    f.add("b");
+    f.add("a2", "a");
+
+    EXPECT_EQ(f.replyIds(), QStringList({"a1", "a2"}));
+    EXPECT_FALSE(countSpy.isEmpty());
+}
+
+TEST(ThreadRepliesModel, LateRootGathersItsFallbackReplies)
+{
+    RepliesFixture f;
+    f.add("x1", "p");
+    f.add("x2", "x1");
+    f.replies.setRootId("p");
+    EXPECT_TRUE(f.replyIds().isEmpty());
+
+    f.addOlder("p");
+
+    EXPECT_EQ(f.replyIds(), QStringList({"x1", "x2"}));
+}
+
+TEST(ThreadRepliesModel, ChangingRootShowsTheOtherReplies)
+{
+    RepliesFixture f;
+    f.add("a");
+    f.add("b");
+    f.add("a1", "a");
+    f.add("b1", "b");
+    f.replies.setRootId("a");
+    EXPECT_EQ(f.replyIds(), QStringList({"a1"}));
+
+    QSignalSpy rootSpy(&f.replies, &ThreadRepliesModel::rootIdChanged);
+    f.replies.setRootId("b");
+
+    EXPECT_EQ(f.replyIds(), QStringList({"b1"}));
+    EXPECT_EQ(rootSpy.count(), 1);
+}
+
+TEST(ThreadRepliesModel, ClearingSourceEmptiesReplies)
+{
+    RepliesFixture f;
+    f.add("a");
+    f.add("a1", "a");
+    f.replies.setRootId("a");
+    f.source.clear();
+
+    EXPECT_TRUE(f.replyIds().isEmpty());
+}
+
 TEST(ThreadedHistoryRequest, OnlyOneRequestIsInFlight)
 {
     HistoryRequest request;

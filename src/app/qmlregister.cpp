@@ -280,12 +280,14 @@ registerTypes(QQmlEngine* engine,
     QML_REGISTERTYPE(NS_MODELS, PluginListPreferenceModel);
     QML_REGISTERTYPE(NS_MODELS, FilesToSendListModel);
     QML_REGISTERTYPE(NS_MODELS, CallInformationListModel);
+    QML_REGISTERTYPE(NS_MODELS, ThreadRepliesModel);
 
     // Roles & type enums for models
     QML_REGISTERNAMESPACE(NS_MODELS, AccountList::staticMetaObject, "AccountList");
     QML_REGISTERNAMESPACE(NS_MODELS, CodecList::staticMetaObject, "CodecList");
     QML_REGISTERNAMESPACE(NS_MODELS, ConversationList::staticMetaObject, "ConversationList");
     QML_REGISTERUNCREATABLE(NS_MODELS, ConversationListProxyModel);
+    QML_REGISTERUNCREATABLE(NS_MODELS, ThreadedMsgListModel);
     QML_REGISTERNAMESPACE(NS_MODELS, ContactList::staticMetaObject, "ContactList");
     QML_REGISTERNAMESPACE(NS_MODELS, DeviceList::staticMetaObject, "DeviceList");
     QML_REGISTERNAMESPACE(NS_MODELS, FilesToSend::staticMetaObject, "FilesToSend");
