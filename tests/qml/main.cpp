@@ -29,12 +29,17 @@
 #include <api/contactmodel.h>
 #include <api/contact.h>
 
+#include <QClipboard>
 #include <QFontDatabase>
+#include <QGuiApplication>
+#include <QHttpServer>
+#include <QMimeData>
 #include <QQmlContext>
 #include <QQmlEngine>
 #include <QScopedPointer>
 #include <QtQuickTest/quicktest.h>
 #include <QSignalSpy>
+#include <QTcpServer>
 
 #if WITH_WEBENGINE
 #include <QtWebEngineCore>
@@ -63,6 +68,31 @@ bool muteDaemon = false;
 class Setup : public QObject
 {
     Q_OBJECT
+
+public:
+    Q_INVOKABLE bool copyRemoteTestImage()
+    {
+        if (!pasteImageServer_) {
+            pasteImageServer_.reset(new QHttpServer);
+            pasteImageServer_->route("/image.gif",
+                                     [] { return QHttpServerResponse::fromFile(":/src/resources/gif_test.gif"); });
+            auto* listener = new QTcpServer(pasteImageServer_.get());
+            if (!listener->listen(QHostAddress::LocalHost) || !pasteImageServer_->bind(listener)) {
+                pasteImageServer_.reset();
+                return false;
+            }
+        }
+        auto* mime = new QMimeData;
+        mime->setHtml(
+            QString("<img src=\"http://127.0.0.1:%1/image.gif\">").arg(pasteImageServer_->serverPorts().first()));
+        QGuiApplication::clipboard()->setMimeData(mime);
+        return true;
+    }
+
+    Q_INVOKABLE void clearTestClipboard()
+    {
+        QGuiApplication::clipboard()->clear();
+    }
 
 public Q_SLOTS:
 
@@ -155,6 +185,7 @@ public Q_SLOTS:
      */
     void qmlEngineAvailable(QQmlEngine* engine)
     {
+        engine->rootContext()->setContextProperty("TestClipboard", this);
         lrcInstance_->set_currentAccountId(aliceId);
         auto& aliceInfo = lrcInstance_->accountModel().getAccountInfo(aliceId);
         lrcInstance_->set_selectedConvUid(aliceInfo.conversationModel->getConversations()[0].uid);
@@ -185,6 +216,7 @@ public Q_SLOTS:
      */
     void cleanupTestCase()
     {
+        pasteImageServer_.reset();
         if (useCache)
             return;
 
@@ -197,6 +229,7 @@ public Q_SLOTS:
     }
 
 private:
+    QScopedPointer<QHttpServer> pasteImageServer_;
     QScopedPointer<LRCInstance> lrcInstance_;
 
     QScopedPointer<ConnectivityMonitor> connectivityMonitor_;
@@ -217,9 +250,7 @@ main(int argc, char** argv)
     QDir tempDir(QStandardPaths::writableLocation(QStandardPaths::TempLocation));
 
     // See if we should run these UI tests offscreen.
-    Utils::remove_argument(argv, argc, "--offscreen", [&]() {
-        qputenv("QT_QPA_PLATFORM", "offscreen");
-    });
+    Utils::remove_argument(argv, argc, "--offscreen", [&]() { qputenv("QT_QPA_PLATFORM", "offscreen"); });
 
     // Check if we should use the cache.
     Utils::remove_argument(argv, argc, "--use-cache", [&]() { useCache = true; });
