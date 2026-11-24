@@ -154,7 +154,7 @@ ContextMenuAutoLoader {
         x = mouseEvent.x;
         y = mouseEvent.y;
         root.spellLang = UtilsAdapter.getAppValue(Settings.SpellLang);
-        clipboardHasImageOrUrls = UtilsAdapter.clipboardHasImageOrUrls();
+        clipboardHasImageOrUrls = customizePaste && MessagesAdapter.clipboardHasImageOrUrls();
         selectionStart = lineEditObj.selectionStart;
         selectionEnd = lineEditObj.selectionEnd;
         root.openMenu();

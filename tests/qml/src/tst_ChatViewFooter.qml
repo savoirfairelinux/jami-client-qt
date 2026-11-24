@@ -207,6 +207,46 @@ ColumnLayout {
                 compare(uut.messageBar.text, "")
             }
 
+            function test_pasteRemoteImage_data() {
+                return [{tag: "shortcut", useMenu: false}, {tag: "context menu", useMenu: true}]
+            }
+
+            function test_pasteRemoteImage(data) {
+                const composer = findChild(uut, "messageBarTextArea")
+                const input = composer.textAreaObj
+                const attachments = uut.messageBar.fileContainer
+                composer.text = "draft"
+                input.forceActiveFocus()
+                verify(TestClipboard.copyRemoteTestImage())
+                try {
+                    if (data.useMenu) {
+                        const loader = findChild(composer, "messageBarContextMenu")
+                        mouseClick(input, input.width / 2, input.height / 2, Qt.RightButton)
+                        tryVerify(() => loader.item && loader.item.opened)
+                        const menu = loader.item
+                        let pasteItem = null
+                        for (let i = 0; i < menu.count; ++i) {
+                            const item = menu.itemAt(i)
+                            if (item.itemName === JamiStrings.paste) {
+                                pasteItem = item
+                                break
+                            }
+                        }
+                        verify(pasteItem)
+                        mouseClick(pasteItem)
+                    } else {
+                        // Qt maps ControlModifier to Command on macOS.
+                        keyClick(Qt.Key_V, Qt.ControlModifier)
+                    }
+                    tryCompare(attachments, "filesToSendCount", 1)
+                    const model = attachments.filesToSendListModel
+                    compare(model.data(model.index(0, 0), FilesToSend.FileExtension), "gif")
+                    compare(composer.text, "draft")
+                } finally {
+                    TestClipboard.clearTestClipboard()
+                }
+            }
+
             function test_unsendableDraftDoesNotEnableSendButton() {
                 testConversation.canSendText = false;
                 var messageBarTextArea = findChild(uut, "messageBarTextArea")

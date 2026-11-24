@@ -25,6 +25,7 @@
 #include "appsettingsmanager.h"
 
 #include <QObject>
+#include <QJSValue>
 #include <QString>
 #include <QTimer>
 
@@ -250,7 +251,9 @@ public:
                                           const QString& msg,
                                           const QColor& linkColor = QColor(0x06, 0x45, 0xad),
                                           const QColor& backgroundColor = QColor(0x0, 0x0, 0x0));
-    Q_INVOKABLE void onPaste();
+    Q_INVOKABLE bool clipboardHasImageOrUrls() const;
+    // Returns whether the composer should also paste text using its native editor.
+    Q_INVOKABLE bool pasteFromClipboard(bool allowFiles, const QJSValue& acceptFile);
     Q_INVOKABLE QVariantMap getTransferStats(const QString& messageId, int);
     Q_INVOKABLE QVariant dataForInteraction(const QString& interactionId, int role = Qt::DisplayRole) const;
     Q_INVOKABLE void startSearch(const QString& text, bool isMedia);
@@ -265,8 +268,6 @@ public:
 Q_SIGNALS:
     void navigationTargetLoaded(const QString& id);
     void newInteraction(const QString& id, int type);
-    void newFilePasted(const QString& filePath);
-    void newTextPasted();
     void moreMessagesLoaded(qint32 loadingRequestId);
     void threadedViewChanged();
     void timestampUpdated();
