@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3ef125a9_aa4796ae",
+        "filename": "src/app/mainview/components/ConversationPicker.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-24T18:44:43Z",
+      "side": 1,
+      "message": "[warning] Line 136: 🟡 **Search behavior regresses in sharing mode.** The `forSharing` filter only checks `Title`, while the default picker search also matches monikers and URIs. This makes recipient lookup by username/URI stop working when sharing. Reuse the existing multi-field predicate (`Title`, `Monikers`, `Uris`) in `forSharing` mode as well, while still allowing feeds via the separate `Mode` filter toggle.",
+      "revId": "63e0642265ba9ab63f0a50101440bf53b9143067",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2bd1f533_64b16daa",
+        "filename": "src/app/mainview/components/ConversationPicker.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-24T18:44:43Z",
+      "side": 1,
+      "message": "[warning] Line 141: 🟡 **Unbounded regex from user input can hurt UI responsiveness.** Building `new RegExp(search, \"i\")` on every filter pass allows expensive patterns and repeated exceptions for invalid patterns during typing. Prefer escaped literal matching (`includes`) for interactive search, or pre-sanitize/escape the query once before filtering.",
+      "revId": "63e0642265ba9ab63f0a50101440bf53b9143067",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
