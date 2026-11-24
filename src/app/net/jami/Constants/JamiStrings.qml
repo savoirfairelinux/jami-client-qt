@@ -1280,7 +1280,7 @@ Item {
     }
 
     // Share message menu
-    property string addAComment: qsTr("Add comment")
+    property string addAComment: qsTr("Add a comment")
     property string shareWith: qsTr("Share with…")
 
     // Side panel

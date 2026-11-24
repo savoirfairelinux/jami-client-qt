@@ -27,6 +27,7 @@ ColumnLayout {
 
     required property var viewCoordinator
     property bool isFeed: false
+    property bool forSharing: false
     property bool allContactsAvailable: false
     readonly property bool allContacts: allContactsAvailable && audienceComboBox.currentIndex === 0
     readonly property bool pickingContacts: !allContacts
@@ -112,9 +113,10 @@ ColumnLayout {
         filters: [
             ValueFilter { roleName: "IsRequest"; value: false },
             ValueFilter { roleName: "IsBanned"; value: false },
-            ValueFilter { roleName: "Mode"; value: Conversation.Mode.FEED; inverted: true },
+            ValueFilter { enabled: !root.forSharing; roleName: "Mode"; value: Conversation.Mode.FEED; inverted: true },
             ValueFilter { roleName: "UID"; value: root.excludedConversationId; inverted: true },
             FunctionFilter {
+                enabled: !root.forSharing
                 column: 0
                 function filter(Title: string, Monikers: list<string>, Uris: list<string>, IsCoreDialog: bool): bool {
                     if (!Uris || Uris.length === 0)
@@ -124,6 +126,22 @@ ColumnLayout {
                     const query = conversationModel.searchText.trim().toLowerCase();
                     return !query || [Title || ""].concat(Array.from(Monikers || []), Array.from(Uris))
                         .some(value => value.toLowerCase().includes(query));
+                }
+            },
+            FunctionFilter {
+                enabled: root.forSharing
+                column: 0
+                function filter(Title: string, Uris: list<string>): bool {
+                    if (!Uris || Uris.length === 0)
+                        return false;
+                    const search = conversationModel.searchText;
+                    if (!search)
+                        return true;
+                    try {
+                        return new RegExp(search, "i").test(Title || "");
+                    } catch (e) {
+                        return (Title || "").toLowerCase().includes(search.toLowerCase());
+                    }
                 }
             }
         ]
@@ -201,7 +219,7 @@ ColumnLayout {
         objectName: "creationConversationSearch"
         Layout.fillWidth: true
         Layout.preferredHeight: JamiTheme.searchBarPreferredHeight
-        placeHolderText: JamiStrings.search
+        placeHolderText: root.forSharing ? JamiStrings.shareWith : JamiStrings.search
         visible: root.pickingContacts
         onSearchBarTextChanged: function (text) {
             conversationModel.searchText = text;
@@ -297,7 +315,7 @@ ColumnLayout {
             anchors.centerIn: parent
             width: parent.width
             visible: conversationList.count === 0
-            text: JamiStrings.noContactsToChooseFrom
+            text: root.forSharing ? JamiStrings.noConversations : JamiStrings.noContactsToChooseFrom
             color: JamiTheme.textColor
             horizontalAlignment: Text.AlignHCenter
             wrapMode: Text.WordWrap
