@@ -130,6 +130,7 @@ private Q_SLOTS:
     void onSearchStatusChanged(const QString&);
     void onSearchResultUpdated();
     void onSearchResultEnded();
+    void onConversationRequestAccepted(const QString&);
     void onConversationReady(const QString&);
     void onBannedStatusChanged(const QString&, bool);
 

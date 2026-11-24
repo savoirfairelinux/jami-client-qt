@@ -345,9 +345,13 @@ ConversationModel::dataForItem(const conversation::Info& item, int role) const
     case Role::FeedAuthor: {
         if (item.mode != conversation::Mode::FEED)
             return {};
-        // Requests only know the inviter, stored as the non-invited member.
+        // The invitation's placeholder keeps the local account first, followed by the inviter.
+        const auto hasInviter = item.isRequest
+                                || (item.needsSyncing && item.participants.size() == 2
+                                    && item.participants.front().role == member::Role::INVITED);
+        const auto authorRole = hasInviter ? member::Role::MEMBER : member::Role::ADMIN;
         auto it = std::find_if(item.participants.cbegin(), item.participants.cend(), [&](const auto& p) {
-            return item.isRequest ? p.role == member::Role::MEMBER : p.role == member::Role::ADMIN;
+            return p.role == authorRole;
         });
         if (it == item.participants.cend())
             return {};
@@ -1548,9 +1552,17 @@ ConversationModel::acceptConversationRequest(const QString& conversationId)
         return;
 
     if (conversation.isSwarm()) {
+        const bool wasGroupOrFeedRequest = conversation.isRequest && !conversation.isCoreDialog();
         conversation.needsSyncing = true;
-        Q_EMIT conversationUpdated(conversation.uid);
+        if (wasGroupOrFeedRequest)
+            conversation.isRequest = false;
         invalidateModel();
+        if (wasGroupOrFeedRequest) {
+            const auto idx = index(indexOf(conversationId));
+            Q_EMIT dataChanged(idx, idx);
+            Q_EMIT conversationRequestAccepted(conversationId);
+        }
+        Q_EMIT conversationUpdated(conversationId);
         Q_EMIT modelChanged();
         ConfigurationManager::instance().acceptConversationRequest(owner.id, conversationId);
     } else {
