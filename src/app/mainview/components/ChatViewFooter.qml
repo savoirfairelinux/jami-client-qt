@@ -36,6 +36,7 @@ Rectangle {
     property var convContext: CurrentConversation
     // The thread panel's composer: sends reply to the open thread.
     property bool inThread: false
+    readonly property bool canAttachFiles: messageBar.replyToId || inThread ? convContext.canReplyFile : convContext.canSendFile
 
     function pasteText() {
         if (!messageBar.canComposeText)
@@ -44,7 +45,7 @@ Rectangle {
     }
 
     function setFilePathsToSend(filePaths) {
-        if (!(messageBar.replyToId || root.inThread ? convContext.canReplyFile : convContext.canSendFile))
+        if (!canAttachFiles)
             return;
         for (var index = 0; index < filePaths.length; ++index) {
             var path = UtilsAdapter.getAbsPath(decodeURIComponent(filePaths[index]));
@@ -93,17 +94,22 @@ Rectangle {
     }
 
     Connections {
-        target: MessagesAdapter
+        target: messageBar.textAreaObj
 
-        function onNewFilePasted(filePath) {
-            if (!messageBar.textAreaObj.pasting
-                    || !(messageBar.replyToId || root.inThread ? convContext.canReplyFile : convContext.canSendFile))
-                return;
-            messageBar.fileContainer.filesToSendListModel.addToPending(filePath);
-        }
-
-        function onNewTextPasted() {
-            if (messageBar.textAreaObj.pasting)
+        function onPasteRequested() {
+            const accountId = CurrentAccount.id;
+            const conversationId = root.convContext.id;
+            const threadId = root.inThread ? MessagesAdapter.threadMessageListModel.threadId : "";
+            const acceptFile = function (path) {
+                // A browser image can arrive after this composer has switched chats.
+                if (!root || !root.canAttachFiles || accountId !== CurrentAccount.id
+                        || conversationId !== root.convContext.id
+                        || (root.inThread && threadId !== MessagesAdapter.threadMessageListModel.threadId))
+                    return false;
+                messageBar.fileContainer.filesToSendListModel.addToPending(path);
+                return true;
+            };
+            if (MessagesAdapter.pasteFromClipboard(root.canAttachFiles, acceptFile))
                 root.pasteText();
         }
     }
