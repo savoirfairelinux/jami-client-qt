@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5cf81317_2c5aaeb7",
+        "filename": "src/app/messagesadapter.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 546,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-24T21:08:58Z",
+      "side": 1,
+      "message": "[warning] Line 546: 🟡 `acceptFile.call(...)` is used without verifying that the `QJSValue` is callable and still valid. In async flows (remote image download), this can become brittle if the originating QML context is gone. Guard with `acceptFile.isCallable()` (and handle JS exceptions) before calling, then choose an explicit fallback path.",
+      "revId": "e64713c0992996e53bf21e0357d859fdab63f052",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "43cf535e_c5e5fbfb",
+        "filename": "src/app/messagesadapter.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 605,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-24T21:08:58Z",
+      "side": 1,
+      "message": "[warning] Line 605: 🟡 In the `hasUrls()` branch, the return value of `acceptFile.call({url.toLocalFile()})` is ignored for local files, while other branches (encoded/remote images) honor callback rejection. This inconsistency can silently drop routing decisions and make behavior diverge by MIME path. Capture the callback result and handle `false` consistently (e.g., treat as not accepted and decide whether text paste fallback is needed).",
+      "revId": "e64713c0992996e53bf21e0357d859fdab63f052",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
