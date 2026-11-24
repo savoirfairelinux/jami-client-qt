@@ -16,6 +16,40 @@
       "message": "d",
       "revId": "028e8afc863ed17b2ce2ab73a528b86428a83223",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6e8e21be_d41a6fd6",
+        "filename": "src/core/conversationmodel.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 349,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-24T18:05:31Z",
+      "side": 1,
+      "message": "[warning] Line 349: 🟡 The inviter-preservation logic for `FeedAuthor` depends on `participants.front().role \u003d\u003d INVITED` while `needsSyncing` is true. This is brittle if participant ordering changes. Prefer checking roles by content (e.g., find an `INVITED` participant and then resolve inviter by role/URI) rather than relying on position.",
+      "revId": "028e8afc863ed17b2ce2ab73a528b86428a83223",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8fec14c4_b9f0aefe",
+        "filename": "src/core/conversationmodel.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 1559,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-24T18:05:31Z",
+      "side": 1,
+      "message": "[warning] Line 1559: 🟡 `conversationRequestAccepted` emits `dataChanged` using `index(indexOf(conversationId))` immediately after `invalidateModel()`, but the index can be invalid (e.g., if the conversation is filtered out/reordered at that moment). Guard with `if (idx.isValid())` before emitting, or emit only `conversationUpdated/modelChanged` to avoid inconsistent proxy updates and Qt warnings.",
+      "revId": "028e8afc863ed17b2ce2ab73a528b86428a83223",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
