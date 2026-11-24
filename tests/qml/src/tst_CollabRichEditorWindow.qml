@@ -1,10 +1,13 @@
 import QtQuick
+import QtQuick.Window
 import QtTest
 import net.jami.Adapters 1.1
 import net.jami.Models 1.1
 import "../../../src/app/mainview/components"
 
 Item {
+    id: testRoot
+
     Component {
         id: editorWindowComponent
         CollabRichEditorWindow {}
@@ -34,16 +37,23 @@ Item {
             verify(documentId.length > 0);
         }
 
-        function init() {
-            editorWindow = createTemporaryObject(editorWindowComponent, null, {
+        function openEditor(overrides = {}) {
+            const window = createTemporaryObject(editorWindowComponent, null, Object.assign({
+                transientParent: testRoot.Window.window,
                 accountId: accountId,
                 conversationId: conversationId,
                 documentId: documentId,
                 visible: true
-            });
-            verify(editorWindow);
-            editorWindow.requestActivate();
-            waitForRendering(editorWindow.contentItem);
+            }, overrides));
+            verify(window);
+            window.requestActivate();
+            verify(waitForRendering(window.contentItem));
+            tryCompare(window, "active", true);
+            return window;
+        }
+
+        function init() {
+            editorWindow = openEditor();
             editor = findChild(editorWindow, "collabEditor");
             binding = findChild(editorWindow, "collabRichBinding");
             fontButton = findChild(editorWindow, "fontFamilyButton");
@@ -263,15 +273,17 @@ Item {
         }
 
         function test_toolbarFitsMinimumWidth() {
-            editorWindow.width = editorWindow.minimumWidth;
+            const minimumWidth = editorWindow.minimumWidth;
+            editorWindow.close();
+            // Set the initial size so a pending Wayland configure cannot undo the resize.
+            editorWindow = openEditor({width: minimumWidth});
+            compare(editorWindow.width, minimumWidth);
             const toolbar = findChild(editorWindow, "formattingToolbar");
-            tryVerify(() => toolbar.width > 0 && toolbar.height > 0);
-            for (const child of toolbar.children) {
-                if (!child.visible || child.width === 0)
-                    continue;
-                verify(child.x >= 0 && child.x + child.width <= toolbar.width + 1);
-                verify(child.y >= 0 && child.y + child.height <= toolbar.height + 1);
-            }
+            tryVerify(() => toolbar.width > 0 && toolbar.width <= minimumWidth
+                      && toolbar.height > 0 && toolbar.children.every(child =>
+                          !child.visible || child.width === 0
+                          || (child.x >= 0 && child.x + child.width <= toolbar.width + 1
+                              && child.y >= 0 && child.y + child.height <= toolbar.height + 1)));
         }
 
         function test_fontMenuOffersEveryFamily() {
