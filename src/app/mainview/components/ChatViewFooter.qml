@@ -92,18 +92,31 @@ Rectangle {
         }
     }
 
+    // A pasted browser image is downloaded asynchronously; tag the request so
+    // only this composer takes it, and only while it shows the same chat/thread.
+    readonly property string pasteTarget: CurrentAccount.id + "/" + convContext.id + "/"
+                                          + (inThread ? MessagesAdapter.threadMessageListModel.threadId : "")
+
+    Connections {
+        target: messageBar.textAreaObj
+
+        function onPasteRequested() {
+            MessagesAdapter.onPaste(root.pasteTarget);
+        }
+    }
+
     Connections {
         target: MessagesAdapter
 
-        function onNewFilePasted(filePath) {
-            if (!messageBar.textAreaObj.pasting
+        function onNewFilePasted(filePath, target) {
+            if (target !== root.pasteTarget
                     || !(messageBar.replyToId || root.inThread ? convContext.canReplyFile : convContext.canSendFile))
                 return;
             messageBar.fileContainer.filesToSendListModel.addToPending(filePath);
         }
 
-        function onNewTextPasted() {
-            if (messageBar.textAreaObj.pasting)
+        function onNewTextPasted(target) {
+            if (target === root.pasteTarget)
                 root.pasteText();
         }
     }

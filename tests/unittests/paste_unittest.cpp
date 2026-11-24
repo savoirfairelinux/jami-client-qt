@@ -27,9 +27,11 @@
 #include <QDir>
 #include <QFile>
 #include <QFileInfo>
+#include <QHttpServer>
 #include <QMimeData>
 #include <QScopeGuard>
 #include <QSignalSpy>
+#include <QTcpServer>
 #include <QTemporaryDir>
 #include <QUrl>
 
@@ -67,7 +69,7 @@ public:
         QSignalSpy fileSpy(messagesAdapter.data(), &MessagesAdapter::newFilePasted);
         QSignalSpy textSpy(messagesAdapter.data(), &MessagesAdapter::newTextPasted);
 
-        messagesAdapter->onPaste();
+        messagesAdapter->onPaste({});
 
         QStringList filePaths;
         for (int i = 0; i < fileSpy.count(); ++i)
@@ -184,7 +186,7 @@ TEST_F(PasteFixture, PlainTextEmitsNewTextPasted)
     QSignalSpy fileSpy(messagesAdapter.data(), &MessagesAdapter::newFilePasted);
     QSignalSpy textSpy(messagesAdapter.data(), &MessagesAdapter::newTextPasted);
 
-    messagesAdapter->onPaste();
+    messagesAdapter->onPaste({});
 
     EXPECT_EQ(fileSpy.count(), 0);
     EXPECT_EQ(textSpy.count(), 1);
@@ -209,6 +211,35 @@ TEST_F(PasteFixture, KeyboardPaste_LocalFileEmitsAbsolutePath)
     ASSERT_EQ(files.size(), 1);
     EXPECT_EQ(files.first().toStdString(), path.toStdString());
     EXPECT_EQ(textCount, 0);
+}
+
+/*!
+ * WHEN  The clipboard holds only an <img> pointing at a remote image.
+ * THEN  The image is downloaded and newFilePasted carries the paste target,
+ *       even though it arrives after onPaste() has returned.
+ */
+TEST_F(PasteFixture, RemoteImageKeepsPasteTarget)
+{
+    const auto gif = QByteArray::fromBase64("R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7");
+    QHttpServer server;
+    server.route("/image.gif", [gif] { return QHttpServerResponse("image/gif", gif); });
+    auto* listener = new QTcpServer(&server);
+    ASSERT_TRUE(listener->listen(QHostAddress::LocalHost) && server.bind(listener));
+
+    auto* mime = new QMimeData;
+    mime->setHtml(QString("<img src=\"http://127.0.0.1:%1/image.gif\">").arg(listener->serverPort()));
+    QApplication::clipboard()->setMimeData(mime);
+
+    QSignalSpy fileSpy(messagesAdapter.data(), &MessagesAdapter::newFilePasted);
+    messagesAdapter->onPaste("composer");
+    ASSERT_TRUE(fileSpy.wait(5000));
+
+    const QString path = fileSpy.at(0).at(0).toString();
+    const auto cleanup = qScopeGuard([&] { QFile::remove(path); });
+    EXPECT_EQ(fileSpy.at(0).at(1).toString().toStdString(), "composer");
+    QFile file(path);
+    ASSERT_TRUE(file.open(QIODevice::ReadOnly));
+    EXPECT_EQ(file.readAll(), gif);
 }
 
 // ── UtilsAdapter::clipboardHasImageOrUrls ────────────────────────────────────

@@ -250,7 +250,8 @@ public:
                                           const QString& msg,
                                           const QColor& linkColor = QColor(0x06, 0x45, 0xad),
                                           const QColor& backgroundColor = QColor(0x0, 0x0, 0x0));
-    Q_INVOKABLE void onPaste();
+    // target identifies the requesting composer; it is echoed in the paste signals.
+    Q_INVOKABLE void onPaste(const QString& target);
     Q_INVOKABLE QVariantMap getTransferStats(const QString& messageId, int);
     Q_INVOKABLE QVariant dataForInteraction(const QString& interactionId, int role = Qt::DisplayRole) const;
     Q_INVOKABLE void startSearch(const QString& text, bool isMedia);
@@ -265,8 +266,8 @@ public:
 Q_SIGNALS:
     void navigationTargetLoaded(const QString& id);
     void newInteraction(const QString& id, int type);
-    void newFilePasted(const QString& filePath);
-    void newTextPasted();
+    void newFilePasted(const QString& filePath, const QString& target);
+    void newTextPasted(const QString& target);
     void moreMessagesLoaded(qint32 loadingRequestId);
     void threadedViewChanged();
     void timestampUpdated();

@@ -527,7 +527,7 @@ soleRemoteImage(const QMimeData* mimeData)
 }
 
 void
-MessagesAdapter::onPaste()
+MessagesAdapter::onPaste(const QString& target)
 {
     const QMimeData* mimeData = QApplication::clipboard()->mimeData();
 
@@ -540,19 +540,19 @@ MessagesAdapter::onPaste()
         const QString path = saveEncodedImage(mimeData->data(QLatin1String(mime)));
         if (path.isEmpty())
             continue;
-        Q_EMIT newFilePasted(path);
+        Q_EMIT newFilePasted(path, target);
         return;
     }
 
     if (const QUrl url = soleRemoteImage(mimeData); url.isValid()) {
         network_->sendGetRequest(
             url,
-            [self = QPointer(this)](const QByteArray& data) {
+            [self = QPointer(this), target](const QByteArray& data) {
                 if (!self)
                     return;
                 const QString path = saveEncodedImage(data);
                 if (!path.isEmpty())
-                    Q_EMIT self->newFilePasted(path);
+                    Q_EMIT self->newFilePasted(path, target);
             },
             MAX_PASTED_IMAGE_SIZE);
         return;
@@ -572,7 +572,7 @@ MessagesAdapter::onPaste()
             return;
         }
 
-        Q_EMIT newFilePasted(path);
+        Q_EMIT newFilePasted(path, target);
     } else if (mimeData->hasUrls()) {
         const QList<QUrl> urlList = mimeData->urls();
 
@@ -582,18 +582,18 @@ MessagesAdapter::onPaste()
         bool hasNonLocalUrl = false;
         for (const QUrl& url : urlList) {
             if (url.isLocalFile()) {
-                Q_EMIT newFilePasted(url.toLocalFile());
+                Q_EMIT newFilePasted(url.toLocalFile(), target);
                 pastedLocalFile = true;
             } else {
                 hasNonLocalUrl = true;
             }
         }
         if (!pastedLocalFile || hasNonLocalUrl)
-            Q_EMIT newTextPasted();
+            Q_EMIT newTextPasted(target);
     } else {
         // Treat as text content, make chatview.js handle in order to
         // avoid string escape problems
-        Q_EMIT newTextPasted();
+        Q_EMIT newTextPasted(target);
     }
 }
 
