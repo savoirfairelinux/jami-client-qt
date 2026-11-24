@@ -1,0 +1,40 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7fdcc3d9_987e1090",
+        "filename": "src/app/messageparser.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-11-24T20:35:55Z",
+      "side": 1,
+      "message": "Done: explicit QUrl scheme check (http/https).",
+      "parentUuid": "59f1cac0_5ccc2053",
+      "revId": "d92fd415eaa7089efdb201200c3fda31a1d2134a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "68e4e213_ab1477af",
+        "filename": "tests/unittests/messageparser_unittest.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-11-24T20:35:55Z",
+      "side": 1,
+      "message": "Done: EXPECT_FALSE(linkInfoReadySpy.wait(1000)).",
+      "parentUuid": "d91d9893_1f729bac",
+      "revId": "d92fd415eaa7089efdb201200c3fda31a1d2134a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
