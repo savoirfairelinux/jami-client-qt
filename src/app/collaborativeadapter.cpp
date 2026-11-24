@@ -27,12 +27,14 @@
 #include <QJsonObject>
 #include <QFile>
 #include <QFileInfo>
+#include <QFutureWatcher>
 #include <QImage>
 #include <QRandomGenerator>
 #include <QSet>
 #include <QUrl>
 #include <QGuiApplication>
 #include <QClipboard>
+#include <QtConcurrent/QtConcurrentRun>
 #include <algorithm>
 
 namespace {
@@ -42,6 +44,13 @@ constexpr qint64 MAX_ATTACHMENT_SIZE = 16 * 1024 * 1024;
 // Above this the image is displayed scaled down. The stored bytes are untouched:
 // what is scaled is the layout, not the payload.
 constexpr int MAX_DISPLAY_WIDTH = 720;
+
+bool
+newestDocumentFirst(const QVariant& a, const QVariant& b)
+{
+    return a.toMap().value(QStringLiteral("timestamp")).toLongLong()
+           > b.toMap().value(QStringLiteral("timestamp")).toLongLong();
+}
 } // namespace
 
 namespace {
@@ -379,15 +388,16 @@ CollaborativeAdapter::contentDelta(const QString& accountId, const QString& conv
     return replica ? QString::fromStdString(replica->doc->contentDelta()) : QString {};
 }
 
+namespace {
+
 QVariantList
-CollaborativeAdapter::documents(const QString& convId)
+loadConversationDocuments(ConfigurationManagerInterface& config, const QString& accountId, const QString& convId)
 {
     QVariantList result;
-    const auto accountId = lrcInstance_->get_currentAccountId();
 
     // Ask the daemon for every document in the conversation (read from its history),
     // so the list is complete regardless of which messages the UI has paged in.
-    const auto docs = ConfigurationManager::instance().getCollaborativeDocuments(accountId, convId);
+    const auto docs = config.getCollaborativeDocuments(accountId, convId);
     QSet<QString> seen;
     for (const auto& commit : docs) {
         const auto documentId = commit.value(QStringLiteral("id"));
@@ -397,7 +407,7 @@ CollaborativeAdapter::documents(const QString& convId)
 
         // Prefer the live CRDT name (reflects renames); fall back to the announcing
         // commit's display name.
-        QString name = ConfigurationManager::instance().collaborativeDocumentName(accountId, convId, documentId);
+        QString name = config.collaborativeDocumentName(accountId, convId, documentId);
         if (name.isEmpty())
             name = commit.value(QStringLiteral("displayName"));
 
@@ -405,7 +415,6 @@ CollaborativeAdapter::documents(const QString& convId)
         entry[QStringLiteral("documentId")] = documentId;
         entry[QStringLiteral("name")] = name;
         entry[QStringLiteral("author")] = commit.value(QStringLiteral("author"));
-        entry[QStringLiteral("hasUpdate")] = hasUnreadDocumentUpdateForDocument(convId, documentId);
         // Documents this device removed from itself stay listed: they are still
         // in the conversation, and opening one is what fetches it back.
         entry[QStringLiteral("storedLocally")] = commit.value(QStringLiteral("storedLocally"))
@@ -414,12 +423,70 @@ CollaborativeAdapter::documents(const QString& convId)
         result.append(entry);
     }
 
-    // Most recent first.
-    std::sort(result.begin(), result.end(), [](const QVariant& a, const QVariant& b) {
-        return a.toMap().value(QStringLiteral("timestamp")).toLongLong()
-               > b.toMap().value(QStringLiteral("timestamp")).toLongLong();
-    });
     return result;
+}
+
+} // namespace
+
+QVariantList
+CollaborativeAdapter::documents(const QString& convId)
+{
+    const auto accountId = lrcInstance_->get_currentAccountId();
+    auto result = loadConversationDocuments(ConfigurationManager::instance(), accountId, convId);
+    for (auto& document : result) {
+        auto entry = document.toMap();
+        entry[QStringLiteral("hasUpdate")]
+            = hasUnreadDocumentUpdateForDocument(convId, entry.value(QStringLiteral("documentId")).toString());
+        document = std::move(entry);
+    }
+    std::sort(result.begin(), result.end(), newestDocumentFirst);
+    return result;
+}
+
+int
+CollaborativeAdapter::requestAllDocuments()
+{
+    const auto requestId = ++nextDocumentsRequestId_;
+    const auto accountId = lrcInstance_->get_currentAccountId();
+    auto* config = &ConfigurationManager::instance();
+
+    auto* watcher = new QFutureWatcher<QVariantList>(this);
+    connect(watcher, &QFutureWatcher<QVariantList>::finished, this, [this, watcher, requestId, accountId] {
+        watcher->deleteLater();
+        if (accountId != lrcInstance_->get_currentAccountId())
+            return;
+
+        auto documents = watcher->result();
+        if (!documents.isEmpty()) {
+            const auto* model = lrcInstance_->getCurrentAccountInfo().conversationModel.get();
+            QHash<QString, QString> titles;
+            for (auto& document : documents) {
+                auto entry = document.toMap();
+                const auto conversationId = entry.value(QStringLiteral("conversationId")).toString();
+                if (!titles.contains(conversationId))
+                    titles.insert(conversationId, model ? model->title(conversationId) : QString {});
+                entry[QStringLiteral("conversationTitle")] = titles.value(conversationId);
+                document = std::move(entry);
+            }
+        }
+        Q_EMIT allDocumentsLoaded(requestId, documents);
+    });
+    watcher->setFuture(QtConcurrent::run([config, accountId] {
+        QVariantList result;
+        if (accountId.isEmpty())
+            return result;
+        for (const auto& conversationId : config->getConversations(accountId)) {
+            const auto entries = loadConversationDocuments(*config, accountId, conversationId);
+            for (const auto& document : entries) {
+                auto entry = document.toMap();
+                entry[QStringLiteral("conversationId")] = conversationId;
+                result.append(std::move(entry));
+            }
+        }
+        std::sort(result.begin(), result.end(), newestDocumentFirst);
+        return result;
+    }));
+    return requestId;
 }
 
 QVariantList

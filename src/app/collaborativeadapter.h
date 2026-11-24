@@ -100,6 +100,8 @@ public:
     /// List the editable documents shared in @p convId, most recent first. Each
     /// entry is a map: { documentId, name, author, hasUpdate, timestamp }.
     Q_INVOKABLE QVariantList documents(const QString& convId);
+    /// Fetch the active account's editable documents; returns the request ID.
+    Q_INVOKABLE int requestAllDocuments();
     /// Checkpoints of a document, newest first. Each entry is a map:
     /// { id, author, device, timestamp, deltas }.
     Q_INVOKABLE QVariantList history(const QString& accountId,
@@ -164,6 +166,8 @@ public:
                                        CollabRichBinding* binding);
 
 Q_SIGNALS:
+    void allDocumentsLoaded(int requestId, const QVariantList& documents);
+
     // Every document signal names the account it belongs to. Editor windows are
     // top-level and outlive the selection made in the main window, and two local
     // accounts in the same swarm share the conversation and document ids, so
@@ -264,4 +268,5 @@ private:
 
     QHash<QString, QSet<QString>> updatedDocumentsByConversation_;
     QHash<QString, std::shared_ptr<Replica>> replicas_;
+    int nextDocumentsRequestId_ {0};
 };

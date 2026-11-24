@@ -28,6 +28,9 @@ import "../../../src/app/mainview/components"
 import "../../../src/app/commoncomponents"
 
 TestWrapper {
+    width: 640
+    height: 480
+
     AccountComboBox {
         id: uut
 
@@ -45,6 +48,65 @@ TestWrapper {
                 var accountComboBox = findChild(uut, "accountComboBox");
                 accountComboBox.model = uut.loadMockData();
                 compare(accountComboBox.model.length, 4);
+            }
+        }
+
+        TestCase {
+            name: "AllDocuments"
+            when: windowShown
+
+            property string firstConversation
+            property string secondConversation
+            property string firstDocument
+            property string secondDocument
+
+            function cleanup() {
+                if (firstConversation)
+                    LRCInstance.selectConversation(firstConversation, CurrentAccount.id);
+                if (firstDocument)
+                    CollaborativeAdapter.removeDocument(CurrentAccount.id, firstConversation, firstDocument);
+                if (secondConversation)
+                    MessagesAdapter.removeConversation(secondConversation);
+            }
+
+            AllDocumentDialog {
+                id: documentsDialog
+                parent: uut
+            }
+
+            function test_listsSearchesAndOpensConversation() {
+                firstConversation = CurrentConversation.id;
+                secondConversation = ConversationsAdapter.createSwarm("Other documents", "", "", []);
+                verify(secondConversation.length > 0 && secondConversation !== firstConversation);
+
+                firstDocument = CollaborativeAdapter.createDocument(firstConversation, "Notes");
+                secondDocument = CollaborativeAdapter.createDocument(secondConversation, "Notes");
+                verify(firstDocument.length > 0 && secondDocument.length > 0);
+
+                tryVerify(function () {
+                    return ConversationsAdapter.getConvInfoMap(secondConversation).title === "Other documents";
+                });
+                documentsDialog.open();
+                tryCompare(documentsDialog, "loading", false);
+                const list = findChild(documentsDialog.contentItem, "documentsList");
+                const documents = list.model;
+                const second = documents.find(doc => doc.documentId === secondDocument);
+                compare(documents.find(doc => doc.documentId === firstDocument).conversationId, firstConversation);
+                compare(second.conversationId, secondConversation);
+                compare(second.conversationTitle, "Other documents");
+                for (let i = 1; i < documents.length; ++i)
+                    verify(documents[i - 1].timestamp >= documents[i].timestamp);
+
+                findChild(documentsDialog.contentItem, "documentsSearch").text = "other DOCUMENTS ";
+                compare(list.count, 1);
+                compare(list.model[0].documentId, secondDocument);
+
+                tryVerify(() => list.itemAtIndex(0) !== null);
+                const button = findChild(list.itemAtIndex(0), "documentConversationButton");
+                verify(waitForRendering(button));
+                mouseClick(button);
+                tryCompare(documentsDialog, "visible", false);
+                tryCompare(CurrentConversation, "id", secondConversation);
             }
         }
     }

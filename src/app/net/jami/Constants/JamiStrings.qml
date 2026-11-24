@@ -62,6 +62,8 @@ Item {
     property string crashReportMessageExtra: qsTr("Only essential data, including the app version, platform information, and a snapshot of the program's state at the time of the crash, will be shared.")
 
     // AccountComboBox
+    property string documents: qsTr("Documents")
+    property string photoLibrary: qsTr("Photo Library")
     property string displayQRCode: qsTr("Display QR code")
     property string openSettings: qsTr("Open settings")
     property string closeSettings: qsTr("Close settings")
@@ -1174,6 +1176,11 @@ Item {
 
     // Collaborative documents
     property string collaborativeDocuments: qsTr("Collaborative documents")
+    property string loadingDocuments: qsTr("Loading documents…")
+    property string unreadDocumentUpdate: qsTr("Unread document update")
+    property string noEditableDocuments: qsTr("No collaborative documents yet.")
+    property string searchDocuments: qsTr("Search documents or conversations")
+    property string noMatchingDocuments: qsTr("No matching documents.")
     property string documentNotOnThisDevice: qsTr("%1 - not on this device")
     property string newEditableDocument: qsTr("New editable document")
     property string documentName: qsTr("Document name")

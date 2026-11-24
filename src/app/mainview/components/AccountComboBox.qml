@@ -27,6 +27,7 @@ import net.jami.Constants 1.1
 import net.jami.Helpers 1.1
 
 import "../../commoncomponents"
+import "../../commoncomponents/contextmenu"
 
 /* Why is ComboBox not the root item?
 * To address accessibility, we separate the three main components:
@@ -336,6 +337,20 @@ Item {
             }
 
             NewIconButton {
+                id: multimediaButton
+
+                Layout.alignment: Qt.AlignVCenter
+
+                iconSize: JamiTheme.iconButtonMedium
+                iconSource: JamiResources.perm_media_24dp_svg
+                toolTipText: "Multimedia"
+
+                visible: LRCInstance.currentAccountType === Profile.Type.JAMI
+
+                onClicked: multimediaMenu.popup(multimediaButton, 0, -multimediaMenu.height)
+            }
+
+            NewIconButton {
                 id: shareButton
 
                 Layout.alignment: Qt.AlignVCenter
@@ -367,6 +382,20 @@ Item {
                     background.state = "normal";
                 }
             }
+        }
+    }
+
+    BaseContextMenu {
+        id: multimediaMenu
+
+        GeneralMenuItem {
+            parentMenu: multimediaMenu
+            text: JamiStrings.documents
+            itemName: text
+            iconSource: JamiResources.round_folder_24dp_svg
+
+            onClicked: viewCoordinator.presentDialog(appWindow,
+                                                     "mainview/components/AllDocumentDialog.qml")
         }
     }
 }
