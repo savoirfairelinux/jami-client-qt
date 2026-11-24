@@ -114,7 +114,7 @@ TestWrapper {
         }
 
         TestCase {
-            name: "PhotoLibrary"
+            name: "MediaLibrary"
             when: windowShown
 
             property string originalConversation
@@ -122,7 +122,7 @@ TestWrapper {
             property string secondConversation
 
             function cleanup() {
-                wrapper.viewManager.getView("PhotoLibraryDialog")?.close();
+                wrapper.viewManager.getView("MediaLibraryDialog")?.close();
                 LRCInstance.selectConversation(originalConversation, CurrentAccount.id);
                 MessagesAdapter.removeConversation(firstConversation);
                 MessagesAdapter.removeConversation(secondConversation);
@@ -144,21 +144,21 @@ TestWrapper {
                 sendFixture(secondConversation, "TestWrapper.qml");
 
                 findChild(uut, "multimediaButton").click();
-                findChild(uut, "photoLibraryMenuItem").click();
-                tryVerify(() => wrapper.viewManager.getView("PhotoLibraryDialog") !== null);
-                const dialog = wrapper.viewManager.getView("PhotoLibraryDialog");
+                findChild(uut, "mediaLibraryMenuItem").click();
+                tryVerify(() => wrapper.viewManager.getView("MediaLibraryDialog") !== null);
+                const dialog = wrapper.viewManager.getView("MediaLibraryDialog");
                 tryCompare(dialog, "loading", false);
-                const list = findChild(dialog, "photoLibraryGrid");
+                const list = findChild(dialog, "mediaLibraryGrid");
                 compare(list.count, 2);
 
-                findChild(dialog, "photoLibrarySearch").text = "second";
+                findChild(dialog, "mediaLibrarySearch").text = "second";
                 tryCompare(list, "count", 1);
                 compare(list.model[0].name, "TestWrapper.qml");
 
                 tryVerify(() => list.itemAtIndex(0) !== null);
                 const tile = list.itemAtIndex(0);
                 verify(waitForRendering(tile));
-                const menu = findChild(dialog, "photoLibraryFileMenu");
+                const menu = findChild(dialog, "mediaLibraryFileMenu");
                 mouseClick(tile, tile.width / 2, tile.height / 2, Qt.RightButton);
                 tryCompare(menu, "opened", true);
                 mouseClick(list, list.width - 4, list.height - 4);
@@ -167,22 +167,22 @@ TestWrapper {
 
                 const source = UtilsAdapter.getAbsPath(Qt.resolvedUrl("TestWrapper.qml").toString());
                 const file = list.model[0];
-                verify(MessagesAdapter.photoLibraryLocalFile(secondConversation, file.fileId) !== "");
+                verify(MessagesAdapter.mediaLibraryLocalFile(secondConversation, file.fileId) !== "");
                 mouseClick(tile, tile.width / 2, tile.height / 2, Qt.RightButton);
                 tryCompare(menu, "opened", true);
-                findChild(menu, "photoLibraryRemoveFile").triggered();
-                const removeDialog = findChild(dialog, "photoLibraryRemoveDialog");
+                findChild(menu, "mediaLibraryRemoveFile").triggered();
+                const removeDialog = findChild(dialog, "mediaLibraryRemoveDialog");
                 tryCompare(removeDialog, "opened", true);
                 removeDialog.button1.clicked();
-                compare(MessagesAdapter.photoLibraryLocalFile(secondConversation, file.fileId), "");
+                compare(MessagesAdapter.mediaLibraryLocalFile(secondConversation, file.fileId), "");
                 verify(UtilsAdapter.fileExists(source));
 
                 list.currentIndex = 0;
                 list.forceActiveFocus();
                 keyClick(Qt.Key_F10, Qt.ShiftModifier);
                 tryCompare(menu, "opened", true);
-                verify(!findChild(menu, "photoLibraryRemoveFile").visible);
-                findChild(menu, "photoLibraryGoToConversation").triggered();
+                verify(!findChild(menu, "mediaLibraryRemoveFile").visible);
+                findChild(menu, "mediaLibraryGoToConversation").triggered();
                 tryCompare(CurrentConversation, "id", secondConversation);
             }
         }

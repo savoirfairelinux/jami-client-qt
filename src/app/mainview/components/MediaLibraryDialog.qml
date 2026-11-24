@@ -35,7 +35,7 @@ BaseModalDialog {
     // Bumped after a deletion so tiles re-query whether their file is still local.
     property int localFilesRevision: 0
 
-    titleText: JamiStrings.photoLibrary
+    titleText: JamiStrings.mediaLibrary
     title: titleText
     implicitWidth: parent ? Math.min(720, Math.max(0, parent.width - 64)) : 720
     height: parent ? Math.min(implicitHeight, parent.height * 0.7, Math.max(0, parent.height - 64))
@@ -49,7 +49,7 @@ BaseModalDialog {
     }
 
     onOpened: {
-        requestId = MessagesAdapter.requestPhotoLibrary();
+        requestId = MessagesAdapter.requestMediaLibrary();
         if (requestId)
             loadDeadline.start();
         else
@@ -67,7 +67,7 @@ BaseModalDialog {
 
     function cancelRequest() {
         if (requestId)
-            MessagesAdapter.cancelPhotoLibraryRequest(requestId);
+            MessagesAdapter.cancelMediaLibraryRequest(requestId);
         requestId = 0;
     }
 
@@ -78,7 +78,7 @@ BaseModalDialog {
     }
 
     function openFile(tile) {
-        const path = MessagesAdapter.photoLibraryLocalFile(tile.modelData.conversationId, tile.modelData.fileId);
+        const path = MessagesAdapter.mediaLibraryLocalFile(tile.modelData.conversationId, tile.modelData.fileId);
         if (path) {
             MessagesAdapter.openUrl(UtilsAdapter.urlFromLocalPath(path));
         } else {
@@ -107,7 +107,7 @@ BaseModalDialog {
 
     Connections {
         target: MessagesAdapter
-        function onPhotoLibraryLoaded(requestId, files) {
+        function onMediaLibraryLoaded(requestId, files) {
             if (!root.requestId || requestId !== root.requestId)
                 return;
             loadDeadline.stop();
@@ -119,7 +119,7 @@ BaseModalDialog {
 
     BaseContextMenu {
         id: fileMenu
-        objectName: "photoLibraryFileMenu"
+        objectName: "mediaLibraryFileMenu"
 
         property var file: null
 
@@ -127,7 +127,7 @@ BaseModalDialog {
         closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside
 
         GeneralMenuItem {
-            objectName: "photoLibraryGoToConversation"
+            objectName: "mediaLibraryGoToConversation"
             parentMenu: fileMenu
             text: JamiStrings.goToConversation
             itemName: text
@@ -149,10 +149,10 @@ BaseModalDialog {
         }
 
         GeneralMenuItem {
-            objectName: "photoLibraryRemoveFile"
+            objectName: "mediaLibraryRemoveFile"
             parentMenu: fileMenu
             visible: fileMenu.file !== null && root.localFilesRevision >= 0
-                     && MessagesAdapter.photoLibraryLocalFile(fileMenu.file.conversationId, fileMenu.file.fileId) !== ""
+                     && MessagesAdapter.mediaLibraryLocalFile(fileMenu.file.conversationId, fileMenu.file.fileId) !== ""
             height: visible ? JamiTheme.generalMenuItemHeight : 0
             text: JamiStrings.removeLocally
             itemName: text
@@ -167,7 +167,7 @@ BaseModalDialog {
 
     ConfirmDialog {
         id: removeDialog
-        objectName: "photoLibraryRemoveDialog"
+        objectName: "mediaLibraryRemoveDialog"
 
         property var file: null
 
@@ -175,7 +175,7 @@ BaseModalDialog {
         textLabel: file ? JamiStrings.confirmRemoveSharedFile.arg(file.name || JamiStrings.unnamedSharedFile) : ""
         confirmLabel: JamiStrings.optionDelete
         onAccepted: {
-            MessagesAdapter.removePhotoLibraryFile(file.conversationId, file.messageId, file.fileId);
+            MessagesAdapter.removeMediaLibraryFile(file.conversationId, file.messageId, file.fileId);
             root.localFilesRevision++;
         }
     }
@@ -192,7 +192,7 @@ BaseModalDialog {
         height: Math.min(implicitHeight, root.parent ? Math.max(0, root.parent.height - 64) : implicitHeight)
 
         function showFile(file) {
-            const details = MessagesAdapter.photoLibraryFileInfo(file.conversationId, file.fileId, file.name);
+            const details = MessagesAdapter.mediaLibraryFileInfo(file.conversationId, file.fileId, file.name);
             const unknown = JamiStrings.sharedFileUnknown;
             const sender = file.author === CurrentAccount.uri ? CurrentAccount.bestName
                 : file.author ? UtilsAdapter.getBestNameForUri(CurrentAccount.id, file.author) || file.author : unknown;
@@ -251,7 +251,7 @@ BaseModalDialog {
 
         Searchbar {
             id: searchBar
-            objectName: "photoLibrarySearch"
+            objectName: "mediaLibrarySearch"
 
             Layout.fillWidth: true
             Layout.preferredHeight: JamiTheme.searchBarPreferredHeight
@@ -263,7 +263,7 @@ BaseModalDialog {
 
     GridView {
         id: filesList
-        objectName: "photoLibraryGrid"
+        objectName: "mediaLibraryGrid"
 
         parent: contentLayout
         Layout.fillWidth: true
@@ -291,7 +291,7 @@ BaseModalDialog {
         activeFocusOnTab: true
         keyNavigationWraps: false
         keyNavigationEnabled: true
-        Accessible.name: JamiStrings.photoLibrary
+        Accessible.name: JamiStrings.mediaLibrary
 
         Keys.onReturnPressed: if (currentItem) root.openFile(currentItem)
         Keys.onEnterPressed: if (currentItem) root.openFile(currentItem)
@@ -396,7 +396,7 @@ BaseModalDialog {
                     videoStills: true
                     thumbnailSize: 320
                     filePath: root.localFilesRevision >= 0
-                              ? MessagesAdapter.photoLibraryLocalFile(tile.modelData.conversationId, tile.modelData.fileId) : ""
+                              ? MessagesAdapter.mediaLibraryLocalFile(tile.modelData.conversationId, tile.modelData.fileId) : ""
                 }
 
                 Label {

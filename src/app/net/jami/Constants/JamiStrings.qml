@@ -63,7 +63,7 @@ Item {
 
     // AccountComboBox
     property string documents: qsTr("Documents")
-    property string photoLibrary: qsTr("Photo Library")
+    property string mediaLibrary: qsTr("Media library")
     property string displayQRCode: qsTr("Display QR code")
     property string openSettings: qsTr("Open settings")
     property string closeSettings: qsTr("Close settings")

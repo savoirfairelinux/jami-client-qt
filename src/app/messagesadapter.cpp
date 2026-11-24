@@ -96,12 +96,12 @@ MessagesAdapter::MessagesAdapter(AppSettingsManager* settingsManager,
 
     connect(lrcInstance_, &LRCInstance::currentAccountIdChanged, this, &MessagesAdapter::connectConversationModel);
     connect(lrcInstance_, &LRCInstance::currentAccountIdChanged, this, [this] {
-        cancelPhotoLibraryRequest(photoLibraryRequestId_);
+        cancelMediaLibraryRequest(mediaLibraryRequestId_);
     });
     connect(&ConfigurationManager::instance(),
             &ConfigurationManagerInterface::messagesFound,
             this,
-            &MessagesAdapter::onPhotoLibraryMessagesFound,
+            &MessagesAdapter::onMediaLibraryMessagesFound,
             Qt::QueuedConnection);
 
     connectConversationModel();
@@ -1064,41 +1064,41 @@ MessagesAdapter::startSearch(const QString& text, bool isMedia)
 }
 
 uint
-MessagesAdapter::requestPhotoLibrary()
+MessagesAdapter::requestMediaLibrary()
 {
-    cancelPhotoLibraryRequest(photoLibraryRequestId_);
+    cancelMediaLibraryRequest(mediaLibraryRequestId_);
     const auto accountId = lrcInstance_->get_currentAccountId();
     if (accountId.isEmpty() || lrcInstance_->get_currentAccountType() != profile::Type::JAMI)
         return 0;
 
-    photoLibraryAccountId_ = accountId;
-    photoLibraryRequestId_ = ConfigurationManager::instance().searchConversation(
+    mediaLibraryAccountId_ = accountId;
+    mediaLibraryRequestId_ = ConfigurationManager::instance().searchConversation(
         accountId, {}, {}, {}, {}, QStringLiteral("application/data-transfer+json"), 0, 0, 0, 0);
-    return photoLibraryRequestId_;
+    return mediaLibraryRequestId_;
 }
 
 void
-MessagesAdapter::cancelPhotoLibraryRequest(uint requestId)
+MessagesAdapter::cancelMediaLibraryRequest(uint requestId)
 {
-    if (requestId != photoLibraryRequestId_)
+    if (requestId != mediaLibraryRequestId_)
         return;
-    photoLibraryRequestId_ = 0;
-    photoLibraryAccountId_.clear();
-    photoLibraryFiles_.clear();
+    mediaLibraryRequestId_ = 0;
+    mediaLibraryAccountId_.clear();
+    mediaLibraryFiles_.clear();
 }
 
 QString
-MessagesAdapter::photoLibraryLocalFile(const QString& conversationId, const QString& fileId) const
+MessagesAdapter::mediaLibraryLocalFile(const QString& conversationId, const QString& fileId) const
 {
-    const QFileInfo file(photoLibraryTransferPath(conversationId, fileId));
+    const QFileInfo file(mediaLibraryTransferPath(conversationId, fileId));
     return file.isSymLink() ? file.symLinkTarget() : file.filePath();
 }
 
 bool
-MessagesAdapter::removePhotoLibraryFile(const QString& conversationId, const QString& messageId, const QString& fileId)
+MessagesAdapter::removeMediaLibraryFile(const QString& conversationId, const QString& messageId, const QString& fileId)
 {
     // Sent files are links to the user's original, so only the transfer path may be removed.
-    const auto path = photoLibraryTransferPath(conversationId, fileId);
+    const auto path = mediaLibraryTransferPath(conversationId, fileId);
     auto* model = lrcInstance_->getCurrentConversationModel();
     if (path.isEmpty() || messageId.isEmpty() || !model)
         return false;
@@ -1107,7 +1107,7 @@ MessagesAdapter::removePhotoLibraryFile(const QString& conversationId, const QSt
 }
 
 QString
-MessagesAdapter::photoLibraryTransferPath(const QString& conversationId, const QString& fileId) const
+MessagesAdapter::mediaLibraryTransferPath(const QString& conversationId, const QString& fileId) const
 {
     const auto accountId = lrcInstance_->get_currentAccountId();
     if (accountId.isEmpty() || conversationId.isEmpty() || fileId.isEmpty() || fileId == QStringLiteral(".")
@@ -1126,12 +1126,12 @@ MessagesAdapter::photoLibraryTransferPath(const QString& conversationId, const Q
 }
 
 void
-MessagesAdapter::onPhotoLibraryMessagesFound(uint requestId,
+MessagesAdapter::onMediaLibraryMessagesFound(uint requestId,
                                              const QString& accountId,
                                              const QString& conversationId,
                                              const VectorMapStringString& messages)
 {
-    if (!photoLibraryRequestId_ || requestId != photoLibraryRequestId_ || accountId != photoLibraryAccountId_
+    if (!mediaLibraryRequestId_ || requestId != mediaLibraryRequestId_ || accountId != mediaLibraryAccountId_
         || accountId != lrcInstance_->get_currentAccountId())
         return;
 
@@ -1144,7 +1144,7 @@ MessagesAdapter::onPhotoLibraryMessagesFound(uint requestId,
                 continue;
             bool validSize = false;
             const auto size = message.value(QStringLiteral("totalSize")).toLongLong(&validSize);
-            photoLibraryFiles_.append(QVariantMap {
+            mediaLibraryFiles_.append(QVariantMap {
                 {QStringLiteral("fileId"), fileId},
                 {QStringLiteral("messageId"), message.value(QStringLiteral("id"))},
                 {QStringLiteral("conversationId"), conversationId},
@@ -1160,8 +1160,8 @@ MessagesAdapter::onPhotoLibraryMessagesFound(uint requestId,
     if (!messages.isEmpty())
         return;
 
-    auto files = std::exchange(photoLibraryFiles_, {});
-    cancelPhotoLibraryRequest(requestId);
+    auto files = std::exchange(mediaLibraryFiles_, {});
+    cancelMediaLibraryRequest(requestId);
     const auto key = [](const QVariant& row) {
         const auto file = row.toMap();
         return std::tuple {file.value(QStringLiteral("timestamp")).toLongLong(),
@@ -1171,15 +1171,15 @@ MessagesAdapter::onPhotoLibraryMessagesFound(uint requestId,
     std::sort(files.begin(), files.end(), [&key](const QVariant& lhs, const QVariant& rhs) {
         return key(lhs) > key(rhs);
     });
-    Q_EMIT photoLibraryLoaded(requestId, files);
+    Q_EMIT mediaLibraryLoaded(requestId, files);
 }
 
 QVariantMap
-MessagesAdapter::photoLibraryFileInfo(const QString& conversationId,
+MessagesAdapter::mediaLibraryFileInfo(const QString& conversationId,
                                       const QString& fileId,
                                       const QString& fileName) const
 {
-    const auto path = photoLibraryLocalFile(conversationId, fileId);
+    const auto path = mediaLibraryLocalFile(conversationId, fileId);
     const QMimeDatabase mimeDatabase;
     auto mime = path.isEmpty() ? QMimeType {} : mimeDatabase.mimeTypeForFile(path, QMimeDatabase::MatchContent);
     if (!mime.isValid() || mime.isDefault())

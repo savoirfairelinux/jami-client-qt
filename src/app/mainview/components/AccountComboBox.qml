@@ -402,14 +402,14 @@ Item {
         GeneralMenuSeparator {}
 
         GeneralMenuItem {
-            objectName: "photoLibraryMenuItem"
+            objectName: "mediaLibraryMenuItem"
             parentMenu: multimediaMenu
-            text: JamiStrings.photoLibrary
+            text: JamiStrings.mediaLibrary
             itemName: text
             iconSource: JamiResources.photo_library_24dp_svg
 
             onClicked: viewCoordinator.presentDialog(appWindow,
-                                                     "mainview/components/PhotoLibraryDialog.qml",
+                                                     "mainview/components/MediaLibraryDialog.qml",
                                                      { viewCoordinator: root.viewCoordinator }, true)
         }
     }
