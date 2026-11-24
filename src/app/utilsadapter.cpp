@@ -33,6 +33,7 @@
 #include <QFileInfo>
 #include <QLocale>
 #include <QRegularExpression>
+#include <QMimeData>
 #include <QMimeDatabase>
 #include <QStyleHints>
 
@@ -157,6 +158,13 @@ void
 UtilsAdapter::setClipboardText(QString text)
 {
     clipboard_->setText(text, QClipboard::Clipboard);
+}
+
+bool
+UtilsAdapter::clipboardHasImageOrUrls()
+{
+    const QMimeData* mimeData = clipboard_->mimeData();
+    return mimeData && (mimeData->hasImage() || mimeData->hasUrls());
 }
 
 const QString

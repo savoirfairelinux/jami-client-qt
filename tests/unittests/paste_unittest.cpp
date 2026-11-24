@@ -18,6 +18,8 @@
 #include "globaltestenvironment.h"
 
 #include "messagesadapter.h"
+#include "utilsadapter.h"
+#include "systemtray.h"
 
 #include <QApplication>
 #include <QClipboard>
@@ -25,9 +27,11 @@
 #include <QDir>
 #include <QFile>
 #include <QFileInfo>
-#include <QJSEngine>
+#include <QHttpServer>
 #include <QMimeData>
 #include <QScopeGuard>
+#include <QSignalSpy>
+#include <QTcpServer>
 #include <QTemporaryDir>
 #include <QUrl>
 
@@ -41,37 +45,40 @@ public:
         messagesAdapter.reset(new MessagesAdapter(globalEnv.settingsManager.data(),
                                                   globalEnv.previewEngine.data(),
                                                   globalEnv.lrcInstance.data()));
+        utilsAdapter.reset(new UtilsAdapter(globalEnv.settingsManager.data(),
+                                            globalEnv.systemTray.data(),
+                                            globalEnv.lrcInstance.data()));
     }
 
     void TearDown() override
     {
         messagesAdapter.reset();
+        utilsAdapter.reset();
         // Leave clipboard clean for subsequent tests.
         QApplication::clipboard()->clear();
     }
 
-    std::pair<QStringList, bool> pasteClipboard(bool allowFiles = true)
-    {
-        QJSEngine engine;
-        const auto files = engine.newArray();
-        const auto acceptFile = engine.evaluate("files => path => { files.push(path); return true; }").call({files});
-        const bool pasteText = messagesAdapter->pasteFromClipboard(allowFiles, acceptFile);
-        QStringList filePaths;
-        for (quint32 i = 0, count = files.property("length").toUInt(); i < count; ++i)
-            filePaths << files.property(i).toString();
-        return {filePaths, pasteText};
-    }
-
-    std::pair<QStringList, bool> pasteUrls(const QList<QUrl>& urls)
+    // Puts a list of URLs into the clipboard and calls onPaste().
+    // Returns {newFilePasted paths, newTextPasted count}.
+    std::pair<QStringList, int> pasteUrls(const QList<QUrl>& urls)
     {
         auto* mime = new QMimeData;
         mime->setUrls(urls);
         QApplication::clipboard()->setMimeData(mime);
 
-        return pasteClipboard();
+        QSignalSpy fileSpy(messagesAdapter.data(), &MessagesAdapter::newFilePasted);
+        QSignalSpy textSpy(messagesAdapter.data(), &MessagesAdapter::newTextPasted);
+
+        messagesAdapter->onPaste({});
+
+        QStringList filePaths;
+        for (int i = 0; i < fileSpy.count(); ++i)
+            filePaths << fileSpy.at(i).at(0).toString();
+        return {filePaths, textSpy.count()};
     }
 
     QScopedPointer<MessagesAdapter> messagesAdapter;
+    QScopedPointer<UtilsAdapter> utilsAdapter;
     QUrl openedUrl;
 
 public Q_SLOTS:
@@ -81,11 +88,12 @@ public Q_SLOTS:
     }
 };
 
-// ── MessagesAdapter::pasteFromClipboard ──────────────────────────────────────
+// ── MessagesAdapter::onPaste ──────────────────────────────────────────────────
 
 /*!
  * WHEN  The clipboard holds a local file URL (file:///path).
- * THEN  The absolute local path is attached without pasting text.
+ * THEN  newFilePasted is emitted with the absolute local path and
+ *       newTextPasted is NOT emitted.
  *
  * This is the regression test for the old regex that stripped the leading
  * slash ("file:///home/user/doc.pdf" → "home/user/doc.pdf").
@@ -102,7 +110,7 @@ TEST_F(PasteFixture, LocalFileUrlEmitsAbsolutePath)
 
 /*!
  * WHEN  The clipboard holds a local file URL with percent-encoded characters.
- * THEN  The decoded path is attached.
+ * THEN  newFilePasted is emitted with the decoded path.
  *
  * The old regex operated on the raw URL string and could not handle
  * percent-encoding; QUrl::toLocalFile() decodes it correctly.
@@ -119,9 +127,10 @@ TEST_F(PasteFixture, PercentEncodedLocalFileUrlIsDecoded)
 
 /*!
  * WHEN  The clipboard holds only a non-local URL (e.g. a web link).
- * THEN  Paste the URL as text, without adding an attachment.
+ * THEN  newFilePasted is NOT emitted and newTextPasted IS emitted once
+ *       so the URL text is not silently dropped.
  */
-TEST_F(PasteFixture, NonLocalUrlPastesAsText)
+TEST_F(PasteFixture, NonLocalUrlEmitsNewTextPasted)
 {
     auto [files, textCount] = pasteUrls({QUrl("https://jami.net/download")});
 
@@ -131,12 +140,14 @@ TEST_F(PasteFixture, NonLocalUrlPastesAsText)
 
 /*!
  * WHEN  The clipboard holds a mix of a local file and a non-local URL.
- * THEN  Attach the local file and paste the link as text.
+ * THEN  newFilePasted is emitted for the local file AND newTextPasted is
+ *       emitted for the non-local URL.
  */
-TEST_F(PasteFixture, MixedUrlsAttachFilesAndPasteText)
+TEST_F(PasteFixture, MixedUrlsEmitBothSignals)
 {
     const QString localPath = "/tmp/photo.jpg";
-    auto [files, textCount] = pasteUrls({QUrl::fromLocalFile(localPath), QUrl("https://jami.net")});
+    auto [files, textCount] = pasteUrls({QUrl::fromLocalFile(localPath),
+                                         QUrl("https://jami.net")});
 
     ASSERT_EQ(files.size(), 1);
     EXPECT_EQ(files.first().toStdString(), localPath.toStdString());
@@ -145,9 +156,9 @@ TEST_F(PasteFixture, MixedUrlsAttachFilesAndPasteText)
 
 /*!
  * WHEN  The clipboard holds multiple local files.
- * THEN  Attach each file without pasting text.
+ * THEN  newFilePasted is emitted once per file and newTextPasted is NOT emitted.
  */
-TEST_F(PasteFixture, MultipleLocalFilesAreEachAttached)
+TEST_F(PasteFixture, MultipleLocalFilesEachEmitNewFilePasted)
 {
     const QStringList paths = {"/tmp/a.txt", "/tmp/b.txt", "/tmp/c.txt"};
     QList<QUrl> urls;
@@ -164,26 +175,37 @@ TEST_F(PasteFixture, MultipleLocalFilesAreEachAttached)
 
 /*!
  * WHEN  The clipboard holds plain text (no URLs, no image).
- * THEN  Paste the text without adding an attachment.
+ * THEN  newFilePasted is NOT emitted and newTextPasted IS emitted once.
  */
-TEST_F(PasteFixture, PlainTextPastesAsText)
+TEST_F(PasteFixture, PlainTextEmitsNewTextPasted)
 {
     auto* mime = new QMimeData;
     mime->setText("hello world");
     QApplication::clipboard()->setMimeData(mime);
 
-    auto [files, pasteText] = pasteClipboard();
-    EXPECT_TRUE(files.isEmpty());
-    EXPECT_TRUE(pasteText);
+    QSignalSpy fileSpy(messagesAdapter.data(), &MessagesAdapter::newFilePasted);
+    QSignalSpy textSpy(messagesAdapter.data(), &MessagesAdapter::newTextPasted);
+
+    messagesAdapter->onPaste({});
+
+    EXPECT_EQ(fileSpy.count(), 0);
+    EXPECT_EQ(textSpy.count(), 1);
 }
 
 /*!
+ * Keyboard paste (Ctrl+V / Cmd+V) routes through MessagesAdapter::onPaste()
+ * via QML Keys.onPressed → StandardKey.Paste.  The signal behaviour is
+ * therefore identical; this test documents that the same path is taken and
+ * acts as a labelled regression anchor for keyboard-triggered paste.
+ *
  * WHEN  Ctrl+V is pressed while the clipboard holds a local file URL.
- * THEN  Attach the absolute path without pasting text.
+ * THEN  newFilePasted is emitted with the correct absolute path and
+ *       newTextPasted is NOT emitted.
  */
 TEST_F(PasteFixture, KeyboardPaste_LocalFileEmitsAbsolutePath)
 {
     const QString path = "/home/user/report.odt";
+    // Keyboard paste calls MessagesAdapter::onPaste() — exercise that path.
     auto [files, textCount] = pasteUrls({QUrl::fromLocalFile(path)});
 
     ASSERT_EQ(files.size(), 1);
@@ -191,24 +213,76 @@ TEST_F(PasteFixture, KeyboardPaste_LocalFileEmitsAbsolutePath)
     EXPECT_EQ(textCount, 0);
 }
 
-TEST_F(PasteFixture, EncodedGifPreservesOriginalBytes)
+/*!
+ * WHEN  The clipboard holds only an <img> pointing at a remote image.
+ * THEN  The image is downloaded and newFilePasted carries the paste target,
+ *       even though it arrives after onPaste() has returned.
+ */
+TEST_F(PasteFixture, RemoteImageKeepsPasteTarget)
 {
     const auto gif = QByteArray::fromBase64("R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7");
+    QHttpServer server;
+    server.route("/image.gif", [gif] { return QHttpServerResponse("image/gif", gif); });
+    auto* listener = new QTcpServer(&server);
+    ASSERT_TRUE(listener->listen(QHostAddress::LocalHost) && server.bind(listener));
+
     auto* mime = new QMimeData;
-    mime->setData("image/gif", gif);
+    mime->setHtml(QString("<img src=\"http://127.0.0.1:%1/image.gif\">").arg(listener->serverPort()));
     QApplication::clipboard()->setMimeData(mime);
 
-    const auto [files, pasteText] = pasteClipboard();
-    ASSERT_EQ(files.size(), 1);
-    const auto cleanup = qScopeGuard([&] { QFile::remove(files.first()); });
-    QFile file(files.first());
+    QSignalSpy fileSpy(messagesAdapter.data(), &MessagesAdapter::newFilePasted);
+    messagesAdapter->onPaste("composer");
+    ASSERT_TRUE(fileSpy.wait(5000));
+
+    const QString path = fileSpy.at(0).at(0).toString();
+    const auto cleanup = qScopeGuard([&] { QFile::remove(path); });
+    EXPECT_EQ(fileSpy.at(0).at(1).toString().toStdString(), "composer");
+    QFile file(path);
     ASSERT_TRUE(file.open(QIODevice::ReadOnly));
     EXPECT_EQ(file.readAll(), gif);
-    EXPECT_FALSE(pasteText);
+}
 
-    const auto [blockedFiles, blockedText] = pasteClipboard(false);
-    EXPECT_TRUE(blockedFiles.isEmpty());
-    EXPECT_FALSE(blockedText);
+// ── UtilsAdapter::clipboardHasImageOrUrls ────────────────────────────────────
+
+/*!
+ * WHEN  The clipboard holds a local file URL.
+ * THEN  clipboardHasImageOrUrls() returns true, enabling the Paste menu entry.
+ */
+TEST_F(PasteFixture, ClipboardHasImageOrUrls_TrueForLocalFileUrl)
+{
+    auto* mime = new QMimeData;
+    mime->setUrls({QUrl::fromLocalFile("/tmp/file.txt")});
+    QApplication::clipboard()->setMimeData(mime);
+
+    EXPECT_TRUE(utilsAdapter->clipboardHasImageOrUrls());
+}
+
+/*!
+ * WHEN  The clipboard holds only plain text.
+ * THEN  clipboardHasImageOrUrls() returns false (text-only paste uses
+ *       canPaste from TextEdit, not the custom paste path).
+ */
+TEST_F(PasteFixture, ClipboardHasImageOrUrls_FalseForPlainText)
+{
+    auto* mime = new QMimeData;
+    mime->setText("some text");
+    QApplication::clipboard()->setMimeData(mime);
+
+    EXPECT_FALSE(utilsAdapter->clipboardHasImageOrUrls());
+}
+
+/*!
+ * WHEN  The clipboard holds a non-local (web) URL.
+ * THEN  clipboardHasImageOrUrls() returns true because the URL list is
+ *       non-empty and may contain something worth pasting.
+ */
+TEST_F(PasteFixture, ClipboardHasImageOrUrls_TrueForWebUrl)
+{
+    auto* mime = new QMimeData;
+    mime->setUrls({QUrl("https://jami.net")});
+    QApplication::clipboard()->setMimeData(mime);
+
+    EXPECT_TRUE(utilsAdapter->clipboardHasImageOrUrls());
 }
 
 /*!
@@ -232,8 +306,10 @@ TEST_F(PasteFixture, OpenDirectoryEncodesReservedCharacters)
 
     const QString directoryPath = QFileInfo(filePath).dir().absolutePath();
     const QString expectedUrl = QUrl::fromLocalFile(directoryPath).toString(QUrl::FullyEncoded);
-    for (const auto& path :
-         {filePath, QUrl::fromLocalFile(filePath).toString(QUrl::FullyEncoded), directoryPath, expectedUrl}) {
+    for (const auto& path : {filePath,
+                             QUrl::fromLocalFile(filePath).toString(QUrl::FullyEncoded),
+                             directoryPath,
+                             expectedUrl}) {
         openedUrl.clear();
         messagesAdapter->openDirectory(path);
         EXPECT_EQ(openedUrl.toString(QUrl::FullyEncoded).toStdString(), expectedUrl.toStdString());

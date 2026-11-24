@@ -36,8 +36,8 @@
 #include <QImageReader>
 #include <QList>
 #include <QMimeData>
-#include <QMimeDatabase>
 #include <QPointer>
+#include <QMimeDatabase>
 #include <QUrl>
 #include <QtMath>
 #include <QRegularExpression>
@@ -479,7 +479,6 @@ MessagesAdapter::cancelFile(const QString& interactionId)
 
 // The daemon's own ceiling on pasted images.
 constexpr qint64 MAX_PASTED_IMAGE_SIZE = 16 * 1024 * 1024;
-static const char* const ENCODED_IMAGE_TYPES[] = {"image/gif", "image/png", "image/jpeg", "image/webp"};
 
 // Writes encoded image bytes to a temp file named after the detected
 // format and returns its path, or an empty string if the bytes are not a
@@ -496,11 +495,11 @@ saveEncodedImage(const QByteArray& data)
     const QByteArray format = reader.format();
     const QString ext = QString::fromLatin1(format == "jpeg" ? QByteArrayLiteral("jpg") : format);
     QTemporaryFile file(QDir::temp().filePath("img_XXXXXX." + ext));
-    if (!file.open() || file.write(data) != data.size() || !file.flush()) {
-        qWarning() << "Unable to write pasted image:" << file.errorString();
+    file.setAutoRemove(false);
+    if (!file.open() || file.write(data) != data.size()) {
+        qWarning() << "Unable to write pasted image to" << file.fileName();
         return {};
     }
-    file.setAutoRemove(false);
     return file.fileName();
 }
 
@@ -527,77 +526,75 @@ soleRemoteImage(const QMimeData* mimeData)
     return url;
 }
 
-bool
-MessagesAdapter::pasteFromClipboard(bool allowFiles, const QJSValue& acceptFile)
+void
+MessagesAdapter::onPaste(const QString& target)
 {
     const QMimeData* mimeData = QApplication::clipboard()->mimeData();
-    if (!mimeData)
-        return false;
-
-    const auto offerImage = [acceptFile](const QString& path) {
-        if (!path.isEmpty() && !acceptFile.call({path}).toBool())
-            QFile::remove(path);
-    };
 
     // Prefer the bytes the source already holds: a decoded QImage of a GIF
-    // is a single frame.
-    for (const auto* mime : ENCODED_IMAGE_TYPES) {
+    // is a single frame, and re-encoding a JPEG as PNG only loses.
+    static const char* const encodedTypes[] = {"image/gif", "image/png", "image/jpeg", "image/webp"};
+    for (const auto* mime : encodedTypes) {
         if (!mimeData->hasFormat(QLatin1String(mime)))
             continue;
-        if (!allowFiles)
-            return false;
         const QString path = saveEncodedImage(mimeData->data(QLatin1String(mime)));
         if (path.isEmpty())
             continue;
-        offerImage(path);
-        return false;
+        Q_EMIT newFilePasted(path, target);
+        return;
     }
 
     if (const QUrl url = soleRemoteImage(mimeData); url.isValid()) {
-        if (allowFiles) {
-            network_->sendGetRequest(
-                url,
-                [self = QPointer(this), offerImage](const QByteArray& data) {
-                    if (self)
-                        offerImage(saveEncodedImage(data));
-                },
-                MAX_PASTED_IMAGE_SIZE);
-        }
-        return false;
+        network_->sendGetRequest(
+            url,
+            [self = QPointer(this), target](const QByteArray& data) {
+                if (!self)
+                    return;
+                const QString path = saveEncodedImage(data);
+                if (!path.isEmpty())
+                    Q_EMIT self->newFilePasted(path, target);
+            },
+            MAX_PASTED_IMAGE_SIZE);
+        return;
     }
 
     if (mimeData->hasImage()) {
-        if (!allowFiles)
-            return false;
-        const auto image = qvariant_cast<QImage>(mimeData->imageData());
-        QTemporaryFile file(QDir::temp().filePath("img_XXXXXX.png"));
-        if (!file.open() || !image.save(&file, "PNG") || !file.flush()) {
-            qWarning() << "Unable to save clipboard image as PNG";
-            return true;
-        }
-        const auto path = file.fileName();
-        file.close();
-        file.setAutoRemove(false);
-        offerImage(path);
-        return false;
-    }
+        // Save temp data into a temp file.
+        QPixmap pixmap = qvariant_cast<QPixmap>(mimeData->imageData());
 
-    if (mimeData->hasUrls()) {
-        bool hasLocalFile = false;
+        auto img_name_hash = QCryptographicHash::hash(QString::number(pixmap.cacheKey()).toLocal8Bit(),
+                                                      QCryptographicHash::Sha1);
+        QString fileName = "img_" + QString(img_name_hash.toHex()) + ".png";
+        QString path = QDir::temp().filePath(fileName);
+
+        if (!pixmap.save(path, "PNG")) {
+            qDebug().noquote() << "Errors during QPixmap save" << "\n";
+            return;
+        }
+
+        Q_EMIT newFilePasted(path, target);
+    } else if (mimeData->hasUrls()) {
+        const QList<QUrl> urlList = mimeData->urls();
+
+        // Attach local files; also paste text when a non-local URL is
+        // present (e.g. copied web links) so it is not dropped.
+        bool pastedLocalFile = false;
         bool hasNonLocalUrl = false;
-        for (const QUrl& url : mimeData->urls()) {
+        for (const QUrl& url : urlList) {
             if (url.isLocalFile()) {
-                if (allowFiles)
-                    acceptFile.call({url.toLocalFile()});
-                hasLocalFile = true;
+                Q_EMIT newFilePasted(url.toLocalFile(), target);
+                pastedLocalFile = true;
             } else {
                 hasNonLocalUrl = true;
             }
         }
-        return !hasLocalFile || hasNonLocalUrl;
+        if (!pastedLocalFile || hasNonLocalUrl)
+            Q_EMIT newTextPasted(target);
+    } else {
+        // Treat as text content, make chatview.js handle in order to
+        // avoid string escape problems
+        Q_EMIT newTextPasted(target);
     }
-
-    return true;
 }
 
 QVariantMap

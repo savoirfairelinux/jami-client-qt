@@ -26,7 +26,6 @@ import net.jami.Constants 1.1
 import net.jami.Models 1.1
 
 import "../../../src/app/mainview/components"
-import "../../../src/app/commoncomponents"
 
 ColumnLayout {
     id: root
@@ -49,11 +48,6 @@ ColumnLayout {
         property bool canReplyFile: true
         property bool canCreateDocument: true
         property bool canEdit: true
-    }
-
-    Component {
-        id: lineEditMenuComponent
-        LineEditContextMenu {}
     }
 
     ChatViewFooter {
@@ -211,73 +205,6 @@ ColumnLayout {
                 uut.pasteText();
 
                 compare(uut.messageBar.text, "")
-            }
-
-            function test_pasteRemoteImage_data() {
-                return [{tag: "shortcut", useMenu: false}, {tag: "context menu", useMenu: true}]
-            }
-
-            function test_textMenuDoesNotProbeClipboard() {
-                let probes = 0
-                let pastes = 0
-                const editor = {
-                    get canPaste() { ++probes; return true },
-                    readOnly: false,
-                    selectedText: "",
-                    selectionStart: 0,
-                    selectionEnd: 0,
-                    select: function () {},
-                    paste: function () { ++pastes }
-                }
-                const loader = createTemporaryObject(lineEditMenuComponent, uut)
-                verify(loader)
-                loader.lineEditObj = editor
-                compare(probes, 0, "A closed menu must not query clipboard availability")
-
-                loader.openMenuAt({x: 0, y: 0})
-                tryVerify(() => loader.item && loader.item.opened)
-                compare(probes, 0, "Opening the menu must not query clipboard availability")
-                compare(pastes, 0)
-                const pasteItem = loader.item.itemAt(0)
-                compare(pasteItem.itemName, JamiStrings.paste)
-                mouseClick(pasteItem)
-                compare(pastes, 1)
-            }
-
-            function test_pasteRemoteImage(data) {
-                const composer = findChild(uut, "messageBarTextArea")
-                const input = composer.textAreaObj
-                const attachments = uut.messageBar.fileContainer
-                composer.text = "draft"
-                input.forceActiveFocus()
-                verify(TestClipboard.copyRemoteTestImage())
-                try {
-                    if (data.useMenu) {
-                        const loader = findChild(composer, "messageBarContextMenu")
-                        mouseClick(input, input.width / 2, input.height / 2, Qt.RightButton)
-                        tryVerify(() => loader.item && loader.item.opened)
-                        const menu = loader.item
-                        let pasteItem = null
-                        for (let i = 0; i < menu.count; ++i) {
-                            const item = menu.itemAt(i)
-                            if (item.itemName === JamiStrings.paste) {
-                                pasteItem = item
-                                break
-                            }
-                        }
-                        verify(pasteItem)
-                        mouseClick(pasteItem)
-                    } else {
-                        // Qt maps ControlModifier to Command on macOS.
-                        keyClick(Qt.Key_V, Qt.ControlModifier)
-                    }
-                    tryCompare(attachments, "filesToSendCount", 1)
-                    const model = attachments.filesToSendListModel
-                    compare(model.data(model.index(0, 0), FilesToSend.FileExtension), "gif")
-                    compare(composer.text, "draft")
-                } finally {
-                    TestClipboard.clearTestClipboard()
-                }
             }
 
             function test_unsendableDraftDoesNotEnableSendButton() {

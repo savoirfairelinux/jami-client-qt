@@ -36,7 +36,6 @@ Rectangle {
     property var convContext: CurrentConversation
     // The thread panel's composer: sends reply to the open thread.
     property bool inThread: false
-    readonly property bool canAttachFiles: messageBar.replyToId || inThread ? convContext.canReplyFile : convContext.canSendFile
 
     function pasteText() {
         if (!messageBar.canComposeText)
@@ -45,7 +44,7 @@ Rectangle {
     }
 
     function setFilePathsToSend(filePaths) {
-        if (!canAttachFiles)
+        if (!(messageBar.replyToId || root.inThread ? convContext.canReplyFile : convContext.canSendFile))
             return;
         for (var index = 0; index < filePaths.length; ++index) {
             var path = UtilsAdapter.getAbsPath(decodeURIComponent(filePaths[index]));
@@ -93,23 +92,31 @@ Rectangle {
         }
     }
 
+    // A pasted browser image is downloaded asynchronously; tag the request so
+    // only this composer takes it, and only while it shows the same chat/thread.
+    readonly property string pasteTarget: CurrentAccount.id + "/" + convContext.id + "/"
+                                          + (inThread ? MessagesAdapter.threadMessageListModel.threadId : "")
+
     Connections {
         target: messageBar.textAreaObj
 
         function onPasteRequested() {
-            const accountId = CurrentAccount.id;
-            const conversationId = root.convContext.id;
-            const threadId = root.inThread ? MessagesAdapter.threadMessageListModel.threadId : "";
-            const acceptFile = function (path) {
-                // A browser image can arrive after this composer has switched chats.
-                if (!root || !root.canAttachFiles || accountId !== CurrentAccount.id
-                        || conversationId !== root.convContext.id
-                        || (root.inThread && threadId !== MessagesAdapter.threadMessageListModel.threadId))
-                    return false;
-                messageBar.fileContainer.filesToSendListModel.addToPending(path);
-                return true;
-            };
-            if (MessagesAdapter.pasteFromClipboard(root.canAttachFiles, acceptFile))
+            MessagesAdapter.onPaste(root.pasteTarget);
+        }
+    }
+
+    Connections {
+        target: MessagesAdapter
+
+        function onNewFilePasted(filePath, target) {
+            if (target !== root.pasteTarget
+                    || !(messageBar.replyToId || root.inThread ? convContext.canReplyFile : convContext.canSendFile))
+                return;
+            messageBar.fileContainer.filesToSendListModel.addToPending(filePath);
+        }
+
+        function onNewTextPasted(target) {
+            if (target === root.pasteTarget)
                 root.pasteText();
         }
     }

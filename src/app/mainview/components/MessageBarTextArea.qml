@@ -80,7 +80,6 @@ JamiFlickable {
     LineEditContextMenu {
         id: textAreaContextMenu
 
-        objectName: "messageBarContextMenu"
         lineEditObj: textArea
         customizePaste: true
 
