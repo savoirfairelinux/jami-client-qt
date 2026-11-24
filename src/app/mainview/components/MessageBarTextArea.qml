@@ -35,8 +35,6 @@ JamiFlickable {
     property alias selectionStart: textArea.selectionStart
     property alias selectionEnd: textArea.selectionEnd
     property bool showPreview: false
-    // Set while this text area's paste is handled, so only its composer takes the pasted content.
-    property bool pasting: false
     property bool isShowTypo: UtilsAdapter.getAppValue(Settings.Key.ShowMardownOption)
     property bool canComposeText: true
     property int textWidth: textArea.contentWidth
@@ -49,6 +47,7 @@ JamiFlickable {
     property string debounceText
 
     signal sendMessagesRequired
+    signal pasteRequested
 
     function selectText(start, end) {
         textArea.select(start, end);
@@ -71,9 +70,7 @@ JamiFlickable {
     function paste() {
         if (!canComposeText)
             return;
-        pasting = true;
-        MessagesAdapter.onPaste();
-        pasting = false;
+        pasteRequested();
     }
 
     function restoreVisibilityAfterSend() {
@@ -83,6 +80,7 @@ JamiFlickable {
     LineEditContextMenu {
         id: textAreaContextMenu
 
+        objectName: "messageBarContextMenu"
         lineEditObj: textArea
         customizePaste: true
 
