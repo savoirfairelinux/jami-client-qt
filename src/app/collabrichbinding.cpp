@@ -322,7 +322,8 @@ void
 mergeAttrsOverSelection(QTextCursor& cursor, const QJsonObject& attrs)
 {
     cursor.mergeCharFormat(mergeFormatFromAttrs(attrs));
-    const bool resetFont = attrs.contains(QStringLiteral("font")) && documentFontId(attrs.value(QStringLiteral("font"))).isEmpty();
+    const bool resetFont = attrs.contains(QStringLiteral("font"))
+                           && documentFontId(attrs.value(QStringLiteral("font"))).isEmpty();
     if (!resetFont && !attrs.contains(QStringLiteral("size")) && !attrs.contains(QStringLiteral("header")))
         return;
     const int end = cursor.selectionEnd();

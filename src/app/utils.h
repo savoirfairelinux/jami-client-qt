@@ -75,12 +75,8 @@ bool getReplyMessageBox(QWidget* widget, const QString& title, const QString& te
 
 // Image manipulation
 constexpr static const QSize defaultAvatarSize {128, 128};
-QImage imageFromBase64String(const QString& str,
-                             bool circleCrop = true,
-                             const QSize& circleCropSize = QSize());
-QImage imageFromBase64Data(const QByteArray& data,
-                           bool circleCrop = true,
-                           const QSize& circleCropSize = QSize());
+QImage imageFromBase64String(const QString& str, bool circleCrop = true, const QSize& circleCropSize = QSize());
+QImage imageFromBase64Data(const QByteArray& data, bool circleCrop = true, const QSize& circleCropSize = QSize());
 QImage accountPhoto(LRCInstance* instance, const QString& accountId, const QSize& size = defaultAvatarSize);
 QImage contactPhoto(LRCInstance* instance,
                     const QString& contactUri,
