@@ -103,6 +103,16 @@ Item {
                 "Message options popup should have emoji replied");
         }
 
+        // Regression: the message emoji picker must open like the composer's one.
+        function test_messageEmojiPickerOpens() {
+            var optionsPopup = getOptionsPopup(false, getId(), "test", 0, "test");
+            optionsPopup.open();
+            optionsPopup.addMoreEmoji();
+            verify(optionsPopup.emojiPicker, "Emoji picker should be created");
+            tryVerify(() => optionsPopup.emojiPicker.opened, 15000, "Emoji picker should open");
+            optionsPopup.close();
+        }
+
         function cleanupTestCase() {
             AccountAdapter.deleteCurrentAccount()
         }

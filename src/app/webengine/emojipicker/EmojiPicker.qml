@@ -28,9 +28,10 @@ Popup {
     id: root
 
     required property ListView listView
-    // Always-visible 1x1 item that hosts the web view while the popup is
-    // closed, so Chromium keeps the page live and paints the emoji grid once.
-    required property Item warmHost
+    // Optional always-visible 1x1 item that hosts the web view while the popup
+    // is closed, so Chromium keeps the page live and paints the emoji grid once.
+    // Without one, the web view stays in the popup.
+    property Item warmHost
     signal emojiIsPicked(string content)
 
     focus: true
@@ -66,12 +67,13 @@ Popup {
     }
 
     onClosed: {
-        emojiPickerWebView.parent = root.warmHost;
+        if (root.warmHost)
+            emojiPickerWebView.parent = root.warmHost;
         if (messageBar)
             messageBar.textAreaObj.forceActiveFocus();
     }
 
-    Component.onCompleted: emojiPickerWebView.parent = root.warmHost
+    Component.onCompleted: if (root.warmHost) emojiPickerWebView.parent = root.warmHost
     padding: 0
     visible: false
     background.visible: false

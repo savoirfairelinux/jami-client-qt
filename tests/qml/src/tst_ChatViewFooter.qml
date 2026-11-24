@@ -54,6 +54,28 @@ ColumnLayout {
                 filesToSendContainer.filesToSendListModel.flush()
             }
 
+            // The composer picker keeps its web view warm in a 1x1 host while closed.
+            function test_emoji_picker_warm_up() {
+                const view = findChild(uut, JamiQmlUtils.webEngineNames.emojiPicker)
+                verify(view, "Emoji picker web view should exist")
+                tryVerify(() => view.parent && view.parent.width === 1, 15000, "Web view should start in the warm host")
+                const warmHost = view.parent
+                let bar = warmHost
+                while (bar && bar.emojiPicker === undefined)
+                    bar = bar.parent
+                verify(bar && bar.emojiPicker, "Footer should hold the picker")
+                const picker = bar.emojiPicker
+                tryVerify(() => picker.loaded, 15000, "Picker should finish loading while closed")
+
+                picker.openEmojiPicker()
+                tryVerify(() => picker.opened, 5000)
+                compare(view.parent, picker.contentItem, "Web view should move into the popup")
+
+                picker.closeEmojiPicker()
+                tryVerify(() => !picker.visible, 5000)
+                compare(view.parent, warmHost, "Web view should return to the warm host")
+            }
+
             function test_send_message_button_visibility() {
                 var filesToSendContainer = findChild(uut, "dataTransferSendContainer")
                 var sendMessageButton = findChild(uut, "sendMessageButton")
