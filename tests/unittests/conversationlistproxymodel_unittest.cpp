@@ -17,7 +17,10 @@
 
 #include "conversationlistproxymodel.h"
 #include "conversationsadapter.h"
+#include "dbus/configurationmanager.h"
 #include "globaltestenvironment.h"
+
+#include <QScopeGuard>
 
 #include <gtest/gtest.h>
 
@@ -142,6 +145,68 @@ TEST(ConversationsAdapter, SelectingInvitationKeepsAllInvitationsCategory)
     QSignalSpy accountRemovedSpy(&instance->accountModel(), &lrc::api::AccountModel::accountRemoved);
     instance->accountModel().removeAccount(accountId);
     ASSERT_TRUE(accountRemovedSpy.wait());
+}
+
+TEST(ConversationsAdapter, AcceptedSwarmLeavesInvitationsBeforeSyncCompletes)
+{
+    auto* instance = globalEnv.lrcInstance.data();
+    auto& accountModel = instance->accountModel();
+    QSignalSpy accountAddedSpy(&accountModel, &lrc::api::AccountModel::accountAdded);
+    const auto accountId = accountModel.createNewAccount(lrc::api::profile::Type::JAMI, {});
+    const auto cleanup = qScopeGuard([&] {
+        accountModel.removeAccount(accountId);
+        EXPECT_TRUE(QTest::qWaitFor([&] { return !accountModel.hasAccount(accountId); }));
+    });
+    ASSERT_TRUE(accountAddedSpy.count() > 0 || accountAddedSpy.wait(15000));
+    instance->set_currentAccountId(accountId);
+
+    auto* model = instance->getCurrentConversationModel();
+    ConversationListProxyModel proxy(model);
+    SelectableListProxyModel searchProxy(nullptr);
+    ConversationsAdapter adapter(globalEnv.systemTray.data(), instance, &proxy, &searchProxy);
+
+    const QString groupId(40, '2');
+    for (const auto mode : {Mode::INVITES_ONLY, Mode::FEED}) {
+        const bool isFeed = mode == Mode::FEED;
+        const auto convId = isFeed ? QString(40, '1') : groupId;
+        QSignalSpy newConversationSpy(model, &lrc::api::ConversationModel::newConversation);
+        // Deliver the invitation without a peer so sync cannot complete during the test.
+        Q_EMIT ConfigurationManager::instance().conversationRequestReceived(accountId,
+                                                                            convId,
+                                                                            {{"id", convId},
+                                                                             {"from", QString(40, '3')},
+                                                                             {"mode",
+                                                                              QString::number(static_cast<int>(mode))}});
+        ASSERT_TRUE(newConversationSpy.wait());
+
+        adapter.set_category(isFeed ? ConversationListProxyModel::Feeds : ConversationListProxyModel::All);
+        adapter.set_invitationsOnly(!isFeed);
+        if (!isFeed)
+            instance->set_selectedConvUid(convId);
+
+        ASSERT_EQ(ids(proxy), QStringList {convId});
+        ASSERT_TRUE(proxy.index(0, 0).data(Role::IsRequest).toBool());
+        const auto feedAuthor = proxy.index(0, 0).data(Role::FeedAuthor);
+        ASSERT_EQ(adapter.get_pendingRequestCount(), 1);
+
+        model->acceptConversationRequest(convId);
+
+        const auto conversation = model->getConversationForUid(convId);
+        ASSERT_TRUE(conversation);
+        EXPECT_TRUE(conversation->get().needsSyncing);
+        EXPECT_FALSE(adapter.get_invitationsOnly());
+        EXPECT_EQ(adapter.get_pendingRequestCount(), 0);
+        ASSERT_EQ(ids(proxy), QStringList {convId});
+        EXPECT_FALSE(proxy.index(0, 0).data(Role::IsRequest).toBool());
+        if (isFeed) {
+            EXPECT_FALSE(feedAuthor.toString().isEmpty());
+            EXPECT_EQ(proxy.index(0, 0).data(Role::FeedAuthor), feedAuthor);
+            EXPECT_EQ(instance->get_selectedConvUid(), groupId);
+        } else {
+            EXPECT_EQ(proxy.get_currentFilteredRow(), 0);
+            EXPECT_EQ(instance->get_selectedConvUid(), convId);
+        }
+    }
 }
 
 TEST(ConversationListProxyModel, AllCanToggleBetweenConversationsAndAllInvitations)

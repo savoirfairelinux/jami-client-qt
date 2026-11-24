@@ -377,6 +377,7 @@ public:
     int loadConversationMessages(const QString& conversationId, const int size = 1);
     /**
      * accept request for conversation
+     * Accepted groups and feeds appear in the conversation list while synchronizing.
      * @param conversationId conversation's id
      */
     void acceptConversationRequest(const QString& conversationId);
@@ -568,6 +569,10 @@ Q_SIGNALS:
      * @param uid
      */
     void newConversation(const QString& uid) const;
+    /**
+     * Emitted when a group or feed invitation moves into the conversation list, before sync completes.
+     */
+    void conversationRequestAccepted(const QString& uid) const;
     /**
      * Emitted when a conversation has been removed
      * @param uid
