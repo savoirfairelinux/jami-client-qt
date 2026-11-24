@@ -397,15 +397,6 @@ Control {
                         id: share
                         objectName: "share"
 
-                        property bool isOpen: false
-                        property var obj: undefined
-
-                        function setBindings(
-                            ) { // when the popup is closed, setBindings is called to reset the icon's visual settings
-                            share.isOpen = false;
-                            visible = Qt.binding(() => shouldBeVisible);
-                        }
-
                         anchors.verticalCenter: parent.verticalCenter
                         anchors.left: !isOutgoing ? (reply.visible ? reply.right : more.right) : undefined
                         anchors.right: isOutgoing ? (reply.visible ? reply.left : more.left) : undefined
@@ -418,31 +409,16 @@ Control {
                         visible: shouldBeVisible
 
                         onClicked: {
-                            if (share.isOpen) {
-                                share.setBindings();
-                                obj.close();
-                            } else {
-                                if (root.type === 2 || root.type === 5) {
-                                    // 2=TEXT and 5=DATA_TRANSFER (any kind of file) defined in interaction.h
-                                    var component = Qt.createComponent(
-                                                "qrc:/commoncomponents/ShareMessageMenu.qml");
-                                    obj = component.createObject(share, {
-                                                                     "isOutgoing": isOutgoing,
-                                                                     "msgId": Id,
-                                                                     "msgBody": Body,
-                                                                     "type": root.type,
-                                                                     "transferName": TransferName,
-                                                                     "msgBubble": bubble,
-                                                                     "listView": listView,
-                                                                     "author": UtilsAdapter.getBestNameForUri(
-                                                                                   CurrentAccount.id,
-                                                                                   Author),
-                                                                     "formattedTime": formattedTime
-                                                                 });
-                                    obj.open();
-                                    share.isOpen = true;
-                                    visible = true; // the PushButton stay visible as long the popup is open even if it's not hovered
-                                }
+                            // 2=TEXT and 5=DATA_TRANSFER (any kind of file) defined in interaction.h
+                            if (root.type === 2 || root.type === 5) {
+                                viewCoordinator.presentDialog(appWindow.contentItem,
+                                                              "commoncomponents/ShareMessageMenu.qml", {
+                                                                  "msgBody": Body,
+                                                                  "type": root.type,
+                                                                  "transferName": root.type === 5 ? TransferName : "",
+                                                                  "messageColor": root.getBaseColor(),
+                                                                  "viewCoordinator": viewCoordinator
+                                                              });
                             }
                         }
                     }
