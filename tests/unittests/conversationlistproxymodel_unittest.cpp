@@ -104,7 +104,7 @@ TEST(ConversationsAdapter, SelectingInvitationKeepsAllInvitationsCategory)
     auto* model = instance->getCurrentConversationModel();
     QSignalSpy contactUpdatedSpy(instance->getCurrentContactModel(), &lrc::api::ContactModel::contactUpdated);
     model->setFilter("invitation-navigation-test");
-    ASSERT_TRUE(contactUpdatedSpy.wait());
+    ASSERT_EQ(contactUpdatedSpy.count(), 1);
     const auto peerUri = contactUpdatedSpy.takeFirst().at(0).toString();
     const auto convId = instance->getConversationFromPeerUri(peerUri).uid;
     auto conversation = model->getConversationForUid(convId);
