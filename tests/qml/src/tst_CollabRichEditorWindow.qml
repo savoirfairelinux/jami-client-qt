@@ -78,6 +78,12 @@ Item {
             return JSON.parse(CollaborativeAdapter.contentDelta(accountId, conversationId, documentId));
         }
 
+        // Qt Quick Test routes keys through the compositor's focus, which can
+        // change while the secondary editor window or its popups are opening.
+        function keyClick(key, modifiers = Qt.NoModifier, target = editor) {
+            TestInput.keyClick(target, key, modifiers);
+        }
+
         function choose(comboBox, index) {
             mouseClick(comboBox);
             tryCompare(comboBox.popup, "opened", true);
@@ -115,8 +121,8 @@ Item {
             input.forceActiveFocus();
             input.selectAll();
             for (const digit of String(size))
-                keyClick(digit);
-            keyClick(Qt.Key_Return);
+                keyClick(Qt.Key_0 + Number(digit), Qt.NoModifier, input);
+            keyClick(Qt.Key_Return, Qt.NoModifier, input);
         }
 
         function test_pickerWritesCompatibleId() {

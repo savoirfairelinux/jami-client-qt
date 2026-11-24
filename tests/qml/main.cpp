@@ -30,11 +30,14 @@
 #include <api/contact.h>
 
 #include <QFontDatabase>
+#include <QKeyEvent>
 #include <QQmlContext>
 #include <QQmlEngine>
+#include <QQuickItem>
 #include <QScopedPointer>
 #include <QtQuickTest/quicktest.h>
 #include <QSignalSpy>
+#include <QTest>
 
 #if WITH_WEBENGINE
 #include <QtWebEngineCore>
@@ -65,6 +68,21 @@ class Setup : public QObject
     Q_OBJECT
 
 public Q_SLOTS:
+
+    void keyClick(QQuickItem* target, int key, int modifiers)
+    {
+        const auto character = QTest::keyToAscii(Qt::Key(key));
+        const auto text = character ? QString(QChar::fromLatin1(character)) : QString();
+        for (auto type : {QEvent::KeyPress, QEvent::KeyRelease}) {
+            QKeyEvent event(type, key, Qt::KeyboardModifiers(modifiers), text);
+            for (auto* item = target; item; item = item->parentItem()) {
+                event.accept();
+                QCoreApplication::sendEvent(item, &event);
+                if (event.isAccepted())
+                    break;
+            }
+        }
+    }
 
     /*
      * Called once before qmlEngineAvailable.
@@ -155,6 +173,7 @@ public Q_SLOTS:
      */
     void qmlEngineAvailable(QQmlEngine* engine)
     {
+        engine->rootContext()->setContextProperty("TestInput", this);
         lrcInstance_->set_currentAccountId(aliceId);
         auto& aliceInfo = lrcInstance_->accountModel().getAccountInfo(aliceId);
         lrcInstance_->set_selectedConvUid(aliceInfo.conversationModel->getConversations()[0].uid);
