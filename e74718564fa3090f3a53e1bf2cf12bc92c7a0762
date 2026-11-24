@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "59f1cac0_5ccc2053",
+        "filename": "src/app/messageparser.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-24T18:37:59Z",
+      "side": 1,
+      "message": "[warning] Line 107: 🟡 `link.startsWith(\"http\")` is a string-prefix check, not a scheme check. It works today because `sanitizedHref()` currently only returns `http/https/mailto`, but it is fragile and can silently broaden behavior if that helper changes later. Parse once with `QUrl(link)` and gate on `url.scheme() \u003d\u003d \"http\" || url.scheme() \u003d\u003d \"https\"` to keep the security boundary explicit.",
+      "revId": "e74718564fa3090f3a53e1bf2cf12bc92c7a0762",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d91d9893_1f729bac",
+        "filename": "tests/unittests/messageparser_unittest.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 293,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-24T18:37:59Z",
+      "side": 1,
+      "message": "[warning] Line 293: 🟡 The test unconditionally calls `linkInfoReadySpy.wait()` even though it expects no signal, which adds an avoidable timeout delay and can make the suite slower/flakier under load. Replace this with a bounded negative assertion pattern (for example `EXPECT_FALSE(linkInfoReadySpy.wait(\u003cshort timeout\u003e))` plus `EXPECT_EQ(count, 0)`) to keep intent explicit and runtime predictable.",
+      "revId": "e74718564fa3090f3a53e1bf2cf12bc92c7a0762",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
