@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b94a56c0_0d570238",
+        "filename": "src/app/mainview/components/PhotoLibraryDialog.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 392,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-24T22:09:59Z",
+      "side": 1,
+      "message": "[warning] Line 392: 🟡 `photoLibraryLocalFile(...)` is called directly from delegate bindings, which can trigger a synchronous backend lookup for each tile during layout, scrolling, and hover/menu state updates. In large libraries this can cause UI jank. Cache local-path/availability in the photo-library dataset (or expose it as a model role from C++) and refresh only on explicit invalidation (e.g., after local delete).",
+      "revId": "799cafe349cc433de19396aba44509b9ca108d07",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f6465c61_39652fbe",
+        "filename": "src/app/messagesadapter.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 1080,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-24T22:09:59Z",
+      "side": 1,
+      "message": "[warning] Line 1080: 🟡 `cancelPhotoLibraryRequest()` only clears local state and does not cancel the underlying search request, so closed/reopened dialogs can leave backend searches running until completion. Wire this to the backend cancellation API (if available) or add request-generation invalidation with explicit cleanup semantics to avoid wasted work.",
+      "revId": "799cafe349cc433de19396aba44509b9ca108d07",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
