@@ -16,6 +16,24 @@
       "message": "[warning] Line 63: 🟡 Broad wildcard selectors (`libxcb*`, `libxkb*`, `xcb-*`, `xorg-*`) make this container build non-deterministic and can pull in unintended packages as repository contents change. Please replace these with the explicit package names actually needed by the build (or mirror the curated list used in adjacent distro Dockerfiles) to keep dependency scope and CI behavior stable.",
       "revId": "0a1d063067248191daa8526c2c9dee675244b0cc",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "189af949_73304222",
+        "filename": "extras/packaging/gnu-linux/docker/Dockerfile_opensuse-leap_16.1",
+        "patchSetId": 1
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2026-11-24T19:59:09Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "e744ad93_efb63715",
+      "revId": "0a1d063067248191daa8526c2c9dee675244b0cc",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
