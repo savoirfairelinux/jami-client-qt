@@ -139,6 +139,8 @@ TEST_F(MessageParserFixture, AComplexLinkIsParsedCorrectly)
          "<style>a{color:#0000ff;}</style><p><a href=\"https://www.youtube.com/watch?v=d_z77s7nifU\">https://www.youtube.com/watch?v=d_z77s7nifU</a></p>\n"},
         {"http://www.example.com/foo.php?bar[]=1&bar[]=2&bar[]=3",
          "<style>a{color:#0000ff;}</style><p><a href=\"http://www.example.com/foo.php?bar%5B%5D=1&amp;bar%5B%5D=2&amp;bar%5B%5D=3\">http://www.example.com/foo.php?bar[]=1&amp;bar[]=2&amp;bar[]=3</a></p>\n"},
+        {"https://en.wikipedia.org/wiki/Example_(musician)",
+         "<style>a{color:#0000ff;}</style><p><a href=\"https://en.wikipedia.org/wiki/Example_(musician)\">https://en.wikipedia.org/wiki/Example_(musician)</a></p>\n"},
     };
 
     static const QString expectedMessageTemplate = " <style>a{color:#0000ff;}</style><p><a href=\"%1\">%1</a></p>\n";
