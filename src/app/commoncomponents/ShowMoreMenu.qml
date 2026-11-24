@@ -86,6 +86,10 @@ BaseContextMenu {
         emojiPicker = component.createObject(root.parent, {
             "listView": listView
         });
+        if (emojiPicker === null) {
+            console.log("Error creating emojiPicker from message options popup");
+            return;
+        }
         emojiPicker.emojiIsPicked.connect(function (content) {
             if (emojiReplied.includes(content)) {
                 MessagesAdapter.removeEmojiReaction(CurrentConversation.id, content, msgId);
@@ -95,14 +99,10 @@ BaseContextMenu {
                 if (typeof parent.setBindings === "function") parent.setBindings();
             }
         });
-        if (emojiPicker !== null) {
-            root.opacity = 0;
-            emojiPicker.x = xPositionProvider(JamiTheme.emojiPickerWidth);
-            emojiPicker.y = yPositionProvider(JamiTheme.emojiPickerHeight);
-            emojiPicker.open();
-        } else {
-            console.log("Error creating emojiPicker from message options popup");
-        }
+        root.opacity = 0;
+        emojiPicker.x = xPositionProvider(JamiTheme.emojiPickerWidth);
+        emojiPicker.y = yPositionProvider(JamiTheme.emojiPickerHeight);
+        emojiPicker.openEmojiPicker();
     }
 
     property real listViewHeight: listView.height
