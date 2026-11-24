@@ -338,6 +338,7 @@ Item {
 
             NewIconButton {
                 id: multimediaButton
+                objectName: "multimediaButton"
 
                 Layout.alignment: Qt.AlignVCenter
 
@@ -396,6 +397,20 @@ Item {
 
             onClicked: viewCoordinator.presentDialog(appWindow,
                                                      "mainview/components/AllDocumentDialog.qml")
+        }
+
+        GeneralMenuSeparator {}
+
+        GeneralMenuItem {
+            objectName: "photoLibraryMenuItem"
+            parentMenu: multimediaMenu
+            text: JamiStrings.photoLibrary
+            itemName: text
+            iconSource: JamiResources.photo_library_24dp_svg
+
+            onClicked: viewCoordinator.presentDialog(appWindow,
+                                                     "mainview/components/PhotoLibraryDialog.qml",
+                                                     { viewCoordinator: root.viewCoordinator }, true)
         }
     }
 }

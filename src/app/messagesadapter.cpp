@@ -21,6 +21,7 @@
 #include "qtutils.h"
 #include "messageparser.h"
 #include "previewengine.h"
+#include "dbus/configurationmanager.h"
 
 #include <api/datatransfermodel.h>
 #include <api/contact.h>
@@ -42,6 +43,10 @@
 #include <QtMath>
 #include <QRegularExpression>
 #include <QTemporaryFile>
+
+#include <algorithm>
+#include <tuple>
+#include <utility>
 
 namespace {
 using lrc::api::permissions::Permission;
@@ -90,6 +95,14 @@ MessagesAdapter::MessagesAdapter(AppSettingsManager* settingsManager,
     timestampTimer_->start(timestampUpdateIntervalMs_);
 
     connect(lrcInstance_, &LRCInstance::currentAccountIdChanged, this, &MessagesAdapter::connectConversationModel);
+    connect(lrcInstance_, &LRCInstance::currentAccountIdChanged, this, [this] {
+        cancelPhotoLibraryRequest(photoLibraryRequestId_);
+    });
+    connect(&ConfigurationManager::instance(),
+            &ConfigurationManagerInterface::messagesFound,
+            this,
+            &MessagesAdapter::onPhotoLibraryMessagesFound,
+            Qt::QueuedConnection);
 
     connectConversationModel();
     // The QML singleton can be created after a conversation was already selected.
@@ -1048,6 +1061,136 @@ MessagesAdapter::startSearch(const QString& text, bool isMedia)
     } catch (...) {
         qDebug() << "Exception during startSearch()";
     }
+}
+
+uint
+MessagesAdapter::requestPhotoLibrary()
+{
+    cancelPhotoLibraryRequest(photoLibraryRequestId_);
+    const auto accountId = lrcInstance_->get_currentAccountId();
+    if (accountId.isEmpty() || lrcInstance_->get_currentAccountType() != profile::Type::JAMI)
+        return 0;
+
+    photoLibraryAccountId_ = accountId;
+    photoLibraryRequestId_ = ConfigurationManager::instance().searchConversation(
+        accountId, {}, {}, {}, {}, QStringLiteral("application/data-transfer+json"), 0, 0, 0, 0);
+    return photoLibraryRequestId_;
+}
+
+void
+MessagesAdapter::cancelPhotoLibraryRequest(uint requestId)
+{
+    if (requestId != photoLibraryRequestId_)
+        return;
+    photoLibraryRequestId_ = 0;
+    photoLibraryAccountId_.clear();
+    photoLibraryFiles_.clear();
+}
+
+QString
+MessagesAdapter::photoLibraryLocalFile(const QString& conversationId, const QString& fileId) const
+{
+    const QFileInfo file(photoLibraryTransferPath(conversationId, fileId));
+    return file.isSymLink() ? file.symLinkTarget() : file.filePath();
+}
+
+bool
+MessagesAdapter::removePhotoLibraryFile(const QString& conversationId, const QString& messageId, const QString& fileId)
+{
+    // Sent files are links to the user's original, so only the transfer path may be removed.
+    const auto path = photoLibraryTransferPath(conversationId, fileId);
+    auto* model = lrcInstance_->getCurrentConversationModel();
+    if (path.isEmpty() || messageId.isEmpty() || !model)
+        return false;
+    model->removeFile(conversationId, messageId, path);
+    return !QFileInfo::exists(path) && !QFileInfo(path).isSymLink();
+}
+
+QString
+MessagesAdapter::photoLibraryTransferPath(const QString& conversationId, const QString& fileId) const
+{
+    const auto accountId = lrcInstance_->get_currentAccountId();
+    if (accountId.isEmpty() || conversationId.isEmpty() || fileId.isEmpty() || fileId == QStringLiteral(".")
+        || fileId == QStringLiteral("..") || fileId.contains(u'/') || fileId.contains(u'\\') || fileId.contains(u':'))
+        return {};
+
+    QString path;
+    qlonglong total {}, progress {};
+    const auto result = ConfigurationManager::instance()
+                            .fileTransferInfo(accountId, conversationId, fileId, path, total, progress);
+    const QFileInfo file(path);
+    if (result != static_cast<uint64_t>(libjami::DataTransferError::success) || progress != total || !file.isFile()
+        || !file.isReadable())
+        return {};
+    return path;
+}
+
+void
+MessagesAdapter::onPhotoLibraryMessagesFound(uint requestId,
+                                             const QString& accountId,
+                                             const QString& conversationId,
+                                             const VectorMapStringString& messages)
+{
+    if (!photoLibraryRequestId_ || requestId != photoLibraryRequestId_ || accountId != photoLibraryAccountId_
+        || accountId != lrcInstance_->get_currentAccountId())
+        return;
+
+    if (!conversationId.isEmpty()) {
+        const auto* model = lrcInstance_->getCurrentConversationModel();
+        const auto title = model ? model->title(conversationId) : QString {};
+        for (const auto& message : messages) {
+            const auto fileId = message.value(QStringLiteral("fileId"));
+            if (fileId.isEmpty())
+                continue;
+            bool validSize = false;
+            const auto size = message.value(QStringLiteral("totalSize")).toLongLong(&validSize);
+            photoLibraryFiles_.append(QVariantMap {
+                {QStringLiteral("fileId"), fileId},
+                {QStringLiteral("messageId"), message.value(QStringLiteral("id"))},
+                {QStringLiteral("conversationId"), conversationId},
+                {QStringLiteral("conversationTitle"), title},
+                {QStringLiteral("name"), message.value(QStringLiteral("displayName"))},
+                {QStringLiteral("author"), message.value(QStringLiteral("author"))},
+                {QStringLiteral("size"), validSize && size >= 0 ? size : -1},
+                {QStringLiteral("timestamp"), message.value(QStringLiteral("timestamp")).toLongLong()},
+            });
+        }
+        return;
+    }
+    if (!messages.isEmpty())
+        return;
+
+    auto files = std::exchange(photoLibraryFiles_, {});
+    cancelPhotoLibraryRequest(requestId);
+    const auto key = [](const QVariant& row) {
+        const auto file = row.toMap();
+        return std::tuple {file.value(QStringLiteral("timestamp")).toLongLong(),
+                           file.value(QStringLiteral("conversationId")).toString(),
+                           file.value(QStringLiteral("messageId")).toString()};
+    };
+    std::sort(files.begin(), files.end(), [&key](const QVariant& lhs, const QVariant& rhs) {
+        return key(lhs) > key(rhs);
+    });
+    Q_EMIT photoLibraryLoaded(requestId, files);
+}
+
+QVariantMap
+MessagesAdapter::photoLibraryFileInfo(const QString& conversationId,
+                                      const QString& fileId,
+                                      const QString& fileName) const
+{
+    const auto path = photoLibraryLocalFile(conversationId, fileId);
+    const QMimeDatabase mimeDatabase;
+    auto mime = path.isEmpty() ? QMimeType {} : mimeDatabase.mimeTypeForFile(path, QMimeDatabase::MatchContent);
+    if (!mime.isValid() || mime.isDefault())
+        mime = mimeDatabase.mimeTypeForFile(fileName, QMimeDatabase::MatchExtension);
+
+    QImageReader reader(path);
+    reader.setDecideFormatFromContent(true);
+    const auto size = path.isEmpty() ? QSize {} : reader.size();
+    return {{QStringLiteral("mimeType"), mime.isValid() && !mime.isDefault() ? mime.name() : QString {}},
+            {QStringLiteral("width"), size.width()},
+            {QStringLiteral("height"), size.height()}};
 }
 
 MessageListModel*

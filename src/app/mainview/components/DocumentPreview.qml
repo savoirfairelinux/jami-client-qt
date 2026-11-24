@@ -16,7 +16,6 @@
  */
 import QtQuick
 import QtQuick.Layouts
-import Qt5Compat.GraphicalEffects
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import net.jami.Models 1.1
@@ -27,7 +26,6 @@ Item {
 
     property real margin: 2
     signal removeFileButtonClicked(int index)
-    property var mediaInfo: MessagesAdapter.getMediaInfo(Body)
 
     MouseArea {
         anchors.fill: parent
@@ -44,7 +42,7 @@ Item {
                 ctxMenu.y = mouse.y;
                 ctxMenu.openMenu();
             } else {
-                MessagesAdapter.openUrl(icon.fileSource);
+                MessagesAdapter.openUrl(preview.fileUrl);
             }
         }
     }
@@ -63,77 +61,14 @@ Item {
         anchors.fill: root
         spacing: 2
 
-        Rectangle {
-            id: mainRect
+        AttachmentPreview {
+            id: preview
 
-            radius: JamiTheme.filesToSendDelegateRadius
             Layout.preferredHeight: root.height
             Layout.preferredWidth: root.height
-            color: JamiTheme.transparentColor
-
-            Rectangle {
-                id: rect
-
-                anchors.fill: parent
-                color: fileIcon.visible ? CurrentConversation.color : JamiTheme.transparentColor
-                layer.enabled: true
-
-                layer.effect: OpacityMask {
-                    maskSource: Item {
-                        width: rect.width
-                        height: rect.height
-                        Rectangle {
-                            anchors.centerIn: parent
-                            width: rect.width
-                            height: rect.height
-                            radius: JamiTheme.chatViewFooterButtonRadius
-                        }
-                    }
-                }
-
-                Rectangle {
-
-                    anchors.fill: parent
-                    anchors.margins: fileIcon.visible ? margin : 0
-                    radius: JamiTheme.chatViewFooterButtonRadius
-                    color: JamiTheme.secondaryBackgroundColor
-
-                    ResponsiveImage {
-                        id: fileIcon
-                        visible: (!mediaInfo.isImage && !mediaInfo.isAnimatedImage) || icon.status == Image.Error
-                        anchors.fill: parent
-                        anchors.margins: 8
-                        source: {
-                            if (mediaInfo.isVideo)
-                                return JamiResources.video_file_24dp_svg;
-                            if (mediaInfo.isAudio)
-                                return JamiResources.audio_file_24dp_svg;
-                            return JamiResources.attached_file_24dp_svg;
-                        }
-                        cache: false
-                        color: JamiTheme.textColor
-                    }
-
-                    AnimatedImage {
-                        id: icon
-
-                        property string fileSource: ""
-                        anchors.fill: parent
-                        cache: false
-
-                        asynchronous: true
-                        fillMode: Image.PreserveAspectCrop
-
-                        source: {
-                            fileSource = UtilsAdapter.urlFromLocalPath(Body);
-                            if (!mediaInfo.isImage && !mediaInfo.isAnimatedImage) {
-                                return "";
-                            }
-                            return fileSource;
-                        }
-                    }
-                }
-            }
+            filePath: Body
+            fallbackColor: CurrentConversation.color
+            margin: root.margin
         }
 
         Rectangle {

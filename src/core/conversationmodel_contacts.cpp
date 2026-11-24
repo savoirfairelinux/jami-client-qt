@@ -257,6 +257,10 @@ ConversationModel::slotMessagesFound(uint32_t requestId,
                                      const QString& conversationId,
                                      const VectorMapStringString& messageIds)
 {
+    if (accountId != owner.id || !requestId
+        || (requestId != d_->mediaResearchRequestId && requestId != d_->msgResearchRequestId))
+        return;
+
     QMap<QString, interaction::Info> messageDetailedInformation;
     if (requestId == d_->mediaResearchRequestId) {
         Q_FOREACH (const MapStringString& msg, messageIds) {

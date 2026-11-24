@@ -28,11 +28,14 @@ import "../../../src/app/mainview/components"
 import "../../../src/app/commoncomponents"
 
 TestWrapper {
+    id: wrapper
+
     width: 640
     height: 480
 
     AccountComboBox {
         id: uut
+        appContext: wrapper.appContext
 
         function loadMockData() {
             return JSON.parse('[\
@@ -106,6 +109,80 @@ TestWrapper {
                 verify(waitForRendering(button));
                 mouseClick(button);
                 tryCompare(documentsDialog, "visible", false);
+                tryCompare(CurrentConversation, "id", secondConversation);
+            }
+        }
+
+        TestCase {
+            name: "PhotoLibrary"
+            when: windowShown
+
+            property string originalConversation
+            property string firstConversation
+            property string secondConversation
+
+            function cleanup() {
+                wrapper.viewManager.getView("PhotoLibraryDialog")?.close();
+                LRCInstance.selectConversation(originalConversation, CurrentAccount.id);
+                MessagesAdapter.removeConversation(firstConversation);
+                MessagesAdapter.removeConversation(secondConversation);
+            }
+
+            function sendFixture(conversationId, fileName) {
+                LRCInstance.selectConversation(conversationId, CurrentAccount.id);
+                tryCompare(CurrentConversation, "id", conversationId);
+                const count = MessagesAdapter.messageListModel.count;
+                MessagesAdapter.sendFile(UtilsAdapter.getAbsPath(Qt.resolvedUrl(fileName).toString()));
+                tryVerify(() => MessagesAdapter.messageListModel.count > count);
+            }
+
+            function test_listsSearchesAndOpensConversation() {
+                originalConversation = CurrentConversation.id;
+                firstConversation = ConversationsAdapter.createSwarm("First attachments", "", "", []);
+                secondConversation = ConversationsAdapter.createFeed("Second attachments", "", "", []);
+                sendFixture(firstConversation, "../../../resources/images/default_plugin_background.jpg");
+                sendFixture(secondConversation, "TestWrapper.qml");
+
+                findChild(uut, "multimediaButton").click();
+                findChild(uut, "photoLibraryMenuItem").click();
+                tryVerify(() => wrapper.viewManager.getView("PhotoLibraryDialog") !== null);
+                const dialog = wrapper.viewManager.getView("PhotoLibraryDialog");
+                tryCompare(dialog, "loading", false);
+                const list = findChild(dialog, "photoLibraryGrid");
+                compare(list.count, 2);
+
+                findChild(dialog, "photoLibrarySearch").text = "second";
+                tryCompare(list, "count", 1);
+                compare(list.model[0].name, "TestWrapper.qml");
+
+                tryVerify(() => list.itemAtIndex(0) !== null);
+                const tile = list.itemAtIndex(0);
+                verify(waitForRendering(tile));
+                const menu = findChild(dialog, "photoLibraryFileMenu");
+                mouseClick(tile, tile.width / 2, tile.height / 2, Qt.RightButton);
+                tryCompare(menu, "opened", true);
+                mouseClick(list, list.width - 4, list.height - 4);
+                tryCompare(menu, "visible", false);
+                compare(list.currentIndex, -1);
+
+                const source = UtilsAdapter.getAbsPath(Qt.resolvedUrl("TestWrapper.qml").toString());
+                const file = list.model[0];
+                verify(MessagesAdapter.photoLibraryLocalFile(secondConversation, file.fileId) !== "");
+                mouseClick(tile, tile.width / 2, tile.height / 2, Qt.RightButton);
+                tryCompare(menu, "opened", true);
+                findChild(menu, "photoLibraryRemoveFile").triggered();
+                const removeDialog = findChild(dialog, "photoLibraryRemoveDialog");
+                tryCompare(removeDialog, "opened", true);
+                removeDialog.button1.clicked();
+                compare(MessagesAdapter.photoLibraryLocalFile(secondConversation, file.fileId), "");
+                verify(UtilsAdapter.fileExists(source));
+
+                list.currentIndex = 0;
+                list.forceActiveFocus();
+                keyClick(Qt.Key_F10, Qt.ShiftModifier);
+                tryCompare(menu, "opened", true);
+                verify(!findChild(menu, "photoLibraryRemoveFile").visible);
+                findChild(menu, "photoLibraryGoToConversation").triggered();
                 tryCompare(CurrentConversation, "id", secondConversation);
             }
         }

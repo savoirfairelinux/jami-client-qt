@@ -254,6 +254,15 @@ public:
     Q_INVOKABLE QVariantMap getTransferStats(const QString& messageId, int);
     Q_INVOKABLE QVariant dataForInteraction(const QString& interactionId, int role = Qt::DisplayRole) const;
     Q_INVOKABLE void startSearch(const QString& text, bool isMedia);
+    Q_INVOKABLE uint requestPhotoLibrary();
+    Q_INVOKABLE void cancelPhotoLibraryRequest(uint requestId);
+    Q_INVOKABLE QString photoLibraryLocalFile(const QString& conversationId, const QString& fileId) const;
+    Q_INVOKABLE bool removePhotoLibraryFile(const QString& conversationId,
+                                            const QString& messageId,
+                                            const QString& fileId);
+    Q_INVOKABLE QVariantMap photoLibraryFileInfo(const QString& conversationId,
+                                                 const QString& fileId,
+                                                 const QString& fileName) const;
 
     // Run corrsponding js functions, c++ to qml.
     void setMessagesImageContent(const QString& path, bool isBased64 = false);
@@ -272,6 +281,7 @@ Q_SIGNALS:
     void timestampUpdated();
     void fileCopied(const QString& fileName, const QString& downloadDir);
     void messageParsed(const QString& msgId, const QString& msg);
+    void photoLibraryLoaded(uint requestId, const QVariantList& files);
 
 private Q_SLOTS:
     void onNewInteraction(const QString& convUid, const QString& interactionId, const interaction::Info& interaction);
@@ -286,6 +296,11 @@ private:
     QList<QString> conversationTypersUrlToName(const QSet<QString>& typersSet);
     void onSelectedConversationChanged();
     void continueNavigation();
+    void onPhotoLibraryMessagesFound(uint requestId,
+                                     const QString& accountId,
+                                     const QString& conversationId,
+                                     const VectorMapStringString& messages);
+    QString photoLibraryTransferPath(const QString& conversationId, const QString& fileId) const;
 
     AppSettingsManager* settingsManager_;
     NetworkManager* network_;
@@ -295,6 +310,9 @@ private:
     ThreadedMsgListModel* threadMsgListModel_;
     HistoryRequest historyRequest_;
     std::unique_ptr<MessageListModel> mediaInteractions_;
+    uint photoLibraryRequestId_ {};
+    QString photoLibraryAccountId_;
+    QVariantList photoLibraryFiles_;
     QTimer* timestampTimer_;
     static constexpr const int loadChunkSize_ {20};
     static constexpr const int timestampUpdateIntervalMs_ {1000};
