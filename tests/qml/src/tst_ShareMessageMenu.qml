@@ -17,49 +17,43 @@
 
 import QtQuick
 import QtTest
+import net.jami.Adapters 1.1
+import net.jami.Constants 1.1
 import "../../../src/app/"
 import "../../../src/app/commoncomponents"
 
 TestWrapper {
     id: root
     width: 500
-    height: 500
-
-    function setBindings() {}
+    height: 600
 
     ListModel {
         id: conversations
-        ListElement { Title: "Alice"; Uris: "alice"; IsRequest: false; IsBanned: false; LastInteractionTimeStamp: 20 }
-        ListElement { Title: "Group"; Uris: "group"; IsRequest: false; IsBanned: false; LastInteractionTimeStamp: 30 }
-        ListElement { Title: "Invitation"; Uris: "invitation"; IsRequest: true; IsBanned: false; LastInteractionTimeStamp: 40 }
-        ListElement { Title: "Blocked"; Uris: "blocked"; IsRequest: false; IsBanned: true; LastInteractionTimeStamp: 50 }
-        ListElement { Title: "Empty"; Uris: ""; IsRequest: false; IsBanned: false; LastInteractionTimeStamp: 60 }
+        dynamicRoles: true
+        property list<string> peers: ["peer"]
+
+        Component.onCompleted: {
+            append({UID: "alice", Title: "Alice", Uris: peers, IsRequest: false, IsBanned: false, LastInteractionTimeStamp: 20});
+            append({UID: "group", Title: "Group [ops]", Uris: peers, IsRequest: false, IsBanned: false, LastInteractionTimeStamp: 30});
+            append({UID: "invitation", Title: "Invitation", Uris: peers, IsRequest: true, IsBanned: false, LastInteractionTimeStamp: 40});
+            append({UID: "blocked", Title: "Blocked", Uris: peers, IsRequest: false, IsBanned: true, LastInteractionTimeStamp: 50});
+        }
     }
 
-    Item {
-        id: msgBubble
-        width: 50
-        height: 50
+    Component {
+        id: fixtureDelegate
+        Item {}
     }
 
-    ListView {
-        id: msgList
-        width: 400
-        height: 400
-    }
+    Component {
+        id: menuComponent
 
-    ShareMessageMenu {
-        id: uut
-        parent: root
-        msgId: ""
-        msgBody: ""
-        isOutgoing: false
-        type: 2
-        transferName: ""
-        msgBubble: msgBubble
-        listView: msgList
-        author: ""
-        formattedTime: ""
+        ShareMessageMenu {
+            parent: root
+            msgBody: "Shared message"
+            type: 2
+            viewCoordinator: root.viewCoordinator
+        }
     }
 
     TestCase {
@@ -67,44 +61,101 @@ TestWrapper {
         name: "ShareMessageMenu"
         when: windowShown
 
-        readonly property var proxyModel: findChild(uut, "shareConvProxyModel")
-
-        Repeater {
-            id: recipients
-            model: testCase.proxyModel
-            delegate: Item {}
-        }
+        property var menu
+        readonly property var picker: menu ? findChild(menu, "conversationPicker") : null
+        readonly property var recipients: picker ? findChild(picker, "creationConversationList") : null
+        readonly property var proxyModel: recipients ? recipients.model : null
 
         function init() {
+            menu = createTemporaryObject(menuComponent, root);
+            verify(proxyModel);
+        }
+
+        function useFixture() {
+            recipients.delegate = fixtureDelegate;
             proxyModel.sourceModel = conversations;
-            proxyModel.titleFilter = "";
+            proxyModel.invalidate();
         }
 
         function test_titleSearchExcludesInvitationsAndBlockedRows() {
-            verify(proxyModel);
+            useFixture();
             compare(recipients.count, 2);
-            proxyModel.titleFilter = "invitation|blocked";
+            proxyModel.searchText = "invitation|blocked";
             proxyModel.invalidate();
             compare(recipients.count, 0);
-            proxyModel.titleFilter = "alice";
+            proxyModel.searchText = "alice";
             proxyModel.invalidate();
             compare(recipients.count, 1);
         }
 
         function test_titleFilterMatchesTitleAndHandlesInvalidRegex() {
-            verify(proxyModel);
-            const titleFilter = proxyModel.filters[2];
-            proxyModel.titleFilter = "ALICE";
-            compare(titleFilter.filter("Alice", ["alice"]), true);
-            compare(titleFilter.filter("Group", ["group"]), false);
-            proxyModel.titleFilter = "[";
-            compare(titleFilter.filter("A [group]", ["group"]), true);
-            compare(titleFilter.filter("Alice", ["alice"]), false);
+            useFixture();
+            proxyModel.searchText = "ALICE";
+            proxyModel.invalidate();
+            compare(recipients.count, 1);
+            proxyModel.searchText = "alice|group";
+            proxyModel.invalidate();
+            compare(recipients.count, 2);
+            proxyModel.searchText = "[";
+            proxyModel.invalidate();
+            compare(recipients.count, 1);
         }
 
         function test_emptyConversationCannotBeRecipient() {
-            verify(proxyModel);
-            compare(proxyModel.filters[2].filter("No peers", []), false);
+            const filters = proxyModel.filters;
+            verify(!filters[filters.length - 1].filter("No peers", []));
+        }
+
+        function test_previewShowsSharedContent() {
+            menu.open();
+            tryCompare(menu, "opened", true);
+            const preview = findChild(menu, "sharedMessagePreview");
+            verify(preview.visible);
+            compare(preview.text, "Shared message");
+
+            menu.msgBody = "Long shared message ".repeat(20);
+            tryVerify(() => preview.truncated);
+            verify(preview.width <= picker.width);
+
+            menu.type = 5;
+            menu.msgBody = "/tmp/local-transfer";
+            menu.transferName = "Report.pdf";
+            compare(preview.text, "Report.pdf");
+        }
+
+        function test_sharesMessageAndCommentToFeed() {
+            const previousId = LRCInstance.selectedConvUid;
+            const title = "Share test feed";
+            const feedId = ConversationsAdapter.createConversationFromConversations(title, "", "", [], true, false);
+            verify(feedId);
+            try {
+                menu.open();
+                tryCompare(menu, "opened", true);
+
+                const search = findChild(picker, "creationConversationSearch");
+                search.textField.text = title;
+                tryCompare(recipients, "count", 1);
+                tryVerify(() => !!recipients.itemAtIndex(0));
+                const send = findChild(menu, "shareMessageButton");
+                verify(!send.enabled);
+                mouseClick(recipients.itemAtIndex(0));
+                compare(picker.selectedIds, [feedId]);
+                verify(send.enabled);
+
+                const comment = "Optional comment";
+                findChild(menu, "shareMessageComment").text = comment;
+                mouseClick(send);
+
+                LRCInstance.selectConversation(feedId);
+                const messages = MessagesAdapter.messageListModel;
+                tryVerify(() => {
+                    const bodies = Array.from({length: messages.count}, (_, i) => messages.get(i).Body);
+                    return bodies.includes("Shared message") && bodies.includes(comment);
+                });
+            } finally {
+                LRCInstance.selectConversation(previousId);
+                MessagesAdapter.removeConversation(feedId);
+            }
         }
     }
 }

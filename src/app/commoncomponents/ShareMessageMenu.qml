@@ -17,242 +17,183 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import Qt5Compat.GraphicalEffects
-import QtQml
-import QtQml.Models
 import net.jami.Constants 1.1
-import net.jami.Models 1.1
 import net.jami.Adapters 1.1
-import "contextmenu"
-import "../commoncomponents"
 import "../mainview/components"
 
-BaseContextMenu {
+BaseModalDialog {
     id: mainMenu
 
-    height: 400
-    width: 400
+    titleText: JamiStrings.share
+    title: titleText
+    implicitWidth: parent ? Math.min(400, Math.max(0, parent.width - 32)) : 400
+    height: Math.min(parent.height * 0.7, Math.max(0, parent.height - 64))
 
-    required property string msgId
     required property string msgBody
-    required property bool isOutgoing
     required property int type
-    required property string transferName
-    required property Item msgBubble
-    required property ListView listView
-    required property string author
-    required property string formattedTime
+    required property var viewCoordinator
+    property string transferName: ""
+    property color messageColor: JamiTheme.messageInBgColor
 
-    property var selectedUids: []
-    property string shareToId: msgId
-    property string fileLink: msgBody
-    property int textareaMaxHeight: 350
+    onOpened: picker.focusSearch()
 
-    function xPosition(width) {
-        // Use the width at function scope to retrigger property evaluation.
-        const listViewWidth = listView.width;
-        const parentX = parent.x;
-        if (isOutgoing) {
-            return parentX - width - 20;
-        } else {
-            return parentX + 20;
+    Connections {
+        target: LRCInstance
+
+        function onCurrentAccountIdChanged() {
+            mainMenu.close();
+        }
+
+        function onCurrentAccountRemoved() {
+            mainMenu.close();
         }
     }
 
-    x: xPosition(width)
-    y: parent.y
+    Connections {
+        target: CurrentConversation
 
-    function xPositionProvider(width) {
-        // Use the width at function scope to retrigger property evaluation.
-        const listViewWidth = listView.width;
-        if (isOutgoing) {
-            return -5 - width;
-        } else {
-            const rightMargin = listViewWidth - (msgBubble.x + width);
-            return width > rightMargin + 35 ? -5 - width : 35;
-        }
-    }
-    function yPositionProvider(height) {
-        const topOffset = msgBubble.mapToItem(listView, 0, 0).y;
-        const listViewHeight = listView.height;
-        const bottomMargin = listViewHeight - height - topOffset;
-        if (bottomMargin < 0 || (topOffset < 0 && topOffset + height > 0)) {
-            return 30 - height;
-        } else {
-            return 0;
+        function onIdChanged() {
+            mainMenu.close();
         }
     }
 
-    ListModel {
-        id: emptyConversations
-    }
+    contentItem: GridLayout {
+        id: shareContent
+        columns: 2
 
-    SortFilterProxyModel {
-        id: shareConvProxyModel
-        objectName: "shareConvProxyModel"
+        ConversationPicker {
+            id: picker
+            objectName: "conversationPicker"
 
-        sourceModel: ConversationsAdapter.convListProxyModel.sourceModel || emptyConversations
-        property string titleFilter
-
-        sorters: RoleSorter {
-            roleName: "LastInteractionTimeStamp"
-            sortOrder: Qt.DescendingOrder
-        }
-
-        filters: [
-            ValueFilter { roleName: "IsRequest"; value: false },
-            ValueFilter { roleName: "IsBanned"; value: false },
-            FunctionFilter {
-                column: 0
-                function filter(Title: string, Uris: var): bool {
-                    if (!Uris || Uris.length === 0)
-                        return false;
-                    if (!shareConvProxyModel.titleFilter)
-                        return true;
-                    try {
-                        return new RegExp(shareConvProxyModel.titleFilter, "i").test(Title || "");
-                    } catch (e) {
-                        return (Title || "").toLowerCase().indexOf(shareConvProxyModel.titleFilter.toLowerCase()) !== -1;
-                    }
-                }
-            }
-        ]
-    }
-
-    contentItem: ColumnLayout {
-        anchors.fill: parent
-        anchors.margins: 12
-
-        RowLayout {
-            Layout.alignment: Qt.AlignTop
-            Layout.fillWidth: true
-            Layout.preferredHeight: 35
-
-            Searchbar {
-                id: contactPickerContactSearchBar
-
-                Layout.fillWidth: true
-                Layout.preferredHeight: 35
-                Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
-
-                placeHolderText: JamiStrings.shareWith
-
-                onSearchBarTextChanged: function (text) {
-                    shareConvProxyModel.titleFilter = text;
-                    shareConvProxyModel.invalidate();
-                }
-            }
-
-            NewIconButton {
-                id: shareMessageButton
-
-                Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
-
-                iconSize: JamiTheme.iconButtonMedium
-                iconSource: JamiResources.bidirectional_send_black_24dp_svg
-                toolTipText: JamiStrings.share
-
-                visible: true
-
-                onClicked: {
-                    var selectedContacts = mainMenu.selectedUids;
-                    var hasText = messageInput.text && selectedContacts.length > 0;
-                    function sendMessageOrFile(uid) {
-                        if (Type === 2) {
-                            // 2=TEXT and 5=DATA_TRANSFER (any kind of file) defined in interaction.h
-                            MessagesAdapter.sendMessageToUid(msgBody, uid);
-                        } else {
-                            MessagesAdapter.sendFileToUid(fileLink, uid);
-                        }
-                    }
-                    for (var i = 0; i < selectedContacts.length; i++) {
-                        var uid = selectedContacts[i];
-                        sendMessageOrFile(uid);
-                        if (hasText) {
-                            MessagesAdapter.sendMessageToUid(messageInput.text, uid);
-                        }
-                    }
-                    messageInput.text = "";
-                    mainMenu.destroy();
-                }
-            }
-        }
-
-        JamiListView {
-            id: contactPickerListView
-
-            Layout.alignment: Qt.AlignCenter
+            Layout.columnSpan: 2
             Layout.fillWidth: true
             Layout.fillHeight: true
-            Layout.bottomMargin: JamiTheme.preferredMarginSize
-            Layout.topMargin: 5
 
-            model: shareConvProxyModel
-
-            delegate: ConversationPickerItemDelegate {
-                id: conversationDelegate
-            }
+            viewCoordinator: mainMenu.viewCoordinator
+            forSharing: true
         }
 
         Rectangle {
-            id: messageinputBackground
+            Layout.columnSpan: 2
+            Layout.fillWidth: true
+            Layout.preferredHeight: 1
+            color: JamiTheme.menuSeparatorColor
+        }
+
+        Label {
+            objectName: "sharedMessagePreview"
+
+            Layout.columnSpan: 2
+            Layout.alignment: Qt.AlignLeft
+            Layout.maximumWidth: shareContent.width
+
+            leftPadding: 12
+            rightPadding: 12
+            topPadding: 8
+            bottomPadding: 8
+            font.pointSize: JamiTheme.mediumFontSize
+            text: mainMenu.type === 2 ? mainMenu.msgBody
+                                      : (mainMenu.transferName || UtilsAdapter.fileName(mainMenu.msgBody))
+            textFormat: Text.PlainText
+            maximumLineCount: 1
+            elide: Text.ElideRight
+            color: UtilsAdapter.luma(mainMenu.messageColor) ? JamiTheme.chatviewTextColorLight
+                                                           : JamiTheme.chatviewTextColorDark
+
+            background: MessageBubble {
+                color: mainMenu.messageColor
+                radius: JamiTheme.messageBubbleRadius
+            }
+        }
+
+        Flickable {
+            id: commentField
+            objectName: "shareMessageCommentField"
 
             Layout.fillWidth: true
-            Layout.preferredHeight: Math.min(messageInput.contentHeight + 8, 100)
-            Layout.maximumHeight: 100
+            Layout.minimumHeight: JamiTheme.chatViewFooterButtonSize
+            Layout.preferredHeight: Math.ceil(messageInput.contentHeight) + messageInput.topPadding + messageInput.bottomPadding
+            Layout.maximumHeight: Math.max(JamiTheme.chatViewFooterButtonSize,
+                                           Math.ceil(commentFont.lineSpacing * 4) + messageInput.topPadding + messageInput.bottomPadding)
 
-            color: JamiTheme.transparentColor
-            radius: JamiTheme.shareMessageMenuMessageInputRadius
-            border.color: JamiTheme.chatViewFooterRectangleBorderColor
-            border.width: 2
+            flickableDirection: Flickable.VerticalFlick
+            boundsBehavior: Flickable.StopAtBounds
             clip: true
 
-            Flickable {
-                id: messageInputContainer
+            ScrollBar.vertical: JamiScrollBar {
+                attachedFlickableMoving: commentField.moving
+                topPadding: 14
+                bottomPadding: topPadding
+                rightPadding: 12
+            }
 
-                anchors.fill: parent
-                anchors.rightMargin: 6
-                anchors.bottomMargin: 2
+            FontMetrics {
+                id: commentFont
+                font: messageInput.font
+            }
 
-                flickableDirection: Flickable.VerticalFlick
-                contentHeight: messageInput.implicitHeight
-                contentWidth: messageInput.width
+            TextArea.flickable: TextArea {
+                id: messageInput
+                objectName: "shareMessageComment"
 
-                ScrollBar.vertical: JamiScrollBar {
-                    policy: ScrollBar.AsNeeded
-                }
+                leftPadding: 20
+                rightPadding: leftPadding
+                topPadding: 6
+                bottomPadding: 6
+                verticalAlignment: Text.AlignVCenter
 
-                TextArea {
-                    id: messageInput
+                placeholderText: JamiStrings.addAComment
+                placeholderTextColor: JamiTheme.messageBarPlaceholderTextColor
+                Accessible.name: placeholderText
 
-                    width: messageInputContainer.width
+                font.pointSize: JamiTheme.textFontSize + 2
+                color: JamiTheme.textColor
+                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
 
-                    verticalAlignment: Text.AlignVCenter
-
-                    placeholderText: JamiStrings.addAComment
-                    placeholderTextColor: JamiTheme.messageBarPlaceholderTextColor
-
-                    font.pointSize: JamiTheme.textFontSize + 2
-
-                    color: JamiTheme.textColor
-
-                    wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-
-                    background: Rectangle {
-                        color: JamiTheme.transparentColor
-                    }
+                background: Rectangle {
+                    color: JamiTheme.globalBackgroundColor
+                    radius: 18
+                    border.color: messageInput.activeFocus ? JamiTheme.tintedBlue : JamiTheme.chatViewFooterRectangleBorderColor
                 }
             }
         }
-    }
 
-    // destroy() and setBindings() are needed to unselect the share icon from SBSMessageBase
+        PushButton {
+            objectName: "shareMessageButton"
 
-    onAboutToHide: {
-        mainMenu.destroy();
-    }
+            Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
+            Layout.preferredWidth: JamiTheme.chatViewFooterButtonSize
+            Layout.preferredHeight: JamiTheme.chatViewFooterButtonSize
 
-    Component.onDestruction: {
-        parent.setBindings();
+            enabled: picker.selectedIds.length > 0
+            hoverEnabled: enabled
+            radius: JamiTheme.chatViewFooterButtonRadius
+            preferredSize: JamiTheme.chatViewFooterButtonIconSize - 6
+            imageContainerWidth: 25
+            imageContainerHeight: 25
+            source: JamiResources.bidirectional_send_black_24dp_svg
+            mirror: UtilsAdapter.isRTL
+            toolTipText: JamiStrings.share
+            Accessible.name: toolTipText
+
+            normalColor: enabled ? JamiTheme.chatViewFooterSendButtonColor :
+                                   JamiTheme.chatViewFooterSendButtonDisableColor
+            imageColor: enabled ? JamiTheme.chatViewFooterSendButtonImgColor :
+                                  JamiTheme.chatViewFooterSendButtonImgColorDisable
+            hoveredColor: JamiTheme.buttonTintedBlueHovered
+            pressedColor: hoveredColor
+
+            onClicked: {
+                for (const uid of picker.selectedIds) {
+                    if (mainMenu.type === 2)
+                        MessagesAdapter.sendMessageToUid(mainMenu.msgBody, uid);
+                    else
+                        MessagesAdapter.sendFileToUid(mainMenu.msgBody, uid);
+                    if (messageInput.text)
+                        MessagesAdapter.sendMessageToUid(messageInput.text, uid);
+                }
+                mainMenu.close();
+            }
+        }
     }
 }
