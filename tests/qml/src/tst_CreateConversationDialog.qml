@@ -188,14 +188,18 @@ TestWrapper {
             mouseClick(dialog.button3);
             const lists = field(dialog, "conversationPickerLists");
             lists.parent.contactLists = Array.from({length: 20}, (_, i) => "Long list name " + i);
+            lists.forceLayout();
             tryVerify(() => lists.visible && lists.contentWidth > lists.width);
-            waitForRendering(lists);
+            verify(waitForRendering(lists));
 
+            const x = lists.width / 2;
+            const y = lists.height / 2;
+            mouseMove(lists, x, y);
             const startX = lists.contentX;
-            mouseWheel(lists, lists.width / 2, lists.height / 2, 0, -120);
+            mouseWheel(lists, x, y, 0, -120);
             tryVerify(() => lists.contentX > startX);
             const scrolledX = lists.contentX;
-            mouseWheel(lists, lists.width / 2, lists.height / 2, 0, 120);
+            mouseWheel(lists, x, y, 0, 120);
             tryVerify(() => lists.contentX < scrolledX);
         }
     }
