@@ -219,7 +219,9 @@ TestWrapper {
                     frame = image && image.ready ? findChild(image, "feedMediaFrame") : null;
                     return frame !== null;
                 }, 10000, "photo did not load");
-                fuzzyCompare(frame.height, JamiTheme.maxImageHeight, 1);
+                // Image readiness precedes the layout pass that replaces the placeholder height.
+                tryVerify(() => Math.abs(frame.height - JamiTheme.maxImageHeight) <= 1,
+                          5000, "photo frame did not reach the height cap");
                 fuzzyCompare(frame.width / frame.height, 300 / 900, 0.01);
             }
         }
