@@ -133,8 +133,10 @@ ColumnLayout {
                 leaveContextMenuUut.openMenu();
                 tryVerify(() => leaveContextMenuUut.item !== null, 2000);
 
-                const leaveItem = findChild(leaveContextMenuUut.item, "removeConversation");
-                verify(leaveItem !== null);
+                const menu = leaveContextMenuUut.item;
+                const leaveItem = Array.from({length: menu.count}, (_, i) => menu.itemAt(i))
+                                       .find(item => item.objectName === "removeConversation");
+                verify(leaveItem);
                 compare(leaveItem.itemName, JamiStrings.leaveGroup);
 
                 leaveContextMenuUut.mode = Conversation.Mode.FEED;
@@ -182,6 +184,7 @@ ColumnLayout {
 
     ConversationSmartListContextMenu {
         id: contextMenuUut
+        contactType: Profile.Type.JAMI
     }
 
     TestCase {
@@ -195,8 +198,10 @@ ColumnLayout {
                 contextMenuUut.openMenu();
                 tryVerify(() => contextMenuUut.item !== null, 2000);
 
-                const detailsItem = findChild(contextMenuUut.item, "contactDetails");
-                verify(detailsItem !== null);
+                const menu = contextMenuUut.item;
+                const detailsItem = Array.from({length: menu.count}, (_, i) => menu.itemAt(i))
+                                         .find(item => item.objectName === "contactDetails");
+                verify(detailsItem);
                 compare(detailsItem.itemName, JamiStrings.convDetails);
 
                 contextMenuUut.mode = Conversation.Mode.FEED;

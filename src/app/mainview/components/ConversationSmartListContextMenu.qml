@@ -97,6 +97,7 @@ ContextMenuAutoLoader {
         },
         GeneralMenuItem {
             id: removeConversation
+            objectName: "removeConversation"
 
             canTrigger: !isFeedRequest && !isInCall && !root.isBanned
             itemName: mode === Conversation.Mode.ONE_TO_ONE ? JamiStrings.removeConversation
