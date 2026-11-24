@@ -31,9 +31,11 @@
 
 #include <QFontDatabase>
 #include <QKeyEvent>
+#include <QPointingDevice>
 #include <QQmlContext>
 #include <QQmlEngine>
 #include <QQuickItem>
+#include <QQuickWindow>
 #include <QScopedPointer>
 #include <QtQuickTest/quicktest.h>
 #include <QSignalSpy>
@@ -68,6 +70,30 @@ class Setup : public QObject
     Q_OBJECT
 
 public Q_SLOTS:
+
+    void mouseWheel(QQuickItem* target, int delta)
+    {
+        static const QPointingDevice mouse("test mouse",
+                                           0,
+                                           QInputDevice::DeviceType::Mouse,
+                                           QPointingDevice::PointerType::Generic,
+                                           QInputDevice::Capability::Scroll,
+                                           1,
+                                           3);
+        auto* window = target->window();
+        const auto center = target->mapToScene(QPointF(target->width() / 2, target->height() / 2));
+        QWheelEvent event(center,
+                          window->mapToGlobal(center),
+                          QPoint(),
+                          QPoint(0, delta),
+                          Qt::NoButton,
+                          Qt::NoModifier,
+                          Qt::NoScrollPhase,
+                          false,
+                          Qt::MouseEventNotSynthesized,
+                          &mouse);
+        QCoreApplication::sendEvent(window, &event);
+    }
 
     void keyClick(QQuickItem* target, int key, int modifiers)
     {

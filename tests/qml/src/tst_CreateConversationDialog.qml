@@ -42,8 +42,11 @@ TestWrapper {
         name: "CreateConversationDialog"
         when: windowShown
 
-        function openDialog(isFeed) {
-            const dialog = createTemporaryObject(dialogComponent, root, {isFeed: isFeed});
+        function openDialog(isFeed, peopleStep = false) {
+            const dialog = createTemporaryObject(dialogComponent, root, {
+                isFeed: isFeed,
+                peopleStep: peopleStep
+            });
             verify(dialog);
             dialog.open();
             tryCompare(dialog, "opened", true);
@@ -184,23 +187,25 @@ TestWrapper {
         }
 
         function test_listChipsScrollWithMouseWheel() {
-            const dialog = openDialog(false);
-            mouseClick(dialog.button3);
+            const dialog = openDialog(false, true);
+            const picker = field(dialog, "conversationPicker");
             const lists = field(dialog, "conversationPickerLists");
-            lists.parent.contactLists = Array.from({length: 20}, (_, i) => "Long list name " + i);
+            picker.contactLists = Array.from({length: 20}, (_, i) => "Long list name " + i);
+            tryCompare(lists, "count", picker.contactLists.length);
+            tryCompare(lists, "visible", true);
             lists.forceLayout();
-            tryVerify(() => lists.visible && lists.contentWidth > lists.width);
+            tryVerify(() => lists.width > 0 && lists.height > 0 && lists.contentWidth > lists.width,
+                      5000, "contact-list chips did not lay out as a scrollable row");
             verify(waitForRendering(lists));
-
-            const x = lists.width / 2;
-            const y = lists.height / 2;
-            mouseMove(lists, x, y);
-            const startX = lists.contentX;
-            mouseWheel(lists, x, y, 0, -120);
-            tryVerify(() => lists.contentX > startX);
+            // Qt Quick Test's mouseWheel uses the platform's primary pointing device.
+            // The picker handles mouse wheels separately from touchpad scrolling.
+            const startX = lists.originX - lists.leftMargin;
+            lists.contentX = startX;
+            TestInput.mouseWheel(lists, -120);
+            tryVerify(() => lists.contentX > startX, 5000, "wheel did not scroll toward later chips");
             const scrolledX = lists.contentX;
-            mouseWheel(lists, x, y, 0, 120);
-            tryVerify(() => lists.contentX < scrolledX);
+            TestInput.mouseWheel(lists, 120);
+            tryVerify(() => lists.contentX < scrolledX, 5000, "wheel did not scroll toward earlier chips");
         }
     }
 }
