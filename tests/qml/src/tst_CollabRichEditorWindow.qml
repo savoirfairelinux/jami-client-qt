@@ -271,11 +271,13 @@ Item {
         }
 
         function test_toolbarUsesOneRowWhenItFits(data) {
-            editorWindow.documentName = "Report";
-            editorWindow.width = data.width;
+            editorWindow.close();
+            editorWindow = openEditor({width: data.width, documentName: "Report"});
+            compare(editorWindow.width, data.width);
             const toolbar = findChild(editorWindow, "formattingToolbar");
-            tryVerify(() => toolbar.width > 0 && toolbar.height > 0);
-            tryVerify(() => toolbar.children.every(child => !child.visible || child.width === 0 || child.y === 0));
+            tryVerify(() => toolbar.width > 0 && toolbar.height > 0
+                      && toolbar.children.every(child => !child.visible || child.width === 0
+                          || (child.y === 0 && child.x + child.width <= toolbar.width + 1)));
         }
 
         function test_toolbarFitsMinimumWidth() {
