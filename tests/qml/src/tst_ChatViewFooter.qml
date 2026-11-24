@@ -239,13 +239,16 @@ ColumnLayout {
                 verify(shareMenu)
                 var createDocumentAction = findChild(shareMenu, "newEditableDocumentMenuItem")
                 verify(createDocumentAction)
-                compare(createDocumentAction.visible, true)
+                shareMenu.open();
+                tryCompare(shareMenu, "opened", true);
+                tryCompare(createDocumentAction, "visible", true);
 
                 testConversation.canCreateDocument = false;
-                compare(createDocumentAction.visible, false)
+                tryCompare(createDocumentAction, "visible", false);
 
                 testConversation.canCreateDocument = true;
-                compare(createDocumentAction.visible, true)
+                tryCompare(createDocumentAction, "visible", true);
+                shareMenu.close();
             }
 
             function test_audioVideoActionsFollowCurrentFilePermission() {
