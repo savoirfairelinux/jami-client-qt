@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "81478e07_d89c99c6",
+        "filename": "extras/scripts/build-windows.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 430,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-25T20:02:00Z",
+      "side": 1,
+      "message": "[warning] Line 430: 🟡 `find_crt_dir()` aborts unless exactly one `Microsoft.VC*.CRT` directory is found under `VCToolsRedistDir\\x64`. On build agents with multiple side-by-side toolsets, this can fail packaging even when valid CRT directories exist. Prefer selecting the newest matching directory deterministically (or honoring `VC_CRT_Dir` first and then falling back to latest) instead of hard-failing on `len(candidates) !\u003d 1`.",
+      "revId": "fb2b85c06c2af58fd5fcddbe744cb1a2a8b7e533",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
