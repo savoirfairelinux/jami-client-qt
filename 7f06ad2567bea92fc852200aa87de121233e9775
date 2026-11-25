@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "961ace74_57fc009d",
+        "filename": "src/app/mainview/components/ConversationListView.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-25T20:37:32Z",
+      "side": 1,
+      "message": "[warning] Line 76: 🟡 `convId` is used without validation after lookup. If the model changes between `currentFilteredRow` read and `dataForRow(...)`, `convId` can still be empty/undefined and be forwarded to `selectConversation`. Add a guard (e.g., check for a non-empty UID, otherwise call `deselectConversation()` and return) to make this path robust against transient model updates.",
+      "revId": "7f06ad2567bea92fc852200aa87de121233e9775",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
