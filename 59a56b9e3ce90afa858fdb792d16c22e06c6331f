@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4be1885f_c02d7273",
+        "filename": "tests/qml/src/tst_ChatViewFooter.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 267,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-25T16:34:01Z",
+      "side": 1,
+      "message": "[warning] Line 267: 🟡 Calling `pasteItem.clicked()` bypasses hit-testing/enabled-state checks, so this path can pass even if the Paste action is not actually clickable in the UI. Keep the interaction user-realistic (e.g., click the rendered menu item after ensuring visibility/position), so the test still catches regressions in menu enablement and wiring.",
+      "revId": "59a56b9e3ce90afa858fdb792d16c22e06c6331f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
