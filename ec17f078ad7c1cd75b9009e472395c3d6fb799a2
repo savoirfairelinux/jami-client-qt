@@ -16,6 +16,23 @@
       "message": "Feels a bit odd to be checking for `http`/`https` again after `sanitizedHref` already filters this out, but I get that it\u0027s to avoid sending `mailto`s to the PreviewEngine.\n\nLGTM.",
       "revId": "ec17f078ad7c1cd75b9009e472395c3d6fb799a2",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c35ca0fb_2ddb12e3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-11-25T15:10:43Z",
+      "side": 1,
+      "message": "!build",
+      "revId": "ec17f078ad7c1cd75b9009e472395c3d6fb799a2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
