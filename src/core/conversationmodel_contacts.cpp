@@ -116,6 +116,10 @@ ConversationModel::slotContactAdded(const QString& contactUri)
         auto& conversation = convForUid(convId).get();
         MapStringString details = ConfigurationManager::instance().conversationInfos(owner.id, conversation.uid);
         bool needsSyncing = details["syncing"] == "true";
+        if (needsSyncing && conversation.isRequest) {
+            slotConversationRequestAccepted(owner.id, convId);
+            return;
+        }
         if (conversation.needsSyncing != needsSyncing) {
             conversation.isRequest = false;
             conversation.needsSyncing = needsSyncing;
@@ -276,6 +280,27 @@ ConversationModel::slotMessagesFound(uint32_t requestId,
         }
     }
     Q_EMIT messagesFoundProcessed(accountId, messageDetailedInformation);
+}
+
+void
+ConversationModel::slotConversationRequestAccepted(const QString& accountId, const QString& conversationId)
+{
+    if (accountId != owner.id)
+        return;
+    const auto row = indexOf(conversationId);
+    if (row < 0)
+        return;
+    auto& conversation = d_->conversations.at(row);
+    if (!conversation.isRequest)
+        return;
+
+    conversation.isRequest = false;
+    conversation.needsSyncing = true;
+    invalidateModel();
+    const auto idx = index(row);
+    Q_EMIT dataChanged(idx, idx);
+    Q_EMIT conversationRequestAccepted(conversationId);
+    Q_EMIT conversationUpdated(conversationId);
 }
 
 void

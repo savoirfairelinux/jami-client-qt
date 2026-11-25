@@ -568,6 +568,7 @@ Q_SIGNALS:
      * @param uid
      */
     void newConversation(const QString& uid) const;
+    void conversationRequestAccepted(const QString& uid) const;
     /**
      * Emitted when a conversation has been removed
      * @param uid
@@ -734,6 +735,7 @@ private Q_SLOTS:
     void slotConversationRequestReceived(const QString& accountId,
                                          const QString& conversationId,
                                          const MapStringString& metadatas);
+    void slotConversationRequestAccepted(const QString& accountId, const QString& conversationId);
     void slotConversationMemberEvent(const QString& accountId,
                                      const QString& conversationId,
                                      const QString& memberUri,
