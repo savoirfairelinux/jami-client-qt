@@ -17,7 +17,10 @@
 
 #include "conversationlistproxymodel.h"
 #include "conversationsadapter.h"
+#include "dbus/configurationmanager.h"
 #include "globaltestenvironment.h"
+
+#include <QScopeGuard>
 
 #include <gtest/gtest.h>
 
@@ -142,6 +145,73 @@ TEST(ConversationsAdapter, SelectingInvitationKeepsAllInvitationsCategory)
     QSignalSpy accountRemovedSpy(&instance->accountModel(), &lrc::api::AccountModel::accountRemoved);
     instance->accountModel().removeAccount(accountId);
     ASSERT_TRUE(accountRemovedSpy.wait());
+}
+
+TEST(ConversationsAdapter, DaemonAcceptanceMovesSwarmBeforeReady)
+{
+    auto* instance = globalEnv.lrcInstance.data();
+    auto& accounts = instance->accountModel();
+    QSignalSpy accountAddedSpy(&accounts, &lrc::api::AccountModel::accountAdded);
+    const auto accountId = accounts.createNewAccount(lrc::api::profile::Type::JAMI, {});
+    const auto cleanup = qScopeGuard([&] {
+        accounts.removeAccount(accountId);
+        EXPECT_TRUE(QTest::qWaitFor([&] { return !accounts.hasAccount(accountId); }));
+    });
+    ASSERT_TRUE(accountAddedSpy.count() > 0 || accountAddedSpy.wait(15000));
+    instance->set_currentAccountId(accountId);
+
+    auto* model = instance->getCurrentConversationModel();
+    ConversationListProxyModel proxy(model);
+    SelectableListProxyModel searchProxy(nullptr);
+    ConversationsAdapter adapter(globalEnv.systemTray.data(), instance, &proxy, &searchProxy);
+    auto& configuration = ConfigurationManager::instance();
+
+    const QString groupId(40, '2');
+    for (const auto mode : {Mode::INVITES_ONLY, Mode::FEED, Mode::ONE_TO_ONE}) {
+        const auto isFeed = mode == Mode::FEED;
+        const auto isOneToOne = mode == Mode::ONE_TO_ONE;
+        const auto convId = isFeed ? QString(40, '1') : isOneToOne ? QString(40, '4') : groupId;
+        const MapStringString request {{"id", convId},
+                                       {"from", QString(40, '3')},
+                                       {"mode", QString::number(static_cast<int>(mode))}};
+        QSignalSpy newConversationSpy(model, &lrc::api::ConversationModel::newConversation);
+        Q_EMIT configuration.conversationRequestReceived(accountId, convId, request);
+        ASSERT_TRUE(newConversationSpy.wait());
+
+        const auto category = isFeed || isOneToOne ? ConversationListProxyModel::categoryForMode(mode)
+                                                   : ConversationListProxyModel::All;
+        adapter.set_category(category);
+        adapter.set_invitationsOnly(!isFeed);
+        if (!isFeed)
+            instance->set_selectedConvUid(convId);
+        ASSERT_EQ(ids(proxy), QStringList {convId});
+        ASSERT_EQ(adapter.get_pendingRequestCount(), 1);
+        const auto author = proxy.index(0, 0).data(Role::FeedAuthor);
+
+        // A local attempt is not enough; this injected request is unknown to the daemon.
+        model->acceptConversationRequest(convId);
+        EXPECT_TRUE(proxy.index(0, 0).data(Role::IsRequest).toBool());
+        const auto conversation = model->getConversationForUid(convId);
+        ASSERT_TRUE(conversation);
+        EXPECT_FALSE(conversation->get().needsSyncing);
+        QSignalSpy updatedSpy(model, &lrc::api::ConversationModel::conversationUpdated);
+        Q_EMIT configuration.conversationRequestAccepted(accountId, convId);
+        ASSERT_TRUE(updatedSpy.wait());
+
+        EXPECT_TRUE(conversation->get().needsSyncing);
+        EXPECT_FALSE(adapter.get_invitationsOnly());
+        EXPECT_EQ(adapter.get_category(), category);
+        EXPECT_EQ(adapter.get_pendingRequestCount(), 0);
+        ASSERT_EQ(ids(proxy), QStringList {convId});
+        EXPECT_FALSE(proxy.index(0, 0).data(Role::IsRequest).toBool());
+        EXPECT_EQ(instance->get_selectedConvUid(), isFeed ? groupId : convId);
+        if (isFeed) {
+            EXPECT_FALSE(author.toString().isEmpty());
+            EXPECT_EQ(proxy.index(0, 0).data(Role::FeedAuthor), author);
+        } else {
+            EXPECT_EQ(proxy.get_currentFilteredRow(), 0);
+        }
+    }
 }
 
 TEST(ConversationListProxyModel, AllCanToggleBetweenConversationsAndAllInvitations)

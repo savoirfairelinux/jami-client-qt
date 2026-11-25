@@ -519,6 +519,13 @@ ConversationsAdapter::quickSwitcherItems() const
 }
 
 void
+ConversationsAdapter::onConversationRequestAccepted(const QString& convId)
+{
+    if (sender() == lrcInstance_->getCurrentConversationModel() && convId == lrcInstance_->get_selectedConvUid())
+        set_invitationsOnly(false);
+}
+
+void
 ConversationsAdapter::onConversationReady(const QString& convId)
 {
     auto convModel = lrcInstance_->getCurrentConversationModel();
@@ -826,6 +833,9 @@ ConversationsAdapter::connectConversationModel()
     connectObjectSignal(model, &ConversationModel::searchStatusChanged, &ConversationsAdapter::onSearchStatusChanged);
     connectObjectSignal(model, &ConversationModel::searchResultUpdated, &ConversationsAdapter::onSearchResultUpdated);
     connectObjectSignal(model, &ConversationModel::searchResultEnded, &ConversationsAdapter::onSearchResultEnded);
+    connectObjectSignal(model,
+                        &ConversationModel::conversationRequestAccepted,
+                        &ConversationsAdapter::onConversationRequestAccepted);
     connectObjectSignal(model, &ConversationModel::conversationReady, &ConversationsAdapter::onConversationReady);
 
     connectObjectSignal(lrcInstance_->getCurrentContactModel(),

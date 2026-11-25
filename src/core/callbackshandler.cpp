@@ -357,6 +357,11 @@ CallbacksHandler::CallbacksHandler(const Lrc& parent)
             &CallbacksHandler::slotConversationRequestDeclined,
             Qt::QueuedConnection);
     connect(&ConfigurationManager::instance(),
+            &ConfigurationManagerInterface::conversationRequestAccepted,
+            this,
+            &CallbacksHandler::conversationRequestAccepted,
+            Qt::QueuedConnection);
+    connect(&ConfigurationManager::instance(),
             &ConfigurationManagerInterface::conversationReady,
             this,
             &CallbacksHandler::slotConversationReady,

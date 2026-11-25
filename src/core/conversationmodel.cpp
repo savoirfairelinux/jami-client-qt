@@ -170,6 +170,10 @@ ConversationModel::ConversationModel(const account::Info& owner,
             &CallbacksHandler::conversationRequestDeclined,
             this,
             &ConversationModel::slotConversationRemoved);
+    connect(&callbacksHandler,
+            &CallbacksHandler::conversationRequestAccepted,
+            this,
+            &ConversationModel::slotConversationRequestAccepted);
     connect(&callbacksHandler, &CallbacksHandler::conversationReady, this, &ConversationModel::slotConversationReady);
     connect(&callbacksHandler,
             &CallbacksHandler::conversationRemoved,
@@ -345,9 +349,18 @@ ConversationModel::dataForItem(const conversation::Info& item, int role) const
     case Role::FeedAuthor: {
         if (item.mode != conversation::Mode::FEED)
             return {};
-        // Requests only know the inviter, stored as the non-invited member.
-        auto it = std::find_if(item.participants.cbegin(), item.participants.cend(), [&](const auto& p) {
-            return item.isRequest ? p.role == member::Role::MEMBER : p.role == member::Role::ADMIN;
+        // The invitation placeholder may still be in use after acceptance.
+        const auto hasInviter = item.isRequest
+                                || (item.needsSyncing
+                                    && std::any_of(item.participants.cbegin(),
+                                                   item.participants.cend(),
+                                                   [&](const auto& p) {
+                                                       return p.uri == item.accountUri
+                                                              && p.role == member::Role::INVITED;
+                                                   }));
+        const auto authorRole = hasInviter ? member::Role::MEMBER : member::Role::ADMIN;
+        auto it = std::find_if(item.participants.cbegin(), item.participants.cend(), [authorRole](const auto& p) {
+            return p.role == authorRole;
         });
         if (it == item.participants.cend())
             return {};
@@ -1548,10 +1561,6 @@ ConversationModel::acceptConversationRequest(const QString& conversationId)
         return;
 
     if (conversation.isSwarm()) {
-        conversation.needsSyncing = true;
-        Q_EMIT conversationUpdated(conversation.uid);
-        invalidateModel();
-        Q_EMIT modelChanged();
         ConfigurationManager::instance().acceptConversationRequest(owner.id, conversationId);
     } else {
         sendContactRequest(peers.front());
