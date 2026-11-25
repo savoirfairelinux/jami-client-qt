@@ -20,6 +20,9 @@
 
 #include "api/swarmpermissions.h"
 
+#include "dbus/configurationmanager.h"
+
+#include <QScopeGuard>
 #include <QSignalSpy>
 
 #include <gtest/gtest.h>
@@ -83,4 +86,33 @@ TEST(CurrentConversation, DeniesPermissionsWhenConversationInfoIsMissing)
     QSignalSpy accountRemovedSpy(&globalEnv.lrcInstance->accountModel(), &AccountModel::accountRemoved);
     globalEnv.lrcInstance->accountModel().removeAccount(accountId);
     ASSERT_TRUE(accountRemovedSpy.wait());
+}
+
+/*!
+ * WHEN  A conversation profile update arrives with only the repository profile.
+ * THEN  Infos tracked locally by the daemon, such as the creation date, are kept.
+ */
+TEST(ConversationModel, ProfileUpdateKeepsLocalConversationInfos)
+{
+    auto& accountModel = globalEnv.lrcInstance->accountModel();
+    QSignalSpy accountAddedSpy(&accountModel, &AccountModel::accountAdded);
+    const auto accountId = accountModel.createNewAccount(lrc::api::profile::Type::JAMI, {{"alias", "Feed publisher"}});
+    const auto cleanup = qScopeGuard([&] {
+        accountModel.removeAccount(accountId);
+        EXPECT_TRUE(QTest::qWaitFor([&] { return !accountModel.hasAccount(accountId); }));
+    });
+    ASSERT_TRUE(accountAddedSpy.count() > 0 || accountAddedSpy.wait(15000));
+
+    auto& conversationModel = *accountModel.getAccountInfo(accountId).conversationModel;
+    const auto convId = conversationModel.createFeedConversation({});
+    ASSERT_FALSE(convId.isEmpty());
+    ASSERT_TRUE(QTest::qWaitFor([&] { return conversationModel.getConversationForUid(convId).has_value(); }));
+
+    QSignalSpy profileUpdatedSpy(&conversationModel, &ConversationModel::profileUpdated);
+    conversationModel.updateConversationInfos(convId, {{"title", "Renamed"}});
+    ASSERT_TRUE(profileUpdatedSpy.wait(15000));
+
+    const auto& infos = conversationModel.getConversationForUid(convId)->get().infos;
+    EXPECT_EQ(infos.value("title"), "Renamed");
+    EXPECT_TRUE(infos.contains("createdMs"));
 }
