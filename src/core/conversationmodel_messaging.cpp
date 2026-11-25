@@ -249,7 +249,9 @@ ConversationModel::slotConversationProfileUpdated(const QString& accountId,
     }
     try {
         auto& conversation = convForUid(conversationId).get();
-        conversation.infos = profile;
+        // The signal only carries the repository profile; refetch to keep the daemon's local infos.
+        auto infos = ConfigurationManager::instance().conversationInfos(accountId, conversationId);
+        conversation.infos = infos.isEmpty() ? profile : infos;
         Q_EMIT profileUpdated(conversationId);
     } catch (...) {
     }
