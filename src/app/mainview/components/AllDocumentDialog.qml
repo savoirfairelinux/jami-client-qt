@@ -33,6 +33,8 @@ BaseModalDialog {
     titleText: JamiStrings.documents
     title: titleText
     implicitWidth: Math.min(400, parent ? Math.max(0, parent.width - 64) : 400)
+    contentHeight: contentItem.implicitHeight
+    height: implicitHeight
 
     onAboutToShow: {
         loading = true;
@@ -97,7 +99,8 @@ BaseModalDialog {
             property int updateRevision: 0
 
             Layout.fillWidth: true
-            Layout.preferredHeight: Math.min(contentHeight, 360)
+            implicitHeight: Math.min(contentHeight, 360)
+            Layout.preferredHeight: implicitHeight
             model: {
                 const query = searchBar.text.trim().toLocaleLowerCase();
                 return query ? root.documents.filter(document =>
