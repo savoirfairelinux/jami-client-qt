@@ -74,7 +74,7 @@ TestWrapper {
 
             AllDocumentDialog {
                 id: documentsDialog
-                parent: uut
+                parent: wrapper
             }
 
             function test_listsSearchesAndOpensConversation() {
