@@ -1,0 +1,58 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0cb77dae_dcbc1242",
+        "filename": "src/app/messagesadapter.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 546,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-11-25T16:47:38Z",
+      "side": 1,
+      "message": "Done. offerFile() now checks isCallable() and treats an exception (the returned Error object is truthy) as a refusal, so a refused temp image is still deleted. Covered by PasteFixture.ThrowingHandlerDeclinesImage.",
+      "parentUuid": "5cf81317_2c5aaeb7",
+      "revId": "cbf0ddc196ee476f7f265cf8a0292a45d5e36e84",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f804f61e_0617347a",
+        "filename": "src/app/messagesadapter.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 605,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-11-25T16:47:38Z",
+      "side": 1,
+      "message": "Local files now go through the same offerFile() guard. The result is intentionally unused here: there is no temp file to delete, and a refused local file should not fall back to pasting its path as text. The handler only refuses when files are not allowed, and that case is already gated by allowFiles.",
+      "parentUuid": "43cf535e_c5e5fbfb",
+      "revId": "cbf0ddc196ee476f7f265cf8a0292a45d5e36e84",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e83fa544_56d85c93",
+        "filename": "tests/qml/src/tst_ChatViewFooter.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 267,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-11-25T16:47:38Z",
+      "side": 1,
+      "message": "Done. The test now clicks the rendered item. The miss came from spell-check entries pushing Paste below the short test window, so spell check is disabled for this case and restored afterwards.",
+      "parentUuid": "4be1885f_c02d7273",
+      "revId": "cbf0ddc196ee476f7f265cf8a0292a45d5e36e84",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
