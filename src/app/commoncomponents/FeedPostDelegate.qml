@@ -36,13 +36,15 @@ Item {
     readonly property bool canComment: CurrentConversation.canReplyText || CurrentConversation.canReplyFile
 
     // The list grows upward from the bottom, so a post would rise as its comments open.
-    // While its comments are in view, scroll along so the post stays put and newer posts move down.
+    // While its comments button is in view, scroll along so it stays put and newer posts move down.
+    // When shrinking, stop at the bottom of the list rather than scrolling past it.
     function keepInPlace(delta) {
         if (delta === 0 || !listView)
             return;
-        const top = commentsArea.mapToItem(listView, 0, 0).y;
-        if (top >= 0 && top <= listView.height)
-            listView.contentY -= delta;
+        const y = commentsButton.mapToItem(listView, 0, 0).y;
+        if (y + commentsButton.height < 0 || y > listView.height)
+            return;
+        listView.contentY -= delta > 0 ? delta : Math.max(delta, -listView.getDistanceToBottom());
     }
 
     // Opens the comments and, when allowed, starts a comment on the post in the composer.
