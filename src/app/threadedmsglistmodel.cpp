@@ -295,7 +295,10 @@ ThreadRepliesModel::setThreads(ThreadedMsgListModel* threads)
     // Shares the threads' source, whose index is updated before this model filters new rows.
     setSourceModel(threads ? threads->sourceModel() : nullptr);
     if (threads) {
-        connect(threads, &ThreadedMsgListModel::threadsRegrouped, this, &ThreadRepliesModel::invalidateRowsFilter);
+        connect(threads, &ThreadedMsgListModel::threadsRegrouped, this, [this] {
+            beginFilterChange();
+            endFilterChange(QSortFilterProxyModel::Direction::Rows);
+        });
         connect(threads, &QAbstractProxyModel::sourceModelChanged, this, [this] {
             setSourceModel(threads_->sourceModel());
         });
@@ -314,8 +317,9 @@ ThreadRepliesModel::setRootId(const QString& rootId)
 {
     if (rootId_ == rootId)
         return;
+    beginFilterChange();
     rootId_ = rootId;
-    invalidateRowsFilter();
+    endFilterChange(QSortFilterProxyModel::Direction::Rows);
     Q_EMIT rootIdChanged();
 }
 
