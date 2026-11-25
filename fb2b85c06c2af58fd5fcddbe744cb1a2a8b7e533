@@ -16,6 +16,24 @@
       "message": "[warning] Line 430: 🟡 `find_crt_dir()` aborts unless exactly one `Microsoft.VC*.CRT` directory is found under `VCToolsRedistDir\\x64`. On build agents with multiple side-by-side toolsets, this can fail packaging even when valid CRT directories exist. Prefer selecting the newest matching directory deterministically (or honoring `VC_CRT_Dir` first and then falling back to latest) instead of hard-failing on `len(candidates) !\u003d 1`.",
       "revId": "fb2b85c06c2af58fd5fcddbe744cb1a2a8b7e533",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7fe1a78e_3c6ae90a",
+        "filename": "extras/scripts/build-windows.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 430,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-11-25T20:13:21Z",
+      "side": 1,
+      "message": "VCToolsRedistDir is already version-specific (Redist\\MSVC\\\u003cversion\u003e\\), and its x64 folder holds a single Microsoft.VC14x.CRT; side-by-side toolsets live in sibling version folders that this glob never sees. VC_CRT_DIR is already honoured first. More than one match would mean a broken layout, so failing loudly is intended.",
+      "parentUuid": "81478e07_d89c99c6",
+      "revId": "fb2b85c06c2af58fd5fcddbe744cb1a2a8b7e533",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
