@@ -69,6 +69,10 @@ JamiListView {
 
     function selectValidConversation() {
         var row = model.currentFilteredRow;
+        if (row < 0) {
+            LRCInstance.deselectConversation();
+            return;
+        }
         var convId = model.dataForRow(row, ConversationList.UID);
         LRCInstance.selectConversation(convId);
     }
