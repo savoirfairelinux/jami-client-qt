@@ -6,7 +6,7 @@
     <OutputName Condition="'$(Configuration)' == 'Beta'">jami.beta.x64</OutputName>
     <OutputType>Package</OutputType>
     <InstallerPlatform>x64</InstallerPlatform>
-    <OutputPath>bin\$(Configuration)\</OutputPath>
+    <OutputPath>bin\Release\</OutputPath>
     <Cultures>en-us</Cultures>
     <DebugType>none</DebugType>
     <EnableDefaultItems>false</EnableDefaultItems>
