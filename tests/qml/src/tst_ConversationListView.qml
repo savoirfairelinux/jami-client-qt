@@ -40,13 +40,18 @@ ColumnLayout {
     ConversationListView {
         id: uut
 
+        Layout.fillWidth: true
+        Layout.fillHeight: true
+
         headerVisible: false
         headerLabel: ""
 
         model: ListModel {
             ListElement {
                 ActiveCallsCount: 0
+                BotOwner: ""
                 CallStackViewShouldShow: false
+                ContactTags: ""
                 Draft: ""
                 InCall: false
                 IsAudioOnly: false
@@ -56,6 +61,7 @@ ColumnLayout {
                 IsSwarm: true
                 LastInteraction: "Outgoing call - 00:32"
                 LastInteractionTimeStamp: 1702479346
+                MemberCount: 1
                 Mode: 2
                 Presence: 2
                 Title: "Test2 (you)"
@@ -115,6 +121,37 @@ ColumnLayout {
 
             function test_checkFakeConversationList() {
                 compare(uut.model.count, 3);
+            }
+        }
+
+        TestCase {
+            name: "ConversationListView"
+            when: windowShown
+
+            function test_publicDirectoryResultShowsName() {
+                const row = uut.model.count;
+                uut.model.append({
+                    ContactType: Profile.Type.TEMPORARY,
+                    IsCoreDialog: true,
+                    LastInteractionTimeStamp: 0,
+                    Mode: Conversation.Mode.NON_SWARM,
+                    RegisteredName: "directory-user",
+                    Title: "directory-user",
+                    UID: "a12f549027556f6d15f351d46e68bb7593d10169"
+                });
+                try {
+                    uut.forceLayout();
+                    uut.positionViewAtIndex(row, ListView.Contain);
+                    tryVerify(() => uut.itemAtIndex(row) !== null);
+                    const title = findChild(uut.itemAtIndex(row), "smartlistItemDelegateTitle");
+                    verify(title);
+                    compare(title.text, "directory-user");
+                    verify(title.visible);
+                    tryVerify(() => title.width >= title.implicitWidth,
+                              1000, "Expected room for the full directory name");
+                } finally {
+                    uut.model.remove(row);
+                }
             }
         }
     }

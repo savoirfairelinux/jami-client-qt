@@ -173,10 +173,12 @@ ItemDelegate {
                     Layout.fillWidth: true
                     Layout.minimumHeight: 20
                     Layout.alignment: Qt.AlignVCenter
+                    implicitWidth: titleText.implicitWidth
                     implicitHeight: Math.max(titleText.implicitHeight, contactListChips.visible ? contactListChips.implicitHeight : 0)
 
                     Text {
                         id: titleText
+                        objectName: "smartlistItemDelegateTitle"
 
                         width: titleLine.titleWidth
                         anchors.verticalCenter: parent.verticalCenter
