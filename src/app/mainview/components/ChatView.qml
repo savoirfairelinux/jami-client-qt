@@ -730,7 +730,8 @@ Item {
                         }
 
                         onHeightChanged: {
-                            if (loader.item)
+                            // Feeds keep their position; opening comments shows the reply bar.
+                            if (loader.item && loader.sourceComponent === messageList)
                                 Qt.callLater(loader.item.scrollToBottom);
                         }
 
