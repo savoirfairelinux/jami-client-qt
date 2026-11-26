@@ -29,6 +29,7 @@ extern "C" {
 #include <QVideoFrame>
 #include <QQmlEngine>
 #include <QReadWriteLock>
+#include <QMutex>
 
 #include <map>
 #include <atomic>
@@ -61,6 +62,7 @@ private Q_SLOTS:
 private:
     AVModel& avModel_;
     void copyUnaligned(QVideoFrame& dst, const video::Frame& src);
+    void releasePendingFrame();
 
     struct FrameObject
     {
@@ -72,4 +74,13 @@ private:
     };
     std::map<QString, FrameObject> renderers_;
     QReadWriteLock renderersMutex_;
+
+    // Frame objects locked (renderersMutex_ for read, frameMutex for write) by
+    // onFrameBufferRequested, keyed by calling thread, waiting to be released
+    // by the matching onFrameUpdated call on the same thread. Stored per
+    // instance so several providers used from one thread can't interfere.
+    FrameObject* takePendingFrame();
+    void setPendingFrame(FrameObject* fo);
+    std::map<Qt::HANDLE, FrameObject*> pendingFrames_;
+    QMutex pendingFramesMutex_;
 };
