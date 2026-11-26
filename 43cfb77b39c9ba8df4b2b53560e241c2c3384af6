@@ -18,6 +18,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4d233872_d0b430bd",
+        "filename": "extras/scripts/install-deps-windows.ps1",
+        "patchSetId": 3
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-11-26T19:58:43Z",
+      "side": 1,
+      "message": "Done, partly. An existing VS 2022+ must now have the C++ tools, ATL and a Windows SDK component; otherwise the script stops and names what to add. It does not require SDK 26100 specifically: existing hosts (including the release node, which has SDK 22621) would otherwise get a second Visual Studio installed beside a working one. It also does not modify an existing installation.",
+      "parentUuid": "be69e35a_067ac35c",
+      "revId": "43cfb77b39c9ba8df4b2b53560e241c2c3384af6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "63188128_9ece8369",
@@ -31,6 +49,24 @@
       "writtenOn": "2026-11-26T19:53:28Z",
       "side": 1,
       "message": "[warning] Line 141: 🟡 The `.NET` check only verifies that `dotnet` exists on `PATH`; it does not verify an SDK is installed. Systems with only the runtime will skip installation here, but MSI packaging later needs the SDK and will fail. Check `dotnet --list-sdks` (or equivalent) before deciding to skip the SDK install.",
+      "revId": "43cfb77b39c9ba8df4b2b53560e241c2c3384af6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bc0a2dad_6f608e80",
+        "filename": "extras/scripts/install-deps-windows.ps1",
+        "patchSetId": 3
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-11-26T19:58:43Z",
+      "side": 1,
+      "message": "Done: the SDK install is skipped only if `dotnet --list-sdks` reports an SDK 8 or later. If another dotnet is on PATH, the script says to put the new one first.",
+      "parentUuid": "63188128_9ece8369",
       "revId": "43cfb77b39c9ba8df4b2b53560e241c2c3384af6",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
