@@ -16,6 +16,24 @@
       "message": "[warning] Line 117: 🟡 Qt archive integrity is currently verified with SHA-1 (`Install-Archive ... SHA1`), which is no longer considered collision-resistant for supply-chain verification. Prefer SHA-256/SHA-512 checksums (or signature verification) for these downloads; if upstream only exposes SHA-1, add a stronger trusted checksum source in-repo and verify against that instead.",
       "revId": "c18c91ef7e29a560c1d97c226885d749f5b3b5a0",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1b1bc29e_c26a9013",
+        "filename": "extras/build/docker/install-msvc-toolchain.ps1",
+        "patchSetId": 1
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-11-26T20:00:24Z",
+      "side": 1,
+      "message": "Done in PS5 (the script is now extras/scripts/install-deps-windows.ps1). The lock file pins the SHA-256 of each Qt archive; each archive was checked against Qt\u0027s published SHA-1 once when the SHA-256 was taken.",
+      "parentUuid": "f841f4cd_f008d176",
+      "revId": "c18c91ef7e29a560c1d97c226885d749f5b3b5a0",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
