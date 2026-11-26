@@ -1154,6 +1154,20 @@ ConversationModel::pendingFeedInvitees(const QString& conversationId) const
 }
 
 bool
+ConversationModel::setFeedInviteAllContacts(const QString& conversationId, bool inviteAllContacts)
+{
+    auto& configurationManager = ConfigurationManager::instance();
+    if (!configurationManager.setFeedInviteAllContacts(owner.id, conversationId, inviteAllContacts))
+        return false;
+    auto conversationOpt = getConversationForUid(conversationId);
+    if (!conversationOpt)
+        return false;
+    conversationOpt->get().infos = configurationManager.conversationInfos(owner.id, conversationId);
+    Q_EMIT conversationUpdated(conversationId);
+    return true;
+}
+
+bool
 ConversationModel::isActionPermitted(const QString& conversationId, permissions::Permission action) const
 {
     auto conversationOpt = getConversationForUid(conversationId);

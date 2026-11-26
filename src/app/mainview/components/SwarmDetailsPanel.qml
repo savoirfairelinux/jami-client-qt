@@ -390,6 +390,7 @@ Item {
 
             TabBar {
                 id: swarmDetailsPanelTabBar
+                objectName: "swarmDetailsPanelTabBar"
 
                 Layout.fillWidth: true
                 Layout.preferredHeight: JamiTheme.tabBarHeight
@@ -429,8 +430,37 @@ Item {
 
                 visible: innerRect.currentDetailsPage === "members"
 
+                SettingParaCombobox {
+                    id: feedAudienceComboBox
+                    objectName: "feedAudienceComboBox"
+
+                    Layout.fillWidth: true
+
+                    visible: CurrentConversation.isFeedMode && CurrentConversation.canAddMember
+                    tooltipText: JamiStrings.feedAudience
+                    model: [JamiStrings.allContacts, JamiStrings.selectContacts]
+                    currentIndex: CurrentConversation.feedInviteAllContacts ? 0 : 1
+
+                    onActivated: function (index) {
+                        CurrentConversation.setFeedAudience(index === 0);
+                        // Activation breaks the binding; restore it so the daemon state stays authoritative.
+                        currentIndex = Qt.binding(() => CurrentConversation.feedInviteAllContacts ? 0 : 1);
+                    }
+                }
+
+                Label {
+                    Layout.fillWidth: true
+
+                    visible: feedAudienceComboBox.visible && CurrentConversation.feedInviteAllContacts
+                    text: JamiStrings.addAllContactsDescription
+                    color: JamiTheme.faddedLastInteractionFontColor
+                    horizontalAlignment: Text.AlignHCenter
+                    wrapMode: Text.WordWrap
+                }
+
                 NewMaterialButton {
                     id: inviteMemberButton
+                    objectName: "inviteMemberButton"
 
                     Layout.fillWidth: true
 
@@ -439,6 +469,7 @@ Item {
                     text: JamiStrings.inviteMember
 
                     visible: !CurrentConversation.isCoreDialog && CurrentConversation.canAddMember
+                             && !(CurrentConversation.isFeedMode && CurrentConversation.feedInviteAllContacts)
 
                     onClicked: extrasPanel.openInviteMembersDialog(inviteMemberButton)
                 }

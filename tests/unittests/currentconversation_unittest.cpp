@@ -129,3 +129,36 @@ TEST(ConversationModel, ProfileUpdateKeepsLocalConversationInfos)
     EXPECT_EQ(infos.value("title"), "Renamed");
     EXPECT_TRUE(infos.contains("createdMs"));
 }
+
+/*!
+ * WHEN  The publisher switches a feed between all contacts and selected contacts.
+ * THEN  The conversation infos reflect the new audience.
+ */
+TEST(ConversationModel, SwitchesFeedAudience)
+{
+    auto& accountModel = globalEnv.lrcInstance->accountModel();
+    QSignalSpy accountAddedSpy(&accountModel, &AccountModel::accountAdded);
+    const auto accountId = accountModel.createNewAccount(lrc::api::profile::Type::JAMI, {{"alias", "Feed publisher"}});
+    const auto cleanup = qScopeGuard([&] {
+        accountModel.removeAccount(accountId);
+        EXPECT_TRUE(QTest::qWaitFor([&] { return !accountModel.hasAccount(accountId); }));
+    });
+    ASSERT_TRUE(accountAddedSpy.count() > 0 || accountAddedSpy.wait(15000));
+
+    auto& conversationModel = *accountModel.getAccountInfo(accountId).conversationModel;
+    const auto convId = conversationModel.createFeedConversation({});
+    ASSERT_FALSE(convId.isEmpty());
+    ASSERT_TRUE(QTest::qWaitFor([&] { return conversationModel.getConversationForUid(convId).has_value(); }));
+    const auto infos = [&] {
+        return conversationModel.getConversationForUid(convId)->get().infos;
+    };
+    EXPECT_EQ(infos().value("inviteAllContacts"), "false");
+
+    QSignalSpy conversationUpdatedSpy(&conversationModel, &ConversationModel::conversationUpdated);
+    EXPECT_TRUE(conversationModel.setFeedInviteAllContacts(convId, true));
+    EXPECT_EQ(infos().value("inviteAllContacts"), "true");
+    EXPECT_EQ(conversationUpdatedSpy.count(), 1);
+
+    EXPECT_TRUE(conversationModel.setFeedInviteAllContacts(convId, false));
+    EXPECT_EQ(infos().value("inviteAllContacts"), "false");
+}

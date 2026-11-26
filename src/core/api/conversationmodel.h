@@ -499,6 +499,14 @@ public:
     QStringList pendingFeedInvitees(const QString& conversationId) const;
 
     /**
+     * Switch a feed between inviting all contacts and only selected contacts
+     * @param conversationId
+     * @param inviteAllContacts
+     * @return false if the local account cannot invite to the feed
+     */
+    bool setFeedInviteAllContacts(const QString& conversationId, bool inviteAllContacts);
+
+    /**
      * Whether the daemon permits the local account to perform a swarm action
      * @param conversationId
      * @param action

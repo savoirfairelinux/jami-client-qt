@@ -58,6 +58,7 @@ class CurrentConversation final : public QObject
     QML_PROPERTY(bool, allMessagesLoaded)
     QML_PROPERTY(QString, modeString)
     QML_PROPERTY(bool, isFeedMode)
+    QML_PROPERTY(bool, feedInviteAllContacts)
     QML_PROPERTY(QVariantList, activeCalls)
     QML_PROPERTY(QStringList, errors)
     QML_PROPERTY(QStringList, backendErrors)
@@ -92,6 +93,7 @@ public:
     Q_INVOKABLE QString getPreference(const QString& key) const;
     Q_INVOKABLE MapStringString getPreferences() const;
     Q_INVOKABLE void setInfo(const QString& key, const QString& value);
+    Q_INVOKABLE void setFeedAudience(bool inviteAllContacts);
     CurrentConversationMembers* uris() const;
 
 Q_SIGNALS:
