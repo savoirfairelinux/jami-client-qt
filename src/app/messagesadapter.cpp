@@ -799,11 +799,21 @@ MessagesAdapter::removeContact(const QString& convUid, bool banContact)
 {
     auto& accInfo = lrcInstance_->getCurrentAccountInfo();
 
+    // The conversation may already be gone (e.g. removed concurrently), in which
+    // case there are no peers to look up.
+    const auto peers = accInfo.conversationModel->peersForConversation(convUid);
+    if (peers.isEmpty()) {
+        qWarning() << "removeContact: no peer found for conversation" << convUid;
+        return;
+    }
+    const auto contactUri = peers.first();
+    if (contactUri.isEmpty())
+        return;
+
     // remove the uri from the default moderators list
     // TODO: seems like this should be done in libringclient
     QStringList list = lrcInstance_->accountModel().getDefaultModerators(accInfo.id);
-    const auto contactUri = accInfo.conversationModel->peersForConversation(convUid).at(0);
-    if (!contactUri.isEmpty() && list.contains(contactUri)) {
+    if (list.contains(contactUri)) {
         lrcInstance_->accountModel().setDefaultModerator(accInfo.id, contactUri, false);
     }
 
