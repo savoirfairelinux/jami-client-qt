@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b337a3c8_c1a71e13",
+        "filename": "src/app/currentconversationmembers.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-26T16:26:44Z",
+      "side": 1,
+      "message": "[warning] Line 49: 🟡 `members_ \u003d members + pendingInvitees` can display duplicate entries when a URI is present in both lists (e.g., subscription state races). Filter `pendingInvitees` against existing `members` before concatenation so each URI appears once with the authoritative role.",
+      "revId": "73b464f807808738eef75de99b4e6602c8080e85",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5c9ef483_03a70305",
+        "filename": "src/core/conversationmodel.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 1149,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-26T16:26:44Z",
+      "side": 1,
+      "message": "[error] Line 1149: 🔴 `pendingFeedInvitees()` unconditionally appends `invitation[\"uri\"]`; missing/empty keys will create blank member rows. Validate the map entry (`contains(\"uri\")` + non-empty) before appending, and either enforce invite permission here (as documented) or relax the API comment to match behavior.",
+      "revId": "73b464f807808738eef75de99b4e6602c8080e85",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
