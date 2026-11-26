@@ -32,7 +32,9 @@ BaseModalDialog {
 
     titleText: JamiStrings.documents
     title: titleText
-    implicitWidth: Math.min(400, parent ? Math.max(0, parent.width - 64) : 400)
+    implicitWidth: parent ? Math.min(720, Math.max(0, parent.width - 64)) : 720
+    height: parent ? Math.min(implicitHeight, parent.height * 0.7, Math.max(0, parent.height - 64))
+                   : implicitHeight
 
     onAboutToShow: {
         loading = true;
@@ -59,7 +61,7 @@ BaseModalDialog {
             root.loading = false;
         }
         function onDocumentUpdateIndicatorChanged() {
-            documentsList.updateRevision++;
+            documentsGrid.updateRevision++;
         }
     }
 
@@ -68,12 +70,6 @@ BaseModalDialog {
         appWindow.openCollabEditor(document.conversationId, document.documentId,
                                    document.name || JamiStrings.untitledDocument,
                                    document.conversationTitle || document.conversationId, document.author);
-    }
-
-    function goToConversation(conversationId) {
-        close();
-        appWindow.viewCoordinator?.dismiss("SettingsView");
-        LRCInstance.selectConversation(conversationId, CurrentAccount.id);
     }
 
     contentItem: ColumnLayout {
@@ -90,64 +86,93 @@ BaseModalDialog {
             textField.Accessible.description: ""
         }
 
-        ListView {
-            id: documentsList
-            objectName: "documentsList"
+        GridView {
+            id: documentsGrid
+            objectName: "documentsGrid"
 
             property int updateRevision: 0
+            readonly property int columns: Math.max(1, Math.floor(width / 154))
 
             Layout.fillWidth: true
-            Layout.preferredHeight: Math.min(contentHeight, 360)
+            Layout.fillHeight: true
+
             model: {
                 const query = searchBar.text.trim().toLocaleLowerCase();
                 return query ? root.documents.filter(document =>
                     (document.name || JamiStrings.untitledDocument).toLocaleLowerCase().includes(query)
                     || (document.conversationTitle || document.conversationId).toLocaleLowerCase().includes(query)) : root.documents;
             }
-            onModelChanged: currentIndex = -1
+            onModelChanged: {
+                currentIndex = -1;
+                positionViewAtBeginning();
+            }
+
+            cellWidth: width / columns
+            cellHeight: cellWidth
+            implicitHeight: count ? Math.ceil(count / columns) * cellHeight : (headerItem?.implicitHeight ?? 0)
             clip: true
-            keyNavigationEnabled: true
+            boundsBehavior: Flickable.StopAtBounds
+            maximumFlickVelocity: 1024
             activeFocusOnTab: true
+            keyNavigationWraps: false
+            keyNavigationEnabled: true
+            Accessible.name: JamiStrings.documents
 
             Keys.onReturnPressed: if (currentItem) root.openDocument(model[currentIndex])
             Keys.onEnterPressed: if (currentItem) root.openDocument(model[currentIndex])
-
-            ScrollBar.vertical: ScrollBar {}
-
-            header: root.loading ? loadingState : (count === 0 ? emptyState : null)
-
-            Component {
-                id: loadingState
-
-                ColumnLayout {
-                    width: ListView.view.width
-
-                    BusyIndicator {
-                        Layout.alignment: Qt.AlignHCenter
-                    }
-
-                    Label {
-                        Layout.alignment: Qt.AlignHCenter
-                        text: JamiStrings.loadingDocuments
-                        color: JamiTheme.textColor
-                    }
+            Keys.onPressed: event => {
+                if (currentIndex < 0 && count > 0
+                        && [Qt.Key_Left, Qt.Key_Right, Qt.Key_Up, Qt.Key_Down].includes(event.key)) {
+                    currentIndex = 0;
+                    event.accepted = true;
                 }
             }
 
-            Component {
-                id: emptyState
+            ScrollBar.vertical: JamiScrollBar {
+                attachedFlickableMoving: documentsGrid.moving
+                z: 2
+            }
 
-                Label {
-                    width: ListView.view.width
-                    text: root.documents.length ? JamiStrings.noMatchingDocuments : JamiStrings.noEditableDocuments
-                    color: JamiTheme.textColor
-                    wrapMode: Text.WordWrap
+            ScrollFadeGradient {
+                parent: documentsGrid
+                flickable: documentsGrid
+                atTop: true
+            }
+
+            ScrollFadeGradient {
+                parent: documentsGrid
+                flickable: documentsGrid
+            }
+
+            header: root.loading || count === 0 ? statusState : null
+
+            Component {
+                id: statusState
+
+                ColumnLayout {
+                    width: documentsGrid.width
+
+                    BusyIndicator {
+                        Layout.alignment: Qt.AlignHCenter
+                        visible: root.loading
+                        running: visible
+                    }
+
+                    Label {
+                        Layout.fillWidth: true
+                        horizontalAlignment: Text.AlignHCenter
+                        text: root.loading ? JamiStrings.loadingDocuments
+                            : root.documents.length ? JamiStrings.noMatchingDocuments : JamiStrings.noEditableDocuments
+                        color: JamiTheme.textColor
+                        wrapMode: Text.WordWrap
+                    }
                 }
             }
 
             delegate: ItemDelegate {
-                id: documentDelegate
+                id: tile
 
+                required property int index
                 required property var modelData
                 readonly property string conversationTitle: modelData.conversationTitle || modelData.conversationId
                 readonly property string authorUri: modelData.author
@@ -155,121 +180,155 @@ BaseModalDialog {
                 readonly property string authorName: isOwnDocument ? CurrentAccount.bestName
                                                                     : (authorUri ? UtilsAdapter.getBestNameForUri(CurrentAccount.id, authorUri) || authorUri : "")
                 readonly property bool hasUpdate: {
-                    documentsList.updateRevision;
+                    documentsGrid.updateRevision;
                     return CollaborativeAdapter.hasUnreadDocumentUpdateForDocument(modelData.conversationId, modelData.documentId);
                 }
-
-                width: ListView.view.width
-                padding: 4
-                rightPadding: Math.max(padding, background.radius - JamiTheme.iconButtonMedium / 2)
-                highlighted: ListView.isCurrentItem
+                readonly property real radius: JamiTheme.messageBubbleRadius
+                width: Math.max(0, documentsGrid.cellWidth - 8)
+                height: Math.max(0, documentsGrid.cellHeight - 8)
+                padding: 0
+                focusPolicy: Qt.NoFocus
+                hoverEnabled: true
+                highlighted: GridView.isCurrentItem
                 text: modelData.name || JamiStrings.untitledDocument
                 Accessible.description: {
                     const details = authorName ? authorName + ", " + conversationTitle : conversationTitle;
                     return hasUpdate ? details + ". " + JamiStrings.unreadDocumentUpdate : details;
                 }
 
-                contentItem: RowLayout {
-                    spacing: 4
+                onClicked: {
+                    documentsGrid.currentIndex = index;
+                    root.openDocument(modelData);
+                }
 
+                contentItem: Item {
                     IconImage {
-                        Layout.alignment: Qt.AlignVCenter
-                        Layout.leftMargin: 6
-                        Layout.topMargin: 6
-                        Layout.bottomMargin: 6
-                        Layout.preferredWidth: JamiTheme.iconButtonMedium
-                        Layout.preferredHeight: JamiTheme.iconButtonMedium
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        anchors.verticalCenter: parent.verticalCenter
+                        anchors.verticalCenterOffset: -banner.height / 2
+                        width: JamiTheme.iconButtonLarge
+                        height: JamiTheme.iconButtonLarge
 
                         source: JamiResources.description_24dp_svg
-                        sourceSize.width: JamiTheme.iconButtonMedium
-                        sourceSize.height: JamiTheme.iconButtonMedium
+                        sourceSize.width: width
+                        sourceSize.height: height
                         color: JamiTheme.textColor
+                    }
+
+                    Rectangle {
+                        id: banner
+
+                        anchors.left: parent.left
+                        anchors.right: parent.right
+                        anchors.bottom: parent.bottom
+
+                        height: bannerContent.implicitHeight + 16
+
+                        bottomLeftRadius: tile.radius
+                        bottomRightRadius: tile.radius
+
+                        color: JamiTheme.transparentColor
+
+                        Column {
+                            id: bannerContent
+
+                            anchors.left: parent.left
+                            anchors.right: parent.right
+                            anchors.verticalCenter: parent.verticalCenter
+                            anchors.leftMargin: 10
+                            anchors.rightMargin: 10
+
+                            spacing: 2
+
+                            RowLayout {
+                                width: parent.width
+
+                                spacing: 4
+
+                                IconImage {
+                                    Layout.preferredWidth: JamiTheme.iconButtonSmall
+                                    Layout.preferredHeight: JamiTheme.iconButtonSmall
+
+                                    source: JamiResources.description_24dp_svg
+                                    sourceSize.width: JamiTheme.iconButtonSmall
+                                    sourceSize.height: JamiTheme.iconButtonSmall
+                                    color: JamiTheme.textColor
+                                }
+
+                                Rectangle {
+                                    Layout.preferredWidth: JamiTheme.redDotIndicatorSize
+                                    Layout.preferredHeight: JamiTheme.redDotIndicatorSize
+
+                                    radius: width / 2
+                                    color: JamiTheme.redDotIndicatorColor
+                                    visible: tile.hasUpdate
+                                }
+
+                                Text {
+                                    Layout.fillWidth: true
+
+                                    text: tile.modelData.storedLocally ? tile.text
+                                                                       : JamiStrings.documentNotOnThisDevice.arg(tile.text)
+                                    textFormat: Text.PlainText
+                                    color: JamiTheme.textColor
+                                    elide: Text.ElideRight
+
+                                    font.pixelSize: JamiTheme.sharedServicesDelegateTitlePixelSize
+                                }
+                            }
+
+                            RowLayout {
+                                width: parent.width
+
+                                spacing: 4
+
+                                visible: tile.authorName.length > 0
+
+                                Avatar {
+                                    Layout.preferredWidth: JamiTheme.iconButtonSmall
+                                    Layout.preferredHeight: JamiTheme.iconButtonSmall
+
+                                    mode: tile.isOwnDocument ? Avatar.Mode.Account : Avatar.Mode.Contact
+                                    imageId: tile.isOwnDocument ? CurrentAccount.id : tile.authorUri
+                                    showPresenceIndicator: false
+                                }
+
+                                Text {
+                                    Layout.fillWidth: true
+
+                                    text: tile.authorName
+                                    textFormat: Text.PlainText
+                                    color: JamiTheme.textColor
+                                    elide: Text.ElideRight
+
+                                    font.pixelSize: JamiTheme.sharedServicesDelegateDescriptionPixelSize
+                                }
+                            }
+                        }
 
                         Rectangle {
                             anchors.top: parent.top
+                            anchors.left: parent.left
                             anchors.right: parent.right
-                            anchors.topMargin: JamiTheme.redDotIndicatorMargin / 2
-                            anchors.rightMargin: JamiTheme.redDotIndicatorMargin / 2
-
-                            width: JamiTheme.redDotIndicatorSize
-                            height: width
-                            radius: width / 2
-                            color: JamiTheme.redDotIndicatorColor
-                            visible: documentDelegate.hasUpdate
+                            height: 1
+                            color: JamiTheme.grey_
                         }
-                    }
-
-                    Column {
-                        Layout.fillWidth: true
-                        Layout.alignment: Qt.AlignVCenter
-
-                        Text {
-                            width: parent.width
-                            text: documentDelegate.modelData.storedLocally ? documentDelegate.text
-                                                                           : JamiStrings.documentNotOnThisDevice.arg(documentDelegate.text)
-                            textFormat: Text.PlainText
-                            color: JamiTheme.textColor
-                            elide: Text.ElideRight
-                            font.pixelSize: JamiTheme.sharedServicesDelegateTitlePixelSize
-                        }
-
-                        RowLayout {
-                            width: parent.width
-                            spacing: 4
-                            visible: documentDelegate.authorName.length > 0
-
-                            Avatar {
-                                Layout.preferredWidth: JamiTheme.iconButtonSmall
-                                Layout.preferredHeight: JamiTheme.iconButtonSmall
-                                mode: documentDelegate.isOwnDocument ? Avatar.Mode.Account : Avatar.Mode.Contact
-                                imageId: documentDelegate.isOwnDocument ? CurrentAccount.id : documentDelegate.authorUri
-                                showPresenceIndicator: false
-                            }
-
-                            Text {
-                                Layout.fillWidth: true
-                                text: documentDelegate.authorName
-                                textFormat: Text.PlainText
-                                color: JamiTheme.textColor
-                                elide: Text.ElideRight
-                                font.pixelSize: JamiTheme.sharedServicesDelegateDescriptionPixelSize
-                                font.italic: true
-                            }
-                        }
-                    }
-
-                    NewIconButton {
-                        id: conversationButton
-                        objectName: "documentConversationButton"
-
-                        Layout.alignment: Qt.AlignVCenter
-                        iconSize: JamiTheme.iconButtonMedium
-                        iconSource: JamiResources.chat_24dp_svg
-                        toolTipText: JamiStrings.goToConversation
-
-                        background.enabled: false
-
-                        Accessible.description: documentDelegate.conversationTitle
-
-                        Keys.onReturnPressed: conversationButton.clicked()
-                        Keys.onEnterPressed: conversationButton.clicked()
-                        onClicked: root.goToConversation(documentDelegate.modelData.conversationId)
                     }
                 }
 
                 background: Rectangle {
-                    radius: height / 2
-                    color: documentDelegate.hovered || documentDelegate.activeFocus || documentDelegate.highlighted
-                           ? JamiTheme.smartListHoveredColor : JamiTheme.globalIslandColor
+                    radius: tile.radius
+                    color: JamiTheme.globalBackgroundColor
 
-                    Behavior on color {
+                    border.width: 1
+                    border.color: tile.hovered ? JamiTheme.tintedBlue : JamiTheme.grey_
+
+                    Behavior on border.color {
                         ColorAnimation {
                             duration: JamiTheme.shortFadeDuration
                         }
                     }
                 }
-
-                onClicked: root.openDocument(modelData)
             }
         }
     }

@@ -64,12 +64,14 @@ TestWrapper {
             property string secondDocument
 
             function cleanup() {
+                documentsDialog.close();
                 if (firstConversation)
                     LRCInstance.selectConversation(firstConversation, CurrentAccount.id);
                 if (firstDocument)
                     CollaborativeAdapter.removeDocument(CurrentAccount.id, firstConversation, firstDocument);
                 if (secondConversation)
                     MessagesAdapter.removeConversation(secondConversation);
+                firstConversation = secondConversation = firstDocument = secondDocument = "";
             }
 
             AllDocumentDialog {
@@ -77,7 +79,7 @@ TestWrapper {
                 parent: wrapper
             }
 
-            function test_listsSearchesAndOpensConversation() {
+            function test_listsAndSearchesDocuments() {
                 firstConversation = CurrentConversation.id;
                 secondConversation = ConversationsAdapter.createSwarm("Other documents", "", "", []);
                 verify(secondConversation.length > 0 && secondConversation !== firstConversation);
@@ -91,7 +93,7 @@ TestWrapper {
                 });
                 documentsDialog.open();
                 tryCompare(documentsDialog, "loading", false);
-                const list = findChild(documentsDialog.contentItem, "documentsList");
+                const list = findChild(documentsDialog.contentItem, "documentsGrid");
                 const documents = list.model;
                 const second = documents.find(doc => doc.documentId === secondDocument);
                 compare(documents.find(doc => doc.documentId === firstDocument).conversationId, firstConversation);
@@ -103,13 +105,6 @@ TestWrapper {
                 findChild(documentsDialog.contentItem, "documentsSearch").text = "other DOCUMENTS ";
                 compare(list.count, 1);
                 compare(list.model[0].documentId, secondDocument);
-
-                tryVerify(() => list.itemAtIndex(0) !== null);
-                const button = findChild(list.itemAtIndex(0), "documentConversationButton");
-                verify(waitForRendering(button));
-                mouseClick(button);
-                tryCompare(documentsDialog, "visible", false);
-                tryCompare(CurrentConversation, "id", secondConversation);
             }
         }
 
