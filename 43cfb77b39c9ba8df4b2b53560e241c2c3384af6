@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be69e35a_067ac35c",
+        "filename": "extras/scripts/install-deps-windows.ps1",
+        "patchSetId": 3
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-26T19:53:28Z",
+      "side": 1,
+      "message": "[error] Line 91: 🔴 The Visual Studio presence check is too weak: it only requires `Microsoft.VisualStudio.Component.VC.Tools.x86.x64`, then returns early. A host with C++ tools but without ATL and/or SDK 10.0.26100.0 will be treated as fully configured, but later native builds can fail due to missing prerequisites. Update the `vswhere` check to require all mandatory components (at least VC.Tools.x86.x64, VC.ATL, and Windows11SDK.26100), or run a modify install when any required component is missing.",
+      "revId": "43cfb77b39c9ba8df4b2b53560e241c2c3384af6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "63188128_9ece8369",
+        "filename": "extras/scripts/install-deps-windows.ps1",
+        "patchSetId": 3
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-26T19:53:28Z",
+      "side": 1,
+      "message": "[warning] Line 141: 🟡 The `.NET` check only verifies that `dotnet` exists on `PATH`; it does not verify an SDK is installed. Systems with only the runtime will skip installation here, but MSI packaging later needs the SDK and will fail. Check `dotnet --list-sdks` (or equivalent) before deciding to skip the SDK install.",
+      "revId": "43cfb77b39c9ba8df4b2b53560e241c2c3384af6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
