@@ -18,6 +18,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "79f009ff_fc8bb414",
+        "filename": "extras/build/docker/qt-6.12.0-msvc2022.lock",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-11-26T20:38:01Z",
+      "side": 1,
+      "message": "The lock now lives in extras/scripts/, and its parser (install-deps-windows.ps1) skips blank and \u0027#\u0027 lines; the file already starts with comment lines.",
+      "parentUuid": "4c0b0789_854e6eb9",
+      "revId": "55e4bcc42d05e4e8eedb402c2a3943c645415627",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8af3d4fe_f102370f",
@@ -31,6 +49,24 @@
       "writtenOn": "2026-11-21T21:20:22Z",
       "side": 1,
       "message": "[warning] Line 34: 🟡 `main(sys.argv[1])` assumes a positional argument and will raise `IndexError` if invoked incorrectly, producing an unhelpful traceback in CI. Add explicit argument validation (or `argparse`) and exit with a clear usage/error message.",
+      "revId": "55e4bcc42d05e4e8eedb402c2a3943c645415627",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a4304c85_2a7fc096",
+        "filename": "extras/build/docker/smoke-test-msvc.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-11-26T20:38:01Z",
+      "side": 1,
+      "message": "Removed since PS2; startup smoke checks are not run in CI.",
+      "parentUuid": "8af3d4fe_f102370f",
       "revId": "55e4bcc42d05e4e8eedb402c2a3943c645415627",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
