@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7633a6c5_2fb7e41d",
+        "filename": "src/app/videoprovider.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-26T08:47:30Z",
+      "side": 1,
+      "message": "[error] Line 168: 🔴 `releasePendingFrame()` is called **after** the null-`avframe` early return. If a previous direct-render request left `pendingFrame_` set (and locks held), a subsequent null-buffer callback returns here without releasing those locks, potentially leaving `renderersMutex_`/`frameMutex` locked indefinitely on that thread. Move `releasePendingFrame()` before the null check (or call it in the null branch) so stale locks are always released.",
+      "revId": "861753107a87ca370684e5be94d0287ed0f62cc1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d3f2d7ae_cfdac3a5",
+        "filename": "src/app/videoprovider.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-26T08:47:30Z",
+      "side": 1,
+      "message": "[warning] Line 76: 🟡 `pendingFrame_` is declared `static thread_local`, so it is shared by all `VideoProvider` instances on the same thread. If more than one instance exists, one instance may release or assume ownership of another instance’s pending frame/locks, which is undefined behavior. Track pending state per-instance-per-thread (e.g., thread-local map keyed by `this`, or store both owner pointer and frame pointer and validate owner before releasing).",
+      "revId": "861753107a87ca370684e5be94d0287ed0f62cc1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
