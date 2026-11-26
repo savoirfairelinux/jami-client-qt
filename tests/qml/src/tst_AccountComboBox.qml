@@ -105,6 +105,30 @@ TestWrapper {
                 findChild(documentsDialog.contentItem, "documentsSearch").text = "other DOCUMENTS ";
                 compare(list.count, 1);
                 compare(list.model[0].documentId, secondDocument);
+
+                const menu = findChild(documentsDialog, "documentMenu");
+                const tile = list.itemAtIndex(0);
+                mouseClick(tile, tile.width / 2, tile.height / 2, Qt.RightButton);
+                tryCompare(menu, "opened", true);
+                findChild(menu, "documentGoToConversation").triggered();
+                tryCompare(CurrentConversation, "id", secondConversation);
+                tryCompare(documentsDialog, "visible", false);
+            }
+
+            function test_moreButtonOpensMenu() {
+                firstConversation = CurrentConversation.id;
+                secondConversation = ConversationsAdapter.createSwarm("Menu documents", "", "", []);
+                secondDocument = CollaborativeAdapter.createDocument(secondConversation, "Menu");
+                verify(secondDocument.length > 0);
+                documentsDialog.open();
+                tryCompare(documentsDialog, "loading", false);
+                const list = findChild(documentsDialog.contentItem, "documentsGrid");
+                const tile = list.itemAtIndex(list.model.findIndex(doc => doc.documentId === secondDocument));
+                const menu = findChild(documentsDialog, "documentMenu");
+                mouseClick(findChild(tile, "documentMoreButton"));
+                tryCompare(menu, "opened", true);
+                compare(menu.document.documentId, secondDocument);
+                menu.close();
             }
 
             function previewOf(documentId) {
@@ -137,6 +161,38 @@ TestWrapper {
                 tryCompare(documentsDialog, "loading", false);
                 tryVerify(() => previewOf(secondDocument)?.visible === true);
                 compare(previewOf(secondDocument).children[0].text, "Seen from afar");
+            }
+
+            function removeFromMenu(documentId, itemName) {
+                const list = findChild(documentsDialog.contentItem, "documentsGrid");
+                const tile = list.itemAtIndex(list.model.findIndex(doc => doc.documentId === documentId));
+                const menu = findChild(documentsDialog, "documentMenu");
+                mouseClick(tile, tile.width / 2, tile.height / 2, Qt.RightButton);
+                tryCompare(menu, "opened", true);
+                const item = findChild(menu, itemName);
+                verify(item.visible);
+                item.triggered();
+                const confirm = findChild(documentsDialog, "documentRemoveDialog");
+                tryCompare(confirm, "opened", true);
+                confirm.button1.clicked();
+                tryCompare(confirm, "visible", false);
+                return list;
+            }
+
+            function test_removesDocumentsFromMenu() {
+                firstConversation = CurrentConversation.id;
+                secondConversation = ConversationsAdapter.createSwarm("Removed documents", "", "", []);
+                verify(secondConversation.length > 0);
+                secondDocument = CollaborativeAdapter.createDocument(secondConversation, "Doomed");
+                verify(secondDocument.length > 0);
+                documentsDialog.open();
+                tryCompare(documentsDialog, "loading", false);
+
+                let list = removeFromMenu(secondDocument, "documentRemoveFromDevice");
+                tryVerify(() => list.model.find(doc => doc.documentId === secondDocument)?.storedLocally === false);
+
+                list = removeFromMenu(secondDocument, "documentRemove");
+                tryVerify(() => !list.model.some(doc => doc.documentId === secondDocument));
             }
         }
 

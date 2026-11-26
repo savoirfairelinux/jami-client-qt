@@ -22,6 +22,7 @@ import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import net.jami.Models 1.1
 import "../../commoncomponents"
+import "../../commoncomponents/contextmenu"
 
 BaseModalDialog {
     id: root
@@ -84,6 +85,86 @@ BaseModalDialog {
                                    document.conversationTitle || document.conversationId, document.author);
     }
 
+    function goToConversation(conversationId) {
+        close();
+        appWindow.viewCoordinator?.dismiss("SettingsView");
+        LRCInstance.selectConversation(conversationId, CurrentAccount.id);
+    }
+
+    BaseContextMenu {
+        id: documentMenu
+        objectName: "documentMenu"
+
+        property var document: null
+
+        // The menu's parent is the whole grid, so outside-parent presses would never close it.
+        closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside
+
+        GeneralMenuItem {
+            objectName: "documentGoToConversation"
+            parentMenu: documentMenu
+            text: JamiStrings.goToConversation
+            itemName: text
+            iconSource: JamiResources.chat_24dp_svg
+            onTriggered: root.goToConversation(documentMenu.document.conversationId)
+        }
+
+        GeneralMenuItem {
+            objectName: "documentRemoveFromDevice"
+            parentMenu: documentMenu
+            visible: documentMenu.document !== null && documentMenu.document.storedLocally
+            height: visible ? JamiTheme.generalMenuItemHeight : 0
+            text: JamiStrings.removeDocumentFromDevice
+            itemName: text
+            iconSource: JamiResources.delete_24dp_svg
+            onTriggered: removeDialog.ask(documentMenu.document, false)
+        }
+
+        GeneralMenuItem {
+            objectName: "documentRemove"
+            parentMenu: documentMenu
+            visible: documentMenu.document !== null && documentMenu.document.author === CurrentAccount.uri
+            height: visible ? JamiTheme.generalMenuItemHeight : 0
+            text: JamiStrings.removeDocument
+            itemName: text
+            iconSource: JamiResources.delete_forever_24dp_svg
+            onTriggered: removeDialog.ask(documentMenu.document, true)
+        }
+    }
+
+    ConfirmDialog {
+        id: removeDialog
+        objectName: "documentRemoveDialog"
+
+        property var document: null
+        property bool forEveryone: false
+
+        function ask(document, forEveryone) {
+            documentMenu.close();
+            removeDialog.document = document;
+            removeDialog.forEveryone = forEveryone;
+            open();
+        }
+
+        readonly property string documentName: document ? document.name || JamiStrings.untitledDocument : ""
+        titleText: forEveryone ? JamiStrings.removeDocument : JamiStrings.removeDocumentFromDevice
+        textLabel: (forEveryone ? JamiStrings.confirmRemoveDocument : JamiStrings.confirmRemoveDocumentFromDevice).arg(documentName)
+        confirmLabel: JamiStrings.optionRemove
+        onAccepted: {
+            const doc = document;
+            const key = doc.conversationId + "/" + doc.documentId;
+            const same = other => other.conversationId === doc.conversationId && other.documentId === doc.documentId;
+            if (forEveryone) {
+                if (CollaborativeAdapter.removeDocument(CurrentAccount.id, doc.conversationId, doc.documentId))
+                    root.documents = root.documents.filter(other => !same(other));
+            } else if (CollaborativeAdapter.removeDocumentLocally(CurrentAccount.id, doc.conversationId, doc.documentId)) {
+                root.documents = root.documents.map(other => same(other) ? Object.assign({}, other, { "storedLocally": false }) : other);
+            }
+            delete root.previews[key];
+            root.previewsRevision++;
+        }
+    }
+
     contentItem: ColumnLayout {
         spacing: 8
 
@@ -133,6 +214,12 @@ BaseModalDialog {
             Keys.onReturnPressed: if (currentItem) root.openDocument(model[currentIndex])
             Keys.onEnterPressed: if (currentItem) root.openDocument(model[currentIndex])
             Keys.onPressed: event => {
+                if (event.key === Qt.Key_Menu || (event.key === Qt.Key_F10 && event.modifiers === Qt.ShiftModifier)) {
+                    if (currentItem)
+                        currentItem.openMenu(currentItem.width / 2, currentItem.height / 2);
+                    event.accepted = true;
+                    return;
+                }
                 if (currentIndex < 0 && count > 0
                         && [Qt.Key_Left, Qt.Key_Right, Qt.Key_Up, Qt.Key_Down].includes(event.key)) {
                     currentIndex = 0;
@@ -221,9 +308,20 @@ BaseModalDialog {
                     return hasUpdate ? details + ". " + JamiStrings.unreadDocumentUpdate : details;
                 }
 
+                function openMenu(x, y) {
+                    documentMenu.document = modelData;
+                    const point = mapToItem(documentsGrid, x, y);
+                    documentMenu.popup(documentsGrid, point.x, point.y);
+                }
+
                 onClicked: {
                     documentsGrid.currentIndex = index;
                     root.openDocument(modelData);
+                }
+
+                TapHandler {
+                    acceptedButtons: Qt.RightButton
+                    onTapped: point => tile.openMenu(point.position.x, point.position.y)
                 }
 
                 contentItem: Item {
@@ -275,10 +373,9 @@ BaseModalDialog {
                             id: bannerContent
 
                             anchors.left: parent.left
-                            anchors.right: parent.right
+                            anchors.right: moreButton.left
                             anchors.verticalCenter: parent.verticalCenter
                             anchors.leftMargin: 10
-                            anchors.rightMargin: 10
 
                             spacing: 2
 
@@ -345,6 +442,25 @@ BaseModalDialog {
 
                                     font.pixelSize: JamiTheme.sharedServicesDelegateDescriptionPixelSize
                                 }
+                            }
+                        }
+
+                        NewIconButton {
+                            id: moreButton
+                            objectName: "documentMoreButton"
+
+                            anchors.right: parent.right
+                            anchors.bottom: parent.bottom
+                            anchors.margins: 4
+
+                            iconSize: JamiTheme.iconButtonSmall
+                            iconSource: JamiResources.more_vert_24dp_svg
+                            toolTipText: JamiStrings.moreOptions
+                            background: null
+
+                            onClicked: {
+                                const point = mapToItem(tile, width / 2, height);
+                                tile.openMenu(point.x, point.y);
                             }
                         }
 
