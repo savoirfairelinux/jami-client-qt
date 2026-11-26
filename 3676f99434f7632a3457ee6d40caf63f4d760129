@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8f8b6b20_7737543e",
+        "filename": "src/app/mainview/components/AllDocumentDialog.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-26T19:41:38Z",
+      "side": 1,
+      "message": "[warning] Line 169: 🟡 `removeDialog.onAccepted` always runs `delete root.previews[key]` and increments `previewsRevision`, even when `CollaborativeAdapter.removeDocument*` returns `false`. That can desynchronize UI state from backend state after a failed removal. Move cache invalidation inside the successful branches (and keep state unchanged on failure, optionally surfacing an error).",
+      "revId": "3676f99434f7632a3457ee6d40caf63f4d760129",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
