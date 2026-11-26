@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "32652e28_a08d4d61",
+        "filename": "src/app/mainview/components/AllDocumentDialog.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-26T19:39:46Z",
+      "side": 1,
+      "message": "[warning] Line 260: 🟡 The tile border highlight now depends only on `tile.hovered`, so keyboard navigation (`GridView.isCurrentItem`) has no visible selection state. This is an accessibility/UX regression because Enter opens the current item but users can’t reliably see which item is selected without a mouse. Include `tile.highlighted` (and optionally `tile.activeFocus`) in the border/background highlight condition, e.g. `border.color: (tile.hovered || tile.highlighted) ? ...`.",
+      "revId": "c9bd8cb67929820b51606c75668fbd3b0882ce89",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
