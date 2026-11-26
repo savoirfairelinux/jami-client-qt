@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "132f27dd_7840f6b7",
+        "filename": "daemon",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-26T18:24:28Z",
+      "side": 1,
+      "message": "[warning] Line 1: 🟡 This patch updates the `daemon` submodule pointer without any explanation in the commit message or diff context. Please either split this into a dedicated change or document why this specific daemon revision is required for the `MessagesAdapter::removeContact` fix, so reviewers can validate scope and dependency impact.",
+      "revId": "b68e1745f1b06e9f98ceb032ab070876f511e66b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
