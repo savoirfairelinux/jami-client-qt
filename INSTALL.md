@@ -227,7 +227,8 @@ can use the Visual Studio solution in the **build** folder
 The container runs the same `build-windows.py`, in a Windows Server Core LTSC
 2025 image that `install-deps-windows.ps1` sets up with Visual Studio 2026
 Build Tools (MSVC v145), Windows SDK 10.0.26100.0 and Qt 6.12.0. Qt's
-`msvc2022_64` kit is binary-compatible with MSVC 2026. The host only needs
+`msvc2022_64` kit is binary-compatible with MSVC 2026. Qt WebEngine is the
+separately released 6.140.0 for that kit. The host only needs
 Git and Docker with **Windows containers**, disk space for the image and the
 dependency builds, and network access. If the `docker` command does not reach
 the Windows engine, set `DOCKER_HOST`, for example to
