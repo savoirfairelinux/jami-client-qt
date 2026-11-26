@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e4a275dd_09726852",
+        "filename": "src/app/mainview/components/AllDocumentDialog.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-26T19:40:47Z",
+      "side": 1,
+      "message": "[warning] Line 206: 🟡 The preview request is fire-once per tile (`undefined -\u003e null -\u003e final value`) with no retry path. If `requestDocumentPreview()` returns empty due to a transient race (for example, checkpoint not yet visible right after close), the cache stores `\"\"` and the dialog never re-fetches while open. Keep a distinct \u0027pending/failed\u0027 state and retry on empty-failure conditions (or add a bounded retry/backoff) so previews eventually appear.",
+      "revId": "e6f821696bd272900abbec00ca183189536acdc1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
