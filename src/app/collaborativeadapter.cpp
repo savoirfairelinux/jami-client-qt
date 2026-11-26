@@ -426,6 +426,29 @@ loadConversationDocuments(ConfigurationManagerInterface& config, const QString& 
     return result;
 }
 
+/// Read a document state handed back by the daemon as plain text, through a
+/// throwaway replica that never edits, so its id only has to be valid.
+QString
+snapshotText(const QByteArray& state)
+{
+    collab::YrsDocument snapshot {1};
+    snapshot.applyUpdate(collab::YrsDocument::Bytes(reinterpret_cast<const uint8_t*>(state.constData()),
+                                                    reinterpret_cast<const uint8_t*>(state.constData()) + state.size()),
+                         /*silent=*/true);
+    return QString::fromStdString(snapshot.text());
+}
+
+/// The start of a document's text, as much as a preview could ever show.
+QString
+previewText(QString text)
+{
+    constexpr qsizetype kPreviewLength = 2000;
+    text.truncate(kPreviewLength);
+    // Embeds stand for pictures a plain-text preview cannot draw.
+    text.remove(QChar(collab::YrsDocument::EMBED_PLACEHOLDER));
+    return text;
+}
+
 } // namespace
 
 QVariantList
@@ -489,6 +512,43 @@ CollaborativeAdapter::requestAllDocuments()
     return requestId;
 }
 
+void
+CollaborativeAdapter::requestDocumentPreview(const QString& convId, const QString& documentId)
+{
+    const auto accountId = lrcInstance_->get_currentAccountId();
+
+    // An open document is already in memory, unsaved edits included.
+    if (auto replica = findReplica(accountId, convId, documentId)) {
+        const auto preview = previewText(QString::fromStdString(replica->doc->text()));
+        QMetaObject::invokeMethod(
+            this,
+            [this, accountId, convId, documentId, preview] {
+                Q_EMIT documentPreviewLoaded(accountId, convId, documentId, preview);
+            },
+            Qt::QueuedConnection);
+        return;
+    }
+
+    // Otherwise the latest checkpoint is rebuilt from every update stored since
+    // the document was created, which is too slow for the UI thread.
+    auto* config = &ConfigurationManager::instance();
+    auto* watcher = new QFutureWatcher<QString>(this);
+    connect(watcher, &QFutureWatcher<QString>::finished, this, [this, watcher, accountId, convId, documentId] {
+        watcher->deleteLater();
+        Q_EMIT documentPreviewLoaded(accountId, convId, documentId, watcher->result());
+    });
+    watcher->setFuture(QtConcurrent::run([config, accountId, convId, documentId] {
+        const auto latest = config->getCollaborativeDocumentHistory(accountId, convId, documentId, 1);
+        if (latest.isEmpty())
+            return QString {};
+        const auto state = config->collaborativeDocumentStateAt(accountId,
+                                                                convId,
+                                                                documentId,
+                                                                latest.first().value(QStringLiteral("id")));
+        return state.isEmpty() ? QString {} : previewText(snapshotText(state));
+    }));
+}
+
 QVariantList
 CollaborativeAdapter::history(const QString& accountId, const QString& convId, const QString& documentId, int max)
 {
@@ -526,14 +586,7 @@ CollaborativeAdapter::textAt(const QString& accountId,
                                                                                      convId,
                                                                                      documentId,
                                                                                      commitId);
-    if (bytes.isEmpty())
-        return {};
-    // A throwaway replica that never edits, so its id only has to be valid.
-    collab::YrsDocument snapshot {1};
-    snapshot.applyUpdate(collab::YrsDocument::Bytes(reinterpret_cast<const uint8_t*>(bytes.constData()),
-                                                    reinterpret_cast<const uint8_t*>(bytes.constData()) + bytes.size()),
-                         /*silent=*/true);
-    return QString::fromStdString(snapshot.text());
+    return bytes.isEmpty() ? QString {} : snapshotText(bytes);
 }
 
 bool

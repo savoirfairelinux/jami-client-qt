@@ -102,6 +102,10 @@ public:
     Q_INVOKABLE QVariantList documents(const QString& convId);
     /// Fetch the active account's editable documents; returns the request ID.
     Q_INVOKABLE int requestAllDocuments();
+    /// Fetch the start of a document's text for a preview, from the open
+    /// replica if there is one, else from its latest checkpoint; answered by
+    /// documentPreviewLoaded, with empty text when there is nothing to show.
+    Q_INVOKABLE void requestDocumentPreview(const QString& convId, const QString& documentId);
     /// Checkpoints of a document, newest first. Each entry is a map:
     /// { id, author, device, timestamp, deltas }.
     Q_INVOKABLE QVariantList history(const QString& accountId,
@@ -167,6 +171,10 @@ public:
 
 Q_SIGNALS:
     void allDocumentsLoaded(int requestId, const QVariantList& documents);
+    void documentPreviewLoaded(const QString& accountId,
+                               const QString& convId,
+                               const QString& documentId,
+                               const QString& preview);
 
     // Every document signal names the account it belongs to. Editor windows are
     // top-level and outlive the selection made in the main window, and two local

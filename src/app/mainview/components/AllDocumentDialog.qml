@@ -29,6 +29,11 @@ BaseModalDialog {
     property bool loading: true
     property var documents: []
     property int documentsRequestId: 0
+    // Preview text by document, kept while the dialog is open so tiles the grid
+    // recycles while scrolling do not rebuild their document again. null while
+    // a request is in flight.
+    property var previews: ({})
+    property int previewsRevision: 0
 
     titleText: JamiStrings.documents
     title: titleText
@@ -40,6 +45,7 @@ BaseModalDialog {
         loading = true;
         searchBar.text = "";
         documents = [];
+        previews = {};
     }
     onOpened: documentsRequestId = CollaborativeAdapter.requestAllDocuments()
     onAboutToHide: documentsRequestId = 0
@@ -59,6 +65,12 @@ BaseModalDialog {
                 return;
             root.documents = documents;
             root.loading = false;
+        }
+        function onDocumentPreviewLoaded(accountId, convId, documentId, preview) {
+            if (accountId !== CurrentAccount.id)
+                return;
+            root.previews[convId + "/" + documentId] = preview;
+            root.previewsRevision++;
         }
         function onDocumentUpdateIndicatorChanged() {
             documentsGrid.updateRevision++;
@@ -184,6 +196,19 @@ BaseModalDialog {
                     return CollaborativeAdapter.hasUnreadDocumentUpdateForDocument(modelData.conversationId, modelData.documentId);
                 }
                 readonly property real radius: JamiTheme.messageBubbleRadius
+                readonly property string previewKey: modelData.conversationId + "/" + modelData.documentId
+                readonly property string preview: {
+                    root.previewsRevision;
+                    return root.previews[previewKey] || "";
+                }
+
+                Component.onCompleted: {
+                    if (root.previews[previewKey] === undefined) {
+                        root.previews[previewKey] = null;
+                        CollaborativeAdapter.requestDocumentPreview(modelData.conversationId, modelData.documentId);
+                    }
+                }
+
                 width: Math.max(0, documentsGrid.cellWidth - 8)
                 height: Math.max(0, documentsGrid.cellHeight - 8)
                 padding: 0
@@ -202,17 +227,34 @@ BaseModalDialog {
                 }
 
                 contentItem: Item {
-                    IconImage {
-                        anchors.horizontalCenter: parent.horizontalCenter
-                        anchors.verticalCenter: parent.verticalCenter
-                        anchors.verticalCenterOffset: -banner.height / 2
-                        width: JamiTheme.iconButtonLarge
-                        height: JamiTheme.iconButtonLarge
+                    // The page seen from afar: laid out at reading size, then
+                    // scaled down, so it wraps like the document itself.
+                    Item {
+                        id: previewArea
+                        objectName: "documentPreview"
 
-                        source: JamiResources.description_24dp_svg
-                        sourceSize.width: width
-                        sourceSize.height: height
-                        color: JamiTheme.textColor
+                        readonly property real zoom: 0.4
+
+                        anchors.left: parent.left
+                        anchors.right: parent.right
+                        anchors.top: parent.top
+                        anchors.bottom: banner.top
+                        anchors.margins: 12
+                        visible: tile.preview.length > 0
+                        clip: true
+
+                        Text {
+                            width: previewArea.width / previewArea.zoom
+                            transformOrigin: Item.TopLeft
+                            scale: previewArea.zoom
+
+                            text: tile.preview
+                            textFormat: Text.PlainText
+                            wrapMode: Text.Wrap
+                            renderType: Text.QtRendering
+                            color: JamiTheme.textColor
+                            font.pointSize: JamiTheme.textFontSize
+                        }
                     }
 
                     Rectangle {

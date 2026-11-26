@@ -106,6 +106,38 @@ TestWrapper {
                 compare(list.count, 1);
                 compare(list.model[0].documentId, secondDocument);
             }
+
+            function previewOf(documentId) {
+                const list = findChild(documentsDialog.contentItem, "documentsGrid");
+                const index = list.model.findIndex(doc => doc.documentId === documentId);
+                const tile = list.itemAtIndex(index);
+                return tile ? findChild(tile, "documentPreview") : null;
+            }
+
+            function test_previewsDocumentText() {
+                firstConversation = CurrentConversation.id;
+                secondConversation = ConversationsAdapter.createSwarm("Preview documents", "", "", []);
+                verify(secondConversation.length > 0);
+                secondDocument = CollaborativeAdapter.createDocument(secondConversation, "Preview");
+                verify(secondDocument.length > 0);
+                CollaborativeAdapter.openDocument(CurrentAccount.id, secondConversation, secondDocument);
+                CollaborativeAdapter.edit(CurrentAccount.id, secondConversation, secondDocument, 0, 0, "Seen from afar");
+
+                // While open, the preview comes from the live replica.
+                documentsDialog.open();
+                tryCompare(documentsDialog, "loading", false);
+                tryVerify(() => previewOf(secondDocument)?.visible === true);
+                compare(previewOf(secondDocument).children[0].text, "Seen from afar");
+                documentsDialog.close();
+                tryCompare(documentsDialog, "visible", false);
+
+                // Once closed, it is rebuilt from the checkpoint written on close.
+                CollaborativeAdapter.closeDocument(CurrentAccount.id, secondConversation, secondDocument);
+                documentsDialog.open();
+                tryCompare(documentsDialog, "loading", false);
+                tryVerify(() => previewOf(secondDocument)?.visible === true);
+                compare(previewOf(secondDocument).children[0].text, "Seen from afar");
+            }
         }
 
         TestCase {
