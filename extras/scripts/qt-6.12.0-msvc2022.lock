@@ -16,4 +16,5 @@ dfcad02224b71724e3314d0bc3ffc0b862dfa6e02bc4aadd39f1738f6c364c79 desktop/qt6_612
 328321e8879a3dc119775b4404d6e32ec2a361696e73f760540a732921507917 desktop/qt6_6120/qt6_6120_msvc2022_64/qt.qt6.6120.win64_msvc2022_64/6.12.0-0-202609280346qttranslations-Windows-Windows_11_24H2-MSVC2022-Windows-Windows_11_24H2-X86_64.7z
 067506b5424849133fb4291737da010ff336be91195fd6299f47096fbf413a50 desktop/qt6_6120/qt6_6120_msvc2022_64/qt.qt6.6120.win64_msvc2022_64/6.12.0-0-202609280346d3dcompiler_47-x64.7z
 edc94ad93e8bb6a97b27932fe01a71c37dd435690eeeff2d0085880e1eda8be6 desktop/qt6_6120/qt6_6120_msvc2022_64/qt.qt6.6120.win64_msvc2022_64/6.12.0-0-202609280346opengl32sw-64-mesa_11_2_2-signed_sha256.7z
-aa1a88db1fd4e2932731641d9b035a94637ea26d85343103c34d4e67fd7f442e extensions/qtwebengine/6120/msvc2022_64/extensions.qtwebengine.6120.win64_msvc2022_64/6.12.0-0-202607081027qtwebengine-Windows-Windows_11_24H2-MSVC2022-Windows-Windows_11_24H2-X86_64.7z
+# Since Qt 6.12, stable WebEngine releases are versioned separately.
+42cb94baf8f9d29a9e8f5710baab6ee036dc32d23053953257aac8fd9a22f39f extensions/qtwebengine/6120/61400/msvc2022_64/extensions.qtwebengine.6120.61400.win64_msvc2022_64/6.12.0-0-202611110526qtwebengine-Windows-Windows_11_24H2-MSVC2022-Windows-Windows_11_24H2-X86_64.7z
