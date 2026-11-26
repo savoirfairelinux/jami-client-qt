@@ -250,6 +250,15 @@ CurrentConversation::setInfo(const QString& key, const QString& value)
 }
 
 void
+CurrentConversation::setFeedAudience(bool inviteAllContacts)
+{
+    auto accountId = lrcInstance_->get_currentAccountId();
+    const auto& accInfo = lrcInstance_->accountModel().getAccountInfo(accountId);
+    if (!accInfo.conversationModel->setFeedInviteAllContacts(id_, inviteAllContacts))
+        Q_EMIT feedInviteAllContactsChanged();
+}
+
+void
 CurrentConversation::onConversationUpdated(const QString& convId)
 {
     if (convId != id_)
@@ -312,6 +321,7 @@ CurrentConversation::updateProfile(const QString& convId)
             } else {
                 set_joinedTimestamp(0);
             }
+            set_feedInviteAllContacts(convInfo.infos.value("inviteAllContacts") == "true");
         }
     } catch (...) {
     }

@@ -1121,6 +1121,12 @@ public Q_SLOTS: // METHODS
     {
         return convertVecMap(libjami::getFeedInvitations(accountId.toStdString(), conversationId.toStdString()));
     }
+    bool setFeedInviteAllContacts(const QString& accountId, const QString& conversationId, bool inviteAllContacts)
+    {
+        return libjami::setFeedInviteAllContacts(accountId.toStdString(),
+                                                 conversationId.toStdString(),
+                                                 inviteAllContacts);
+    }
     VectorMapStringString getCollaborativeDocuments(const QString& accountId, const QString& conversationId)
     {
         return convertVecMap(libjami::getCollaborativeDocuments(accountId.toStdString(), conversationId.toStdString()));

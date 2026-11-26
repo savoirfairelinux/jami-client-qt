@@ -390,6 +390,7 @@ Item {
 
             TabBar {
                 id: swarmDetailsPanelTabBar
+                objectName: "swarmDetailsPanelTabBar"
 
                 Layout.fillWidth: true
                 Layout.preferredHeight: JamiTheme.tabBarHeight
@@ -429,8 +430,54 @@ Item {
 
                 visible: innerRect.currentDetailsPage === "members"
 
+                ColumnLayout {
+                    Layout.fillWidth: true
+
+                    spacing: 4
+
+                    visible: CurrentConversation.isFeedMode && CurrentConversation.canAddMember
+
+                    Text {
+                        Layout.fillWidth: true
+
+                        text: JamiStrings.whoCanSubscribe
+                        color: JamiTheme.textColor
+                        elide: Text.ElideRight
+                        font.pointSize: JamiTheme.smallFontSize
+                    }
+
+                    SettingParaCombobox {
+                        id: feedAudienceComboBox
+                        objectName: "feedAudienceComboBox"
+
+                        Layout.fillWidth: true
+
+                        tooltipText: JamiStrings.whoCanSubscribe
+                        model: [JamiStrings.allContacts, JamiStrings.selectContacts]
+                        currentIndex: CurrentConversation.feedInviteAllContacts ? 0 : 1
+
+                        onActivated: function (index) {
+                            CurrentConversation.setFeedAudience(index === 0);
+                            // Activation breaks the binding; restore it so the daemon state stays authoritative.
+                            currentIndex = Qt.binding(() => CurrentConversation.feedInviteAllContacts ? 0 : 1);
+                        }
+                    }
+
+                    Label {
+                        Layout.fillWidth: true
+
+                        visible: CurrentConversation.feedInviteAllContacts
+                        text: JamiStrings.addAllContactsDescription
+                        color: JamiTheme.faddedLastInteractionFontColor
+                        horizontalAlignment: Text.AlignLeft
+                        wrapMode: Text.WordWrap
+                        font.pointSize: JamiTheme.smallFontSize
+                    }
+                }
+
                 NewMaterialButton {
                     id: inviteMemberButton
+                    objectName: "inviteMemberButton"
 
                     Layout.fillWidth: true
 
@@ -439,6 +486,7 @@ Item {
                     text: JamiStrings.inviteMember
 
                     visible: !CurrentConversation.isCoreDialog && CurrentConversation.canAddMember
+                             && !(CurrentConversation.isFeedMode && CurrentConversation.feedInviteAllContacts)
 
                     onClicked: extrasPanel.openInviteMembersDialog(inviteMemberButton)
                 }
