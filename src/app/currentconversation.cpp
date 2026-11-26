@@ -106,7 +106,10 @@ CurrentConversation::updateData()
             for (const auto& banned : bannedUris)
                 uris.push_back(banned);
         }
-        membersModel_->setMembers(accountId, convId, uris);
+        QStringList pendingInvitees;
+        if (convInfo.mode == conversation::Mode::FEED && canAddMember_)
+            pendingInvitees = accInfo.conversationModel->pendingFeedInvitees(convId);
+        membersModel_->setMembers(accountId, convId, uris, pendingInvitees);
         set_isSwarm(convInfo.isSwarm());
         set_isLegacy(convInfo.isLegacy());
         set_isCoreDialog(convInfo.isCoreDialog());
