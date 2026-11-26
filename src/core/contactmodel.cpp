@@ -977,6 +977,8 @@ ContactModelPimpl::slotContactRemoved(const QString& accountId, const QString& c
 
         if (banned) {
             contact->isBanned = true;
+            // The daemon discards a banned contact's metadata without a metadata signal.
+            contact->tags.clear();
             // Update bannedContacts index
             bannedContacts.append(contact->profileInfo.uri);
         } else {
@@ -1031,7 +1033,9 @@ ContactModelPimpl::addToContacts(const QString& contactUri,
     if (type == profile::Type::JAMI) {
         ConfigurationManager::instance().lookupAddress(linked.owner.id, "", contactUri);
         PresenceManager::instance().subscribeBuddy(linked.owner.id, contactUri, !banned);
-        contactInfo.tags = loadContactTags(contactUri);
+        // Banned contacts have no metadata.
+        if (!banned)
+            contactInfo.tags = loadContactTags(contactUri);
     } else {
         contactInfo.profileInfo.alias = displayName;
     }
