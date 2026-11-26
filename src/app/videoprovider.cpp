@@ -21,7 +21,11 @@
 #include <QReadLocker>
 #include <QWriteLocker>
 
+#include <utility>
+
 using namespace lrc::api;
+
+thread_local VideoProvider::FrameObject* VideoProvider::pendingFrame_ = nullptr;
 
 VideoProvider::VideoProvider(AVModel& avModel, QObject* parent)
     : QObject(parent)
@@ -163,6 +167,20 @@ VideoProvider::onRendererStarted(const QString& id, const QSize& size)
 void
 VideoProvider::onFrameBufferRequested(const QString& id, AVFrame* avframe)
 {
+    if (!avframe) {
+        qWarning() << Q_FUNC_INFO << "Invalid frame buffer for id:" << id;
+        return;
+    }
+
+    // By default, signal to the renderer that no buffer is available. The
+    // AVFrame may be reused from a previous request and still describe a
+    // stale buffer that must not be written to.
+    avframe->format = AV_PIX_FMT_NONE;
+
+    // A previous request on this thread was never followed by a frame update;
+    // release its locks before acquiring new ones.
+    releasePendingFrame();
+
     renderersMutex_.lockForRead();
 
     auto it = renderers_.find(id);
@@ -183,7 +201,6 @@ VideoProvider::onFrameBufferRequested(const QString& id, AVFrame* avframe)
         it->second.frameMutex.unlock();
         renderersMutex_.unlock();
         qWarning() << Q_FUNC_INFO << "Can't map QVideoFrame for id:" << id;
-        avframe->format = AV_PIX_FMT_NONE;
         return;
     }
 
@@ -198,29 +215,45 @@ VideoProvider::onFrameBufferRequested(const QString& id, AVFrame* avframe)
     avframe->height = videoFrame.height();
     avframe->data[0] = (uint8_t*) videoFrame.bits(0);
     avframe->linesize[0] = videoFrame.bytesPerLine(0);
+
+    // Locks are released by onFrameUpdated() on this same thread.
+    pendingFrame_ = &it->second;
+}
+
+void
+VideoProvider::releasePendingFrame()
+{
+    if (auto* fo = std::exchange(pendingFrame_, nullptr)) {
+        fo->videoFrame.unmap();
+        fo->frameMutex.unlock();
+        renderersMutex_.unlock();
+    }
 }
 
 void
 VideoProvider::onFrameUpdated(const QString& id)
 {
     if (avModel_.useDirectRenderer()) {
-        auto it = renderers_.find(id);
-        if (it == renderers_.end()) {
-            qWarning() << Q_FUNC_INFO << "Can't find renderer for id:" << id;
+        // Only a frame buffer successfully provided by onFrameBufferRequested()
+        // on this thread can be updated. renderersMutex_ is still held for read
+        // in that case, so the frame object can't have been removed meanwhile.
+        auto* fo = std::exchange(pendingFrame_, nullptr);
+        if (!fo) {
+            qWarning() << Q_FUNC_INFO << "No pending frame buffer for id:" << id;
             return;
         }
 
-        QVideoFrame& videoFrame = it->second.videoFrame;
+        QVideoFrame& videoFrame = fo->videoFrame;
         videoFrame.unmap();
-        it->second.frameMutex.unlock(); // locked by onFrameBufferRequested()
+        fo->frameMutex.unlock(); // locked by onFrameBufferRequested()
 
-        it->second.frameMutex.lockForRead();
-        it->second.subscribersMutex.lockForRead();
-        for (const auto& sink : std::as_const(it->second.subscribers)) {
+        fo->frameMutex.lockForRead();
+        fo->subscribersMutex.lockForRead();
+        for (const auto& sink : std::as_const(fo->subscribers)) {
             sink->setVideoFrame(videoFrame);
         }
-        it->second.subscribersMutex.unlock();
-        it->second.frameMutex.unlock();
+        fo->subscribersMutex.unlock();
+        fo->frameMutex.unlock();
 
         renderersMutex_.unlock(); // locked by onFrameBufferRequested()
     } else {

@@ -61,6 +61,7 @@ private Q_SLOTS:
 private:
     AVModel& avModel_;
     void copyUnaligned(QVideoFrame& dst, const video::Frame& src);
+    void releasePendingFrame();
 
     struct FrameObject
     {
@@ -72,4 +73,9 @@ private:
     };
     std::map<QString, FrameObject> renderers_;
     QReadWriteLock renderersMutex_;
+
+    // Frame object locked (renderersMutex_ for read, frameMutex for write) by
+    // onFrameBufferRequested on the calling thread, waiting to be released by
+    // the matching onFrameUpdated call on the same thread.
+    static thread_local FrameObject* pendingFrame_;
 };
