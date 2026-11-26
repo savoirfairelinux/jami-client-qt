@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e9e7fd70_688f40e6",
+        "filename": "src/app/currentconversation.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-26T16:27:40Z",
+      "side": 1,
+      "message": "[warning] Line 257: 🟡 The condition is inverted: `feedInviteAllContactsChanged()` is emitted when `setFeedInviteAllContacts(...)` returns `false` (failure), not when the audience actually changes. Emit only on success (or rely solely on `conversationUpdated`/`set_feedInviteAllContacts`), otherwise observers are notified of a state change that did not happen.",
+      "revId": "d4f8d689833933c77bbad2c2a7f3bc788ed36a9d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
