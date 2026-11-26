@@ -17,6 +17,7 @@
 
 #include "globaltestenvironment.h"
 #include "currentconversation.h"
+#include "currentconversationmembers.h"
 
 #include "api/swarmpermissions.h"
 
@@ -41,6 +42,18 @@ TEST(CurrentConversation, DeselectsConversationBeforeAccountRemoval)
     globalEnv.lrcInstance->accountModel().removeAccount(accountId);
     ASSERT_TRUE(accountRemovedSpy.wait());
     EXPECT_TRUE(globalEnv.lrcInstance->get_selectedConvUid().isEmpty());
+}
+
+TEST(CurrentConversationMembers, ListsPendingFeedInviteesAsInvited)
+{
+    CurrentConversationMembers members(globalEnv.lrcInstance.data());
+    members.setMembers("account-id", "feed-id", {}, {"pending-uri"});
+
+    ASSERT_EQ(members.rowCount(), 1);
+    const auto index = members.index(0);
+    EXPECT_EQ(members.data(index, Members::Role::MemberUri).toString(), "pending-uri");
+    EXPECT_EQ(members.data(index, Members::Role::MemberRole).value<lrc::api::member::Role>(),
+              lrc::api::member::Role::INVITED);
 }
 
 TEST(CurrentConversation, DeniesPermissionsWhenConversationInfoIsMissing)

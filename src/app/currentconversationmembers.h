@@ -22,6 +22,7 @@
 
 #include <QAbstractListModel>
 #include <QObject>
+#include <QSet>
 
 #define MEMBERS_ROLES \
     X(MemberUri) \
@@ -45,7 +46,11 @@ class CurrentConversationMembers : public QAbstractListModel
 
 public:
     explicit CurrentConversationMembers(LRCInstance* lrcInstance, QObject* parent = nullptr);
-    void setMembers(const QString& accountId, const QString& convId, const QStringList& members);
+    // Pending invitees are listed after members, with the INVITED role.
+    void setMembers(const QString& accountId,
+                    const QString& convId,
+                    const QStringList& members,
+                    const QStringList& pendingInvitees = {});
 
     int rowCount(const QModelIndex& parent = QModelIndex()) const override;
     QVariant data(const QModelIndex& index, int role = Qt::DisplayRole) const override;
@@ -56,4 +61,5 @@ private:
     QString accountId_;
     QString convId_;
     QStringList members_;
+    QSet<QString> pendingInvitees_;
 };

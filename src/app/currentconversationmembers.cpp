@@ -36,13 +36,17 @@ CurrentConversationMembers::rowCount(const QModelIndex& parent) const
 }
 
 void
-CurrentConversationMembers::setMembers(const QString& accountId, const QString& convId, const QStringList& members)
+CurrentConversationMembers::setMembers(const QString& accountId,
+                                       const QString& convId,
+                                       const QStringList& members,
+                                       const QStringList& pendingInvitees)
 {
     beginResetModel();
     accountId_ = accountId;
     convId_ = convId;
-    members_ = members;
-    set_count(members.size());
+    members_ = members + pendingInvitees;
+    pendingInvitees_ = QSet<QString>(pendingInvitees.cbegin(), pendingInvitees.cend());
+    set_count(members_.size());
     endResetModel();
 }
 
@@ -58,6 +62,8 @@ CurrentConversationMembers::data(const QModelIndex& index, int role) const
     case Members::Role::MemberUri:
         return QVariant::fromValue(member);
     case Members::Role::MemberRole: {
+        if (pendingInvitees_.contains(member))
+            return QVariant::fromValue(lrc::api::member::Role::INVITED);
         const auto role = lrcInstance_->getAccountInfo(accountId_).conversationModel->memberRole(convId_, member);
         if (!role) {
             qWarning() << "Missing role for listed conversation member" << member << "in conversation" << convId_;

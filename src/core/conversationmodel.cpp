@@ -1144,6 +1144,15 @@ ConversationModel::memberRole(const QString& conversationId, const QString& memb
     return std::nullopt;
 }
 
+QStringList
+ConversationModel::pendingFeedInvitees(const QString& conversationId) const
+{
+    QStringList uris;
+    for (const auto& invitation : ConfigurationManager::instance().getFeedInvitations(owner.id, conversationId))
+        uris.append(invitation["uri"]);
+    return uris;
+}
+
 bool
 ConversationModel::isActionPermitted(const QString& conversationId, permissions::Permission action) const
 {
@@ -1585,6 +1594,10 @@ void
 ConversationModel::addConversationMember(const QString& conversationId, const QString& memberId)
 {
     ConfigurationManager::instance().addConversationMember(owner.id, conversationId, memberId);
+    // Feed invitations add no member commit, so no member event will refresh the views.
+    auto conversationOpt = getConversationForUid(conversationId);
+    if (conversationOpt && conversationOpt->get().mode == conversation::Mode::FEED)
+        Q_EMIT conversationUpdated(conversationId);
 }
 
 void

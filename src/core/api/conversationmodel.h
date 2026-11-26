@@ -492,6 +492,13 @@ public:
     std::optional<member::Role> memberRole(const QString& conversationId, const QString& memberUri) const;
 
     /**
+     * Get contacts invited to a feed by the local account who have not subscribed yet
+     * @param conversationId
+     * @return invitee uris, empty unless the local account can invite to the feed
+     */
+    QStringList pendingFeedInvitees(const QString& conversationId) const;
+
+    /**
      * Whether the daemon permits the local account to perform a swarm action
      * @param conversationId
      * @param action
