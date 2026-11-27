@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "62d1dfd4_31c40e22",
+        "filename": "src/core/contactmodel.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-27T21:42:40Z",
+      "side": 1,
+      "message": "[warning] 🟡 Add a regression test for the ban flow: contact has tags -\u003e contact becomes banned -\u003e tags are empty and remain empty after app restart/load path. This change relies on subtle lifecycle behavior and should be protected against regressions.",
+      "revId": "8f7cdc1b62a24487f32ebf040a74518d64c0f563",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e8ee816e_788bad6e",
+        "filename": "src/core/contactmodel.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 981,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-27T21:42:40Z",
+      "side": 1,
+      "message": "[error] Line 981: 🔴 `contact-\u003etags.clear()` only mutates in-memory state. If tags are persisted (via the existing tag storage), stale tags can reappear after restart when the contact is no longer marked banned, which contradicts the daemon’s metadata-drop behavior. Also clear/persist-remove the stored tags at ban time (e.g., reuse the existing tag persistence helper) so the state is durable and consistent across sessions.",
+      "revId": "8f7cdc1b62a24487f32ebf040a74518d64c0f563",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
