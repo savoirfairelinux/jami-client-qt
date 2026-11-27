@@ -114,7 +114,7 @@ BaseModalDialog {
     button3.iconSource: peopleStep ? JamiResources.add_24dp_svg : ""
     button3.textButton: false
     button3.filledButton: true
-    button3.enabled: !creating
+    button3.enabled: !creating && (!isFeed || title.modifiedTextFieldContent.trim() !== "")
     button3.onClicked: {
         if (peopleStep) {
             createConversation();

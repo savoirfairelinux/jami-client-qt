@@ -56,6 +56,24 @@ TestWrapper {
             return editor;
         }
 
+        function setTitle(dialog, text) {
+            findChild(field(dialog, "titleLineEdit"), "textField").text = text;
+        }
+
+        function test_feedRequiresTitle() {
+            const dialog = openDialog(true);
+            verify(!dialog.button3.enabled);
+            setTitle(dialog, "   ");
+            verify(!dialog.button3.enabled);
+            setTitle(dialog, "Announcements");
+            verify(dialog.button3.enabled);
+        }
+
+        function test_groupDoesNotRequireTitle() {
+            const dialog = openDialog(false);
+            verify(dialog.button3.enabled);
+        }
+
         function test_detailsFocusAndDraft() {
             const dialog = openDialog(false);
             const title = field(dialog, "titleLineEdit");
@@ -94,6 +112,7 @@ TestWrapper {
 
         function test_allContactsAvailability(data) {
             const dialog = openDialog(data.isFeed);
+            setTitle(dialog, "Title");
             mouseClick(dialog.button3);
             compare(field(dialog, "feedAudienceComboBox").visible, data.isFeed);
         }
@@ -106,6 +125,7 @@ TestWrapper {
 
         function test_allContactsHidesSelection() {
             const dialog = openDialog(true);
+            setTitle(dialog, "Title");
             mouseClick(dialog.button3);
             const picker = field(dialog, "conversationPicker");
             const list = field(dialog, "creationConversationList");
@@ -142,7 +162,7 @@ TestWrapper {
             const description = "Team updates";
 
             try {
-                findChild(field(dialog, "titleLineEdit"), "textField").text = data.title;
+                setTitle(dialog, data.title);
                 findChild(field(dialog, "descriptionLineEdit"), "textField").text = description;
                 mouseClick(dialog.button3);
                 if (data.isFeed && !data.allContacts)
@@ -165,6 +185,7 @@ TestWrapper {
 
         function test_feedAudienceOptions() {
             const dialog = openDialog(true);
+            setTitle(dialog, "Title");
             mouseClick(dialog.button3);
             const picker = field(dialog, "conversationPicker");
             const audience = field(dialog, "feedAudienceComboBox");
