@@ -951,11 +951,16 @@ ConversationModel::createFeedConversation(const VectorString& participants,
                                           const MapStringString& infos,
                                           bool inviteAllContacts)
 {
+    // The profile is applied at creation so that invitations the daemon sends
+    // right away (inviteAllContacts) already carry the feed's title and avatar.
+    MapStringString profile = infos;
+    if (infos.contains("avatar"))
+        profile["avatar"] = storage::vcard::compressedAvatar(infos["avatar"]);
     // The daemon invites the contacts itself when inviteAllContacts is set.
     return createConversationWithUid(inviteAllContacts ? VectorString {} : participants,
-                                     infos,
+                                     {},
                                      ConfigurationManager::instance().startFeedConversation(owner.id,
-                                                                                            {},
+                                                                                            profile,
                                                                                             inviteAllContacts));
 }
 
