@@ -16,6 +16,24 @@
       "message": "[warning] Line 39: 🟡 Installing `libqt-jami` without a version makes the CI image non-deterministic: the same commit can compile against different Qt package revisions depending on mirror state and Docker cache reuse. Keep the host-side Makefile evaluation removed, but restore deterministic selection by passing a trusted version value from CI/repo metadata and installing `libqt-jami\u003d\u003cversion\u003e`.",
       "revId": "240f6de05a0eca1a3001de21cb4b45d4bbbc7da3",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c16d7321_b0851d1e",
+        "filename": "extras/build/docker/Dockerfile.client-qt-gnulinux",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-11-28T15:45:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "502aeb82_2879ec38",
+      "revId": "240f6de05a0eca1a3001de21cb4b45d4bbbc7da3",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ],
   "submitRequirementResults": []
