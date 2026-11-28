@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d985165_8165556f",
+        "filename": "src/app/messagesadapter.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 1196
+      },
+      "writtenOn": "2026-11-28T06:43:29Z",
+      "side": 1,
+      "message": "[warning] Line 275: 🟡 `resetMediaInteractions` was added to the public API but appears to be an internal lifecycle helper only used inside `MessagesAdapter` (and tests). Exposing it publicly increases misuse risk (e.g., passing invalid/null account pointers from external callers) and weakens encapsulation. Move it to `private`/`protected` and adapt the test via a friend fixture or by exercising public behavior paths.",
+      "revId": "e3734d655428ad70248565d761627dc0ef3c289c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
