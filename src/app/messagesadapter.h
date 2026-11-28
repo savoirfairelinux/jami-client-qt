@@ -302,6 +302,14 @@ private:
                                      const VectorMapStringString& messages);
     QString mediaLibraryTransferPath(const QString& conversationId, const QString& fileId) const;
 
+    // Replace the media/search model, publishing the new one to QML before the
+    // old one is destroyed so bindings never wrap a dangling pointer.
+    void resetMediaInteractions(const account::Info* accountInfo);
+
+    // Lets unit tests verify the destruction-order contract of
+    // resetMediaInteractions() without exposing it publicly.
+    friend class MessagesAdapterFixture;
+
     AppSettingsManager* settingsManager_;
     NetworkManager* network_;
     MessageParser* messageParser_;
