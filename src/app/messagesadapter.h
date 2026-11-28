@@ -273,6 +273,10 @@ public:
 
     inline MessageListModel* getMsgListSourceModel() const;
 
+    // Replace the media/search model, publishing the new one to QML before the
+    // old one is destroyed so bindings never wrap a dangling pointer.
+    void resetMediaInteractions(const account::Info* accountInfo);
+
 Q_SIGNALS:
     void navigationTargetLoaded(const QString& id);
     void newInteraction(const QString& id, int type);
